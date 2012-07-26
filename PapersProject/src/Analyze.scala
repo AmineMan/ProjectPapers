@@ -10,6 +10,7 @@ object Analyze {
     if (args.length == 0) println("You really need to supply a directory as argument");
 
     // Then go ahead
+    //go go go
     else A.analyze(args(0))
   }
 }
