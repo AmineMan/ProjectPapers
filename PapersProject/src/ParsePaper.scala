@@ -56,11 +56,11 @@ trait ParsePaper {
       takeLinesUntil("\n" | refBracket))
 
     def refAuthors : Parser[List[Author]] = (
-        until(", “") && split(", and " | " and " | ", ") 
+        until(", ") && split(", and " | " and " | ", ") 
           ^^ { x => x.init.map { a => Author(a.mkString) } } )
 
     def refTitle : Parser[Title] = (
-        until(",”" | "”," | "”." | ".") ^^ (s => Title(s.mkString))
+        until("," | "," | "." | ".") ^^ (s => Title(s.mkString))
       | success(Title("")))
 
     def reference : Parser[Reference] = (
