@@ -1,0 +1,939 @@
+Creator:        LaTeX with hyperref package
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Fri May 18 21:44:57 2012
+ModDate:        Tue Jun 19 12:55:27 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      279554 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569560997
+
+Agreement of a Restricted Secret Key
+Chung Chan
+Institute of Network Coding,
+The Chinese University of Hong Kong
+Email: cchan@inc.cuhk.edu.hk, chungc@alum.mit.edu
+of active users want to share a secret key as a function of
+the source sequences. It should be asymptotically uniformly
+random to a wiretapper who wiretaps the observations of a
+subset D ⊆ Ac := V \ A of untrusted users. The users in
+V \(A∪D) are trusted helpers, who need not share the key and
+whose observations are not revealed directly to the wiretapper.
+The users are allowed to discussion in public as in [2] but
+the entire discussion is revealed to the wiretapper. Unlike [2],
+however, we consider a more general model where the key
+is restricted to be a function of the iid sequence of a secret
+source G that is a deterministic function of ZV characterized
+by some conditional distribution PG|ZV . The original model
+in [2] is the unrestricted case G = ZV when |A| ≥ 2. The
+secret source may correspond to some sensitive information
+that needs to be protected as much as possible as in [6, 7].
+However, the objective here is not to recover the secret source
+securely but to extract a key from it. The secret source acts as
+an artiﬁcial parameter that conﬁnes the choices of the secret
+key to a smaller set.
+A simpliﬁed secret key agreement protocol is as follows.
+Each user i ∈ V observes an n-sequence Zn := (Zit : t ∈ [n])
+i
+of his private source, where [n] := {1, . . . , n} for any positive
+integer block length n ∈ P. They broadcast F := (Fi : i ∈ V )
+in public over an authenticated noiseless channel where Fi is
+the message from user i ∈ V as a function of Zn at rate
+i
+
+Abstract—A secret key agreement problem is proposed with
+the additional restriction that the key is a function of a given
+secret source. An inner bound to the achievable rates, error and
+secrecy exponents is derived. The maximum key rate strongly
+achievable with positive exponents is characterized. The result
+leads to class of admissible restrictions on the key functions that
+does not diminish the strongly achievable key rate.
+
+I. I NTRODUCTION
+The problem of multiterminal secret key agreement consists of a wiretapper and a set of users. The users observe
+correlated iid source sequences and then discuss in public
+until a subset of them, called the active users, can agree on
+a nearly uniformly random secret key that is asymptotically
+secure from the wiretapper who listens to the entire public
+discussion. The maximum achievable rate, called the secrecy
+capacity, was characterized in [2]. It was shown to be strongly
+achievable in the sense that the amount of leaked information
+not only decays to zero but at an exponential rate in the
+block length. However, the precise exponent, called the secrecy
+exponent, was not characterized. Its positivity was shown only
+by averaging over all possible choices of key functions at rate
+below the capacity. This random coding argument gives little
+insight as to how the key should be chosen in practice and
+how small the coding complexity can be. Although it was
+shown later in [3] that the secret key can be restricted to
+be purely a function of the source sequence observed by any
+one active user, the capacity was shown to be achievable only
+weakly, i.e. the amount of leaked information may decay to
+zero subexponentially. It was not clear whether the restriction
+on the key function comes at the cost of strong security.
+The purpose of this work is to characterize an achievable
+secrecy exponent and explore the admissible choices of key
+functions that can achieve the capacity strongly. In doing so,
+we formulate a more general secret key agreement problem
+in §II where the key is chosen from a restricted class of
+functions, e.g. a set of linear functions on a component source.
+The secrecy exponent is derived in §IV using the privacy
+ampliﬁcation theorem from [4, 5] introduced in §III.
+
+ri := lim sup
+n→∞
+
+1
+ln|Fi |
+n
+
+(1)
+
+with rV := (ri : i ∈ V ) denoting the set of public discussion
+∑
+rates and r(V ) := i∈V ri denoting the sum rate.
+Each active user i ∈ A generates an estimate Ki of a secret
+key K, where K must be a function of Gn and Ki must be a
+function of (Zn , F). The key rate is
+i
+1
+ln|K|
+(2)
+n
+where K is the support set of the secret key and the key
+estimates. The probability of error for user i ∈ A is
+R := lim inf
+n→∞
+
+εi := Pr{Ki ̸= K}
+n
+
+II. S YSTEM MODEL
+
+(3)
+
+and the level of secrecy is measured by the secrecy index
+(
+)
+1
+1
+ςn := D PK|FZn |K| = [ln|K| − H(K|FZn )] (4)
+D
+D
+n
+where D and H are the divergence and entropy respectively [8]
+with all logarithms taken with respect to the natural number e.
+If the public messages, secret key and key estimates is chosen
+such that εi and ςn goes to zero, then (R, rV ) is said to be
+n
+
+Let V be the ﬁnite set of users and ZV := (Zi : i ∈ V ) be
+a ﬁnitely-valued distributed random source with a given joint
+distribution PZV . Each user i ∈ V observes an iid sequence of
+the component source Zi . A non-empty subset A ⊆ V : A ̸= ∅
+This work was partially supported by a grant from the University Grants
+Committee of the Hong Kong Special Administrative Region, China (Project
+No. AoE/E-02/08).
+
+1
+
+where the expectation over L is pushed inside the logarithm
+by Jensen’s inequality. n.b. for (x, w, l) ∈ X × W × L,
+∑
+PK|WL (θl (x)|w, l) = PX|W (x|w) +
+PX|W (x|w)
+
+achievable and the maximum achievable key rate is called
+the secrecy capacity. The secrecy index approaching zero, in
+particular, means that the key becomes uniformly distributed
+independent of the wiretapper’s observations. The convergence
+rates are captured by the error and secrecy exponents
+1
+Ei := − lim inf ln εi
+∀i ∈ A
+(5)
+n
+n→∞ n
+1
+S := − lim inf ln ςn
+(6)
+n→∞ n
+(R, rV , EA , S) is said to be strongly achievable if the exponents are strictly positive. The secrecy capacity is strongly
+achievable if all key rates below the capacity can be achieved
+with positive exponents and non-negative discussion rates.
+The secrecy capacity when G = ZV is referred to as the
+unrestricted secrecy capacity. Any G that maximizes the
+capacity to that of the unrestricted case is called admissible.
+
+x∈X:˜̸=x,θl (x)=θl (˜)
+˜
+x
+x
+
+as K = θ∑ Averaging over l ∈ L, the last summation over
+L (X).
+∑
+1
+x equals x̸=x PX|W (x|w) l∈L:θl (x)=θl (˜) |L| . Applying (8),
+˜
+˜
+x
+[
+]
+(
+)
+1
+E PK|WL (θL (x)|w, L) ≤ PX|W (x|w) + |K| 1 − PX|W (x|w)
+which can be substituted back into (10) to give
+[ (
+)]
+ς ≤ E ln 1 + (|K| − 1)PX|W (X|W) .
+
+(11)
+
+This bound was ﬁrst obtained in [4] and related to R´ nyi
+e
+entropy of order 2 by applying the inequality ln(1 + δ) ≤ δ
+for δ ≥ 0. It was improved later in [5] using R´ nyi entropy of
+e
+s
+other order 1 + s ∈ (1, 2] using the inequality ln(1 + δ) ≤ δs
+for δ ≥ 0 and s ∈ (0, 1]. The improvement is obtained, in
+particular, by tightening the bound on ln(1 + δ) with s ↓ 0
+instead of s = 1 when δ becomes large. In essence of this,
+we will use the following more direct inequality without the
+additional optimization over the parameter s.
+
+III. P RIVACY AMPLIFICATION
+The main ingredient for computing the achievable exponents is the privacy ampliﬁcation theorem from [4]. We will
+introduce it using some simpliﬁed models.
+
+ln(1 + δ) ≤ min{1, δ} max{1, ln(1 + δ)}
+
+∀δ ≥ 0
+
+Scalar model:
+A user observing X wants to extract a key K as a function of
+X as securely as possible against a wiretapper observing W.
+The level of secrecy is measured by the index
+(
+)
+1
+ς := D PK|W |K| = ln|K| − H(K|W)
+(7)
+
+which is simply ln(1 + δ) ≤ δ for δ ∈ [0, 1] and ln(1 + δ) ≤
+max{1, ln(1 + δ)} otherwise. We can apply this inequality to
+(11) with δ = (|K| − 1)PX|W (X|W), in which case
+
+which is zero iff K is uniformly distributed independent of W.
+The objective is to characterize the optimal tradeoff between
+the secrecy index ς and key size |K|.
+
+where the last inequality is because PX|W (X|W) ≤ 1 and
+|K| ≥ 3 > e. This gives (9) as desired.
+■
+
+min{1, δ} ≤ min{1, |K|PX|W (X|W)}
+max{1, ln(1 + δ)} ≤ max{1, ln|K|} ≤ ln|K|
+
+e.g. we have ς = 0 for |K| = 1 by choosing K = 0 deterministically. For the non-trivial case |K| > 0, an achievable tradeoff
+can be obtained using the random code from [4] below.
+
+Vector model:
+The user observes an i.i.d. sequence Zn and the wiretapper
+observes (Yn , F) where Yn is another i.i.d. sequence corn
+related with Zn according to PYZ and F := θ(Yn , Zn ) is
+an arbitrary function taking values over a ﬁnite set F that
+1
+grows at rate r := lim supn→∞ n ln|F |. The objective is
+to characterize the optimal tradeoff between the key rate
+1
+R := lim inf n→∞ n ln|K| and secrecy exponent
+
+Universal hashing:
+Let {θl : l ∈ L} be a universal family of functions θl : X → K
+indexed by the ﬁnite set L, i.e. for all x ̸= x ∈ X,
+˜
+∑
+1
+1
+Pr{θL (x) = θL (˜)} =
+x
+(8)
+≤
+|L|
+|K|
+
+1
+[ln|K| − H(K|Yn F)]
+(12)
+n
+by choosing the key K as a function of Zn that maps to K.
+S := lim inf −
+
+l∈L:θl (x)=θl (˜)
+x
+
+n→∞
+
+where the random index L is uniformly distributed over L,
+independent of (X, W) and known to everyone. The key
+function is chosen randomly from this family, i.e. K := θL (X).
+n.b. θl ’s can be linear over some ﬁnite ﬁeld as shown in [5].
+Lemma 1 For the scalar model, a secrecy index (7)
+[
+{
+}]
+ς ≤ E min 1, |K|PX|W (X|W) ln|K|
+can be achieved by universal hashing for |K| ≥ 3.
+
+n.b. S is the exponent of ς in (7) with X and W replaced
+by Zn and (Yn , F) respectively. A lower bound on the largest
+achievable S can therefore be computed from (9) as follows.
+Lemma 2 For the vector model, a secrecy exponent (12)
+[
+{
+}]
+1
+S ≥ lim inf − ln E min 1, |K|PZn |FYn (Zn |F, Yn )
+n→∞
+n
++
+≥ min D(QYZ ∥PYZ ) + H(QZ|Y |QY ) − r − R
+(13)
+
+(9)
+2
+
+P ROOF By universal hashing, the average secrecy index is
+[ (
+)]
+ς = ln|K| − H(K|WL) = E ln |K|PK|WL (K|W, L)
+[ (
+[
+])]
+≤ E ln |K| E PK|WL (K|W, L)|W, X
+(10)
+
+QYZ ∈P(Y Z)
+
+can be achieved by universal hashing, where P(Y Z) is the
++
+simplex of distributions on Y × Z, and |x| := max{0, x}. 2
+
+2
+
+P ROOF The ﬁrst inequality is by (9) and the fact that ln|K| is
+linear in n and therefore does not contribute to the exponent.
+We will evaluate the exponent using the method of types [8]
+for the special case Y is deterministic. The general case
+follows easily by an additional conditioning on Y.
+Recall that the type of z ∈ Z n is the empirical distribution,
+say Q, where nQ(α) is the number of α ∈ Z appearing in z.
+Denote the set of possible types by Pn (Z) and the set of all
+n
+z ∈ Z n of the same type Q ∈ Pn (Z) by the type class TQ .
+The main results we need from the method of types are
+n
+PZ (z) = e−n[D(Q∥PZ )+H(Q)]
+
+n
+∀z ∈ TQ ,
+
+As before, we apply the universal hashing K := θL (G) where
+{θl : l ∈ L} is a universal family of functions θl : G → K,
+and L is a uniformly random index independent of (Zn , Yn , F).
+Although the secrecy exponent can be lower bounded by (13)
+with Z replaced by G, a tighter bound may be obtained using
+the error exponent ξ as follows.
+Lemma 3 For the vector model with restricted key, universal
+hashing achieves a secrecy exponent (12) at least the minimum
+of ξ in (15) and the R.H.S. of (13).
+2
+n.b. if ξ is very large, the exponent would be given by (13)
+without replacing Z by G. This is potentially larger than the
+bound with Z replaced by G since the randomness of G can
+be smaller than that of Z.
+
+(14)
+
+.
+.
+n .
+n
+n
+|Pn (Z)| = 1, |TQ | = enH(Q) and PZ (TQ ) = e−nD(Q∥PZ )
+.
+.
+where an ⩽ bn (an = bn ) denotes inequality (equality) in the
+1
+n
+exponents that lim supn→∞ n ln an ≤ 0 (= 0). With
+b
+{
+}
+n
+SQ (f ) := z ∈ TQ : θ(z) = f
+for Q ∈ Pn (Z), f ∈ F,
+
+P ROOF Let B be the indicator of the event Zn ̸= ϕ(Gn , Yn , F)
+and W := (Yn , F). The average secrecy index ς in (7) is
+ln|K| − H(K|WL) ≤ ln|K| − H(K|BWL)
+[
+(
+)]
+= E ((1 − B) + B) ln |K|PK|BWL (K|B, W, L)
+[
+(
+[
+])]
+≤ PB (0) ln|K| + E B ln |K| E PK|BWL (K|B, W, L)|W, Z
+
+we have for every f ∈ F and z ∈ SQ (f ) that
+PZn |F (z|f ) =
+
+n
+PZn (z)
+PZ (z)
+1
+≤∑
+n z = |S (f )|
+PF (f )
+PZ (˜ )
+Q
+˜
+z ∈SQ (f )
+
+by E [(1 − B) ln|K|] = PB (0) ln|K| and Jensen’s inequality
+as in the Proof of Lemma 1. Similar to (11), by (8)
+[
+(
+)]
+ς ≤ PB (0) ln|K| + E B ln 1 + (|K| − 1)PGn |BW (Gn |B, W)
+
+where the inequality is by F = θ(Z) and}] last equality is
+the
+[
+{
+by (14). Thus, E min 1, |K|PZn |F (Zn |F) in (13) is at least
+The expression in the last expectation can be bounded as
+{
+}
+∑ ∑ ∑
+|K|
+(
+)
+n
+PZ (z) min 1,
+B ln 1 + (|K| − 1)PGn |BW (Gn |B, W)
+|SQ (f )|
+(
+)
+Q∈Pn (Z) f ∈F z∈SQ (f )
+≤ ln 1 + (|K| − 1)PZn |BW (Zn |B, W)
+{
+}
+∑
+∑
+|K|
+|SQ (f )| min 1,
+e−n[D(Q∥PZ )+H(Q)]
+=
+To explain this, consider the non-trivial case when B = 1.
+|SQ (f )|
+f ∈F
+Q∈Pn (Z)
+Then, Zn = ϕ(Gn , Yn , F) and so there is a bijection between Zn and Gn given W, implying PGn |BW (Gn |1, W) =
+|SQ (j)|
+Let αj := |T n | . Then (αj : j ∈ F ) is a distribution on F P n
+n
+Q
+Z |BW (Z |1, W) as desired. The R.H.S. can be upper
+{
+}
+n
+because TQ is partitioned by the disjoint sets SQ (j) for j ∈ F . bounded further by min 1, PZn |BW (Zn |B, W) ln|K| for
+With xj := |S|K| , the above summation over j ∈ F can |K| ≥ 3 as in the proof of Lemma 1. Hence,
+Q (j)| ∑
+n
+(
+[
+{
+}])
+be rewritten as |TQ | j∈F αj min{1, xj }. Since min{1, x} is
+ς ≤ PB (0) + E min 1, PZn |BW (Zn |B, W)
+ln|K|
+concave in x, the summation can be upper bounded by Jensen’s
+}
+{ |F ||K| }
+{ ∑
+inequality by min 1, j∈F αj xj = min 1, |T n | . With The exponents of PB (0) and the expectation are ξ and the
+Q
+.
+.
+n .
+R.H.S. of (13) respectively, the minimum of which gives the
+|TQ | = enH(Q) , |F | ⩽ enr and |K| ⩽ enR , we have
+overall exponent of the bound as desired.
+■
+[
+{
+}]
+n
+E min 1, |K|PZn |F (Z |F)
+IV. ACHIEVABLE RATES AND EXPONENTS
+{
+}
+∑
+.
+e−nD(Q∥PZ ) min 1, e−n[H(Q)−r−R]
+⩽
+We now derive an inner bound to the achievable rates and
+Q∈Pn (Z)
+exponents of the secret key agreement problem in §II by the
+.
+−n[D(Q∥PZ )+|H(Q)−r−R|+ ]
+universal hashing and privacy ampliﬁcation theorem in §III.
+⩽ |Pn (Z)| max e
+Q∈Pn (Z)
+
+.
+which establishes (13) since |Pn (Z)| = 1.
+
+Universal hashing for secret key agreement:
+As in (8), the secret key K is chosen as K := θL (Gn ) where
+L is an independent random index uniformly distributed over
+the ﬁnite set L and {θ : l ∈ L} is a universal family of
+1
+functions θl : Gn → K satisfying Pr{θL (g) = θL (˜ )} ≤ |K|
+g
+n
+˜
+for all g ̸= g ∈ G . For i ∈ V , the public message Fi by
+i
+user i is chosen as Fi := θLi (Zn ) where Li is an independent
+i
+i
+uniformly random index and {θli : l ∈ Li } is a universal
+n
+i
+family of functions θli : Zi → Fi .
+
+■
+
+Vector model with restricted key:
+Consider the vector model but with K restricted to be a
+n
+function of Gn distributed as PG|Z given Zn . In addition,
+1
+[ln Pr{Zn ̸= ϕ(Gn , Yn , F)}] ≥ ξ
+n
+for some decoding function ϕ and ξ ≥ 0.
+lim inf −
+n→∞
+
+(15)
+
+3
+
+As in [2], we require all the active users to learn the entire source after public discussion, which is referred to as
+communication for omniscience. Each user i ∈ A generates
+ˆ
+an estimate Zi of Zn as a function of his accumulated
+V
+observations (LV , Zn , F). If the estimates are correct, then they
+i
+can compute the secret key correctly since it is a function of
+Gn , which in turn, is determined by Zn . The probability of
+V
+error (3) is therefore upper bounded by the probability of error
+in recovering Zn . By the source coding results [9], the error
+V
+exponent can be no smaller than the random coding exponent
+
+estimate of the virtual user, which can simply be the minentropy decoder [9]. We can apply Lemma 3 with Z = ZV ,
+Y = ZD and F replaced by F′ . The error exponent ξ in (15)
+is E ′ (u, rV ) in (20), and the R.H.S. of (13) corresponds to
+S ′ (u, rV , R) :=
+
+min ΥQZV (B)
+
+QZV ∈P(ZV )
+
+u + r(Dc ) + R ≤ H(PZDc |ZD )
+
+S(u, rV , R) := min{E ′ (u, rV ), S ′ (u, rV , R)}
+
++
+
+ΥQZV (B) := r(B) − H(QZB |ZBc |QZBc )
+
+r(B) > H(ZB |ZB c )
+
+Theorem 1 (R, rV , EA , S) is strongly achievable if R ≥ 0,
+0 < Ei ≤ E i (rV ) in (16) for all i ∈ A and 0 < S ≤
+S(u, rV , R) in (25) for some u ≥ 0.
+2
+The rates for which the exponents are positive are as follows.
+
+∀B ⊆ V : ∅ ̸= B ̸⊇ A.
+
+(18)
+
+Corollary 1 (R, rV ) is strongly achievable if R ≥ 0, (18),
+(22) and (24) are satisﬁed for some u ≥ 0. It follows that if
+
+To lower bound the secrecy exponent, we will introduce a
+virtual user and a virtual message to the system. They are
+not part of the actual system, however, and are introduced
+only for the purpose of computing the bound. After the entire
+public message F is revealed, one of the active users, say
+′
+j ∈ A, generates a virtual message U = θL′ (Zn ) at rate u =
+j
+1
+′
+′
+′
+lim supn→∞ n |U | where {θl′ : l ∈ L } is a universal family
+and L′ is an independent uniformly random index. Let
+
+0 ≤ R < H(ZDc |ZD ) − min r′ (Dc ) where
+′
+r′ (B) ≥ H(ZB |ZB c )
+
+with
+
+∀B ⊆ Dc : B ⊇ A
+
+(26c)
+2
+
+P ROOF (R, rV ) is strongly achievable because (18), (22) and
+(24) for some u ≥ 0 implies that the exponents are positive as
+argued before. Consider proving the second implication in the
+′
+corollary. Suppose rDc is an optimal solution to (26). For δ >
+′
+0 sufﬁciently small, we have (26a) even if ri ’s are increased
+′
+c
+by δ. Let u := 0, ri := ri + δ for i ∈ D and ri arbitrarily
+large for i ∈ D. Then, (26b), (26c) and (26a) imply (18), (22)
+and (24) respectively. Hence, R is strongly achievable.
+■
+′
+(26) can be explained intuitively as follows. rDc can be
+interpreted as a discussion rate tuple that satisﬁes the SlepianWolf constraints [8] (26b) and (26c) for the active users
+j ∈ A and the virtual user observing G to attain omniscience
+of ZV . H(ZDc |ZD ) is the common randomness among the
+active users not revealed through ZD while at most r′ (Dc ) of
+it is revealed through the public discussion. The remaining
+common randomness, i.e. the R.H.S. of in (26a), remains
+secret. In particular, the portion of secret randomness in G
+can be used for the key. Since the virtual user can recover
+ZDc from G, all the randomness in ZDc is in G. Indeed, the
+entire secret randomness is the secrecy capacity.
+
++
+
+(20)
+(21)
+
+where QGZV is a distribution on G × ZV . Once again, the
+exponent is positive if Υ′ GZ (B) ≥ 0 for all B ⊆ Dc ,
+P V
+which, in turn, holds if u + r(B) > H(ZB |ZB c G). The
+cases where B ̸⊇ A are implied by (18) and u ≥ 0 since
+H(ZB |ZB c ) ≥ H(ZB |ZB c G). Thus, the exponent is positive
+if (u, rV ) satisﬁes (18) and the additional constraints that
+u + r(B) > H(ZB |ZB c G)
+
+∀B ⊆ D : B ⊇ A
+c
+
+then R is strongly achievable.
+
+B⊆D
+
+(B) := u + r(B) − H(QZB |ZBc G |QZBc G )
+
+(26b)
+
+r (B) ≥ H(ZB |ZB c G)
+
+The exponent is again lower bounded [9] by
+
+QGZV ∈P(GZV )
+
+∀B ⊆ Dc : B ̸⊇ A
+
+′
+
+1
+ln|F ′ | = u + r(Dc ).
+n→∞ n
+A virtual user observes (F′ , Zn , Gn ) and generates an estimate
+D
+ˆ
+Z′ of the entire source Zn . Denote the error probability by
+V
+{
+}
+′
+ˆ
+εn := Pr Z′ ̸= Zn
+(19)
+V
+
+Υ′ GZ
+Q V
+
+(26a)
+
+rD c
+
+lim inf
+
+′
+E ′ (u, rV ) := min D(QGZV ∥PGZV ) + mincΥQGZV(B)
+
+(25)
+
+which is positive if (22) and (24) are satisﬁed. In summary,
+we have the following achievable rate and exponents.
+
+(17)
+
+where H(QZB |ZBc |QZBc ) is the conditional entropy of ZB
+given ZB c when ZV has the joint distribution QZV . Since
+D(QZV ∥PZV ) ≥ 0 with equality iff QZV = PZV , the
+exponents for all i ∈ A are positive if ΥPZV (B) ≥ 0, i.e.
+
+with
+
+(24)
+
+The secrecy exponent is at least the minimum of (20) and (23),
+
+with |·| := max{0, ·} and
+
+F′ := (U, FDc )
+
+(23)
+
++
+
+which is positive if
+
+(16)
+
+B⊆V :i̸∈B̸=∅
+
+D(QZV ∥PZV )
+
++ H(QZDc |ZD |QZD ) − u − r(Dc ) − R
+
++
+
+E i (rV ) := min D(QZV ∥PZV ) +
+
+min
+
+QZV ∈P(ZV )
+
+(22)
+
+Theorem 2 The R.H.S. of (26a) is the secrecy capacity and
+so any rate below the capacity is strongly achievable.
+2
+
+′
+
+Instead of having (LV , L ) uniformly random, ﬁx it to some
+good realization (lV , l′ ) that achieves the error exponents in
+ˆ
+(16) and (20). Denote by Z′ := ϕ(Gn , Zn , F′ ) the source
+D
+
+P ROOF The proof is the same as that of [7, Theorem 6].
+
+4
+
+■
+
+which is at least H(ZU |ZU c G). Applying this to the fact that
+Cs (U ) ≤ H(ZU |ZU c ) − r′ (U ) gives (28) as desired.
+■
+
+The capacity is a linear program that can be computed in
+polynomial time with respect to |V | as shown in [10]. The
+capacity in [2] is the special case when G = ZV and the
+necessary condition for secure computing in [6] can also be
+expressed in terms of this capacity [7].
+
+The admissible restriction in [3] is the special case when
+G = Zj for some j ∈ A, in which case (29) follows from
+H(G) = H(Zj ) ≥ I(Zj ∧ ZV \{j} ). (29) extends it further to
+functions of Zj with sufﬁciently large randomness.
+
+V. A DMISSIBLE RESTRICTIONS
+For U ⊆ D : U ⊇ A, deﬁne
+c
+
+Cs (U ) = H(ZU |ZU c ) − min r′ (U )
+′
+
+where
+
+(27a)
+
+∀B ⊆ U : B ̸⊇ A
+
+(27b)
+
+rU ≥0
+
+r′ (B) ≥ H(ZB |ZB c )
+
+VI. E XTENSION
+We have formulated the problem of secret key agreement
+with a restricted key and derived an inner bound to the error
+and secrecy exponents by the random coding error exponent
+and the privacy ampliﬁcation theorem for universal hashing.
+The secrecy capacity is in the form of a polynomial-time
+solvable linear program strongly achievable with the key and
+public discussion functions restricted to be linear over a ﬁnite
+ﬁeld. A restriction on the key is also shown to be admissible
+if its randomness remains no smaller than the unrestricted
+secrecy capacities when some helpers become untrusted. This
+leads to a larger class of admissible restrictions than previously
+known without sacriﬁcing strong security.
+It is possible improve the secrecy exponent as shown in [1].
+e.g. the exponent S ′ (0, rV , R) in (23) larger than the one in
+(25) is achievable for the unrestricted case G = ZV because
+the virtual user can recover Zn perfectly from Gn without
+V
+any virtual message, i.e. u = 0. For the more general case, it
+is also possible to improve the exponent by the multiterminal
+privacy ampliﬁcation theorem in [7] that exploits the additional
+fact that the discussion functions are not arbitrary given
+functions of certain rates but can be chosen optimally from
+some universal families. In particular, the improvement is a
+consequence of securing the type information of Zn from the
+V
+public messages. It would be interesting to see how much
+improvement is possible by giving an outer bound on the
+achievable rates and exponents.
+
+′
+′
+where rU ≥ 0 means that ri ≥ 0 for all i ∈ U . Cs (U ) can be
+interpreted as the unrestricted capacity when U c ⊇ D is the
+set of untrusted users. In particular, to see that Cs (Dc ) is the
+unrestricted capacity (26a) when G = ZV , n.b. (26c) becomes
+r′ (B) ≥ 0 for B ⊆ Dc : B ⊇ A. This holds iff r′ (A) ≥ 0
+′
+′
+and ri ≥ 0 for all i ∈ Dc \ A. We have rU ≥ 0 altogether
+′
+′
+since ri ≥ 0 for i ∈ A follows from r (A) ≥ 0 when |A| = 1
+and from (26b) when |A| ≥ 2. The following theorem gives a
+sufﬁcient condition for G to be admissible in terms on Cs (U ).
+
+Theorem 3 G is admissible if
+H(G|ZU c ) ≥ Cs (U )
+
+∀U ⊆ Dc : U ⊇ A,
+
+(28)
+
+i.e. the secrecy capacity (26a) equals Cs (Dc ) in (27a).
+
+2
+c
+
+P ROOF The secrecy capacity (26a) is no larger than Cs (D )
+trivially because (26b) is identical to (27b) for U = Dc .
+′
+Consider proving the reverse inequality. Suppose rDc is an
+c
+optimal solution to (27a) with U = D , attaining the secrecy
+capacity Cs (Dc ). We will show that (26c) holds under (28) and
+′
+so rDc is feasible to (26a) as desired. Since (27b) for U = Dc ,
+′
+i.e. (26b), implies (27b) for any U ⊆ Dc : U ⊇ A, rU is a
+feasible solution to (27a), i.e. Cs (U ) ≥ H(ZU |ZU c ) − r′ (U ),
+which implies by (28) that H(G|ZU c ) ≥ H(ZU |ZU c ) − r′ (U )
+and therefore (26c) with U rewritten as B.
+■
+
+R EFERENCES
+[1] C. Chan, publications. http://goo.gl/4YZLT, http://chungc.net63.net/pub.
+[2] I. Csisz´ r and P. Narayan, “Secrecy capacities for multiple terminals,”
+a
+IEEE Transactions on Information Theory, vol. 50, no. 12, Dec 2004.
+[3] ——, “Secrecy capacities for multiterminal channel models,” IEEE
+Transactions on Information Theory, vol. 54, no. 6, pp. 2437–2452,
+June 2008.
+[4] C. H. Bennett, G. Brassard, C. Cr´ peau, and U. M. Maurer, “Generale
+ized privacy ampliﬁcation,” IEEE Transactions on Information Theory,
+vol. 41, no. 6, pp. 1915–1923, Nov 1995.
+[5] M. Hayashi, “Exponential decreasing rate of leaked information in
+universal random privacy ampliﬁcation,” Information Theory, IEEE
+Transactions on, vol. 57, no. 6, pp. 3989 –4001, june 2011.
+[6] H. Tyagi, P. Narayan, and P. Gupta, “When is a function securely computable?” Information Theory, IEEE Transactions on, vol. 57, no. 10,
+pp. 6337 –6350, Oct. 2011.
+[7] C. Chan, “Multiterminal secure source coding for a common secret
+source,” in Forty-Ninth Annual Allerton Conference on Communication,
+Control, and Computing, Allerton Retreat Center, Monticello, Illinois,
+Sep. 2011.
+[8] I. Csisz´ r and J. K¨ rner, Information Theory: Coding Theorems for
+a
+o
+Discrete Memoryless Systems. Akad´ miai Kiad´ , Budapest, 1981.
+e
+o
+[9] I. Csiszar and J. Korner, “Towards a general theory of source networks,”
+Information Theory, IEEE Transactions on, vol. 26, no. 2, pp. 155 – 165,
+mar 1980.
+[10] C. Chan, “Matroidal undirected network,” in 2012 IEEE International
+Symposium on Information Theory Proceedings (ISIT2012), Cambridge,
+MA, Jul. 2012, see [1].
+
+In words, G is admissible if its randomness remains no
+smaller than the unrestricted capacity when some trusted
+helpers in V \ (A ∪ D) becomes untrusted. When all users are
+active, i.e. A = Dc = V , (28) simpliﬁes to H(G) ≥ Cs (V ),
+which is indeed the counterpart of the sufﬁcient condition
+H(G) < Cs (V ) for G to be securely computable in [6].
+Corollary 2 G is admissible if it is a function of Zj with
+H(G) ≥ I(Zj ∧ ZV \{j} )
+
+(29)
+
+for some j ∈ A with |A| ≥ 2.
+
+2
+
+P ROOF Consider proving that (28) is satisﬁed by |A| ≥ 2 and
+′
+(29) for some j ∈ A. For any U ⊆ Dc : U ⊇ A, let rU be the
+optimal solution that attains the capacity Cs (U ) in (27a). Since
+′
+|A| ≥ 2, we have {j} ̸⊇ A and so rj ≥ H(Zj |ZV \{j} ) ≥
+H(Zj |G) by (27b) and (29). Similarly, since |U \ {j}| ̸⊇ A,
+we also have r′ (U \ {j}) ≥ H(ZU \{j} |ZU c ) by (27b) and the
+fact that j ∈ A ⊆ U . Thus,
+′
+r′ (U ) = rj + r′ (U \ {j}) ≥ H(Zj |G) + H(ZU \{j} |ZU c )
+
+5
+
+

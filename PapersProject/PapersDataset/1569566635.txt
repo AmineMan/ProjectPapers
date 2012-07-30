@@ -1,0 +1,936 @@
+Title:          isit6.DVI
+Subject:        
+Keywords:       
+Author:         
+Creator:        dvips(k) 5.86d Copyright 1999 Radical Eye Software
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   5/18/2012 8:10:17 PM
+ModDate:        Tue Jun 19 12:55:18 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      335146 bytes
+Optimized:      no
+PDF version:    1.7
+ISIT'2012 1569566635
+
+Random Access Compressed Sensing Over Fading
+and Noisy Communication Channels
+Fatemeh Fazel
+
+Maryam Fazel
+
+Milica Stojanovic
+
+Northeastern University
+Boston, MA
+Email: ffazel@ece.neu.edu
+
+University of Washington
+Seattle, WA
+Email: mfazel@u.washington.edu
+
+Northeastern University
+Boston, MA
+Email: millitsa@ece.neu.edu
+
+design methodology. In Section V, we study the bandwidth
+and energy utilization of the network. Finally, we provide
+concluding remarks in Section VI.
+
+Abstract—Random Access Compressed Sensing (RACS) is an
+efﬁcient method for data telemetry from a network of distributed
+sensors deployed in a challenging ﬁeld environment with limited
+resources. RACS relies on integrating sensing with the communication architecture, in order to achieve overall efﬁciency in
+terms of the energy per bit of information successfully delivered
+to the fusion center. Targeting realistic deployment conditions, we
+consider data gathering over a Ricean fading channel and in the
+presence of communication noise. We provide a framework for
+system design and study the energy and bandwidth requirements
+of the network. We then show that compared to a conventional
+TDMA network with ARQ, RACS achieves signiﬁcant energy and
+bandwidth savings. For example, for a network of 4000 nodes, we
+observe 10 dB gain in the energy as well as a 2.5-fold reduction
+in the required bandwidth.
+
+II. RACS: R ANDOM ACCESS C OMPRESSED S ENSING
+The theory of compressed sensing [4], [5] establishes that if
+a signal of dimension N has an S-sparse representation in an
+appropriate domain Ψ (referred to as the sparsity basis), it can
+be recovered, with very high probability, from O(µS log N )
+random measurements obtained in a sensing domain Φ.1 Many
+natural signals have a compressible (sparse) representation in
+the frequency domain. Noting that the spatial coordinate basis
+and the spatial frequency basis are maximally incoherent,2 the
+conditions for compressed sensing hold.
+RACS thus works as follows: The sensor node i, where
+i ∈ {1, . . . , N }, measures the signal of interest at random time
+instants (e.g., following a Poisson packet generation model),
+independently of the other nodes, at a rate of λ1 measurements
+per second. It then encodes each measurement along with
+the node’s location tag into a packet of L bits, which is
+transmitted to the FC over a fading and noisy random access
+channel. Combining random sensing with random channel
+access provides a simple scheme that is easy to implement and
+does not require synchronized scheduling. At the FC, a packet
+is declared erroneous if it does not pass the cyclic redundancy
+check (CRC) or a similar veriﬁcation procedure. Motivated by
+compressed sensing, the FC discards the erroneous packets,
+since it does not care which speciﬁc sensors are selected as
+long as (i) the selected subset is chosen uniformly at random,
+and (ii) there are sufﬁciently many correct packets collected
+to allow for the reconstruction of the ﬁeld. The FC collects
+the successfully received packets over an observation interval
+T , where T is assumed to be shorter than the coherence time
+of the process, such that the process can be approximated as
+ﬁxed during the observation interval. Among the successfully
+
+I. I NTRODUCTION
+Long-term monitoring of the natural environment is facilitated by the advances in the wireless sensor technology [1],
+which enable the deployment of a large number of inexpensive
+sensors. The data from distributed sensors is conveyed to a
+fusion center (FC) where a full map of the sensing ﬁeld is
+reconstructed. This task is exacerbated in harsh environments
+that demand that the power be saved to prolong network
+life-time, bandwidth is constrained, and the communication
+channel introduces distortion. An efﬁcient scheme thus calls
+for the integration between sensing, communication, and ﬁeld
+recovery. In [2], [3] we proposed Random Access Compressed
+Sensing (RACS) which achieves overall efﬁciency in terms
+of the energy per bit of information successfully delivered.
+Considering the fact that most natural phenomena have a
+sparse representation in an appropriate domain, RACS capitalizes on integrating compressed sensing with random channel
+access. The former supports transmission of sensor data from
+only a random subset of all the nodes– thus reducing the
+overall energy consumption– while the latter supports a simple
+implementation that eliminates the need for synchronized
+scheduling. In the present paper, we address the design and
+performance of RACS under realistic deployment conditions,
+including fading and noisy communication channels.
+The rest of the paper is organized as follows. In Section II,
+we overview the principles of RACS. In Section III, we
+address the impact of channel fading and communication
+noise on the system performance. Section IV outlines the
+
+1 The coefﬁcient µ represents the coherence between the sparsity basis Ψ
+and the sensing basis Φ and is deﬁned as [5]
+√
+µ(Φ, Ψ) = N max | Φk , Ψj |
+(1)
+1≤k,j≤N
+
+2 The coherence between the (spatial) Fourier domain Ψ and the spatial
+domain Φ is µ(Ψ, Φ) = 1.
+
+1
+
+signal of interest, and the number of interfering packets n, is a
+random variable with probability distribution P (n). Assuming
+that packet arrivals follow a Poisson distribution, we have that
+
+received packets, there may be more than one packet corresponding to a single node. Considering that the sensing ﬁeld
+has not changed, the extra packets, if successfully received, are
+redundant. Thus some of the received packets at the FC may be
+repetitive, while some are corrupted due to the communication
+noise and interference. To reconstruct the map of the ﬁeld, the
+FC recovers the sparse vector v which represents the Fourier
+transform of the ﬁeld, by solving
+minv
+
+v
+
+subject to RΨv = y.
+
+1
+
+P (n) =
+
+(2)
+
+In the worst case scenario, the packet arrivals are synchronized, i.e., τi = 0 for i ∈ {1, . . . , N }. Thus the interfering
+n
+power is denoted by In = i=1 |hi |2 P0 = Yn , and follows
+a probability distribution fY . This, however, represents a pessimistic scenario, since in RACS packet transmissions are not
+synchronized. Rather than considering various scenarios for
+the overlapping of packets, we employ a simpliﬁed model in
+which we assume that the strongest interferer dominates in (t),
+i.e., we assume that the interference power is In = |hm |2 P0 ,
+where hm = maxi∈{1,...,n} hi . Assuming Mn = |hm |2 P0 has
+a probability distribution fM , it can be shown that
+
+III. C HANNEL FADING AND N OISE
+We consider a random access network consisting of a total
+of N sensor nodes, where each node generates packets with
+an average rate of λ1 packets/sec, and transmits the generated
+packet immediately to the FC. The wireless channel gain ci ,
+observed by the i-th packet, can be modeled as
+(3)
+
+where the effects of distance-dependent path loss and the
+shadowing are included in a gain Gi , and small-scale fading
+is modeled by a complex-valued coefﬁcient hi ∼ CN (¯ 1).
+h,
+Assuming that the data collection interval T is short compared
+to the de-correlation interval of the shadowing, the shadowing
+coefﬁcient is considered ﬁxed and can be estimated using
+an occasional downlink feedback. Thus we assume that Gi
+can be pre-compensated at the transmitter by means of a
+power control mechanism, i.e., that the transmitter adjusts its
+power to P0 /G2 , where P0 is the desired average received
+i
+power. We assume a quasi-static fading model, in which the
+fading coefﬁcients hi remain ﬁxed for the duration of a packet
+and change independently from one packet to the next. This
+assumption implies that the packets generated by a single node
+are distanced sufﬁciently apart in time such that they undergo
+independent fades. Also, the spatial correlation among the
+channels is assumed to be negligible.
+
+fM (z) = nFX (z)n−1 fX (z)
+
+n
+
+In =
+
+(4)
+
+ps|n (γ) =
+
+hi ui (t − τi )
+
+(model a)
+(model b)
+
+(9)
+
+0, γ < b
+1, γ ≥ b
+
+(10)
+
+The effects of coding, modulation and other system parameters are implicit in b, which is a predeﬁned threshold
+with a typical value b = 2 − 6 [6], [7].
+2) BER Model: Treating interference as Gaussian noise [8],
+
+n
+i=1
+
+Yn = i=1 |hi |2 P0
+Mn = maxi |hi |2 P0
+
+Model (a) assumes the worst case scenario, thus leads to an
+overestimation of the effect of interference and yields slightly
+pessimistic results for the probability of successful reception.
+Model (b), on the other hand, underestimates the effect of
+the interference, resulting in a probability of success that is
+slightly larger than the one predicted using model (a). The
+models (a) and (b) given by (9) thus provide upper and lower
+bounds, respectively, on the actual interfering power.
+For a given number of interfering packets n, the probability
+of successful reception ps|n (γ) is an increasing function of γ,
+where the shape of the function depends on system parameters
+such as modulation, coding, etc. The following two models can
+be used to describe ps|n (γ):
+1) Outage Model: In this model, ps|n (γ) is described by a
+step function as
+
+where u0 (t) is the desired signal, in (t) is the interference
+and w(t) is the additive white Gaussian noise with power
+N0 B, where B is the bandwidth. The interfering term can
+be expressed as
+in (t) =
+
+(8)
+
+where FX (x) is the CDF of X0 .
+Thus we have two methods to model the interfering power,
+
+A. Probability of Successful Reception
+The received signal at the FC is given by
+vn (t) = h0 u0 (t) + in (t) + w(t)
+
+(6)
+
+where Tp = L/B is the packet duration.3 For a given node,
+X0 = |h0 |2 P0 represents the power of the desired packet,
+and In represents the total interference power. We assume
+that X0 and In follow probability distributions fX and fI ,
+respectively. The instantaneous signal to interference and noise
+ratio is given by
+X0
+γ=
+(7)
+In + N0 B
+
+where, y is the vector containing the useful packets, Ψ is the
+inverse discrete Fourier transform matrix and R models the
+selection of the useful packets, i.e., it consists of a uniformly
+random subset of the rows of the identity matrix corresponding
+to the useful packet collected. For more details on RACS the
+reader can refer to [2], [3].
+
+ci = G i h i
+
+(2N λ1 Tp )n −2Nλ1 Tp
+e
+n!
+
+(5)
+
+where ui (t) is the i-th interferer’s signal, τi is the difference
+in the arrival time of the interfering signal, with respect to the
+
+3 Throughout
+
+2
+
+this paper we use bandwidth and bit rate interchangeably.
+
+we use the bit error probability pd (γ) to determine the
+probability of receiving a correct packet as
+ps|n (γ) = (1 − pd (γ))L
+
+0.7
+0.65
+0.6
+
+(11)
+
+0.55
+b=2
+ps
+
+Here pd (γ) depends √ the modulation scheme used, for
+on
+instance pd (γ) = Q( 2γ) for uncoded BPSK and QPSK,
+and pd (γ) = 1 e−γ for differential BPSK [9].4
+2
+
+∞
+f (x)dx
+bN0 B X
+∞ ∞
+b
+N0 B fX (γw)fI (w
+
+− N0 B)wdwdγ
+
+0.5
+b=4
+0.45
+
+b=6
+
+0.4
+
+Using powerful long codes, Eq. (11) approaches a step function, thus ps|n (γ) in the BER model approaches that in the
+outage model [11].
+Assuming the outage model, averaging ps|n (γ) over the
+fading statistics results in
+ps|n =
+
+no coding
+coding
+b=2
+b=4
+b=6
+
+0.35
+15
+
+20
+
+25
+
+30
+
+35
+
+γ0 [dB]
+
+Fig. 1. Probability of successful reception under the BER model is compared
+with that of the outage model for various received SNR γ0 . For the BER
+model, we used an uncoded DPSK modulation scheme with pd = 1 e−γ
+2
+and a coded scheme using a rate 1/2 convolutional code with Cg = 6.99
+dB [10].
+
+for n = 0
+for n ≥ 1
+(12)
+
+and assuming the BER model,
+Note that in a noise-less fading channel, the probability of
+b
+successful reception reduces to ps = e−2Nλ1 Tp 1+b as derived
+in [12].
+
+∞
+L
+(1 − pd (γ)) fX (x)dx
+0
+∞ ∞
+L
+0
+0 (1 − pd (γ)) fX (x)fI (y)dxdy
+
+for n = 0
+ps|n =
+for n ≥ 1
+(13)
+where fI = fY for model (a) and fI = fM for model (b).
+The total probability of successful reception is then given
+by
+
+C. Numerical Results
+We start by examining the impact of the choice of the
+threshold b in the outage model given by (10). The proper
+choice of b depends on the modulation and coding techniques
+used. Fig. 1 depicts the probability of successful reception
+using both the BER and the outage models for various
+scenarios. We observe that for a non-coded scheme we can
+adopt a threshold value b = 6, while the outage model with
+b = 2 corresponds to employing a code with a large coding
+gain, and ﬁnally b = 4 lies in between. For the rest of this
+paper, we employ the outage model with a threshold b = 4.
+Fig. 2 shows the probability of successful reception in
+Rayleigh fading (K = 0) using the two models (a) and (b) for
+interference given by Eq. (9). As expected, model (b) predicts
+a larger ps than model (a). We note that for our choice of
+system parameters, the bounds on ps , provided by models (a)
+and (b), are tight, and the gap further diminishes as bandwidth
+is increased. Thus the actual ps is approximated relatively
+accurately by each model. Throughout the rest of the paper
+we use model (a) and design the system for the worst case
+scenario, keeping in mind that the actual system performance
+will be slightly better than assumed by this model.
+Fig. 3 shows ps in a Ricean fading channel for K = 3
+and K = 6 dB. We observe from the ﬁgure that in the
+noise-limited scenario (γ0 very small) and in the interferencelimited scenario (γ0 very large) channel fading boosts the
+probability of successful reception. The reason is that when
+fading is present, not every collision has to result in packet
+loss. Namely, it is possible that although two (or more) packets
+overlap at the FC, one is sufﬁciently stronger so that it can be
+successfully detected.
+
+N
+
+ps =
+
+P (n)ps|n
+
+(14)
+
+n=0
+
+B. Ricean and Rayleigh models
+As a general model for a wireless communication channel,
+we assume that the amplitudes of the channel gains |hi | follow
+i.i.d Ricean distribution where the rice factor K is deﬁned as
+the ratio of the power in the line of sight (LOS) component
+to the power in the scattered component. In the special case
+when there is no LOS component present, i.e., K = 0, the
+envelope of hi follows a Rayleigh distribution. In this case,
+X0 follows an exponential distribution given by
+fX (x) =
+
+1 −x/P0
+e
+P0
+
+x≥0
+
+(15)
+
+For the interference model (a), Yn follows a gamma distribution
+1 (y/P0 )n−1 −y/P0
+fY (y) =
+e
+(16)
+P0 (n − 1)!
+and for the interference model (b) we have that
+fM (z) =
+
+n
+1 − e−z/P0
+P0
+
+n−1
+
+e−z/P0
+
+(17)
+
+In the outage model, the probability of successful reception in
+model (a) is found in closed form as
+b
+
+ps = e−b/γ0 e−2Nλ1 Tp 1+b ,
+
+(18)
+
+coding we have that pd (γ) ≈ Bdfree e−Cg γ for large γ, where
+Cg = Rdf ree /2 is the asymptotic coding gain, df ree is the minimum
+distance between any two code words, Bdfree is the total number of nonzero
+information bits in all the weight-df ree code words and R is the code
+rate [10].
+4 With
+
+IV. N ETWORK D ESIGN P RINCIPLES
+The total number of packets that are used in the reconstruction process, referred to as the useful packets and denoted by
+
+3
+
+packets collected in T . The design objective is to determine
+the minimum per-node sensing rate λ1s that is necessary to
+ensure sufﬁcient sensing. In a Rayleigh fading channel, using
+Eq. (18) for ps , the minimum per-node sensing rate λ1s can
+be expressed as
+
+0.5
+
+0.4
+
+p
+
+s
+
+0.3
+
+0.2
+
+λ1s
+
+0.1
+
+no fading
+Rayleigh (interference model a)
+Rayleigh (interference model b)
+
+0
+5
+
+10
+
+15
+
+−1
+=
+· W0
+2N Tp β
+
+b
+
+2N Tp βe γ0
+αs
+log 1 −
+T
+N
+
+(23)
+
+where W0 (·) denotes the principal branch of the Lambert
+b
+W function and β = b+1 . In a Ricean fading channel, λ1s
+can be determined numerically for a given αs . In Fig 4(a),
+for a given Ns and a desired Ps , the corresponding αs is
+determined. Then, for the obtained value of αs , Fig. 4(b)
+shows the minimum per-node sensing rate λ1s for Rayleigh
+and Ricean fading channels.
+
+20
+
+γ [dB]
+0
+
+Fig. 2. Probability of successful reception versus γ0 = P0 /N0 B, for a
+Rayleigh fading channel. The following system parameters are used: N =
+2500, L = 1000 bits, λ1 = 10−3 and B = 5 kbps.
+
+0.45
+
+V. B ANDWIDTH
+
+0.4
+0.35
+
+E NERGY C ONSIDERATION
+
+The minimum bandwidth Bs required to achieve a certain
+performance over a Rayleigh fading channel, is obtained as
+
+0.3
+0.25
+
+p
+
+s
+
+AND
+
+0.2
+
+Bs =
+
+0.15
+0.1
+
+0
+5
+
+10
+
+15
+
+1
+1 − αs /N
+
+20
+
+γ [dB]
+0
+
+Fig. 3. Probability of successful reception versus γ0 = P0 /N0 B, for a
+Ricean fading channel with K = 3 dB and K = 6 dB.
+
+Emin (B) = N λ1s (B)T N0 γ0 ηL
+
+1
+1 − αs /N
+1
+· log
+1 − αs /N
+
+Elow = lim Emin (B) = N N0 γ0 ηL · eb/γ0 · log
+
+The arrival of useful packets follows a Poisson process with
+an effective average arrival rate
+
+B→∞
+
+Eup = Emin (Bs ) = N N0 γ0 ηL · e1+b/γ0
+
+N pg
+N
+= (1 − e−ps λ1 T )
+(20)
+T
+T
+where ps is the probability of successful reception for a given
+node, determined in Section III.
+We deﬁne the probability of sufﬁcient sensing as the probability that the FC collects Ns or more useful packets during T ,
+where Ns = CS log N is speciﬁed by compressed sensing (C
+is a constant). We then specify the performance requirement
+as the minimum probability of sufﬁcient sensing, Ps . Thus,
+the design criterion is expressed as
+λ =
+
+where the bounds are within a constant gap of size e.
+To further demonstrate the advantage of RACS, we compare
+the energy and bandwidth requirements of RACS with those
+of a conventional (benchmark) design. The benchmark scheme
+is a TDMA network in which all N nodes transmit using
+pre-assigned time slots. In the presence of noise and fading,
+some of the packets are not successfully received. A common
+approach to deal with the packet loss is to employ an automatic
+repeat request (ARQ) scheme, by which the receiver requests
+retransmission of a failed packet. The average number of
+retransmissions required to ensure a packet is successfully
+1
+received is 1−pf , where pf denotes the probability of failure
+for a packet and is given by
+
+(21)
+
+The condition (21) can equivalently be stated as
+α ≥ αs
+
+(25)
+
+where η = E{G−2 }. We note that the energy expenditure
+i
+Emin depends on the transmission bandwidth B through λ1s ,
+where λ1s (B) is largest when B = Bs , and decreases with
+B. Thus we determine lower and upper bounds on the energy
+consumption as
+
+K(λ1 , T ), is the number of received packets left after discarding the erroneous and repetitive packets. The probability
+of receiving a useful packet from a node can be expressed
+as [12]
+pg = 1 − e−ps λ1 T
+(19)
+
+Prob {K(λ1 , T ) ≥ Ns } ≥ Ps
+
+(24)
+
+(Note that the minimum bandwidth over a Ricean fading channel can be determined numerically.) Let PT = P0 E{G−2 }
+i
+denote the average per-node transmission power, where in
+order to maintain a ﬁxed received SNR γ0 it must be that
+P0 = N0 Bγ0 . The total average energy required for one ﬁeld
+reconstruction is thus given by
+
+no fading
+Ricean (K=3 dB)
+Ricean (K=6 dB)
+
+0.05
+
+2N Lβ (1+b/γ0 )
+·e
+· log
+T
+
+(22)
+
+pf = 1 − e−b/γ0
+
+where α = λ T represents the average number of useful
+
+4
+
+(26)
+
+1.2
+
+VI. C ONCLUSION
+
+800
+
+Random access compressed sensing (RACS) is an energyefﬁcient approach to data gathering over large-scale sensor
+networks. By combining random sensing with a simple random
+access, RACS eliminates the need for synchronized scheduling
+(as is required for deterministic channel access methods such
+as TDMA), thus making it easy to implement over a large
+network. To address realistic deployments for RACS, we took
+into consideration the impact of channel fading and noise on
+the design and performance of the network. It was shown
+that in the noise-limited and the interference-limited scenarios,
+fading boosts the probability of successful reception. We
+assessed the performance of RACS analytically in terms of the
+energy and bandwidth utilization. We observe signiﬁcant gains
+in energy and bandwidth over a TDMA network using ARQ.
+For example, for a network of 4000 nodes, we achieve 10 dB
+saving in energy as well as lower bandwidth requirements.
+
+700
+0.8
+
+α [packets]
+
+Prob{K(λ1,T) ≥ Ns}
+
+1
+
+900
+Ps=0.99
+
+0.6
+
+600
+500
+400
+
+α
+
+s
+
+0.4
+300
+
+α =355
+s
+
+0.2
+0
+0
+
+Rayleigh
+Ricean (K=3 dB)
+
+200
+100
+200
+
+400
+α [packets]
+
+600
+
+800
+
+2
+
+4
+
+6
+λ [packet/s]
+
+8
+
+1
+
+(a) determining αs
+
+10
+−4
+
+x 10
+
+(b) determining λ1s
+
+Fig. 4. In (a), a required probability of sufﬁcient sensing Ps = 0.99 implies
+a corresponding minimum required α, αs = 355 packets, which in turn, as
+shown in (b), results in a per-node sensing rate λ1s = 3.61 × 10−4 for a
+Rayleigh fading channel and λ1s = 3.3 × 10−4 for a Ricean fading channel
+with K = 3 dB. The system parameters are N = 2500, S = 20, L = 1000
+bits, T = 500 sec and B = 38.4 kbps.
+
+E
+
+G [dB]
+
+30
+
+ACKNOWLEDGMENT
+
+20
+
+This work is funded in part by ONR grant N00014-09-10700, NSF grant 0831728, and NSF CAREER grant ECCS0847077.
+
+10
+0
+0
+
+2
+
+4
+
+6
+
+8
+
+N
+
+10
+4
+
+x 10
+
+60
+
+R EFERENCES
+
+G
+
+B
+
+40
+
+[1] J. K. Hart and K. Martinez, “Environmental sensor networks: A revolution in the earth system science?” Earth-Science Reviews, vol. 78, pp.
+177–191, 2006.
+[2] F. Fazel, M. Fazel, and M. Stojanovic, “Compressed sensing in random
+access networks with applications to underwater monitoring,” Physical
+Communication (Elsevier) Journal, vol. 5, no. 2, pp. 148–160, June
+2012.
+[3] ——, “Random access compressed sensing for energy-efﬁcient underwater sensor networks,” IEEE Journal on Selected Areas in Communications (JSAC), vol. 29, no. 8, pp. 1660 – 1670, Sept. 2011.
+[4] E. J. Candes, J. Romberg, and T. Tao, “Robust uncertainty principles:
+Exact signal reconstruction from highly incomplete frequency information,” IEEE Transactions on Information Theory, vol. 52, pp. 489–509,
+March 2006.
+[5] E. Candes and J. Romberg, “Sparsity and incoherence in compressive
+sampling,” Inverse Problems, vol. 23, pp. 969–985, 2006.
+[6] M. Schwartz, Mobile Wireless Communications. Cambridge University
+Press, 2005.
+[7] J. Linnartz, Narrowband Land-Mobile Radio Networks. Artech House,
+Inc., 1993.
+[8] A. Giorgetti and M. Chiani, “Inﬂuence of fading on the gaussian approximation for BPSK and QPSK with asynchronous cochannel interference,”
+IEEE Transactions on Wireless Communications, vol. 4, no. 2, pp. 384–
+389, March 2005.
+[9] J. G. Proakis, Digital Communications, 3rd ed. McGraw Hill, 1995.
+[10] S. Lin and J. D. J. Costello, Error Control Coding: Fundamentals and
+Applications. Prentice Hall, 1983.
+[11] M. Zorzi and S. Pupolin, “Outage probability in multiple access packet
+radio networks in the presence of fading,” IEEE Transactions on
+Vehicular Technology, vol. 43, no. 3, pp. 1–6, August 1994.
+[12] F. Fazel, M. Fazel, and M. Stojanovic, “Impact of fading on random
+access compressed sensing,” in 45th Annual Asilomar Conference on
+Signals, Systems, and Computers, November 2011, pp. 408– 412.
+
+20
+0
+0
+
+2
+
+4
+
+6
+
+8
+
+N
+
+10
+4
+
+x 10
+
+Fig. 5. The savings in energy and bandwidth over a benchmark TDMA with
+ARQ in Rayleigh fading channel. System parameters are L = 1000 bits,
+T = 500 sec, Ps = 0.9 and γ0 = 15 dB. The sparsity is assumed to be
+ﬁxed at S = 20.
+
+in Rayleigh fading. The bandwidth and energy requirements
+of the benchmark TDMA network using ARQ are
+Bs,ARQ =
+and
+EARQ = N Tp
+
+NL
+N Leb/γ0
+=
+T (1 − pf )
+T
+
+(27)
+
+PT
+= N N0 γ0 ηLeb/γ0
+1 − pf
+
+(28)
+
+EARQ
+eb/γ0
+=
+Emin (B)
+λ1s T
+
+(29)
+
+The saving in energy achieved by RACS, over a benchmark
+network using ARQ, is given by
+GE =
+
+and the saving in bandwidth is given by
+GB =
+
+Bs,ARQ
+1
+=
+1
+Bs
+2βe log 1−αs/N
+
+(30)
+
+Fig. 5 shows the savings achieved by RACS over the benchmark network. We notice that considerable gain in energy–
+on the order of 20 dB– is achievable. Also, we observe a
+reduction in the required bandwidth, e.g., a 20 fold decrease
+in the required bandwidth for a network of size N = 4 × 104 .
+
+5
+
+

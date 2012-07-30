@@ -1,0 +1,881 @@
+Title:          CR_fm.dvi
+Creator:        www.freepdfconvert.com         
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Fri May 18 16:30:16 2012
+ModDate:        Tue Jun 19 12:56:30 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      500538 bytes
+Optimized:      no
+PDF version:    1.7
+ISIT'2012 1569565455
+
+Approximate Feedback Capacity of the Gaussian
+Multicast Channel
+Changho Suh
+
+Naveen Goela
+
+Michael Gastpar
+
+Research Laboratory of Electronics
+Massachusetts Institute of Technology
+Email: chsuh@mit.edu
+
+Department of E.E.C.S.
+U.C. Berkeley
+Email: ngoela@eecs.berkeley.edu
+
+School of Comp. and Comm. Sciences
+Ecole Polytechnique F´ d´ rale (EPFL)
+e e
+Email: michael.gastpar@epﬂ.ch
+
+channel which generalizes Cover-Leung’s scheme (intended
+for MACs) [7], and achieves rates within 1 bit/s/Hz per transmitter of the cut-set outer bound for all channel parameters.
+We further extend our results for the case of M -transmitters
+and approximate the feedback capacity within log {2(M − 1)}
+bits/s/Hz per transmitter. We ﬁnd that feedback can provide
+multiplicative gain in the high-SNR regime, and that feedback
+is useful not only for mitigating interference [5], but also for
+providing qualitatively-similar gains for channels with a manyto-many structure. In particular, we ﬁnd that the feedback capacity region strictly enlarges the intersection of the feedback
+capacity regions of K individual MACs. This is in contrast to
+the non-feedback case where the capacity region is simply the
+intersection of K individual MAC capacity regions.
+To complement our results on approximate feedback capacity, we establish the exact feedback capacity region of
+the Avestimehr-Diggavi-Tse (ADT) deterministic model. We
+also ﬁnd that feedback increases the achievable rates for
+function computation. Speciﬁcally using a two-source tworeceiver example where each receiver wants to reconstruct
+a modulo-2 sum of two independent Bernoulli sources, we
+demonstrate that feedback can increase the non-feedback computing capacity.
+Related Work: Feedback strategies for MACs were studied
+previously in [3], [4], [7]–[10]. For the two-user case, Cover
+and Leung [7] developed an achievable scheme that employs
+block Markov encoding and a decode-and-forward scheme.
+Willems [8] proved the optimality of this scheme for a class
+of deterministic channels. Ozarow [3] established the exact
+feedback capacity region using a different approach based on
+Schalkwijk-Kailath’s scheme [11]. Kramer developed more
+generic techniques of the approach to handle an arbitrary
+number of transmitters [4].
+Other related work includes the two-user compound MAC
+with conferencing encoders [12], [13] or decoders [14]. In
+addition, Lim-Kim-El Gamal-Chung recently developed an
+achievable scheme for discrete memoryless networks [15], and
+demonstrated the approximate optimality of their scheme for
+multi-source Gaussian multicast networks. Our feedback channel with unfolding can be cast into a multi-source Gaussian
+multicast network. However, we exploit the structure of our
+feedback channel to induce correlation between transmitters
+which leads to a tighter result.
+
+Abstract—We characterize the capacity region to within
+log {2(M − 1)} bits/s/Hz for the M -transmitter K-receiver Gaussian multicast channel with feedback where each receiver wishes
+to decode every message from the M transmitters. Extending
+Cover-Leung’s achievable scheme intended for (M, K) = (2, 1),
+we show that this generalized scheme achieves the cutset-based
+outer bound within log {2(M − 1)} bits per transmitter for all
+channel parameters. In contrast to the capacity in the nonfeedback case, the feedback capacity improves upon the naive
+intersection of the feedback capacities of K individual multiple
+access channels. We ﬁnd that feedback provides unbounded
+multiplicative gain at high signal-to-noise ratios as was shown in
+the Gaussian interference channel. To complement the results, we
+establish the exact feedback capacity of the Avestimehr-DiggaviTse deterministic model, from which we make the observation
+that feedback can also be beneﬁcial for function computation.
+
+I. I NTRODUCTION
+A traditional viewpoint on feedback capacity has been
+pessimistic over the past few decades. This is mainly due to
+Shannon’s original result on feedback capacity which shows
+that feedback provides no increase in capacity for discrete
+memoryless point-to-point channels [1]. For multiple-access
+channels (MACs), feedback can increase the capacity [2];
+however, the increase in capacity for Gaussian MACs is
+bounded by at most 1 bit for all channel parameters [3].
+In contrast to these results, recent research shows that
+feedback provides more signiﬁcant gain for communication
+over interference channels [4]–[6]. Interestingly, the feedback
+gain can be unbounded for certain channel parameters. One
+distinction of interference channels with respect to MACs is
+that each receiver decodes its desired message in the presence
+of undesired interfering signals. A natural question to ask is
+whether feedback gain depends crucially on the presence of
+interference.
+In this paper, we make progress towards addressing this
+question. To isolate the interference issue, we start with
+a Gaussian MAC with two transmitters and feedback. We
+then modify the channel by adding additional receivers with
+identical message demands and feedback links from those
+receivers to the two transmitters. We call the new channel the
+two-transmitter, K-receiver Gaussian multicast channel with
+feedback. Note that this channel does not pose any interference while still maintaining the many-to-many structure of
+interference channels. We present a coding scheme for this
+
+1
+
+i−1
+Y1i−1 · · · YK
+
+W1
+
+Enc 1
+
+Y1
+
+X1
+
+g11
+
+Dec 1
+
+ˆ ˆ
+W1 , W2
+
+Z1 ∼ CN (0, 1)
+
+g12
+
+Y2
+
+g1K
+
+0.08
+
+Dec 2
+
+ˆ ˆ
+W1 , W2
+
+0.07
+
+Z2 ∼ CN (0, 1)
+
+.
+.
+.
+
+W2
+
+Enc 2
+Y1i−1
+
+X2
+
+YK
+
+g2K
+
+Dec K
+
+0.06
+Gap (bits/s/Hz)
+
+g21 g22
+
+ˆ ˆ
+W1 , W 2
+
+0.04
+0.03
+0.02
+0.01
+
+ZK ∼ CN (0, 1)
+
+i−1
+· · · YK
+
+0.05
+
+60
+0
+60
+
+40
+20
+
+40
+0
+
+20
+0
+
+Fig. 1. A Gaussian multicast channel with M = 2 transmitters and feedback
+from K receivers.
+
+R2 ≤ log 1 + (1 − ρ)
+
+SNR1i
+
+(1)
+
+i=1
+K
+
+SNR2i
+i=1
+
+R1 + R2 ≤ log 1 + SNR1k + SNR2k + 2ρ
+
+SNR1k · SNR2k
+
+Proof: See Section IV-A.
+Remark 1: We compare this to the naive rate region which
+is the intersection of the feedback capacity regions of individK
+MAC
+MAC
+ual MACs: Rnaive = 0≤ρ≤1 k=1 Ck (ρ), where Ck (ρ)
+denotes the feedback capacity region of the Gaussian MAC for
+receiver k, given ρ [3]. Note that the intersection constrains
+individual rate bounds, thus reducing the rate region. On the
+
+SNR1 (dB)
+
+Fig. 2. The gap between the symmetric-rate inner and outer bounds for a
+two-receiver symmetric channel setting: SNR1 := SNR11 = SNR22 and
+SNR2 := SNR12 = SNR21
+
+other hand, our rate region contains no such individual rate
+bounds, thus improving upon Rnaive . This is in contrast to
+the nonfeedback case and the compound MAC case with
+encoders [12] (or decoders [14]), where the capacity region is
+simply the intersection of individual MAC capacity regions.
+Theorem 2 (Outer Bound): The capacity region is included
+¯
+by the set C of (R1 , R2 ) such that for 0 ≤ ρ ≤ 1 and ∀k,
+K
+2
+
+R1 ≤ log 1 + (1 − ρ )
+R2 ≤ log 1 + (1 − ρ2 )
+
+SNR1i
+
+(2)
+
+i=1
+K
+
+SNR2i
+i=1
+
+R1 + R2 ≤ log 1 + SNR1k + SNR2k + 2ρ
+
+SNR1k · SNR2k .
+
+Proof: See Section IV-B.
+Corollary 1 (One Bit Gap): The gap between the inner
+bound and outer bound regions given in Theorems 1 and 2
+is at most 1 bit/s/Hz/transmitter:
+
+III. M AIN R ESULTS
+
+R1 ≤ log 1 + (1 − ρ)
+
+−40
+
+2
+
+We focus on the Gaussian multicast channel with M = 2
+transmitters and K receivers ﬁrst. Section IV-C includes our
+results for M > 2. As shown in Fig. 1, each receiver decodes
+all of the messages and is able to feed its received signal back
+to both transmitters. Without loss of generality, we normalize
+the transmit powers as P1 = P2 = 1 and channel noise powers
+as Zk ∼ CN (0, 1) for all k ∈ {1, . . . , K}. Hence, the signalto-noise ratio (SNR) at each receiver captures the effect of the
+channel gains: SNRmk
+|gmk |2 ; gmk ∈ C is the complexvalued channel gain from transmitter m to receiver k.
+Each transmitter m ∈ {1, 2} encodes an independent and
+uniformly distributed message Wm ∈ {1, 2, . . . , 2N Rm }. The
+encoded signal Xmi of transmitter m at time i is a function of its own message and past feedback signals: Xmi =
+i−1
+fmi Wm , Y1i−1 , · · · , YK . We deﬁne Yki−1
+{Ykt }i−1
+t=1
+where Yki is the received signal at receiver k at time i. A rate
+pair (R1 , R2 ) is said to be achievable if there exists a family
+of codebooks and corresponding encoding/decoding functions
+such that the average decoding error probabilities go to zero
+as the code length N tends to inﬁnity. The capacity region C
+is the closure of the set of the achievable rate pairs.
+
+K
+
+−40
+
+SNR (dB)
+
+II. M ODEL
+
+Theorem 1 (Inner Bound): The capacity region includes
+the set R of (R1 , R2 ) such that for 0 ≤ ρ ≤ 1 and ∀k,
+
+−20
+
+−20
+
+R ⊆ C ⊆ R ⊕ ([0, 1] × [0, 1]) .
+Proof: The proof is immediate. Let δ1 = (2) − (1).
+Similarly we deﬁne δ2 and δ12 . Straightforward computation
+then gives δ1 ≤ log(1 + ρ) ≤ 1. Similarly, we get δ2 ≤ 1 and
+δ12 = 0. This completes the proof.
+Remark 2: Fig. 2 shows a numerical result of the innerand-upper bound gap for the symmetric capacity, denoted
+by Csym = sup {R : (R, R) ∈ C}. For illustrative purpose,
+.
+we consider a two-receiver symmetric channel setting where
+SNR1 := SNR11 = SNR22 and SNR2 := SNR12 = SNR21 .
+While the worst-case gap is 1 bit due to the coarse analysis in
+Corollary 1, the actual gap is upper-bounded by approximately
+0.08 over a wide range of channel parameters. This suggests
+that a reﬁned analysis could lead to an even smaller gap. For
+instance, in the high-SNR regime, we obtain the asymptotic
+symmetric capacity as follows.
+
+2
+
+lim
+
+SNR1 ,SNR2 →∞
+
+Csym
+MAC
+C1,sym
+
+R2
+
+3
+
+feedback
+
+1
+
+decode B1
+
+1
+No feedback
+
+Time 2
+
+a2
+
+α :=
+
+min{log SNR1 ,log SNR2 }
+max{log SNR1 ,log SNR2 }
+
+1
+2
+
+A1
+
+1
+log SNR1 + SNR2 + 2 SNR1 · SNR2 . (3)
+2
+Proof: Due to the high-SNR assumption, it follows that
+the optimal correlation coefﬁcients√ the inner√
+for
+and upper
+SNR +SNR +2 SNR ·SNR
+
+1
+2
+1
+2
+bounds are ρ∗ ≈ ρ∗2 ≈ 1 −
+out
+in
+SNR1 +SNR2
+respectively, resulting in the matching inner and upper bound
+as (3).
+Feedback Gain: From Theorems 1 and 2, we can see that
+feedback can provide a signiﬁcant capacity increase as was
+shown in the Gaussian interference channel [5]. To see this
+clearly, let us consider the two-receiver symmetric channel
+setting as above. Fig. 3 plots the high-SNR-regime symmetric
+capacity normalized by the MAC symmetric capacity for Rx
+MAC
+1, denoted by C1,sym = 1 log (1 + SNR1 + SNR2 ). Here we
+2
+min{log SNR1 ,log SNR2 }
+use α := max{log SNR1 ,log SNR2 } for x-axis to indicate a signal
+strength difference between SNR1 and SNR2 . Note that the
+symmetric nonfeedback capacity is simply the intersection of
+individual MAC capacities:
+
+NO
+Csym = min
+
+min log(1 + SNRi ),
+
+i=1,2
+
+1
+log(1 + SNR1 + SNR2 )
+2
+
+NO
+MAC
+Note that the gap between Csym and C1,sym can be arbitrarily
+large when SNR1 and SNR2 are far apart, i.e., α ≤ 1 . On the
+2
+other hand, the symmetric feedback capacity is asymptotically
+the same as if there were only one receiver. As a result,
+1
+feedback provides multiplicative gain for the regime of α ≤ 2 .
+In Section IV-A, we will provide an intuition behind this gain
+while describing an achievable scheme.
+
+IV. G AUSSIAN C HANNEL
+A. Achievability: Proof of Theorem 1
+Motivating Example (Fig. 4): To develop an achievable
+scheme for the Gaussian channel, we utilize the ADT deterministic model [16] illustrated in Fig. 5 as an intermediate
+yet insightful model. The ADT multicast channel with M
+transmitters and K receivers is characterized by M K values:
+nmk , 1 ≤ m ≤ M, 1 ≤ k ≤ K where nmk indicates the
+number of signal bit levels from transmitter m to receiver k.
+
+b1
+
+B1 Tx 2
+
+1
+
+Feedback
+
+3
+
+R1 Time 1
+
+a1
+
+Time 2
+
+a2
+
+Rx 1 A1
+
+B1
+
+b1
+b1
+
+b2
+b2
+
+B1
+
+A1
+
+Rx 2
+
+a1
+
+a2
+
+decode A1
+
+Fig. 3.
+Feedback gain for a two-receiver symmetric channel setting as
+in Fig. 2. Note that feedback provides unbounded multiplicative gain when
+SNR1 is far apart from SNR2 .
+
+Csym ≈
+
+A1 Tx 1
+
+b2
+
+1
+
+Corollary 2: For a two-receiver symmetric channel setting,
+the symmetric capacity at the high SNR regime is
+
+a1
+
+B1
+
+no feedback
+
+Time 1
+
+Fig. 4. Motivating example: An achievable scheme for a (1.5, 1.5) rate-pair.
+
+These values correspond to the channel gains of the Gaussian
+channel in dB scale: nmk = log SNRmk . See [16] for
+explicit details.
+We ﬁrst explain an achievable scheme for a particular ADT
+model example, illustrated in Fig. 4. Speciﬁcally, we show
+how to achieve a (1.5, 1.5) rate-pair with feedback. As will
+be seen in Theorem 4, the feedback capacity region is given
+by R1 + R2 ≤ 3. Extrapolating from this example, we later
+make observations leading to a generic achievable scheme.
+In the nonfeedback case, transmitter 1 can send only one bit
+a1 through the top level, since the mincut between transmitter
+1 and receiver 2 is limited by 1. Similarly transmitter 2 can
+send only one bit, say b1 . However, feedback provides more
+options to route by creating additional paths, e.g., [T x1 →
+Rx1 → feedback → T x2 → Rx2]. This additional path
+enables an increase over the nonfeedback rate. Transmitter
+1 squeezes one more bit A1 in the second level. Similarly
+transmitter 2 squeezes B1 in its own second level. Receiver
+1 then gets A1 , while receiver 2 does not. Similarly B1 is
+received only at receiver 2. We will show that these A1 and
+B1 can also be delivered to the other receivers with the help
+of feedback. At the beginning of time 2, transmitter 1 can
+. decode B1 with feedback. Similarly transmitter 2 can decode
+A1 . In time 2, transmitters 1 and 2 start with sending their own
+fresh information a2 and b2 on the top levels respectively. Now
+the idea is that transmitter 1 forwards the fed back B1 using
+the second level. Note that this transmission allows receiver
+1 to obtain B1 without causing any harm to the transmission
+of (a2 , b2 ). Similarly transmitter 2 can deliver A1 to receiver
+2. Therefore, during the two time slots, transmitters 1 and 2
+can deliver (a1 , a2 , A1 ) and (b1 , b2 , B1 ) respectively to both
+receivers, thus achieving (1.5, 1.5).
+Remark 3: The gain comes from the fact that feedback
+creates alternative paths to provide routing gain. In fact, this
+gain was already observed by [5] in the context of twouser strong interference channels where n12 ≥ n11 and
+n21 ≥ n22 in the ADT model. However in [5], this routing
+gain does not appear in the weak interference regime such as
+(n12 = 1 < n11 = 3, n21 = 1 < n22 = 3). On the other hand,
+in our multicast channel, we can see this routing gain even
+when cross links are weaker than direct links.
+
+3
+
+∗
+the covariance between X1 and X2 is E[X1 X2 ] = ρ. Starting
+with Fano’s inequality,
+
+This example leads us to make two observations. First,
+feedback enables each transmitter to decode the other transmitter’s information and then forwards this in the next time slot.
+Second, the transmitted signals in time 2 can be correlated
+with the previously-sent information. This motivates us to
+employ the decoding-and-forward and block Markov encoding
+schemes. In fact, an achievable scheme combining these two
+ideas was developed by Cover-Leung [7] in the context of
+the two-user discrete memoryless MAC with feedback. In this
+paper, we generalize this scheme to the multiple-receiver case,
+thereby obtaining an approximate capacity region within a
+provably small gap. As for a decoding operation, we employ
+backward decoding [17].
+Here is the outline of achievability. We employ block
+Markov encoding with a total size B of blocks. In block 1,
+each transmitter sends its own information. In block 2, with
+feedback, each transmitter decodes the other user’s information
+(sent in block 1). The two previously-sent messages are
+then available at each transmitter. Conditioning on these two
+messages, each transmitter generates its own fresh message
+and then sends a corresponding codeword. Each transmitter
+repeats this procedure until block B − 1. In the last block
+B, to facilitate backward decoding, each transmitter sends a
+predetermined message. Each receiver waits until a total of
+B blocks have been received and then performs backward
+decoding.
+The achievable scheme outlined above is broadly applicable
+and not limited to the Gaussian channel. We characterize an
+achievable rate region for discrete mememoryless multicast
+channels in Lemma 1 and then choose an appropriate joint
+distribution to obtain the desired result. The generic coding
+scheme is also applicable to the ADT deterministic model and
+details will be presented in Section V.
+Lemma 1: The feedback capacity region of the twotransmitter K-receiver discrete memoryless multicast channel
+includes the set of (R1 , R2 ) such that
+R1 ≤ I(X1 ; Y1 , · · · , YK |X2 , U )
+
+R2 ≤ I(X2 ; Y1 , · · · , YK |X1 , U )
+R1 + R2 ≤ I(X1 , X2 ; Yk ), ∀k
+
+N (R1 −
+(a)
+
+=
+
+(b)
+
+≤
+
+N
+≤ I(W1 ; Y1N , · · · , YK , W2 )
+
+i−1
+h(Y1i , · · · , YKi |W2 , Y1i−1 , · · · , YK , X2i )
+
+i−1
+− h(Y1i , · · · , YKi |W1 , W2 , Y1i−1 , · · · , YK , X2i , X1i )
+
+[h(Y1i , · · · , YKi |X2i ) − h(Z1i , · · · , ZKi )]
+K
+
+(c)
+
+2
+
+≤ N log 1 + (1 − |ρ| )
+
+SNR1k
+k=1
+
+where (a) follows from the fact that W1 is independent of
+i−1
+W2 , and Xmi is a function of (Wm , Y1i−1 , · · · , YK ); (b)
+follows from the fact that conditioning reduces entropy and
+channel is memoryless; and (c) follows from the fact that
+|KY1 ,··· ,YK |X2 | ≤ 1+(1−|ρ|2 ) k SNR1k . If R1 is achievable,
+then N → 0 as N tends to inﬁnity.
+For the sum-rate outer bound,
+N (R1 + R2 −
+(a)
+
+N)
+
+≤ I(W1 , W2 ; Y1N )
+
+≤
+
+i−1
+[h(Y1i ) − h(Y1i |W1 , W2 , Y1i−1 , · · · , YK , X1i , X2i )]
+
+=
+
+[h(Y1i ) − h(Z1i )]
+
+(b)
+(c)
+
+≤ N log 1 + SNR11 + SNR21 + 2|ρ| SNR11 · SNR21
+
+where (a) follows from the fact that conditioning reduces entropy; (b) follows from the memoryless property of channels;
+and (c) follows from the fact that |KY1 | ≤ 1 + SNR11 +
+√
+SNR21 + 2|ρ| SNR11 · SNR21 .
+C. Generalization to M -transmitter Case
+We extend our results for M > 2 transmitters. For M > 2,
+a multitude of auxiliary random variables can be incorporated
+to induce correlation between many transmitter pairs. For
+simplicity, however, we consider a natural extension of the
+two-transmitter case which includes only one auxiliary random
+variable. The only distinction is that with feedback, each transmitter decodes all of the messages of the other transmitters,
+and generates its new messages and a corresponding codeword,
+conditioned on all of these decoded messages. Details on the
+inner bound and the cut-set outer bounds are given in [18].
+See Theorems 3 and 4 in [18]. Here we only provide a gap
+result derived from the inner and outer bounds.
+Theorem 3 (Constant Gap): The gap between the inner
+¯
+bound RM and outer bound CM in [18] is upper-bounded
+by ∆ := log {2(M − 1)} bits/s/Hz/transmitter:
+
+(4)
+(5)
+(6)
+
+over all joint distributions p(u)p(x1 |u)p(x2 |u). Here U is a
+discrete random variable which takes on values in the set U
+where |U| ≤ min {|X1 ||X2 |, |Y1 |, · · · , |YK |} + 2.
+Proof: Due to space limitation, we include a formal proof
+in the full version of this paper [18].
+We now choose the following Gaussian input distribution to
+complete the proof: ∀m = 1, 2,
+˜
+U ∼ CN (0, ρ); Xm ∼ CN (0, 1 − ρ),
+
+N)
+
+RM ⊆ CM ⊆ RM ⊕ ([0, ∆] × · · · × [0, ∆]) .
+
+(7)
+
+˜
+˜ ˜
+where Xm = U + Xm and (U, X1 , X2 ) are independent.
+Straightforward computation then gives the achievable rate
+region. This completes the proof.
+
+Proof: See Appendix B in [18].
+V. D ETERMINISTIC C HANNEL
+The ADT model was developed as a method of analysis
+to approximate the feedback capacity region of the Gaussian
+multicast channel. In this section, we ﬁnd the exact feedback
+capacity region of the deterministic channel.
+
+B. Outer Bound: Proof of Theorem 2
+By symmetry, it sufﬁces to prove the ﬁrst and third bounds.
+The proof is based on standard cut-set arguments. Assume that
+
+4
+
+i−1
+Y1i−1 · · · YK
+
+Y1 n11
+
+our coding scheme based on Cover-Leung to incorporate ideas
+from [3], [9], [10], [19]; (2) Extending to more realistic
+feedback scenarios where feedback is offered through ratelimited bit-piped links [20] or a corresponding backward
+channel [21].
+R EFERENCES
+
+Rx 1
+
+nM 1
+
+Tx 1
+
+Y2
+
+.
+.
+.
+
+Rx 2
+
+n12
+nM 2
+
+.
+.
+.
+
+[1] C. E. Shannon, “The zero error capacity of a noisy channel,” IRE
+Transactions on Information Theory, vol. 2, pp. 8–19, Sept. 1956.
+[2] N. T. Gaarder and J. K. Wolf, “The capacity region of a multipleaccess discrete memoryless channel can increase with feedback,” IEEE
+Transactions on Information Theory, Jan. 1975.
+[3] L. H. Ozarow, “The capacity of the white Gaussian multiple access
+channel with feedback,” IEEE Transactions on Information Theory,
+vol. 30, pp. 623–629, July 1984.
+[4] G. Kramer, “Feedback strategies for white Gaussian interference networks,” IEEE Transactions on Information Theory, vol. 48, pp. 1423–
+1438, June 2002.
+[5] C. Suh and D. Tse, “Feedback capacity of the Gaussian interference
+channel to within 2 bits,” IEEE Transactions on Information Theory,
+vol. 57, pp. 2667–2685, May 2011.
+[6] M. Gastpar, A. Lapidoth, Y. Steinberg, and M. Wigger, “Feedback
+can double the prelog of some memoryless Gaussian networks,”
+arXiv:1003.6082, Jan. 2012.
+[7] T. M. Cover and C. S. K. Leung, “An achievable rate region for
+the multiple-access channel with feedback,” IEEE Transactions on
+Information Theory, vol. 27, pp. 292–298, May 1981.
+[8] F. M. J. Willems, “The feedback capacity region of a class of discrete
+memoryless multiple access channels,” IEEE Transactions on Information Theory, vol. 28, pp. 93–95, Jan. 1982.
+[9] S. I. Bross and A. Lapidoth, “An improved achievable rate region for
+the discrete memoryless two-user multiple-access channel with noiseless
+feedback,” IEEE Transactions on Information Theory, vol. 51, pp. 811–
+833, Mar. 2005.
+[10] R. Venkataramanan and S. S. Pradhan, “A new achievable rate region for
+the multiple-access channel with noiseless feedback,” IEEE Transactions
+on Information Theory, vol. 57, pp. 8038–8054, Dec. 2011.
+[11] J. P. M. Schalkwijk and T. Kailath, “A coding scheme for additive
+noise channels with feedback - part I: No bandwith constraint,” IEEE
+Transactions on Information Theory, vol. 12, pp. 172–182, Apr. 1966.
+[12] I. Maric, R. D. Yates, and G. Kramer, “The discrete memoryless
+compound multiple access channels with conference encoders,” IEEE
+International Symposium on Information Theory, Sept. 2005.
+[13] F. M. J. Willems, “The discrete memoryless multiple access channel
+with partially cooperating encoders,” IEEE Transactions on Information
+Theory, vol. 29, pp. 441–445, May 1983.
+[14] O. Simeone, D. Gunduz, H. V. Poor, A. J. Goldsmith, and S. Shamai,
+“Compound multiple-access channels with partial cooperation,” IEEE
+Transaction on Information Theory, vol. 55, pp. 2425–2441, June 2009.
+[15] S. H. Lim, Y.-H. Kim, A. El-Gamal, and S.-Y. Chung, “Noisy network
+coding,” IEEE Transaction on Information Theory, vol. 57, pp. 3132–
+3152, May 2011.
+[16] S. Avestimehr, S. Diggavi, and D. Tse, “Wireless network information
+ﬂow: A deterministic approach,” IEEE Transactions on Information
+Theory, vol. 57, pp. 1872–1905, Apr. 2011.
+[17] F. M. J. Willems and E. C. van der Meulen, “The discrete memoryless
+multiple-access channel with cribbing encoders,” IEEE Transactions on
+Information Theory, vol. 31, pp. 313–327, May 1985.
+[18] C.
+Suh,
+N.
+Goela,
+and
+M.
+Gastpar,
+“Approximate
+feedback
+capacity
+of
+the
+Gaussian
+multicast
+channel,”
+http://sites.google.com/site/changhosuh/fbm.pdf, May 2012.
+[19] E. Ardestanizadeh, P. Minero, and M. Franceschetti, “LQG control
+approach to Gaussian broadcast channels with feedback,” submitted to
+the IEEE Transactions on Information Theory (arXiv:1102.3214), Feb.
+2011.
+[20] A. Vahid, C. Suh, and A. S. Avestimehr, “Interference channels with ratelimited feedback,” IEEE Transactions on Information Theory, vol. 58,
+pp. 2788–2812, May 2012.
+[21] C. Suh, I.-H. Wang, and D. Tse, “Two-way interference channels,” Proceedings of the IEEE International Symposium on Information Theory,
+MIT, USA, July 2012.
+
+YK n1K
+
+Tx M
+
+Rx K
+
+nM K
+
+i−1
+Y1i−1 · · · YK
+
+Fig. 5. An M -transmitter K-receiver ADT multicast channel with feedback.
+
+Theorem 4: The feedback capacity region of the M transmitter K-receiver ADT multicast channel is the set of
+(R1 , · · · , RM ) such that ∀S {1, · · · , M } and ∀k,
+M
+
+m∈S
+
+Rm ≤ rank(GS ),
+
+m=1
+
+Rm ≤ max {n1k , · · · , nMk } ,
+
+where GS is such that Y = GS XS + GS c XS c . Here Y :=
+[Y1 , · · · , YK ]t and XS := [Xm ]t , m ∈ S.
+Proof: The achievability proof is immediate due to
+Lemma 2 in [18]. For the converse proof, see Appendix C
+in [18].
+VI. F UNCTION C OMPUTATION
+As a by-product of Theorem 4, we can ﬁnd an interesting
+role of feedback for other communication scenarios such as
+computation in networks. To see this, consider an (M, K) =
+(2, 2) ADT multicast channel with feedback and parameters
+n11 = n22 = 3 and n12 = n21 = 1 (see Fig. 4). Suppose
+that both receivers wish to compute the same function of
+modulo-2 sums of two independent Bernoulli sources (S1 , S2 )
+generated at the two transmitters. The computing rate for
+decoding S1 ⊕ S2 at all receivers is denoted Rcomp . Without
+feedback, the following cut-set based argument provides a
+bound on Rcomp : N (Rcomp − N ) ≤ I(S1 ⊕S2 ; Y1N ) ≤ I(S1 ⊕
+N
+N
+S2 ; Y1N , S1 ) = I(S1 ⊕S2 ; Y1N |S1 , X1 ) ≤ H(Y1N |S1 , X1 ) ≤
+N
+i=1 H(Y1i |X1i ), where the equality is due to the fact that
+S1 ⊕ S2 is independent of S1 . For the particular ADT example
+in Fig. 4, H(Y1 |X1 ) ≤ 1 and H(Y2 |X2 ) ≤ 1, from which
+Rcomp ≤ 1. On the other hand, the example in Fig. 4 shows the
+3
+FB
+achievability of ( 3 , 2 ), thus yielding Rcomp ≥ 3 . Therefore,
+2
+2
+feedback can increase rates for computation. Our future work
+is to extend this example to larger classes of networks.
+VII. C ONCLUSION
+We established the feedback capacity region of the Gaussian
+multicast channel with M transmitters and K receivers to
+within log {2(M − 1)} bits/s/Hz per transmitter of the cutset
+bound universally over all channel parameters. We characterized the exact feedback capacity region of the ADT model,
+and observed a feedback gain for function computation. Our
+future work is along the following directions: (1) Improving
+
+5
+
+

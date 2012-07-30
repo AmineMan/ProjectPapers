@@ -1,0 +1,931 @@
+Creator:        TeX
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Mon May 14 13:24:35 2012
+ModDate:        Tue Jun 19 12:54:22 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      744640 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569565735
+
+Lossy Source Coding via Spatially Coupled LDGM
+Ensembles
+Vahid Aref, Nicolas Macris, R¨ diger Urbanke and Marc Vuffray
+u
+LTHC, IC, EPFL, Lausanne, Switzerland,
+
+distortions close to the rate-distortion bound for large blocklengths. Later, similar results were reported with modiﬁed
+forms of BP [15, 16]. The performance of these algorithms
+also depends on the choice of degree distributions for LDGM
+codes. A heuristic choice is to use degree distributions that have
+been optimized for LDPC codes on binary symmetric channel
+[14–16]. No rigorous analysis exists to date which can explain
+why this is the case.
+In the present contribution, we study a spatially coupled
+LDGM ensemble for lossy source compression. Two of us
+[17] studied such ensembles in the context of rateless codes
+(channel coding) and demonstrated that threshold saturation
+takes place. We provide numerical evidence showing that a
+similar effect occurs in lossy compression. In particular, the
+BPGD distortion of the coupled LDGM ensemble approaches
+(numerically) the optimal distortion of the underlying ensemble. We use the simplest forms of BP and decimation
+processes, and we take regular degrees. It is noteworthy that
+no optimization is needed, thus suggesting that the observed
+saturation is related to fundamental principles. Regular (underlying) LDGM ensembles with large degrees have an optimal
+distortion that approaches the rate-distortion limit. Thus with
+spatially coupled LDGM codes with regular large degrees
+and a BPGD algorithm we can attain the Shannon limit. The
+complexity of the encoding scheme presented here is O(n2 L2 )
+where L is the number of copies of the underlying ensemble
+and n the size of each copy.
+In section II, we brieﬂy review lossy compression and explain the structure of coupled LDGM ensembles. In section III,
+we formulate lossy compression as an optimization problem
+and compute the optimal distortion for underlying and coupled
+LDGM ensembles, by using the SP formalism. In section IV,
+we formulate and discuss the BPGD algorithm. Simulation
+results for this algorithm are presented in section V. A few
+practical issues are discussed in section VI.
+
+Abstract—We study a new encoding scheme for lossy source
+compression based on spatially coupled low-density generatormatrix codes. We develop a belief-propagation guided-decimation
+algorithm, and show that this algorithm allows to approach
+the optimal distortion of spatially coupled ensembles. Moreover,
+using the survey propagation formalism, we also observe that
+the optimal distortions of the spatially coupled and individual
+code ensembles are the same. Since regular low-density generatormatrix codes are known to achieve the Shannon rate-distortion
+bound under optimal encoding as the degrees grow, our results suggest that spatial coupling can be used to reach the
+rate-distortion bound, under a low complexity belief-propagation
+guided-decimation algorithm.
+Index Terms—Lossy source coding, spatial coupling, LDGM,
+belief propagation guided decimation, rate distortion bound.
+
+I. I NTRODUCTION
+The spatial coupling of copies of a graphical code was
+introduced in [1] in the form of convolutional low-density
+parity-check (LDPC) codes. The performance of such ensembles under the belief propagation (BP) algorithm is consistently
+better than the performance of the underlying ensembles [2–4].
+The key observation is that the BP threshold of a coupled ensemble considerably improves and gets close to the maximum
+a posteriori (MAP) threshold of the underlying ensemble. This
+threshold saturation phenomenon has been studied rigorously
+in [5, 6]. Furthermore, it has been investigated in other models
+such as the Curie-Weiss chain, random satisﬁability, graph
+coloring [7–9], and compressed sensing [10, 11].
+One of the classic problems in communications is lossy
+source compression. The objective is to compress a given
+sequence, so that it can be reconstructed up to some speciﬁed distortion. For binary symmetric sources, low-density
+generator-matrix (LDGM) codes are able to asymptotically
+achieve Shannon’s rate-distortion bound under optimal encoding (minimum distance encoding) [12, 13]. However, this is
+not a computationally efﬁcient scheme.
+LDGM codes are well-suited to low-complexity message
+passing algorithms such as the BP algorithm. But using LDGM
+codes with a plain BP algorithm is not very effective in lossy
+compression. To achieve more promising results, one can equip
+the BP algorithm with a decimation process. The general idea
+of belief-propagation guided-decimation (BPGD) algorithms is
+to: i) compute BP marginals, ii) ﬁx bits with the largest bias, iii)
+decimate the graph. Decimation reduces the graph to a smaller
+one, on which this process is repeated. Many variants of
+message passing algorithms and various decimation processes
+have been investigated. In [14] a survey propagation (SP)
+inspired decimation algorithm is proposed. Simulations show
+
+II. F RAMEWORK
+1) Lossy Compression of Symmetric Bernoulli Sources: Let
+X ∈ X = {0, 1}n represent a binary source of length n.
+We have X = {X1 , X2 , . . . , Xn }, where {Xa }n are i.i.d
+a=1
+1
+random variables with P{Xa = 1} = 2 , for a ∈ {1, . . . , n}.
+We compress a given source word x by mapping it to one of
+the 2nR index words u ∈ U = {0, 1}nR , where R ∈ [0, 1] is
+the rate. The stored sequence u then deﬁnes a reconstructed
+source sequence x(u) ∈ X , where the source decoding map
+u → x(u) depends on the structure of the code. For a given
+pair (x, x), the distortion is measured by Hamming distance
+
+1
+
+x1
+x2
+x3
+x4
+x5
+x6
+
+1
+n dH (x, x)
+
+x5
+x6
+
+x7
+Fig. 1.
+
+x1
+x2
+x3
+x4
+
+x7
+
+u1
+u2
+u3
+u4
+
+The factor graph associated to an underlying LDGM code.
+
+w=2
+Fig. 2. Illustration of a factor graph from a CCLDGM ensemble with length
+L = 8 and w = 2.
+
+n
+
+1
+= n a=1 |xa − xa |. Thus, the average quality of
+1
+the reconstruction is measured by D := n EX (dH (x, x)).
+For the symmetric Bernoulli source, it is well-known that
+for any scheme, the average distortion is lower-bounded by
+Dsh , deﬁned implicitly by the rate-distortion function h(Dsh ) =
+1
+1 − R, Dsh ∈ [0, 2 ]. Here h(·) is the binary entropy function.
+The goal is to ﬁnd an encoding scheme such that, for a given
+R, it achieves the rate-distortion lower bound.
+For this purpose, we study LDGM codes since they are able
+to achieve the rate-distortion bound under the optimal encoding
+when the average degrees increase [12].
+2) LDGM Codes: Consider an LDGM code of block length
+n and rate R = m . Let u1 , · · · , um be m code-bits of the
+n
+index word u and let x1 , x2 , · · · , xn be n reconstruction bits
+of the source word x1 , x2 , · · · , xn . An LDGM code is usually
+represented by a bipartite graph as depicted in Figure 1. Call
+this graph Γ(C, G; E). Each code-bit ui is represented by a
+node i ∈ C(Γ). For each reconstruction bit xa , there is a
+generator node a ∈ G(Γ). Each edge (i, a) ∈ E(Γ) shows that
+the code-bit ui is connected to the corresponding reconstruction
+bit xa . We denote by ∂a the set of all code-bit nodes connected
+to a ∈ G, i.e. ∂a = {i ∈ C| (i, a) ∈ E}. Similarly, for i ∈ C,
+∂i = {a ∈ G| (i, a) ∈ E}. Thus, the reconstructed bit xa is
+obtained from the code-bits u by a mod 2 sum xa = ⊕i∈∂a ui .
+In this paper, we focus on the (l, r, n)-regular LDGM
+random ensemble, where l (resp. r) is the degree of generator (resp. code-bit) nodes. We refer to [18] for the detailed
+construction of this ensemble.
+3) Chain of LDGM(l, r, n) Ensembles: Consider L sets of
+l
+nodes each having m = r n code-bit nodes and n generator
+nodes (and reconstruction nodes). Locate the sets in positions 0
+to L − 1 on a circle (see Figure 2). We randomly connect each
+generator node in position z ∈ [0, L − 1], to l code-bit nodes
+from w sets in the range [z, z + w − 1]. Eventually (for large
+n and m) code-bit nodes have degree r. The details of this
+construction are explained in [5, 17]. Note that this ensemble
+has the same local structure as the underlying LDGM(l, r)
+ensemble. Because of the global circular structure, we call it
+a Closed Chain LDGM(l, r, L, w, n) ensemble (CCLDGM).
+We wish to point out a difference between the present
+construction and the ones used so far in channel coding. The
+latter are based on open linear chains with suitable boundary
+conditions that help initiate the decoding process, which then
+propagates like a wave through the system. In the present
+periodic construction, encoding will be seeded by preferential
+decimation at a speciﬁc position (say z = L/2), in an initial
+
+phase of the BPGD algorithm.
+III. O PTIMAL E NCODING AND D ISTORTION
+A. Optimal Encoding
+Let Γ be the factor graph of a random instance of an
+LDGM(l, r, n) ensemble or CCLDGM(l, r, L, w, n) ensemble.
+We are looking for a conﬁguration u∗ that minimizes the
+distortion between x and x(u), i.e.
+dmin := min
+u
+
+1
+1
+dH (x, x) =
+dH (x, ⊕i∈∂a u∗ ) .
+i
+nL
+nL
+
+(1)
+
+Note that for the individual ensemble L = 1. As we are
+interested in the average distortion of the ensemble over all
+X ∈ X , we deﬁne the optimal distortion as
+Dopt = EΓ,X (dmin ).
+
+(2)
+
+We transform the above minimization problem into a maximum likelihood problem by equipping the conﬁguration space
+nLl/r
+{0, 1}
+with the following probability measure,
+1
+e−βdH (x,x)
+Z(β | x)
+1
+e−β|xa −
+=
+Z(β | x)
+
+µβ (u | x) :=
+
+i∈∂a ui |
+
+(3)
+,
+
+a∈C(Γ)
+
+where β ∈ R+ is a non-negative parameter, and Z(β|x) =
+−βdH (x,x)
+the normalizing factor. The minimizer u∗ in (1)
+ue
+maximizes the measure, i.e, maxu µβ (u | x) = µβ (u∗ | x).
+Moreover, for a particular x, the minimal distortion can be
+obtained as dmin = −(nL)−1 limβ→∞ β −1 ln Z (β | x) . This
+formulation of the problem allows to use techniques from statistical physics to compute Dopt . In the physics interpretation,
+dH and µβ are a random hamiltonian and Gibbs measure, β
+is an inverse temperature, Z a partition function, Dopt is the
+average ground state energy. The latter can be computed by
+the SP formalism.
+B. Computation of the Optimal Distortion
+The details of the SP equations, used to compute Dopt ,
+are not shown here. A pedagogical account of the formalism
+can be found in [19]. The numerical solution of the SP
+equations shows that the optimal distortions for the underlying
+LDGM(l, r) and CCLDGM(l, r, L, w) are the same for each
+ﬁnite w and L (here n and m are inﬁnite). In fact, for an
+
+2
+
+TABLE I
+T HE OPTIMAL AND THE BPGD DISTORTIONS FOR THE LDGM(k, 2k)
+ENSEMBLES . T HE BPGD DISTORTIONS ARE EVALUATED FOR n = 200000
+NODES . T HE RATE - DISTORTION BOUND FOR R = 0.5 IS DSH ≈ 0.1100.
+
+bias of a code-bit i at time t as
+(t)
+
+bt (i) = β
+
+ηa→i .
+
+(5)
+
+a∈∂i
+
+(k, 2k)
+
+(3, 6)
+
+(4, 8)
+
+(5, 10)
+
+Dopt
+DBPGD
+
+0.1139
+0.1357
+
+0.1111
+0.1590
+
+0.1105
+0.1811
+
+This represents the tendency of the code-bit to be 0 or 1. Our
+BPGD algorithm shown in Algorithm 1, uses a decimation
+condition. Let > 0 a small quantity, α > 0 a large quantity
+and T an iteration time. Typical values used in the simulations
+are = 0.01, α = 4.25 and T = 10. We say that the decimation
+condition is fulﬁlled if one of following occurs:
+i) After some time τ ( ) < T , the messages do not change
+signiﬁcantly in two successive iterations, in the sense that
+(t)
+(t−1)
+1
+(i,a)∈E(Γ) |ηa→i − ηa→i | < for t > τ ( ).
+nL
+ii) For some i and t < T , |bt (i)| > α.
+iii) None of the above conditions has taken place t ≤ T .
+
+ensemble with even l and Poisson degree for code-bit nodes, a
+rigorous proof is presented in [9] where the spatially coupled
+periodic XORSAT problem is discussed. Optimal distortions
+for degree distributions (k, 2k), k = 3, 4 and 5 are given in
+the ﬁrst line of Table I. We observe that, as k increases, the
+optimal distortion converges to the rate-distortion bound Dsh .
+This observation is consistent with the result in [12, 13].
+
+Algorithm 1 BPGD Algorithm
+
+IV. B ELIEF P ROPAGATION G UIDED D ECIMATION
+
+1) Begin with the graph instance Γ(0) ∈ CCLDGM
+(l, r, L, w, n).
+2) t = 0, Update equations (4) until the ﬁrst time t1 such
+that the decimation condition is fulﬁlled.
+3) Find B = maxi |bt1 (i)|.
+4) If B = 0, then randomly pick a code-bit i from range
+[ L−w , L+w ] and ﬁx it randomly to 0 or 1.
+2
+2
+Else pick a code-bit i ∈ j ∈ C Γ(k) | |bt1 (j) | = B
+randomly and ﬁx ui = 1 (sign(bt1 (i)) + 1).
+2
+(k)
+(k+1)
+= xa − ui , for a ∈ ∂i, otherwise
+5) Update xa
+(k)
+(k+1)
+= xa . Then, update Γ(k+1) = Γ(k) \{i}.
+xa
+6) If there exists an unﬁxed code-bit, then go to (2),
+Else ﬁnish and return u.
+
+A. Belief Propagation Approximation
+The naive way to compute the partition function involves
+the summation over 2nLl/r terms. Unfortunately, this approach
+is too complex. The same problem occurs for computing the
+marginal distribution of a node. On a tree, however, these
+computations can be done exactly and yield the BP equations.
+We deal with graphs that are locally tree-like and this motivates
+the use of the BP equations as a ﬁrst approximation for
+the marginals. These involve a set of 2 |E (Γ)| real valued
+messages, each pair being associated to an edge. The messages
+on the edge (i, a) ∈ C (Γ) × G (Γ) are denoted by ηi→a and
+ηa→i , and satisfy
+
+
+β
+1
+tanh (βηj→a )
+ηa→i = tanh−1 (−1)xa tanh( )
+β
+2
+
+It is not difﬁcult to see that the complexity of the algorithm is
+O(n2 L2 ). Note that after each decimation, rather than resetting
+messages to zero we continue with the previous messages.
+An important element in the algorithm is that when there is
+no signiﬁcant bias (step (4)) the random decimation occurs in
+a speciﬁc bounded interval centered around L/2 and of size w.
+We observe that this creates a seed from which the encoding
+process starts propagating through the ring. The usual hard
+decimation algorithms randomly choose (when there is no bias)
+a code-bit from the whole graph. We observed that when this
+prescription is used for CCLDGM instances, the distortion does
+not improve with respect to that of usual LDGM instances.
+
+j∈∂a\i
+
+ηi→a =
+
+ηb→i .
+
+(4)
+
+b∈∂i\a
+
+As a side remark, note that as β → ∞ the BP equations
+become the so-called Min-Sum equations. From the solutions
+of equations (4) one can compute the BP marginal distributions
+of code-bit i and generator node a, and a Bethe approximation
+µBP (u|x) (this is not a probability measure in general) of
+β
+the original measure µβ (u|x). We refer to [19] for more
+information.
+Unfortunately, the number of solutions of the BP equations
+which lead to roughly the same distortion, grows exponentially
+large in terms of n, and one cannot ﬁnd the relevant ﬁxed point
+by a plain iterative method. To resolve this problem, the BP
+iterations are equipped with a heuristic decimation process.
+This forms the basis of the BPGD algorithm.
+
+C. Optimal β and Relation to BSC
+We have seen that a conﬁguration u∗ maximizes the probability µβ (u) for all β > 0. If µBP was an accurate approxβ
+imation of µβ , we would expect the maximum of µBP (u) to
+β
+be independent of β. But µBP is not an exact description of
+β
+µβ . It is then natural to look at the performance of the BPGD
+procedure for different β and ﬁnd an optimal parameter βopt .
+Figure 3 illustrates the performance of BPGD versus β for
+CCLDGM(3, 6, 64, 3, 2000) and LDGM(3, 6, 128000) ensembles. For this example, the ﬁrst observation is that, for all
+β > 0, the coupled ensemble has smaller DBPGD than the
+uncoupled ensemble. We also observe that each ensemble has
+
+B. BPGD algorithm
+In this section we consider an instance of CCLDGM
+(l, r, L, w, n) ensemble. Equations (4) will be solved iteratively
+(0)
+(0)
+starting from the initial conditions ηi→a = ηa→i = 0. At
+(t)
+(t)
+iteration t the messages are ηi→a and ηa→i . We deﬁne the
+
+3
+
+TABLE II
+S ATURATED ( BOLD ) AND AVERAGE BPGD DISTORTION ( PARENTHESES )
+FOR CCLDGM(3, 6, L, w, n).
+
+D
+0.15
+
+L 1, w 1, n 128000
+L 64, w 3, n 2000
+
+0.14
+
+L
+
+0.13
+
+2000
+
+4000
+
+8000
+
+32
+
+Dopt
+5
+
+10
+
+2
+3
+
+0.1182 (0.1204)
+0.1171 (0.1205)
+
+0.1170 (0.1191)
+0.1161 (0.1195)
+
+0.1162 (0.1183)
+0.1157 (0.1190)
+
+64
+
+2
+3
+
+0.1185 (0.1195)
+0.1175 (0.1191)
+
+0.1172 (0.1183)
+0.1166 (0.1182)
+
+0.1164(0.1174)
+0.1159 (0.1175)
+
+128
+
+0.12
+0.11
+0
+
+n
+
+w
+
+2
+3
+
+0.1186 (0.1191)
+0.1176 (0.1184)
+
+0.1173 (0.1179)
+0.1167 (0.1175)
+
+0.1139
+15
+
+Β
+20
+
+Fig. 3. BPGD distortion versus β for CCLDGM(3, 6, 64, 3, 2000) (bottom)
+and LDGM(3, 6, 128000) (top) ensembles.
+
+TABLE III
+S ATURATED ( BOLD ) AND AVERAGE BPGD DISTORTION ( PARENTHESES )
+FOR CCLDGM(4, 8, L, w, n).
+
+3
+an optimal parameter βopt which lies between 2 and 5 . In
+2
+order to make comparison between coupled and uncoupled
+ensembles and as the distortion does not vary much when
+3
+β ∈ 2 , 5 , we ﬁx β = 2 in the rest of the paper. Table I
+2
+shows that the BPGD distortion - for the value β = 2 - is still
+consistently higher than Dopt .
+The measure µβ also arises in the context of channel coding
+over a memoryless binary symmetric channel (BSC). Suppose
+that we use the LDGM code with factor graph Γ over a BSC
+with ﬂipping probability p. Then the posterior probability that
+nl/r
+the un-coded message u ∈ F2
+is sent given the received
+n
+codeword x ∈ F2 can be formally expressed just as in (3)
+with β → ln 1−p . The difference between channel coding
+p
+and lossy source coding lies in the distribution of X. In lossy
+source coding, {Xa } are n i.i.d. Ber(1/2) variables; whereas
+in channel coding over a BSC, they are not in general i.i.d.
+and depend on the ﬂipping probability p (or β).
+
+L
+
+n
+
+w
+2000
+
+4000
+
+8000
+
+32
+
+2
+3
+4
+
+0.1165 (0.1205)
+0.1146 (0.1212)
+0.1135 (0.1226)
+
+0.1148 (0.1188)
+0.1133 (0.1199)
+0.1125 (0.1215)
+
+0.1134 (0.1175)
+0.1124 (0.1189)
+0.1118 (0.1208)
+
+64
+
+2
+3
+4
+
+0.1170 (0.1190)
+0.1153 (0.1186)
+0.1144 (0.1189)
+
+0.1151 (0.1171)
+0.1139 (0.1172)
+0.1133 (0.1177)
+
+0.1138 (0.1157)
+0.1130 (0.1161)
+0.1125 (0.1169)
+
+128
+
+2
+3
+4
+
+0.1172 (0.1182)
+0.1156 (0.1172)
+0.1148 (0.1170)
+
+0.1153 (0.1162)
+0.1141 (0.1157)
+0.1136 (0.1158)
+
+equal to DBPGD of the underlying ensemble and decreases to
+a value that we call the saturation value. Then, in the range
+[w, L ], the local distortions nearly remain constant and equal
+2
+to the saturation value. We refer to the ﬁrst interval and the
+second interval respectively as the unsaturated part and the
+saturated part. Therefore, the average distortion considerably
+decreases in the coupled ensembles.
+Tables II, III and IV show the saturation value (in bold)
+and the average distortion (in parentheses) for k = 3, 4, 5 and
+different values of n, L and w. Each value is averaged over 100
+random code instances and random source words. Inspection
+of the tables suggests that it approaches Dopt in the regime
+n
+L
+w
+1. The average distortion DBPGD converges
+to the saturation value by increasing L. The reason is the
+unsaturated part essentially does not change for ﬁxed k, w and
+n (see Figure 4), thus its contribution in the average distortion
+vanishes in the large L limit. As a result, we expect that DBPGD
+gets very close to Dopt for a large enough n
+L
+w
+1
+and the optimal β. Moreover, if k grows, Dopt converges to the
+rate-distortion bound. Thus, the DBPGD of a regular CCLDGM
+ensemble can get close to the rate-distortion bound.
+As mentioned before, the coupled chains used in channel
+coding are terminated by suitable boundary conditions and this
+incurs a rate loss of order O( w ). In CCLDGM ensembles, we
+L
+do not pay this cost in the graph structure, but it manifests
+
+V. D ISTORTION S ATURATION IN A CCLDGM E NSEMBLE
+We provide simulation results which convincingly show that
+the BP distortion of a CCLDGM ensemble closely approaches
+the optimal distortion of the underlying LDGM ensemble as
+n, L and w grow large. To emphasize the effect of coupling,
+we consider the family of (k, 2k)-regular LDGM ensembles.
+This family is known to yield a weak performance under the
+BPGD algorithm [12]. Indeed, although the optimal distortion
+is rather close to the rate-distortion bound and improves as k
+grows, the BPGD distortion becomes larger as k grows (see
+Table I). Analogous behaviors are well known to occur in
+channel coding [18].
+Now consider a CCLDGM(k, 2k, L, w) ensemble. Let Dz
+denote the average distortion of the reconstruction nodes lying
+at position z. Call Dz the local distortion at position z. Thus,
+L−1
+1
+the total average distortion is D = L z=0 Dz . Call the vector
+(D0 , D1 , · · · , DL−1 ) the distortion proﬁle.
+When we apply the BPGD algorithm, we observe a generic
+behaviour in the distortion proﬁle. Figure 4 illustrates the
+distortion proﬁle of CCLDGM(5, 10, L, w, n) ensembles for
+different pairs of (L, w) and n = 2000 . The proﬁle is
+symmetric around L (this expected in view of the algorithm).
+2
+Consider the ﬁrst L components. In the range [0, w − 1], the
+2
+local distortion is strictly decreasing. It starts at a value roughly
+
+4
+
+.20
+.19
+.18
+.17
+.16
+.15
+.14
+.13
+.12
+.11
+.10
+
+Dz
+
+Dz
+
+(32,2)
+(32,3)
+(32,4)
+
+Dz
+
+(64,2)
+(64,3)
+(64,4)
+
+z
+
+z
+
+(128,2)
+(128,3)
+(128,4)
+
+z
+
+.20
+.19
+.18
+.17
+.16
+.15
+.14
+.13
+.12
+.11
+.10
+
+1 3 5 7 9 11 13 15 17 19 21 23 25 27 29 31 3 7 11 15 19 23 27 31 35 39 43 47 51 55 59 63 7 15 23 31 39 47 55 63 71 79 87 95 103111119 127
+Fig. 4. BPGD distortion proﬁles for a periodic chain of (5, 10, L, w, n) CCLDGM ensembles. The values of (L, w) are shown on the plots and n = 2000.
+
+TABLE IV
+S ATURATED ( BOLD ) AND AVERAGE BPGD DISTORTION ( PARENTHESES )
+FOR CCLDGM(5, 10, L, w, n).
+
+L
+
+the complexity to O(n2 L). Finally the use of soft decimation
+techniques might also help improve the overall performance.
+ACKNOWLEDGMENT
+V.A. was supported by grant No. 200021-125347, and M.V.
+by grant No. 2000-121903 of the Swiss National Science
+Foundation.
+
+n
+
+w
+2000
+
+4000
+
+8000
+
+32
+
+2
+3
+4
+5
+
+0.1175
+0.1147
+0.1134
+0.1124
+
+(0.1229)
+(0.1236)
+(0.1256)
+(0.1280)
+
+0.1153
+0.1130
+0.1120
+0.1112
+
+(0.1207)
+(0.1219)
+(0.1242)
+(0.1268)
+
+0.1138
+0.1120
+0.1111
+0.1107
+
+(0.1192)
+(0.1208)
+(0.1234)
+(0.1262)
+
+64
+
+2
+3
+4
+5
+
+0.1181
+0.1155
+0.1144
+0.1137
+
+(0.1208)
+(0.1199)
+(0.1205)
+(0.1213)
+
+0.1158
+0.1138
+0.1130
+0.1124
+
+(0.1185)
+(0.1182)
+(0.1190)
+(0.1200)
+
+0.1140
+0.1125
+0.1119
+0.1116
+
+(0.1167)
+(0.1169)
+(0.1179)
+(0.1192)
+
+128
+
+2
+3
+4
+5
+
+0.1182
+0.1158
+0.1148
+0.1141
+
+(0.1196)
+(0.1180)
+(0.1178)
+(0.1179)
+
+0.1158
+0.1140
+0.1133
+0.1128
+
+(0.1172)
+(0.1161)
+(0.1162)
+(0.1166)
+
+R EFERENCES
+[1] A. J. Felstrom and K. S. Zigangirov, “Time-varying periodic convolutional codes with low density parity check matrix,” IEEE Transactions
+on Information Theory, vol. 45, no. 5, pp. 2181–2190, 1999.
+[2] M. Lentmaier, A. Sridharan, D. J. Costello, Jr., and K. S. Zigangirov,
+“Iterative decoding threshold analysis for LDPC convolutional codes,”
+To appear in IEEE Transactions on Information Theory, 2008.
+[3] M. Lentmaier, A. Sridharan, K. S. Zigangirov, and D. J. Costello, “Terminated LDPC convolutional codes with thresholds close to capacity,”
+in ISIT, 2005, pp. 1372–1376.
+[4] M. Lentmaier, D. G. M. Mitchell, G. P. Fettweis, and D. J. Costello,
+“Asymptotically regular LDPC codes with linear distance growth and
+thresholds close to capacity,” in ITA, January 2010, pp. 1–8.
+[5] S. Kudekar, T. J. Richardson, and R. L. Urbanke, “Threshold saturation
+via spatial coupling: why convolutional LDPC ensembles perform so
+well over the BEC,” http://arxiv.org/abs/1001.1826, 2009.
+[6] ——, “Spatially Coupled Ensembles Universally Achieve Capacity under
+Belief Propagation,” ArXiv, Jan. 2012.
+[7] S. H. Hassani, N. Macris, and R. L. Urbanke, “Coupled graphical models
+and their thresholds,” in Information Theory Workshop, Dublin, 2010.
+[8] ——, “Chains of mean ﬁeld models,” submitted to J. Stat. Mech: Theory
+and Experiment, 2010.
+[9] ——, “Threshold saturation in spatially coupled constraint satisfaction
+problems,” ArXiv, Dec 2011.
+[10] S. Kudekar and H. Pﬁster, “The effect of spatial coupling on compressive
+sensing,” in 48th Annual Allerton Conference, Aug. 2010, pp. 347 –353.
+[11] F. Krzakala, M. M´ zard, F. Sausset, Y. Sun, and L. Zdeborov´ , “Statistical
+e
+a
+physics-based reconstruction in compressed sensing,” ArXiv, Sep. 2011.
+[12] M. Wainwright, E. Maneva, and E. Martinian, “Lossy source compression
+using low-density generator matrix codes: Analysis and algorithms,”
+Information Theory, IEEE Transactions on, vol. 56, no. 3, pp. 1351 –
+1368, March 2010.
+[13] S. Ciliberti and M. Mzard, “The theoretical capacity of the parity source
+coder,” Journal of Statistical Mechanics: Theory and Experiment, vol.
+2005, no. 10, p. P10003, 2005.
+[14] M. Wainwright and E. Maneva, “Lossy source encoding via messagepassing and decimation over generalized codewords of LDGM codes,”
+in ISIT, 2005, pp. 1493 –1497.
+[15] T. Filler and J. Fridrich, “Binary quantization using belief propagation
+with decimation over factor graphs of ldgm codes,” in Allerton, 2007.
+[16] D. Castanheira and A. Gameiro, “Lossy source coding using belief
+propagation and soft-decimation over ldgm codes,” in PIMRC, sept. 2010,
+pp. 431 –436.
+[17] V. Aref and R. L. Urbanke, “Universal rateless codes from coupled lt
+codes,” in Information Theory Workshop (ITW), oct. 2011, pp. 277 –281.
+[18] T. Richardson and R. Urbanke, Modern Coding Theory. Cambridge
+University Press, 2008.
+[19] M. M´ zard and A. Montanari, Information, physics, and computation,
+e
+ser. Oxford graduate texts. Oxford University Press, 2009.
+
+itself in the large local distortion in the 2w positions of the
+unsaturated part.
+VI. C ONCLUSION
+We have observed that CCLDGM(k, 2k, L, w) ensembles
+can asymptotically saturate the rate-distortion bound under a
+BPGD algorithm. Degrees (k, 2k) have been chosen because
+it is known they lead to weaker results in the uncoupled
+case, but the saturation presumably occurs for a large class of
+irregular LDGM ensembles. As a result, using a right-regular
+CCLDGM ensemble with Poisson distribution on the code-bit
+nodes, would allow to achieve the rate-distortion bound for all
+rates R ∈ (0, 1).
+There are clearly a number of features of the algorithm that
+can be improved. Two important issues are its convergence
+rate, and its complexity. To address the ﬁrst one, we can ﬁx to
+zero the code-bits lying in range [ (L−w) , L+w ] and then, we
+2
+2
+remove the reconstruction nodes (and source nodes) lying in
+ranges [0, w ] and [L − 1 − w , L − 1]. The total rate of the code
+2
+2
+slightly increases but the convergence rate is improved. The
+complexity of the BPGD algorithm used here is O(n2 L2 ). To
+reduce it one could use a “sliding window encoding” similar to
+the one used for coupled LDPC codes [3]. This would reduce
+
+5
+
+

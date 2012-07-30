@@ -1,0 +1,907 @@
+Creator:        TeX
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Fri May 18 19:16:24 2012
+ModDate:        Tue Jun 19 12:55:05 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      445284 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569566571
+
+Achievable Rates for Intermittent Communication
+Mostafa Khoshnevisan and J. Nicholas Laneman
+Department of Electrical Engineering
+University of Notre Dame
+Notre Dame, Indiana 46556
+Email:{mkhoshne, jnl}@nd.edu
+
+Abstract—We formulate a model for intermittent communications that can capture bursty transmissions or a sporadically
+available channel, where in either case the receiver does not
+know a priori when the transmissions occur. Focusing on the
+point-to-point case, we develop two decoding schemes and their
+achievable rates for such communication scenarios. One scheme
+determines the transmitted codeword, and another scheme ﬁrst
+locates the information symbols and then uses them to decode.
+The two-stage scheme leads to a higher achievable rate because
+it uses a generalization of the method of types in the ﬁrst stage,
+which leads to a notion of partial divergence. We illustrate the
+results in the case of an intermittent binary symmetric channel.
+
+Fig. 1.
+
+System model for intermittent communication.
+
+After formulating the problem and speciﬁcally mentioning
+the applications, we describe the ﬁrst decoding scheme and
+analyze its achievable rate. Then, we consider a two-stage
+decoding procedure and characterize its achievable rate using a
+notion of partial divergence that results from a generalization
+of the method of types. Finally, we illustrate the achievable
+rates for an intermittent binary symmetric channel (BSC).
+
+I. I NTRODUCTION
+Communication systems are traditionally analyzed assuming continuous transmission of encoded symbols through the
+channel. However, in many practical applications such an
+assumption is not appropriate, and transmitting a codeword
+can be intermittent due to lack of synchronization, shortage of
+transmission energy, or burstiness of the system. The challenge
+is that the receiver does not explicitly know whether a given
+output symbol of the channel is a result of sending a symbol
+of the codeword or is simply a noise symbol containing no
+information about the message. In this paper, we model such
+intermittent communication and determine some achievable
+rates.
+Asynchronous communication is modeled in [1] and [2]
+by a single block transmission that starts at a random time,
+unknown to the receiver, in an exponentially large window,
+known to the receiver. In this model, the transmission is
+contiguous; once it starts, the whole codeword is transmitted,
+and the receiver observes only noise before and after transmission. However, in intermittent communication, a codeword is
+not transmitted contiguously. Instead, some number of noise
+symbols occur between the symbols of a codeword before
+going through the channel. We assume that the receive window
+and the codewords length, and therefore the number of inserted
+noise symbols, is ﬁxed. In contrast to [1], where the interesting
+scenario arises if the receive window scales exponentially with
+the codeword length, the interesting scenario in intermittent
+communication arises if the receiver window scales linearly
+with the codeword length. Our system model can be also
+interpreted as an insertion channel, in which a random number
+of noise symbols is inserted between consecutive symbols of
+the codeword. Although different from the insertion channels
+in the literature [3] and [4], our results may provide some
+insights about them.
+
+II. M ODEL , A PPLICATIONS , AND N OTATIONS
+A transmitter wants to send a message m ∈ {1, 2, ..., ekR =
+M } to a receiver through a discrete memoryless channel. Let
+X and Y denote the input and output alphabets of the channel,
+and let W denote its probability transition matrix. Assume
+that {ck (m), m = 1, 2, ..., M } are the codewords of integer
+length k available to the transmitter, and let X n and Y n denote
+the integer length n input and output vectors of the channel,
+respectively, where n ≥ k, and α := n/k, α ≥ 1. Assume that
+X n consists of the transmitted codeword at k arbitrary time
+slots and is equal to a noise symbol denoted by ∈ X at the
+other n − k time slots, where the codeword ck appears in the
+sequence X n in the same order, i.e., ci cannot appear after
+cj in the sequence if i ≤ j. It is equivalent to say that n − k
+noise symbols are arbitrarily inserted between the symbols
+of a codeword. Figure 1 shows a block diagram for the
+system model, which we call intermittent communication and
+denote by (X, Y, W, , α). The communication rate is deﬁned
+as log M/k. Assuming that the decoded message is denoted by
+m, we say that rate R is achievable if there exists a sequence
+ˆ
+M
+1
+ˆ
+of length k codes of size ekR with M m=1 P(m = m) → 0
+as k → ∞. The capacity is the supremum of all the achievable
+rates. A natural question is, what is the capacity of intermittent
+communication? In this paper, we ﬁnd some achievable rates.
+The intermittent communication model can also represent
+bursty communication in which either the transmitter or the
+channel is bursty. We assume that the receiver does not know
+the positions of the codeword symbols in the channel input
+
+1
+
+more simply TP is the set of all sequences that have type P .
+We use PX to denote the set of distributions over the ﬁnite
+alphabet X. For simplicity, we deﬁne W (·) := W (·|x = ).
+In this paper, we use the convention that n = 0 if k < 0 or
+k
+n < k, and the entropy H(P ) = −∞ if P is not a probability
+mass function, i.e., one of its elements is negative or the sum
+of its elements is larger than one. h(·) is the binary entropy
+function. Finally, if 0 ≤ ρ ≤ 1, then ρ := 1 − ρ.
+¯
+
+sequence. As we will see, this natural assumption seems to
+make the decoder’s task more difﬁcult. We also assume that
+the transmitter cannot decide on these positions, so it cannot
+encode any timing information. Note that in a bursty communication scenario, the process of burstiness is usually out
+of the transmitter’s control, and the receiver usually does not
+know the realization of the bursts, which are consistent with
+these assumptions. The level of intermittency (or burstiness)
+is controlled by how large n is compared to k. The larger
+the value of α, the more intermittent the system is; if α = 1,
+the system is not intermittent and corresponds to contiguous
+communication. Not surprisingly, the achievable rates obtained
+in this paper are a function of α: increasing α generally
+reduces the achievable rates.
+The described system model applies to several practical
+communication scenarios. If the intermittent process component in Figure 1 is considered as a part of the channel behavior,
+then we say that the channel is intermittent in the sense that it
+takes a symbol of the codeword as an input at some time slots,
+and takes a noise symbol as an input at other time slots. As
+an example, consider an insertion channel in which, after the
+ith symbol from the codeword, Ni noise symbols are inserted,
+where Ni ’s are i.i.d. random variables with mean α−1. At the
+decoder, there are N symbols, where N is a random variable,
+but we have
+
+III. M AIN R ESULTS
+We ﬁrst introduce a simple decoding scheme, obtaining an
+achievable rate (Proposition 1) in addition to providing some
+ingredients for obtaining an achievable rate for a two stage
+decoding scheme (Theorem 1).
+A. One-Stage Decoding
+For a ﬁxed input distribution P , the codebook is randomly and independently generated, i.e., all Ci (m), i ∈
+{1, 2, ..., k}, m ∈ {1, 2, ..., M } are i.i.d. according to P . For a
+ﬁxed typicality parameter µ > 0, the decoder observes the
+sequence y n , chooses k symbols out of those n symbols,
+denoted by y k , and performs joint typicality decoding, i.e.,
+˜
+checks if
+ˆ
+(1)
+|Pck (m),˜k (x, y) − Pm (x, y)| ≤ µ
+y
+for all (x, y) ∈ X × Y and a unique index m, where Pm
+is the joint probability mass function induced by the type of
+codeword ck (m) and the channel W , deﬁned by [1]
+
+k + N1 + N2 + ... + Nk p
+N
+=
+− 1 + E(N1 ) = α.
+→
+k
+k
+
+ˆ
+Pm (x, y) := Pck (m) (x)W (y|x), (x, y) ∈ X × Y.
+
+It turns out that the achievability results in the sequel are
+valid for such insertion channels, as we discuss in more detail
+in Section IV. Note that this is a speciﬁc class of insertion
+channels, and we refer the interested reader to See [3], [4]
+for more general classes of insertion channels and associated
+results.
+On the other hand, if the intermittent process component
+in Figure 1 is considered as a part of the transmitter, then
+we say that the transmitter is intermittent. Practical examples
+are energy harvesting systems, where the transmitter harvests
+energy usually from a natural source and uses it for transmission. Assuming that the noise symbol can be transmitted with
+zero energy, the transmitter sends the symbols of the codeword
+if there is enough energy for transmission, and sends noise
+symbols otherwise. If the transmitter can store energy in an
+energy buffer with enough capacity, then it can decide when
+to send the symbols of the codeword and when to transmit a
+noise symbol to save some energy based on the amount of the
+available energy. In that case, the transmitter can also encode
+some timing information, which is beyond the scope of this
+paper.
+Notation: We use o(·) to denote quantities that grow strictly
+slower than their arguments. Most of the notation in this
+paper follows that in [1] and [5]. By X ∼ P (x), we mean
+X is distributed as P . The empirical distribution (or type)
+ˆ
+of a sequence xn ∈ Xn is denoted by Pxn . Joint empirical
+distributions are denoted similarly. We say a sequence xn has
+n
+n
+ˆ
+type P if Pxn = P and denote it by xn ∈ TP , where TP or
+
+For convenience, we write y k ∈ T[W ]µ (ck (m)), if (1) is
+˜
+satisﬁed for m. If the decoder ﬁnds a unique m satisfying (1),
+it declares m as the transmitted message. Otherwise, it makes
+another choice for the k symbols from the sequence y n and
+again attempts typicality decoding. If at the end of all n
+k
+choices the typicality decoding procedure did not declare any
+message, then the decoder declares an error. In order to analyze
+the probability of error, we state the following fact, which is
+proved in [1, Equations (24) and (25)] based on the method
+of types [5, Chapter 1.2].
+˜
+Fact 1. Assume that C k (m) and Y k are independent,
+C k (m) is generated i.i.d. according to P , and (X, Y ) ∼
+P (x)W (y|x), then the probability that C k (m) together with
+˜
+Y k satisfy (1) for this speciﬁc m, is upper bounded as
+˜
+P(Y k ∈ T[W ]µ (C k (m))) ≤ poly(k)e−k(I(X;Y )−
+
+)
+
+(2)
+
+for all k sufﬁciently large, where can be made arbitrarily
+small by choosing a small enough typicality parameter µ.
+Proposition 1. For intermittent communication with
+(X, Y, W, , α), rates not exceeding C − αh(1/α) are
+achievable, where C is the capacity of the DMC with
+stochastic matrix W .
+Proof: Let P be the capacity achieving input distribution
+for the DMC with stochastic matrix W , and consider the
+encoding and decoding strategies described above. For any
+
+2
+
+> 0, we prove that if R = C − αh(1/α) − 2 , then the
+average probability vanishes as k → ∞.
+
+decoding ends. If the decoder does not declare any message
+as being sent by the end of all n choices, then the declares
+k
+an error.
+In order to analyze the probability of error, we need to
+generalize the method of types in [5] to be able to bound the
+probability of certain events in the ﬁrst stage of the two-stage
+decoding procedure. To that end, we establish Lemma 1, which
+is a generalization of [5, Lemma 2.6].
+
+pavg =p1 = P(m = 1|m = 1)
+ˆ
+e
+e
+≤P(m ∈ {2, 3, ..., M }|m = 1)+P(Y k ∈ T[W ]µ (C k (1))),
+ˆ
+/
+(3)
+where p1 is the probability of error conditioned on the sending
+e
+of message w = 1, and where (3) results from the union bound
+in which the second term is the probability that the typicality
+decoding fails for the right codeword given that the k chosen
+output symbols are the correct ones, which vanishes as k → ∞
+according to [5, Lemma 2.12]. Using the union bound for the
+ﬁrst term in (3), we have
+P(m ∈ {2, 3, ..., M }|m = 1)
+ˆ
+n
+˜
+≤
+(M − 1)P(Y k ∈ T[W ]µ (C k (2))|m = 1),
+k
+
+Lemma 1. Consider an alphabet with t symbols, i.e., X =
+{0, 1, ..., t − 1}. Consider three distributions P, Q, Q ∈ PX ,
+where P := (p0 , p1 , ..., pt−1 ), Q := (q0 , q1 , ..., qt−1 ), and
+Q := (q0 , q1 , ..., qt−1 ). We assume that all of the elements
+of these three PMF’s are nonzero. A random sequence X k
+is generated as follows: k1 symbols are i.i.d. according to Q
+and k2 symbols are i.i.d. according to Q , where k1 + k2 = k
+and ρ := k1 /k. The probability that X k has type P is upper
+bounded as
+
+(4)
+
+because there are n choices for the k output symbols, and
+k
+for each choice, we use the union bound for all M − 1 =
+ekR − 1 messages other than m = 1. Using the Stirling’s
+approximation, we have
+n
+k
+
+1
+
+e 12
+≤√
+2π
+
+P(X k ∈ TP ) ≤ eo(k) e−kd(P,Q,Q ,ρ) ,
+where
+
+d(P, Q, Q , ρ) := H(P ) + D(P ||Q)
+q
+(8)
+− ρ log t−1 − e(P, Q, Q , ρ),
+¯
+qt−1
+e(P, Q, Q , ρ) :=
+max
+{ρH(P1 ) + ρH(P2 )
+¯
+
+n
+enh(k/n) = ek(o(1)+αh(1/α)) , (5)
+k(n − k)
+
+as k → ∞. Note that, conditioned on message m = 1 being
+˜
+sent, C k (2) and Y k are independent for any choice of output
+symbols. Therefore, using Fact 1 with the capacity achieving
+input distribution, we have
+˜
+P(Y k ∈ T[W ]µ (C k (2))|m = 1) ≤ poly(k)e−k(C−
+
+)
+
+0≤θj ≤1,j=0,1,...,t−2
+
+t−2
+
+j=0
+
+(6)
+
+qj qt−1
+, j = 0, 1, ..., t − 2,
+qj qt−1
+¯
+¯
+¯
+θ0 p0 θ1 p1
+θt−2 pt−2
+P1 := (
+,
+, ...,
+,1 −
+ρ
+ρ
+ρ
+aj :=
+
+pavg ≤ek(o(1)+αh(1/α)) ek(C−αh(1/α)−2 ) e−k(C− ) + o(1)
+e
+−o(1))
+
+θj pj log aj }, (9)
+
++
+
+Combining (3), (4), (5), and (6), we obtain
+≤e−k(
+
+(7)
+
+poly(k) + o(1) → 0,
+
+θ0 p0 θ1 p1
+θt−2 pt−2
+P2 := (
+,
+, ...,
+,1 −
+ρ
+¯
+ρ
+¯
+ρ
+¯
+
+as k → ∞, which proves the proposition.
+Note that the maximum probability of error vanishes as
+well using standard expurgation arguments. The form of the
+achievable rate is reminiscent of communications overhead as
+the cost of constraints [6], where the constraint is the system’s
+burstiness, and the overhead cost is αh(1/α).
+
+t−2 ¯
+j=0 θj pj
+
+ρ
+t−2
+j=0 θj pj
+
+ρ
+¯
+
+),
+).
+
+Because of space limitations, we prove the lemma for
+the case of binary alphabets, i.e, t = 2, in Appendix A.
+The generalization to t > 2 is straightforward, but lengthy.
+Specializing Lemma 1 for Q = Q results in [5, Lemma 2.6],
+and we have d(P, Q, Q, ρ) = D(P ||Q). Lemma 1 enables
+us to evaluate the probability that a sequence consisting of
+symbols from two different distributions has a speciﬁc type
+P , which will be useful in proving the result in Theorem 1.
+Basically, we are interested in a special case of Lemma 1
+for which Q = P . In other words, we need to upper bound
+the probability that a sequence has type P when partially
+generated according to Q and partially according to P , where
+the ratio of the mismatched symbols (generated from Q) to
+all the symbols is ρ = k1 /k. For this special case, we deﬁne
+dρ (P ||Q) := d(P, Q, P, ρ). The function dρ (P ||Q), which we
+call partial divergence between P and Q, has some interesting
+properties (such as 0 ≤ dρ (P ||Q) ≤ ρD(P ||Q)), on which we
+will elaborate in another paper.
+
+B. Two-Stage Decoding
+In this section, we introduce a two-stage decoding procedure
+that strictly improves upon the achievable rate in Proposition 1.
+As before, the decoder chooses k of the n symbols from the
+output vector y n . Let y k denote the chosen output symbols,
+˜
+and y n−k denote the other output symbols. The ﬁrst stage
+ˆ
+consists of checking if y k is the transmitted sequence (if y k ∈
+˜
+˜
+TP W ), and if y n−k is generated by noise (if y n−k ∈ TW ).
+ˆ
+ˆ
+If both of these conditions are satisﬁed, then we perform the
+typicality decoding as described in Section III-A, which is
+called the second stage here. Otherwise, we make another
+choice for the k symbols and repeat the two-stage decoding
+procedure. At any step that we run the second stage, if the
+typicality decoding declares a message as being sent, then
+
+3
+
+Theorem
+1. For intermittent communication with
+(X, Y, W, , α), rates not exceeding maxP {I(X; Y ) −
+f (P, W, α)} are achievable, where
+
+satisﬁes (1). Therefore,
+˜
+ˆ
+Pk1 (m = 2|m = 1) = Pk1 {Y k ∈ TP W } ∩ {Y n−k ∈ TW }
+ˆ
+
+f (P, W, α):= max{(α − 1)h(β) + h((α − 1)β)
+
+˜
+∩ {Y k ∈ T[W ]µ (C k (2))}|m = 1
+
+0≤β≤1
+
+−d(α−1)β (P W ||W )−(α−1)dβ (W ||P W )}.
+(10)
+
+˜
+ˆ
+=Pk1 (Y k ∈ TP W ) · Pk1 (Y n−k ∈ TW )
+˜
+˜
+ˆ
+·P(Y k ∈ T[W ]µ (C k (2))|m = 1, Y k ∈ TP W , Y n−k ∈ TW )
+(15)
+
+Proof: Fix the input distribution P , and consider the
+encoding and decoding strategies described in Sections III-A
+and III-B, respectively. For any
+> 0, we prove that if
+R = I(X; Y ) − f (P, W, α) − 2 , then the average probability
+vanishes as k → ∞.
+
+≤eo(k) e−kdk1 /k (P W ||W ) e−(n−k)dk1 /(n−k) (W
+· e−k(I(X;Y )− ) ,
+
+P(m = e|m = 1) ≤P(Y ∈ T[P W ]µ ) + P(Y
+ˆ
+/
+k
+
+k
+
+n−k
+
+∈ T[W
+/
+
+P(m ∈ {2, 3, ..., M }|m = 1) ≤ eo(k) (ekR − 1)e−k(I(X;Y )−
+ˆ
+
+]µ )
+
++ P(Y ∈ T[W ]µ (C (1)))
+/
+
+n−k
+
+·
+
+(12)
+
+→ 0, as k → ∞
+
+(13)
+
+k
+
+k1 =0
+
+− 1)
+k1 =0
+
+k
+k1
+
+(18)
+(19)
+
+=e
+
+e
+e
+
+e
+
+e
+
+→ 0 as k → ∞,
+
+where (18) is obtained by ﬁnding the exponent of the sum
+in (17), which is equal to the largest exponent of each term in
+the summation, since the number of terms is polynomial in k.
+To that end, let β := k1 /(n − k) (0 ≤ β ≤ 1), using Stirling’s
+approximation as in (5) for each of the combinatorial terms
+in (17), we ﬁnd that the largest exponent is f (P, W, α), which
+is deﬁned in (10); and where (19) is obtained by substituting
+R = I(X; Y ) − f (P, W, α) − 2 . Now, combining (11), (13),
+and (19), we have pavg → 0 as k → ∞, which proves the
+e
+Theorem.
+IV. E XAMPLE : BSC
+Consider a BSC with crossover probability 0 ≤ p ≤ 0.5.
+Figure 2 shows the two achievable rates obtained in Proposition 1 and Theorem 1 versus p for different values of α ≥ 1.
+Not surprisingly, the achievable rate in Theorem 1 (indicated
+by “Thm 1”) is always larger than the one in Proposition 1
+(indicated by “Prop 1”) since the two-stage decoding procedure takes advantage of the fact that the choice of the k output
+symbols might not be a good one. Speciﬁcally, the exponent
+obtained in Lemma 7 in terms of the partial divergence helps
+the decoder detect the right symbols, and therefore, achieve a
+larger rate. The arrows in Figure 2 show this difference and
+suggests that the beneﬁt of using the two-stage decoding is
+larger for increasing α. Note that the larger α is, the smaller
+the achievable rate would be for a ﬁxed p. Also, note that as
+p → 0 the achievable rates approach a limit, which is equal
+
+ˆ
+(M − 1)Pki (m = 2|m = 1)
+i=1
+
+= (e
+
+)−(n−k)dk1 /(n−k) (W ||P W )
+
+o(k) −k
+
+≤e
+
+(n)
+k
+
+n−k
+
+n − k −kdk /k (P W ||W
+1
+e
+k1
+
+(17)
+
+where Y is the output of the channel if the input is C (1),
+and Y is the output of the channel if the input is the noise
+symbol, and where we use union bound to establish (12). The
+limit (13) is because all the three terms in (12) vanish as k →
+∞ according to [5, Lemma 2.12].
+The ﬁrst term in (11) is more challenging. It is the probability that for at least one choices of the output symbols, the
+decoder passes the ﬁrst stage and then the typicality decoder
+declares an incorrect message. Let the index k i denote the
+condition on the ith choice of the output symbols out of all n
+k
+choices. We characterize the choices based on the number of
+incorrectly chosen output symbols, i.e., the number of symbols
+in y k that are in fact outputs corresponding to a noise input,
+˜
+which is equal to the number of symbols in y n−k that are in
+ˆ
+fact outputs corresponding to an input symbol of the codeword.
+Let the index k1 denote the condition that the number of
+wrongly chosen output symbols is equal to k1 . For a speciﬁc
+k
+k1 there are k1 n−k choices (According to Vandermonde’s
+k1
+identity, we have n−k (kk1 )(n−k)=(n)). Using the union bound
+k1
+k
+k1 =0
+for all the choices and all the messages w = 1, we have
+ˆ
+
+kR
+
+k
+k1
+
+)
+
+o(k) kR −k(I(X;Y )− ) kf (P,W,α)
+
+k
+
+P(m∈{2, 3, ..., M }|m = 1) ≤
+ˆ
+
+(16)
+
+˜
+where (15) follows from the independence of the events {Y k ∈
+ˆ n−k ∈ TW } conditioned on k1 mismatched
+T[W ]µ } and {Y
+symbols, and (16) follows from using Lemma 1 for the ﬁrst
+two terms in (15) and using Fact 1 for the last term in (15),
+because conditioned on message m = 1 being sent, C k (2)
+˜
+and Y k are independent regardless of the other conditions in
+the last term. Substituting (16) into the summation in (14), we
+have
+
+pavg = p1 ≤ P(m ∈ {2, 3, ..., M }|m = 1)+P(m = e|m = 1),
+ˆ
+ˆ
+e
+e
+(11)
+where the second term is the probability that the decoder
+declares an error (does not ﬁnd any message) at the end of
+all n choices, which implies that even if we pick the correct
+k
+output symbols, the decoder either does not pass the ﬁrst stage
+or does not declare m = 1 in the second stage. Therefore,
+k
+
+||P W )
+
+n−k
+Pk1 (m = 2|m = 1). (14)
+ˆ
+k1
+
+Note that message m = 2 is declared at the decoder only if it
+ˆ
+passes the ﬁrst stage, and then it is the unique message that
+
+4
+
+rates is more obvious for larger α. In this example, we cannot
+achieve a positive rate if α ≥ 2, even for the case of a noiseless
+channel (p = 0). However, this is not true in general, because
+even the ﬁrst achievable rate can be positive for a large α, if
+the capacity of the channel is sufﬁciently large. Figure 3 can
+be interpreted as the achievable region for (R, α). The results
+suggest that, as communication becomes more intermittent
+and α becomes larger, the achievable rate is decreased due to
+the additional uncertainty in the positions of the information
+symbols at the decoder.
+
+1
+=1, BSC
+=1.01, Thm 1
+=1.01, Prop 1
+=1.1, Thm 1
+=1.1, Prop 1
+=1.5, Thm 1
+=1.5, Prop 1
+
+0.9
+0.8
+0.7
+
+R(bits/s)
+
+0.6
+0.5
+0.4
+
+A PPENDIX A
+P ROOF OF L EMMA 1 FOR THE BINARY CASE
+
+0.3
+
+We have t = 2, X = {0, 1}, P = (p0 , p1 ), Q = (q0 , q1 ),
+k
+and Q = (q0 , q1 ). Let N (0) denote the number of 0’s in X1 1 ,
+k
+and N (0) denote the number of 0’s in Xk1 +1 . We have
+
+0.2
+0.1
+0
+0.0001
+
+0.001
+
+0.01
+
+0.1
+
+0.5
+
+P(X k ∈ TP ) = P(N (0) + N (0) = kp0 )
+
+p
+
+kp0
+
+P(N (0) = l)P(N (0) = kp0 − l)
+
+=
+
+Fig. 2. Achievable rate for the BSC verses cross over probability p for
+different intermittency levels α’s.
+
+l=0
+kp0
+
+k2
+k1
+k −(kp0 −l)
+(q0 )l (q1 )k2 −l
+q kp0 −l q1 1
+(21)
+l
+kp0 − l 0
+
+=
+l=0
+
+1
+
+kp0
+p=0.001, Thm 1
+p=0.001, Prop 1
+p=0.01, Thm 1
+p=0.01, Prop 1
+p=0.1, Thm 1
+p=0.1, Prop 1
+
+0.8
+0.7
+0.6
+
+R(bits/s)
+
+kp k
+=(q1 )k2 q0 0 q1 1 −kp0
+
+RInsertion (p=0)
+
+0.9
+
+l=0
+
+=e
+
+−k(H(P )+D(P ||Q)−ρ log
+¯
+
+k2
+l
+q
+1
+q1
+
+k1
+al ;
+kp0 − l 0
+kp0
+
+)
+l=0
+
+k2
+l
+
+q
+1
+
+=e
+
+0.4
+
+0.2
+0.1
+
+1.4
+
+1.6
+
+1.8
+
+e
+
+,
+
+q0 q1
+q0 q1
+(22)
+(23)
+(24)
+
+where (20) and (21) follow from the fact that N (0) and
+N (0) are independent and have binomial distributions, (22)
+follows from the deﬁnition of the entropy and divergence
+functions, (23) follows by the same procedure used to obtain (18) from (17), i.e., ﬁnding the largest exponent of the
+sum by deﬁning θ0 := l/(kp0 ), where with simple algebraic
+manipulation the exponent becomes e(P, Q, Q , ρ) deﬁned
+in (9); and where (24) follows from deﬁnition (8).
+
+0.3
+
+1.2
+
+o(k) −kd(P,Q,Q ,ρ)
+
+a0 =
+
+k1
+al
+kp0 − l 0
+
+¯
+≤e−k(H(P )+D(P ||Q)−ρ log q1 ) eo(k) eke(P,Q,Q ,ρ)
+
+0.5
+
+0
+1
+
+(20)
+
+2
+
+Fig. 3. Achievable rate for the BSC verses the intermittency level α for
+different cross over probabilities p’s.
+
+R EFERENCES
+[1] A. Tchamkerten, V. Chandar, and G. W. Wornell, “Asynchronous communication: Capacity bounds and suboptimality of training,” 2011. [Online]. Available:
+http://arxiv.org/abs/1105.5639v1
+[2] D. Wang, V. Chandar, S.-Y. Chung, and G. Wornell, “Error exponents in asynchronous communication,” in Proc. IEEE Int. Symp. Information Theory (ISIT), St.
+Petersburg, Russia, Aug. 2011.
+[3] R. Venkataramanan, S. Tatikonda, and K. Ramchandran, “Achievable Rates for
+Channels with Deletions and Insertions,” in Proc. IEEE Int. Symp. Information
+Theory (ISIT), St. Petersburg, Russia, Aug. 2011.
+[4] M. Mitzenmacher, “Capacity bounds for sticky channels,” IEEE Trans. on Inf.
+Theory, vol. 54, pp. 72-77, Jan. 2008.
+[5] I. Csisz´ r and J. K¨ rner, Information Theory: Coding Theorems for Discrete
+a
+o
+Memoryless Systems; 2nd edition, Cambridge University Press, 2011.
+[6] J. N. Laneman and B. P. Dunn, “Communications Overhead as the Cost of
+Constraints,” in Proc. IEEE Information Theory Workshop (ITW), Paraty, Brazil,
+Oct. 2011.
+
+1
+to 1 − αh( α ) (bits/s) for the ﬁrst achievable rate. However, it
+is more involved to obtain it for the second achievable rate,
+which is denoted by RInsertion and can be proven to be equal to
+max0≤p0 ≤1 {2h(p0 )−max0≤β≤1 {(α−1)h(β)+h((α−1)β)+
+(1−(α−1)β)h( p0 −(α−1)β )}}. Note that this is the achievable
+1−(α−1)β
+rate if the channel is noiseless (p = 0), which models the
+insertion channel we discussed in Section II.
+Figure 3, shows the value of RInsertion and the value of
+achievable rates for different p, versus α. Not surprisingly,
+as α → 1, the capacity of the BSC is approach for both of the
+achievable rates. Again, the difference between the achievable
+
+5
+
+

@@ -1,0 +1,1161 @@
+Creator:        TeX
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Fri May 18 13:02:38 2012
+ModDate:        Tue Jun 19 12:55:09 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      595.276 x 841.89 pts (A4)
+File size:      476395 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569566715
+
+Sparse Signal Recovery in Hilbert Spaces
+Graeme Pope and Helmut Bölcskei
+Dept. of IT & EE, ETH Zurich, 8092 Zurich, Switzerland
+Email: {gpope, boelcskei}@nari.ee.ethz.ch
+
+AH is its conjugate transpose, its kth column is written ak ,
+and the entry in the kth row and th column is denoted by Ak, .
+The spectral norm of A is A 2→2 , σmin (A) and σmax (A) are
+the minimum and maximum singular value of A, respectively.
+H and G are Hilbert spaces equipped with the norm
+· H and · G , respectively, and H has direct sum decomn
+(i)
+where n < ∞.
+position [17, Ch. 5.20] H =
+i=1 H
+(i)
+We deﬁne v
+to be the canonical projection of v onto
+{i : v (i) H > 0} and
+H (i) . For v ∈ H , v H ,0
+n
+(i)
+(s)
+v H ,1
+. We deﬁne H (S)
+i=1 v
+s∈S H
+H
+(S)
+(S)
+and v
+to be the projection of v onto H
+. We say
+that a signal v ∈ H is εS -concentrated to the set S if
+v (S) H ,1
+(1 − εS ) v H ,1 , where 0
+εS
+1. We
+deﬁne ei ∈ CN to be the all zero vector with a one in
+the ith position. For an operator ϕ : H → G with adjoint ϕH , ωmin (ϕ)
+inf v∈H ϕ(v) G / v H , ωmax (ϕ)
+supv∈H ϕ(v) G / v H , and ker(ϕ)
+{v ∈ H : ϕ(v) =
++
+0}. For α ∈ R, we set [α]
+max{0, α}. The cardinality of
+a set S is denoted as |S|. The Fourier transform operator is
+written F.
+
+Abstract—This paper reports an effort to consolidate numerous
+coherence-based sparse signal recovery results available in the
+literature. We present a single theory that applies to general
+Hilbert spaces with the sparsity of a signal deﬁned as the number
+of (possibly inﬁnite-dimensional) subspaces participating in the
+signal’s representation. Our general results recover uncertainty
+relations and coherence-based recovery thresholds for sparse
+signals, block-sparse signals, multi-band signals, signals in shiftinvariant spaces, and signals in ﬁnite unions of (possibly inﬁnitedimensional) subspaces. Moreover, we improve upon and generalize several of the existing results and, in many cases, we ﬁnd
+shortened and simpliﬁed proofs.
+
+I. I NTRODUCTION
+The sparse signal recovery literature is vast and has evolved
+along several threads with recent focus mostly on probabilistic
+results. This paper constitutes an attempt to consolidate the
+numerous coherence-based recovery results available in the
+literature. More speciﬁcally, we formulate a single theory
+that applies to ﬁnite- and inﬁnite-dimensional Hilbert spaces,
+in combination with sparsity deﬁned as the (ﬁnite) number
+of (possibly inﬁnite-dimensional) subspaces participating in
+a signal’s representation. The general coherence-based recovery thresholds we ﬁnd contain the known thresholds in
+the following settings as special cases: (i) sparse signals
+in ﬁnite-dimensional spaces [1]–[4], (ii) block-sparse signals
+[5], [6], (iii) multi-band signals [7]–[9], (iv) signals in shiftinvariant spaces [10], and (v) signals in ﬁnite unions of ﬁnite
+or inﬁnite-dimensional subspaces [11]–[13]. In addition, we
+improve upon the thresholds in [5] and we generalize the
+uncertainty relation in [10]. We introduce suitable generalizations of P0-minimization [2], basis pursuit [2], and orthogonal
+matching pursuit [14]. Finally, we indicate how the results on
+signal separation reported in [15], [16] can be extended to the
+general Hilbert space setting considered here.
+Key to our results are deﬁnitions of coherence [2] and
+mutual coherence [3], [16] that work for our general setting.
+Based on these deﬁnitions, we obtain a general kernel uncertainty relation which is then used to establish general recovery
+thresholds. Similarly our deﬁnition of mutual coherence paves
+the way to a general uncertainty relation that yields fundamental limits on how sparse a signal in a general Hilbert space
+can be under two different representations. All theorems in
+this paper are given without proof.
+Notation: Lowercase boldface letters stand for column
+vectors and uppercase boldface letters designate matrices. For
+a vector a, the kth element is written ak . For the matrix A,
+
+II. S IGNAL AND S AMPLING M ODEL
+Let H and G be Hilbert spaces, with dimensions N and M ,
+n
+respectively, possibly inﬁnite. Assume that H = i=1 H (i) ,
+(i)
+n < ∞, and set di = dim(H ). We describe the sampling
+of signals in H through the application of a bounded linear
+operator Φ : H → G , which we call a sampling operator. With
+Φ we associate the operators ϕi : H (i) → G , for i = 1, ..., n,
+obtained by restricting the action of Φ to the subspace H (i) .
+n
+It follows from the linearity of Φ that Φ(v) = i=1 ϕi (v (i) ).
+We require that each ϕi be injective.
+n
+For N = i=1 di < ∞, the action of Φ can be represented
+through a matrix D ∈ CM ×N according to Φ(v) = Dv,
+v ∈ CN . Taking D[i] = [ di1 · · · didi ] to be the set of columns
+of D that correspond to H (i) we have ϕi (v (i) ) = D[i] v (i) ,
+for i = 1, ..., n.
+III. D EFINITIONS OF C OHERENCE
+Key to our results are deﬁnitions of coherence, mutual
+coherence, and spark for general sampling operators.
+Deﬁnition 1 (Hilbert space coherence): Let H and G be
+Hilbert spaces and let Φ : H → G be a sampling operator.
+We deﬁne the Hilbert space coherence of Φ as1
+µH = µH (Φ)
+
+The authors would like to thank C. Aubel, R. Heckel, R. Pope, D. Stotz,
+and C. Studer for inspiring discussions.
+
+1 By
+
+1
+
+max
+
+i,j,i=j
+
+ωmax ϕH ϕj
+i
+.
+2
+ωmin (ϕi )
+
+assumption the operators ϕi are injective, hence ωmin (ϕi ) > 0.
+
+(1)
+
+We can interpret µH (Φ) as a measure of closeness of the
+subspaces H (i) under the action of Φ.
+Deﬁnition 2 (Mutual Hilbert space coherence): Let H1 ,
+H2 , and G be Hilbert spaces and let Φ : H1 → G and
+Ψ : H2 → G be sampling operators. We deﬁne the mutual
+Hilbert space coherence of Φ and Ψ as
+µH (Φ, Ψ)
+
+max
+i,j
+
+ωmax ϕH ψj
+i
+ωmin (ϕi ) ωmin (ψj )
+
+.
+
+In addition, we have the following bound, spark(Φ) 1 +
+(µH (Φ))−1 , which combined with Theorem 2 allows us to
+conclude that H -P0 returns the correct solution if
+v
+
+i,j
+
+< 1 + (µH (Φ))
+
+(2)
+
+aH bj 2 (a)
+i
+= max| ai , bj | = µm ,
+i,j
+ai 2 bj 2
+
+where µm is the mutual coherence as speciﬁed in [16], and (a)
+follows since in [16] A and B are assumed to have columns
+with unit 2 -norm.
+We will also need a general deﬁnition of spark [4], [18].
+Deﬁnition 3 (Hilbert space spark): Let H and G be
+Hilbert spaces and let Φ : H → G be a sampling operator.
+Then
+
+= arg max ϕH (ri−1 )
+ˆ
+ˆ
+
+min
+v∈ker(Φ)\{0}
+
+v
+
+H ,0
+
+.
+
+(3)
+
+With our general deﬁnitions of coherence and spark, the
+general recovery thresholds below follow without difﬁculties.
+We start with a general kernel uncertainty relation.
+Theorem 1 (Kernel uncertainty relation): Let Φ : H → G
+be a sampling operator with Hilbert space coherence µH (Φ).
+Let v ∈ H be εS -concentrated to S. If Φ(v) = 0, then
+−1
+
+.
+
+minimize
+v ∈H
+ˆ
+
+v
+ˆ
+
+H ,0
+
+subject to Φ(ˆ) = z.
+v
+
+(4)
+
+minimize
+v ∈H
+ˆ
+
+v
+ˆ
+
+H ,1
+
+subject to Φ(ˆ) = z. (6)
+v
+
+Recovery thresholds for H -P0 and H -BP can now be
+derived from the kernel uncertainty relation in Theorem 1.
+Theorem 2: If v ∈ H satisﬁes Φ(v) = z and
+v
+
+H ,0
+
+< spark(Φ)/2,
+
+G
+
+.
+
+A. Sparse signal recovery
+The (coherence-based) thresholds in [1]–[4] are recovered
+as follows. Set H = CN and G = CM . Take the sampling
+operator Φ to be represented by the matrix D ∈ CM ×N , with
+unit 2 -norm columns di . Take H (i) to be the 1-dimensional
+subspace spanned by ei ∈ CN , so that N = n. The action of
+ϕi : H (i) → G is represented by ϕi (v (i) ) = di v (i) = di vi .
+Since ωmin (ϕi ) = di 2 = 1 and ωmax ϕH ϕj = | di , dj |,
+i
+we get µH = maxi=j | di , dj |, which is exactly the deﬁnition
+of coherence as introduced in [2]–[4]. The recovery threshold
+(8) for H -P0, H -BP, and H -OMP (which then reduce
+to P0, BP, and OMP, respectively) is thus equal to the
+
+(5)
+
+Furthermore, we consider a modiﬁed version of basis pursuit:
+(H -BP)
+
+/ωmin (ϕ ˆ).
+
+V. D ISCUSSION OF R ECOVERY T HRESHOLDS
+We next show how the recovery thresholds in [1]–[5], [7]–
+[9], [11] follow from the general recovery threshold (8). The
+results in [6], which pertain to a generalization of [5] allowing
+for different subspace dimensions, can be recovered following
+the same methodology, but this will not be detailed here due
+to space constraints.
+
+We next deﬁne two optimization problems for the recovery
+of a signal v ∈ H from its measurements z = Φ(v) ∈ G .
+The ﬁrst one, H -P0, aims to ﬁnd the signal that explains the
+given measurements while occupying the fewest subspaces:
+(H -P0)
+
+(8)
+
+4) Update the residual and i: ri ← z − Φ(vi ), i ← i + 1.
+Theorem 4: Let Φ : H → G be a sampling operator. Then
+H -OMP applied to z = Φ(v) returns the correct solution v
+if (8) is satisﬁed and will require exactly v H ,0 iterations.
+Note that implementing the algorithms mentioned above,
+when H is inﬁnite-dimensional, is non-trivial. Some alternatives to H -BP and H -OMP, such as SBR2/4, have been
+proposed for blind multi-band sampling [9], which is a special
+case of our setup. It is an interesting open problem to extend
+these algorithms to the general framework in this paper.
+
+IV. R ECOVERY T HRESHOLDS
+
+(1 − εS ) 1 + (µH (Φ))
+
+H
+
+vi ← arg min z − ΦSi (u)
+
+The spark of a sampling operator is the smallest number of
+subspaces that a non-zero signal v ∈ H in ker(Φ) can occupy.
+
+|S|
+
+/2.
+
+2) Update
+the
+list
+of
+participating
+subspaces: Si ← Si−1 ∪ { }.
+3) Find the best approximation to v with support Si :
+u∈H (Si )
+
+spark(Φ)
+
+−1
+
+We next provide a recovery condition for H -BP.
+Theorem 3: If v ∈ H satisﬁes Φ(v) = z and (8) holds,
+then H -BP applied to z returns the correct solution v.
+A commonly used alternative to BP is orthogonal matching
+pursuit (OMP) [14], [19]. We next present a Hilbert-space version of OMP, which we call H -OMP. This algorithm works
+by iteratively identifying the subspaces H (i) participating in
+the representation of v and computes an approximation to v,
+denoted as vi , in the ith iteration. The corresponding residual
+in the ith iteration is given by ri z −Φ(vi ). The algorithm is
+initialized with r0 ← z and i ← 1, and performs the following
+steps until ri G = 0:
+1) Find
+
+The mutual Hilbert space coherence extends the deﬁnition
+of mutual coherence in [3], [16]. The setting of [3], [16]
+is recovered as follows. Let H1 = CN1 , H2 = CN2 , and
+G = CM . Represent the sampling operators Φ : H1 → G and
+Ψ : H2 → G by the matrices A and B, respectively, so that
+Φ(v) = Av and Ψ(u) = Bu. Then, we have
+µH (Φ, Ψ) = max
+
+H ,0
+
+(7)
+
+then v is the unique minimizer of H -P0 applied to z.
+
+2
+
+simplicity of exposition, assume that the interval [0, 1/T ),
+is divided into n disjoint intervals I1 , ..., In , with Ii =
+[(i − 1)/(nT ), i/(nT )), i = 1, ..., n. Deﬁne the subspaces
+H (i) = {v ∈ L2 (R) : V (f ) = 0, for all f ∈ Ii }. Thus, for a
+/
+signal v ∈ H , the sparsity level v H ,0 is the number of
+frequency bands Ii occupied by V .
+We next demonstrate how the multi-coset sampling scheme
+of [7], [8] can be analyzed in our framework. Multi-coset
+sampling maps the signal v to m
+n sequences z (k) as
+follows:
+
+corresponding thresholds in [2]–[4]. As an aside the general
+result (8) shows how dictionaries with unnormalized columns
+should be treated, speciﬁcally what the appropriate measure
+of coherence is, and what the selection criterion in Step 1 of
+(H -)OMP should be.
+B. Block-sparsity
+The results for the block-sparse setting considered in [5] are
+recovered as follows. Set H = CN , G = CM , and N = nd,
+where d is the block size and n is the number of blocks (and
+hence the number of subspaces H (i) ). As before, the sampling
+operator Φ is represented by the matrix D ∈ CM ×N with
+unit 2 -norm columns. Let H (i) be the subspace spanned by
+{e(i−1)d+1 , ..., eid }, and set D[i] = [ d(i−1)d+1 · · · did ], so
+that ϕi (v (i) ) = D[i] v (i) . From (1) the Hilbert space coherence
+is
+
+z
+
+H
+
+.
+
+2
+σmin (D[i])
+
+i,j,j=i
+
+Z (k) (f ) =
+
+(9)
+
+We next show how the recovery threshold (8) improves
+upon that reported in [5, Thms. 2 and 3], which states that
+recovery using (L-OPT) [5, Eq. 32] and BOMP [5, Sec. IVA] (our H -BP and H -OMP, respectively), is successful if
+v H ,0 < 1 + µ−1 /2. Here
+ˆ
+µ
+ˆ
+
+=
+
+dµB (D)
+1 − (d − 1)ν
+H
+
+ν = ν(D)
+
+max
+
+d
+
+i,j,j=i
+
+max
+
+k = 1, . . . , m,
+
+∈ Z.
+
+1
+nT
+1
+nT
+
+n
+
+V f+
+=1
+n
+
+e2πik
+
+nT
+
+/n
+
+n
+
+V ( ) (f ) e2πik
+
+/n
+
+λk, V ( ) (f ),
+
+=
+
+=1
+
+=1
+
+where λk,
+= (nT )−1 exp(2πik /n) and V ( ) (f ) =
+V (f + /(nT )). Then, the action of the sampling operator,
+Φ : H → G , can be represented in terms of the continuously
+parametrized linear system of equations
+ (1)
+ 
+  (1) 
+V (f )
+Z (f )
+λ1,1 λ1,2 · · · λ1,n
+.
+.
+
+
+  .
+.
+. 
+..
+.
+.
+.
+. 
+.
+.
+,
+
+= .
+.
+.
+.
+.
+
+σmax (D[i]) D[j]
+µB = µB (D)
+
+= v( nT + kT ),
+
+To obtain an explicit characterization of the corresponding
+sampling operator Φ we will work in the frequency domain.
+The Fourier transform of z (k) is given by
+
+σmax (D[i]) D[j]
+µH (Φ) = max
+
+(k)
+
+Z (m) (f )
+
+λm,1
+
+···
+
+λm,2
+
+λm,n
+
+V (n) (f )
+
+H
+
+=1,...,n
+
+max (D[ ]i ) D[ ]j ,
+
+Λ
+
+i,j,j=i
+
+V (f )
+
+(10)
+for f ∈ [0, 1/(nT )). We have thus established a ﬁnitedimensional continuously indexed matrix representation of Φ
+[17]. Based on this insight, we next show that
+
+and D[ ]i is the ith column of D[ ]. The following steps
+establish that µH
+µ, thereby proving our claim2
+ˆ
+H
+
+maxj=i σmax (D[i]) D[j]
+µH (Φ)
+
+spark(Φ) = spark(Λ) = m,
+
+(11)
+
+µH (Φ) = µH (Λ),
+
+(12)
+
+H
+
+mink σmin (D[k]) D[k]
+
+and
+
+H
+
+σmax (D[i]) D[j]
+
+(a)
+
+max
+
+i,j,j=i
+
++
+
+[1 − (d − 1)ν]
+
+= µ,
+ˆ
+
+which means that we can reduce the computation of Hilbert
+space spark and Hilbert space coherence of an inﬁnitedimensional operator to that of a ﬁnite matrix that does not
+depend on f . Since (10) holds for all f ∈ [0, 1/(nT )), for v
+to lie in the kernel of Φ, V (f ) must be in ker(Λ) for each
+f ∈ [0, 1/(nT )). One can then show that this implies that
+spark(Φ) = spark(Λ). The second equality in (11) follows
+since Λ consists of the ﬁrst m rows of the n × n DFT matrix
+and hence spark(Λ) = m [21].
+To prove (12), note that for u ∈ H (i) with Fourier transform U , ϕi : H (i) → G is given by the matrix representation
+
+
+λ1,i
+ . 
+ϕi (U ) (f ) U (f )  .  ,
+.
+
+where we applied the Geršgorin disc theorem [20, Th. 6.1.1]
+H
+in (a). When (D[i]) D[i] = Id , for all i, we have µH = µ,
+ˆ
+but one can easily ﬁnd examples where the strict inequality
+µH < µ holds.
+ˆ
+C. Multi-band signals
+We next show how our results apply to sparse multi-band
+signals as considered in [8], [9], [21], [22]. Let H be the
+space of functions band-limited to the interval [0, 1/T ) and
+for a signal v ∈ H , let V be its Fourier transform. For
+2 It is possible that µ < 0 and since µ
+ˆ
+H (Φ) is always non-negative, we do
+not have µH (Φ) µ in this case. However, in this instance [5, Thms. 2 and
+ˆ
+3] say that we cannot guarantee the recovery of any signal, but the right-hand
+side of (8) is positive, thus trivially improving upon the recovery thresholds
+in [5, Thms. 2 and 3].
+
+λm,i
+
+3
+
+are εU - and εV -concentrated to the sets U and V, respectively,
+and assume that Φ(u) = Ψ(v). Then, we have
+
+and has adjoint
+
+ϕH (X) (f )
+i
+
+=
+
+X
+
+
+ϕH 
+i
+
+
+(1)
+.
+.
+.
+
+m
+
+λ∗ X (k) (f ),
+k,i
+
+
+ (f )
+
+X (m)
+
+k=1
+
++
+
+× [(1 − εV ) (1 + µH (Ψ)) − |V| µH (Ψ)] .
+
+where
+(1)
+
+
+
+)
+
+with Fourier transform U , we have
+
+ϕH ϕ (U )
+j
+
+H
+
+=
+=
+
+A. Shift-invariant spaces
+We next show how Theorem 5 can be used to recover [10,
+Th. 1]. Consider the shift-invariant space
+
+
+
+
+
+
+(i)
+(i)
+Sφ
+z : z(t) =
+vk φi (t − kT ), v ∈ 2 , ∀i ,
+
+
+
+
+
+m
+
+m
+
+λ∗ λi, U
+i,j
+i=1
+λH λ
+j
+
+U
+
+H
+
+λ∗ λi,
+i,j
+
+=
+H
+
+U
+
+H
+
+i=1
+
+,
+
+(13)
+
+where λj is the jth column of Λ. Since (13) holds for all U ,
+it follows that
+
+i=1,...,n1
+k∈Z
+
+(15)
+
+ωmin (ϕH ϕ ) = ωmax (ϕH ϕ ) = λH λ ,
+j
+j
+j
+
+with n1 generators φi ∈ L2 (R) and φi
+H1 to be the space of vector sequences
+ (1) 
+v
+ . 
+v =  . ,
+.
+
+and hence
+µH (Φ) = max
+j, ,j=
+
+(14)
+
+Remark: [16, Th. 1] can be recovered from Theorem 5 by
+noting that Φ and Ψ play the role of the dictionaries A and
+B, respectively, as used in [16]. Then Φ(u) = Ψ(v) becomes
+Au = Bv and [16, Th. 1] follows since µH (Φ, Ψ) = µm ,
+µH (Φ) = µa , and µH (Ψ) = µb , with µm , µa , and µb as
+deﬁned in [16].
+
+
+
+X
+ . 
+X =  .  ∈ G.
+.
+(m)
+X
+Hence, for u ∈ H (
+
+1
++
+[(1 − εU ) (1 + µH (Φ)) − |U | µH (Φ)]
+µ2 (Φ, Ψ)
+H
+
+|U||V|
+
+ωmax (ϕH ϕ )
+λH λ
+j
+j
+= max
+2 = µH (Λ).
+Hϕ )
+j, ,j=
+ωmin (ϕ
+λ 2
+
+v
+
+From [7], [9] we know that to recover a multi-band
+signal with bandwidth s/(nT ) (and with unknown spectral occupancy), it is necessary to sample at a rate fs =
+m/(nT )
+2s/(nT ). Theorem 2 implies that uniqueness of
+H -P0 recovery is guaranteed for multi-band coset sampling
+if spark(Φ)/2 = m/2 > s. Hence, sampling at rate at least
+2s/(nT ) is also sufﬁcient to recover an s-sparse signal and
+recovery of the (multi-coset sampled) signal can be achieved
+through H -P0.
+
+with v
+
+(i)
+
+∈
+
+2,
+
+2
+
+= 1, for all i. Set
+
+(16)
+
+(n1 )
+
+for all i. Deﬁne the operator ϕi :
+
+2
+
+→ Sφ by
+
+(i)
+
+ϕi v (i)
+
+vk φi (· − kT ),
+
+(17)
+
+k∈Z
+H
+with adjoint ϕH : Sφ →
+=
+2 given by ϕi (z)
+i
+{ z(·), φi (· − T ) } ∈Z . The sampling operator3 Φ : H1 →
+Sφ is then given by
+n1
+
+n1
+(i)
+
+D. Relation to further results
+
+i=1 k∈Z
+
+Theorem 2 in this paper implies [11, Prop. 4] and [11,
+Eq. (23)] with the observation that the generalized Gram
+matrix in [11, Eq. (17)] plays the role of the sampling
+operator Φ in our framework. Our Theorem 2 also implies
+[12, Th. 2.2].
+
+ϕi v (i) .
+
+vk φi (· − kT ) =
+
+Φ(v)
+
+(18)
+
+i=1
+
+A signal v ∈ H is s-sparse if at most s of the sequences v (i) in
+(18) are non-zero, i.e., if v H ,0 s, and in the terminology
+of [10], v H ,0 is the number of active generators.
+Now let us consider a set of n2 generators θi ∈ L2 (R)
+where θi 2 = 1, for all i, and the space
+
+
+
+
+
+
+(i)
+(i)
+Sθ
+z : z(t) =
+vk θi (t − kT ), v ∈ 2 , ∀i .
+
+
+
+
+
+VI. U NCERTAINTY R ELATIONS AND S IGNAL S EPARATION
+Another thrust in the sparse signal recovery literature deals
+with the recovery of sparsely corrupted signals [16]. The main
+tool underlying this line of work is an uncertainty relation that
+sets a limit on how sparsely a given signal can be represented
+concurrently in two different dictionaries [1], [15], [16]. We
+next formulate a Hilbert space version of this uncertainty
+relation, which is then used to recover and generalize results
+in [10] and [16].
+Theorem 5 (Uncertainty relation): Let H1 , H2 , and G be
+Hilbert spaces and let Φ : H1 → G and Ψ : H2 → G be
+sampling operators. Let u ∈ H1 and v ∈ H2 be signals that
+
+i=1,...,n2
+k∈Z
+
+Let H2 be the space of vector sequences, as in (16), but with
+n1 replaced by n2 , and deﬁne the operators ϑi : 2 → Sθ
+and Θ : H2 → Sθ as in (17) and (18), respectively, with φi
+replaced by θi . Suppose that z = Φ(v) = Θ(u). We now
+establish a limit on the sparsity of u and v.
+3 In this case, the sampling operator rather behaves like an interpolation
+operator as it maps a sequence to a continuous-time signal, but to maintain
+consistency with the rest of the paper we still refer to it as a sampling operator.
+
+4
+
+have ωmax ϕH ϑr = ess supξ∈[0,2π) Rφ ,θr eiξ , which concludes the proof.
+We ﬁnally note that our Theorem 5 also applies to
+nonorthogonal generator sets {φi } and {θj } with potentially
+different shift parameters, thereby extending the uncertainty
+relation in [10].
+
+Following [10] the generators will be assumed to satisfy:
+φi (· − kT ), φj (· − T ) = θi (· − kT ), θj (· − T )
+=
+
+1
+0
+
+if i = j and k =
+otherwise.
+
+Then ϕi (v (i) ) 2 = v (i) 2 , for all i, and for all v (i) ∈ 2 ,
+hence ωmin (ϕi ) = 1, for all i, and similarly ωmin (ϑ ) = 1, for
+all . For i = j and v (j) ∈ 2 , we have
+ϕH ϕj v (j)
+i
+
+2
+
+[1] D. L. Donoho and P. Stark, “Uncertainty principles and signal recovery,”
+SIAM J. Appl. Math., pp. 906–931, Jun. 1989.
+[2] D. L. Donoho and X. Huo, “Uncertainty principles and ideal atomic
+decomposition,” IEEE Trans. Inf. Theory, vol. 47, no. 7, pp. 2845–2862,
+Nov. 2001.
+[3] M. Elad and A. M. Bruckstein, “A generalized uncertainty principle and
+sparse representation in pairs of bases,” IEEE Trans. Inf. Theory, vol. 48,
+no. 9, pp. 2558–2567, Sep. 2002.
+[4] D. L. Donoho and M. Elad, “Optimally sparse representation in general
+(nonorthogonal) dictionaries via 1 minimization,” Proc. Natl. Acad.
+Sci., vol. 100, no. 5, pp. 2197–2202, 2003.
+[5] Y. C. Eldar, P. Kuppinger, and H. Bölcskei, “Block-sparse signals:
+Uncertainty relations and efﬁcient recovery,” IEEE Trans. Sig. Proc.,
+vol. 58, no. 6, pp. 3042–3054, Jun. 2010.
+[6] P. T. Boufounos, G. Kutyniok, and H. Rauhut, “Sparse recovery from
+combined fusion frame measurements,” IEEE Trans. Inf. Theory, vol. 57,
+no. 6, pp. 3864–3876, Jun. 2011.
+[7] P. Feng and Y. Bresler, “Spectrum-blind minimum-rate sampling and
+reconstruction of multiband signals,” Proc. IEEE Int. Conf. Acoustics,
+Speech, and Sig. Proc., vol. 3, pp. 1688–1691, Apr. 1996.
+[8] Y. Bresler, “Spectrum-blind sampling and compressive sensing for
+continuous-index signals,” Proc. Inf. Theory and Appl. Workshop, pp.
+547–554, Jan. 2008.
+[9] M. Mishali and Y. C. Eldar, “Blind multiband signal reconstruction:
+Compressed sensing for analog signals,” IEEE Trans. Sig. Proc., vol. 57,
+no. 3, pp. 993–1009, Mar. 2009.
+[10] Y. C. Eldar, “Uncertainty relations for shift-invariant analog signals,”
+IEEE Trans. Inf. Theory, vol. 55, no. 12, pp. 5742–5757, Dec. 2009.
+[11] Y. M. Lu and M. N. Do, “A theory for sampling signals from a union
+of subspaces,” IEEE Trans. Sig. Proc., vol. 56, no. 6, pp. 2334–2345,
+Jun. 2008.
+[12] T. Blumensath and M. E. Davies, “Sampling theorems for signals from a
+union of ﬁnite-dimensional linear subspaces,” IEEE Trans. Inf. Theory,
+vol. 55, no. 4, pp. 1872–1882, Dec. 2009.
+[13] Y. C. Eldar and M. Mishali, “Robust recovery of signals from a
+structured union of subspaces,” IEEE Trans. Inf. Theory, vol. 55, no. 11,
+pp. 5302–5316, Nov. 2009.
+[14] J. A. Tropp, “Greed is good: Algorithmic results for sparse approximation,” IEEE Trans. Inf. Theory, vol. 50, no. 10, pp. 2231–2242, Oct.
+2004.
+[15] P. Kuppinger, G. Durisi, and H. Bölcskei, “Uncertainty relations and
+sparse signal recovery for pairs of general signal sets,” IEEE Trans. Inf.
+Theory, vol. 58, no. 1, pp. 263–277, Jan. 2012.
+[16] C. Studer, P. Kuppinger, G. Pope, and H. Bölcskei, “Recovery of sparsely
+corrupted signals,” IEEE Trans. Inf. Theory, vol. 58, no. 5, pp. 3115–
+3130, May 2012.
+[17] A. W. Naylor and G. R. Sell, Linear Operator Theory in Engineering
+and Science. New York, NY: Springer, 2000.
+[18] R. Gribonval and M. Nielsen, “Sparse decompositions in "incoherent"
+dictionaries,” Proc. IEEE Int. Conf. on Image Proc., vol. 1, pp. 33–36,
+Sep. 2003.
+[19] G. Davis, S. Mallat, and M. Avellaneda, “Adaptive greedy approximations,” Constr. Approx., vol. 13, pp. 57–98, 1997.
+[20] R. A. Horn and C. Johnson, Matrix Analysis.
+New York, NY:
+Cambridge Univ. Press, 1990.
+[21] R. Venkataramani and Y. Bresler, “Sub-Nyquist sampling of multiband
+signals: Perfect reconstruction and bounds on aliasing error,” Proc. IEEE
+Int. Conf. Acoustics, Speech, and Sig. Proc., vol. 3, pp. 1633–1636, May
+1998.
+[22] M. Mishali and Y. C. Eldar, “From theory to practice: Sub-Nyquist
+sampling of sparse wideband analog signals,” IEEE Journal of Sel.
+Topics in Sig. Proc., vol. 4, no. 2, pp. 375–391, Apr. 2010.
+[23] U. Grenander and G. Szeg˝ , Toeplitz forms and their applications. New
+o
+York, NY: AMS Chelsea, 1984.
+
+2
+
+ϕj v (j) , φi (· − kT )
+
+=
+
+R EFERENCES
+
+k∈Z
+2
+
+v
+
+=
+k∈Z
+
+v
+
+=
+
+∈Z
+2
+(j)
+
+(j)
+
+φj (· − T ), φi (· − kT )
+2
+
+| φj (· − T ), φi (· − kT ) | = 0,
+
+k∈Z
+∈Z
+
+=0
+
+and similarly ϑH ϑj u(j) 2 = 0, for all u(j) ∈ 2 .
+i
+Therefore, µH (Φ) = maxi=j ωmax (ϕH ϕj ) = 0 and similarly
+i
+µH (Θ) = 0. This gives
+µH (Φ, Θ) = max
+i,j
+
+ωmax ϕH ϑj
+i
+= max ωmax (ϕH ϑj ).
+i
+i,j
+ωmin (ϕi ) ωmin (ϑi )
+
+The uncertainty relation (14) hence reduces to
+u
+
+H ,0
+
+v
+
+H ,0
+
+µ2 (Φ, Θ)
+H
+
+1,
+
+(19)
+
+where we assume perfect concentration (since this is the case
+considered in [10]), i.e., εU = εV = 0. We now show that
+(19) is the uncertainty relation in [10, Th. 1], which, in our
+notation, is given by (19) but with µH (Φ, Θ) replaced by
+µ(Φ, Θ) = max ess sup Rφ
+,r
+
+,θr
+
+eiξ
+
+,
+
+ξ∈[0,2π)
+
+where
+Rφ
+
+,θr
+
+eiξ
+
+F
+
+θr (·), φ (· − kT )
+
+k∈Z
+
+eiξ .
+
+It therefore sufﬁces to prove that ωmax ϕH ϑr
+ess supξ∈[0,2π) Rφ ,θr eiξ . For v (r) ∈ 2 , we have
+(r)
+
+ϕH ϑr v (r) =
+
+vk
+
+θr (· − kT ), φ (· − mT )
+
+k∈Z
+
+m∈Z
+(r)
+
+=
+
+vk Λm,k
+k∈Z
+
+where Λm,k
+
+=
+
+,
+m∈Z
+
+θr (· − kT ), φ (· − mT ) . Then
+
+ωmax ϕH ϑr =
+=
+
+ϕH ϑr (v (r) )
+
+sup
+v (r)
+
+2
+
+=1
+
+Λv (r)
+
+sup
+v (r)
+
+2
+
+=1
+
+2
+
+= Λ
+2
+
+2→2
+
+.
+
+Since Λ is a doubly inﬁnite Toeplitz matrix, its operator
+norm Λ 2→2 is given by the essential supremum of the
+Fourier transform of a row of Λ [23, p. 62]. We therefore
+
+5
+
+

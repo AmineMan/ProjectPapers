@@ -1,0 +1,946 @@
+Creator:         TeX output 2012.05.16:1030
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Wed May 16 10:30:26 2012
+ModDate:        Tue Jun 19 12:55:57 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      318781 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569566855
+
+Beyond the Bethe Free Energy of LDPC Codes via
+Polymer Expansions
+Nicolas Macris and Marc Vuffray
+LTHC-IC-EPFL
+Lausanne, Switzerland
+nicolas.macris@epﬂ.ch, marc.vuffray@epﬂ.ch
+
+for bounds and [9], [10] for results on the binary erasure
+channel. In [11] it is proven that correlations between pairs
+of distant (with respect to Tanner graph distance) bits decay
+exponentially fast for LDGM codes in the regime of large
+noise, and LDPC codes in the regime of small noise. This
+also allowed to conclude that the replica symmetric formulas
+are exact in these regimes.
+A few years ago Chertkov and Chernyak [12] developed
+a loop series representation for the free energy of graphical
+models. The virtue of this representation is that it isolates the
+Bethe contribution, and represents the remainder by a series of
+terms involving only BP messages associated to generalized
+loops of the graph. It is tempting to use this representation as
+a tool to compare the true and Bethe free energies.
+In this contribution we consider regular LDPC(l, r) codes
+used over a highly noisy BSC, where (l, r) stands for the
+degree of variable node and check node respectively. Con1
+sider the conditional entropy n H(X|Y ) of the input word
+X = (X1 · · · Xn ) given a channel output Y = (Y1 · · · Yn ).
+We prove that in the large size limit, with high probability
+with respect to the code ensemble, the difference between
+the conditional entropy and the Bethe formula tends to zero.
+The error term essentially comes from the probability that
+the graph is not locally tree-like. Our techniques also allow
+to organize the dominant correction terms into a polymer
+expansion2 involving generalized loops of size less than λ0 n
+(0 < λ0 < 1 a constant). As we will show, expander arguments
+imply that this polymer expansion converges uniformly in n.
+When the terms of the polymer expansion are added to the
+Bethe expression, with high probability, the difference with
+the conditional entropy becomes O(e−nϵ ) for some ϵ > 0.
+Our results also apply to more general models. Namely
+the channel could have asymmetric ﬂip probability. In fact
+the whole technique and results apply to spin-glass models
+on (l, r) Tanner graphs with l odd and l < r, with small
+magnetic ﬁelds, and any temperature.The limitation to l < r
+is not just technical. Indeed l > r would correspond to a
+kind of XORSAT constraint satisfaction problem, and for the
+usual XORSAT problem we know that the replica symmetric
+solutions are not generally exact at low temperatures.
+The case l = 2 (cycle codes) has its own special features
+and has been discussed in [14].
+
+Abstract—The loop series provides a formal way to write
+down corrections to the Bethe entropy (and/or free energy) of
+graphical models. We provide methods to rigorously control such
+expansions for low-density parity-check codes used over a highly
+noisy binary symmetric channel. We prove that in the asymptotic
+limit of large size, with high probability, the Bethe expression
+gives an exact formula for the entropy (per bit) of the input
+word conditioned on the output of the channel. Our methods
+also apply to more general models.
+
+I. I NTRODUCTION
+Often one needs to compute the free energy and/or entropy
+of a graphical model. The Bethe approximation and the related
+Belief Propagation (BP) equations may sometimes offer a good
+starting point. However it is seldom a controlled approximation
+and even worse it is usually not clear if it yields upper or lower
+bounds, or even if there is any such relationship. There are not
+many results that precisely pinpoint the relation between the
+Bethe and true free energies or entropies. A general result of
+Vontobel [1] relates the Bethe free energy to an average of the
+true free energy over all graph covers. For Ising-like graphical
+models with attractive pair interactions, Wainwright [2] has
+shown that, under additional special conditions, the Bethe free
+energy is a bound to the true free energy. This has been
+extended recently to a much wider setting (with “attractivelike” interactions) by Ruozzi [3]. For counting independent
+sets in sparse graphs with large girth, Chandrasekaran et al. [4]
+show that the Bethe free energy is asymptotically exact as the
+size of the graph grows. Works [2], [4] use the same loop series
+used here. It is well known that the Bethe free energy is exact
+on trees, and it is natural to investigate its possible exactness
+on random Erdoes-R´ nyi type graphs which are known to
+e
+be locally tree-like. But we already know of systems, such
+as random constraint satisfaction models (e.g, K-SAT or Qcoloring) or spin glasses, where the true free energy is not
+given by the Bethe formula - even when averaged over the
+graph ensemble. The local tree-like nature of the graph is not
+sufﬁcient when long ranged correlations are present [5].
+For graphical models that describe communication with low
+density parity-check (LDPC) and low density generator-matrix
+(LDGM) codes over binary-symmetric memoryless channels
+the situation is favorable. Indeed we have plenty of evidence
+that the replica-symmetric solution1 is exact. See [6], [7], [8]
+1 Replica-symmetric formulas are averaged forms of the Bethe formulas,
+where the average is over the channel output realizations and code ensemble.
+
+2 See
+
+1
+
+[13] for a pedagogical introduction to polymer expansions.
+
+Note that hi have the probability distribution c(hi ) = (1 −
+p
+p)δ(hi − ln 1−p ) + pδ(hi − ln 1−p ). The expectation with
+p
+respect to this distribution is called Eh . We are interested in
+the conditional entropy H(X|Y ) of the input word given the
+output word. We have (see e.g, [5])
+1
+1 − 2p 1 − p
+1
+hn ≡ H (X|Y ) = Eh [ln Z] −
+ln
+.
+(5)
+n
+n
+2
+p
+
+II. P RELIMINARIES
+We begin with a few deﬁnitions and notations. Fix two
+integers l < r. Consider two vertex sets: V a set of n variable
+l
+nodes and C a set of m = n r check nodes. We think of n
+large and l, r ﬁxed. We consider bipartite (l, r) regular graphs
+- call them Γ - connecting V and C. The set of edges is E.
+More precisely, vertices of V have degree l, vertices of C have
+degree r, and there are no double edges. The set of all such
+graphs is denoted B(l, r, n). Note that Γ is the Tanner graph
+of a LDPC code with design rate 1 − l/r. When we say that Γ
+is random we mean that we draw it uniformly randomly from
+the set B (l, r, n). The corresponding expectation is EΓ .
+Letters i, j will always denote nodes in V and letters a, b
+nodes in C. We reserve the notations ∂i (resp. ∂a) for the sets
+of neighbors of i (resp. a) in Γ.
+We will say that Γ is a (λ, κ) expander if for every subset
+V ⊂ V such that |V| < λn we have |∂V| ≥ κl |V|. Here
+∂V is the number of check nodes that are connected to V.
+Take a random Γ. We can always ﬁnd λ > 0 such that with
+probability 1 − O(n−(l(1−κ)−1) ), Γ is a (λ, κ) expander with
+κ < 1 − 1 . It is sufﬁcient to take 0 < λ < λ0 where λ0 is the
+l
+positive solution of the equation3
+l−1
+l
+1
+h2 (λ0 ) − h2 (λ0 κr) − λ0 κrh2 ( ) = 0 .
+l
+r
+κr
+
+In (5), n−1 ln Z is the free energy of the Gibbs measure (2).
+III. T HE B ETHE A PPROXIMATION
+The Bethe free energy involves a set of messages
+{ηi→a , ηa→i } attached to the edges of Γ. The collection of
+all messages is denoted (η, η). These satisfy the BP equations
+{
+∑
+ηi→a = hi + b∈∂i\a ηb→i
+(∏
+)
+ηa→i = tanh−1 j∈∂a\i tanh ηj→a .
+These equations always have a trivial solution tanh ηi→a =
+tanh ηa→i =1. We will consider only non-trivial solutions that
+are relevant for small h. For these solutions ηi→a and ηa→i
+take small values and we can show that |ηi→a | ≤ |h| + (l −
+1)|h|r−1 + O(|h|r ) and |ηa→i | ≤ |h|r−1 + O(|h|r ). We call
+such solutions high-noise-solutions.
+These solutions have a Bethe free energy
+)
+(
+∑
+∑
+(
+)
+1 ∑
+Fa +
+Fi −
+Fia , (6)
+fBethe η, η =
+n
+
+(1)
+
+As will be seen later we need to take κ ∈]1 − 2(r−1) , 1 − 1 [
+lr
+l
+(which is always possible for r > 2). In the rest of the paper
+κ is always a constant in this interval, and 0 < λ < λ0 . For
+concreteness, one can take the case (l, r) = (3, 6), ﬁx κ = 1/2
+and λ0 = 5 × 10−4 .
+Assume that we transmit (with uniform prior) code words
+from an LDPC code with Tanner graph Γ over a BSC with ﬂip
+probability p. We assume without loss of generality that the all
+zero codeword is transmitted. Then the posterior probability
+that x = (xi )n ∈ {0, 1}n is the transmitted word given that
+i=1
+y = (yi )n ∈ {0, 1}n is received, reads
+i=1
+∏
+( )
+1 ∏
+I (⊕i∈∂a xi = 0)
+exp((−1)xi hi ) .
+pX|Y x|y =
+Z
+a∈C
+i∈V
+(2)
+The graph Γ enters in this formula through the parity check
+constraints. In this formula hi = (−1)yi 1 ln 1−p and Z is the
+2
+p
+normalizing factor
+∑ ∏
+∏
+Z=
+I (⊕i∈∂a xi = 0)
+exp((−1)xi hi ). (3)
+x∈{0,1}n a∈C
+
+a∈C
+
+i∈V
+
+(i,a)∈E
+
+where
+
+∏
+∑
+Fa = ln 1 (1 + i∈∂a tanh ηi→a ) + i∈∂a ln (2 cosh ηi→a ) ,
+
+2
+))
+(
+(
+∑
+F = ln 2 cosh hi + a∈∂i ηa→i ,
+ i
+
+Fia = ln (2 cosh (ηi→a + ηa→i )) .
+Theorem 1: Suppose l is odd and 3 ≤ l ≤ r. There exists
+h0 > 0 (small) independent of n, such that for |h| ≤ h0 and
+(
+)
+any high-noise-solution η, η of the BP equations,
+)
+(
+(
+)
+1
+1
+EΓ [| ln Z − fBethe η, η |] = O l(1−κ)−1 .
+(7)
+n
+n
+The O(·) is uniform in the channel output realizations h.
+Remark 1: By Markov’s bound we obtain that the difference between the true and Bethe free energies tends to zero
+with high probability, in the n → +∞ limit.
+Remark 2: We can average equation (7) over the channel
+output and use (5) to relate the true and Bethe entropies.
+IV. L OOP C ORRECTIONS TO THE B ETHE A PPROXIMATION
+We deﬁne a generalized loop g as any subgraph contained
+in Γ with no dangling edges (ﬁgure 1). Note that a generalized
+loop is not necessarily connected and can be the empty set.
+We call di (g) (resp. da (g)) the induced degree of node i (resp.
+a) in g. For a generalized loop we have di (g) ∈ {2, · · · , l}
+and da (g) ∈ {2, · · · , r}.
+For a ﬁnite size system, the loop series [12] is an identity
+valid for any solution of the BP equations. We have
+{∑
+}
+(
+)
+1
+1
+ln Z − fBethe η, η = ln
+K (g) .
+(8)
+n
+n
+
+i∈V
+
+We set
+
+1 1−p
+ln
+(4)
+2
+p
+It is good to keep in mind that the high noise regime considered in this paper corresponds to small h (p close to 1/2) and
+that |hi | = h.
+It is equivalent to describe the channel outputs in terms of
+y or in terms of the half-log-likelihood variables h = (hi )n .
+i=1
+h=
+
+3 See e.g [9] where the standard LDPC(l, r, n) ensemble is considered. It
+is easily argued that the same result applies to B (l, r, n).
+
+g⊂Γ
+
+2
+
+Fig. 1. Example of Γ ∈ B (3, 4, 8). The generalized loop g has two disjoint
+connected parts γ1 and γ2 .
+
+Fig. 2.
+
+The sum on the right hand side carries over all generalized
+loops included in Γ. The K(g) can be expressed entirely in
+terms of BP messages ηi→a and ηa→i . The explicit formula
+is given in the appendix. Remarkably K(g) factorizes in a
+product of contributions associated to the connected parts of
+g. Each generalized loop can be decomposed in a unique way
+as a union g = ∪k γk where γk are connected and disjoint
+generalized loops. The γk ’s are called polymers. We have
+∏
+K(g) = k K(γk ) and
+∑
+
+K (g) =
+
+M
+∑
+∏
+∑ 1
+K (γk )
+M!
+γ1 ,...,γM ⊂Γ k=1
+M ≥0
+∏
+×
+I (γk ∩ γk′ = ∅) .
+
+All the Mayer graphs for M = 1, 2, 3.
+
+The second term on the right hand side of (11) is the
+partition function of small polymers. One can compute in a
+systematic way the leading corrections to the Bethe free energy
+by expanding the logarithm in powers of the activities K(γ).
+This yields the so-called polymer (or Mayer) expansion,
++∞
+M
+∑
+∏
+(
+)
+1
+1 ∑ 1
+ln Zp η, η =
+K (γk )
+n
+n
+M!
+M =1
+γ1 ,...,γM s.t |γk |<λn k=1
+∑
+∏
+×
+(−I (γk ∩ γk′ ̸= ∅)).
+(12)
+G⊂GM (k,k′ )∈G
+
+Theorem 2: Suppose l is odd and 3 ≤ l ≤ r. take Γ at
+random. There exist a small h0 independent of )n such that
+(
+for |h| < h0 , and any high-noise-solution η, η of the BP
+equations, with probability 1 − 1 O(n−(l(1−κ)−1) ),
+ϵ
+
+The third sum is over the set GM of all connected Mayer
+graphs G with M vertices labeled by γ1 , ..., γM (see ﬁgure
+2). Note that in the expansion of the logarithm, the indicator
+function forces the polymers to overlap. Therefore the summations contains an inﬁnite number of terms and its convergence
+has to be controlled.
+Lemma 1: Suppose r > 2. Fix ζ0 > 1 and replace K(γ)
+by ζK(γ) (ζ ∈ C) in the polymer expansion (12) which then
+becomes a power series in the parameter |ζ| ≤ ζ0 . Assume
+that Γ is a (λ, κ) expander with κ ∈]1 − 2(r−1) , 1 − 1 [. One
+lr
+l
+can ﬁnd h0 > 0 such that for |h| < h0 this power series is
+absolutely convergent uniformly in n and h.
+Remark 3: This lemma holds for any (l, r) with r > 2.
+Remark 4: Our real interest is of course for ζ = 1, and the
+introduction of the parameter ζ above is just a convenient way
+to describe the nature of the polymer expansion. This lemma
+forms a crucial part for the proofs of theorems 1 and 2.
+Remark 5: The last term in the right hand side of (11)
+contains the contributions of large polymers of size greater
+than λn (in a sea of small polymers). It turns out that this
+contribution cannot be expanded into an absolutely convergent
+series, and has to be treated non-perturbatively by counting
+methods.
+Lemma 1 has the following consequence:
+Corollary 1: Suppose r > 2. One can ﬁnd h0 > 0
+independent of n such that for |h| < h0 ,
+
+(
+) 1
+1
+ln Z = fBethe η, η + ln Zp + O(e−ϵn )
+n
+n
+
+1
+1
+EΓ [ln Zp (η, η)] = O( l(1−κ)−1 )
+n
+n
+
+g⊂Γ
+
+(9)
+
+k<k′
+
+In the sum each γk runs over all polymers contained in Γ. The
+1
+factor M ! accounts for the fact that a polymer conﬁguration
+has to be counted only once. Finally the indicator function
+ensures that the polymers do not intersect (it equals 1 when
+M = 0, 1). Because of this constraint all sums in (9) are ﬁnite.
+From a physical point of view (9) is the partition function
+of polymers that can acquire any shape allowed by Γ, have
+activity4 K(γ), and interact via a two body hard-core repulsion. This analogy allows us to use methods from statistical
+mechanics to analyze the corrections to the Bethe free energy.
+We say that a polymer is small if |γ| < λn for some ﬁxed λ
+that we take in the interval [0, λ0 ]. The contribution of small
+polymers to (9) is
+M
+∑ 1
+∑
+∏
+(
+)
+Zp η, η =
+K (γk )
+M!
+M ≥0
+k=1
+γ1 ,...,γM s.t |γk |<λn
+∏
+I (γk ∩ γk′ = ∅) .
+(10)
+k<k′
+
+(11)
+
+for ϵ > 0. Here O(·) is uniform h.
+
+(13)
+
+V. C ONVERGENCE OF THE P OLYMER E XPANSION (12)
+
+4 This
+
+is the name used by chemists for the probability weight of an isolated
+polymer. Note that here K(γ) can be negative and this analogy is at best
+formal.
+
+We give the main ideas of the proof of lemma 1.
+Proof of Lemma 1: A standard criterion for uniform
+
+3
+
+convergence and analyticity of the polymer expansion is [13]
+Q≡
+
+∞
+∑
+t=0
+
+1
+sup
+t! z∈V ∪C
+
+∑
+
+t
+
+|γ| ζ0 |K (γ)| < 1 .
+
+polymer expansion techniques [13] allow to estimate the sum
+over M in (12) term by term, which yields
+∑
+∑
+1
+|K (γ)| e|γ| .
+ln Zp (η, η) ≤ (1−Q)−1 n−1
+n
+
+(14)
+
+γ∋z,|γ|<λn
+
+z∈V ∪C γ∋z,|γ|<λn
+
+If we prove that for polymers such that |γ| < λn we have
+|K(γ)| ≤ h
+
+c
+2 |γ|
+
+,
+
+(21)
+If we take the expectation over graphs we cancel the sum
+over z ∈ V ∪ C and the n−1 . This allows to consider
+a sum of polymers rooted at one vertex. We compute this
+expectation by conditioning on the ﬁrst event that Γ is treelike in a neighborhood of size O(ln n) around this vertex,
+and on the second complementary event. The second event
+has small probability O(n−(1−β) ) for any 0 < β < 1.
+Besides from (21) and (15) it is easy to show that n−1 | ln Zp |
+is bounded. For the ﬁrst event we have that the smallest
+polymer is a cycle with |γ| = O(ln n). This with (21) and
+(15) implies that n−1 | ln Zp (η, η)| ≤ n−β| ln |h|| . Combining
+all these remarks with the fact that Γ is an expander with
+probability 1 − O(n−(l(1−κ)−1) ) we obtain (13).
+
+(15)
+
+then the result follows for h small enough.
+The main difﬁculty in proving (15) is that the (optimal)
+estimate (34), (35) in the Appendix shows that K(γ) is not
+necessarily very small for graphs containing too many check
+nodes of maximal induced degree and too many variable nodes
+of even induced degree. More precisely for these bad graphs
+the activity is not exponentially small in the size of the graph.
+Then it is not possible to compensate for the ”entropy” of the
+graph.
+We will use an expander argument to show that these bad
+cases do not occur when |γ| < λn. We derive (15) with
+c=r−
+
+2+r
+.
+3 − l(1 − κ)
+
+VI. P ROBABILITY ESTIMATES ON GRAPHS
+
+(16)
+
+In this section we deal with the contribution R(η, η) corresponding to terms containing at least one large polymer in
+(9). We have
+∑
+K(g) = Zp (η, η) + R(η, η),
+(22)
+
+In the process of this derivation one has to require 3 − l(1 −
+κ) > 0 and c > 0. This imposes the condition on the expansion
+constant κ > 1 − 2(r−1) . Note that an expansion constant
+lr
+cannot be greater than 1 − 1/l, so it is fortunate that we have
+1 − 1 > 1 − 2(r−1) (for any r > 2).
+l
+lr
+Now we sketch the proof of (15) and (16). Recall that di (γ)
+(resp. da (γ)) is the induced degree of node i (resp. a) in γ. The
+type of γ is given by two vectors n = (ns (γ))l
+s=2 and m =
+(mt (γ))r deﬁned as ns (γ) := |{i ∈ γ ∩ V |di (γ) = s}| and
+t=2
+mt (γ) := |{a ∈ γ ∩ C|da (γ) = t}|. In words, ns (γ) and
+mt (γ) count the number of variable and check nodes with
+induced degrees s and t in γ. Note that we have the constraints
+{
+∑r
+∑l
+|γ| = s=2 ns (γ) + t=2 mt (γ)
+(17)
+∑r
+∑l
+t=2 tmt (γ)
+s=2 sns (γ) =
+
+g⊂Γ
+
+where
+
+s=2
+
+On the other hand |∂V| ≤ t=2 mt (γ) +
+With (18) this yields the constraint
+r−1
+∑
+t=2
+
+∑l
+
+s=2 (l − s)ns
+
+l
+l
+∑
+∑
+mt (γ) +
+(l − s)ns (γ) ≥ κl
+ns (γ) .
+s=2
+
+(23)
+
+The next lemma shows that the contribution from large
+polymers is exponentially small, with high probability with
+respect to the graph ensemble.
+Lemma 2: Fix δ > 0. Assume l ≥ 3 odd and l < r. There
+exists a constant C > 0 depending only on l and r such that
+for h small enough
+[
+] 1
+P |R(η, η)| ≥ δ ≤ e−Cn
+(24)
+δ
+Sketch of Proof: Let ΩΓ (n, m) be the set of all g ⊂ Γ
+with prescribed type (n(g), m(g)). By (35) and the Markov
+bound
+
+
+∑
+P
+|K (g)| ≥ δ 
+
+(γ).
+
+g⊂Γ with |g|≥λn
+
+≤
+
+(19)
+
+s=2
+
+Using all constraints (17) and (19) we can prove
+)
+(
+r−1
+∑
+2+r
+|γ| .
+(r − t) mt (γ) ≥ r −
+3 − l (1 − κ)
+t=2
+
+K(g),
+
+g⊂Γ s.t ∃γ⊂g with |γ|≥λn
+
+We apply the expander property to the set V = {i ∈ γ ∩ V }.
+This reads
+l
+∑
+|∂V| ≥ κl
+ns (γ) .
+(18)
+∑r−1
+
+∑
+
+R(η, η) =
+
+1 ∑
+K (n, m) EΓ [|ΩΓ (n, m)|] ,
+δ
+
+(25)
+
+⃗ ,m∈∆
+n ⃗
+
+Notice that the probability in (25) is an upper bound on the
+probability in (24). In (25) we have
+{
+l
+r
+l
+r
+∑
+∑
+∑
+∑
+ns +
+mt ,
+sns =
+tmt ,
+∆ ≡ (n, m) |λn ≤
+
+(20)
+
+Finally, keeping only the product over t = 2, · · · , r − 1 in
+estimates (34) and (35) in the Appendix, we obtain (15).
+Proof of Corollary 1: Conditional on Γ being an expander we have from the previous proof 0 < Q << 1. Then,
+
+s=2
+l
+∑
+s=2
+
+4
+
+ns < n,
+
+t=2
+r
+∑
+t=2
+
+s=2
+
+}
+mt < nl/r .
+
+t=2
+
+(26)
+
+∏
+1 − tanh2 ηi→a
+tanh ηi→a
+∏
+2
+1 − j∈∂a\i tanh ηj→a i∈∂a∩gc
+i∈∂a∩g
+d (g) ∏
+1 + (−1) a
+tanhda (g)−1 ηi→a ∏ √
+∏ i∈∂a
+×
+1 − m2
+i
+1 + i∈∂a tanh ηi→a
+
+The expectation of the number of g ⊂ Γ with prescribed
+type can be estimated by combinatorial bounds provided by
+McKay [15]. It turns out that these subgraphs proliferate
+exponentially in n only for a subdomain of ∆ where K (n, m)
+is exponentially much smaller in n. In the subdomain where
+K (n, m) is not small (but it is always bounded) the number
+of subgraphs is subexponential when l is odd and l < r. As
+a consequence for l odd and l < r, we are able to prove that
+the sum on the right hand side of (25) is smaller than e−Cn .
+Unfortunately our estimates break down for l even.
+
+Ka =
+
+i∈∂a∩g
+
+(33)
+Using these formulas and the BP equations we derive the
+following estimate for |hi | < h0 small enough
+|K(g)| ≤ K(n(g), m(g))
+
+VII. S KETCH OF P ROOF OF T HEOREMS 1 AND 2
+
+1
+1
+≤ enϵ ] = 1 − O(n−(l(1−κ)−1) )
+Zp (η, η)
+ϵ
+
+∏
+(
+)mr (g) r−1 (
+)mt (g)
+K(n(g), m(g)) = 1 − αr rh2
+αt hr−t
+t=2
+
+(
+)ns (g) ∏
+l
+βs
+n (g)
+×
+1 + s (s − 1) h2
+(βs (s − 1) h) s .
+2
+s=2,
+s=3,
+l−1
+∏
+
+even
+
+Here 0 < αr < 1, αt > 1, βt > 1 are ﬁxed numerical
+constants (that we can take close to 1). Estimate (35) is
+essentially optimal for small h as can be checked by Taylor
+expanding K(g) in powers of hi .
+
+(28)
+
+Acknowlegment. The work of M.V was supported by the
+Swiss National Science Foundation grant no 200021-121903.
+R EFERENCES
+[1] P. O. Vontobel, Counting in graph covers: a combinatorial characterization of the Bethe entropy function, available at arXiv:1012.0065v1.
+[2] E. B. Sudderth, M. J. Wainwright and A. S. Willsky, Loop series and
+Bethe variational bounds in attractive graphical models, Proceedings of
+Neural Information Processing (2007).
+[3] N. Ruozzi, The Bethe Partition Function of Log-supermodular Graphical
+Models, arXiv:1202.6035, (2011).
+[4] V. Chandrasekaran, M. Chertkov, D. Gamarnik, D. Shah, and J. Shin,
+Counting Independent Sets Using the Bethe Approximation, SIAM J.
+Discrete Math 25, No. 2, pp. 1012-1034 (2011).
+[5] M. M´ zard, A. Montanari, Information, Physics, and Computation, Oxe
+ford University Press (2009).
+[6] A. Montanari, Tight bounds for LDPC and LDGM codes under MAP
+decoding, IEEE Trans. Inf. Theory, vol 51 pp. 3221 - 3246 (2005).
+[7] N. Macris, Grifﬁth-Kelly-Sherman Correlation Inequalities: A Useful Tool
+in the Theory of Error Correcting Codes, IEEE Trans. Inf. Theory, vol
+53 pp. 664 - 683 (2007).
+[8] S. Kudekar, N. Macris, Sharp Bounds for Optimal Decoding of LowDensity Parity-Check Codes, IEEE Trans. Inf. Theory, vol 55 pp. 46354650 (2009).
+[9] T. Richardson, R. Urbanke, Modern Coding Theory, Cambridge University Press, (2008).
+[10] S. Korada, N. Macris, S. Kudekar, Exact solution for the conditional
+entropy of Poissonian LDPC codes over the Binary erasure Channel, in
+Proc. IEEE. Int. Symp. Inf. Theory pp. 1016-1020 (2007).
+[11] S. Kudekar, N. Macris, Decay of Correlations for Sparse Graph Error
+Correcting Codes, SIAM J. Discrete Math. 25(2) pp. 956-988 (2011)
+[12] M. Chertkov, V. Chernyak, Loop series for discrete statistical models
+on graphs, J. Stat. Mech., 1-28, P06009, (2006).
+[13] D. Brydges, A short course on cluster expansions, in K. Osterwalder
+and R. Stora ed. Les Houches, session XLIII, Part I, (1984).
+[14] N. Macris, M. Vuffray, Polymer Expansions for Cycle LDPC Codes, Int.
+Zurich Seminar on Communications, Z¨ rich, Switerland, (2012).
+u
+[15] B.D. McKay, Subgraphs of random graphs with speciﬁed degrees, Proc.
+of the Int. Congress of Mathematicians, Hyderabad, India, (2010).
+
+This already proves theorem 2.
+It is now easy to show theorem 1. There is a probability
+O(n−(l(1−κ)−1) ) that this last term is not small. However we
+can always show it is bounded by a constant independent of n.
+Indeed it is equal to the difference n−1 ln Z − fBethe (η, η) −
+n−1 ln Zp (η, η) where each term separately can be shown to
+be bounded by a constant independent of n. Furthermore,
+corollary 1 tells us that the expectation of the absolute value
+of the ﬁrst term on the r.h.s is O(n−(l(1−κ)−1) ). Combining
+these remarks allows to conclude the proof of theorem 1.
+VIII. A PPENDIX
+K(g) =
+
+∏
+i∈g∩V
+
+Ki
+
+∏
+
+Ka
+
+(31)
+
+a∈g∩C
+
+Quantities Ka , Ki are local and can be computed only with
+∑
+BP messages. Let mi = tanh(hi + a∈∂i ηa→i ).
+Ki =
+
+odd
+
+(35)
+
+Using inequalities (24) and (28), and choosing δ = e−2nϵ it
+is not difﬁcult to show that (at this point one takes 2ϵ < C)
+[
+]
+R(η, η)
+1
+−nϵ
+P
+≥e
+≤ O(n−(l(1−κ)−1) ) + e−n(C−2ϵ) .
+Zp (η, η)
+ϵ
+(29)
+This allows to conclude that with probability 1 −
+1
+−(l(1−κ)−1)
+)
+ϵ O(n
+(
+)
+R(η, η)
+1
+ln 1 +
+= O(e−nϵ ) .
+(30)
+n
+Zp (η, η)
+
+We have
+
+(34)
+
+where
+
+We write
+{∑
+}
+(
+)
+R(η, η)
+1
+1
+1
+ln
+K(g) = ln Zp (η, η) + ln 1 +
+.
+n
+n
+n
+Zp (η, η)
+g⊂Γ
+(27)
+We ﬁrst look at the second contribution coming from large
+polymers. From corollary 1 and the Markov bound, we have
+for any ϵ > 0,
+P[e−nϵ ≤
+
+∏
+
+(1 − mi )di (g)−1 + (−1)di (g)−1 (1 + mi )di (g)−1
+(32)
+2(1 − m2 )di (g)−1
+i
+
+5
+
+

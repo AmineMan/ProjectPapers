@@ -1,0 +1,706 @@
+Creator:        TeX
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Thu Apr 19 10:02:51 2012
+ModDate:        Tue Jun 19 12:54:34 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      430770 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569560785
+
+Importance of Symbol Equity in Coded Modulation
+for Power Line Communications
+Yeow Meng Chee, Han Mao Kiah, Punarbasu Purkayastha and Chengmin Wang
+School of Physical and Mathematical Sciences, Nanyang Technological University
+21 Nanyang Link, Singapore 637371
+
+Unfortunately, symbol weight alone is not sufﬁcient to
+capture the performance of a code in dealing with permanent
+narrowband noise. The purpose of this paper is to extend
+the analysis of Vinck’s coded modulation scheme based on
+permutation codes (see [5], [27, Subsection 5.2.4]) to general codes. In the process, we introduce an additional new
+parameter that more precisely captures a code’s performance
+against permanent narrowband noise. This parameter is related
+to symbol equity, the uniformity of frequencies of symbols in
+each codeword. Codes designed taking into account this new
+parameter are shown to perform better than general ones.
+
+Abstract—The use of multiple frequency shift keying modulation with permutation codes addresses the problem of permanent
+narrowband noise disturbance in a power line communications
+system. In this paper, we extend this coded modulation scheme
+based on permutation codes to general codes and introduce an
+additional new parameter that helps to more precisely capture a
+code’s performance against permanent narrowband noise. As a
+result, we deﬁne a new class of codes, namely, equitable symbol
+weight codes, which are optimal with respect to this measure. In
+addition, we demonstrate via simulations that equitable symbol
+weight codes achieve lower symbol error rates than other codes
+of the same length and distance over the same alphabet.
+
+I. I NTRODUCTION
+
+II. P RELIMINARIES
+
+Power line communications (PLC) is a technology that
+enables the transmission of data over high voltage electric
+power lines. Started in the 1950’s in the form of ripple control
+for load and tariff management in power distribution, this low
+bandwidth one-way communication system has evolved to a
+two-way communication system in the 1980’s. With the emergence of the Internet in the 1990’s, research into broadband
+PLC gathered pace as a promising technology for Internet
+access and local area networking, since the electrical grid
+infrastructure provides “last mile” connectivity to premises and
+capillarity within premises. Recently, there has been a renewed
+interest in high-speed narrowband PLC due to applications in
+sustainable energy strategies, speciﬁcally in smart grids (see
+[1]–[4]).
+However, power lines present a difﬁcult communications
+environment and overcoming permanent narrowband disturbance has remained a challenging problem [5]–[7]. Vinck [5]
+addressed this problem by showing that multiple frequency
+shift keying (MFSK) modulation, in conjunction with the use
+of a permutation code having minimum (Hamming) distance
+d, is able to correct up to d−1 errors due to narrowband noise.
+Since then, more general codes such as constant-composition
+codes, frequency permutation arrays, and injection codes (see
+[8]–[23]) have been considered as possible replacements for
+permutation codes in PLC. Versfeld et al. [24], [25] later
+introduced the notion of ‘same-symbol weight’ (henceforth,
+termed as symbol weight) of a code as a measure of the capability of a code in dealing with narrowband noise. They also
+showed empirically that low symbol weight cosets of ReedSolomon codes outperform normal Reed-Solomon codes in
+the presence of narrowband noise and additive white Gaussian
+noise. Inﬁnite families of optimal codes with minimum symbol
+weight were constructed by Chee et al. [26] recently.
+
+For a positive integer n, the set {1, 2, . . . , n} is denoted by
+[n]. For X a ﬁnite set and k an integer, 0 ≤ k ≤ |X|, the set
+of all k-subsets of X is denoted X .
+k
+Let Σ be a set of q symbols. A q-ary code C of length n over
+the alphabet Σ is a subset of Σn . Elements of C are called
+codewords. The size of C is the number of codewords in C.
+For i ∈ [n], the ith coordinate of a codeword u is denoted by
+ui , so that u = (u1 , u2 , . . . , un ).
+The composition of u ∈ Σn is a vector (wσ (u))σ∈Σ , where
+wσ (u) is the number of times the symbol σ appears among
+the coordinates of u, that is,
+wσ (u) = |{i ∈ [n] : ui = σ}|.
+The symbol weight of u is
+swt(u) = max wσ (u).
+σ∈Σ
+
+A code has bounded symbol weight r if all its codewords
+have symbol weight at most r. A code C has constant symbol
+weight r if all its codewords have symbol weight exactly r.
+Note that for any u ∈ Σn , we have swt(u) ≥ n/q . A code
+has minimum symbol weight if it has constant symbol weight
+n/q .
+An element u ∈ Σn is said to have equitable symbol weight
+if wσ (u) ∈ { n/q , n/q } for all σ ∈ Σ. If all the codewords
+of C have equitable symbol weight, then the code C is called
+an equitable symbol weight code. Note that every equitable
+symbol weight code is also a minimum symbol weight code.
+The following lemma shows that for any u ∈ Σn having
+equitable symbol weight, the number of symbols occurring
+with frequency n/q in u is uniquely determined. Hence,
+the frequencies of symbols in an equitable symbol weight
+codeword are as uniformly distributed as possible.
+
+1
+
+Lemma 2.1: Let u ∈ Σn , r = n/q , and t = qr − n. If u
+has equitable symbol weight, then there are (q − t) symbols
+each appearing exactly r times and the remaining t symbols
+each appearing exactly r − 1 times in u, that is,
+
+4) Let 1 ≤ e ≤ n(q − 1). If e insertion errors occur, then
+there is a set Ω ∈ [n]×Σ such that for each (i, σ) ∈ Ω,
+e
+vi contains σ and σ = ui .
+5) Let 1 ≤ e ≤ n. If e deletion errors occur, then there is a
+set Π ∈ [n] of e positions that that vi does not contain
+e
+ui for all i ∈ Π.
+Both insertion and deletion errors are due to background noise.
+
+|{σ ∈ Σ : wσ (u) = r}| = q − t,
+|{σ ∈ Σ : wσ (u) = r − 1}| = t.
+Proof: Let x = |{σ ∈ Σ : wσ (u) = r}| and y = |{σ ∈
+Σ : wσ (u) = r − 1}|. Then the following equations hold:
+
+Example 3.1: The same detector output can arise from
+different combinations of error types. Suppose u = (1, 2, 3, 4).
+A signal fading error of symbol 1 and a deletion error at
+position 1 would each result in the same detector output of
+v = (∅, {2}, {3}, {4}).
+
+x + y = q,
+rx + (r − 1)y = n.
+Solving this set of equations gives the lemma.
+
+For u ∈ Σn and v ∈ 2Σ
+
+n
+
+, deﬁne1
+
+Consider the usual (Hamming) distance deﬁned on codewords and codes. A q-ary code of length n and distance d is
+called an (n, d)q -code, while a q-ary code of length n having
+bounded symbol weight r and distance d is called an (n, d, r)q symbol weight code, and a q-ary equitable symbol weight code
+of length n and distance d is called an (n, d)q -equitable symbol
+weight code.
+
+We also extend the deﬁnition of distance so that for C ⊆
+Σn , we have d(C, v) = minu∈C d(u, v). Given v ∈ (2Σ )n , a
+minimum distance decoder (for a code C) outputs a codeword
+u ∈ C which has the smallest distance to v, that is, a minimum
+distance decoder returns an element of
+
+III. C ORRECTING N OISE WITH MFSK M ODULATION
+
+arg min d(u, v) := {u ∈ C : d(u, v) ≤ d(u , v) ∀u ∈ C}.
+
+d(u, v) = |{i : ui ∈ vi }|.
+/
+
+u∈C
+
+In coded modulation for power line communications [5], a
+q-ary code of length n is used, whose symbols are modulated
+using q-ary MFSK. The receiver demodulates the received
+signal using an envelope detector to obtain an output, which
+is then decoded by a decoder.
+Four detector/decoder combinations are possible: classical,
+modiﬁed classical, hard-decision threshold, and soft-decision
+threshold (see [27] for details). A soft-decision threshold
+detector/decoder requires exact channel state knowledge and is
+therefore not useful if we do not have channel state knowledge.
+Henceforth, we only consider the hard-decision threshold
+detector/decoder here, since it contains more information about
+the received signal compared to the classical and modiﬁed
+classical ones. We note that in the case of the hard-decision
+threshold detector/decoder, the decoder used is a minimum
+distance decoder.
+Let C be an (n, d)q -code over alphabet Σ, and let u =
+(u1 , . . . , un ) be a codeword transmitted over the PLC channel.
+The received signal (which may contain errors caused by
+noise) is demodulated to give an output v = (v1 , v2 , . . . , vn ) ∈
+n
+2Σ , where 2Σ denotes the collection of all subsets of Σ.
+Note that each vi is a subset of Σ. The errors that arise from
+the different types of noises in the channel (see [27, pp. 222–
+223]) have the following effects on the output of the detector.
+1) Let 1 ≤ e ≤ q. If e narrowband noise errors occur, then
+there is a set of e symbols contained in every vi , that is,
+| ∩n vi | ≥ e.
+i=1
+2) Let 1 ≤ e ≤ q. If e signal fading errors occur, then
+there are e symbols, none of which appears in any vi ,
+that is, (∪n vi ) ∩ Γ = ∅ for some Γ ∈ Σ .
+i=1
+e
+3) Let 1 ≤ e ≤ n. If e impulse noise errors occur, then
+there is a set Π ∈ [n] of e positions such that vi = Σ
+e
+for all i ∈ Π.
+
+Below, we study the conditions under which a minimum
+distance decoder outputs the correct codeword, that is, when
+arg min d(u, v) = {u}. This is equivalent to saying that the deu∈C
+
+coder correctly outputs u if and only if d(C \{u}, v) > d(u, v).
+Let d = d(C \ {u}, u). Since C has distance d, we have
+d ≥ d. Observe the following:
+• Let 1 ≤ e ≤ n. If e impulse noise errors occur, then
+d(u, v) = 0 and
+•
+
+Let 1 ≤ e ≤ n(q − 1). If e insertion errors occur, then
+d(u, v) = 0 and
+
+•
+
+d(C \ {u}, v) ≥ d − e.
+
+d(C \ {u}, v) ≥ d − e.
+
+Let 1 ≤ e ≤ n. If e deletion errors occur, then
+d(u, v) = e
+
+and d(C \ {u}, v) = d .
+
+For errors due to narrowband noise and signal fading, we
+deﬁne the function EC : [q] → [n] by
+EC (e) = max max
+Γ∈(Σ) c∈C
+e
+
+wσ (c) .
+σ∈Γ
+
+The quantity EC (e) measures the maximum number of coordinates over all codewords that can be affected by e narrowband
+noise and/or fading errors. The following is now immediate:
+• Let 1 ≤ e ≤ q. If e narrowband noise errors occur, then
+d(u, v) = 0 and d(C \ {u}, v) ≥ d − EC (e).
+•
+
+Let 1 ≤ e ≤ q. If e signal fading errors occur, then
+d(u, v) ≤ EC (e) and d(C \ {u}, v) = d .
+
+1 Identify c ∈ Σn with ({c }, {c }, . . . , {c }) ∈ 2Σ
+n
+1
+2
+gives the Hamming distance of u and c.
+
+2
+
+n
+
+, so that d(u, c)
+
+is a (q + r − 1, r + 1, r)q -symbol weight code with narrowband noise and signal fading error-correcting capability
+c(C) = d/r = 2.
+
+Hence, if we denote by eNBD , eSFD , eIMP , eINS , and eDEL
+the number of errors due to narrowband noise, signal fading,
+impulse noise, insertion, and deletion, respectively, we have
+
+In the next section, we provide a tight upper bound for c(C)
+and demonstrate that equitable symbol weight codes attain this
+upper bound.
+
+d(u, v) ≤ eDEL + EC (eSFD ),
+d(C \ {u}, v) ≥ d − eIMP − eINS − EC (eNBD ).
+Now,
+
+IV. EC AND E QUITABLE S YMBOL W EIGHT C ODES
+
+d(u, v) − d(C \ {u}, v)
+
+If C is a code of length n with bounded symbol weight r,
+then EC (1) = r, and EC (e) ≥ min{n, r + e − 1} for e > 1.
+If C is restricted to more speciﬁc classes of codes, EC can be
+determined precisely. In the following, C is a q-ary code of
+length n over Σ = [q].
+1) When q|n, we have EC (e) = ne/q for all e ∈ [q] if and
+only if C is a frequency permutation array.
+2) When n ≤ q,
+
+≤ (eDEL + EC (eSFD )) − (d − eIMP − eINS − EC (eNBD ))
+≤ eDEL + eIMP + eINS + EC (eSFD ) + EC (eNBD ) − d . (1)
+Under the condition
+eDEL + eIMP + eINS + EC (eSFD ) + EC (eNBD ) < d,
+the inequality (1) reduces to d(u, v) < d(C \ {u}, v), which
+implies correct decoding.
+On the other hand, if
+
+EC (e) =
+
+eDEL + eIMP + eINS + EC (eSFD ) + EC (eNBD ) ≥ d,
+say eIMP = d, and u, w ∈ C is such that d(u, w) = d (since C
+has distance d, u, w must exist), then d = d(C \ {u}, u) = d,
+and we have d(u, v) − d(C \ {u}, v) ≤ d − d = 0. In this case,
+the correctness of the decoder output cannot be guaranteed.
+We therefore have the following theorem.
+
+for all e ∈ [n]
+otherwise
+
+if and only if C is an injection code. In particular, when
+q = n, this gives EC (e) = e for all e ∈ [q] if and only
+if C is a permutation code.
+3) Let (c1 , c2 , . . . , cq ) ∈ [n]q with c1 ≥ c2 ≥ · · · ≥ cq . If
+for each u ∈ C, we have wj (u) = cj for all j ∈ [q],
+e
+then EC (e) = i=1 ci for all e ∈ [q]. Such a code is a
+constant-composition code.
+4) If C is an equitable symbol weight code, then from
+Lemma 2.1,
+
+Theorem 3.1: Let C be an (n, d)q -code over alphabet Σ. Let
+eDEL , eIMP , eINS ∈ [n] and eNBD , eSFD ∈ [q]. Then C is able
+to correct eNBD narrowband noise errors, eSFD signal fading
+errors, eIMP impulse noise errors, eINS insertion errors, and
+eDEL deletion errors if and only if
+
+EC (e) =
+
+eDEL + eIMP + eINS + EC (eSFD ) + EC (eNBD ) < d.
+
+re,
+if e ≤ q − t
+r(q − t) + (e − q + t)(r − 1), otherwise,
+
+where r = n/q and t = qr − n.
+For c(C) to be large, EC must be slow growing. We seek
+codes C for which EC is as slow growing as possible. Fix n, q,
+and let Fn,q be the (ﬁnite) family of functions
+
+Therefore, the parameters n, q, d, and r (symbol weight) of
+a code are insufﬁcient to characterize the total error-correcting
+capability of a code in a PLC system, since EC cannot be
+speciﬁed by n, q, d, and r alone. We now introduce an
+additional new parameter that together with n, q, and d, more
+precisely captures the error-correcting capability of a code for
+PLC.
+
+Fn,q = {EC : C is a q-ary code of length n}.
+If f ∈ Fn,q , then f is a monotone increasing function with
+f (q) = n. Deﬁne the order on Fn,q so that f g if either
+f (e) = g(e) for all e ∈ [q], or there exists2 e ∈ [q] such that
+f (e) = g(e) for all e ≤ e − 1 and f (e ) < g(e ).
+
+Deﬁnition 3.1: Let C be a code of distance d. The narrowband noise and signal fading error-correcting capability of C
+is
+c(C) = min{e : EC (e) ≥ d}.
+
+∗
+Proposition 4.1: Let fn,q : [q] → [n] be deﬁned by
+
+From Theorem 3.1 we infer that a code C can correct up to
+c(C)−1 narrowband noise and signal fading errors. In general,
+for codes C with bounded symbol weight r, we have d/r ≤
+c(C) ≤ min{d, q}. However, the gap between the upper and
+lower bounds can be large. Furthermore, the lower bound can
+be attained, giving codes of low resilience against narrowband
+noise, as is shown in the following example.
+
+∗
+fn,q (e) =
+
+re,
+if 1 ≤ e ≤ q − t
+r(q − t) + (e − q + t)(r − 1), otherwise,
+
+∗
+where r = n/q and t = qr − n. Then fn,q is the unique
+least element in Fn,q with respect to the total order .
+∗
+Proof: Since is total, it sufﬁces to establish that fn,q
+∗
+f for all f ∈ Fn,q , and that fn,q ∈ Fn,q .
+Let f = EC ∈ Fn,q , where C is a q-ary code of length
+n over the alphabet [q]. Let u ∈ C. By permuting symbols
+
+Example 3.2: The code
+C = {(1, . . . , 1, 2, 3, 4 . . . q), (2, . . . , 2, 1, 3, 4 . . . q)}
+r times
+
+e,
+n,
+
+2 Note
+
+r times
+
+3
+
+that when e = 1, the statement is vacuously true.
+
+if necessary, we may assume that w1 (u) ≥ w2 (u) ≥ · · · ≥
+wq (u). We show that for all e ∈ [q],
+
+V. S IMULATION R ESULTS
+In this section, we show via simulations the difference
+in performance between equitable symbol weight codes and
+(non-equitable) minimum symbol weight codes in the presence
+of narrowband noise and signal fading. More speciﬁcally, we
+consider the following codes3 .
+CSW : (25, 24, 2)17 -symbol weight code of size 51,
+CESW : (25, 24)17 -equitable symbol weight code of size 51,
+DSW : (17, 17, 2)16 -symbol weight code of size 16, and
+DESW : (17, 17)16 -equitable symbol weight code of size 16.
+We show that CESW and DESW achieve lower symbol error rates
+as compared to CSW and DSW , respectively, in a PLC channel
+with varying degrees of narrowband noise and signal fading
+levels.
+
+e
+∗
+wi (u) ≥ fn,q (e).
+
+(2)
+
+i=1
+∗
+This would then imply EC (e) ≥ fn,q (e) for all e ∈ [q], and
+∗
+consequently f fn,q .
+e
+∗
+Suppose on the contrary that
+i=1 wi (u) < fn,q (e) for
+e
+some e ∈ [q]. If e ≤ q − t, then we have i=1 wi (u) < re
+and r − 1 ≥ we (u) ≥ wj (u) for j ≥ e + 1. Hence,
+q
+
+wi (u) < re+(q −e)(r−1) = qr−q +e ≤ qr−t = n,
+
+n=
+i=1
+
+a contradiction.
+e
+Similarly, when e > q − t, we have i=1 wi (u) < r(q −
+t)+(e−q+t)(r−1) and r−1 ≥ we (u) ≥ wj (u) for j ≥ e+1.
+Hence,
+
+Optimal Codes of Length 25 over alphabet of size 17 with minimum distance 24
+1
+
+q
+
+wi (u)
+
+n=
+i=1
+
+0.1
+Symbol Error Rate
+
+< r(q − t) + (e − q + t)(r − 1) + (q − e)(r − 1)
+= qr − t = n,
+also a contradiction.
+∗
+The proposition then follows by noting that fn,q ∈ Fn,q ,
+∗
+since EC = fn,q when C is a q-ary equitable symbol weight
+code of length n.
+
+0.01
+
+0.001
+CESW
+CSW
+
+Corollary 4.1: C is a q-ary equitable symbol weight code
+∗
+of length n if and only if EC = fn,q .
+Proof: If C is a q-ary equitable symbol weight code of
+∗
+length n, we have already determined that EC = fn,q . Hence,
+∗
+it only remains to show that EC = fn,q implies C is a q-ary
+equitable symbol weight code of length n. Let u ∈ C and we
+follow the notations in the proof of Proposition 4.1. Equality
+holds in (2) if and only if wi (u) = r for 1 ≤ i ≤ q − t and
+wi (u) = r − 1, otherwise. That is, u has equitable symbol
+weight. Hence, C is an equitable symbol weight code.
+
+uncoded
+0.0001
+1
+
+0.9
+
+0.8
+0.7
+0.6
+0.5
+0.4
+0.3
+Probability of Narrowband Noise occurring at a Particular Symbol
+
+0.2
+
+0.1
+
+Optimal Codes of Length 17 over alphabet of size 16 with minimum distance 17
+1
+
+Symbol Error Rate
+
+0.1
+
+It follows that an equitable symbol weight code C gives EC
+of the slowest growth rate. This is the desired condition for
+correcting as many narrowband noise and signal fading errors
+as possible.
+We end this section with a tight upper bound on c(C).
+
+0.01
+
+0.001
+DESW
+DSW
+uncoded
+
+Corollary 4.2: Let C be an (n, d)q -code. Then
+
+0.0001
+1
+
+∗
+c(C) ≤ min {e : fn,q (e) ≥ d},
+
+and equality is achieved when C has equitable symbol weight.
+∗
+Proof: Let c = min{e : fn,q (e) ≥ d}. Observe that
+
+Fig. 1.
+
+∗
+EC (c ) ≥ fn,q (c ) ≥ d.
+
+0.9
+
+0.8
+0.7
+0.6
+0.5
+0.4
+0.3
+Probability of Narrowband Noise occurring at a Particular Symbol
+
+0.2
+
+0.1
+
+Comparison of various optimal codes in a simulated PLC channel.
+
+The setup is as follows. Let p be a real number between
+0 and 1. We simulate a PLC channel with the following
+characteristics:
+1) for each σ ∈ Σ, a narrowband noise or signal fading
+error occurs at symbol σ with probability p,
+
+Hence, by minimality of c(C), we have c(C) ≤ c . The second
+part of the statement follows from Corollary 4.1.
+The results in this section establish that an equitable symbol
+weight code has the best narrowband noise and signal fading
+error-correcting capability, among codes of the same distance
+and symbol weight.
+
+3 Due to space constraints, we only made comparisons between codes of
+different lengths. More simulation results are given in the full paper.
+
+4
+
+2) for each i ∈ [n], an impulse noise error occurs at
+coordinate i with probability 0.1, and
+3) for each (σ, i) ∈ Σ × [n], an insertion/deletion error
+occurs at symbol σ, coordinate i with probability 0.1.
+These errors occur independently.
+We choose 105 random codewords (with repetition) from
+each code to transmit through the simulated PLC channel.
+At the receiver, we decode detector output v to codeword
+u . The number of symbols in error is then d(u , u) and the
+symbol error rate is the ratio of the total number of symbols in
+error to the total number of symbols transmitted. For uncoded
+communication, 105 random codewords were chosen from Σn
+and errors introduced. Here, no decoding is performed and the
+number of symbols in error is given by |{i : vi = {ui }|.
+The results of the simulation are displayed in Fig. 1.
+Equitable symbol weight codes CESW and DESW achieve lower
+symbol error rates compared to the minimum symbol weight
+codes CSW and DSW , respectively.
+
+[6] E. Biglieri, “Coding and modulation for a horrible channel,” IEEE
+Commun. Mag., vol. 41, no. 5, pp. 92–98, 2003.
+[7] N. Pavlidou, A. J. H. Vinck, J. Yazdani, and B. Honary, “Power line
+communications: state of the art and future trends,” IEEE Commun.
+Mag., vol. 41, no. 4, pp. 34–40, 2003.
+[8] Y. Luo, F.-W. Fu, A. J. H. Vinck, and W. Chen, “On constantcomposition codes over Zq ,” IEEE Trans. Inform. Theory, vol. 49,
+no. 11, pp. 3010–3016, 2003.
+[9] C. J. Colbourn, T. Kløve, and A. C. H. Ling, “Permutation arrays for
+powerline communication and mutually orthogonal Latin squares,” IEEE
+Trans. Inform. Theory, vol. 50, no. 6, pp. 1289–1291, 2004.
+[10] W. Chu, C. J. Colbourn, and P. Dukes, “Constructions for permutation
+codes in powerline communications,” Des. Codes Cryptogr., vol. 32, no.
+1-3, pp. 51–64, 2004.
+[11] C. Ding and J. Yin, “Algebraic constructions of constant composition
+codes,” IEEE Trans. Inform. Theory, vol. 51, no. 4, pp. 1585–1589,
+2005.
+[12] ——, “Combinatorial constructions of optimal constant-composition
+codes,” IEEE Trans. Inform. Theory, vol. 51, no. 10, pp. 3671–3674,
+2005.
+[13] C. Ding and J. Yuan, “A family of optimal constant-composition codes,”
+IEEE Trans. Inform. Theory, vol. 51, no. 10, pp. 3668–3671, 2005.
+[14] W. Chu, C. J. Colbourn, and P. Dukes, “On constant composition codes,”
+Discrete Appl. Math., vol. 154, no. 6, pp. 912–929, 2006.
+[15] C. Ding and J. Yin, “A construction of optimal constant composition
+codes,” Des. Codes Cryptogr., vol. 40, no. 2, pp. 157–165, 2006.
+[16] S. Huczynska, “Powerline communication and the 36 ofﬁcers problem,”
+Phil. Trans. R. Soc. A, vol. 364, no. 1849, pp. 3199–3214, 2006.
+[17] S. Huczynska and G. L. Mullen, “Frequency permutation arrays,” J.
+Combin. Des., vol. 14, no. 6, pp. 463–478, 2006.
+[18] Y. M. Chee, A. C. H. Ling, S. Ling, and H. Shen, “The PBD-closure
+of constant-composition codes,” IEEE Trans. Inform. Theory, vol. 53,
+no. 8, pp. 2685–2692, 2007.
+[19] J. Lin, J. Chang, R. Chen, and T. Kløve, “Distance-preserving and
+distance-increasing mappings from ternary vectors to permutations,”
+IEEE Trans. Inform. Theory, vol. 54, no. 3, pp. 1334–1339, 2008.
+[20] Y. M. Chee, S. H. Dau, A. C. H. Ling, and S. Ling, “Linear size
+optimal q-ary constant-weight codes and constant-composition codes,”
+IEEE Trans. Inform. Theory, vol. 56, no. 1, pp. 140–151, 2010.
+[21] S. Huczynska, “Equidistant frequency permutation arrays and related
+constant composition codes,” Des. Codes Cryptogr., vol. 54, no. 2, pp.
+109–120, 2010.
+[22] P. J. Dukes, “Coding with injections,” Des. Codes Cryptogr., DOI
+10.1007/s10623-011-9547-4, online ﬁrst, 2 August 2011.
+[23] F. Gao and G. Ge, “Optimal ternary constant-composition codes of
+weight four and distance ﬁve,” IEEE Trans. Inform. Theory, vol. 57,
+no. 6, pp. 3742–3757, 2011.
+[24] D. J. J. Versfeld, A. J. H. Vinck, and H. C. Ferreira, “Reed-solomon coding to enhance the reliability of M -FSK in a power line environment,”
+in ISPLC 2005: Proceedings of the IEEE International Symposium on
+Power Line Communications and its Applications, 2005, pp. 100–104.
+[25] D. J. J. Versfeld, A. J. H. Vinck, J. N. Ridley, and H. C. Ferreira,
+“Constructing coset codes with optimal same-symbol weight for detecting narrowband interference in M -FSK systems,” IEEE Trans. Inform.
+Theory, vol. 56, no. 12, pp. 6347–6353, 2010.
+[26] Y. M. Chee, H. M. Kiah, A. C. H. Ling, and C. Wang, “Optimal codes
+with low minimum symbol weight for power line communications,”
+2011, preprint.
+[27] M. Ardakani, G. Colavolpe, K. Dostert, H. C. Ferreira, D. Fertonani,
+T. G. Swart, A. M. Tonello, D. Umehara, and A. J. H. Vinck, “Digital
+transmission techniques,” in Power Line Communications: Theory and
+Applications for Narrowband and Broadband Communications over
+Power Lines, H. C. Ferreira, L. Lampe, J. Newbury, and T. G. Swart,
+Eds. Chichester, UK: John Wiley & Sons, 2010, ch. 5, pp. 195–310.
+[28] P. Frankl and M. Deza, “On the maximum number of permutations with
+given maximal or minimal distance,” J. Comb. Theory Ser. A, vol. 22,
+no. 3, pp. 352–360, 1977.
+
+VI. C ONCLUSION
+We have introduced a new code parameter that captures
+the error-correcting capability of a code with respect to narrowband noise and signal fading. Equitable symbol weight
+codes are shown to be optimal with respect to this parameter
+when code length, alphabet size and distance are ﬁxed. We
+also provide simulations that show equitable symbol weight
+codes to achieve lower symbol error rates as compared to their
+non-equitable counterparts. These results motivate the study
+of equitable symbol weight codes as a viable option to handle
+narrowband noise and signal fading in a PLC channel.
+We have also constructed inﬁnite classes of optimal equitable symbol weight codes. This will appear in the full paper.
+ACKNOWLEDGMENT
+Research of the authors is supported in part by the Singapore
+National Research Foundation under Research Grant NRFCRP2-2007-03. C. Wang is also supported in part by NSFC
+under Grant 10801064. The authors also thank the anonymous
+reviewers whose valuable comments improved the presentation
+of the paper.
+R EFERENCES
+[1] A. Haidine, B. Adebisi, A. Treytl, H. Pille, B. Honary, and A. Portnoy,
+“High-speed narrowband PLC in smart grid landscape – state-of-the-art,”
+in ISPLC 2011: Proceedings of the IEEE International Symposium on
+Power Line Communications and its Applications, 2011, pp. 468–473.
+[2] D. Dzung, I. Berganza, and A. Sendin, “Evolution of powerline communications for smart distribution: from ripple control to OFDM,” in ISPLC
+2011: Proceedings of the IEEE International Symposium on Power Line
+Communications and its Applications, 2011, pp. 474–478.
+[3] J. Liu, B. Zhao, L. Geng, Z. Yuan, and Y. Wang, “Communication
+performance of broadband PLC technologies for smart grid,” in ISPLC
+2011: Proceedings of the IEEE International Symposium on Power Line
+Communications and its Applications, 2011, pp. 491–496.
+[4] W. Zhang and L. Yang, “SC-FDMA for uplink smart meter transmission
+over low voltage power lines,” in ISPLC 2011: Proceedings of the
+IEEE International Symposium on Power Line Communications and its
+Applications, 2011, pp. 497–502.
+[5] A. J. H. Vinck, “Coded modulation for power line communications,”
+¨
+AEU - Int J. Electron. Commun., vol. 54, no. 1, pp. 45–49, 2000.
+
+5
+
+

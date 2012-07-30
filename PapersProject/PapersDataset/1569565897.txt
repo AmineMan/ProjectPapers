@@ -1,0 +1,871 @@
+Title:          pc_vfinal.pdf
+Author:         ALM
+Creator:         TeX output 2012.05.18:2302
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Fri May 18 23:03:41 2012
+ModDate:        Tue Jun 19 12:54:32 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      595.22 x 842 pts (A4)
+File size:      306266 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569565897
+
+Power Optimization on a Network:
+The effects of randomness
+Aris L. Moustakas1
+
+Nicholas Bambos
+
+Physics Dept., Univ. of Athens, 157 84 Athens, Greece
+Email: arislm@phys.uoa.gr
+
+Stanford University, Palo Alto, CA 94305
+Email: bambos@stanford.edu
+
+Abstract—Consider a wireless network of transmitter-receiver
+pairs. The transmitters adjust their powers to maintain a
+particular SINR target at the corresponding receiver in the
+presence of interference from neighboring transmitters. In this
+paper we analyze the optimal power vector that achieves this
+target in the presence of randomness in the network. Speciﬁcally,
+starting from a regular lattice of transmitter-receiver pairs we
+randomly turn off a ﬁnite fraction of them. We apply random
+matrix theory to evaluate the asymptotic optimal power per
+link, as well as the variance of powers in the optimal power
+vector in the limit of a large number of links. Our analytical
+results show remarkable agreement with numerically generated
+networks, both in one- and two-dimensional network geometries.
+Interestingly, we observe that unlike regular lattices, the optimal
+power in random networks has a discontinuity at a ﬁnite value,
+while the variance of its powers diverges at that value. Beyond
+that critical point, no feasible power solution exists. We discuss
+the relevance of these results in realistic networks.
+
+However, the interference from neighboring transmitters is
+only taken into account by considering them as an effective
+medium without any feedback taken into account. Hence, the
+effects of the increase of power in a given link to other
+neighboring links, which also control their power in order to
+maintain a target SINR, are neglected. A similar approach is
+taken by [8] who introduce a scheme to compensate partially
+for the fading coefﬁcient of the direct link between transmitter
+and receiver, without addressing the effects on neighboring
+links. These effects were partially included in the context
+of percolating networks in [9]. Here however, the network
+is initially assumed to be percolating with all transmitters
+utilizing their maximum power and then the powers are
+reduced while keeping their connectivity. Thus the optimal
+power is obtained only for the links that are already connected
+without any guarantees to others.
+The effect of interference is already a problem in dense
+WiFi networks and is expected to become an issue in the
+context of femto-cells, a recently proposed network paradigm,
+when they become massively deployed: due to their close
+proximity, neighboring femto-cells may create interference to
+one another [10]. Hence, when each transmitter increases its
+power in order to compensate for this interference, it may
+create domino effect of power increases, which needs to be
+addressed. As a result, all above situations are expected to
+beneﬁt signiﬁcantly from power optimization. Nevertheless,
+little progress has been made in ﬁnding analytic estimates
+of the performance of random, interference-limited networks
+when power control is applied [11].
+In this paper we apply tools from random matrix theory,
+[12], [13] providing an analytic estimate of the optimal power
+performance for a large network in the presence of both interference and randomness. We start from an ordered network
+structure, in particular an equally spaced line (or square) of N
+transmitters, each with a receiver located in its neighborhood at
+a ﬁxed distance. Then we introduce randomness in the network
+by removing each transmitter-receiver pair with probability
+e. As a result, a network with roughly N (1 − e) transceiver
+pairs will remain, randomly located in the original lattice. This
+thinned network is a model for a realistic cellular network,
+which usually tries to mimic a (usually hexagonal) symmetric
+network. It is also a good model for a wireless network
+with intermittent activity, such that at any time a fraction
+e of the total transmitters are inactive. Although relatively
+
+I. I NTRODUCTION
+Transmitted power is an important resource in wireless networks and therefore power control has been crucial since the
+development of legacy networks. For example, the introduction
+of efﬁcient power control algorithms (both closed loop and
+open loop), was one of the main improvements third generation CDMA-based cellular networks brought about. Several
+algorithms been developed that provably allow receivers to
+obtain e.g. a minimum SINR requirement SINRk ≥ γk
+for link k while minimizing the total power or the power
+per user, subject to the feasibility of this solution [1], [2].
+Importantly, power optimization remains an relevant problem
+in emerging and future networks. Ad hoc networks are one
+such class of networks, where substantial effort has been made
+to analyze their behavior, through metrics such as connectivity
+and transport capacity [3]–[6].
+A number of works have discussed the feasibility conditions
+of the optimal power vector [5], [7] under general assumptions,
+without however addressing speciﬁc gains from power control.
+In contrast, [6] using the Laplace transform method, has
+calculated the effects of fading, pathloss and random erasures
+on the interference to a random receiver in both regular and
+Poisson random networks. In addition, they analyze the effects
+of power-control by inverting the pathloss and/or the fading
+coefﬁcient of the direct link of a given transmitter and receiver.
+1 This work was funded by the research program ‘CROWN’, through the
+Operational Program ‘Education and Lifelong Learning 2007-2013’ of NSRF,
+which has been co-ﬁnanced by EU and Greek national funds.
+
+1
+
+behavior for mi = mj as well as for |mi − mj |
+δ. 1 The
+reason we chose to use this model will become apparent later.
+
+straightforward, this paradigm carries all the traits of a random
+network and, as we shall see, behaves qualitatively differently
+from ordered networks. Also, surprisingly these results are
+valid for both one-dimensional and two-dimensional networks.
+The paper is organized as follows. In the next section we
+deﬁne the network model in the absence of any randomness.
+In Section III we describe the network with erasures of
+transmitter-receiver pairs and calculate the average minimum
+power per receiver as well as its variance using results from
+random matrix theory. In Section IV we discuss the relevance
+of these results in both one- and two-dimensional geometries.
+Finally, in Section V we draw some conclusions, while in the
+appendix we provide some details of the proofs.
+
+į
+Ɛ
+
+II. M ODEL D ESCRIPTION
+Assume a network of N transmitters on a lattice. The lattice
+may be one-dimensional with equal spacing between them,
+or two-dimensional (see Fig. 1). In the latter case, which is
+obviously the more realistic one, it may have any symmetry,
+e.g. hexagonal or triangular, but for concreteness, we will
+assume that the lattice is square. Each transmitter is connected
+via a link to a single receiver located at a distance δ from
+its corresponding transmitter. The channel coefﬁcient between
+transmitter i and receiver j and averaged over the fading is
+given by
+δα
+gij =
+(1)
+(|mi − mj |2 2 + δ 2 )α/2
+
+Fig. 1. Schematic ﬁgure of wireless network. The circles correspond to
+transmitters, while the squares receiver users. The opaque squares represent
+transmitter-receiver pairs that have been “erased” and are thus considered
+inactive.
+
+The receivers now connect with their own nearby cells. The
+SINR for each connection is given by
+pk gkk
+SINRk =
+(3)
+n + j=k gjk pj
+where pk is the transmitted power from the k transmitter to
+the receiver k and n is the thermal noise, assumed equal for all
+for simplicity. For the connection to be possible, a minimum
+value of the SINR has to be attainable i.e.
+
+where mi is the lattice vector of integers corresponding to
+transmitter i. For simplicity, we have normalized the channel
+gains to unity for i = j. It is also convenient to deﬁne s = δ/ .
+For d-dimensional lattices (d = 1, 2), mi can be expressed in
+terms of integer linear combinations of the d basis-vectors k
+of the lattice
+
+SINRk ≥ γ
+
+Therefore, each transmitter should adjust its own power to
+meet this criterion. As a result, the following set of equations
+should be simultaneously met
+
+d
+
+mi =
+
+mia
+
+a
+
+(4)
+
+(2)
+
+n−1 γ −1 gkk pk −
+
+a=1
+
+n−1 gjk pj ≥ 1
+
+(5)
+
+j=k
+
+for integer 0 ≤ mia < L, where N = Ld . Since the integers
+mia fully specify the position mi , we will drop the index
+i when not necessary. For simplicity we assume periodic
+boundary conditions on the lattice, hence ma ≡ ma + L. This
+means that the distance between any two points is taken as
+their minimum distance on a toroidal geometry (or a circular
+geometry for one dimension). It should be emphasized that the
+effects of this circulant property for the matrix with elements
+gij will become negligible for large N . Also, α ≥ 2 is
+the pathloss exponent, which signiﬁes how fast the channel
+strength decays as a function of distance.
+The pathloss function above is somewhat artiﬁcial in its dependence on the distances between the receiver and transmitter. Technically, it is strictly correct only when each receiver is
+located vertically to the line connecting all transmitters (as in
+any horizontal line of Fig. 1), which is one possible geometry
+for one dimensional systems [7]. Nevertheless, it has the right
+
+The above equations constitute a set of linear (planar) constraints on the powers. The minimum total power is reached
+at the apex of the conical section of allowed powers, given by
+equality of all constraints above. Deﬁning the matrix M with
+elements Mij as
+Mij =
+
+n−1 γ −1 gii
+−n−1 gji
+
+i=j
+i=j
+
+(6)
+
+we may write the above equation as
+P = M−1 J
+
+(7)
+
+where P is the vector of powers that satisﬁes the equality
+constraint above and J = [1, 1, . . . , 1]T . As a result, the
+1 In fact, we believe the accuracy of this approximation is better than that
+of a pathloss exponent α > 2 as a free variable, whose value comes out of
+curve ﬁtting of large amounts of data with sizable errors [14].
+
+2
+
+The corresponding equation for the power vector becomes
+
+minimum average power is given by
+pave =
+
+1 T −1
+J M J
+N
+
+EMEP = EJ
+
+(8)
+
+where we have erased the corresponding entries from J on the
+left-hand-side by multiplying with E. Now, simply inverting
+the matrix Me is problematic, since it has approximately N e
+zero columns and rows and corresponding zero eigenvalues.
+Instead, we regularize the matrix by adding a small positive
+constant on the diagonal, namely
+
+Clearly, for pave to be well-deﬁned, all the eigenvalues of M
+have to be positive.
+Now, due to the circulant structure of M, its eigenvectors
+will be Fourier modes indexed by the vector q which resides
+in the fundamental cell of the reciprocal lattice of the lattice
+m with basis vectors ˆa
+2π
+q=
+L
+
+P = [EME + I]
+
+d
+
+ka ˆa
+
+(9)
+
+with −1/2 < ka ≥ 1/2 [15]. The eigenvalue corresponding
+to the vector q is simply the Fourier transform of any line of
+the matrix M given by
+λ(q)
+
+=
+
+M0,m eiq
+m
+
+=
+
+⎛
+
+n−1 ⎝γ −1 −
+
+pave =
+
+m
+
+T
+
+(16)
+
+dq
+
+β
+(2π) β + λ(q)
+d
+
+(17)
+
+where λ(q) is the q eigenvalue of the matrix M (10) and the
+integral is over the fundamental cell of the reciprocal lattice
+of the system. Then when N → +∞ the average power per
+transmitter converges almost surely to
+pave =
+
+(11)
+
+1
+1
+1 − e β + λ0
+
+(18)
+
+Remark 1.1. In the appendix the above theorem is proved
+for one-dimensional lattices. We will conjecture that this is
+valid for two-dimensional lattices and for all feasible γ through
+simulations and defer the complete proof for a longer version
+of the work.
+
+The above equations are valid in the absence of erasures
+of transmitters. Realistically, erasures may occur in two ways.
+First, the transmitter in a particular location may be absent.
+Therefore, no mobile is expected to receive any data in that
+cell. Second, when the buffer to a particular receiver may be
+empty for a period of time. Hence the corresponding transmitter will be silent. In principle, it may still be transmitting
+a pilot signal, in which case the required SINR will be much
+smaller. For simplicity, we will assume that the connection to
+its cell-receiver(s) will be off. As a result, for every transmitterreceiver pair that is “off” we need to set both its column and
+row elements to zero. Since this pair is chosen at random, we
+need to set each column-row pair to zero with probability e.
+This can be done by modifying the matrix to
+
+It is easy to see that the above result reduces to pave = 1/λ0
+in the limit that e → 0. Indeed, when λ0 > 0, the right-handside of (17) is zero only when β = 0. Similarly, for e → 1
+the average power takes its non-interference value
+pave = γn
+
+(19)
+
+In the presence of erasures, the maximum SINR target that
+is supported in the system is reduced to
+γe =
+
+γ
+1 + nβe γ
+
+(20)
+
+where βe is the solution of (17) and γ is given by the equality
+of (11).
+In addition to the mean power, we can also obtain the
+variance of the powers in the network given by
+
+(12)
+
+where E is a diagonal random matrix with independent
+diagonal entries ei on the ith entry, with
+P [ei = 0] = e
+P [ei = 1] = 1 − e
+
+1 †
+1
+−1
+lim
+J E [EME + I] EJ
+1 − e →0+ N
+
+e=
+
+III. R ANDOMLY T HINNED N ETWORK
+
+Me = EME
+
+(15)
+
+Theorem 1 (Average Minimum Power). Let β be the solution
+of the equation
+
+(10)
+
+It is important to note that these eigenvalues are real because
+the matrix M is real and symmetric, which is the reason for
+choosing (1). Finally, since the vector J is proportional to the
+q = 0 eigenvector of M we conclude that pave = λ−1 where
+0
+λ0 = λ(q = 0). This solution corresponds to all transmitters
+transmitting with the same power. The condition for ﬁnite total
+power in the case of no erasures is simply
+δα
+γ
+<1
+2 2 + δ 2 )α/2
+(|m|
+m=0
+
+EJ
+
+Our main technical result can then be stated as follows:
+
+⎞
+
+sα eiq m ⎠
+(|m|2 + s2 )α/2
+m=0
+
+−1
+
+To obtain the average power as before we multiply on the left
+with J† E to collect all the components with non-zero power.
+Thus we have
+
+a=1
+
+T
+
+(14)
+
+V ar(P) =
+
+(13)
+
+3
+
+1
+N (1 − e)
+
+(pi − pave )2
+i
+
+(21)
+
+Theorem 2 (Variance of Minimum Power). The variance of
+the powers of the individual transmitters in the network is
+given by
+1
+1
+1 − e (β + λ0 )2
+
+e=0
+
+e = 0.3
+e = 0.5
+
+1
+
+dq
+β
+(2π)d (β+λ(q))2
+λ(q)
+dq
+(2π)d (β+λ(q))2
+
+10
+
+(22)
+Pave
+
+V ar(P) =
+
+Pave vs γ; 2dim; s=0.5; PL=5
+
+2
+
+10
+
+The proof is deferred for the appendix.
+IV. A NALYSIS
+
+0
+
+10
+
+e = 0.7
+
+−1
+
+10
+
+We start by analyzing the results for the simpler onedimensional case, where the transmitters are located in a ring.
+The numerical results are plotted in Fig. 2. There we see,
+both analytically and numerically, that the average power is
+ﬁnite for a range of γ above the value for which λ0 = 0,
+which is the value of γ for which the e = 0 solution diverges.
+Interestingly, when γ is such that λ0 < 0 a second solution to
+the ﬁxed point equation appears (plotted, for the case of α = 4
+in Fig. 2 as dashed line for e = 0.7)). This second solution of
+pave is an artifact of the solution and persists until it merges
+with the physical value at a critical value of γ. At that point
+the variance of the average power vector diverges (see dotted
+line in 2). Beyond this point no ﬁnite average power can be
+supported for the given value of e. We thus see a discontinuous
+transition at that point, from a ﬁnite average minimum power
+to an inﬁnite (infeasible) value. This, combined with the fact
+the variance of the power vector diverges at this point, suggests
+that either a ﬁnite number of transmitter powers diverge, or that
+there is a heavy tail in the distribution of transmitter powers
+in the optimal power vector.
+
+P
+
+th
+
+P
+
+num max
+
+P
+
+4
+
+10
+
+e=0
+
+3
+
+(1−e)pave
+
+2
+
+10
+
+1
+
+10
+
+e=0.1
+e=0.7
+
+0
+
+10
+
+e=0.5
+Analytic
+Numerical
+Unphysical Solution
+Variance(P)
+
+e=0.3
+
+−1
+
+10
+
+−2
+
+10
+
+0
+
+2
+
+4
+
+6
+
+8
+
+γ
+
+10
+
+12
+
+14
+
+2
+
+4
+
+6
+
+8
+
+10
+
+γ
+
+12
+
+14
+
+16
+
+18
+
+20
+
+inﬁnite varies somewhat from sample to sample (as well as
+the whole curve beyond the value where λ0 = 0). As we shall
+show in the appendix, the end point of this curve has to do
+with the largest eigenvalue of the matrix EME. For ﬁnite
+but large N it is known for similar random matrix systems
+[16] that although the eigenvalues of the matrix converge fast
+to their asymptotic spectrum, the largest eigenvalue ﬂuctuates
+much more outside the support of the asymptotic spectrum.
+Hence, while the theoretical curve seems to be the upper
+limit, beyond which no ﬁnite power can be supported, this
+ﬁnite size behavior, which can be seen in the numerically
+obtained curves in Fig. 2 seems to be due to the ﬂuctuations
+of the largest eigenvalue. How can we explain this behavior?
+Presumably, if a region happens to have a large concentration
+of transmitters it may create a situation where the power of a
+particular transmitter diverges.
+It is remarkable that these results also hold for twodimensional lattices, even though we have not provided a proof
+in this short paper version. This can be seen in Fig. 3. We once
+again observe the same behavior as in the one-dimensional
+case.
+
+10
+
+10
+
+0
+
+Fig. 3. Plot of average power as a function of the target SINR for various
+values e for a two-dimensional 50 × 50-sized lattice of transmitter-receiver
+pairs. The path-loss exponent is α = 5, while n = 1. The curves have the
+same meaning as in the previous ﬁgure. In addition to the analytically obtained
+curves we plot curves obtained from 500 random realizations of the lattice.
+The dashed curve (denoted num max) corresponds to the realization, which
+has remained feasible over the largest interval of γ, while the starred curve
+(denoted num mean) is an average over all realizations up to the point where
+the value of γ, where at least one simulated realization becomes infeasible.
+
+Pave vs target SINR; 1dimension PLexp=4; noise=1; s=0.5
+
+5
+
+num mean
+
+−2
+
+10
+
+16
+
+V. C ONCLUSION
+
+Fig. 2. Plot of average power for a one-dimensional chain of transmitters
+as a function of the target SINR for various values of e. The solid curves are
+analytically obtained, while the starred curves are numerically generated with
+103 independent realizations and correspond to the realizations which have
+remained feasible the longest possible. The dashed and dotted lines correspond
+to the unphysical solution of (17) and the variance of the power feasible vector
+in (22) for e = 0.7, respectively. The path-loss exponent is set to α = 4,
+while the noise level n = 1 and the ratio s = δ/ = 0.5
+
+In this paper we have studied the optimal power vector
+that achieves an SINR target criterion in a wireless network
+setting where both randomness and interference are relevant.
+We have applied methods from Random Matrix Theory to
+obtain the average optimum power and its variance. Our
+numerical results show remarkable agreement with predicted
+analytical calculations, both for one- and two-dimensional
+network geometries. These metrics can provide an indication
+for the power requirements such a network would have. We
+
+Another interesting result from the numerical analysis is that
+beyond the value of γ where λ0 = 0 the behavior becomes
+sample dependent. Thus the value at which the power becomes
+
+4
+
+also observe that in the presence of randomness the optimal
+power does not go to inﬁnity in a continuous fashion. Rather,
+a discontinuity occurs at a certain point, beyond which no
+ﬁnite power solution exists. At the same time, the variance of
+the power vector diverges at that point, suggesting that only
+a small minority of transmitting powers becomes unbounded.
+As a result, accepting the loss of these connections, which
+would only result to a small outage in the connectivity, would
+signiﬁcantly improve the network performance.
+
+asymptotically free [13]. Then, deﬁning the Cauchy transform
+as
+e η(−z −1 )
+F (z) = −
+(28)
+z
+z
+where η is the η transform of the matrix [17]. Taking advantage
+of the above-mentioned asymptotic freedom [13], [17] we can
+show that
+e/F (z)
+dq
+e=
+(29)
+(2π)d λ(q) − z + e/F (z)
+
+A PPENDIX A
+P ROOF OF T HEOREMS 1 AND 2
+
+Indeed, identifying e/F (0) as β we see that if z = 0 is not part
+of the asymptotic spectrum, β has a real solution in the above
+equation, which coincides with (17). On the other hand, when
+z = 0 is inside the support of the spectrum, β will also have
+an imaginary part. At the edge of the spectrum the condition
+ImF (zedge ) = 0 implies
+
+Both proofs will be assume one-dimensional networks. The
+case of d = 2 is deferred to a longer publication.
+Proof of Theorem 1: We start by deﬁning the matrix
+A = EF, where F is the Fourier matrix that diagonalizes
+M = F† ΛF and denote its column vectors by aq and, in
+particular, a0 = N −1/2 EJ. As a result, (16) may be rewritten
+as
+−1
+a† λ0 a0 a† + AΛ0 A† + I
+a0
+(23)
+0
+0
+
+dq
+λ(q) − z
+=0
+(2π)d (λ(q) − z + β)2
+R EFERENCES
+
+[1] G. J. Foschini and Z. Miljanic, “A simple distributed autonomous power
+control algorithm and its convergence,” IEEE Trans. Veh. Technol.,
+vol. 40, pp. 641–646, 1991.
+[2] N. Bambos, S. C. Chen, and G. J. Pottie, “Channel access algorithms
+with active link protection for wireless communication networks with
+power control,” IEEE/ACM Trans. Netw., vol. 8, no. 5, pp. 583–587,
+Oct. 2000.
+[3] M. Franceschetti and R. Meester, Random Networks for Communication:
+From Statistical Physics to Information Systems.
+Cambridge, UK:
+Cambridge University Press, 2007.
+[4] F. Baccelli and B. Blaszczyszyn, “Stochastic geometry and wireless
+networks: Theory,” Foundations and Trends in Networking, vol. 3, no.
+3-4, pp. 249–449, 2009.
+[5] ——, “Stochastic geometry and wireless networks: Applications,” Foundations and Trends in Networking, vol. 4, no. 1-2, pp. 1–312, 2009.
+[6] M. Krunz, A. Muqattash, and S.-J. Lee, “Transmission power control
+in wireless ad hoc networks: Challenges, solutions, and open issues,”
+IEEE Network, vol. 18, p. 8, Sep. 2004.
+[7] F. Baccelli, N. Bambos, and C. Chan, “Optimal power, throughput
+and routing for wireless link arrays,” in Proceedings IEEE Infocom,
+Barcelona, Spain, April 2006, pp. 1–12.
+[8] N. Jindal, S. Weber, and J. G. Andrews, “Fractional power control for
+decentralized wireless networks,” IEEE Trans. Wireless Commun., vol. 7,
+no. 12, pp. 5482–5492, Dec 2008.
+[9] G. S. Paschos, P. Mannersalo, and S. Stanczak, “Extending the percolation threshold using power control,” in Proc. IEEE WCNC, 2009.
+[10] V. Chandrasekhar, J. Andrews, and A. Gatherer, “Femtocell networks:
+a survey,” Communications Magazine, IEEE, vol. 46, no. 9, pp. 59 –67,
+September 2008.
+[11] M. Chiang et al., Power control in wireless cellular networks, ser.
+Foundations and Trends in Networking. Hanover, MA 02339: now
+Publishers Inc., 2007, vol. 2, no. 4.
+[12] A. M. Tulino et al., “Capacity of the gaussian erasure channel,” in Proc.
+IEEE Int. Symp. Inf. Theory, Nice, France, June 2007, pp. 1721–1725.
+[13] ——, “Capacity of channels with frequency-selective and time-selective
+fading,” IEEE Trans. Inform. Theory, vol. 56, no. 3, p. 1187, Mar. 2010.
+[14] L. M. Correia, Ed., Wireless Flexible Personalised Communications;
+COST 259: European Co-operation in Mobile Radio Research. Chichester, UK: J. Wiley & Sons, 2001.
+[15] C. Cohen-Tannoudji, F. Laloe, and B. Diu, Quantum Mechanics. New
+York: John Wiley and Sons, 1977.
+[16] S. N. Majumdar, Random Matrices, the Ulam Problem, Directed Polymers & Growth Models, and Sequence Matching, ser. Les Houches,
+M. M´ zard and J. P. Bouchaud, Eds. Elsevier, July 2006, vol. Complex
+e
+Systems.
+[17] A. M. Tulino and S. Verd´ , “Random matrix theory and wireless commuu
+nications,” Foundations and Trends in Communications and Information
+Theory, vol. 1, no. 1, pp. 1–182, 2004.
+
+where Λ0 is the diagonal matrix of eigenvalues of M with
+the one corresponding to q = 0 (i.e. λ0 ) set to zero. After the
+application of the matrix inversion lemma we obtain
+pave =
+where
+
+1
+1
+lim
+1 − e →0+ β( ) + λ0
+
+β( )−1 = a† AΛ0 A† + I
+0
+
+−1
+
+(24)
+a0
+
+(25)
+
+In [13] it is shown that the above quantity takes (a.s.) a
+deterministic value in the large N limit, which is the solution
+of the following equation
+e
+1 − β(
+
+=
+)
+
+β( )
+β( ) + λ(q)
+(2π)
+dq
+
+d
+
+(26)
+
+Taking the limit → 0+ in the above and setting β(0) = β
+concludes the proof.
+Proof of Theorem 2: We start by noting that the normalized second moment of the power vector P is given by
+P† P
+N
+
+=
+=
+=
+
+(30)
+
+1
+−2
+(27)
+lim a† [EME + I] a0
+1 − e →0+ 0
+1
+∂ †
+−2
+−
+lim
+a [EME + I] a0
+1 − e →0+ ∂ 0
+1
+β( )
+lim
+1 − e →0+ (β( ) + λ0 )2
+
+where β ( ), the derivative of β( ) with respect to can be
+evaluated directly from (26). Subtracting off p2 concludes
+ave
+the proof.
+It is interesting to point out that the condition that the
+denominator in (22) vanishes, which signiﬁes the end of the
+feasibility of a solution, is equivalent to the largest edge of the
+asymptotic spectrum of the matrix EME becoming zero and
+hence the point when β can no longer admit a real solution.
+To show this we start from the fact that Λ and FEF† are
+
+5
+
+

@@ -1,0 +1,1044 @@
+Title:          ISIT2012_AdamWilliamson_FeedbackCoding-V2.pdf
+Author:         Adam
+Creator:        Adobe Acrobat 10.1.1
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Fri May 18 17:36:22 2012
+ModDate:        Tue Jun 19 12:56:30 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      336278 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569559617
+
+A Rate-Compatible Sphere-Packing Analysis of
+Feedback Coding with Limited Retransmissions
+Adam R. Williamson, Tsung-Yi Chen and Richard D. Wesel
+Department of Electrical Engineering
+University of California, Los Angeles
+Los Angeles, California 90095
+Email: adamroyce@ucla.edu; tychen@ee.ucla.edu; wesel@ee.ucla.edu
+
+Polyanskiy et al. provided bounds for the maximum rate that
+can be accomplished with feedback for a ﬁnite block length
+[11] and also demonstrated the energy-efﬁciency gains made
+possible by feedback [14]. In the variable-length feedback
+with termination (VLFT) scheme, [11] uses an elegant, single,
+“stop feedback” symbol (that can occur after any transmitted
+symbol) that facilitates the application of Martingale theory
+to capture the essence of how feedback can allow a variablelength code to approach capacity. A compelling example from
+[11] shows that for a binary symmetric channel with capacity
+1/2, the average block length required to achieve 90% of the
+capacity is smaller than 200 symbols.
+For practical systems such as hybrid ARQ, the “stop feedback” symbol may only be feasible at certain symbol times
+because these systems group symbols together for transmission
+in packets, so that the entire packet is either transmitted or
+not. In [12], [13], Chen et al. used a code-independent ratecompatible sphere-packing (RCSP) analysis to quantify the
+latency beneﬁts of feedback in the context of such grouped
+transmissions. Chen et al. focused on the AWGN channel and
+also showed that capacity can be approached with surprisingly
+small block lengths, similar to the results of [11].
+Using the RCSP approach of Chen et al. as its foundation,
+this paper introduces an optimization technique and uses it to
+explore how closely one may approach capacity with only a
+handful of incremental transmissions. For a ﬁxed number of
+information bits k and a ﬁxed number of maximum transmissions m before giving up to try again from scratch, a numerical
+optimization determines the block lengths of each incremental
+transmission to maximize the expected throughput. We consider only m≤6 and show that this is sufﬁcient to achieve
+more than 90% of capacity while requiring surprisingly small
+block lengths similar to those achieved by Polyanskiy et al.
+and Chen et al.
+While RCSP is an idealized scheme, it provides meaningful
+guidance for the selection of block lengths and the sequence of
+target decoding error rates, which we call the decoding error
+trajectory. A 1024-state rate-compatible punctured tail-biting
+convolutional code using the block lengths determined by our
+RCSP optimization technique achieves the RCSP decoding
+error trajectory and essentially matches the throughput and
+latency performance of RCSP for m=5 transmissions. Our
+results, like those of Polyanskiy et al. and Chen et al., assume
+
+Abstract—Recent work by Polyanskiy et al. and Chen et al.
+has excited new interest in using feedback to approach capacity
+with low latency. Polyanskiy showed that feedback identifying
+the ﬁrst symbol at which decoding is successful allows capacity
+to be approached with surprisingly low latency. This paper uses
+Chen’s rate-compatible sphere-packing (RCSP) analysis to study
+what happens when symbols must be transmitted in packets, as
+with a traditional hybrid ARQ system, and limited to relatively
+few (six or fewer) incremental transmissions.
+Numerical optimizations ﬁnd the series of progressively growing cumulative block lengths that enable RCSP to approach
+capacity with the minimum possible latency. RCSP analysis shows
+that ﬁve incremental transmissions are sufﬁcient to achieve 92%
+of capacity with an average block length of fewer than 101
+symbols on the AWGN channel with SNR of 2.0 dB.
+The RCSP analysis provides a decoding error trajectory that
+speciﬁes the decoding error rate for each cumulative block
+length. Though RCSP is an idealization, an example tail-biting
+convolutional code matches the RCSP decoding error trajectory
+and achieves 91% of capacity with an average block length of
+102 symbols on the AWGN channel with SNR of 2.0 dB. We also
+show how RCSP analysis can be used in cases where packets have
+deadlines associated with them (leading to an outage probability).
+
+I. I NTRODUCTION
+Though Shannon showed in 1956 [1] that noiseless feedback does not increase the capacity of memoryless channels,
+feedback’s other beneﬁts have made it a staple in modern communication systems. Feedback can simplify the encoding and
+decoding operations and has been incorporated into incremental redundancy (IR) schemes proposed as early as 1974 [2].
+Hagenauer’s work on rate-compatible punctured convolutional
+(RCPC) codes allows the same encoder to be used in various
+channel conditions and uses feedback to determine when to
+send additional coded bits [3]. The combination of IR and
+hybrid ARQ (HARQ) continues to receive attention in the
+literature [4]–[6] and industry standards such as 3GPP.
+Although it cannot increase capacity in point-to-point channels, the information-theoretic beneﬁt of feedback for reducing latency through a signiﬁcant improvement in the error
+exponent has been well understood for some time. (See, for
+example, [7]–[10].) Recent work [11]–[13] casts the latency
+beneﬁt of feedback in terms of block length rather than error
+exponent, generating new interest in the practical value of
+feedback for approaching capacity with a short average block
+length.
+
+1
+
+MIRF works as follows: k information symbols are coded with
+an initial block length N1 = I1 . If the receiver cannot successfully decode, the transmitter will receive a NACK and send
+I2 extra symbols. The decoder attempts to decode again using
+all received symbols for the current codeword, i.e., with block
+length N2 = I1 + I2 . The process continues for i = 3, . . . , m.
+The decoded block length Nj is I1 + I2 + · · · + Ij and the
+code rate is Rj = k/Nj . If decoding is not successful after m
+transmissions, the decoder discards the m transmissions and
+the process begins again with the transmitter resending the I1
+initial symbols. This scheme with m=1 is standard ARQ.
+The squared decoding radius of the jth cumulative transmission is
+2
+rj = Nj (1 + η) 2−2k/Nj ,
+(4)
+
+that the receiver is able to recognize when it has successfully
+decoded. The additional overhead of, for example, a cyclic
+redundancy check (CRC) has not been included in the analysis.
+Longer block lengths would be required to overcome this
+overhead penalty.
+The paper is organized as follows: Section II reviews
+the RCSP analysis. Section III describes the RCSP numerical optimization used to determine transmission lengths and
+shows the throughput vs. latency performance achieved by
+using these transmission lengths for up to six rate-compatible
+transmissions. This performance is compared with a version
+of VLFT scheme proposed by Polyanskiy et al. Section IV
+introduces the decoding error trajectory and shows how RCSP
+performance can be matched by a real convolutional code using the transmission lengths identiﬁed in the previous section.
+Section V shows how the RCSP analysis can be applied to
+scenarios that involve strict latency and outage probability
+constraints. Section VI concludes the paper.
+
+and the marginal probability of decoding error P (ζj ) associated with decoding radius rj is
+Nj
+
+Y = X(j) + Z, j ∈ 1, 2, . . . , 2k ,
+
+where the z are standard normal distributed random variables
+with zero mean and unit variance.
+However, this marginal probability is not what is needed.
+The probability of a decoding error in the jth transmission
+depends on previous error events. Indeed, conditioning on
+previous decoding errors ζ1 , . . . , ζj−1 makes the error event
+ζj more likely than the marginal distribution would suggest.
+The joint probability P (ζ1 , . . . , ζj ) is
+
+(1)
+
+j
+
+ζi
+
+P (ζ1 , . . . , ζj ) = P
+∞
+
+i=1
+∞
+
+∞
+
+=
+
+...
+2
+r1
+
+2
+r2 −t1
+
+j−2
+
+2
+rj−1 −
+
+i=1
+
+fχ2 (t1 ) . . . fχ2
+I
+I
+
+1 − Fχ 2
+I
+
+(2)
+
+j
+
+2
+rj −
+
+ti
+
+dtj−1 . . . dt1 .
+
+(6)
+
+We compute the expected number of channel uses (i.e.,
+latency or average block length) λ by summing the incremental
+transmission lengths Ii weighted by the probability of error
+in the prior cumulative transmission and dividing by the
+probability of success by the last (mth) transmission (as in
+ARQ), according to
+m
+
+= 1 − Fχ2 (r2 ),
+N
+
+(tj−1 )×
+
+i=1
+
+N
+
+z 2 > r2
+
+j−1
+
+1
+
+ti
+
+j−1
+
+A bounded-distance decoder declares any message within a
+distance r of codeword X(j) to be message j. Otherwise, a
+decoding error is declared. Because the sum of the squares of
+the N Gaussian noise samples obeys a chi-square distribution
+with N degrees of freedom, the probability P (ζ) of decoding
+error associated with decoding radius r is
+P (ζ) = P
+
+(5)
+
+=1
+
+where Y is the output (received word), X(j) is the codeword
+of the jth message, and Z is an N -dimensional i.i.d. Gaussian
+vector. Let the received SNR be η and assume without loss
+of generality that each noise sample has unit variance. The
+average power of received word Y is then N (1 + η). As in
+[12], the largest possible squared decoding radius r2 assuming
+that the decoding spheres occupy all available volume is
+r2 = N (1 + η) 2−2k/N .
+
+2
+z 2 > rj ,
+
+P (ζj ) = P
+
+II. R ATE -C OMPATIBLE S PHERE -PACKING (RCSP)
+A. Review of Sphere-Packing
+To review the sphere-packing analysis presented in [12],
+[15] for a memoryless AWGN channel, consider a codebook
+of size 2k that maps k = N Rc information symbols into a
+length-N codeword with rate Rc . The channel input and output
+can be written as:
+
+λ=
+
+=1
+
+where the z are standard normal distributed random variables
+with zero mean and unit variance and Fχ2 (x) is the CDF of
+N
+a chi-square distribution with N degrees of freedom.
+
+i−1
+
+Ii P
+
+I1 +
+
+(3)
+
+ζj
+
+i=2
+
+j=1
+
+.
+
+m
+
+(7)
+
+ζj
+
+1−P
+j=1
+
+This expression does not consider delay due to decoding
+operations. The corresponding throughput Rt is given by
+
+B. Sphere-Packing for Rate-Compatible Transmissions
+The idea of RCSP is to assume that sphere-packing performance can be achieved by each transmission in a sequence
+of rate-compatible transmissions. Thus the idealized spherepacking analysis is applied to a modiﬁed incremental redundancy with feedback (MIRF) scheme as described in [12].
+
+m
+
+k
+Rt = =
+λ
+
+j=1
+m
+
+.
+
+i−1
+
+Ii P
+
+I1 +
+i=2
+
+2
+
+ζj
+
+k 1−P
+
+ζj
+j=1
+
+(8)
+
+SNR = 2.0 dB, Capacity = 0.6851
+¦
+
+¨
+
+¦
+
+§
+
+¦
+
+¡
+
+III. C HOOSING Ii VALUES TO M AXIMIZE T HROUGHPUT
+
+ 
+
+A. Selecting I1 for the m = 1 (ARQ) Special Case
+
+k=64
+
+Capacity
+m = 1 analysis
+m = 2 analysis
+m = 3 analysis
+m = 4 analysis
+m = 5 analysis
+m = 6 analysis
+
+k=32
+
+which yields an expected throughput of
+¤
+
+¥
+
+ 
+
+¡
+
+¤
+
+ 
+
+ 
+
+¤
+
+ 
+
+¡
+
+£
+
+ 
+
+ 
+
+£
+
+ 
+
+¡
+
+¢
+
+ 
+
+ 
+
+¢
+
+ 
+
+¡
+
+¦
+
+ 
+
+ 
+
+Latency λ
+
+(10)
+
+(a) RCSP Analysis
+
+If we ﬁx the number of information bits k, (10) becomes
+a quasiconcave function of the initial code rate Rc = k/I1 ,
+opt
+allowing the optimal code rate Rc , which maximizes the
+throughput Rt for a given k, to be found numerically [16]. Fig.
+1(a) plots the maximum achievable throughput in the m=1
+(ARQ) RCSP scheme as the red (diamond markers) curve.
+
+SNR = 2.0 dB, Capacity = 0.6851
+
+Capacity
+m = 5 analysis
+m = 5 ML decoded 64-state conv. code
+m = 5 ML decoded 1024-state conv. code
+VLFT code achievability
+VLFT code achievability (m = 5 block lengths)
+¡
+
+¥
+
+ 
+
+ 
+
+¥
+
+ 
+
+¡
+
+¤
+
+ 
+
+ 
+
+¤
+
+ 
+
+¡
+
+£
+
+ 
+
+ 
+
+£
+
+ 
+
+¡
+
+¢
+
+ 
+
+ 
+
+¢
+
+ 
+
+¡
+
+¦
+
+¥
+ 
+
+¦
+
+¡
+
+ 
+ 
+
+Throughput Rt
+
+¦
+
+§
+
+ 
+
+In [12], Chen et al. demonstrated one speciﬁc RCSP scheme
+with ten transmissions that could approach capacity with low
+latency. Speciﬁcally, the transmission lengths were ﬁxed to
+I1 =64 and I2 , . . . , I10 =10, while k was varied to maximize
+throughput. This paper builds on the intuition of the ARQ
+case presented above. Both k and the number of transmissions
+m are ﬁxed, and a search identiﬁes the set of transmission
+lengths Ii that maximizes throughput. We seek to identify
+approximately how much throughput can be achieved using
+feedback with a small number of incremental transmissions,
+speciﬁcally m≤6. Furthermore, we seek insight into what the
+transmission lengths should be and what decoding error rates
+allow the sequence of transmissions to be most efﬁcient.
+For m>1, identifying the transmission lengths Ii which
+minimize the latency λ in (7) is not straightforward due to
+the joint decoding error probabilities in (6). However, the
+restriction to a small m allows exact computation of (6) in
+Mathematica, avoiding the approximations of [12]. To reﬂect
+practical constraints, we restrict the lengths Ii to be integers.
+The computational complexity of (6), which increases with
+the transmission index j, forces us to limit attention to a
+well-chosen subset of possible transmission lengths. Thus, our
+present results may be considered as lower bounds to what is
+possible with a fully exhaustive optimization. Fig. 1(a) shows
+the throughput vs. latency performance achieved by RCSP
+for m ∈ {1, . . . 6} on an AWGN channel with SNR 2.0 dB.
+As m is increased, each additional retransmission brings the
+expected throughput Rt closer to the channel capacity, though
+with diminishing returns. The points on each curve in Fig.
+1(a) represent values of k ranging from 16 to 256 information
+bits. Fig. 1(a) shows, for example, that by allowing up to four
+retransmissions (m=5) with k=64, RCSP can achieve 91% of
+capacity with an average block length of 102 symbols. Similar
+results are obtained for other SNRs.
+
+¦
+
+B. Optimizing Ii Values for m > 1
+
+¨
+
+2
+(r1 ).
+
+ 
+
+k/Rc
+
+ 
+
+1
+
+¥
+
+2
+RtARQ = (k/I1 )Fχ2 (r1 ) = Rc Fχ2
+I
+
+¡
+
+ 
+
+k=16
+
+1
+
+ 
+
+¦
+
+(9)
+
+ 
+
+Throughput Rt
+
+ 
+
+λARQ
+
+I1
+I1
+=
+=
+2 ,
+1 − P (ζ1 )
+Fχ2 (r1 )
+I
+
+k=256
+k=128
+
+¥
+
+In the special case of m=1 (when only the initial transmission of length I1 is ever transmitted), MIRF is ARQ. In this
+case the expected number of channel uses given by (7) can be
+2
+simpliﬁed as follows (with r1 = k/Rc (1+η) ):
+22Rc
+
+ 
+
+ 
+
+Latency λ
+(b) m = 5 RCSP Analysis, Simulations, and VLFT Comparison
+Fig. 1. Throughput vs. latency for RCSP with m rate-compatible transmissions m ∈ {1, . . . , 6} with transmission lengths Ii identiﬁed by RCSP
+optimization. Also shown are convolutional code simulations, VLFT and a
+constrained version of VLFT that uses the RCSP m=5 block lengths.
+
+VLFT achievability results for the AWGN channel based on
+[11] are shown in Fig. 1(b) for comparison. Both the original
+VLFT scheme, in which the transmission may be ended after
+any symbol, and a constrained version of VLFT using the
+same block lengths and feedback structure as m=5 RCSP
+are presented. The original VLFT closely approaches capacity
+with a latency on the order of 200 symbols. RCSP is unable to
+match VLFT because the overall RCSP transmission can only
+be terminated after one of the m incremental transmissions
+completes. If VLFT is constrained in the same way, its performance is initially worse than RCSP because random coding
+does not achieve ideal sphere packing with short block lengths.
+At an average latency of 200, constrained VLFT performance
+becomes similar to the comparable RCSP scheme.
+The VLFT achievability curve evaluates [11, Theorem 10]
+using the upper bound of (162) with i.i.d. Gaussian inputs with
+average power equal to the power constraint η. Such codebooks will sometimes violate the 2 dB power constraint. To
+address this, the average power should be slightly reduced and
+codebooks violating the power constraint should be purged,
+which will lead to a small performance degradation. Alternatively, codebooks or even codewords can be constrained to
+meet the power constraint with equality. Further analysis of
+VLFT codes more carefully considering the power constraint
+for the AWGN channel will be the subject of future work.
+
+3
+
+TABLE I
+O PTIMAL RCSP TRANSMISSION LENGTHS FOR m = 5 AND SNR 2 D B.
+
+
+
+©
+
+
+
+
+
+©
+
+
+
+©
+
+©
+
+
+
+
+
+©
+
+
+
+
+
+
+
+Probability of Decoding Error
+
+©
+
+
+
+
+
+
+
+
+
+Capacity
+R1
+R2
+R3
+R4
+R5
+
+
+
+
+
+
+
+
+
+
+
+
+Blocklength
+
+Fig. 3. A comparison of the decoding error trajectories of RCSP, simulated
+ML-decoded convolutional codes and VLFT, for k=64.
+
+
+
+
+
+to capitalize on favorable noise realizations by attempting to
+decode early, instead of needlessly sending additional symbols.
+
+
+
+
+
+
+
+
+
+
+
+
+©
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Progressive Code Rates
+
+Marginal P (ζ) = 1 − Fχ2 (r2 )
+N
+m = 1 RCSP analysis
+m = 2 RCSP analysis
+m = 3 RCSP analysis
+m = 4 RCSP analysis
+m = 5 RCSP analysis
+m = 6 RCSP analysis
+m = 5 64-state conv. code
+m = 5 1024-state conv. code
+VLFT code (m=5 block lengths)
+
+!
+
+SNR = 2.0 dB, Capacity = 0.6851, m = 5
+
+©
+
+I5
+8
+12
+16
+28
+48
+
+
+
+I4
+4
+8
+12
+14
+24
+
+"
+
+I3
+4
+8
+8
+14
+24
+
+©
+
+I3
+4
+8
+12
+14
+24
+
+
+
+I1
+19
+38
+85
+176
+352
+
+#
+
+k
+16
+32
+64
+128
+256
+
+SNR = 2.0 dB, Capacity = 0.6851, k = 64
+
+©
+
+Information Bits k
+
+B. Decoding Error Trajectory Comparison
+
+Fig. 2. Rates of the ﬁve cumulative transmissions for m = 5 and an AWGN
+channel with SNR 2 dB for k=16, 32, 64, 128, and 256.
+
+IV. C OMPARISON OF RCSP
+
+AND
+
+The RCSP optimization also computes the joint decoding
+error probabilities of (6), which we call the “decoding error
+trajectory”. If we can ﬁnd a rate-compatible family that
+achieves this decoding error trajectory, then we can match
+the RCSP performance. Fig. 3 shows the k=64 decoding
+error trajectories for the RCSP cases studied in Figs. 1 and
+2 (shown as m discrete points in Fig. 3 for each value of
+m ∈ {1, . . . , 6}) and for constrained VLFT for m = 5 and 64state and 1024-state convolutional code simulations for m=5.
+The dashed line represents the marginal probability of error
+for a sphere-packing codebook as in (3) which was recognized
+in [19] as a tight upper bound for the joint probabilities of
+error given by (6). This tight upper bound can serve as a
+performance goal for practical rate-compatible code design
+across a wide range of block lengths.
+While the 64-state code is not powerful enough to match
+RCSP performance, the 1024-state code closely follows the
+RCSP trajectory for m = 5. Thus there exist practical codes,
+at least in some cases, that achieve the idealized performance
+of RCSP. Indeed, Fig. 1(b) plots the (λ, Rt ) points of the
+two convolutional codes, demonstrating that the 1024-state
+code achieves 91% of capacity with an average latency of
+102 symbols, almost exactly coinciding with the RCSP point
+for m=5 and k=64. The convolutional code’s ability to match
+a mythical sphere-packing code is due to maximum likelihood
+(ML) decoding, which has decoding regions that completely
+ﬁll the multidimensional space (even in high dimensions).
+
+C ONVOLUTIONAL C ODES
+
+RCSP makes the rather optimistic assumption that a family
+of rate-compatible codes can be found that performs, at each
+rate, equally well as codes that pack decoding spheres so well
+that they use all of the available volume. A variety of wellknown upper bounds on the packing density φ indicate that
+the maximum packing density decreases as the dimension n
+increases (e.g., φ ≤ (n/e) 2−n/2 ) [17], making such codes
+difﬁcult to ﬁnd. However, we show in this section that a ratecompatible tail-biting convolutional code can indeed match the
+performance of RCSP, at least for m=5.
+A. Two Convolutional Codes
+We consider two rate 1/3 convolutional codes
+from [18]: a 64-state code with generator polynomial
+(g1 ,g2 ,g3 )=(133, 171, 165) and a 1024-state code with
+(g1 ,g2 ,g3 )=(3645, 2133, 3347), where the generator notation
+is octal. High rate codewords are created by pseudorandom
+rate-compatible puncturing of the rate 1/3 mother codes.
+We restrict our attention to tail-biting implementations of
+these convolutional codes because the throughput efﬁciency
+advantage is important for the relatively small block lengths
+we consider. Simulations compare the performance of these
+two codes in the MIRF setting for the AWGN channel with
+SNR 2 dB, as shown in Fig. 1(b). The simulations presented
+here focus on the k=64 case.
+The transmission lengths Ii used in the simulations are
+those identiﬁed by the RCSP optimization. Table I shows the
+results of the m=5 optimization (i.e., the set of lengths Ii
+found to achieve the highest throughput). Thus our simulations
+used I1 =85, I2 =12, I3 =8, I4 =12, I5 =16. The induced code
+rates of the cumulative blocks are 64/85=0.753, 64/97=0.660,
+64/105=0.610, 64/117=0.547 and 64/133=0.481. Fig. 2 shows
+these rates as well as the rates for other values of k according
+to the RCSP optimization for m = 5. Note that for every
+value of k the initial code rate is above the channel capacity
+of 0.6851. This is the beneﬁt of feedback: it allows the decoder
+
+C. Caveat
+These simulation results assume that the receiver is able
+to recognize when it has successfully decoded. This same
+assumption is made by the RCSP analysis, the VLFT scheme
+of Polyanskiy et al., and the MIRF scheme of Chen et al.
+While this assumption does not undermine the essence of
+this demonstration of the power of feedback, its practical and
+theoretical implications must be reviewed carefully, especially
+when very short block lengths are considered. An important
+practical implication is that the additional overhead of a CRC
+required to avoid undetected errors will drive real systems
+
+4
+
+in demonstrating that feedback permits 90% of capacity to be
+achieved with about 100 transmitted symbols assuming that
+the decoder knows when it has decoded correctly. However,
+the implications of this assumption for short block lengths
+warrant further investigation.
+VLFT performance shows that if the transmission could be
+stopped at any symbol (rather than only at the end of each
+incremental transmission) capacity is closely approached with
+an average latency of 200 symbols, but a more careful analysis
+of VLFT in light of the AWGN power constraint is warranted.
+
+to somewhat longer block lengths than those presented here.
+This will affect the choice of error control code. An important
+implication is that this analysis cannot be trusted if the block
+lengths become too small. This assumption allows block errors
+to become block erasures at no cost. Consider the binary
+symmetric channel (BSC): If the block length is allowed to
+shrink to a single bit, then this assumption turns the zero
+capacity BSC with transition probability 1/2 into a binary
+erasure channel with probability 1/2, which has a capacity
+of 1/2 instead of zero. Both the practical and theoretical
+problems of this assumption diminish as block length grows.
+However, a quantitative understanding of the cost of knowing
+when decoding is successful and how that cost changes with
+block length is an important area for future work.
+V. RCSP
+
+WITH
+
+ACKNOWLEDGEMENT
+The authors would like to thank Yury Polyanskiy for helpful
+conversations regarding the VLFT analysis.
+R EFERENCES
+
+L ATENCY AND O UTAGE C ONSTRAINTS
+
+[1] C. E. Shannon, “The zero error capacity of a noisy channel,” IRE Trans.
+Inf. Theory, vol. 2, no. 3, pp. 8–19, Sep. 1956.
+[2] D. Mandelbaum, “An adaptive-feedback coding scheme using incremental redundancy (corresp.),” IEEE Trans. Inf. Theory, vol. 20, no. 3, pp.
+388 – 389, May 1974.
+[3] J. Hagenauer, “Rate-compatible punctured convolutional codes (RCPC
+codes) and their applications,” IEEE Trans. Commun., vol. 36, no. 4,
+pp. 389–400, Apr. 1988.
+[4] S. Denic, “Robust incremental redundancy hybrid ARQ coding for
+channels with unknown interference,” in Proc. 2011 IEEE Int. Symp.
+Inf. Theory (ISIT), St. Petersburg, Russia, Aug. 2011, pp. 1658 –1662.
+[5] I. Andriyanova and E. Soljanin, “IR-HARQ schemes with ﬁnite-length
+punctured LDPC codes over the BEC,” in 2009 IEEE Inf. Theory
+Workshop (ITW), Taormina, Sicily, Oct. 2009, pp. 125 –129.
+[6] R. Liu, P. Spasojevic, and E. Soijanin, “Punctured turbo code ensembles,” in 2003 IEEE Inf. Theory Workshop (ITW), Paris, France, Mar. Apr. 2003, pp. 249 – 252.
+[7] R. L. Dobrushin, “Asymptotic bounds on error probability for transmission over DMC with symmetric transition probabilities,” Theory Probab.
+Appl., vol. 7, pp. 283–311, 1962.
+[8] M. V. Burnashev, “Data transmission over a discrete channel with
+feedback. random transmission time,” Probl. Inf. Transm., vol. 12, no. 4,
+pp. 10–30, 1976.
+[9] ——, “Sequential discrimination of hypotheses with control of observation,” Math. USSR, Izvestia, vol. 15, no. 3, pp. 419–440, 1980.
+[10] J. Schalkwijk and T. Kailath, “A coding scheme for additive noise
+channel with feedback–I: No bandwidth constraint,” IEEE Trans. Inf.
+Theory, vol. IT-12, no. 2, pp. 172–182, Apr. 1966.
+[11] Y. Polyanskiy, H. V. Poor, and S. Verd´ , “Feedback in the nonu
+asymptotic regime,” IEEE Trans. Inf. Theory, vol. 57, no. 8, pp. 4903
+–4925, Aug. 2011.
+[12] T.-Y. Chen, N. Seshadri, and R. D. Wesel, “A sphere-packing analysis
+of incremental redundancy with feedback,” in Conf. Rec. 2011 IEEE Int.
+Conf. Communications, Kyoto, Japan, June 2011, pp. 1 –5.
+[13] ——, “Incremental redundancy: A comparison of a sphere-packing
+analysis and convolutional codes,” in 2011 Inf. Theory and Applications
+Workshop (ITA), San Diego, CA, USA, Feb. 2011, pp. 1 –5.
+[14] Y. Polyanskiy, H. V. Poor, and S. Verd´ , “Minimum energy to send k
+u
+bits through the Gaussian channel with and without feedback,” IEEE
+Trans. Inf. Theory, vol. 57, no. 8, pp. 4880 –4902, Aug. 2011.
+[15] T. Cover and J. Thomas, Elements of Information Theory. New York:
+Wiley, 1991.
+[16] S. Boyd and L. Vandenberghe, Convex Optimization.
+New York:
+Cambridge University Press, 2004.
+[17] S. Torquato and F. H. Stillinger, “New conjectural lower bounds on the
+optimal density of sphere packings,” J. of Experimental Mathematics,
+vol. 15, no. 3, pp. 307–331, 2006.
+[18] S. Lin and D. J. Costello, Error Control Coding, Second Edition. Upper
+Saddle River, NJ, USA: Prentice-Hall, Inc., 2004.
+[19] T.-Y. Chen, D. Divsalar, and R. D. Wesel, “Chernoff bounds for analysis
+of rate-compatible sphere-packing with numerous transmissions,” 2012
+IEEE Inf. Theory Workshop (ITW), submitted for publication, available
+on arXiv.
+
+MIRF has an outage probability of zero because it never
+stops trying until a message is decoded correctly. With slight
+modiﬁcations, the MIRF scheme and the RCSP transmission
+length optimization can incorporate strict constraints on latency (so that the transmitter gives up after m transmissions)
+and outage probability (which would then be nonzero).
+To handle these two new constraints, we restrict
+P (ζ1 , . . . , ζm ) to be less than a speciﬁed poutage . Without
+modifying the computations ofP (ζ1 , . . . , ζj ) in (6), the optimization is adapted to pick the set of lengths that yields the
+maximum throughput s.t. P (ζ1 , . . . , ζm ) ≤ poutage . When there
+is a decoding error after the mth transmission, the transmitter
+declares an outage event and proceeds to encode the next k
+information bits. This scheme is suitable for delay-sensitive
+communications, in which data packets are not useful to the
+receiver after a deadline has passed. The expected number of
+channel uses λ is now given by
+i−1
+
+m
+
+ζj .
+
+Ii P
+
+λ = I1 +
+i=2
+
+(11)
+
+j=1
+
+The expected throughput Rt is again given by (8).
+VI. C ONCLUSION
+The purpose of this paper is to bring the information theory
+of feedback and the communication practice of feedback
+closer together. Beginning with the idealized notion of ratecompatible codes with decoding spheres that completely ﬁll
+the available volume, the paper eventually demonstrates a
+convolutional code with performance strikingly similar to the
+ideal rate-compatible sphere-packing (RCSP) codes.
+An optimization based on RCSP identiﬁes the highest
+throughput possible for a ﬁxed k and m. This optimization
+provides the lengths of the initial and subsequent transmissions and the sequence of decoding error probabilities or
+“decoding error trajectory” that characterize the throughputmaximizing performance. The RCSP decoding error trajectories computed in this paper are tightly bounded by the marginal
+error probability of sphere packing. Designing a code with
+a similar error trajectory will thus yield comparable latency
+performance. RCSP predictions and simulation results agree
+
+5
+
+

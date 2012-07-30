@@ -1,0 +1,560 @@
+Creator:        TeX
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Sun May 13 22:10:01 2012
+ModDate:        Tue Jun 19 12:56:28 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      620391 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569565199
+
+A Two Stage Selective Averaging LDPC Decoding
+Dinesh Kumar. A and Ambedkar Dukkipati
+Department of Computer Science and Automation
+Indian Institute of Science, India
+Email: {dinesh.a, ambedkar}@csa.iisc.ernet.in
+
+The paper is organized as follows. § II provides the
+necessary background for understanding the error ﬂoor in
+LDPC codes and the recent literature on tackling this problem.
+§ III proposes our two stage decoder and analyses how they
+improve the performance from the trapping set point of view.
+§ IV gives the simulation results to prove that the proposed
+algorithm does better than averaging decoder and standard
+decoder. We provide the concluding remarks in § V.
+
+Abstract— Low density parity-check (LDPC) codes are a class
+of linear block codes that are decoded by running belief propagation (BP) algorithm or log-likelihood ratio belief propagation
+(LLR-BP) over the factor graph of the code. One of the
+disadvantages of LDPC codes is the onset of an error ﬂoor at
+high values of signal to noise ratio caused by trapping sets. In
+this paper, we propose a two stage decoder to deal with different
+types of trapping sets. Oscillating trapping sets are taken care by
+the ﬁrst stage of the decoder and the elementary trapping sets are
+handled by the second stage of the decoder. Simulation results
+on the regular PEG (504,252,3,6) code and the irregular PEG
+(1024,518,15,8) code shows that the proposed two stage decoder
+performs signiﬁcantly better than the standard decoder.
+
+II. BACKGROUND
+A. Trapping sets
+Error ﬂoor was analyzed in the context of trapping sets by
+Mackay [2]. Later, Richardson [1] showed that trapping sets
+exhibit a strong inﬂuence on the slope of the error-ﬂoor of
+LDPC codes.
+Trapping set is deﬁned as follows. A Trapping set (x, y)
+is an induced subgraph of x variable nodes with y ≥ 0 odd
+degree check nodes [3].
+
+I. I NTRODUCTION
+A Low Density Parity-Check (LDPC) code can be described
+by a parity-check matrix H that is represented using a special
+type of graph called factor graph. A factor graph is a bipartite
+graph composed of N variable nodes vj , for j ∈ {1, . . . , N }
+that represent the message bits in the codeword and M check
+nodes ci , for i ∈ {1, . . . , M } that represent the parity-check
+equations. We use the notation PEG (N, M, x, y) where N
+is the number of variable nodes, M is the number of check
+nodes, x and y represent the maximum degree of the variable
+nodes and maximum degree of the check nodes respectively.
+The channel considered here is an additive white Gaussian
+noise (AWGN) channel. We use the log likelihood ratio belief
+(l)
+propagation (LLR-BP) algorithm for decoding. Let mvi cj be
+the message passed from variable node vi to check node cj at
+(l)
+iteration l of the algorithm. Similarly, one can deﬁne mcj vi .
+(0)
+The initial values of the message mvi cj is equal to the channel
+information log likelihood ratio (LLR) Cvi of the variable node
+vi and it is independent of cj .
+The main problem with LDPC codes is the high error
+ﬂoor in high signal to noise ratio (SNR) which is caused by
+existence of trapping sets [1]. In this paper, we propose a two
+stage decoder that in the ﬁrst stage averages the messages from
+the selected variable nodes over two iterations. The nodes are
+selected if the belief in the node is decreasing below a certain
+threshold or if the belief is increasing rapidly. The decoded
+string is checked if it has converged to a valid code word
+in each iteration. If the decoded string has not converged to
+a valid code word even after maximum number of iterations
+and the number of check nodes that are not satisﬁed is below
+a certain threshold, we proceed to the second stage of the
+decoder where we ﬂip certain bits connected to the unsatisﬁed
+check nodes. Then the ﬁrst stage of the decoding process is
+repeated for the processed string.
+
+Fig. 1.
+
+(6,2) Trapping set
+
+An example of a trapping set is illustrated in Figure 1. In the
+above ﬁgure we can see six variable nodes and two unsatisﬁed
+check nodes.
+There are three types of error events in the error ﬂoor region
+[3]. They are (i) unstable error events - dynamic errors which
+changes with iterations and have large x and y, (ii) stable or
+elementary trapping sets - main cause of error ﬂoor in high
+SNR values. It has small x and y values, and (iii) oscillating
+trapping sets - the number of trapping set error oscillate with
+iteration, some times subsets of stable trapping sets.
+The error-ﬂoor can be explained due to the following
+phenomena [4], In the initial stages of the decoder, due to
+certain noise samples, variables nodes that belong to one
+particular trapping set (initial trapping set) increase their belief
+on wrong bit value rapidly. This affects the other variable
+nodes in the induced subgraph of the trapping set that already
+have a low belief value. As the decoder iterates, the variables
+
+1
+
+outside of the trapping set starts to correct the affected variable
+nodes. But this is not enough as these nodes are signiﬁcantly
+biased towards the wrong bit values. Since the number of
+check nodes that can detect the trapping set error are small
+(small y value in elementary trapping set), the trapping set
+error persists till the end of decoding process.
+The trapping sets are union of several cycles. One of the
+most prevalent types of error in the waterfall region are
+oscillating trapping sets that cause the LLR values of some
+nodes to oscillate. This could be due to two or more cycles
+passing through the same node. When the messages iterating
+in different cycles supporting different bit values arrive at the
+same variable node at distinct times, the LLR values seems to
+oscillate.
+
+(l)
+
+mv(l)j =
+ic
+
+A lot of research has gone into designing decoders to
+mitigate the errors caused by the trapping sets. The decoders
+are designed in such a way that the computational complexity
+of the modiﬁed decoder is not high compared to the standard
+decoder.
+In [4], the problems caused by trapping sets and why
+the decoder fails in overcoming these problems are studied.
+Landner et al. [4], [5] propose an averaging decoder that
+averages the probability of a node over several iterations
+(averaging of LLR discussed in [5]).
+Averaging prevents the erroneous information from being
+trapped in the code graph by slowing down the convergence
+speed of the nodes. This modiﬁed decoder is tested on
+[2640,1320] Margulis code at 2.4 dB SNR. It is reported
+in previous studies [2], [1] that this SNR is the onset of
+the error ﬂoor for the Margulis code. This method though
+computationally less complex, it slows down the convergence
+of the reliable nodes. This affects the performance of the
+decoder in the waterfall region as oscillating trapping sets are
+prevalent in this region than the elementary trapping sets.
+In [6], the BP algorithm is well studied in the point of view
+of the Bethe energy and how it fails in the presence of cycles.
+They propose a BP algorithm with a tunable parameter ∆ and
+a modiﬁcation to the outgoing message from the variable node.
+(K − 1)
+m(l−1) − m(l)
+vi
+vi
+∆
+
+(l)
+
+(l−1)
+
+This modiﬁcation helps in damping the oscillation, but
+their method does not handle the errors caused by elementary
+trapping sets.
+A two stage decoder was proposed in [8] [9], in which the
+conventional decoding process is performed as the ﬁrst stage.
+If the decoder fails after the maximum number of iterations,
+then it is concluded that the result of the failure is due to a
+trapping set. If the number of unsatisﬁed check nodes is below
+a certain threshold, then the decoder enters the second stage. In
+the second stage, using the fact that an unsatisﬁed check node
+will have odd number of variable nodes connected to it in the
+trapping set (one bit in most notorious case), a set of matching
+sets Ψ of variable nodes is constructed. All the variable nodes
+that belong to a matching set ψ ∈ Ψ are assigned inital
+log likelihood ratios (LLR’s) to the maximum possible value
+with opposite signs, and the ﬁrst stage is repeated again. This
+process is repeated for all the members of the set Ψ or till
+the trapping set error is corrected. Since the trapping set is
+considered as an unstable equilibrium, ﬂipping one or two
+bits is enough for breaking the trapping set. But this decoder
+is a very complex decoder and in the worst case it may have
+to be repeated for all the member of the set Ψ. On setting the
+variable nodes initial LLR’s to a maximum value we introduce
+external noise into the system which is not recommended.
+As this decoder only deals with trapping sets with very few
+unsatisﬁed check nodes, they do not solve the errors due to
+oscillating trapping sets.
+There are also some modiﬁcation proposed to the schedule
+of the BP algorithm [10] [11]. In [10], they propose a
+sequential schedule based on a measure called as residual
+which is the difference between the message in the current
+and previous iteration. This acts as an indicator of the level of
+convergence in that part of the graph. They order the variable
+node messages in such a way that the the least converged part
+of the graph receives the new information ﬁrst. The check
+node messages are not altered.
+
+B. Related Work
+
+mv(l)j = m(l)cj +
+vi
+ic
+
+(l−1)
+
+mvi cj + mvi cj , if sgn(mvi cj ) = sgn(mvi cj )
+(l)
+mvi cj ,
+otherwise.
+
+III. P ROPOSED A LGORITHM
+The proposed decoding algorithm consists of two stages. In
+the ﬁrst stage of the decoder we handle the oscillating trapping
+sets using a selective decoding algorithm. If the decoder does
+not converge after a ﬁxed number of iterations and the number
+of unsatisﬁed check nodes is below a certain threshold, we
+assume that it is due to elementary trapping sets and identify
+the variable nodes that are connected to the unsatisﬁed check
+nodes and multiply the channel information LLR Cvi with a
+constant and repeat the ﬁrst stage of the decoder.
+Our aim in the ﬁrst stage is to prevent the error due to
+oscillating trapping sets and initial trapping set. The algorithm
+must be designed such that it does not affect the convergence
+of reliable nodes. Faster convergence of the reliable nodes
+helps the convergence of the oscillating nodes as the messages
+
+,
+
+where K = |N (vi )|, is the degree of the node vi . On adjusting
+the parameter ∆ at different SNR points, they are able to
+achieve performance better than the standard BP decoder. This
+modiﬁcation also follows the same principle as the averaging
+decoder by slowing down the information ﬂow to prevent the
+trapping of the erroneous information.
+The work put forward in [7] concentrates on short and
+middle length LDPC codes as they are largely affected by
+cycles in the graph. These cycles result in oscillation of the
+LLR values in the nodes. They propose to modify the outgoing
+messages from the variable nodes vi
+
+2
+
+from the converged reliable nodes are very strong compared to
+the belief in the oscillating nodes. As explained in § II-A, the
+nodes affected by the initial trapping set have a rapid increase
+in reliability value on the wrong bit and the errors caused by
+this can be prevented by slowing down the wrong information
+from ﬂowing out of these nodes.
+The selective averaging algorithm modiﬁes the outgoing
+(l)
+messages mvi cj from the variable nodes as follows:
+ (l)
+ mvi cj +m(l−1)
+vi cj
+, if Ω(vi ) > 0,
+(l)
+2
+mvi cj =
+(l)
+mv c ,
+if Ω(vi ) = 0,
+i j
+
+set of matching sets of vertices that might belong to a trapping
+set. The initial LLR value of the variable nodes that belong to
+one of the members of the set of matching set are ﬂipped and
+the decoding process is repeated. If the trapping set error is not
+solved, then the decoder backtracks and repeats the process for
+the next member of the set of matching set. The second stage
+of our decoder also follows a similar approach but we avoid
+backtracking as it increases the complexity of the decoder.
+
+Algorithm 2 Second Stage of the decoder
+1: First stage decoder unsuccessful.
+2: Find the set C of unsatisﬁed check nodes.
+where Ω(vi ) = 0 corresponds to the node vi not being selected. 3: if |C| < CNthreshold then
+∗
+4:
+Vold ←output of ﬁrst stage of the decoder.
+(l)
+The messages from the check nodes mcj vi are not modiﬁed.
+5:
+Find the set of variable nodes Vun where Vun =
+N (cj )
+cj ∈C
+Algorithm 1 Node Selection
+(N (cj ) is the set of all variable nodes that are connected
+for i ∈ 1, 2, . . . , N do
+(l)
+(l)
+to the check node cj ).
+B(vi ) ← |L(vi ) |
+6:
+Remove all the variable nodes in Vun that have common
+(l−1)
+(l−1)
+B(vi ) ← |L(vi ) |
+check nodes other than the unsatisﬁed check nodes. This
+if Ω(vi )! = 2 then
+set is Vnc
+Ω(vi ) ← 0
+7:
+for vk ∈ Vnc do
+end if
+8:
+C(vk ) = −C(vk ) ∗ η
+(l)
+(l−1)
+(l−1)
+(l)
+if B(vi ) < B(vi ) && (B(vi ) − B(vi ) ) > β then
+C(vk ) is the channel information LLR of the variable
+Ω(vi ) ← 1
+vk
+(l)
+(l−1)
+else if B(vi ) > B(vi ) then
+9:
+Ω(vk ) ← 2
+(l)
+(l−1)
+10:
+end for
+if (B(vi ) − B(vi ) ) > ν then
+11: end if
+Ω(vi ) ← 1
+12: re-decode with the the new channel information LLR
+end if
+C(vk ) .
+end if
+13: if re-decode is successful then
+end for
+14:
+stop and exit
+(l)
+15: else
+In this algorithm, L(vi ) represents the LLR of the node vi
+∗
+16:
+Vnew ←output of re-decode.
+(l−1)
+at iteration l and L(vi ) represents the LLR of the node vi 17: Find the set C of unsatisﬁed check nodes.
+(l)
+(l)
+(l−1)
+at iteration l − 1. We assign |L(vi ) | to B(vi ) and |L(vi ) | 18: if |C| < |C | then
+∗
+(l−1)
+output Vold .
+to B(vi ) . We then check if the belief in the node B(vi ) 19:
+is decreasing or increasing in each iteration. If the belief is 20: else
+∗
+output Vnew .
+decreasing below a constant β, we assume this as an oscillating 21:
+end if
+node and it is selected. If the belief is increasing rapidly at 22:
+23: end if
+a rate above the constant ν, we consider this behavior as an
+initial trapping set [5] and the node is selected for averaging
+The second stage of the proposed decoder is listed in
+of the messages in the next iteration. This condition also helps
+prevent the oscillating nodes. All the nodes are unselected at algorithm 2. If the ﬁrst stage of the decoder has not converged
+the beginning of the node selection procedure at each iteration even after the maximum number of iterations and the number
+except the nodes that are modiﬁed in the second stage of the of unsatisﬁed check nodes is below CNthreshold , we conclude
+algorithm. Message from these nodes are always averaged. that the error occurred due to an elementary trapping set. As
+A more detailed explanation for this special treatment of the the trapping set is an unstable equilibrium condition, if we ﬂip
+modiﬁed nodes will follow when we explain the second stage even one or two variable nodes that belong to the check nodes,
+it is enough to break the trapping set. But we do not know
+of the algorithm.
+The ﬁrst stage of the decoder is not designed for dealing the variables nodes that belong to the trapping sets. The only
+with the elementary trapping sets that are the most prevalent information available to us is that the unsatisﬁed check nodes
+type of trapping sets in the error ﬂoor region. We will use a are connected to odd number of variable nodes (one node in
+similar algorithm to the one proposed in [8]. The algorithm the worst case) in the trapping set as shown in Figure 1. We
+proposed in [8], [9], uses a backtracking approach and forms a ﬁnd the set of variables nodes Vun that is a union of all variable
+
+3
+
+TABLE I
+P ERFORMANCE COMPARISON FOR I RREGULAR PEG CODES
+
+nodes connected to the unsatisﬁed check nodes. Remove all
+the variable nodes in Vun that have common check nodes
+other than the unsatisﬁed check nodes. This set is Vnc We will
+multiply the initial LLR value Cvk with -η for all the variable
+nodes vk that belong to the set Vnc . This ﬂips the bit value of
+the node and the decoding process is repeated. But some of
+the correctly decoded nodes that do not belong to the trapping
+set might also be ﬂipped. Since the variable nodes do not have
+any common check nodes, the wrongly ﬂipped nodes are easily
+corrected by other reliable nodes in the decoding process. If
+the re-decoding is not successful, then we report the string with
+the least number of unsatisﬁed check nodes. To be cautious we
+assign Ω(vk ) = 2 so that they remain always selected and the
+messages from these nodes are always averaged. This helps
+in preventing the wrong information from spreading initially
+before the reliable nodes converge. The nodes that we have
+ﬂipped in this stage that belong to trapping set will help in
+breaking the trapping set.
+Note that the computational cost of the proposed decoder
+not signiﬁcantly greater than the standard decoder. The selected averaging decoder runs at most twice (if second stage is
+triggered) and the cost of node selection algorithm is negligible
+compared to the overall cost of the algorithm.
+
+(1024, 518, 15, 8) AT SNR 3.5 dB
+Algorithm
+Two stage selective averaging
+Averaging [4]
+Standard
+
+BLER
+2.133 e-08
+6.333 e-08
+1.8 e-07
+
+BER
+1.645 e-09
+3.378 e-09
+1.365 e-08
+
+Fig. 2.
+
+Comparison of BLER (504,252,3,6) regular PEG code
+
+Fig. 3.
+
+Comparison of BER (504,252,3,6) regular PEG code
+
+IV. S IMULATION R ESULTS
+We ran simulations of the proposed decoder for
+(1024,518,15,8) irregular PEG code and (504,252,3,6)
+regular PEG code. We compare the results of the proposed
+decoder with the averaging decoder [4] and the standard
+decoder. Without loss of generality, the codewords were
+all-zero.
+For selecting the parameters β and ν we plotted iteration
+vs LLR value for each node. We observed the rate of fall of
+LLR in oscillating nodes and found a range of values for the
+parameter β. We ran the selective averaging algorithm for the
+values in the range and found the optimal value. The same
+procedure was repeated for the parameter ν, but here the rate
+of rise of LLR value in the nodes was observed instead of the
+rate of fall. We used the following value for our experiments.
+β = 3.2 and ν = 1. We observed in our experiments that
+β, ν values need not be adjusted for each SNR point. This is
+because the parameters act on the difference of LLR values in
+consecutive iterations. CNthreshold decides if it is useful to
+execute the second stage of the algorithm. The second stage
+of the algorithm is used to handle the elementary trapping
+sets. Since elementary trapping sets are low weight errors [9],
+we assign a low value for CNthreshold . The rule of thumb,
+we used, is to take a value roughly one percent of the total
+number of variable nodes N . We used CNthreshold = 10 is
+our experiment. To reduce the initial belief of the ﬂipped bits
+we multiply the C(vk ) with a number slightly less than 1. We
+used η = 0.8 in our experiments(η > 1 is not advisable as it
+induces external noise in the system).
+In Figure 2, 3, 4, 5 and Table I we can see that the
+proposed two stage decoder performs better than the other two
+decoders in both bit error rate (BER) and (BLER) for regular
+
+(504,252,3,6) PEG code and Irregular (1024, 518, 15, 8) PEG
+codes. This performance is expected because the proposed two
+stage decoder solves the trapping sets better than the averaging
+decoder [4] and the standard decoder.
+We observed that the proposed decoder solved 1 out of
+every 4 solvable elementary trapping set errors (number of
+unsatisﬁed check nodes is less that CNthreshold ) for regular
+PEG code and 5 out of 8 solvable elementary trapping set
+errors in irregular PEG code.
+In Figure 6 we can see the number of bit errors in the redecoding after processing in the second stage of the decoder
+and the number of bit errors in the averaging decoder [4].
+It shows how the averaging decoder fails to solve certain
+elementary trapping sets but the proposed two stage decoder
+solves the error in about 60 iterations in the re-decoding after
+
+4
+
+code especially in the error ﬂoor region. In the ﬁrst stage
+we handle the oscillating trapping sets by selecting the nodes
+based on rate of increase or decrease of the belief. The
+messages from the selected nodes are averaged with message
+from the previous iteration to slow down the ﬂow of erroneous
+information in the system. The reliable nodes are allowed to
+converge faster and they help in solving the oscillating trapping
+sets. The ﬁrst stage decoder does not solve the errors due
+to elementary trapping set. To address this we proposed a
+second stage and our simulation results show that this helps
+in breaking the trapping sets.
+ACKNOWLEDGMENTS
+Fig. 4.
+
+We gratefully acknowledge that without late Prof. Priti
+Shankar’s participation, this work would not have been possible.
+
+Comparison of BLER Irregular PEG codes (1024, 518, 15, 8)
+
+R EFERENCES
+
+Fig. 5.
+
+[1] T. Richardson, “Error-ﬂoors of LDPC codes,” in Proceedings of the
+41st Annual Conference on Communication, Control and Computing,
+Sept 2003, pp. 1426–1435.
+[2] D.J.C. MacKay and M.J. Postol,
+“Weaknesses of margulis and
+ramanujan-margulis low-density parity-check codes,” in Proceedings of
+MFCSIT2002, Galway. 2003, vol. 74 of Electronic Notes in Theoretical
+Computer Science, Elsevier.
+[3] Y. Han and W. Ryan, “Low-ﬂoor decoders for LDPC codes,” IEEE
+Transactions on Communications, vol. 57, pp. 1663–1673, June 2009.
+[4] S. Landner and O. Milenkovic, “Algorithmic and combinatorial analysis
+of trapping sets in structured LDPC codes,” in Proceedings of International Conference on Wireless Networks, Communications and Mobile
+Computing, June 2005, vol. 1, pp. 630–635.
+[5] Stefan Landner, Thorsten Hehn, Olgica Milenkovic, and Johannes B
+Huber, “Two methods for reducing the error-ﬂoor of LDPC codes,”
+Tech. Rep. arXiv:cs/0701006, Jul 2007.
+[6] M. G. Stepanov and M. Chertkov, “Improving convergence of belief
+propagation decoding,” in Proceedings of 44th Allerton Conference,
+Sep 2006.
+[7] S. Gounai, T. Ohtsuki, and T. Kaneko, “Modiﬁed belief propagation
+decoding algorithm for low-density parity check code based on oscillation,” in Proceedings of IEEE 63rd Vehicular Technology Conference
+VTC 2006-Spring, May 2006, vol. 3, pp. 1467–1471.
+[8] Jingyu Kang, Li Zhang, Zhi Ding, and Shu Lin, “A two-stage iterative
+decoding of LDPC codes for lowering error ﬂoors,” in Proceedings of
+IEEE Global Telecommunications Conference, Dec 2008, pp. 1–4.
+[9] Jingyu Kang, Qin Huang, Shu Lin, and K. Abdel-Ghaffar, “An iterative
+decoding algorithm with backtracking to lower the error-ﬂoors of LDPC
+codes,” IEEE Transactions on Communications, vol. 59, no. 1, pp. 64–
+73, january 2011.
+[10] A.I. Vila Casado, M. Griot, and R.D. Wesel, “Informed dynamic
+scheduling for belief-propagation decoding of LDPC codes,” in Proceedings of IEEE International Conference on Communications, June
+2007, pp. 932–937.
+[11] P. Radosavljevic, A. de Baynast, and J.R. Cavallaro, “Optimized
+message passing schedules for LDPC decoding,” in Proceedings of
+Thirty-Ninth Asilomar Conference on Signals, Systems and Computers,,
+Nov 2005, pp. 591–595.
+
+Comparison of BER Irregular PEG codes (1024, 518, 15, 8)
+
+Fig. 6. Comparison of the error performance of two stage decoder and
+averaging decoder [4].
+
+the second stage. The second stage of the proposed decoder
+solves the elementary trapping sets by ﬂipping certain bits.
+This behaviour is observed only for some instances of the
+simulations.
+V. C ONCLUSION
+In this paper, we proposed a two stage decoding algorithm
+for LDPC codes that reduces the error performance of the
+
+5
+
+

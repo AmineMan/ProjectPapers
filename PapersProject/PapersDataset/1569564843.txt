@@ -1,0 +1,1378 @@
+Title:          ISIT12.dvi
+Creator:        dvips(k) 5.99 Copyright 2010 Radical Eye Software
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Sat May 19 13:15:30 2012
+ModDate:        Tue Jun 19 12:54:38 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      350435 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569564843
+
+The Effect of Zero-Rate Encoders in the
+Multi-terminal Source Coding Problem
+Badri N. Vellambi
+Institute for Telecommunications Research
+University of South Australia
+Email: {badri.vellambi}@unisa.edu.au
+
+S. So far, in a general network setting, the equivalence of
+asymptotically zero-rate communication and no transmission
+remains an open question. It is to be noted that even though
+consistency and continuity are related, the former is not a
+consequence of the latter. While continuity relates to the
+smooth variation of the rate region with respect to the demand
+and source distribution, consistency is closely related to the
+asymptotic convergence properties of block codes.
+This work investigates the effect of asymptotically zero-rate
+communication, and is similar to [5], [6] where the authors
+have investigated the effect of deleting an edge with a given
+link capacity on the rate region. Though both works deal with
+general network settings, they only consider asymptotically
+lossless reconstructions of sources. This work investigates
+the effect of zero-rate links speciﬁcally in the multi-terminal
+source coding (MTSC) problem involving discrete memoryless
+sources (DMSs) and lossy reconstruction requirements. In [7],
+we showed that asymptotically zero-rate communication is
+equivalent to no communication in the MTSC problem provided (a) there are only two sources, or (b) certain Markov
+relation holds. In this work, we present two independent
+results regarding zero-rate encoders. First, we introduce a new
+concept of code stability, using which, we provide a sufﬁcient
+condition for the equivalence to hold. Next, we prove that
+zero-rate links can always be ignored (in any MTSC problem)
+when the decoder can use the strictly causal past realizations
+of the sources to generate source reconstructions.
+The remainder of the paper is organized as follows. Section II deﬁnes the notations employed, and Section III deﬁnes
+the problem setup and various associated terminologies. Finally, Section IV presents the new results and their proofs.
+
+Abstract—This work focuses on the multi-terminal source
+coding problem and presents conditions when a rate point
+achievable with asymptotically zero-rate messages over a subset
+of network links, is also achievable with no communication over
+links in that subset. We show that when there exist block codes
+that are robust to small changes in the source distribution, zerorate encoders can be ignored, i.e., their outgoing links can be
+assumed to be absent. Additionally, we show that when the
+decoder is given access to the strictly causal past realizations
+of the sources, zero-rate encoders can always be ignored.
+
+I.
+
+INTRODUCTION
+
+In source coding, a rate region is deﬁned as the set of all
+achievable rate points. It is possible to design block codes
+that convey messages at rates arbitrarily close to such rate
+points while meeting the reconstruction requirements. Over
+the last ﬁfty years, the rate regions of several canonical
+problems have been successfully characterized. Some such
+problems include the rate-distortion, the Wyner-Ziv, and the
+Slepian-Wolf problems [1]. The rate regions of these problems
+are presented as single-letter characterizations that involve
+not only random variables deﬁned in the problem setup, but
+also additional auxiliary random variables [1], [2]. Although
+single-letter characterizations are complete descriptions of
+rate regions, they do not readily reveal the properties of the
+underlying rate regions. For example, in many networks, it is
+not straightforward to verify if a rate point is contained in the
+rate region. In problems without single-letter characterisations,
+it is harder to extract meaningful properties of rate regions
+such as continuity, slope of the rate region boundary, etc.
+Recently, Gu et al. have established the continuity of rate
+regions w.r.t. reconstruction demands and source distributions
+for several classes of network problems [3], [4].
+A property of rate regions similar to continuity is the consistency of rate regions. In engineering, it is common that when a
+solution to a problem is known, a solution to a subproblem or
+restriction of the problem is also obtained (almost) directly. In
+information theory, the question consistency is formulated as
+follows: “Can asymptotically zero-rate communication on any
+subset of edges be critical to the inclusion of a rate point in the
+rate region?” An investigation in this direction would provide
+conditions when a rate point with zero rates on a subset S
+of links is also achievable with no transmission on links of
+
+II. N OTATIONS
+For n ∈ N, [n]
+{1, . . . , n}. 0n and 1n represent the
+1 × n all-zero and all-one vectors, respectively. For two real
+vectors A, B ∈ Rn , we denote A
+B to mean Ai ≤ Bi
+for each i ∈ [n]. Uppercase letters (e.g., X, Y ) are reserved
+for random variables (RVs) and the script versions (e.g., X ,
+Y ) correspond to their alphabets, whose sizes are assumed
+to be ﬁnite in this work. The realizations of RVs are usually
+denoted by lowercase letter (e.g., x, y). Subscripts are used
+for components of vectors and generally indicate time indices,
+i.e., x[n] denotes a vector of length n and xj represents the
+j th component of x[n] . Superscripts in brackets to refer to
+
+This research was supported in part by the Australian Research Council
+Discovery Project Grant DP1094571.
+
+1
+
+(i)
+
+source indices, e.g., Xj is the j th component of the ith source.
+The Hamming distortion measure on a set X is denoted by
+X
+∂H , and E denotes the expectation operator, whose subscript
+(if any) represents the probability measure with which the
+expectation is taken. For a ﬁnite alphabet X , P(X ) denotes
+the set of all probability distributions on X . For p ∈ P(X ),
+p⊗n denotes the joint distribution of n i.i.d. RVs, each with
+distribution p. For p ∈ P(X ) and p ∈ P(X n ), we denote
+˜
+1
+X ˜
+d (˜, p⊗n ) =
+Eq ∂H (Xi , Xi ),
+(1)
+p
+min
+q∈J (p,p⊗n ) n
+˜
+
+([l])
+
+∆i (X[n] )
+(i)
+
+X[n]
+
+qX[n] X[n] ∈ P(X n × X n ) :
+˜
+
+qX[n] = p
+˜
+˜
+qX[n] = p⊗n
+
+.
+
+(l)
+
+(l)
+
+(4)
+
+∆ + κR (ε1 , δ1 )1l
+
+d (q, p⊗n1 ) ≤ F (ε1 )
+
+p⊗n1
+
+q
+
+(1)
+X[n]
+
+(l)
+
+(2)
+X[n]
+
+p
+
+M (l)
+
+d (q, p⊗n2 ) ≤ F (ε2 )
+
+⊗n2
+
+∆ + κR (ε2 , δ2 )1l
+0l
+
+q
+(l)
+X[n]
+
+Fig. 2. F -Stability guarantees the existence of codes robust to small changes
+in source distribution.
+
+(i)
+
+n
+(i)
+encoders φ[n] : X (i) → M (i) ,
+n
+(i)
+ψ[n] : M (1) × · · · × M (l) → X (i) ,
+([l])
+A1. E ∆(X[n] ) ≤ ∆ + κR (ε, δ)1l ,
+
+1 We
+
+(1)
+
+We begin this section with the deﬁnition of a new concept
+that we call stability, which will later be used as a sufﬁcient
+criterion for zero rate removability.
+
+For i ∈ [l], the reconstruction {Xj }j∈N is a sequence
+of elements from the reconstruction alphabet X (i) ; these
+reconstructions are evaluated using the distortion measures
+∂ (i) : X (i) × X (i) → [0, 1]1 , i ∈ [l]. A rate-distortion pair
+(R, ∆) (R1 , . . . , Rl , ∆1 , . . . , ∆l ) is said to be achievable if
+for each ε, δ > 0, there exists an (ε, δ)-achievable block code
+(1)
+(l)
+(1)
+(l)
+(φ[n] , . . . , φ[n] , ψ[n] , . . . , ψ[n] ). That is, ∀ ε, δ > 0, ∃ n ∈ N,
+
+([l])
+
+(1)
+
+IV. N EW R ESULTS
+
+The multi-terminal source coding problem
+
+∆(X[n] )
+
+(i)
+
+ψ[n] φ[n] (X[n] ), . . . , φ[n] (X[n] ) ,
+
+([l])
+
+Deﬁnition 1: An achievable rate point R is termed
+(F, µR , κR )-stable if the following hold:
+B1. F : (0, 1) → (0, ∞) is increasing and continuous with
+limx↓0 F (x) = 0; µR : R≥0 → R≥0 , κR : R2 → R≥0
+≥0
+with lim µR (x) = 0 and
+lim κR (x, y) = 0.
+x→0
+
+i ∈ [l], and decoders
+
+where
+([l])
+
+can generalize the range of the distortion functions to
+affecting any of the results in this work.
+
+(2)
+
+[ni ]
+
+R+
+
+(x,y)→(0,0)
+
+B2. there exist: (i) {(εi , δi )}i∈N with (εi , δi ) → 02 and (ii) a
+sequence of codes Ci of length ni symbols that operates
+at rate R + µR (εi )1l , and offers an average distortion of
+no more than ∆ + κR (εi , δi )1l .
+ni
+ni
+p
+B3. ∀ p ∈ P(X (1) ×· · ·×X (l) ) s.t. d (˜, p⊗ni ) ≤ F (εi ),
+˜
+([l])
+([l])
+˜ [ni ] )∆Ci (x[ni ] )
+∆ + κR (εi , δi )1l , where,
+([l]) p(x
+x
+
+i ∈ [l], satisfying:
+
+(∆1 (X[n] ), . . . , ∆l (X[n] )),
+
+(ε, δ) → 02
+
+Fig. 1.
+
+(l)
+φ[n]
+
+(3)
+
+j=1
+
+(ε, δ) → 02
+
+(l)
+
+X[n]
+
+M (2)
+
+(i)
+
+(2)
+
+(2)
+φ[n]
+
+M (1)
+
+(1)
+
+Source
+
+(2)
+
+X[n]
+
+(1)
+φ[n]
+
+ψ[n] , ψ[n] , . . . , ψ[n]
+
+(1)
+
+(i)
+
+∂ (i) (Xj , Xj ),
+
+A2. |M (i) | ≤ 2n(Ri +µR (ε)) , where µR : (0, 1) → (0, 1) s.t.
+limε↓0 µR (ε) = 0.
+Given ∆, a rate point R is said to be achievable if (R, ∆)
+is achievable in the above sense. The set of all achievable rate
+points is denoted by RMTSC (∆)[pX (1) ···X (l) ]. This set, known
+as the rate region, is convex and closed [1]. Further, for a given
+source and reconstruction requirement, let R be an achievable
+rate point with zero rates on edges outgoing from encoders
+in S. Then, we say that S is zero-rate removable (ZRR) at
+R if R are achievable even when constant messages are sent
+over the edges corresponding to encoders in S (i.e., when
+the edges of S are deleted). Similarly, we say a subset of
+encoders S is ZRR if any achievable rate R with zero rates
+on all edges emanating from encoders in S, is also achievable
+when constant messages are sent over those edges.
+
+III. P ROBLEM D EFINITION
+(1)
+(l)
+Given a DMS emitting (Xj , . . . , Xj )j∈N with each ltuple having a joint distribution pX (1) ···X (l) , the MTSC problem
+aims to identify rates at which encoders have to separately
+(i)
+encode sequences {Xj }j∈N , i ∈ [l], using l encoders so
+that l suitably distorted reconstructions can be constructed
+at the joint decoder (see Fig. 1). In this work, we assume
+that each source is required to be reconstructed within a
+certain ﬁdelity constraint under a given distortion measure.
+This setting subsumes cases where some sources need not
+be reconstructed, while some others need to be reconstructed
+losslessly (i.e., with vanishing block-error probability). Since
+the MTSC problem is a canonical network problem [4], the
+absence of a reconstruction requirement or lossless reconstruction for a particular source can be treated as requiring
+a Hamming distortion of either 0.5 or 0, resp.
+X[n]
+
+n
+
+and κR : (0, 1)2 → (0, 1) s.t. lim(ε,δ)→(0,0) κR (ε, δ) = 0.
+
+i∈[n]
+
+J (˜, p⊗n )
+p
+
+1
+n
+
+([l])
+
+just as in (2), ∆Ci (x[ni ] ) denotes the distortion the code
+Ci offers for the source realization x[ni ] .
+
+without
+
+2
+
+ing s.t. limx→0 g(x) = 0, and lim F (x) = 0. Let G(x) = F (x)
+g(x)
+x→0 g(x)
+and let C be an (ε, δ, G, µR , κR )-stable code of length n at
+R. Then, there exists an (ε, δ, F, µR , κR )-stable code of length
+˜
+n⌈ nεµ1 (ε) ⌉ at R, where κR (ε, δ) κR (ε, δ) + g(ε).
+˜
+R
+
+In this deﬁnition, we call Ci an (εi , δi , F, µR , κR )-stable code
+at R. For notational ease, we say a rate point R is F -stable
+or (F, µR , κR )-stable when the context is clear. Lastly, a rate
+region is F -stable if each rate point in the region is F -stable.
+F -stability, illustrated in Fig. 2, guarantees the existence of
+sequences of codes that approach the required rate and distortion vectors, with the additional property that they operate
+well for any block-DMS whose distribution is ‘close’ to p;
+the level of this closeness is deﬁned by the d -metric. One
+natural question that arises is: “What rate points are stable
+under some function F?” The following theorem shows that
+stable codes exist for the bulk (mathematically, the topological
+interior [8]) of the rate region.
+
+Proof: Let C ′ be the concatenation of C with itself N
+times. We claim that C ′ is an (ε, δ, F, µR , κR )˜
+stable code of length N n at R. We only need to show that C ′
+Nn
+Nn
+satisﬁes B3. To do so, let p ∈ P(X (1) ×· · ·×X (l) ) s.t.
+˜
+⊗N n
+˜
+p
+) ≤ F (ε). From (1), there exist RVs X[N n] , X[N n]
+d (˜, p
+p
+with joint distribution qX ([l]) ,X ([l]) ∈ J (˜, p⊗N n ) s.t.
+˜
+⌈ nεµ1 (ε) ⌉
+R
+
+[N n]
+
+F (ε)≥
+
+Theorem 1: Consider the MTSC problem for a DMS
+pX (1) ···X (l) with full support, and reconstruction requirement
+∆ ≥ 0. Let F : (0, 1) → (0, ∞) be a continuous, increasing
+function with limx↓0 F (x) = 0. Then, any achievable point R
+in the topological interior of the rate region is F -stable.
+Outline of Proof 1: Since R is an interior point, R′ R−
+η1l is an interior point for some η > 0, and by [9, Thm. 5],
+R′ ∈ A∗ for some k ∈ N (see [9]). Using strong-typicalityk
+based code design techniques, we can build codes treating the
+emitted symbols as those from a super-source p⊗k . Let C
+be one such code over n super-symbols (nk source symbols)
+operating at a rate no more than R′ + η1l , and satisfying
+([l])
+Pr[∆+η1l ∆C (X[nk] )] < e−nζ for some ζ = ζ(p, k, η) > 0.
+Let S
+
+([l])
+{x[nk]
+
+: ∆ + η1l
+
+([l])
+Pr[X[nk]
+
+([l])
+∆C (X[nk] )}.
+
+∈ B(S, nkδ)] <
+
+nkδ
+
+e
+
+−nζ
+
+X
+Eq ∂ H
+
+[N n]
+
+(1)
+
+×···×X (l)
+
+j:
+
+X
+Eq ∂ H
+
+([l])
+
+˜
+(Xi
+
+([l])
+
+, Xi
+
+n
+
+j=1 jn−n<i≤jn
+jn
+
+Let J
+
+(1)
+
+×···×X (l)
+
+n
+
+i=jn−n+1
+
+([l])
+
+˜
+(Xi
+
+([l])
+
+, Xi
+
+)
+
+)
+
+. (7)
+
+≤ G(ε) .
+
+Then, by an application of Markov inequality on (7), we see
+that |J| ≥ N (1 − g(ε)). Since C is (ε, δ, G, µR , κR )-stable,
+qX ([l])
+˜
+
+([l])
+
+(j−1)n+1
+
+˜
+x
+
+˜
+···Xjn
+
+(˜ )∆C (˜ )
+x
+x
+
+∆ + κR (ε, δ)1l j ∈ J
+.
+1l
+j∈J
+/
+
+Averaging the above over all indices j ∈ [N ], we obtain
+
+|J|
+|J c |
+(∆ + κR (ε, δ)1l ) +
+1l ,
+N
+N
+
+x
+x
+qX ([l]) (˜ )∆C ′ (˜ )
+˜
+˜
+x
+
+Then,
+
+2nkh(δ) Ω
+ω
+
+1
+N
+
+N
+
+[N n]
+
+which, together with the bound for |J|, proves the claim.
+Theorem 2: Consider the MTSC problem for DMS
+pX (1) ···X (l) with reconstruction requirement ∆ ≥ 0. Suppose
+that for some ν > 0, R (r1 , . . . , rl−1 , 0) is achievable and
+1
+((µR (ε)) 2 −ν , µR , κR )-stable. Then {l} is ZRR at R.
+Proof: Let p be a shorthand for pX (1) ···X (l) and let
+0 < ε, δ < 1. By a direct application of Lemma 1 with
+g 2(µR )ν , one can identify a (ε, δ, F, µR , κR )-stable code
+˜
+of length n ∈ N s.t. nµR (ε) > 1 , F (ε)
+2 µR (ε), and
+ε
+κR (ε, δ) κR (ε, δ) + 2(µR (ε))ν .
+˜
+(1)
+(l)
+Let (fC , . . . , fC ) denote the encoders of C, and let gC
+denote the decoder. The aim is to construct a code C ′ s.t. (a)
+the message sent over the lth edge is a constant, and (b) the
+difference between the average distortions offered by C and
+C ′ is bounded above by some function of (ε, δ). To do so,
+we will construct a distribution ‘close’ to p⊗n . Select j ∗ ∈
+2
+(l)
+(l)
+M (l) = [⌈2nµR (ε) ⌉] s.t. Pr[fC (X[n] ) = j ∗ ] > 2− log 2 nµR (ε) .
+n
+Let B(j ∗ , nF (ε)) denote the set of all vectors in X (l) that
+differ in fewer than nF (ε) components from some vector in
+n
+(l) −1 ∗
+fC
+(j ) ⊆ X (l) . Now, by Lemma 4 of App. A,
+
+,
+
+where B(S, nkδ), deﬁned in Lemma 4, is a blown-up set of
+S ⊆ (X (1) × · · · × X (l) )n , and Ω, ω are the maximum and
+minimum positive values pX (1) ···X (l) takes. Now, let p satisfy
+˜
+⊗nk
+˜ ([l]) , X ([l]) with
+d (˜, p
+p
+) ≤ F (ε). Then, there exist RVs X[nk]
+[nk]
+distributions p and p⊗nk satisfying (1). Let Z be the Hamming
+˜
+([l])
+˜ ([l])
+distance between X[nk] and X[nk] when viewed as vectors over
+X (1) ×· · ·×X (l) , and let E be the event that Z > nk F (ε).
+By Markov inequality [1, p. 168], Pr[E] ≤ F (ε). Then,
+p(S) = p(S|E] Pr[E] + p(S|E c ] Pr[E c ]
+˜
+˜
+˜
+([l])
+
+≤ Pr[E] + Pr[X[nk] ∈ B(S, nk F (ε))]
+(5)
+√
+√
+Ω nk F (ε) −nζ
+e
+. (6)
+≤ F (ε) + 2nkh( F (ε))
+ω
+By careful selection of n, and by allowing ε to be suitably
+small, we can make the above probability arbitrarily small.
+Thus, the code C performs well for the source p. Hence, C
+˜
+is a stable code for R for a suitable choice of parameters.
+Note that at F -stable rate points, there exist codes robust
+to small variations in the source distribution. This fact can be
+used to show zero-rate removability at F -stable rate points.
+Before we present that result, we prove a technical result that
+shows that concatenation of stable codes yield stable codes.
+Lemma 1: Let F, g : (0, 1) → (0, ∞) be s.t.: (a) F meets
+the conditions in B1 (Def. 1); (b) g is continuous and increas-
+
+2
+
+(l)
+
+Pr[X[n] ∈ B(j ∗ , nF (ε))] < e−2nµR (ε) ≤ e− ε .
+/
+n
+
+n
+
+(8)
+
+Deﬁne ξ : X (l) → X (l) by
+
+z[n] ∈ B(j ∗ , nF (ε))
+/
+ z[n]
+
+n
+X (l)
+ξ(z[n] )=
+min
+∂H (yi , zi ) z[n] ∈ B(j ∗ , nF (ε)).
+ arg(1) −1
+
+i=1
+∗
+y[n] ∈fC
+
+3
+
+(j )
+
+(1)
+
+n
+
+n
+
+(l)
+
+(b)
+
+(x[n] , . . . , x[n] ) ∈ X (1) × · · · × X (l) ,
+
+Deﬁne for x
+
+(1)
+
+(l−1)
+
+p(x[n] , . . . , x[n]
+
+r(x) =
+(l)
+
+(l)
+
+, w[n] ).
+
+(l) −1
+
+x∈X (1) n ×···×X (l−1) n ×fC
+
+(9)
+
+(c)
+
+n
+
+n
+
+Lemma 2: d (r, p⊗n ) ≤ F (ε).
+([l])
+(1)
+(l)
+Proof: Let X[n]
+(X[n] , . . . , X[n] ) be a random vec([l])
+
+(1)
+
+tor with distribution p⊗n . Let Y[n]
+(l−1)
+
+(l) −1
+
+fC
+
+(l)
+
+(Y[n] , . . . , Y[n] )
+
+(1)
+
+, ξ(X[n] )) . Since ξ maps B(j ∗ , nF (ε)) to
+
+(j ∗ ), and is an identity map over B(j ∗ , nF (ε))c ,
+1
+n
+
+n
+
+i=1
+
+X
+∂H
+
+(1)
+
+×···×X (l)
+
+([l])
+
+Xi
+
+([l])
+
+, Yi
+
+≤ F (ε).
+
+([l])
+
+From (9), we see that Y[n] is distributed according to r.
+Hence, the claim holds.
+Deﬁne a new code C ′ operating over n symbols as follows:
+(i)
+(l)
+(i)
+(i) encoders φC ′ fC for 1 ≤ i < l; (ii) encoder φC ′ maps
+n
+(l)
+each x[n] ∈ X (l) to j ∗ ; and (iii) decoder ψC ′ gC .
+
+(i)
+
+xj (m)
+
+(1)
+
+(l−1)
+
+(l)
+
+([l])
+
+, ξ(X[n] )); this output Y[n]
+
+has a distribu-
+
+(1)
+(l−1)
+fC , . . . , fC
+
+tion of r. The encoders
+are then employed
+([l])
+on Y[n] in the second stage to generate an index from
+M (1) × · · · × M (l−1) × {j ∗ }. The decoder for C ′ , which
+is the same as that of C, is ﬁnally used to generate the
+(1)
+(l)
+reconstructions (X[n] , . . . , X[n] ) from the generated indices.
+Let ∆C (x), ∆C ′ (x) denote the per-symbol distortion vectors
+measured between the sources and their reconstructions using
+codes C and C ′ , respectively, when the source realization is
+n
+n
+([l])
+X[n] = x ∈ X (1) × · · · × X (l) . Since C is F -stable and
+d (r, p⊗n ) ≤ F (ε),
+r(x)∆C (x)
+
+∆ + κR (ε, δ)1l .
+˜
+
+ε≥
+
+(10)
+
+x
+
+(i)
+
+j=1
+
+(i)
+
+E ∂ (i) (Xj , Xj )
+=
+n
+
+([l])
+
+([l])
+
+p(x[n] ) ∆C ′ (x[n] )
+
+(11)
+
+([l])
+
+x[n]
+
+([l])
+
+([l])
+
+p(x[n] ) ∆C ′ (x[n] )
+
+=
+
+i
+
+i
+
+(l)
+
+([l])
+
+x[n] :x[n] ∈B(j ∗ ,nF (ε))
+([l])
+
+([l])
+
+p(x[n] ) ∆C ′ (x[n] )
+
++
+
+i
+
+(12)
+
+([l]) (l)
+/
+x[n] :x[n] ∈B(j ∗ ,nF (ε))
+
+(a)
+
+≤
+
+([l])
+
+([l])
+
+2
+
+p(x[n] ) ∆C ′ (x[n] ) i + e− ε (13)
+([l])
+
+([l])
+
+(i)
+
+∂ (i) (x, z)pX (i) |M ([l]) x m .
+
+(16)
+
+j
+
+x∈X (i)
+
+1
+H(M (l) )
+≥
+n
+n
+
+([l])
+
+I(M (l) ; Xj
+
+([l])
+
+X[j−1] M ([l−1]) ). (17)
+
+j∈[n]
+
+Notice that in the above expression, the average of n nonnegative numbers is bounded above by ε. Therefore, deﬁne
+√
+([l])
+([l])
+Jε {j : I(M (l) ; Xj X[j−1] M ([l−1]) ) ≤ ε}.
+√
+Markov inequality and (17), together imply |Jε | ≥ n(1 − ε).
+Note that for j ∈ Jε the arguments from (18)-(22) hold (see
+next page). In these arguments, (a) follows from Pinsker’s inequality [2, p. 44], and (b) follows from Jensen’s inequality [1,
+p. 169]. Also, in both (20) and (21), the norms are computed
+([l])
+by viewing the conditional distributions as vectors in R|X | .
+Now, deﬁne G[j] as in (23) (see next page) and let Ej be the
+([l])
+event that (X[j−1] , M[l−1] ) ∈ G[j]. Then, by using Markov
+inequality and (22), we can show that
+√
+8
+(24)
+Pr Ej ≥ 1 − 4ε whenever j ∈ Jε .
+
+The expected distortion between the ith source and its reconstruction from code C ′ can now be computed as follows:
+n
+
+(15)
+
+Proof: The expected distortion between a source and its
+reconstruction is minimized if the conditional expected distortion (conditioned on the messages output by the encoders) is
+minimized. This minimization yields the condition in (16).
+Theorem 3: Consider a modiﬁcation of the MTSC problem
+for the DMS pX (1) ···X (l) with reconstruction requirement ∆
+where the decoder can use in addition to the received encoded
+messages, the strictly causal past source realizations (i.e.,
+([l])
+X[j−1] ) to reconstruct the j th symbol of each source. In this
+modiﬁed MTSC problem, any subset S of encoders is ZRR.
+Proof: We assume S = {l}, since the result can be
+extended to non-singleton sets by induction. Consider an
+achievable rate point R = (R1 , . . . , Rl−1 , 0). Let ε > 0 and
+let Cε be a code of length n, operating at rate R + ε1l , and
+offering an expected distortion of no more ∆ + ε1l . Let for
+(i)
+(i)
+i ∈ [l], M (i) = φ[n] (X[n] ). Then,
+
+([l])
+
+(i)
+
+arg min
+z∈X
+
+Encoders φC ′ , i ∈ [l], map input X[n] to an element of
+M (1) × · · · × M (l−1) × {j ∗ } in two stages. In the ﬁrst, the
+encoders convert their input to generate an intermediate output
+n
+n
+([l])
+(1)
+(l)
+Y[n] ∈ X (1) × · · · × X (l) , where (Y[n] , . . . , Y[n] )
+(X[n] , . . . , X[n]
+
+2
+
+where (a) follows from (8), and because ∆C ′ (x[n] ) i ≤ 1;
+n
+(b) from (9), and because ∆C ′ (x) = ∆C (x) for x ∈ X (1) ×
+n
+(l) −1 ∗
+· · · × X (l−1) × fC
+(j ), ; and ﬁnally (c) from (10).
+Thus, starting from a sequence {Cεi ,δi }i∈N of F -stable
+codes for rate point R and demand ∆, we can construct
+′
+{Cεi ,δi }i∈N whose: (a) rates approach R; (b) reconstructions
+have an expected distortion approach ∆; and (c) encoders for
+X (l) are constant functions. Thus, {l} is ZRR at R.
+Lemma 3: Consider a DMS pX (1) ···X (l) with MTSC en(i)
+(i)
+(i)
+(i)
+coders {φ[n] : X[n] → M (i) : i ∈ [l]}. Let M (i) φ[n] (X[n] )
+(1)
+(l)
+for i ∈ [n]. Then, for each m ∈ M
+× · · · × M , the
+(i)
+optimal reconstructions xj (m), i ∈ [l], j ∈ [n] that minimize
+the distortion measures are given by:
+
+Note that r ∈ P(X (1) × · · · × X (l) ), and r(x) = 0 when
+n
+n
+(l) −1 ∗
+x ∈ X (1) ×· · ·×X (l−1) × B(j ∗ , nF (ε))\fC
+(j ) . Also,
+
+(1)
+
+(j ∗ )
+
+≤ ∆i + κR (ε, δ) + e− ε ,
+˜
+
+(l)
+
+w[n] ∈ξ −1 (x[n] )
+
+(X[n] , . . . , X[n]
+
+2
+
+r(x) ∆C (x) i + e− ε (14)
+
+=
+
+(l)
+
+x[n] :x[n] ∈B(j ∗ ,nF (ε))
+
+4
+
+√
+
+1
+([l])
+([l])
+I(M (l) ; Xj |X[j−1] M ([l−1]) )
+log2 e
+
+ε>
+
+(18)
+
+([l])
+
+p(x[j−1] , m([l]) )
+
+=
+
+log2 e
+
+([l])
+m([l]) ,x[j−1]
+
+(a)
+
+≥
+
+(b)
+
+√
+4
+4ε ≥
+
+([l])
+
+([l])
+
+p(x[j−1] , m([l]) )
+
+p(Xj
+
+([l])
+m([l]) ,x[j−1]
+
+1
+2
+
+≥
+
+⇒
+
+1
+2
+
+([l])
+
+DKL p(Xj
+
+([l])
+
+([l])
+
+p(x[j−1] , m([l]) ) p(Xj
+([l])
+m([l]) ,x[j−1]
+
+([l])
+
+([l])
+
+p(x[j−1] , m([l]) ) p(Xj
+([l])
+
+m([l]) ,x[j−1]
+
+([l])
+
+([l])
+
+(m([l]) , x[j−1] ) : p(Xj
+
+G[j] =
+
+X[j−1] M
+
+([l])
+
+([l])
+
+|x[j−1] , m([l]) ) − p(Xj
+([l])
+
+([l])
+
+([l])
+
+([l])
+
+|x[j−1] , m([l]) ) − p(Xj
+
+([l])
+
+([l])
+
+m([l]) , x[j−1] ) − p(Xj
+
+([l])
+
+|x[j−1] , m([l−1]) )
+
+(19)
+2
+
+([l])
+
+|x[j−1] , m([l−1]) )
+
+2
+
+([l])
+
+|x[j−1] , m([l−1]) )
+
+([l])
+
+|x[j−1] , m([l−1]) )
+
+([l])
+
+m([l−1]) , x[j−1] )
+
+(20)
+
+1
+
+2
+1
+
+≤
+
+1
+
+√
+8
+
+(21)
+
+1
+
+.
+
+(22)
+
+4ε .
+
+(23)
+
+code that uses the ﬁrst l − 1 encoders of Cε , sends a constant
+message, say 1, from the lth encoder, and uses Decoder B
+′
+to reconstruct the sources. √
+Then, Cε offers a distortion of no
+√
+8
+more than ∆ + (ε + ε + 2 4ε)1l . Since ε is arbitrary, {l} is
+ZRR at R. Lastly, since R is arbitrary in RM T SC [pX (1) ···X (l) ]
+except for Rl = 0, we see that {l} is ZRR.
+R EFERENCES
+[1] G. Kramer, “Topics in multi-user information theory,” Found. Trends
+Commun. Inf. Theory, vol. 4, no. 4-5, pp. 265–444, 2007.
+[2] I. Csiszár and J. Körner, Information Theory: Coding Theorems for
+Discrete Memoryless Systems. Cambridge University Press, 2011.
+[3] W.-H. Gu and M. Effros, “On the continuity of achievable rate regions
+for source coding over networks,” in IEEE Information Theory Workshop, Sept. 2007, pp. 632–637.
+[4] W.-H. Gu, “On achievable rate regions for source coding over networks,”
+Ph.D. dissertation, California Inst. of Tech., 2009.
+[5] T. Ho, M. Effros, and S. Jalali, “On equivalence between network
+topologies,” in 48th Annual Allerton Conference on Communication,
+Control, and Computing, 29 Aug.-1 Oct. 2010, pp. 391–398.
+[6] S. Jalali, M. Effros, and T. Ho, “On the impact of a single edge on the
+network coding capacity,” in 2011 Information Theory and Applications
+Workshop, Feb. 2011.
+[7] B. N. Vellambi and R. Timo, “Multi-terminal source coding: Can zerorate encoders enlarge the capacity region?” in 2010 International Zurich
+Seminar, 3-5 March 2010, pp. 21–24.
+[8] A. W. Naylor and G. R. Sell, Linear Operator Theory in Engineering
+and Science. Springer, 2000.
+[9] S. Jana and R. E. Blahut, “Canonical description for multiterminal source
+coding,” in IEEE International Symposium on Information Theory, July
+2008, pp. 697–701.
+[10] K. Marton, “Bounding d -distance by informational divergence: A
+method to prove measure concentration,” The Annals of Probability,
+vol. 24, no. 2, pp. 857–866, 1996.
+
+(i)
+
+mal reconstruction (say Xj,B ) at Decoder B for the same sym([l])
+bol depends only on p (i) ([l]) ([l−1]) (·|x[j−1] , m([l−1]) ).
+Xj
+
+([l])
+
+|x[j−1] , m([l]) ) − p(Xj
+
+Consider two decoders for the code Cε : Decoder A that utilizes M (i) , i ∈ [l], and the strictly causal source side information, and Decoder B that uses messages M (i) , i ∈ [l − 1], and
+the available source side information. Suppose that at the j th
+instant, Decoder A receives messages M ([l]) = m([l]) and side
+([l])
+([l])
+information X[j−1] = x[j−1] . Then, by an argument similar to
+that in Lemma 3, one can show that the optimal reconstruction
+(i)
+(say Xj,A ) at Decoder A for the j th symbol of the ith source de([l])
+pends on p (i) ([l]) ([l]) (·|x[j−1] , m([l]) ). Similarly, the optiXj
+
+([l])
+
+|x[j−1] , m([l]) ) || p(Xj
+
+X[j−1] M
+
+Consider the expected distortions of the j th symbol of the ith
+source offered by the two decoders. When j ∈ Jε and the event
+Ej occurs, the difference between the conditional expectations
+of the distortion for the j th symbol of the ith source can be
+bounded above as follows.
+√
+8
+(i)
+(i)
+(i)
+(i)
+(25)
+E[|∂ (i) (Xj , Xj,A ) − ∂ (i) (Xj , Xj,B )| Ej ] ≤ 4ε
+This is because (23) guarantees that the difference between
+the corresponding a posteriori probability distributions (under
+√
+the L1 -norm) is no more than 8 4ε, and because the distortion function is bounded above by 1. Further, when event
+([l])
+c
+Ej : (M[l] , X[j−1] ) ∈ G[j] occurs, the difference between the
+/
+corresponding conditional expected distortions is no more than
+unity. Therefore, for j ∈ Jε , the difference in the expected
+distortions for j th symbol of the ith source offered by the two
+(i)
+(i)
+(i)
+(i)
+decoders E[|∂ (i) (Xj , Xj,A ) − ∂ (i) (Xj , Xj,B )|] is no more
+√
+√
+c
+than Pr [Ej ] 8 4ε + Pr [Ej ] ≤ 2 8 4ε. Averaging over all indices
+j ∈ [n], we see that the difference in the expected distortions
+for the ith source offered by the two decoders is no more than
+√
+√
+√
+√
+√
+n ε
+n−n ε
+8
+8
+(26)
+· 1 ≤ 2 4ε + ε.
+2 4ε +
+n
+n
+Thus, encoders of Cε along with Decoder B offer a distortion
+√
+√
+′
+of no more than ∆ + (ε + ε + 2 8 4ε)1l . Deﬁne Cε as a
+
+A PPENDIX A
+M EASURE C ONCENTRATION IN DMS S
+Lemma 4: [10] For p ∈ P(X ), |X | < ∞, and A ⊆ X n ,
+2
+
+p
+
+⊗n
+
+[B(A, nδ)] ≥ 1 − e
+
+−2n
+
+δ−
+
+1
+2n
+
+where B(A, nδ) {y[n] : ∃ x[n] ∈ A s.t.
+nδ}, and (x)+ max(x, 0).
+
+5
+
+log
+
+1
+p⊗ (A)
+
+n
+j=1
+
++
+
+X
+∂H
+
+,
+
+(27)
+
+(yj , xj ) ≤
+
+

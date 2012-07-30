@@ -1,0 +1,1131 @@
+Creator:        TeX
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Fri May 18 11:11:50 2012
+ModDate:        Tue Jun 19 12:55:44 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      452269 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569566095
+
+A Strong Converse for Joint Source-Channel Coding
+Da Wang
+
+Amir Ingber
+
+Yuval Kochman
+
+EECS Dept., MIT
+Cambridge, MA, USA
+Email: dawang@mit.edu
+
+EE Dept., Stanford University
+Stanford, CA, USA
+Email: ingber@stanford.edu
+
+School of CSE, HUJI
+Jerusalem, Israel
+Email: yuvalko@cs.huji.ac.il
+
+d(·, ·) and distortion threshold D, we say that the scheme is
+successful if
+n
+1
+ˆ
+d(Si , Si ) ≤ D,
+n i=1
+
+Abstract—We consider a discrete memoryless joint sourcechannel setting. In this setting, if a source sequence is reconstructed with distortion below some threshold, we declare
+a success event. We prove that for any joint source-channel
+scheme, if this threshold lower (better) than the optimum average
+distortion, then the success probability approaches zero as the
+block length increases. Furthermore, we show that the probability
+has an exponential behavior, and evaluate the optimal exponent.
+Surprisingly, the best exponential behavior is attainable by a
+separation-based scheme.
+
+ˆ
+where S and S are the source and reconstruction sequences
+respectively.
+For a discrete memoryless source (DMS) P , when the rate
+R is below the rate-distortion function (RDF) R(P, D)2 , the
+success probability has exponent [5, Problem 9.6]:
+
+I. I NTRODUCTION
+
++
+¯
+ES (R, D, P ) = min D (Q P ) + |R(Q, D) − R| . (2)
+
+Information Theory produces sharp results: if the required
+performance is below a threshold, set by the problem parameters, then it may be achieved reliably, i.e., with probability
+that approaches one; otherwise, it can not. Converse results
+may be divided into categories, according to their strength,
+measured asymptotically as the block length goes to inﬁnity.
+A weak converse indicates it is impossible for the probability
+of success to approach one. A strong converse further states
+that the success probability must approach zero. Beyond that,
+one may be interested in the rate in which this happens;
+speciﬁcally, an “exponentially-strong” converse states that
+the probability of success must approach zero exponentially.
+Indeed, for source and channel coding exponentially strong
+converses are known.
+For a discrete memoryless channel (DMC) W , when the
+required channel rate R is above the channel capacity C,
+the probability of correct decoding decays with the following
+exponent [1] (Earlier in [2] it appears in a different form and
+proven to be a lower bound on the exponent):1
+¯
+Esp (R, W ) = max min D (V
+
+W |Φ) + |R − I (Φ, V )|
+
+Q
+
+Similarly, this exponent is closely related to the lossy source
+coding excess-distortion exponent for R > R(P, D) [6]:
+ES (R, D, P ) =
+
+Esp (R, W )
+
+V
+
+max
+Φ
+
+min
+
+D (V
+
+D (Q P ) .
+
+In joint source-channel coding (JSCC), an average distortion
+D is achievable if R(D) < ρC and not achievable if the
+opposite holds, where ρ is the bandwidth expansion factor
+(number of channel uses per source sample). This result, due
+to Shannon [7], immediately implies a weak converse for the
+excess-distortion probability.
+A (non-exponentially) strong converse for JSCC has been
+shown for special cases: Quadratic-Gaussian [8], channels
+with additive noise [9], and lossless JSCC [10]. However, it
+has not been explicitly shown in general. We note that the
+strong converse for JSCC may be derived using previously
+known results. One approach is to use equivalence to channel
+coding [11] and the strong channel converse. Alternatively,
+JSCC dispersion [12] implies a strong converse. Another
+approach is the information spectrum method, which is used
+by Han in deriving the lossless JSCC case [10].
+In this work we formally prove the strong converse
+for general lossy JSCC, and furthermore our converse is
+“exponentially-strong”. We do that by showing that whenever
+R(D) > ρC, the probability of not having excess distortion
+for the optimal JSCC scheme decays with exponent
+¯
+EJSCC (P, D, W, ρ)
+
++
+
+.
+(1)
+This exponent is closely related the sphere-packing exponent,
+which is an upper bound on the exponent of the error probability when R < C [3] (in this form, [4]):
+Φ
+
+min
+Q:R(Q,D)≥R
+
+W |Φ) .
+
+V :I(Φ,V )≤R
+
+In lossy source coding, dual results can be obtained where
+the excess-distortion probability plays the role of error probability. Speciﬁcally, for some single-letter distortion measure
+
+¯
+¯
+= min[ES (R, D, P ) + ρEsp (R/ρ, W )],
+R
+
+(3)
+
+where the channel and source exponents are given by (1)
+and (2), respectively. This is analogous to the exponent of
+
+This work of the second author was supported in part by the NSF Center
+for Science of Information.
+1 For deﬁnition of of divergence and mutual information, see notation
+section in the sequel.
+
+2 We
+
+1
+
+write R(P, D) as R(D) when P is understood from context.
+
+d(s, s) = 0. The rate-distortion function (RDF) of a DMS
+ˆ
+ˆ
+(S, S, P, d) is given by
+R(P, D) =
+min
+I(P, Λ),
+(7)
+
+the excess distortion: the JSCC excess-distortion exponent for
+R(D) < ρC is upper-bounded by [13], [14]
+min [ES (R, D, P ) + ρEsp (R/ρ, W )] .
+R
+
+(4)
+
+ˆ
+Λ:EP,Λ d(S,S)≤D
+
+where
+
+II. N OTATIONS
+This paper uses lower case letters (e.g. x) to denote a
+particular value of the corresponding random variable denoted
+in capital letters (e.g. X). Vectors are denoted in bold (e.g. x
+or X). Calligraphic fonts (e.g. X ) represent a set and P (X )
+denotes all the probability distributions on the alphabet X . We
+use Z+ and R+ to denote the set of non-negative integer and
+real numbers respectively.
+Our proofs make use of the method of types, and follow the
+notations in [5]. Speciﬁcally, the type of a sequence x with
+length n is denoted by Px , where the type is the empirical
+distribution of this sequence, i.e., Px (a) = N (a|x)/n ∀a ∈ X ,
+where N (a|x) is the number of occurrences of a in sequence
+x. The subset of the probability distributions P (X ) that can
+be types of n-sequences is denoted as
+Pn (X )
+
+{P ∈ P (X ) : nP (x) ∈ Z+ , ∀x ∈ X }
+
+d(s, ˆ)
+s
+
+(5)
+
+E(D)
+
+(n)
+
+E D, CJSCC
+
+III. M AIN R ESULT
+The following formally states the exponential decay rate of
+the probability of success at distortion thresholds R(D) > ρC,
+thus also serves as a strong converse for JSCC coding.
+
+x∈X
+
+Theorem 1 (Strong Converse for JSCC). Given a disˆ
+crete memoryless JSCC problem with DMS (S, S, P, d),
+DMC (X , Y, W ) and bandwidth expansion factor ρ, let
+¯
+E (P, D, W, ρ) be the exponent of the success probability for
+the best sequence of JSCC schemes:
+1
+¯
+¯
+E (P, D, W, ρ)
+lim − log P En (D) .
+n→∞
+n
+¯
+¯
+Then E (P, D, W, ρ) exists and is given by EJSCC (P, D, W, ρ)
+(3).
+
+W ( y | x) Φ(x),
+x∈X
+
+x,y
+
+E(D, fJ;n , gJ;n )
+
+(n)
+
+A discrete memoryless channel W : X → Y is deﬁned
+with its input alphabet X , output alphabet Y, and conditional
+distribution W ( · | x) of output letter Y when the channel input
+letter X equals x ∈ X . Also, we abbreviate W ( · | x) as Wx (·)
+for notational simplicity. Given a channel input distribution Φ,
+we denote the corresponding channel output distribution, and
+mutual information by
+
+Φ(x)W (y|x) log
+
+(8)
+
+CJSCC
+
+Given two distributions P and Q, their KL-divergence is
+deﬁned as
+P (x)
+.
+(6)
+D (P Q)
+P (x) log
+Q(x)
+
+I (Φ, W )
+
+d(si , si )
+ˆ
+i=1
+
+ˆ
+{d(S, S) > D},
+ˆ
+¯
+and the correct event E(D)
+E(D)c = {d(S, S) ≤ D}.
+Finally, for block length n, we deﬁne the best correct event
+¯
+En (D) as an event that corresponds to the JSCC scheme that
+produces the minimum error probability, i.e.,
+¯
+¯
+En (D) ∈ arg min P E(D) .
+
+Py|x : Px × Py|x ∈ Pn (X × Y) .
+
+ΦW (y)
+
+n
+
+is the distortion between the source and reproduction words s
+and ˆ and I(P, Λ) is the mutual information over a channel
+s
+with input distribution P (S) and conditional distribution Λ :
+ˆ
+S → S.
+A discrete memoryless joint source-channel coding problem
+ˆ
+consists of a DMS (S, S, P, d), a DMC W : X → Y and a
+(n)
+bandwidth expansion factor ρ ∈ R+ . A JSCC scheme CJSCC
+is comprised of an encoder mapping fJ;n : S n → X ρn and
+ˆ
+decoder mapping gJ;n : Y ρn → S n . Given a source block s,
+the encoder maps it to a sequence x = fJ;n (s) ∈ X ρn and
+transmits this sequence through the channel. The decoder receives a sequence y ∈ Y ρn distributed according to W (·|x),
+and maps it to a source reconstruction ˆ. The corresponding
+s
+distortion is given by (8). For a given JSCC scheme, we deﬁne
+the error event E(D) as
+
+and sometimes Pn is used to emphasize the fact that Pn ∈
+n
+Pn (X ). A type class TPx is deﬁned as the set of sequences
+that have type Px . Given some sequence x, a sequence y of
+the same length has conditional type Py|x if N (a, b|x, y) =
+Py|x (a|b)N (a|x), and we call the set of all y that have
+conditional type V given x the V -shell of x, and denote it
+n
+by TV (x). Furthermore, the random variable corresponding to
+the conditional type of a random vector Y given x is denoted
+as PY|x . In addition, the possible conditional type given an
+input distribution Px is denoted as
+Pn (Y|Px )
+
+1
+n
+
+W (y|x)
+.
+ΦW (y)
+
+Remark 1 (Direct part of the theorem). The achievability
+¯
+of the exponent EJSCC (P, D, W, ρ) can be proven by a
+separation scheme, noting that the probability of no excess
+distortion is lower-bounded by the product of the probability
+of no excess distortion in source coding and the probability of
+no channel error, for any chosen digital rate R. These proba¯
+¯
+bilities have exponents ES (R, D, P ) and ρEsp (R/ρ, W ), respectively (see Section I). Thus this proves separation theorem
+for the (rather strange from a practical point of view) case
+
+And we denote channel capacity and the set of capacityachieving distributions by C(W )
+maxΦ I (Φ, W ) and
+Π(W ) {Φ : I (Φ, W ) = C(W )} respectively.
+A discrete memoryless source is deﬁned with source alphaˆ
+bet S, reproduction alphabet S, source distribution P and a
+ˆ
+distortion measure d : S × S → R+ . Without loss of generality,
+ˆ
+we assume that for any s ∈ S there is s ∈ S such that
+ˆ
+
+2
+
+0.9
+¯
+EJSCC (P, D, W, ρ)
+
+¯
+EJSCC (P, D, W, ρ) = 0.2
+0.3
+0.2
+
+ρC
+
+R(P, D)
+
+R
+
+C
+
+0
+
+Fig. 1. When R(P, D) > ρC, (3) is always minimized by a rate R such that
+¯
+R(P, D) > R > ρC, where in the plot the dashed curve is ρEsp (R/ρ, W ),
+¯
+¯
+the dotted curve is ES (R, D, P ) and the solid curve is ES (R, D, P ) +
+¯
+ρEsp (R/ρ, W ).
+
+R(P, D)1
+
+R
+
+¯
+Fig. 2. EJSCC (P, D, W, ρ) with ρ = 1, Hb (D) = 0.1 and Hb (ε) =
+¯
+0.3, where in the plot the dashed curve is Esp (R, W ), the dotted curve is
+¯
+¯
+¯
+ES (R, D, P ) and the solid curve is ES (R, D, P ) + Esp (R, W ).
+
+where one is interested in achieving a distortion threshold with
+exponentially small probability.
+
+where
+
+Remark
+2
+(Alternative
+form). The
+exponent
+¯
+EJSCC (P, D, W, ρ) may be written explicitly as a function of
+the source and channel parameters as follows:
+¯
+EJSCC (P, D, W, ρ)
+
+is the probability of having channel input type Φ given that
+the source type is Q, G(Q, Φ) is the set of source sequences
+n
+in TQ that are mapped (via JSCC encoder fJ;n ) to channel
+codewords with type Φ, i.e.,
+
+= min
+Q∈P(S)
+
+D (Q P ) + max
+
+min
+
+Φ∈P(X ) V ∈P(Y|X )
+
++ |R(Q, D) − ρI(Φ, V )|
+
++
+
+.
+
+ρD (V
+
+α(Q, Φ)
+
+G(Q, Φ)
+
+W |Φ)
+
+n
+m
+s ∈ TQ : x = fJ;n (s) ∈ TΦ ,
+
+(12)
+
+(13)
+
+and p(n) is a polynomial that depends only on the source,
+channel and reconstruction alphabet sizes and ρ.
+
+(9)
+
+The proof of this lemma is based upon the exponential
+channel coding converse [1], combined with the following.
+
+We use this form in the proof of Theorem 1, rather than
+the form (3). The equivalence proof can be shown by letting
+Φ∗ , V ∗ and Q∗ be the optimizing distributions for (9), and
++
+noting that regardless of the | · | operation taking effect,
+(9) can be decomposed into two parts that correspond to
+¯
+¯
+ES (R, D, P ) and ρEsp (R/ρ, W ). We omit the detailed proof
+due to space limits.
+
+Lemma 3 (Restricted D-ball size). Given source type P and
+a reconstruction sequence ˆ, deﬁne restricted D-ball as
+s
+n
+{s ∈ TP : d(s, ˆ) ≤ D} .
+s
+
+B(ˆ, P, D)
+s
+Then
+
+|B(ˆ, P, D)| ≤ (n + 1)|S||S | exp {n [H(P ) − R(P, D)]} .
+s
+ˆ
+
+Remark 3 (Minimizing rate). When R(P, D) ≤ ρC, proving
+¯
+Theorem 1 is trivial as E (P, D, W, ρ) = 0. When R(P, D) >
+ρC, the rate minimizing (3) satisﬁes R(P, D) > R > ρC,
+as shown in Fig. 1. This is parallel to the excess-distortion
+exponent where R(P, D) < ρC, where (4) is minimized by a
+rate R(P, D) < R < ρC.
+
+This result is similar to the bound over the size of the
+restricted D-ball presented in Lemma 3 in [15]. However, This
+bound is uniform over source types and does not depend on
+the reconstruction alphabet. We prove this lemma, as well as
+Lemma 2 and the converse part of Theorem 1 in the next
+section3 . We conclude this section by presenting the following
+example.
+
+The proof of our main result builds on the following key
+lemma, which shows for any JSCC scheme, when the source,
+channel and channel codebook are all constant-composition,
+the probability of a no-excess distortion event vanishes exponentially with the exponent in (11).
+
+Example 1. Transmitting a binary symmetric source (BSS)
+over a binary symmetric channel (BSC) subject to the Hamming distortion with the bandwidth expansion factor ρ = 1.
+For a BSS, the RDF is given by R(P, D) = 1 − Hb (D),
+where Hb (·) is the binary entropy function. It can be shown
+that (1) is always minimized by a uniform distribution and:
+¯
+ES (R, D, P ) = |1 − Hb (D) − R|+ .
+
+Lemma 2 (Joint source channel coding converse with ﬁxed
+types). For a JSCC problem, we deﬁne all the channel outputs
+that covers some source sequence s with distortion D as
+ˆ
+B(s, D), i.e.,
+ˆ
+B(s, D) {y ∈ Y m : d(s, gJ;n (y)) ≤ D}
+(10)
+where m = ρn and gJ;n is the JSCC decoder. Then given a
+source type Q ∈ Pn (S) and a channel input type Φ ∈ Pn (X ),
+for a distortion D and a channel with constant composition
+conditional distribution V ∈ Pm (Y|Φ), we have
+m
+ˆ
+TV (f (si )) ∩ B(si , D)
+1
+m
+|G(Q, Φ)|
+|TV (f (si ))|
+
+For a BSC with cross over probability ε, the capacity is
+given by C(W ) = 1 − Hb (ε). it can be shown that the
+optimizing Φ and V in (1) are always symmetric and:
+¯
+Esp (R, W ) = |R − 1 + Hb (ε)|+ .
+Therefore, when R(P, D) > C(W ), i.e. D < ε,
+¯
+¯
+¯
+EJSCC (P, D, W ) = inf [ES (R, D, P ) + Esp (R, W )]
+R
+
+= R(P, D) − C(W ) = Hb (ε) − Hb (D) .
+
+si ∈G(Q,Φ)
+
++
+p(n)
+≤
+exp−n[R(Q,D)−ρI(Φ,V )] ,
+α(Q, Φ)
+
+P [PX = Φ|PS = Q]
+
+(11)
+
+3 Lemma 2 and Lemma 3 are also used in [12] for JSCC dispersion, but
+the proofs were not included there.
+
+3
+
+¯
+EJSCC (P, D, W )
+Hb (ε)
+
+b) Bounding the sum of numerator: Since s ∈ G(Q, Φ),
+ˆ
+y ∈ TV (f (s)) ∩ B(s, D)
+
+0.2
+
+⇒s ∈ B(gJ;n (y), Q, D) ∩ G(Q, Φ).
+
+0.1
+
+Therefore,
+any
+y
+will
+be
+counted
+at
+most
+|B(gJ;n (y), Q, D) ∩ G(Q, Φ)|
+times.
+According
+to Lemma 3, this is upper bounded by Bu
+=
+ˆ
+(n + 1)|S||S | exp {n [H(Q) − R(Q, D)]} . In addition, it
+is obvious that
+ˆ
+TV (f (si )) ∩ B(si , D) ⊂ T n ,
+
+0
+0
+
+0.02
+
+ε 0.06
+
+0.04
+
+D
+
+¯
+Fig. 3. E (P, D, W, ρ) as a function of D for Example 1, where ρ = 1 and
+Hb (ε) = 0.3.
+
+Ψ
+
+For the case of Hb (D) = 0.1 and Hb (ε) = 0.3, we plot the
+¯
+¯
+¯
+ES (R, D, P ), Esp (R, W ) and EJSCC (P, D, W ) in Fig. 2.
+¯JSCC (P, D, W ) as a function of D when
+Finally, we show E
+Hb (ε) = 0.3 in Fig. 3.
+
+si ∈G(Q,Φ)
+
+where Ψ = ΦV is the channel output distribution corresponding to Φ. Therefore,
+α(Q, Φ)
+ˆ
+TV (f (si )) ∩ B(si , D)
+|G(Q, Φ)|
+
+IV. P ROOFS
+
+si ∈G(Q,Φ)
+
+A. Proof of Key Lemmas
+≤
+
+Proof of Lemma 3: Let P ∈ Pn (S) be a given type
+and let Q be the type of ˆ. Then the size of the set of source
+s
+codewords with type P that are D-covered by ˆ is
+s
+
+1
+n
+TQ
+
+Λ:
+
+n
+si ∈TQ
+
+n
+n
+{s ∈ TP : Ps,ˆ = P × Λ} = TΛ (ˆ) ,
+s
+˜ s
+
+|S|
+log(n + 1) − H (Q) + ρH(Ψ)
+n
+ˆ
+|S| S
+log(n + 1) + H(Q) − R(Q, D)
++
+n
+≤ρH(Ψ) − R(Q, D)
+
+˜
+ˆ
+˜
+where Λ is the reverse channel from S to S such that Q× Λ =
+P × Λ. Therefore,
+
+≤
+
+n
+TΛ (ˆ)
+˜ s
+˜
+ˆ
+Λ:EQ,Λ [d(S,S)]≤D,
+˜
+
+ˆ
+
+max
+
+˜
+ˆ
+Λ:EQ,Λ [d(S,S)]≤D,
+˜
+
+˜
+H Λ|Q
+
+.
+
+ˆ
+|S| S
+
+|S|
+log(n + 1).
+n
+n
+Combining the bounds for both numerator and denominator,
+we have
+
+
+ˆ
+TV (f (si )) ∩ B(si , D)
+1
+α(Q, Φ)
+
+log 
+n
+|G(Q, Φ)|
+TV (f (si ))
++
+
+Note
+min
+
+ˆ
+Λ:EP,Λ [d(S,S)]≤D
+
+= H(P ) −
+
+I (P, Λ)
+
+max
+
+˜
+ˆ
+Λ:EQ,Λ [d(S,S)]≤D
+˜
+
+n
+Bu |TΨ | .
+
+
+1
+1
+n
+log 
+Bu |TΨ |
+n
+n
+TQ
+
+ˆ
+
+≤(n + 1)|S||S | exp n
+
+n
+TQ
+
+m
+|TΨ | ≤ exp {mH (Ψ)} ,
+
+
+ˆ
+E[d(S,S)]≤D,
+P Λ=Q
+
+|B(ˆ, P, D)| ≤
+s
+
+1
+
+n
+(n + 1)−|S| exp {nH (Q)} ≤ TQ
+
+Note there are at most (n + 1)|S||S | joint types, and
+
+R(P, D) =
+
+ˆ
+TV (f (si )) ∩ B(si , D) ≤
+
+Bu
+
+Noting
+
+n
+{s ∈ TP : Ps,ˆ = P × Λ} .
+s
+
+|B(ˆ, P, D)| =
+s
+
+(14)
+
+˜
+H Λ|Q ,
+
+log(n + 1) +
+
+si ∈G(Q,Φ)
+
+hence
+
+≤ ρH(Ψ) − ρH (V |Φ) − R(Q, D) +
+
+|B(ˆ, P, D)| ≤ (n + 1)|S||S | exp {n [H(P ) − R(P, D)]} .
+s
+ˆ
+
+|X | |Y|
+log(m + 1)
+m
+
+ˆ
+|S| S
+
+|S|
+log(n + 1) +
+log(n + 1).
+n
+n
+Note m = ρn ≤ ρn, let
+ˆ
+p(n) = (ρn + 1) ρ|X ||Y| (n + 1)(|S||S |+|S|) ,
++
+
+Proof for Lemma 2: In our proof, we ﬁrst bound the
+denominator in (11) uniformly for all si , and then bound the
+sum of the numerator over all si , as done in [1] for the channel
+error exponent.
+a) Bounding the denominator: Standard results in
+n
+method of types [5] show for f (s) ∈ TΦ ,
+
+(15)
+
+and the proof is completed.
+
+m
+(m + 1)−|X ||Y| exp {mH (V |Φ)} ≤ |TV (f (s))| ,
+
+B. Proof of Main Result
+
+1
+|X ||Y|
+exp {−mH (V |Φ)} .
+m (f (s))| ≤ (m + 1)
+|TV
+
+Proof for Theorem 1 (converse part): As discussed in
+Remark 3, we only need to consider the case that ρC(W ) <
+R(P, D).
+
+4
+
+¯
+Let P E(D) = 1 − P [E(D)]. By following a similar
+argument in [1, Proof of Lemma 5], clearly,
+
+Combining (16) and (17), we have
+¯
+P E(D)
+
+¯
+P E(D)
+
+≤p (n) exp
+
+¯
+≤(n + 1)|S| max P E(D) PS = Q e−nD(Q
+
+P)
+
+Q∈Pn (S)
+
+−n
+
+min
+
++ min
+
+min
+
+Φ∈Am V ∈Pm (Y|Φ)
+
+Let m
+ρn and let Am denote the channel codebook in
+this JSCC scheme. Then conditioning again, we have
+
+Recall the deﬁnitions for G(Q, Φ) and α(Q, Φ) in (12) and
+(13), noting that given a source type, all strings within a type
+class are equally likely, hence
+α(Q, Φ) =
+
+|{s ∈
+
+: x = fJ;n (s) ∈
+n
+|TQ |
+
+≥ min
+Q∈P(S)
+
+|G(Q, Φ)|
+=
+.
+n
+|TQ |
+
+Φ∈Am
+
+The authors thank Ligong Wang for helpful discussions.
+[1] G. Dueck and J. K¨ rner. Reliability function of a discrete memoryless
+o
+channel at rates above capacity. IEEE Trans. Info. Theory, 25(1):82–85,
+Jan. 1979.
+[2] S. Arimoto. On the converse to the coding theorem for discrete
+memoryless channels (corresp.). IEEE Trans. Info. Theory, 19(3):357–
+359, May 1973.
+[3] C. E. Shannon, R. G. Gallager, and E. R. Berlekamp. Lower bounds to
+error probability for coding on discrete memoryless channels, part I-II.
+Inform. Contr., 10:65–103,522–552, 1967.
+[4] E. A. Haroutunian. Estimates of the error exponent for the semicontinuous memoryless channel. Problemy Pered. Inform. (Problems
+of Inform. Trans.), 4, No. 4:37–48, 1968.
+[5] I. Csisz´ r and J. K¨ rner. Information Theory - Coding Theorems for
+a
+o
+Discrete Memoryless Systems. Cambridge University Press, New York,
+second edition, 2011.
+[6] K. Marton. Error exponent for source coding with a ﬁdelity criterion.
+IEEE Trans. Info. Theory, 20:197–199, Mar. 1974.
+[7] C. E. Shannon. Coding theorems for a discrete source with a ﬁdelity
+criterion. In Institute of Radio Engineers, International Convention
+Record, volume 7, pages 142–163, 1959.
+[8] Y. Zhong, F. Alajaji, and L.L. Campbell. Joint source-channel coding
+excess distortion exponent for some memoryless continuous-alphabet
+systems. IEEE Trans. Info. Theory, 55(3):1296–1319, Mar. 2009.
+[9] Y. Zhong, F. Alajaji, and L.L. Campbell. Joint source-channel coding
+error exponent for discrete communication systems with Markovian
+memory. IEEE Trans. Info. Theory, 53(12):4457–4472, Dec. 2007.
+[10] T. S. Han. Information-Spectrum Method in Information Theory.
+Springer, November 2002.
+[11] M. Agarwal, A. Sahai, and S. Mitter. Coding into a source: a direct
+inverse rate-distortion theorem. In Proceedings of the 44th Annual
+Allerton Conference on Communication, Control and Computing, 2003.
+[12] D. Wang, A. Ingber, and Y. Kochman. The dispersion of joint sourcechannel coding. In 49th Annual Allerton Conference on Communication,
+Control and Computing, Monticelo, IL, Sep. 2011.
+[13] I Csisz´ r. Joint source-channel error exponent. Prob. of Cont. and Info.
+a
+Th., 9(5):315–328, 1980.
+[14] I. Csisz´ r. On the error exponent of source-channel transmission with a
+a
+distortion threshold. IEEE Trans. Info. Theory, 28:823–838, Nov. 1982.
+[15] Z. Zhang, E.H. Yang, and V. Wei. The redundancy of source coding
+with a ﬁdelity criterion. 1. known statistics. IEEE Trans. Info. Theory,
+43:71–91, Jan. 1997.
+
+P Py|x = V |Px = Φ
+V ∈Pm (Y|Φ)
+
+¯
+· P E(D)|PS = Q, Px = Φ, Py|x = V
+
+.
+
+Next we use Lemma 2 to assert,
+¯
+P E(D)|PS = Q, Px = Φ, Py|x = V
+1
+|G(Q, Φ)|
+
+m
+ˆ
+TV (f (si )) ∩ B(si , D)
+m
+|TV (f (si ))|
+
+si ∈G(Q,Φ)
+
+p(n)
++
+exp −n |R(Q, D) − ρI (Φ, V )|
+α(Q, Φ)
+
+where p(n) is a polynomial given in (15). Therefore,
+¯
+P E(D)|PS = Q
+P Py|x = V |Px = Φ
+
+α(Q, Φ)
+Φ∈Am
+
+V ∈Pm (Y|Φ)
+
+p(n)
+α(Q, Φ)
+
+· exp{−n[R(Q, D) − ρI(Φ, V )]}
+≤
+
+p(n) exp −m
+Φ∈Am
+
+min
+
+V ∈Pm (Y|Φ)
+
+D (V
+
+· exp −n |R(Q, D) − ρI (Φ, V )|
+≤
+
+p(n) · exp
+Φ∈Am
+
+.
+
+R EFERENCES
+α(Q, Φ)
+
+≤
+
+W |Φ)
+
+ACKNOWLEDGEMENT
+
+Φ∈Am
+
+≤
+
+ρD (V
+
+Finally, it can be shown that the exponents in (9) and (3)
+are equivalent, whose proof is omitted due to space limit. This
+completes the proof.
+
+¯
+α(Q, Φ)P E(D)|PS = Q, Px = Φ
+
+≤
+
+min
+
+Φ∈P(X ) V ∈Pn (Y|Φ)
++
+
+¯
+P E(D)|PS = Q
+
+=
+
+D (Q P ) + max
+
++ |R(Q, D) − ρI(Φ, V )|
+
+Therefore,
+
+=
+
+,
+
+where p (n) is some polynomial in n. Therefore,
+¯
+E (P, D, W, ρ)
+1
+¯
+= lim inf − log P En (D)
+n→∞
+n
+
+¯
+P [PX = Φ|PS = Q] P E(D)|PS = Q, Px = Φ .
+
+m
+TΦ }|
+
+W |Φ)
+
++
+
+Φ∈Am
+
+n
+TQ
+
+ρD (V
+
++ |R(Q, D) − ρI(Φ, V )|
+
+¯
+P E(D)|PS = Q
+=
+
+D (Q P )
+
+Q∈Pn (S)
+
+. (16)
+
+−n
+
+min
+
+V ∈Pm (Y|Φ)
++
+
++ |R(Q, D) − ρI(Φ, V )|
+
+W |Φ)
+
++
+
+ρD (V
+
+W |Φ)
+(17)
+
+5
+
+

@@ -1,0 +1,1309 @@
+Title:          gap.dvi
+Creator:        dvips(k) 5.991 Copyright 2011 Radical Eye Software
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Thu May 17 09:24:06 2012
+ModDate:        Tue Jun 19 12:55:42 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      402113 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569566137
+
+Signal Space Alignment for the Gaussian Y-Channel
+Anas Chaaban and Aydin Sezgin
+Chair of Communication Systems
+RUB, 44780 Bochum, Germany
+Email: anas.chaaban@rub.de, aydin.sezgin@rub.de
+
+Abstract—A multi-way communication network with three
+nodes and a relay is considered. The three nodes in this socalled Y-channel, communicate with each other in a bi-directional
+manner via the relay. Studying this setup is important due to its
+being an important milestone for characterizing the capacity of
+larger networks. A transmit strategy for the Gaussian Y-channel
+is proposed, which mimics a previously considered scheme for the
+deterministic approximation of the Y-channel. Namely, a scheme
+which uses nested-lattice codes and lattice alignment is used, to
+perform network coding. A new mode of operation is introduced,
+named ‘cyclic communication’, which interestingly turns out to
+be an important component for achieving the capacity region of
+the Gaussian Y-channel within a constant gap.
+Fig. 1.
+
+I. I NTRODUCTION
+Multi-way communications was ﬁrst studied by Shannon
+in [1] where the so-called two-way channel was considered.
+This setup consists of two nodes which act as transmitters
+and receivers in the same time, and its capacity is not known
+in general. By combining relaying and multi-way communications, we obtain the so-called multi-way relay channel.
+For instance, the two-way relay channel (or the bi-directional
+relay channel) consists of two nodes communicating with each
+other in both directions, via a relay. This setup was introduced
+in [2] and later studied in [3]–[6] leading to an approximate
+characterization of the capacity region of the Gaussian case.
+The multi-way relay channel with more nodes was also
+studied in [7] in a multicast scenario. In [8], the common-rate
+capacity of the Gaussian multi-way relay channel, where each
+user multi-casts a message to all other users, was obtained
+by using the so-called ‘functional decode-and-forward’. A
+broadcast variant of this multi-way relaying setup, the so called
+Y-channel, was considered in [9]. Each user in the Y-channel
+sends two independent messages, one to each other user.
+[9] considered the multiple-input multiple-output Y-channel.
+Namely, 3 MIMO nodes communicate via a MIMO relay. A
+transmission scheme exploiting signal space alignment [10],
+[11] was proposed, and its corresponding achievable degrees
+of freedom were calculated. In [12], it was shown that if
+the relay has more than ⌈3M/2⌉ antennas where M is the
+number of antennas at the other nodes, then the cut-set bound
+is asymptotically achievable, thus characterizing the degrees
+of freedom of the MIMO Y-channel under this condition.
+We consider the single antenna Gaussian Y-channel. This
+case is not covered in [12], and as it turns out, the statement
+in [12] does not apply here. In fact, it was shown in [13] that
+further bounds (other than the cut-set bounds) are required to
+
+The Y-channel showing incoming and outgoing messages.
+
+characterize the degrees of freedom of the single antenna Ychannel. Thus, in the single antenna case, the cut-set bounds
+are not asymptotically achievable. From this point of view,
+it is worth to study the capacity of the SISO Y-channel as a
+separate problem.
+In this paper, we propose a transmission scheme for the
+Gaussian Y-channel which utilizes nested-lattice codes in a
+functional decode-and-forward fashion, and derive its achievable rate region. It turns out that this scheme achieves the
+capacity region of the Y-channel within a constant gap.To this
+end, the system model is given in section II. A toy example
+illustrating our scheme for the deterministic Y-channel is given
+in Section III. The transmit strategy for the Gaussian Y-channel
+is described in Section IV and we conclude with section V.
+II. S YSTEM M ODEL
+The Y-channel is the multi-way relaying setup shown in
+Fig. 1. Each user Uk sends a message to each other user via
+the relay. A code for the Y-channel, an achievable rate tuple
+R = (R12 , R13 , R21 , R23 , R31 , R32 ), and the 6-dimensional
+capacity region is deﬁned in the classical information theoretic
+sense (see [13], [14]). In our Gaussian Y-channel (GYC), the
+variables are real valued. The relay receives
+yri = h1 x1i + h2 x2i + h3 x3i + zri ,
+in time instant i, where zri is a realization of an independent
+and identically distributed Gaussian noise with zero mean
+and unit variance (i.i.d. N (0, 1)) and h1 , h2 , h3 ∈ R are the
+channel coefﬁcients from the users to the relay. Without loss
+of generality, we assume that h2 ≥ h2 ≥ h2 . The received
+3
+2
+1
+
+1
+
+Downlink
+
+Uplink
+
+Fig. 2. The DYC of the toy example with an illustration of our transmit
+strategy in the uplink. The circles denote bit positions, and the arrows denote
+bit pipes.
+
+Fig. 3. The DYC of the toy example with an illustration of our transmit
+strategy in the downlink.
+
+signal at user j is given by
+
+U3 , U1 and U2 , respectively, thus forming the cycle 1 → 3 →
+2 → 1. Here, we use a cyclic strategy as follows. Let U1 send
+c13 on both relay levels 2 and 3, U2 send c21 on relay level
+3, and U3 send c32 on relay level 2. The relay thus receives
+c13 ⊕ c32 and c13 ⊕ c21 on levels 2 and 3, respectively (Fig.
+2). It then forwards these sums on levels 3 and 4 (3). Each
+receiver receives c13 ⊕ c21 and c13 ⊕ c32 , and by adding them
+up, it can construct c32 ⊕ c21 . Then, given its transmitted bit,
+each receiver is able to calculate the other two bits of the
+cyclic information ﬂow, which achieves Rc .
+Finally, Ru can be easily achieved using a uni-directional
+strategy. Here, U1 and U2 send one bit each, u13 and u21 ,
+to levels 5 and 4 at the relay, respectively (Fig. 2). The relay
+forwards these bits on levels 2 and 5, respectively, and users U1
+and U3 are then able to recover both desired bits. This achieves
+Ru and consequently, we have achieved the rate tuple R.
+The given scheme consumed all the levels at the relay to
+achieve R (see Fig. 2 and 3). If we replace the cyclic strategy,
+which uses 2 levels at the relay for communicating 3 bits, by
+the uni-directional strategy, then we do not leave enough levels
+free to achieve Ru . This shows the importance of the cyclic
+strategy. Finally, we note that it was shown in [14] that the
+given scheme achieves the capacity region of the DYC. In the
+next section, we extend this scheme to the Gaussian case, with
+the aid of nested-lattice codes.
+
+yji = hj xri + zji ,
+where xri is the relay signal at time instant i, and zji is a
+realization of an i.i.d. N (0, 1) noise. The channel are assumed
+to be reciprocal, and all nodes have a power constraint P , i.e.,
+n
+n
+1
+1
+2
+2
+i=1 E[Xri ] ≤ P , and n
+i=1 E[Xji ] ≤ P . Here, n is the
+n
+length of the code. To illustrate our achievable scheme for the
+GYC, we start by considering a toy example for the linear-shift
+deterministic [15] Y-channel (DYC) deﬁned in [14].
+III. A C APACITY ACHIEVING S CHEME FOR THE DYC
+In this section, we describe brieﬂy the network coding based
+scheme in [14] by considering the following toy example. In
+the DYC, we distinguish between three different patterns of
+information ﬂow as follows:
+b) Bi-directional: where Rjk and Rkj are both non-zero for
+some j, k ∈ {1, 2, 3}, j = k.
+c) Cyclic: where Rjk , Rkl , and Rlj are non-zero while
+Rkj = Rlk = Rjl = 0 for distinct j, k, l ∈ {1, 2, 3}.
+u) Uni-directional: where neither case b) nor c) holds.
+A. DYC: A Toy Example
+Consider the DYC shown in Fig. 2. The received signal
+at the relay is given here by the mod 2 sum of the bits
+arriving at each level. Let us choose the following rate tuple
+R = (0, 2, 2, 1, 0, 2), and see how our scheme achieves this
+rate tuple. It can easily be checked, that the schemes used in
+the bi-directional relay channel [5] (only cases b and u above)
+do not sufﬁce to achieve this rate tuple.
+We write R = Rb + Rc + Ru , where Rb = (0, 0, 0, 1, 0, 1),
+c
+R = (0, 1, 1, 0, 0, 1), and Ru = (0, 1, 1, 0, 0, 0). Notice that
+Rb resembles bi-directional information ﬂow between U2 and
+U3 with a rate of 1 bit per channel use in each direction. To
+achieve this rate tuple, let U2 send one bit b23 on relay level
+1 in the uplink, and let U3 also send 1 bit b32 on the same
+level (Fig. 2). Thus, the relay receives b23 ⊕ b32 on level 1.
+The relay then forwards b23 ⊕ b32 on the highest level in the
+downlink (Fig. 3). Upon receiving b23 ⊕b32 , U2 and U3 are able
+to extract their desired bits, b32 and b23 , respectively, which
+achieves Rb . We call this strategy the bi-directional strategy.
+The rate tuple Rc resembles cyclic information ﬂow, where
+U1 , U2 , and U3 want to send 1 bit each c13 , c21 , and c32 to
+
+IV. T HE GYC: A N ACHIEVABLE S CHEME
+We adapt the scheme in Section III to the Gaussian case.
+Namely, we utilize network coding realized with lattice codes
+[16] to mimic the DYC scheme. We start with a brief introduction on lattice codes, before proceeding to describe the
+achievable scheme.
+A. Nested-lattice codes
+A lattice Λ with n-dimensions is a subset of Rn , where
+λ1 , λ2 ∈ Λ ⇒ λ1 + λ2 ∈ Λ. The fundamental Voronoi of Λ,
+V(Λ), is the Voronoi region around the origin. Nested-lattice
+codes are constructed using two lattices, a coarse lattice Λc
+and a ﬁne lattice Λf where Λc ⊂ Λf . We denote a nestedlattice code by the pair (Λf , Λc ), where the codewords are
+chosen as the points λf ∈ Λf ∩ V(Λc ). The power and the
+rate of such code is deﬁned by Λc and by the size of the set
+
+2
+
+2) Encoding cyclic messages: Consider mc , mc and mc
+12
+23
+31
+c
+(all with rate R123 ) constituting the cycle 1 → 2 → 3 → 1.
+To communicate these messages, U1 and U3 encode mc and
+12
+c
+n
+mc to cn = (λc − dc ) mod Λc
+12,c and c31 = (λ31 −
+12
+12
+12
+31
+c
+c
+c
+c
+d31 ) mod Λ31,c using nested-lattice codes (Λ12 , Λ12,c ) and
+c
+c
+(Λc , Λc ) with powers P12 and P31 , respectively.
+31
+31,c
+c
+Now, U2 sends m23 encoded in two different signals: one
+signal aligned with λc , and one signal aligned with λc . This
+12
+31
+mimics the scheme used for the cyclic messages in the the
+DYC (Section III). Alignment is guaranteed using the nestedlattice construction, in a similar way as for the bi-directional
+messages (Section IV-B1). Namely, U2 maps mc to cn =
+23
+23
+˜
+˜
+˜
+˜23
+(λc − dc ) mod Λc and cn = (λc − dc ) mod Λc ,
+23,c
+23
+23
+23,c
+23
+23
+using nested-lattice codes (Λc , Λc ) = h1 (Λc , Λc ) and
+23
+23,c
+12
+12,c
+h2
+c
+˜ ˜
+˜c
+(Λc , Λc ) = h3 (Λc , Λc ) with powers P23 and P23 ,
+23,c
+23
+31,c
+31
+h2
+respectively, such that
+
+Λf ∩ V(Λc ), respectively. In the sequel, we are going to need
+the following result from [6].
+Assume that two nodes A and B, with messages mA
+and mB , respectively, want to exchange these messages via
+a relay node. The two nodes use the same nested-lattice
+codebook (Λf , Λc ) with power P , and rate R to encode their
+messages to xn = (λk − dk ) mod Λc , k ∈ {A, B}, where
+k
+λA , λB ∈ Λf ∩ V(Λc ), dA and dB are n-dimensional dither
+vectors uniformely distributed over V(Λc ) [17], known at all
+n
+n
+n
+nodes. The relay receives yR = xn + xn + zR where zR is
+A
+B
+2
+an i.i.d. N (0, σ ) noise. Let C(x) = (1/2) log(1 + x), and
+C + (x) = max{0, C(x)}.
+Lemma 1 ( [6]). The relay can decode the sum (λA + λB )
+1
+P
+n
+mod Λc from yR reliably as long as R ≤ C + σ2 − 2 .
+Moreover, node A knowing (λA + λB ) mod Λc and λA can
+extract λB and hence also mB .
+
+c
+c
+h2 P12 = h2 P23 ,
+1
+2
+
+B. Uplink
+
+•
+•
+
+b
+a bi-directional message mb with rate Rij ,
+ij
+c
+c
+a cyclic message mij with rate Rij , and
+u
+a uni-directional message mu with rate Rij .
+ij
+
+c
+u
+b
+Thus, we have Rij = Rij +Rij +Rij . The messages mb , mc
+ij
+ij
+u
+and mij are communicated using a bi-directional, a cyclic,
+and a uni-directional strategy, respectively. The rates of the
+b
+b
+b
+b
+b
+b
+c
+messages satisfy R12 = R21 , R13 = R31 , R23 = R32 , R12 =
+c
+c
+c
+c
+c
+c
+c
+R23 = R31 R123 , R13 = R32 = R21 R132 .
+1) Encoding bi-directional messages: The users use nestedlattices to encode the bi-directional messages. Let us consider
+the bi-directional communication between users 1 and 2, i.e.,
+the messages mb and mb . U2 uses a nested-lattice code
+12
+21
+b
+b
+(Λb , Λb ). The rate of the code is R21 and the power is P21 .
+21,c
+21
+b
+b
+The message m21 is mapped into λ21 . U1 uses a scaled version
+of (Λb , Λb ) to encode mb such that the bi-directional
+12
+21,c
+21
+signals align at the relay. That is, U1 uses (Λb , Λb ) =
+12
+12,c
+h2
+b
+b
+b
+b
+h1 Λ21 , Λ21,c , for encoding m12 to λ12 . Using this encoding,
+b
+b
+the rate of the nested-lattice code (Λb , Λb ) is R12 = R21 ,
+12
+12,c
+b
+its power P12 satisﬁes
+b
+b
+h2 P12 = h2 P21 ,
+1
+2
+
+c
+c
+h2 P13 = h2 P32 ,
+1
+3
+
+Since each node has a power constraint P , then we must have
+b
+b
+c
+c
+u
+u
+˜c
+P12 + P13 + P12 + P13 + P13 + P12 + P13 = P1 ≤ P
+b
+b
+c
+c
+u
+u
+˜c
+P21 + P23 + P21 + P23 + P23 + P21 + P23 = P2 ≤ P
+
+(1)
+
+b
+P31
+
++
+
+b
+P32
+
++
+
+c
+P31
+
++
+
+c
+P32
+
++
+
+u
+P31
+
++
+
+u
+P32
+
+(5)
+(6)
+
+= P3 ≤ P, (7)
+
+Next, we describe the decoding process at the relay.
+5) Decoding at the relay: The relay decodes the unidirectional signals un , un , un , and un ﬁrst, successively
+12
+13
+21
+23
+in the given order while treating all the remaining signals as
+noise. The effective noise power while decoding un is given
+12
+u
+by h2 P3 + h2 P2 + h2 (P1 − P12 ) + 1. Then, reliable decoding
+3
+2
+1
+of un is possible under the rate constraint
+12
+
+mod Λb
+ij,c
+
+b
+b
+h2 P23 = h2 P32 .
+2
+3
+
+(4)
+
+x n = bn + bn + c n + c n + c n + u n + u n .
+˜13
+1
+12
+13
+12
+13
+12
+13
+
+with i = j, i, j ∈ {1, 2}, where db is a random dither,
+ij
+uniformly distributed over V(Λb ), known at all nodes (see
+ij,c
+[6]). Similarly, mb and mb are encoded into bn and bn
+31
+13
+31
+13
+b
+b
+with powers P31 and P31 , respectively, and mb and mb into
+23
+32
+b
+b
+bn and bn with powers P32 and P23 , where
+32
+23
+b
+b
+h2 P13 = h2 P31 ,
+1
+3
+
+c
+˜c
+h2 P13 = h2 P21 .
+1
+2
+
+3) Encoding uni-directional messages: The uni-directional
+u
+message mu with rate Rij is encoded using a Gaussian code.
+ij
+u
+u
+Namely, mij is mapped un , an i.i.d. N (0, Pij ) sequence.
+ij
+4) Transmit signals: Each user then transmits the superposition of all its codewords. For instance, U1 sends
+
+b
+b
+and (h1 λb + h2 λb ) mod h2 Λb
+12
+21
+21,c ∈ h2 Λ21 ∩ V(h2 Λ21,c )
+which is a useful property as we shall see in Section IV-B5.
+Then, U1 and U2 construct the signals bn and bn as follows,
+21
+12
+
+bn = (λb − db )
+ij
+ij
+ij
+
+(3)
+
+Notice that this ensures alignment of the codes (Λc , Λc )
+23
+23,c
+˜ ˜
+and (Λc , Λc ), as well as (Λc , Λc ) and (Λc , Λc )
+23,c
+23
+31,c
+31
+12,c
+12
+at the relay, allowing the relay to decode (h1 λc + h2 λc )
+12
+23
+˜
+mod h2 Λc and (h2 λc + h3 λc ) mod h3 Λc as we shall
+23
+31
+31,c
+23,c
+see in Section IV-B5. The messages of the other cycle 1 →
+3 → 2 → 1 are encoded similarly, to cn = (λc − dc )
+13
+13
+13
+˜
+˜
+˜
+mod Λc , cc = (λc − dc ) mod Λc , cn = (λc − dc )
+13,c ˜13
+13
+13
+13,c
+32
+32
+32
+c
+mod Λc , cn = (λc − dc ) mod Λc with powers P13 ,
+21,c
+21
+21
+21
+32,c
+c
+c
+˜c
+P13 , P32 , and P21 , respectively, such that (Λc , Λc ) =
+13
+13,c
+h3
+c
+c
+˜ c , Λc ) = h2 (Λc , Λc ),
+(Λ32 , Λ32,c ), (Λ13 ˜ 13,c
+21
+21,c
+h1
+h1
+
+Now, we proceed with describing the transmission scheme.
+In the uplink, Ui splits each message mij into three parts:
+•
+
+c
+˜c
+h2 P23 = h2 P31 .
+2
+3
+
+u
+R12 ≤ C
+
+1+
+
+h2 P3
+3
+
+u
+h2 P12
+1
+2 P + h2 (P − P u )
++ h2 2
+12
+1
+
+.
+
+After decoding un and subtracting its contribution from
+12
+the received signal at the relay, the other signals un , un , and
+21
+13
+
+(2)
+
+3
+
+u
+R21 ≤ C
+u
+R23 ≤ C
+
+u
+h2 P21
+2
+u ) + h2 (P − P u − P u ) ,
+1+
++
+− P21
+1
+12
+13
+u
+h2 P23
+2
+u
+u
+u
+u
+1 + h2 P3 + h2 (P2 − P21 − P23 ) + h2 (P − P12 − P13 )
+1
+2
+3
+
+h 2 P3
+3
+
+Using (1)-(4), we can write the remaining noise variance as
+b
+c
+c
+b
+σ 2 + 2h2 (P21 + P23 + P21 ) where σ 2 = 1 + h2 (2P31 +
+2
+3
+c
+c
+u
+u
+b
+2P32 + 2P31 + 2P32 + P31 + P32 ). Next, the relay decodes
+˜
+the superposition (h2 λc + h1 λc ) mod h2 Λc
+13
+21,c (which is
+21
+possible since this quantity belongs to the nested lattice code
+(h2 Λc , h2 Λc )), then (h1 λc + h2 λc ) mod h2 Λc after23,c
+23
+12
+21,c
+21
+wards and then (h1 λb + h2 λb ) mod h2 Λb successively
+12
+21
+21,c
+in this order using successive compute-and-forward [18] while
+treating the remaining interference as noise. From Lemma 1,
+the decoding of these signals is possible reliably as long as
+
+c
+R123 ≤ C +
+b
+R21 ≤ C +
+
+c
+h2 P21
+1
+2
+−
+2 (P b + P c )
+2
++ 2h2 21
+23
+2 c
+h2 P23
+1
+−
+b
+2
+σ 2 + 2h2 P21
+2
+2 b
+h2 P21
+1
+.
+−
+σ2
+2
+
+σ2
+
+un
+31
+
+u
+Pr,ij +
+
+u
+R32 ≤ C
+
+(9)
+
+c
+Pr,ij +
+
+b
+Pr,ij ≤ P.
+
+(11)
+
+n
+The relay then sends the superposition of all tn , sn , and rij ,
+ij
+ij
+n
+denoted xr . The decoding process at each of the nodes U1 ,
+U2 , and U3 is described next.
+c
+u
+u
+1) Decoding at U3 : U3 decodes the messages l13 , l23 , l31 ,
+c
+b
+b
+l32 , l31 , l32 in this order while treating the other signals as
+noise. The necessary rate constraints for reliable decoding are
+
+,
+
+u
+R13 ≤ C
+
+u
+h2 Pr,13
+3
+2
+u
+c
+c
+b
+b
+σr1 + h2 (Pr,23 + Pr,32 + Pr,31 + Pr,31 + Pr,32 )
+3
+
+u
+R23 ≤ C
+
+un
+32
+
+are decoded,
+and
+Next, the uni-directional signals
+then the superposition of the cyclic signals (h1 λc + h3 λc )
+13
+32
+˜
+mod h3 Λc and (h2 λc + h3 λc ) mod h3 Λc , and ﬁnally,
+23
+31
+31,c
+32,c
+the superposition of the bi-directional signals (h1 λb + h3 λb )
+31
+13
+b
+b
+b
+mod h3 Λb
+31,c and (h2 λ23 + h3 λ32 ) mod h3 Λ32,c , successively in the given order (again using successive computeand-forward [18]), resulting in the following rate constraints
+u
+R31 ≤ C
+
+.
+
+c
+˜
+(h2 λc + h1 λc ) mod h2 Λc → l21 → sn ,
+21,c
+21
+13
+21
+c
+(h1 λc + h3 λc ) mod h3 Λc → l32 → sn ,
+32
+32,c
+32
+13
+n
+b
+(h1 λb + h2 λb ) mod h2 Λb → l21 → r21 ,
+21
+21,c
+12
+b
+b
+n
+b
+b
+(h1 λ13 + h3 λ31 ) mod h3 Λ31,c → l31 → r31 ,
+b
+b
+b
+b
+n
+(h2 λ23 + h3 λ32 ) mod h3 Λ32,c → l32 → r32 .
+u
+n
+The relay allocates a power Pr,ij to tij , i.e., tn is i.i.d
+ij
+b
+n
+u
+c
+N (0, Pr,ij ). It also allocates Pr,ij to sn and Pr,ij to rij . For
+ij
+the power constraint to be satisﬁed, it is required that the sum
+of these powers fulﬁls
+
+un are decoded. Reliable decoding is possible if (8)-(10) are
+23
+satisﬁed.
+u
+h2 P13
+1
+u
+R13 ≤ C
+. (10)
+u
+u
+1 + h2 P3 + h2 P2 + h2 (P − P12 − P13 )
+1
+2
+3
+
+c
+R132 ≤ C +
+
+(8)
+
+h2 (P2
+2
+
+u
+h2 Pr,23
+3
+2
+c
+c
+b
+b
+σr1 + h2 (Pr,32 + Pr,31 + Pr,31 + Pr,32 )
+3
+
+c
+R132 ≤ C
+
+c
+R123 ≤ C
+
+u
+h2 P31
+3
+b
+c
+c
+u
+b
+1 + h2 (2P32 + 2P31 + 2P31 + 2P32 + P32 )
+3
+2 u
+h3 P32
+2 (P b + P b + P c + P c )
+1 + 2h3 32
+32
+31
+31
+c
+h2 P32
+1
+3
+−
+c
+b
+b
+1 + 2h2 (P32 + P31 + P31 ) 2
+3
+c
+h2 P31
+1
+3
+−
+b
+b
+1 + 2h2 (P32 + P31 ) 2
+3
+b
+h2 P31
+1
+1
+3
+b
+b
+−
+, R32 ≤ C + h2 P32 −
+3
+b
+2
+2
+1 + 2h2 P32
+3
+
+b
+R31 ≤ C
+
+2
+σr1
+
++
+
+c
+h2 Pr,32
+3
+2 (P c
+b
+h3 r,31 + Pr,31
+
+b
++ Pr,32 )
+
+c
+h2 Pr,31
+3
+2
+b
+b
+σr1 + h2 (Pr,31 + Pr,32 )
+3
+b
+h2 Pr,31
+3
+2
+b
+σr1 + h2 Pr,32
+3
+
+,
+
+b
+R32 ≤ C
+
+b
+h2 Pr,32
+3
+2
+σr1
+
+2
+u
+u
+c
+c
+b
+where σr1 = 1 + h2 (Pr,12 + Pr,32 + Pr,12 + Pr,21 + Pr,21 +
+3
+u
+u
+u
+u
+Pr,21 + Pr,31 ). By decoding l13 and l23 , the third user can obc
++
+tain the uni-directional messages mu and mu . By decoding
+R132 ≤ C
+23
+13
+c
+l32 , the third user can obtain the superposition (h1 λc +h3 λc )
+13
+32
+mod h3 Λc . Knowing λc , U3 can extract λc and hence
+c
++
+32,c
+32
+13
+R123 ≤ C
+obtain the desired cyclic communication message mc (cf.
+13
+c
+b
+b
+Lemma 1). Similarly, by decoding l31 , l31 and l32 , the mesb
+R31 ≤ C +
+. sages mc , mb , and mb can be obtained. Notice that U3
+23
+13
+23
+can remove t31 . and t32 . before decoding. We do not remove
+C. Downlink
+them for the purpose of having more uniﬁed expressions for
+In the downlink, the relay maps each of the decoded signals all receivers.
+into an index which is then encoded into a Gaussian codeword
+2) Decoding at U2 : Since U3 can decode its desired
+as follows:
+messages, U2 can also decode U3 ’s desired messages, since
+u
+un → lij → tn ,
+h2 ≥ h2 . After decoding the messages intended to U3 , U2
+ij
+ij
+2
+3
+c
+c
+c
+c
+n
+u
+u
+c
+c
+b
+(h1 λ12 + h2 λ23 ) mod h2 Λ23,c → l12 → s12 ,
+decodes the messages l12 , l32 , l12 , l21 , and l21 successively in
+n
+c
+c
+c
+c
+˜
+this order while treating the remaining signals as noise. The
+(h2 λ23 + h3 λ31 ) mod h3 Λ31,c → l31 → s31 ,
+
+4
+
+following rate constraints have to be fulﬁlled
+2
+σr2 +
+
+2
+σr2
+
+u
+R12 ≤ C
+
+u
+R32 ≤ C
+
+u
+h2 Pr,12
+2
+c
+u
+h2 (Pr,32 + Pr,12 +
+2
+u
+h2 Pr,32
+2
+c
+2 (P c
+h2 r,12 + Pr,21
+
++
+
+is achievable.
+The region C ′ is within a constant gap of an outer bound
+g
+on the capacity region of the GYG (bounds given in [13]).
+Details are not given due to the lack of space.
+
+b
+c
+Pr,21 + Pr,21 )
+
+V. C ONCLUSION
+A transmission scheme is proposed for the Y-channel by
+using network coding ideas. The achievability scheme is based
+on three different strategies, a bi-directional, a cyclic, and a
+uni-directional strategy. While the ﬁrst and the last are used
+to establish the capacity of the bi-directional relay channel,
+the second is new. Nested-lattices have been used to establish
+network coding. The achievable rate region of the given
+scheme is given. It turns out that the given scheme achieves
+the capacity region within a constant gap.
+
+b
++ Pr,21 )
+
+c
+R123 ≤ C
+
+c
+h2 Pr,12
+2
+b
+c
+2
+σr2 + h2 (Pr,21 + Pr,21 )
+2
+
+c
+R132 ≤ C
+
+c
+h2 Pr,21
+2
+b
+2
+σr2 + h2 Pr,21
+2
+
+,
+
+b
+R21 ≤ C
+
+b
+h2 Pr,21
+2
+2
+σr2
+
+2
+u
+u
+where σr2 = 1 + h2 (Pr,21 + Pr,31 ). In this way, U2 is able to
+2
+c
+c
+u
+u
+obtain m12 , m32 , m12 , m13 , mb and mb . Notice that mc is
+13
+32
+12
+c
+not desired by U2 , but it can be used in combination with l32
+(recall that this can be decoded by U2 since it can be decoded
+by U3 ) to obtain mc which is a desired message.
+32
+3) Decoding at U1 : Finally, U1 decodes all signals that are
+u
+u
+decodable by U2 and U3 , followed by l21 and l31 with the
+following rate constraints
+u
+R21 ≤ C
+
+u
+h2 Pr,21
+1
+u
+1 + h2 Pr,31
+1
+
+,
+
+R EFERENCES
+[1] C. Shannon, “Two-way communication channels,” in Proc. of Fourth
+Berkeley Symposium on Mathematics, Statistics, and Probability, vol. 1,
+1961, pp. 611–644.
+[2] B. Rankov and A. Wittneben, “Spectral efﬁcient signaling for halfduplex relay channels,” in Proc. of the Asilomar Conference on Signals,
+Systems, and Computers, Paciﬁc Grove, CA, Nov. 2005.
+[3] S. Kim, N. Devroye, P. Mitran, and V. Tarokh, “Comparisons of bidirectional relaying protocols,” in Proc. of the IEEE Sarnoff Symposium,
+Princeton, NJ, Apr. 2008.
+[4] D. G¨ nd¨ z, E. Tuncel, and J. Nayak, “Rate regions for the separated twou u
+way relay channel,” in Proc. of the 46th Annual Allerton Conference on
+Communication, Control, and Computing, Urbana-Champaign, IL, Sep.
+2008, pp. 1333 – 1340.
+[5] A. S. Avestimehr, A.Sezgin, and D. Tse, “Capacity of the two-way relay
+channel within a constant gap,” European Trans. in Telecommunications,
+2009.
+[6] K. Narayanan, M. P. Wilson, and A. Sprintson, “Joint physical layer
+coding and network coding for bi-directional relaying,” in Proc. of the
+Forty-Fifth Allerton Conference, Illinois, USA, Sep. 2007.
+[7] D. G¨ nd¨ z, A. Yener, A. Goldsmith, and H. V. Poor, “The multi-way
+u u
+relay channel,” in Proc. of IEEE ISIT, Seoul, South Korea, Jun. 2009.
+[8] L. Ong, C. Kellett, and S. Johnson, “Capacity theorems for the AWGN
+multi-way relay channel,” in Proc. of IEEE ISIT, 2010.
+[9] N. Lee and J.-B. Lim, “A novel signaling for communication on MIMO
+Y channel: Signal space alignment for network coding,” in Proc. of
+IEEE ISIT, vol. 1, Seoul, Jun. 2009, pp. 2892 – 2896.
+[10] M. Maddah-Ali, A. Motahari, and A. Khandani, “Communication over
+MIMO X channels: interference alignment, decomposition, and performance analysis,” IEEE Trans. on Info. Theory, vol. 54, no. 8, pp. 3457–
+3470, Aug. 2008.
+[11] V. R. Cadambe and S. A. Jafar, “Interference alignment and the degrees
+of freedom for the K user interference channel,” IEEE Trans. on Info.
+Theory, vol. 54, no. 8, pp. 3425–3441, Aug. 2008.
+[12] N. Lee, J.-B. Lim, and J. Chun, “Degrees of freedom of the MIMO Y
+channel: Signal space alignment for network coding,” IEEE Trans. on
+Info. Theory, vol. 56, no. 7, pp. 3332–3342, Jul. 2010.
+[13] A. Chaaban, A. Sezgin, and A. S. Avestimehr, “On the sum capacity
+of the Y-Channel,” in Proc. of 42nd Asilomar Conference on Signals,
+Systems and Computers, Paciﬁc Grove, CA, USA, Nov. 2011.
+[14] A. Chaaban and A. Sezgin, “The capacity region of the linear shift
+deterministic Y-channel,” in IEEE International Symposium on Info.
+Theory (ISIT), St. Petersburg, July 31-Aug. 5 2011, pp. 2457 – 2461.
+[15] A. S. Avestimehr, S. Diggavi, and D. Tse, “A deterministic approach to
+wireless relay networks,” in Proc. of Allerton Conference, 2007.
+[16] H. A. Loeliger, “Averaging bounds for lattices and linear codes,” IEEE
+Trans. on Info. Theory, vol. 43, no. 6, p. 17671773, Nov. 1997.
+[17] B. Nazer and M. Gastpar, “Compute-and-Forward: Harnessing interference through structured codes,” IEEE Trans. on Info. Theory, vol. 57,
+no. 10, pp. 6463 – 6486, Oct. 2011.
+[18] B. Nazer, “Successive compute-and-forward,” in Proc. of the 22nd
+International Zurich Seminar on Communication (IZS 2012), Zurich,
+Switzerland, March 2012.
+
+u
+u
+R31 ≤ C h2 Pr,31 .
+1
+
+This allows U1 to obtain all its desired messages. Let
+the region achieved by this scheme, for a given power
+allocation satisfying the power constraints, be denoted
+u
+c
+b
+u
+c
+b
+Rg (Pij , Pij , Pij , Pr,ij , Pr,ij , Pr,ij ). Then we have the
+following inner bound.
+Theorem 1. The union over all possible power allocations
+satisfying the rate constraints (5)-(7), and (11) of the region
+u
+c
+b
+u
+c
+b
+Rg (Pij , Pij , Pij , Pr,ij , Pr,ij , Pr,ij ) is an inner bound on
+the capacity region Cg of the GYC.
+Remark 1. Notice that a larger inner bound can be achieved
+if we remove tn and tn before decoding at U3 , and tn
+31
+32
+21
+before decoding at U2 . Moreover, all the nodes can use
+different decoding orders to enlarge the inner bound. We do
+not consider these possibilities in this paper due to lack of
+space, however, the given scheme is sufﬁcient for the main
+result of the paper given next.
+The given scheme achieves, within a constant gap of 7/6
+per dimension, the capacity region of the GYC. Namely, the
+following region is achievable.
+Corollary 1. For the given GYC, the region C ′ given by
+g
+R31 + R32 ≤ C(h2 P ) − 2
+3
+R13 + R23 ≤ C(h2 P ) − 2
+3
+R12 + R13 + R32 ≤ C(h2 P + h2 P ) − 3
+2
+3
+R13 + R23 + R12 ≤ C(h2 P + h2 P ) − 3
+2
+3
+R12 + R31 + R32 ≤ C(h2 P + h2 P ) − 3
+1
+2
+R13 + R23 + R21 ≤ C(h2 P + h2 P ) − 3
+1
+3
+R21 + R31 + R23 ≤ C((|h2 | + |h3 |)2 P ) − 7/2
+R21 + R31 + R32 ≤ C((|h2 | + |h3 |)2 P ) − 7/2,
+
+5
+
+

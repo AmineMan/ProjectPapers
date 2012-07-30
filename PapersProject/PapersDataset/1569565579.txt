@@ -1,0 +1,675 @@
+Creator:        TeX
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Fri May 18 09:13:58 2012
+ModDate:        Tue Jun 19 12:56:03 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      780921 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569565579
+
+On Densifying Coding Opportunities in
+Instantly Decodable Network Coding Graphs
+Sameh Sorour and Shahrokh Valaee
+The Edward S. Rogers Sr. Department of Electrical and Computer Engineering
+University of Toronto
+Toronto, ON, M5S 3G4, Canada
+Email:{samehsorour, valaee}@comm.utoronto.ca
+
+the maximum number of missing packet requests is served
+in each transmission. In this case, the sender should ﬁrst
+send the packet combination p1 ⊕ p2 ⊕ p3 as it serves the
+maximum number of requests in the ﬁrst transmission. However, this selection will result in three packets {p4 , p5 , p6 }
+with no coding opportunities between them, which need 3
+additional transmissions to be served. On the other hand, a
+ﬁrst transmission serving less packet requests (such as p1 ⊕p4 )
+keeps 2 coding opportunities in the system, which can be
+satisﬁed by only 2 additional transmissions. Consequently, the
+selection of coded transmissions that preserve a large number
+of coding opportunities in the system may result in a better
+completion time. This can also apply to other optimization
+parameters, such as throughput, decoding delay and in-order
+delivery delay, widely studied in the literature.
+Despite its importance illustrated by the aforementioned
+example, the number of coding opportunities may not be
+expressive in itself. Indeed, a selected transmission may result
+in a larger number of coding opportunities because it serves
+very few packet requests, and thus the number of remaining
+requests will be also large. Thus, this apparently large number
+of coding opportunities will not be enough to foster efﬁcient
+combinations between the large number of remaining requests.
+Consequently, it is important not only to maximize the number
+of coding opportunities but to also densify them with respect
+to the number of remaining packet requests. We thus deﬁne the
+coding density as the number of actual coding opportunities
+normalized by the maximum number of coding opportunities
+that could exist for the same number of packet requests.
+In this paper, we aim to answer the following question:
+What are the coding selection strategies that can maximize
+the coding density after each transmission and over the
+transmission horizon of a frame of packets? To answer this
+question, we introduce the multicast graph representation of
+IDNC, in which the edge set of the graph represents the
+set of all coding opportunities between all missing requested
+and undesired packets by all receivers. We then derive an
+expression for the expectation of the edge set size evolution
+after ignoring the identities of the packets requested by the
+different receivers and considering only their numbers. From
+this expression, we show that the best strategy to increase
+the expected coding density is to serve the maximum number
+
+Abstract—In this paper, we propose a coding strategy that
+maximizes the density of the coding opportunities in instantly
+decodable network coding (IDNC). Using the graph representation of IDNC, we derive the expression for the expected evolutions
+of coding opportunities after the transmission of any arbitrary
+coded packet and show that serving the maximum number of
+receivers, with the largest numbers of missing packets and erasure probabilities, tends to both maximize the expected number
+of coding opportunities and increase the expected coding density
+almost monotonically. Simulation results justify our theoretical
+ﬁndings and demonstrate the importance of maintaining high
+coding density when optimizing long-term parameters.
+
+I. I NTRODUCTION
+Network coding has been widely used in improving the
+efﬁciency of packet delivery to different receivers of a network
+[1]–[12]. Some of these works have considered a subclass of
+NC known as instantly decodable network coding (IDNC),
+in which coded packets must be decoded at their reception instant and cannot be stored for future decoding. This
+opportunistic NC scheme has attracted attention due to its
+desirable properties, such as fast packet recovery, simple XOR
+coding and decoding, and no buffer requirements. In most
+of these IDNC works, the selection of targeted receivers
+and combined packets to optimize a desired parameter for
+a particular transmission do not consider the effect of this
+selection on resulting coding opportunities in subsequent transmissions. Although this selection may optimize the desired
+parameter in this transmission, this parameter may not be
+optimized in subsequent transmissions due to fewer resulting
+coding opportunities. Nonetheless, an apparently sub-optimal
+solution in one transmission may result in much diverse coding
+opportunities in subsequent transmissions, which may result in
+an overall better performance.
+To give an example, let us assume a network of 4 receivers and 6 packets, in which receivers r1 , r2 and r3
+are missing packets p1 , p2 and p3 , respectively, whereas
+receiver r4 is missing packets p4 , p5 and p6 . In this
+system, assume that the available coding opportunities
+are {p1 ⊕ p2 ⊕ p3 , p1 ⊕ p4 , p2 ⊕ p5 , p3 ⊕ p6 }. Finally, assume
+that the parameter to be optimized is the completion time,
+deﬁned as the number of packet transmissions until all receivers correctly receive their missing packets. Intuitively, one
+may think that the optimal completion time is obtained if
+
+1
+
+of receivers having the largest number of missing packets
+and erasure probabilities. Finally, we compare our identiﬁed
+strategy with several well-known IDNC strategies and show
+that it achieves a much better coding density and completion
+delay performance, compared to the widely proposed strategy
+in the opportunistic NC literature that serves the maximum
+number of receivers in each transmission. These contributions
+and ﬁndings demonstrate the importance of coding density
+in optimizing long-term parameters, which can greatly open
+paths for future efforts in designing more efﬁcient online NC
+algorithms, optimizing different performance metrics.
+The rest of the paper is organized as follows. In Section II,
+the system model is illustrated. We introduce the IDNC graph
+in multicast scenarios and our metric of coding density in
+Section III. We then derive and analyze the expected edge
+set size evolution in Section IV. The performance of this
+strategy is compared to other strategies in Section V. Finally,
+Section VI concludes the paper.
+
+Fig. 1. Example of a feedback table and its corresponding IDNC multicast
+graph. The shaded and white boxes and vertices represent the requested and
+undesired packets, respectively.
+
+and vkl in Gρ are connected by an edge in Eρ if any one of
+the following conditions is true:
+• C1: j = l ⇒ The two vertices are induced by the loss of
+the same packet j by two different receivers i and k.
+• C2: j ∈ Hk and l ∈ Hi ⇒ The requested packet of each
+vertex is in the Has set of the receiver of the other vertex.
+Consequently, each edge between two vertices in the graph
+represents a coding opportunity, which is deﬁned as an opportunity of generating an instantly decodable packet for the
+two receivers inducing these vertices. Given this graph, we
+can easily deﬁne the set of all feasible packet combinations
+in IDNC as the set of packet combinations deﬁned by all the
+cliques in Gρ . The sender can generate an IDNC packet for
+a given transmission by XORing all the packets identiﬁed by
+the vertices of a selected clique κρ in Gρ .
+In multicast scenarios, we can enhance the coding opportunities at the receivers that are not considered for reception of
+a requested packet, by delivering undesired packets to them.
+Although these packets are not requested at these receivers,
+their reception along the steps of the recovery phase, when
+they are not targeted with requested packets, will enlarge their
+Has sets. According to Condition C2, this will increase the
+chances of creating more coding opportunities that can serve
+these receivers in the future steps. However, this service of
+secondary packets should never affect the instant decodability
+of the requested packets at their intended receivers.
+We thus introduce a new two-layered graph G(V, E). The
+primary layer (or graph) consists of graph Gρ , described above.
+The secondary layer Gσ (Vσ , Eσ ) is constructed by generating
+a vertex vij ∈ Vσ for each packet j ∈ Li \ Wi , ∀ i ∈ M, and
+connecting any two vertices satisfying either C1 or C2. Finally,
+we connect any two vertices from both subgraphs if either C1
+or C2 holds. Figure 1 depicts an example of a feedback table
+and its corresponding IDNC graph.
+According to the design of G, there are no edges between
+vertices corresponding to the same receiver and thus each
+receiver can have at most one primary or secondary vertex
+in any of its cliques. Consequently, the selection of a clique
+at any transmission is equivalent to the selection of a set
+
+II. S YSTEM M ODEL AND PARAMETERS
+The model consists of a wireless sender that is broadcasting
+a frame (denoted by N ) of N source packets to a set
+(denoted by M) of M receivers. Different receivers require
+different (but maybe partially overlapping) subsets of these N
+broadcasted packets. Deﬁne the demand ratio of a receiver as
+the ratio of the number of its requested packets in the frame to
+the frame size N . The sender initially transmits the N packets
+uncoded in an initial transmission phase. Each sent packet
+can be successfully received at receiver i with probability qi ,
+which is assumed to be ﬁxed during the frame transmission
+period. Receivers feed back to the sender a positive one-bit
+acknowledgement (ACK) for each received packet. At the
+end of the initial transmission phase, three feedback sets are
+attributed to each receiver i:
+• The Has set (Hi ) is deﬁned as the set of requested and
+undesired packets correctly received by receiver i.
+• The Lacks set (Li = N \ Hi ) is deﬁned as the set of
+requested and undesired packets not received by i.
+• The Wants set (Wi ⊆ Li ) is deﬁned as the set of requested
+packets that receiver i has not yet received.
+The cardinalities of the Has, Lacks and Wants sets of receiver
+i are denoted by i , ϕi and ψi , respectively. After the initial
+transmission phase, a recovery phase starts, in which the
+sender exploits the diversity of received packets to transmit
+network coded combinations. By the deﬁnition of IDNC, these
+combinations must be either decoded at their reception instant
+or discarded. The received ACKs at the sender after each
+transmission are used to update the different sets. This process
+is repeated until all receivers obtain all the packets.
+III. T HE IDNC G RAPH
+The IDNC graph deﬁnes the set of all feasible instantly
+decodable packet combinations. An initial idea of the IDNC
+graph was introduced in [4], [13]. This graph, which we will
+denote by Gρ (Vρ , Eρ ), is constructed by ﬁrst inducing a vertex
+vij in Vρ for each packet j ∈ Wi , ∀ i ∈ M. Two vertices vij
+
+2
+
+of receivers to be served by this transmission with one of
+their missing packets. The determined packets for coding are
+then implicitly identiﬁed through the selected clique vertices,
+chosen to optimize the set of targeted receivers.
+Since we mainly aim to deplete the primary graph, we will
+focus our study on densifying the coding opportunities in it.
+We deﬁne the coding opportunity density (or coding density
+for short) Dc (Gρ ) for the primary IDNC graph as the ratio
+of the total number of edges in this graph to the number of
+edges of a complete graph with the same number of vertices
+(which corresponds to the deﬁnition of graph density in graph
+theory). In other words:
+
+where
+M
+
+k=1
+k=i
+
+βi = −
+
++
+
+1
+2
+
+1
+2
+
+(1)
+
+(t)
+
+qi E ∆i
+
+(4)
+
+Φik (1) +
+k∈Tρ (κ)
+k=i
+
+Λik (1) ,
+
+(t)
+
+and E ∆i
+at time t.
+
+(5)
+
+k∈Tσ (κ)
+k=i
+
+(6)
+(7)
+
+is the expected degree of a vertex of receiver i
+
+From the above theorem, we can see that the ﬁrst term in
+the right-hand side of (2) is the expected edge set cardinality
+at time t. Thus, the edge set size at time t + 1 beneﬁts from its
+maximization in all previous times. To determine the policy
+that maximizes the one-step evolution of the edge set size, we
+will analyze the second, third and fourth terms.
+A. Vertex Disappearance
+The second term in (2) represents an expected reduction
+in the edge set size due to the possible disappearance of
+the primary targeted vertices. This disappearance results in
+the removal of their adjacent edges at time t, which is
+reﬂected in the E [∆t ] term. It also results in the loss of the
+i
+potential improvement in these degrees if they were kept in
+the graph, which is reﬂected in the γi term. This loss is a
+natural outcome of the recovery transmission process and is
+unavoidable. Nonetheless, we can still reduce the effect of this
+loss component by serving the vertices with smaller degrees.
+The following theorem compares the expected vertex degrees
+of two receivers given the sizes of their Has and Wants sets.
+Theorem 2. If ψi > ψh and
+
+i
+
+<
+
+h,
+
+then E [∆h ] > E [∆i ].
+
+Now, if qi < qh and ψi > ψh , 1 qi E [∆i ] < 1 qh E [∆h ].
+2
+2
+Consequently, serving receivers with largest Wants sets and
+erasure probabilities, and smallest Has sets, results in a smaller
+loss in the resulting edge set size.
+B. Degrees of Remaining Vertices
+The third and fourth terms in (2) represent the change in
+the degrees of the remaining vertices in the primary graph,
+which are quantiﬁed by ψi αi and ψi βi for the targeted and
+non-targeted receivers, respectively. The following theorem
+describes the relation between these two terms.
+
++ γi
+
+i∈Tρ (κ)
+
+ψi αi +
+i∈T (κ)
+
+Λik (0) ,
+k∈Tσ (κ)
+k=i
+
+qk
+( k − ψk + 1) ( i + x)
+1+
+,
+N
+N −1
+ψk k
+qk ψk ( i + x)
+,
+ξk =
+,
+Λik (x) =
+N (N − 1)
+N (N − 1)
+
+Theorem 1. Let κ be the clique chosen for transmission
+at time t in a multicast scenario, and targeting the sets
+of receivers Tρ (κ) and Tσ (κ) with primary and secondary
+packets, respectively. Deﬁning T (κ) = Tρ (κ) Tσ (κ), the
+expected edge set cardinality of the IDNC primary graph at
+time t + 1 is expressed as:
+−
+
+ξk −
+k=1
+k=i
+
+We ﬁrst introduce the following theorem presenting an
+expression for the expected evolution of the edge set size
+of the primary graph when an arbitrary clique is chosen
+for transmission. Due to space limitations, the proofs of all
+theorems are omitted from this paper and can be found in
+[14].
+
+(t)
+Eρ
+
+(3)
+
+M
+
+γi =
+
+IV. E VOLUTION OF C ODING O PPORTUNITIES
+
+= E
+
+Λik (qi ) ,
+k∈Tσ (κ)
+k=i
+
+Φik (0) +
+k∈Tρ (κ)
+k=i
+
+It is obvious that the maximization of Dc (Gρ ) guarantees
+a large number of coding opportunities with respect to the
+number of remaining packet requests (i.e. vertices), and thus
+a large number of receivers and packet requests can be served
+simultaneously in each IDNC packet.
+From the above expression, we can see that, in order to
+maximize the coding density in each step, the selected cliques
+should be able to both maximize the number of edges and
+minimize the vertex set size. The number of vertices is clearly
+minimized by serving the maximum number of receivers
+in each transmission (i.e. selecting the maximum clique).
+However, this selection may decrease the coding density if
+the numerator is signiﬁcantly reduced. To study this effect,
+we will derive and analyze the edge set size evolution after
+any arbitrary transmission. Since clique selection is mainly
+equivalent to selecting the set of receivers (rather than the set
+of packets) to be served by this transmission, we will analyze
+the expected edge set size evolution based on the Has, Lacks
+and Wants set cardinalities of different receivers. This will be
+the target of the following section.
+
+(t+1)
+Eρ
+
+Φik (qi ) +
+k∈Tρ (κ)
+k=i
+
+Φik (x) =
+
+|Eρ |
+Dc (Gρ ) = 1
+2 |Vρ | (|Vρ | − 1)
+
+E
+
+qi ξk −
+
+αi =
+
+1
+2
+
+ψ i βi ,
+
+Theorem 3. The increase in the degrees of the remaining
+vertices of any receiver is larger when it is targeted than when
+it is not. In other words, αi ≥ βi ∀ i ∈ M.
+
+(2)
+
+i∈T (κ)
+/
+
+3
+
+Now, moving a receiver i from the non-targeted set to
+the targeted set results in adding ψi (αi − βi ) edges to Gρ .
+2
+This term is larger when ψi is larger, and thus moving a
+receiver with a larger Wants set to the targeted receiver set
+adds more edges to the primary graph than moving a receiver
+with a smaller Wants set. Consequently, a larger increase in
+the expected edge set size is obtained when targeting the
+maximum number of receivers having larger Wants sets.
+Another important insight about the values of αi and βi
+can be inferred from the analysis of their components Φik and
+Λik . Since the terms k∈Tρ (κ) Φik (qi ) and k∈Tρ (κ) Φik (0)
+k=i
+
+k=i
+
+are subtractive terms in αi and βi , respectively, selecting the
+receivers with smaller values of Φik (qi ) and Φik (0) to be the
+primary targeted receivers increases the values of αi and βi .
+Now, if qk < qh , ψk > ψh and k < h , we have:
+qk (
+
+k
+
+− ψk + 1) < qh (
+
+⇒ Φik (qi ) < Φih (qi ) and
+
+− ψh + 1)
+
+(8)
+
+Φik (0) < Φih (0)
+
+(9)
+
+h
+
+Fig. 2.
+
+Consequently, the receivers having larger Wants sets and
+erasure probabilities, and smaller Has sets, have smaller values
+of Φik (qi ) and Φik (0). Consequently, maximizing the number
+of such receivers in the set of primary targeted receivers
+maximizes the values of both αi and βi .
+Since the terms k∈Tσ (κ) Λik (qi ) and k∈Tσ (κ) Λik (0) are
+k=i
+
+strategy maximizes the expected coding opportunities at time
+t + 1.
+V. S IMULATIONS
+In this section, we study the performances of our identiﬁed
+strategies in maximizing the coding density of the system
+during the transmission of a frame, and compare them to
+other well-known strategies. The simulation scenario consists
+of 20 packets and 50 receivers having different packet erasure
+probabilities while maintaining the average erasure probability
+(ε) constant. These erasure probabilities are assumed to be
+ﬁxed during the transmission of a frame but change from
+frame to frame during the simulation. The tested strategies
+in this simulations are:
+• RND: Random clique selection [2].
+• MC: Maximum clique selection [15].
+• MWC-R: Maximum weight clique (MWC) selection, in
+which the weight of vertex vij is deﬁned by qi .
+• MWC-W: MWC selection that follows the WoRLT strategy deﬁned in (10) and (11) (n = m = 3).
+All ﬁgures represent the average coding density of the graph
+against the transmission index. This average is computed over
+a large number of iterations, in each of which we compute
+the graph density after each transmission and average all the
+densities evaluated at the same transmission index.
+The left (right) subﬁgure of Figure 2 depicts the coding
+density evolution inside the IDNC graph for M = 50 and
+N = 20 (M = 60 and N = 30) for all the aforementioned
+strategies. The erasure probabilities of different receivers take
+values in the range of 0.01 to 0.3, such that ε = 0.15. Also,
+the average demand ratio for each of the receivers is uniformly
+distributed between 0.4 and 0.6. From Figure 2, we can draw
+the following observations.
+We can clearly see that the WoRLT strategy considerably
+outperforms all other receiver selection strategies. Moreover,
+
+k=i
+
+additive terms to αi and βi , respectively, selecting the receivers
+with larger values of Λik (qi ) and Λik (0) to be the secondary
+targeted receivers increases the values of αi and βi . The values
+of Λik (qi ) and Λik (0) are larger for receivers having larger
+value of qk ψk and thus having larger Wants sets but lower
+erasure probabilities.
+C. Overall Maximization Strategy
+From the above theorems and discussion, we can infer that,
+after a given transmission, the edge set size in the primary
+graph is maximized by targeting the receivers, having the
+largest Wants sets and erasure probabilities, with primary
+packets, then targeting the remaining receivers, having the
+largest Want sets and lower erasure probabilities, with secondary packets. Mathematically, we can express this policy as
+follows:
+κ∗ = arg min
+ρ
+
+κ∈Gρ
+
+κ∗ = arg
+σ
+
+i|vij ∈κ
+
+ψi
+qi
+
+min
+
+κ∈Gσ (κ∗ )
+ρ
+
+n
+
+(qi ψi )
+
+(10)
+m
+
+,
+
+Average coding density evolution for M = 50 and N = 20.
+
+(11)
+
+i|vij ∈κ
+
+where Gσ (κ∗ ) is the subgraph in Gσ consisting of vertices that
+ρ
+are each adjacent to all the vertices in κ∗ , and m and n are
+ρ
+biasing exponents. We will refer to this strategy as the worst
+receiver layered targeting (WoRLT) strategy. This strategy both
+maximizes the coefﬁcients αi and βi for all i ∈ M and
+multiplies the maximum number of largest ψi values with
+their larger coefﬁcients αi . It also removes the vertices with
+smaller degrees from the graph. All these effects of the WoRLT
+
+4
+
+VI. C ONCLUSION
+In this paper, we investigated the coding strategy that
+densify the IDNC coding opportunities in wireless multicast
+scenarios. We ﬁrst derived an expression of the expected
+edge set size evolution, given feedback set cardinalities. We
+then analyzed this expression and showed that targeting the
+maximum number of receivers, having the largest Wants
+sets and erasure probabilities, tends to both maximize the
+expected number of coding opportunities and increase the
+expected coding density almost monotonically. Simulation
+results justiﬁed our theoretical ﬁndings. They also showed
+that the commonly considered MC solution in opportunistic
+NC may not be able to optimize several NC parameters, due
+to its inability to preserve high coding density throughout the
+frame transmission. We thus recommend the observance of the
+coding density increasing strategy when network parameters
+are optimized over the full course of a frame transmission.
+R EFERENCES
+
+Fig. 3. Average coding density evolution for different εw (M = 50 and
+N = 20). The solid (doted) lines represent the MWC-W (MC) strategies.
+
+[1] J. Sundararajan, D. Shah, and M. Medard, “Online network coding for
+optimal throughput and delay - the three-receiver case,” International
+Symposium on Information Theory and Its Applications (ISITA’08), Dec.
+2008.
+[2] L. Keller, E. Drinea, and C. Fragouli, “Online broadcasting with network
+coding,” Fourth Workshop on Network Coding, Theory and Applications
+(NetCod’08), Jan. 2008.
+[3] E. Drinea, C. Fragouli, and L. Keller, “Delay with network coding
+and feedback,” IEEE International Symposium on Information Theory
+(ISIT’09), pp. 844–848, Jun. 2009.
+[4] S. El Rouayheb, M. Chaudhry, and A. Sprintson, “On the minimum
+number of transmissions in single-hop wireless coding networks,” IEEE
+Information Theory Workshop (ITW’07), pp. 120–125, Sep. 2007.
+[5] A. Blasiak, R. Kleinberg, and E. Lubetzky, “Index coding via linear
+programming,” 2011. [Online]. Available: http://arxiv.org/abs/1004.1379
+[6] P. Sadeghi, R. Shams, and D. Traskov, “An optimal adaptive network
+coding scheme for minimizing decoding delay in broadcast erasure channels,” EURASIP Journal of Wireless Communications and Networking,
+Apr. 2010.
+[7] D. Nguyen, T. Nguyen, and X. Yang, “Multimedia wireless transmission
+with network coding,” Packet Video Workshop (PV’07), pp. 326–335,
+Nov. 2007.
+[8] H. Seferoglu and A. Markopoulou, “Video-aware opportunistic network
+coding over wireless networks,” IEEE Journal on Selected Areas in
+Communications, vol. 27, pp. 713 –728, Jun. 2009.
+[9] ——, “Opportunistic network coding for video streaming over wireless,”
+Packet Video Workshop (PV’07), pp. 191 –200, Nov. 2007.
+[10] J. Sundararajan, P. Sadeghi, and M. M´ dard, “A feedback-based adaptive
+e
+broadcast coding scheme for reducing in-order delivery delay,” Fifth
+Workshop on Network Coding, Theory and Applications (NetCod’09),
+Jun. 2009.
+[11] S. Sorour and S. Valaee, “On minimizing broadcast completion delay
+for instantly decodable network coding,” IEEE International Conference
+on Communications (ICC’10), May 2010.
+[12] ——, “Minimum broadcast decoding delay for generalized instantly decodable network coding,” IEEE Global Telecommunications Conference
+(GLOBECOM’10), 2010.
+[13] M. Chaudhry and A. Sprintson, “Efﬁcient algorithms for index coding,”
+IEEE Conference on Computer Communications Workshops (INFOCOM’08), Apr. 2008.
+[14] S. Sorour and S. Valaee, “Completion delay minimization for instantly
+decodable network codes,” submitted to IEEE/ACM Transactions on
+Networking, Aug. 2011. [Online]. Available: http://arxiv.org/submit/
+402828/view
+[15] R. Costa, D. Munaretto, J. Widmer, and J. Barros, “Informed network
+coding for minimum decoding delay,” 5th IEEE International Conference on Mobile Ad Hoc and Sensor Systems (MASS’08), pp. 80 –91,
+Oct. 2008.
+
+we can see that it monotonically increases the coding density,
+which exhibits its ability to increase the coding density over
+the full course of the frame transmission. Also, we can see
+that the coding density of the WoRLT strategy reaches 1 much
+faster than all the other schemes. Given the deﬁnition of the
+coding density in (1), reaching a density of 1 means that
+we have a complete graph, which can thus be satisﬁed with
+one transmission. Consequently, the WoRLT strategy reaches
+completion much faster than the other ones, which justiﬁes the
+importance of maximizing the coding density in the graph.
+Another important result is that the MC strategy, serving
+the maximum number of receivers (or requests) in each
+transmission, and widely considered in most opportunistic NC
+literature, results in a very bad evolution of coding density.
+We can infer from Figure 2 that this strategy serves very few
+large cliques in the very beginning of the recovery phase and
+then is left with smaller cliques to serve, until it is close
+to the completion of frame delivery. This can be explained
+from Theorem 2, showing the high adjacency of vertices with
+smaller Wants sets. Consequently, the MC strategy mostly
+targets receivers with smaller Wants sets, which clearly reduces the edge set size according to Section IV. Despite the
+common intuition that this strategy can optimize different NC
+parameters, this result shows that it may not be able to truly
+do so, especially when the optimized parameter depends on
+the long term efﬁciency of coding opportunities.
+Since the receiver selection in the WoRLT strategy greatly
+depends on their erasure probabilities, we test its performance
+for several erasure probabilities εw = [0.3, 0.5, 0.7, 0.9] in
+Figure 3. We can see from the ﬁgure that the WoRLT strategy
+both always achieves the same monotonically increasing trend
+of average coding densities, and always outperforms the MC
+strategy, for all these diverse values of erasure probabilities.
+
+5
+
+

@@ -1,0 +1,788 @@
+Title:          untitled
+Creator:        'Certified by IEEE PDFeXpress at 05/14/2012 8:36:22 PM'
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Mon May 14 20:36:15 2012
+ModDate:        Tue Jun 19 12:54:53 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      412789 bytes
+Optimized:      no
+PDF version:    1.7
+ISIT'2012 1569555891
+
+Results on the Fundamental Gain of
+Memory-Assisted Universal Source Coding
+Ahmad Beirami, Mohsen Sardari, Faramarz Fekri
+School of Electrical and Computer Engineering, Georgia Institute of Technology, Atlanta GA 30332, USA
+Email: {beirami, mohsen.sardari, fekri}@ece.gatech.edu
+Abstract—Many applications require data processing to be
+performed on individual pieces of data which are of ﬁnite
+sizes, e.g., ﬁles in cloud storage units and packets in data
+networks. However, traditional universal compression solutions
+would not perform well over the ﬁnite-length sequences. Recently,
+we proposed a framework called memory-assisted universal
+compression that holds a signiﬁcant promise for reducing the
+amount of redundant data from the ﬁnite-length sequences. The
+proposed compression scheme is based on the observation that
+it is possible to learn source statistics (by memorizing previous
+sequences from the source) at some intermediate entities and
+then leverage the memorized context to reduce redundancy of
+the universal compression of ﬁnite-length sequences. We ﬁrst
+present the fundamental gain of the proposed memory-assisted
+universal source coding over conventional universal compression
+(without memorization) for a single parametric source. Then,
+we extend and investigate the beneﬁts of the memory-assisted
+universal source coding when the data sequences are generated
+by a compound source which is a mixture of parametric sources.
+We further develop a clustering technique within the memoryassisted compression framework to better utilize the memory
+by classifying the observed data sequences from a mixture of
+parametric sources. Finally, we demonstrate through computer
+simulations that the proposed joint memorization and clustering technique can achieve up to 6-fold improvement over the
+traditional universal compression technique when a mixture of
+non-binary Markov sources is considered.
+
+Fig. 1. Memory-assisted compression in a two-hop communication scenario.
+
+we proposed memorization of the previously seen sequences
+as a solution that can fundamentally improve the performance
+of universal compression. As an application of memoryassisted compression, we introduced the notion of network
+compression in [9], [10]. It was shown that by deploying
+memory in the network (i.e., enabling some nodes to memorize
+source sequences), we may remove the redundancy in the
+network trafﬁc. In [9], [10], we assumed that memorization of
+the previous sequences from the same source provides a fundamental gain g over and above the conventional compression
+performance of the universal compression of a new sequence
+from the same source. Given g, we derived the network-wide
+memorization gain G on both a random network graph [9]
+and a power-law network graph [10] when a small fraction
+of the nodes in the network are capable of memorization.
+However, [9], [10] did not explain as to how g is computed.
+Although the memory-assisted universal source coding naturally arises in a various set of problems, we deﬁne the problem
+setup in the most basic network scenario depicted in Fig 1.
+We assume that the network consists of the server S, the
+intermediate (relay) node R, and the client C, where S wishes
+to send the sequence xn to C. We assume that C does not have
+any prior communication with the server, and hence, is not
+capable of memorization of the source context. However, as an
+intermediate node, R has observed several previous sequences
+from S when forwarding them from S to clients other than
+C (not shown in Fig. 1). Therefore, R has formed a memory
+of the previous communications shared with S. Note that if
+the intermediate node R was absent, the source could possibly
+apply universal compression to xn and transmit to C whereas
+the presence of the memorized sequences at R can potentially
+reduce the communication overhead in the S-R link.
+The objective of the present paper is to characterize the
+fundamental gain g of memorization of the context from a
+server’s previous sequences in the universal compression of
+a new individual sequence from the same server. Clearly,
+a single stationary ergodic source does not fully model a
+real content generator server (for example the CNN news
+website in the Internet). Instead, a better model is to view
+every content generator server as a compound (mixture) of
+several information sources whose true statistical models are
+not readily available. In this work, we try to address this
+issue and propose a memorization and clustering technique for
+compression that is suitable for a compound source. Namely,
+
+I. I NTRODUCTION
+Since Shannon’s seminal work on the analysis of communication systems, many researchers have contributed toward
+the development of compression schemes with the average
+code length as close as possible to the entropy. In practice,
+we usually cannot assume a priori knowledge on the statistics
+of the source although we still wish to compress the unknown
+stationary ergodic source to its entropy rate. This is known as
+the universal compression problem [1]–[3]. However, unfortunately, universality imposes an inevitable redundancy depending on the richness of the class of the sources with respect
+to which the code is universal [4]–[6]. While an entire library
+of concatenated sequences from the same context (i.e., source
+model) can usually be encoded to less than a tenth of the
+original size using universal compression [5], [6], it is usually
+not an option to concatenate and compress the entire library
+at once. On the other hand, when an individual sequence
+is universally compressed regardless of other sequences, the
+performance is fundamentally limited [4], [5].
+In [7], the authors observed that forming a statistical model
+from a training data would improve the performance of
+universal compression on ﬁnite-length sequences. In [8], we
+introduced memory-assisted universal source coding, where
+This material is based upon work supported by the National Science
+Foundation under Grant No. CNS-1017234.
+
+1
+
+1.8
+
+we would like to answer the following questions in the above
+setup: 1) Would the deployment of memory in the encoder
+(S) and the decoder (R) provide any fundamental beneﬁt in
+the universal compression? 2) If so, how does this gain g
+vary as the sequence length n and the memorized context
+length m change? 3) How much performance improvement
+should we expect from the joint memorization and clustering
+versus the memorization without clustering? 4) How should
+we realize the clustering scheme to achieve good performance
+from compression with the joint memorization and clustering?
+
+E{ln (X n )}
+Hn (θ)
+
+1.7
+1.6
+
+1
+|I(λ)| 2
+
+dλ
+
+1
+2
+1
+2
+4
+
+1.4
+1.3
+1.2
+1.1
+1
+
+256kB
+1MB
+4MB
+16MB
+64MB
+n
+Fig. 2. The Lower bound on compression for at least 95% of the sources as
+a function of sequence length n for different values of entropy rate Hn (θ)/n.
+
+Theorem 1 Assume that the parameter vector θ follows Jeffreys’ prior in the universal compression of the family of
+parametric sources P d . Let δ be a real number. Then,
+P
+
+Rn (ln , θ)
+≥1−δ ≥1−
+d
+2 log n
+
+1
+1
+
+|I(λ)| 2 dλ
+
+2πe
+nδ
+
+d
+2
+
+.
+
+Theorem 1 can be viewed as a tighter variant of Theorem 1
+of Merhav and Feder in [4] for parametric sources.
+To demonstrate the signiﬁcance of the above theorem, we
+consider an example using a ﬁrst-order Markov source with
+alphabet size k = 256. This source may be represented using
+d = 256 × 255 = 62580 parameters. Fig. 2 shows the average
+number of bits per symbol required to compress the class of
+the ﬁrst-order Markov sources normalized to the entropy of the
+sequence for different values of entropy rates in bits per source
+symbol (per byte). In this ﬁgure, the curves demonstrate the
+lower bound on the compression rate achievable for at least
+95% of sources , i.e., the probability measure of the sources
+from this class that may be compressed with a redundancy
+smaller than the curve is at most = 0.05. As can be seen,
+if the source entropy rate is 1 bit per byte (Hn (θ)/n = 1),
+the compression overhead is 38%, 16%, 5.5%, 1.7%, and
+0.5% for sequences of lengths 256kB, 1MB, 4MB, 16MB,
+and 64MB, respectively. Hence, we conclude that redundancy
+is signiﬁcant in the compression of ﬁnite-length low-entropy
+sequences, such as the Internet trafﬁc. It is this redundancy
+that we hope to remove using the memorization technique.
+III. F UNDAMENTAL G AIN OF C ONTEXT M EMORIZATION
+In this section, we present the problem setup and deﬁne
+the context memorization gain. We assume that the compound
+source comprises of a mixture of K information sources.
+Denote [K] as the set {1, ..., K}. As the ﬁrst step, in this paper,
+we assume that K is ﬁnite and ﬁxed. We consider parametric
+sources with θ(i) as the parameter vector for the source i
+(i) (i)
+(i)
+(i ∈ [K]). As in [5], we assume that θ(i) = (θ1 , θ2 , . . . , θd )
+follows Jeffreys’ prior for all i ∈ [K]. We consider the
+following scenario. We assume that, in Fig. 1, both the encoder
+(at S) and the decoder (at R) have access to a memory of
+the previous T sequences from the compound source. Let
+m = (n0 , . . . , nT −1 ) denote the lengths of the previous T
+T −1
+sequences generated by S. Further, denote y = {y nj (j)}j=0
+as the previous T sequences from S visited by the memory
+unit R. Note that each of these sequences might be from a
+different source model. We denote p = (p1 , ..., pK ), where
+K
+i=1 pi = 1, as the probability distribution according to
+
+1
+
+|I(θ)| 2
+
+=
+=
+=
+=
+
+1.5
+
+II. BACKGROUND R EVIEW AND M OTIVATION
+In this section, we motivate the context memorization problem by demonstrating the signiﬁcance of redundancy in the
+universal compression of small to moderate length sequences.
+Let A be a ﬁnite alphabet. Let the parametric source be deﬁned
+using a d-dimensional parameter vector θ = (θ1 , ..., θd ), where
+d denotes the number of the source parameters. Denote μθ
+as the probability measure deﬁned by the parameter vector
+θ on sequences of length n. We also use the notation μθ to
+refer to the parametric source itself. We assume that the d
+parameters are unknown. Denote P d as the family of sources
+with d-dimensional unknown parameter vector θ. We use the
+notation xn = (x1 , ..., xn ) ∈ An to present a sequence of
+length n from the alphabet A.
+Let Hn (θ) be the source entropy given θ, i.e.,
+1
+1
+Hn (θ) = E log
+μθ (xn ) log
+=
+.1 (1)
+μθ (X n )
+μθ (xn )
+xn
+In this paper log(·) always denotes the logarithm in base 2. Let
+cn : An → {0, 1}∗ be an injective mapping from the set An of
+the sequences of length n over A to the set {0, 1}∗ of binary
+sequences. Further, let ln (xn ) denote a universal length function for the codeword associated with the sequence xn . Denote
+Rn (ln , θ) as the expected redundancy of the code with length
+function ln (·), deﬁned as Rn (ln , θ) = Eln (X n )−Hn (θ). Note
+that the expected redundancy is always non-negative.
+Let In (θ) be the Fisher information matrix, i.e.,
+∂2
+1
+1
+ij
+In (θ)= {In (θ)}=
+E
+log
+. (2)
+n log e
+∂θi ∂θj
+μθ (X n )
+Fisher information matrix quantiﬁes the amount of information, on the average, that each symbol in a sample sequence
+xn from the source conveys about the source parameters.
+Let Jeffreys’ prior on the parameter vector θ be denoted by
+ωJ (θ)
+
+Hn (θ)/n
+Hn (θ)/n
+Hn (θ)/n
+Hn (θ)/n
+
+. Jeffreys’ prior is optimal in the sense
+
+that the average minimax redundancy is achieved when the
+parameter vector θ is assumed to follow Jeffreys’ prior [11].
+¯
+Further, let Rn be the average minimax redundancy given
+by [11], [12]
+n
+d
+1
+1
+¯
+Rn = log
++ log |In (θ)| 2 dθ + O
+. (3)
+2
+2πe
+n
+In [5], we obtained a lower bound on the average redundancy of the universal compression for the family of
+conditional two–stage codes, where the unknown parameter is
+ﬁrst estimated and the sequence is encoded using the estimated
+parameter, as the following [5]:
+1 Throughout this paper expectations are taken over the random sequence
+X n with respect to the probability measure μθ unless otherwise stated.
+
+2
+
+sources P d on a sequence of length n using context memory
+lengths m for a fraction (1 − ) of the sources. In other words,
+context memorization provides a gain at least gM (n, m, φ, , p)
+for a fraction (1 − ) of the sources in the family.
+Similarly in the case of UcompCM, let ln|m,Z denote the
+length function for the universal compression of a sequence of
+length n with memorized sequences y, where the vector Z of
+the source indices is known. We denote gCM (n, m, φ, , p)
+EZ g(ln , ln|m,Z , φ, ) as the fundamental gain of the context
+memorization in UcompCM. The following is a trivial lower
+bound on the context memorization gain in UcompCM.
+Fact 2 The fundamental gain of context memorization is:
+gCM (n, m, φ, , p) ≥ 1.
+Fact 2 simply states that the context memorization with source
+deﬁned clustering does not worsen the performance of the
+universal compression. We stress again that the saving of
+memory-assisted compression in terms of ﬂow reduction is
+only obtained in the S-R link. For example, for the given
+memorization gain gCM (n, m, φ, , p) = g0 , the expected
+number of bits needed to transfer xn to R is reduced from
+Eln (X n ) in Ucomp to g1 Eln (X n ) in UcompCM.
+0
+
+which the information sources in the compound source are selected for sequence generation, i.e., the source i is picked with
+probability pi . Let the random variable Zj denote the index of
+the source that has generated the sequence y nj (j), and hence,
+Zj follows the distribution p over [K]. Therefore, at time step
+j, sequence y nj (j) is generated using the parameter vector
+θ(Zj ) . Further, denote Z as the vector Z = (Z0 , ..., ZT −1 ). We
+wish to compress the sequence xn with source index ZT , when
+both the encoder and the decoder have access to a realization
+y of the random vector Y. This setup, although very generic,
+can incur in many applications. As the most basic example,
+consider the communication scenario in Fig. 1. The presence
+of memory y at R can be used by S to compress (via memoryassisted source coding) the sequence xn which is requested by
+client C from S. The compression can reduce the transmission
+cost on the S−R link while being transparent to the client, i.e.,
+R decodes the memory-assisted source code and then applies
+conventional universal compression to xn and transmits to C.
+In order to investigate the fundamental gain of the context
+memorization in the memory-assisted universal compression
+of the sequence xn over conventional universal source coding,
+we compare the following three schemes.
+• Ucomp (Universal compression), in which a sole universal compression is applied on the sequence xn without
+regard to the memorized sequence y.
+• UcompM (Universal compression with context memorization), in which the encoder S and the decoder R
+both have access to the memorized sequence y from the
+compound source, and they use y to learn the statistics
+of the source for the compression of the sequence xn .
+• UcompCM (Universal compression with source-deﬁned
+clustering of the memory), which assumes that the memory y is shared between the encoder S and the decoder
+R (i.e., the memory unit). Further, the source deﬁned
+clustering of memory implies that both S and R exactly
+know the index Z of the memorized sequences.
+The performance of Ucomp is characterized using the expected
+redundancy Rn (ln , θ), which is discussed in Sec. II. Let
+Q(ln , ˆn , θ) be deﬁned as the ratio of the expected codeword
+l
+length with length function ln to that of ˆn , i.e.,
+l
+n
+ˆn , θ) Eln (X ) = Hn (θ) + Rn (ln , θ) .
+Q(ln , l
+(4)
+Eˆn (X n )
+l
+Hn (θ) + Rn (ˆn , θ)
+l
+Further, let be such that 0 < < 1. We deﬁne g(ln , ˆn , ) as
+l
+the gain of the length function ˆn as compared to ln . That is
+l
+g(ln , ˆn , θ, ) = sup z : P Q(ln , ˆn , θ) ≥ z ≥ 1 − . (5)
+l
+l
+
+IV. R ESULTS ON THE M EMORIZATION G AIN
+In this section, we present our main results on the memorization gain with and without clustering. The proofs are
+omitted due to the lack of space. We give further consideration
+to the case K = 1 since it represents the memorization gain
+when all of the memorized sequences are from a single ﬁxed
+source model.
+A. Case K = 1
+In this case, since p = 1 and Z = 1 is known, there is no
+distinction between UcompM and UcompCM, and hence, we
+drop the subscript of g. The next theorem characterizes the
+fundamental gain of memory-assisted source coding:
+Theorem 3 Assume that the parameter vector θ follows Jeffreys’ prior in the universal compression of the family of
+parametric sources P d . Then,
+¯
+ˆ
+Rn + log( ) − R1 (n, m)
+1
+√
+,
+g(n, m, φ, , 1) ≥ 1+
++O
+ˆ 1 (n, m)
+n m
+Hn (φ) + R
+d
+n
+ˆ
+where R1 (n, m) 2 log 1 + m + 2.
+Further, let g(n, ∞, φ, , p) be deﬁned as the achievable gain
+of memorization where there is no constraint on the length of
+the memory, i.e, g(n, ∞, φ, , p) limm→∞ g(n, m, φ, , p).
+The following Corollary quantiﬁes the memorization gain for
+unbounded memory size.
+Corollary 4 Assume that the parameter vector θ follows
+Jeffreys’ prior in the universal compression of the family of
+parametric sources P d . Then,
+¯
+Rn + log( ) − 2
+.
+g(n, ∞, φ, , 1) ≥ 1 +
+Hn (φ) + 2
+Next, we consider the case where the sequence length n grows
+to inﬁnity. Intuitively, we would expect that the memorization
+gain become negligible for the compression of long sequences.
+Let g(∞, m, φ, , p)
+limn→∞ g(n, m, φ, , p). In the following, we claim that memorization does not provide any
+beneﬁt when n → ∞:
+Proposition 5 g(n, m, φ, , 1) approaches 1 as the length of
+the sequence xn grows, i.e., g(∞, m, φ, , 1) = 1.
+
+z∈R
+
+In the case of UcompM, let ln|m be the length function
+with context memorization, where the encoder S and the
+decoder R have access to sequences y with lengths m. Let
+m
+|m| = T −1 nj denote the total length of memory.2
+j=0
+Further, let φ
+θ(ZT ) . Denote Rn (ln|m , φ) as the expected
+redundancy of encoding a sequence of length n form the parametric source μφ using the length function ln|m . We denote
+EZ g(ln , ln|m , φ, ) as the fundamental
+gM (n, m, φ, , p)
+gain of the context memorization on the family of parametric
+2 We assume that n
+h, where h is the height of the tree of the class
+j
+P d , and hence, the impact of the concatenation of the sequences is negligible.
+
+3
+
+B. UcompM: Case K ≥ 2
+As stated in the problem setup, the sequences in the memory
+may be from various sources. This raises the question that
+whether a naive memorization of the previous sequences
+using UcompM without regard to which source parameter has
+indeed generated the sequence would sufﬁce to achieve the
+memorization gain. Let D be an upper bound on the size
+of the context tree used in compression. Denote μD as the
+¯θ
+probability measure that is deﬁned on the tree of depth D
+from the mixture of the sources. Further, let Dn (μφ ||μθ ) =
+¯
+μφ (xn )
+n
+n μφ (x ) log
+n ) . The following proposition charx
+μθ (x
+¯
+acterizes the performance of UcompM when applied to a
+compound source for K ≥ 2.
+Proposition 6 Let θ(i) (i ∈ [K]) follow Jeffreys’ prior. Then,
+the memorization gain in UcompM as m → ∞ is upper
+bounded by
+¯
+1
+Hn (φ) + Rn
+gM (n, ∞, φ, , p) ≤
++O
+.
+D)
+n
+Hn (φ) + Dn (μφ ||¯θ
+μ
+
+V. C LUSTERING FOR M EMORY-A SSISTED C OMPRESSION
+
+In this section, we try to answer the main question in the
+memory-assisted compression setup we introduced: “How do
+we utilize the available memory to better compress a sequence
+generated by a compound source?” It is obvious that the
+performance of conventional universal compression schemes
+(those without memory) cannot be improved by clustering
+of the compound source as xn is encoded without regard
+to y. However, because of a compound source, clustering is
+necessary to effectively utilize the memory in the proposed
+memory-assisted compression. Within this framework, we
+identify two interrelated problems: 1) How do we perform
+clustering of the memorized data to improve the performance
+of memory-assisted compression? 2) Given a set of clustered
+memory, how do we classify an incoming new sequence into
+one of the clusters in the memory using which the performance
+of memory-assisted compression is maximized? This relaxes
+the assumption of knowing Z by the encoder and the decoder
+in the analysis of Sec. IV.
+μθ
+Note that since K ≥ 2, then Dn (μφ ||¯D ) = Θ(n),3 (unless
+As one approach, it is natural to adapt a clustering algoθ(i) = θ(j) for all i, j ∈ [K], which occurs with zero probabilrithm, among the many, that has the codelength minimization
+ity). Therefore, the redundancy of UcompM is Rn (ln|m , φ) =
+Θ(n) with probability one. Proposition 6 states that when as its principle criterion. Thus, the goal of the clustering is to
+the context is built using the mixture of the sources, with group the sequences in the memory such that the total length
+probability one, the redundancy of UcompM is worse than the of all the encoded sequences is minimized (i.e., the sequences
+redundancy of Ucomp for a sufﬁciently large sequence, i.e., are grouped such that they are compressed well together). We
+the memorization gain becomes less than unity for sufﬁciently employ a Minimum Description Length (MDL) [13] approach
+large n. Therefore, the crude memorization of the context suggested by [14]. The MDL model selection approach is
+by node R in Fig. 1 from the previous communications not based on ﬁnding shortest description length of a given seonly does not improve the compression performance but also quence relative to a model class. We do not have a proof that
+asymptotically makes it worse. We shall see some discussion the MDL clustering is necessarily optimal for our goal (for
+all sequence lengths and memory sizes). However, as we will
+on validation of this claim based on simulations in Sec. VI.
+see in Sec. VI, for the cases of interest where the length of
+C. UcompCM: Case K ≥ 2
+memory is larger than the length of the new sequence, the
+Thus far, we demonstrated in Proposition 6 that the crude MDL clustering demonstrates a very good performance close
+memorization in the memory unit is not beneﬁcial when a to that of assuming to know Z (in source-deﬁned clustering).
+compound source is present. This necessitates to ﬁrst approNow, we would like to ﬁnd a proper class for a new
+priately cluster the sequences in the memory. Then, based on
+sequence xn generated by one of the K sources. Given a set
+n
+the criteria as to which cluster the new sequence x belongs
+of T sequences taken from K different sources, we assume
+to, we utilize the corresponding memorized context for the
+those T sequences have already been clustered into K clusters
+compression. In the following, we analyze the problem for
+C1 , . . . , CK . Then, the classiﬁcation algorithm for xn is as
+the source-deﬁned clustering (deﬁned in Sec. III). In this
+follows. We include the sequence xn in each cluster one at
+clustering, we assume both S and R (in Fig. 1) can exactly
+a time and ﬁnd the total description length of all sequences
+know the index i ∈ [K] and hence all the sequences that belong
+in the K clusters. Then, we label xn with the cluster whose
+to the same source θ(i) in the compound source are assigned
+resulting total description length is the minimum.
+to the same cluster (for all i ∈ [K]). Further, we assume that
+Next, we describe as to how we cluster the T sequences
+S can exactly classify the new sequence xn to the cluster
+in memory. A good clustering is such that it allows efﬁcient
+with parameter θ(ZT ) . In Sec. V, however, we will relax these
+compression of the whole data set. Equivalently, the sequences
+assumptions and study the impact of clustering in practice.
+that are clustered together should also compress well together.
+K
+Let H(p) = − i=1 pi log(pi ) be the entropy of the source
+We start by an initial clustering of the data set in the memory.
+model. The following proposition quantiﬁes the achievable
+Through experiments, we observed that this initial clustering
+redundancy and the memorization gain of UcompCM.
+has a considerable impact on the convergence of the clustering
+Theorem 7 Let θ(i) (i ∈ [K]) follow Jeffreys’ prior. Then, the algorithm which is in accordance with the observation in [14].
+memorization gain of UcompCM is lower bounded by
+We found that an initial clustering based on the estimated
+¯
+ˆ
+1
+Rn + log( ) − R2 (n, m)
++O √
+gCM (n, m, φ, , p) ≥1+
+, entropy of the sequences greatly reduces the number of
+ˆ
+n m
+Hn (φ) + R2 (n, m)
+iterations till convergence. The clustering is done iteratively
+d
+n
+ˆ
+where R2 (n, m) 2 log 1 + pZ m + 3 + H(p).
+by surﬁng the data set and moving a sequence from cluster i
+T
+to cluster j if this swapping results in a shorter total description
+3 f (n) = Θ(g(n)) if and only if f (n) = O(g(n) and g(n) = O(f (n)).
+length of the whole data set.
+
+4
+
+1.6
+
+g(n, m, φ, 0.05, 1)
+
+m
+m
+m
+m
+m
+
+1.5
+
+→∞
+= 8MB
+= 2MB
+= 512kB
+= 128kB
+
+6
+
+m=10MB
+m=1MB
+m=100kB
+
+5
+
+CM
+
+1.4
+
+g
+
+1.3
+
+4
+3
+
+1.2
+
+2
+
+1.1
+
+1
+
+128kB
+
+512kB
+
+2MB
+
+8MB
+
+32MB
+
+Fig. 3. Theoretical lower bound on the memorization gain g(n, m, φ, 0.05, 1).
+
+1 2
+10
+
+3
+
+10
+
+4
+
+n
+
+n = 10KB
+1.7308
+1.8862
+0.944
+0.939
+
+10
+
+5
+
+Fig. 4.
+The gain gCM of memory-assisted
+compression with source-deﬁned clustering.
+
+TABLE I
+M EMORY- ASSISTED COMPRESSION GAIN UNDER MDL CLUSTERING
+gMDL (m = 1MB)
+gMDL (m = 10MB)
+gMDL /gCM (m = 1MB)
+gMDL /gCM (m = 10MB)
+
+10
+
+Fig. 5. Theoretical and simulation results for
+gM and gCM .
+
+validating our theoretical result in Sec. IV-B. Finally, the
+experimental results of memory-assisted compression gain
+gMDL under MDL clustering, summarized in Table I, show
+that gMDL is close to gCM , demonstrating the effectiveness of
+MDL clustering for compression.
+In conclusion, this paper demonstrated that memorization
+(i.e., learning the source statistics) can lead to a fundamental
+performance improvement over the traditional universal compression. This was presented for both single and compound
+sources. We derived theoretical results on the achievable gains
+of memory-assisted source coding for a compound (mixture)
+source and argued that clustering is necessary to obtain memorization gain for compound sources. We also presented a fast
+MDL clustering algorithm tailored for the compression problem at hand and demonstrated its effectiveness for memoryassisted compression of ﬁnite-length sequences.
+
+n = 100KB
+1.0372
+1.0939
+0.993
+0.998
+
+VI. S IMULATION R ESULTS AND C ONCLUSION
+In this section, we characterize the performance of the
+proposed memorization scheme through computer simulations.
+In order to illustrate the importance of clustering for efﬁcient use of memory, we have evaluated the memory-assisted
+compression gain (over the performance of the conventional
+universal compression) for three cases: gM , gCM , and gMDL.
+Note that gMDL is deﬁned as the gain of memorization with
+MDL clustering in Sec. V. We demonstrate the signiﬁcance
+of the memorization through an example, where we again
+consider K ﬁrst-order Markov sources with alphabet size
+k = 256, source entropy Hn (φ) = 1 bit per byte, and = 0.05.
+n
+Fig. 3 considers the single source case (i.e., K = 1). The
+lower bound on the memorization gain is demonstrated as
+a function of the sequence length n for different values of
+the memory size m. As can be seen, signiﬁcant improvement
+in the compression may be achieved using memorization. As
+demonstrated in Fig. 3, the memorization gain for a memory
+of length m = 8MB is very close to g(n, ∞, φ, 0.05, 1), and
+hence, increasing the memory size beyond 8MB does not
+result in the substantial increase of the memorization gain. We
+observe that more than 50% improvement is achieved in the
+compression performance of a sequence of length n = 128kB
+with a memory of m = 8MB. On the other hand, as n → ∞,
+the memorization gain becomes negligible as expected.
+For the rest of the experiments, we ﬁxed the length of the
+sequences generated by the source, i.e., nj = n for all j.
+1
+We used K = 10 with uniform distribution, i.e., pi = 10 for
+i ∈ [K]. Further, we performed compression using Context
+Tree Weighting (CTW) [3] and averaged the simulation results
+over multiple runs of the experiment. Fig. 4 depicts gCM . As
+can be seen, joint memorization and clustering achieves up to
+6-fold improvement over the traditional universal compression.
+Fig. 5 depicts the experimental gCM using CTW, the theoretical
+lower bound on gCM derived in Sec. IV, and the experimental
+gM for memory m = 10MB. As we expected, with no
+clustering, the memory-assisted compression may result in a
+worse compression rate than compression with no memory
+
+R EFERENCES
+[1] L. Davisson, “Universal noiseless coding,” IEEE Trans. Info. Theory,
+vol. 19, no. 6, pp. 783 – 795, November 1973.
+[2] M. Weinberger, J. Rissanen, and M. Feder, “A universal ﬁnite memory
+source,” IEEE Trans. Info. Theory, vol. 41, no. 3, pp. 643 –652, 1995.
+[3] F. Willems, Y. Shtarkov, and T. Tjalkens, “The context-tree weighting
+method: basic properties,” IEEE Trans. Info. Theory, vol. 41, no. 3, pp.
+653–664, May 1995.
+[4] N. Merhav and M. Feder, “A strong version of the redundancy-capacity
+theorem of universal coding,” IEEE Trans. Info. Theory, vol. 41, no. 3,
+pp. 714 –722, May 1995.
+[5] A. Beirami and F. Fekri, “Results on the redundancy of universal
+compression for ﬁnite-length sequences,” in 2011 IEEE International
+Symp. on Info. Theory (ISIT ’2011), July 2011, pp. 1604–1608.
+[6] J. Rissanen, “Universal coding, information, prediction, and estimation,”
+IEEE Trans. Info. Theory, vol. 30, no. 4, pp. 629 – 636, July 1984.
+[7] G. Korodi, J. Rissanen, and I. Tabus, “Lossless data compression using
+optimal tree machines,” in 2005 Data Compression Conference (DCC
+’2005), March 2005, pp. 348 – 357.
+[8] A. Beirami and F. Fekri, “Memory-assisted universal source coding,” in
+2012 Data Compression Conference (DCC ’2012), April 2012, p. 392.
+[9] M. Sardari, A. Beirami, and F. Fekri, “On the network-wide gain of
+memory-assisted source coding,” in 2011 IEEE Information Theory
+Workshop (ITW’ 2011), October 2011, pp. 476–480.
+[10] ——, “Memory-assisted universal compression of network ﬂows,” in
+IEEE INFOCOM 2012, March 2012, pp. 91–99.
+[11] B. Clarke and A. Barron, “Information-theoretic asymptotics of Bayes
+methods,” IEEE Trans. Info. Theory, vol. 36, no. 3, pp. 453 –471, May
+1990.
+[12] K. Atteson, “The asymptotic redundancy of Bayes rules for Markov
+chains,” IEEE Trans. Info. Theory, vol. 45, no. 6, pp. 2104 –2109,
+September 1999.
+[13] A. Barron, J. Rissanen, and B. Yu, “The minimum description length
+principle in coding and modeling,” IEEE Trans. Info. Theory, vol. 44,
+no. 6, pp. 2743 –2760, October 1998.
+[14] P. Kontkanen, P. Myllymaki, W. Buntine, J. Rissanen, and H. Tirri, “An
+MDL framework for data clustering,” HIIT, Tech. Rep., 2003.
+
+5
+
+

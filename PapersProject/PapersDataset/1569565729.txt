@@ -1,0 +1,1221 @@
+Creator:        TeX
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Sat May  5 13:27:24 2012
+ModDate:        Tue Jun 19 12:54:41 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      380334 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569565729
+
+On symmetric/asymmetric Lee distance error
+control codes and elementary symmetric functions
+Luca G. Tallini
+
+Bella Bose
+
+Dip. di Scienze della Comunicazione,
+Universit` degli Studi di Teramo,
+a
+Coste San Agostino, 64100 Teramo. Italy.
+E-mail: ltallini@unite.it
+
+School of EECS,
+Oregon State University,
+Corvallis, OR 97331. USA.
+E-mail: bose@eecs.orst.edu
+relationship between the Lee distance and the L1 distance is
+given in Theorem 3 of Section II. In [9], [7], [5], [6] and
+[4] regarding m-ary words as submultisets of a multiset, new
+algebraic decoding procedures for a very wide class of new
+and previously known EC codes are given. Such decoding
+procedures are based on ﬁnding the solution of a general
+key equation involving the elementary symmetric functions
+(instead of the power sums) of the received word and the
+unknown coefﬁcients of some error evaluator polynomials. In
+[5], it is shown how to decode some of these codes and other
+new ones to combat the errors due to the transmission through
+possibly asymmetric channels. In these decoding schemes, the
+number of errors are counted in the L1 metric by taking into
+account the directionality of the errors (that is, if the errors are
+negative of positive). In [4] the elementary symmetric function/multiset framework is used to design new classes of codes
+capable of correcting/detecting symmetric errors counted in
+the L1 distance (2). Here, it is shown how the same framework
+based on computing the elementary symmetric functions of the
+received word is helpful in designing new codes capable of
+correcting/detecting symmetric or asymmetric errors counted
+in the Lee distance (1). This is done by reducing the design
+problem for Lee distance EC codes to the design of some of
+the L1 distance EC codes given in [4] and [5] (see Theorem
+5). In fact, some of the codes given in [4] are also good codes
+for the Lee distance from the theoretical (see Theorem 6)
+and practical perspective (see Theorem 7). For example, an
+m-ary code, with m = 33 of length n = 60 is given (see
+Example 3) with minimum Lee distance 11 (it can correct
+t = 5 symmetric errors measured in the Lee metric) and
+redundancy r = 5 log33 121 = 6.857 check m-ary digits. Such
+code is essentially linear (in the sense of [5] and [4]) and so,
+it is easy to encode. The code can be decoded efﬁciently with
+t steps of the Extended Euclidean Algorithm (EEA).
+Let us ﬁx some useful notation [4]. If X = x1 . . . xn ∈ Z n
+Zm
+is any word of length n over the m-ary alphabet Z m then
+Z
+def
+let supp(X) = supp I (X) indicate a subset of the index set
+def
+def
+I = [1, n] = {1, 2 . . . , n} where every element i ∈ [1, n] is
+counted with its multiplicity, mX (i) = xi ∈ Z m ⊆ II , given
+Z
+N
+by the i-th component of X. Namely, X ≡ supp(X) is a
+multiset on [1, n], and we simply let the weight of X to be
+w(X) = |X| = |supp(X)| = i∈[1,n] xi = i∈[1,n] mX (i).
+For example, if m = 3, n = 4 and X = 2012 ∈ Z 4 then
+Z3
+x1 = mX (1) = 2, x2 = mX (2) = 0, x3 = mX (3) = 1,
+x4 = mX (4) = 2, supp(X) = {1, 1, 3, 4, 4} and the weight
+of X is w(X) = |supp(X)| =
+i∈[1,n] mX (i) = 5. Let
+
+Abstract—This paper gives some new theory and design of
+codes capable of correcting/detecting errors measured under the
+Lee distance deﬁned over m-ary words, m ∈ II . Based on the
+N
+elementary symmetric functions (instead of the power sums),
+a key equation is derived which can be used to design new
+symmetric (or, asymmetric) error control algorithms for some
+new and already known error control codes for the Lee metric.
+In particular, it is shown that if K is any ﬁeld with characteristic
+char(K) = p, p odd, and u, h, n, m = uph , t ∈ II are such that
+N
+n ≤ (|K| − 1)/2 and t ≤ (ph − 1)/2 then there exist m-ary codes
+C of length n and cardinality |C| ≥ mn /|K|t which are capable
+of, say, correcting t symmetric errors (i. e., the minimum Lee
+distance of C is dLee (C) ≥ 2t + 1) with t steps of the Extended
+Euclidean Algorithm. Furthermore, if t ≤ (p − 1)/2 then some
+of these codes are (essentially) linear and, hence, easy to encode.
+Index Terms—m-ary alphabet, error control codes, Lee distance, L1 distance, Hamming distance, symmetric errors, asymmetric errors, symmetric distance, asymmetric distance.
+
+I. I NTRODUCTION
+def
+
+Let Z m = {0, 1, . . . , (m−1)} be the m-ary alphabet, m =
+Z
+def
+2, 3, . . . , +∞; where we let Z +∞ = II = {0, 1, 2, . . .}. For
+Z
+N
+any m-ary digit d ∈ Z m let the Lee absolute value be deﬁned
+Z
+def
+as λ(d) = min{d, m − d} ∈ Z m/2 +1 (in the case m = +∞
+Z
+def
+
+we simply let λ(d) = |d| ∈ II where |d| indicates the absolute
+N
+value of d ∈ IR). For example, if m = 5 then λ(0) = 0,
+λ(1) = 1, λ(2) = 2, λ(3) = 2, λ(4) = 1. The Lee distance
+Zm
+between X = x1 x2 . . . xn ∈ Z n and Y = y1 y2 . . . yn ∈ Z n ,
+Zm
+n ∈ II , is deﬁned by the real sum,
+N
+n
+def
+
+λ(xi − yi mod m).
+
+dLee (X, Y ) =
+
+(1)
+
+i=1
+
+For example, if m = 5, n = 6, X = 012314 and Y = 443101
+then dLee (X, Y ) = λ(0 − 4 mod 5) + λ(1 − 4 mod 5) + λ(2 −
+3 mod 5) + λ(3 − 1 mod 5) + λ(1 − 0 mod 5) + λ(4 − 1 mod
+5) = λ(1) + λ(2) + λ(4) + λ(2) + λ(1) + λ(3) = 1 + 2 + 1 +
+2 + 1 + 2 = 9. In this paper, codes for the Lee metric [2, Ch.
+9], [3, Ch. 10] are designed by using methods similar to the
+ones used for designing codes for the L1 metric in [4]. The
+L1 -distance between m-ary words X, Y ∈ Z n , is deﬁned as
+Zm
+n
+def
+
+|xi − yi |
+
+dL1 (X, Y ) =
+
+(2)
+
+i=1
+
+where X and Y are regarded as n component vectors over the
+real ﬁeld IR. For example, if m = 5, n = 6, X = 012314 and
+Y = 443101 then dL1 (X, Y ) = |0 − 4| + |1 − 4| + |2 − 3| +
+|3 − 1| + |1 − 0| + |4 − 1| = 4 + 3 + 1 + 2 + 1 + 3 = 14. Some
+
+def
+
+def
+
+∂X = ∂I X = {i ∈ I = [1, n] : xi = mX (i) = 0} ∈ Z n be
+Z2
+
+1
+
+def
+
+all natural i ∈ [1, n]. Furthermore, let ∂S = ∂S − ∪ ∂S + ⊆ K
+def
+and S = S − ∪ S + ∈ Z 2n . As in [5]–[9], for all X ⊆ S + , let
+Zm
+σX (z) ∈ K[z] be the polynomial associated with X,
+
+the set of indices where X is different from 0 and note that
+∂X can be regarded as a subset of [1, n]. We refer to ∂X as the
+index set of X. The multiset supp(X) should not be confused
+with the index set (which is a proper set), ∂X, of X. Note
+that the usual Hamming weight of X is wH (X) = |∂X|, and
+supp(X) = ∂X if, and only if, X ∈ Z n . For example if X =
+Z2
+2012, ∂X = 1011 ≡ {1, 3, 4} ⊆ [1, 4] and wH (X) = |∂X| =
+3 = |supp(X)| = w(X) = 5. Let the integer scalar product
+between c ∈ II and X = x1 x2 . . . xn ∈ Z n ⊆ II n be deﬁned
+N
+Zm
+N
+as c · X = cx1 cx2 . . . cxn ∈ Z n
+Zc(m−1)+1 ⊆ II n . For example,
+N
+if X = 2012 ∈ Z 4 ⊆ II 4 then 3 · X = 6036 ∈ Z 4 ⊆ II 4 .
+Z3
+N
+Z7
+N
+Deﬁne the total order in Z m as 0 ≤ 1 ≤ 2 ≤ . . . ≤ (m − 1)
+Z
+and, for all x, y ∈ Z m , let the minimum (maximum) operation
+Z
+min(x, y) (max(x, y)) be deﬁned as the minimum (maximum)
+between x and y, let the natural subtraction operation in Z m
+Z
+def
+def
+.
+.
+be deﬁned as x − y = 0 if x ≤ y, and x − y = x − y if
+x > y, where “−” indicates the usual integer subtraction. Then
+given any two words/multisets X, Y ∈ Z n , the words/multiset
+Zm
+operations X ∩ Y ∈ Z n , X ∪ Y ∈ Z n , X + Y ∈ II ,
+Zm
+Zm
+N
+.
+and X − Y ∈ Z n are deﬁned as the digit by digit min,
+Zm
+.
+max, integer addition and − operation between X and Y ,
+respectively. For example, if m = 3, n = 8, X = 012012012
+and Y = 000111222 then X ∩ Y = 000011012, X ∪ Y =
+.
+012112222, X + Y = 012123234, X − Y = 012001000 and
+. X = 000100210. Given any two word X, Y ∈ Z n , we
+Y −
+Zm
+say that X is contained in Y and write X ⊆ Y if, and only
+if, X = X ∩ Y . For example, 000011012 ≡ {5, 6, 8, 9, 9} ⊆
+{2, 3, 3, 5, 6, 6, 8, 9, 9} ≡ 012012012. Note that the relation ⊆
+deﬁnes a partial ordering in the family of multisets on [1, n]
+with multiplicity at most m − 1 (≡ the sets of m-ary words
+of length n). Under this multiset interpretation, an m-ary
+generalization of the binary Hamming distance between two
+words/submultisets X and Y can be deﬁned as the “symmetric
+def
+.
+.
+distance” dS (X, Y ) = dL1 ,Sym (X, Y ) = |X − Y | + |Y −
+X|, which is nothing but the L1 distance deﬁned in (2). For
+example, if X = 012012012 = {2, 3, 3, 5, 6, 6, 8, 9, 9} and
+.
+Y = 000111221 = {4, 5, 6, 7, 7, 8, 8, 9} then X − Y =
+. X = 000100210 =
+012001001 = {2, 3, 3, 6, 9} and Y −
+{4, 7, 7, 8}, and so, dL1 (X, Y ) = 9. In the above deﬁnitions
+there is nothing special in choosing I = [1, n] as index set. In
+fact, any other set will do.
+
+n
+def
+
+ev
+od
+(1 − ai z)xi = σX (z) + σX (z),
+
+σX (z) =
+
+(3)
+
+i=1
+def
+
+def
+
+ev
+od
+with σX (z) = 1 + σ2 (X)z 2 + . . . and σX (z) = σ1 (X)z +
+σ3 (X)z 3 + . . .. The following theorem holds [5].
+Theorem 1: Let K be any ﬁeld, S ∈ Z n be a multiset
+Zm
+def
+with index set ∂S = {a0 , a1 , . . . , an−1 } ⊆ K and σX (z) =
+n−1
+z x0 i=1 (1 − ai z)xi , for all X ⊆ S. Then, for all X, Y ⊆ S,
+σX+Y (z) = σX (z)σY (z) and
+.
+.
+σX∪Y (z) = σX (z)σY −X (z) = σY (z)σX −Y (z).
+
+(4)
+
+In [5], the general key equation (4) is used to design asymmetric EC codes for the L1 metric. Here, from (4) we derive a
+key equation which is suitable to solve the error control code
+design problem for the Lee distance. First, we want to express
+the Lee distance (1) in terms of our language of multisets. To
+this purpose, we need some further notations and deﬁnitions.
+def
+Let m ∈ II be given and recall that λ(d) = min{d, m − d} ∈
+N
+n
+N
+Z
+Z m/2 +1 . Given X ∈ II m , n ∈ II , let λ(X) ∈ Z nm/2 +1 be
+Z
+N
+deﬁned by applying the λ function to every component of X;
+def
+that is, mλ(X) (i) = λ(mX (i)), for all integer i ∈ I = [1, n].
+For example, if m = 5 then λ(42031) = 12021. In this
+way, the Lee weight of X, wLee (X) ∈ [0, n m/2 ], can be
+simply deﬁned as the cardinality (or, symmetric L1 weight)
+def
+of the multiset λ(X); that is, wLee (X) = |λ(X)|. For
+example, wLee (42031) = |12021| = 1 + 2 + 0 + 2 + 1 = 6.
+Also, given X ∈ II n , let X ≤ ∈ [0, m/2 ]n ⊆ Z n and
+Nm
+Zm
+X > ∈ [ m/2 + 1, m − 1]n ⊆ Z n be deﬁned by
+Zm
+def
+
+mX (i)
+0
+
+if mX (i) ∈ [0, m/2 ],
+if mX (i) ∈ [ m/2 + 1, m − 1]
+
+def
+
+0
+mX (i)
+
+if mX (i) ∈ [0, m/2 ],
+if mX (i) ∈ [ m/2 + 1, m − 1];
+
+mX ≤ (i) =
+and
+mX > (i) =
+
+respectively. For example, if m = 5 then 42031≤ = 02001 ∈
+[0, 2]5 and 42031> = 40030 ∈ [3, 4]5 . As a direct consequence
+of the above deﬁnitions, note that
+λ(X) ⊆ X,
+X ≤ ∩ X > = ∅,
+X = X≤ ∪ X> ∈ Z n ,
+Zm
+X = X≤ + X> ∈ Z n ,
+Zm
+λ(X ≤ ) = X ≤ ∈ Z nm/2 +1 ,
+Z
+.
+(5)
+λ(X > ) = m∂(X > ) − X > ∈ Z nm/2 +1 ,
+Z
+≤
+>
+X ∩ λ(X ) = ∅,
+λ(X) = X ≤ ∪ λ(X > ) ∈ Z nm/2 +1 ,
+Z
+≤
+>
+λ(X) = X + λ(X ) ∈ Z nm/2 +1 ,
+Z
+|λ(X)| = |X ≤ | + |λ(X > )|.
+
+II. C ODES FOR THE L EE METRIC
+def
+Let K be any ﬁeld. For all polynomials p(z) = p0 + p1 z +
+def
+p2 z 2 + p3 z 3 + . . . ∈ K[z], let pev (z) = p0 + p2 z 2 + . . . ∈ K[z]
+def
+indicate the even part of p(z) and pod (z) = p1 z +p3 z 3 +. . . ∈
+K[z] the odd part. We say that a polynomial is even (odd) iff,
+p(z) = pev (z) (p(z) = pod (z), respectively). If a polynomial
+is neither even nor odd then we call it mixed; otherwise, we
+call it unmixed. We let deg(p) ∈ II ∪ {−∞} indicate the
+N
+degree of any polynomial p(z) ∈ K[z]. Given the ﬁeld K, let
+K + ⊆ K be the biggest subset of K such that a ∈ K + =⇒
+−a ∈ K + . We refer to K + as the subset of positive elements
+def
+in K. Let K − = K − ({0} ∪ K + ) be the subset of negative
+elements in K and note that K remains partitioned as follows:
+K = K − ∪ {0} ∪ K + . Let S + ∈ Z n be a multiset over
+Zm
+K such that ∂S + = {a1 , a2 , . . . , an } ⊆ K + . In this way,
+def
+∂S − = {−a1 , −a2 , . . . , −an } ⊆ K − ; where the multiset
+def
+S − ∈ Z n over K is deﬁned by mS − (−ai ) = mS + (ai ), for
+Zm
+
+The following theorem holds.
+Theorem 2: Let m, n ∈ II ∪ {+∞} be given. For all
+N
+X, Y ∈ Z n let
+Zm
+def
+.
+.
+Lee
+Lee
+E− = E− (X, Y ) = (X − Y )≤ + λ((Y − X)> ) =
+(6)
+. Y )≤ ∪ λ((Y − X)> ) ∈ Z n
+.
+(X −
+Z
+,
+m/2 +1
+
+2
+
+def
+.
+.
+Lee
+Lee
+E+ = E+ (X, Y ) = (Y − X)≤ + λ((X − Y )> ) =
+. X)≤ ∪ λ((X − Y )> ) ∈ Z n
+.
+(Y −
+Z m/2 +1 .
+
+The following relation holds for any X, Y
+
+and for the asymmetric case:
+def
+.
+.
+dH,Asy (X, Y ) = max{|∂(X − Y )|, |∂(Y − X)|} ≤
+def
+.
+.
+dLee,Asy (X, Y ) = max{|λ(X − Y )|, |λ(Y − X)|} ≤
+def
+. Y |, |Y − X|}.
+.
+dL1 ,Asy (X, Y ) = max{|X −
+
+∈Z n .
+Zm
+
+dLee (X, Y ) = wLee (X − Y mod m)
+.
+.
+= wLee (X − Y ) + wLee (Y − X)
+. Y )| + |λ(Y − X)|
+.
+= |λ(X −
+.
+.
+= (X − Y )≤ + |λ((Y − X)> )|+
+. X)≤ + |λ((X − Y )> )|
+.
+(Y −
+Lee
+Lee
+= E− + E+ .
+
+Hence, say, a symmetric (or asymmetric) Hamming distance
+t-EC code is also a symmetric (or asymmetric) Lee distance tEC code which in its turn is also a symmetric (or asymmetric,
+respectively) L1 distance t-EC code.
+Proof: First note that all the six functions deﬁned above
+are indeed distances. In particular, for all of them, the triangle
+inequality holds because the cardinality is a monotone additive
+measure in Z n and for all X, Y, Z ∈ Z n ,
+Zm
+Zm
+.
+.
+.
+ϕ(X − Y ) ⊆ ϕ((X − Z)) + ϕ((Z − Y )) ∈ Z n ;
+Z
+
+(7)
+
+Proof: From deﬁnition (1) of dLee and the above deﬁnition of wLee , it is readily seen that dLee (X, Y ) = |λ(X −
+Y mod m)| = wLee (X −Y mod m). Hence, the ﬁrst equality
+of (7) holds. With regard to the second equality of (7), let
+xi = mX (i) ∈ Z m , yi = mY (i) ∈ Z m , for all i ∈ [1, n], and
+Z
+Z
+let “− ” indicate the subtraction mod m. We have
+m
+
+m
+
+when ϕ is equal to the identity function, ϕ = λ and
+ϕ = ∂. Also note that dH,Sym is indeed the Hamming
+distance, dLee,Sym is the Lee distance (because of Theorem
+2) and dL1 ,Sym is the L1 distance (furthermore, note that the
+asymmetric equivalent of these distances can be considered
+and might be of interest. Indeed, the L1 asymmetric distance
+dL1 ,Asy (X, Y ) plays a fundamental role in designing the
+(t+ , t− )-EC/(d+ , d− )-ED codes in [5]). Now, since ∂(d) =
+|∂(d)| ≤ λ(d) = |λ(d)| ≤ d = |d|, for all d ∈ Z m , it follows
+Z
+that |∂X| ≤ |λ(X)| ≤ |X|, for all X ∈ Z n . Hence, the
+Zm
+statement of the theorem follows.
+In spite of Theorem 3 (stating that Lee distance EC codes are
+also L1 distance EC codes), as mentioned above, we reduce
+the design problem for Lee distance EC codes to the designs
+of the L1 distance EC codes given in [4]. In this way, not
+only we obtain a new encoding procedure for the Berlekamp’s
+symmetric Lee distance EC codes given in [2, Ch. 9], but get a
+new generalization of such symmetric codes for many values
+of m, d ∈ II where m is a multiple of a prime and d ≤ m.
+N
+Furthermore, we can design Lee distance EC codes for the
+asymmetric case. Indeed, the expression of dLee in Theorem 2
+together with the key equation (4) gives a similar key equation
+for the Lee metric case. This equation is derived as follows.
+.
+L def
+First note that if X is sent and Y is received then E+1 = Y −
+.
+L def
+X and E−1 = X − Y are the multisets of the positive and
+negative errors deﬁned in the L1 metric. On the other hand,
+the multisets of the positive and negative errors deﬁned in the
+L ≤
+L >
+Lee
+Lee metric are E+ = E+1 ∪ λ E−1
+∈ Z m/2 +1 and
+Z
+
+n
+
+λ(xi − yi ) =
+m
+
+dLee (X, Y ) =
+i=1
+
+λ(xi − yi ).
+m
+
+λ(xi − yi ) +
+m
+i∈[1,n]: xi ≥yi
+
+i∈[1,n]: xi <yi
+
+.
+Now, from the deﬁnition of wLee and “−”,
+i∈[1,n]: xi ≥yi
+
+λ(xi − yi ) = i∈[1,n]: xi ≥yi λ(xi − yi ) =
+m
+.
+.
+λ(x − y ) = w (X − Y );
+i
+
+i∈[1,n]
+
+i
+
+Lee
+
+.
+whereas, from the deﬁnition of wLee , “−” and λ,
+λ(xi − yi ) =
+m
+i∈[1,n]: xi <yi
+
+λ(m + (xi − yi )) =
+i∈[1,n]: xi <yi
+
+min{m + (xi − yi ), m − [m + (xi − yi )]} =
+i∈[1,n]: xi <yi
+
+min{yi − xi , m − (yi − xi )} =
+.
+λ(y − x ) =
+λ(y − x ) =
+
+i∈[1,n]: xi <yi
+i∈[1,n]: yi >xi
+
+i
+
+i
+
+i∈[1,n]
+
+i
+
+i
+
+.
+wLee (Y − X).
+
+The third equality of (7) comes from the deﬁnition of wLee .
+The fourth equality of (7) comes from the last relation of (5).
+Since the cardinality is an additive (with respect to the natural
+addition +) measure in Z n , the ﬁfth equality of (7) holds
+Zm
+.
+.
+Lee
+as well. Furthermore, E− = (X − Y )≤ ∪ λ((Y − X)> )
+. Y ) ∩ (Y − X) = ∅, (X − Y )≤ ⊆ X −
+.
+.
+.
+because (X −
+. X)> ) ⊆ (Y −
+.
+Y (from the third relation of (5)), λ((Y −
+. X (from the ﬁrst and third relation of (5)), and
+>
+X) ⊆ Y −
+.
+.
+so (X − Y )≤ ∩ λ((Y − X)> ) = ∅. The above expression
+.
+Lee
+Lee
+for E− also implies that E− ∈ Z m/2 +1 because (X −
+Z
+.
+Y )≤ ∈ Z m/2 +1 (from the ﬁfth relation of (5)), λ((Y −
+Z
+X)> ) ∈ Z m/2 +1 (from the sixth relation of (5)) and A∪B ∈
+Z
+Z m/2 +1 for all A, B ∈ Z m/2 +1 . Similarly, the analogous
+Z
+Z
+Lee
+statement can be shown for E+ .
+Given Theorem 2, the following theorem makes clear the
+topological relationships among the L1 , Lee and Hamming
+metric; for both symmetric and asymmetric case.
+Theorem 3: Let m, n ∈ II ∪ {+∞}. For all X, Y ∈ Z n
+N
+Zm
+the following relations hold for the symmetric case:
+def
+.
+.
+dH,Sym (X, Y ) = |∂(X − Y )| + |∂(Y − X)| ≤
+def
+.
+.
+dLee,Sym (X, Y ) = |λ(X − Y )| + |λ(Y − X)| ≤
+def
+. Y | + |Y − X|;
+.
+d
+(X, Y ) = |X −
+
+≤
+
+L
+L
+Lee
+E− = E−1 ∪ λ E+1
+
+if we let E
+
+Lee def
+
+=
+
+Lee
+E+
+
+>
+
+−
+
+∈Z
+Z
+Lee
+E−
+
+m/2 +1
+
+given in (6). In fact,
+
+then
+
+Lee
+Lee
+X = (Y −E+ +E− ) mod m = (Y −E Lee ) mod m. (8)
+
+Relation (8) can be shown as follows. First, the multisets
+L ≤
+L >
+L ≤
+L >
+E+1 , λ E−1 , E−1 and λ E+1
+are pairwise disjoint
+L
+L
+Lee
+Lee
+(and in particular, E+ ∩E− = ∅) because of E+1 ∩E−1 = ∅
+and the seventh relation of (5). Hence, only the following ﬁve
+cases are possible.
+≤
+
+•
+
+L1 ,Sym
+
+3
+
+>
+
+L
+L
+Lee
+Lee
+i ∈ E+ , i ∈ E− , i ∈ E+1 and i ∈ λ E−1 . In
+Lee
+Lee
+Lee
+this case, yi − mE+ (i) + mE− (i) = yi − mE+ (i) =
+.
+yi − (yi − xi ) = yi − (yi − xi ) = xi mod m.
+
+≤
+
+•
+
+•
+
+•
+
+•
+
+.
+.
+Proof: Let E+ = Y − X and E− = X − Y . From
+Theorem 1 and the relations (5), it follows
+
+>
+
+L
+L
+Lee
+Lee
+i ∈ E+ , i ∈ E− , i ∈ E+1 and i ∈ λ E−1 . In
+Lee
+this case, from the sixth relation of (5), yi − mE+ (i) +
+. (x − y )] =
+.
+Lee
+Lee
+mE− (i) = yi − mE+ (i) = yi − [m − i
+i
+yi − [m − (xi − yi )] = xi − m = xi mod m.
+L >
+L ≤
+Lee
+Lee
+i ∈ E+ , i ∈ E− , i ∈ E−1 and i ∈ λ E+1 . In
+Lee
+Lee
+Lee
+this case, yi − mE+ (i) + mE− (i) = yi + mE− (i) =
+.
+yi + (xi − yi ) = yi + (xi − yi ) = xi mod m.
+L >
+L ≤
+Lee
+Lee
+i ∈ E+ , i ∈ E− , i ∈ E−1 and i ∈ λ E+1 . In
+Lee
+this case, from the sixth relation of (5), yi − mE+ (i) +
+. (y − x )] =
+.
+Lee
+Lee
+mE− (i) = yi + mE− (i) = yi + [m − i
+i
+yi + [m − (yi − xi )] = xi + m = xi mod m.
+Lee
+Lee
+i ∈ E+ , i ∈ E− . In this case, m L1 ≤ (i) =
+
+σX (z)σE+ (z) = σY (z)σE− (z) ⇐⇒
+>
+>
+σX (z)σE ≤ (z)σE+ (z) = σY (z)σE ≤ (z)σE− (z) ⇐⇒
++
+
+>
+> .
+>
+σY (z)σE ≤ (z)σm∂E− (z)σm∂E+ −E+ (z) ⇐⇒
+−
+
+>
+>
+σX (z)σE ≤ (z)σm∂E+ (z)σλ(E− ) (z) =
++
+
+>
+>
+σY (z)σE ≤ (z)σm∂E− (z)σλ(E+ ) (z).
+−
+
+>
+Lee
+But, from Theorem 1, σE+ (z) = σE ≤ (z)σλ(E− ) (z) and
++
+>
+Lee
+σE− (z) = σE ≤ (z)σλ(E+ ) (z), and so (9) holds.
+−
+In particular, the following main theorem holds.
+Theorem 5 (key equation for the Lee metric): Let K be a
+def
+ﬁeld with char(K) = p, p prime. Let u, h, n, m = uph ∈ II ,
+N
+S ∈ Z n be a multiset with index set ∂S = {a1 , a2 , . . . , an } ⊆
+Zm
+def
+n
+mX (i)
+K − {0} and σX (z) =
+, for all X ⊆
+i=1 (1 − ai z)
+Lee
+Lee
+S. Furthermore, let E− = E− (X, Y ) ∈ Z n+1 +1 and
+Z m/2
+Lee
+Lee
+Z m/2
+E+ = E+ (X, Y ) ∈ Z n+1 +1 be the multisets of the
+negative and positive errors deﬁned for the Lee metric by (6).
+Then for any given d ≤ m/u = ph the following equation
+holds for any X, Y ⊆ S:
+
+E+
+
+mλ
+
+L >
+E−1
+
+(i) = m
+
+L ≤
+E−1
+
+(i) = mλ
+
+L >
+E+1
+
+= 0 and so,
+
+form λ(0) = 0, we have yi = xi . On the other hand,
+Lee
+Lee
+yi − mE+ (i) + mE− (i) = yi = xi mod m.
+So, if the receiver is able to compute the error patterns
+Lee
+Lee
+Z
+E+ , E− ∈ Z m/2 +1 from the received word Y then it can
+recover the sent word X using (8). For example, if m = 5 and
+X, Y ∈ Z 25 are given below, then
+Z5
+
+L
+E+1
+
+X = 00000 11111 22222 33333 44444,
+Y = 01234 01234 01234 01234 01234,
+. X = 01234 00123 00012 00001 00000,
+=Y −
+L
+E+1
+L
+E+1
+
+≤
+>
+
+Lee
+Lee
+σX (z)σE+ (z) = σY (z)σE− (z) mod z d .
+
+h
+
+σmX (z) = [σX (z)]m = (1 + σ1 (X)z + . . .)up =
+
+= 00034 00003 00000 00000 00000,
+
+h
+
+>
+
+λ
+
+(10)
+
+Proof: If m = uph and d ≤ ph then for all X ∈ Z n ,
+Zm
+
+= 01200 00120 00012 00001 00000,
+
+(1 + σ1 (X)z + . . .)p
+
+L
+λ E+1
+= 00021 00002 00000 00000 00000,
+. Y = 00000 10000 21000 32100 43210,
+L1
+E− = X −
+L ≤
+E−1
+L >
+E−1
+L >
+E−1
+Lee
+E+
+Lee
+E−
+
+−
+
++
+
+>
+> .
+>
+σX (z)σE ≤ (z)σm∂E+ (z)σm∂E− −E− (z) =
+
+1 + u[σ1 (X)] z
+
+h
+
+u
+
+=
+
+d
+
++ . . . = 1 mod z ,
+
+because of the Frobenius automorphism in K. This and (9)
+imply (10).
+At this point we have done. In fact, under the hypothesis of
+Theorem 5, the code constructions deﬁned in [4] for g(z) = z d
+can be used to control symmetric errors in the Lee distance.
+Analogously, the constructions deﬁned in Theorem 5 of [5]
+for p(z) = z d may be used to control asymmetric errors in
+the Lee distance as done for the L1 distance. In particular,
+for symmetric error control in the Lee metric, the following
+theorem deﬁnes the general code design.
+Theorem 6: Let K be any ﬁeld with char(K) = p, p odd
+def
+prime. Given u, h, n, m = uph ∈ II , let S + ∈ Z n be a
+N
+Zm
+multiset with index sets ∂S + = {a1 , a2 , . . . , an } ⊆ K + and
+def
+def
+n
+mX (i)
+, for all X ⊆ S + . If t, d =
+σX (z) =
+i=1 (1 − ai z)
+h
+h
+2t + 1 ∈ II and d ≤ m/u = p ( ⇐⇒ t ≤ (p − 1)/2 ) then,
+N
+for all σ(z) ∈ K[z] the code
+
+= 00000 00000 00000 30000 43000,
+= 00000 00000 00000 20000 12000,
+= 01200 00120 00012 20001 12000,
+= 00021 10002 21000 02100 00210.
+
+Lee
+Lee
+Hence, Y − E+ + E− =
+
+0 0 0 5 5 1 1 1 1 6 2 2 2 2 2 −2 3 3 3 3 −1 −1 4 4 4 = X mod 5.
+Theorem 4: Let K be any ﬁeld, S ∈ Z n+1 , m, n ∈ II , be
+Zm
+N
+a multiset with index set ∂S = {a0 = 0, a1 , . . . , an } ⊆ K and
+def
+n
+σX (z) = z x0 i=1 (1 − ai z)xi , for all X ⊆ S. Furthermore,
+let
+Lee
+Lee
+E− = E− (X, Y ) ∈ Z n+1 +1
+Z m/2
+
+def
+
+od
+Cσ,zd S + = X ⊆ S +: σX (z) = σ(z)σX (z) mod z d
+
+and
+
+(11)
+
+of length n = |S + | ≤ (|K| − 1)/2 contains either at most
+one element or many elements with minimum symmetric
+Lee distance dLee (Cσ,zd (S + )) ≥ d = 2t + 1. Also, there
+exists σ(z) = σ0 + σ1 z + . . . + σ2t z 2t ∈ K[z] where
+2i−1
+σ2i = j=1 (−1)j σj σ2i−j , for all i ∈ [0, t], such that
+
++1
+
+be the multisets of the negative and positive errors deﬁned for
+the Lee metric in (6). Then, for all X, Y ⊆ S,
+.
+Lee
+σX (z)σE+ (z)σm[(Y −X)> ] (z) =
+.
+Lee
+σY (z)σE− (z)σm[(X −Y )> ] (z).
+
+h
+
+= 1 + [σ1 (X)]p z p + . . .
+
+ph ph
+
+= 00000 10000 21000 02100 00210,
+
+Lee
+Lee
+E+ = E+ (X, Y ) ∈ Z n+1
+Z m/2
+
+u
+
+(9)
+
+|Cσ,zd (S + ) ∩ T | ≥
+
+4
+
+|{X ∈ T : X ⊆ S + }|
+;
+|K|t
+
+for any T ⊆ Z n . In particular, when S + = (m − 1)∂S + and
+Zm
+T = Z n the redundancy of the m-ary code Cσ,zd (S + ) is
+Zm
+
+This code can be efﬁciently decoded to, say, correct 3 errors
+by solving the key equation (12). Furthermore, Theorem 7
+implies that the code C0 has the same parameters as above,
+redundancy ρ(C0 ) = 3 and is a linear code (so, it can be
+efﬁciently encoded too). Actually, C0 is a Berlekamp’s like
+code [3, page 314–316] which can be efﬁciently decoded in a
+new way by using (12).
+Example 2: Let K = GF (33 ), p = 3, u = 2, h = 2 m =
+uph = 18, ∂S + ⊆ K + , n = |S + | = 13 ≤ (|K| − 1)/2 = 13,
+S + = (m − 1)∂S + = 17∂S + , d = 9 ≤ ph = 9 ( ⇐⇒
+t = 4 ≤ (ph − 1)/2 = 4). Theorem 6 implies that there exists
+a code Cσ = Cσ,zd (S + ) with the following parameters.
+
+ρ(Cσ,zd (m − 1)∂S + ) ≤ t logm |K|.
+As done in Algorithm 1 in [4] for the L1 metric, an efﬁcient
+algebraic error control algorithm can be designed by solving
+the key equation
+od
+τE Lee (z) =
+
+od
+σ(z)σY (z) − σY (z)
+· τE Lee (z) mod z d , (12)
+σY (−z)
+
+where X ∈ Cσ,zd (S + ) is the sent code word, Y ∈ Z n is
+Zm
+def
+Lee
+Lee
+the received word and τE Lee (z) = σE+ (−z)σE− (z) =
+
+code alphabet m = 18,
+length n = 13,
+minimum Lee distance dLee (Cσ ) ≥ d = 9,
+redundancy ρ(Cσ ) ≤ t logm |K| = 4 log18 27 = 4.561 . . ..
+
+mE Lee (i)
+n
+−
+i=1 (1−ai z)
+
+mE Lee (i)
+n
++
+i=1 (1+ai z)
+
+is the unknown
+error evaluator polynomial. In particular, the code word X can
+be recovered using (8) once the error vector E Lee has been
+computed from τE Lee (z).
+Proof: First note that the key equation (10) holds true in
+the hypothesis of this theorem because of Theorem 5. Hence,
+the proof follows exactly as the proof of Theorem 3 in [4]
+where the key equation (4) is replaced with the equation (10).
+In this way, note that the relations of (8) in [4] can be derived
+modz d , which is what is needed in the remaining part of the
+proof. Furthermore, the lower bound on the code cardinality
+follows from the analysis given in Example 1 in [4].
+Particularly interesting for efﬁcient code design is the case
+σ(z) = 0. In fact, the following theorem holds.
+def
+Theorem 7: Let Si (X) = x1 ai + x2 ai + . . . + xn ai be
+n
+1
+2
+the i-th power sum of X ∈ Z n . In the same hypothesis of
+Zm
+Theorem 6, assume d = 2t + 1 ≤ p ( ⇐⇒ t ≤ (p − 1)/2 ),
+and σ(z) = 0. Then C0,zd (S + ) =
+
+This new code can be efﬁciently decoded to, say, correct 4
+errors by solving the key equation (12).
+Example 3: Let K = GF (112 ), p = 11, u = 3, h = 1
+m = uph = 33, ∂S + ⊆ K + , n = |S + | = 60 ≤ (|K|−1)/2 =
+60, S + = (m − 1)∂S + = 32∂S + , d = 11 ≤ ph = 11 ( ⇐⇒
+t = 5 ≤ (ph − 1)/2 = 5). Theorem 6 implies that there exists
+a code Cσ = Cσ,zd (S + ) with the following parameters.
+code alphabet m = 33,
+length n = 60,
+minimum Lee distance dLee (Cσ ) ≥ d = 11,
+redundancy ρ(Cσ ) ≤ t logm |K| = 5 log33 121 = 6.857 . . ..
+This new code can be efﬁciently decoded to, say, correct 5
+errors by solving the key equation (12). Also, Theorem 7
+implies that the new code C0 has the same parameters as above,
+redundancy ρ(C0 ) = 6.857 . . . and is essentially linear (so, it
+can be efﬁciently encoded too) because of representation (13).
+
+od
+od
+X ⊆ S +: σX (z) = σX mod p (z) = 0 mod z 2t+1 =
++
+{X ⊆ S : σ1 (X) = σ3 (X) = . . . = σ2t−1 (X) = 0} =
+{X ⊆ S +: S1 (X) = S3 (X) = . . . = S2t−1 (X) = 0} .
+
+ACKNOWLEDGMENT
+This work is supported by the National Science Foundation
+under Grant CCF-1117215 and by the Italian MIUR Grant
+PRIN 2009-2009EL7424.
+
++
+
+Hence, C0,zd ((p − 1)∂S ) is a p-ary linear code. Furthermore,
+def
+if s = uph−1 ∈ II and m = sp ∈ II then 1) the following
+N
+N
+representation holds for the m-ary code C0,zd ((m − 1)∂S + ):
+C0,zd (m − 1)∂S + = Z n · p + C0,zd (p − 1)∂S +
+Zs
+
+R EFERENCES
+
+(13)
+
+[1] Y. Cassuto, M. Schwartz, V. Bohossian, J. Bruck, “Codes for multi-level
+ﬂash memories: Correcting asymmetric limited-magnitude errors, Proc.
+2007 IEEE Int. Symp. on Information Theory, pp. 1176-1180, June 2007.
+[2] E. R. Berlekamp, Algebraic coding theory, Aegean Park Press, 1984.
+[3] R. Roth, Introduction to Coding Theory, Cambridge University Press,
+2006.
+[4] L. G. Tallini, B. Bose, “On symmetric L1 distance error control codes
+and elementary symmetric functions”, Proc. 2012 IEEE Int. Symp. on
+Information Theory, July 2012.
+[5] L. G. Tallini, B. Bose, “On L1 -distance error control codes”, Proc. 2011
+IEEE Int. Symp. on Information Theory, pp. 1026-1030, July/August
+2011.
+[6] L. G. Tallini, B. Bose, “Reed-Muller codes, elementary symmetric
+functions and asymmetric error correction”, Proc. 2011 IEEE Int. Symp.
+on Information Theory, pp. 1016-1020, July/August 2011.
+[7] L. G. Tallini, B. Bose, “On decoding some error control codes using
+the elementary symmetric functions”. In Trends in Incidence and Galois
+Geometries: a Tribute to Giuseppe Tallini - Quaderni di Matematica, F.
+Mazzocca, N. Melone and D. Olanda Ed.. vol. 19, p. 265-297, Caserta,
+Dipartimento di Matematica, Seconda Universit` di Napoli, 2010.
+a
+[8] L. G. Tallini, N. Elarief, B. Bose, “On Efﬁcient Repetition Error Correcting Codes”, Proc. 2010 IEEE Int. Symp. on Information Theory, pp.
+1012-1016, June 2010.
+[9] L. G. Tallini, B. Bose, “On a new class of error control codes and
+symmetric functions”, Proc. 2008 IEEE Int. Symp. on Information Theory,
+pp. 980-984, July 2008.
+
+(in the above equation the sum and product are those deﬁned in the naturals); 2) the minimum Lee distance of
+C0,zd ((m − 1)∂S + ) is dLee (C0,zd ((m − 1)∂S + )) ≥ d =
+2t + 1; and 3) the redundancy is
+ρ(C0,zd (m − 1)∂S + ) = t logm |K|.
+Proof: Given Theorem 6, the proof follows exactly as the
+proof of Theorem 4 in [4].
+We conclude this section by giving some examples.
+Example 1: Let K = GF (17), p = 17, u = 1, h = 1
+m = uph = 17, ∂S + = {1, 2, 3, 4, 5, 6, 7, 8} ⊆ K + , n =
+|S + | = 8 ≤ (|K| − 1)/2 = 8, S + = (m − 1)∂S + = 16∂S + ≡
+16 16 16 16 16 16 16 16 ∈ Z 8 , d = 7 ≤ ph = 17 ( ⇐⇒
+Z17
+t = 3 ≤ (ph − 1)/2 = 8). Theorem 6 implies that there exists
+a code Cσ = Cσ,zd (S + ) with the following parameters.
+code alphabet m = 17,
+length n = 8,
+minimum Lee distance dLee (Cσ ) ≥ d = 7,
+redundancy ρ(Cσ ) ≤ t logm |K| = 3 log17 17 = 3.
+
+5
+
+

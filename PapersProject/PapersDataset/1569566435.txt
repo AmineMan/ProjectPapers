@@ -1,0 +1,812 @@
+Creator:         TeX output 2012.05.16:2107
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Wed May 16 21:08:30 2012
+ModDate:        Tue Jun 19 12:55:55 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      266641 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569566435
+
+Proximity Factors of Lattice Reduction-Aided
+Precoding for Multiantenna Broadcast
+Shuiyin Liu and Cong Ling
+
+Xiaofu Wu
+
+Department of Electrical and
+Electronic Engineering
+Imperial College London
+London, SW7 2AZ, UK
+shuiyin.liu06, cling@ieee.org
+
+Nanjing University of Posts
+Telecommunications
+Nanjing, 210003, China
+xfuwu@ieee.org
+
+lattice [7, 8]. Another scheme of approximate lattice precoding
+was proposed in [9] (we will show that it is actually equivalent
+to LR-aided ZF in [8]), which was shown to achieve the full
+diversity order.
+In contrast to the complexity analysis of sphere decoding
+[10], the complexity of sphere precoding is not available
+in literature. Moreover, the signal-to-noise (SNR) gap between sphere precoding and LR-aided precoding has not been
+analyzed, although it has been done for decoding [11]. In
+this paper, we investigate these aspects of lattice precoding
+algorithms. We view the precoding problem as a variant of
+the CVP known as η-CVP. This view enables us to derive
+the proximity factors for lattice precoding, which measure
+the worst-case loss in power efﬁciency of LR-aided precoding
+schemes.
+The paper is organized as follows: Section II presents
+the model of MIMO broadcast using lattice precoding, and
+investigates its complexity. In Section III the analysis of the
+proximity factors is given. Section V is a discussion.
+Notation: The transpose, inverse, pseudoinverse of a matrix
+T
+B by B√ B−1 , and B† , respectively, and the Euclidean length
+,
+∥u∥ = ⟨u, u⟩. ⌈x⌋ rounds to a closest integer.
+
+Abstract—Lattice precoding is an effective strategy for multiantenna broadcast. In this paper, we show that approximate
+lattice precoding in multiantenna broadcast is a variant of the
+closest vector problem (CVP) known as η-CVP. The proximity
+factors of lattice reduction-aided precoding are deﬁned, and
+their bounds are derived, which measure the worst-case loss in
+power efﬁciency compared to sphere precoding. Unlike decoding
+applications, this analysis does not suffer from the boundary
+effect of a ﬁnite constellation, since the underlying lattice in
+multiantenna broadcast is indeed inﬁnite.
+
+I. I NTRODUCTION
+Broadcast is referred to as the application where a single
+transmitter sends different messages to many users simultaneously. It may arise, for example, in the downlink of a
+multiuser communication system where the base station wants
+to communicate with the users in the area of coverage. The
+multi-input multi-output (MIMO) technology offers a new
+opportunity for developing efﬁcient broadcast strategies.
+The capacity of a MIMO broadcast channel has been
+determined in [1], where it was shown that the so-called dirtypaper coding is instrumental to achieving the capacity. Multiple antennas allow to pre-cancel the interuser interference,
+which is known at the transmitter in the broadcast application.
+The lattice method represents a major approach to cancelling
+known interference [2], and speciﬁcally, to precoding for
+MIMO broadcast. However, dirty-paper coding suffers from
+high complexity.
+Hochwald et al. [3] formulated precoding as a decoding
+problem at the transmitter. Their technique, termed “vector
+perturbation”, corresponds to solving the closest lattice vector
+problem (CVP). It requires the use of the sphere precoder
+[4], whose average complexity grows quickly with the system
+size. Earlier, the idea of precoding via an algorithmic search
+over modulo equivalent points was proposed by Fischer et al.
+for the intersymbyol interference channel [5]. More recently,
+reference [6] considered some practical issues in the implementation of vector perturbation.
+To reduce the complexity, lattice reduction (LR) can be
+used, i.e., an approximate solution is found by zero-forcing
+(ZF) or successive interference cancelation (SIC) on a reduced
+
+II. L ATTICE P RECODING FOR MIMO B ROADCAST
+Consider a MIMO broadcast system including one transmitter, equipped with n antennas, and n receivers, each equipped
+with a single antenna [3]. For convenience, we use the realvalued signal model
+y = Hs + n,
+
+(1)
+
+where y is the received signal vector at the users, H ∈ Rn×n
+is a full-rank channel matrix, s is the transmitted signal, and
+n is the noise vector. The entry hi,j of H indicates the
+channel coefﬁcient between transmit antenna i and user j. s
+T
+is derived from the data vector x = [x1 , ..., xn ] . We assume
+n
+that x ∈ [−A/2, A/2] is taken from the intersection of a
+ﬁnite hypercube and an integer lattice. The entries of n are
+i.i.d. Gaussian with variance σ 2 each.
+
+1
+
+Note that s ∈ V(L(AB)) (the Voronoi region). The receivers
+apply the modulo function each, obtaining
+
+A. Lattice Preliminaries
+An n-dimensional lattice in the m-dimensional Euclidean
+space Rm (n ≤ m) is the set of integer linear combinations
+of n independent vectors b1 , . . . , bn ∈ Rm :
+{ n
+}
+∑
+L (B) =
+xi bi |xi ∈ Z, i = 1, . . . n .
+
+y
+
+=x+n
+
+The matrix B = [b1 · · · bn ] is a basis of the lattice L(B). In
+matrix form, L(B) = {Bx : x ∈ Zn }. For any point y ∈Rm
+and any lattice L (B), the distance of y to the lattice is
+dist(y, B) = minx∈Zn ∥y − Bx∥. A shortest vector of a
+lattice L (B) is a non-zero vector in L (B) with the smallest
+Euclidean norm. The length of the shortest vector, often
+referred to as the minimum distance, of L (B) is denoted by
+λ1 .
+A lattice has inﬁnitely many bases. In general, every matrix
+B = BU is also a basis, where U is an unimodular matrix,
+i.e., det(U) = ±1 and all elements of U are integers. The aim
+of lattice reduction is to ﬁnd a good basis for a given lattice. In
+many applications, it is advantageous to have the basis vectors
+as short as possible. The celebrated LLL algorithm is the ﬁrst
+polynomial (average) time algorithm which ﬁnds a vector not
+much longer than the shortest nonzero vector.
+ˆ
+ˆ
+Let b1 ,...,bn be the Gram-Schmidt vectors corresponding to
+ˆ
+a basis b1 ,...,bn , where bi is the projection of bi orthogonal to
+the vector space generated by b1 ,...,bi−1 . These are the vectors
+found by the Gram-Schmidt algorithm for orthogonalization.
+Gram-Schmidt orthogonalization (GSO) is closely related to
+QR decomposition B = QR. More precisely, one has the
+ˆ
+relations µj,i = ri,j /ri,i and bi = ri,i · qi , where qi is the ith
+column of Q.
+A basis B is LLL reduced if
+
+•
+•
+
+•
+
+mod A.
+
+Decoding gets easier for weaker noise, while noise has
+no impacts on the hardness of lattice precoding.
+The constellation in decoding is often ﬁnite, while the
+lattice in precoding is inﬁnite. Thus, the boundary errors
+in decoding will not an issue in precoding.
+The received signal in decoding has a Gaussian distribution centered at a lattice point, while the input to precoding is roughly uniformly distributed on a fundamental
+parallelepiped.
+
+For these reasons, sphere precoding incurs more computational complexity than sphere decoding at the same dimension
+n. Fincke and Pohst [12] proposed an algorithm to enumerate
+the lattice points in a sphere, running on an LLL-reduced
+lattice, but their complexity estimate was loose. Kannan’s
+algorithm [13] for HKZ reduction can be used to preprocess
+the lattice, giving a CVP algorithm with nn+o(n) complexity.
+Hanrot and Stehl´ ’ improved the CVP complexity analysis to
+e
+nn/2+o(n) [14].
+On the other hand, Jald´ n and Ottersten [10] showed that
+e
+the average complexity of sphere decoding is exponential
+with the dimension for any ﬁxed SNR; the constant within
+the exponent, though, does decrease with SNR, meaning
+lower complexity at higher SNR. However, the encouraging
+results for lattice decoding do not extend to precoding. Noise,
+which is crucial to the decreasing complexity of sphere
+decoding, does not even arise in lattice precoding. Since
+the input is largely uniformly distributed in the fundamental
+parallelepiped, the worst-case bound is a sensible measure
+of complexity. Moreover, the paper [10] assumed a ﬁnite
+constellation, rendering the analysis inapplicable to an inﬁnite
+lattice, which is nonetheless the case for precoding problems.
+To conclude, the worst-cast complexity of sphere precoding
+is super-exponential.
+
+(2)
+
+)
+(
+ˆ
+ˆ
+∥bi ∥2 ≥ δ − µ2 ∥bi−1 ∥2
+i,j
+
+(6)
+
+Namely, the data arrive at individual users free of interuser
+interference; the only effect is noise. To solve the CVP (5), the
+sphere precoding algorithm originally proposed for decoding
+purposes was used.
+It is worth pointing out several distinctions between the
+CVP’s in decoding and precoding:
+
+i=1
+
+µi,j ≤ 1/2
+
+mod A = HB(x − Aˆ + n mod A
+l)
+= (x − Aˆ + n mod A
+l)
+
+(3)
+
+for 1 ≤ j < i ≤ n, and
+
+for 1 < i ≤ n, where 1/4 < δ ≤ 1 is a factor selected to
+achieve a good quality-complexity tradeoff.
+We now deﬁne a variant of the CVP.
+Deﬁnition 1 (η-CVP)): Given a lattice L (B) and a vector
+y ∈ Rm , ﬁnd a vector Bˆ ∈ L (B) such that ∥y − Bˆ∥
+x
+x
+≤ η dist(y, B).
+B. Sphere Precoding
+
+C. Approximate Lattice Precoding
+
+In this method, the transmitted signal is given by [3]
+s = B(x − Aˆ = Bx mod L(AB),
+l)
+
+1) SIC Precoding: To obtain a fast precoder, Windpassinger
+et al. [8] approximated the CVP by using lattice reduction,
+i.e., the closest vector is replaced with Babai’s approximations
+[7]. Let B designate the reduced basis, i.e., B = BU, where
+U is a unimodular matrix. Performing the QR decomposition
+B = QR, where Q has orthogonal columns and R is an upper
+triangular matrix with nonnegative diagonal elements.
+
+(4)
+
+where B
+H−1 , and ˆ is an integer vector, chosen to
+l
+minimize the transmission power:
+ˆ = arg min ∥B(x − Al)∥2 .
+l
+n
+l∈Z
+
+(5)
+
+2
+
+Let u = Q† Bx/A. An estimate of ˆ is then found by the
+l
+SIC procedure:
+ˆn
+l
+ˆi
+l
+
+= ⌈un /rn,n ⌋ ,
+⌈
+⌋
+∑n
+ui − j=i+1 ri,j ˆj
+l
+=
+, i = n − 1, ..., 1.
+ri,i
+
+for SIC. Therefore, the objective of lattice reduction in this
+ˆ
+application is to minimize the Frobenious norm of B or B.
+However, it is computationally hard to exactly accomplish this
+objective. Thus, the LLL algorithm is often used.
+
+(7)
+
+III. P ROXIMITY FACTORS
+
+The transmitted signal is given by
+s = Bx − ABˆ
+l.
+
+We want to understand the performance of approximate
+lattice precoding. To do this, we compare the transmission
+powers with that of sphere encoding, under the condition that
+they have the same error performance, namely, (6) and (9) hold
+at the receivers. This is a standard approach to calculating the
+“coding gain”1 .
+The transmission power of sphere precoding is given by
+∫
+A2
+∥x∥2 dx A2 σ 2 (V)
+PSP =
+(13)
+V V
+
+(8)
+
+At the receivers, the modulo operation is applied, yielding
+y mod A = H(Bx − ABˆ + n mod A
+l)
+ˆ + n mod A
+= x−AUl
+= x + n mod A.
+
+(9)
+
+2) ZF Precoding: Let u = Bx/A. An estimate of ˆ is found
+l
+by ZF as follows
+⌈
+⌋ ⌈ −1 ⌋
+ˆ B−1 u = U x .
+l=
+A
+
+where V denotes the Voronoi region of L(B), and σ 2 (V) is
+the second moment of V. Then, the SNR gap is asymptotically
+given by
+{ ∥B∥2
+12σ 2 (V) , for ZF;
+(14)
+ρ=
+ˆ
+∥B∥2
+12σ 2 (V) , for SIC.
+
+The transmitted signal is given by
+s
+
+= Bx − ABˆ
+l
+(
+⌈ −1 ⌋)
+U x
+−1
+= B U x−A
+A
+( −1
+)
+= B U x mod A .
+
+Unfortunately, it is difﬁcult to compute ρ, and we resort
+to the proximity factors of LLL reduction-aided precoding,
+which measure the worst-case loss in power efﬁciency relative
+to sphere precoding. More formally, we deﬁne the proximity
+factor as
+
+2
+ sup ∥s∥ZF , for ZF;
+∥s∥2
+SP
+FP
+(15)
+2
+ sup ∥s∥SIC , for SIC.
+∥s∥2
+
+(10)
+
+The second line of (10) represents the transmission scheme
+in [8], while the third line corresponds to the transmission
+scheme in [9]. Therefore, the schemes proposed in [8, 9] are
+equivalent. To the best of our knowledge, this equivalence is
+not known in literature. At the receivers, the modulo operation
+is applied, yielding the same as (9).
+
+SP
+
+Obviously, ρ ≤ FP . This viewpoint implies that the precoding
+problem is η-CVP:
+
+D. Reduction Criteria
+To summarize, the purpose of approximate lattice precoding
+is to ﬁnd a sub-optimal solution ˆ that can reduce the norm
+l
+∥s∥. Withe lattice reduction, the transmitted vector s falls
+into the fundamental parallelepiped (for ZF) or the rectangle
+spanned by the Gram-Schmidt vectors of the reduced basis
+AB (for SIC). In both cases, the transmission power is
+proportional to the second moment over the respective regions.
+Let V = | det B| be the fundamental volume of L(B), and P
+be its fundamental parallelepiped. Let ∥B∥2 be the Frobenius
+ˆ
+norm of B, and B be the Gram-Schmidt matrix for B.
+Using a uniform-distribution approximation, the transmission
+powers associated with the approximate lattice precoders are
+respectively given by
+∫
+n
+A2
+A2 ∑
+A2
+PZF =
+∥x∥2 dx =
+∥B∥2 (11)
+∥bi ∥2 =
+V P
+12 i=1
+12
+
+∥B(x − Aˆ ≤ η min ∥B(x − Al)∥,
+l)∥
+n
+l∈Z
+
+and consequently, FP ≤ η 2 . Babai derived the value of η [7]
+in the case of δ = 3/4. In what follows, we will derive the
+bounds in the general case. Let α = 1/(δ − 1/4).
+Lemma 1: If the lattice basis is LLL-reduced, then SIC
+√
+solves η-CVP for η = η n = αn/2 / α − 1.
+ˆ
+Proof: Let B be a LLL reduced basis and B = BµT be
+m
+the GSO of the basis B. Given a vector y ∈ R , we write y
+∑n
+ˆ
+as a linear combination of the GS vectors y = i=1 β i bi . Let
+∑n
+ˆ i be the nearest neighbor of y in L (B). Let θ
+u = i=1 pi b
+∑n−1 ˆ
+ˆ
+be the integer nearest to β n and y′ = i=1 β i bi + θbn , and
+v =θbn . For n = 1, SIC can ﬁnd the closest vector u. For
+n ≥ 2, we have
+ˆ
+∥bn ∥
+ˆ
+,
+∥y − y′ ∥ = |θ − β n | ∥bn ∥ ≤
+2
+
+for ZF, and
+PSIC =
+
+n
+A2 ∑ ˆ 2
+A2 ˆ 2
+∥B∥
+∥bi ∥ =
+12 i=1
+12
+
+(16)
+
+(17)
+
+1 In practice, power normalization is applied at the transmitter in vector
+perturbation [3], yet such a scaling factor has no impact on the “coding gain”.
+
+(12)
+
+3
+
+Let w be the lattice point found by ZF. Then
+
+and
+n
+∑
+
+∥y − u∥ =
+
+2
+
+ˆ
+|β i − pi | ∥bi ∥
+
+w−y =
+
+i=1
+
+(18)
+u−w =
+
+Let w be the estimate of u found by SIC. From (17), we
+obtain
+n
+1∑ ˆ 2
+2
+∥y − w∥ ≤
+bi .
+(19)
+4 i=1
+√
+
+(28)
+
+∥u − w∥ ≤ n ∥ϕk bk ∥ .
+αn − 1 ˆ
+∥bn ∥.
+α−1
+
+(20)
+
+∥y′ − w∥ ≤ η n−1 ∥y′ − u∥ ≤ η n−1 ∥y − u∥ .
+
+′
+
+2
+
+∥y − y ∥ + ∥y − w∥
+
+= (ϕk +β k ) (bk − m) ,
+
+(21)
+
+)1/2
+
+m=−
+
+∑(
+)
+1
+ϕj +β j bj .
+ϕk +β k
+j̸=k
+
+≤ (1 + η 2 )1/2 ∥y − u∥
+n−1
+< η n ∥y − u∥ .
+
+By (26) and |β i | ≤ 1/2, we have
+
+If pn ̸= θ, then
+
+ˆ
+∥bn ∥
+∥y − u∥ ≥
+.
+2
+Combining this inequality with (20), we obtain
+√
+αn − 1
+∥y − w∥ ≤
+∥y − u∥
+α−1
+αn/2
+< √
+∥y − u∥ .
+α−1
+
+(29)
+
+= (u − w) + (w − y)
+
+where
+′ 2
+
+=
+
+Meanwhile,
+
+By (18) and (21),
+
+n/2
+
+ϕi bi ,
+
+where ϕi ∈ Z. We assume u ̸= w. Let ∥ϕk bk ∥
+maxi ∥ϕi bi ∥. Then
+
+u−y
+
+∥y − w∥ =
+
+n
+∑
+i=1
+
+If pn = θ, then
+
+(
+
+(27)
+
+where |β i | ≤ 1/2, for 1 ≤ i ≤ n. Let u be the nearest neighbor
+of y in L (B). We may write
+
+= ∥y − y′ ∥ .
+
+1
+∥y − w∥ ≤
+2
+
+β i bi ,
+
+i=1
+
+ˆ
+≥ |β n − pn | ∥bn ∥
+ˆ
+≥ |β n − θ| ∥bn ∥
+
+According to (3), we have
+
+n
+∑
+
+∥u − y∥
+
+|ϕk |
+√
+n−1 ∥bk ∥ .
+2 (3 α/2)
+
+≥
+
+(30)
+
+(22)
+Combining (29) and (30), we have
+∥u − w∥ ≤
+
+n ∥ϕk bk ∥
+( √
+)n−1
+≤ 2n 3 α/2
+∥u − y∥ .
+
+(31)
+
+It is easy to see that
+
+(23)
+
+∥y − w∥
+
+√
+/ α − 1 reduces to Babai’s upper
+
+≤
+
+∥y − u∥ + ∥u − w∥
+(
+( √
+)n−1 )
+1 + 2n 3 α/2
+∥y − u∥ . (32)
+
+For α = 2, η n = α
+bound 2n/2 .
+Lemma 2: If the lattice basis is LLL-reduced, then ZF
+√
+n−1
+solves η-CVP with η = η n = 1 + 2n (3 α/2)
+.
+Proof: Let B be a LLL reduced basis. Let θi be the angle
+between bi and the linear space S ([b1 ,...,bi−1 ,bi+1 ,...,bn ])
+spanned by the other n − 1 basis vectors. Recall the following
+bound [11]
+(
+)n−1
+2
+√
+sin θi ≥
+.
+(24)
+3 α
+
+For α = 2, we have η n = 1 + 2n (9/2)
+.
+From the two lemmas, we have the following theorem for
+the proximity factors:
+Theorem 1: According to Lemmas 1 and 2, we have
+
+Since
+
+and
+∥m − bi ∥
+sin θi = min
+,
+m∈S
+∥bi ∥
+
+we have
+
+(
+∥m − bi ∥ ≥
+
+2
+√
+3 α
+
+≤
+
+(n−1)/2
+
+FP,SIC
+
+(25)
+
+FP,ZF
+
+∀m ∈ S.
+
+(
+
+αn
+α−1
+
+( √
+)n−1 )2
+.
+1 + 2n 3 α/2
+
+(33)
+
+(34)
+
+These results show that the worst-case loss in power efﬁciency of approximate lattice precoders is bounded above by
+a function of the dimension of the lattice alone.
+
+)n−1
+∥bi ∥ ,
+
+≤
+
+≤
+
+(26)
+
+4
+
+IV. D ISCUSSION
+Our main contribution in this paper was to view the LRaided precoding problem as η-CVP, compared to the viewpoint
+of bounded distance decoding for LR-aided decoding [11].
+This viewpoint allowed us to derive the proximity factors,
+which measure the worst-cased bound for approximate lattice
+precoding. Since the underlying lattice is inﬁnite, this analysis
+is rigorous, and it follows that LR-aided precoding also
+achieves full diversity. The derived bounds may not be tight,
+but nonetheless give more insights. Improving the bounds is
+the future work.
+
+[4] E. Viterbo and J. Boutros, “A universal lattice code decoder for
+fading channels,” IEEE Trans. Inf. Theory, vol. 45, pp. 1639–
+1642, Jul. 1999.
+[5] R. F. H. Fischer, W. H. Gerstacker, and J. B. Huber, “Dynamics
+limited precoding, shaping, and blind equalization for fast
+digital transmission over twisted pair lines,” IEEE J. Sel. Areas
+Commun., vol. 13, pp. 1622–1633, Dec. 1995.
+[6] J. Maurer, J. Jald´ n, D. Seethaler, and G. Matz, “Vector pere
+turbation precoding revisited,” IEEE Trans. Signal Process.,
+vol. 59, pp. 315–328, Jan. 2011.
+[7] L. Babai, “On Lov´ sz’ lattice reduction and the nearest lattice
+a
+point problem,” Combinatorica, vol. 6, no. 1, pp. 1–13, 1986.
+[8] C. Windpassinger, R. Fischer, and J. B. Huber, “Latticereduction-aided broadcast precoding,” IEEE Trans. Commun.,
+vol. 52, pp. 2057–2060, Dec. 2004.
+[9] M. Taherzadeh, A. Mobasher, and A. Kandhani, “Communication over MIMO broadcast channels using lattice-basis
+reduction,” IEEE Trans. Inf. Theory, vol. 53, pp. 4567–4582,
+Dec. 2007.
+[10] J. Jald´ n and B. Ottersten, “On the complexity of sphere dee
+coding in digital communications,” IEEE Trans. Signal Process.,
+vol. 53, pp. 1474–1484, Apr. 2005.
+[11] C. Ling, “On the proximity factors of lattice reduction-aided
+decoding,” IEEE Trans. Signal Process., vol. 59, no. 6, pp.
+2795–2808, Jun. 2011.
+[12] U. Fincke and M. Pohst, “Improved methods for calculating
+vectors of short length in a lattice, including a complexity
+analysis,” Math. Comput., vol. 44, pp. 463–471, Apr. 1985.
+[13] R. Kannan, “Minkowski’s convex body theorem and integer
+programming,” Math. Oper. Res., vol. 12, pp. 415–440, Aug.
+1987.
+[14] G. Hanrot and D. Stehl´ , “Improved analysis of Kannan’s
+e
+shortest vector algorithm,” in Proc. Crypto 2007, Santa Barbara,
+California, USA, Aug. 2007.
+
+ACKNOWLEDGMENT
+The authors are grateful to the reviewers for their helpful
+comments. The work of Xiaofu Wu was supported by the
+National Science Foundation of China under Grants 60972060,
+61032004 and the National Key S&T Project under Grant
+2010ZX03003-003-01.
+R EFERENCES
+[1] H. Weingarten, Y. Steinberg, and S. Shamai, “The capacity
+region of the Gaussian multiple-input multiple-output broadcast
+channel,” IEEE Trans. Inf. Theory, vol. 52, pp. 3936–3964, Sep.
+2006.
+[2] U. Erez, S. Shamai, and R. Zamir, “Capacity and lattice
+strategies for canceling known interference,” IEEE Trans. Inf.
+Theory, vol. 51, pp. 3820–3833, Nov. 2005.
+[3] B. M. Hochwald, C. B. Peel, and A. L. Swindlehurst, “A vector
+perturbation technique for near-capacity multiantenna multiuser
+communications-Part II: Perturbation,” IEEE Trans. Commun.,
+vol. 53, pp. 537–544, Mar. 2005.
+
+5
+
+

@@ -1,0 +1,776 @@
+Title:          eliminatingDelayEnlargesCapacityRegion(ISITRevised).dvi
+Creator:        dvips(k) 5.98 Copyright 2009 Radical Eye Software
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Sat May 19 09:29:35 2012
+ModDate:        Tue Jun 19 12:54:51 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      412364 bytes
+Optimized:      no
+PDF version:    1.7
+ISIT'2012 1569566063
+
+Cut-Set Bound for Generalized Networks with
+Positive Delay
+Silas L. Fong
+
+Raymond W. Yeung
+
+Department of Electronic Engineering
+City University of Hong Kong
+Kowloon, Hong Kong
+Email: lhfong5@ie.cuhk.edu.hk
+
+Institute of Network Coding and
+Department of Information Engineering
+The Chinese University of Hong Kong
+Shatin, N.T., Hong Kong
+Email: whyeung@ie.cuhk.edu.hk
+vector [X1 X2 . . . Xn ]T , where the components Xk have the
+same alphabet X . We let pX (x) denote the probability mass
+function of the discrete random variable X. We let pY |X (y|x)
+denote the conditional probability P r{Y = y|X = x} for
+any discrete random variables X and Y . For simplicity, we
+drop the subscript of a notation if there is no ambiguity. For
+any N 2 -dimensional random tuple (W1,1 , W1,2 , . . . , WN,N ) ∈
+W1,1 × W1,2 × . . . × WN,N and any set V ⊆ {1, 2, . . . , N }2 ,
+we let WV = (Wi,j : (i, j) ∈ V ) be a subtuple of
+(W1,1 , W1,2 , . . . , WN,N ).
+
+Abstract—In a network, a node is said to incur a delay if its
+encoding of each transmitted symbol involves only its received
+symbols obtained before the time slot in which the transmitted
+symbol is sent (hence the transmitted symbol sent in a time slot
+cannot depend on the received symbol obtained in the same time
+slot). A node is said to incur no delay if its received symbol
+obtained in a time slot is available for encoding its transmitted
+symbol sent in the same time slot. In this paper, we investigate
+the generalized discrete memoryless network (DMN) where some
+nodes may incur no delay. We call the capacity region of the
+generalized DMN under the constraint that every node incurs
+a delay the positive-delay region. We establish the cut-set outer
+bound on the positive-delay region. In addition, we use our cut-set
+outer bound to show that in some two-node generalized DMN, the
+positive-delay region is strictly smaller than the capacity region.
+
+III. G ENERALIZED D ISCRETE M EMORYLESS
+M ULTI -T ERMINAL N ETWORK
+We follow the formulation of the generalized discrete
+memoryless network in [1]. We consider a general network
+that consists of N nodes. Let I = {1, 2, . . . , N } be the
+index set of the nodes. The N terminals exchange information in n time slots as follows. Node i chooses message
+Wi,j ∈ {1, 2, . . . , Mi,j } and sends Wi,j to node j for each
+(i, j) ∈ I ×I. We assume that each message Wi,j is uniformly
+distributed over {1, 2, . . . , Mi,j } and all the messages are
+independent. For each k ∈ {1, 2, . . . , n} and each i ∈ I,
+node i transmits Xi,k ∈ Xi and receives Yi,k ∈ Yi in
+the k th time slot where Xi and Yi are some alphabets that
+ˆ
+depend on i. After n time slots, node i declares Wj,i to
+n
+be the transmitted Wj,i based on W{i}×I and Yi for each
+(i, j) ∈ I × I. To simplify notation, let MI×I denote the
+N 2 -dimensional tuple (M1,1 , M1,2 , . . . , MN,N ).
+Deﬁnition 1: An α-dimensional tuple (S1 , S2 , . . . , Sα ), denoted by S α , consisting of subsets of I is called an α-partition
+of I if ∪α Sh = I and Si ∩ Sj = ∅ for all i = j.
+h=1
+Let T ⊆ I be a set and S α be an α-partition of I. For any
+random tuple (X1 , X2 , . . . , XN ) ∈ X1 × X2 × . . . × XN , we
+let XT = (Xi : i ∈ T ) be a subtuple of (X1 , X2 , . . . , XN ).
+In addition, we let XS h denote (XS1 , XS2 , . . . , XSh ) and let
+xS h be the realization of XS h for each h ∈ {1, 2, . . . , α}.
+Similarly, for any k ∈ {1, 2, . . . , n} and any random tuple
+(X1,k , X2,k , . . . , XN,k ) ∈ X1 × X2 × . . . × XN , we let XT,k =
+(Xi,k : i ∈ T ) be a subtuple of (X1,k , X2,k , . . . , XN,k ). In addition, we let XS h ,k denote (XS1 ,k , XS2 ,k , . . . , XSh ,k ) and let
+xS h ,k be the realization of XS h ,k for each h ∈ {1, 2, . . . , α}.
+
+I. I NTRODUCTION
+We consider a general network in which each node may
+send information to the other nodes. A node is said to incur a
+delay if its encoding of each transmitted symbol involves only
+its received symbols obtained before the time slot in which the
+transmitted symbol is sent (hence the transmitted symbol sent
+in a time slot cannot depend on the received symbol obtained
+in the same time slot). A node is said to incur no delay if
+its received symbol obtained in a time slot is available for
+encoding its transmitted symbol sent in the same time slot. In
+the generalized discrete memoryless network (DMN) [1], some
+nodes may incur no delay. We call the capacity region of the
+generalized DMN under the constraint that every node incurs
+a delay the positive-delay region. In this paper, we establish
+the cut-set outer bound on the positive-delay region.
+This paper is organized as follows. Section II presents the
+notation of this paper. Section III presents the formulation of
+the generalized DMN. Section IV proves the cut-set outer
+bound on the positive-delay region. Section V applies our
+cut-set outer bound in some two-node generalized DMN and
+show that the positive-delay region is strictly smaller than the
+capacity region. Section VI concludes this paper.
+II. N OTATION
+We use P r{E} to represent the probability of an event E.
+We use a capital letter X to denote a random variable
+with alphabet X , and use the small letter x to denote the
+realization of X. We use X n to denote a random column
+
+1
+
+Deﬁnition 2: A delay proﬁle is an N -dimensional tuple
+(b1 , b2 , . . . , bN ) where bi ∈ {0, 1, 2, . . .} for each i ∈ I. For
+two delay proﬁles B and B ′ , if every element of B is greater
+than or equal to B ′ , we write B
+B ′ . A delay proﬁle B is
+said to be positive if B (1, 1, . . . , 1).
+
+Following the notation in Deﬁnition 6, consider any
+(B, n, MI×I )-code on the DMN. In the k th time slot, XI,k
+and YI,k are generated in the order
+
+Deﬁnition 3: The discrete network consists of N ﬁnite input sets X1 , X2 , . . . , XN , N ﬁnite output sets Y1 , Y2 , . . . , YN
+and α channels characterized by conditional distributions p1 (yG1 |xS 1 ), p2 (yG2 |xS 2 , yG 1 ), . . . , pα (yGα |xS α , yG α−1 ),
+where S α and G α are two α-dimensional partitions of I. We
+call S α and G α the input partition and the output partition of
+the network respectively. The discrete network is denoted by
+(XI , YI , S α , G α , p1 , p2 , . . . , pα ).
+
+by transmitting on the channels in this order p1 , p2 , . . . , pα
+using the (B, n, MI×I )-code (as prescribed in Deﬁnition 5).
+Speciﬁcally, XS h ,k , YG h−1 ,k and channel ph together deﬁne
+YGh ,k for each h ∈ {1, 2, . . . , α}. It is shown in [1] that
+the encoding of XSh ,k before the transmission on ph and
+the generation of YGh ,k after the transmission on ph for each
+h ∈ {1, 2, . . . , α} are well-deﬁned.
+
+XS1 ,k , YG1 ,k , XS2 ,k , YG2 ,k , . . . , XSα ,k , YGα ,k
+
+Deﬁnition 7: For a (B, n, MI×I )-code on the DMN, the
+average probability of decoding error of Wi,j is deﬁned as
+n
+Pi,j = P r{gi,j (W{j}×I , Yjn ) = Wi,j } for each (i, j) ∈ I ×I.
+
+We deﬁne codes that use the network n times in the
+following two deﬁnitions.
+
+In this paper, we focus on the capacity region for codes
+with positive delay proﬁles. The following deﬁnitions pertain
+to this notion.
+
+Deﬁnition 4: Let (XI , YI , S α , G α , p1 , p2 , . . . , pα ) be a discrete network. For each i ∈ I, let hi and mi be the two unique
+integers such that i ∈ Shi and i ∈ Gmi . Then, a delay proﬁle
+(b1 , b2 , . . . , bN ) is said to be feasible for the network if the
+following holds for each i ∈ I: If bi = 0, then hi > mi .
+
+Deﬁnition 8: A rate tuple (R1,1 , R1,2 , . . . , RN,N ), denoted
+by RI×I , is B-achievable for the DMN if there exists a
+log2 Mi,j
+≥ Ri,j
+sequence of (B, n, MI×I )-codes with lim
+n
+n→∞
+n
+such that lim Pi,j = 0 for each (i, j) ∈ I × I.
+
+Deﬁnition 5: Let B = (b1 , b2 , . . . , bN ) be a delay
+proﬁle feasible for (XI , YI , S α , G α , p1 , p2 , . . . , pα ). A
+(B, n, MI×I )-code for n uses of the network consists of the
+following:
+
+n→∞
+
+Without loss of generality, we assume that Mi,i = 1 and
+Ri,i = 0 for all i ∈ I in the rest of this paper.
+
+1) A message set Wi,j = {1, 2, . . . , Mi,j } at node i for
+each (i, j) ∈ I × I.
+2) An encoding function fi,k : W{i}×I × Yik−bi → Xi for
+each i ∈ I and each k ∈ {1, 2, . . . , n}, where fi,k is
+the encoding function at node i in the k th time slot such
+that Xi,k = fi,k (W{i}×I , Yik−bi ).
+n
+3) A decoding function gi,j : W{j}×I × Yj → Wi,j for
+each (i, j) ∈ I × I, where gi,j is the decoding function
+ˆ
+for Wi,j at node j such that gi,j (W{j}×I , Yjn ) = Wi,j .
+
+Deﬁnition 9: The B-capacity region, denoted by RB , of
+the DMN is the closure of the set of all B-achievable rate
+tuple RI×I with Ri,i = 0 for all i ∈ I. We call
+R
+
+RB
+B: B is feasible for the DMN
+
+the capacity region, and we call
+R+
+
+RB
+B: B is positive
+
+Given a (B, n, MI×I )-code, it follows from Deﬁnition 5
+that for each i ∈ I, node i incurs a delay if bi > 0, where
+bi is the amount of delay incurred by node i. If bi = 0,
+node i incurs no delay, i.e., for each k ∈ {1, 2, . . . , n}, node i
+needs to receive Yi,k before encoding Xi,k . The feasibility
+condition of B in Deﬁnition 4 ensures that the operations of
+any (B, n, MI×I )-code are well-deﬁned for the subsequently
+deﬁned discrete memoryless network; the associated coding
+scheme is described after the network is deﬁned.
+
+the positive-delay region.
+Proposition 1: Let B be a delay proﬁle feasible for the
+DMN. For any delay proﬁle B ′ for the DMN such that
+B ′ B, B ′ is feasible for the DMN and RB ′ ⊆ RB .
+Proof: Since B is feasible for the DMN, it follows from
+Deﬁnitions 2 and 4 that B ′ is feasible for the DMN. Since any
+(B ′ , n, MI×I )-code on the DMN is also a (B, n, MI×I )-code
+if B ′ B by Deﬁnitions 2 and 5, the proposition then follows
+from Deﬁnition 9.
+
+Deﬁnition 6: A discrete network (XI , YI , S α , G α ,
+p1 , p2 , . . . , pα ), when used multiple times, is called a discrete
+memoryless network (DMN) if the following holds for any
+k−1
+k−1
+(B, n, MI×I )-code. Let Uk−1 = (WI×I , XI , YI ) be
+the collection of random variables that are generated before
+the k th time slot. Then, for each k ∈ {1, 2, . . . , n} and each
+h ∈ {1, 2, . . . , α},
+
+In the next section, we will prove the cut-set outer bound
+on the positive-delay region R+ . To facilitate discussion, we
+let 1 denote (1, 1, . . . , 1). Since R+ = R1 by Proposition 1,
+it sufﬁces to prove the cut-set outer bound on R1 .
+IV. C UT-S ET B OUND
+
+ON
+
+P OSITIVE -D ELAY R EGION
+
+α
+
+Lemma 2: Let (XI , YI , S , G α , p1 , p2 , . . . , pα ) be a DMN.
+Fix any (1, n, MI×I )-code on the network. Then, for each
+k ∈ {1, 2, . . . , n} and each h ∈ {1, 2, . . . , α},
+
+P r{Uk−1 = u, XS h ,k = xS h , YG h ,k = yG h }
+= P r{Uk−1 = u, XS h ,k = xS h , YG h−1 ,k = yG h−1 }
+ph (yGh |xS h , yG h−1 ).
+
+(2)
+
+(1)
+
+k−1
+k−1
+(WI×I , XI , YI , XSh ,k ) → XS h−1 ,k → YG h−1 ,k
+
+2
+
+(3)
+
+for all h ∈ {1, 2, . . . , α}. We now prove by induction on h
+that
+
+forms a Markov Chain.
+k−1
+k−1
+Proof: Let Uk−1 = (WI×I , XI , YI ) be the collection of random variables that are generated before the k th
+time slot for the (1, n, MI×I )-code. Consider the following
+chain of inequalities for each k ∈ {1, 2, . . . , n} and each
+h ∈ {1, 2, . . . , α}:
+
+P r{Uk−1 = u, XS h ,k = xS h ,YG h ,k = yG h } > 0
+for each h ∈ {1, 2, . . . , α}. For h = 1, the LHS of (8) is
+P r{Uk−1 = u, XS 1 ,k = xS 1 ,YG 1 ,k = yG 1 }
+
+I(Uk−1 , XSh ,k ; YG h−1 ,k |XS h−1 ,k )
+
+(a)
+
+= pUk−1 ,XS 1 ,k (u, xS 1 )p1 (yG1 |xS 1 )
+
+h−1
+
+I(Uk−1 , XSh ,k ; YGm ,k |XS h−1 ,k , YG m−1 ,k )
+
+=
+
+(b)
+
+>0
+
+m=1
+h−1
+
+(9)
+
+where
+H(YGm ,k |XS h−1 ,k , YG m−1 ,k )−
+
+=
+
+(a) follows from Deﬁnition 6.
+(b) follows from (4) and (7).
+
+m=1
+
+H(YGm ,k |Uk−1 , XS h ,k , YG m−1 ,k )
+
+If (8) holds for h = m, i.e.,
+
+h−1
+
+≤
+
+(8)
+
+(H(YGm ,k |X
+
+S m ,k
+
+, YG m−1 ,k )−
+
+P r{Uk−1 = u, XS m ,k = xS m ,YG m ,k = yG m } > 0,
+
+(10)
+
+m=1
+
+then for m + 1 ≤ α,
+
+H(YGm ,k |Uk−1 , XS h ,k , YG m−1 ,k ))
+h−1
+(a)
+
+P r{Uk−1 = u, XS m+1 ,k = xS m+1 , YG m+1 ,k = yG m+1 }
+
+(H(YGm ,k |XS m ,k , YG m−1 ,k )−
+
+=
+
+(a)
+
+= pUk−1 ,XS m+1 ,k ,YGm ,k (u, xS m+1 , yG m )
+
+m=1
+
+H(YGm ,k |Uk−1 , XS m ,k , YG m−1 ,k ))
+
+pm+1 (yGm+1 |xS m+1 , yG m )
+
+h−1
+(b)
+
+(b)
+
+= pUk−1 ,XS m+1 ,k (u, xS m+1 )pYGm ,k |XS m ,k (yG m |xS m )
+
+(H(YGm ,k |XS m ,k , YG m−1 ,k )−
+
+=
+
+pm+1 (yGm+1 |xS m+1 , yG m )
+
+m=1
+
+H(YGm ,k |XS m ,k , YG m−1 ,k ))
+
+(c)
+
+> 0,
+
+= 0,
+
+where
+
+where
+(a) follows from Deﬁnition 5 that for the (1, n, MI×I )
+code, XI,k is a function of Uk−1 .
+(b) follows from Deﬁnition 6 that
+
+(a) follows from Deﬁnition 6.
+(b) follows from Lemma 2 that
+(Uk−1 , XSm+1 ,k ) → XS m ,k → YG m ,k
+
+Uk−1 → (XS m ,k , YG m−1 ,k ) → YGm ,k
+
+forms a Markov Chain.
+(c) follows from (4), (10) and (7).
+
+forms a Markov Chain.
+Consequently, I(Uk−1 , XSh ,k ; YG h−1 ,k |XS h−1 ,k ) = 0, which
+implies that (3) is a Markov Chain.
+
+Since (8) holds for h = 1 by (9), and (8) is true for h = m+ 1
+if (8) is assumed to be true for h = m by (10) and (11) where
+1 ≤ m ≤ α − 1, it follows by mathematical induction that (8)
+holds for h = 1, 2, . . . , α. Since (8) hold for h = α, it follows
+that
+
+Proposition 3: Let (XI , YI , S α , G α , p1 , p2 , . . . , pα ) be a
+DMN. For any (1, n, MI×I )-code on the network, if some
+u, xI and yI satisfy
+P r{Uk−1 = u, XI,k = xI } > 0
+
+(11)
+
+P r{Uk−1 = u, XS α ,k = xS α , YG α ,k = yG α } > 0,
+
+(4)
+
+which contradicts to (5) and (6) together.
+
+and
+P r{Uk−1 = u, XI,k = xI , YI,k = yI } = 0,
+
+Lemma 4: For any (1, n, MI×I )-code, a DMN speciﬁed
+by (XI , YI , S α , G α , p1 , p2 , . . . , pα ) is equivalent to a DMN
+speciﬁed by (XI , YI , I, I, p1 p2 . . . pα ).
+Proof: It sufﬁces to show that for any (1, n, MI×I )-code,
+(1) in Deﬁnition 6 is equivalent to
+
+(5)
+
+then there exists some h ∈ {1, 2, . . . , α} such that
+ph (yGh |xS h , yG h−1 ) = 0 (where xS h is a component of xI ,
+and yGh and yG h−1 are components of yI ).
+Proof: Since S α and G α are α-partitions of I,
+
+P r{Uk−1 = u, XI,k = xI , YI,k = yI }
+
+P r{Uk−1 = u, XI,k = xI , YI,k = yI }
+= P r{Uk−1 = u, XS α ,k = xS α , YG α ,k = yG α }.
+
+α
+
+= P r{Uk−1 = u, XI,k = xI }
+
+(6)
+
+ph (yGh |xS h , yG h−1 ) (12)
+h=1
+
+We prove the proposition by assuming the contrary. Assume
+ph (yGh |xS h , yG h−1 ) > 0
+
+for each k ∈ {1, 2, . . . , n}. Fix a (1, n, MI×I )-code and a
+k−1
+k−1
+k ∈ {1, 2, . . . , n}. Let Uk−1 = (WI×I , XI , YI ) be the
+
+(7)
+
+3
+
+(a) follows from (12).
+(b) follow from the fact that m ≤ h.
+Then, for each h ∈ {1, 2, . . . , α}, the equality in (1) can be
+veriﬁed by substituting (13) into the LHS and the RHS.
+
+collection of random variables that are generated before the
+k th time slot.
+We ﬁrst show that (1) implies (12). Suppose (1) holds for
+each h ∈ {1, 2, . . . , α}. Consider the following three mutually
+exclusive cases:
+Case P r{Uk−1 = u, XI,k = xI } = 0:
+
+We will invoke the following theorem to prove in Theorem 2
+the cut-set outer bound on R1 .
+Theorem 1 ( [1]): Let (XI , YI , S γ , G γ , p∗ , p∗ , . . . , p∗ ) be
+1 2
+γ
+a DMN. Then for each achievable rate tuple RI×I , there exists
+a joint distribution for (XI , YI ) satisfying
+
+Both the LHS and the RHS of (12) equal zero.
+Case P r{Uk−1 = u, XI,k = xI } > 0 and
+P r{Uk−1 = u, XI,k = xI , YI,k = yI } = 0:
+For this case, the LHS of (12) equals zero. By Proposition 3, there exists some h ∈ {1, 2, . . . , α} such that
+ph (yGh |xS h , yG h−1 ) = 0, which implies that the RHS of (12)
+equals zero.
+
+γ
+
+h=1
+
+whenever p(xI , yI ) > 0 such that for any T ⊆ I,
+
+Case P r{Uk−1 = u, XI,k = xI , YI,k = yI } > 0:
+
+Ri,j
+
+For this case,
+
+i∈T,j∈T c
+α
+
+P r{Uk−1 = u, XI,k = xI , YI,k = yI }
+
+≤
+
+= pUk−1 ,XI,k (u, xI )pYI,k |Uk−1 ,XI,k (yI |u, xI )
+
+I(XT ∩S h , YT ∩G h−1 ; YT c ∩Gh |XT c ∩S h , YT c ∩G h−1 ).
+h=1
+
+= pUk−1 ,XI,k (u, xI )
+
+Theorem 2: Let (XI , YI , S α , G α , p1 , p2 , . . . , pα ) be a
+DMN. Then for each 1-achievable rate tuple RI×I , there
+exists a joint distribution for (XI , YI ) satisfying
+
+α
+
+pYGh ,k |Uk−1 ,XI,k ,YGh−1 ,k (yGh |u, xI , yG h−1 )
+
+×
+
+p(xSh |xS h−1 , yG h−1 )p∗ (yGh |xS h , yG h−1 )
+h
+
+p(xI , yI ) =
+
+h=1
+
+α
+
+(a)
+
+= pUk−1 ,XI,k (u, xI )
+α
+
+×
+
+pYGh ,k |Uk−1 ,XS h ,k ,YGh−1 ,k (yGh |u, xS h , yG h−1 )
+
+such that for any T ⊆ I,
+
+α
+(b)
+
+Ri,j ≤ I(XT ; YT c |XT c ).
+
+ph (yGh |xS h , yG h−1 ),
+
+= pUk−1 ,XI,k (u, xI )
+
+Proof: Since (XI , YI , S α , G α , p1 , p2 , . . . , pα ) is equivalent to (XI , YI , I, I, p1 p2 . . . pα ) for each (1, n, MI×I )-code
+by Lemma 4, (14) and (15) follow from applying Theorem 1
+with γ = 1, S 1 = G 1 = I and p∗ = p1 p2 . . . pα .
+1
+
+where
+(a) follows from follows from Deﬁnition 5 that for the
+(1, n, MI×I )-code, XI,k is a function of Uk−1 .
+(b) follows from (1).
+Therefore, the LHS and the RHS of (12) are equal.
+
+V. P OSITIVE -D ELAY R EGION S TRICTLY S MALLER T HAN
+C APACITY R EGION
+
+Combining the three mutually exclusive cases, we obtain that
+(1) implies (12).
+
+For a generalized DMN, the positive-delay region can
+be strictly smaller than the capacity region. This has been
+demonstrated by El Gamal et al. [2] for a three-node relay
+network. In this section, we demonstrate the same for a twonode network. Consider a two-node DMN (X1 , X2 , Y1 , Y2 ,
+({1}, {2}), ({2}, {1}), p1, p2 ) where all the alphabets are binary,
+1 − ǫ if y2 = x1 ,
+p1 (y2 |x1 ) =
+(16)
+ǫ
+otherwise
+
+We now show that (12) implies (1). Suppose (12) holds.
+Then for each h ∈ {1, 2, . . . , α} and each m ∈ {1, 2, . . . , h},
+P r{Uk−1 = u, XS h ,k = xS h , YG m ,k = yG m }
+pUk−1 ,XI,k ,YI,k (u, xI , yI )
+xSh+1 ,...,xSα
+yGm+1 ,...,yGα
+α
+
+=
+
+pθ (yGθ |xS θ , yG θ−1 )
+
+pUk−1 ,XI,k (u, xI )
+xSh+1 ,...,xSα
+yGm+1 ,...,yGα
+
+and
+
+θ=1
+
+p2 (y1 |x1 , x2 , y2 ) =
+
+m
+
+=
+
+pθ (yGθ |xS θ , yG θ−1 )
+
+pUk−1 ,XI,k (u, xI )
+xSh+1 ,...,xSα
+
+pθ (yGθ |xS θ , yG θ−1 )
+
+= pUk−1 ,XS h ,k (u, xS h )
+
+1 if y1 = x2 + y2 ,
+0 otherwise.
+
+(17)
+
+Note that p1 (y2 |x1 ) is the conditional probability distribution
+for the binary symmetric channel (BSC). To facilitate discussion, we call this network the BSC with correlated feedback. For any ((1, 0), n, M{1,2}×{1,2} )-code on this network,
+X{1,2},k and Y{1,2},k are generated in the k th time slot in the
+
+θ=1
+m
+
+(b)
+
+(15)
+
+i∈T,j∈T c
+
+h=1
+
+(a)
+
+(14)
+
+h=1
+
+h=1
+
+=
+
+ph (yGh |xS h , yG h−1 )
+
+p(xI , yI ) = p(xI )
+
+(13)
+
+θ=1
+
+where
+
+4
+
+order X1,k , Y2,k , X2,k , Y1,k for each k ∈ {1, 2, . . . , n}. Note
+that node 2 incurs no delay, and can use Y2,k for encoding
+X2,k because Y2,k is generated before the generation of X2,k .
+Let R denote the capacity region of the BSC with correlated
+feedback. It is shown in [1] that
+
+which implies from (18) that C(1,1)
+R for any
+0 < ǫ < 1, which then implies from (20) that R(1,1)
+R
+for any 0 < ǫ < 1.
+VI. C ONCLUSION
+We establish the cut-set outer bound on the positive-delay
+region for the generalized DMN. In addition, for the BSC
+with correlated feedback, we show by applying our cut-set
+outer bound that the positive-delay region is strictly smaller
+than the capacity region.
+
+R = R(1,0)
+=
+
+(0, R1,2 , R2,1 , 0) ∈ R4
++
+
+R1,2 ≤ 1 − H(ǫ),
+R2,1 ≤ 1
+
+, (18)
+
+where H(ǫ) is the entropy of a Bernoulli random variable X
+with P r{X = 0} = ǫ. In the rest of this section, we will show
+that R(1,1) R.
+Let C(1,1) denote
+
+
+R1,2 ≤ I(X1 ; Y2 |X2 ),
+
+(0, R1,2 ,
+
+
+R2,1 ≤ I(X2 ; Y1 |X1 )
+R2,1 , 0)
+.
+where p(x1 , x2 , y1 , y2 ) = p(x1 , x2 )p1 (y2 |x1 )
+
+
+ ∈ R4
++
+p2 (y1 |x1 , x2 , y2 ) for some p(x1 , x2 ).
+(19)
+It then follows from Theorem 2 that
+R(1,1) ⊆ C(1,1) .
+
+ACKNOWLEDGMENT
+The authors thank Gerhard Kramer for the useful discussion. The work of Raymond Yeung was partially supported
+by a grant from the University Grants Committee (Project
+No. AoE/E-02/08) of the Hong Kong Special Administrative
+Region, China.
+R EFERENCES
+[1] S. L. Fong, R. W. Yeung and G. Kramer, “Cut-set bound for generalized
+networks,” in Proc. IEEE ISIT’12, Jul. 2012.
+[2] A. El Gamal, N. Hassanpour and J. Mammen, “Relay networks with
+delays,” IEEE Trans. Inf. Theory, vol. 53, pp. 3413–3431, Oct. 2007.
+[3] R. W. Yeung, Information Theory and Network Coding. Springer, 2008.
+
+(20)
+
+The following proposition is reproduced from Proposition 2.5
+in [3] to facilitate discussion.
+Proposition 5: For any discrete random variables X, Y
+and Z, X → Y → Z forms a Markov Chain if and only
+if there exist two functions χ(x, y) and ϕ(y, z) such that
+p(x,y,z) = χ(x,y)ϕ(y,z) for all x, y and z whenever p(y) > 0.
+For any (X1 , X2 , Y1 , Y2 ) distributed according to
+p(x1 , x2 , y1 , y2 ) = p(x1 , x2 )p1 (y2 |x1 )p2 (y1 |x1 , x2 , y2 ), (21)
+since the marginal distribution p(x1 , x2 , y2 ) satisﬁes
+p(x1 , x2 , y2 ) = p(x1 , x2 )p1 (y2 |x1 ),
+it follows from Proposition 5 that X2 → X1 → Y2 forms a
+Markov Chain, which implies that
+H(Y2 |X1 , X2 ) = H(Y2 |X1 )
+= H(ǫ)
+
+(22)
+
+where the last equality follows from (16). In addition, we have
+I(X1 ; Y2 |X2 ) = H(Y2 |X2 ) − H(Y2 |X1 , X2 )
+≤ 1 − H(Y2 |X1 , X2 )
+
+(23)
+
+and
+I(X2 ; Y1 |X1 ) = H(Y1 |X1 ) − H(Y1 |X1 , X2 )
+≤ 1 − H(Y1 |X1 , X2 )
+(a)
+
+= 1 − H(X2 + Y2 |X1 , X2 )
+= 1 − H(Y2 |X1 , X2 )
+
+(24)
+
+where (a) follows from (17). It then follows from (19), (23),
+(24) and (22) that
+C(1,1) ⊆
+
+(0, R1,2 , R2,1 , 0) ∈ R4
++
+
+R1,2 ≤ 1 − H(ǫ),
+,
+R2,1 ≤ 1 − H(ǫ)
+
+5
+
+

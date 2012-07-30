@@ -1,0 +1,989 @@
+Title:          newDD.pdf
+Author:         lovepark98
+Creator:        TeX
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Fri May 18 17:23:14 2012
+ModDate:        Tue Jun 19 12:56:41 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      595.22 x 842 pts (A4)
+File size:      344123 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569565541
+
+A New Parity Structure With Multi-Weight
+Circulants for QC LDPC Codes
+Hosung Park, Seokbeom Hong, Jong-Seon No
+
+Dong-Joon Shin
+
+Department of Electrical Engineering and Computer Science, INMC
+Seoul National University
+Seoul 151-744, Korea
+Email: lovepk98@snu.ac.kr, fousbyus@ccl.snu.ac.kr, jsno@snu.ac.kr
+
+Department of Electronic Engineering
+Hanyang University
+Seoul 133-791, Korea
+Email: djshin@hanyang.ac.kr
+
+Abstract—The block dual-diagonal (BDD) parity structure is
+widely adopted in many practical irregular quasi-cyclic (QC) lowdensity parity-check (LDPC) codes. These QC LDPC codes have
+good error-correcting performance in waterfall region but usually
+show relatively high error ﬂoors in low error rate region. In this
+paper, by using multi-weight circulants, a new BDD structure
+is proposed for the parity part of irregular QC LDPC codes to
+lower error ﬂoors and support efﬁcient encoding. Since the parity
+part of parity-check matrices has ﬂexible degree distribution
+with the aid of multi-weight circulants, QC LDPC codes with
+the proposed BDD structure can have large minimum Hamming
+distance compared to those with the conventional BDD structure,
+especially, in the low-rate case. Simulation results show that QC
+LDPC codes with the proposed BDD structure have lower error
+ﬂoor than those with the conventional BDD structure.
+
+Hamming distance for ﬁnite-length case and good threshold
+for asymptotic case [1].
+In this paper, a new BDD structure is proposed for irregular
+QC LDPC codes to lower error ﬂoors. By adopting multiweight circulants, the parity part of parity-check matrices
+can have ﬂexible degree distribution while maintaining BDD
+structure and supporting the efﬁcient encoding. Therefore, by
+properly adjusting the fraction of degree-2 variable nodes, QC
+LDPC codes can have large minimum Hamming distance and
+good threshold. The proposed BDD structure improves the
+error-correcting performance, especially, in the case of lowrate QC LDPC codes. QC LDPC codes with the proposed
+BDD structure which do not include harmful stopping sets
+or trapping sets are generated and it is shown via numerical
+analysis that they have lower error ﬂoor than QC LDPC codes
+with the conventional BDD structure.
+
+I. I NTRODUCTION
+Irregular low-density parity-check (LDPC) codes generally
+outperform regular LDPC codes in waterfall region and have
+a good threshold [1]. However, those LDPC codes of ﬁnite
+length are prone to suffer from high error ﬂoors [2] in low
+error rate region. The error ﬂoor phenomenon is closely related to minimum Hamming distance and some combinatorial
+structures such as stopping sets [3] and trapping sets [2]. In
+designing LDPC codes for low error ﬂoors, small minimum
+Hamming distance and small-size stopping sets or trapping
+sets should be avoided. Most well-known irregular LDPC
+codes have many degree-2 variable nodes [1], [4], [5] but it
+is known that the minimum Hamming distance of a ﬁnitelength irregular LDPC code tends to get smaller as it has more
+degree-2 variable nodes [6], [7].
+Recently, irregular quasi-cyclic (QC) LDPC codes with the
+block dual-diagonal (BDD) parity structure are widely adopted
+in many standards such as IEEE 802.16e [4] and 802.11n [5]
+because the BDD structure enables the efﬁcient encoding [8],
+[9] and leads to good error-correcting performance especially
+in waterfall region. The BDD structure consists of mostly
+degree-2 variable nodes and therefore, if the rate of QC
+LDPC codes with the BDD structure is given, the fraction of
+degree-2 variable nodes in the parity-check matrices cannot be
+below a certain value. This restriction may prevent QC LDPC
+codes from having good degree distributions. Especially, lowrate QC LDPC codes with the BDD structure have so many
+degree-2 variable nodes that they cannot have large minimum
+
+II. A N EW B LOCK D UAL -D IAGONAL PARITY S TRUCTURE
+A. Quasi-Cyclic LDPC Codes
+Let C be a binary QC LDPC code whose parity-check matrix
+H is a J × L array of z × z circulants or zero matrices as
+⎡
+⎤
+H0,1
+···
+H0,L−1
+H0,0
+⎢ H1,0
+H1,1
+···
+H1,L−1 ⎥
+⎥
+⎢
+H=⎢ .
+⎥
+.
+.
+..
+.
+.
+⎦
+⎣ .
+.
+.
+.
+.
+HJ−1,0
+
+HJ−1,1
+
+···
+
+HJ−1,L−1
+
+where a circulant Hj,l is deﬁned as a matrix whose each row
+is a cyclic shift of the row above it. Let M × N be the size
+of H. Then M = Jz, N = Lz, and the code design rate
+R = 1 − M/N = 1 − J/L. The Tanner graph of C is a
+bipartite graph which has H as its incidence matrix.
+The weight of a circulant Hj,l is deﬁned as the number of
+nonzero elements in the ﬁrst column and denoted by wt(Hj,l ).
+A circulant of weight 1 is called circulant permutation matrix.
+A multi-weight circulant is deﬁned as a circulant of weight
+larger than 1. A circulant is entirely described by the positions
+of nonzero elements in the ﬁrst column. Let the index of the ith element in the ﬁrst column be i − 1 for 1 ≤ i ≤ z. The shift
+value(s) of a circulant is deﬁned as the index (indices) of the
+nonzero element(s) in the ﬁrst column. Note that a shift value
+
+1
+
+⎡
+
+2
+⎢0
+⎢
+⎢0
+⎢
+⎢0
+⎢
+Pp = ⎢ .
+.
+⎢.
+⎢
+⎢0
+⎢
+⎣0
+1
+
+1 0 0
+2 1 0
+0 1 1
+0 0 2
+. . .
+. . .
+. . .
+0 0 0
+0 0 0
+0 0 0
+
+···
+···
+···
+···
+..
+.
+···
+···
+···
+
+0 0
+0 0
+0 0
+0 0
+. .
+. .
+. .
+1 1
+0 2
+0 0
+
+⎤
+⎡ 0
+0
+x + x s1
+⎢
+0⎥
+0
+⎥
+⎢
+⎢
+0⎥
+0
+⎥
+⎢
+⎢
+0⎥
+0
+⎥
+⎢
+⎥ , Hp (x) = ⎢
+.
+.
+.
+.
+⎢
+.⎥
+.
+⎥
+⎢
+⎢
+0⎥
+0
+⎥
+⎢
+⎣
+1⎦
+0
+1
+x0
+
+x0
+0
+x + x s2
+0
+0
+.
+.
+.
+
+0
+x0
+x0
+0
+.
+.
+.
+
+0
+0
+x0
+0
+x + x s3
+.
+.
+.
+
+···
+···
+···
+···
+..
+.
+
+0
+0
+0
+0
+.
+.
+.
+
+0
+0
+0
+0
+.
+.
+.
+
+0
+0
+0
+
+0
+0
+0
+
+0
+0
+0
+
+···
+···
+···
+
+x0
+0
+0
+
+x0
+x 0 + x sn 2
+0
+
+⎤
+0
+0⎥
+⎥
+0⎥
+⎥
+0⎥
+⎥
+.⎥
+.
+.⎥
+⎥
+0⎥
+⎥
+x0 ⎦
+x0
+
+n2 equals to the number of weight-2 circulants in Hp or the
+number of binomials in Hp (x). Since n2 is not a ﬁxed number,
+it is usually determined by the desired degree distribution. In
+each weight-2 circulant, one has zero shift value and the other
+has a nonzero shift value from {1, 2, . . . , z −1}. Let ri and si ,
+i = 1, 2, . . . , n2 , denote the row index (equal to the column
+index) and the nonzero shift value of the i-th binomial in
+Hp (x), respectively. Note that 0 ≤ ri ≤ J −1, 1 ≤ si ≤ z −1,
+and r1 < r2 < · · · < rn2 . Deﬁne S as the multiset of all
+nonzero shift values in Hp , that is, S = {si |i = 1, . . . , n2 }.
+Note that an element is allowed to appear more than once in
+a multiset.
+Unlike the conventional BDD structure, the proposed BDD
+structure provides the ﬂexibility in controlling the fraction of
+degree-2 and degree-3 variable nodes by adjusting n2 . Note
+that for given J and z, the fraction of degree-2 variable
+nodes for the rate-R QC LDPC codes with the proposed
+BDD structure is (1 − R)(1 − n2 /J) if Hm does not have
+degree-2 variable nodes. Even though R is small, the fraction
+of degree-2 variable nodes can be decreased by increasing
+n2 . Thus QC LDPC codes with the proposed BDD structure
+have more ﬂexibility in taking any good degree distribution,
+which is a desirable property for the irregular QC LDPC codes
+because good irregular QC LDPC codes generally have many
+degree-3 variable nodes as well as degree-2 variable nodes as
+seen in optimal degree distributions [1] and many standards
+[4], [5], [12]. Also, QC LDPC codes with the proposed
+BDD structure can have larger minimum Hamming distance
+and better threshold than those with the conventional BDD
+structure.
+
+takes the value from 0 to z − 1 and a multi-weight circulant
+has multiple shift values.
+QC LDPC codes can be fully represented by binary polynomials as shown in [10]. This polynomial representation is
+based on the isomorphism between z ×z binary circulants and
+the polynomial ring F2 [x]/(xz + 1). The polynomial paritycheck matrix H(x) of C is deﬁned as
+⎤
+⎡
+h0,0 (x)
+h0,1 (x)
+···
+h0,L−1 (x)
+⎢ h1,0 (x)
+h1,1 (x)
+···
+h1,L−1 (x) ⎥
+⎥
+⎢
+H(x) = ⎢
+⎥
+.
+.
+.
+..
+.
+.
+.
+⎦
+⎣
+.
+.
+.
+.
+hJ−1,0 (x) hJ−1,1 (x) · · · hJ−1,L−1 (x)
+z−1
+
+where hj,l (x) = i=0 hj,l,i xi ∈ F2 [x]/(xz + 1) and hj,l,i is
+the element with the index i in the ﬁrst column of Hj,l . We can
+see that the number of terms in hj,l (x) is equal to wt(Hj,l )
+and the degrees of all terms in hj,l (x) are equivalent to the
+shift values of Hj,l .
+QC LDPC codes are also described as protograph-based
+LDPC codes [11] because they can be regarded as the lifted
+ones from the protographs using cyclic permutations. The
+incidence matrix of the protograph P of C is represented as
+P = [pj,l ], where pj,l = wt(Hj,l ). By abuse of notation, P
+will represent the bipartite graph itself or its incidence matrix
+based on their equivalence. Let z be called the lift size of C.
+A multi-weight circulant Hj,l is represented as parallel edges
+between the horizontal node j and the vertical node l in the
+protograph and each edge in the protograph has a shift value
+so that the edge is lifted by using the cyclic permutation with
+the shift value to generate C.
+For convenience, each matrix is divided into the message part and the parity part: H = [ Hm | Hp ], H(x) =
+[ Hm (x) | Hp (x) ], and P = [ Pm | Pp ]. Note that the size
+of Hm and Hp is M × (N − M ) and M × M , respectively,
+and the size of Hm (x) and Pm is J × (L − J) and the size
+of Hp (x) and Pp is J × J. Accordingly, a codeword of C is
+split into the message part m and the parity part p.
+
+III. E FFICIENT E NCODING OF QC LDPC C ODES W ITH
+THE P ROPOSED BDD S TRUCTURE
+The proposed BDD structure can provide the efﬁcient
+encoding by properly determining the nonzero shift values
+of weight-2 circulants. Assume that n2 is already determined
+according to the desired degree distribution, and J and z are
+also given. S is ﬁrstly determined for the efﬁcient encoding
+in this section and then ri , i = 1, . . . , n2 and the ordering of
+the elements in S are also determined in Section IV.
+Recall the efﬁcient encoding of LDPC codes in [8]. A
+parity-check matrix H can be partitioned into
+
+B. The Proposed Block Dual-Diagonal Structure
+We propose a new BDD structure for the parity part of the
+parity-check matrix, which has the forms in the protograph
+and the polynomial parity-check matrix as in the top of this
+page.
+In the proposed Pp , 2’s are located only at diagonal positions. Let n2 , 1 ≤ n2 ≤ J, be the number of 2’s in Pp . Clearly,
+
+H=
+
+2
+
+A
+C
+
+B T
+D E
+
+⎡
+
+1
+1 + x s2
+(1 + xs2 )(1 + xs3 )
+.
+.
+.
+
+⎢
+⎢
+⎢
+⎢
+T−1 (x) = ⎢
+⎢
+⎢
+⎣(1 + xs2 ) · · · (1 + xsJ−2 )
+(1 + xs2 ) · · · (1 + xsJ−1 )
+
+0
+1
+1 + x s3
+.
+.
+.
+
+(1 + xs3 ) · · · (1 + xsJ−2 )
+(1 + xs3 ) · · · (1 + xsJ−1 )
+
+0
+0
+1
+.
+.
+.
+
+(1 + xs4 ) · · · (1 + xsJ−2 )
+(1 + xs4 ) · · · (1 + xsJ−1 )
+
+···
+···
+···
+..
+.
+
+0
+0
+0
+.
+.
+.
+
+···
+···
+
+1
+1 + xsJ−1
+
+⎤
+0
+0⎥
+⎥
+0⎥
+⎥
+.⎥
+.⎥
+.⎥
+0⎦
+1
+
+J−1
+
+mod z
+mod z, . . . , 2J−2 mod z} yields φ(x) = x2
+and
+guarantees that cycles of length 4 do not occur in each weight2 circulant.
+
+where B, T, D, and E form the parity part, T is a lowertriangular matrix, and D is a square matrix. Denote the parity
+part of a codeword by p = [ p1 p2 ], where p1 corresponds
+to B and D and p2 corresponds to T and E. Then, p1 and
+p2 are obtained as
+
+Theorem 2: Assume that z = 2l for some integer log2 J +
+1 ≤ l ≤ J − 1. Then, there exist si , i = 1, . . . , J, which
+l−1
+and avoid cycles of length 4 in each
+generate φ(x) = x2
+weight-2 circulant.
+
+pT = φ−1 (ET−1 A + C)mT
+1
+
+pT = T−1 (AmT + BpT )
+2
+1
+
+From Theorems 1 and 2, we can clearly determine S
+supporting the efﬁcient encoding and avoid cycles of length 4
+in each weight-2 circulant for n2 = J and almost all z. Note
+that Theorems 1 and 2 hold regardless of ri , i = 1, . . . , J
+and in addition, it is not necessary to know every si . For the
+efﬁcient encoding, it is only required to determine the multiset
+S from which each si will be taken in Section IV.
+In the case of n2 < J, we can similarly have
+φ(x) = (1 + xs1 )(1 + xs2 ) · · · (1 + xsn2 ) + 1 regardless
+of ri , i = 1, . . . , n2 . Hence, {20 mod z, 20 mod z, 21
+mod z, 22 mod z, . . . , 2n2 −2 mod z} or the splitted version
+of {20 , 20 , 21 , 22 , . . . , 2l−2 } for an integer l < n2 as in
+Theorems 1 and 2 can be used as S to support the efﬁcient
+encoding and avoid cycles of length 4.
+
+where φ := ET−1 B + D.
+Now, consider the efﬁcient encoding of QC LDPC codes
+with the proposed BDD structure. First, assume that n2 = J,
+which means every diagonal element in Pp is 2. The case of
+other value of n2 can be treated similarly as this case. Let
+H(x) be represented by a partitioned polynomial parity-check
+matrix as
+A(x) B(x) T(x)
+.
+H(x) =
+C(x) D(x) E(x)
+From the deﬁnition of the proposed BDD structure, we have
+T
+B(x) = 1 + xs1 0 · · · 0 , D(x) = 1 , E(x) =
+sJ
+0 · · · 0 1 + x , and
+⎡
+⎤
+1
+0
+0 ···
+0
+0
+⎢ 1 + x s2
+1
+0 ···
+0
+0⎥
+⎢
+⎥
+⎢ 0
+0
+0⎥
+1 + x s3 1 · · ·
+⎢
+⎥
+T(x) = ⎢ .
+.
+.⎥ .
+.
+. ..
+.
+.⎥
+.
+.
+⎢ .
+.
+.
+.⎥
+.
+.
+⎢ .
+⎣ 0
+0
+0 ···
+1
+0⎦
+0
+0
+0 · · · 1 + xsJ−1 1
+
+IV. S EARCH FOR G OOD QC LDPC C ODES W ITH THE
+P ROPOSED BDD S TRUCTURE
+It is experimentally shown in [9] that the girth of the
+subgraph consisting of only variable nodes of low degree
+(i.e., degrees 2 and 3) in H is desired to be large for good
+error-correcting performance in the error ﬂoor region. This
+observation agrees with the concept of the approximate cycle
+extrinsic message degree (ACE) algorithm [13] that are used to
+avoid harmful stopping sets and trapping sets. Accordingly, for
+the given S in Theorem 1 or 2, we aim to ﬁnd ri , i = 1, . . . , n2
+and the ordering of the elements in S for sufﬁciently large girth
+of Hp .
+The girth of a QC LDPC code is clearly determined by
+the structure of the protograph, lift size, and all shift values
+assigned to edges. However, we can derive an upper bound on
+the girth of QC LDPC codes lifted from a given protograph
+without considering the lift size and shift values based on the
+concept of inevitable cycles.
+
+We can easily derive the inverse of T(x) as in the top of
+this page. Finally, φ(x) is derived as
+φ(x) = E(x)T−1 (x)B(x) + D(x)
+= (1 + xs1 )(1 + xs2 ) · · · (1 + xsJ ) + 1.
+Therefore, φ is a z ×z circulant of weight equal to the number
+of terms in φ(x).
+For the efﬁcient encoding, the existence of φ−1 should
+be guaranteed. A simple way for this is making φ be a
+circulant permutation matrix, that is, φ(x) = xk for some
+0 ≤ k ≤ z − 1, by ﬁnding proper si , i = 1, 2, . . . , J. Then we
+have φ−1 (x) = x−k mod z and p1 and p2 can be efﬁciently
+encoded. We can ﬁnd such a S from Theorems 1 and 2 whose
+proofs are omitted in this paper. Note that when z is even, si
+should not be z/2 to avoid cycles of length 4 inside the i-th
+weight-2 circulant of Hp [10].
+
+Deﬁnition 1 ([14], [15]): An inevitable cycle induced by
+a protograph is deﬁned as the shortest one of the cycles
+which should appear in the QC LDPC codes lifted from the
+protograph regardless of the lift size and shift values.
+
+Theorem 1: Assume that z = 2k for all integers
+k < J. Then S = {20 mod z, 20 mod z, 21 mod z, 22
+
+3
+
+sn2
+s1
+
+0
+
+0
+
+0
+Conv
+
+0
+
+s2
+
+0
+
+0
+
+0
+
+TABLE I
+D EGREE D ISTRIBUTIONS OF R ATE -1/3 QC LDPC C ODES BASED ON
+30 × 45 P ROTOGRAPHS W ITH THE C ONVENTIONAL AND THE P ROPOSED
+BDD S TRUCTURES
+dv
+# of cols
+λ dv
+
+2
+29
+0.38
+
+3
+11
+0.22
+
+12
+5
+0.4
+
+dc
+# of rows
+ρdc
+
+5
+29
+0.96
+
+6
+1
+0.04
+
+Prop
+
+dv
+# of cols
+λ dv
+
+2
+21
+0.28
+
+3
+20
+0.4
+
+12
+4
+0.32
+
+dc
+# of rows
+ρdc
+
+5
+30
+1
+
+6
+0
+0
+
+0
+0
+
+0
+
+0
+
+0
+0
+0
+
+s3
+
+si
+
+0
+0
+
+0
+
+in S which maximizes the girth of Hp can be obtained via
+extensive search. This full search is a time-consuming job but
+for moderate n2 , it is generally manageable because n2 is not
+large in most cases.
+For given J, L, z, Hp , and degree distributions in H, Hm
+should be carefully constructed for QC LDPC codes to have
+low error ﬂoors. For this, the submatrix of H consisting of
+the columns of low weight should have a sufﬁciently large
+girth [9], [13] and thus the construction algorithm in [9],
+which will be called the stepwise greedy girth-maximizing
+(SGGM) algorithm in this paper, is used for constructing Hm .
+It is assumed that Hm only consists of circulant permutation
+matrices and zero matrices and its column weights are larger
+than or equal to 3.
+
+0
+
+Fig. 1.
+Graphical representation of the explanatory protograph Pp in
+Subsection II-B. Filled circles and squares represent vertical and horizontal
+nodes, respectively.
+
+The protograph of the proposed BDD structure is relatively
+simple as shown in Fig. 1.
+Deﬁnition 2 ([16]): A (x1 , x2 ; y)-dumbbell graph, denoted
+by D(x1 , x2 ; y), is a connected graph consisting of two edgedisjoint cycles X1 and X2 of the numbers of edges x1 ≥ 1
+and x2 ≥ 1, respectively, that are connected by a path Y of
+the number of edges y ≥ 0.
+
+V. S IMULATION R ESULTS
+To verify the effectiveness of the proposed BDD structure,
+the error-correcting performance of QC LDPC codes with
+the proposed BDD structure is compared with that with the
+conventional BDD structure. All simulations are performed
+using the belief propagation (BP) decoding under the binary
+AWGN channel and the maximum number of iterations is set
+to 100.
+Four QC LDPC codes with J = 30, L = 45, and z =
+45 are generated. The ﬁrst one, denoted by ‘Prop1,’ has the
+proposed BDD structure as the parity part and its message
+part is constructed from the SGGM algorithm. The second
+one, denoted by ‘Conv1,’ has the conventional BDD structure
+as the parity part and its message part is also constructed from
+the SGGM algorithm. The third one, denoted by ‘Prop2,’ has
+the proposed BDD structure as the parity part and is selected
+among 200 QC LDPC codes with sufﬁciently large girth whose
+parity-check matrices have the message parts randomly lifted
+from a randomly constructed protograph. The last one, denoted
+by ‘Conv2,’ is the counterpart to ‘Prop2.’ These codes have
+the parameters N = 2025 and R = 1/3 and it is noted that
+the rate-1/3 QC LDPC codes in ETSI DVB-S2 standards [12]
+also have 30 × 45 protographs.
+The degree distributions of four QC LDPC codes are shown
+in Table I. ‘Conv1’ and ‘Conv2’ has almost the same degree
+distribution as the rate-1/3 QC LDPC codes in ETSI DVB-S2
+standards. We can see that there are too many variable nodes
+of degree 2 in ‘Conv1’ and ‘Conv2’ due to the conventional
+BDD structure. These QC LDPC codes have 1.004 as the
+
+Lemma 1 ([16]): D(x1 , x2 ; y) induces the inevitable cycles
+of length 2(x1 + x2 ) + 4y.
+In the protograph of the proposed BDD structure, we can
+ﬁnd n2 dumbbell graphs connected back to back to form a
+chain. Let yi , i = 1, . . . , n2 − 1, denote the number of 1’s
+along with the shortest path between the i-th and (i + 1)-th
+2’s in Pp and yn2 denote the one between n2 -th and the ﬁrst
+2’s. Then, we have yi = 2(ri+1 − ri ) − 1 for i = 1, . . . , n2 − 1
+and yn2 = 2(J + r1 − rn2 ) − 1. The length of the inevitable
+cycles induced by Pp can be obtained in the next theorem.
+Theorem 3: The length of the inevitable cycles induced by
+Pp is mini:1≤i≤n2 {8 + 4yi }.
+Proof: In Pp , there are n2 dumbbell graphs, that is,
+D(2, 2; yi ) for i = 1, . . . , n2 . Based on the Deﬁnition 1,
+the inevitable cycles induced by Pp are determined only by
+D(2, 2; yi ) with the smallest yi . From Lemma 1, the length of
+the inevitable cycles is mini:1≤i≤n2 {8 + 4yi }.
+According to Theorem 3, yi ’s, i = 1, . . . , n2 , are desired to
+have as close values as possible for avoiding short inevitable
+cycles in Hp . Although the length of the inevitable cycles
+induced by Pp is an upper bound on the girth of Hp , not the
+girth itself, these yi ’s are adequate for achieving sufﬁciently
+large girth. In addition, since a cycle in Hp is generated by
+a walk traversing two or more double edges in Pp [15], a
+small yi is more likely to generate short cycles. For yi ’s
+determined as equally as possible, the ordering of the elements
+
+4
+
+100
+
+10
+
+KCC (Korea Communications Commission) under the R&D
+program supervised by the KCA (Korea Communications
+Agency) (KCA-2012-08-911-04-003).
+
+Prop1 FER
+Conv1 FER
+Prop2 FER
+Conv2 FER
+Prop1 BER
+Conv1 BER
+Prop2 BER
+Conv2 BER
+
+10-1
+-2
+
+R EFERENCES
+FER / BER
+
+10-3
+
+[1] T. J. Richardson, M. A. Shokrollahi, and R. L. Urbanke, “Design of
+capacity-approaching irregular low-density parity-check codes,” IEEE
+Trans. Inf. Theory, vol. 47, no. 2, pp. 619-637, Feb. 2001.
+[2] T. J. Richardson, “Error ﬂoors of LDPC codes,” in Proc. Allerton Conf.
+Commun., Control, Comput., Oct. 2003, pp. 1426-1435.
+[3] C. Di, D. Proietti, I. E. Telatar, T. J. Richardson, and R. L. Urbanke,
+“Finite length analysis of low-density parity-check codes on the binary
+erasure channel,” IEEE Trans. Inf. Theory, vol. 48, no. 6, pp. 1570-1579,
+Jun. 2002.
+[4] IEEE, “IEEE standard for local and metropolitan area networks. Part 16:
+Air interface for broadband wireless access systems,” IEEE Std 802.162009, May 2009.
+[5] IEEE, “IEEE standard for information technology - Telecommunications
+and information exchange between systems - Local and metropolitan area
+networks - Speciﬁc requirements. Part 11: Wireless LAN medium access
+control (MAC) and physical layer (PHY) speciﬁcations. Amendment 5:
+Enhancements for higher throughput,” IEEE Std 802.11n-2009, Oct. 2009.
+[6] S. Kudekar, T. J. Richardson, and R. L. Urbanke, “Threshold saturation
+via spatial coupling: Why convolutional LDPC ensembles perform so well
+over the BEC,” IEEE Trans. Inf. Theory, vol. 57, no. 2, pp. 803-834, Feb.
+2011.
+[7] J. Chen, R. M. Tanner, J. Zhang, and M. P. C. Fossorier, “Construction
+of irregular LDPC codes by quasi-cyclic extension,” IEEE Trans. Inf.
+Theory, vol. 53, no. 4, pp. 1479-1483, Apr. 2007.
+[8] T. J. Richardson and R. L. Urbanke, “Efﬁcient encoding of low-density
+parity-check codes,” IEEE Trans. Inf. Theory, vol. 47, no. 2, pp. 638-656,
+Feb. 2001.
+[9] S. Myung, K. Yang, and J. Kim, “Quasi-cyclic LDPC codes for fast
+encoding,” IEEE Trans. Inf. Theory, vol. 51, no. 8, pp. 2894-2901, Aug.
+2005.
+[10] R. Smarandache and P. O. Vontobel, “Quasi-cyclic LDPC codes: Inﬂuence of proto- and Tanner-graph structure on minimum Hamming distance
+upper bounds,” IEEE Trans. Inf. Theory, vol. 58, no. 2, pp. 585-607, Feb.
+2012.
+[11] J. Thorpe, “Low-density parity-check (LDPC) codes constructed from
+protograph,” IPN Progress Report 42-154, JPL, Aug. 2003.
+[12] ETSI, “Digital video broadcasting (DVB); Second generation framing
+structure, channel coding and modulation systems for broadcasting, interactive services, news gathering and other broadband satellite applications
+(DVB-S2),” EN 302 307 v1.2.1, Aug. 2009.
+[13] T. Tian, C. R. Jones, J. D. Villasenor, and R. D. Wesel, “Selective
+avoidance of cycles in irregular LDPC code construction,” IEEE Trans.
+Commun., vol. 52, no. 8, pp. 1242-1247, Aug. 2004.
+[14] S. Kim, J.-S. No, H. Chung, and D.-J. Shin, “Quasi-cyclic low-density
+parity-check codes with girth larger than 12,” IEEE Trans. Inf. Theory,
+vol. 53, no. 8, pp. 2885-2891, Aug. 2007.
+[15] H. Park, S. Hong, J.-S. No, and D.-J. Shin, “Protograph design with
+multiple edges for regular QC LDPC codes having large girth,” in Proc.
+IEEE Int. Symp. Inf. Theory, Aug. 2011, pp. 923-927.
+[16] C. A. Kelley and J. L. Walker, “LDPC codes from voltage graphs,”
+in Proc. IEEE Int. Symp. Inf. Theory, Toronto, Canada, Jul. 2008, pp.
+792-796.
+[17] SPM LOPT - Online optimisation of LDPC degree distributions. [Online]. Available: http://sigpromu.org/ldpc/DE/index.php
+
+10-4
+10-5
+10-6
+10-7
+
+10
+
+-8
+
+0
+
+0.25
+
+0.5
+
+0.75
+
+1
+1.25
+Eb/No(dB)
+
+1.5
+
+1.75
+
+2
+
+2.25
+
+Fig. 2. FER and BER performance of QC LDPC codes with the conventional
+and the proposed BDD structures when N = 2025 and R = 1/3.
+
+threshold under the AWGN channel which is calculated from
+[17]. Note that the girths of ‘Conv1’ and ‘Conv2’ are 8 and
+6, respectively.
+The degree distribution in Table I is used for the proposed
+BDD cases ‘Prop1’ and ‘Prop2’ with n2 = 9. For fair
+comparison, the number of edges in the parity-check matrices
+of ‘Prop1’ and ‘Prop2’ is not larger than that of ‘Conv1’ and
+‘Conv2.’ The threshold of these QC LDPC codes is 1.225
+which is much larger than that of ‘Conv1’ and ‘Conv2.’ Note
+that the girths of ‘Prop1’ and ‘Prop2’ are 8 and 6, respectively.
+The frame error rate (FER) and bit error rate (BER) of
+the above four QC LDPC codes are shown in Fig. 2. In
+both FER and BER, ‘Prop1’ and ‘Prop2’ show better errorcorrecting performance than ‘Conv1’ and ‘Conv2’ in the error
+ﬂoor region, respectively.
+VI. C ONCLUSIONS
+In this paper, a new BDD structure is proposed for irregular
+QC LDPC codes to achieve low error ﬂoors. By adopting
+weight-2 circulants, the parity part of parity-check matrices
+can have ﬂexible degree distribution, which can results in large
+minimum Hamming distance unlike the case of the conventional BDD structure. The proposed BDD structure can support
+the efﬁcient encoding of QC LDPC codes by determining
+the set of shift values appropriately. We search for good QC
+LDPC codes with the proposed BDD structure by determining
+the ordering of nonzero shift values in the proposed BDD
+structure and properly locating weight-2 circulants. It is shown
+via numerical analysis that QC LDPC codes with the proposed
+BDD structure have good error-correcting performance in the
+error ﬂoor region compared to those with the conventional
+BDD structure.
+ACKNOWLEDGMENT
+This work was supported by the National Research Foundation of Korea (NRF) grant funded by the Korea government (MEST) (No.2012-0000186) and also supported by the
+
+5
+
+

@@ -1,0 +1,1108 @@
+Title:          Infer_CE_Dec_v9.dvi
+Creator:        dvips(k) 5.99 Copyright 2010 Radical Eye Software
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Sat May 19 12:59:45 2012
+ModDate:        Tue Jun 19 12:56:00 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      341266 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569566761
+
+Message-Passing Algorithms for Channel Estimation
+and Decoding Using Approximate Inference
+Mihai-A. Badiu∗† , Gunvor E. Kirkelund∗ , Carles Navarro Manch´ n∗, Erwin Riegler‡ and Bernard H. Fleury∗
+o
+†
+
+∗ Aalborg University, Denmark
+Technical University of Cluj-Napoca, Romania
+‡ Vienna University of Technology, Austria
+
+the latter approach, a novel hybrid message-passing inference
+framework combining BP and the MF approximation was
+recently proposed in [11].
+In this paper, we investigate the design of receivers that
+perform joint channel estimation and data decoding in a generic
+communication system. For this purpose, we capitalize on the
+combined inference framework [11], which provides some degree of freedom in the choice of the parts of the factor graph in
+which either BP or MF is applied. We show that this framework
+can be modiﬁed to naturally embed EP, EM and BP with
+Gaussian approximation of some messages. Then, we apply
+these hybrid inference techniques to the underlying probabilistic
+model of the system and obtain four receiver algorithms, whose
+performance we assess by simulating a wireless system.
+Notation: we denote by |I| the cardinality of a ﬁnite set I;
+the relative complement of {i} in I is written as I \ i; the set
+{i ∈ N | 1 ≤ i ≤ n} is denoted by [1 : n]. Boldface lowercase
+and uppercase letters are used to represent vectors and matrices,
+T
+H
+respectively; superscripts (·) and (·) denote transposition and
+Hermitian transposition, respectively. The Hadamard product of
+two vectors is denoted by ⊙. For a vector x = (xi | i ∈ I)T , we
+write x¯ = (xj | j ∈ I \ i)T ; for a matrix A ∈ Cm×n , [A]i,j
+i
+denotes its (i, j)th entry, [A]¯ ¯ is the matrix A with the ith
+i,j
+row and jth column deleted, [A]¯ denotes the column vector
+i,j
+([A]k,j | k ∈ [1 : m] \ i)T , and [A]i,¯ is the row vector ([A]i,k |
+j
+k ∈ [1 : n] \ j). The pdf of a multivariate complex Gaussian
+distribution with mean µ and covariance matrix Σ is denoted
+by CN(·; µ, Σ). We write f (x) ∝ g(x) when f (x) = cg(x) for
+some positive constant c. We denote by G[·] the approximation
+of the pdf in the argument with a Gaussian pdf with the same
+mean and covariance matrix. The Dirac delta function is denoted
+by δ(·).
+
+Abstract—We design iterative receiver schemes for a generic
+communication system by treating channel estimation and information decoding as an inference problem in graphical models. We
+introduce a recently proposed inference framework that combines
+belief propagation (BP) and the mean ﬁeld (MF) approximation
+and includes these algorithms as special cases. We also show that
+the expectation propagation and expectation maximization (EM)
+algorithms can be embedded in the BP-MF framework with slight
+modiﬁcations. By applying the considered inference algorithms to
+our probabilistic model, we derive four different message-passing
+receiver schemes. Our numerical evaluation in a wireless scenario
+demonstrates that the receiver based on the BP-MF framework and
+its variant based on BP-EM yield the best compromise between
+performance, computational complexity and numerical stability
+among all candidate algorithms.
+
+I. I NTRODUCTION
+The design of advanced receiver algorithms is crucial to meet
+the stringent requirements of modern communication systems.
+Motivated by the successful application of the “turbo” principle
+in the decoding of channel codes, a large number of works have
+been devoted to the design of turbo receivers (see [1] and the
+references therein). While in many of these works the receiver
+modules are individually designed and heuristically interconnected to exchange soft values, iterative receiver algorithms can
+be rigourously designed and better understood as instances of
+message-passing inference techniques (e.g., see [2]).
+In this context, variational Bayesian inference in probabilistic
+models [3] have proven to be a very useful tool to design
+receivers where tasks like channel estimation, detection and
+decoding are jointly derived. Among the variational techniques,
+belief propagation (BP) [4], [5] has found the most widespread
+use. Originally applied to the decoding of channel codes, BP
+has been shown to be especially efﬁcient in discrete probabilistic
+models. An alternative to BP is the mean ﬁeld (MF) approximation and its message-passing counterpart, usually referred to
+as variational message-passing [6]. MF inference has been successfully applied to continuous probabilistic models involving
+probability density functions (pdfs) belonging to an exponential
+family, in which BP suffers from numerical intractability. Other
+notable examples of general-purpose inference techniques are
+expectation-maximization (EM) [7] and expectation propagation
+(EP) [8]. EM is a special case of MF, where the approximate
+pdfs – referred to as beliefs – are Dirac delta functions; EP
+can be seen as an approximation of BP where some beliefs are
+approximated by pdfs in a speciﬁc exponential family. Some
+attempts to ﬁnd a uniﬁed framework encompassing all these
+techniques include the α-divergence interpretation in [9] and
+the region-based free energy approximations in [10]. Following
+
+II. M ESSAGE -PASSING I NFERENCE A LGORITHMS
+We begin by concisely describing the uniﬁed messagepassing algorithm that combines the BP and MF approaches
+(refer to [11]). Then, we brieﬂy show how other widespread
+inference algorithms can be obtained as particular instances or
+slight modiﬁcations of the uniﬁed framework.
+Let p(z) be an arbitrary pdf of a random vector z
+(zi | i ∈ I)T which factorizes as
+p(z) =
+
+fa (za ) =
+a∈A
+
+fa (za )
+a∈AMF
+
+fc (zc )
+
+(1)
+
+c∈ABP
+
+where za is the vector of all variables zi that are arguments
+of the function fa .We have grouped the factors into two sets
+that partition A: AMF ∩ ABP = ∅ and AMF ∪ ABP = A. The
+
+1
+
+by sending N data and M pilot channel symbols having the
+sets of indices D ⊆ [1 : M + N ] and P ⊆ [1 : M + N ],
+respectively, such that D ∪ P = [1 : M + N ] and D ∩ P = ∅.
+Speciﬁcally, vector u is encoded and interleaved using a rate
+R = K/(N L) channel code and a random interleaver into the
+vector c = (cT | cn ∈ {0, 1}L, n ∈ [1 : N ])T of length N L.
+n
+(1)
+(L)
+For each n ∈ [1 : N ], the subvector cn = (cn , . . . , cn )T is
+mapped to a data symbol xin ∈ SD with in ∈ D, where SD is
+a discrete complex modulation alphabet of size 2L . Symbols
+xD = (xi | i ∈ D)T are multiplexed with pilot symbols
+xP = (xj | j ∈ P)T , which are randomly selected from a QPSK
+modulation alphabet. Finally, the aggregate vector of channel
+symbols x = (xi | i ∈ D ∪ P)T is sent through a channel with
+the following input-output relationship:
+
+factorization in (1) can be visualized in a factor graph [4]
+representation. We deﬁne N (a) ⊆ I to be the set of indices
+of all variables zi that are arguments of function fa ; similarly,
+N (i) ⊆ A denotes the set of indices of all functions fa
+that depend on zi . The parts of the graph that correspond to
+a∈ABP fa (za ) and to
+a∈AMF fa (za ) are referred to as “BP
+part” and “MF part”, respectively. We denote the variable nodes
+in the BP part by IBP
+a∈ABP N (a) and those in the MF part
+by IMF
+a∈AMF N (a).
+The combined BP-MF inference algorithm approximates the
+marginals p(zi ) = p(z)dz¯, i ∈ I by auxiliary pdfs bi (zi )
+i
+called beliefs. They are computed as [11]
+mMF (zi )
+a→i
+
+mBP (zi )
+a→i
+
+bi (zi ) = ωi
+
+(2)
+
+a∈AMF ∩N (i)
+
+a∈ABP ∩N (i)
+
+y = h ⊙ x + w.
+
+with
+mBP (zi ) = ωa
+a→i
+
+The vector y = (yi | i ∈ [1 : M + N ])T contains the received
+signal samples, h = (hi | i ∈ [1 : M + N ])T is the vector
+of channel coefﬁcients, and w = (wi | i ∈ [1 : M + N ])T
+contains the samples of additive noise and has the pdf p(w) =
+CN(w; 0, γ −1 IM+N ) for some positive component precision γ.
+Note that (5) can model any channel with a multiplicative effect
+that is not affected by inter-symbol interference, e.g., a timevarying frequency-ﬂat channel or the equivalent channel in the
+frequency domain in a multicarrier system.
+Based on the above signal model, we can state the probabilistic model which captures the dependencies between the system
+variables. The pdf of the collection of observed and unknown
+variables factorizes as
+
+dzj nj→a (zj ) fa (za ),
+j∈N (a)\i
+
+∀ a ∈ ABP , i ∈ N (a)
+
+
+mMF (zi ) = exp 
+a→i
+
+j∈N (a)\i
+
+
+
+dzj nj→a (zj ) ln fa (za ) ,
+
+∀ a ∈ AMF , i ∈ N (a)
+
+mMF (zi ),
+c→i
+
+mBP (zi )
+c→i
+
+ni→a (zi ) = ωi
+c∈ABP ∩N (i)\a
+
+c∈AMF ∩N (i)
+
+∀ i ∈ N (a), a ∈ A,
+(3)
+where ωi and ωa are constants that ensure normalized beliefs.
+Belief propagation is obtained as a particular case of BP-MF
+by setting AMF = ∅, since in this case the expressions in (3)
+reduce to the BP message computations. Similarly, mean ﬁeld
+is an instance of BP-MF when ABP = ∅.
+Expectation propagation is very similar to BP, the main
+difference being that it constrains the beliefs of some variables
+to be members of a speciﬁc exponential family. Assuming Gaussian approximations of the beliefs, EP can also be integrated in
+the BP-MF framework by modifying the messages
+mEP (zi ) ∝
+a→i
+
+1
+ni→a (zi )
+
+G ni→a (zi ) mBP (zi ) ,
+a→i
+
+(5)
+
+p(y, h, xD , c, u) = fH (h)
+
+fDi (hi , xi )
+i∈D
+
+×
+
+fPj (hj )
+j∈P
+
+fUk (uk ),
+
+fMn (xin , cn ) fC (c, u)
+n∈[1:N ]
+
+(6)
+
+k∈[1:K]
+
+where fDi (hi , xi )
+p(yi |hi , xi ) and fPj (hj )
+incorporate the observations in y and are given by
+fDi (hi , xi ) = CN hi xi ; yi , γ −1 ,
+fPj (hj ) = CN hj xj ; yj , γ
+
+−1
+
+,
+
+p(yj |hj )
+
+∀i ∈ D,
+
+(7)
+
+∀j ∈ P,
+
+(8)
+
+fH (h)
+p(h) is the prior pdf of the vector of channel
+coefﬁcients for which we set
+
+(4)
+
+for all i ∈ IEP ⊆ IBP , a ∈ N (i) ∩ ABP .
+The expectation-maximization algorithm is a special case of
+MF when the beliefs of some variables are constrained to be
+Dirac delta functions [11]. Again, we include this approximation
+in the BP-MF framework. This leads to ni→a (zi ) = δ(zi − zi )
+˜
+for all i ∈ IEM ⊆ IMF and a ∈ N (i)∩AMF , where zi maximizes
+˜
+the unconstrained belief (2). We refer to this modiﬁed algorithm
+as BP-EM.
+
+p
+
+p
+
+fH (h) = CN h; µh , Σh ,
+
+(9)
+
+fMn (xin , cn ) p (xin |cn ) stand for the modulation mapping,
+fC (c, u)
+p(c|u) accounts for the coding and interleaving
+operations and fUk (uk )
+p(uk ) is the prior pmf of the kth
+information bit. To obtain (6), we used the fact that y is
+conditionally independent of c and u given xD , h is independent
+of xD , c and u, the noise samples wi are i.i.d., and each data
+symbol xin is conditionally independent of all the other symbols
+given cn . The factorization in (6) can be visualized in the factor
+graph depicted in Fig. 1. The graph of the code and interleaver
+is not explicitly given, its structure being captured by fC .
+
+III. P ROBABILISTIC S YSTEM M ODEL
+In this section, we present the signal model of our inference
+problem and its graphical representation. These will establish
+the baseline for the derivation of message-passing receivers.
+We analyze a system consisting of one transmitter and
+one receiver. A message represented by a vector u =
+T
+(uk | k ∈ [1 : K]) ∈ {0, 1}K of information bits is conveyed
+
+IV. M ESSAGE -PASSING R ECEIVER S CHEMES
+In this section, we derive iterative receiver schemes by
+applying different inference algorithms to the factor graph in
+
+2
+
+proposed in [12], i.e., for each i ∈ D we set
+
+(1)
+
+c1
+.
+.
+.
+
+xi1
+
+hi1
+. fDi1
+.
+.
+
+fM1
+
+(14)
+
+.
+.
+.
+
+fC
+
+µhi ,o =
+
+(1)
+
+cN
+.
+.
+.
+
+xiN
+
+hiN
+fDiN
+
+fMN
+
+2
+σhi ,o =
+
+uK
+
+βin (s)δ(xin − s),
+
+mBP→hi (hi ) ∝
+fH
+
+s∈SD
+
+y i s∗
+1
+βi (s)
+CN hi ; 2 ,
+2
+|s|
+|s| γ|s|2
+
+p
+
+j
+
+yj x∗
+1
+j
+,
+|xj |2 γ|xj |2
+
+mBP →xi (xi ) ∝
+fD
+i
+
+(12)
+
+p
+
+(µo ¯ − µh¯ ),
+hi
+i
+−1
+
+[Σp ]¯ .
+h i,i
+
+(17)
+
+fDi (hi , xi ) nhi →fDi (hi ) dhi
+1
+|yi − µhi ,c xi |
+exp − −1
+2
+2
+γ −1 + σhi ,c |xi |2
+γ + σhi ,c |xi |2
+
+.
+
+B. Algorithm based on expectation propagation
+We set AMF = ∅ and IEP = {hi | i ∈ D}. The message
+mEP →hi (hi ) computed with (4) is proportional to a Gaussian
+fDi
+pdf; consequently, the EP rule for mEP→hi (hi ) reduces to the
+fH
+BP rule and outputs a Gaussian pdf as in (16), since the operator
+G[·] is an identity operator for Gaussian arguments.
+Speciﬁcally, using (3), (4), and then (11), (16), we have
+
+i
+
+nhj →fH (hj ) dhj .
+
+−1
+
+After passing the extrinsic messages nxin →fMn (xin ) =
+mBP →xin (xin ), in ∈ D, n ∈ [1 : N ], we apply the BP update
+fDi
+n
+rule to compute the probabilities of the coded and interleaved
+bits (which is equivalent to MAP demapping), followed by BP
+decoding to obtain the beliefs of the information bits.
+
+(11)
+
+Note that the message in (11) is proportional to a mixture of
+Gaussian pdfs with |SD | = 2L components. Then, after setting
+nhi →fH (hi ) = mBP →hi (hi ) for all i ∈ D and nhi →fH (hi ) =
+fDi
+mBP →hi (hi ) for all i ∈ P, the message from fH to hi reads
+fP
+fH (h)
+
+p
+
+These messages are further passed as extrinsic values, i.e.,
+nhi →fDi or Pi (hi ) = mBP→hi (hi ). For each i ∈ D, the following
+fH
+message is then computed:
+
+∝
+
+.
+
+(16)
+
+2
+σhi ,c = [Σp ]i,i − [Σp ]i,¯ [Σo ]¯ ¯ + [Σp ]¯ ¯
+h i,i
+h i,i
+h
+h i
+
+while for all j ∈ P set
+mBP →hj (hj ) ∝ fPj (hj ) ∝ CN hj ;
+fP
+
+CN h; µp , Σp CN h¯; µo ¯ , [Σo ]¯ ¯ dh¯
+i
+i
+h i,i
+hi
+h
+h
+
+µhi ,c = µp i + [Σh ]i,¯ [Σo ]¯ ¯ + [Σh ]¯ ¯
+i
+i,i
+h i,i
+h
+
+(10)
+
+,
+
+(15)
+− |µhi ,o |2 .
+
+with
+
+fDi (hi , xi ) nxi →fDi (xi ) dxi
+
+∝
+
+1
+|yi |2
++
+|s|2
+γ|s|2
+
+2
+∝ CN hi ; µhi ,c , σhi ,c ,
+
+with in ∈ D, ∀n ∈ [1 : N ], where βin (s) represent extrinsic
+information on symbol xin . These messages are further passed
+as nxin →fDi (xin ) = mBPn →xin (xin ). Then, for each i ∈ D,
+fM
+n
+compute the message
+i
+
+y i s∗
+,
+|s|2
+
+In (15), we have deﬁned the normalized amplitudes of the
+Gaussian mixture αi (s) = βi (s)/(κi |s|2 ), where the constant
+κi ensures
+s∈SD αi (s) = 1. We also denote the mean and
+2
+variance of the pdf in (12) by µhj ,o and σhj ,o , j ∈ P, and
+T
+we deﬁne the vector µo = (µhi ,o | i ∈ [1 : M + N ]) and the
+h
+o
+o
+2
+matrix Σh with entries [Σh ]i,j = σhi ,o if i = j and zero
+otherwise, for all i, j ∈ [1 : M + N ].
+Now, using (9) and (14), the message in (13) becomes
+
+s∈SD
+
+mBP →hi (hi ) ∝
+fD
+
+αi (s)
+s∈SD
+
+fUK
+
+(L)
+
+cN
+
+Fig. 1. The receiver has to infer the beliefs of the information
+bits using the observed vector y and prior knowledge, i.e., the
+pilot symbols and their set of indices P, the noise precision γ,
+the channel statistics in (9), the modulation mapping and the
+structure of the channel code and interleaver.
+We set A and I (deﬁned in Section II for a general probabilistic model) to be the sets of all factors and variables, respectively,
+contained in our probabilistic model. Next, we show that the BP
+algorithm resulting from setting AMF = ∅ yields messages of an
+intractable complexity. Assume that by running BP in the part
+of the graph containing the modulation and code constraints we
+obtain the messages
+mBPn →xin (xin ) ∝
+fM
+
+αi (s)
+s∈SD
+
+Fig. 1.
+Factor graph representation of the pdf factorization in (6) with
+i1 , . . . , iN ∈ D and j ∈ P.
+
+mBP→hi (hi ) ∝
+fH
+
+i
+
+with
+.
+.
+.
+
+. fPj
+.
+.
+
+fH
+
+i
+
+fU1
+
+(L)
+c1
+
+.
+.
+.
+
+hj
+
+2
+mBP-GA i (hi ) ∝ G mBP →hi (hi ) = CN hi ; µhi ,o , σhi ,o
+fD →h
+fD
+
+u1
+
+(13)
+
+j∈(D∪P )\i
+
+2
+bhi (hi ) = G nhi →fDi (hi )mBP →hi (hi ) = CN hi ; µhi , σhi ,
+fD
+
+Using (9), (11) and (12), the message in (13) becomes a
+Gaussian mixture with 2L(N −1) and 2LN components for i ∈ D
+and i ∈ P, respectively. Clearly, the computation of such
+messages is intractable and one has to use approximations.
+
+i
+
+for each i ∈ D, where
+µh i =
+
+φi (s)
+s∈SD
+
+A. Algorithm based on BP combined with Gaussian approximation
+Since the intractability of the messages occurs due to the
+Gaussian mixture in (11), we approximate those messages as
+
+2
+σhi =
+
+φi (s)
+s∈SD
+
+3
+
+−2
+σhi ,c µhi ,c + γyi s∗
+−2
+σhi ,c + γ|s|2
+
+,
+
+−2
+σhi ,c µhi ,c + γyi s∗
+−2
+σhi ,c
+
+2
+
+−2
++ σhi ,c + γ|s|2
+
++ γ|s|2
+
+2
+
+− |µhi |
+
+2
+
+Then, for all i ∈ D, we compute
+
+with
+−2
+βi (s) CN yi ; µhi ,c s, γ −1 + σhi ,c |s|2
+
+φi (s)
+
+mMF →xi (xi ) ∝ exp
+fD
+i
+
+s∈SD
+
+βi (s) CN yi ; µhi ,c s, γ −1 +
+
+−2
+σhi ,c |s|2
+
+∝ CN xi ;
+
+2
+and µhi ,c , σhi ,c as in (17). Using (4) again, we obtain
+
+mEP →hi (hi ) ∝
+fD
+i
+
+2
+CN hi ; µhi , σhi
+
+with
+−2
+−2
+−2
+σhi ,o = σhi − σhi ,c ,
+
+µhi ,o =
+
+2
+σhi ,o
+
+−2
+σhi µhi
+
+−
+
+−2
+σhi ,c µhi ,c
+
+.
+
+nxin →fDi (xin ) = ωxin mBPn →xin (xin ) mMF
+fM
+fD
+
+E. Scheduling of message computations
+All algorithms employ the same message-passing scheduling:
+they start by sending messages mfPj →hj (hj ) corresponding
+to pilots and by initializing mfDi →hi (hi ) ∝ CN (hi ; 0, ∞);
+messages (computed according to the corresponding algorithm)
+are passed on up to the information bit variables – this completes the ﬁrst iteration; each following iteration consists in
+passing messages up to the channel prior factor node and back;
+messages are passed back and forth until a predeﬁned number
+of iterations is reached. All algorithms end by taking hard
+decisions on the beliefs of the information bits.
+
+nxi →fDi (xi ) ln fDi (hi , xi ) dxi
+
+2
+∝ CN hi ; µhi ,o , σhi ,o ,
+
+V. S IMULATION R ESULTS
+
+where
+µhi ,o
+
+2
+σhi ,o =
+
+2
+γ σxi
+
+We consider a wireless OFDM system with the parameters
+given in Table I, and we evaluate by means of Monte Carlo
+simulations the bit error rate (BER) performance of the receiver
+algorithms derived in Section IV. We employ as a reference a
+scheme which has perfect channel state information (CSI), i.e.,
+it has prior knowledge of the vector of channel coefﬁcients h.
+We encountered numerical problems with the EP-based
+scheme due to the instability of EP in general, so we used the
+heuristic approach [9] to damp the updates of the beliefs bhi
+with a step-size ǫ = 0.5. Also, the EP-based scheme has higher
+computational complexity than the others due to its message
+deﬁnition – it requires multiplication of a Gaussian pdf with a
+mixture of Gaussian pdfs, the approximation G[·] and division of
+Gaussian pdfs – and to the sequentiality of the message updates
+for the channel coefﬁcients2 .
+Results in terms of BER versus signal-to-noise ratio (SNR)
+are given in Fig. 2, while the convergence of the BER with
+the number of iterations is illustrated in Fig. 3. The receivers
+based on EP, combined BP-MF and BP-EM exhibit similar
+
+1
+,
++ |µxi |2
+
+2
+nxi →fDi (xi ) xi dxi and σxi
+with the deﬁnition µxi
+2
+nxi →fDi (xi )|xi − µxi | dxi .
+The messages nhi →fH (hi ) = mMF →hi (hi ) are sent to the
+fDi
+BP part and hence are extrinsic values. When computing
+mBP→hi (hi ) we get the same expression as (16), with the pafH
+rameters (17). Unlike in the previous algorithms, the following
+messages are beliefs, i.e., a posteriori probabilities (APP):
+
+nhi →fDi (hi ) = ωhi mBP→hi (hi ) mMF →hi (hi )
+fD
+fH
+i
+
+2
+= CN hi ; µhi , σhi ,
+
+∀i ∈ D,
+
+with
+−2
+−2
+µhi = σhi ,o + σhi ,c
+
+−1
+
+→xin (xin ).
+
+We now apply EM for channel estimation, so we constrain
+bhi (hi ) from the previous BP-MF scheme to be Dirac delta
+functions. The resulting messages are the same as in the
+previous subsection, except for nhi →fDi (hi ) = δ(hi − µhi ) with
+µhi computed as in (19). Note that this algorithm uses only
+point estimates of the channel weights; however, its complexity
+is basically still the same, since the computation of (19) actually
+includes the computation of the corresponding variance.
+
+The factor graph is split into the MF and BP parts by setting
+AMF = {fDi | i ∈ D} and ABP = A \ AMF . Such a splitting
+yields tractable and simple messages, takes advantage of the fact
+that BP works well with hard constraints and best exploits the
+correlation between the channel coefﬁcients for the graphical
+representation in Fig. 11 .
+Assuming we have obtained the messages nxi →fDi (xi ) (their
+expression will be given later), we can compute
+
+y i µ∗ i
+x
+,
+= 2
+σxi + |µxi |2
+
+(20)
+
+D. Algorithm based on BP-EM
+
+C. Algorithm based on the combined BP-MF framework
+
+i
+
+in
+
+n
+
+(18)
+
+Unlike (15) in BP with Gaussian approximation, the values of
+2
+µhi ,o and σhi ,o , i ∈ D, computed with (18) depend on all µhj ,o
+2
+and σhj ,o , j ∈ D, j = i, through (17). The parameters of
+EP
+2
+mfH →hi (hi ) are updated using (17) but with µhi ,o and σhi ,o
+computed as above. Note that all messages that depend on the
+channel coefﬁcients need to be updated in a sequential manner.
+The rest of the messages are computed as in Section IV-A.
+
+mMF →hi (hi ) ∝ exp
+fD
+
+y i µ∗ i
+1
+h
+2 + |µ |2 , γ(σ 2 + |µ |2 )
+σhi
+hi
+hi
+hi
+
+and we pass nxin →fMn (xin ) = mMF →xin (xin ) to the modufDi
+n
+lation and coding part of the graph as extrinsic values, for all
+n ∈ [1 : N ]. After running BP, we obtain (10) and then pass
+the following APP values back to the MF part:
+
+2
+∝ CN hi ; µhi ,o , σhi ,o ,
+
+2
+CN hi ; µhi ,c , σhi ,c
+
+nhi →fDi (hi ) ln fDi (hi , xi ) dhi
+
+−2
+−2
+σhi ,o µhi ,o + σhi ,c µhi ,c ,
+
+(19)
+
+−2
+−2
+−2
+σhi = σhi ,o + σhi ,c .
+
+2 For the other receiver schemes, it can be shown that the parameters of all
+messages mBP →h (hi ) with i ∈ D ∪ P can be computed jointly and with a
+fH
+i
+lower complexity.
+
+1 Alternatively, the same level of exploitation of the correlation is obtained by
+representing the channel variables as a single vector variable h and “moving”
+factor node fH to the MF part [11].
+
+4
+
+10
+
+BER
+
+10
+
+10
+
+10
+
+VI. C ONCLUSIONS
+
+-1
+
+We formulated the problem of joint channel estimation and
+decoding in a communication system as inference in a graphical
+model. To solve the inference problem, we resorted to a recently proposed message-passing framework that uniﬁes the BP
+and MF algorithms and includes them as particular instances.
+Additionally, we illustrated how the combined framework can
+encompass the EP and EM inference algorithms.
+Based on the inference techniques considered, we derived
+four receiver algorithms. Since BP is not suitable for the studied
+problem, as it leads to intractable messages, we applied its
+variant which employs Gaussian approximation of the computationally cumbersome messages instead. However, our results
+showed that it performs signiﬁcantly worse than the other proposed schemes. Considering the BER results, the computational
+complexity and stability of these schemes, we conclude that the
+receiver based on the combined BP-MF framework and its BPEM variant are the most effective receiver algorithms.
+
+-2
+
+-3
+
+PerfectCSI
+BPGaussianapprox.
+EP
+BP-MF
+BP-EM
+
+-4
+
+6
+
+8
+
+10
+SNR(dB)
+
+12
+
+14
+
+Fig. 2. BER vs. SNR performance of the receiver algorithms for a number of
+pilot symbols M = 10, corresponding to a high pilot spacing ∆P ≈ 2.5Wcoh .
+10
+
+PerfectCSI
+BPGaussianapprox.
+EP
+BP-MF
+BP-EM
+
+-2
+
+ACKNOWLEDGMENT
+
+BER
+
+10
+
+-1
+
+10
+
+10
+
+Fig. 3.
+
+Six projects have supported this work: the Project SIDOC
+under contract no. POSDRU/88/1.5/S/60078; the Cooperative
+Research Project 4GMCT funded by Intel Mobile Communications, Agilent Technologies, Aalborg University and the
+Danish National Advanced Technology Foundation; the PhD
+Project “Iterative Information Processing for Wireless Receivers” funded by Renesas Mobile Corporation; the Project
+ICT-248894 WHERE2; the WWTF Grant ICT10-066; and the
+FWF Grant S10603-N13 within the National Research Network
+SISE.
+
+-3
+
+-4
+
+5
+
+10
+15
+Iterationnumber
+
+20
+
+Convergence of the BER performance from Fig. 2 at SNR = 12 dB.
+
+performance. They signiﬁcantly outperform the receiver employing BP with Gaussian approximation. Note that even with
+a high pilot spacing ∆P ≈ 2.5Wcoh the performance of the
+former algorithms is close to that of the receiver having perfect
+CSI. These three algorithms converge in about 10–12 iterations,
+while BP with Gaussian approximation converges a little faster,
+but to a higher BER value. Other results not presented here
+show that for a higher pilot density the algorithms converge
+faster, as expected.
+Note that the results for the (essentially equally-complex) BPEM and BP-MF receivers are nearly identical, even if the former
+discards the soft information in channel estimation. We noticed
+2
+during our evaluations that σhi ≪ |µhi |2 even at low SNR
+2
+values, so our explanation would be that accounting for σhi in
+the BP-MF receiver does not have a noticeable impact on the
+detection (20).
+
+R EFERENCES
+[1] M. T¨ chler and A. C. Singer, “Turbo equalization: An overview,” IEEE
+u
+Transactions on Information Theory, vol. 57, no. 2, pp. 920–952, 2011.
+[2] J. Boutros and G. Caire, “Iterative multiuser joint decoding: uniﬁed framework and asymptotic analysis,” Information Theory, IEEE Transactions
+on, vol. 48, no. 7, pp. 1772 –1793, jul 2002.
+[3] M. J. Wainwright and M. I. Jordan, “Graphical models, exponential
+families, and variational inference,” Foundations and Trends in Machine
+Learning, vol. 1, pp. 1–305, 2008.
+[4] F. Kschischang, B. Frey, and H.-A. Loeliger, “Factor graphs and the sumproduct algorithm,” IEEE Trans. Inform. Theory, vol. 47, no. 2, pp. 498–
+519, Feb. 2001.
+[5] H.-A. Loeliger, J. Dauwels, J. Hu, S. Korl, L. Ping, and F. Kschischang,
+“The factor graph approach to model-based signal processing,” Proc.
+IEEE, vol. 95, no. 6, pp. 1295–1322, Jun. 2007.
+[6] J. Winn and C. Bishop, “Variational message passing,” Journal of Machine
+Learning Research, vol. 6, pp. 661–694, 2005.
+[7] A. Dempster, N. Laird, and D. Rubin, “Maximum likelihood from
+incomplete data via the EM algorithm,” Journal of the Royal Statistical
+Society. Series B (Methodological), vol. 39, no. 1, pp. 1–38, 1977.
+[8] T. Minka, “Expectation propagation for approximate bayesian inference,”
+in Proc. 17th Conf. on Uncertainty in AI, 2001, pp. 362–369.
+[9] ——, “Divergence measures and message passing,” Microsoft Research,
+Tech. Rep., 2005.
+[10] J. Yedidia, W. Freeman, and Y. Weiss, “Constructing free-energy approximations and generalized belief propagation algorithms,” IEEE Trans.
+Inform. Theory, vol. 51, no. 7, pp. 2282–2312, July 2005.
+[11] E. Riegler, G. E. Kirkelund, C. N. Manch´ n, M.-A. Badiu, and B. H.
+o
+Fleury, “Merging belief propagation and the mean ﬁeld approximation: A
+free energy approach,” accepted for publication in IEEE Trans. Inform.
+Theory, 2012, arXiv:1112.0467v2[cs.IT].
+[12] Z. Shi, T. Wo, P. Hoeher, and G. Auer, “Graph-based soft iterative receiver
+for higher-order modulation,” in Proc. 12th IEEE Int. Conf. on Comm.
+Tech. (ICCT), Nanjing, China, Nov. 2010, pp. 825–828.
+
+TABLE I
+PARAMETERS OF THE WIRELESS OFDM SYSTEM
+Parameter
+Subcarrier spacing
+Number of active subcarriers
+Number of evenly spaced pilot symbols
+Pilot spacing
+Modulation scheme for data symbols
+Convolutional channel code
+Multipath channel model
+Coherence bandwidth of the channel
+
+Value
+15 kHz
+M + N = 300
+M = 10
+∆P ≈ 500 kHz
+16 QAM (L = 4)
+R = 1/3, (133, 171, 165)8
+3GPP ETU
+Wcoh ≈ 200 kHz
+
+5
+
+

@@ -1,0 +1,906 @@
+Creator:        TeX
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Mon May  7 16:55:49 2012
+ModDate:        Tue Jun 19 12:54:51 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      1312230 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569565347
+
+Linear Information Coupling Problems
+Shao-Lun Huang
+
+Lizhong Zheng
+
+Department of EECS
+Massachusetts Institute of Technology
+Cambridge, MA 02139-4307
+Email: shaolun@mit.edu
+
+Department of EECS
+Massachusetts Institute of Technology
+Cambridge, MA 02139-4307
+Email: lizhong@mit.edu
+
+In this paper, we present an approach [3] to simplify the
+problems with the assumption that the distributions of interest
+are close to each other. With this assumption, the manifold
+formed by distributions can be approximated by a tangent
+plane, which is an Euclidean space. Moreover, the K-L divergence will behave as the squared Euclidean metric between
+distributions in this Euclidean space. Therefore, we obtain the
+notion of coordinate, inner product, and orthogonality in a
+linear metric space, to describe information theory problems.
+Moreover, we will demonstrate in the rest sections that,
+the linear structure constructed from out local approximation
+will transfer information theory problems to linear algebra
+problems, which can be solved easily. In particular, we show
+that a systematic approach can be used to solve the singleletterization problems. We apply this to the general broadcast
+channel, and obtain new insights of the optimality of the
+existing solutions [4]-[7]
+The rest of this paper is organized as follows. We introduce
+the notion of local approximation in section II, and show
+that the K-L divergence can be approximated as the squared
+Euclidean metric. In section III and IV, we present the
+application of our local approximation to the point-to-point
+channel and the general broadcast channel, respectively. We
+will illustrate how the information theory problems become
+simple linear algebra problems when applying our technique.
+
+Abstract—Many network information theory problems face the
+similar difﬁculty of single letterization. We argue that this is due
+to the lack of a geometric structure on the space of probability
+distribution. In this paper, we develop such a structure by
+assuming that the distributions of interest are close to each other.
+Under this assumption, the K-L divergence is reduced to the
+squared Euclidean metric in an Euclidean space. Moreover, we
+construct the notion of coordinate and inner product, which will
+facilitate solving communication problems. We will also present
+the application of this approach to the point-to-point channel
+and the general broadcast channel, which demonstrates how our
+technique simpliﬁes information theory problems.
+
+I. I NTRODUCTION
+Since Shannon introduced the notion of capacity sixty years
+ago, ﬁnding the capacity of channels and networks are core
+problems in information theory. The analyzation of capacity
+answers the problem that how many bits can be transmitted
+through a communication network, and also provides many
+insights in engineer problems [1]. However, for general problems, there is no systematic way to obtain optimal single-letter
+solutions. By cleverly picking auxiliary random variables, we
+sometimes can prove the constructed single-letter solutions are
+optimal for some problems. But, when this fails, we cannot
+tell whether it is because we have not tried hard enough or the
+problem itself does not have an optimal single-letter solution.
+The difﬁculty of obtaining optimal single letter solutions
+comes from the fact that, most of the information theoretical
+quantities, such as entropy, mutual information, and error
+exponents, are all special cases of the Kullback-Leibler (KL) divergence. The K-L divergence is a measure of distance
+between two probability distributions. However, in multiterminal communication problems, there are multiple input
+and output distributions, and we usually need to deal with
+problems in high dimensional probability spaces. In these
+cases, describing problems only with the distance measure is
+cumbersome, and solving these information theory problems
+turns out to be extremely hard even with numerical aids.
+Therefore, we need more geometric structures to describe the
+problems, such as inner products. This is however difﬁcult,
+as the K-L divergence between two distributions, D(P Q), is
+not symmetric between P and Q, and the K-L divergence is
+in general not a valid metric. Thus, the space of probability
+distributions is not a linear vector space but a manifold [2],
+when the K-L divergence behaves as the distance measure.
+
+II. T HE L OCAL A PPROXIMATION
+The key step of our approach is to use a local approximation
+of the Kullback-Leibler (K-L) divergence. Let P and Q be
+two distributions over the same alphabet X . We assume that
+Q(x) = P (x) + J(x), for some small value , then the K-L
+divergence can be written, with second order Taylor expansion,
+as
+Q(x)
+D(P Q) = −
+P (x) log
+P (x)
+x
+=−
+1
+=
+2
+2
+
+x
+2
+
+·
+
+P (x) log 1 + ·
+
+x
+
+J(x)
+P (x)
+
+1
+J 2 (x) + o( 2 ).
+P (x)
+
+We denote x J (x)/P (x) as J 2 , which is the weighted
+P
+norm square of the perturbation vector J. It is easy to verify
+here that replacing the weight in this norm by Q only results in
+
+1
+
+a o( 2 ) difference. That is, up to the ﬁrst order approximation,
+the weights in the norm simply indicate the neighborhood
+of distributions where the divergence is computed. As a
+consequence, D(P Q) and D(Q P ) are considered as equal
+up to the ﬁrst order approximation.
+For convenience, we deﬁne the weighted perturbation vector
+as
+1
+J(x), ∀x,
+L(x)
+P (x)
+√ −1
+√ −1
+or in vector form L
+P
+J, where
+P
+represents
+
+we used for the point-to-point problem can not be applied.
+What we will show in the rest of this section is that there
+is an alternative approach to do the well-known steps [1]
+to go from (2) to (1), and this new approach based on the
+geometric structures can be applied to more general problems.
+For simplicity, in this paper, we assume that the marginal
+distribution PX n is given, and is an i.i.d. distribution over
+the n letters1 , so that we can focus on ﬁnding U and the
+conditional distribution PX n |U optimizing (3).
+First, we solve the single-letter version, namely n = 1, of
+this problem. Observing that we can write the constraint as
+
+−1
+
+the diagonal matrix with entries
+P (x) , x ∈ X . This
+2
+2
+allows us to write J P = L , where the last norm is
+simply the Euclidean norm.
+With this deﬁnition of the norm on the perturbations of
+distributions, we can generalize to deﬁne the corresponding
+notion of inner products. Let Qi (x) = P (x)+ ·Ji (x), ∀x, i =
+1, 2, we can deﬁne
+J1 , J2
+
+P
+x
+
+√
+
+I(U ; X) =
+u
+
+PY |U =u = W PX|U =u
+= W PX + · W Ju
+
+−1
+
+where Li =
+P
+Ji , for i = 1, 2. From this, notions
+of orthogonal perturbations and projections can be similarly
+deﬁned. The point here is that we can view a neighborhood
+of distributions as a linear metric space, and deﬁne notions of
+orthonormal basis and coordinates on it.
+
+= PY + · W [ PX ]Lu ,
+where the channel applied to an input distribution is simply
+viewed as the channel matrix W , of dimension |Y| × |X |,
+multiplying the input distribution as a vector. At this point, we
+have reduced both the spaces of input and output distributions
+as linear spaces, and the channel acts as a linear transform
+between these two spaces. The information coupling problem
+can be rewritten as, ignoring the o( 2 ) terms:
+
+III. T HE P OINT TO P OINT C HANNEL
+We start by using this local geometric structure to study
+the point-to-point channels to demonstrate the new insights
+we can obtain from this approach, even on a well-understood
+problem. It is well-known that the capacity problem is
+
+u
+
+u
+
+max
+
+1
+U →X n →Y n : n I(U ;X n )≤ 1
+2
+
+2
+
+2
+PX
+
+2
+PY
+
+,
+
+= 1,
+
+or equivalently in terms of Euclidean norms,
+
+1
+I(U ; Y n ),
+(2)
+U →X →Y n
+for some discrete random variable U , such that U → X n →
+Y n forms a Markov chain.
+Now, to apply the local approximations, instead of solving
+(2). we study a slightly different problem
+n
+
+1
+I(U ; Y n ).
+n
+
+PU (u) · Ju
+
+subject to:
+
+but this is in fact a single letter solution of the coding problem
+max
+n
+
+PU (u) · W Ju
+
+max .
+
+(1)
+
+PX
+
+1 2
+.
+2
+
+This implies that for each value of u, the conditional distribution PX|U =u is a local perturbation from PX , that is,
+PX|U =u = PX + · Ju .
+√ −1
+Next, using the notation that Lu =
+P
+Ju , for each
+value of u, we observe that
+
+1
+J1 (x)J2 (x) = L1 , L2 ,
+P (x)
+
+max I(X; Y ),
+
+PU (u) · D(PX|U (·|u) PX ) ≤
+
+PY
+
+u
+
+PU (u) ·
+
+2
+
+u
+
+PU (u) · Lu
+
+max .
+subject to:
+
+−1
+
+W
+
+PX · Lu 2 ,
+
+= 1.
+
+This problem of linear algebra is simple. We need to ﬁnd
+the joint distribution U → X → Y by specifying the PU and
+the perturbations Ju for each value of u, such that the marginal
+constraint on PX is met, and also these perturbations are the
+most visible at the Y end, in the sense that multiplied by the
+channel matrix, W Ju ’s have large norms. This can be readily
+solved by setting the weighted perturbation vectors Lu ’s to
+be along the input (right) singular vectors of the matrix B
+√ −1
+√
+PY
+W
+PX with large singular values. Moreover, the
+
+(3)
+
+We call the problem (3) as the linear information coupling
+problem. The only difference between (2) and (3) lies in the
+1
+constraint n I(U ; X n ) ≤ 1 2 on (3). That is, instead of trying
+2
+to ﬁnd how many bits in total that we can send through the
+given channel, we ask the question of how efﬁciently we can
+send a thin layer of information through this channel. One
+advantage of (3) is that it allows easy single letterization as
+we will demonstrate in the following. In fact, the step of
+single-letterization, namely, form (2) to (1), is the difﬁcult step
+of most network problems. For these problems, the approach
+
+1 This assumption can be proved to be “without loss of the optimality” for
+some cases [3]. In general, it requires a separate optimization, which is not
+the main issue addressed in this paper. To that end, we also assume that the
+given marginal PX n has strictly positive entries.
+
+2
+
+the
+Euclidean norms,weighted perturbation vectors Lu ’s to be along the input(right) singular vectors of the matrix
+√
+∆ √
+−1
+B = [ PY ]W [ PX ] with large singular values. Moreover, the choice of PU has no eﬀect in the
+￿
+￿ −1
+￿
+optimization, and might be taken(u) · ￿Lu ￿2 uniform for simplicity. This is illustrated in Figure-1(a)
+PY ]W [ PX ] · Lu ￿2
+subject to
+PU as binary = 1
+u
+
+data processing inequality, and the equality can be achieved
+
+lgebra is simple. We need to ﬁnd the joint distribution U → X → Y by
+by setting the perturbation vector to be along the right singular
+perturbations Ju for each value of u, such that the marginal constraint of B, with the second largest singular value.
+vector
+The
+these perturbations are the most visible at the Y end, in the sense that most important feature of the linear information coupling problem is that the single-letterization (3) is simple. To
+matrix, W Ju ’s have large norms. This can be readily solved by setting
+illustrate
+vectors Lu ’s to be along the input(right) singular vectors of the matrix the idea, we consider a 2-letter version of the pointto-point channel:
+
+large singular values. Moreover, the choice of PU has no eﬀect in the
+taken as binary uniform for simplicity. This is illustrated in Figure-1(a)
+(a)
+(a)
+
+(b)
+
+max
+
+U →X 2 →Y 2 : 1 I(U ;X 2 )≤ 1
+2
+2
+
+2
+
+1
+I(U ; Y 2 ).
+2
+
+(4)
+
+Figure 1: (a) Choice of PU and PX|U to maintain the Let PX , PYPX . , (b) Divergence Transition Map
+marginal , W and B be the input and output distributions,
+channel matrix, and the DTM, respectively for the single letter
+as a linear map between two spaces, with right and left singular vectors as orthonormal bases.
+(2)
+
+version of the problem. Then, the 2-letter problem has PX =
+(2)
+PX ⊗ PX , PY = PY ⊗ PY , and W (2) = W ⊗ W , where ⊗
+denotes the Kronecker product. As a result, the new DTM is
+B (2) = B ⊗ B. We have the following lemma on the singular
+values and vectors of B (2) .
+
+6
+
+Lemma 1. Let vi and vj denote two singular vectors of B
+with singular values µi and µj . Then vi ⊗ vj is a singular
+vector of B (2) and its singular value is µi µj .
+
+(b)
+(b)
+Fig. 1.
+
+(a) Choice of P
+
+and P
+
+to maintain the marginal P . (b)
+
+U
+X
+X|U
+and PX|U to maintain the marginal PX map between two spaces, with right Map
+Divergence Transition Map as a linear . (b) Divergence Transition
+and right and left singular vectors
+o spaces, withleft singular vectors as orthonormal bases. as orthonormal bases. Now, recall that the largest singular value of B is µ0 = 1,
+√
+T
+
+PX , x ∈ X , which correwith the singular vector v0 =
+sponds to the direction orthogonal to the distribution simplex.
+This implies that the largest singular value of B (2) is also
+1, again corresponds to the direction that is orthogonal to all
+valid choices of the perturbation vectors.
+The second largest singular value of B (2) is a tie between
+µ0 µ1 and µ1 µ0 , with singular vectors v0 ⊗v1 and v1 ⊗v0 . The
+optimal solution of (4) is thus to set the perturbation vectors
+to be along these two vectors. This can be written as
+
+choice of PU has no effect in the optimization, and might be
+6
+taken as binary uniform for simplicity. This is illustrated in
+Figure 1(a).
+We call the matrix B the divergence transition matrix
+(DTM). It maps divergence in the space of input distributions to that of the output distributions. The singular value
+decomposition (SVD) structure of this linear map has a critical
+role of our analysis. It can be shown that the largest singular
+value of B is 1, corresponding to an input singular vector
+√
+T
+PX , x ∈ X , which is orthogonal to the simplex of probability distributions. This is not a valid choice for perturbation
+vectors. However, all vectors orthogonal to this vector, or
+equivalently, all linear combinations of other singular vectors
+are valid choices of the perturbation vectors Lu . Thus, the
+optimum of the above problem is achieved by setting Lu to
+be along the singular vector with the second largest singular
+value.
+This can be visualized as in Figure 1(b), the orthonormal
+bases for the input and output spaces, respectively, according
+to the right and left singular vectors of B. The key point here
+is that while I(U ; X) measures how many bits of information
+is modulated in X, depending on how they are modulated, in
+terms of which direction the corresponding perturbation vector
+is, these bits have different levels of visibility at the Y end.
+This is a quantitative way to show why viewing a channel as
+a bit-pipe carrying uniform bits is a bad idea.
+Moreover, recalling that the data processing inequality tells
+that, from the Markov chain U → X → Y , the mutual
+informations have the relation I(U ; X) ≥ I(U ; Y ). Let us
+assume that the second largest singular value of B is σ ≤ 1,
+then the above derivations imply that σ 2 · I(U ; X) ≥ I(U ; Y ).
+Thus, we actually come up with a stronger result than the
+
+PX 2 |U =u
+=PX ⊗ PX +
+= PX +
+
+PX ⊗ PX · ( v 0 ⊗ v 1 + v 1 ⊗ v 0 )
+PX v 1 ⊗ PX +
+
+PX v1 + O( 2 ).
+
+√
+T
+Here, we use the fact that v0 =
+PX , x ∈ X . This means
+that the optimal conditional distribution PX 2 |U =u for any u has
+the product form, up to the ﬁrst order approximation. With a
+simple time-sharing argument, it is easy to see that we can
+indeed set = , that is, pick this conditional distribution to
+be i.i.d. over the two symbols, to achieve the optimum.
+The simplicity of this proof of the optimality of the single
+letter solutions is astonishing. All we have used is the fact
+that the singular vector of B (2) corresponding to the second
+largest singular value has a special form. A distribution in the
+neighborhood of PX ⊗PX is a product distribution if and only
+if it can be written as a perturbation from PX ⊗ PX , along the
+subspace spanned by vectors v0 ⊗ vi and vj ⊗ v0 , in the form
+of v0 ⊗ v + v ⊗ v0 , for some v and v . Thus, all we need to
+do is to ﬁnd the eigen-structure of the B-matrix, and verify if
+the optimal solutions have this form. This procedure is used
+in more general problems.
+One way to explain why the local approximation is useful
+is as follows. In general, tradeoff between multiple K-L
+
+3
+
+√
+T
+vector φ0 =
+PX , x ∈ X , although the rest of their SVD
+structures are not speciﬁed. The following theory characterizes
+the optimality of single-letter and ﬁnite-letter solutions for the
+general cases.
+
+divergence (mutual information) is a non-convex problem.
+Thus, ﬁnding global optimum for such problems is in general intrinsically intractable and extremely hard. In contrast,
+with our local approximation, the K-L divergence becomes
+a quadratic function. Now, the tradeoff between quadratic
+functions remains quadratic. Effectively, our approach focus
+on verifying the local optimality of the quadratic solutions,
+which is a natural thing to do, since the overall problem is not
+convex.
+
+Theorem 1. Suppose that Bi are DTM’s for some DMC and
+input/output distributions, for i = 1, 2, . . . , k, then the linear
+information coupling problem
+max2
+
+Lu : Lu
+
+IV. T HE G ENERAL B ROADCAST C HANNEL
+
+T
+
+1
+min {I(U ; Y1n ), I(U ; Y2n )} ,
+(5)
+n
+1
+1
+subject to: U → X n → (Y1n , Y2n ) : I(U ; X n ) ≤ 2
+n
+2
+The core problem we want to address here is that whether or
+not the single-letter solutions are optimal for (5). To do this,
+(n)
+suppose that PX n |U =u = PX + · Ju . Deﬁne the DTMs
+√
+−1
+Wi PX , for i = 1, 2, and the scaled
+Bi
+PY i
+
+max2
+
+Lu : Lu
+
+=1
+
+min
+
+−1
+
+Ju , the problem then becomes
+(n)
+
+(n)
+
+B1 Lu 2 , B2 Lu
+
+2
+
+,
+
+,
+
+(7)
+
+PX (x), x ∈ X , both correspond to the
+φ0 = ϕ0 =
+largest singular value of 1. For other vectors, the relation
+between the two bases can be written as a unitary matrix Ψ,
+with φi =
+j Ψij ϕj . Now, we can deﬁne an orthonormal
+basis for the space of multi-letter distributions on X n . For
+example, with 2-letter distributions, we can use φi ⊗ φj , i, j ∈
+{0, 1, ..., n − 1} and (i, j) = (0, 0). Note that any Lu can
+be written as Lu = i,j=(0,0) αij φi ⊗ φj . If a perturbation
+vector Lu has any non-zero component along φi ⊗ φj , with
+i, j = 0, we can always move this component to either φi ⊗φ0
+or φ0 ⊗φj to have, say, φi ⊗φ0 = j Ψij ϕj ⊗ϕ0 . This results
+in larger norms of the output vectors through both channels.
+As a result, the optimizer of (7) can only have components
+on the vectors φ0 ⊗ φj and φi ⊗ φ0 . This means that the
+resulting conditional distribution must be product distributions,
+i.e. PX n |U =u = PX1 |U =u · PX2 |U =u . . .. This simple observation greatly simpliﬁes the multi-letter optimization problem:
+instead of searching for general joint distributions, now we
+have the further constraint of conditional independence. This
+directly gives rise to the proof of the optimality of i.i.d.
+distributions and hence single letter solutions for the 2 user
+case, which is the ﬁrst deﬁnitive answer on the general
+broadcast channels.
+The more interesting case is when there are more than
+2 receivers. In such cases, i.i.d. distributions simply do not
+have enough degrees of freedom to be optimal in the tradeoff
+of more than 2 linear systems. Instead, one has to design
+multi-letter product distributions to achieve the optimal. The
+following example, constructed with the geometric method,
+illustrate the key ideas.
+Example:
+We consider a 3-user broadcast channel. Let the input alphabet X be ternary, so that the perturbation vectors have
+2 dimensions and can be easily visualized. Suppose that
+
+max .
+
+(n)
+
+2
+
+While we will not present the full proof of this result in this paper, it worth pointing out how conceptually
+straightforward it is. We can write the right singular vectors of the two DTMs, B1 and B2 , as φ0 , φ1 , . . . , φn−1
+and ϕ0 , ϕ1 , . . . , ϕn−1 . The only structure we have is that
+
+for some mutually independent random variables U , V1 , and
+V2 , such that (U, V1 , V2 ) → X n → (Y1n , Y2n ) forms a Markov
+chains.
+The linear information coupling problems of the private
+messages, given that the common message is decoded, are
+essentially the same as the point-to-point channel case. Thus,
+we only need to focus on the linear information coupling
+problem of the common message:
+
+PX
+
+(n)
+
+Bi Lu
+
+has optimal single letter solutions for the case with 2 receivers.
+In general, when there are k > 2 receivers, single letter
+solutions can not be optimal, when the cardinality |U| is
+bounded by some function of |X |. However, there still exists
+k-letter solutions that are optimal.
+
+Let us now apply our local approximation approach to the
+general broadcast channel. A general broadcast channel with
+input X ∈ X , and outputs Y1 ∈ Y1 , Y2 ∈ Y2 , is speciﬁed by
+the memoryless channel matrices W1 and W2 . These channel
+matrices specify the conditional distributions of the output
+signals at two users, 1 and 2 as Wi (yi |x) = PYi |X (yi |x), for
+i = 1, 2. Let M1 , M2 , and M0 be the two private messages
+and the common message, with rate R1 , and R2 , and R0 ,
+respectively. The multi-letter capacity region can be written
+as
+
+1
+ R0 ≤ n min{I(U ; Y1n ), I(U ; Y2n )},
+1
+R1 ≤ n I(V1 ; Y1n ),
+
+1
+R2 ≤ n I(V2 ; Y2n ),
+
+perturbation Lu =
+
+min
+
+=1 1≤i≤k
+
+(6)
+
+(n)
+
+where Bi is the nth Kronecker product of the single-letter
+DTM Bi , for i = 1, 2.
+Different from the point-to-point problem, we need to
+choose the perturbation vectors Lu to have large images simultaneously through two different linear systems. In general,
+the tradeoff between two SVD structures can be rather messy
+(n)
+problems. However, in this problem, for both i = 1, 2, Bi
+have the special structure of being the Kronecker product of
+the single letter DTMs. Furthermore, both B1 and B2 have the
+largest singular value of 1, corresponding to the same singular
+
+4
+
+This is ⊗ v and v ⊗ v . result, since to the resulting
+e vectors vanother signiﬁcant This means that our knowledge, this is the only case where prove that
+0
+j
+i
+0
+ct single letter solutions are notPoptimal, PX2 |U =u .can This
+distributions, i.e. PX|U =u = X1 |U =u · but still . .. construct the optimal solution. The following
+he example, constructed withproblem: instead of searching
+multi-letter optimization the geometric method, illustrate the key ideas.
+have the further constraint of conditional independence.
+Y
+Y
+X
+X
+the optimality Xof i.i.d. distributions and hence single letter Y
+LU =0 L= "# + U =1 = φθ , LU =2 = −LU =3 = φθ+ 2π , and
+−L
+2 =
+3
+LU =4 = −LU =5 = φθ+ 4π , then we can still achieve the
+he ﬁrst deﬁnitive answer on the general broadcast channels.
+3
+1
+!
+!
+!
+information couplingLrate#1/2. Thus, there actually exits an op1 ="
+here are !
+more than ! receivers. In such 1" # ! i.i.d. distribu2 2
+case,
+1" #
+1
+timal single-letter solution with cardinality |U| = 6. However,
+"
+1
+!
+es of freedom to2 be 1" #
+optimal in the tradeoﬀ of more than 2
+2
+when there are k receivers, it requires cardinality |U| = 2k
+"
+"
+!
+!
+!
+gn multi-letter product distributions to achieve the optimal.
+!
+"
+"
+for obtaining optimal single-letter solutions. Essentially, this
+1
+!
+!
+1
+!
+to our knowledge, this is the only case where prove 1" #
+that
+2 !
+"
+example shows that ﬁnding a single perturbation vector with
+!
+!
+2
+1
+but still can construct 1" # optimal !
+the
+solution. The following
+1" #
+L2 " +
+a large image=at# the outputs of all 3 channels is difﬁcult. The
+!
+2
+c method, illustrate the key! ideas.
+tension between these 3 linear systems requires more degrees
+!
+!
+1
+
+3
+
+2
+
+2$
+3
+
+4$
+3
+
+!
+
+(b)
+of freedom in choosing the perturbations, or in other words,
+the!way that common information is modulated. Such more
+Y
+X
+L2 = # +
+degrees of freedom over provided either
+Figure 3: (a) A ternary input "broadcast channel (b) The optimal perturbations can be 3 time slots. by using multi-letter
+solutions or have larger cardinality bounds. This effect is not
+L1 = "#
+!
+!
+1" #
+captured by the conventional single-letterization approach.
+"
+!
+Theorem 1 reduces most of the difﬁculty of solving the
+11
+multi-letter optimization problem (5). The remaining is to ﬁnd
+!
+!
+"
+!
+the optimal scaled perturbation Lu for the single-letter version
+1
+1" #
+2
+of (5), if the number of receivers k = 2, or the k-letter version,
+1
+#
+L2 = "# +
+!
+2
+if k > 2. These are ﬁnite dimensional convex optimization
+!
+!
+problems [8], which can be readily solved.
+(b)
+(b)
+We can see that all these information theory problems are
+!
+!
+solved with essentially the same procedure, and all we need
+Fig. 2. (a) A ternary input broadcast channel (b) The optimal perturbations
+t channel (b) The optimal perturbations over 3 time slots.
+over 3 time slots.
+in solving these problems is simple linear algebra. This again,
+demonstrates the simplicity and uniformity of our approach in
+dealing with information theory problems.
+the three DTMs are rotations of 0, 2π/3, 4π/3, respec11tively, followed (left multiplied) by the projection to the
+V. C ONCLUSION
+horizontal axis. This corresponds to the ternary input chanIn this paper, we present the local approximation approach,
+nels as shown in Figure 2(a). Now if we use single-letter and show that with this approach, we can handle the issue
+inputs, it can be seen that for any Lu with Lu 2 = 1, of single-letterization in information theory by just solving
+min B1 Lu 2 , B2 Lu 2 , B3 Lu 2 ≤ 1/4. The problem simple linear algebra problems. Moreover, we demonstrate
+here is that no matter what direction Lu0 takes, the three that our approach can be applied to different communication
+output norms are unequal, and the minimum one always limits problems with the same procedure, which is a very attractive
+the performance. Now, if we use 3-letter input, and denote property. Finally, we provide the geometric insight of the
+φθ = [cos θ, sin θ]T , then we can take
+optimal ﬁnite-letter solutions in sending the common message
+to k > 2 receivers, which also explains why optimal singlePX 3 |U =u = (PX + φθ ) ⊗ (PX + φθ+ 2π ) ⊗ (PX + φθ+ 4π )
+3
+3
+letter solutions fail to be existed in these cases.
+for any value of θ, as shown in Figure 2(b). Intuitively, this
+R EFERENCES
+input equalizes the three channels, and gives for all i = 1, 2, 3,
+(3) (3) 2
+[1] T. Cover and J. Thomas, Elementary of Information Theory,, Wiley
+Bi Lu
+= 1/2, which doubles the information coupling
+Interscience, 1991.
+rate. Translating this solution to the coding language, it means [2] Shun-ichi Amari and Hiroshi Nagaoka, Methods of Information Geometry,, Oxford University Press, 2000.
+that we take turns to feed the common information to each
+S. Borade and L.
+individual user. Note that the solution is not a standard time- [3] International Zurich Zheng, “Euclidean Information Theory,” IEEE
+Seminars on Communications, March, 2008.
+sharing input, and hence the performance is strictly out of the [4] T. Cover, “An Achievable Rate Region for the Broadcast Channel,” IEEE
+Transactions on Information Theory, Vol. IT-21, pp. 399-404, July, 1975
+convex hull of i.i.d. solutions. One can interpret this input as a
+E. van der Meulen, “Random Coding Theorems for the
+repetition of the common message over three time-slots, where [5] Memoryless Broadcast Channel,” IEEE TransactionsGeneral Discrete
+on Information
+the information is modulated along equally rotated vectors.
+Theory,, Vol. IT-21, pp. 180-190, March, 1975
+For this reason, we call this example the “windmill” channel. [6] B. E. Hajek and M. B. Pursley, “Evaluation of an Achievable Rate Region
+for the Broadcast Channel,” IEEE Transactions on Information Theory,,
+Additionally, it is easy to see that the construction of the
+Vol. IT-25, pp. 36-46, Jan, 1979
+windmill channel can be generalized to the cases of k > 3 [7] K. Marton, “A Coding Theorem for the Discrete Memoryless Broadcast
+Channel,” IEEE Transactions on Information Theory, Vol. IT-25, pp.
+receivers, where k-letter solutions is necessary.
+May,
+Note that in this example, we let U be a binary random [8] 306-311, and L.1979
+S. Boyd
+Vandenberghe, Convex Optimization,, Cambridge Univariable, and in this case, while there are optimal 3-letter
+versity Press, 2004 .
+solutions, the optimal single-letters do not exist. However,
+one can in fact take U to be non-binary. For example, let
+U = {0, 1, 2, 3, 4, 5} with PU (u) = 1/6 for all u, and let
+!
+
+! (a)
+(a)
+
+!
+
+2
+
+Y3
+
+2$
+3
+
+4$
+3
+
+5
+
+

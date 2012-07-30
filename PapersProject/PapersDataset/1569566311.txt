@@ -1,0 +1,828 @@
+Title:          KernelDecen-isit12.dvi
+Creator:        dvips(k) 5.99 Copyright 2010 Radical Eye Software
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Fri May 18 10:07:58 2012
+ModDate:        Tue Jun 19 12:54:20 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      458122 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569566311
+
+Nonparametric Decentralized Detection Based on
+Weighted Count Kernel
+Jiayao Hu and Yingbin Liang
+
+Eric P. Xing
+
+Dept of Electrical Engineering and Computer Science
+Syracuse University
+Syracuse, NY 13244 USA
+Email: {hjiayao,yliang06}@syr.edu
+
+School of Computer Science
+Carnegie Mellon University
+Pittsburgh, PA 15203 USA
+epxing@cs.cmu.edu
+
+correlated observations, in which the correlation is implicitly
+embedded in training data and their inﬂuence on the decision
+rules is automatically incorporated by optimizing empirical
+risk functions determined by the training data. In our previous
+work [9], we generalized the kernel-based approach in [8]
+to tree-structured sensor networks, and proposed a distributed
+protocol which achieves an efﬁcient implementation for ﬁnding the optimal decision rules over a tree structure.
+In this paper, we study more realistic sensor networks,
+which generalize the models studied in [8], [9] to include
+several new features: (1) sensors’ observations can have different qualities and hence different alphabet sizes due to their
+different locations in capturing the environmental event; (2)
+the fusion center can receive observations of the environmental
+event directly; (3) sensors’ transmissions to the fusion center
+are subject to certain rate bit constraints and hence sensors’
+quantization levels can be different; and (4) sensors may be
+networked in a multilevel tree structure toward the fusion
+center. Our goal is to characterize the impact of these practical
+features on the decision rules of the fusion center and sensors
+in the nonparametric decentralized detection.
+Our study adopts the nonparametric kernel-based approach
+proposed by Nguyen, Wainwright, and Jordan in [8] with
+the following generalization. We introduce a weighted count
+kernel so that the corresponding Hilbert space, i.e., the RKHS,
+(over which the fusion center’s decision rule is optimized)
+allows the fusion center’s decision rule to count information
+from sensors and its own observations differently based on
+the quality of these information sources. In this way, by
+introducing the weight parameters in the weighted count
+kernel into the risk minimization framework, the best RKHS
+associated with the weighted count kernel is selected jointly
+with the decision rules for the fusion center and sensors. Thus,
+the impact of the network features including the quality of
+sensors’ observations, fusion center’s direct observations, and
+rate constraints on sensors’ transmissions are naturally incorporated into the fusion center’s decision rules via selecting the
+RKHS that these decision rules lie in.
+We solve the risk minimization for ﬁnding the decision rules
+by recursively and alternatively conducting three optimization
+steps: ﬁnding the optimal weight parameters for selecting
+the best RKHS associated with the weighted count kernel,
+
+Abstract—The nonparametric decentralized detection problem
+is investigated, in which the joint distribution of the environmental event and the sensors’ observations are not known and only
+a set of training samples are available. The system features rate
+constraints, i.e., integer bit constraints on sensors’ transmissions,
+different qualities of observations, additional observations to
+the fusion center, and multi-level tree-structured network. Our
+study adopts the kernel-based nonparametric approach proposed
+by Nguyen, Wainwright, and Jordan with the following generalization. A weighted count kernel is introduced so that the
+corresponding reproducing kernel Hilbert space (RKHS) (over
+which the fusion center’s decision rule is optimized) allows
+the fusion center’s decision rule to count information from
+sensors and its own observations differently. In order to ﬁnd the
+optimal decision rules, our optimization is solved by alternatively
+and recursively conducting three optimization steps: ﬁnding the
+optimal weight parameters in the weighted count kernel for
+selecting the best associated RKHS, ﬁnding the best optimal
+decision rule for the fusion center over the identiﬁed RKHS,
+and ﬁnding the local decision rules for sensors. Generalization
+to multilevel tree-structured networks is also discussed. Finally
+numerical results are provided to demonstrate the performance
+based on the proposed weighted count kernel.
+
+I. I NTRODUCTION
+As a classical decision-making problem, decentralized detection has been extensively studied in the literature, e.g.,
+[1]–[3] and references therein. Most of previous work on
+this topic used parametric approaches, which assumed the
+joint distribution of the environmental event and the sensors’
+observations is known in advance.
+Nonparametric (de)centralized detection was studied previously in, e.g., [4], [5], which employed detectors that perform
+well for certain statistical environments. A learning-based
+nonparametric linear regression problem was studied in [6],
+[7]. More recently, a kernel-based classiﬁcation approach was
+proposed in [8], which is more generally applicable with
+mathematical guarantee on the performance. The basic idea is
+to introduce a kernel function that determines a reproducing
+kernel Hilbert space (RKHS), over which the decision rule of
+the fusion center is searched to optimize a given risk function.
+It has been shown by numerical examples in [8] that the
+kernel-based approach yields better performances than other
+approaches based on estimating joint distributions. Furthermore, compared to parametric approaches, such a kernel-based
+nonparametric approach is also applicable for the case with
+
+1
+
+ﬁnding the optimal decision rule for the fusion center over
+the identiﬁed RKHS, and ﬁnding the local decision (i.e.,
+quantization) rules for sensors. For each step, risk functions
+are typically convex, but not differentiable everywhere. By
+adopting the approach in [8] based on conjugate dual arguments, we analytically characterize the optimal decision rule
+for the fusion center. We also characterize some components in
+subdifferentials for optimizing weight parameters and decision
+rules for sensors efﬁciently. We further discuss the generalization to multilevel tree-structured networks, in which the impact
+of the network structure on the decision rules is also captured
+by the selection of the optimal weighted count kernel.
+We also derive an upper bound on the true risk function
+based on the approximate empirical risk function, whose
+asymptotic behavior suggests that additional optimization over
+RKHSs associated with the weighted count kernel does not
+require more training samples for the approximate empirical
+risk function to be close to the true risk function from the
+above. We ﬁnally provide numerical results to demonstrate
+the impact of the rate constraints of sensors’ transmissions to
+the fusion center and direct observations of the fusion center
+on the detection error probability based on our weighted count
+kernel approach.
+The rest of the paper is organized as follows. In section
+II, we provide the necessary background on learning by
+kernels. In section III, we describe our system model and
+problem formulation. In section IV, we provide our main
+results in ﬁnding the optimal decision rules. In section V,
+we discuss about the generalization of our study to multilevel
+tree-structured sensor networks. In section VI, we provide the
+simulation results, and ﬁnally in section VII, we conclude our
+paper with a few remarks.
+
+Fig. 1.
+
+where m is any positive integer, αi ∈ R, and x1 , · · · , xm ∈ X
+are arbitrary. For this vector space, we deﬁne an inner product
+between f and another function g(·) = m βj k(·, xj ) as
+j=1
+m
+
+αi βj k(xi , xj ).
+i=1 j=1
+
+It can be shown that after completing this vector space, we
+obtain a RKHS associated with the kernel k.
+III. M ODEL AND P ROBLEM F ORMULATION
+We study the decentralized detection problem over a sensor
+network (see Fig. 1), in which sensors receive observations
+about an environmental event, quantize their observations
+based on their own local decision rules (i.e., quantization
+rules), and then forward their quantized information to a fusion
+center, which will make the decision about the state of the
+environmental event. We use Y to denote the environmental
+event, which can take binary values +1 and −1. We assume
+there are S sensors in the network. We use X s ∈ X to
+denote the observation received by sensor s for s = 1, . . . , S,
+and use Z s to denote the quantized value of sensor s. The
+sensor’s observation X s can have different alphabet sizes,
+which may possibly due to nonuniform noise corruption of
+signals received by these sensors.
+The decision rule of a sensor can be characterized by a
+probability distribution Qs s |X s (z s |xs ) mapping from its input
+Z
+variable X s to an output variable Z s , thus allowing a random
+decision rule. In particular, we assume that there is a bit
+constraint Rs (which is assumed to be an integer) on each
+sensor’s transmission to the fusion center, and hence each
+Z s has an alphabet size 2Rs . Consequently, Z s may also
+have different alphabet size due to different rate constraints.
+We also assume that the fusion center receives not only
+quantized information from all sensors but also observations
+directly from the environment denoted by X 0 , and hence the
+fusion center’s decision rule can be written as a function
+γ(Z 1 , . . . , Z S , X 0 ).
+In our problem, we assume that the joint probability distribution of the event and the observations for all sensors and the
+fusion center, i.e., P (Y, X 0 , . . . , X S ), is unknown. Instead,
+a set of training data are available, i.e., (x0 , . . . , xS , yi ) for
+i
+i
+i = 1, . . . , N . We adopt the framework of empirical risk minimization for decentralized detection in [8] to ﬁnd the jointly
+optimal decision rule γ for the fusion center and decision rules
+
+In this section, we introduce the basic concepts and deﬁnitions on learning by kernels, which is the basic technique that
+we apply in this paper.
+Deﬁnition 1. A function k on X 2 → R is called a kernel if
+for all positive integer m and all x1 , · · · , xm ∈ X , the m × m
+matrix K with elements Kij = k(xi , xj ) for i, j = 1, . . . , m
+is positive semideﬁnite.
+Deﬁnition 2. A Hilbert space H containing functions f : X →
+R is called a reproducing kernel Hilbert space (RKHS) if there
+exists a kernel k : X × X → R with the following properties:
+• k has the reproducing property:
+f, k(x, ·) = f (x) for all f ∈ H,
+in particular, k(x, ·), k(x , ·) = k(x, x ), and
+k spans H.
+
+Given a kernel k, we deﬁne a feature mapping Φ : x ∈
+X → k(·, x), which maps an element x ∈ X to a function.
+We then deﬁne a vector space containing
+m
+
+αi k(·, xi )
+
+f (·) =
+
+m
+
+f, g =
+
+II. BACKGROUND O N KERNELS
+
+•
+
+A sensor network for decentralized detection
+
+i=1
+
+2
+
+Qs for all sensors that minimize a given risk function φ(·)
+which is properly chosen as the system performance measure.
+We consider decision rule for the fusion center that lies in
+the RKHS H determined by a kernel function k(·, ·) : (Z ×
+X )×(Z ×X ) → R. We note that the domain of the kernel has
+one more space compared to that in [8] to take into account
+the observations of the fusion center. As such, we can express
+the fusion center’s decision rule as:
+γ(z, x0 ) = w, Φ(z, x0 )
+
+Remark 1. Although our study focuses on the weighted count
+kernel, the idea of introducing weights to kernels for counting
+information differently may be applicable for more general
+types of kernels.
+By introducing the optimization of the weight parameters
+into the risk minimization problem, our optimization problem
+now becomes:
+λ
+w 2 β (4)
+φ(yi w, Φβ (xi , x0 ) Hβ ) +
+min
+i
+H
+S+1
+2
+β∈R
+,w∈Hβ ,Q∈Q
+
+H
+
+βs ≥0 for s=0,1,...,S
+
+where w ∈ H, z = (z 1 , . . . , z S ) and Φ(z, x0 ) = k(·, (z, x0 )).
+Our problem is then formulated as the following optimization problem:
+N
+
+min
+
+w∈H,Q∈Q
+
+z
+
+φ(yi w, Φ(z, x0 )
+i
+
+H )Q(z|xi )+
+
+i=1
+
+λ
+w
+2
+
+2
+H
+
+where Φβ (xi , x0 ) = z Φβ (z, x0 )Q(z|xi ).
+i
+i
+We note that without loss of generality, we set one dimension of βs to be ﬁxed as a reference value. Due to
+possibly large number of training samples and sensors, dimensions of the parameters to be optimized can be very
+large. Hence, optimizing over all parameters simultaneously
+is very complex. Furthermore, the risk function φ(·) such as
+the hinge loss function is not differentiable everywhere, which
+adds more complexity to the problem. Thus, we adopt the
+coordinate gradient algorithm to recursively and alternatively
+optimize over these three types of parameters, i.e., β, w and
+Q. This approach is justiﬁed because the objective function is
+convex over any type of parameter given two other types of
+parameters.
+
+(1)
+
+where xi = (x1 , . . . , xS ) and Q is the set which includes all
+i
+i
+possible conditional probabilities for every sensor. In particus
+lar, Q(z|xi ) can be decomposed as Q(z|xi ) = i=1 Q(z s |xs ),
+because sensors follow independent decision rules.
+Since it is computationally complex to solve the above
+optimization problem in general. Similarly to [8], by applying
+Jensen’s inequality, we obtain a lower bound for (1) as a
+relaxation.
+λ
+w 2
+(2)
+min φ(yi w, Φ (xi , x0 ) H ) +
+i
+H
+w∈H,Q∈Q
+2
+
+A. Optimization over β
+
+0
+where Φ (xi , x0 ) =
+i
+z Φ(z, xi )Q(z|xi ) ∈ H. It can be
+shown that the approximate empirical risk function approaches
+to the true risk function from the above as the number of
+training data becomes large as in Section IV-D.
+
+We optimize the objective function over the weight parameters βs , s = 0, 1, . . . , S one after another with w and all Q(·|·)s
+ﬁxed. Since risk functions are typically nondifferentiable everywhere (e.g. the hinge loss function we use for our numerical
+simulation), we characterize an analytical expression for an
+element in the subdifferential of the objective function with
+respect to each component βs in order for implementing the
+gradient algorithm, which can be complex otherwise.
+
+IV. M AIN R ESULTS
+In this section, we introduce a weighted count kernel, which
+thus deﬁnes a Hilbert space of the RKHS that enables to count
+contributions from sensors differently based on quality of
+observations, transmission constraints, additional observations
+of the fusion center, and the impact network structure for
+designing decision rules of the fusion center and sensors. We
+then optimize the risk function over the weight parameters
+in the weighted count kernel in order to select the optimal
+Hilbert space that the decision rules lie in jointly with the
+decision rules for the fusion center and sensors.
+We introduce the following weighted count kernel, which
+can be shown to satisfy the deﬁnition of kernel given in
+Deﬁnition 1
+0
+
+0
+
+S
+
+kβ ((z, x ), (z , x )) =
+
+s
+
+s
+
+0
+
+Proposition 1. Consider β0 , which corresponds to the contribution of direct observations of the fusion center. An element
+in the subdifferential of the objective function with respect to
+the weight parameter β0 with w, all Qs and other βs , s = 0
+being ﬁxed is given by
+∂β0 G = −
+
+λ
+2
+
+αi αj yi yj I[x0 = x0 ],
+i
+j
+
+(5)
+
+i,j
+
+where G denotes the objective function in (4).
+Consider βs for s = 1, . . . , S, which corresponds to the
+contribution of sensor s. An element in the subdifferential of
+the objective function with respect to the weight parameter βs
+with w, all Qs and all other βs , s = s being ﬁxed is given
+by
+λ
+αi αj yi yj Q(z s |xs )Q(z s |xs ).
+(6)
+∂βs G = −
+i
+j
+2 i,j,zs
+
+0
+
+βs I[z = z ]+β0 I[x = x ] (3)
+s=1
+
+where I[·] is an indicator function, and βs ≥ 0 for s =
+0, 1, . . . , S. Here, each weight parameter, say βs , represents
+the contribution of sensor s in the decision rule of the fusion
+center. In particular, β0 represents the contribution of the direct
+observations of the fusion center. Thus, the Hilbert space Hβ
+over which the decision rule of the fusion center is chosen is
+spanned by the weighted count kernel kβ (·, ·).
+
+The above proposition can be proved by conjugate dual
+arguments, which is omitted here due to the space limitations.
+
+3
+
+B. Optimization over w
+
+is bounded by the approximate empirical φ-risk as follows:
+
+Given the optimal RKHS associated with kβ , we now ﬁnd
+the optimal decision rule for the fusion center by optimizing
+G(β; w; Q) with respect to w. Due to the arguments similar to
+the proof of the kernel representer theorem [10], the optimal
+N
+0
+w ∈ Hβ can be expressed as w =
+i=1 αi yi Φβ (xi , xi ).
+Following the arguments in [8], the coefﬁcients αi for i =
+1, . . . , N in w should solve the following maximization problem.
+
+inf
+
+f ∈F
+
+⎧
+⎨
+⎩
+
+N
+
+⎫
+⎬
+
+N
+
+αi −
+i
+
+1
+αi αj yi yj Φβ (xi , x0 ), Φβ (xj , x0 )
+i
+j
+2 i,j=1
+
+Hβ
+
+⎭
+
+1
+inf
+f ∈F0 N
+
+.
+
+− 2lRN (F ) −
+
+i=1
+
+2
+ln( N )
+2N
+
+N
+
+φ(yi w, Φβ (xi , x0 )
+i
+
+Hβ )
+
++ 2lRN (F0 ) +
+
+i=1
+
+2
+ln( N )
+2N
+
+Proposition 3. Let the alphabet sizes of the observations
+be bounded by Cx and the alphabet sizes of the quantized
+variables by all sensors be bounded by Cz , i.e. the rate
+constraints from the sensors to the fusion center be bounded
+by log Cz . An upper bound on the Rademacher complexity is
+given by
+√
+N
+2B D
+E sup
+Φ (xi , x0 ), Φ (xi , x0 ) Hβ +
+RN (F0 ) ≤
+i
+i
+N
+Q∈Q0 i=1
+2(N − 1)
+
+In this subsection, we ﬁnd the optimal decentralized decision rules for sensors. Similar to the optimization over β, the
+major step here is to ﬁnd an element in the subdifferential of
+the objective function G(β; w; Q) with respect to each Qs (·|·).
+
+N
+sup k ((z, x0 ), (z , x 0 ))
+2 z,z
+
+1
+2
+
+2Cx (S + 1) log Cz
+
+S
+
+where k ((z, x0 ), (z , x 0 )) = s=1 I[z s = z s ] + I[x0 = x 0 ],
+Φ (xi , x0 ) = z k ((z, x0 ), ·)Q(z|xi ), B is the upper bound
+i
+i
+on w Hβ , and D is the upper bound on βs .
+
+Proposition 2. Consider sensor s for s = 1, . . . , S. An
+element in the subdifferential of the objective function with
+respect to the local decision rule of sensor s with w, β and
+all other Q(·|·)s being ﬁxed is given by
+
+i,j,z,z
+
+Hβ )
+
+where φ is Lipschitz with constant l, F0 includes only deterministic rules for sensors, and RN (F ) is the Rademacher
+complexity of the function class F given in [8]. It is clear
+that the bounds on the Rademacher complexity characterize
+how close the approximate empirical risk function that the
+designed decision rules achieve is to the true risk function.
+In the following, we provide an bound on the Rademacher
+complexity for our problem.
+
+C. Optimization over Q(·|·)
+
+αi αj yi yj Q(z |xj )
+
+φ(yi w, Φβ (xi , x0 )
+i
+
+f ∈F
+
+The above problem is a quadratic optimization problem and
+can hence be solved easily by alternatively updating the value
+of each αi . We note that the difference here from [8] is that
+the inner product Φβ (xi , x0 ), Φβ (xj , x0 ) Hβ is taken over
+i
+j
+the Hilbert space RKHS which allows the fusion center’s
+decision rule to count contributions from sensors and its
+own observations differently based on the quality of sensors’
+observations, the quality of the fusion center’s observations,
+and the rate constraints on sensors’ transmissions.
+
+−λ
+
+N
+
+≤ inf Eφ(Y γ(Z, X 0 )) ≤
+
+max
+
+1
+0≤αi ≤ λ ,i=1,...,N
+
+1
+N
+
+We note that the above bound approaches zero as the number N of training samples approaches inﬁnity, thus providing
+a tightest upper bound. It can be seen from the above that
+the number of samples needed for RN (F0 ) to approach zero
+is the same as in [8] suggesting that optimization over weight
+parameters in the weighted count kernel does not require more
+number of samples for the approximate empirical risk function
+to be close to the true risk function.
+
+Q(z|xi )
+kβ ((z, x0 ), (z, x0 ))
+i
+j
+Q(xs |xs )
+i
+×I[xs = xs ]I[z s = z s ].
+¯i
+¯
+i
+(7)
+
+V. G ENERALIZATION TO T REE -S TRUCTURED N ETWORKS
+The proof here is based on conjugate dual arguments and
+is omitted due to the space limitations.
+
+In this section, we brieﬂy describe how to generalize our
+study to a tree-structured sensor network. In particular, we
+now consider a sensor network with sensors conﬁgured in a
+tree structure with the fusion center being the root of the tree.
+All sensors and the fusion center can receive observations of
+an environmental event. Sequentially from the leave sensors,
+each sensor node quantizes its observation and its received
+information from all its children in the tree and then forwards
+the quantized information to its parent. Finally, the root, which
+is the fusion center, makes a decision about the event state
+based on its own observations and the information received
+from all its children sensors. There are rate constraints (i.e.,
+
+D. Bounds on True Risk Function
+In this section, we derive bounds on the true risk function Eφ(Y γ(Z, X 0 )) based on the approximate empirical
+N
+1
+risk function inf f ∈F N i=1 φ(yi w, Φβ (xi , x0 ) Hβ ), where
+i
+0
+0
+γ(Z, X ) = w, Φβ (Z, X ) Hβ , w ∈ Hβ , Q ∈ Q, β ∈ RS+1 ,
+and F corresponds to the set Hβ × Q × RS+1 .
+Following the arguments similar to [8], we show that with
+a probability at least 1 − 2δ the true φ-risk Eφ(Y γ(Z, X 0 ))
+
+4
+
+TABLE I
+C OMPARISON OF PERFORMANCES OF CASES 1 AND 2 ( WITH AND
+WITHOUT FUSION CENTER ’ S OBSERVATIONS , RESPECTIVELY )
+S=1
+S=2
+S=3
+S=4
+S=5
+Case 1
+Error
+0.0452
+0.0205
+0.0061
+0.0053
+0.0016
+Error
+0.0154
+0.0077
+0.0034
+0.0020
+0.0007
+Case 2
+β0
+3.4712
+2.8214
+3.0838
+3.3351
+2.4300
+
+TABLE II
+I MPACT OF TRANSMISSION RATE CONSTRAINTS ON THE PERFORMANCE
+4 sensors: 1 bit
+3 sensors: 1 bit
+1 sensor: 2 bits
+2 sensors: 1 bit
+2 sensors: 2 bits
+1 sensors: 1 bit
+3 sensors: 2 bits
+4 sensors 2 bits
+
+integer bit constraints) for all transmission links in the network
+so that the quantized alphabet size of each sensor is determined
+by the rate constraint on this sensor’s transmission to its parent.
+The optimization problem for ﬁnding the decision rules for
+the fusion center and sensors can be formulated and solved in
+the same fashion as for the one-level sensor network studied
+in Section IV. The difference lies in that now the optimization
+over the weights in the weighted count kernel also takes into
+account the impact of the network structure on the fusion
+center’s decision rule. More details will be included in the
+journal version of this work, which is now in preparation.
+
+β1
+1
+
+β2
+0.8502
+
+β3
+0.9495
+
+β4
+0.9634
+
+Error prob.
+0.0059
+
+1
+
+0.9024
+
+1.1541
+
+2.2776
+
+0.0050
+
+1
+
+1.0254
+
+2.3541
+
+2.3016
+
+0.0043
+
+1
+1
+
+2.4425
+0.8972
+
+3.0014
+0.9961
+
+2.9601
+0.8875
+
+0.0035
+0.0029
+
+can transmit at 2 bits to the fusion center are higher than those
+that can transmit only at 1 bit. This is reasonable because the
+fusion center counts more on the less quantized information
+transmitted from sensors.
+VII. S UMMARY AND C ONCLUSIONS
+In this paper, we have proposed a weighted count kernel,
+and introduced the associated weight parameters into the risk
+minimization formulation for ﬁnding decision rules for fusion
+center and sensors. Consequently, these decision rules can take
+into account the quality of sensors’ observations, the quality
+of the fusion center’s observations, and the rate constraints on
+sensors’ transmissions. We have also exploited the properties
+of the optimization problem for simplifying the optimization
+algorithm. We have further discussed the generalization to
+multilevel tree-structured networks based on our previous work
+[9]. Moreover, we have demonstrated the performance of the
+weighted count kernel via numerical results.
+
+VI. N UMERICAL R ESULTS
+We ﬁrst study the impact of the fusion center’s observations
+on the performance of the system. In particular, we compare
+the decision error probabilities for two cases with the fusion
+center having or not having observations, respectively. For
+both cases, we assume that the sensors have independent
+observations. We generate 300 data samples for training, and
+10000 data samples for testing. For each sample, we generate
+yi with uniform probability on +1 and −1. We then generate
+the noise variable ns for each sensor and the fusion center
+independently, where P (ns = 0) = 0.6, P (ns = +1) = 0.2
+and P (ns = −1) = 0.2. Each observation equals xs = y + ns
+for s = 0, 1, . . . , S. In Table I, we compare the error probabilities for cases 1 and 2 with the fusion center respectively
+receiving or not receiving observations. It can be seen that case
+2 always has smaller error probabilities than case 1 due to the
+additional observations at the fusion center. Such improvement
+gets smaller as the number of sensors increases, because the
+observations by the fusion center should have less effect on
+the performance of the system. It can also be seen that the
+weight β0 of the fusion center’s direct observations is bigger
+than the weights of sensors which are set to be one, suggesting
+that the fusion center count on direct observations more than
+quantized information.
+We now study the impact of the rate constraints on the
+performance of system. We study a four-sensor network.
+Training samples are generated in the same fashion as the ﬁrst
+experiment. We study the following ﬁve cases. For the ﬁrst
+case, all sensors’ transmission rates to the fusion center are
+limited to 1 bit. For the second case, one sensor’s transmission
+rate increases to 2 bits, and all other sensors’ rates are still 1
+bit. For each of the remaining three cases, we allow one more
+sensor’s transmission rate to increase to 2 bits.
+In Table II, we provide the optimal weights corresponding to
+all sensors and the resulting detection error probability for the
+ﬁve cases. It is clear that the detection error decreases as more
+sensors are allowed to transmit at 2 bits. Furthermore, for each
+case, the weight parameters corresponding to the sensors that
+
+ACKNOWLEDGMENT
+The work of J. Hu and Y. Liang was supported by the
+National Science Foundation CAREER Award under Grant
+CCF-10-26565.
+R EFERENCES
+[1] J. N. Tsitsiklis, “Decentralized detection,” in Advances in Signal Processing, edited by H. V. Poor and J. B. Thomas, JAI Press, vol. 2, pp.
+297–344, 1993.
+[2] R. S. Blum, S. A. Kassam, and H. V. Poor, “Distributed detection with
+multiple sensors: Part II-advanced topics,” Proc. IEEE, vol. 85, no. 1,
+pp. 64–79, Jan. 1997.
+[3] J. F. Chamberland and V. V. Veeravalli, “Decentralized detection in
+sensor networks,” IEEE Trans. Signal Proc., vol. 51, no. 2, pp. 407–
+416, 2003.
+[4] M. M. AI-Ibrahim and P. K. Varshney, “Nonparametric sequential detection based on multisensor data,” in Proc. 23rd Annu. Conf. Information
+Science Systems, Mar. 1989, pp. 157–162.
+[5] A. Nasipuri and S. Tantaratana, “Nonparametric distributed detection
+using wilconxin statistics,” Signal Processing, vol. 57, no. 2, pp. 139–
+146, 1997.
+[6] J. B. Predd, S. R. Kulkarni, and H. V. Poor, “Distributed learning
+in wireless sensor networks: Application issues and the problem of
+distributed inference,” IEEE Signal Processing Magazine, vol. 23, no. 4,
+pp. 56–69, Jul. 2006.
+[7] ——, “Consistency in models for distributed learning under communication constraints,” IEEE Trans. Inform. Theory, vol. 52, no. 1, pp.
+52–63, Jan. 2006.
+[8] X. Nguyen, M. J. Wainwright, and M. I. Jordan, “Nonparametric
+decentralized detection using kernel methods,” IEEE Trans. Signal Proc.,
+vol. 53, no. 11, pp. 4053–4066, Nov. 2005.
+[9] J. Hu, Y. Liang, and E. P. Xing, “Nonparametric decision making based
+on tree-structured information aggregation,” in Proc. Annu. Allerton
+Conf. Communication, Control and Computing, Monticello, IL, Sep.
+2011.
+[10] B. Scholkopf and A. Smola, Learning with Kernels. MA: MIT press,
+2002.
+
+5
+
+

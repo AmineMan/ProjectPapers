@@ -1,0 +1,837 @@
+Title:          arikan-isit2012-final.dvi
+Creator:        www.freepdfconvert.com         
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Thu May 17 05:55:27 2012
+ModDate:        Tue Jun 19 12:54:30 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      281711 bytes
+Optimized:      no
+PDF version:    1.7
+ISIT'2012 1569559111
+
+Polar Coding for the Slepian-Wolf Problem Based
+on Monotone Chain Rules
+Erdal Arıkan
+Bilkent University, Ankara, Turkey
+
+et al described a polar coding scheme for the MAC that
+did not use time-sharing and yet was able to achieve some
+interior (i.e., non-corner) points of the dominant face of the
+MAC capacity region. The method in [6] was based on “joint
+polarization” for the MAC and it produced a multitude of
+extreme channels, revealing a novel aspect of polarization in
+the multi-terminal case. Abbe and Telatar reﬁned and extended
+the joint polarization approach in [7], [8]. Meanwhile, on
+the Slepian-Wolf front, the joint polarization approach was
+formulated in [9]. In [10], Abbe gave a uniﬁed treatment of
+joint polarization for the MAC and Slepian-Wolf problems
+using “matrix polarization.” The question of whether joint polarization alone could achieve the entire achievable rate regions
+for the MAC or the Slepian-Wolf problems remained unsolved
+until recently when Saso˘ lu [11] answered the question in the
+¸ ¸ g
+negative by giving counter-examples. This was a set-back for
+the polarization approach.
+In this paper, we consider polarization in a broader setting
+and give a polar coding method that achieves RSW without
+time-sharing. In this broader setting joint polarization appears
+as a special instance of a general approach. The main idea of
+our approach is described in the next section.
+
+Abstract—We give a polar coding scheme that achieves the
+full admissible rate region in the Slepian-Wolf problem without
+time-sharing. The method is based on a source polarization result
+using monotone chain rule expansions.
+Index Terms—Monotone chain rules, polar codes, Slepian-Wolf
+problem, source polarization.
+
+I. I NTRODUCTION
+Consider a memoryless source with generic variables
+(X, Y ) ∼ PX,Y where PX,Y is a ﬁxed but arbitrary probability distribution on X × Y with X = Y = {0, 1}.
+Let (X N , Y N ) denote N successive outputs of this source,
+X N = (X1 , . . . , XN ), Y N = (Y1 , . . . , YN ). This paper
+considers the Slepian-Wolf problem for this source. As usual,
+the coding system consists of two encoders and one decoder.
+For a speciﬁed rate pair (R1 , R2 ), encoder 1 observes X N and
+encodes it into a codeword of length N R1 bits; encoder
+2 observes Y N and encodes it into a codeword of length
+N R2 bits. The decoder observes the two codewords and
+is expected to recover (X N , Y N ) with small probability of
+error. The Slepian-Wolf result [1] states that this is possible
+if (R1 , R2 ) falls strictly inside the Slepian-Wolf rate region
+deﬁned as RSW = {(Rx , Ry ) : Rx ≥ H(X|Y ), Ry ≥
+H(Y |X), Rx + Ry ≥ H(X, Y )}. The subset of RSW
+consisting of points for which Rx + Ry = H(X, Y ) is
+referred to as the dominant face (of the rate region); and
+the points (Rx , Ry ) = (H(X), H(Y |X)) and (Rx , Ry ) =
+(H(X|Y ), H(Y )) are referred to as the corner points.
+Polar coding for the above Slepian-Wolf problem was ﬁrst
+considered by Hussami et al [2] (see also Korada [3]) who
+showed that the corner points of RSW could be achieved by
+polar codes for the special case where PX and PY are uniform
+on {0, 1}. In [4], this result was proved without any restrictions
+on PX and PY . These results showed that polar codes could
+achieve the entire region RSW by time-sharing between two
+codes designed for the corner points.
+This paper is concerned with the question of whether polar
+codes can achieve RSW without aid from time-sharing. This
+question is motivated by the fact that there are random-coding
+methods, such as Cover’s “binning” method [5], that do not
+require time-sharing to achieve RSW . Thus, the question is
+important for understanding the power of polar coding relative
+to other coding methods both as a proof method and also for
+practical applications.
+In fact, such questions on the relative power of polar coding
+ﬁrst arose in the context of the multiple access channel (MAC),
+which is the dual of the Slepian-Wolf problem. In [6], Saso˘ lu
+¸ ¸ g
+
+II. C HAIN
+
+RULES AND POLAR CODES
+
+Consider a source block (X N , Y N ) as above. Suppose N =
+2 for some n ≥ 1 and deﬁne
+n
+
+U N = X N GN ,
+
+V N = Y N GN
+
+(1)
+
+where GN is the polar transform deﬁned as
+GN = [ 1 0 ]
+11
+
+⊗n
+
+BN
+
+(2)
+
+where the exponent denotes the nth Kronecker power and
+BN is the “bit-reversal” permutation (see [12]). Since
+(X N , Y N ) → (U N , V N ) is a one-to-one mapping, we have
+H(U N , V N ) = H(X N , Y N ) = N H(X, Y ),
+
+(3)
+
+which states that entropy is conserved. Polar codes can
+be obtained from (3) by various chain rule expansions of
+H(U N , V N ). To construct a polar code that achieves a corner
+point of RSW , one expands H(U N , V N ) as
+N
+i=1
+
+N
+
+H(Ui |U i−1 ) +
+
+j=1
+
+H(Vj |V j−1 , U N )
+
+(4)
+
+and shows that the entropy terms polarize to 0 or 1 as N
+increases.
+
+1
+
+∅
+
+U2
+
+U3
+
+U4
+
+V1
+
+U 1V 1
+
+U 2V 1
+
+U 3V 1
+
+U 4V 1
+
+V2
+
+U 1V 2
+
+U 2V 2
+
+U 3V 2
+
+U 4V 2
+
+V3
+
+U 1V 3
+
+U 2V 3
+
+U 3V 3
+
+U 4V 3
+
+V4
+
+In the joint polarization approach mentioned above, one uses
+the expansion
+
+U1
+
+U 1V 4
+
+U 2V 4
+
+U 3V 4
+
+U 4V 4
+
+N
+i=1
+
+H(Ui , Vi |U i−1 , V i−1 ),
+
+(5)
+
+and proves that the entropy terms in (5) polarize to 0, 1, or
+2. Actually, to construct a speciﬁc polar code, one needs to
+expand (5) further, for example, as
+N
+i=1
+
+H(Ui |U i−1 , V i−1 ) + H(Vi |U i , V i−1 ) ,
+
+(6)
+
+and show that the entropy terms in (6) converge to 0 or
+1. By using the degrees of freedom in expanding (5) into
+an expansion of type (6), one obtains polar codes achieving
+various rates on the dominant face of RSW directly (without
+time-sharing). However, as shown in [11], this approach cannot
+achieve the entire dominant face in general.
+It is clear that there are many other ways in which the total
+entropy H(U N , V N ) can be expanded into a sum of individual
+entropy terms, suggesting that there may exist many more
+polar codes, again raising the hope that the entire dominant
+face may be achievable by polar coding. This is the idea
+pursued in this paper.
+III. M ONOTONE CHAIN
+
+Fig. 1.
+
+U i V j−1 and U i V j is associated with Vj and carries an incremental knowledge of H(Vj |U i , V j−1 ) units. There is a pathindependence property associated with states of knowledge
+in chain rule diagrams in the sense that the accumulated
+knowledge H(U i , V j ) at a node U i V j is the sum of the
+conditional entropy terms along any path from ∅ to U i V j .
+In this sense, the entropy values assigned to the nodes form
+a potential function. Investigation of the properties of this
+potential function is left for future work. Here, we just note
+an elementary monotonicity property that may be useful for
+such studies.
+
+RULES
+
+We call a chain rule expansion of U N V N monotone w.r.t.
+U N if the expansion is of the form
+
+Proposition 1. The conditional entropy terms associated with
+vertical edges in the chain rule diagram for U N V N are
+monotone in the sense that, for any ﬁxed 1 ≤ j ≤ N ,
+H(Vj |U i−1 , V j−1 ) ≥ H(Vj |U i , V j−1 ) for all 1 ≤ i ≤ N .
+Likewise, for any ﬁxed 1 ≤ i ≤ N , H(Ui |U i−1 , V j−1 ) ≥
+H(Ui |U i−1 , V j ) for all 1 ≤ j ≤ N .
+
+2N
+i=1
+
+H(Si |S i−1 )
+
+Diagram for representing monotone chain rules on H(U 4 , V 4 ).
+
+(7)
+
+where S 2N = (S1 , . . . , S2N ) is a permutation of U N V N such
+that the permutation preserves the relative order of the elements of U N . We deﬁne the monotonicity of a chain rule w.r.t.
+V N similarly. A chain rule for U N V N is said to be monotone
+if it is monotone w.r.t. both U N and V N . The expansions (4)
+and (6) are examples of monotone chain rules. The expansion
+H(U2 ) + H(U1 |U2 ) + H(V1 |U1 , U2 ) + H(V2 |U1 , U2 , V1 ) is
+monotone in V 2 but not in U 2 .
+We use diagrams, as in Fig. 1, to represent monotone
+chain rules, and refer to them brieﬂy as “chain rule
+diagrams.” Each directed path in Fig. 1, from ∅ to U 4 V 4 ,
+corresponds to a monotone chain rule on H(U 4 , V 4 ).
+For example, the “corner-point” path that goes from ∅
+horizontally to U 4 and then vertically down to U 4 V 4
+corresponds to the expansion (4). The “staircase” path
+(∅, U 1 , U 1 V 1 , U 2 V 1 , U 2 V 2 , U 3 V 2 , U 3 V 3 , U 4 V 3 , U 4 V 4 )
+corresponds to (6).
+A label U i V j attached to a node in a chain rule diagram
+designates the known variables when, and if, a chain rule
+visits that node; the entropy H(U i , V j ) is used to measure
+the amount of that knowledge. The edge connecting node
+U i−1 V j to node U i V j is associated with the variable Ui
+and carries H(Ui |U i−1 , V j ) units of incremental knowledge.
+Likewise, the edge connecting two vertically adjacent nodes
+
+A. Paths, rates
+The chain rule diagram for U N V N contains 2N paths
+N
+from the initial node ∅ to the ﬁnal node U N V N . We identify
+each path in the diagram by a string b2N = b1 b2 · · · b2N
+where bi is 0 if the ith move along the path is in the horizontal
+direction and 1 otherwise. For instance, the corner-point path
+in Fig. 1 that goes from ∅ to U 4 then to U 4 V 4 has the label
+00001111. The label 01010101 designates the staircase path
+of expansion (6).
+Let S 2N = (S1 , . . . , S2N ) denote the edge variables along
+a given path b2N . For example, for b8 = 01010101, the edge
+variables are S 8 = (U1 , V1 , U2 , V2 , U3 , V3 , U4 , V4 ).
+For any given path b2N with edge variables S 2N , we deﬁne
+a pair of rates
+R1 =
+and
+R2 =
+
+2
+
+1
+N
+1
+N
+
+i:bi =0
+
+i:bi =1
+
+H(Si |S i−1 )
+
+(8)
+
+H(Si |S i−1 ).
+
+(9)
+
+The rate R1 (R2 ) is the sum of the conditional entropy terms
+on the horizontal (vertical) edges in the path, normalized by
+N . For b8 = 01010101, the rate R1 is given by
+R1 =
+
+or all 1s. For instance, 10000111 and 00001111 are neighbors
+but 01001011 and 00001111 are not. Note that a path cannot
+be a neighbor of itself according to this deﬁnition.
+Proposition 3. For paths b2N and ˜2N that are neighbors,
+b
+
+1
+H(U1 ) + H(U2 |U 1 , V 1 )+
+4
+H(U3 |U 2 , V 2 ) + H(U4 |U 3 , V 3 ) . (10)
+
+d(b2N , ˜2N ) ≤ 1/N.
+b
+
+Proof: Let b2N be a path with edge variables S 2N and
+let ˜2N differ from b2N by a transposition in the coordinates
+b
+i < j. Assume that bi = 0, bj = 1, and that the bracketed
+˜
+string bi+1 · · · bj−1 is all 1s. Then, observe that R1 − R1 =
+j−1
+(1/N )[H(Si |S i−1 ) − H(Si |S i−1 , Sj , Si+1 )]. It is clear that
+˜
+˜
+R1 − R1 ≥ 0. Moreover, R1 − R1 ≤ (1/N )H(Si |S i−1 ) ≤
+˜ 1 | ≤ 1/N . This covers the case of bj
+1/N . Thus, |R1 − R
+i
+being equal to 01j−i . There are three other possibilities for
+bj , namely, 0j−i 1, 1j−i 0, and 10j−i . These other cases can be
+i
+treated similarly to the ﬁrst by exchanging the roles of b2N
+˜
+and ˜2N or by considering R2 − R2 or both.
+b
+We now turn our attention to rate approximations. For this,
+∆
+we focus on the subset of paths V2N = {0i 1N 0N −i : 0 ≤ i ≤
+N } that have only one vertical segment.
+
+Clearly, for any path for U N V N the rate pair (R1 , R2 ) satisﬁes
+R1 ≥
+
+1
+H(U N |V N ),
+N
+
+R2 ≥
+
+1
+H(V N |U N ),
+N
+
+1
+H(U N , V N ).
+N
+Stated in terms of the original source variables, these inequalities take the following form.
+R1 + R2 =
+
+Proposition 2. Let U N V N be obtained from a memoryless
+source X N Y N by (1). Then, the rate pair (R1 , R2 ) for any
+monotone chain rule expansion of U N V N satisﬁes
+R1 ≥ H(X|Y ),
+
+R2 ≥ H(Y |X),
+
+R1 + R2 = H(X, Y ).
+
+The ﬁrst inequality is satisﬁed with equality for the path 1N 0N ,
+and the second inequality is satisﬁed with equality for 0N 1N .
+
+Theorem 1. Let (Rx , Ry ) be a given rate pair on the dominant
+face of the Slepian-Wolf rate region. For any given > 0,
+there exists N and a chain rule b2N on U N V N such that
+b2N belongs to the class V2N and has a rate pair (R1 , R2 )
+satisfying
+
+This follows easily from the fact that the transform (1) is
+one-to-one. Thus, the rate pairs (R1 , R2 ) over the class of
+monotone chain rules lie on the dominant face of the region
+RSW , spanning its two end-points. The next question we
+address is whether the rate pairs from this class form a dense
+subset of the dominant face.
+
+|R1 − Rx | ≤
+
+and |R2 − Ry | ≤ .
+
+(13)
+
+Proof: Fix N > 1/ . Let (R1 (i), R2 (i)) denote the rate
+pair for the path 0i 1N 0N −i , for 0 ≤ i ≤ N . We have R1 (0) =
+H(X|Y ) and R1 (N ) = H(X). Also, |R1 (i + 1) − R1 (i)| ≤
+1/N by Proposition 3. Thus, for any Rx ∈ [H(X|Y ), H(X)]
+there exists 0 ≤ i ≤ N such that |R1 (i) − Rx | ≤ 1/N . For
+this i, we must also have that |R2 (i) − Ry | ≤ 1/N .
+Theorem 1 shows that we can approximate arbitrary points
+on the dominant face of RSW with paths from the class {V2N :
+N = 2n , n ≥ 1}. Clearly, other classes of paths could have
+been used (some more effectively) for rate approximations.
+The class {V2N } has the advantage of being simple.
+
+B. Continuity of rates and approximations
+Let b2N and ˜2N be any two paths in the chain rule
+b
+˜ ˜
+diagram for U N V N , with rate pairs (R1 , R2 ) and (R1 , R2 ),
+respectively. We deﬁne the distance between b2N and ˜2N as
+b
+˜
+d(b2N , ˜2N ) = |R1 − R1 |.
+b
+
+(12)
+
+(11)
+
+˜
+˜
+Note that since R1 + R2 = R1 + R2 = H(X, Y ), this distance
+˜ 2 |.
+is also given by |R2 − R
+We now seek a combinatorial notion of neighborhood
+among paths that is consistent with the above notion of
+distance. It is tempting to deﬁne two paths as neighbors if
+they differ by a transposition; however, this does not quite
+work here. For example, the path b8 = 01010011 has a rate
+R1 given by (10) while the path ˜8 = 11010010, which differs
+b
+from b8 by a single transposition, has a rate given by
+
+C. Path scaling and polarization
+Although we have found a way of approximating rates,
+the polarization issue has not yet been addressed. Here, we
+introduce an operation on paths that achieves polarization
+while keeping the rate approximation intact.
+For any path b2N = b1 b2 · · · b2N representing a monotone
+chain rule for U N V N and any integer k = 2m , let kb2N denote
+
+1
+˜
+R1 =
+H(U1 |V 2 ) + H(U2 |U 1 V 3 )+
+4
+H(U3 |U 2 V 3 ) + H(U4 |U 3 V 4 ) .
+
+b1 · · · b1 b2 · · · b2 · · · · · · b2N · · · b2N ,
+
+˜
+It is not clear if |R1 − R1 | is small. If we restrict the class of
+transpositions as follows, we obtain a notion of neighborhood
+which serves our purposes.
+Let two paths ˜2N and b2N be neighbors if ˜2N can be
+b
+b
+obtained from b2N by transposing bi with bj for some i < j
+such that (i) bi = bj and (ii) the substring bi+1 bi+2 · · · bj−1
+bracketed by the transposed elements is either a string of all 0s
+
+k
+
+k
+
+k
+
+which represents a monotone chain rule for U kN V kN . This
+operation is a geometric scaling operation in the sense that it
+preserves the “shape” of the original path. In particular, if b2N
+belongs to the class V2N then kb2N belongs to V2kN .
+Fix a path b2N for U N V N and consider the path 2b2N for
+2N 2N
+U V . Let S 2N and T 4N denote the edge variables for
+
+3
+
+˜
+b2N and 2b2N , respectively. Let S 2N be an independent copy
+2N
+of S . The transformation (1) may be viewed as a mapping
+˜
+from the pair of random vectors (S 2N , S 2N ) to T 4N with
+˜
+T2i−1 = Si ⊕ Si ,
+
+T2i = Si ,
+
+i = 1, . . . , 2N.
+
+the conservation law (15). One may then use the approach
+taken in [4] which uses an auxiliary supermartingale based on
+the source Bhattacharyya parameters; alternatively, one may
+use the direct approach by Saso˘ lu [11, Lemma 2.1] in which
+¸ ¸ g
+only the main martingale is used. To prove the exponential
+convergence claim of the theorem one may use the method
+presented in [13].
+To summarize, this subsection has shown that one can
+achieve rate-approximation and polarization without leaving
+the class of paths {V2N : N = 2n , n ≥ 1}.
+
+(14)
+
+This gives the following relationship between the entropies
+H(T2i−1 |T 2i−2 ) + H(T2i |T 2i−1 )
+
+= H(T2i−1 , T2i |T 2i−2 )
+˜
+˜
+= H(Si ⊕ Si , Si |S i−1 ⊕ S i−1 , S i−1 )
+
+˜
+˜
+= H(Si , Si |S i−1 , S i−1 )
+= 2H(Si |S
+
+i−1
+
+).
+
+IV. S LEPIAN -W OLF
+
+We now combine the above results to give a polar coding
+scheme for the Slepian-Wolf problem. The polar codes considered here are deﬁned by two parameters (b2N , δ) where b2N
+is a monotone chain rule for U N V N and δ > 0 is a threshold
+parameter.
+
+(15)
+
+This may be interpreted as a local conservation law for
+conditional entropies under path scaling. As a corollary, the
+path rates (R1 , R2 ) are preserved under path scaling.
+Proposition 4. Let b2N be a ﬁxed path. Let (R1 , R2 ) be the
+rate pair for b2N . Then, for any m ≥ 1, (R1 , R2 ) is also the
+rate pair for the path 2m b2N .
+
+A. Encoding
+Given a source realization (xN , y N ), encoders 1 and 2
+compute uN = xN GN and v N = y N GN , respectively, as
+deﬁned by equations (1) and (2). The realizations uN and v N
+deﬁne a realization t2N of the edge variables T 2N associated
+with b2N . Encoder 1 possesses uN = (ti : bi = 0) and
+transmits the variables (ti : i ∈ A1 (δ)), while encoder 2
+possesses v N = (ti : bi = 1) and transmits (ti : i ∈ A2 (δ)).
+The rates for this scheme are given by |A1 (δ)|/N for user 1
+and |A2 (δ)|/N for user 2.
+
+Another aspect of path scaling is polarization:
+H(T2i |T 2i−1 ) = H(Si |T 2i−2 , T2i−1 )
+≤ H(Si |T 2i−2 )
+˜
+≤ H(Si ⊕ Si |T 2i−2 )
+= H(T2i−1 |T 2i−2 )
+
+(16)
+
+where there is equality if and only if H(T2i |T 2i−1 ) equals 0
+or 1. Thus,
+H(T2i |T 2i−1 ) ≤ H(Si |S i−1 ) ≤ H(T2i−1 |T 2i−2 )
+
+B. Decoding
+The decoder receives the variables (ti : i ∈ A(δ)}
+where A(δ) = A1 (δ) ∪ A2 (δ) and wishes to reconstruct
+the missing variables (ti : i ∈ A(δ)). For this task, we
+/
+consider a successive cancellation (SC) decoder, as in [12]
+and [4]. The SC decoder enters the ith step of decoding with
+ˆ
+the decisions t i−1 from previous steps and sets the current
+ˆi = 0 if Pr(Ti = 0|T i−1 = ti−1 ) is greater than
+ˆ
+decision as t
+i−1
+ˆi−1 ) and as ti = 1 otherwise. If i ∈ A(δ),
+ˆ
+Pr(Ti = 1|T
+=t
+ˆ
+the decoder overrides this rule by setting ti = ti since in that
+case the decoder already knows the correct value of ti .
+ˆ
+Once the estimate t 2N of t 2N is obtained, the decoder
+ˆi : bi = 0) and v N = (ti : bi = 1), and
+ˆ
+sets uN = (t
+ˆ
+ˆ
+N
+N
+−1
+N
+N
+calculates x = u (GN ) and y = v (GN )−1 , to obtain
+ˆ
+ˆ
+ˆ
+ˆ
+the estimates of xN and y N , respectively. Note that for the
+mapping GN here, the inverse of GN is itself, so this ﬁnal
+step is just another encoding operation.
+
+(17)
+
+with equality if and only if H(Si |S i−1 ) equals 0 or 1.
+We can keep doubling (scaling by two) the paths to enhance
+polarization. Asymptotically, we obtain the following result.
+Theorem 2. Let (X, Y ) ∼ PX,Y be an arbitrary memoryless
+source over the alphabet X × Y where X = Y = {0, 1}.
+Consider the setting deﬁned by equations (1) and (2). Fix
+N0 = 2n0 for some n0 ≥ 1. Fix a path b2N0 for U N0 V N0 .
+Let (R1 , R2 ) be the rate pair for b2N0 . Let N = 2m N0 for
+m ≥ 1 and let T 2N be the edge variables for 2m b2N0 . Then,
+for any given δ > 0, as m goes to inﬁnity, we have
+1
+{1 ≤ i ≤ 2N : δ < H(Ti |T i−1 ) < 1 − δ} → 0, (18)
+2N
+|A1 (δ)|
+→ R1
+N
+
+and
+
+|A2 (δ)|
+→ R2 ,
+N
+
+CODING
+
+(19)
+C. Performance
+
+where Aj (δ) = {1 ≤ i ≤ 2N : bi = j, H(Ti |T i−1 ) > δ} for
+j = 0, 1. Furthermore, this statement remains true even if δ
+β
+is allowed to go to zero as a function of N as δ = O(2−N ),
+where β is ﬁxed as any positive number less than 1/2.
+
+The performance of the above coding scheme is mea∆
+sured by the probability of frame error, deﬁned as Pe =
+ˆ ˆ
+Pr[(X N , Y N ) = (X N , Y N )]. Equivalent expressions for the
+ˆ ˆ
+frame error probability are Pe = Pr[(U N , V N ) = (U N , V N )]
+ˆN = T N ). By the “genie-bound” for SC
+and Pe = Pr(T
+decoders (see, e.g., [12]), the frame error can be bounded as
+ˆ
+ˆ
+Pe ≤ i∈A(δ) Pr(Ti = Ti |T i−1 = T i−1 ). Further, one has
+/
+i−1
+i−1
+ˆ
+ˆ
+Pr(Ti = Ti |T
+= T ) ≤ Z(Ti |T i−1 ) where Z(Ti |T i−1 )
+
+We omit the proof of this theorem due to space limitations
+and also because it follows by standard ideas presented in
+detail elsewhere. We just note that the ﬁrst step of the proof is
+to set up a martingale for the conditional entropy terms using
+
+4
+
+V. S UMMARY
+
+is the source Bhattacharyya parameter deﬁned in [4]. The
+parameter Z(Ti |T i−1 ) is in turn bounded by H(Ti |T i−1 )
+by Prop. 2 of [4]. Thus, Pe ≤
+H(Ti |T i−1 ) ≤
+i∈A(δ)
+/
+√
+√
+(N − |A(δ)|) δ ≤ N δ.
+
+AND
+
+R EMARKS
+
+We considered polarization in the context of monotone
+chain rules, which is the largest class of chain rules that
+respects the natural decoding order deﬁned by polarization.
+The main coding result has been the derivation of a polar
+coding scheme that achieves the Slepian-Wolf rate region
+without time-sharing.
+Most of the discussion has been restricted to the subset
+of monotone chain rules represented by paths of the type
+0i 1N 0N −i for 0 ≤ i ≤ N . On closer inspection, the use of
+such paths reminds one of the “source-splitting” approach to
+Slepian-Wolf coding developed by Rimoldi and Urbanke [16].
+A path of the form 0i 1N 0N −i has three segments, with each
+segment corresponding to a virtual source in the rate-splitting
+argument. In effect, the polar codes that we have constructed
+appear to operate at a corner point of a Slepian-Wolf rate
+region for three virtual sources.
+Finally, we wish to note that, although not discussed explicitly, the results of this paper have duals in the context of
+coding for the MAC and yield capacity-achieving polar codes
+without time-sharing in that context.
+
+D. A polar coding theorem
+Theorem 3. Consider an arbitrary memoryless source
+(X, Y ) ∼ PX,Y over the alphabet X × Y with X = Y =
+{0, 1}. Let (Rx , Ry ) be a target point in the Slepian-Wolf rate
+region. Given any > 0 and β < 1/2, there exists a polar
+coding scheme (b2N , δ) such that (i) the path b2N has the form
+0i 1N 0N −i for some 0 ≤ i ≤ N , (ii) the threshold parameter
+β
+satisﬁes δ = O(2−N ), (iii) users 1 and 2 transmit at rates
+|A1 (δ)|/N ≤ Rx + and |A2 (δ)|/N ≤ Ry + , respectively,
+and (iv) the probability of error under successive cancellation
+β
+1
+decoding satisﬁes Pe = O(2− 2 N ).
+Proof: We may assume without loss of generality that the
+target rate (Rx , Ry ) lies on the dominant face of the rate region
+RSW . Theorem 1 guarantees the existence of a path b2N0 in
+V2N0 for which the rate pair (R1 , R2 ) satisﬁes R1 ≤ Rx + /2
+and R2 ≤ Ry + /2. We ﬁx such a path. Theorem 2 guarantees
+that there exists a path b2N = 2m b2N0 for some m ≥ 1 for
+which the sets A1 (δ) and A2 (δ) satisfy |A1 (δ)|/N ≤ R1 + /2
+β
+and |A2 (δ)|/N ≤ R2 + /2 with δ = O(2−N ). The SlepianWolf code deﬁned by the parameters (b2N , δ) achieves the
+rates |A1 (δ)|/N ≤ Rx + and |A2 (δ)|/N ≤ Ry + , and has
+√
+β
+1
+a probability of error bounded by Pe ≤ N δ = O(2− 2 N ).
+
+ACKNOWLEDGMENT
+¨ ITAK grant 110E243.
+This work was supported by the TUB˙
+R EFERENCES
+[1] D. Slepian and J. Wolf, “Noiseless coding of correlated information
+sources,” IEEE Trans. Inform. Theory, vol. 19, pp. 471–480, Jul. 1973.
+[2] N. Hussami, S. B. Korada, and R. Urbanke, “Performance of polar codes
+for channel and source coding,” in Proc. 2009 IEEE Int. Symp. Inform.
+Theory, (Seoul, South Korea), pp. 1488–1492, 28 June - 3 July 2009.
+[3] S. B. Korada, Polar codes for channel and source coding. PhD thesis,
+EPFL, Lausanne, 2009.
+[4] E. Arıkan, “Source polarization,” in Proc. 2010 IEEE Int. Symp. Inform.
+Theory, (Austin, TX), pp. 899-903, 13-18 June 2010.
+[5] T. Cover, “A proof of the data compression theorem of Slepian and Wolf
+for ergodic sources,” IEEE Trans. Inform. Theory, vol. 21, no. 2, pp. 226228, Mar 1975
+[6] E. Saso˘ lu, E. Telatar, and E. Yeh, “Polar codes for the two-user
+¸ ¸ g
+binary-input multiple-access channel,” in 2010 IEEE Information Theory
+Workshop (ITW), 2010, pp. 1-5.
+[7] E. Abbe and E. Telatar, “MAC polar codes and matroids,” in Information
+Theory and Applications Workshop (ITA), 2010, pp. 1-8.
+[8] E. Abbe and E. Telatar, “Polar Codes for the m-User MAC,”
+arXiv:1002.0777, Feb. 2010.
+[9] E. Arıkan, “Source polarization,” arXiv:1001.3087v1, Jan. 2010.
+[10] E. Abbe, “Extracting randomness and dependencies via a matrix polarization,” arXiv:1102.1247, Feb. 2011.
+[11] E. Saso˘ lu, “Polar Coding Theorems for Discrete Systems,” EPFL
+¸ ¸ g
+Thesis no 5219, Lausanne, Nov. 2011.
+[12] E. Arıkan, “Channel polarization: A method for constructing capacityachieving codes for symmetric binary-input memoryless channels,” IEEE
+Trans. Inform. Theory,vol. 55, pp. 3051–3073, July 2009.
+[13] E. Arıkan and E. Telatar, “On the rate of channel polarization,” in Proc.
+2009 IEEE Int. Symp. Inform. Theory, (Seoul, South Korea), pp. 1493–
+1495, 28 June - 3 July 2009.
+[14] R. Mori and T. Tanaka, “Performance and construction of polar codes
+on symmetric binary-input memoryless channels,” in Proc. 2009 IEEE
+Int. Symp. Inform. Theory, (Seoul, South Korea), pp. 1496-1500, 28 June
+- 3 July 2009.
+[15] I. Tal and A. Vardy, “How to Construct Polar Codes,” arXiv:1105.6164v1
+[cs.IT] 31 May 2011.
+[16] B. Rimoldi and R. Urbanke, “Asynchronous Slepian-Wolf coding via
+source-splitting,” Proc. 1997 IEEE Int. Symp. Inform. Theory, (Ulm,
+Germany), p. 271, 29 Jun - 4 Jul 1997.
+
+E. Complexity
+The encoding operations in the above Slepian-Wolf polar
+coding scheme are the same as in the single-user case and
+have complexity O(N log N ) as in that case [12].
+It can be shown that the SC decoder here can be implemented in complexity O(N log N ) as in the single user case.
+At each step of decoding, the SC decoder needs to calculate a
+∆
+probability of the form P2N (ui , v j ) = Pr(U i = ui , V j = v j ),
+where the subscript 2N indicates the length of the code.
+Depending on whether i and j are odd or even, there is a
+different recursive formula to carry out this calculation. For
+example, P2N (u2i−1 , v 2j−1 ) can be calculated as
+2j
+2j
+2j
+PN (u2i + u2i , vo + ve )PN (u2i , ve )
+e
+o
+e
+u2i ,v2j
+
+where u2i and u2i denote the sub-vectors consisting of oddo
+e
+numbered and even-numbered coordinates of u2i , respectively,
+2j
+2j
+and similarly for vo and ve . This reduction is continued until
+the desired probabilities can be computed from PX,Y directly.
+Finally, for code construction, one needs to be able to compute entropy terms of the form {H(Ti |T i−1 ) : 1 ≤ i ≤ 2N }
+along a chosen path. This type of computation is necessary
+both for rate approximations and also for determining the sets
+A1 (δ) and A2 (δ). We conjecture that the density evolution
+method for ordinary polar coding developed in [14] and [15]
+can be adapted to this case, too, so as to compute these entropy
+terms with sufﬁcient precision in complexity O(N ).
+
+5
+
+

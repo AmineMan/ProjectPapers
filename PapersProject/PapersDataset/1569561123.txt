@@ -1,0 +1,649 @@
+Creator:        TeX
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Thu May 17 08:31:21 2012
+ModDate:        Tue Jun 19 12:56:29 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      390638 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569561123
+
+Decoding of Cyclic Codes over Symbol-Pair
+Read Channels
+Eitan Yaakobi∗† , Jehoshua Bruck∗ , and Paul H. Siegel†
+∗ Electrical Engineering Department, California Institute of Technology, Pasadena, CA 91125, U.S.A
+† Electrical and Computer Engineering Department, University of California, San Diego, La Jolla, CA 92093, U.S.A.
+
+{yaakobi, bruck}@caltech.edu, psiegel@ucsd.edu
+The works in [1], [2] studied the case of pair-read symbols. However, this model can be easily generalized such that
+on every read operation, multiple, say b > 2, consecutive
+symbols are read and thus every symbol is read b times. In
+essence, we receive multiple estimations of the same stored
+word. This connection brings us to the sequence reconstruction problem, which was introduced by Levenshtein [5]–[7].
+In this model, the same codeword is transmitted over multiple
+channels. Then, a decoder receives all channel outputs, which
+are guaranteed to be different from each other, and outputs an
+estimation of the transmitted word. The original motivation did
+not come from storage systems but rather from other ﬁelds,
+such as molecular biology and chemistry, where the amount
+of redundancy in the information is too low and thus the only
+way to combat errors is by repeatedly transmitting the same
+message. This model is very relevant for storage technologies
+we described above or any other storage where the stored information is read multiple times. Furthermore, we note that
+the model by Levenshtein was recently studied and extended
+in the context of associative memories [11].
+In the channel model described by Levenshtein, all channels
+are (almost) independent from each other as it is only guaranteed that the channel outputs are all different. If the transmitted
+message c belongs to a code with Hamming distance d H and
+the number of errors in every channel can be strictly greater
+−
+than d H2 1 , then Levenshtein studied the minimum number
+of channels that are necessary to construct a successful decoder. This value was studied in [6] for the Hamming metric
+as well as other distance metrics and was later analyzed for
+a distance metric over permutations, e.g. [3], [4], and error
+graphs [8].
+For the Hamming distance, the following result was proved
+in [6]. Assume the transmitted word belongs to a code with
+minimum Hamming distance d H and the number of errors, t,
+−
+in every channel is greater than d H2 1 . Then, in order to
+construct a successful decoder, the number of channels has to
+be greater than
+
+Abstract—Symbol-pair read channels, in which the outputs of
+the read process are pairs of consecutive symbols, were recently
+studied by Cassuto and Blaum. This new paradigm is motivated
+by the limitations of the reading process in high density data storage systems. They studied error correction in this new paradigm,
+speciﬁcally, the relationship between the minimum Hamming distance of an error correcting code and the minimum pair distance,
+which is the minimum Hamming distance between symbol-pair
+vectors derived from codewords of the code. It was proved that
+for a linear cyclic code with minimum Hamming distance d H ,
+the corresponding minimum pair distance is at least d H + 3.
+Our main contribution is proving that, for a given linear cyclic
+code with a minimum Hamming distance d H , the minimum pair
+H
+distance is at least d H + d2 . We also describe decoding algorithms, based upon bounded distance decoders for the cyclic
+code, whose pair-symbol error correcting capabilities reﬂects the
+larger minimum pair distance. In addition, we consider the case
+where a read channel output is a prescribed number, b > 2,
+of consecutive symbols and provide some generalizations of our
+results. We note that the symbol-pair read channel problem is
+a special case of the sequence reconstruction problem that was
+introduced by Levenshtein.
+
+I. I NTRODUCTION
+The traditional approach in information theory to analyze
+noisy channels is to parse the message into independent information units, called symbols. Even though in many works the
+error correlation and interference between the symbols is studied, the process of writing and reading each symbol is usually
+assumed to be performed independently. However, in some of
+today’s storage technologies as well as future ones, this is no
+longer an accurate assumption and symbols can only be written and read together. This brings us to study a model, recently
+proposed by Cassuto and Blaum [1], for channels whose outputs are overlapping pairs of symbols.
+The rapid progress in high density data storage technologies
+paved the way for high capacity storage with reduced price.
+However, since the bit size at high densities is so small, one
+of the fundamental problems is to successfully read the individual bits recorded on the storage medium; for more details,
+see [1]. The channel model studied by Cassuto and Blaum [1],
+and later by Cassuto and Litsyn [2], mimics the reading process of such storage technologies. On each reading operation,
+the value of two consecutive symbols is read, called a pairread symbol. This new model changes the requirement on the
+error correction capability of error-correction codes. There is
+already a signiﬁcant amount of redundancy as every symbol
+is read twice. Furthermore, the errors are no longer symbol
+errors, but, rather, pair-symbol errors, where in a pair-symbol
+error at least one of the symbols is erroneous. The main task
+now becomes to combat these pair-symbol errors by designing
+codes with large minimum pair distance.
+
+t− d H /2
+
+∑
+
+i =0
+
+n − dH
+i
+
+t −i
+
+∑
+
+k =i + d H − t
+
+dH
+.
+k
+
+−
+For example, if t = d H2 1 + 1, i.e., only one more than the
+error correction capability, then the number of channels has to
+−
+be at least (2t) + 1. If t > d H2 1 + 1 then this number is
+t
+even a function of the message length. This disappointing result is a consequence of the arbitrary errors that may occur in
+every channel. In practice, especially for storage systems, we
+can take advantage of the fact that the errors are constrained.
+
+1
+
+In the symbol-pair read channel, there are in fact two channels. If the stored information is x = ( x0 , . . . , xn−1 ), then the
+pair-read vector of x is
+
+Proposition 2. For x, y ∈ Σn , let 0 < d H ( x, y) < n be the
+Hamming distance between x and y. Then,
+d H ( x, y) + 1 d p ( x, y) 2d H ( x, y).
+
+π ( x) = [( x0 , x1 ), ( x1 , x2 ), . . . , ( xn−2 , xn−1 ), ( xn−1 , x0 )],
+
+For a code C , we denote its minimum Hamming distance
+by d H (C). The symbol-pair code of C is the code
+π (C) = {π (c) : c ∈ C}.
+Then, similarly, the minimum pair distance of C , d p (C), is the
+minimum Hamming distance of π (C), i.e.,
+d p (C) = d H (π (C)).
+From Proposition 2, the following connection between d H (C)
+and d p (C) is established [1]
+d H (C) + 1 d p (C) 2d H (C).
+The goal in constructing codes for the pair-read channel is
+to achieve high minimum pair distance with respect to the minimum Hamming distance. It was shown in [1] that interleaving
+two codes with minimum Hamming distance d H generates a
+code with the same minimum Hamming distance d H but with
+minimum pair distance is 2d H . Even though this construction
+generates codes with the largest possible minimum pair distance with respect to their minimum Hamming distance, it is
+less attractive as, in general, the interleaving method suffers
+from a poor Hamming distance relative to its resulting codeword length.
+Yet another interesting family of codes that was analyzed
+in [1] are the linear cyclic codes. It was proved that for a linear cyclic code C with minimum Hamming distance d H , its
+minimum pair distance is at least d H + 2. Using the HartmannTzeng bound, this lower bound was improved to d H + 3, when
+the code length is a prime number. Our main goal in the next
+section is to show an improved lower bound on the minimum
+pair distance of linear cyclic codes.
+
+and the goal here is to correct a large number of the so-called
+symbol-pair errors. The pair distance, d p ( x, y), between two
+pair-read vectors x and y is the Hamming distance between
+their pair read vectors, that is, d p ( x, y) = d H (π ( x), π ( y)).
+Accordingly, the minimum pair distance of a code C is deﬁned
+as d p (C) = min x,y∈C ,x = y {d p ( x, y)}. In [1], it was shown
+that for a linear cyclic code with minimum Hamming distance
+d H , its minimum pair distance, d p , satisﬁes d p d H + 3. Our
+main contribution in this work is proving that
+d
+dp dH + H .
+2
+According to [1], this permits correction of 3d H /4 − 1
+symbol-pair errors. Thus, in contrast to Levenshtein’s results
+on independent channels, on the symbol-pair read channel
+we can correct a large number of symbol-pair errors. In order to establish this result, we explicitly construct a decoder
+that can correct this number of symbol-pair errors.
+The rest of the paper is organized as follows. In Section II,
+we review the symbol-pair read channel and some basic properties. In Section III, we show that cyclic codes can correct
+a large number of symbol-pair errors and in Section IV, decoders for such codes are given. Section V generalizes some
+of the results on the symbol-pair read channel to channels that
+sense b consecutive symbols on each read, where b > 2. Finally, Section VI concludes the paper.
+II. D EFINITIONS AND BASIC P ROPERTIES
+In this section, we brieﬂy review the model and deﬁnition of
+the symbol-pair read channel. If a length-n vector is stored in
+the memory then its pair-read vector is also a length-n vector,
+while every entry consists of two consecutive symbols of the
+stored vector. More formally, if x = ( x0 , . . . , xn−1 ) ∈ Σn is
+a length-n vector over some alphabet Σ, then the symbol-pair
+read vector of x, denoted by π ( x), is deﬁned to be
+
+III. T HE PAIR D ISTANCE OF C YCLIC C ODES
+The goal of this section is to show that linear cyclic codes
+have high minimum pair distance. In order to do so, we ﬁrst
+give a method to calculate the pair weight of x. In fact, a
+similar property was proved in [1] (Theorem 2) but using a
+different notation.
+The key idea to notice is that if xi = 1 then there are two
+non-zero symbols in π ( x), the i-th and (i − 1)-st symbol.
+However if xi−1 = 1, then the (i − 1)-st symbol is already
+non-zero as a result of xi−1 = 1. Hence, if ( xi−1 , xi ) = (0, 1)
+we have two non-zero symbols in π ( x) as a result of xi and
+if ( xi−1 , xi ) = (1, 1) we have only a single non-zero symbol in π ( x). Therefore, in order to determine the weight of
+π ( x), one needs to count the number of (0, 1) sequences in
+the vector x, which we now show how to calculate.
+For x = ( x0 , x1 , . . . , xn−1 ), we deﬁne
+x = ( x0 + x1 , x1 + x2 , . . . , xn−1 + x0 ) .
+The next lemma shows how to calculate the pair weight of a
+vector x.
+
+π ( x) = [( x0 , x1 ), ( x1 , x2 ), . . . , ( xn−2 , xn−1 ), ( xn−1 , x0 )].
+We will focus in this work on binary vectors, so Σ = {0, 1}.
+Note that π ( x) ∈ (Σ × Σ)n , and for x, y ∈ Σ, π ( x + y) =
+π ( x) + π ( y). Unless stated otherwise, in this paper, all indices are taken modulo n. The Hamming distance between
+two vectors x and y is denoted by d H ( x, y). Similarly, the
+Hamming weight of a vector x is denoted by w H ( x). The
+pair distance between x and y is denoted by d p ( x, y) and is
+deﬁned to be
+d p ( x, y) = d H (π ( x), π ( y)).
+Accordingly, the pair weight of x is w p ( x) = w H (π ( x)).
+A symbol-pair error in the i-th symbol of π ( x) changes at
+least one of the two bits ( xi , xi+1 ). Note that the following
+connection between the pair distance and pair weight holds.
+
+Lemma 3. For any x ∈ Σn , w p ( x) = w H ( x) + w H ( x )/2.
+Proof: Let
+S0 = {i : ( xi , xi+1 ) = 0 and xi = 1},
+
+Proposition 1. For all x, y ∈ Σn , d p ( x, y) = w p ( x + y).
+A ﬁrst observation on the connection between the Hamming
+distance and pair distance was proved in [1].
+
+S1 = {i : ( xi , xi+1 ) = 0 and xi = 0, xi+1 = 1}.
+
+2
+
+Σn ∪ { F } having the same properties as the decoder DC . Every codeword in C2 consists of two identical codewords from
+C and thus, for simplicity of notation, we assume that the decoder DC2 returns only one copy of the decoded codeword
+from C . We will address at the end of the section the problem
+of constructing the decoder DC2 .
+Let c ∈ C and let π (c) ∈ π (C) be its symbol-pair vector.
+Let y = π (c) + e be a received word, where e ∈ (Σ × Σ)n
+3t+1
+= t0 . We will show
+is the error vector and w H (e)
+2
+n → { 0, 1 }n which receives the word
+a decoder Dπ : (Σ × Σ)
+y and returns c.
+We denote the received vector by
+y = ( y0,0 , y0,1 ), ( y1,0 , y1,1 ), . . . , ( yn−1,0 , yn−1,1 )
+and deﬁne the following three vectors
+y L = ( y0,0 , . . . , yn−1,0 ),
+
+Hence, | S0 | = w H ( x), S0 ∩ S1 = ∅, and w p ( x)=| S0 | + | S1 |.
+For all 0
+i
+n − 1, i ∈ S1 if and only if xi+1 = 1 and
+xi = 0. Thus, xi + xi+1 = 1 or xi = 1, where xi = 0. Hence,
+we get
+| S1 | = |{i : xi+1 = 1 and xi = 0}| .
+Note that for any x ∈ Σn ,
+|{i : xi+1 = 1 and xi = 0}| = |{i : xi+1 = 0 and xi = 1}| ,
+and the sum of the cardinality of the two sets is w H ( x ).
+w (x )
+Hence, | S1 | = H2 and
+w (x )
+.
+w p ( x) = | S0 | + | S1 | = w H ( x) + H
+2
+Using the property we proved in Lemma 3, we are now
+ready to show an improved lower bound on the minimum pair
+distance of linear cyclic codes.
+Theorem 4. Let C be a linear and cyclic code of dimension
+greater than one. Then,
+d (C)
+d p (C) d H (C) + H
+.
+2
+Proof: Let x = ( x0 , . . . , xn−1 ) be a codeword in C . Assume that x is not the all-ones vector. Since the code is cyclic
+then ( x1 , . . . , xn−1 , x0 ) ∈ C and thus x ∈ C . The weight of
+x is even and hence w H ( x )
+2 d H (C)/2 . Furthermore,
+w H ( x) d H (C). Together, these facts imply that
+d (C)
+w p ( x) = w H ( x) + w H ( x )/2 d H (C) + H
+.
+2
+We conclude by noting that if x = 1, the all-ones vector,
+then the inequality above is easily veriﬁed. This completes
+the proof.
+Theorem 4 shows that linear cyclic codes are attractive for
+symbol-pair read channels as their minimum pair distance is
+large, allowing the correction of a large number of symbol-pair
+errors. An interesting problem which thus arises is to construct
+efﬁcient decoders for these codes.
+IV. D ECODING
+
+y R = ( y0,1 , . . . , yn−1,1 ),
+y S = ( y0,0 + y0,1 , . . . , yn−1,0 + yn−1,1 ).
+Since the vector y suffers at most t0 pair-symbol errors,
+the vectors y L and y R each have at most t0 errors as well.
+Note that the vector y S has at most t0 errors with respect to
+the codeword c = (c0 + c1 , . . . , cn−1 + c0 ). In general, the
+knowledge of the codeword c does not uniquely determine
+the value of c. However, in this scenario it does. This observation, which we will use of in the decoder algorithm, is
+proved in the following lemma.
+Lemma 5. If the codeword c ∈ C is successfully decoded then
+we can recover the codeword c.
+Proof: The codeword c satisﬁes ci = c0 + ∑ij−1 c j . Hence
+=0
+
+if we deﬁne c = [c0 , . . . , cn−1 ] by ci = ∑ij−1 c j then the code=0
+word c is either c or c + 1, depending on the value of c0 . The
+distance between y L and c is at most t0 and d H (c, c + 1) = n.
+Hence, if d H ( y L , c) < d H ( y L , c + 1) then c = c and otherwise c = c + 1. In any case, we can recover the codeword c.
+
+After ﬁnding codes with large minimum pair distance we
+now show an efﬁcient decoder for such codes. Given a linear
+cyclic code C , with minimum distance d H (C) = 2t + 1, we
+assume it has a decoder DC that can correct up to t errors.
+We will show how to use this decoder in order to construct a
++
+decoder for the code π (C) which corrects up to t0 = 3t2 1
+symbol-pair errors.
+We deﬁne the decoder DC as a map DC : Σn → C ∪ { F }
+and the notation DC ( y) = c indicates that the decoder’s input
+is a received word y and its output is a decoded codeword c or
+the decoder failure symbol F. If c ∈ C is the transmitted word
+and d H (c, y) t, then it is guaranteed that c = c. However,
+if d H (c, y) > t, then either c = F, indicating that more than
+t errors have occurred, or c is a codeword different from c ,
+whose Hamming distance from the received word y is at most
+t, i.e., d H (c, y) t.
+Let us introduce another code that will serve us in this
+decoder construction. The double-repetition code of C is the
+code
+C2 = {(c, c) : c ∈ C}.
+Note that its length is 2n and its minimum Hamming distance
+satisﬁes d H (C2 ) = 2d H (C). The code C2 can correct up to 2t
+errors and we assume that it has a decoder DC2 : Σn × Σn →
+
+According to Lemma 5, it is possible to recover the codeword c from the codeword c . By abuse of notation, we denote
+by c ∗ an operator that calculates, as explained in Lemma 5,
+the codeword c from c , and so c ∗ = c.
+The number of symbol-pair errors in the vector y is at most
+t0 . Each symbol-pair error corresponds to one or two bit error
+in the symbol-pair. We let E1 be the number of single-bit pairsymbol errors and E2 be the number of double-bit pair-symbol
+errors, where E1 + E2 t0 . Thus, the number of errors in y S
+is E1 and the number of errors in ( y L , y R ) is E1 + 2E2 . Another property which we will use in the decoder construction
+is proved in the next lemma.
+Lemma 6. If c ∈ C , y = π (c) + e, and w H (e)
+either DC ( y S ) = c or DC2 (( y L , y R )) = c.
+
+t0 , then
+
+Proof: If E1 t then the decoder DC ( y S ) is successful.
+Otherwise, E1 t + 1 and E2 t0 − (t + 1), so the number
+of errors in ( y L , y R ) satisﬁes
+3t + 1
+E1 + 2E2 t0 + t0 − (t + 1) = 2
+− (t + 1) 2t,
+2
+and therefore the decoder DC2 (( y L , y R )) is successful.
+
+3
+
+According to the last lemma we know that at least one Hence, we conclude that if e2
+t0 + a then necessarily the
+of the two decoders succeeds. However, we cannot determine decoder in Step 2 succeeds.
+Assume the decoding in Step 1 fails. As in Step 4, since
+easily which one of them does and the main task of the decoder construction for π (C) is to ﬁnd the successful decoder. DC ( y S ) fails, the number of errors E1 in y S is at least
+3t
+t+2
+The decoder’s output Dπ ( y) = c is calculated as follows:
++a =
+−( a − 1) = t0 −( a − 1).
+E1 2t + 2 −
+2
+2
+Step 1. c1 = DC ( y S ), e1 = d H (c1 , y S ).
+Since E1 + E2 t0 , the value of E2 satisﬁes 0 E2 a − 1,
+Step 2. c2 = DC2 ( y L , y R ) , e2 = d H ((c2 , c2 ), ( y L , y R )).
+and E1 + 2E2 , the total number of errors in ( y L , y R ), satisﬁes
+Step 3. If c1 = F or w H (c1 ) is odd then c = c2 .
+t+2
+∗.
+Step 4. If e1
+2 , then c = c1
+t0 − ( a − 1) E1 + 2E2 = ( E1 + E2 ) + E2 t0 + a − 1.
+t
+Step 5. If e1 > t+2 , let e1 = t+2 + a, (1 a
+2
+2
+2 − 1)
+Thus, the decoding operation DC2 (( y L , y R )) succeeds, and
+a) If e2 t0 + a then c = c2 ,
+t0 − ( a − 1) e2 t0 + a − 1.
+b) Otherwise, c = c∗ .
+1
+Hence, if e2 > t0 + a then the decoder in Step 1 succeeds.
+The correctness of the decoder is proved in the next theorem.
+That explains a) and b) of Step 5.
+Theorem 7. The decoder output satisﬁes Dπ ( y) = c = c.
+To complete this section, let us go back to the construction
+Proof: According to Lemma 6, at least one of the two de- of the decoder DC2 . This decoder receives two vectors y1 =
+coders in Steps 1 and 2 succeeds. Steps 3–5 help to determine ( y1,0 , . . . , y1,n−1 ), y2 = ( y2,0 , . . . , y2,n−1 ). Each is a noisy
+version of some codeword c ∈ C , and the goal is to correct
+which of the two decoders succeeds.
+Step 3: Since y S is a noisy version of the codeword c , in a total of 2t errors in the two vectors. We deﬁne the vector
+the decoding operation on the ﬁrst step we try to decode the y = ( y0 , . . . , yn−1 ) such that for all 0 i i − 1, yi = y1,i
+codeword c . Remember that the weight of c is even. Hence, if y1,i = y2,i , and otherwise yi =? to indicate an erasure. If
+if c1 = F or the Hamming weight of c1 is odd, then this de- the number of errors in y is τ and the number of erasures is
+coding operation fails and thus the decoder in Step 2 succeeds. ρ, then we have 2τ + ρ 2t = d(C) − 1, which is within the
+error and erasure correcting capability of C . We are left only
+If we reach Steps 4 and 5 then w H (c1 ) is even.
+t+2
+t+2
+with the problem of deﬁning a decoder that corrects errors and
+, then E1
+Step 4: Here we show that if e1
+2
+2
+as well and the decoder in step 1 succeeds. Assume to the con- erasures for cyclic codes. For that, we refer to [9], [10].
+we extend some of our results on the symbol-pair read chantrary that there is a miscorrection in Step 1. Then the word y S
+nel to the case where more than two symbols are sensed on
+is miscorrected to some codeword of even weight. The weight
+each read
+of the error vector found in Step 1, e1 , is at most t+2 . Since
+2
+V. E XTENSIONS FOR A RBITRARY b
+the minimum distance of the code C is 2t + 1, the number E1
+of actual errors in y S satisﬁes
+In this section, we extend some of our results on the symbol3t
+t+2
+pair read channel to the case where more than two symbols
+=
++ 1 > t0 ,
+E1 2t + 2 −
+are sensed on each read. For b 3, the b-symbol read vector
+2
+2
+which is a contradiction as the number of errors in y S is at of x = ( x0 , x1 , . . . , xn−1 ) ∈ Σn is deﬁned to be
+most t0 . Therefore, in this case the decoding operation c1 = πb ( x) = [( x0 , . . . , xb−1 ), . . . , ( xn−1 , x0 , . . . , xb−2 )] ∈ Σb n .
+DC ( y S ) = c succeeds, and according to Lemma 5, we get
+The b-distance between x and y is denoted by db ( x, y) and
+c = c∗ = c ∗ = c.
+is deﬁned to be db ( x, y) = d H (πb ( x), πb ( y)). In analogy to
+1
+Step 5: We are left with the case where e1 > t+2 . Since Proposition 2, it is possible to show that
+2
+t
+d H ( x, y) + b − 1 db ( x, y) b · d H ( x, y),
+e1 t, let e1 = t+2 + a, where 1 a
+2
+2 − 1.
+Assume the decoding in Step 2 fails. According to and db ( x, y) = wb ( x + y).
+Lemma 6, the decoding operation c1 = DC ( y S ) succeeds,
+Our main goal here is to generalize Lemma 3 for arbitrary
+t+2
+b 3. For a vector x, let us deﬁne the vector x by inverting
+E1 = e1 =
++ a.
+every sequence of less than b − 1 zeros in x. More formally, if
+2
+( xi , xi+1 , . . . , xi+k , xi+k+1 ) = (1, 0, . . . , 0, 1) for some 0
+The value of E2 satisﬁes
+i n − 1 and k b − 2, then x j = 1 for i + 1
+j i + k.
+t+2
+3t + 1
+t+2
+E2 t0 −
++a =
+−
+− a t − a. For all other values of j, x = x .
+j
+j
+2
+2
+2
+Lemma 8. For any x ∈ Σn and positive integer b 3
+The total number of errors in ( y L , y R ) is
+w (x )
+5t + 1
+.
+wb ( x) = w H ( x) + (b − 1) · H
+E1 + 2E2 t0 + t − a =
+− a.
+2
+2
+Proof: Let us ﬁrst show that wb ( x) = wb ( x). Consider
+Since the decoder DC2 (( y L , y R )) fails and the minimum dis- a sequence of k b − 2 consecutive zeros,
+tance of C2 is 4t + 2, we get that the weight of the error vector
+( xi , xi+1 , . . . , xi+k , xi+k+1 ) = (1, 0, . . . , 0, 1).
+in Step 2, e2 , would have to satisfy
+The zero bits xi+1 , . . . , xk appear in the j-th symbol of πb ( x)
+5t + 1
+for i − b + 2
+j
+i + k. Since xi = xi+k+1 = 1, in this
+e2 4t + 2 − ( E1 + 2E2 ) 4t + 2 −
+−a
+range of values of j, πb ( x) j = 0 and πb ( x) j = 0. For all
+2
+other values of j, the corresponding bits of xi and xi are the
+3t + 1
++ a + 1 = t0 + a + 1.
+same and thus πb ( x) j = 0 if and only if πb ( x) j = 0.
+2
+
+4
+
+Proof: Let x ∈ C be a non-zero codeword and assume
+that x = 1. Hence, w H ( x) 3. If w H ( x ) 4, then accordS0 = {i : ( xi , . . . , xi+b−1 ) = 0, xi = 1},
+ing to Lemma 8, we get wb ( x) 3 + (b − 1) · 4 = 2b + 1.
+2
+S1 = {i : ( xi , . . . , xi+b−1 ) = 0, xi = 0, xi+1 = 1},
+Now assume that w H ( x ) = 2, so x has a single continuous
+run of ones, and assume it has length . We notice that
+m.
+.
+.
+.
+Otherwise, the non-zero entries of the codeword x are conﬁned
+Sb−2 = {i : ( xi , . . . , xi+b−1 )= 0, xi =· · ·= xi+b−3 = 0, xi+b−2 = 1}, to at most m − 1 locations. If g( x) is a generator polynomial
+Sb−1 = {i : ( xi , . . . , xi+b−1 )= 0, xi =· · ·= xi+b−2 = 0, xi+b−1 = 1}. of degree m for the cyclic Hamming code, then there exists a
+non-zero polynomial of degree at most m − 1 which is a mulTherefore, w H ( x) = | S0 |; S j ∩ S = ∅, for all 0
+j<
+tiple of g( x). Thus, we get a contradiction. Therefore, in this
+b−1
+b−1
+b − 1; and wb ( x) = | ∪i=0 Si | = ∑i=0 | Si |.
+case, we get wb ( x) m + (b − 1) · 2 = m + b − 1 2b + 1.
+Let us show that for all 2
+b − 1, | S1 | = | S |. If To conclude this part of the proof, 2
+note that if x = 1, then
+i ∈ S1 then ( xi , xi+1 ) = (0, 1). Since there is no sequence of w ( x) = n 2b + 1.
+b
+less than b − 2 consecutive zeros
+To show that the minimum distance is 2b + 1, we see that
+( xi−(b−2) , . . . , xi , xi+1 ) = (0, . . . , 0, 1)
+if we take a codeword of weight three with two consecutive
+and thus i − ( − 1) ∈ S . Hence, | S | | S1 |. For the oppo- ones, then its b-weight is exactly 2b + 1.
+site inequality, note that if i ∈ S , then
+VI. C ONCLUSION
+( xi , xi+1 , . . . , xi+ −1 , xi+ ) = (0, . . . , 0, 1).
+In this paper, we studied the symbol-pair read channel. AfTherefore ( xi+ −1 , xi+ ) = (0, 1), so i + − 1 ∈ S1 and we ter reviewing the channel model and basic properties, we then
+get | S1 | | S |. Hence, | S1 | = | S | for all 2
+b − 1. As showed that linear cyclic codes are very effective in correcting
+wH (x )
+symbol-pair errors. The main part of the paper was devoted to
+in the proof of Lemma 3, | S1 | = 2 , and ﬁnally we get
+the construction of an effective decoding algorithm for such
+b−1
+w (x )
+.
+w b ( x ) = ∑ | Si | = w H ( x ) + ( b − 1 ) · H
+codes. Finally, we extended the model and some of the results
+2
+=0
+to the b-symbol read channel, where b > 2.
+We would next like to construct codes with large b-distance.
+VII. ACKNOWLEDGEMENT
+As in the case of symbol-pair codes, we deﬁne the b-symbol
+The authors thank to Yuval Cassuto for helpful disread code of C as the code πb (C) = {πb (c) : c ∈ C}, and
+cussions on the symbol-pair read channels. This research
+the minimum b-distance of C , db (C), as db (C) = d H (πb (C)).
+was supported in part by the ISEF Foundation, the Lester
+The interleaving scheme given in [1] constructs codes C
+Deutsch Fellowship, the University of California Lab Fees
+that satisfy d p (C) = 2d H (C). This construction can be exResearch Program, Award No. 09-LR-06-118620-SIEP, the
+tended for arbitrary b. It can be shown that the interleaving of
+National Science Foundation under Grant CCF-1116739,
+b codes, all with minimum distance d H , generates a code C
+the Center for Magnetic Recording Research at UCSD, and
+with minimum Hamming distance d H (C) = d H and minimum
+the NSF Expeditions in Computing Program under grant
+b-distance db (C) = b · d H (C).
+CCF-0832824.
+A decoder for the interleaving construction works very simR EFERENCES
+[1] Y. Cassuto and M. Blaum, “Codes for symbol-pair read channels,” IEEE
+ilarly to the one given for the interleaving scheme for pairTrans. on Information Theory, vol. 57, no. 12, pp. 8011–8020, Dec. 2011.
+symbols in [1]. The majority decoder is a decoder which out[2] Y. Cassuto and S. Litsyn, “Symbol-pair codes: algebraic constructions
+puts for every bit its majority value among its b received valand asymptotic bounds,” in Proc. IEEE International Symposium on Information Theory, pp. 2348–2352, St. Petersburg, Russia, Aug. 2011.
+ues, or ? in case of equality between the number of zeros and
+[3] E. Konstantinova, “Reconstruction of signed permutations from their disones. Then, it is possible to decode every interleaved codetorted patterns,” in Proc. IEEE International Symposium on Information
+word independently.
+Theory, pp. 474–477, Adelaide, Australia, September 2005.
+[4] E. Konstantinova, V.I. Levenshtein, and J. Siemons, “ReconstrucThe following two lemmas show properties of some special
+tion of permutations distorted by single transposition errors,”
+codes. In the ﬁrst lemma, the code is Σn , so its minimum disarXiv:math/0702191v1, February 2007.
+tance is one. The second lemma analyzes the Hamming code.
+[5] V.I. Levenshtein, “Reconstructing objects from a minimal number of dis-
+
+Next, we ﬁnd the value of wb ( x), making use of the fact
+that any run of zeros in x is of length at least b − 1. Let
+
+Lemma 9. If C = Σn , then for b 3 the minimum b-distance
+satisﬁes db (C) = b and it is possible to correct b−1 symbol
+2
+errors by the majority decoder.
+
+[6]
+[7]
+
+Proof: Assume x is a non-zero word which is not the
+all-ones vector. Then, we have x = 0 and thus w H ( x)
+1
+and w H ( x )
+2. According to Lemma 8, we get wb ( x)
+1 + (b − 1) · 2 = b. In case x = 1, then wb ( x) = n and the
+2
+inequality above holds as well.
+If there are b−1 symbol errors, then every bit of the vec2
+tor x is in error in πb ( x) at most b−1 times. Thus, the
+2
+majority decoder succeeds.
+
+[8]
+[9]
+[10]
+[11]
+
+Lemma 10. If C is the cyclic Hamming code of length n =
+2m − 1 then db (C) = 2b + 1, where b + 2 m.
+
+5
+
+torted patterns”, (in Russian), Dokl. Acad. Nauk 354, pp. 593-596; English translation, Doklady Mathematics vol. 55 pp. 417–420, 1997.
+V.I. Levenshtein, “Efﬁcient reconstruction of sequences,” IEEE Trans.
+on Information Theory, vol. 47, no. 1, pp. 2–22, January 2001.
+V.I. Levenshtein, “Efﬁcient reconstruction of sequences from their subsequences or supersequences”, J. of Combin. Theory, Ser. A, vol. 93,
+no. 2, pp. 310–332, 2001.
+V.I. Levenshtein and J. Siemons, “Error graphs and the reconstruction of
+elements in groups,” J. of Combin. Theory, Ser. A, vol. 116, pp. 795–815,
+2009.
+E. Orsini and M. Sala, “Correcting errors and erasures via the syndrome
+variety,” J. of Pure and Applied Algebra, vol. 200, pp. 191–226, 2005.
+H. Shahri and K.K. Tzeng, “On error-and-erasure decoding of cyclic
+codes,” IEEE Trans. on Information Theory, vol. 38, no. 2, pp. 489–496,
+March 1992.
+E. Yaakobi and J. Bruck, “On associative memories and the sequences
+reconstructions problem,” IEEE International Symposium on Information Theory, Cambridge, MA, July 2012.
+
+

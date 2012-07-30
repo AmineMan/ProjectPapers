@@ -1,0 +1,952 @@
+Title:          perms6.dvi
+Creator:        dvips(k) 5.96 Copyright 2007 Radical Eye Software
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Sat May 19 05:22:22 2012
+ModDate:        Tue Jun 19 12:56:15 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      339152 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569566821
+PSfrag replacements
+
+Transmission over Arbitrarily Permuted Parallel
+Gaussian Channels
+Ayal Hitron, Anatoly Khina, Uri Erez∗
+{ayal,anatolyk,uri}@eng.tau.ac.il
+EE-Systems Dept., Tel Aviv University, Tel Aviv, Israel
+Abstract—We address the problem of communication over
+arbitrarily permuted parallel Gaussian channels, where the
+permutation is known only to the receiver. We present a practical
+transmission scheme, that allows to transmit over this channel
+using off-the-shelf codes, in conjunction with linear processing
+and successive interference cancellation. The scheme is based on
+the approach of joint matrix triangularization. Explicit precoding
+matrices are derived for up to six parallel channels.
+
+X1
+W
+
+Tx
+
+X2
+
+p1 (y|x)
+π
+
+p2 (y|x)
+
+Fig. 1.
+
+The problem of transmitting information over arbitrarily
+permuted parallel channels was studied by Willems and
+Gorokhov [1] and by Hof et al. [2]. In this point-to-point
+scenario, the transmitter is connected to the receiver via K
+parallel memoryless channels (see Figure 1 for the case of
+K = 3), sharing the same input alphabet, the transition
+matrices of which are known but not their order. Namely, at
+each time instance, the transmitter generates K input symbols
+to be sent over the K parallel channels, and these symbols are
+then permuted by a one-to-one-mapping (permutation) π from
+{1, . . . , K} onto itself.
+The permutation π is arbitrary, yet constant,1 and is known
+to the receiver but not to the transmitter. The aim of the
+receiver is to recover the transmitted message with arbitrarily
+small error probability. This channel model is of relevance
+in scenarios where the gains of the channels are generated
+according to an i.i.d. distribution; thus, the histogram (when
+the number of channels is large) is known, but the permutation
+is not. For details see [1, Section VII].
+When the permutation is constant during the whole transmission period (as considered in [1], [2]), this setting falls
+under the framework of compound channels,2 the capacity of
+which is well known (see, e.g., [3]).
+Willems and Gorokhov [1] constructed an MDS-like scheme
+for treating this case, where the receiver uses joint typicality
+decoding. In [2] a scheme based on polar codes along with
+MDS codes was proposed for the case where the channels are
+binary-input and output-symmetric (BIOS). Another approach
+to tackle this problem in the Gaussian case is using approximately universal codes [4], which assumes high signal-to-noise
+ratio (SNR) regime.
+
+Y2
+
+Rx
+
+ˆ
+W
+
+p3 (y|x) Y3
+
+X3
+
+I. I NTRODUCTION
+
+Y1
+
+Permuted Parallel Channels
+
+In this paper we construct a practical capacity-achieving
+scheme for the Gaussian case, described by
+y i = α i xi + z i ,
+
+i = 1, 2, . . . , K ,
+
+(1)
+
+where xi is the input to the i-th channel which is subject to a
+power constraint3
+E |xi |2 ≤ 1 ,
+
+yi is the output of the i-th channel, and {zi } are i.i.d.
+circularly-symmetric Gaussian variables with unit variance,
+independent of {xi }. The gains {αi } are known to the receiver,
+whereas the transmitter knows the gains up to an unknown
+permutation. Namely, the transmitter knows the gains but
+does not know their order. The scheme is based on codes
+designed for a point-to-point additive white Gaussian noise
+(AWGN) channel with known (ﬁxed) SNR, in conjunction
+with successive interference cancellation.
+Since the capacity-achieving input distribution for all the
+channels is identical (circularly-symmetric complex normal
+with unit variance), the capacity of the compound channel is:
+K
+
+C=
+i=1
+
+log 1 + |αi |2 .
+
+(2)
+
+An interesting special case of the permuted parallel channels
+problem is that of parallel Gaussian erasure channels, where a
+constant number of channels is “erased” at each time instance.
+In the notation of the Gaussian permutation channel, this corresponds to the case of the coefﬁcients αi (1) equaling either
+the same constant channel gain α or 0 (in case of an erasure).
+For this special case, capacity in the compound setting can be
+efﬁciently achieved using MDS codes concatenated with codes
+which are good for scalar AWGN channels. However, except
+
+∗ This work was supported in part by the Israel Science Foundation under
+Grant No. 1557/12.
+1 The case of time-varying permutation will be addressed in Section VI.
+2 In the classical compound channel setting the receiver is not aware of the
+compound parameter as well. However, the capacity in both cases is the same;
+see [3, Sec. 8].
+
+3 Alternatively, the individual power constraints can be replaced by a
+common power constraint. However, in our case of interest, both cases reduce
+to the same result.
+
+1
+
+˜†
+Receiver k applies the matrix Uk to the channel output,
+(k)
+(k)
+†
+˜
+where Uk is an nt × nr matrix consisting of the left nr
+†
+columns of Uk ,
+˜†
+˜
+yk = U k yk .
+
+for this extreme case, practical capacity-achieving schemes are
+not known.
+In this paper, we develop a space–time modulation technique that, in conjunction with successive interference cancellation (SIC), gives rise to effective (scalar) parallel AWGN
+channels with the same gains (and order) for all possible
+permutations. Thus, by using off-the-shelf (ﬁxed-rate) AWGN
+codes over the effective channels, capacity is achieved. We
+present exact solutions for K ≤ 6 parallel channels, and
+discuss the generalization for larger K.
+
+This results in the equivalent channel:
+˜†
+˜
+˜
+yk = Uk (Hk Ck V x + z)
+˜ † Hk C k V x + U † z
+˜ ˜k
+= Uk
+˜ ˜ z
+Tk x + ˜.
+
+II. BACKGROUND : T WO -U SER M ULTICAST VIA J OINT
+M ATRIX T RIANGULARIZATION
+
+Finally, SIC is performed, i.e., the codebooks are decoded
+from last (j = nt ) to ﬁrst (j = 1), where each codebook is
+nt
+˜ ˆ
+ˆ
+recovered from yj
+yj − l=j+1 Tj,l xl , where xl is the
+˜
+˜
+˜
+decoded symbol from the l-th codebook.
+As is shown in [5], this scheme achieves the rate:
+
+In this section we review the scheme proposed in [5]
+for multicasting a common message over MIMO Gaussian
+channels. This scheme uses joint matrix triangularization,
+along with SIC, to transform the channel into parallel singleinput single-output (SISO) AWGN channels, with rates that
+are known at the transmitter.
+The channel model in [5] is the two-user common-message
+Gaussian broadcast channel:
+yk = H k x + z k ,
+
+nt
+
+R=2
+i=1
+
+where [A]ij denotes the (i, j)-th element of the matrix A. If
+all the matrices Tk have the same diagonal values, then:
+nt
+
+k = 1, 2 ,
+
+R=2
+
+where x is the channel input of dimensions nt × 1 subject
+to an average power constraint P , yk is the channel output
+(k)
+vector of receiver k (k = 1, 2) of dimensions nr × 1; Hk is
+(k)
+the channel matrix to receiver k of dimensions nr × nt and
+zk is an additive circularly-symmetric Gaussian noise vector
+(k)
+of dimensions nr × 1.
+The aim of the transmitter is to multicast the same (common) message to all the receivers. The capacity of this scenario
+equals the (worst-case) capacity of the compound channel (see,
+e.g., [3]), with the compound parameter being the channel
+matrix index:
+†
+C = max min log det I + Hk Cx Hk ,
+Cx k=1,2
+
+min {log |[Tk ]ii |} ,
+
+k=1,2
+
+i=1
+
+†
+log |[Tk ]ii | = log det(I + Hk Cx Hk ) ,
+
+namely, the scheme achieves the capacity (3).
+Finally, it is shown in [5] that there always exists such
+a decomposition, which is coined joint equi-diagonal triangularization (JET). Moreover, an explicit construction of the
+matrices V, U1 , U2 is given. As a result, this scheme can
+always be used in order to achieve the capacity of the twouser common message Gaussian MIMO broadcast channel (3).
+However, an exact JET is known to exist only for K = 2 for
+general matrices, and it is not known how to generalize it to
+larger values of K.
+
+(3)
+
+III. P ROBLEM R EFORMULATION
+
+where maximization is carried over all admissible channel
+input covariance matrices Cx
+0, subject to the power
+constraint.
+The transmission scheme of [5] is based on applying a
+unitary triangularization to two augmented matrices:
+√
+Hk C x
+Gk
+, k = 1, 2
+I
+(4)
+†
+Tk = Uk Gk V,
+
+In this section we reformulate the problem of arbitrarily
+permuted parallel Gaussian channels in terms of a commonmessage MIMO broadcast problem for K! users, where K is
+the number of parallel channels.
+The K parallel channels (1) can be regarded as a single
+MIMO channel:
+y = Hx + z
+where x is the channel input vector of length K, and z is a
+circularly-symmetric white Gaussian random vector of length
+K and identity covariance matrix.
+The channel matrix H is a K × K diagonal matrix, which
+is known at the receiver:
+
+where V is an nt × nt precoding unitary matrix applied at
+†
+the transmitter (and thus, cannot depend on k), Uk is an nt ×
+(k)
+(nr ) + nt ) matrix with orthonormal rows which is known at
+the receiver (and may differ between the receivers), and Tk is
+an nt × nt upper-triangular matrix.
+The transmitter sends the signal:
+
+ α
+1
+ 0
+H= .
+ .
+.
+0
+
+1/2
+˜
+x = Cx V x ,
+
+˜
+where the vector x is formed by taking one symbol from each
+of nt parallel codebooks, of equal powers 1/nt .
+
+0
+α2
+.
+.
+.
+0
+
+···
+···
+..
+.
+···
+
+0
+0
+.
+.
+.
+αK
+
+
+
+
+.
+
+
+(5)
+
+The transmitter knows the matrix H, up to the unknown order
+of the diagonal elements.
+
+2
+
+The latter is, in turn, equivalent to multicasting the same
+(common) message to K! receivers simultaneously, where the
+channel matrices of the various users are all of the form:
+Hi
+
+ α
+πk (1)
+0
+
+
+.
+
+.
+.
+0
+
+0
+απk (2)
+.
+.
+.
+0
+
+···
+···
+..
+.
+···
+
+0
+0
+.
+.
+.
+
+where a, b ≥ 1 are known.
+The special case a = 1 (or b = 1) corresponds to a Gaussian
+erasure, where there occurs exactly one erasure in every two
+symbols, but the location of the erasure is unknown at the
+transmitter.
+Since there are only two options for the channel matrix H,
+the capacity in this case can be achieved by using the JET
+described in Section II.
+Speciﬁcally, we show next that the decomposition (7) is
+obtained by choosing the precoding matrix to be the (scaled)
+Hadamard matrix (which coincides with the 2×2 DFT matrix):
+1
+1 1
+.
+V =√
+1 −1
+2
+
+
+
+απk (K)
+
+
+,
+
+
+and πk ∈ SK is a permutation which is different for each user.
+The transmission scheme is obtained, similarly to the twouser scheme (4), by applying a joint unitary triangularization
+to the augmented matrices, with Cx = I:
+Hk
+†
+Gk
+, Tk = Uk Gk V,
+(6)
+I
+
+In our case, there are two possible channel matrices H:
+
+where V is a precoding unitary matrix which is known at the
+transmitter (and thus, cannot depend on k), Uk is a matrix
+with orthogonal columns which is applied by receiver k, and
+Tk is an upper-triangular matrix.
+As discussed in Section II, this scheme achieves the rate:
+
+1
+2
+1
+†
+V † (I + H2 H2 )V =
+2
+†
+V † (I + H1 H1 )V =
+
+i=1
+
+min {log |[Tk ]ii |} .
+i
+
+In the case where all the matrices {Tk } have the same diagonal
+values, the following rate is achieved:
+K
+
+K
+
+†
+log [Tk ]ii = log det(I + Hk Hk ) =
+
+R=2
+
+i=1
+
+i=1
+
+log(1 + |αi |2 ) ,
+
+which, according to (2), is equal to the capacity of the channel.
+Note that Uk and Tk in (6) constitute the QR decomposition
+of the matrix Gk V . Consequently, the matrix Tk is the
+†
+Cholesky factor of the matrix V † (I + Hk Hk )V :
+†
+†
+V † (I + Hk Hk )V = Tk Tk , k = 1, 2, . . . , K! .
+(7)
+To summarize, the proposed scheme allows to achieve the
+capacity (2) using codes designed for scalar AWGN channels
+with known SNRs, provided that there exists a unitary matrix
+V such that the Cholesky decomposition (7) holds for every
+k, {Tk } being upper-triangular with the same diagonal values.
+For K = 2 this is achievable using the JET, as discussed
+in Section II. However, as mentioned above, JET is known
+to exist for only K = 2 (for general matrices), and it is
+not known how to generalize it to larger values of K. In
+the following section, we show that in the special case of
+arbitrarily permuted channels (5), the decomposition (7) exists
+for K = 2 and K = 3. Later, we review the concept of
+space–time triangularization, introduced in [6], and show that
+it can be used to obtain a practical scheme which achieves the
+capacity for 4 ≤ K ≤ 6.
+
+We now consider the special case of two parallel channels
+(K = 2). The channel can be in one of two “states”:
+
+b 0
+0 a
+
+(9)
+
+where a, b, c ≥ 1 are known, up to an unknown permutation.
+In this case, we propose the following precoding matrix,
+which is the 3 × 3 DFT matrix:
+
+
+1
+1
+1
+1 
+1
+e
+e−1  ,
+V =√
+3
+1 e−1
+e
+
+,
+
+†
+I + H 2 H2 =
+
+.
+
+B. Three Parallel Channels (K = 3)
+We now treat the case of three parallel channels (K = 3).
+In this case, we have:
+
+
+a 0 0
+I + H †H =  0 b 0  ,
+0 0 c
+
+A. Two Parallel Channels (K = 2)
+
+a 0
+0 b
+
+b−a
+a+b
+
+(8)
+
+Alternatively, we can use the fact that the diagonal values of
+the Cholesky factor of a matrix can be expressed as the ratios
+between the determinants of its principal minors (see, e.g.,
+[7]). In our case, the determinants of the principal minors of
+1
+both (8) and (9) are M1 = 2 (a + b) and M2 = ab. Therefore,
+the diagonal values of the Cholesky factors are
+M2
+[Tk ]11 = M1 , [Tk ]22 =
+,
+M1
+which coincide with (10) and (11), respectively.
+Since T1 and T2 have the same diagonal values, the same
+SISO codewords can be used to simultaneously achieve the
+capacities of both channels H1 and H2 .
+Note that the precoding matrix V used by the transmitter
+does not depend on a or b. Nonetheless, the rates of the SISO
+codebooks need to be known at both transmission ends.
+
+IV. S PACE - ONLY T RIANGULARIZATION
+
+†
+I + H 1 H1 =
+
+a+b
+b−a
+
+a−b
+a+b
+
+Cholesky decompositions (7) of the above two matrices yield
+
+
+a+b
+√ a−b
+2
+2(a+b) 
+T1 = 
+(10)
+2ab
+0
+a+b
+
+
+a+b
+√ b−a
+2
+2(a+b) 
+T2 = 
+.
+(11)
+2ab
+0
+a+b
+
+K
+
+R=2
+
+a+b
+a−b
+
+,
+
+3
+
+where e e2πi/3 .
+Using the matrix V in (7) yields
+V † (I + H † H)V =
+
+a+b+c
+1
+a + be−1 + ce
+3
+a + be + ce−1
+
+a + be + ce−1
+a+b+c
+a + be−1 + ce
+
+Using extended channel matrices, the scheme described in
+Section II can be employed, where the channel matrices Hk
+are replaced by their extended versions Hk . As we shall see
+in the sequel, this allows to achieve the channel capacity of
+K parallel channels beyond the case of K = 3 channels.
+In order to achieve the capacity for 4 ≤ K ≤ 6, we will
+use extended matrices with two duplications, where each pair
+of two consecutive complex-valued symbols will be regarded
+as a single quaternion-valued symbol.
+A quaternion w ∈ H can be regarded as a collection of four
+real-valued symbols [8]
+w = a + bi + cj + dk .
+
+
+a + be−1 + ce
+−1 
+.(12)
+a + be + ce
+a+b+c
+
+The diagonal values of the Cholesky factors of (12) are
+M2
+M3
+[Tk ]11 = M1 , [Tk ]22 =
+, [Tk ]33 =
+,
+M1
+M2
+
+where M1 , M2 , M3 are the determinants of the principal
+minors of (12):
+1
+M1 = (a + b + c)
+3
+1
+M2 = (ab + ac + bc)
+3
+M3 = abc .
+
+The quaternions form a vector space over the real numbers.
+There also exists an associative product of two quaternions,
+which is deﬁned by the products of the basis elements 1, i, j, k:
+12 = 1 , i2 = j 2 = k2 = −1 ,
+1i = i1 = i , 1j = j1 = j , 1k = k1 = k ,
+ij = −ji = k , jk = −kj = i , ki = −ik = j .
+
+Since M1 , M2 , M3 are invariant to the order of (a, b, c), so
+are the diagonal values d1 , d2 , d3 . Thus, the proposed scheme,
+using the precoding matrix V , achieves the capacity (2)
+simultaneously for all the possible permutations πk .
+Note that a 3 × 3 linear transformation over the complex
+ﬁeld can be regarded as a 6 × 6 transformation over the
+reals. Thus, in the case that the parallel channels (1) are realvalued (rather than complex valued), we can, nonetheless, use
+the proposed scheme, by treating two consecutive real-valued
+input symbols as a single complex-valued symbol. In fact, as
+explained in the next section, this is a special case of the time–
+space triangularization approach.
+Unfortunately, the above two special cases do not carry over
+to the case of K = 4: using the 4 × 4 complex-valued DFT
+matrix does not yield equal diagonal values after Cholesky
+†
+decomposition of V † (I + Hk Hk )V . For this reason, we need
+to extend the space–time approach beyond the complex ﬁeld,
+using quaternions, as detailed in the next section.
+
+The transformation of multiplying a quaternion on the left
+by the quaternion w, W (x) wx, is a linear transformation
+from H to H over the ﬁeld R. Using the basis {1, i, j, k}, this
+transformation is given by the following matrix:
+a
+ b
+W =
+c
+d
+
+
+−b
+a
+d
+−c
+
+−c
+−d
+a
+b
+
+
+−d
+c 
+.
+−b 
+a
+
+Alternatively, the same quaternion can be regarded as a
+collection of two complex-valued symbols:
+w = (a + bi) + j(c − di) .
+
+Using the basis {1, j}, the transformation W (x) = wx over
+the ﬁeld C is also linear, and is represented by:
+W =
+
+a + bi −c − di
+c − di a − bi
+
+.
+
+A. Four Parallel Channels (K = 4)
+We now show how quaternion-valued matrices allow the design of a precoding matrix for four permuted parallel channels
+(K = 4). Using extended matrices with two duplications, the
+channel matrix (over the complex ﬁeld) is:
+
+V. S PACE –T IME T RIANGULARIZATION
+In order to obtain a transmission scheme for more than three
+parallel channels, we utilize space–time triangularization,
+which was proposed in [6] for the general case.
+For illustration, assume we have three parallel channels with
+gains α1 , α2 , α3 . The parallel channels can be represented by
+the 3 × 3 channel matrix
+
+
+α1 0
+0
+H = diag(α1 , α2 , α3 )  0 α2 0  .
+0
+0 α3
+
+I + H † H = diag(a, a, b, b, c, c, d, d) ,
+
+which is an 8 × 8 matrix. By combining every two complexvalued symbols into a single quaternion-valued symbol, we
+arrive at the following 4×4 matrix over the quaternion division
+ring:
+
+
+a 0 0 0
+ 0 b 0 0 
+
+I + H †H = 
+ 0 0 c 0 .
+0 0 0 d
+
+However, we can also regard it is a 6 × 6 MIMO channel,
+where in each channel-use six symbols are being transmitted,
+two symbols on each one of the parallel channels. Thus, the
+channel matrix of this 6 × 6 channel is:
+
+Consider the following quaternion-valued precoding matrix V :
+
+
+1 1 1
+1
+1 1 x i
+iy 
+
+V = 
+ 1 z −1 −z  ,
+2
+1 y −i −ix
+
+H = diag(α1 , α1 , α2 , α2 , α3 , α3 ) .
+This will be referred to as an extended channel matrix with
+two duplications. Extended matrices with more than two
+duplications are deﬁned in a similar manner.
+
+4
+
+where
+
+VI. E XTENSIONS
+
+√
+√
+1
+x = (−1 − 2i − 2j + 2k)
+3
+√
+√
+1
+y = (−1 + 2i − 2j − 2k)
+3
+√
+1
+z = (−1 + 2 2j) .
+3
+
+For a larger number of parallel channels, algebras of higher
+dimensions need to be considered. to achieve a Cholesky
+decomposition with a form similar to (13). Another approach
+could be to use nearly-optimal precoding matrices, as described in [10] for general channel matrices. However, this
+is not practical, even for relatively small number of channels.
+For example, for K = 7 there can be 7! = 5040 possible
+matrices {Hk } (in case that all the channel gains αi are
+different), so that using this scheme for joint triangularization
+would suggest an enormous amount of duplications, which
+becomes impractical. Nearly optimal schemes for permuted
+parallel Gaussian channels (i.e., this special class of matrices)
+is an interesting avenue for future research.
+Finally, we note that the proposed scheme can also be
+applied to the case of arbitrarily varying permuted Gaussian
+channels, where the permutation π may vary between channel
+uses. Suppose that we obtained a joint triangularization (6),
+where Tk is upper-triangular with diagonal elements not depending on k. Since the receiver multiplies the received input
+†
+signal y by Uπ and performs SIC of the various codewords,
+the scheme allows the channel Hk (and therefore the unitary
+matrix Uk ) to vary from symbol to symbol. Note, however,
+that this applies only for K = 2, 3, where one sample is
+processed at a time. In cases where several channel outputs
+ought to be grouped and processed together, the permutation
+π needs to be constant during several consecutive channel
+uses. This requirement is reminiscent of the requirement in
+Alamouti space–time coding [11]. If, for example, quaternion
+precoding is being used, then π need to be constant during
+every two consecutive channel uses.
+
+Applying the Cholesky decomposition (7) with this V yields
+
+
+d1 ∗ ∗ ∗
+ 0 d2 ∗ ∗ 
+
+T =
+ 0 0 d3 ∗  ,
+0 0 0 d4
+where
+1
+(a + b + c + d)
+4
+1
+d2 d2 = (ab + ac + ad + bc + bd + cd)
+1 2
+6
+1
+d2 d2 d2 = (abc + abd + acd + bcd)
+1 2 3
+4
+d2 d2 d2 d2 = abcd
+1 2 3 4
+d2 =
+1
+
+and ∗ represents some value (which may differ from entry to
+entry). Again, the diagonal values are invariant to reordering
+of the values (a, b, c, d), hence this scheme achieves capacity.
+B. Five Parallel Channels (K = 5)
+For ﬁve parallel channels, there also exists a capacityachieving precoding matrix over the quaternions. The capacity
+(2) is achieved using the following quaternion precoding
+matrix:
+
+
+1 1 1 1
+1
+ 1 w q q 2 T (w) 
+
+1 
+V = √  1 x q 2 q 4 T (x)  ,
+
+5  1 y q 3 q 6 T (y) 
+
+1 z q 4 q 8 T (z)
+
+where T (w + xi + yj + zk) w + xi − yj − zk and q
+The values w, x, y, z were obtained numerically:
+w ≈ −0.25 − 0.7694i − 0.1904j
+x ≈ −0.25 + 0.1816i − 0.7606j
+y ≈ −0.25 − 0.1816i + 0.7781j
+z ≈ −0.25 + 0.7694i + 0.1729j
+
+e
+
+2πi
+5
+
+R EFERENCES
+[1] F. Willems and A. Gorokhov, “Signaling over arbitrarily permuted
+parallel channels,” IEEE Trans. Info. Theory, vol. 54, pp. 1374–1382,
+March 2008.
+[2] E. Hof, I. Sason, and S. S. (Shitz), “Polar coding for reliable communications over parallel channels,” in 2010 IEEE Information Theory
+Workshop (ITW’2010), Cambridge, MA, USA, Aug. 30–Sep. 3, 2012.
+[3] J. Wolfowitz, “Simultaneous channels,” Arch. Rational Mech. Anal.,
+vol. 4, pp. 371–386, 1960.
+[4] S. Tavildar and P. Viswanath, “Approximately universal codes over slowfading channels,” IEEE Trans. Info. Theory, vol. 52, pp. 3233–3258, July
+2006.
+[5] A. Khina, Y. Kochman, and U. Erez, “Joint unitary triangularization for
+MIMO networks,” IEEE Trans. Signal Proc., vol. 60, pp. 326–336, Jan.
+2012.
+[6] A. Khina, A. Hitron, and U. Erez, “Modulation for MIMO networks with
+several users,” in 2011 IEEE International Symposium on Information
+Theory (ISIT’2011), St. Petersburg, Russia, July 31–Aug. 5, 2011, pp.
+2452–2456.
+[7] A. S. Householder, The Theory of Matrices in Numerical Analysis, 1964,
+reprinted by Dover, New York, 1975.
+[8] W. R. Hamilton, On Quaternions, or On a New System of Imaginaries
+in Algebra. Philosophical Magazine, 1844, vol. 25, no. 3.
+[9] [Online]. Available: http://www.eng.tau.ac.il/∼uri/V6.txt
+[10] I. Livni, A. Khina, A. Hitron, and U. Erez, “Space-time MIMO multicasting,” in 2012 IEEE International Symposium on Information Theory
+(ISIT’2012), Cambridge, MA, USA, July 2012.
+[11] S. M. Alamouti, “Multidimensional constellations - Part II: Voronoi
+Constellations,” A simple transmit diversity technique for wireless communications, vol. 16, pp. 1451–1458, Oct. 1998.
+
+.
+
+− 0.5561k
++ 0.5710k
++ 0.5469k
+− 0.5618k .
+
+The diagonal values after Cholesky factorization are
+1
+(a + b + c + d + e)
+5
+1
+(ab + ac + ad + · · · )
+=
+10
+1
+=
+(abc + abd + abe + · · · )
+10
+1
+= (abcd + abce + · · · )
+5
+= abcde ,
+
+d2 =
+1
+d2 d2
+1 2
+d2 d2 d2
+1 2 3
+d2 d2 d2 d2
+1 2 3 4
+d2 d2 d2 d2 d2
+1 2 3 4 5
+
+(13)
+
+which are again invariant to permutations of a, b, c, d, e.
+C. Six Parallel Channels (K = 6)
+For K = 6, a 6 × 6 quaternion precoding matrix was found
+numerically, but we do not have explicit expressions for the
+entries of this matrix. The matrix, which is given in [9], yields
+diagonal values of a form similar to (13).
+
+5
+
+

@@ -1,0 +1,1403 @@
+Creator:        TeX
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Mon May 14 10:17:44 2012
+ModDate:        Tue Jun 19 12:56:10 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      471094 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569565861
+
+Analysis and Design of Ultra-Sparse Non-Binary
+Cluster-LDPC Codes
+David DECLERCQ
+
+Valentin SAVIN
+
+Lam PHAM SY
+
+ETIS, ENSEA / Univ. Cergy-Pontoise / CNRS UMR-8051
+F-95000, Cergy-Pontoise, France
+declercq@ensea.fr
+
+CEA-LETI, MINATEC campus
+F-38054, Grenoble, France
+valentin.savin@cea.fr
+
+EUTELSAT SA
+F-75015, Paris, France
+lphamsy@eutelsat.fr
+
+In [1], the authors showed that the new class of NBcluster-LDPC codes does not suffer from the same limitations.
+Precisely, it has been proven that the minimum distance of
+ultra-sparse cluster codes grows linearly with the code length,
+provided that the minimum distance of the component code,
+which deﬁnes the generalized parity-checks, is above the
+second eigenvalue of the graph. Using the Gilbert-Varshamov
+bound on the minimum distance and the Friedman theorem [9]
+on the second eigenvalue of regular graphs, it has been
+shown that there exist ensembles of ultra-sparse cluster codes
+with linear growing minimum distance. However, for these
+ensembles the size of clusters could be far too large for
+practical applications.
+This work continues the research begun in our previous
+work [1]. We derive a new lower bound on the minimum
+distance of cluster-codes that is based on the topological, rather
+than algebraic, properties of the underlying bipartite graph.
+Although the bound we propose is sublinear in the code length,
+it has the advantage of being applicable to any code length and
+cluster sizes, and it also allows deriving a methodology for the
+design of ﬁnite length cluster codes. In a second part of the paper, we also present an analysis of the asymptotic performance
+of cluster codes in terms of EXIT curves. By using the area
+theorem [10], we derive an upper bound on the MAP threshold,
+which is conjunctured to be tight in quite general settings,
+especially for codes deﬁned by regular graphs. It is shown
+that the MAP thresholds of NB-cluster-LDPC codes increases
+with p, and quickly approaches the Shannon limit. Finally,
+we propose an optimization procedure for ﬁnite length codes,
+which allows designing NB-cluster-LDPC codes with large
+minimum distance, while preserving the constraint of ultrasparse Tanner graphs. The performance of the designed codes
+is assessed by Monte-Carlo simulation, which demonstrates
+the excellent performance of our codes under iterative BeliefPropagation decoding, on both the waterfall and the error-ﬂoor
+region.
+
+Abstract—This paper continues a previous work on non-binary
+cluster-LDPC codes. Such codes are deﬁned by locally dense
+parity-check matrices, with (possibly rectangular) dense clusters
+of bits, but which are cluster-wise sparse. We derive a lower
+bound on the minimum distance of non-binary cluster-LDPC
+codes that is based on the topological properties of the underlying
+bipartite graph. We also propose an optimization procedure,
+which allows designing ﬁnite length codes with large minimum
+distance, even in the extreme case of codes deﬁned by ultra-sparse
+graphs, i.e. graphs with all symbol-nodes of degree dv = 2.
+Furthermore, we provide asymptotic thresholds of ensembles
+of non-binary cluster-LDPC codes, which are computed exactly
+under the Belief Propagation decoding, and upper-bounded
+under the Maximum a Posteriori (MAP) decoding. We show that
+the MAP-threshold upper bounds, which are conjunctured to be
+tight, quickly approach the channel capacity, which conﬁrms
+the excellent minimal distance properties of non-binary clusterLDPC codes.
+
+I. I NTRODUCTION
+In this paper we consider a very general construction of
+non-binary low-density codes, known as non-binary clusterLDPC (NB-cluster-LDPC) codes [1]. The sparse parity check
+matrix H is organized in clusters of bits, where each cluster is
+either a full-rank or a zero p × r binary matrix determined by
+p consecutive rows and r consecutive columns of H. The case
+p = r corresponds to the family of non-binary LDPC codes
+deﬁned over general linear groups [2], while the case p > r
+corresponds to the more general codes studied in this paper.
+This type of codes has been ﬁrst introduced in [3], in the case
+of general ensemble of irregular graphs, and can be seen as a
+non-binary generalization of the GLD codes proposed in [4].
+The case of codes for which the underlying bipartite graph
+is ultra-sparse, meaning that each symbol node is connected to
+exactly dv = 2 linear-constraint nodes, is of particular interest.
+First, very large girths can be obtained for Tanner graphs with
+dv = 2, as demonstrated in [5], [6]. It has also been pointed out
+[3], [7] that when the size of the non-binary alphabet grows,
+the best decoding thresholds are obtained for average density
+of edges closer and closer to dv = 2. Practically, for NB codes
+deﬁned over ﬁnite ﬁelds Fq with q ≥ 64, the best codes, both
+asymptotically and at ﬁnite lengths, are ultra-sparse codes.
+Despite those advantages, ultra-sparse LDPC codes over ﬁnite
+ﬁelds or general linear groups suffer from a serious drawback,
+as their minimum distance is limited and grows at best as
+O(log(N )), where N is the number of symbol nodes [8].
+
+II. N ON - BINARY CLUSTER -LDPC CODES
+A NB-cluster-LDPC code is deﬁned by the structure of
+its binary parity-check matrix Hbin , which is organized in
+dense clusters of bits, but which is globally cluster-wise
+sparse. We consider two sequences of integers {pi }i=1,...,M
+and {rj }j=1,...,N that deﬁne the clustering of the parity-check
+matrix Hbin = (hi,j )i = 1, . . . , M . Each cluster hi,j is a binary
+j = 1, . . . , N
+matrix of size pi × rj , which is either all-zero or full-rank.
+
+This work was supported by the French ANR grant no. 2009 VERS 019
+04 (ARSSO project) and the FP7-ICT NoE NEWCOM++
+
+1
+
+We further assume that for any full-rank cluster hi,j , we have
+rj ≤ pi . We note that the binary parity check matrix Hbin is of
+M
+N
+size Mbin ×Nbin , where Mbin = i=1 pi and Nbin = j=1 rj .
+The parameter Nbin will be referred to as the binary length of
+the NB-cluster-LDPC code.
+A codeword X = (X1 , . . . , XN ) is a sequence of
+r
+binary vectors Xj ∈ F2j , verifying the linear system
+N
+j=1 hi,j Xj = 0, ∀i = 1, . . . , M . We shall also refer to
+Xj as the j th coded symbol. From a non-binary perspective, the ith non-binary linear constraint of the above system
+corresponds to pi binary parity-checks, while the j th nonbinary coded symbol Xj corresponds to rj coded bits. Under
+these settings, each non-zero cluster gives an injective linear
+r
+transformation hi,j : F2j → Fpi , from the alphabet of the
+2
+th
+j coded symbol to the vector-space of the ith non-binary
+constraint.
+Let {hi,jk }k=1,...,d be the non-zero clusters in the ith nonbinary linear constraint. They form a binary code Ci with
+d
+length
+k=1 rjk bits and co-dimension pi . Throughout the
+paper, this binary code will be referred to as the ith component
+c
+code; hence, Ci is the kernel of the binary matrix Hi :
+
+use the notation from the previous section, and we also denote
+by (hi,j ) the image of the linear application:
+r
+
+hi,j : F2j → Fpi
+2
+Since hi,j is injective, (hi,j ) ⊆ Fpi is a vector subspace of
+2
+dimension rj .
+The following theorem provides a lower bound on the minimum distance ∆ of the NB-cluster-LDPC code, depending
+on the girth g of its Tanner graph, namely the length of its
+shortest cycle.
+Theorem 1: Assume that (hi,j ) ∩ (hi,j ) = {0} for any
+two edges i ∼ j and i ∼ j , adjacent to the same constraint
+node i. Then:
+g
+∆ ≥ 2 4 +2 − 3,
+where g is the girth of the bipartite graph Γ, and x denotes
+the largest integer strictly less than x (thus, x = x − 1 if x
+is integer, and x = x otherwise).
+Proof. Let X = (X1 , . . . , XN ) be a non-zero codeword, where
+r
+Xj = (xj,1 , . . . , xj,rj ) ∈ F2j . Let j0 be an active symbol node,
+meaning that Xj0 contains a non-zero bit, and let V be the set
+of nodes at topological distance from j0 . Thus, V0 = {j0 },
+V1 is the set of constraint-nodes connected to j0 , V2 is the
+set of symbol-nodes connected to j0 by a path of length 2,
+etc. Assume that is odd and < g/2. Then any constraint
+node i ∈ V is connected to a unique symbol node belonging to
+V −1 and to dc − 1 symbol nodes belonging to V +1 . Consider
+i ∈ V , such that its parent symbol node j ∈ V −1 is active
+(i.e. Xj contains a non-zero bit). Since X veriﬁes the linear
+constraint corresponding to i, we have:
+
+c
+Hi = [hi,j1 hi,j2 · · · hi,jd ]
+c
+c
+Note also that two component matrices Hi1 and Hi2 might
+be equal, possibly after some column or row permutation, even
+if the number and the size of non-zero clusters participating
+in the non-binary constraints i1 and i2 are different. Put
+c
+c
+differently, the same component matrix Hi1 = Hi2 can be
+clusterized in different manners.
+The non-binary nature of NB-cluster-LDPC codes is better
+highlighted through their graphical representation. The bipartite (Tanner) graph Γ, associated with the NB-cluster-LDPC
+code, consists of N symbol-nodes and M constraint nodes,
+which are connected according to the non-zero clusters hi,j .
+The j th symbol-node represents a plurality of rj coded bits,
+while the ith constraint-node represents a plurality of pi binary
+parity-checks. The nodes are connected by an edge if and only
+if the cluster hi,j is non-zero, in which case the corresponding
+edge is considered as being labeled by hi,j . The labels on the
+edges correspond to the generalization of the non-zero ﬁeld
+values for usual NB-LDPC codes [11].
+The Belief Propagation (BP) decoder for NB-cluster-LDPC
+codes is similar to the one for usual NB-LDPC codes on Galois
+ﬁelds [7], [12], and is based on local Bayesian update rules
+following the non-binary constraints structure. As a consequence, BP decoding can be performed in the Fourier domain
+to speed-up the simulations [11], and the low complexity
+decoders proposed for NB-LDPC codes [13], [14] can be
+easily extended to NB-cluster-LDPC codes.
+
+hi,j Xj +
+
+hi,j Xj = 0
+j=j ∼i
+
+On the other hand, (hi,j ) ∩ (hi,j ) = {0}, for any j = j.
+From the above equation, it follows that at least two children
+symbol nodes (j , j ) ∈ V +1 have to be active. Since there
+are no cycles of length < g, the minimum distance is lower
+bounded by the number of active-symbol nodes at distance
+< g/2, with even, which is given by:
+1+
+2≤
+
+2 2 −1 × 4 = 1 + 4
+< g/2
+even
+
+2t−1 = 2
+
+g
+4
+
++2
+
+−3
+
+1≤t<g/4
+
+Corollary 2: Under the assumptions of the above theorem,
+if the bipartite graph Γ is constructed by using the Progressive
+Edge Growth [15] (PEG) algorithm, then:
+∆≥2
+
+dc − 2
+N +1
+dc − 1
+
+√
+log(dc −1) ( 2)
+
+−3
+
+Proof. Follows from the above theorem and from [15, Theorem1] that states a lower bound on the girth of regular bipartite
+graphs built by the PEG algorithm.
+The Theorem 1 provides a lower bound on the minimum
+distance of NB-cluster-LDPC codes, under the assumption that
+the labels hi,j of the edges incident to a constraint node
+i = 1, . . . , M have pairwise disjoint images. If such an
+
+III. M INIMUM DISTANCE OF NB- CLUSTER -LDPC CODES
+This section deals with the minimum distance properties of
+NB-cluster-LDPC codes. We only consider NB-cluster-LDPC
+codes deﬁned by regular (dv = 2, dc ) graphs, which represents
+the most problematic case in terms of minimum distance. We
+
+2
+
+Table I
+S ET OF 16 PAIRWISE DISJOINT CLUSTERS OF SIZE (p = 8, r = 4) OBTAINED FROM THE EXTENDED -H AMMING CODE [128, 120, 4].
+1
+0
+1
+1
+1
+0
+1
+1
+
+0
+0
+0
+0
+0
+1
+1
+1
+
+1
+0
+1
+1
+1
+0
+0
+1
+
+0
+0
+1
+0
+1
+0
+1
+1
+
+1
+1
+1
+0
+1
+0
+0
+1
+
+1
+0
+1
+1
+0
+1
+1
+1
+
+0
+0
+0
+0
+0
+0
+0
+1
+
+1
+0
+0
+0
+0
+1
+0
+1
+
+0
+0
+0
+1
+0
+0
+1
+1
+
+0
+1
+1
+1
+0
+1
+1
+1
+
+1
+0
+1
+1
+0
+0
+0
+1
+
+1
+0
+0
+0
+1
+1
+1
+1
+
+0
+0
+1
+0
+0
+1
+1
+1
+
+0
+1
+0
+1
+1
+0
+0
+1
+
+0
+0
+0
+1
+0
+0
+0
+1
+
+1
+0
+1
+1
+1
+1
+1
+1
+
+1
+1
+0
+0
+0
+1
+0
+1
+
+1
+0
+1
+0
+0
+1
+0
+1
+
+0
+0
+0
+0
+1
+0
+0
+1
+
+1
+0
+0
+0
+0
+0
+1
+1
+
+0
+1
+0
+0
+1
+1
+0
+1
+
+0
+0
+1
+1
+0
+1
+1
+1
+
+0
+0
+1
+1
+1
+0
+1
+1
+
+0
+1
+1
+1
+1
+0
+0
+1
+
+1
+1
+1
+1
+1
+0
+1
+1
+
+1
+1
+1
+0
+0
+0
+0
+1
+
+0
+0
+1
+0
+0
+1
+0
+1
+
+0
+0
+1
+1
+1
+0
+0
+1
+
+1
+1
+0
+1
+1
+1
+0
+1
+
+1
+0
+1
+1
+0
+0
+1
+1
+
+1
+1
+0
+0
+0
+0
+1
+1
+
+0
+0
+0
+1
+0
+1
+0
+1
+
+0
+1
+1
+1
+0
+0
+1
+1
+
+1
+0
+1
+1
+1
+1
+0
+1
+
+1
+0
+1
+0
+1
+1
+1
+1
+
+0
+1
+0
+1
+0
+1
+1
+1
+
+0
+1
+1
+1
+1
+1
+1
+1
+
+0
+0
+0
+1
+1
+1
+0
+1
+
+1
+0
+0
+1
+1
+1
+0
+1
+
+0
+1
+0
+0
+0
+1
+0
+1
+
+1
+1
+0
+0
+1
+0
+0
+1
+
+1
+1
+0
+0
+0
+1
+1
+1
+
+1
+1
+0
+1
+0
+0
+0
+1
+
+1
+0
+0
+0
+0
+0
+0
+1
+
+1
+1
+0
+1
+0
+0
+1
+1
+
+1
+1
+0
+1
+1
+0
+0
+1
+
+1
+1
+1
+1
+1
+0
+0
+1
+
+1
+0
+1
+0
+1
+0
+0
+1
+
+1
+0
+0
+1
+0
+0
+1
+1
+
+1
+1
+0
+0
+1
+1
+1
+1
+
+0
+0
+0
+1
+1
+0
+1
+1
+
+0
+1
+1
+0
+0
+1
+1
+1
+
+1
+1
+0
+0
+1
+1
+0
+1
+
+1
+1
+1
+1
+0
+0
+0
+1
+
+0
+0
+0
+0
+1
+1
+0
+1
+
+1
+0
+0
+1
+0
+0
+0
+1
+
+0
+1
+1
+0
+0
+0
+1
+1
+
+0
+0
+0
+1
+1
+1
+1
+1
+
+0
+1
+1
+0
+1
+0
+1
+1
+
+1
+1
+1
+0
+1
+1
+1
+1
+
+0
+0
+1
+1
+1
+1
+0
+1
+
+0
+1
+0
+1
+0
+1
+0
+1
+
+1
+0
+1
+0
+0
+0
+1
+1
+
+the last one being equivalent to the Maximum Likelihood
+decoding over the BEC).
+For given code length Nbin and channel erasure probability
+ε, we denote by hNbin (ε) the probability that a bit remains
+erased after decoding, assuming that the received value (if any)
+of this particular bit has not been submitted to the decoder.
+The EXIT function h(ε) is deﬁned as the (pointwise) limit of
+hNbin (ε), when the code length Nbin goes to inﬁnity. The BP
+and MAP thresholds of E(λ, ρ, r, p) are given by:
+
+assumption is met, then for each constraint node i, the images
+of the labels of the incident edges j ∼ i deﬁne dc vector
+subspaces { (hi,j )}j∼i of Fpi , of dimensions {rj }j∼i , which
+2
+are pairwise disjoint. Conversely, if for each constraint node
+i there exist dc pairwise disjoint vector subspaces of Fpi , of
+2
+dimensions {rj }j∼i , then it is possible to label the edges of
+Γ, so that the assumption of Theorem 1 is met.
+In order to verify the efﬁciency of this constraint, and then
+have an indication whether the lower bound of Theorem 1 is
+tight or not, let us denote by d(r, p) the maximum number
+of pairwise disjoint vector subspaces of Fp , for some given
+2
+cluster dimension r ≤ p. Clearly, d(1, p) = 2p − 1 and
+p
+< r ≤ p. Moreover, for any
+d(r, p) = 1 for any
+2
+1 ≤ r ≤ p, the following inequalities hold:
+2p − 1
+2p−r+1 − 1
+≤ d(r, p) ≤ r
+2r − 1
+2 −1
+
+1
+0
+0
+1
+1
+1
+1
+1
+
+BP
+MAP
+
+= sup{ε ∈ [0, 1] | hBP (ε) = 0},
+= sup{ε ∈ [0, 1] | hMAP (ε) = 0},
+
+where subscripts BP and MAP are used to indicate the
+decoding algorithm.
+Explicit formulae for the computation of the BP-EXIT curve
+can be derived by using density evolution (DE) techniques,
+similar to those presented in [17]. We have derived DE
+equations for NB-cluster-LDPC codes, however, due to space
+limitation they are not presented here, but will be included in
+an extended version of this paper. The exact computation of the
+MAP-EXIT function is generally unworkable. However, using
+1
+the area theorem [10], we have
+hMAP (ε) dε = R, where
+MAP
+R is the designed coding rate of the given ensemble. Moreover,
+since the BP decoding is suboptimal with respect to the MAP
+decoding, we have hBP (ε) ≥ hMAP (ε). Hence, if for some
+1
+¯MAP , ¯ hBP (ε) dε = R, we necessarily have ¯MAP ≥ MAP .
+MAP
+This gives an upper bound on the MAP-threshold, which is
+known to be tight in the binary case [10].
+Table II shows the BP thresholds and the MAP threshold
+upper bounds for various ensembles of ultra-sparse cluster
+codes with designed code rate R = 1/2. Parameters r and
+p are shown in the table, λ = x (corresponding to dv = 2),
+while ρ is determined, “as regular as possible”, according
+to parameters λ, r, p, and R. We can observe that for both
+r = 1 and r = 2, the BP threshold value increases with p for
+r ≤ p ≤ 4, and it starts decreasing from this point. This can
+be explained as follows. By increasing the value of p, we also
+increase the check-node degree (dv = 2 and R = 1/2, hence
+dc = 4 p ). Consequently, component codes become longer
+r
+and the expected value of the number of erased bits on each
+component code increases. If the expected value of the number
+of erased bits on component codes increases faster than their
+minimal distance, the iterative decoding is penalized, due to
+the fact that each component code is affected by too many
+erased bits.
+As we can observe, the upper bound of the MAP threshold
+increases with p and quickly approaches the Shannon limit,
+which shows that the NB-cluster-LDPC codes ensembles are
+good both for iterative decoding and MLD decoding.
+
+(1)
+
+The proof is omitted due to space limitation. Now, consider
+a NB-cluster-LDPC code, and for each constraint node i,
+let ri = maxj∼i rj ≤ pi be the maximum dimension of
+¯
+its neighbor symbol nodes. If dc ≤ d(¯i , pi ), ∀i, then for
+r
+each constraint node i there exist dc pairwise disjoint vector
+subspaces of Fpi , of dimension ri . Since ri ≥ rj , ∀j ∼ i, it
+¯
+¯
+2
+follows that it is possible to label the edges of Γ, so that the
+assumption of Theorem 1 is met, and provides a useful tool for
+NB-cluster-LDPC code design with good minimum distance.
+As an example, we give in Table I a set of 16 clusters of
+size (p = 8, r = 4) with pairwise disjoint images, obtained
+by selecting columns from the (Nbin = 128, Kbin = 120)
+extended-Hamming code with minimum distance 4. Note that
+the maximum number of clusters indicated by equation (1) is
+d(4, 8) ≤ 17.
+IV. BP AND MAP THRESHOLDS OVER THE BEC
+Throughout this section, we assume that the transmission
+takes place over a Binary Erasure Channel (BEC). We consider
+the ensemble of cluster codes E(λ, ρ, r, p), where λ and ρ
+denote the edge-perspective degree distribution polynomials of
+the subjacent bipartite graph, each graph edge corresponding
+to a full-rank cluster of size p × r (p ≥ r) in the binary paritycheck matrix of the code.
+EXtrinsic Information Transfer (EXIT) curves were ﬁrst
+introduced in [16] as a technique to analyse the convergence
+of the iterative decoding process of parallel concatenated
+codes. A more general deﬁnition has been introduced in [10],
+where the EXIT curve is associated with the sparse graph
+system rather than the component (concatenated) codes. The
+advantage of this approach is that it allows deﬁning EXIT
+curves for any decoding algorithm (e.g. IT or MAP decoding,
+
+3
+
+Table II
+BP THRESHOLDS AND THE MAP- THRESHOLD UPPER BOUNDS FOR
+ENSEMBLES E(λ = x, ρ, r, p), WITH DESIGNED CODE RATE R = 1/2.
+p
+r=1
+
+BP
+¯MAP
+
+1
+
+2
+
+3
+
+4
+
+5
+
+6
+
+7
+
+8
+
+9
+
+10
+
+Algorithm 1 NB-cluster-LDPC code Optimization
+(0)
+
+[Initialization]: design of Hbin with constant cluster size p(0) = p∗ , r(0)
+(a) Initialization-step1: build a Tanner graph Γ with (dv , dc ) = (2, dc )
+such that R(0) = 1 − dv /dc > R∗ , and N (0) variable nodes. The
+graph should be built with the largest possible girth, minimum number
+of shortest cycles, and minimum value of its second eigenvalue [1],
+(b) Initialization-step2: choose a component code H c of size p∗ ×dc ∗r(0)
+and with the largest possible local minimum-distance d,
+(c) Initialization-step3: for each NB-contraint node of the Tanner graph,
+randomly permute the columns of H c , and assign to the dc edges
+clusters of size p∗ × r(0) with r(0) consecutive columns of the
+permuted component code. Consider only permutations such that
+the clusters are full rank, and have pairwise disjoint images. This
+initialization ensures that all the component codes of the initialized NBcluster-LDPC code are identical and with the same minimum distance.
+[Iterative Shortening]:
+(1) Start with k = 0,
+(2) Run the impulse algorithm [18] to build a set S (k) of low weight
+codewords of H (k) with Hamming weights ∈ {∆(k) , . . . ∆(k) + ε},
+(k)
+(3) Select nk columns from Hbin which participate the most in the low(k) ,
+weight codewords S
+(4) Shorten the code by pruning the nk columns, in order to obtain a new
+(k+1)
+(k+1)
+(k)
+code Hbin
+with codeword length Nbin
+= Nbin − nk ,
+
+16
+
+0.3283 0.4092 0.4442 0.4497 0.4445 0.4356 0.4262 0.4171 0.4089 0.4016 0.3715
+0.3283 0.4120 0.4585 0.4795 0.4896 0.4946 0.4971 0.4984 0.4991 0.4995 0.49998
+
+0.4092 0.4489 0.4572 0.4527 0.4438 0.4338 0.4241 0.4153 0.4074 0.3752
+r = 2 ¯ BP N/A 0.4092 0.4541 0.4779 0.4889 0.4942 0.4969 0.4983 0.4991 0.4995 0.49998
+MAP
+
+V. D ESIGN OF F INITE L ENGTH NB- CLUSTER -LDPC
+CODES
+
+We propose in this section an optimization procedure which
+designs NB-cluster-LDPC codes with large minimum distance,
+while preserving the constraint of ultra-sparse Tanner graphs
+with dv = 2. Let us assume that one wants to design a NB∗
+cluster-LDPC code with a target codeword length Nbin and a
+∗
+target coding rate R . We also assume that the clusters have
+constant number of rows (p∗ , . . . , p∗ ) = (p∗ , . . . , p∗ ), while
+1
+M
+∗
+∗
+their number of columns might be different (r1 , . . . , rN ), and
+not ﬁxed a priori, as long as the constraint on the codeword
+∗
+∗
+length i ri = Nbin is veriﬁed.
+As indicated by [1, Theorem 1], good NB-cluster-LDPC
+codes should have bipartite graph with the smallest possible
+second eigenvalue λ2 (Γ), and component codes Ci with the
+largest possible minimum distance δ. Following [1], we refer
+to δ as the local minimum distance of the NB-cluster-LDPC
+code. One possible way of designing a NB-cluster-LDPC code
+with a given local minimum distance δ is by considering a
+linear code C of length d, dimension (d − p), and minimum
+distance δ, and labeling the edges incident to each constraint
+node of Γ by an appropriate clustering of a parity-check matrix
+H c of C.
+In order to differentiate the structure of the clusters from
+one constraint node to another, a simple procedure consists in
+performing a random permutation of the columns of H c . The
+permutation is chosen such as to obtain clusters with full rank,
+which is possible only if the local minimum distance of the
+∗
+component code is large enough: δ ≥ mini (ri ).
+We moreover advise to follow the guidelines of Theorem 1
+and form the clusters such that they have pairwise disjoint
+images. This constraint, together with the minimization of
+λ2 (Γ) and the maximization of δ, form the main guidelines of
+the ﬁrst step of the proposed optimized code design algorithm.
+The principle of the optimization is to start from a NB(0)
+∗
+cluster-LDPC with larger length Nbin > Nbin and larger rate
+(0)
+∗
+(0)
+∗
+R
+> R , but with the same co-dimension Mbin = Mbin ,
+than the ones of the target code. The ﬁrst step of optimization
+(0)
+is then to build Hbin with the above mentioned guidelines.
+Then the construction algorithm performs an iterative shortening of the code by removing columns of the binary paritycheck matrix, with the goal of increasing monotonically the
+minimum distance at each iteration of shortening. At each
+iteration k, we make use of the improved impulse algorithm
+(k)
+[18] to identify low Hamming weight codewords of Hbin , and
+kill them in order to ensure by this careful design that the
+obtained NB-cluster-LDPC has a large minimum distance. We
+proceed in an iterative fashion as summarized in Algorithm 1
+
+(k+1)
+
+(5) k = k + 1, goto (2) until the target length is reached Nbin
+
+∗
+= Nbin .
+
+described below.
+Let us discuss ﬁrst the proposed initialization steps. For the
+step (a) we construct several graphs Γ by using the modiﬁed
+Random-PEG algorithm [6], which is able to design minimum
+size graphs for dv = 2 and a given girth g. We then choose
+a graph Γ with minimum second eigenvalue. For the step (b),
+we choose a component code H c with the highest possible
+local minimum distance from existing codes in the literature
+[19]. Finally, the step (c) consists in selecting columns of H c
+such as to build clusters with pairwise disjoint images. An
+efﬁcient implementation of this step is to select at random the
+clusters from a pre-determined set of clusters with pairwise
+disjoint images, as the set given on Table I for clusters of
+sizes (p = 8, r = 4).
+We now discuss the details of the iterative shortening
+procedure, which relies heavily on the ability to identify lowweight codewords of a sparse linear code. We have adapted
+the “improved impulse method” algorithm proposed in [18] to
+NB-cluster-LDPC codes. This algorithm ﬁnds the low-weight
+codewords of sparse linear codes, and was proved to be largely
+more efﬁcient than other techniques on benchmark LDPC
+codes. The iterative shortening process ensures that the ﬁnal
+NB-cluster-LDPC code has no codeword of Hamming weights
+much smaller than its typical expected minimum distance.
+We give in Table III an example of the iterative shortening
+∗
+process, for the case of Nbin = 256 and R∗ = 1/2. The initial
+(0)
+code deﬁned by the parity check matrix Hbin is built from a
+(0)
+(dv = 2, dc = 16) graph with rate R = 0.75 and clusters of
+sizes (p, r(0) ) = (8, 4) taken at random from the Table I. We
+(k)
+indicate at each step the code rate and length of Hbin , as well
+as the low weight spectrum computed with the improved impulse method. The successive 7 steps of shortening gradually
+improve the low weight spectrum, as the code rate decreases
+from R(0) = 0.75 to R(7) = R∗ = 0.5, reaching a ﬁnal NB-
+
+4
+
+Table III
+R ESULTS OF SUCCESSIVE SHORTENINGS OF NB- CLUSTER -LDPC CODES
+(k)
+
+weight
+#codewords
+
+(0)
+
+(1)
+
+(2)
+
+(3)
+
+(4)
+
+(5)
+
+(6)
+
+(7)
+
+512
+0.750
+
+464
+0.724
+
+432
+0.704
+
+400
+0.680
+
+352
+0.636
+
+304
+0.579
+
+280
+0.543
+
+256
+0.500
+
+10
+2
+
+11
+12
+
+12
+11
+
+13
+125
+
+12
+2
+
+13
+32
+
+13
+5
+
+14
+42
+
+15
+3
+
+16
+43
+
+18
+10
+
+19
+53
+
+19
+3
+
+20
+19
+
+23
+82
+
+MacKay code: R=1/2, Nbin=504
+Cluster code: R=1/2, Nbin=512
+MacKay code: R=1/2, Nbin=1008
+Cluster code: R=1/2, Nbin=1024
+
+10-1
+10-2
+
+24
+253
+
+Frame Error Rate
+
+(k)
+Nbin
+R(k)
+
+100
+
+cluster-LDPC code with minimum distance ∆ = 23, which
+is a good value considering that the NB-cluster-LDPC code
+is based on an ultra-sparse Tanner graph with girth g = 8.
+Note that a direct design with only the initialization step and
+no shortening procedure gave a NB-cluster-LDPC code with
+minimum distance ∆ = 20.
+The optimization algorithm presented in this section should
+be used only to design NB-cluster-LDPC codes at short to
+moderate codeword lengths. For long codes the iterative short∗
+ening steps become cumbersome, and for Nbin > 2000 the NBcluster-LDPC code design is limited at the initialization step
+of the optimization algorithm, and other reﬁnement techniques
+need to be used without relying on the knowledge of low
+weight codewords.
+
+10-3
+10-4
+10-5
+10-6
+10-7
+10-8
+
+0
+
+0.5
+
+1
+
+1.5
+
+2
+
+2.5
+
+3
+3.5
+Eb/N0 (dB)
+
+4
+
+4.5
+
+5
+
+5.5
+
+6
+
+Figure 1. Performance comparison between ultra-sparse (dv = 2) NBcluster-LDPC codes and regular (dv = 3, dc = 6) binary LDPC codes.
+[2] V. Rathi and R. Urbanke, “Density evolution, thresholds and the
+stability condition for non-binary LDPC codes,” IEE ProceedingsCommunications, vol. 152, no. 6, pp. 1069–1074, Dec. 2005.
+[3] L. Sassatelli and D. Declercq, “Non-binary hybrid LDPC codes,” in
+IEEE Trans. Info. Theo., vol. 56, no. 10, pp. 5314–5334, October 2010.
+[4] J. J. Boutros, O. Pothier, and G. Z´ mor, “Generalized low density
+e
+(Tanner) codes,” in IEEE Int. Conf. on Comm., Vancouver, June 1999.
+[5] X.-Y. Hu, E. Eleftheriou, and D.M. Arnold, “Regular and irregular
+progressive edge-growth Tanner graphs,” IEEE Trans. on Inf. Theory,
+vol. 51, no. 1, pp. 386–398, January 2005.
+[6] A. Venkiah, D. Declercq, and C. Poulliat, “Design of cages with a
+randomized progressive edge growth algorithm,” IEEE Commun. Letters,
+vol. 12, no. 4, pp. 301–303, April 2008.
+[7] M.C. Davey and D. MacKay, “Low-density parity-check codes over
+GF(q),” IEEE Commun. letters, vol. 2, pp. 165–167, June 1998.
+[8] C. Poulliat, M. Fossorier, and D. Declercq, “Design of regular (2, dc )LDPC codes over GF(q) using their binary images,” IEEE Trans. on
+Commun., vol. 56, no. 10, pp. 1626–1635, October 2008.
+[9] J. Friedman, “A proof of Alon’s second eigenvalue conjecture and related
+problems,” Memoirs of the American Mathematical Society, vol. 195,
+pp. 100 pp., 2008.
+[10] C. Measson, A. Montanari, and R. Urbanke, “Maxwell Construction:
+The Hidden Bridge Between Iterative and Maximum a Posteriori Dedoding,” Information Theory, IEEE Transactions on, vol. 54, no. 12, pp.
+5277–5307, 2008.
+[11] A. Goupil, M. Colas, G. Gelle, and D. Declercq, “FFT-based BP
+decoding of general LDPC codes over abelian groups,” IEEE Trans.
+on Commun., vol. 55, no. 4, pp. 644–649, April 2007.
+[12] L. Barnault and D. Declercq, “Fast decoding algorithm for ldpc over
+gf(2q ),” in in the proc. of ITW’03, Paris, France, 2003.
+[13] D. Declercq and M. Fossorier, “Decoding algorithms for nonbinary ldpc
+codes over gf(q),” IEEE Trans. on Commun., vol. 55, no. 4, pp. 633–643,
+April 2007.
+[14] A. Voicila, D. Declercq, F. Verdier, M. Fossorier, and P. Urard, “Low
+complexity decoding for non-binary ldpc codes in high order ﬁelds,”
+IEEE Trans. on Commun., vol. 58, no. 5, pp. 1365–1375, May 2010.
+[15] X. Y. Hu, E. Eleftheriou, and D. M. Arnold, “Regular and irregular
+progressive edge-growth tanner graphs,” IEEE Trans. Inform. Theory,
+vol. 51, no. 1, pp. 386–398, 2005.
+[16] S. ten Brink, “Convergence behavior of iteratively decoded parallel
+concatenated codes,” Communications, IEEE Transactions on, vol. 49,
+no. 10, pp. 1727–1737, 2002.
+[17] V. Rathi and R. Urbanke, “Thresholds and the stability condition for
+non-binary LDPC codes,” IEE Proc. Comm., vol. 152, no. 6, 2005.
+[18] D. Declercq and M. Fossorier, “Improved impulse method to evaluate
+the low weight proﬁle of sparse binary linear codes,” in Proc. of ISIT’08,
+Toronto, Canada, July 2008.
+[19] A.E. Brouwer and T. Verhoeff, “An updated table of minimum-distance
+for binary linear codes,” IEEE Trans. on Info. Theory, vol. 39, no. 2,
+pp. 662–677, March 1993.
+[20] D. MacKay, “Webpage,” http://www.inference.phy.cam.ac.uk/mackay/
+codes/data.html.
+
+VI. N UMERICAL RESULTS
+In this section, the performance of NB-cluster-LDPC codes
+is assessed through Monte-Carlo simulation over the BinaryInput AWGN channel. In Figure 1, we show the comparison
+of regular binary LDPC codes from [20], and two NB-clusterLDPC codes with p∗ = 8, optimized with Algorithm 1. The BP
+decoding performs a maximum of 100 iterations and it stops
+when a valid codeword is found by syndrome computation.
+As expected, the NB-cluster-LDPC codes combine the two
+advantages of having good performance in the waterfall region
+due to the sparse representation of their Tanner graphs, as
+well as larger minimum distance than other classes of codes.
+Since it has been shown in [8] that the error ﬂoor of ultrasparse non-binary LDPC codes with dv = 2 comes from
+low-weight codewords and not from the presence of the socalled pseudo-codewords, the large minimum-distance of NBcluster-LDPC codes also determines very good performance in
+the error ﬂoor region. NB-cluster-LDPC codes did not show
+any error ﬂoor until FER = 10−8 , which, coupled with the
+waterfall performance, is a very good and unpreceding result
+for iteratively decodable codes at short block-lengths.
+VII. C ONCLUSION
+In this paper, we derived a lower bound on the minimum
+distance of ultra-sparse NB-cluster-LDPC codes, and provided
+asymptotic thresholds for the BP and MAP decoders. We
+also proposed a construction of ﬁnite-length codes with large
+minimum distances, and we showed that the constructed codes
+exhibit very good performance under BP decoding on both the
+waterfall and the error-ﬂoor region.
+R EFERENCES
+[1] V. Savin and D. Declercq, “Linear growing minimum distance of
+ultra-sparse non-binary cluster-LDPC codes,” in IEEE International
+Symposium on Information Theory (ISIT), 2011, pp. 523–527.
+
+5
+
+

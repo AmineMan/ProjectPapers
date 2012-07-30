@@ -1,0 +1,890 @@
+Creator:        TeX
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Tue May  8 15:08:14 2012
+ModDate:        Tue Jun 19 12:55:05 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      537021 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569564931
+
+Successive Reﬁnement with Cribbing
+Decoders and its Channel Coding Duals
+Himanshu Asnani
+
+Haim Permuter
+
+Tsachy Weissman
+
+Stanford University
+asnani@stanford.edu
+
+Ben-Gurion University
+haimp@bgu.ac.il
+
+Stanford University
+tsachy@stanford.edu
+
+cooperation among the decoders via cribbing. The main setting
+considered in this paper is shown in Fig. 1. A single encoder
+
+Abstract—We study cooperation in multi terminal source
+coding models involving successive reﬁnement. Speciﬁcally, we
+study the case of a single encoder and two decoders, where the
+encoder provides a common description to both the decoders
+and a private description to only one of the decoders. The
+decoders cooperate via cribbing, i.e., the decoder with access only
+to the common description is allowed to observe, in addition, a
+deterministic function of the reconstruction symbols produced by
+the other. We characterize the fundamental performance limits
+in the respective settings of non-causal, strictly-causal and causal
+cribbing. We use a new coding scheme, referred to as Forward
+Encoding and Block Markov Decoding, which is a variant of one
+recently used by Cuff and Zhao for coordination via implicit
+communication. Finally, we use the insight gained to introduce
+and solve some dual channel coding scenarios involving Multiple
+Access Channels with cribbing.
+
+Xn
+
+ˆn
+X1 (T0 , T1 ), D1
+
+T1 (X n ) ∈ {1 : 2nR1 }
+ENCODER
+
+DECODER 1
+
+T0 (X n ) ∈ {1 : 2nR0 }
+
+ˆ
+ˆ
+Z1,i = g(X1,i )
+ˆ
+ˆd
+X2,i (T0 , Z1 ), D2
+
+DECODER 2
+
+Fig. 1. Successive reﬁnement, with decoders cooperating via cribbing. d =
+n, d = i − 1 and d = i respectively correspond to non-causal, strictly-causal
+and causal cribbing.
+
+describes a common message T0 to both decoders and a reﬁned
+message T1 to only Decoder 1. Decoder 2 “cribs” (in the spirit
+of [1]) a deterministic function g of the reconstruction symbols
+of Decoder 1, non-causally, strictly-causally, or causally. Note
+a trivial g function corresponds to the original successive
+reﬁnement setting characterized in [6]. The goal is to ﬁnd the
+optimal encoding and decoding strategy and to characterize
+the optimal encoding rate region which is deﬁned as the set
+of achievable rate tuples (R0 , R1 ) such that the distortion
+constraints are satisﬁed at both the decoders. In [5], authors
+considered the problem of characterizing the coordination
+region in our setting of Fig. 1, for a speciﬁc g such that
+ˆ
+ˆ
+g(X1 ) = X1 and a speciﬁc rate tuple (R0 , R1 ) = (0, ∞).
+We use a new source coding scheme which we refer to as
+Forward Encoding and Block Markov Decoding scheme, and
+show that it achieves the optimal rate region for strictly causal
+and causal cribbing. It draws on the achievability ideas (for
+causal coordination) introduced in [5]. This scheme operates
+in blocks, where in the current block, the encoder encodes
+for the source sequence of the future block, (hence the name
+Forward Encoding) and the decoders rely on the decodability
+in the previous block to decode in the current block (hence
+the name Block Markov Decoding).
+Our models are motivated by various scenarios of practical
+interest. One such scenario may arise in the context of video
+coding, as considered in [7]. Consider two consecutive frames
+in a video ﬁle, denoted by Frame 1 and Frame 2, respectively.
+The video encoder starts by encoding Frame 1, and then it
+encodes the difference between Frame 1 and Frame 2. Decoder
+1 represents decoding of Frame 1, while Decoder 2 uses the
+
+I. I NTRODUCTION
+Cooperation can dramatically boost the performance of a
+network. The literature abounds with models for cooperation,
+when communication between nodes of a network is over
+a noisy channel. In multiple access channels, the setting of
+cribbing was introduced in [1], where one encoder obtains the
+channel input symbols of the other encoder (referred to as
+“crib”) and uses it for coding over the noisy multiple access
+channel (MAC). This was further generalized to deterministic
+function cribbing (where an encoder obtains a deterministic
+function of the channel input symbols of another encoder) in
+[2]. Cooperation can also be modeled as information exchange
+among the transmitters and receivers via rate limited links,
+generally referred to as conferencing in the literature. Such
+a model was introduced in the context of the MAC in [3].
+Cooperation has also been modeled via conferencing/cribbing
+in other settings of the MAC and cognitive interference channels (cf. [4] for detailed references). In multi terminal source
+coding, cooperation between decoders is generally modeled as
+a rate limited link such as in the cascade source coding or the
+triangular source coding problems.
+The contribution of this paper is to introduce new models of
+cooperation in multi terminal source coding, inspired by the
+cribbing of [1] and by the implicit communication model of
+[5]. Speciﬁcally, we consider cooperation between decoders
+in a successive reﬁnement setting (introduced in [6]). In
+successive reﬁnement, a single encoder describes a common
+rate to both the decoders and a private rate to only one
+of the decoders. We generalize this model to accommodate
+
+1
+
+1) Encoder, fi,n : X n → {1, ..., 2nRi }, for i = 0, 1.
+ˆn
+2) Decoder 1, g1,n : {1, ..., 2nR0 } × {1, ..., 2nR1 } → X1 .
+3) Decoder 2 (depending on d in Fig. 1),
+
+knowledge of decoded Frame 1 (via cribbing) to estimate the
+next frame, Frame 2.
+Our problem setting is equally natural for capturing noncooperation as it is for capturing cooperation, by requiring
+the relevant distortions to be bounded from below rather than
+above (which, in turn, can be converted to our standard form of
+an upper bound on the distortion by changing the sign of the
+distortion criterion). For instance, Decoder 1, can represent
+an end-user with reﬁned information (common and private
+rate) about a secret document, the source in our problem,
+while Decoder 2 has a crude information about the document
+(via the common rate). Decoder 1 is required to publicly
+announce an approximate version of the document, but due to
+privacy issues would like to remain somewhat cryptic about
+the source (as measured in terms of distortion with respect to
+the source) while also helping (via conferencing or cribbing)
+Decoder 2 to better estimate the source. For example, Decoder
+1 can represent a Government agency required by law to
+publicly reveal features of the data, while there are agents who
+make use of this publicly announced information, along with
+crude information about the source that they too, not only the
+government, are allowed to access, to obtain a good estimate of
+the classiﬁed information (the source). The task of the encoder
+would be to maximize distortion at these third-party agents.
+The contribution of this paper is two-fold. First, we introduce new models of decoder cooperation in source coding problems such as successive reﬁnement, where decoders
+cooperate via cribbing, and we characterize the fundamental
+limits on performance for these problems using new classes
+of schemes for the achievability part. Second, we leverage the
+insights gained from these problems to introduce and solve
+a new class of channel coding scenarios that are dual to
+the source coding ones. Speciﬁcally, we consider the MAC
+with cribbing and a common message, where there are two
+encoders, one has access to its own private message, there
+is a common message between the two encoders, and the
+encoders cooperate via cribbing, non-causally, strictly causally
+or causally.
+The paper is organized as follows. Section II gives a formal
+description of the problem and the main results. Section III
+presents the main ideas of achievability (due to space constraints all the theorems and their proofs, including converses,
+are omitted and deferred to [4]). Some numerical examples are
+presented in Section IV. Channel coding duals are considered
+in Section V. The paper is concluded in Section VI.
+
+d
+ˆd
+g2,i : {1, ..., 2nR0 } × X1
+
+→
+
+ˆ
+X2 ∀ i ∈ [1 : n] (1)
+
+d = n, d = i − 1 and d = i respectively stand for
+non-causal, strictly-causal and causal cribbing.
+Deﬁnition 2. A rate-distortion tuple (R0 , R1 , D1 , D2 ) is
+called achievable if ∀ > 0, ∃ n and (2nR0 , 2nR1 , n) ratedistortion code such that (expected) distortion for decoders
+n ˆn
+are bounded as, E di (Xi , Xi ) ≤ Di + , i = 1, 2.
+Deﬁnition 3. The rate-distortion region R(D1 , D2 ) is deﬁned as the closure of all achievable rate-distortion tuples
+(R0 , R1 , D1 , D2 ).
+Theorem 1 (Successive Reﬁnement with Cribbing Decoders).
+The main results in the setting of successive reﬁnement with
+non-causal, strictly-causal and causal cribbing decoders (Fig.
+1) are given by the regions presented in the Table I.
+
+R(D1 , D2 )
+
+Deterministic Function Cribbing
+
+Non-Causal
+(d = n)
+
+ˆ ˆ
+R0 + R1 ≥ I(X; X1 , X2 )
+ˆ ˆ
+ˆ
+R0 ≥ {I(X; Z1 , X2 ) − H(Z1 )}+
+ˆ ˆ
+(p.m.f.) : P (X, X1 , X2 )1{Z =g(X )}
+ˆ
+ˆ
+1
+
+Strictly-Causal
+(d = i − 1)
+
+ˆ ˆ
+R0 + R1 ≥ I(X; X1 , X2 )
+ˆ ˆ
+ˆ ˆ
+R0 ≥ {I(X; Z1 , X2 ) − H(Z1 |X2 )}+
+ˆ ˆ
+(p.m.f.) : P (X, X1 , X2 )1{Z =g(X )}
+ˆ
+ˆ
+1
+
+Causal
+(d = i)
+
+1
+
+1
+
+ˆ
+R0 + R1 ≥ I(X; X1 , U )
+ˆ
+ˆ
+R0 ≥ {I(X; Z1 , U ) − H(Z1 |U )}+
+ˆ
+(p.m.f.) : P (X, X1 , U )1{Z =g(X ),X =f (X ,U )}
+ˆ1
+ˆ1 ˆ2
+ˆ1
+|U | ≤ |X | |X1 | + 4
+TABLE I
+M AIN R ESULTS OF THE PAPER
+
+Note that in all the rate regions in the table, we use the
+notation {a}+ for max(a, 0), and we omit the distortion
+ˆ
+condition E[di (Xi , Xi ] ≤ Di , i = 1, 2 for the sake of brevity.
+III. ACHIEVABILITY T ECHNIQUES
+
+II. P ROBLEM D EFINITIONS AND M AIN R ESULTS
+In this section we formally deﬁne the problem considered in this paper (cf. Fig. 1). The source sequence
+Xi ∈ X , i = 1, 2, ... is a discrete random variable drawn i.i.d.
+ˆ
+ˆ
+∼ PX . Let X1 and X2 denote the reconstruction alphabets, and
+ˆi → [0, ∞), for i = 1, 2, are single letter distortion
+di : X × X
+measures. Distortion between sequences is deﬁned in the usual
+n
+1
+ˆ
+way, i.e., di (xn , xn ) = n i=1 di (xj , xi,j ), for i = 1, 2.
+ˆi
+
+In this section we provide high level description of the
+achievability techniques for non-causal and strictly-causal
+cribbing that are used in the paper. The details are omitted
+and deferred to [4]. Due to space constraints, we explain
+achievability ideas for the case when cribbing is perfect, that
+ˆ
+ˆ
+is, g(X1 ) = X1 .
+A. Non-Causal Cribbing - “Double Binning”
+
+Deﬁnition 1. A (2nR0 , 2nR1 , n) rate-distortion code consists
+of the following,
+
+To understand the basic intuition, let us ﬁrst consider a simpliﬁed setup where R0 = 0, that is, only Decoder 1 has access
+
+2
+
+bin index is described to both the decoders via common rate
+ˆ ˆ
+R0 and thus R1 reduces to I(X; X1 , X2 ) − R0 to describe
+ˆ n to Decoder 1. Again here, from the knowledge of crib,
+X1
+ˆn
+X1 and the column index, Decoder 2, infers the unique row
+ˆ ˆ
+ˆ
+index, which now will require I(X; X1 , X2 ) − R0 ≤ H(X1 ).
+
+to the description of the source, and Decoder 2 obtains the
+reconstruction symbols of Decoder 1 (“crib”). The intuition is
+to reveal a lossy description of source to the Decoder 2 through
+ˆ
+ˆn
+the “crib”. So we ﬁrst generate 2nI(X;X2 ) X2 codewords, and
+ˆ
+nI(X;X2 )
+index them as 2
+bins. In each bin, we generate a
+ˆ ˆ
+ˆn
+superimposed codebook of 2nI(X;X1 |X2 ) X1 codewords. Thus
+ˆ
+ˆ ˆ
+ˆ ˆ
+total rate of R1 = I(X; X2 ) + I(X; X1 |X2 ) = I(X; X1 , X2 )
+ˆn
+is needed to describe X1 to Decoder 1. Decoder 2, knows
+ˆn
+X1 via crib, it then tries to infer the unique bin index
+ˆn
+which was sent, as then it would infer X2 . The only issue
+n
+ˆ
+is X1 codeword, known via cribbing, should not lie in
+two different bins. Now we upper bound the probability of
+ˆ ˆ
+ˆ
+occurrence of such event by 2n(I(X;X1 ,X2 )−H(X1 )) , as there
+ˆ 1 ,X2 ) ˆ n
+ˆ
+are overall 2nI(X;X
+X1 codewords, and the probability
+ˆ
+ˆ n lies in two bins is 2−nH(X1 ) . This
+that a particular X1
+ˆ ˆ
+ˆ
+event has a vanishing probability if, I(X; X1 , X2 ) ≤ H(X1 ).
+ˆ 1 , X2 ) such that the
+ˆ
+Thus the rate region is, R1 ≥ I(X; X
+ˆ ˆ
+ˆ
+constraint I(X; X1 , X2 ) ≤ H(X1 ) and distortion constraints
+are satisﬁed.
+
+B. Strictly-Causal Cribbing - “Forward Encoding” and
+“Block Markov Decoding”
+To give an overview of the coding scheme, here also
+consider the case when common rate R0 = 0. Thus the source
+description is available only to the Decoder 1, while Decoder
+2 has access to the reconstruction symbols of Decoder 1,
+only strictly-causally. Hence in principle we cannot deploy
+a scheme to operate just in one block as it was the case
+for non-causal cribbing. We need to use a scheme to operate
+in multiple (large number) of blocks, and use an encoding
+ˆn
+procedure that makes sure, X1 codeword of previous block
+carries information about the source sequence of current block.
+This is because, then due to strictly causal cribbing, in current
+block Decoder 2 will know all the reconstruction symbols
+of Decoder 1 in previous block, which will describe to it
+information about the source sequence in the current block.
+This is the main idea and is operated as follows : in each
+block, ﬁrst we generate 2nI(X;U ) U n codewords, and for
+each U n codeword, we generate 2nI(X;U ) bins and in each
+ˆ
+ˆn
+bin 2nI(X;X1 |U ) X1 codewords are generated. So in each
+block, U n is jointly typical with source sequence in current
+block and bin index describes the U n sequence jointly typical
+with source sequence of the future block. This bin index
+carries information about the source in future block. Hence
+we address encoding as “Forward Encoding”. Decoding is
+“Block Markov Decoding”, as it assumes both the decoders
+have decoded U n sequence of previous block currently. The
+ˆn
+bin index and index of X1 codewords is described as R1
+ˆ
+ˆ
+which hence equals, I(X; U ) + I(X; X1 |U ) = I(X; X1 , U ).
+ˆn
+Due to cribbing, Decoder 2 knows the X1 of the previous
+block and aims to ﬁnd the bin index in which it lies. And
+as we argued in previous subsection, this is possible if
+ˆ
+ˆ
+I(X; X1 , U ) ≤ H(X1 |U ).
+The general scheme when R0 > 0 is depicted in Fig.
+3, where structure of codebook in a single block is shown.
+The additional step which we do in the explanation above
+(for R0 = 0) is to bin in an extra dimension, i.e., with
+respect to each U n sequence we generate a “doubly-binned”
+codebook (as in achievability of non-causal cribbing, cf.
+Fig. 2). The row index encodes U n sequences of the future
+ˆn
+block, X1 codewords for each row are uniformly binned into
+2nR0 columns. The column index is the common description
+ˆ
+R0 , to both decoders, so R1 reduces to I(X; X1 , U ) − R0 ,
+and the decodability of Decoder 2 requires the condition
+ˆ
+ˆ
+I(X; X1 , U )−R0 ≤ H(X1 |U ). Note that here we deliberately
+described the achievability with auxiliary r.v., although the rate
+region in the theorem will be obtained by simply plugging
+ˆ
+U = X2 . The introduction of auxiliary r.v. makes the scheme
+to easily carry over to the causal cribbing case.
+
+ˆ ˆ
+ˆn
+2n(I(X;X1 |X2 )−R0 ) X1 codewords in each “doubly-indexed ” bin.
+
+B(1)
+
+B(2nR0 )
+
+B(mv )
+
+}
+
+ˆ ˆ
+ˆn
+2nI(X;X1 |X2 ) X1
+
+ˆn
+X2 (1)
+
+codewords
+
+Doubly−Indexed
+Bin
+
+ˆn
+X2 (mh )
+
+}
+
+codewords
+
+ˆ
+ˆn
+X2 (2nI(X;X2 ) )
+
+}
+
+codewords
+
+ˆ ˆ
+ˆn
+2nI(X;X1 |X2 ) X1
+
+ˆ ˆ
+ˆn
+2nI(X;X1 |X2 ) X1
+
+Fig. 2. “Double Binning”- achievability scheme for the non-causal perfect
+cribbing.
+
+The general coding scheme when R0 > 0 is depicted in
+Fig. 2 and has a “doubly-binned” structure. Non-zero R0 will
+help reduce R1 by providing an extra dimension of binning.
+ˆ
+ˆn
+We ﬁrst generate 2nI(X;X2 ) X2 codewords, the indices of
+which are the rows (or horizontal bins), and then in each
+ˆ ˆ
+ˆn
+row, we generate 2nI(X;X1 |X2 ) X1 codewords. For each row,
+n
+ˆ
+these X1 codewords are then binned uniformly into 2nR0
+vertical bins, which are the columns of our “doubly-binned”
+structure. Thus each bin is “doubly-indexed” (row and column
+ˆ ˆ
+ˆn
+index) and has a uniform number of 2n(I(X;X1 |X2 )−R0 ) X1
+codewords (as in Fig. 2). Note that this extra or independent
+dimension of vertical binning was not there when R0 = 0.
+Intuition is that column indexing with common rate R0 is
+independent or orthogonal to the row indexing, and hence it
+helps to reduce the private rate R1 . The column or vertical
+
+3
+
+Each “doubly-indexed” bin has
+ˆ
+ˆn
+2n(I(X;X1 |U )−R0 ) X1 codewords
+
+in Fig. 1 with perfect cribbing) with a bernoulli source
+X ∼ Bern(0.5), binary reconstruction alphabets and hamming distortion. We consider a particular distortion tuple
+(D1 , D2 ). Due to symmetry of the source, it is easy to argue
+x ˆ
+that, PX1 ,X2 |X (ˆ1 , x2 |x) = PX1 ,X2 |X (ˆ1 , x2 |x), where x
+x ˆ
+ˆ ˆ
+ˆ ˆ
+stands for complement of x. Thus all the expressions can
+be written in terms of variables p1 = PX1 ,X2 |X (0, 0|0),
+ˆ ˆ
+p2 = PX1 ,X2 |X (0, 1|0), p3 = PX1 ,X2 |X (1, 0|0) and p4 =
+ˆ ˆ
+ˆ ˆ
+PX1 ,X2 |X (1, 1|0), p4 = 1−p1 −p2 −p3 . However it is also easy
+ˆ ˆ
+to see that the distortion constraints are satisﬁed with equality,
+otherwise one can reduce the rate region slightly and still
+be under distortion constraint. The distortion constraints thus
+ˆ
+ˆ
+yield, E[d(X, X1 )] = p4 + p3 = D1 and E[d(X, X2 )] = p2 +
+p4 = D2 which implies, p2 = 1 − D1 − p1 , p3 = 1 − D2 − p1 ,
+p4 = p1 + D1 + D2 − 1. Thus the equivalent probability
+distribution space over which the closure of rate regions
+is evaluated (such that distortion is satisﬁed) is equivalent
+to, P = {p1 ∈ [1 − D1 − D2 , min{1 − D1 , 1 − D2 , 2 −
+D1 − D2 }], p2 = 1 − D1 − p1 , p3 = 1 − D2 − p1 , p4 =
+p1 +D1 +D2 −1}. The various entropy and mutual information
+expressions appearing in the rate regions can then be expressed
+in terms of the only variable of optimization, that is p1 .
+Fig. 4 shows the rate regions for (D1 , D2 ) = (0.05, 0.1).
+Note that the region for no cribbing is smaller than that of
+strictly causal cribbing which is smaller than that of noncausal cribbing, as expected. We can also analytically compute
+the expressions of corner points A,B,C,D in Fig. 4. Points
+A = (0, 1 − h2 (D1 )), B = (1 − h2 (D1 ) − h2 (D2 ), 0),
+C = (1 − h2 (D2 ), 0) and D = (1 − h2 (D1 ), 0), where
+h2 (α) = −α log α − (1 − α) log(1 − α), ∀ α ∈ [0, 1]. For
+explanation of this analytical evaluation, refer to [4].
+
+2nR0 bins B(mv )
+
+2nI(X;U )
+bins B(mh )
+
+un (1)
+
+2nI(X;U ) un codewords
+
+2nR0 bins B(mv )
+
+2nI(X;U )
+bins B(mh )
+
+un (m)
+
+2nR0 bins B(mv )
+
+un (2nI(X;U ) )
+
+2nI(X;U )
+bins B(mh )
+
+Fig. 3. “Forward Encoding” and “Block Markov Decoding” - achievability
+scheme for the strictly-causal perfect cribbing.
+
+IV. N UMERICAL E XAMPLE
+We provide an example illustrating the rate regions of noncausal and strictly causal cribbing. Along with them the region
+without cribbing is also compared (this region can be obtained
+by substituting constant function g in our regions) which
+equals,
+R0 + R1
+R0
+
+ˆ ˆ
+≥ I(X; X1 , X2 )
+ˆ
+≥ I(X; X2 ),
+
+(2)
+
+V. D UAL C HANNEL C ODING S ETTING
+
+(3)
+In this section we show duality between the cribbing decoders in successive reﬁnement problem and the cribbing encoders in the MAC problem with a common message. We consider here the problem of MAC with cribbing encoders, where
+there is one private message m1 ∈ {1, 2, ..., 2nR1 } known to
+Encoder 1 and one common message m0 ∈ {1, 2, ..., 2nR0 }
+known to both encoders that need to be sent to the decoder as
+shown in Fig. 5 . We assume that Encoder 2 cribs the signal
+from Encoder 1, namely, Encoder 2 observes a deterministic
+function of the output of Encoder 1. To make the duality
+clearer and sharper, we consider coordination problems in
+source coding [8] and for channel coding we consider a
+new kind of problems which we refer to as channel coding
+with restricted code distribution. In the (weak) coordination
+problem [8], the goal is to generate a joint typical distribution
+of the sources and the reconstruction (or actions) rather than a
+distortion constraint between the source and its reconstruction.
+Similarly, we deﬁne a channel coding problem where the code
+is restricted to a speciﬁc type.
+Hence we restrict the code to have a distribution P (x1 , x2 ),
+and deﬁne three regions Rnc , Rsc and Rc , which correspond
+
+for joint distribution PX,X1 ,X2 such that distortion constraints
+ˆ ˆ
+are satisﬁed. We plot for a speciﬁc example (cf. setting
+Rate Regions
+1
+
+Non−Causal Cribbing
+Strictly Causal Cribbing
+No Cribbing
+
+A
+
+R1 (Private Rate)
+
+0.8
+
+0.6
+
+0.4
+
+0.2
+B
+
+D
+
+C
+0
+0
+
+0.1
+
+0.2
+
+0.3
+
+0.4
+
+0.5
+
+0.6
+
+R0 (Common Rate)
+
+0.7
+
+0.8
+
+0.9
+
+1
+
+Fig. 4.
+Rate regions for non-causal, strictly causal and no cribbing in
+successive reﬁnement setting of Fig. 1. Source is Bern(0.5) and (D1 , D2 ) =
+(0.05, 0.1). The curve is tradeoff curve between R1 and R0 and the rate
+regions lies to right of this tradeoff curve.
+
+4
+
+SOURCE CODING
+Source encoder
+Encoder input Xi
+Encoder output
+M ∈ {1, 2, .., 2nR }
+Encoder function
+f : X n → {1, 2, ..., 2nR }
+Source decoder input
+M ∈ {1, 2, .., 2nR }
+ˆ
+Decoder output X n
+ˆ ˆ
+Cribbing decoders Zi (Xi )
+Noncausal cribbing decoder
+ˆ
+ˆ
+f : {1, 2, ..., 2nR } × Z n → X n
+Strictly-causal cribbing decoder
+ˆ
+ˆ
+f : {1, 2, ..., 2nR } × Z i−1 → X n
+Causal cribbing decoder
+ˆ
+ˆ
+f : {1, 2, ..., 2nR } × Z i → X n
+Auxiliary r.v. U
+Constraint
+P (x, x1 , x2 ), P (x) is ﬁxed
+ˆ ˆ
+Joint distribution P (x, x1 , x2 , u)
+ˆ ˆ
+
+to noncausal, strictly-causal, and causal cases.
+Rnc (P )
+
+R1 ≤ I(Y ; X1 |X2 , Z1 ) + H(Z1 )
+R0 + R1 ≤ I(Y ; X1 , X2 ),
+
+(4)
+
+R1 ≤ I(Y ; X1 |X2 , Z1 ) + H(Z1 |X2 )
+(5)
+R0 + R1 ≤ I(Y ; X1 , X2 ).
+
+ R1 ≤ I(Y ; X1 |U, Z1 )
++H(Z1 |U )
+Rc (P )
+
+R0 + R1 ≤ I(Y ; X1 , U ),
+P (u|x1 )1x2 =f (u,z1 )
+(6)
+where the union is over joint distributions that preserve the
+constraint P (x1 , x2 ).
+Rsc (P )
+
+Theorem 2 (MAC with common message and cribbing encoders). The capacity regions of MAC with common message,
+restricted code distribution P (x1 , x2 ) and non-causal, strictlycausal and causal cribbing that is depicted in Fig. 5 are
+Rnc (P ), Rsc (P ) and Rc (P ), respectively.
+
+X1,i (M0 , M1 )
+
+M1
+
+ENCODER
+
+PY |X1,X2
+
+Z1 = g(X1 )
+
+M0
+
+ˆ
+M0 (Y n )
+
+CODING
+
+ˆn
+X1 (T0 , T1 )
+
+T1
+
+Xn
+
+ENCODER 1
+
+Yn
+
+TABLE II
+P RINCIPLES OF DUALITY BETWEEN SOURCE CODING AND CHANNEL
+
+SUCCESSIVE REFINEMENT
+WITH CRIBBING DECODERS
+
+MAC WITH COMMON MESSAGE
+AND CRIBBING ENCODERS
+
+DECODER 1
+
+T0
+ˆ
+ˆ
+Z1 = g(X1 )
+
+DECODER
+
+ˆ
+M1 (Y n )
+
+ENCODER 2
+
+DECODER 2
+
+ˆn
+ˆn
+X2 (T0 , Z1 )
+
+n
+X2,i (M0 , Z1 )
+
+R1
+
+R1
+
+X
+
+Y
+
+I(Y; X1 , X2 )
+{I(Y; X2 , Z1 ) − H(Z1 )}+
+
+R0
+
+CHANNEL CODING
+Channel decoder
+Decoder input Yi
+Decoder output
+M ∈ {1, 2, .., 2nR }
+Decoder function
+f : X n → {1, 2, .., 2nR }
+Channel encoder input
+M ∈ {1, 2, .., 2nR }
+Encoder output X n
+Cribbing encoders Zi (Xi )
+Noncausal cribbing encoder
+f : {1, 2, ..., 2nR } × Z n → X n
+Strictly-causal cribbing encoder
+f : {1, 2, ..., 2nR } × Z i−1 → X n
+Causal cribbing encoder
+f : {1, 2, ..., 2nR } × Z i → X n
+Auxiliary r.v. U
+Constraint
+P (y, x1 , x2 ), P (y|x1 , x2 ) is ﬁxed
+Joint distribution P (y, x1 , x2 , u)
+
+ˆ ˆ
+I(X; X1 , X2 )
+
+R0
+
+incorporate cooperation between the users via cribbing. A new
+scheme,“Forward Encoding” and “Block Markov Decoding”
+scheme was used to derive the rate regions for strictlycausal and causal cribbing. Certain numerical examples are
+presented and show how cooperation via cribbing can boost
+the rate region. Finally we introduce dual channel coding
+problems, and establish duality between successive reﬁnement
+with cribbing decoders and communication over the MAC with
+common message and cribbing encoders.
+
+ˆ ˆ
+ˆ
+{I(X; X2 , Z1 ) − H(Z1 )}+
+
+ACKNOWLEDGMENT
+Fig. 5. Duality between the cribbing decoders in successive reﬁnement
+problem and the cribbing encoders in the MAC problem with a common
+message, non-causal case. Table II represents how the expression of rate and
+capacity regions of the two problems are related. In the ﬁgure, for a ﬁxed
+joint probability distribution, we plot the rate and capacity regions, and we
+observe that the corner points are dual to each other. Point Y corresponds
+ˆ ˆ
+ˆ
+to (R0 , R1 ) = (0, I(X; X1 , X2 ) − {I(X; X2 , Z1 ) − H(Z1 )}+ ) and
+Point X corresponds to (R0 , R1 ) = (0, I(Y ; X1 , X2 ) − {I(Y ; X2 , Z1 ) −
+H(Z1 )}+ ).
+
+The authors would like to acknowledge Paul Cuff for very
+helpful discussions that inspired their work.
+R EFERENCES
+[1] F. Willems and E. van der Meulen, “The discrete memoryless multipleaccess channel with cribbing encoders,” Information Theory, IEEE Transactions on, vol. 31, no. 3, pp. 313 – 327, May 1985.
+[2] H. H. Permuter and H. Asnani, “Multiple access channel with partial and
+controlled cribbing encoders,” CoRR, vol. abs/1103.4007, 2011.
+[3] F. Willems, “The discrete memoryless multiple access channel with
+partially cooperating encoders (corresp.),” Information Theory, IEEE
+Transactions on, vol. 29, no. 3, pp. 441 – 445, May 1983.
+[4] H. Asnani, H. H. Permuter, and T. Weissman, “Successive reﬁnement
+with decoder cooperation and its channel coding duals,” CoRR, vol.
+abs/1203.4865, 2012.
+[5] P. Cuff and L. Zhao, “Coordination using implicit communication,” CoRR,
+vol. abs/1108.3652, 2011.
+[6] W. Equitz and T. Cover, “Successive reﬁnement of information,” Information Theory, IEEE Transactions on, vol. 37, no. 2, pp. 269 –275, Mar
+1991.
+[7] A. Aaron, D. Varodayan, and B. Girod, “Wyner-ziv residual coding of
+video,” in Proc. Picture Coding Symposium, PCS-2006, 2006.
+[8] P. Cuff, H. H. Permuter, and T. M. Cover, “Coordination capacity,” IEEE
+Trans. Inf. Theory, vol. 59, pp. 4181–4206, Sep. 2010.
+
+The duality principles between source coding and channel
+coding with cribbing appear in Table II. From ﬁrst glimpse at
+the regions of MAC with common message and of successive
+reﬁnement, they do not look dual. However, the corner points
+of the regions are dual according to the principles presented
+in Table II and as seen in Fig. 5. Applying the dual rules
+ˆ
+ˆ
+X1 ↔ X1 , X2 ↔ X2 , Y ↔ X, and ≥↔≤, we obtain duality
+between the corner points of the capacity region of MAC
+with common message and the rate region of the successive
+reﬁnement.
+VI. CONCLUSION
+In this paper, we introduced new models of cooperation in
+multi terminal source coding. The setting of successive reﬁnement with single encoder and two decoders was generalized to
+
+5
+
+

@@ -1,0 +1,757 @@
+Title:          hagiwaraISIT2012Final.dvi
+Creator:        dvips(k) 5.991 Copyright 2011 Radical Eye Software
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Thu May 17 16:12:32 2012
+ModDate:        Tue Jun 19 12:56:37 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      326609 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569562277
+
+On ML-Certiﬁcate Linear Constraints for Rank
+Modulation with Linear Programming Decoding
+and its Application to Compact Graphs
+Manabu Hagiwara
+National Institute of Advanced Industrial Science and Technology
+Central 2, 1-1-1 Umezono, Tsukuba City, Ibaraki, 305-8568, JAPAN
+Department of Mathematics, University of Hawaii, 2565 McCarthy Mall, Honolulu, HI, 96822, USA
+Email: hagiwara.hagiwara@aist.go.jp
+
+equal to the set of permutation matrices. It implies that we
+can apply techniques of LP for decoding if G is the set of
+permutation matrices. For generalizing this approach, it would
+be meaningful to ﬁnd a method that yields linear constraints
+with no fractional points, called ML-certiﬁcate constraints.
+In this paper, we present a novel technique to construct linear constraints that have no fractional vertices by introducing
+a structure called “consolidation”. This technique allows us to
+focus the discussions on code size, encoding algorithms and
+decoding algorithms to local structures. Furthermore, we show
+an application of this technique to ﬁnd a new compact graph.
+
+Abstract—Linear constraints for a matrix polytope with no
+fractional vertex are investigated as intersecting research among
+permutation codes, rank modulations, and linear programming
+methods. By focusing the discussion to the block structures of
+matrices, new classes of such polytopes are obtained from known
+small polytopes and give ML decodable codes by an LP method.
+This concept “consolidation” is applied to ﬁnd a new compact
+graph which is known as an approach for the graph isomorphism
+problem. The minimum distances associated with Kendall tau and
+Euclidean distances of a code obtained by changing the basis of
+a permutation code may be larger than the original one.
+Index Terms—Rank Modulation, Permutation Codes, Linear Constraints, LP-Decoding, ML-Decoding, Compact Graph,
+Birkhoff Polytope
+
+II. O BTAINED ML-C ERTIFICATE P ERMUTATION C ODES
+I. I NTRODUCTION
+
+As is mentioned in introduction, we deﬁne a permutation
+code (G, μ) from a set G of permutation matrices and a vector
+μ. Our argument in this paper will not rely on a choice of μ.
+Thus we focus the explanation on which G is obtained by our
+construction.
+Throughout this paper Xi,j denotes the (i, j)th entry of a
+matrix X. The index of matrices and vectors will start with
+not 1 but 0; for example, (v0 , v1 , v2 ). The set of real numbers
+will be denoted by R and the set of n-by-n matrices over R
+shall be denoted by Mn (R).
+As our contribution, we obtain permutation codes that are
+decodable by using an LP method, have no fractional vertex,
+and are constructed from techniques of this paper.
+
+Permutation codes have been proposed for the purpose of
+digital modulation schemes [1]. Formally speaking, a permutation code (G, μ) is the orbit {Xμ | X ∈ G}, where G is
+a set of permutation matrices1 and μ is a Euclidean vector.
+The main goal of permutation code is, “for a given Euclidean
+vector λ, to ﬁnd an orbit Xμ which minimizes a distance
+||λ − Xμ|| over X ∈ G by an efﬁcient algorithm.”
+In recent years, study of permutation codes has been one
+of the most exciting topics in coding theory. In 2008, Jiang
+et.al. discovered a remarkable application of permutation code
+for ﬂash memory coding [2]. In 2010, Barg investigated permutation codes and their error-correction for rank modulation
+[3]. Papandreou et.al., reported implementation of permutation
+codes as drift-tolerant multilevel phase-change memory [4].
+Wadayama discovered a new approach for error-correction
+of permutation codes by using a linear programing (LP)
+method [5]. The following problem is considered “maximize
+λT Xμ, for ﬁxed Euclidean vectors μ, λ where X is taken
+over the Birkhoff polytope2 .” It is shown that if a matrix
+X0 maximizes the problem above, then X0 minimizes the
+Euclidean distance ||λ − Xμ|| where X is again taken over
+the polytope. The set of vertices of the Birkhoff polytope is
+
+A. Wreath Product
+We embed the permutation group SR on {0, 1, . . . , R − 1}
+into the set MR (R) of matrices by the following manner: for
+a permutation σ in SR , we deﬁne an R-by-R matrix X σ by
+σ
+Xi,j := δj=σ(i) , where δ is the Kronecker delta.
+For ν-by-ν matrices g0 , g1 , . . . , gR−1 and σ ∈ SR , we deﬁne
+a (νR)-by-(νR) permutation matrix X := (Xij ) as
+Xij :=
+
+1 In some references, G is chosen as a generalized permutation group, e.g.,
+a signed permutation group.
+2 The original problem is to maximize Trace(μλT X). It is directly obtained
+that Trace(μλT X) = Trace(λT Xμ) = λT Xμ
+
+gi
+0
+
+if i = σ(j),
+o.w.,
+
+for 0 ≤ i, j ≤ R − 1. X shall be denoted by
+(σ|g0 , g1 , . . . , gR−1 ). Let G be a set of ν-by-ν matrices and
+S a subset of SR . When we choose gr in the same group G,
+
+1
+
+the collection of matrices (σ|g0 , g1 , . . . , gR−1 ) is said to be a
+wreath product of G and S and is denoted by G S, where
+of
+σ ∈ S. For example, a wreath product ⎛ S3 consists⎞
+⎞ G
+⎞ ⎛
+⎛
+0 g0 0
+g0 0 0
+g0 0 0
+⎝ 0 g1 0 ⎠ , ⎝ 0 0 g1 ⎠ , ⎝ g1 0 0 ⎠ ,
+⎛ 0 0 g2 ⎞ ⎛ 0 g2 0 ⎞ ⎛ 0 0 g2 ⎞
+0 g0 0
+0 0 g0
+0 0 g0
+⎝ 0 0 g1 ⎠ , ⎝ g1 0 0 ⎠ , ⎝ 0 g1 0 ⎠ ,
+g2 0 0
+0 g2 0
+g2 0 0
+where g0 , g1 , g2 ∈ G.
+
+a matrix. Formally speaking, by regarding an entry Xi,j as a
+variable (0 ≤ i, j < n), we state either
+l(X) :
+
+ci,j Xi,j ≥ c0 ,
+
+ci,j Xi,j = c0 , or l(X) :
+0≤i,j<n
+
+0≤i,j<n
+
+for some c0 , ci,j ∈ R. If we need not clarify the variable X
+of a linear constant l(X), we denote it simply by l.
+Note III.1. Let us deﬁne three kinds of constraints:
+• (row-sum constraints)
+0≤j<n Xi0 ,j = 1,
+• (column-sum constraints)
+0≤i<n Xi,j0 = 1,
+• (positivity) Xi0 ,j0 ≥ 0,
+for any 0 ≤ i0 , j0 < n where Xi,j is the (i, j)th entry of
+matrix X. LD denotes a set of linear constrains, deﬁned as
+
+B. ML-Certiﬁcate LP-Decodable Permutation Codes
+Let Cn denote a cyclic group of order n, D2n a dihedral
+group of order 2n, and Sn a symmetric group of order n!. We
+consider the groups Cn , D2n and Sn are sets of permutation
+matrices of size n-by-n.
+Let ν and R be positive integers such that ν = 2, 4 and
+R ≥ 2. Deﬁne n := νR. For each 0 ≤ r ≤ R − 1, deﬁne
+Gr as one of Cν , D2ν , and Sν , and deﬁne GR as one of
+CR , D2R , and SR . Then we can construct the following set G
+of νR-by-νR permutation matrices for a permutation code as
+G := {(gR |g0 , g1 , . . . , gR−1 ) | gr ∈ Gr , 0 ≤ r ≤ R}.
+Let c, d and s denote the number of times Cν , D2ν , and
+Sν that are chosen for Gr (0 ≤ r ≤ R − 1) respectively.
+Similarly, deﬁne cR , dR and sR to be the number of CR , D2R ,
+and SR that are chosen for GR respectively. Hence only one
+of cR , dR , sR is 1 and the others are 0. By using this notation,
+the cardinality of G is ν c (2ν)d (ν!)s RcR (2R)dR (R!)sR .
+Previously known examples [6], [7] are associated with the
+choices (c, d, s, cR , dR , sR ) = (0, 2, 0, 0, 0, 1), (0, 0, 2, 0, 0, 1).
+Next let ν := 2 and n := 2R. For each 0 ≤ r ≤ R − 1,
+let us choose Gr again from C2 and the unit group, i.e., the
+group consists of only the identity matrix.
+Let c and u denote the number of times C2 ’s and the unit
+groups that are chosen for Gr (0 ≤ r ≤ R − 1) respectively.
+Similarly, deﬁne a set G and deﬁne cR , dR and sR . Hence
+only one of cR , dR , sR is 1 and the others are 0. By using
+this notation, the cardinality of G is 2c RcR (2R)dR (R!)sR . For
+“c = R and sR = 1”, G becomes a group and is isomorphic to
+a signed permutation group “as a group” whose permutation
+code has been investigated in [1], [8].
+Next, let ν := 4 and n := 4R. Let P4 denote the set of
+permutations, which are known as pure involutions in S4 [5].
+Then P4 consists of three elements.
+For each 0 ≤ r ≤ R − 1, let us choose Gr again from
+C4 , D8 , S4 and P4 . Let c, d, s and p denote the number
+of times C4 , D8 , S4 and P4 that are chosen for Gr (0 ≤
+r ≤ R − 1) respectively. Similarly, deﬁne a set G and deﬁne
+cR , dR and sR . Hence only one of cR , dR , sR is 1 and the
+others are 0. By using this notation, the cardinality of G is
+4c 8d 24s 3p RcR (2R)dR (R!)sR .
+
+LD
+
+:=
+
+{row-sum constraints}
+∪{column-sum constraints} ∪ {positivity}.
+
+For clarifying the size n, we may denote LD by LD(n) .
+Let L be a set of linear constraints. For a constant l ∈ L
+and a matrix X, if X satisﬁes l, we write X |= l. If X |= l
+for every l ∈ L, we write X |= L. A doubly stochastic
+constraint L for an n-by-n matrix is deﬁned as a set of linear
+constraints such that X |= L implies X |= LD . In particular,
+the constraints LD is a doubly stochastic constraint.
+The collection of n-by-n matrices which satisfy all of linear
+constraints in a doubly stochastic constraint L is denoted by
+Dn [L]. We call Dn [L] a doubly stochastic polytope for L.
+Since X σ |= LD , we have Sn ⊂ Dn [LD ]. Note that any
+doubly stochastic polytope is a subset of Dn [LD ]. For D ⊂
+Mn (R), D is simply said to be a doubly stochastic polytope
+if there exists a doubly stochastic constraint L such that D =
+Dn [L].
+Let D be a doubly stochastic polytope. An element X ∈ D
+is called a vertex if there are neither elements X0 , X1 ∈ D
+with X0 = X1 nor positive numbers c0 , c1 such that X =
+c0 X0 + c1 X1 . We denote the set of vertices for D by Ver(D).
+A permutation code (G, μ) is called an LP (Linear
+Programming)-decodable permutation code if there exists
+L such that G = GL , where GL := Ver(Dn [L]) ∩ Sn . The
+following is an error-correcting decoding algorithm for LPdecodable permutation codes.
+Deﬁnition III.2 (Error-Correcting Decoding Algorithm [5]).
+Input: vectors μ, λ, and a doubly stochastic constraint L.
+Output: a vector μ0 .
+1. Solve the following linear programming problem:
+maximizeλT Xμ subject to X |= L,
+2. Deﬁne μ0 := X0 μ, for a solution X0 .
+3. Output μ0 .
+
+III. C OMPACTNESS
+
+It is important to remark that a solution is in Ver(Dn [L])
+if the solution exists uniquely. Therefore we prefer a doubly
+stochastic constraint L such that Ver(Dn [L]) ⊂ Sn for a
+permutation code (GL , μ).
+
+A. Compact Constraints
+A linear constraint l(X) for an n-by-n matrix is deﬁned
+as either a linear equation or a linear inequality on entries of
+
+2
+
+A doubly stochastic constraint L for an n-by-n matrix is
+called a compact constraint if
+• L consists of a ﬁnite number of linear constraints,
+• the doubly stochastic polytope Dn [L] is a bounded set,
+• the vertex set satisﬁes Ver(Dn [L]) ⊂ Sn .
+By the following theorem, the doubly stochastic constraint
+LD is compact.
+Theorem
+III.3
+Ver(D[LD ]) = Sn .
+
+(Birkhoff
+
+von-Neuman
+
+{0, 1, . . . , νR − 1} as a graph with an adjacency matrix
+(R)
+:= (IR |AΓ , AΓ , . . . , AΓ ), where IR is the R-by-R
+AΓ
+identity matrix and AΓ is the adjacency matrix for Γ. We call
+Γ(R) a union of R-Γs. Since Γ(R) is not connected, it is not
+a seed graph for R ≥ 2.
+One of our main contributions is the following:
+Theorem III.4. Let Γ be a seed graph and R a positive
+integer. A union Γ(R) is compact if and only if Γ is compact.
+
+Theorem).
+
+Proof is given in IV-B using a “consolidation” technique.
+When Γ is “un-directed and R = 2,” Theorem III.4 is the
+same as Tinhofer’s theorem [7].
+
+Our primary interest is to ﬁnd a new class of compact
+constraints. To the best of the author’s knowledge, not many
+compact constraints have been found yet.
+
+C. Examples of Compact Graphs
+For a permutation σ and a graph Γ, we deﬁne a graph σ(Γ)
+as a graph associated with an adjacency matrix X σ AΓ (X σ )−1 ,
+where X σ is the permutation matrix associated with σ and AΓ
+is the adjacency matrix of Γ. A permutation σ is called an automorphism for Γ if σ(Γ) = Γ holds, i.e., X σ AΓ (X σ )−1 =
+AΓ . Let Aut(Γ) denote the set of automorphisms for Γ. It
+is easy to verify that X ∈ Aut(Γ) ⇐⇒ XAΓ = AΓ X
+for a permutation matrix X. Therefore Dn [LΓ ] ⊃ Aut(Γ)
+holds. By this inclusion and Birkhoff von-Neumann theorem,
+we have Ver(Dn [LΓ ]) ⊃ Aut(Γ) for any graph Γ. Hence
+Ver(Dn [LΓ ]) = Aut(Γ) if and only if LΓ is compact.
+
+B. Compact Graph
+The notion of compact graph has been introduced for the
+study of the graph isomorphism problem, a famous problem
+in computer science. Even though the motivation of the study
+of compact graphs seems far from error-correcting codes, we
+apply it to permutation codes.
+Let Γ := ({0, 1, . . . , ν −1}, E) be a graph with its vertex set
+{0, 1, . . . ν −1} and its edge set E, i.e., E ⊂ {0, 1, . . . , ν −1}2 .
+Note that, in this paper, Γ is allowed to be an undirected graph.
+Let AΓ be the adjacency matrix of Γ, i.e., AΓ ∈ Mν (R) and
+its (i, j)-entry AΓ is
+i,j
+AΓ :=
+i,j
+
+1 if (i, j) ∈ E,
+0 o.w.
+
+For a graph Γ, we deﬁne a graph constraint LΓ as LΓ :=
+LD ∪ {XAΓ = AΓ X}. Note that XAΓ = AΓ X deﬁnes ν 2 linear equations by regarding each entry as an equation. A
+graph Γ is called compact if LΓ is compact.
+
+Fig. 2.
+
+Graph of Type Line
+
+Fig. 3.
+
+Graph of Type Cycle
+
+Schreck showed “a compact regular graph with prime
+vertices must be a circulant graph” in [9]. Hence, it is not
+easy to design various compact graphs. On the other hand,
+Tinhofer showed “any connected tree and any cycle are compact graphs” in [6] and “a union of the same two connected
+un-directed graph is compact” in [7].
+Example III.5 (Line and Televis3 ). Let E := {(i, j) | i − j =
+±1}. Since Γ := ({0, 1, . . . , ν−1}, E) is a tree, Γ is a compact
+seed graph. If ν = 2, we call the graph a televis. Aut(Γ) is
+isomorphic to a cyclic group C2 .
+
+Fig. 1. DSM and Dn [LΓ ]: we like to avoid fractional vertices due to the
+additional equations XAΓ = AΓ X.
+
+Example III.6 (Circle). Let E := {(i, j) | i − j = ±1
+(mod ν)}. Then Γ := ({0, 1, . . . , ν − 1}, E) is a compact
+seed graph and Aut(Γ) is isomorphic to a dihedral group
+D2ν 4 , and is known as a reﬂection group of type Iν [10].
+
+For a graph Γ = (V, E) and its vertex v ∈ V , the cardinality
+#{i ∈ V | (i, v) ∈ E} (resp. #{j ∈ V | (v, j) ∈ E}) is called
+in-degree (resp. out-degree) of v. We call Γ a seed graph if Γ
+is connected and the in-degree of v is equal to the out-degree
+of v for any vertex v of Γ.
+For a graph Γ = ({0, 1, . . . , ν − 1}, E) and a positive integer R, we deﬁne a graph Γ(R) with a vertex set
+
+The following examples “cycle” have not been considered
+as compact graphs but they are.
+3 Televis:
+4 In
+
+3
+
+a toy consists of two balls and a string which connects the balls
+some references, a dihedral group of degree n is denoted by Dν .
+
+The holding constraint H# of degree 3 is
+
+Example III.7 (Cycle). Let Γ = ({0, 1, . . . , ν − 1}, E) be a
+directed cyclic graph, i.e., E = {(0, 1), (1, 2), . . . , (ν − 2, ν −
+1), (ν − 1, 0)}. Then Γ is a compact seed graph and Aut(Γ)
+is a cyclic group Cν .
+
+H# = {
+
+h# (X) :
+1
+h# (X) :
+2
+
+IV. C ONSOLIDATION
+h# (X) :
+3
+
+The aim of this section is to introduce a new technique
+“consolidation” to construct a compact constraint.
+
+Let l be a linear constraint for an n-by-n matrix. We call l
+homogeneous if the constant term of l is 0. Formally speaking,
+l(X) : 0≤i,j<n ci,j Xi,j = 0, or l(X) : 0≤i,j<n ci,j Xi,j ≥
+0, for some ci,j ∈ R. For examples, the “positivity” is
+homogeneous but the “row-sum constraint” is not. The following weak constraints are homogeneous too: we call the
+following n-linear constraints weak row-sum constraints:
+0≤j<n Xi0 ,j =
+0≤j<n X0,j , for any 0 ≤ i0 < n. Weak
+column-sum constraints are similarly deﬁned.
+A set L of linear constraints is said to be a quasihomogeneous constraint if L consists of homogeneous constraints, row-sum constraints and column-sum constraints.
+For example, LD and any graph constraint are quasihomogeneous.
+For a quasi-homogeneous constraint L, we construct a homogeneous constraint L by replacing all row-sum (resp. all
+column-sum) constraints in L with weak row-sum constraints
+(resp. column-sum). We call L a merged constraint for L.
+Let us divide a νR-by-νR matrix X into R2 block ma[r ,r ]
+trices X [r0 ,r1 ] of size ν-by-ν via the relation: Xi,j0 1 =
+Xr0 ν+i,r1 ν+j , for 0 ≤ i, j < ν and 0 ≤ r0 , r1 < R. For
+example, if ν = 3 and R = 2, we have
+⎜
+⎜
+⎜
+⎜
+⎜
+⎜
+⎝
+
+X [00]
+X [10]
+
+=
+and
+
+X00
+X10
+X20
+X30
+X40
+X50
+
+X
+
+[01]
+
+X01
+X11
+X21
+X31
+X41
+X51
+⎛
+
+X02
+X12
+X22
+X32
+X42
+X52
+
+X [01]
+X [11]
+
+X03
+= ⎝ X13
+X23
+
+X04
+X14
+X24
+
+X03
+X13
+X23
+X33
+X43
+X53
+
+X04
+X14
+X24
+X34
+X44
+X54
+
+X05
+X15
+X25
+X35
+X45
+X55
+
+[00]
+
+[00]
+
+[01]
+
+[01]
+
+[01]
+
++(X00 + X01 + X02 ) = 1,
+[00]
+
+[00]
+
+[00]
+
+(X00 + X01 + X02 )
+[10]
+
+[10]
+
+[10]
+
++(X00 + X01 + X02 ) = 1,
+[11]
+
+[11]
+
+[11]
+
+(X00 + X01 + X02 ) ≥ 0}.
+
+B. Consolidation
+Let M[r0 ,r1 ] be a quasi-homogeneous constraint for a νby-ν matrix for 0 ≤ r0 , r1 < R. Let H be a set of linear
+constraints for an R-by-R matrix. For {M[r0 ,r1 ] } and H, we
+deﬁne a linear constraint M H for a νR-by-νR matrix as
+M H := {m[r0 ,r1 ] (X [r0 ,r1 ] ) | m[r0 ,r1 ] ∈ M[r0 ,r1 ] , 0 ≤
+r0 , r1 < R} ∪ {h# | h ∈ H}, where X is a νR-by-νR matrix
+and X [r0 ,r1 ] is the (r0 , r1 )th block of X of size ν-by-ν. We
+call M H a consolidation for {M[r0 ,r1 ] } and H. One of
+
+A. Merged Constraints and Holding Constraints
+
+⎛
+
+[00]
+
+(X00 + X01 + X02 )
+
+Fig. 4.
+
+Consolidation
+
+our main contributions is the following. Please refer a proof
+to the full version paper [11].
+
+⎞
+
+Theorem IV.1. Let M[r0 ,r1 ] be a quasi-homogeneous constraint for a ν-by-ν matrix for 0 ≤ r0 , r1 < R. Let H be a
+doubly stochastic constraint for an R-by-R matrix.
+If any M[r0 ,r1 ] and H are compact, we have the following:
+H]) = {(σ|g0 , . . . , gR−1 ) | σ ∈
+1) Ver(DνR [M
+Ver(DR [H]), gr ∈ Ver(Dν [M[r,σ(r)] ])}.
+2) the consolidation M H is compact.
+3) the cardinality of Ver(DνR [M H]) is
+
+⎟
+⎟
+⎟
+⎟
+⎟
+⎟
+⎠
+
+⎞
+X05
+X15 ⎠ .
+X25
+
+v [0,σ(0)] v [1,σ(1)] · · · v [R−1,σ(R−1)] ,
+σ∈Ver(DR [H])
+
+where v [r,σ(r)] denotes the cardinality of Ver(M[r,σ(r)] ).
+
+We call X [r0 ,r1 ] the (r0 , r1 ) block of X.
+Let H be a set of linear constraints for an R-by-R matrix.
+For h(H) ∈ H, we deﬁne a linear constraint h# (X) for a
+[r0 ,r ]
+νR-by-νR matrix by replacing Hr0 ,r1 with 0≤j<ν X0,j 1 .
+For H, we deﬁne H# := {h# | h ∈ H} and call it a holding
+constraint of degree ν. For example: let H := {h1 (H) :
+H00 + H01 = 1, h2 (H) : H00 + H10 = 1, h3 (H) : H11 ≥ 0}.
+
+Lemma IV.2. Let Γ be a compact seed graph with ν-vertices
+and LD(R) a doubly stochastic constraint in Note III.1, for
+an R-by-R matrix. Let MΓ be a set {M[r0 ,r1 ] } of quasihomogeneous constrains, where M[r0 ,r1 ] := LΓ .
+Then we have DνR [LΓ(R) ] = DνR [MΓ LD(R) ].
+Proof: By using the block component X [ij] , the equation
+(R)
+= AΓ X is equivalent to X [ij] AΓ = AΓ X [ij] , for
+XA
+Γ(R)
+
+4
+
+all 0 ≤ i, j < R. Therefore LΓ(R) ⊂ MΓ LD(R) . It implies
+D[LΓ(R) ] ⊃ D[MΓ LD(R) ].
+Let us show that X ∈ D[MΓ
+LD(R) ] for any X ∈
+D[LΓ(R) ]. Note that MΓ LD(R) \ LΓ(R) consists of weak
+row-sum and weak column-sum constraints. We can verify
+that Γ is a seed graph and X ∈ D[LΓ(R) ] satisﬁes weak
+row-sum and weak column-sum constraints (see [11]), then
+X |= MΓ LD(R) , in other words, X ∈ D[MΓ LD(R) ].
+Proof for Theorem III.4:
+By Lemma IV.2,
+Ver(DνR [LΓ(R) ]) ⊂ SνR holds.
+
+to maximize the following value
+[r0 ,r1 ]
+
+(λ2r0 μ2r1 + λ2r0 +1 μ2r1 +1 )Y0
+0≤r0 ,r1 <R
+
+C. Distance Enlargement
+The following is directly obtained from deﬁnitions.
+Theorem V.2. Let Γ be a graph and and P σ a permutation
+matrix associated with a permutation σ. Then we have
+Dn [Lσ(Γ) ] = {P σ X(P σ )−1 | X ∈ Dn [LΓ ]},
+
+Examples of compact quasi-homogeneous constraints in
+III-A and III-C except for trees, have (reasonably) small computational cost encoding algorithms for the matrix sizes. For
+LD in Note III.1 for an n-by-n matrix, an encoding algorithm
+with computational cost O(n log n) is known (Sec.5.1 of [12]).
+Our idea is to assume M[i,j] = M[i,0] and to reduce the discussion to a local encoder Enci : {0, 1, . . . , vi −1} → GM[i,0] ,
+for 0 ≤ i, j < R and an encoder EncR : {0, 1, . . . , vR − 1} →
+GH . A decoder is obtained in a similar manner.
+
+Ver(Dn [Lσ(Γ) ]) = {P σ X(P σ )−1 | X ∈ Ver(Dn [LΓ ])}
+where LΓ is a graph constraint for Γ. Hence σ(Γ) is compact
+if and only if Γ is compact.
+Let G be a permutation group. The minimum Euclidean
+distance dE (G) motivated by the previous researches e.g., [5],
+is deﬁned as dE (G) := ming0 ,g1 ∈G,g0 =g1 ||g0 μ − g1 μ||2 /2,
+where μ = (1, 2, . . . , n) ∈ Rn . The minimum Kendall tau
+distance dK (G), motivated by rank modulation researches
+e.g., [3], is deﬁned as dK (G) := ming0 ,g1 ∈G,g0 =g1 #{(i, j) |
+−1
+−1
+0 ≤ i < j < n, g0 g1 (i) > g0 g1 (j)}. In general,
+dK (GΓ ) = dK (GΓ(R) ) and dE (GΓ ) = dE (GΓ(R) ) hold.
+However, we may enlarge the distances.
+Here is an example. Let Γ be a televis and σ is a permutation
+on {0, 1, 2, 3} deﬁned as σ(0) := 0, σ(1) := 2, σ(2) :=
+1, and σ(3) := 3. By routine calculation, we can verify
+dK (GΓ(2) ) = 1 < dK (Gσ(Γ(2) ) ) = 2, and dE (GΓ(2) ) =
+1 < dE (Gσ(Γ(2) ) ) = 2. Characterizing which permutation σ
+maximizes these distances is interesting but not easy. We leave
+this problem open to investigation.
+
+Deﬁnition V.1 (Encoding algorithm). Input: integer 0 ≤
+mes < v0 v1 . . . vR and μ ∈ RνR . Output: a vector μ ∈ RνR .
+
+•
+•
+•
+•
+•
+
+1.
+2.
+3.
+4.
+5.
+6.
+7.
+
+Set i := 0.
+Set mesi := mes (mod v0 v1 . . . vR−1−i ).
+Update mes := (mes − mesi ) div vi .
+Encode mesi to a permutation gi by Enci .
+Update i := i + 1.
+If i = R + 1 then go to 7. Else go to 2.
+Output μ := (gR |g0 , g1 , . . . , gR−1 )μ.
+
+B. Number of Linear Constraints
+
+R EFERENCES
+
+An additional equation XAΓ = AΓ X may decrease the
+computational cost for error-correction. Here we present an
+example with a graph Γ of type televis (see Example III.5).
+[r0 ,r ]
+[r0 ,r ]
+Let us regard a linear constraint X0,0 1 − X1,1 1 = 0 as
+[r0 ,r1 ]
+[r0 ,r1 ]
+[r0 ,r1 ]
+[r ,r ]
+substitution X0,0
+= X1,1 . Let Y0
+(resp. Y1 0 1 )
+[r0 ,r ]
+[r0 ,r ]
+[r0 ,r ]
+[r0 ,r ]
+denote X0,0 1 and X1,1 1 (resp. X0,1 1 and X1,0 1 ).
+2
+Then the number of variables are reduced from 4R to 2R2 .
+Furthermore, the linear constraint LΓ(R) is converted to a
+doubly stochastic matrix LΓ(R) :
+Y0r,r1 + Y1r,r1
+
+=
+=
+
+1, for 0 ≤ r0 < R,
+
+Y0r0 ,r1 , Y1r0 ,r1
+
+≥
+
+[1] D.Slepian, “Permutation Modulation,” Proc. IEEE, pp.228-236, 1965.
+[2] A.Jiang, R.Mateescu, M.Schwartz, J.Bruck, “Rank Modulation for Flash
+Memories,” in Proc. IEEE ISIT 2008.
+[3] A.Barg, A.Mazumdar, “Codes in permutations and error correction for
+rank modulation,” Proc. IEEE ISIT 2010, pp.854-858.
+[4] Papandreou, N. et.al., “Drift-Tolerant Multilevel Phase-Change Memory,” Memory Workshop (IMW), 2011 3rd IEEE Inter.: pp.1-4, 2011.
+[5] T.Wadayama, M.Hagiwara, “LP decodable permutation codes based on
+linearly constrained permutation matrices ,” Proc. IEEE ISIT 2011,
+pp.139-143.
+[6] G.Tinhofer, “Graph isomorphism and theorems of Birkhoff type,” Computing, vol 36, Number 4, pp.285-300, 1986.
+[7] G.Tinhofer, “A note on compact graphs,” Discrete Applied Mathematics,
+vol.30, issue 2-3, pp.253-264, 1991.
+[8] W.Peterson, J.Nation, M.Fossorier, “Reﬂection Group Codes and Their
+Decoding,” IEEE Trans. on Inform. Theory 56(12): pp. 6273-6293, 2010.
+[9] H.Schreck and G.Tinhofer, “A note on certain subpolytopes of the
+assignment polytope associated with circulant graphs,” Linear Algebra
+and Its Applications, vol. 111, pp.125-134, 1988.
+[10] J.E.Humphreys, “Reﬂection groups and coxeter groups,” Cambridge
+University Press, 1992.
+[11] M.Hagiwara, “On ML-Certiﬁcate Linear Constraints for Rank Modulation with Linear Programming Decoding and its Application to Compact
+Graphs,” full version: http://arxiv.org/abs/1202.0521
+[12] D.Knuth, “The Art of Computer Programming Volume 3,” AddisonWesley, 1998.
+
+1, for 0 ≤ r1 < R,
+
+Y0r0 ,r + Y1r0 ,r
+
+,
+
+where λ is a received vector and μ is the initial vector of a
+permutation code.
+
+A. Encoding and Message Decoding
+
+•
+
+(λ2r0 μ2r1 +1 + λ2r0 +1 μ2r1 )Y1
+0≤r0 ,r1 <R
+
+V. F URTHER D ISCUSSION
+
+•
+
+[r0 ,r1 ]
+
++
+
+0, for 0 ≤ r0 , r1 < R.
+
+0≤r<R
+
+0≤r<R
+
+Totally, there are only 2R2 + 2R linear constraints. Remember
+that LΓ(R) ⊃ LD(2R) . However, we have #LΓ(R) < #LD(2R) ,
+since LD(2R) consists of 4R2 + 4R constraints. In this case
+with a union of televis, an LP problem for error-correction is
+
+5
+
+

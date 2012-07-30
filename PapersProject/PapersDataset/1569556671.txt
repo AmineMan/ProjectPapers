@@ -1,0 +1,923 @@
+Creator:        TeX
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Wed May 16 18:32:57 2012
+ModDate:        Tue Jun 19 12:54:24 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      507237 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569556671
+
+Square Root Law for Communication with Low
+Probability of Detection on AWGN Channels
+Boulat A. Bash∗ , Dennis Goeckel† , Don Towsley∗
+∗ Department
+† Electrical
+
+of Computer Science, University of Massachusetts, Amherst, Massachusetts 01003–9264
+and Computer Engineering Department, University of Massachusetts, Amherst, Massachusetts 01003–9292
+
+on his channel from Alice or Alice’s signals to Bob. If the
+noise on the channel between Willie and Alice has non-zero
+power, Alice can communicate with Bob while tolerating a
+certain probability of detection, which she can drive down by
+transmitting with low enough power.
+Our problem is related to the problem of imperfect
+steganography, but the two problems are not the same.
+Steganography considers hiding information by altering the
+properties of ﬁxed-size, ﬁnite-alphabet covertext objects (like
+images or software binary code) with imperfect steganography
+systems allowing a ﬁxed probability of detection of hidden
+information. Covertext can be considered a type of lossless
+ﬁnite-alphabet channel. However, the square root law recently
+√
+found in this environment [1], which states that O( n) symbols in the original covertext of size n may safely be modiﬁed
+to hide a message, is limited in its scope. The continuousvalued channel allows us to spread hidden information across
+every symbol used in the transmission, thus showing that a
+direct application of the steganographic result quickly leads to
+contradiction and demonstrating the distinction between the
+two problems. In fact, our square root law can be viewed as
+generalizing the square root law for imperfect steganography.
+We state our main result that limits mutual information on
+the covert channel between Alice and Bob using asymptotic
+notation where f (n) = O(g(n)) denotes an asymptotically
+tight upper bound on f (n), and f (n) = o(g(n)) and f (n) =
+ω(g(n)) denote upper and lower bounds, respectively, that are
+not asymptotically tight [2, Ch. 3.1]:
+
+Abstract—We present a square root limit on low probability
+of detection (LPD) communication over additive white Gaussian
+noise (AWGN) channels. Speciﬁcally, if a warden has an AWGN
+channel to the transmitter with non-zero noise power, we prove
+√
+that o( n) bits can be sent from the transmitter to the receiver
+in n AWGN channel uses with probability of detection by the
+warden less than for any > 0, and, if a lower bound on
+√
+the noise power on the warden’s channel is known, then O( n)
+bits can be covertly sent in n channel uses. Conversely, trying
+√
+to transmit more than O( n) bits either results in detection
+by the warden with probability one or a non-zero probability
+of decoding error as n → ∞. Further, we show that LPD
+communication on the AWGN channel allows one to send a nonzero symbol on every channel use, in contrast to what might be
+expected from the square root law found recently in image-based
+steganography.
+
+I. I NTRODUCTION
+Securing information transmitted over wireless links is
+of paramount concern for consumer, industrial, and military
+applications. Traditional encryption and key exchange protocols secure data from interception by an untrusted third
+party. However, there are many real-life situations where it
+is imperative to prevent the transmission from being detected
+in the ﬁrst place, as encrypted data arouses suspicion, and even
+the most theoretically robust encryption can often be defeated
+by a determined adversary using non-computational methods
+such as side-channel analysis. In spite of its importance, low
+probability of detection (LPD) communication has been relatively underexplored. In this work we examine the fundamental
+limitations of LPD communication over wireless links.
+In our scenario, Alice communicates with Bob over a channel subject to additive white Gaussian noise (AWGN), while
+Willie attempts to detect her transmission (without actively
+jamming Alice’s channel). The channel between Willie and
+Alice is also subject to AWGN. Alice sends low-power covert
+signals to Bob that Willie attempts to classify as either noise
+
+Theorem (Square root law). Suppose the channel between
+Alice and each of Bob and Willie experiences independent
+2
+additive white Gaussian noise (AWGN) with power σb > 0
+2
+2
+2
+and σw > 0, respectively, where σb and σw are constants.
+√
+2
+Then, for any > 0 and unknown σw , Alice can send o( n)
+information bits to Bob in n channel uses while maintaining
+a probability of detection of Alice’s transmission by Willie of
+2
+less than . Moreover, if Alice can lower-bound σw ≥ σw , she
+ˆ2
+√
+can send O( n) bits in n channel uses while maintaining a
+probability of detection √ less than . Conversely, if Alice
+of
+attempts to transmit ω( n) bits in n channel uses, then,
+as n → ∞, either Willie detects her with arbitrary low
+probability of error or Bob cannot decode her message reliably
+(i.e. with arbitrary low probability of decoding error).
+
+This research was sponsored by the National Science Foundation under
+grants CNS-0905349 and CNS-1018464, and by the U.S. Army Research
+Laboratory and the U.K. Ministry of Defence under Agreement Number
+W911NF-06-3-0001. The views and conclusions contained in this document
+are those of the author(s) and should not be interpreted as representing the
+ofﬁcial policies, either expressed or implied, of the U.S. Army Research
+Laboratory, the U.S. Government, the U.K. Ministry of Defence or the U.K.
+Government. The U.S. and U.K. Governments are authorized to reproduce and
+distribute reprints for Government purposes notwithstanding any copyright
+notation hereon.
+
+1
+
+After introducing our discrete-time channel model and hypothesis testing background in Section II, we sketch the proofs
+of the achievability and the converse of the square root law in
+Sections III and IV, respectively. Detailed proofs and remarks
+are available in [3]. We discuss the mapping to the continuoustime channel and the implications of channel fading on our
+results, as well as the relationship to previous work in Section
+V, and conclude in Section VI.
+
+only on the key [5]. Since this work concerns the limits of
+covert communication, key size is not a constraint and we
+defer the study of key efﬁciency to future work.
+Willie tries to determine whether Alice transmitted covert
+data given the vector of observations yw of his channel from
+Alice. Denote the probability distribution of Willie’s channel
+observations when H0 is true as P0 , and when H1 is true
+as P1 . To strengthen the achievability result, we assume that
+Alice’s channel input distribution, as well as the distribution
+of AWGN on the channel between Alice and Willie are known
+to Willie. Then P0 and P1 are known to Willie, and he can
+construct an optimal statistical hypothesis test that minimizes
+the sum of error probabilities α + β [4, Ch. 13]. Then:
+
+II. P REREQUISITES
+
+Alice
+
+f1 , f 2 , . . . , f n
+
+(w)
+
+zi
+
+r - m
+
+-
+
+Bob
+
+6 decode f1 , f2 , . . . , fn
+(b)
+zi
+?
+- m
+- Willie
+(w)
+
+(w)
+
+Fact 1 (Theorem 13.1.1 in [4]). For the optimal test:
+α+β
+
+=
+
+1 − T V (P0 , P1 )
+
+∞
+|p (x) −
+where T V (P0 , P1 ) =
+−∞ 0
+variation distance between P0 and P1
+1
+2
+
+p1 (x)|dx is the total
+and p0 (x) and p1 (x)
+are densities of P0 and P1 , respectively. Unfortunately, the
+total variation metric is unwieldy for the products of probability measures, which are used in the analysis of the vectors
+of observations. We thus use [6, Lemma 11.6.1]:
+
+(w)
+
+decide z1 , z2 , . . . , zn or
+(w)
+(w)
+(w)
+f 1 + z1 , f 2 + z2 , . . . , f n + zn ?
+Fig. 1. System framework: Alice encodes information into a vector of real
+symbols f = {fi }n and transmits it on an AWGN channel to Bob, while
+i=1
+Willie attempts to classify his vector of observations of the channel from Alice
+(w)
+(w)
+yw as either an AWGN vector zw = {zi }n or a vector {fi + zi }n
+i=1
+i=1
+of transmissions corrupted by AWGN.
+
+1
+2
+
+A. Channel Model
+
+2
+
+∞
+
+|p0 (x) − p1 (x)|dx
+
+≤ D(P0 P1 )
+
+(1)
+
+−∞
+
+p0 (x)
+where relative entropy D(P0 P1 ) = X p0 (x) ln p1 (x) dx with
+n
+X being the support of p1 (x). If P is the distribution of
+n
+a sequence {Xi }i=1 where each Xi ∼ P is i.i.d., then
+n
+n
+D(P0 P1 ) = nD(P0 P1 ). Now we are ready to prove the
+achievability theorem under an average power constraint.
+
+We use the discrete-time AWGN channel model with realvalued symbols depicted in Figure 1 (and defer discussion
+of the mapping to a continuous-time channel as well as a
+fading channel to Section V). Alice transmits a vector of
+n real-valued symbols f = {fi }n . Bob receives vector
+i=1
+(b)
+(b)
+(b)
+yb = {yi }n where yi = fi + zi with an independent
+i=1
+(b)
+2
+and identically distributed (i.i.d.) zi ∼ N (0, σb ). Willie
+(w) n
+(w)
+(w)
+observes vector yw = {yi }i=1 where yi
+= fi + zi ,
+(w)
+2
+with i.i.d. zi ∼ N (0, σw ).
+
+Theorem 1.1 (Achievability). Let Willie’s channel be subject
+2
+to AWGN with power σw > 0. Then Alice can maintain Willie’s
+sum of the probabilities of detection errors α + β ≥ 1 − for
+√
+any > 0 while covertly transmitting o( n) bits to Bob in n
+√
+2
+uses of an AWGN channel if σw is unknown and O( n) bits
+2
+in n channel uses if she can lower-bound σw ≥ σw .
+ˆ2
+
+B. Hypothesis Testing
+Willie expects vector yw to be consistent with his channel
+noise model. He performs a statistical hypothesis test on this
+vector, with the null hypothesis H0 being that Alice is not
+covertly communicating. This corresponds to each sample
+(w)
+2
+yi
+∼ N (0, σw ) i.i.d. The alternate hypothesis H1 is that
+(w)
+Alice is transmitting, which corresponds to samples yi
+from a different distribution. Willie tolerates some cases when
+his test incorrectly accuses Alice. Following the standard
+nomenclature, we denote the probability of such rejection of
+H0 when it is true by α [4]. Willie’s test may also accept
+H0 when it is false and miss Alice’s covert transmission.
+We denote the probability of a miss by β. The sum α + β
+determines the performance of a hypothesis test [4].
+
+Proof: Construction: Alice’s channel encoder takes input
+in blocks of size M bits and encodes them into codewords of
+length n at the rate of R = M/n bits/symbol. We employ
+random coding arguments and independently generate 2nR
+codewords {c(Wk ), k = 1, 2, . . . , 2nR } from Rn for mesn
+sages Wk , each according to pX (x) = i=1 pX (xi ), where
+X ∼ N (0, Pf ) and Pf is deﬁned later. The codebook is the
+secret key shared between Alice and Bob, and is not revealed
+to Willie.1 However, Willie knows how it is constructed,
+including the value of Pf , and he uses statistical hypothesis
+testing on n channel readings yw to decide whether Alice
+transmitted.
+Analysis: Consider the case when Alice transmits codeword
+c(Wk ). Suppose that Willie employs a detector that implements an optimal hypothesis test on his n channel readings.
+
+III. ACHIEVABILITY OF S QUARE ROOT L AW
+In our scenario, Alice and Bob construct a covert communications system, with all the details known to Willie except for
+a secret key shared before communication. This follows “best
+practices” in security system design, as its security depends
+
+1 Willie’s lack of knowledge of the codebook is critical to our result, as the
+sparsity of the codewords implies that, if the codeword is correctly decoded
+by Willie, then the transmission is detected.
+
+2
+
+∞ e−t2 /2
+√
+dt
+2π
+
+His null hypothesis H0 is that he observed noise on his
+channel. His alternate hypothesis H1 is that Alice transmitted
+and he observed Alice’s codeword corrupted by noise. By
+Fact 1, the sum of the probabilities of Willie’s detector’s
+errors is expressed by α + β = 1 − T V (P0 , P1 ), where the
+total variation distance is between the distribution P0 of n
+noise readings that Willie expects to observe under his null
+hypothesis and the distribution P1 of the covert codeword
+transmitted by Alice corrupted by noise. Alice can lowerbound α + β by upper-bounding T V (P0 , P1 ) ≤ .
+(w)
+The realizations of noise zi in vector zw are zero-mean
+2
+i.i.d. Gaussian random variables with variance σw , and, thus,
+n
+2
+P0 = Pw where Pw = N (0, σw ). Since he does not know the
+codebook, Willie’s probability distribution of the transmitted
+symbols is of zero-mean i.i.d. Gaussian random variables with
+variance Pf . Since noise is independent of the transmitted
+symbols, when Alice transmits, Willie observes yw , where
+(w)
+2
+yi ∼ N (0, Pf + σw ) = Ps is i.i.d., and P1 = Pn . Then,
+s
+using (1), the properties of relative entropy, and the Taylor
+series expansion of D(Pw Ps ) with respect to Pf around
+Pf = 0, we obtain the upper bound:
+
+where Q(x) = x
+expectation yields:
+
+nR− n log2 1+
+2
+
+√
+
+cf (n)
+√
+2
+
+b
+
+Implications of a peak power constraint
+Since most practical systems are peak-power constrained,
+we show that the square root law holds for the binary input
+Gaussian output channel using a proof similar to that of
+Theorem 1.1.
+Theorem 1.2 (Achievability under a peak power constraint).
+Suppose Alice’s transmitter is subject to the peak power
+constraint b and Willie’s channel is subject to AWGN with
+2
+power σw > 0. Then Alice can maintain Willie’s sum of the
+probabilities of detection errors α + β ≥ 1 − for any > 0
+√
+while covertly transmitting o( n) bits to Bob √ n uses of
+over
+2
+an AWGN channel if σw is unknown and O( n) bits in n
+2
+ˆ2
+channel uses if she can lower-bound σw ≥ σw .
+Proof: Construction: Alice encodes the input in blocks
+of size M bits into codewords of length n at the rate R = M/n
+bits/symbol with the symbols drawn from alphabet {−a, a},
+where a satisﬁes the peak power constraint a2 < b and
+is deﬁned later. We independently generate 2nR codewords
+{c(Wk ), k = 1, 2, . . . , 2nR } for messages Wk from {−a, a}n
+n
+according to pX (x) =
+i=1 pX (xi ), where pX (−a) =
+1
+pX (a) = 2 . As in the proof of Theorem 1.1, the codebook is
+a secret key shared between Alice and Bob, but Willie knows
+how it is constructed, including the value of a.
+Analysis: When Alice transmits a covert symbol during the
+ith symbol period, she transmits −a or a equiprobably by
+construction and Willie observes the covert symbol corrupted
+1
+2
+2
+by AWGN. Therefore, Ps = 2 N (−a, σw ) + N (a, σw ) .
+Again, using (1), the properties of relative entropy, and the
+Taylor series expansion of D(Pw Ps ) with with respect to a
+around a = 0, we obtain the upper bound:
+
+2nR
+
+(3)
+
+i=0,i=k
+
+where (3) follows from the union bound and the linearity of expectation. The distance between two codewords is
+d = c(Wk ) − c(Wi ) 2 , where · 2 is the L2 norm. Since
+codewords are independent and Gaussian, c(Wk ) − c(Wi ) ∼
+N (0, 2Pf ) and d2 = 2Pf U , where U ∼ χ2 , with χ2 denotn
+n
+ing the chi-squared distribution with n degrees of freedom.
+Therefore, by [7, (3.44)]:
+= EU Q
+
+cf (n)
+√
+2 nσ 2
+b
+
+nρcf
+uses. Since nR ≤ 4σ2 ln(n) , approaching equality as n gets
+2
+b
+√
+very large, Bob receives nR = o( n) bits in n channel uses,
+√
+ˆ2
+and nR = O( n) bits in n channel uses if f (n) = σw .
+
+nR
+
+Ec(Wk ) [P (Ei (c(Wk )))]
+
+− n log2 1+
+2
+
+2 nσ
+b
+≤ 2
+√
+(n)
+√
+Since f (n) = ω(1/ n), if rate R = ρ log2 1 + 2cf nσ2 for
+2
+b
+a constant ρ < 1, as n increases, the probability of Bob’s
+decoding error decays exponentially to zero and Bob obtains
+√
+n
+√ ρ
+cf (n)
+√ 2
+covert bits in n channel
+nR = n 2 log2 1 + 2 nσ
+
+Pe
+
+= Ec(Wk ) P ∪2
+i=0,i=k Ei (c(Wk ))
+Ec(Wk ) [P (Ei (c(Wk )))]
+
+[8, (5)]. Taking the
+
+The summand in (3) does not depend on i, and (3) becomes:
+
+n
+Pf
+(2)
+2
+2σw 2
+Suppose Alice sets her average covert symbol power Pf ≤
+√
+cf (n)
+√ , where c = 2
+2. In most practical scenarios Alice can
+n
+2
+2
+2
+ˆ2
+ˆ
+lower-bound σw ≥ σw and set f (n) = σw . If σw is unknown,
+√
+select f (n) such that f (n) = o(1) and f (n) = ω(1/ n)
+(the latter condition is used to bound Bob’s decoding error
+2
+probability). In either case, for large n, Pf < σw satisﬁes
+the Taylor series convergence criterion for (2) to be valid,
+and Alice upper-bounds T V (Pn , Pn ) ≤ , limiting the
+s
+w
+performance of Willie’s detector.
+As standard results for constant symbol power are not
+directly applicable to our system where Pf is a function of
+codeword size n, we examine the probability Pe of Bob’s
+decoding error averaged over all possible codebooks. Let Bob
+employ a maximum-likelihood (ML) decoder (i.e. minimum
+distance) to process the received vector yb when c(Wk ) was
+sent. The decoder suffers an error event Ei (c(Wk )) when yb
+is closer to another codeword c(Wi ), i = k:
+
+≤
+
+1 −x2 /2
+2e
+
+Ec(Wk ) [P (Ei (c(Wk )))] ≤ 2
+
+T V (Pn , Pn ) ≤
+w
+s
+
+Pe
+
+≤
+
+T V (Pn , Pn ) ≤
+w
+s
+
+a2
+2
+2σw
+
+n
+2
+
+(4)
+
+Since the power of Alice’s covert symbol is a2 = Pf , (4)
+√
+is identical to (2) and Alice sets a2 ≤ cf (n) , where c and
+n
+f (n) are deﬁned as in Theorem 1.1. Then, for n large enough,
+a < σw satisﬁes the Taylor series convergence criterion, and
+
+Pf U
+2
+2σb
+
+3
+
+Alice obtains the upper bound T V (Pn , Pn ) ≤ , limiting the
+w
+s
+performance of Willie’s detector.
+Like in Theorem 1.1, we cannot apply standard constantpower channel coding results. Thus, we upper-bound Bob’s
+decoding error probability by analyzing a suboptimal decoding
+scheme. Suppose Bob uses a hard-decision device on each
+(b)
+(b)
+ˆ
+received covert symbol yi = fi + zi via the rule fi =
+(b)
+a if yi ≥ 0; −a otherwise , and applies an ML decoder
+on its output. The effective channel for the encoder/decoder
+pair is a binary symmetric channel with cross-over probability
+pe = Q(a/σb ) and the probability of the decoding error
+averaged over all possible codebooks is Pe ≤ 2nR−n(1−H(pe ))
+[9], where H(p) = −p log2 p − (1 − p) log2 (1 − p) is the
+binary entropy function. Extending the analysis in [10, Section
+I.2.1], we ﬁrst use the Taylor series expansion of pe with
+(U B)
+respect to a around a = 0 to upper-bound pe ≤ pe
+. Since
+(U B)
+1
+H(pe ) ≤ H(pe
+) on the interval [0, 2 ], we perform Taylor
+(U B)
+series expansion of H(pe
+) with respect to a around a = 0
+√
+ncf (n)
++O(1)
+nR− 2
+√
+σ π ln 2
+b
+. As f (n) = ω(1/ n), if
+to obtain Pe ≤ 2
+ρcf
+rate R = √nσ2(n) 2 bits/symbol for a constant ρ < 1, the
+b π ln
+probability of Bob’s decoding error decays exponentially to
+√
+zero as n increases and Bob √
+obtains nR = o( n) bits in n
+channel uses, and nR = O( n) bits in n channel uses if
+f (n) = σw .
+ˆ2
+
+IV. C ONVERSE
+Here, as in the achievability, the channel between Alice and
+2
+Bob is subject to AWGN of power σb . Alice’s objective is to
+√
+covertly transmit a message Wk that is M = ω( n) bits long
+to Bob in n channel uses with arbitrarily small probability of
+decoding error as n gets large. For an upper bound on the
+reduction in entropy, the messages are chosen equiprobably.
+Alice encodes each message Wk arbitrarily into n symbols at
+the rate R = M/n symbols/bit. In the converse that follows
+Willie observes all n of Alice’s channel uses, but, to strengthen
+the result, he is oblivious to her signal properties.
+Theorem 2. If over n channel uses, Alice attempts to transmit
+√
+a covert message to Bob that is ω( n) bits long, then, as
+n → ∞, either Willie can detect her with arbitrarily low
+sum of error probabilities α + β, or Bob cannot decode with
+arbitrarily low probability of error.
+Proof: To detect Alice’s covert transmissions, Willie
+performs the following hypothesis test:
+
+n
+2
+
+= zi
+
+(w)
+yi
+
+, i = 1, . . . , n
+
+= fi + zi
+
+(w)
+
+, i = 1, . . . , n
+
+Rejection of H0 means that Alice is covertly communicating
+with Bob. To perform the test, Willie collects a vector of
+n independent readings yw from his channel to Alice and
+y yT
+generates the test statistic S = wn w where xT denotes
+transpose of vector x. Under the null hypothesis H0 Alice does
+(w)
+2
+not transmit and Willie reads AWGN. Thus, yi ∼ N (0, σw ),
+and the mean and the variance of S are:
+
+It has recently been shown that √ ﬁnite-alphabet imperfect
+in
+steganographic systems at most O( n) symbols in the original
+covertext of size n may safely be modiﬁed to hide a steganographic message [1]. From the steganographic perspective,
+our covertext is the noise on Willie’s channel to Alice. But
+our result does not obey their converse, as we can modify
+all symbols in our covertext, highlighting the different nature
+of the problem scenarios. To demonstrate the richness of
+our scenario and the generality of our square root law, we
+construct a codebook where roughly τ n out of n of symbols
+are used to carry the message and when Alice is transmitting
+a codeword, the distribution of each of Willie’s observations
+2
+2
+is Ps = (1 − τ )N (0, σw ) + τ N (0, Pf + σw ). Again, using
+(1), the properties of relative entropy, and the Taylor series
+expansion of D(Pw Ps ) with respect to Pf around Pf = 0
+yields the following bound:
+τ Pf
+2
+2σw
+
+(w)
+
+yi
+
+H1 :
+
+Relationship with Square Root Law in Steganography
+
+T V (Pn , Pn ) ≤
+w
+s
+
+(w)
+
+H0 :
+
+E [S]
+var [S]
+
+2
+= σw
+4
+2σw
+=
+n
+
+(6)
+(7)
+
+Suppose Alice transmits codeword c(Wk ) with the average
+T
+power per symbol Pk = c(Wk )c (Wk ) . Then the mean and
+n
+variance of S when Alice transmits message Wk are:
+2
+σw + Pk
+(8)
+2
+4
+4Pk σw + 2σw
+var [S] =
+(9)
+n
+The variance of Willie’s test statistic (9) is computed by adding
+the variances conditioned on c(Wk ) of the squared individual
+2
+observations var yi (and dividing by n2 ) since the noise on
+the individual observations is independent.
+(k)
+Denote P0 as the distribution when H0 holds, and P1
+when H1 holds with Alice transmitting message Wk . If H0 is
+true, then S should be close to (6). Willie picks some threshold
+2
+t and compares the value of S to σw + t. He accepts H0 if
+2
+S < σw + t and rejects it otherwise. Suppose that he desires
+false positive probability α∗ , which is the probability that S ≥
+2
+σw + t when H0 is true. We bound it using (6) and (7) with
+Chebyshev’s Inequality [6, (3.32)]:
+
+E [S]
+
+(5)
+
+The only difference in (5) from (2) is τ in the numerator.
+√
+Thus, if Alice sets the product τ Pf = cf (n) , with c and f (n)
+n
+as previously deﬁned, she limits the performance of Willie’s
+detector. This product is the average symbol power used by
+Alice. It is easy to verify that in the peak power constrained
+√
+scenario Alice should set product τ a2 = cf (n) and that the
+n
+number of bits that Alice can covertly transmit to Bob obeys
+the square root bounds.
+
+α
+
+4
+
+≤
+
+=
+
+2
+P0 |S − σw | ≥ t ≤
+
+4
+2σw
+nt2
+
+√ 2
+2σ
+
+d
+w
+Thus, to obtain α∗ , Willie sets t = √n , where d = √α∗ is a
+constant. As n increases, t decreases, which is consistent with
+Willie gaining greater conﬁdence with more observations.
+Now let’s bound the probability of a miss β given t, which
+2
+is the probability that S < σw + t when Alice transmits Wk .
+We use Chebyshev’s Inequality with (8) and (9):
+
+C. Relationship to Previous Work
+Analytical evaluation of LPD communication has been
+sparse. Hero studies LPD channels [11] in a multiple-input
+multiple-output (MIMO) setting. While he recognizes that an
+LPD communication system is constrained by average power,
+he does not analyze the constraint asymptotically and, thus,
+does not obtain the square root law. Unlike LPD communication, much analytical work has been done on steganography.
+As noted in the remark in Section III, the square root law was
+found in ﬁnite-alphabet imperfect steganography [1]. However,
+although their goal is the same as ours (hiding information
+with low probability of detection by Willie), their model
+based on hiding information in ﬁnite-alphabet images is very
+different from ours. Our scenario is arguably richer, and its
+additional degree of freedom in the choice of transmission
+power allows Alice to alter all n symbols used in transmission
+while maintaining a ﬁxed detection probability, which stands
+in contrast to the ﬁnite-alphabet steganography result.
+
+4
+4Pk σ 2 + 2σw
+2
+(10)
+S − σw − Pk ≥ Pk − t ≤ √ w
+( nPk − d)2
+√
+If Pk = ω(1/ n), limn→∞ β = 0. Thus, with enough
+observations, Willie can detect with arbitrarily low error
+probability √
+Alice’s codewords with average symbol power
+Pk = ω(1/ n). Note that Willie’s detector is oblivious to
+any details of Alice’s codebook construction.
+By (10), if Alice wants to lower-bound the sum of the probabilities of error of Willie’s statistical test by α + β ≥ ζ > 0,
+she must use low-power codewords; in particular, a fraction
+√
+γ > 0 of the codewords must have PU = O(1/ n). Denoting
+this set of codewords by U, we can lower-bound the probability
+(U )
+(U )
+of Bob’s decoding error Pe ≥ γPe , where Pe is the
+probability of decoding error when a message from U is sent.
+Focusing on U, we adapt the proof of the converse to the
+coding theorem for Gaussian channels in [6, Ch. 9.2] to obtain:
+(k)
+
+β ≤ P1
+
+P(U )
+e
+
+≥
+
+1−
+
+2
+PU /2σb + 1/n
+log2 γ
+n
+
++R
+
+VI. C ONCLUSION
+We proved that the LPD communication is subject to a
+square root law in that the number of bits that can be covertly
+√
+transmitted in n channel uses is O( n). An interesting
+result in our work is the fact that one can use all of the n
+symbols with positive power to transmit the covert messages.
+A promising direction of future research is the extension of this
+work to a practical networked setting. Eventually, we would
+like to answer this fundamental question: is it possible to
+establish and maintain a “shadow” wireless network in the
+presence of both active and passive wardens?
+
+(11)
+
+√
+Since Alice transmits ω( n) bits in n channel uses, √ rate is
+her
+√
+R = ω(1/ n) bits/symbol. However, PU = O(1/ n), and,
+(U )
+as n → ∞, Pe is bounded away from zero. Thus, Pe is
+bounded away from zero if Alice tries to beat Willie’s simple
+hypothesis test.
+
+R EFERENCES
+
+V. D ISCUSSION
+A. Mapping to Continuous-time Channel
+Consider the mapping of the discrete-time model employed
+throughout this paper to the physical (continuous-time) channel. For a system that has a (baseband) bandwidth constraint of
+W Hz, if Alice employs the optimal bandlimited pulse shape
+sinc(2W t), all of the information is extracted from the channel
+by Willie (and Bob) by sampling at rate 2W samples/second.
+This results in the discrete-time model of Section II, and the
+results presented here apply directly. When the pulse shape is
+instead chosen to have some excess bandwidth, then sampling
+at a rate higher than 2W has utility for Willie when attempting
+to detect Alice’s transmission. Although we ﬁnd it unlikely that
+the asymptotics considered here will be altered, techniques
+involving cyclostationary detection are applicable and could
+potentially impact practical system implementations.
+
+[1] T. Filler, A. D. Ker, and J. Fridrich, “The square root law of steganographic capacity for markov covers,” Media Forensics and Security, vol.
+7254, no. 1, 2009.
+[2] T. H. Cormen, C. E. Leiserson, R. L. Rivest, and C. Stein, Introduction
+to Algorithms, 2nd ed. Cambridge, Massachusetts: MIT Press, 2001.
+[3] B. A. Bash, D. Goeckel, and D. Towlsey, “Square root law for communication with low probability of detection on awgn channels,” University
+of Massachusetts, Tech. Rep. UM-CS-2012-003, in submission to IEEE
+Transactions on Wireless Communications.
+[4] E. Lehmann and J. Romano, Testing Statistical Hypotheses, 3rd ed. New
+York: Springer, 2005.
+[5] A. J. Menezes, S. A. Vanstone, and P. C. V. Oorschot, Handbook of
+Applied Cryptography, 1st ed. Boca Raton, FL, USA: CRC Press,
+Inc., 1996.
+[6] T. M. Cover and J. A. Thomas, Elements of Information Theory, 2nd ed.
+John Wiley & Sons, Hoboken, NJ, 2002.
+[7] U. Madhow, Fundamentals of Digital Communication. Cambridge, UK:
+Cambridge University Press, 2008.
+[8] M. Chiani, D. Dardari, and M. K. Simon, “New exponential bounds
+and approximations for the computation of error probability in fading
+channels,” IEEE Transactions on Wireless Communications, vol. 2, no. 4,
+pp. 840–845, Jul. 2003.
+[9] A. Barg and G. D. Forney, Jr., “Random codes: minimum distances and
+error exponents,” IEEE Transactions on Information Theory, vol. 48,
+no. 9, pp. 2568–2573, Sep. 2002.
+[10] E. E. Majani, “A model for the study of very noisy channels, and
+applications,” Ph.D. dissertation, California Institute of Technology,
+1988.
+[11] A. O. Hero, “Secure space-time communication,” IEEE Transactions on
+Information Theory, vol. 49, no. 12, pp. 3235–3249, Dec. 2003.
+
+B. Fading and Shadowing
+Fading and shadowing will impact both the capacity of the
+channel from Alice to Bob and the ability for Willie to detect
+Alice’s transmission. There are a number of different models
+that could be employed to incorporate these effects. However,
+while these models will have an impact as we move toward
+practical systems, they have little impact on the asymptotic
+results presented here.
+
+5
+
+

@@ -1,0 +1,941 @@
+Title:          main.pdf
+Author:         abc
+Creator:         TeX output 2012.05.19:1303
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Sat May 19 13:10:26 2012
+ModDate:        Tue Jun 19 12:54:25 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      595.22 x 842 pts (A4)
+File size:      330836 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569565883
+
+1
+
+Spatially-Coupled Binary MacKay-Neal Codes for
+Channels with Non-Binary Inputs and Afﬁne
+Subspace Outputs
+Kenta Kasai, Takayuki Nozaki and Kohichi Sakaniwa
+Dept. of Communications and Integrated Systems, Tokyo Institute of Technology, 152-8550 Tokyo, Japan.
+Email: {kenta,nozaki,sakaniwa}@comm.ss.titech.ac.jp
+
+Abstract— We study LDPC codes for the channel with 2m -ary
+input x ∈ Fm and output y = x + z ∈ Fm . The receiver knows
+2
+2
+a subspace V ⊂ Fm from which z = y − x is uniformly chosen.
+2
+Or equivalently, the receiver receives an afﬁne subspace y − V
+where x lies. We consider a joint iterative decoder involving the
+channel detector and the LDPC decoder. The decoding system
+considered in this paper can be viewed as a simpliﬁed model
+of the joint iterative decoder over non-binary modulated signal
+inputs e.g., 2m -QAM. We evaluate the performance of binary
+spatially-coupled MacKay-Neal codes by density evolution. The
+iterative decoding threshold is seriously degraded by increasing
+m. EXIT-like function curve calculations reveal that this degradation is caused by wiggles and can be mitigated by increasing
+the randomized window size. The resultant iterative decoding
+threshold values are very close to the Shannon limit.
+
+polar codes [6] and irregular LDPC codes [7]. According to the
+channel, polar codes need frozen bit selection [6] and irregular
+LDPC codes need optimization of degree distributions. We
+note that recently Aref and Urbanke proposed SC rateless
+codes [8] which are conjectured to universally achieve the
+capacity of BMS channels without knowing even the capacity
+of the channel at the transmitter.
+MacKay-Neal (MN) codes [9] are non-systematic two-edge
+type LDPC codes [10], [2]. The MN codes are conjectured
+to achieve the capacity of BMS channels under maximum
+likelihood decoding. Murayama et al. [11] and Tanaka and
+Saad [12] reported the empirical evidence of the conjecture
+for BSC (Binary Symmetric Channel) and AWGN (Additive White Gaussian Noise) channels, respectively by a nonrigorous but powerful statistical mechanics approach known
+as replica method. In [13], Kasai and Sakaniwa presented a
+spatial coupling method of SC-MN codes. Empirical results
+showed that SC-MN codes with bounded density achieve the
+capacity of the BEC. It was observed that the SC-MN codes
+have the BP threshold close to the Shannon limit.
+In this paper, we study coding over the channel with
+2m -ary input x ∈ Fm and output y ∈ Fm . The receiver
+2
+2
+knows a subspace V ⊂ Fm from which z = y − x is
+2
+uniformly chosen. Or equivalently, the receiver receives an
+afﬁne subspace y − V := {y − z | z ∈ V } in which the
+input x is compatible. This channel model is used in the
+decoding process for network coding [14] after estimating
+noise packet spaces. In [14], non-binary LDPC codes are used,
+which results in high-decoding complexity O(m3 ) at each
+channel factor node and parity-check nodes. We do not use
+non-binary codes but binary codes for coding the non-binary
+input channel. Furthermore, we consider the joint iterative
+decoding between the channel detector and the code decoder.
+The channel detector calculates log likelihood ratio (LLR) of
+the transmitted bits from a channel output and messages from
+the BP decoder. Such a decoding system can be viewed as
+the simplest model of joint iterative decoders which involve
+the channel detector of non-binary modulation (e.g., 2m -QAM
+(quadrature amplitude modulation)) and the BP decoder for
+LDPC codes.
+The aim of this paper is to evaluate the joint iterative
+decoding performance of binary SC-MN codes over the nonbinary input channels. To this end, we use density evolution
+(DE) analysis for joint iterative decoding of binary SC-MN
+
+I. I NTRODUCTION
+Spatially-coupled (SC) low-density parity-check (LDPC)
+codes attract much attention due to their capacity-achieving
+performance and a memory-efﬁcient sliding-window decoding
+algorithm. The studies on SC-LDPC codes date back to the invention of convolutional LDPC codes by Felstr¨ m and Zigano
+girov [1]. They introduced a construction method of (dl , dr )regular convolutional LDPC codes from (dl , dr )-regular block
+LDPC codes [2]. The convolutional LDPC codes exhibited
+better decoding performance than the underlying block LDPC
+codes under a fair comparison with respect to the code length.
+Lentmaier et al. observed that (4,8)-regular convolutional
+LDPC codes exhibited the decoding performance surpassing
+the belief propagation (BP) threshold of (4,8)-regular block
+LDPC codes [3]. Further, the BP threshold coincides with the
+maximum a posterior (MAP) threshold of the underlying block
+LDPC codes with a lot of accuracy. Constructing convolutional
+LDPC codes from a block LDPC code improves the BP
+threshold up to the MAP threshold of the underlying codes.
+Kudekar et al. named this phenomenon “threshold saturation” and proved rigorously for the binary-input erasure
+channel (BEC) [4] and the binary-input memoryless outputsymmetric (BMS) channels. [5]. In the limit of large dl , dr , L
+and w, the SC-LDPC code ensemble (dl , dr , L, w) [4] was
+shown to universally achieve the Shannon limit of BMS
+channels under BP decoding. This means the transmitter does
+not need detail statistics of the channel but needs to know
+only the channel capacity. Such universality is not supported
+by other efﬁciently-decodable capacity-achieving codes, e.g.,
+
+1
+
+2
+
+III. S PATIALLY-C OUPLED M AC K AY-N EAL C ODES
+Let N denote the number of channel uses for one codeword,
+in other words, at each channel use, an m-bit symbol is transmitted through the channel. The total number of transmitted
+bits are n := mN . We use SC-MN codes of length n.
+In this section, we deﬁne binary SC-MN codes. We deﬁne
+a (dl , dr , dg , L, w) SC-MN code ensemble as follows. The
+Tanner graph of a code in the (dl , dr , dg , L, w) SC-MN code
+ensemble is constructed as follows. At each section i ∈ Z :=
+{0, ±1, ±2, . . . }, consider dr M bit nodes of degree dl , M bit
+dl
+nodes of degree dg . We refer to those two types of bit nodes
+as type 1 and type 2, respectively. Additionally, at each section
+i, consider M check nodes which adjacent to dr bit nodes of
+type 1 and dg bit nodes of type 2. Connect randomly these
+nodes in such a way that for i ∈ Z and j = 0, . . . , w − 1, bit
+nodes of type 1 at section i and check nodes at section i+j are
+M
+connected with drw edges and bit nodes of type 2 at section
+d M
+i and check nodes at section i + j are connected with g
+w
+edges. Shorten the bit nodes of type 1 and 2 at section |i| > L,
+in other words, set the bits to zero and do not transmit them.
+Puncture the bit nodes of type 1 at section |i| ≤ L, in other
+words, the bits are not transmitted. Hereafter, we call bit nodes
+of type 1 and 2, punctured and transmitted bits, respectively.
+Note that this code ensemble is nicely represented as LDPC
+codes deﬁned by a joint degree distribution [16]. The deﬁnition
+of the (dl , dr , dg , L, w) SC-MN code ensemble is based on
+that of (dl , dr , L, w) randomized SC-LDPC code ensemble.
+For more details on (dl , dr , L, w) randomized SC-LDPC code
+ensemble, we refer the readers to [4, Section II.B].
+Denote the number of transmitted bit nodes, punctured
+ˆ
+nodes by Vt , Vp , respectively. n = Vt = LM, Vp =
+dr ˆ
+ˆ
+LM, where L := 2L + 1. The number of check nodes
+dl
+of degree at least 1, denoted by Vc , can be counted by
+the same way as in [4, Lemma 3] as follows. Vc =
+w
+i
+i
+M [2L − w + 2 i=0 (1 − ( w )dr ( w )dg )]. The design codMN
+ing rate R (dl , dr , L, w) is given by RMN (dl , dr , L, w) :=
+i
+i
+1+w−2 w (1−( w )dr ( w )dg )
+Vt +Vp −Vc
+i=0
+ˆ
+= dr +
+= d r (L →
+ˆ
+Vt
+dl
+dl
+L
+∞).
+
+codes. EXIT-like function curve calculations reveal that BP
+threshold values are very close to the Shannon limit.
+II. C HANNEL M ODEL
+In this paper, we consider channels with input x ∈ Fm
+2
+and output y = x + z ∈ Fm , where z ∈ Fm is uniformly
+2
+2
+distributed in a linear subspace V ⊂ Fm . We refer to this
+2
+subspace as noise subspace. The dimension of V is distributed
+as Pr(dim(V ) = d) =: pd . Given the dimension d, V is
+also uniformly distributed, i.e., Pr(V = v| dim(V ) = d) =
+m
+m
+d−1 m −2l
+= l=0 2 d −2l is a 2-Gaussian binomial.
+, where
+1/
+2
+d
+d
+The normalized capacity per input bit is given by
+1
+1
+max(I(X; Y )) =
+max(H(Y ) − H(Y |X))
+m p(X)
+m p(X)
+The latter part equals to H(Z) which is independent of p(X)
+and the former part is maximized when X is uniformly
+distributed. Hence, it follows that the normalized channel
+m
+d
+capacity is given as 1 − d=0 m pd .
+We consider two types of smooth channels deﬁned by pd .
+The simplest dimension distribution is deterministic one. The
+channel W(m, w) for w ∈ {0, 1, . . . , m} is deﬁned by
+pd :=
+
+1 (d = w),
+0 (d = w).
+
+W(m, w) for large m was used in a decoding process of
+the network coding scenario [14]. In [14], the data part of
+each packet is represented as x ∈ Fm . Packets are coded by
+2
+non-binary LDPC codes whose parity-check coefﬁcients are
+in the general linear group GL(m, F2 ). The noise subspace
+V is estimated by padding zero packets and using Gaussian
+elimination. Note that, in this paper, unlike [14] we use binary
+LDPC codes for coding the 2m -ary input channel. Note also
+that, our DE calculation is currently limited for small m.
+In order to evaluate the performance of a given coding and
+decoding system, we prefer smoothly parametrized channels.
+Instead of W(m, w), let us consider CD(m, ) as a smoothly
+parametrized version of W(m, w), where CD stands for concentrated dimension.
+⎧
+⎨ 1 − m + m (d = m ),
+m − m (d = m + 1),
+pd :=
+⎩
+0 (otherwise).
+
+IV. D ECODING A LGORITHM
+In this section, we deﬁne a factor graph [17] for decoding
+the SC-MN code over the channel. Denote a (dl , dr , dg , L, w)
+SC-MN code by C. Denote the transmitted code symbols, punctured bits and the received symbols by x =
+(x1 , . . . , xmN ) =: (x1 , . . . , xN ), z = (z1 , . . . , zVp ) and y =
+(y 1 , . . . , y N ), respectively.
+We adopt the sum-product algorithm [17] over a factor
+graph deﬁned by the following factorization of P (x, z|y).
+
+For m = w, W(m, w) is identical to CD(m, ). The normalized capacity of CD(m, ) is given by 1 − .
+Another interesting non-binary input channel is BD(m, )
+whose dimension distribution is given by the binomial distribution pd := m d (1 − )m−d , where BD stands for binomial
+d
+distribution. This channel is realized by multiplying random
+m × m binary non-singular matrix A by the input bits x
+before transmitting through the binary erasure channel with
+erasure probability [15]. The afﬁne subspace is given by
+{x : AE xT = AE c xT c }, where E ⊂ {1, . . . , m} is the set of
+E
+E
+erased output indices, AE denotes the submatrix of A indexed
+by the elements of E, and xE is the corresponding subvector.
+The normalized capacity of BD(m, ) is given also as 1 − .
+
+P (x, z|y) = P (y|x, z)P (x, z)/P (y),
+N
+
+P (y|x, z) =
+P (y i |xi ) =
+
+P (y i |xi ),
+i=1
+− dim(Vi )
+2
+
+0
+
+(y i − xi ∈ Vi ),
+(otherwise),
+
+(1)
+
+Vc
+
+I[
+
+P (x, z) =
+k=1
+
+2
+
+xj +
+j∈∂t k
+
+zj = 0]/#C,
+j∈∂p k
+
+(2)
+
+3
+
+channel factor nodes
+ˆ
+ˆ . . . , N , ˆ = P (y |xi )
+1,
+i
+i
+bit nodes
+x1 , . . . , xn
+
+  
+
+
+
+
+
+check nodes
+
+  
+
+
+I
+
+
+
+
+j∈∂t k
+
+xj +
+
+j∈∂p k zj
+
+=0
+
+k = 1, . . . , Vc
+punctured nodes
+z1 , . . . , zVp
+Fig. 1.
+
+Factor graph representation of SC-MN codes with dl = 4, dr = 2, dg = 2 over CD(m = 2, ) or BD(m = 2, ).
+
+where ∂t k (resp. ∂p k) is the set of indices for transmitted
+(resp. punctured) bit nodes adjacent to the k-th check node
+of C, and #C represents the size of C. Figure 1 shows an
+example of a factor graph representation of SC-MN codes with
+dl = 4, dr = 2, dg = 2 over CD(m = 2, ) or BD(m = 2, ).
+The calculation for message μi→im+j (xim+j ) from the
+factor node ˆ of (1) to the variable node xim+1 is given by
+i
+
+the probability that a randomly picked message from the
+transmitted bit nodes are erased by z. Denote the indices of
+known messages by K. Note that 1 ∈ K. Deﬁne a subspace
+/
+V1 = {x = (x1 , . . . , xm ) ∈ Fm | xi = 0, i ∈ K} and denote
+/
+2
+D1 := dim(V1 ). We have #K = m − D1 . Then, it follows
+that
+
+μˆ
+i→im+1 (xim+1 ) ∝
+xim+2 ,...,x(i+1)m ∈F2
+
+z i (1 − z)m−i−1
+
+0
+
+(0 ≤ i ≤ m − 1)
+(i = −1).
+
+Let V0 ⊂ Fm be the noise subspace which is known at
+2
+ˆ The outgoing message is not erased if and only if all
+1.
+vectors in V2 := V1 ∩ V0 have 0 at the ﬁrst index, in precise,
+∀(x1 , . . . , xm ) ∈ V2 , x1 = 0. From [15], the probability
+PD2 |D0 ,D1 (k|j, i) that V2 has dimension k given V1 has
+dimension i and V0 has dimension j is given as follows.
+
+m
+
+P (y i |xi )
+
+m−1
+i
+
+(z)
+
+PD1 (i + 1) =
+
+μim+j→ˆ(xim+j ),
+i
+j=2
+
+where μim+j→ˆ(xim+j ) is the sum-product message from the
+i
+variable node of xim+1 to ˆ At the beginning of the algorithm,
+i.
+(μim+j→ˆ(0), μim+j→ˆ(1)) is set to (1/2, 1/2). From [2,
+i
+i
+Chap. 2], we know that if (μim+j→ˆ(0), μim+j→ˆ(1)) is either
+i
+i
+0 := (1, 0), 1 := (0, 1) or ? := (1/2, 1/2), μˆ
+i→im+j (xim+j )
+is also either 0,1, or ?. This message calculation at ˆ is
+i
+efﬁciently accomplished by Gaussian elimination with O(m3 )
+calculations. Since the factor node for each factor in (2) is a
+check node. Hence, the messages stay in {0, 1, ?}.
+
+PD2 |D0 ,D1 (k|j, i) = 2(i−k)(j−k)
+
+i
+k
+
+m−i
+j−k
+
+m
+j
+
+−1
+
+.
+
+Since bits whose indices in K are known, i.e., 0, D2 is
+distributed over index support {1, . . . , m} \ K. The outgoing
+message μ is known if the support of V2 does not include
+1. By counting the number for subspace of dimension i and
+i − 1 over the support of size k, we obtain the probability
+Pμ|D2 ,D1 (?|k, i) that outgoing message is ? given that V2 has
+dimension k and V1 has dimension i is given as follows.
+
+V. D ENSITY E VOLUTION A NALYSIS
+In this section, we derive DE equations for the sum-product
+algorithm over the factor graph deﬁned in the previous section.
+
+Pμ|D2 ,D1 (?|k, i) = 1 −
+
+A. Factor Node of Channel
+
+i−1
+k
+
+i
+k
+
+−1
+
+.
+
+Therefore, we have the probability f ,m (z) := P (μ = ?) that
+outgoing the message is ? as follows.
+
+The messages stay in {0, 1, ?} during the entire decoding
+process. DE update equation for the check node is obvious.
+First, we will focus on deriving the DE for the factor node ˆ
+1
+of (1).
+Rathi [15] developed the DE of non-binary LDPC codes for
+the BEC. The DE allows us to track probability mass functions
+of the dimension of the linear subspaces. For
+≥ 0, the
+( )
+( )
+( )
+DE tracks the probability vectors P
+= (P0 , . . . , Pm ) ∈
+[0, 1]m+1 which are referred to as densities.
+Without loss of generality, we can assume all-zero codewords were sent. We ﬁx the ﬁrst one of m transmitted bit
+nodes 1, . . . , m adjacent to the factor node ˆ and derive the
+1
+probability that the outgoing message μ along the edge is
+erasure. There are m − 1 incoming messages to ˆ Denote
+1.
+
+m
+
+f
+
+,m (z) =
+
+m
+
+Pμ|D2 ,D1 (?|k, i)PD2 ,D1 (k, i),
+k=0 i=k
+m−i+k
+
+PD2 ,D1 (k, i) =
+
+(z)
+
+PD2 |D0 ,D1 (k|j, i)PD0 (j)PD1 (i).
+j=k
+
+B. Density Evolution for Spatially-Coupled MacKay-Neal
+Codes
+( )
+
+( )
+
+Let pi and qi be the erasure probability of messages
+emitting from punctured bit and transmitted bit nodes to check
+nodes, respectively, at section i at the -th round of BP
+
+3
+
+4
+
+1.0
+
+TABLE I
+
+0.9
+
+T HRESHOLD VALUES
+SC-MN
+
+hEBP ( )
+
+0.8
+0.7
+0.6
+
+m
+
+0.5
+
+1
+2
+3
+4
+5
+6
+
+0.4
+0.3
+0.2
+0.1
+
+L=10
+L=20
+
+0.0
+0.4990
+
+0.4995
+
+0.5000
+
+0.5005
+
+∗ (d
+
+(dl = 4, dr = 2, dg = 2, L, w)
+CD(m, ) AND BD(m, ).
+
+l , dr , L, w) FOR
+
+CODES FOR
+
+CD(m, )
+L = 10
+L = 20
+w=2
+w=3
+0.49998527 0.49999998
+0.49950900 0.49999936
+0.49913150 0.49999850
+0.49714179 0.49998625
+0.49566948 0.49997243
+0.49166023 0.49989196
+
+BD(m, )
+L = 10
+L = 20
+w=2
+w=3
+0.49998527 0.49999998
+0.49987196 0.49999983
+0.49954538 0.49999942
+0.49885380 0.49999741
+0.49768392 0.49999097
+0.49596851 0.49997517
+
+0.5010
+
+Fig. 2. EBP EXIT-like curve of (dl = 4, dr = 2, dg = 2, L, w = 2)
+SC-MN codes with L = 10 and L = 20. The channel is CD(m = 2, ).
+The threshold for each code is given by erasure probability (X-axis) of the
+leftmost point on the curve. The threshold values are almost the same around
+= 0.499509 for L = 10 and L = 20.
+
+that the area theorem [2] does not necessarily hold. However,
+EXIT-like function allows us to understand how the decoding
+performance is affected by the ﬁxed points of DE.
+Consider ﬁxed points of the DE system described in Section
+∞
+V-B, i.e., (p := (pi )∞
+i=−∞ , q := (qi )i=−∞ , ) such that pi =
+( +1)
+( )
+( +1)
+( )
+qi = 0 for |i| > L, qi = pi
+= pi and qi = qi
+= qi
+for |i| ≤ L. For any ∈ [0, 1], a ﬁxed point ( , p = 0, q = 0)
+is called trivial. Trivial ﬁxed points correspond to successful
+decoding. We deﬁne EBP EXIT-like curve as the projected
+plots ( , hEBP ( )) of ﬁxed points ( , p, q), other than trivial
+ones, onto the following EXIT-like function.
+
+( )
+
+decoding in the limit of large M . Similarly, let zi be the
+erasure probability of messages emitting from channel factor
+nodes to punctured bit nodes at section i at the -th round of
+BP decoding in the limit of large M . DE update equations
+of the randomized (dl , dr , dg , L, w) SC-MN code are given as
+( )
+( )
+follows. For |i| > L and ≥ 0, pi = qi = 0. For |i| ≤ L,
+(0)
+(0)
+pi = qi = 1. For |i| ≤ L,
+
+hEBP ( ) =f
+
+( )
+,m (zi )
+
+( )
+
+· (zi )dg .
+
+In Fig. 2, we plot the EBP EXIT-like curve of (dl = 4, dr =
+2, dg = 2, L, w = 2) SC-MN codes for CD(m, ). As can be
+1
+d −1
+[1 − (1 −
+(1 −
+)
+) ] l , seen, the threshold values are almost the same around =
+w j=0
+w
+w
+0.499509 for L = 10 and L = 20. In Figs. 3 and 4, we plot the
+k=0
+k=0
+EBP EXIT-like curve of (dl = 4, dr = 2, dg = 2, L, w = 2)
+w−1
+w−1 ( )
+w−1 ( )
+pi+j−k d
+qi+j−k d −1 SC-MN codes for CD(m, ) and BD(m, ), respectively. From
+1
+( )
+[1 − (1 −
+si =
+) r (1 −
+) g ],
+w j=0
+w
+w
+those curves, it can be seen that the threshold degradation
+k=0
+k=0
+is caused by large wiggles. The wiggle size seems to grow
+( +1)
+( )
+( )
+( )
+( )
+qi
+= f ,m (zi ) · (si )dg −1 , zi = (si )dg .
+exponentially with m. This problem would be serious if m
+got large. In fact, large m is assumed in the network coding
+scenario [14]. However, wiggles are signiﬁcantly mitigated by
+C. Threshold Values
+We deﬁne the BP threshold value as ∗ := sup{ ∈ increasing randomized window size w as in the right column
+( )
+[0, 1] | lim →∞ pi = 0, i = −L, . . . , +L}, for the channel of Figs. 3 and 4.
+CD(m, ) or BD(m, ). In words, the SC-MN codes enable
+VII. C ONCLUSION
+reliable transmissions over the channel CD(m, ) or BD(m, )
+∗
+In this paper, we evaluated the performance of binary SCif < .
+Threshold values ∗ (dl , dr , L, w) for (dl = 4, dr = 2, dg = MN codes for the channels with afﬁne space outputs. We
+2, L, w) SC-MN codes are numerically calculated and listed derived DE equation and observed the threshold values are
+in Tab. I. As was also observed in the case of BEC [13], very close to the Shannon limit. We conclude that binary
+[4], we also observed the threshold values remain almost the spatially-coupled codes are not only universal for binary
+same for large L e.g. 200 for ﬁxed dl , dr , dg , w. Since the rate input channels but likely universal also for non-binary input
+of (dl = 4, dr = 2, dg = 2, L, w) SC-MN codes converges to channels.
+The possible future works are (i) extension to AWGN
+dr /dl = 1/2 in the limit of large L, we ignore the rate-loss. As
+can be seen, the threshold values are very close to the Shannon channels (ii) scaling the wiggle with m and w (iii) evaluating
+limit = 1/2 of (dl = 4, dr = 2, dg = 2, L = ∞, w < ∞) the performance for m → ∞ (iv) decreasing the compu3
+SC-MN codes. Interestingly, threshold values are degraded as tational complexity O(m ) of channel detector (v) proving
+m increases. The gap to the Shannon limit seems to grow the capacity-achieving performance (vi) extension to multiple
+access [18] and memory [19] channels.
+exponentially with m.
+( +1)
+
+pi
+
+=
+
+w−1
+
+w−1
+
+( )
+pi+j−k d −1
+r
+
+w−1
+
+( )
+qi+j−k d
+g
+
+R EFERENCES
+
+VI. EXIT- LIKE F UNCTION
+
+[1] A. J. Felstr¨ m and K. S. Zigangirov, “Time-varying periodic convoo
+lutional codes with low-density parity-check matrix,” IEEE Trans. Inf.
+Theory, vol. 45, no. 6, pp. 2181–2191, June 1999.
+
+In this section we investigate the reason of threshold degradation by an EXIT-like function. By “EXIT-like”, we mean
+
+4
+
+5
+
+1.0
+
+0.9
+
+0.9
+
+0.8
+
+0.8
+
+0.7
+
+0.7
+
+hEBP ( )
+
+hEBP ( )
+
+1.0
+
+0.6
+
+0.6
+
+0.5
+
+0.5
+
+0.4
+0.3
+0.2
+0.1
+
+0.4
+
+m=1
+m=2
+m=3
+m=4
+m=5
+m=6
+
+0.0
+0.485
+
+0.3
+0.2
+0.1
+0.490
+
+0.495
+
+0.500
+
+0.505
+
+0.510
+
+m=1
+m=2
+m=3
+m=4
+m=5
+m=6
+
+0.0
+0.49985 0.49990 0.49995 0.50000 0.50005 0.50010 0.50015
+
+0.515
+
+Fig. 3. Left: EBP EXIT-like curve of SC-MN codes with L = 10, w = 2, right: EBP EXIT-like curve of SC-MN codes with L = 20, w = 3, The channels
+are CD(m, ) for m = 1, . . . , 6. The threshold for each code is given by the most left erasure probability on the EBP EXIT-like curve. Unfortunately
+and interestingly, wiggles are much ampliﬁed by increasing channel input size 2m . However, wiggles are signiﬁcantly mitigated by increasing randomized
+window size w. Note that scale is magniﬁed 100 times from left to right.
+
+1.0
+
+0.9
+
+0.9
+
+0.8
+
+0.8
+
+0.7
+
+0.7
+
+hEBP ( )
+
+hEBP ( )
+
+1.0
+
+0.6
+
+0.6
+
+0.5
+
+0.5
+
+0.4
+0.3
+0.2
+0.1
+
+0.4
+
+m=1
+m=2
+m=3
+m=4
+m=5
+m=6
+
+0.0
+0.485
+
+0.3
+0.2
+0.1
+0.490
+
+0.495
+
+0.500
+
+0.505
+
+0.510
+
+m=1
+m=2
+m=3
+m=4
+m=5
+m=6
+
+0.0
+0.49985 0.49990 0.49995 0.50000 0.50005 0.50010 0.50015
+
+0.515
+
+Fig. 4. Left: EBP EXIT-like curve of (dl = 4, dr = 2, dg = 2, L, w) SC-MN codes with L = 10, w = 2, right: EBP EXIT-like curve of SC-MN codes
+with L = 20, w = 3, The channels are BD(m, ) for m = 1, . . . , 6. Wiggles are smaller than those of CD(m, ) for the same dl , dr , dg , L and w.
+
+[2] T. Richardson and R. Urbanke, Modern Coding Theory. Cambridge
+University Press, Mar. 2008.
+[3] M. Lentmaier, D. V. Truhachev, and K. S. Zigangirov, “To the theory of
+low-density convolutional codes. II,” Probl. Inf. Transm. , no. 4, pp.
+288–306, 2001.
+[4] S. Kudekar, T. Richardson, and R. Urbanke, “Threshold saturation via
+spatial coupling: Why convolutional LDPC ensembles perform so well
+over the BEC,” IEEE Trans. Inf. Theory, vol. 57, no. 2, pp. 803–834,
+Feb. 2011.
+[5] S. Kudekar, T. Richardson, and R. Urbanke, “Spatially Coupled Ensembles Universally Achieve Capacity under Belief Propagation,” ArXiv
+e-prints, Jan. 2012.
+[6] E. Arıkan, “Channel polarization: A method for constructing capacityachieving codes for symmetric binary-input memoryless channels,” IEEE
+Trans. Inf. Theory, vol. 55, no. 7, pp. 3051–3073, July 2009.
+[7] T. J. Richardson, M. A. Shokrollahi, and R. L. Urbanke, “Design of
+capacity-approaching irregular low-density parity-check codes,” IEEE
+Trans. Inf. Theory, vol. 47, no. 2, pp. 619–637, Feb. 2001.
+[8] V. Aref and R. Urbanke, “Universal rateless codes from coupled LT
+codes,” in Proc. 2011 IEEE Information Thoery Workshop (ITW), Oct.
+2011.
+[9] D. MacKay, “Good error-correcting codes based on very sparse matrices,” IEEE Trans. Inf. Theory, vol. 45, no. 2, pp. 399–431, Mar. 1999.
+[10] T. Richardson and R. Urbanke, “Multi-edge type LDPC codes,”
+2003, preprint available at http://citeseerx.ist.psu.edu/viewdoc/
+summary?doi=10.1.1.106.7310.
+
+[11] T. Murayama, Y. Kabashima, D. Saad, and R. Vicente, “Statistical
+physics of regular low-density parity-check error-correcting codes,”
+Phys. Rev. E, vol. 62, no. 2, pp. 1577–1591, Aug. 2000.
+[12] T. Tanaka and D. Saad, “Typical performance of regular low-density
+parity-check codes over general symmetric channels,” J. Phys. A:
+Math. Gen. , vol. 36, no. 43, pp. 11 143–11 157, Oct. 2003.
+[13] K. Kasai and K. Sakaniwa, “Spatially-coupled MacKay-Neal codes and
+Hsu-Anastasopoulos codes,” IEICE Trans. Fundamentals, vol. E94-A,
+no. 11, pp. 2161–2168, Nov. 2011.
+[14] A. Montanari and R. L. Urbanke, “Coding for network coding,” ArXiv
+e-prints, vol. abs/0711.3935, 2007.
+[15] V. Rathi, “Non-binary LDPC codes and EXIT like functions,” Ph.D. dissertation, Lausanne, 2008. [Online]. Available:
+http://library.epﬂ.ch/theses/?nr=4111
+[16] K. Kasai, T. Shibuya, and K. Sakaniwa, “Detailedly represented irregular
+low-density parity-check codes,” IEICE Trans. Fundamentals, vol. E86A, no. 10, pp. 2435–2444, Oct. 2003.
+[17] F. Kschischang, B. Frey, and H.-A. Loeliger, “Factor graphs and the
+sum-product algorithm,” IEEE Trans. Inf. Theory, vol. 47, no. 2, pp.
+498–519, Feb. 2001.
+[18] S. Kudekar and K. Kasai, “Spatially coupled codes over the multiple
+access channel,” in Proc. 2011 IEEE Int. Symp. Inf. Theory (ISIT), Aug.
+2011, pp. 2817–2821.
+[19] ——, “Threshold saturation on channels with memory via spatial
+coupling,” in Proc. 2011 IEEE Int. Symp. Inf. Theory (ISIT), Aug. 2011,
+pp. 2568–2572.
+
+5
+
+

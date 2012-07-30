@@ -1,0 +1,810 @@
+Title:          RAP-Rev-v5.pdf
+Author:         JinSooPark
+Creator:        TeX
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Wed May 16 17:53:59 2012
+ModDate:        Tue Jun 19 12:55:16 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      339532 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569564311
+
+Rate Allocation for Component Codes of
+Plotkin-Type UEP Codes
+Jin Soo Park, Ki-Hyeon Park and Hong-Yeop Song
+School of Electrical and Electronic Engineering, Yonsei University, Seoul, Republic of Korea
+E-mails: {js.park09, kh.park, hysong}@yonsei.ac.kr
+Abstract—In this paper, we present an analysis on the performance of Plotkin-type UEP codes by using threshold and equivalent channel model under the Gaussian assumption. Speciﬁcally,
+we give a framework on how to assign the rate of each component
+code of this Plotkin-type UEP code so that the goal of UEP is
+successfully achieved with far better overall BER performance.
+The result is surprising in that which component code should be
+assigned for MSB can be changed according to the assigned rate
+of each component code and overall rate.
+
+decoding algorithm, and some properties with the notion of
+equivalent channel noise. In Section III, we give an analysis
+for the rate allocation of component codes of the Plotkintype UEP codes using equivalent channel models based on
+Gaussian assumption. Simulation results and conclusions are
+given in Sections IV and V, respectively.
+
+I. I NTRODUCTION
+
+In this section, we will brieﬂy review the Plotkin-type UEP
+codes described in [3].
+
+II. P LOTKIN -T YPE UEP C ODES
+
+Multimedia streaming services on their wireless devices is
+becoming more and more popular recently, and multimedia
+packets can be distinguished into two different types according
+to their role of importance in the decoding: more signiﬁcant bits(MSB) and less signiﬁcant bits(LSB). This motivates
+so called the unequal error protection(UEP) channel coding
+schemes.
+Because of their powerful performance, LDPC and turbo
+codes have been considered for the base schemes of the
+UEP codes. UEP-Turbo codes with non-uniform puncturing
+was proposed in [2]. Irregular UEP-LDPC codes with faster
+convergence property of the higher degree nodes have been
+discussed in [1]. Further optimized result is presented in [4].
+Another interesting approach was a Plotkin-type construction using LDPC codes, as suggested in [3]. We have just
+simulated the performance of this scheme with the same
+component codes C1 and C2 of length 1000 and rate 0.5.
+The result was so curious in that the component codes work
+much more poorly (more than 1 dB) than the code C1 by
+itself as an equal error protection (EEP) code. This implies
+that the Plotkin-type construction in [3] could result in much
+poorer performance, unless the rate of each component code
+is carefully assigned.
+In this paper, we will give a theoretical framework on
+how to assign the rate of each component code so that the
+component code works as expected i.e. comparable to the
+performance of not only each component code as an EEP code
+but also the ideal average code with the same parameter. This
+result enables the system designer to predict immediately the
+performance of both component codes of the Plotkin-type UEP
+codes without computer simulation. Therefore, it may further
+help the designer to decide which component code should be
+assigned for MSB and which for LSB.
+This paper is organized as follows. In Section II, we review
+the Plotkin-type UEP codes with encoding scheme, multistage
+
+A. Construction
+Plotkin-type code Cp is deﬁned as follows:
+Cp = {|u|u + v||u ∈ C1 , v ∈ C2 },
+
+(1)
+
+where C1 and C2 are [n, k1 , d1 ] and [n, k2 , d2 ] binary linear
+codes, respectively, and u + v over GF(2) is performed
+component-wise. The codes C1 and C2 are named component
+codes. Letting w = u + v over GF(2), one transmits u in
+the ﬁrst time slot and w in the second. In [3], they used the
+LDPC codes as the component codes, and called as Plotkintype UEP-LDPC codes.
+B. Decoding
+The basic decoding process of the Plotkin-type UEP codes
+is called as multistage(MS) decoding. Let y = {yi }n and
+i=1
+y = {yi }n be the ﬁrst and second received vectors for
+i=1
+u and w, respectively, and Ly = {Ly }n and Ly =
+i i=1
+{Ly }n be their log-likelihood ratio(LLR)s, respectively.
+i=1
+i
+The MS decoding procedure is given as follows:
+1) Calculation of LLR Lv = {Lv }n for v:
+i i=1
+Lv = 2 · tanh−1 (tanh(Ly /2)tanh(Ly /2)).
+i
+i
+i
+2) Decoding of v: Using Lv , decode v for C2 . Denote the
+i
+ˆ
+result by v = {vi }n .
+ˆ i=1
+3) Calculation of LLR Lu = {Lu }n for u:
+i i=1
+ˆ
+Lu = Ly + (−1)vi Ly .
+i
+i
+i
+
+4) Decoding of u : Using Lu , decode u for C1 .
+i
+The advantage of this algorithm is the LLR gain of the u in
+the 3rd step of the above as mentioned in [3]. This algorithm
+can be applied repeatedly, and it is called as the multiroundmultistage(MR-MS) decoding.
+
+1
+
+C. Properties
+In the previous paper [3], authors used the concept of
+equivalent channel under the Gaussian assumption [6]. A
+2
+Gaussian random variable X ∼ N (mx , σx ) can be represented
+2
+2
+as an equivalent form N (1, σx,eq = σx /m2 ), in the sense of
+x
+2
+the equivalent SNR, where σx,eq is the equivalent variance
+2
+2
+of X as shown in Fig. 1. Let σ1 and σ2 are the equivalent
+channel noise that C1 and C2 in Cp experience, respectively.
+The brief summaries of Lemma 1, 2, 3 in [3] are listed as
+follows. For the Lemma 2 and 3, perfect decoding of C2 (i.e.,
+v) is assumed.
+
+Fig. 1.
+
+2
+2
+Let σ1,th and σ2,th be the threshold of C1 and C2 in the
+equivalent noise variance form, respectively. Then we can
+rewrite the code rate relation as follows,
+
+2
+Lemma 1 [3] If the equivalent channel noise σch → 0, then
+2
+2
+σ2 → σch .
+
+2
+σ2,th
+
+2
+Lemma 3 [3] If the equivalent channel noise σch → 0, then
+2
+2
+2
+2
+σ1 → σch /2 and σ2 → σch .
+
+Lv = 2 · tanh−1 (tanh(Ly /2)tanh(Ly /2)).
+i
+i
+i
+By using Monte Carlo simulation and Gaussian assumption,
+we may obtain E [Lv ] and V ar [Lv ], and hence the equivalent
+i
+i
+2
+noise σ2 = V ar [Lv ]/E 2 [Lv ] of the channel for C2 in Cp .
+i
+i
+For the perfect decoding of Cp , the two component codes C1
+and C2 in Cp should be error free. If the equivalent channel
+2
+σa,th satisﬁes the error free condition of C2 in Cp , we can
+2
+claim that the equivalent channel noise of C1 in Cp is σ1 =
+2
+σa,th /2 by lemmas 2 and 3. It is clear that Cp will be error
+free if the following (6) is satisﬁed:
+
+A. Average Code
+Let R1 and R2 be the code rate of C1 and C2 , respectively.
+Then the rate of Cp is the average of these:
+
+2
+2
+σ1 ≤ σ1,th
+
+k1 + k2
+R1 + R2
+=
+.
+(2)
+2
+2n
+Now we consider an (ideal) average EEP code Ca which
+achieves the channel capacity and has rate Ra . We further
+assume that its rate and length are the same as those of Cp .
+2
+That is, we have Ra = Rp . Let σa,th be the threshold of Ca
+in BPSK modulation system under AWGN channel [7], then
+2
+we can write the relation of σa,th and Ra as
+Rp =
+
+f (σ ) =
+
+(6)
+2
+σ2,th
+
+and
+Now, we need to determine the values of
+2
+satisfying (6) for a given Ra and hence σa,th . This will then
+determine the rate R1 and R2 by the similar relations as (3)
+or (4). This process is shown in Fig. 3. Note that we set
+2
+2
+σch = σa,th .
+Figure 2 shows the result of all the computations above
+2
+2
+for various values of σ1,th for a given value of σa,th = 0.8
+and hence Ra = 0.5604. Here, the solid line corresponds to
+the various values of the threshold of the each component
+2
+2
+code where σ1,th is set to be the x-axis. Note that σ2,th can
+2
+2
+be determined from σa,th and σ1,th . The dashed line is the
+equivalent channel noise for the decoding of C2 and the dotted
+line is for the decoding of C1 , respectively, for the given
+
+(3)
+
+where the function f (σ ) is given by
+log2 1+exp2 − 2x
+( σ2 )
+√
+2
+2πσ
+
+2
+2
+and σ2 ≤ σ2,th .
+2
+σ1,th
+
+2
+
+2
+
+(5)
+
+By the relation (2), if we select Ra and R1 , then R2 will
+be ﬁxed. The Gaussian assumption enables the approximation
+2
+of equivalent noise variance σ2 that is experienced by the
+decoder of C2 in Cp . [6] Let Cp and Ca be transmitted over
+2
+the equivalent channel with σch . For the fair comparison and
+2
+2
+design purpose, we may put σch = σa,th . Then, the LLRs
+y n
+of received vectors {Li }i=1 for C1 in Cp and {Ly }n for
+i=1
+i
+2
+2
+C1 + C2 in Cp both follow independent N (2/σa,th , 4/σa,th ).
+The ﬁrst step of the MS decoding calculates
+
+III. R ATE A LLOCATION OF THE C OMPONENT C ODES
+In this section, we will discuss the rate of the component
+codes and their error correction performance. In this paper,
+we just consider the AWGN channels. We list some of the
+notation we ﬁx throughout the paper:
+• Cp and Rp : Plotkin-type UEP code and its rate.
+• C1 and C2 : two component codes of the same length for
+Cp . These are sometimes referred to as C1 in Cp or C2
+in Cp in order to clearly specify that they are component
+codes of Cp .
+• R1 and R2 : rate of C1 and C2 , respectively.
+• Ca and Ra : an (ideal) average EEP code with the same
+rate as Cp .
+
+2
+
+(4)
+
+B. Equivalent Channel Models and Thresholds of Component
+Codes
+
+The meaning of these lemmas is the UEP properties of MS
+decoding which comes from the unequality of the equivalent
+channel SNRs by the component codes.
+
+exp − (x−1)
+2σ 2
+
+2
+2
+f (σ1,th ) + f (σ2,th )
+2
+2
+2
+= f −1 (2f (σa,th ) − f (σ1,th )).
+
+2
+f (σa,th ) =
+
+2
+Lemma 2 [3] If the equivalent channel noise σch → ∞, then
+2
+2
+2
+4
+σ1 → σch /2 and σ2 → σch .
+
+2
+Ra = f (σa,th ),
+
+Equivalent Gaussian distribution in the sense of SNR.
+
+dx
+.
+
+2
+
+Fig. 3. Diagram of the analysis process. Left: Threshold of each codes.
+Right: Equivalent channel noise of each codes.
+
+TABLE I
+C ODE RATES FROM THREE CASES
+2
+Ra (σa,th )
+
+2
+R1 (σ1,th )
+
+2
+R2 (σ2,th )
+
+Choice-Left
+Fig. 2.
+
+2
+channel condition σa,th . Now, it is obvious to see the range of
+2
+2
+σ1,th and σ2,th satisfying the inequalities (6). One intersection
+of these inequalities is designated by the vertical line with
+2
+mark Choice-o. This line determined the value σ1,th = 0.4
+2
+and σ2,th = 1.724. This will then determine the rate of C1
+and C2 to be R1 = 0.79 and R2 = 0.33. From this, we may
+foresee that both of C1 and C2 with these rates will perform
+(ideally) error-free in Cp .
+To the left of this vertical line lies the region in which the
+following holds:
+2
+2
+σ1 > σ1,th
+
+0.87 (0.3)
+
+0.25 (2.425)
+
+0.56 (0.8)
+
+0.79 (0.4)
+
+0.33 (1.724)
+
+Choice-Right
+
+2
+Case σa,th = 0.8 and hence Ra = 0.5604
+
+0.56 (0.8)
+
+Choice-o
+
+0.56 (0.8)
+
+0.65 (0.619)
+
+0.47 (1.051)
+
+We would like to compare the performance difference
+between Cp and Ca , where Cp is determined by C1 and
+C2 whose rate is determined by the vertical line in Fig.2
+and shown in the middle line of Table I. It turned out that
+2
+2
+2
+2
+σ1,th = 0.4 ≈ σ1 and σ2,th = 1.724 ≈ σ2 . This results in
+the rate of C1 and C2 to be R1 = 0.79 and R2 = 0.33,
+respectively. In Fig. 4, the curve for Cp is the average of C1
+and C2 in Cp . Ca is the code that has the same parameter
+as Cp and optimized by itself. From Fig. 4, we observe the
+following:
+1) Between Cp and Ca : They have quite similar performance as predicted by the design and analysis in the
+previous section.
+2) Between Ci in Cp and Ci only as EEP: They show
+some difference in the performance due to Plotkin-type
+construction. The code C2 with ‘good’ performance
+becomes worse as a component of Cp and the code C1
+with ‘bad’ performance becomes better as a component
+of Cp . However, a careful look shows that the curve
+of C2 in Cp has larger slope than that of C2 only.
+Therefore, they will meet at some point of cross-over
+and this point can be calculated exactly. In this sense,
+one might say that the code C2 with ‘bad’ performance
+becomes better as a component of Cp , similar to the
+case of C1 .
+3) Between C1 in Cp and C2 in Cp : The original design in
+[3] suggests C1 for MSB and C2 for LSB because of the
+hope that C1 in CP will become better than C1 only due
+to the LLR gain of the u in the 3rd step of MS decoding
+in Section II. However, this result shows that C2 is
+more appropriate for MSB, which is quite surprising. We
+will later show when C1 is appropriate for MSB with
+far more degradation in the overall performance. This
+will answer the question raised in Introduction why the
+simulation of a certain Plotkin-type UEP code resulted
+in so poor performance.
+
+2
+2
+and σ2 ≤ σ2,th .
+
+This implies that C1 works poorly even though C2 might
+work with acceptable level of performance. To the right of the
+vertical line lies the region in which the completely opposite
+might happen. However, it could a bit different from this
+2
+prediction because the dotted line for σ1 will go up passing
+this vertical line due to the poor performance of C2 which can
+2
+2
+obviously be seen by the fact that σ2 > σ2,th . Above analysis
+process is described in ﬁgure 3. And we have selected three
+cases from this ﬁgure, one from each region, and performed
+BER simulation of various codes involved. The result is given
+in the next section.
+IV. S IMULATIONS
+For BER performance simulation, we used LDPC codes for
+the component codes. Table I shows the target code rates
+for the simulation of Plotkin-type UEP-LDPC codes. Ca ,
+C1 and C2 are optimized LDPC codes by using Gaussian
+approximation [6] and progressive edge growth(PEG) [5]. The
+length of Ca and Cp are 5000, C1 and C2 are 2500. We
+decoded the codes Cp (and thus C1 and C2 in Cp ) by using the
+MS decoding in Section II. For the decoding of the component
+codes as EEP codes, the belief propagation(BP) decoding [8]
+and 100 iterations are applied.
+
+3
+
+0
+
+10
+
+0
+
+10
+
+Ca (Ra = 0.56) for EEP
+C Only for EEP
+1
+
+C2 Only for EEP
+−1
+
+10
+
+−1
+
+10
+
+C Overall
+p
+
+C in C
+1
+
+p
+
+C in C
+2
+
+10
+
+Bit Error Rate
+
+Bit Error Rate
+
+p
+
+−2
+
+−2
+
+−3
+
+10
+
+10
+
+−3
+
+10
+
+C (R = 0.56) for EEP
+a
+
+a
+
+C Only for EEP
+1
+
+−4
+
+10
+
+C Only for EEP
+
+−4
+
+2
+
+10
+
+C Overall
+p
+
+C in C
+1
+
+p
+
+C in C
+2
+
+0
+
+p
+
+0.5
+
+Fig. 4.
+
+1
+
+1.5
+Eb/No(dB)
+
+2
+
+2.5
+
+3
+
+0
+
+0.5
+
+Simulation results of Choice-o.
+
+1
+
+Fig. 5.
+
+1.5
+Eb/No(dB)
+
+2
+
+2.5
+
+3
+
+2.5
+
+3
+
+Simulation results of Choice-Left.
+
+0
+
+10
+
+Figures 5 and 6 show the BER performances of rate
+assignment of Choice-Left and Choice-Right. The rates are
+shown in Table I. Comparing these two cases with each other,
+and with Fig. 4, we may draw the following observations:
+
+−1
+
+10
+
+1) Between Cp and Ca : The Plotkin-type UEP code Cp in
+either Choice-Left or Choice-Right becomes much worse
+than Ca as predicted by the design and analysis in the
+previous section.
+2) Between Ci in Cp and Ci only as EEP: Two cases
+show a big difference. For Choice-Left, C2 in Cp works
+much better than C2 only as EEP, and C1 in Cp works
+better(?) than C1 only as EEP (which is a contrary to
+the prediction). We suspect this happens because the
+w has more power than C2 only. This case might be
+better for UEP purpose than the case Choice-o with a bit
+of degradation in the overall performance. For ChoiceRight, the situation is a complete opposite. In this case,
+both C1 and C2 in Cp work far much worse than C1
+and C2 only as EEP, respectively, and hence so do the
+overall performance of Cp .
+3) Between C1 in Cp and C2 in Cp : The result of ChoiceLeft shows similar behavior to those of Choice-o as
+predicted. For Choice-Right, the result is surprising. C1
+in Cp now performs better than C2 in Cp so the original
+suggestion of [3] might work for UEP. Note however in
+this case that the component codes in Cp and hence the
+code Cp work far much worse than Ca as well as C1 or
+C2 only as EEP. This clearly answers the question raised
+in Introduction. This result is due to the poor assignment
+of the rate for the component codes of the Plotkin-type
+UEP code Cp .
+
+Bit Error Rate
+
+−2
+
+10
+
+−3
+
+10
+
+C (R = 0.56) for EEP
+a
+
+a
+
+C1 Only for EEP
+−4
+
+10
+
+C2 Only for EEP
+C Overall
+p
+
+C in C
+1
+
+p
+
+C2 in Cp
+0
+
+0.5
+
+Fig. 6.
+
+1
+
+1.5
+Eb/No(dB)
+
+2
+
+Simulation results of Choice-Right.
+
+shown in Fig. 7. This ﬁgure shows that there does not exist any
+vertical line on which the inequalities (6) are satisﬁed. Here,
+2
+Rp = Ra = 0.2905 and σa,th = 2.0. This implies that one
+has to be very careful in setting the rate of the overall code
+Cp in the beginning since otherwise Plotkin-type construction
+becomes far much worse than the component code only as
+EEP no matter how the rate might be assigned. We suspect that
+this will happen for the values of Rp below certain threshold
+around 0.4 which need further analysis or simulation in the
+future.
+
+Before conclusion, we add the following additional result
+for different values of Ra in the beginning. One example is
+
+4
+
+8
+
+[5] X.-Y. Hu, E. Eleftheriou, and D. M. Arnold, “Progressive edge-growth
+Tanner graphs,” IEEE Trans. on Information Theory, vol. 51, no. 1, Jan.,
+2005.
+[6] S.-Y. Chung, T. J. Richardson, and R. L. Urbanke, “Analysis of SumProduct Decoding of Low-Density Parity-Check Codes Using a Gaussian
+Approximation,” IEEE Trans. on Information Theory, vol. 47, no. 2,
+Feb., 2001.
+[7] D. J. C. MacKay, Information Theory, Inference, and Learning Algorithms, Cambridge University Press, ch. 11, Cambridge, 2003.
+[8] U. Madhow, Fundamentals of Digital Communication, Cambridge University Press, Cambridge, 2008.
+
+σ2
+1,th
+
+Equivalent noise variance
+
+7
+
+σ2
+2,th
+σ2
+2
+
+6
+5
+4
+3
+2
+1
+0
+0.3
+
+0.35
+
+Fig. 7.
+
+0.4
+
+0.45
+
+0.5
+
+0.55
+σ2
+1,th
+
+0.6
+
+0.65
+
+0.7
+
+0.75
+
+0.8
+
+2
+Case σa,th = 2.0 and hence Ra = 0.2905
+
+V. C ONCLUSIONS
+In this paper, we suggest a guideline for the combination
+of the component code rates of Plotkin-type UEP codes to
+match the target BER or SNR difference of MSB and LSB
+performance by using the threshold and equivalent noise
+variance analysis.
+For a ﬁxed average code rate of “good” choice, we show
+that one can draw a graph similar to Fig. 2. In general,
+we believe that then the region satisfying (6) exists with
+2
+some interval of σ1,th (x-axis). Then any vertical line in the
+region will determine the rates of the component codes whose
+performance in the construction of Plotkin-type UEP codes can
+be predicted to be similar to those of the capacity achieving
+average code. Here, C2 might be better appropriate for MSB
+and C1 for LSB. When the vertical line is selected from the
+‘left’ of this region, the UEP capability might be increased
+with a bit degradation in the overall performance. The choice
+from the ‘right’ of this region must be avoided since not only
+the component codes of Plotkin-type UEP codes but also the
+code itself become far much worse.
+Final remark is about the Monte Carlo simulation to obtain
+the statistics of
+Lv = 2 · tanh−1 (tanh(Ly /2)tanh(Ly /2)).
+i
+i
+i
+This is based on the assumption that Lv has approximately
+i
+Gaussian distribution. Whether this is true or not can be a
+topic of future research in this direction.
+R EFERENCES
+[1] N. Rahnavard and F. Fekri, “New Results on Unequal Error Protection
+Using LDPC Codes,” IEEE Commun. Lett., vol. 10, no. 1, Jan., 2006.
+[2] G. Caire and G. Lechner, “Turbo codes with unequal error protection,”
+Electronic Lett., vol. 32, no. 32, March, 1996.
+[3] V. Kumar and O. Milenkovic, “On Unequal Error Protection LDPC
+Codes Based on Plotkin-Type Constructions,” IEEE Trans. on Information Theory, vol. 54, no. 6, June, 2006.
+[4] C. Poulliat, D. Declercq, and I. Fijalkow, “Enhancement of Unequal Error Protection Properties of LDPC Codes,” Eurasip Journal on Wireless
+Communication and Networking, vol. 2007, Article ID 92659, 2007.
+
+5
+
+

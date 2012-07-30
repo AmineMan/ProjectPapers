@@ -1,0 +1,644 @@
+Title:          NonuniformSampling_ISIT
+Subject:        
+Keywords:       
+Author:         Yuxin Chen
+Creator:        Preview
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Fri May 18 20:57:23 2012
+ModDate:        Tue Jun 19 12:54:42 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      899570 bytes
+Optimized:      no
+PDF version:    1.7
+ISIT'2012 1569565367
+
+Channel Capacity under
+General Nonuniform Sampling
+Yuxin Chen
+
+EE, Stanford University
+Email: yxchen@stanford.edu
+
+Yonina C. Eldar
+
+EE, Technion
+Email: yonina@ee.technion.ac.il
+
+Andrea J. Goldsmith
+
+EE, Stanford University
+Email: andrea@ee.stanford.edu
+
+typically investigated either under a noiseless setting, or
+based on statistical reconstruction measures (e.g. mean
+squared error (MSE)). Berger et. al. [5] related MSEbased optimal sampling with capacity for several special
+channels but did not derive the sampled capacity for
+more general channels. Our recent work [6] established a
+new framework that characterized sub-Nyquist sampled
+channel capacity for a broad class of sampling methods,
+including ﬁlter-bank and modulation-bank sampling [3],
+[7]. For these sampling methods, we determined optimal
+sampling structures based on capacity as a metric, illuminated intriguing connections between MIMO channel
+capacity and capacity of undersampled channels, as well
+as a new connection between capacity and MSE.
+One interesting fact we discovered in this previous
+work is the non-monotonicity of capacity with sampling rate under ﬁlter- and modulation-bank sampling,
+assuming an equal sampling rate per branch for a given
+number of branches. This indicates that more sophisticated sampling schemes, adaptive to the sampling rate,
+are needed to maximize capacity under sub-Nyquist
+rate constraints, including both uniform and nonuniform
+sampling. Beurling pioneered the investigation of general
+nonuniform sampling for bandlimited functions. However, it is unclear which sampling method can best exploit the channel structure, thereby maximizing sampled
+capacity under a sub-Nyquist sampling rate constraint.
+Although several classes of sampling methods were
+shown in [6] to have a closed-form capacity solution,
+the capacity limit might not exist for general sampling.
+It remains unknown whether there exists a capacity upper
+bound over a general class of sub-Nyquist sampling
+systems and, if so, when the bound is achievable.
+In this paper, we derive the sub-Nyquist sampled
+channel capacity for a general class of time-preserving
+nonuniform sampling methods. We demonstrate that the
+fundamental limit can be achieved through ﬁlter-bank
+sampling with varied sampling rate at different branches,
+or a single branch of modulation and ﬁltering followed
+by uniform sampling. Our results indicate that irregular
+
+Abstract—This paper develops the fundamental capacity
+limits of a sampled analog channel under a sub-Nyquist
+sampling rate constraint. In particular, we derive the
+capacity of sampled analog channels over a general class
+of time-preserving sampling methods including irregular
+nonuniform sampling. Our results indicate that the optimal
+sampling structures extract out the set of frequencies
+that exhibits the highest SNR among all spectral sets of
+support size equal to the sampling rate. The capacity under
+sub-Nyquist sampling can be attained through ﬁlter-bank
+sampling, or through a single branch of modulation and
+ﬁltering followed by uniform sampling. The capacity under
+sub-Nyquist sampling is a monotone function of the sampling rate. These results indicate that the optimal sampling
+schemes suppress aliasing, and that employing irregular
+nonuniform sampling does not provide capacity gain over
+uniform sampling sets with appropriate preprocessing for
+a large class of channels.
+Index Terms—nonuniform sampling, sampled analog
+channels, sub-Nyquist sampling
+
+I. I NTRODUCTION
+Capacity of analog channels along with the capacityachieving transmission strategies was pioneered by Shannon. These results have provided fundamental insights
+for modern communication system design. Most Shannon capacity results (e.g. [1], [2]) focus on the analog capacity commensurate with sampling at or above twice the
+channel bandwidth, which does not explicitly account for
+the effects upon capacity of sub-Nyquist rate sampling.
+In practice, however, hardware and power limitations
+may preclude sampling at the Nyquist rate associated
+with the channel bandwidth. On the other hand, although
+the Nyquist sampling rate is necessary for perfect recovery of bandlimited functions, this rate can be excessive
+when certain signal structures are properly exploited.
+Inspired by recent “compressive sensing” ideas, subNyquist sampling approaches have been developed to
+exploit the structure of various classes of input signals
+with different structures (e.g. [3], [4]).
+Although optimal sampling methods have been extensively explored in the sampling literature, they are
+
+1
+
+sampling sets, which are more complicated to realize
+in hardware, do not provide capacity increase compared
+with regular uniform sampling sets for a broad class of
+channels. Furthermore, we demonstrate that the optimal
+sampling schemes suppress aliasing through ﬁlter bank,
+modulation, or input optimization.
+
+Given a preprocessed output yk (t), we can use Beurling density to characterize the sampling rate on yk (t).
+However, since the preprocessor might distort the time
+scale of the input, the resulting “sampling rate” might
+not make physical sense, as illustrated below.
+Example 1 (Compressor). Consider a preprocessor deﬁned by the relation y(t) = T (r(t)) = r (Lt) with
+L ≥ 2 being a positive integer. If we apply a uniform
+sampling set Λ = {tn : tn = n/fs } on y(t), then the
+sampled sequence at a “sampling rate” fs is given by
+y[n] = y (n/fs ) = r (nL/fs ), which corresponds to
+sampling r(t) at rate fs /L. The compressor effectively
+time-warps the signal, thus resulting in a mismatch of
+the time scales between the input and output.
+
+II. S AMPLED C HANNEL C APACITY
+A. System Model
+We consider a waveform channel, which is modeled as a linear time-invariant (LTI) ﬁlter with impulse response h(t) and frequency response H(f ) =
+´∞
+−j2πf t dt. The channel output is given by
+−∞ h(t)e
+r(t) = h(t) ∗ x(t) + η(t),
+
+(1)
+
+The example of the compressor illustrates that the
+notion of a given sampling rate may be misleading for
+systems that exhibit time warping. Hence, our results will
+focus on sampling that preserves time scales. A class of
+linear systems that preserves time scales are modulation
+operators (y(t) = p(t)x(t), ∀t), which perform pointwise
+scaling of the input, and hence do not change the time
+scale. Another class are periodic systems which includes
+LTI ﬁltering, and are deﬁned as follows.
+
+where x(t) is the transmitted signal, and η(t) is stationary Gaussian noise with power spectral density Sη (f ).
+We assume throughout that perfect channel state information is known at both the transmitter and receiver.
+The analog channel output is passed through M (1 ≤
+M ≤ ∞) linear preprocessing systems each followed
+by a pointwise sampler, as illustrated in Fig. 1. The
+preprocessed output yk (t) at the k th branch is obtained
+by applying a linear operator Tk to r(t), i.e. yk (t) =
+Tk (r(t)). The linear operators can be time-varying, and
+include ﬁltering and modulation as special cases. We
+deﬁne the impulse response q(t, τ ) of a time-varying
+system as the output seen at time t due to an impulse
+in the input at time τ . The pointwise sampler following
+the preprocessor can be nonuniform. The preprocessed
+output yk (t) is sampled at times tk,n (n ∈ Z), yielding
+a sequence yk [n] = yk (tk,n ) . At the k th branch, the
+sampling set is deﬁned by Λk := {tk,n | n ∈ Z} . When
+tk,n = nTs , Λk is said to be uniform with period Ts .
+
+Preprocessor
+
+Analog
+Channel
+
+Figure 1.
+The input x(t) is constrained to [−T, T ] and passed
+through an analog channel and contaminated by noise η(t). The analog channel output r(t) is then passed through a linear preprocessing
+system T . The preprocessed output y(t) is observed over [−T, T ]
+and sampled on the sampling set Λ = {tn | n ∈ Z}.
+
+B. Sampling Rate
+In general, the sampling set Λ may be irregular. This
+calls for a generalized deﬁnition of the sampling rate.
+One notion commonly used in sampling theory is the
+Beurling density [8] as deﬁned below.
+
+Deﬁnition 2 (Periodic System). A linear preprocessing
+system is said to be periodic with period Tq if its impulse
+response q(t, τ ) satisﬁes
+
+Deﬁnition 1 (Beurling Density). For a sampling set Λ,
+the upper and lower Beurling density are deﬁned as
+￿
+D+ (Λ) = limr→∞ supz∈R cardinality(Λ∩[z,z+r]) ,
+r
+D− (Λ) = limr→∞ inf z∈R cardinality(Λ∩[z,z+r]) .
+r
+
+q(t, τ ) = q(t + Tq , τ + Tq ),
+
+∀t, τ ∈ R.
+
+(2)
+
+A more general class of systems that preserve the time
+scale can be generated through modulation and periodic
+subsystems. Speciﬁcally, we can deﬁne a general timepreserving system by connecting a set of modulation or
+periodic operators in parallel or in serial. This leads to
+the following deﬁnition.
+
+When D+ (Λ) = D− (Λ), the sampling set Λ is said to
+be of uniform Beurling density D (Λ) := D− (Λ).
+When the sampling set is uniform with period Ts , the
+Beurling density is D(Λ) = 1/Ts , which coincides with
+our conventional deﬁnition of the sampling rate.
+
+2
+
+Deﬁnition 3 (Time-preserving System). Given an index
+set I , a preprocessing system T : x(t) ￿→ {yk (t), k ∈ I}
+is said to be time-preserving if
+(1) The system input is passed through |I| (possibly
+countably many) branches of linear preprocessors, yielding a set of analog outputs {yk (t) | k ∈ I}.
+(2) In each branch, the preprocessor comprises a set
+of periodic or modulation operators connected in serial.
+
+deﬁne the sub-Nyquist sampled channel capacity for the
+class of linear time-preserving systems as follows.
+Deﬁnition 6 (Sampled Capacity under Time-preserving Linear Sampling). (1) C(fs , P ) is said to be the
+sampled capacity of an analog channel under timepreserving linear sampling for a given sampling rate fs
+if C(fs , P ) = supP C P (fs , P );
+(2) Cu (P ) is said to be a capacity upper bound of
+the sampled channel under this sampling if Cu (fs , P ) ≥
+P
+supP lim supT →∞ CT (fs , P ).
+Here, the supremum on P is over all time-preserving
+linear sampling systems.
+
+With a preprocessing system that preserves the time
+scale, we can now deﬁne the aggregate sampling rate
+through Beurling density.
+Deﬁnition 4. A sampling system is said to be timepreserving with sampling rate fs if
+(1) Its preprocessing system T is time-preserving.
+(2) The preprocessed output yk (t) is sampled by a
+sampling set Λk = {tl,k | l ∈￿} with a uniform Beurling
+Z
+density fk,s , which satisﬁes k∈I fk,s = fs .
+
+III. C APACITY A NALYSIS
+A. An Upper Bound on Sampled Channel Capacity
+A time-preserving sampling system preserves the time
+scale of the signal, and hence does not compress or
+expand the frequency response. We now determine an
+upper limit on the sampled channel capacity for this class
+of general nonuniform sampling systems.
+
+C. Capacity Deﬁnition
+
+Suppose that the transmit signal x(t) is constrained
+to the time interval [−T, T ], and the received signal
+y(t) is sampled and observed over [−T, T ]. For a given
+sampling system P that consists of a preprocessor T
+and a sampling set Λ, and a given time duration T , the
+P
+capacity CT (fs , P ) is deﬁned as
+￿
+1 ￿
+P
+CT (fs , P ) = max
+I x ([−T, T ]) , {y[n]}[−T,T ]
+p(x) 2T
+´T
+1
+subject to a power constraint E( 2T −T |x(t)|2 dt) ≤ P .
+Here, {y[tn ]}[−T,T ] denotes the set of samples obtained
+within time [−T, T ]. The sub-Nyquist sampled channel
+capacity for the given system can be studied by taking the limit as T → ∞. It was shown in [6] that
+P
+limT →∞ CT (fs , P ) exists for a broad class of sampling
+methods. We caution, however, that the existence of the
+limit is not guaranteed for all sampling methods, e.g. the
+limit might not exist for an irregular sampling set. The
+capacity and an upper bound under general nonuniform
+sampling is deﬁned as follows.
+
+Theorem 1 (Converse). Consider a time-preserving
+sampling system with sampling rate fs . Suppose that the
+output impulse response of the sampled channel is of
+ﬁnite duration, and that there exists a frequency set Bm
+that satisﬁes µ (Bm ) = fs and
+ˆ
+ˆ
+|H(f )|2
+|H(f )|2
+df = sup
+df,
+B:µ(B)=fs
+f ∈Bm Sη (f )
+f ∈B Sη (f )
+where µ (·) denotes the Lebesgue measure. Then the
+sampled channel capacity is upper bounded by
+￿ ￿
+￿￿+
+ˆ
+1
+|H(f )|2
+Cu (fs , P ) =
+log ν
+df, (3)
+Sη (f )
+f ∈Bm 2
+∆
+
+where [x]+ = max (x, 0) and ν satisﬁes
+￿
+￿+
+ˆ
+|H(f )|2
+ν−
+df = P.
+Sη (f )
+f ∈Bm
+
+(4)
+
+In other words, the upper limit is equivalent to the
+maximum capacity of a channel whose spectral occupancy is no larger than fs . The above result basically
+implies that even if we allow for more complex irregular
+sampling sets, the sampled capacity cannot exceed the
+one commensurate with the analog capacity when constraining all transmit signals to the interval of bandwidth
+fs that experience the highest SNR. Accordingly, the
+optimal input distribution will lie in this frequency set.
+This theorem also indicates that the capacity is attained
+when aliasing is suppressed by the sampling structure,
+
+Deﬁnition 5. (1) C P (P ) is said to be the capacity of
+P
+a given sampled analog channel if limT →∞ CT (fs , P )
+P (f , P ) = lim
+P (f , P );
+exists and C
+s
+s
+T →∞ CT
+P (P ) is said to be a capacity upper
+(2) Cu
+P
+bound of the sampled channel if Cu (fs , P ) ≥
+P (f , P ).
+lim supT →∞ CT s
+The above capacity is deﬁned for a speciﬁc sampling
+system. Another metric of interest is the maximum date
+rate for all sampling schemes within a general class
+of nonuniform sampling systems. This motivates us to
+
+3
+
+´∞
+Qk (f ) := −∞ q(tk , tk − t) exp(−j2πf t)dt, and introduce an fq Ts × ∞ dimensional matrix Fq (f ) and an
+inﬁnite diagonal square matrix Fh (f ) such that for all
+m, l ∈ Z and 1 ≤ k ≤ fq Ts ,
+
+h(t)
+as will be seen later in our capacity-achieving scheme.
+When the optimal frequency interval Bm is selected, a
+water ﬁlling power allocation strategy is performed over
+the spectral domain with water level ν .
+This theorem can be approximately interpreted based
+on a Fourier domain analysis. The Fourier transform of
+the analog channel output is given by H(f )X(f )+N (f ),
+where X(f ) and N (f ) denote, respectively, the Fourier
+response of x(t) and η(t). This output is passed through
+the sampling system to yield a sequence at a rate fs ,
+which can be further mapped to the space of bandlimited functions L2 (−fs /2, fs /2) through linear mapping
+without frequency warping. The whitening operation
+for the noise component, combined with the sampling
+system operator, forms an orthonormal mapping from
+L2 (−∞, ∞) to L2 (−fs /2, fs /2). The optimal orthonormal mapping that maximizes SNR is to extract out a
+frequency set Bm of size fs that contains the frequency
+components with the highest SNR, which leads to the
+capacity upper bound (3).
+The outline of the proof of Theorem 1 is sketched
+below. We start from the capacity of periodic sampling
+whose sampled channel capacity exists, and then derive
+the upper bound through ﬁnite-duration approximation
+of the true channels. Details can be found in [9].
+
+(Fq )k,l (f ) := Qk (f + lfq ) ,
+
+We can then express in closed form the sampled analog
+capacity as given in the following theorem.
+Theorem 2 (Capacity for Periodic Sampling). Suppose
+the sampling system P is periodic with period Tq = 1/fq
+and sampling rate fs . Assume that |H(f )Qk (f )|2 /Sη (f )
+´∞
+is bounded and satisﬁes −∞ |H(f )Qk (f )|2 /Sη (f ) <
+∞ for all 1 ≤ k ≤ fq Ts , and deﬁne Fw =
+￿
+￿− 1
+Fq F∗ 2 Fq Fh . Then
+q
+C P (fs , P ) =
+
+! (t )
+h (t )
+
+x (t )
+
+t = n / Bi
+
+si (t )
+
+r (t )
+
+yi [n]
+
+yi (t)
+t = n / BM
+
+sM (t)
+
+yM [n]
+
+yM (t)
+
+(a)
+! (t )
+x(t)
+
+h (t )
+
+r (t )
+
+q(t)
+!!!!!
+p(t)
+!!!!!
+
+!
+
+t = nTs
+!!!!!
+s (t )
+!!!!!
+
+y(t)
+
+ˆ
+
+fq /2
+
+fs Tq
+
+￿
+
+−fq /2 i=1
+
+[log (νλi {Fw F∗ })]+ df,
+w
+
+We observe that the capacity of any periodic sampling
+system cannot exceed the capacity (3).
+Now we consider the more general sampling system
+that might not be periodic. For a given input and
+output duration [−T, T ], the impulse response h(t, τ )
+(|t|, |τ | ≤ T ) can be extended periodically to generate
+an impulse response of a periodic system. Suppose ﬁrst
+that the impulse response is of ﬁnite duration, then for
+sufﬁciently large T , the sampled capacity CT can be
+upper bounded arbitrarily closely by the capacity of the
+generated periodic system, which are further bounded
+by the upper limit (3). Since the impulse response is
+constrained in L2 space, the leakage signal between
+different blocks can be made arbitrarily weak by introducing a guard zone with length T 1−￿ . This shows the
+full generality of our upper bound.
+
+y1[n]
+
+y1 (t)
+
+1
+2
+
+where ν is chosen according to the water-ﬁlling strategy.
+
+t = n / B1
+
+s1 (t )
+
+(Fh )l,l (f ) = H (f + lfq ) .
+
+y[n]
+
+(b)
+
+B. Achievability
+
+Figure 2.
+(a) Filter-bank sampling: each branch ﬁlters out a frequency interval of bandwidth Bk , and samples it with rate fk,s = Bk ;
+(b) A single branch of modulation and ﬁltering: the channel output
+is preﬁltered by a ﬁlter with impulse response p(t), modulated by
+a sequence q(t), post-ﬁltered by another ﬁlter of impulse response
+s(t), and ﬁnally sampled uniformly at a rate fs .
+
+For most scenarios of physical interest, the capacity
+upper bound given in Theorem 1 can be achieved through
+ﬁlter-bank sampling.
+Theorem 3 (Achievability). Suppose that the SNR
+|H(f )|2 /Sη (f ) of the analog channel is continuous and
+Riemann integrable. Then the maximizing frequency set
+Bm deﬁned in Theorem 1 can be divided into Bm =
+∪i Bi ∪ D, where D contains a set of singular points,
+Bi is a continuous interval, and D and Bi (i ∈ N) are
+non-overlapping sets. The upper bound in (3) can be
+achieved by ﬁlter-bank sampling. Speciﬁcally, in the k th
+
+Suppose ﬁrst that the whole sampling system is periodic, where the impulse response q(t, τ ) is periodic
+with period Tq (fs Tq ∈ Z) and the sampling set
+obeys tk+fs Tq = tk + Tq , ∀k ∈ Z. The periodicity
+P
+of the system guarantees the existence of limT →∞ CT .
+Speciﬁcally, denote by Qk (f ) the Fourier transform
+
+4
+
+Alias suppression. Aliasing does not allow a higher
+capacity to be achieved. The optimal sampling method
+corresponds to the optimal alias-suppression strategy.
+This is in contrast to the beneﬁts obtained through
+scrambling of spectral contents in many sub-Nyquist
+sampling schemes with unknown signal supports.
+Perturbation of sampling set. If the optimal ﬁlterbank or modulation sampling is employed, mild perturbation of post-ﬁltering uniform sampling sets does
+not degrade the sampled capacity. For example, suppose
+ˆ￿
+that a sampling rate fs is used in any branch and the
+￿
+￿ˆ
+ˆ￿
+ˆ
+sampling set satisﬁes ￿tn − n/fs ￿ ≤ fs /4. Kadec has
+￿
+￿
+￿
+￿
+ˆ
+shown that exp j2π tn f | n ∈ Z also forms a Riesz
+2 (−f /2, f /2), thereby preserving informaˆ
+ˆ
+basis of L
+s
+s
+tion integrity. The sampled capacity is invariant under
+mild perturbation of the sampling sets.
+Hardware implementation. When the sampling rate
+is increased from fs1 to fs2 , we need only to insert an
+additional ﬁlter bank of overall sampling rate fs2 −fs1 to
+select another set of spectral components with bandwidth
+fs2 − fs1 . The adjustment of the hardware system for
+ﬁlter-bank sampling is incremental with no need to
+rebuild the whole system from scratch.
+
+branch, the frequency response of the ﬁlter is given by
+￿
+1, if f ∈ Bk ,
+Sk (f ) =
+0, otherwise,
+and the ﬁlter is followed by a uniform sampler with
+sampling rate µ (Bk ).
+Since the bandwidth of Bi may be irrational and the
+system may require an inﬁnite number of ﬁlters, the
+sampling system is in general aperiodic. However, ﬁlterbank sampling with varied sampling rates in different
+branches outperforms all other sampling mechanisms in
+maximizing capacity.
+The optimality of ﬁlter-bank sampling immediately
+leads to another optimal sampling structure. As we have
+shown in [6], ﬁlter-bank sampling can be replaced by a
+single branch of modulation and ﬁltering as illustrated
+in Fig. 2, which can approach the capacity arbitrarily closely if the spectral support can be divided into
+subbands with constant SNR. A channel of physical
+interest can often be approximated as piecewise constant
+in this way. Given the maximizing frequency set Bm ,
+we ﬁrst suppress the frequency components outside Bm
+using an LTI preﬁlter. A modulation module is then
+applied to move all frequency components within Bm
+to the baseband [−fs /2, fs /2]. The aliasing effect can
+be signiﬁcantly mitigated by appropriate choices of
+modulation weights for different spectral subbands. We
+then employ another low-pass ﬁlter to suppress out-ofband signals, and sample the output using a pointwise
+uniform sampler. The optimizing modulation sequence
+can be found in [6], [9]. Compared with ﬁlter-bank
+sampling, a single branch of modulation and ﬁltering
+only requires the design of a low-pass ﬁlter, a band-pass
+ﬁlter and a multiplication module, which are typically
+lower complexity to implement than a ﬁlter bank.
+
+ACKNOWLEDGEMENT
+This work was supported by the NSF Center for
+Science of Information, the Interconnect Focus Center
+of the Semiconductor Research Corporation, and BSF
+Transformative Science Grant 2010505.
+R EFERENCES
+[1] R. G. Gallager, Information theory and reliable communication.
+New York: John Wiley & Sons, Inc, 1968.
+[2] M. Medard, “The effect upon channel capacity in wireless comms
+of perfect and imperfect knowledge of the channel,” IEEE Trans.
+on Info Theory, vol. 46, no. 3, pp. 933 –946, May. 2000.
+[3] M. Mishali and Y. C. Eldar, “From theory to practice: SubNyquist sampling of sparse wideband analog signals,” IEEE
+Journal of Selected Topics in Signal Processing, vol. 4, no. 2,
+pp. 375 –391, Apr. 2010.
+[4] ——, “Sub-Nyquist sampling: Bridging theory and practice,”
+IEEE Signal Proc. Mag., vol. 28, no. 6, pp. 98–124, Nov. 2011.
+[5] T. Berger, Nyquist’s Problem in Data Transmission Theory.
+Cambridge: PhD dissertation, Harvard University, Dec. 1965.
+[6] Y. Chen, Y. C. Eldar, and A. J. Goldsmith, “Shannon meets
+Nyquist: capacity limits of sampled analog channels,” submitted
+to IEEE Transactions on Information Theory, September 2011.
+[Online]. Available: http://arxiv.org/abs/1109.5415
+[7] A. Papoulis, “Generalized sampling expansion,” IEEE Trans on
+Circuits and Systems, vol. 24, no. 11, pp. 652 – 654, Nov 1977.
+[8] A. Aldroubi and K. Gröchenig, “Nonuniform sampling and
+reconstruction in shift-invariant spaces,” SIAM Review, vol. 43,
+no. 4, pp. 585–620, 2001.
+[9] Y. Chen, Y. C. Eldar, and A. J. Goldsmith, “Channel capacity
+under sub-nyquist nonuniform sampling,” submitted to IEEE
+Trans on Information Theory, April 2012. [Online]. Available:
+http://arxiv.org/abs/1204.6049
+
+IV. D ISCUSSION
+The above analytical results characterize the sampled
+capacity for a general class of sampling methods. Some
+properties of the capacity results are as follows.
+Monotonicity. It can be seen from (3) that increasing
+˜
+the sampling rate from fs to fs requires us to crop out
+˜
+˜m of size fs that has the highest
+another frequency set B
+SNRs. The original frequency set Bm we choose must
+˜
+be a subset of Bm , and hence the sampled capacity with
+˜ is no lower than that with rate fs .
+rate fs
+Irregular sampling set. Sampling with irregular
+sampling sets, while requiring complicated reconstruction techniques [8], does not outperform ﬁlter-bank or
+modulation-bank sampling with regular uniform sampling sets in maximizing achievable data rate.
+
+5
+
+

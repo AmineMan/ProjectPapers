@@ -1,0 +1,889 @@
+Creator:        TeX
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Fri May 18 16:45:36 2012
+ModDate:        Tue Jun 19 12:55:30 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      459764 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569565425
+
+Beyond Worst-Case Reconstruction
+in Deterministic Compressed Sensing
+Sina Jafarpour, Member, IEEE, Marco F. Duarte, Member, IEEE, and Robert Calderbank, Fellow, IEEE
+essary to reconstruct every sparse vector [7]. The goal of
+average-case CS is to recover most (in contrast to all) k-sparse
+vectors. Here, the sparse vector is often modeled to have a
+uniformly random support and random sign for the k nonzero entries. The average-case CS framework relies on the
+coherence and the spectral norm of the deterministic sensing
+matrix. The ideal case is when coherence follows the Welch
+bound [8], and different measurements are orthogonal. Then,
+as long as k = O (M/log N ), with high probability a ksparse vector has a unique sparse representation, and can be
+efﬁciently recovered from the compressive measurements [6].
+In this paper, we construct an explicit basis for the null
+space of a large family of deterministic sensing matrices
+designed for the average-case CS framework (see [5] and the
+references therein) using the indicator vectors of binary selfdual codes. Characterizing the null space of these matrices
+makes it possible to investigate and analyze the geometric
+properties of these matrices more precisely.
+More speciﬁcally, we introduce a family of deterministic
+sensing matrices called the extended Delsarte-Goethals frames
+(EDGFs) that hold the following three properties simultane√
+ously: (i) as long as k ≤ c1 M it is possible to recover
+every k-sparse vector α from the measurement vector Φα; (ii)
+√
+there exists a k-sparse vector α with k = c2 M such that no
+reconstruction algorithm can uniquely recover α from Φα; and
+(iii) it is possible to recover most k-sparse vectors α from
+M
+the measurement vector Φα as long as k ≤ c3 log N (which
+√
+can be much larger than c2 M ), where c1 , c2 , and c3 are
+ﬁxed constants. The EDGFs meet the coherence-based lower
+bound on worst-case reconstruction and the order-optimal
+upper bound on average-case reconstruction.
+The rest of the paper is organized as follows. Section II
+reviews Delsarte-Goethals frames (DGFs). Section III explains
+the properties of the self-dual codes used in this paper.
+Sections IV and V characterize the null space of the DGFs
+and the EDGFs. The experiments are provided in Section VI.
+Section VII concludes the paper.
+
+Abstract—The role of random measurement in compressive
+sensing is analogous to the role of random codes in coding
+theory. In coding theory, decoders that can correct beyond the
+minimum distance of a code allow random codes to achieve
+the Shannon limit. In compressed sensing, the counterpart of
+minimum distance is the spark of the measurement matrix, i.e.,
+the size of the smallest set of linearly dependent columns. This
+paper constructs a family of measurement matrices where the
+columns are formed by exponentiating codewords from a classical
+binary error-correcting code of block length M . The columns can
+be partitioned into mutually unbiased bases, and the spark of the
+√
+corresponding measurement matrix is shown to be O( M ) by
+identifying a conﬁguration of columns that plays a role similar to
+that of the Dirac comb in classical Fourier analysis. Further, an
+explicit basis for the null space of these measurement matrices
+is given in terms of indicator functions of binary self-dual codes.
+Reliable reconstruction of k-sparse inputs is shown for k of order
+M/ log(M ) which is best possible and far beyond the worst case
+lower bound provided by the spark.
+
+I. I NTRODUCTION
+The central goal of compressed sensing (CS) is to capture
+a signal using very few measurements. In most work to date,
+this broader objective is exempliﬁed by the important special
+case in which the measurement data constitute a vector f =
+Φα+e where Φ is an M ×N matrix called the sensing matrix,
+α ∈ RN is a k-sparse signal, and e ∈ RM is the additive
+noise. There are two distinct CS frameworks with different
+objectives.
+Worst-case CS [1], [2]: In the worst-case CS framework,
+the goal is to recover every k-sparse vector α from the
+corresponding measurement vector f . It is known that certain
+probabilistic processes generate sensing matrices that support
+worst-case CS [3]. However, the random sensing framework
+suffers from storage and computation limitations. As a result,
+there has been a signiﬁcant amount of research on designing
+alternative deterministic matrices for worst-case CS framework
+over the last few years [4]. Most such constructions rely
+on the coherence between the columns of the matrix. When
+the coherence follows the Welch Bound µ = O √1 , the
+M
+Gerschgorin Circle Theorem√
+guarantees reconstruction of any
+k-sparse signal with k = O( M ).
+Average-case CS [4]–[6]: In many practical applications,
+including wireless communications and radar, it is not nec-
+
+II. BACKGROUND AND N OTATION
+A. Worst-case vs. Average-case Compressed Sensing
+A vector is k-sparse if it has at most k non-zero entries.
+The support of a k-sparse vector indicates the positions of its
+non-zero entries. Let Φ be an M ×N matrix. Then Φ is a tightframe with redundancy ρ if ΦΦ† = ρIN ×N , where Φ† denotes
+the conjugate transpose of Φ. The spark of the measurement
+matrix Φ, denoted as spark(Φ), is the size of the smallest set
+
+SJ is with the Multimedia Research Group, Yahoo! Research, email:
+sina2jp@yahoo-inc.com. MD is with the Department of Electrical and
+Computer Engineering, University of Massachusetts-Amherst, email: mduarte@ecs.umass.edu. RC is with the Department of Computer Science, Duke
+University, email: robert.calderbank@duke.edu. The work is supported in part
+by ONR under grant N00014-08- 1-1110 and by AFOSR under grant FA
+9550-09-1-0551.
+
+1
+
+of linearly dependent columns of Φ. Let ϕi denote the ith
+column of Φ. The coherence between the columns of Φ is
+deﬁned as the maximum inner product between two distinct
+columns of Φ:
+.
+µΦ = max
+i=j
+
+|ϕ† ϕj |
+i
+ϕi 2 ϕj
+
+ix Pi x where Pi is a binary symmetric matrix from the
+Delsarte-Goethals set DG(m, r). A DGF is a tight-frame with
+2r
+redundancy M r+1 and worst-case coherence µΦ = √M [5].
+As a result, it follows from Theorems 2.1 and 2.2 that as
+√
+long as k = O( M /2r ), it is possible to recover every ksparse vector α from Φα using the 1 -minimization method.;
+moreover, even if k = O 22r M N it is still possible to
+log
+recover most k-sparse vectors α from Φα using the same
+techniques.
+
+.
+2
+
+In this paper, we simplify the analysis by focusing on the
+noiseless CS problem, and note that it is straightforward to
+generalize the analysis to include noise. The following two
+theorems relate the maximum sparsity level k to the parameters
+of the sensing matrix Φ, so that it is possible to efﬁciently
+recover all (respectively most) k-sparse vectors α from Φα.
+Theorem 2.1 (Worst-case CS [9]): Let Φ be a an M × N
+sensing matrix with worst-case coherence µΦ . Then as long as
+k = O(µ−1 ), it is possible to efﬁciently recover every k-sparse
+Φ
+vector α from the measurement vector Φα. In contrast, when
+k ≥ spark(Φ) , there exist multiple k-sparse vectors that are
+2
+mapped to the same measurement vector, rendering recovery
+impossible.
+Theorem 2.2 (Average-case CS [6], [10]): Let Φ be a an
+M × N tight-frame with redundancy ρ = N/M and with
+µ−2
+M
+Φ
+worst-case coherence µΦ . If k = O min log N , log N ,
+then with probability 1 − 1/N , it is possible to efﬁciently
+recover a k-sparse vector α with uniformly random support
+and uniformly random sign from the measurement vector Φα.
+
+III. B INARY S ELF -D UAL C ODES
+We start by deﬁning a binary self-dual code and explaining
+some of its properties.
+Deﬁnition 3.1 (Binary Self-Dual Code): A binary code C is
+self-dual if
+.
+C ⊥ = u : u w = 0 ∀ w ∈ C = C,
+(2)
+Let C be a self-dual code of length m, and let b be a binary
+m-tuple vector in the ﬁnite ﬁeld Fm . Throughout the paper,
+2
+by b ⊕ C we mean {b ⊕ c : c ∈ C}.
+Deﬁnition 3.2: Let C be a binary self-dual code of length
+m. The binary vector v of length M = 2m with entries v(x) =
+1 if x ∈ C and v(x) = 0 if x ∈ C is called the indicator of C.
+/
+A direct calculation, captured in the following lemma,
+shows that the indicator of a self-dual code can be viewed as
+the binary counterpart of the Dirac comb in Fourier analysis.
+Lemma 3.1: Let C be a binary self-dual linear code of
+length m, and let v ∈ {0, 1}M be the indicator of C. Let
+H be the M × M Hadamard matrix. Then Hv = |C|v.
+Next, we use the vector v to construct a sparse vector in
+the null space of the matrix Φ0 = I, √1 H .
+M
+
+Throughout this paper, m denotes an integer and M = 2m .
+Given a vector v with binary entries, we let v(x) denote the
+entry of v indexed by x. The inner product of two binary
+vectors u, v is denoted by u v.
+B. Delsarte-Goethals Frames
+
+Theorem 3.1: Let Φ0 = I, √1 H be an M × 2M matrix
+M
+generated from concatenating the identity matrix and the
+normalized Hadamard matrix. Let C be a binary linear self.
+dual code with indicator v. Deﬁne v2 = [−v, v] . Then
+I. Φ0 is a tight frame with redundancy 2.
+√
+II. v2 is a 2 M -sparse vector in the null space of Φ0 .
+√
+Therefore spark(Φ0 ) ≤ 2 M .
+Proof: We prove each part separately:
+I. Φ0 is a union of two orthonormal bases, therefore
+ΦΦ† = 2IM ×M .
+II. Every self-dual code of length m has dimension m , and
+2
+√
+hence exactly M different codewords. Therefore,√ is
+v
+√
+M -sparse, and by construction, v2 has exactly 2 M
+non-zero entries. Moreover, it follows from Lemma 3.1
+√
+that Hv = M Iv or equivalently I, √1 H [−v, v] =
+M
+0.
+
+The Delsarte-Goethals frames (DGFs) are a class of CS
+matrices that have been recently introduced by Calderbank,
+Howard, and Jafarpour [5]. Speciﬁcally, let m be an odd
+positive integer, and r to be an integer smaller than m−1 .
+2
+Next, let DG(m, r) denote the Delsarte-Goethals set of binary symmetric matrices, as described in [11]. Then, given
+M = 2m and N = M r+2 , the M × N DGF Φ is constructed
+from DG(m, r) in the following way. Index the rows of Φ by
+binary vectors x ∈ Fm and index the columns of Φ by pairs
+2
+(P, b), where P ranges over all 2(r+1)m binary symmetric
+matrices DG(m, r) and b ranges over all members of Fm .
+2
+The entries of Φ are given by
+. 1
+ϕ(P,b) (x) = √ ix
+M
+
+P x+2b x
+
+,
+
+√
+where i = −1. It is easy to see from this description that
+(i) DGFs are unions of orthonormal bases and (ii) each DGF
+can be represented as
+1
+Φ = √ [DR H, · · · , D1 H, H],
+M
+
+Corollary 3.1: Let D be an M × M diagonal matrix, and
+let Φ1 = √1 [DH, H] be an M × 2M matrix generated from
+M
+concatenating the modulated Hadamard (DH) matrix and the
+.
+Hadamard (H) matrix. Deﬁne vN = − √1 H D−1 v ; v .
+M
+Then vN is in the null space of Φ1 .
+
+(1)
+
+−M
+where R = N M = M r+1 − 1, H is the Hadamard matrix,
+and each Di is a diagonal matrix whose (x, x) entry is
+
+2
+
+Proof: Theorem 3.1 guarantees that √1 H v − I v = 0.
+M
+On the other hand, since the Hadamard matrix has orthogonal
+1
+binary-valued rows, we have H −1 = M H, and therefore
+H v − DH
+
+1
+√ HD−1 v
+M
+
+= Hv −
+
+√
+
+−1
+
+M DH (DH)
+
+Now observe that for any z1 , z2 ∈ C0 ,
+(z1 + z2 ) P(z1 + z2 ) + 2x (z1 + z2 )
+= z1 Pz1 + 2x z1 + z2 Pz2 + 2x z2 + 2z1 Pz2
+
+v = 0.
+
+(5)
+
+= z1 Pz1 + 2x z1 + z2 Pz2 + 2x z2 (mod 4),
+where the second equality follows from the fact that both Pz1
+and z2 are codewords of C. If this linear map is the zero
+map on x, then |η(x)|2 = |C||C0 |, and otherwise η(x) = 0.
+As a result, η(x) vanishes for all but 2t values of x, where
+t = m − dim(C0 ).
+
+√ Finally, we consider the sparsity degree of vN . Since v is
+√
+M -sparse, only M of the second M entries of vN are nonzero. Now we analyze the ﬁrst M entries of vN . Let ∆ denote
+.
+.
+the diagonal of D−1 , let ξ = D−1 v, and denote η = Hξ. Here
+we focus on a special but important case where there exists an
+m × m binary symmetric matrix P such that ∆(x) = i−x Px
+for every x ∈ Fm . This is the case for a large class of CS
+2
+matrices, including the DGFs.
+For every binary m-tuple x we have
+
+IV. T HE N ULL S PACE OF D ELSARTE -G OETHALS F RAMES
+
+In this section, we construct a basis for the null space of
+matrices of the form of Equation (1). To do this, we ﬁrst
+provide an orthogonal basis for the null space of the matrix
+.
+Φ0 = I, √1 H, .
+M
+∆(x) if x ∈ C
+ξ(x) =
+,
+Let a be a binary m-dimensional vector. The time-shift
+0
+otherwise
+matrix Aa is a circulant matrix so that every row x of Aa
+and η(x) =
+has only one 1 at the corresponding column indexed at x ⊕ a
+and zeros elsewhere. Similarly, the frequency-shift matrix Ba
+(−1)x y ξ(y) =
+(−1)x y ∆(y) =
+(−1)x y i−y Py .
+is a diagonal matrix with diagonal entries (−1)xa , where
+m
+y∈C
+y∈C
+y∈F2
+the m-dimensional binary vector x ranges over all M = 2m
+Note that the calculation y Py+2x y is now over Z4 and not rows. A direct calculation reveals that HAa = Ba H, and
+Z2 . Let η(x) denote the complex conjugate of η(x). Observe HBa = Aa H.
+that η(x) is zero if and only if η(x) is zero. Therefore, it is
+Lemma 4.1: Let Φ0 and v be as above, and let a and b be
+sufﬁcient to analyze η(x).
+any two binary m-dimensional offsets. Then the vector w2 =
+Theorem 3.2: Let P be an m×m binary symmetric matrix, [Aa Bb v; −Ba Ab v] is in the null space of Φ0 .
+and let E be the null space of P. Deﬁne
+Proof: We have Φ0 w2 =
+.
+1
+1
+η(x) =
+iy Py+2x y , where x ∈ Fm .
+2
+Aa Bb v − √ HBa Ab v = Aa Bb v − Aa Bb √ Hv (6)
+M
+M
+y∈C
+1
+Let dP denote the diagonal of P and assume that dP ∈ C. This
+= Aa Bb I, √ H [v; −v] = 0.
+M
+assumption is easily satisﬁed if we only consider zero-diagonal
+matrices in the construction of the DGFs. Deﬁne
+.
+Lemma 4.2: Let
+C0 = {z ∈ C : Pz ∈ C} .
+(3)
+W = {w2 : w2 = [Aa Bb v; −Ba Ab v], a, b ∈ Fm } .
+2
+Then η(x) = 0 for at most 2t values of x, where t = m −
+dim(C0 ).
+Proof: We have
+2
+
+iy
+
+η(x) =
+
+Py+y
+
+Then W is an orthogonal basis forming the null space of Φ0 .
+self
+√ Proof: Since v is the indicator of a √ dual code, it
+is M -sparse. Moreover, there are exactly M offsets a that
+produce distinct shifts of v. The reason is that since C is linear,
+if c is any codeword of C, then both Aa v and Aa⊕c v provide
+the same vector whose non-zero entries correspond to indices
+of the form z ⊕ a where z ranges over all codewords. That is
+Aa v = Aa⊕c v. Similarly, since C is self-dual, for every pair
+of codewords z and c√ have (−1)b z = (−1)(b⊕c) z . This
+we
+implies that there are M distinct choices b for the frequency
+shift of the vector v.
+Now we show that these M vectors are orthogonal. To see
+this, let (a, b) and (a , b ) be two distinct pairs of time and
+frequency shift offsets. Let ξ1 = Ba Ab v and ξ2 = Ba Ab v.
+Then, it is sufﬁcient to show that if ξ1 and ξ2 are distinct,
+then ξ1 ξ2 = 0.
+Since v is the indicator vector of a linear self-dual code,
+then if Supp(ξ1 ) ∩ Supp(ξ2 ) contains some element y, then
+
+Py +2x (y+y )
+
+y,y ∈C
+
+i(y+y )
+
+=
+
+P(y+y )+2y Py +2x (y+y )
+
+.
+
+y,y ∈C
+
+Changing variables to z = y + y and y gives
+2
+
+iz
+
+η(x) =
+
+Pz+2x z
+
+z∈C
+
+Py
+
+(4)
+
+y∈C
+
+iz
+
+=
+
+(−1)(z+y)
+
+Pz+2x z
+
+z∈C
+
+(−1)(dP +Pz)
+
+y
+
+.
+
+y∈C
+
+The inner sum is zero if (dP + Pz) ∈ C. Otherwise the inner
+/
+sum is |C|, and we have
+2
+
+iz
+
+η(x) = |C|
+
+Pz+2x z
+
+.
+
+z∈C0
+
+3
+
+the set y ⊕ C is also in the intersection of the two supports.
+√
+This set has M elements, and since both supports also have
+√
+M elements, we must have Supp(ξ1 ) = Supp(ξ2 ). As a
+result, if Ab v = Ab v then Supp(ξ1 ) ∩ Supp(ξ2 ) = Ø, and
+therefore Ba Ab v and Ba Ab v are orthogonal.
+On the other hand, if Ab v = Ab v, then ξ1 and ξ2 are two
+distinct Walsh tones restricted to the set b ⊕ C. Now let c be
+˜
+an element in C such that c (a ⊕ a ) = 1. Then
+˜
+˜
+(−1)c
+
+(a⊕a )
+
+(−1)x
+
+(a⊕a )
+
+c
+(−1)(x⊕˜)
+
+(a⊕a )
+
+= ia
+
+x:x⊕b∈C
+
+(a⊕a )
+
+.
+
+x:x⊕b∈C
+
+w2 : w2 =
+
+(−1)a
+
+x
+
+0
+ V1
+V1
+
+x
+
+(9)
+
+i2(b+x+P a)
+
+y+y P y
+
+.
+
+
+V2
+0 ,
+V2
+
+(10)
+
+where [V1 ; V1 ] is a basis for the null space of [D1 H, H], and
+[V2 ; V2 ] is a basis for the null space of [D2 H, H].
+V. E XTENDED D ELSARTE -G OETHALS F RAMES
+In this section, we use the results of the previous sections
+and design an M × N sensing matrix with M
+N for
+which there exists constants c1 , c2 , and c3 , such that (i) it
+is possible to uniquely recover every k-sparse vectors as long
+√
+as k ≤ c1 M ; (ii) there exists a k-sparse vector α with
+√
+k = c2 M such that no reconstruction algorithm is able to
+uniquely recover it from the measurement vector f = Φα; and
+(iii) it is possible to uniquely recover most k-sparse vectors
+as long as k ≤ c3 M/ log N .
+The extended Delsarte-Goethals frame (EDGF) is constructed by concatenating the M × M identity matrix to a
+DGF.
+Theorem 5.1: Let r be a constant integer, and let m > 2r +
+1 be an integer. Then:
+I. The EDGF has M = 2m rows, and N = M r+2 + M
+columns
+II. The EDGF is a tight frame with redundancy M r+1 + 1,
+2r
+and coherence √M .
+Proof: The proof of Part I follows from the construction
+of the EDGF. To prove Part II. observe that the EDGF is a
+union of orthonormal bases, and therefore it is a tight-frame
+N
+with redundancy M . The coherence bound follows from the
+fact that the inner product between two distinct columns of a
+2r
+DGF is bounded by √M , and that the inner product between
+a column of a DGF, and a column of the identity matrix is
+bounded by √1 .
+M
+Since the matrix Φ0 = [I, √1 H] is a submatrix of any
+M
+EDGF, it follows from Theorem 3.1 that the spark of any
+
+, x ∈ Fm .
+2
+
+HD−1
+√
+Aa Bb v; Ba Ab v , a, b ∈ Fm .
+2
+M
+
+Then W 2 forms an orthonormal basis for the null space of the
+√
+matrix Φ1 ; moreover, every element of W 2 is 2 M -sparse.
+Proof: Let w be any vector in W 2. We have
+1
+HD−1
+Φ1 w = √ [DH, H] √
+Aa Bb v; Ba Ab v
+M
+M
+1
+= [Aa Bb v − √ HBa Ab v] = 0.
+M
+
+Pa
+
+
+
+Theorem 4.1: Let Φ1 = √1 [DH, H], where D = [ixPx ],
+M
+and where P is a zero-diagonal binary symmetric matrix1 . Let
+C be a self-dual code such that for any codeword c, Pc is
+also a codeword in C. Let v denote the indicator vector of the
+codewords of C. Let
+W2 =
+
+(−1)(y⊕a)
+
+Since C is self-dual and y and P y are both codewords in C, the
+mapping y → 2(b + x + aP ) y + y P y is a linear map from
+C to Z4 . √
+Theorem 3.2 now guarantees that w(x) is non-zero
+only for M choices of x.
+Remark 4.1: So far we have shown how to generate a basis
+for the null space of a M × 2M matrix of the form [DH, H].
+This construction can be generalized to matrices of form
+[DR H, · · · , D1 H, H] in a straightforward manner by ﬁrst zeropadding each null space vector, so that it becomes (R + 1)M dimensional, and then collecting all these RM vectors. For
+instance, a basis for the null space of a M × 3M matrix
+[D2 H, D1 H, H] has the form
+
+x (a⊕a )
+Therefore, we must have
+= 0,
+x:x⊕b∈C (−1)
+which proves that ξ1 and ξ2 are orthogonal. A similar argument
+can be used to show that if ξ1 = Aa Bb v and ξ2 = Aa Bb v,
+then, if ξ1 and ξ2 are distinct, then ξ1 ξ2 = 0.
+As a result, we have M distinct linearly independent vectors
+of the form w2 = [Aa Bb v; −Ba Ab v] which are all in the null
+space of Φ0 . On the other hand, since Φ0 is M × 2M , its
+null space has dimension M , and therefore the M null space
+vectors above form a basis for the null space of Φ0 .
+Next we show that the same argument can be used to form
+an orthogonal basis for the null space of matrices of form
+Φ1 = √1 [DH, H], where D is a diagonal matrix with
+M
+
+diagonal entries ixPx
+
+i
+
+y∈C
+
+(7)
+(−1)x
+
+=
+
+y (y⊕a) P (y⊕a)
+
+y∈C
+
+x:x⊕b∈C
+
+=
+
+(−1)b
+
+ω(x) =
+
+(8)
+
+√
+Now we show that any vector w2 ∈ W 2 is 2 M -sparse.
+First, note that since v is the indicator of a self-dual code,
+and the operators Ab and Ba do not change the sparsity level,
+√
+.
+Ba Ab v is M -sparse. Hence, we need to show that ω =
+√
+HD−1 Aa Bb v is also M -sparse. We have
+1 The zero-diagonal assumption is only for simplifying the calculations, and
+is easy satisﬁed by using the Gray map [12].
+
+4
+
+M=256, N=512, self−dual submatrix dimension (256*80) with rank 76
+
+<=$"(>6?="#$!>6,857!@A.56,A4B.1/096@0B8C,03C6D$"(E%$F6G01H6/.CI6%#
+
+!&*
+
+-/34.405012637689.:16/8:3;8/2
+
+!&+
+
+0.8
+
+6
+
+#
+
+0.9
+
+probability of exact recovery
+
+1
+
+0.7
+
+0.6
+
+0.5
+
+0.4
+
+0.3
+
+0.2
+
+!&(
+
+!&"
+
+!&'
+
+!&%
+
+!&$
+
+0.1
+
+0
+
+!&)
+
+!&#
+
+Self−dual
+Uniform
+0
+
+10
+
+20
+
+30
+
+40
+
+50
+
+60
+
+70
+
+!6
+!
+
+80
+
+sparsity
+
+J857!@A.5
+KC073/B
+"
+
+#!
+
+#"
+
+$!
+
+$"
+
+%!
+
+%"
+
+,-./,012
+
+Fig. 1: Probability of exact recovery of the Basis Pursuit algorithm
+
+Fig. 2: Probability of exact recovery of the Basis Pursuit algorithm
+
+in recovering sparse vectors using a 256 × 512 submatrix of the
+DG(8, 0) frame. The matrix has a 256 × 80 rank-deﬁcient submatrix
+with rank 76.
+
+in recovering sparse vectors using a 256 × 5120 submatrix of the
+extended DG(8, 0) frame. The matrix has a 256 × 32 rank-deﬁcient
+submatrix with rank 31.
+
+√
+EDGF is at most 2 M . As a result, there can be two distinct
+√
+M -sparse vectors mapped to the same low-dimemsional
+measurement vector. On the other hand, Theorem 2.1 states
+that it is possible to √
+uniquely recover every k-sparse vector
+with sparsity k ≤ c1 M . In contrast, it follows from Theorem 2.2 that if α is a k-sparse vector with uniformly random
+support and random sign, then as long as k ≤ c3 M/ log N
+√
+(which can be much larger than c1 M ), α is uniquely
+recoverable from f = Φα with overwhelming probability.
+
+We have determined a natural basis for the null space
+of an extended Delsarte-Goethals frame and shown that this
+√
+null space contains a vector that is 2 M -sparse. We have
+demonstrated that this family of measurement matrices meets
+√
+the lower bound of k = O( M ) on worst-case CS as well as
+the order optimal upper bound of k = O(M/ log(N )).
+
+VII. C ONCLUSION
+
+R EFERENCES
+[1] E. Cand` s, J. Romberg, and T. Tao. Stable signal recovery from
+e
+incomplete and inaccurate measurements. Communications on Pure and
+Applied Mathematics, Vol. 59 (8) , pp. 1207-1223., 2006.
+[2] D. Donoho. Compressed Sensing. IEEE Transactions on Information
+Theory, Vol. 52 (4), pp. 1289-1306, April 2006.
+[3] R. Baraniuk, M. Davenport, R. DeVore, and M. Wakin. A simple proof
+of the restricted isometry property for random matrices. Constructive
+Approximation, Vol 28 (3), pp. 253-263, December 2008.
+[4] W. Bajwa, R. Calderbank, and S. Jafarpour. Model Selection: Two
+fundamental measures of coherence and their algorithmic signiﬁcance.
+Proceedings of IEEE Symposium on Information Theory (ISIT), 2010.
+[5] R. Calderbank, S. Howard, and S. Jafarpour. Construction of a large
+class of matrices satisfying a statistical isometry property. IEEE Journal
+of Selected Topics in Signal Processing, Special Issue on Compressive
+Sensing, Vol. 4(2), pp. 358-374, 2010.
+[6] E. Cand` s and J. Plan. Near-ideal model selection by 1 minimization.
+e
+Annals of Statistics, Vol. 37, pp. 2145-2177, 2009.
+[7] L. Applebaum, S. Howard, S. Searle, and R. Calderbank. Chirp
+sensing codes: Deterministic compressed sensing measurements for fast
+recovery. Applied and Computational Harmonic Analysis, Vol. 26 (2),
+pp. 283-290, March 2009.
+[8] W. Bajwa, J. Haupt, G. Raz, S. Wright, and R. Nowak. Toeplitzstructured compressed sensing matrices. Statistical Signal Processing.
+IEEE/SP 14th Workshop on, pages 294–298, August 2007.
+[9] D. L. Donoho and M. Elad. Optimally sparse representation in general
+(nonorthogonal) dictionaries via 1 minimization. Proc. Nat. Acad. Sci.,
+100(5):2197–2202, 2003.
+[10] J. Tropp. On The Conditioning of Random Subdictionaries. Applied
+and Computational Harmonic Analysis, Vol. 25, pp. 124, 2008.
+[11] R. Calderbank and S. Jafarpour. Reed-Muller sensing matrices and the
+LASSO. International Conference on Sequences and their Applications
+(SETA), pp. 442-463, 2010.
+[12] A.R. Calderbank, P.J. Cameron, W.M. Kantor, and J.J. Seidel. Z4 –
+Kerdock Codes, orthogonal spreads and extremal euclidean line sets.
+Proceedings of London Math. Society, vol. 75, pp. 436-480, 1997.
+
+VI. E XPERIMENTAL R ESULTS
+The experiments of this section compare the performance
+of the Basis Pursuit algorithm [6] in recovering sparse vectors
+with uniformly random supports versus recovering sparse
+vectors supported on a rank-deﬁcient submatrix obtained using
+a self-dual code. We provide the comparisons for the DGFs
+(Fig. 1), as well as for the EDGFs (Fig. 2).
+In Fig. 1 we used a 256 × 512 matrix of the form Φ =
+√1 [H, D1 H], where D1 is a diagonal matrix with dD (x) =
+1
+M
+ix Px , and P is the 8 × 8 zero-diagonal binary symmetric
+matrix obtained from applying the Gray map [12] to a 7 × 7
+binary DG(7, 0) matrix. We also used the self-dual Hamming
+code C of length 8 in order to ﬁnd a rank-deﬁcient submatrix
+of Φ.
+A simple calculation reveals that only 4 codewords are in C0
+(deﬁned by eq. (3)). Therefore, dim(C0 ) = 2, and Theorem 3.2
+predicts that HD−1 v must have 256/4 = 64 non-zero entries.
+1
+A direct calculation reveals that HD−1 v indeed has 64 non1
+zero entries. Therefore, the null space of √1 [H, D1 H] has a
+M
+80-sparse element. That is, there exists, a 256 × 80 submatrix
+of Φ that is rank-deﬁcient. As illustrated in Fig. 1, the Basis
+Pursuit Algorithm fails to recover some k-sparse vectors with
+sparsity level k > 40 which are supported on this rankdeﬁcient submatrix. However, it is still possible to recover
+most k-sparse vectors with uniformly random support over
+the 512 columns, even for sparsity level k = 80. Fig. 2 shows
+the result of the same experiment using an EDGF.
+
+5
+
+

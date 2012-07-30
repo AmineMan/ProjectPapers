@@ -1,0 +1,1080 @@
+Creator:        TeX
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Fri May  4 18:45:00 2012
+ModDate:        Tue Jun 19 12:54:41 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      398154 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569565709
+
+On Symmetric L1 distance error control codes and
+elementary symmetric functions
+Luca G. Tallini
+
+Bella Bose
+
+Dip. di Scienze della Comunicazione,
+Universit` degli Studi di Teramo,
+a
+Coste San Agostino, 64100 Teramo. Italy.
+E-mail: ltallini@unite.it
+
+School of EECS,
+Oregon State University,
+Corvallis, OR 97331. USA.
+E-mail: bose@eecs.orst.edu
+
+distance. Furthermore, it is also shown how to decode some
+of these codes and other new ones to combat the errors due
+to the transmission through possibly asymmetric channels. In
+these decoding schemes, the number of errors are counted in
+the L1 metric by taking into account the directionality of the
+errors (that is, if the errors are negative or positive). This is
+done by introducing the (t+ , t− )-EC/(d+ , d− )-ED codes [5].
+Here, it is shown how the same framework based on computing
+the elementary symmetric functions of the received word is
+helpful in designing new codes capable of correcting/detecting
+symmetric errors counted in the L1 distance (1). Section II
+clariﬁes this concept of symmetric errors in the L1 metric.
+Here, we use the elementary symmetric function framework
+in a Berlekamp like construction of EC code for the Lee metric
+[2, Ch. 9], [3, Sec. 10.6]. In this way, we get the new class
+of Goppa like t symmetric EC (t-SyEC) codes for the L1
+metric deﬁned in Section III. All these codes can be decoded
+efﬁciently by algebraic means with the Extended Euclidean
+Algorithm (EEA). Some of these codes can be very efﬁciently
+encoded too, and this is shown in Section IV. For example,
+a code of length n = 5 is given with r = 3 check 11ary digits computed as a linear combination in GF (11) of
+k = 2 information 16-ary (hexadecimal) digits (however the
+information digits can be of any alphabet size). This code is
+capable of correcting t = 3 symmetric errors in the L1 metric.
+In [4], we successfully reduce the problem of designing Lee
+distance EC codes to the code constructions given here for the
+L1 distance. Due to space limitation some of the proofs of the
+theorems given here are omitted.
+Let us ﬁx some useful notation. If X = x1 . . . xn ∈ Z n
+Zm
+is any word of length n over the m-ary alphabet Z m then
+Z
+def
+let supp(X) = supp I (X) indicate a subset of the index set
+def
+def
+I = [1, n] = {1, 2 . . . , n} where every element i ∈ [1, n] is
+counted with its multiplicity, mX (i) = xi ∈ Z m ⊆ II , given
+Z
+N
+by the i-th component of X. Namely, X ≡ supp(X) is a
+multiset on [1, n], and we simply let the weight of X to be
+w(X) = |X| = |supp(X)| = i∈[1,n] xi = i∈[1,n] mX (i).
+For example, if m = 3, n = 4 and X = 2012 ∈ Z 4 then
+Z3
+x1 = mX (1) = 2, x2 = mX (2) = 0, x3 = mX (3) = 1,
+x4 = mX (4) = 2, supp(X) = {1, 1, 3, 4, 4} and the weight
+of X is w(X) = |supp(X)| =
+i∈[1,n] mX (i) = 5. Let
+
+Abstract—Based on the elementary symmetric functions, this
+paper gives a new wide class of Goppa like codes capable of
+correcting/detecting errors measured under the (symmetric) L1
+distance deﬁned over the m-ary words, 2 ≤ m ≤ +∞. All these
+codes can be efﬁciently decoded by algebraic means with the
+Extended Euclidean Algorithm (EEA). In particular it is shown
+that if K is any ﬁeld with characteristic char(K) = 2, m ∈
+II ∪ {+∞} and n, t ∈ II then there exist m-ary codes C of
+N
+N
+length n ≤ (|K| − 1)/2 and cardinality |C| ≥ mn /|K|t which
+are capable of, say, correcting t errors (i. e., the minimum L1
+distance of C is dL1 (C) ≥ 2t + 1) with t steps of EEA. Also, if
+K is a ﬁnite ﬁeld and 2t + 1 ≤ char(K) = 2 then some of these
+codes are (essentially) linear and, hence, easy to encode.
+Index Terms—m-ary alphabet, error control codes, symmetric
+errors, asymmetric errors, ﬂash memories, insertion and deletion
+errors, repetition errors. L1 distance, Lee distance.
+
+I. I NTRODUCTION
+def
+
+Let Z m = {0, 1, . . . , (m−1)} be the m-ary alphabet, m =
+Z
+def
+2, 3, . . . , +∞; where we let Z +∞ = II = {0, 1, 2, . . .}.
+Z
+N
+The L1 distance between two m-ary words of length n ∈ II ,
+N
+Zm
+X = x1 x2 . . . xn ∈ Z n and Y = y1 y2 . . . yn ∈ Z n , is deﬁned
+Zm
+as
+n
+def
+
+|xi − yi |
+
+dL1 (X, Y ) =
+
+(1)
+
+i=1
+
+where X and Y are regarded as n component vectors over the
+real ﬁeld IR, and |d| indicates the absolute value of d ∈ IR.
+For example, if m = 5, n = 6, X = 012314 and Y = 443101
+then dL1 (X, Y ) = |0 − 4| + |1 − 4| + |2 − 3| + |3 − 1| + |1 −
+0| + |4 − 1| = 4 + 3 + 1 + 2 + 1 + 3 = 14. Such error control
+(EC) codes for the L1 metric are fundamental whenever the
+transmission channel is characterized by an error probability
+of P r(symbol y is received | symbol x is sent) ≈ |x−y| , for
+all x, y ∈ {0, 1, . . . , m−1} ⊆ IR and x = y, where ∈ [0, 1] ⊆
+IR+ is a small constant. Some practical examples of physical
+channel with the above error probability are the multi-level
+ﬂash memories [1], [5], [6] and the repetition channels [8]. In
+[9], [7], [5] and [6], regarding m-ary words as submultisets
+of a multiset, new algebraic decoding procedures for a very
+wide class of new and previously known EC codes are given.
+Such decoding procedures are based on ﬁnding the solution
+of a general key equation involving the elementary symmetric
+functions (instead of the power sums) of the received word and
+the unknown coefﬁcients of some error evaluator polynomials.
+In the above cited papers it is shown how the general key equation can be used to decode BCH, Goppa and Alternant codes
+to control symmetric errors counted in the usual Hamming
+
+def
+
+def
+
+∂X = ∂I X = {i ∈ I = [1, n] : xi = mX (i) = 0} ∈ Z n be
+Z2
+the set of indices where X is different from 0 and note that
+∂X can be regarded as a subset of [1, n]. We refer to ∂X as the
+index set of X. The multiset supp(X) should not be confused
+
+1
+
+III. EC CODE DESIGNS FOR THE SYMMETRIC L1 METRIC
+Let K be any ﬁeld. For all polynomials (or, more generally,
+def
+power series) p(z) = p0 + p1 z + p2 z 2 + p3 z 3 + . . . ∈ K[z],
+def
+let pev (z) = p0 + p2 z 2 + . . . ∈ K[z] indicate the even part
+def
+of p(z) and pod (z) = p1 z + p3 z 3 + . . . ∈ K[z] the odd part.
+We say that a polynomial is even (odd) iff, p(z) = pev (z)
+(p(z) = pod (z), respectively). If a polynomial is neither even
+nor odd then we call it mixed; otherwise, we call it unmixed.
+Note that
+p(z) = pev (z) + pod (z),
+pev (−z) = pev (z),
+(2)
+pod (−z) = −pod (z),
+ev
+od
+p(−z) = p (z) − p (z).
+
+with the index set (which is a proper set), ∂X, of X. Note
+that the usual Hamming weight of X is wH (X) = |∂X|, and
+supp(X) = ∂X if, and only if, X ∈ Z n . For example if X =
+Z2
+2012, ∂X = 1011 ≡ {1, 3, 4} ⊆ [1, 4] and wH (X) = |∂X| =
+3 = |supp(X)| = w(X) = 5. Let the integer scalar product
+between c ∈ II and X = x1 x2 . . . xn ∈ Z n ⊆ II n be deﬁned
+N
+Zm
+N
+as c · X = cx1 cx2 . . . cxn ∈ Z n
+Zc(m−1)+1 ⊆ II n . For example,
+N
+if X = 2012 ∈ Z 4 ⊆ II 4 then 3 · X = 6036 ∈ Z 4 ⊆ II 4 .
+Z3
+N
+Z7
+N
+Deﬁne the total order in Z m as 0 ≤ 1 ≤ 2 ≤ . . . ≤ (m − 1)
+Z
+and, for all x, y ∈ Z m , let the minimum (maximum) operation
+Z
+min(x, y) (max(x, y)) be deﬁned as the minimum (maximum)
+between x and y, let the natural subtraction operation in Z m
+Z
+def
+def
+.
+.
+be deﬁned as x − y = 0 if x ≤ y, and x − y = x − y if
+x > y, where “−” indicates the usual integer subtraction. Then
+given any two words/multisets X, Y ∈ Z n , the words/multiset
+Zm
+Zm
+N
+operations X ∩ Y ∈ Z n , X ∪ Y ∈ Z n , X + Y ∈ II ,
+Zm
+.
+and X − Y ∈ Z n are deﬁned as the digit by digit min,
+Zm
+.
+max, integer addition and − operation between X and Y ,
+respectively. For example, if m = 3, n = 8, X = 012012012
+and Y = 000111222 then X ∩ Y = 000011012, X ∪ Y =
+.
+012112222, X + Y = 012123234, X − Y = 012001000 and
+. X = 000100210. Given any two word X, Y ∈ Z n , we
+Y −
+Zm
+say that X is contained in Y and write X ⊆ Y if, and only
+if, X = X ∩ Y . For example, 000011012 ≡ {5, 6, 8, 9, 9} ⊆
+{2, 3, 3, 5, 6, 6, 8, 9, 9} ≡ 012012012. Note that the relation ⊆
+deﬁnes a partial ordering in the family of multisets on [1, n]
+with multiplicity at most m − 1 (≡ the sets of m-ary words
+of length n). Under this multiset interpretation, an m-ary
+generalization of the binary Hamming distance between two
+words/submultisets X and Y can be deﬁned as the “symmetric
+distance”
+
+We let deg(p) ∈ II ∪ {−∞} indicate the degree of any
+N
+polynomial p(z) ∈ K[z]. Given the ﬁeld K, let K + ⊆ K
+be the biggest subset of K such that a ∈ K + =⇒ −a ∈ K + .
+We refer to K + as the subset of positive elements in K.
+def
+Let K − = K − ({0} ∪ K + ) be the subset of negative
+elements in K and note that K remains partitioned as follows:
+K = K − ∪ {0} ∪ K + . Let S + ∈ Z n be a multiset over
+Zm
+K such that ∂S + = {a1 , a2 , . . . , an } ⊆ K + . In this way,
+def
+∂S − = {−a1 , −a2 , . . . , −an } ⊆ K − , where the multiset
+def
+S − ∈ Z n over K is deﬁned by mS − (−ai ) = mS + (ai ), for
+Zm
+def
+all natural i ∈ [1, n]. Furthermore, let ∂S = ∂S − ∪ ∂S + ⊆ K
+def
+and S = S − ∪ S + ∈ Z 2n . As in [5]–[9], for all X ⊆ S + , let
+Zm
+σX (z) ∈ K[z] be the polynomial associated with X,
+n
+def
+
+(1 − ai z)xi = 1 + σ1 (X)z + σ2 (X)z 2 + . . . (3)
+
+σX (z) =
+
+i=1
+ev
+od
+= σX (z) + σX (z);
+
+.
+.
+dS (X, Y ) = dL1 ,Sym (X, Y ) = |X − Y | + |Y − X|,
+def
+
+def
+
+II. S YMMETRIC ERROR MODEL FOR THE L1
+
+def
+
+ev
+od
+with σX (z) = 1 + σ2 (X)z 2 + . . . and σX (z) = σ1 (X)z +
+3
+σ3 (X)z + . . .. We will use the general theorem given below.
+Theorem 2: Let K be any ﬁeld, S ∈ Z n be a multiset
+Zm
+def
+with index set ∂S = {a0 , a1 , . . . , an−1 } ⊆ K and σX (z) =
+n−1
+x0
+xi
+z
+i=1 (1 − ai z) , for all X ⊆ S. Then, for all X, Y ⊆ S,
+σX+Y (z) = σX (z)σY (z).
+Now, the following theorem deﬁnes a wide family of minimum
+symmetric L1 distance code of considerable cardinality.
+Theorem 3: Let K be any ﬁeld, S + , S − ∈ Z n , ∂S + =
+Zm
+{a1 , a2 , . . . , an } ⊆ K + , ∂S − = {−a1 , −a2 , . . . , −an } ⊆
+K − , ∂S = ∂S − ∪ ∂S + ⊆ K be deﬁned as above and σX (z)
+be deﬁned as in (3). Let g(z) ∈ K[z] be any polynomial over
+K such that gcd(σ∂S , g) = 1 (otherwise, just consider as g
+the polynomial g/ gcd(σ∂S , g)). Then, for all σ(z) ∈ K[z] the
+code of length n = |S + | ≤ (|K| − 1)/2 deﬁned as
+
+which is nothing but the L1 distance deﬁned in (1). For
+example, if X = 012012012 = {2, 3, 3, 5, 6, 6, 8, 9, 9} and
+.
+Y = 000111221 = {4, 5, 6, 7, 7, 8, 8, 9} then X − Y =
+. X = 000100210 =
+012001001 = {2, 3, 3, 6, 9} and Y −
+{4, 7, 7, 8}, and so, dL1 (X, Y ) = 9. In the above deﬁnitions
+there is nothing special in choosing I = [1, n] as index set. In
+fact, any other set will do.
+METRIC
+
+Let us give the following deﬁnition ﬁrst.
+Deﬁnition 1: Given X, Y ∈ Z n , we say that Y is obtained
+Zm
+from X due to t+ ∈ II positive errors and t− ∈ II negative
+N
+N
+.
+.
+errors if, and only if, |Y − X| = t+ and |X − Y | = t− . Also,
+we say that Y is obtained from X due to t ∈ II symmetric
+N
+errors if, and only if, dS (X, Y ) = t.
+Given Deﬁnition 1, the following theorem holds on symmetric
+error correcting/detecting codes for the L1 distance.
+Theorem 1: A code C ⊆ Z n is capable of correcting t or
+Zm
+less symmetric errors and simultaneously detecting d or less
+symmetric errors (i. e., C is a t-SyEC/d-SyED code), with
+t, d ∈ II , t ≤ d if, and only if, the minimum symmetric
+N
+distance of C is
+
+def
+
+od
+Cσ,g S + = X ⊆ S +: σX (z) = σ(z)σX (z) mod g(z)
+
+(4)
+
+either contains at most one element or many elements with
+minimum symmetric distance
+dS (Cσ,g (S + )) ≥ deg(g).
+Furthermore, if Cσ,g (S + ) = ∅ then (we let gcd(0, g)(z) = g
+for all g(z) ∈ K[z])
+
+def
+
+dS (C) = min dS (X, Y ) ≥ t + d + 1.
+
+σ ev (z) = σ(z)σ(−z) mod gcd(g ev , g od )(z).
+
+X,Y ∈C
+
+2
+
+(5)
+
+def
+
+Now, let Y − ⊆ S − be the multiset whose vector representation
+is (the same as that of) Y but whose index set is S − ; that is,
+Y − = supp ∂S − Y . Since Y ⊆ S − ⊆ S and gcd(σ∂S , g) =
+1 it follows that σY (−z) = σY − (z) is invertible mod g(z).
+Hence, the above equation imply
+
+So, there exists a polynomial σ(z) ∈ Φ(g) = {q(z) ∈
+K[z] : deg(q) < deg(gcd(g ev , g od )), q(z) satisﬁes (5) and
+Cq,g (S + ) = ∅} such that
+|Cσ,g (S + ) ∩ T | ≥
+
+|{X ∈ T : X ⊆ S + }|
+;
+|Φ(g)|
+
+(6)
+
+od
+τE (z) =
+
+for any T ⊆ Z n .
+Zm
+Proof: First, from Theorem 4 in [5], the following key
+equation holds. For all X, Y ⊆ S + ,
+.
+.
+σX∪Y (z) = σX (z)σY −X (z) = σY (z)σX −Y (z).
+
+def
+
+(7)
+
+ev
+ev ev .
+od od.
+ev ev .
+od od .
+σX∪Y = σX σY −X + σX σY −X = σY σX −Y + σY σX −Y ,
+od
+ev od.
+od ev .
+ev od .
+od ev .
+σX∪Y = σX σY −X + σX σY −X = σY σX −Y + σY σX −Y .
+
+Now, from (2) and σX∪Y (z) = σY ∪X (z), it follows
+od
+od.
+ev
+od
+ev .
+σX∪Y (z) = σX (z) − σX (z) σY −X (z) + σX (z)σY −X (z) =
+ev.
+od
+.
+σX (z)σY −X (z) − σX (z)σY −X (−z) =
+ev .
+od
+.
+σY (z)σX −Y (z) − σY (z)σX −Y (−z)
+
+and, analogously,
+od
+od .
+od
+.
+σX∪Y (z) = σY (z)σX −Y (z) + σY (z)σX −Y (−z).
+
+(8)
+
+.
+
+ev
+od
+σ ev σX + σ od σX
+= k ev g ev + k od g od ,
+od ev
+ev
+od
+σ σX + (σ − 1)σX = k od g ev + k ev g od .
+def
+
+def
+
+Hence, by letting g (z) = gcd(g ev , g od )(z) ∈ K[z] and δ(z) =
+˜
+σ ev (z)(σ ev (z) − 1) − [σ od (z)]2 ∈ K[z] we have
+
+Now assume X ∈ Cσ,g (S + ). In this case, from (4) and (8)
+taken mod g(z), it follows
+
+.
+ σX (z) σ ev. (z) − σ(z)σY −X (−z) =
+
+Y −X
+
+
+
+ev .
+od
+.
+σY (z)σX −Y (z) − σY (z)σX −Y (−z) mod g(z),
+ σX (z) σ od. (z) + σ(z)σY −X (−z) =
+.
+
+
+Y −X
+
+
+od .
+od
+.
+σY (z)σX −Y (z) + σY (z)σX −Y (−z) mod g(z).
+
+od
+ev
+˜
+σ od
+σX = 0 mod g ,
+σ ev σX +
+ev
+od
+od ev
+˜
+σ σX + (σ − 1) σX = 0 mod g ,
+od
+ev
+˜
+˜
+and so δσX = 0 mod g and δσX = 0 mod g . However
+this implies δ(z)σX (z) = 0 mod g (z) because, from (2),
+˜
+od
+ev
+σX (z) = σX (z) + σX (z). Now, from the hypothesis of
+the theorem gcd(σ∂S , g) = 1, it follows gcd(σX , g) = 1
+because X ⊆ S + ⊆ S. Also, g(z) = g ev (z) + g od (z) is
+a multiple of g (z) = gcd(g ev , g od ), and so gcd(σX , g) is a
+˜
+multiple of gcd(σX , g ). These facts imply gcd(σX , g ) = 1,
+˜
+˜
+and so σX (z) is invertible mod g (z). So, we have shown that
+˜
+if there exists X ∈ Cσ,g (S + ) = ∅ then δ(z)σX (z) = 0 mod
+g (z) and σX (z) is invertible mod g (z). But this implies that
+˜
+˜
+δ(z) = 0 mod g (z), which is equivalent to (5) because
+˜
+δ(z) = σ ev (z)(σ ev (z)−1)−[σ od (z)]2 = σ(z)σ(−z)−σ ev (z).
+Relation (6) follows from (5) and the pigeon principle.
+Given t, d ∈ II with t + d < deg(g), Algorithm 1 is an efﬁN
+cient decoding algorithm for t-SyEC/d-SyED based on solving
+ev
+od
+(10) in the unknown polynomial τE (z) = τE (z) + τE (z).
+Algorithm 1 (t-SyEC/d-SyED decoding for Cσ,g in (4)):
+Input: The received word Y ∈ Z n .
+Zm
+Output: The original word X ∈ Cσ,g (S + ) or detect signal.
+Assume that deg(g) > t + d.
+od
+S1: Compute cY (z) = [σ(z)σY (z) − σY (z)]/σY (−z) mod
+g(z) as the syndrome of the received word Y .
+
+Since X ⊆ S and gcd(σ∂S , g) = 1 it follows that σX (z) is
+invertible mod g(z). So, the above system and (2) imply
+ev .
+.
+σY −X (z) − σ(z)σY −X (−z) ·
+od .
+od
+.
+σY (z)σX −Y (z) + σY (z)σX −Y (−z) =
+ev .
+od
+.
+σY (z)σX −Y (z) − σY (z)σX −Y (−z) ·
+od.
+.
+σY −X (z) + σ(z)σY −X (−z) mod g(z) ⇐⇒
+ev .
+od .
+od.
+ev .
+σY (z) σY −X (z)σX −Y (z) − σY −X (z)σX −Y (z) =
+.
+.
+σ(z)σY (z)σY −X (−z)σX −Y (z)−
+
+n
+
+(10)
+
+.
+.
+with τE (z) = σY −X (−z)σX −Y (z) = i=1 (1 + ai z)yi −xi ·
+.
+n
+xi −yi
+because of (3). Note that, if X ∈ Cσ,g (S + )
+i=1 (1−ai z)
++
+is sent and Y ⊆ S is received then τE (z) is an error evaluator
+.
+.
+polynomial of the error pattern E = (Y − X) − (X − Y ) =
+. X| + |X − Y | = |Y − X| =
+.
+Y − X with deg(τE ) = |Y −
+dS (X, Y ). In fact, by construction, a ∈ S + (a ∈ S − ) and
+τE (1/a) = 0 with multiplicity e ∈ Z m if, and only if, a ∈
+Z
+.
+.
+X − Y (a ∈ Y − X, respectively) with multiplicity e. Now, if
+od
+also Y ∈ Cσ,g (S + ) then σ(z)σY (z) − σY = 0 mod g(z) and
+od
+so, from (10), τE (z) = 0 mod g(z). Hence, either deg(g) ≤
+od
+od
+deg(τE ) ≤ deg(τE ) = dS (X, Y ) or τE (z) ≡ 0. In the latter
+case τE (z) is even, hence, if there exists a ∈ S + such that
+.
+τE (1/a) = 0 then τE (1/(−a)) = 0 and so a ∈ (X − Y ) ∩
+. X) = ∅, which is absurd. The only alternative is that
+(Y −
+.
+.
+τE (z) ≡ 1 which means (X − Y ) = (Y − X) = ∅ and so
+X = Y . This proves deg(g) ≤ dS (Cσ,g (S + )).
+Now we show that if Cσ,g (S + ) = ∅ then relation (5) holds.
+od
+If X ∈ Cσ,g (S + ) = ∅ then σX (z) = σ(z)σX (z) mod g(z),
+od
+and so, σ(z)σX (z)−σX (z) = k(z)g(z) for some k(z) ∈ K[z].
+By splitting the even and odd parts we get
+
+Decomposing (7) into the even and odd part, we get
+
+In conclusion, (7) is equivalent to
+
+od
+ev .
+.
+ σX (z)σY −X (z) − σX (z)σY −X (−z) =
+
+
+
+od
+ev .
+.
+σY (z)σX −Y (z) − σY (z)σX −Y (−z),
+od
+od.
+. (−z) =
+ σX (z)σY −X (z) + σX (z)σY −X
+
+
+
+od
+od .
+.
+σY (z)σX −Y (z) + σY (z)σX −Y (−z).
+
+od
+σ(z)σY (z) − σY (z)
+· τE (z) mod g(z),
+σY (−z)
+
+(9)
+
+od
+.
+.
+σY (z)σY −X (z)σX −Y (−z) mod g(z).
+def
+
+.
+.
+Hence, letting τE (z) = σY −X (−z)σX −Y (z), from (2), (9)
+od
+ev
+od
+od
+ev
+od
+and σY − 2σY = σY + σY − 2σY = σY − σY , it follows,
+od
+od
+σY (−z)τE (z) = σ(z)σY (z) − σY (z) τE (z) mod g(z).
+
+3
+
+S2: Based on (10), ﬁnd the minimal solution (α(z), β(z)),
+with α(z), β(z) ∈ K[z], to the problem
+
+2
+0 = at σ2t + bσ2t + c,
+
+α(z) = cY (z)β(z) mod g(z),
+deg(α), deg(β) ≤ (deg(g) − 1)/2 and deg(β) ≥ 0.
+
+def
+
+IV. E FFICIENT CODE DESIGNS FOR THE L1
+
+(13)
+
+METRIC
+
+Note that the codes deﬁned in Theorem 3 might be far
+from being linear (and hence, it may not be easy to encode).
+However some of them are linear/essentially linear (in the
+sense of [5]) and, so, they can be encoded in a much simpler
+way. Let us analyze the case g(z) = z d . As in [5], given
+def
+N
+X = x1 x2 . . . xn ∈ Z n , for all i ∈ II let Si (X) =
+Zm
+i
+i
+i
+x1 a1 + x2 a2 + . . . + xn an be the i-th power sum of X, and
+def
+SX (z) = S1 (X)z + S2 (X)z 2 + S3 (X)z 3 + . . . . Also, given
+p ∈ II let X mod p ∈ Z n indicate the vector obtained from
+N
+Zp
+X by applying the mod p operation to every component of X.
+There is a unique way to write X = QX ·p+X mod p, where
+QX ∈ Z n(m−1)/p +1 and X mod p ∈ Z n . For example, if
+Z
+Zp
+X = 3791 ∈ Z 4 then X mod 5 = 3241 ∈ Z 4 , QX = 0110 ∈
+Z10
+Z5
+N
+Z n and X = 3791 = 0110 · 5 + 3241. Given s, p, n ∈ II ,
+Z2
+def
+A ⊆ Z n and B ⊆ Z n , let A · p + B = {X = Q · p + R :
+Zs
+Zp
+Q ∈ A and R ∈ B}. In general, Z n ⊆ Z n(m−1)/p +1 ·p+Z n .
+Zm
+Z
+Zp
+However, the equality holds if, and only if, m is a multiple
+of p. Note also that if m = sp, with s ∈ II (as in the above
+N
+example), then Z n = Z n · p + Z n . We have the following.
+Zm
+Zs
+Zp
+Theorem 4: In the hypothesis of Theorem 3, let K be any
+ﬁeld with char(K) = p, p odd prime, g(z) = z 2t+1 , with
+2t + 1 ≤ p ⇐⇒ t ≤ (p − 1)/2, and σ(z) = 0. Then
+C0,z2t+1 (S + ) =
+od
+od
+X ⊆ S +: σX (z) = σX mod p (z) = 0 mod z 2t+1 =
++
+{X ⊆ S : σ1 (X) = σ3 (X) = . . . = σ2t−1 (X) = 0} =
+{X ⊆ S +: S1 (X) = S3 (X) = . . . = S2t−1 (X) = 0} =
+od
+od
+X ⊆ S +: SX (z) = SX mod p (z) = 0 mod z 2t+1 .
+
+2i−1
+
+i ∈ [0, t − 1],
+
+t−1 h
+and
+h=1 a σ2h − 1
+t−1 h
+2t−1
+j
+h=0 a
+j=2h+1 (−1) σj σ2t+2h−j .
+
+Note that the coefﬁcient σ0 , σ2 , . . . , σ2t−2 ∈ K are uniquely
+determined by (σ1 , σ3 , . . . , σ2t−1 ) ∈ K t and the t equations of
+(11), whereas σ2t ∈ K must satisfy the uniquely determined
+def
+quadratic equation (12). Let the discriminant ∆ = b2 − 4at c,
+with b and c given by (13). Now, depending on ∆ ∈ K being
+a square, 0 or not a square in K, the equation (12) has 2, 1 or
+0 solutions for σ2t ∈ K. Note that, for example, if t = 1 then
+2
+2
+b = −1, c = −σ1 and, so, ∆ = 1 + 4aσ1 . If t = 2 then b =
+2
+2
+2aσ2 −1, c = σ2 −2σ1 σ3 −aσ3 and, so, ∆ = 1+4a(σ1 +aσ3 )2 .
+Likewise, if t = 3 then ∆ = 1 + 4a(σ1 + aσ3 + a2 σ4 )2 .
+Based on this, for various ﬁelds K = GF (p), p odd prime, we
+have noticed that if a is a square then the number of different
+solutions to (5) is |K|t − |K|t−1 ≥ |Φ(g)| for t = 1, 2, 3. We
+suspect this to be true in general for all t and K. For example,
+if K = GF (11), t = 2, n = 4 = |∂S + | ≤ (|K| − 1)/2 − 1
+then |Φ(g)| ≤ |K|2 − |K| = 121 − 11 = 110 (found with a
+spreadsheet application). So, if T = Z n and S + = (m −
+Zm
+1)∂S + ∈ Z n then the lower bound in the Theorem 3 gives
+Zm
+a code of length n = 4 with dS (Cσ,g (S + )) ≥ 5 containing
+|Cσ,g (S + )| ≥ m4 /(|K|2 − |K|) = m4 /110. If m = 11 (but
+m can be any) then |Cσ,g (S + )| ≥ 114 /110 = 134.
+
+2t−1
+j
+j=1 (−1) σj σ2t−j .
+
+(−1)j σj σ2i−j ,
+
+def
+
+c = c σ od =
+
+When char(K) > 0, this implies |Φ(g)| ≤ |K|t because
+(σ1 , σ3 , . . . , σ2t−1 ) ∈ K t (otherwise, if char(K) = 0 then
+Φ(g) depends on at most t parameters in K). Hence, by
+letting T = Z n and S + = (m − 1)∂S + ∈ Z n in Theorem
+Zm
+Zm
+3, it follows that there exists a code Cσ,g (S + ) of length
+n = |∂S + | ≤ (|K| − 1)/2 with dS (Cσ,g (S + )) ≥ deg(g) =
+2t + 1 and |Cσ,g (S + )| ≥ mn /|K|t (that is, the redundancy is
+def
+ρ(Cσ,g (S + )) = n − logm |Cσ,g (S + )| ≤ t logm |K|).
+Example 2 shows better upper bounds on |Φ(g)|.
+Example 2 (g(z) = z 2t+1 − az 2t−1 ∈ K[z], t ∈ II ): Let us
+N
+assume the same hypothesis of Example 1 but ∂S + ⊆ K + −
+{a} and g(z) = z 2t+1−az 2t−1 . As Example 1, the polynomial
+σ(z) of degree at most 2t is in Φ(g) only if σ od (z) ∈ K[z]
+may be chosen arbitrarily but the coefﬁcients of σ ev (z) ∈ K[z]
+satisfy the t + 1 quadratic equations
+σ2i =
+
+def
+
+def
+
+b = b σ od = 2
+
+This can be accomplished either with the Extended Euclidean
+Algorithm (see [9, Theorem 4]), or with any other method.
+.
+S3: Set τE (z) = β(z) and compute the error vector E = (Y −
+. Y ) = Y − X from τ (z) = σ . (−z)σ . (z)
+X) − (X −
+E
+Y −X
+X −Y
+as follows. For all a ∈ ∂S = ∂S − ∪ ∂S + , in the order execute
+(note that p(a) = 0 with multiplicity 0 means p(a) = 0): 1)
+if a ∈ ∂S − and τE (1/a) = 0 with multiplicity e ∈ Z m then
+Z
+.
+.
+set mX −Y (−a) = 0 and mY −X (−a) = e; 2) if a ∈ ∂S + and
+.
+τE (1/a) = 0 with multiplicity e ∈ Z m then set mX −Y (a) =
+Z
+e. S4: Compute X = Y − E.
+S5: If X ∈ Cσ,g (S + ) and dS (X, Y ) = |E| ≤ t then output the
+detect signal equal to 0, output X and exit.
+S6: Otherwise, output the detect signal equal to 1 and exit.
+Theorem 1 and Theorem 3 imply that Algorithm 1 is correct.
+Now, some examples are given to illustrate the code design.
+Example 1 (g(z) = z 2t+1 ∈ K[z], t ∈ II ): Let m ∈ II , K
+N
+N
+be any ﬁeld with characteristic char(K) = 2, g(z) = z 2t+1 ,
+t ∈ II , and S + = (m − 1)∂S + with ∂S + ⊆ K + . In
+N
+this case, since g is unmixed, it follows gcd(g ev , g od ) =
+g, and so, by equating the coefﬁcients in (5), if σ(z) =
+2
+σ0 + σ1 z + . . . + σ2t z 2t ∈ Φ(g) then σ0 = σ0 and
+2i−1
+j
+σ2i = 2σ0 σ2i + j=1 (−1) σj σ2i−j , for all integer i ∈ [1, t].
+2
+From σ0 = σ0 , it follows σ0 = 0 or 1. However, if
++
+X ∈ Cσ,g (S ) = ∅ then σ0 = 1 because σX (0) = 1,
+od
+od
+g(0) = σX (0) = 0 and σX (z) = σ(z)σX (z) + k(z)g(z),
+with k(z) ∈ K[z]. Hence, if σ(z) ∈ Φ(g) then σ od (z) =
+σ1 z + σ3 z 3 + . . . + σ2t−1 z 2t−1 ∈ K[z] might be chosen
+arbitrarily but σ ev (z) = σ0 + σ2 z 2 + . . . + σ2t z 2t ∈ K[z]
+is uniquely identiﬁed by the t + 1 quadratic equations
+σ0 = 0,
+2
+σ2 = −σ1 ,
+2
+σ4 = −2σ1 σ3 + σ2 ,
+2
+σ6 = −2σ1 σ5 + 2σ2 σ4 − σ3 ,
+.
+.
+.
+σ2t =
+
+(12)
+
+where
+
+(11)
+
+j=1
+
+4
+
+(14)
+
+def
+
+So, Cp = C0,z2t+1 ((p − 1)∂S + ) is a p-ary linear code. Also, if
+def
+m = sp, with s ∈ II ∪{+∞}, then 1) the following represenN
+def
+tation holds for the m-ary code Cm = C0,z2t+1 ((m − 1)∂S + ):
+Cm = Z n · p + Cp
+Zs
+
+a subcode of Cm and the encoding function to C0,z2t+1 (C ∪D)
+def
+is deﬁned as E(X) = γ(X) X; where γ(X) ∈ Z r ( ⇐⇒
+Zp
+γ(X) ⊆ C) is the check symbol associated with the data word
+X ∈ Z k (⇐⇒ X ⊆ D). Note that, even though X ∈ Z k , the
+Zm
+Zm
+check symbol γ(X) can be computed as γ(X mod p) because
+γ(X) ≡ γ(X mod p), all this for any m ∈ II . For example,
+N
+let K = GF (p = 11), ∂S + = {1, 2, 3, 4, 5}, t = 3, m = 16
+(but, any other m ∈ II is ﬁne), r = 3, k = 2, ∂C = {1, 2, 3},
+N
+∂D = {4, 5}, C = 10 · {1, 2, 3} and D = 15 · {4, 5}. The H
+matrix of the code Cp = C0,z2t+1 ((p − 1)∂S + ) is
+
+
+ 
+1 2 3 4 5
+1 2 3 4 5
+H =  13 23 33 43 53  =  1 8 5 9 4  ;
+1 10 1 1 1
+15 25 35 45 55
+
+(15)
+
+(the above sum and product are those deﬁned in the naturals);
+2) the minimum symmetric L1 distance of Cm is dS (Cm ) ≥
+2t + 1; and 3) the redundancy is ρ(Cm ) = t logm |K|.
+Proof: Frobenius automorphism implies, [1 + zq(z)]p =
+p
+1+z [q(z)]p = 1 mod z d , for all q(z) ∈ K[z] and d ≤ p. From
+this and Theorem 2, if d ≤ p then X ⊆ S + =⇒ X = QX ·p+
+X mod p =⇒ σX (z) = [σQX (z)]p σX mod p (z) =⇒ σX (z) =
+od
+od
+σX mod p (z) mod z d =⇒ σX (z) = σX mod p (z) mod z d .
+od
+This and the deﬁnition of σX (z) imply the ﬁrst and second
+equality in (14). Also, if d ≤ p and X = QX · p + X mod
+p ⊆ S + then SX (z) = SQX ·p+X mod p (z) = pSQX (z) +
+SX mod p (z) = SX mod p (z), because p = 0 mod p. This and
+od
+the deﬁnition of SX (z) imply the last equality in (14). With
+regard to the third equality in (14), Newton’s identity (see [2,
+page 212] and [3, page 301]) implies that for all multisets
+X ∈ Z n , SX (z)σX (z) + zσX (z) = 0; and so,
+Zm
+
+and it is equivalent to the following matrix in systematic form:
+
+ 
+
+1 0 0 −8 −7
+1 0 0 3 4
+Hsys =  0 1 0 8 2  =  0 1 0 −3 −9  .
+0 0 1 −5 −1
+0 0 1 6 10
+So, if X = x4 x5 ∈ Z 2 then γ(X) = c1 c2 c3 ∈ Z 3 where
+Z
+Z11
+ 16
+ c1 = 8x4 + 7x5 mod 11,
+c2 = 3x4 + 9x5 mod 11,
+ c = 5x + x mod 11.
+3
+4
+5
+
+S1 (X) + σ1 (X) = 0,
+S2 (X) + σ1 (X)S1 (X) + 2σ2 (X) = 0,
+S3 (X) + σ1 (X)S2 (X) + σ2 (X)S1 (X) + 3σ3 (X) = 0,
+.
+.
+.
+
+For example, E(X = 14 3) =
+γ(X) X = c1 c2 c3 x4 x5 = 1 3 7 14 3 ∈ C0,z2t+1 (C ∪ D).
+In particular, this code C0,z2t+1 (C ∪ D) has two information
+hexadecimal digits x4 x5 ∈ Z 2 , three check 11-ary digits
+Z16
+c1 c2 c3 ∈ Z 3 and is capable of correcting 3 symmetric errors.
+Z11
+Similar to this example, many other simple codes can be
+designed.
+
+Sd−2 (X) + σ1 (X)Sd−3 (X) + . . . + (d − 2)σd−2 (X) = 0.
+From these relations and 1, 2, . . . , d − 1 ∈ Z p − {0} (beZ
+cause d ≤ p), by induction, it can be easily seen that
+σ1 (X) = σ3 (X) = . . . = σ2 d/2 −1 (X) = 0 if, and
+only if, S1 (X) = S3 (X) = . . . = S2 d/2 −1 (X) = 0.
+Now, these last relations for d = 2t + 1 imply that Cp is
+the null space of the n vectors (ai , a3 , . . . , a2t−1 ) ∈ K t ,
+i
+i
+i = 1, 2, . . . , n; and so, Cp is a subspace of the vector space
+Z
+(Z n , +, Z p , ·). With regard to (15), since m = sp, it follows
+Zp
+X = QX · p + X mod p ∈ Cm ⇐⇒ X ∈ Z n , QX ∈ Z n ,
+Zm
+Zs
+od
+od
+X mod p ∈ Z n and SX (z) = SX mod p (z) = 0 mod z 2t+1
+Zp
+⇐⇒ X = QX · p + X mod p ∈ Z n · p + Cp . The minimum disZs
+tance is dS (Cm ) ≥ 2t+1 because of Theorem 3. With regard to
+the redundancy, if we let k be the number of information digits/dimension of Cp and r be the number of check digits then
+r = n − k ≤ [K : Z p ] · t = t logp |K| because Cp is the null
+Z
+space of n vectors in K t (actually, r = t logp |K|). Hence,
+from (15), logm |Cm | = logm (|Z n | · |Cp |) = logm sn pk
+Zs
+n
+
+r
+
+n
+
+ACKNOWLEDGMENT
+This work is supported by the National Science Foundation
+under Grant CCF-1117215 and by the Italian MIUR Grant
+PRIN 2009-2009EL7424.
+R EFERENCES
+[1] Y. Cassuto, M. Schwartz, V. Bohossian and J. Bruck, “Codes for multilevel ﬂash memories: Correcting asymmetric limited-magnitude errors,
+Proc. of 2007 IEEE Int. Symp. on Information Theory, pp. 1176-1180,
+June 2007.
+[2] E. R. Berlekamp, Algebraic coding theory, Aegean Park Press, 1984.
+[3] R. Roth, Introduction to Coding Theory, Cambridge University Press,
+2006.
+[4] L. G. Tallini and B. Bose, “On symmetric/asymmetric Lee distance error
+control codes and elementary symmetric functions”, Proc. 2012 IEEE Int.
+Symp. on Information Theory, July 2012.
+[5] L. G. Tallini and B. Bose, “On L1 -distance error control codes”, Proc.
+2011 IEEE Int. Symp. on Information Theory, pp. 1026-1030, July/August
+2011.
+[6] L. G. Tallini and B. Bose, “Reed-Muller codes, elementary symmetric
+functions and asymmetric error correction”, Proc. 2011 IEEE Int. Symp.
+on Information Theory, pp. 1016-1020, July/August 2011.
+[7] L. G. Tallini and B. Bose, “On decoding some error control codes using
+the elementary symmetric functions”. In Trends in Incidence and Galois
+Geometries: a Tribute to Giuseppe Tallini - Quaderni di Matematica, F.
+Mazzocca, N. Melone and D. Olanda Ed.. vol. 19, p. 265-297, Caserta,
+Dipartimento di Matematica, Seconda Universit` di Napoli, 2010.
+a
+[8] L. G. Tallini, N. Elarief and B. Bose, “On Efﬁcient Repetition Error
+Correcting Codes”, Proc. 2010 IEEE Int. Symp. on Information Theory,
+pp. 1012-1016, June 2010.
+[9] L. G. Tallini and B. Bose, “On a new class of error control codes and
+symmetric functions”, Proc. 2008 IEEE Int. Symp. on Information Theory,
+pp. 980-984, July 2008.
+
+=
+
+r
+
+logm (sp) /p
+= logm m /p
+= n − r logm p. =⇒
+ρ(Cm ) = r logm p = t logp |K| logm p = t logm |K|.
+Given the representation of (15), an efﬁcient encoding function
+for the code Cm can be designed as the encoding function for
+the asymmetric codes given in Section V of [5]. However, we
+would like to mention that for certain applications (such as,
+multilevel ﬂash memory design and EC code deisgn for the
+repetition channel) it might be more convenient to consider the
+def
+codes C0,z2t+1 (C ∪ D) where ∂S + = ∂C ∪ ∂D, with ∂C ∩
+def
+∂D = ∅, |∂C| = r , |∂D| = k (= dimension of Cp ), C =
+def
+(p−1)∂C and D = (m−1)∂C. In this way, C0,z2t+1 (C∪D) is
+
+5
+
+

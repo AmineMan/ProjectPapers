@@ -1,0 +1,844 @@
+Creator:        TeX
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Mon May 14 15:55:43 2012
+ModDate:        Tue Jun 19 12:54:52 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      371630 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569564463
+
+Constrained Probability
+Jan C. Willems
+KU Leuven, Department of Electrical Engineering-ESAT, SCD-SISTA
+B-3001 Leuven, Belgium
+Jan.Willems@esat.kuleuven.be
+http://www.esat.kuleuven.be/∼jwillems
+
+assumed to be an event, and P is completely determined
+by the probability of the singletons.
+The second special case is a Borel probability
+(Rn , B (Rn ) , P), where B (Rn ) denotes the class of Borel
+subsets of Rn . P can then be speciﬁed by a probability
+distribution, or, if the distribution is sufﬁciently smooth,
+by the probability density function p : Rn → [0, ∞) leading
+to P(E) = p(x) dx.
+
+Abstract—A stochastic system is deﬁned as a probability triple.
+Models often require a coarse event sigma-algebra. A notion that
+emerges in this setting is constrained probability, a concept that
+is reminiscent but quite distinct from conditional probability.
+
+I. I NTRODUCTION
+By an ‘open’ system we mean a model that explicitly
+incorporates the inﬂuence of the environment, but as an
+unmodeled feature. Open systems can be interconnected with
+other systems.
+Our interest in this article is in systems with as outcome
+space a (ﬁnite or) countable set, or Rn . If the event space
+consist of all subsets of the countable outcome space, or of
+the Borel sets in the case of Rn , then we call the σ -algebra
+of events ‘rich’, in contrast to ‘coarse’ σ -algebras. In classical
+stochastic systems, the event σ -algebra is assumed to be rich.
+The event σ -algebra is an intrinsic, not to be ignored, feature
+of the stochastic phenomenon that is modeled.
+The article functions completely within the orthodox measure theoretic setting of probability, with a σ -algebra of events,
+the mathematical framework of probability that is usually
+attributed to Kolmogorov. The main point of this article is
+basically pedagogical in nature, namely that the emphasis
+in the teaching of probability on settings where essentially
+every subset of the outcome space is an event is unduly
+restrictive, even for elementary applications. Concepts, as
+linearity, interconnection, and constrained probability, function
+comfortably only within the context of coarse σ -algebras.
+This conference paper is a summary of a full article [1] that
+has recently been submitted.
+
+E
+
+For a classical stochastic system ‘essentially every’ subset of
+W is an event and is assigned a probability. Thus for classical
+stochastic systems, the events are obtained from the structure
+of the outcome space. No probabilistic modeling enters in the
+speciﬁcation of the events.
+We illustrate the relevance of coarse σ -algebras by means
+of a physical example. In Section VII, we will discuss a binary
+channel .
+A noisy resistor. Consider a 2-terminal electrical circuit shown
+as a black box in Figure 3(a). The aim is to model the relation
+between the voltage V and the current I. A deterministic
+example is an Ohmic resistor, shown in Figure 3(b), described
+by V = RI with R the resistance.
+I
+
+I
+
+++
+
+I
+
+++
+
+++
+
+heat
+V
+
+V
+
+−−
+
+V
+
+−−
+
+a
+
+Fig. 1.
+
+R
+
+−−
+
+b
+
+II. S TOCHASTIC SYSTEMS
+Deﬁnition 1: A stochastic system is a triple (W, E , P) with
+W a non-empty set, the outcome space, with elements of
+W called outcomes,
+E a σ -algebra of subsets of W, with elements of E are
+called events,
+P : E → [0, 1] a probability measure on E .
+We assume that E and P satisfy the standard Kolmogorov
+axioms.
+Two important special cases are obtained as follows. We
+refer to these special cases as classical stochastic systems.
+The ﬁrst special case is (W, 2W , P) with W a countable
+set. P can then be speciﬁed by giving the probability p
+of the individual outcomes, p : W → [0, 1], and deﬁning
+P by P(E) = Σ p(e). In this case, every subset of W is
+
+R
+
+c
+
+2-terminal electrical circuit
+
+As an example of a noisy circuit, consider a resistor with
+thermal noise, as shown in Figure 3(c). In the deterministic
+case, the resistor is modeled by V = RI, while in the stochastic
+case, it is assumed that the outcomes (V, I) belong to strips
+parallel to the line V = RI with a certain probability. More
+concretely, for a Johnson-Nyquist resistor, it is assumed that
+the probability that (V, I) belongs to the incremental strip x ≤
+2
+− x
+
+1
+V − RI ≤ x + dx is equal to √2πσ e 2σ 2 dx (see Figure 2(a)).
+√
+Here, σ ∼ RT with T the temperature of the resistor.
+=
+This noisy resistor deﬁnes a stochastic system with outcome
+space W = R2 and as outcomes voltage/current vectors V ∈
+I
+R2 . The events are the sets of the form
+
+E=
+
+e∈E
+
+1
+
+V
+I
+
+∈ R2 | V − RI ∈ A with A ⊆ R Borel
+
+(1)
+
+Deﬁnition 2: Let F be a ﬁnite ﬁeld, or R. The stochastic
+system (Fn , E , P) is said to be linear if there exists a linear
+subspace L of Fn such that the events consist of all subsets of
+the quotient space Fn /L when F if a ﬁnite ﬁeld, or of the Borel
+subsets of Fn /L when F = R. Fn /L is a ﬁnite dimensional
+vector space over F of dimension = n − dimension(L). L is
+called the ﬁber and dimension(L) the number of degrees of
+freedom of the linear stochastic system.
+The idea behind Deﬁnition 2 is illustrated in Figure 4. The
+events are cylinders in Rn with rays parallel to the ﬁber L.
+A linear stochastic system is classical if and only if L = {0}.
+Hence a classical random vector with W = Fn deﬁnes a linear
+stochastic system. At the other extreme, when L = Fn , the
+event set E becomes the trivial σ -algebra {0, Fn }.
+/
+Observe that the deﬁnition of linearity involves only the
+event σ -algebra, but not the probability measure.
+
+(see Figure 2(b)), and the probability is given by
+1
+P(E) = √
+2πσ
+
+2
+− x2
+2σ dx.
+
+e
+A
+
+probability
+
+y
+
+y
+
+event
+
+dx
+
+f
+
+A
+
+L
+
+L
+
+x
+
+x
+
+b
+
+a
+
+Fig. 2.
+
+Events for the noisy resistor
+
+This resistor with thermal noise can be represented by
+equivalent circuits. Either as a deterministic resistor in series
+with a noisy voltage source, V = RI + ε with ε the voltage
+generated by the noisy voltage source, taken to be gaussian,
+√
+zero mean, and with standard deviation σ ∼ RT (see Figure
+=
+3(d)). Or as a deterministic resistor in parallel with a noisy
+I
+
+IV. I NTERCONNECTION
+
+a
+
+system1
+
+w1
+
+w2
+
+system2
+
+I
+
+++
+
+++
+
++
+
+b
+
+V0
+
+system2
+
+system1
+
+−
+
+V
+
+V
+
+I0
+
+R
+
+R
+w
+
+−−
+
+−−
+
+Fig. 3.
+
+Fig. 5.
+
+e
+
+d
+
+2-terminal electrical circuit
+
+In this section we discuss interconnection. We consider
+the situation illustrated in Figure 5 with the assumption that
+the two interconnected systems are stochastically independent.
+Note that interconnection comes down to imposing two distinct
+probabilistic laws on the same set of variables. Is it possible to
+deﬁne one law which respects both laws? As we shall see, this
+is indeed possible, provided some regularity condition, called
+‘complementarity’, holds.
+Deﬁnition 3: Two σ -algebras E1 and E2 on W are said to be
+complementary if for all nonempty E1 , E1 ∈ E1 , E2 , E2 ∈ E2
+
+current source, I = V /R + ε with ε the current generated by
+the noisy current source, taken to be gaussian, zero mean, and
+with standard deviation σ ∼ T /R. Hence, whereas ε and ε
+=
+are classical random variables, V is not a classical random
+I
+vector. Only cylinders with rays parallel to V = RI (see Figure
+2) are events that are assigned a probability. In particular, V
+and I are not classical random variables. Indeed, the basic
+model of a noisy resistor does not imply a stochastic law for
+V or I, in the sense that V and I are not classical random
+variables. The description in terms of the events 1 and their
+probabilities describes the physics better than these equivalent
+circuits.
+
+[ E1 ∩ E2 = E1 ∩ E2 ] ⇒ [ E1 = E1 and E2 = E2 ] .
+Two systems Σ1 = (W, E1 , P1 ) and Σ2 = (W, E2 , P2 ) are said
+to be complementary if for all E1 , E1 ∈ E1 and E2 , E2 ∈ E2
+
+III. L INEARITY
+
+]
+[ E1 ∩ E2 = E1 ∩ E2 ] ⇒ [ P1 (E1 )P2 (E2 ) = P1 (E1 )P2 (E2 )] .
+In words, complementarity of stochastic systems requires
+that the intersection of two events, one from each of the
+σ -algebras, determines the product of the probabilities of
+the intersecting events uniquely, while complementarity of
+the σ -algebras requires that the intersection determines the
+intersecting sets uniquely.
+It is readily proven that
+
+event
+L
+
+Fig. 4.
+
+Interconnection
+
+[ E1 , E2 complementary] ⇒ [ E1 ∩ E2 = {0, W}]
+]
+/
+]
+
+Events for a linear system
+
+2
+
+[ E1 , E2 complementary, E1 ∈ E1 , E2 ∈ E2 , and E1 ∩ E2 = 0]
+/]
+and, furthermore, that complementarity of two stochastic systems is implied by complementarity of the associated σ algebras.
+Deﬁnition 4: Let Σ1 = (W, E1 , P1 ) and Σ2 = (W, E2 , P2 ) be
+stochastic systems and assume that they are complementary.
+The interconnection of Σ1 and Σ2 , assumed stochastically
+independent, denoted by Σ1 ∧ Σ2 , is deﬁned as the system
+
+coarseness of the σ -algebras is essential for complementarity
+in the case the W is countable. Assume that Σ1 = (W, 2W , P),
+with W countable, is a classical stochastic system and that
+Σ = (W, E , P ) is another stochastic system. Then the σ algebras associated with Σ1 and Σ2 can only be complementary
+if E is trivial, that is, E = {0, W}. More generally, if
+/
+the stochastic systems Σ and Σ are complementary then
+for E ∈ E , we have E ∩ W = E ∩ E = W ∩ E, and hence
+P(E) = P(E)P (E) = P (E). Therefore the following zero-one
+law must hold:
+
+Σ1 ∧ Σ2 := (W, E , P),
+
+[ E ∈ E ] ⇒ [ P(E) = P (E) = 0 or P(E) = P (E) = 1] .
+]
+
+⇒ [ E1 = 0 or E2 = 0] ,
+/
+/]
+
+E := the σ -algebra generated by E1 ∪ E2 ,
+
+This is a very restrictive condition on Σ . For example, if each
+singleton has positive P-measure, then E = {0, W}.
+/
+We conclude that classical stochastic systems are models
+of closed systems. These systems cannot be interconnected
+with other systems. Open systems require a coarse σ -algebra.
+This shows a serious limitation of the classical stochastic
+framework, since interconnection is one of the basic tenets
+of model building.
+
+and P deﬁned through ‘rectangles’ by
+P(E1 ∩ E2 ) := P1 (E1 )P2 (E2 ) for E1 ∈ E1 , E2 ∈ E2 .
+The deﬁnition of the probability P for rectangles
+{E1 ∩ E2 | E1 ∈ E1 , E2 ∈ E2 } uses complementarity in an essential way. E is the σ -algebra generated by these rectangles.
+It is readily seen that the class of subsets of W that consist
+of the union of a ﬁnite number of disjoint rectangles forms
+an algebra of sets. The probability of rectangles deﬁnes
+the probability of the union of a ﬁnite number of disjoint
+rectangles. By the Hahn-Kolmogorov extension theorem, this
+leads to a unique probability measure P on E .
+Obviously, there holds E1 , E2 ⊆ E . Also, for E1 ∈ E1 and
+E2 ∈ E2 , we have P(E1 ) = P(E1 ∩ W) = P1 (E1 ) and P(E2 ) =
+P(W ∩ E2 ) = P2 (E2 ). Hence interconnection reﬁnes the event
+σ -algebras and the probabilities. Note also that for E1 ∈ E1
+and E2 ∈ E2 , P(E1 ∩E2 ) = P1 (E1 )P2 (E2 ) = P(E1 )P(E2 ). Hence
+E1 and E2 are stochastically independent sub-σ -algebras of
+E . This expresses that Σ1 and Σ2 model phenomena that are
+stochastically independent.
+
+VI. C ONSTRAINED PROBABILITY
+Consider the stochastic system (W, E , P). Let S be a
+nonempty subset of W. In this section we discuss the meaning
+of the stochastic system induced by (W, E , P) with outcomes
+constrained to be in S. We shall see that this is indeed a
+sensible concept.
+Deﬁnition 5: Let Σ = (W, E , P) be a stochastic system and
+S ⊆ W. Assume that the regularity condition
+[ E1 , E2 ∈ E and E1 ∩ S = E2 ∩ S] ⇒ [ P(E1 ) = P(E2 )]
+]
+]
+holds. Then the stochastic system
+Σ|S := (S, E |S , P|S )
+E |S := {E ⊆ S | E = E ∩ S for some E ∈ E },
+
+V. O PEN VERSUS CLOSED SYSTEMS
+
+P|S (E ) := P(E) with E ∈ E such that E = E ∩ S,
+
+As a general principle, it is best to aim for models that
+are open, and a mathematical theory of modeling should
+reﬂect this aspect from the very beginning. Models usually
+leave some of the individual variables free, unexplained, and
+merely express what one can conclude about a coupled set of
+variables.
+Consider for example the classical notion of an ndimensional stochastic vector process as a family of measurable maps ft : Ω → Rn ,t ∈ T (T denotes the time-set), from
+a basic probability space Ω, with σ -algebra A , to Rn , with
+σ -algebra B(Rn ). This is very much a closed systems view,
+since once the uncertain parameter ω ∈ Ω has been realized,
+the complete trajectory t ∈ T → ft (ω) ∈ Rn is determined.
+Such models leave no room for the inﬂuence of the environment. Stochastic systems with a coarse σ -algebra do allow to
+incorporate the unexplained environment.
+Another way of looking at ‘open’ versus ‘closed’ systems is
+by considering interconnection. An open stochastic system can
+be interconnected with other systems, a closed system cannot
+be interconnected (or, more accurately, it can only be interconnected with a trivial stochastic system). We illustrate that
+
+is called the stochastic system Σ with outcomes constrained to
+be in S.
+The regularity condition basically implies S ∈ E . In fact,
+/
+if S ∈ E , then regularity holds if and only if w ∈ S with
+probability 1, that is, if and only if P(S) = 1.
+Note that constraining essentially corresponds to interconnecting (W, E , P) with the ‘deterministic’ system
+(W, {0, S, Scomplement , W}, P ) with P (S) = 1. The regularity
+/
+condition corresponds to complementarity.
+The notion of the stochastic system Σ with outcomes constrained to be in S, while reminiscent of the notion of the
+stochastic system Σ conditioned on outcomes in S, is quite
+distinct from it. The former basically requires S ∈ E , while the
+/
+latter requires S ∈ E . Secondly, constraining associates with
+the event E ∈ E of Σ, the event E ∩ S of Σ|S with probability
+P(E), while conditioning associates with the event E ∈ E of Σ
+the event E ∩ S, also in E , with probability P(E ∩ S)/P(S). So,
+constraining pulls the probability of E ‘globally’ into E ∩ S,
+while conditioning associates with E ‘locally’ the probability
+of E ∩ S, renormalized by P(S).
+
+3
+
+Y
+
+Y
+
+Y
+
+Szero
+
+Sone
+
+VII. B INARY CHANNEL
+yone
+
+p
+yone
+
+uone
+
+Fig. 7.
+
+uzero
+
+yzero
+
+Eone
+
+U
+uzero
+
+uone
+b
+
+U
+uzero
+
+uone
+c
+
+Events for the symmetric binary channel
+
+E0 = {(u0 , y0 ), (u1 , y1 )}, E1 = {(u0 , y1 ), (u1 , y0 )}.
+The generating set for E is shown in Figure 7(b). Note that
+the σ -algebra generated by {E0 , E1 } is not equal to 2U×Y .
+Σsbc is not a classical stochastic system. The probability P is
+determined by
+P(E0 ) = p, P(E1 ) = 1 − p.
+Now consider Σsbc with outcomes constrained to be in
+S0 = {(u, y) | u = u0 } and S1 = {(u, y) | u = u1 },
+respectively. The sets S0 and S1 are illustrated in Figure 7(c).
+It is easily veriﬁed that the regularity condition of Deﬁnition 5
+is satisﬁed for both S0 and S1 . The resulting stochastic systems
+are Σsbc |S0 = (Y, 2Y , P|S0 ) with
+
+1−p1
+yzero
+
+yzero
+
+p
+
+Ezero
+
+yone
+
+Thus the outcome space, shown in Figure 7(a), is U × Y. The
+events E consist of the σ -algebra generated by
+
+1−p0
+
+1−p
+uzero
+
+Eone
+
+U
+uone
+a
+
+yone
+
+1−p
+
+yzero
+
+uzero
+
+p1
+
+uone
+
+Ezero
+
+yone
+
+yzero
+
+Open stochastic systems are often thought of as classical
+stochastic systems with ‘input’ parameters, that is, as a family
+of probability measures on the output space, parameterized
+by the input. Such families of probability measures go under the name of probability kernels. The main distinction
+between probability kernels and our approach consists in the
+input/output view of open systems that underlies probability
+kernels. While inputs and outputs deﬁnitely have their place
+in modeling, especially in signal processing and in feedback
+control, the input/output view of systems has many drawbacks
+when modeling open physical systems, as argued for example
+in [2] for the deterministic case: a physical system is not a
+signal processor. With input/output thinking one cannot get
+off the ground when modeling, for example, simple electrical circuits [3], the paradigmatic examples of interconnected
+systems.
+Developing the themes of the present article using probability kernels in their full generality lies beyond our scope. We
+now explain some of the connections between our notion of
+stochastic system on the one hand, and probability kernels
+on the other hand, by means of the binary channel. The
+
+p0
+
+a
+
+P|S0 (y0 ) = p, P|S0 (y1 ) = 1 − p,
+
+b
+
+Fig. 6.
+
+Binary channel
+
+and Σsbc |S1 = (Y, 2Y , P|S1 ) with
+
+channel functions as follows. There are two possible inputs,
+u0 and u1 . The channel transmits the input and produces two
+possible outputs, y0 and y1 . The input u0 leads to output y0
+with probability p0 and to y1 with probability 1 − p0 , while
+the input u1 leads to output y1 with probability p1 and to
+y0 with probability 1 − p1 . If p0 = p1 = p, then we call the
+channel symmetric, while if p0 = p1 , then we call the channel
+asymmetric. The symmetric binary channel is shown in Figure
+6(a), while the asymmetric binary channel is shown in Figure
+6(b).
+Formally, denote the input alphabet as U = {u0 , u1 } and the
+output alphabet as Y = {y0 , y1 }. The channel is speciﬁed as
+two classical stochastic systems,
+Σu0 = Y, 2Y , Pu0
+
+and
+
+P|S1 (y0 ) = 1 − p, P|S0 (y1 ) = p.
+Observe that Σsbc |S0 and Σsbc |S1 yields precisely the systems
+Σu0 and Σu1 that specify the channel as a probability kernel.
+Note that the symmetric binary channel can be viewed
+as a linear stochastic system. Identify both U and Y with
+GF(2), the Galois ﬁeld {0, 1}. Set W = U × Y = GF(2)2 .
+Then Σsbc is a linear stochastic over the ﬁeld GF(2) with
+ﬁber L = {(0, 0), (1, 1)} and probabilities P(L) = p and
+P((0, 1) + L) = 1 − p.
+B. The asymmetric binary channel
+We next show how to approach the asymmetric binary
+channel from our point of view. We start with the system
+
+Σu1 = Y, 2Y , Pu1 ,
+
+Σabc = (U × Y × E, E , P)
+
+with the probabilities determined by
+
+with E = {e1 , e2 , e3 , e4 }. Thus the outcome space, shown in
+Figure 8(a), is the Cartesian product of U×Y and E. The space
+E is introduced in order to generate the channel uncertainty.
+The events E consist of the σ -algebra generated by
+
+Pu0 (y0 ) = p0 , Pu0 (y1 ) = 1 − p0 , Pu1 (y0 ) = 1 − p1 , Pu1 (y1 ) = p1 .
+The pair of systems Σu0 , Σu1 is a probability kernel.
+A. The symmetric binary channel
+
+E1 = {(u0 , y0 , e1 ), (u1 , y0 , e1 )},
+
+We show how to approach the symmetric binary channel
+using constrained probability. We start with the system
+
+E2 = {(u0 , y0 , e2 ), (u1 , y1 , e2 )},
+
+Σsbc = (U × Y, E , P).
+
+E4 = {(u0 , y1 , e4 ), (u1 , y1 , e4 )}.
+
+E3 = {(u0 , y1 , e3 ), (u1 , y0 , e3 )},
+
+4
+
+The generating set for E is shown in Figure 8(b). Note
+that the σ -algebra generated by {E1 , E2 , E3 , E4 } is not equal
+to 2U×Y×E . Σabc is not a classical stochastic system. The
+probability P is determined by
+P(E1 ) = p0 (1 − p1 ),
+
+P(E2 ) = p0 p1 ,
+
+P(E3 ) = (1 − p0 )(1 − p1 ),
+
+The introduction of E and Σabc shows that the speciﬁcation
+of a channel as a probability kernel can be interpreted in a very
+natural way as constrained stochastic systems. The probability
+kernel can also be interpreted in terms of conditional probabilities by deﬁning, for π ∈ [0, 1], Pu (u0 ) = π and Pu (u1 ) = 1 − π.
+We then obtain stochastic systems with Σu0 and Σu1 the
+conditional probabilities of y given u. Since the interpretation
+of the probability kernel as conditional probabilities requires
+modeling the environment, that is, interpreting the input u as
+a classical random variable, we feel that the interpretation in
+terms of constrained probability is a more satisfactory one
+conceptually.
+When ε a classical random vector, then y = f (u, ε) can
+be dealt with by considering u as an input parameter which
+together with ε generates the output y. For example, the
+symmetric binary channel can be realized this way by taking
+U = Y = {0, 1}, ε a random variable taking values in {0, 1}
+with Pε (0) = p, Pε (1) = 1− p, and setting u+y = ε over GF(2).
+The asymmetric binary channel can be realized by setting
+U = Y = {0, 1}, and y = ε0 (1−u)+ε1 u with ε0 , ε1 independent
+random variables both taking values in {0, 1} with P(ε0 = 0) =
+p0 and P(ε1 = 1) = p1 . In terms of the e’s discussed above,
+we have then e1 ↔ (0, 0), e2 ↔ (0, 1), e3 ↔ (1, 0), e4 ↔ (1, 1).
+
+P(E4 ) = (1 − p0 )p1 .
+
+E
+
+E
+
+Ptree
+efour
+
+efour
+
+etree
+
+etree
+
+etwoo
+
+etwoo
+
+eonee
+
+eonee
+
+Pfour
+
+Ponee
+
+Ptwoo
+
+UY
+
+UY
+uonee
+
+utwoo
+
+utree
+
+uonee
+
+ufour
+
+utwoo
+
+a
+
+utree
+
+ufour
+
+b
+Szero
+
+Sone
+
+E
+
+efour
+
+etree
+
+etwoo
+
+Ackowledgments
+I thank Tzvetan Ivanov for many enlightening discussions
+regarding this paper.
+
+eonee
+
+UY
+uonee
+
+utwoo
+
+utree
+
+ufour
+
+c
+
+Fig. 8.
+
+The SCD-SISTA research of the KU Leuven is supported by
+the following projects.
+Research Council KUL: GOA/11/05 Ambiorics, GOA/10/09
+MaNet, CoE EF/05/006 Optimization in Engineering (OPTEC)
+en PFV/10/002 (OPTEC), IOF-SCORES4CHEM, several
+PhD, postdoc & fellowship grants.
+Flemish Government: FWO: PhD/postdoc grants, projects:
+G0226.06 (cooperative systems and optimization), G0321.06
+(Tensors), G.0302.07 (SVM/Kernel), G.0320.08 (convex
+MPC), G.0558.08 (Robust MHE), G.0557.08 (Glycemia2),
+G.0588.09 (Brain-machine), Research communities (WOG:
+ICCoS, ANMMM, MLDM); G.0377.09 (Mechatronics MPC);
+IWT: PhD Grants, Eureka-Flite+, SBO LeCoPro, SBO Climaqs, SBO POM, O&O-Dsquare.
+Belgian Federal Science Policy Ofﬁce: IUAP P6/04 (DYSCO,
+Dynamical systems, control and optimization), IBBT.
+EU: ERNSI; FP7-HD-MPC (INFSO-ICT-223854), COST intelliCIS, FP7-EMBOCON (ICT-248940), FP7-SADCO ( MC
+ITN-264735), ERC HIGHWIND (259 166).
+Contract Research: AMINAL, Helmholtz: viCERP, ACCM.
+
+Events for the asymmetric binary channel
+
+Now consider the stochastic system Σabc with outcomes
+constrained to be in
+S0 = {(u, y, e) | u = u0 } and S1 = {(u, y, e) | u = u1 },
+respectively. The sets S0 and S1 are illustrated in Figure 8(c).
+It is easily veriﬁed that the regularity condition of Deﬁnition 5
+is satisﬁed for both S0 and S1 . The resulting stochastic systems
+are Σabc |S0 = (Y × E, E |S0 , P|S0 ) with E |S0 generated by
+E1 = {(y0 , e1 )},
+
+E2 = {(y0 , e2 )},
+
+E3 = {(y1 , e3 )},
+
+E4 = {(y1 , e4 )},
+
+P|S0 (E1 ) = p0 (1 − p1 ),
+
+P|S0 (E2 ) = p0 p1 ,
+
+P|S0 (E3 ) = (1 − p0 )(1 − p1 ),
+
+P|S0 (E4 ) = (1 − p0 )p1 ,
+
+and Σabc |S1 = (Y × E, E |S1 ), P|S1 ) with E |S1 generated by
+E1 = {(y0 , e1 )},
+
+E2 = {(y1 , e2 )},
+
+E3 = {(y0 , e3 )},
+
+E4 = {(y1 , e4 )},
+
+P|S0 (E1 ) = p0 (1 − p1 ),
+
+P|S0 (E2 ) = p0 p1 ,
+
+P|S0 (E3 ) = (1 − p0 )(1 − p1 ),
+
+R EFERENCES
+[1] J.C. Willems, Open stochastic systems, submitted to the IEEE Transactions on Automatic Control.
+[2] J.C. Willems, The behavioral approach to open and interconnected
+systems, Control Systems Magazine, volume 27, pages 46–99, 2007.
+[3] J.C. Willems, Terminals and ports, IEEE Circuits and Systems Magazine,
+volume 10, pages 8–16, 2010.
+
+P|S0 (E4 ) = (1 − p0 )p1 .
+
+Observe that after elimination of e, that is, the marginal probability for y, Σabc |S1 and Σabc |S2 yields precisely the systems
+Σu0 and Σu1 from that specify the channel as a probability
+kernel.
+
+5
+
+

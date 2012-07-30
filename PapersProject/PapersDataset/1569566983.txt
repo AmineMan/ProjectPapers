@@ -1,0 +1,851 @@
+Title:          rankOne.pdf
+Author:         Sundeep
+Creator:         TeX output 2012.05.18:1610
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Fri May 18 16:11:14 2012
+ModDate:        Tue Jun 19 12:55:01 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      307282 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569566983
+
+Iterative Estimation of Constrained
+Rank-One Matrices in Noise
+Sundeep Rangan
+
+and Alyson K. Fletcher
+
+Abstract—We consider the problem of estimating a rank-one
+matrix in Gaussian noise under a probabilistic model for the
+left and right factors of the matrix. The probabilistic model can
+impose constraints on the factors including sparsity and positivity
+that arise commonly in learning problems. We propose a simple
+iterative procedure that reduces the problem to a sequence
+of scalar estimation computations. The method is similar to
+approximate message passing techniques based on Gaussian
+approximations of loopy belief propagation that have been used
+recently in compressed sensing. Leveraging analysis methods by
+Bayati and Montanari, we show that the asymptotic behavior of
+the estimates from the proposed iterative procedure is described
+by a simple scalar equivalent model, where the distribution
+of the estimates is identical to certain scalar estimates of the
+variables in Gaussian noise. Moreover, the effective Gaussian
+noise level is described by a set of state evolution equations. The
+proposed method thus provides a computationally simple and
+general method for rank-one estimation problems with a precise
+analysis in certain high-dimensional settings.
+
+This paper proposes a variant of such alternating optimization procedures that we call Iterative Factorization (IterFac),
+stated in detail in Algorithm 1 below. Through proper selection
+of relevant parameters, the IterFac algorithm can perform
+alternating minimizations to optimizations of the form
+(u, v) := arg min F (u, v),
+u∈Rm ,v∈Rn
+
+(2)
+
+where the objective function is given by
+1
+2
+A − uvT F + cU (u) + cV (v).
+F (u, v) =
+(3)
+2m
+Here, X F is the Frobenius norm and cU (u) and cV (v)
+are cost or regularization functions on the left and right
+factors. In the case when the cost functions are separable, the
+IterFac algorithm reduces the vector optimization problem to
+a sequence of scalar optimization problems on the individual
+components of u and v; it is thus computationally simple. The
+IterFac methodology is also genearl since the method can be
+applied to essentially arbitrary separable cost functions.
+Of course, such iterative algorithms are by no means
+new; they underlie many existing methods, including the
+classic alternating power method for ﬁnding maximal singular
+values [1] and some alternating methods in sparse or nonnegative dictionary learning [3]–[7]. More recently, an alternating method has been proposed for estimation with matrix
+uncertainties [8], also using an approximate message passing
+technique. The IterFac iterations also have some similarities to
+the updates in gradient descent methods in sparse dictionary
+learning such as in [9].
+Our main contribution is to show that, under a particular
+setting of a damping parameter, the IterFac algorithm admits
+an asymptotically-exact characterization when W is i.i.d.
+Gaussian noise and the components of the true vectors u0 and
+v0 have limiting empirical distributions. In this scenario, we
+show that the empirical joint distribution of the components of
+u0 and the corresponding estimates from the IterFac algorithm
+are described by a simple scalar equivalent model where
+the IterFac component estimates are identically distributed
+to scalar estimates of the variables corrupted by Gaussian
+noise. Moreover, the effective Gaussian noise level in this
+model is described by a simple set of scalar state evolution
+(SE) equations. From the scalar equivalent model, one can
+compute the asymptotic value of almost any componentseparable metric including mean-squared error or correlation.
+Thus, in addition to being computationally simple and general,
+the IterFac algorithm admits a precise analysis in the case of
+Gaussian noise. Moreover, since ﬁxed points of the IterFac
+
+I. I NTRODUCTION
+We consider the problem of estimating vectors u0 ∈ Rm
+and v0 ∈ Rn from a matrix A ∈ Rm×n of the form
+√
+T
+(1)
+A = u0 v0 + mW,
+√
+where W represents some unknown noise and m is a
+normalization factor. The problem can be considered as a rankone special case of ﬁnding a low-rank matrix in the presence
+of noise. Such low-rank estimation problems arise in a range
+of applications including blind channel estimation, antenna
+array processing, subspace system identiﬁcation, and principal
+component or factor analysis.
+When the noise term W is zero, the vector pair (u0 , v0 ) can
+be recovered exactly, up to a scaling, from the maximal left
+and right singular vectors of A [1]. However, in the presence
+of noise, the rank-one matrix can in general only be estimated
+approximately. In this case, a priori information or constraints
+on (u0 , v0 ) may improve the estimation. Such constraints
+arise, for example, in factor analysis in statistics, where one
+of the factors is often constrained to be either positive or
+sparse [2]. Similar sparsity constraints arise in the problem
+of dictionary learning [3]. In digital communications, one of
+the factors could come from a discrete QAM constellation.
+Unfortunately, optimal estimation with constraints on u0
+or v0 is often computationally intractable. The chief problem
+T
+is the bilinear nature of the term u0 v0 . However, the term
+is linear in u0 and v0 separately. Thus, many suboptimal
+estimation methods are performed in an iterative manner,
+alternately estimating u0 and v0 individually, while holding
+the estimate of the other factor constant.
+
+1
+
+algorithm correspond, under suitable circumstances, to local
+minima of objectives such as (3), the analysis can be used to
+characterize the behavior of such minima—even if alternate
+algorithms to IterFac are used.
+The main analytical tool is a recently-developed technique
+by Bayati and Montanari [10] used in the analysis of approximate message passing (AMP) algorithms. AMP methods
+are Gaussian approximations of loopy belief propagation for
+estimation of vectors under large random linear measurements.
+The work [10] applied AMP techniques to compressed sensing, and proved that, in the limit for large Gaussian mixing
+matrices, the behavior of AMP estimates can be described by
+a scalar equivalent model with effective noise levels deﬁned
+by certain scalar state evolution (SE) equations. Similar SE
+analyses have appeared in related contexts [11]–[16]. To prove
+the SE equations for the IterFac algorithm, we apply a key
+theorem from [10] with a simple change of variables and a
+slight modiﬁcation to account for parameter adaptation. A
+complete version of this paper is available at [17], which
+contains all the proofs and more details.
+
+selections given by the minimization
+Gu (t, p, λu )
+:=
+
+arg min −pT u + cU (u) +
+u∈Rm
+
+Gv (t, q, λv )
+:=
+
+arg min −qT v + cV (v) +
+v∈Rn
+
+λu
+u
+2
+
+2
+
+,
+
+(4a)
+
+λv
+v
+2
+
+2
+
+,
+
+(4b)
+
+where the parameters λu (t) and λv (t) are given by
+λu (t)
+λv (t)
+
+:=
+:=
+
+μu (t) + v(t) 2 /m,
+μv (t) + u(t+1) 2 /m.
+
+(5a)
+(5b)
+
+With the factor selection functions (4) and non-negative values
+of the coefﬁcients μu (t) and μv (t), it is shown in the full paper
+[17] that the objective function is monotonically decreasing,
+F (u(t+1), v(t+1)) ≤ F (u(t), v(t)),
+
+(6)
+
+where the coefﬁcients μu (t) and μv (t) play a role in damping
+the steps.
+III. A SYMPTOTIC A NALYSIS UNDER G AUSSIAN N OISE
+
+II. I TERATIVE R ANK -O NE FACTORIZATION
+
+A. Model and Assumptions
+We analyze the algorithm under the following assumptions.
+Assumption 1: Consider a sequence of random realizations
+of the estimation problem in Section I indexed by the dimension n. The matrix A and the parameters in Algorithm 1 satisfy
+the following:
+(a) For each n, the output dimension m = m(n) is deterministic and scales linearly with the input dimension in
+that
+lim n/m(n) = β
+(7)
+
+For a matrix A ∈ Rm×n , we consider the following iterative
+algorithm for estimating the rank-one factors u0 and v0 .
+Algorithm 1 Iterative Factorization (IterFac)
+Require: Matrix A ∈ Rm×n and factor selection functions
+Gu (t, p, λu ) and Gv (t, q, λv ).
+1: t ← 0
+2: Select initial values u(0), v(0)
+3: repeat
+4:
+{Update estimate of u}
+5:
+Select parameters λu (t) and μu (t)
+6:
+p(t) ← (1/m)Av(t) + μu (t)u(t)
+7:
+u(t+1) ← Gu (t, p(t), λu (t))
+
+n→∞
+
+for some β > 0.
+(b) The matrix A has the form (1) where u0 ∈ Rm and
+v0 ∈ Rn represent “true” left and right factors of a rank
+one term, and W ∈ Rm×n is an i.i.d. Gaussian matrix
+with components Wij ∼ N (0, τw ) for some τw > 0.
+(c) The factor selection functions Gu (t, p, λu ) and
+Gv (t, q, λv ) in lines 7 and 11 are componentwise
+separable in that for all component indices i and j,
+
+8:
+9:
+10:
+11:
+12:
+
+{Update estimate of v}
+Select parameters λv (t) and μv (t)
+q(t) ← (1/m)AT u(t+1) + μv (t)v(t)
+v(t+1) ← Gv (t, q(t), λv (t))
+until Terminate
+
+Gu (t, p, λu )i
+
+=
+
+Gu (t, pi , λu ),
+
+(8a)
+
+Gv (t, q, λv )j
+
+=
+
+Gv (t, qj , λv ),
+
+(8b)
+
+for some scalar functions Gu (t, p, λu ) and Gv (t, q, λv )
+satisfying certain Lipschitz continuity and differentiability assumptions, see [17].
+(d) The damping factors are selected by the rules
+
+The output of the algorithm, (u(t), v(t)), t = 0, 1, . . ., is a
+sequence of estimates for (u0 , v0 ). The algorithm has several
+parameters including the initial conditions, the parameters in
+lines 5 and 9, the termination condition and, most importantly,
+the functions Gu (·) and Gv (·). In each iteration, the functions
+Gu (·) and Gv (·) are used to generate the estimates of the
+factors u(t) and v(t). Gu (·) and Gv (·) will thus be called the
+factor selection functions.
+To understand the role of the factor selection functions,
+suppose that we wish to perform the optimization (2) for some
+regularization functions cU (·) and cV (·). Consider the factor
+
+μu (t+1)
+μv (t)
+
+=
+=
+
+−
+−
+
+τw
+m
+τw
+m
+
+n
+j=1
+m
+i=1
+
+∂
+Gv (t, qj (t), λv (t)) (9a)
+∂qj
+∂
+Gu (t, pi (t), λu (t)),(9b)
+∂pi
+
+with the initial damping factor μu (0) = 0.
+
+2
+
+(e) The parameters λu (t) and λv (t) are are computed via
+an empirical mean of the functions of (v0 , v(t)) and
+(u0 , u(t+1) – see [17] for details.
+(f) For each n and iteration number t, deﬁne the sets
+θu (t) =
+θv (t) =
+
+(u0i , ui (t)), i = 1, . . . , m ,
+(v0j , vj (t)), j = 1, . . . , n .
+
+and
+λu (t)
+λv (t)
+
+A complete discussion of the assumptions can be found in
+the full paper [17].
+B. Main Result
+Our main result, Theorem 1 below, will provide a characterization of the asymptotic empirical distribution for the sets
+θu (t) and θv (t) in (10). Speciﬁcally, we will show that, for all
+t, the sets have empirical limits of the form
+d
+
+lim θu (t)
+
+= (U0 , U (t)),
+
+lim θv (t)
+
+= (V0 , V (t)),
+
+d
+
+n→∞
+
+(11a)
+(11b)
+
+for some random variable pairs (U0 , U (t) and (V0 , V (t)). The
+distributions of the random variables (U0 , U (t) and (V0 , V (t))
+can be described recursively in t as follows: For t = 0,
+(V0 , V (0)) is the random variable pair in the initial condition
+Assumption 1(f). Then, for t ≥ 0, (U0 , U (t+1)) is given by
+Gu (t, P (t), λu (t)),
+βαv1 (t)U0 + Zu (t),
+
+Zu (t)
+
+∼
+
+1
+n→∞ m
+
+(12c)
+
+Q(t)
+Zv (t)
+
+Gv (t, Q(t), λv (t)),
+
+(13a)
+
+= αu1 (t+1)V0 + Zv (t),
+∼ N (0, τw αu0 (t+1)),
+
+(13b)
+(13c)
+
+=
+
+αu0 (t) = E U (t)
+
+,
+
+IV. E XAMPLES
+A. Linear Selection Functions
+As a ﬁrst simple application of the SE analysis, suppose we
+use linear selection functions of the form
+
+αu1 (t) = E [U0 U (t)] , (14a)
+
+αv0 (t) = E V (t)2 ,
+
+(16)
+
+which represent the cosines of the angles between the estimates u(t) and v(t) and the true vectors u0 and v0 .
+
+where V0 is the empirical limit in in Assumption 1(f), and
+Zv (t) is Gaussian noise independent of V0 .
+The constants αu0 (t), αu1 (t), αv0 (t), αv1 (t), λu (t), and
+λv (t) in (12) and (13) are deterministic sequences of scalars
+deﬁned recursively by
+2
+
+φ(u0i , ui (t)) = E [φ(U0 , U (t))] ,
+i=1
+
+where the expectation on the right-hand side is over the variables (U0 , U (t)) with U0 identical to the variable in the limit in
+Assumption 1(f) and U (t) given by (12a). This expectation can
+be explicitly evaluated by a simple two-dimensional integral
+and consequently any component-separable performance metric based on a suitably continuous loss function φ(u0 , u), such
+as mean-squared error can be exactly computed. The full paper
+[17] shows, in particular, that one can evaluate the asymptotic
+correlations
+|u(t)T u0 |2
+α2 (t)
+u1
+ρu (t) := lim
+=
+, (17a)
+2 u 2
+n→∞ u(t)
+αu0 (t)τu
+0
+|v(t)T v0 |2
+α2 (t)
+= v1
+, (17b)
+ρv (t) := lim
+2 v 2
+n→∞ v(t)
+αv0 (t)τv
+0
+
+where U0 is the random variable in Assumption 1(f); Gu (·)
+is the scalar function in Assumption 1(d); and Zu (t) is
+Gaussian noise independent of U0 . Thus, U (t+1) is distributed
+identically to the output of the scalar function Gu (t, P (t)),
+where P (t) is a scaled and Gaussian noise-corrupted version of
+the true variable U0 . Similarly, for t ≥ 0, the random variable
+(V0 , V (t+1)) in (11b) is given by
+V (t+1)
+
+(15a)
+(15b)
+
+m
+
+lim
+
+(12a)
+(12b)
+
+N (0, βτw αv0 (t)),
+
+U (t+1) =
+P (t) =
+
+E [φλu (V0 , V (t))] ,
+E [φλv (U0 , U (t+1))] ,
+
+which are initialized with the values αv0 (0) and αv1 (0) from
+the joint distribution of (V0 , V (0)) in Assumption 1(f). The
+subsequent values of αu0 (t), αu1 (t), αv0 (t), αv1 (t), λu (t)
+and λv (t) can then be computed recursively through (14) along
+with the deﬁnition of the variables in (12) and (13). In line
+with [10] upon which our analysis is based, we will call the
+set of recursive equations (12)–(15) the state evolution (SE)
+equations. From the solution to the SE equations, we get the
+exact descriptions of the limits in (11).
+Theorem 1: Under Assumption 1, the sets θu (t) and θv (t)
+in (10) converge empirically with bounded moments of order
+p with the limits in (11).
+The main contribution of Theorem 1 is that it provides
+a simple scalar equivalent model for the asymptotic behavior of the algorithm. The sets θu (t) = {(u0i , ui (t))} and
+θv (t) = {(v0j , vj (t))} in (10) are the components of true
+vectors u0 and v0 and their estimates u(t) and v(t). The
+theorem shows that empirical distribution of these components
+are asymptotically equivalent to simple random variable pairs
+(U0 , U (t)) and (V0 , V (t)) given by (12a) and (13a). Following
+[18], we can thus call the result a single-letter characterization.
+From this single-letter characterization, one can exactly
+compute a large class of performance metrics of the algorithm.
+Speciﬁcally, the empirical convergence of θu (t) shows that
+for any pseudo-Lipschitz function φ(u0 , u) of order p, the
+following limit exists almost surely:
+
+(10a)
+(10b)
+
+For t = 0, as n → ∞ the sets θu (0) and θv (t) empirically
+converge with bounded moments of order 2p − 2 for
+some p ≥ 1 to some random variable pairs (U0 , U (0)
+and (V0 , V (0)). See [17] for a precise deﬁnition of the
+empirical convergence used here.
+
+n→∞
+
+=
+=
+
+αv1 (t) = E [V0 V (t)] , (14b)
+
+Gu (t, p, λu ) = λu p,
+
+3
+
+Gv (t, q, λv ) = λv q,
+
+(18)
+
+where the parameters λu and λv allow for normalization or
+other scalings of the outputs. Linear selection functions of the
+form (18) arise when one selects Gu (·) and Gv (·) from (4)
+with zero cost functions, cU (u) = cV (v) = 0. With zero
+cost functions, the correct solution to the optimization (2)
+is for (u, v) to be the (appropriately scaled) left and right
+maximal singular vectors of A. We will thus call the estimates
+(u(t), v(t)) of Algorithm 1 and linear selection functions (18)
+the estimated maximal singular vectors.
+
+where D ∼ N (0, 1) is independent of U0 and V0 . That is,
+Eu (ηu ) and Ev (ηv ) are the mean-squared errors of estimating
+U0 and V0 from observations Y with SNRs of ηu and ηv .
+The functions Eu (·) and Ev (·) arise in a range of estimation
+problems and the analytic and functional properties of these
+functions can be found in [21], [22].
+Theorem 3: Consider the solutions to the SE equations (12),
+(13), and (14) under the MMSE selection functions (21) and
+initial condition V (0) = E[V0 ]. Then:
+(a) For all t, the asymptotic correlation coefﬁcients (17a) and
+(17b) satisfy the recursive relationships
+
+Theorem 2: Consider the state evolution equations (12),
+(13), and (14) with the linear selection functions (18). Then:
+(a) The asymptotic correlation coefﬁcients (17a) and (17b)
+satisfy the following recursive rules:
+ρu (t+1)
+
+=
+
+ρv (t) =
+
+βτu τv ρv (t)
+,
+βτu τv ρv (t) + τw
+τu τv ρu (t)
+.
+τu τv ρu (t) + τw
+
+ρu (t+1)
+ρv (t)
+
+(19a)
+
+ρ∗ :=
+u
+
+lim ρv (t) =
+
+ρ∗ :=
+v
+
+t→∞
+
+t→∞
+
+2 2
+2
+βτu τv − τw
+
++
+
+τu τv (βτu τv + τw )
+2 2
+2
+βτu τv − τw +
+
+βτu τv (τu τv + τw )
+
+, (20a)
+, (20b)
+
+(23b)
+
+To validate the SE analysis, we consider a simple case where
+the left factor u0 ∈ Rm is i.i.d. Gaussian, zero mean and
+v0 ∈ Rn has Bernoulli-Exponential components:
+v0j ∼
+
+0
+Exp(1)
+
+with prob 1 − λ,
+with prob λ,
+
+(24)
+
+which provides a simple model for a sparse, positive vector.
+The parameter λ is the fraction of nonzero components and
+is set in this simulation to λ = 0.1. The dimensions are
+(m, n) = (1000, 500), and the noise level τw is set according
+to the scaled SNR deﬁned as
+SNR = 10 log10 (τu τv /τw ).
+
+(25)
+
+Estimating the vector v0 in this set-up is related to ﬁnding
+sparse principal vectors of the matrix AT A [2], [23]–[27].
+The results of the simulation are shown in Fig. 1, which
+shows the simulated and SE-predicted performance of the
+IterFac algorithm with both the linear and MMSE selection
+functions for the priors on u and v. The algorithm is run
+for t = 10 iterations and the plot shows the median of the
+ﬁnal correlation coefﬁcient ρv (t) over 50 Monte Carlo trials at
+each value of SNR. It can be seen that the performance of the
+IterFac algorithm for both the linear and MMSE estimates are
+in excellent agreement with the SE predictions. The correlation
+coefﬁcient of the linear estimator also matches the correlation
+of the estimates produced from the maximal singular vectors of
+A. This is not surprising since, with linear selection functions,
+the IterFac algorithm is essentially an iterative method to
+ﬁnd the maximal singular vectors. The ﬁgure also shows the
+beneﬁt of exploiting the prior on v0 , which is evident from the
+
+B. Minimum Mean-Squared Error Estimation
+Next suppose that the priors on U0 and V0 are known. In
+this case, given (12a) and (13a), a natural choice for the factor
+selection functions are
+Gv (t, q) = E[V0 | Q(t)],
+
+(23a)
+
+V. N UMERICAL S IMULATION
+
+where [x]+ = max{0, x}.
+The theorem provides a set of recursive equations for the
+asymptotic correlation coefﬁcients ρu (t) and ρv (t) along with
+simple expressions for the limiting values as t → ∞. We thus
+obtain exactly how correlated the estimated maximal singular
+vectors of a matrix A of the form (1) are to the rank one factors
+(u0 , v0 ). The proof of the theorem also provides expressions
+for the second-order statistics in (14) to be used in the scalar
+equivalent model.
+The ﬁxed point expressions (20) agree with the more general
+results in [19] that derive the correlations for ranks greater
+than one and low-rank recovery with missing entries. Similar
+results can also be found in [20]. An interesting consequence
+√
+of the expressions in (20) is that unless βτu τv > τw , the
+asymptotic correlation coefﬁcients are exactly zero. The ratio
+τu τv /τw can be interpreted as a scaled SNR.
+
+Gu (t, p) = E[U0 | P (t)],
+
+=
+
+1
+Eu (βτv ρv (t)/τw ),
+τu
+1
+1 − Ev (τu ρu (t)/τw ),
+τv
+
+1−
+
+with the initial condition ρv (0) = (EV0 )2 /τv .
+(b) If, in addition, Eu (ηu ) and Ev (ηv ) are continuous, then for
+any positive initial condition, ρv (0) > 0, as t → ∞, the
+asymptotic correlation coefﬁcients (ρu (t), ρv (t)) increase
+monotonically to ﬁxed points (ρ∗ , ρ∗ ) of (23) with ρ∗ >
+u u
+v
+0.
+Again, we see that we can obtain simple, explicit recursions
+for the asymptotic correlations.
+
+(19b)
+
+(b) For any positive initial condition, ρv (0) > 0, the asymptotic correlation coefﬁcients converge to the limits
+lim ρu (t) =
+
+=
+
+(21)
+
+which are the MMSE estimates of the variables. In this
+example, there are no parameters λu or λv . We can use the
+initial condition vj (0) = E[V0 ] for all j, so that the initial
+variable in Assumption 1(f) is V (0) = E[V0 ]. To analyze the
+algorithms deﬁne
+√
+Eu (ηu ) := var(U0 | Y = ηu U0 + D),
+(22a)
+√
+Ev (ηv ) := var(V0 | Y = ηv V0 + D),
+(22b)
+
+4
+
+1
+
+[5] D. D. Lee and H. S. Seung, “Algorithms for non-negative matrix
+factorization,” in Proc. Neural Information Process. Syst., Vancouver,
+Canada, Dec. 2001.
+[6] M. S. Lewicki and T. J. Sejnowski, “Learning overcomplete representations,” Neural Comp., vol. 12, pp. 337–365, 2000.
+[7] M. Aharon, M. Elad, and A. Bruckstein, “K-SVD: An algorithm for
+designing overcomplete dictionaries for sparse representation,” IEEE
+Trans. Signal Process., vol. 54, no. 11, pp. 4311–4322, Nov. 2006.
+[8] J. T. Parker, V. Cevher, and P. Schniter, “Compressive sensing under
+matrix uncertainties: An approximate message passing approach,” in
+Conf. Rec. Asilomar Conf. on Signals, Syst. & Computers, Paciﬁc Grove,
+CA, Nov. 2011.
+[9] J. Mairal, F. Bach, G. Sapiro, and J. Ponce, “Online dictionary learning
+for sparse coding,” in Proc. ICML, Montr´ al, Canada, Jun. 2009.
+e
+[10] M. Bayati and A. Montanari, “The dynamics of message passing on
+dense graphs, with applications to compressed sensing,” IEEE Trans.
+Inform. Theory, vol. 57, no. 2, pp. 764–785, Feb. 2011.
+[11] J. Boutros and G. Caire, “Iterative multiuser joint decoding: uniﬁed
+framework and asymptotic analysis,” IEEE Trans. Inform. Theory,
+vol. 48, no. 7, pp. 1772–1793, Jul. 2002.
+[12] A. Montanari and D. Tse, “Analysis of belief propagation for non-linear
+problems: The example of CDMA (or: How to prove Tanaka’s formula),”
+arXiv:cs/0602028v1 [cs.IT]., Feb. 2006.
+[13] D. Guo and C.-C. Wang, “Asymptotic mean-square optimality of belief
+propagation for sparse linear systems,” in Proc. IEEE Inform. Theory
+Workshop, Chengdu, China, Oct. 2006, pp. 194–198.
+[14] ——, “Random sparse linear systems observed via arbitrary channels:
+A decoupling principle,” in Proc. IEEE Int. Symp. Inform. Theory, Nice,
+France, Jun. 2007, pp. 946–950.
+[15] S. Rangan, “Estimation with random linear mixing, belief propagation
+and compressed sensing,” arXiv:1001.2228v1 [cs.IT]., Jan. 2010.
+[16] ——, “Generalized approximate message passing for estimation with
+random linear mixing,” arXiv:1010.5141v1 [cs.IT]., Oct. 2010.
+[17] S. Rangan and A. K. Fletcher, “Iterative Estimation of Constrained
+Rank-One Matrices in Noise,” arXiv preprint, Feb. 2011.
+[18] D. Guo, D. Baron, and S. Shamai, “A single-letter characterization of
+optimal noisy compressed sensing,” in Proc. 47th Ann. Allerton Conf.
+on Commun., Control and Comp., Monticello, IL, Sep.–Oct. 2009.
+[19] R. Keshavan, A. Montanari, and S. Oh, “Matrix completion from a few
+entries,” IEEE Trans. Inform. Theory, vol. 56, no. 6, pp. 2980 –2998,
+Jun. 2010.
+[20] M. Capitaine, C. Donati-Martin, and D. F´ ral, “The largest eigenvalues
+e
+of ﬁnite rank deformation of large Wigner matrices: Convergence and
+nonuniversality of the ﬂuctuations,” Ann. Probability, vol. 37, no. 1, pp.
+1–47, Jan. 2009.
+[21] D. Guo, Y. Wu, S. Shamai, and S. Verd´ , “Estimation in Gaussian Noise:
+u
+Properties of the Minimum Mean-Square Error,” IEEE Trans. Inform.
+Theory, vol. 57, no. 4, pp. 2371 –2385, Apr. 2011.
+[22] Y. Wu and S. Verd´ , “Functional Properties of Minimum Mean-Square
+u
+Error and Mutual Information,” IEEE Trans. Inform. Theory, vol. 58,
+no. 3, pp. 1289 –1301, Mar. 2012.
+[23] I. T. Jolliffe, N. Trendaﬁlov, and M. Uddin, “A modiﬁed principal
+component technique based on the LASSO,” J. Comput. Graphical Stat.,
+vol. 12, pp. 531–547, 2003.
+[24] Z. Zhang, H. Zha, and H. Simon, “Low rank approximations with sparse
+factors I: Basic algorithms and error analysis,” SIAM J. Matrix Anal.
+Appl., vol. 23, no. 3, pp. 706–727, 2002.
+[25] H. Zou, T. Hastie, and R. Tibshirani, “Sparse principal component
+analysis,” J. Comput. Graphical Stat., vol. 15, no. 2, pp. 265–286, Jun.
+2006.
+[26] A. d’Aspremont, L. El Ghaoui, M. I. Jordan, and G. R. G. Lanckriet,
+“A direct formulation for sparse PCA using semideﬁnite programming,”
+SIAM Rev., vol. 49, no. 3, pp. 434–448, Mar. 2007.
+[27] H. Shena and J. Z. Huang, “Sparse principal component analysis,” J.
+Multivariate Anal., vol. 99, no. 6, pp. 1015–1034, Jul. 2008.
+
+0.9
+0.8
+
+Correlation ρ
+
+v
+
+0.7
+0.6
+0.5
+0.4
+0.3
+
+IterFac−mmse (sim)
+IterFac−mmse (pred)
+MaxSing
+IterFac−lin (sim)
+IterFac−lin (pred)
+
+0.2
+0.1
+0
+−5
+
+0
+
+5
+Scaled SNR (dB)
+
+10
+
+15
+
+Fig. 1. Simulation of the IterFac algorithm for both the linear selection
+functions in Section IV-A (labeled iter-lin) and MMSE selection functions
+in Section IV-B (labeled iter-mmse). Plotted are the correlation values after
+10 iterations. The simulated values are compared against the SE predictions.
+Also shown is the simple estimate from the maximal singular vectors of A.
+
+superior performance of the MMSE estimate over the linear
+reconstruction.
+C ONCLUSIONS AND F UTURE W ORK
+We have presented a computationally-efﬁcient method for
+estimating rank-one matrices in noise. The estimation problem
+is reduced to a sequence of scalar AWGN estimation problems
+which can be performed easily for a large class of priors
+or regularization functions on the coefﬁcients. In the case of
+Gaussian noise, the asymptotic performance of the algorithm
+is exactly characterized by a set of scalar state evolution
+equations which appear to match the performance at moderate
+dimensions well. Thus, the methodology is computationally
+simple, general and admits a precise analysis in certain
+asymptotic, random settings. However, to make the algorithm
+practical, we need to extend the method to higher ranks and
+handle the case where the priors are not known. The full paper
+[17] suggests some methods for addressing these issues in the
+future.
+ACKNOWLEDGMENTS
+The authors thank Vivek Goyal, Ulugbek Kamilov, Andrea
+Montanari and Phil Schniter for detailed comments on an
+earlier draft.
+R EFERENCES
+[1] R. A. Horn and C. R. Johnson, Matrix Analysis. Cambridge Univ.
+Press, 1985, reprinted with corrections 1987.
+[2] J. Cadima and I. T. Jolliffe, “Loadings and correlations in the interpretation of principal components,” J. Appl. Stat., vol. 22, pp. 208–214,
+1995.
+[3] B. A. Olshausen and D. J. Field, “Natural image statistics and efﬁcient
+coding,” Network Comp. Neural Syst., vol. 7, no. 2, pp. 333–339, 1996.
+[4] ——, “Sparse coding with an overcomplete basis set: A strategy
+employed by v1?” J. Vis. Res., vol. 37, pp. 3311–3325, 1997.
+
+5
+
+

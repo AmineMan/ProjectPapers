@@ -1,0 +1,2009 @@
+Creator:        TeX
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Fri May 18 17:27:56 2012
+ModDate:        Tue Jun 19 12:54:36 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      344870 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569551763
+
+Partial decode-forward for quantum relay channels
+Ivan Savov∗ , Mark M. Wilde∗ and Mai Vu†
+∗
+
+School of Computer Science and
+
+†
+
+Electrical and Computer Engineering Department, McGill University, Montr´ al, Canada
+e
+
+Abstract—A relay channel is one in which a Source and
+Destination use an intermediate Relay station in order to improve
+communication rates. We propose the study of relay channels
+with classical inputs and quantum outputs and prove that
+a “partial decode and forward” strategy is achievable. We
+divide the channel uses into many blocks and build codes in
+a randomized, block-Markov manner within each block. The
+Relay performs a standard Holevo-Schumacher-Westmoreland
+quantum measurement on each block in order to decode part
+of the Source’s message and then forwards this partial message
+in the next block. The Destination performs a novel “slidingwindow” quantum measurement on two adjacent blocks in order
+to decode the Source’s message. This strategy achieves non-trivial
+rates for classical communication over a quantum relay channel.
+
+quantum aspects of optical communication channels, where
+information is encoded into continuous degrees of freedom. It
+is known that collective quantum measurements on bosonicchannel outputs outperform classical strategies, particularly in
+the low-photon-number regime [11]. In other words, quantum
+measurements are necessary to achieve their ultimate capacity.
+Ref. [11] also demonstrates that classical encoding is sufﬁcient
+to achieve the Holevo capacity of the lossy bosonic channel,
+giving further motivation for the theoretical study of classicalquantum models.
+In this paper, we develop a “partial decode and forward”
+strategy for classical-quantum relay channels. Our results here
+are the ﬁrst extension of the quantum simultaneous decoding
+techniques used in [8], [9] to multi-hop networks. In the
+partial-decode-and-forward strategy given here, the Relay decodes part of the Source’s message in one block and forwards
+it in the next. The Destination performs a novel “slidingwindow” quantum measurement to decode both parts of the
+Source’s message in two consecutive blocks [12], [2] and in
+doing so allows for the Source and Destination to achieve nontrivial communication rates. We state our main result in the
+Section II, introduce the necessary background on quantum
+systems and quantum decoding in Section III, and give the
+proof in Section IV. We conclude and discuss open problems
+in Section V.
+
+I. I NTRODUCTION
+Suppose that a Source wishes to communicate with a remote
+Destination. Suppose further that a Relay is available that can
+decode the messages transmitted by the Source during one
+time slot and forward them to the Destination during the next
+time slot. With the Relay’s help, the Source and Destination
+can improve communication rates because the Destination can
+decode the intended messages in parallel from the channel
+outputs at two consecutive time slots. In this way, useful
+information is received both from the Source and the Relay.
+The relay channel has been studied extensively in the
+context of classical information theory [1], [2], [3]. There,
+the discrete memoryless relay channel is modelled as a conditional probability distribution p(y1 , y|x, x1 ), where y1 and
+y are the respective outputs at the Relay and Destination
+whenever the Source and Relay input symbols x and x1 . Two
+important families of coding strategies exist for relay channels:
+compress-and-forward and decode-and-forward [1], [3]. The
+partial decode-and-forward strategy differs from the decodeand-forward strategy in that it has the Relay decode only part
+of the message from the Source [1].
+The study of quantum channels with information-theoretic
+techniques has been an active area for some time now [4].
+Theoretical interest has focused on classical-quantum channels
+of the form (X , N X→B (x) ≡ ρB , HB ), where, for each of the
+x
+inputs x ∈ X , there corresponds an output quantum state, described by a density operator ρB in a ﬁnite-dimensional Hilbert
+x
+space HB . Classical-quantum channels are a useful abstraction
+for studying general quantum channels and correspond to
+the transmitters being restricted to classical encodings. In
+this setting, single-letter formulas characterize the capacity of
+point-to-point [5], [6] and multiple-access channels [7] and
+give achievable rates for other network channels [8], [9], [10].
+The study of quantum channels ﬁnds practical applications in optical communications. Bosonic channels model the
+
+II. R ESULTS
+A classical-quantum relay channel N is a map with two
+classical inputs x and x1 and two output quantum systems
+B1 and B. For each pair of possible input symbols (x, x1 ) ∈
+X × X1 , the channel prepares a density operator ρB1 B deﬁned
+x,x1
+on the tensor-product Hilbert space HB1 ⊗ HB :
+B1
+ρx,xB ≡ N XX1 →B1 B (x, x1 ),
+1
+
+(1)
+
+where B1 is the Relay output and B is the Destination output.
+The theorem below captures the main result of our paper:
+Theorem 1 (Partial decode-forward inner bound). Let {ρx,x1 }
+be a cc-qq relay channel as in (1). Then a rate R is achievable,
+provided that the following inequality holds:
+R ≤ max min
+p(u,x,x1 )
+
+I(XX1 ; B)θ ,
+I(U ; B1 |X1 )θ + I(X; B|X1 U )θ
+
+, (2)
+
+where the information quantities are with respect to the
+classical-quantum state θU XX1 B1 B ≡
+U
+
+X
+
+X1
+
+p (u, x, x1 ) |u u| ⊗ |x x| ⊗ |x1 x1 |
+x,u,x1
+
+1
+
+⊗ ρB1 B . (3)
+x,x1
+
+Our code construction employs codebooks {xn },
+1
+{un }, and {xn } generated according to the distribution
+p(x1 )p(u|x1 )p(x|u, x1 ). We split the message for each
+block into two parts (m, ) ∈ M × L such that the rate
+R = Rm + R . The Relay fully decodes the message and reencodes it directly in the next block (without using binning).
+The Destination exploits a “sliding-window” decoding
+strategy [12], [2] by performing a collective measurement on
+two consecutive blocks. In this approach, the message pair
+(mj , j ) sent during block j is decoded from the outputs of
+blocks j and j + 1, using an “AND-measurement.”
+
+3) Error analysis: In the context of our coding strategy, we
+analyze the average probability of error at the Relay:
+pR ≡
+¯e
+
+.
+
+pD ≡
+¯e
+
+Pk
+
+Pk
+
+S (S + T )
+
+≤ 2 (I − S) + 4T.
+
+Bn Bn
+
+mj ,
+
+(7)
+
+j
+
+(8)
+
+We give a proof in the appendix of Ref. [14].
+The decoding at the Destination is a variant of the quantum
+simultaneous decoder from [8], [9]. To decode the message
+(mj , j ), the Destination uses a “sliding-window” decoder,
+implemented as an “AND-measurement” on the outputs of
+blocks j and j + 1. This coding technique does not require
+binning at the Relay or backwards decoding at the Destination
+[12], [2].
+In this section, we give the details of the coding strategy
+and analyze the probability of error at the Destination.
+
+(5)
+
+Codebook construction. Fix a distribution p(u, x, x1 ) and
+independently generate a different codebook for each block j:
+nR
+• Randomly and independently generate 2
+sequences
+xn (
+1
+
+Lemma 2 (Hayashi-Nagaoka [13]). If S and T are operators
+such that 0 ≤ T and 0 ≤ S ≤ I, then
+I − (S + T )
+
+Bn Bn
+
+Tr I − Λm(j) j (j+1) ρm(j) j (j+1) .
+j,
+j,
+
+R ≤ I (U ; B1 |X1 )θ .
+
+k
+
+1
+−2
+
+1
+|M||L|
+
+The channel is used for b blocks, each indexed by j ∈
+{1, . . . , b}. Our error analysis shows that:
+• The Relay can decode the message j during block j.
+• The Destination can simultaneously decode (mj , j ) from
+a collective measurement on the output systems of blocks
+j and j + 1.
+The error analysis at the Relay is similar to that of the
+Holevo-Schumacher-Westmoreland theorem [5], [6]. The message j can be decoded reliably, if the rate R obeys the
+following inequality:
+
+The error analysis of a square-root measurement is greatly
+simpliﬁed by using the Hayashi-Nagaoka operator inequality.
+
+−1
+2
+
+,
+
+j
+
+IV. ACHIEVABILITY PROOF
+
+(4)
+
+.
+
+n
+B1(j)
+
+A rate R is achievable if there exists an (n, R − δ, )
+quantum relay channel code for all , δ > 0 and sufﬁciently
+large n.
+
+−1/2
+
+Pm
+
+k
+
+j
+
+ρ
+
+Deﬁnition 1. An (n, R, ) partial-decode-and-forward code
+for the quantum relay channel consists of two codebooks
+{xn (mj , j )}mj ∈M, j ∈L and {xn ( j )} j ∈L and decoding
+1
+POVMs Γ j j ∈L and Λmj , j mj ∈M, j ∈L such that the
+average probability of error is bounded from above as pe =
+pR + pD ≤ .
+¯e
+¯e
+
+2) Quantum decoding: In a communication scenario, the
+decoding operations performed by the receivers correspond
+to quantum measurements on the outputs of the channel. A
+quantum measurement is a positive operator-valued measure
+(POVM) {Λm }m∈M on the system B n . To be a valid POVM,
+the set {Λm } of |M| operators should all be positive semideﬁnite and sum to the identity: Λm ≥ 0,
+m Λm = I.
+Suppose we are given positive operators {Pm }m∈M that
+are apt at detecting (Tr[Pm ρm ] ≥ 1 − ) and distinguishing
+(Tr[Pm ρm =m ] ≤ ) the output states produced by each message. We can construct a valid POVM (known as the squareroot measurement [5], [6]) by normalizing these operators:
+Λm ≡
+
+n
+B1(j)
+
+The operators I − Γ j and I − Λmj , j correspond to the
+complements of the correct decoding outcomes.
+
+Proof: This follows from a variational characterization of trace distance as the distinguishability of the
+states under an optimal measurement M [4]: ρ − σ 1 =
+2 max0≤M ≤I Tr [M (ρ − σ)].
+
+−1/2
+
+I −Γ
+
+and the average probability of error at the Destination:
+
+Lemma 1. Let 0 ≤ ρ, σ, Λ ≤ I. Then
+1
+
+Tr
+j
+
+III. P RELIMINARIES
+In this section, we introduce the notation used in our paper
+and some background information on quantum decoding.
+1) Quantum systems: We denote quantum systems as B1
+and B and the corresponding Hilbert spaces as HB1 and HB .
+We represent quantum states of a system B with a density
+operator ρB , which is a positive semi-deﬁnite operator with
+unit trace. Let H(B)ρ ≡ −Tr ρB log2 ρB denote the von
+Neumann entropy of the state ρB . In order to describe the
+“distance” between two quantum states, we use the notion of
+trace distance. The trace distance between states σ and ρ is
+√
+σ − ρ 1 = Tr|σ − ρ|, where |X| = X † X [4]. Two states
+can substitute for one another up to a penalty proportional to
+the trace distance between them:
+
+Tr [Λρ] ≤ Tr [Λσ] + ρ − σ
+
+1
+|L|
+
+•
+
+(6)
+
+j−1 ),
+
+j−1
+
+∈ 1 : 2nR , according to
+
+p(x1i ).
+i=1
+
+xn ( j−1 ),
+1
+
+For each
+randomly and conditionally independently generate 2nR sequences un ( j , j−1 ), j ∈
+1 : 2nR
+
+n
+
+p (ui |x1i (
+
+according to
+i=1
+
+2
+
+n
+
+j−1 )).
+
+•
+
+For each xn ( j−1 ) and each corresponding un ( j , j−1 ),
+1
+randomly and conditionally independently generate 2nRm
+sequences xn (mj , j , j−1 ), mj ∈ 1 : 2nRm , according
+
+The following conditionally typical projectors will be useful
+in our decoding scheme:
+
+p xi |x1i (
+
+to the distribution:
+
+j−1 ) , ui ( j , j−1 )
+
+Πρ
+¯
+
+.
+
+i=1
+
+j , j−1
+
+≡
+
+n
+B1(j) B n
+ρxn (mj ,(j),
+j
+
+n
+j−1 ),x1 ( j−1 )
+
+Bn
+
+(j)
+Pm j , j |
+
+Bn
+
+(j+1)
+
+j+1 , j
+
+n
+j ),x1 ( j )
+
+X1
+
+p (x1 ) |x1 x1 |
+
+.
+
+Bn
+
+(j+1)
+
+Π(j+1) ≡ Πτx(j+1)) ,
+n(
+τ
+
+Πτ
+¯
+
+j
+
+(j+1)
+
+≡ Πτ
+¯
+
+pD ≡ Tr
+¯e
+≤ 2 Tr
+
+Bn
+
+,
+
+(9)
+
+n
+that acts on the output systems B(j+1) of block j + 1.
+
+j , j | j−1
+
+≡ Π
+
+n
+B(j)
+ρxn (m ,l ,l
+n
+j j j−1 ),x1 (lj−1 )
+
+.
+
+U
+
+X1
+
+p (u|x1 ) p (x1 ) |u u| ⊗ |x1 x1 |
+
+(j)
+
+Π(j)
+ρm
+
+Πρ
+¯
+
+j , j | j−1
+
+(j)
+
+Πρ |
+¯
+
+j | j−1
+
+. (11)
+
+j−1
+
+Bn
+
+j−1
+
+⊗P
+
+n
+B(j+1)
+,
+j | j−1
+
+(12)
+
+(j+1)
+
+Bn Bn
+
+n
+n
+B(j) B(j+1)
+
+I − Pm j ,
+
+(j+1)
+
+(j)
+
+⊗ρmj+1
+
+j j−
+1
+
+Tr Pm
+
+j , j | j−1
+
+.
+
+(j+1)
+
+(j)
+
+ρm j
+
+j | j−1
+n
+n
+B(j) B(j+1)
+
+j+ j
+1
+
+⊗ρmj+1
+
+j j−
+1
+
+(j)
+ρm j
+
+j
+
+j+ j
+1
+
+(j+1)
+⊗ρmj+1 j+1
+j−
+1
+
+j
+
+,
+
+j ,mj )
+
+(I AB − P A ⊗QB ) ≤ (I A −P A )⊗I B + I A ⊗(I B − QB ).
+
+(10)
+
+Proof: Expand and rearrange (I − P ) ⊗ (I − Q) ≥ 0.
+Lemma 4 (Gentle Operator Lemma for Ensembles [15]). Let
+{p(x) , ρx } be an ensemble and let ρ ≡
+¯
+x p(x) ρx . If an
+operator Λ, where 0 ≤ Λ ≤ I, has high overlap with the
+average state, Tr [ Λ ρ ] ≥ 1 − , then the subnormalized state
+¯
+√
+√
+Λρx Λ is close in trace distance to the original state ρx
+√
+√
+√
+on average: EX
+ΛρX Λ − ρX
+≤2 .
+
+The state obtained from (3) by tracing over X and B1 is
+θ U X1 B =
+
+j | j−1
+
+Lemma 3. For any operators 0 ≤ P A , QB ≤ I, we have:
+
+Let us now form decoding operators for block j. Deﬁne the
+(j)
+conditional typical projector for the state ρmj , j , j−1 as
+Π(j)
+ρm
+
+.
+
+where we used the Hayashi-Nagaoka inequality (Lemma 2)
+Bn Bn
+to decompose the error operator (I − Λm(j) j |(j+1) ) into two
+j,
+j−1
+components: (I) a term corresponding to the probability that
+n
+n
+B(j) B(j+1)
+the correct detector does not “click”: (I − Pmj , j | j−1 ), and
+(II) another term corresponding n the probability that a wrong
+to n
+B(j) B(j+1)
+detector “clicks”: ( ,m ) Pm , | j−1 . These two errors are
+j
+j
+j j
+analogous to the classical error events in which an output
+sequence y n is either not jointly typical with the correct
+codeword or is jointly typical with another codeword.
+We will bound the expectation of the average probability of
+n ¯
+error EU nX nX1 pD , using the properties of typical projectors
+e
+[4], and the following lemmas:
+
+≡ Πτ (j+1) ,
+¯
+
+(j+1)
+
+j
+
+Πρ
+¯
+
+I −Λm(j) j |(j+1) ρmj
+j,
+j−1
+
++4
+( j ,mj )=(
+
+B
+⊗ τx1 ,
+
+Π(j+1) Πτ
+¯
+τ
+
+(j)
+
+j−1
+
+(j)
+
+which we combine to form the positive operator:
+n
+B(j+1)
+j | j−1
+
+x1 (lj−1 )
+
+j−1
+
+output state ρmj j j−1 mj+1 j+1 j spanning blocks j and j + 1.
+⊗ρ
+The average probability of error for the Destination is given
+in (7). For now, we consider the error analysis for a single
+message pair (mj , j ):
+
+B
+¯
+where τx1 ≡ u,x p (u|x1 ) p (x|x1 , u) ρB 1 . Also, let τ B dex,x
+B
+note the following state: τ B ≡ x1 p (x1 ) τx1 . Corresponding
+¯
+to the above states are conditionally typical projectors [4] of
+the following form:
+
+P
+
+≡ Πρ (j)
+¯ n
+
+Error analysis at the Destination. In this section, we prove
+that the Destination can correctly decode the message pair
+Bn Bn
+(mj , j ) by employing the measurement {Λm(j) j |(j+1) } on the
+j,
+j−1
+
+x1
+
+1
+
+, Πρ |
+¯
+
+from which we can build the Destination’s square-root meaBn Bn
+surement Λm(j) j |(j+1) using the formula in (5). This measurej,
+j−1
+ment is what we call the “AND-measurement.”
+
+.
+
+Bn
+
+1(j+1)
+≡ ρxn (mj+1 ,(j+1),
+j+1
+
+(j)
+
+≡ Πρ|
+¯
+
+j−1
+
+Bn Bn
+
+Decoding at the Destination. We now determine a decoding POVM that the Destination can perform on the output
+systems spanning blocks j and j +1. The Destination is trying
+to recover messages j and mj given knowledge of j−1 .
+First let us consider forming decoding operators for block
+j + 1. Consider the state obtained by tracing over the systems
+X, U , and B1 in (3):
+
+j
+
+(
+
+Bn
+
+(j)
+
+n
+j ,lj−1 ),x1 (lj−1 )
+
+(j)
+(j)
+Pmj , j |(j+1) = Pmj , j |
+j−1
+
+Our shorthand notation is such that the states are identiﬁed by
+the messages that they encode, and the codewords are implicit.
+
+θ X1 B =
+
+(j)
+≡ Πρun l
+¯
+
+Finally, we combine the positive operators from (9) and (11)
+to form the “sliding-window” positive operator:
+
+During block j +1, the Source transmits (mj+1 , j+1 ) given
+, whereas the Relay sends j , leading to the state:
+j
+ρmj+1 ,
+
+j | j−1
+
+We can then form a positive operator “sandwich”:
+
+Transmission. The transmission of ( j , mj ) to the Destination happens during blocks j and j + 1. At the beginning
+of block j, we assume that the Relay has correctly decoded
+the message j−1 . During block j, the Source inputs the new
+messages mj and j , and the Relay forwards the old message
+j−1 . That is, their inputs to the channel for block j are
+the codewords xn (mj , j , j−1 ) and xn( j−1 ), leading to the
+1
+following state at the channel outputs:
+(j)
+ρmj ,
+
+Bn
+
+(j)
+
+n
+
+⊗ ρB 1 ,
+¯u,x
+
+u,x1
+
+ρB 1
+¯u,x
+
+where
+≡ x p (x|x1 , u) ρB 1 . Deﬁne also the doubly
+x,x
+¯x
+averaged state ρB1 ≡ u,x p (x|x1 , u) p (u|x1 ) ρB 1 .
+x,x
+
+1
+
+3
+
+a) Matching j , wrong mj : By performing the error
+analysis for the case where j is decoded correctly, but
+mj is decoded incorrectly, we obtain the bound Rm <
+I(X; B|U X1 ) = H(B|U X1 ) − H(B|U XX1 ) − δ, using the
+following properties of typical projectors [4]:
+
+The ﬁrst term (I) is bounded as follows:
+Bn Bn
+
+(j)
+
+(j)
+I − Pmj , j |(j+1)
+j−1
+
+Tr
+
+I−
+I−
+
+= Tr
+≤ Tr
+
+n
+B(j)
+Pm j , j |
+n
+B(j)
+Pmj , j |
+
+ρmj
+
+(j+1)
+
+⊗ρmj+1
+
+j j−
+1
+
+n
+B(j+1)
+⊗P j | j−1
+j−1
+
+(j)
+ρmj ,
+
+j−1
+
+(j)
+ρm j
+
+j+ j
+1
+
+(j+1)
+
+⊗ρmj+1
+
+j j−
+1
+
+(j+1)
+ρmj+1 ,
+
+Tr
+
+j , j−1
+
+j+ j
+1
+
+(j)
+
+Π(j)
+ρm
+
+j+1 , j
+
+j
+
+α
+
++ Tr
+
+(j)
+ρmj ,
+
+j,
+
+j−1
+
+I−
+
+Tr
+
+=1
+
+(j+1)
+ρmj+1 ,
+
+Πρ
+¯
+
+j+1 ,
+
+j
+
+= Tr
+
+I−
+
+ρ j,
+¯
+
+j | j−1
+
+,
+
+(j)
+
+j−1
+
+Πρ
+¯
+
+(j+1)
+
+I − Πτ
+¯
+
+(j+1)
+
+= 1 − Tr Πτ
+¯
+
+(j+1)
+
+Π(j+1) Πτ
+¯
+τ
+j
+
+≤ 1 − Tr
++
+
+Tr
+
+Bn
+
+Pm (j) j |
+,
+
+(j+1)
+
+≤
+
+(j+1) (j+1)
+Πτ
+ρmj+1 ,
+¯
+
+j+1 ,
+
+⊗P
+j−1
+
+j+1 , j
+
+Bn
+
+Tr Pm (j) j |
+,
+j
+
+n
+B(j+1)
+j | j−1
+
+n
+
+j−1
+
+(j+1)
+
+ρmj+1 ,
+
+j+1 , j
+
+=
+
+Bn
+
+Tr Pm (j) j |
+,
+
+j
+
+−
+
+(j+1)
+ρmj+1 ,
+
+j+1 , j
+
+,
+
+=
+
+1
+
++
+
+E
+
+n
+U nX nX1
+
+(j+1) (j+1)
+ρmj+1 ,
+
+Πτ
+¯
+
+Tr
+
+≤ 1 − (1 − ) + 2
+
+√
+
+ρmj+1 ,
+
+(j+1)
+
+Πτ
+¯
+
+(j)
+
+(j)
+Πρ |
+¯j
+
+(j+1)
+
+Tr
+(
+
+j ,mj )=(
+
+(j)
+
+ρm j
+
+E
+
+Bn Bn
+
+(j)
+
+j
+
+j+ j
+1
+
+(A)
+
+Tr
+
+(j)
+
+ρmj
+
+(j+1)
+
+j
+
+⊗ρmj+1
+j−
+1
+
+.
+
+,
+
+since mj = mj .
+
+Πρ
+¯
+
+(j)
+
+j | j−1
+
+Πρ|
+¯
+
+(j)
+
+ρmj ,
+
+j−1
+
+j , j−1
+
+(j)
+
+Tr ρmj ,
+mj =mj
+
+j , j−1
+
+(15)
+
+The inequalities follow because each operator inside the trace
+is positive semideﬁnite and less than the identity.
+b) Wrong j (and thus wrong mj ): We obtain the bound
+R ≡ R + Rm ≤ I(XX1 ; B) = I(X1 ; B) + I(U X; B|X1 )
+from the “AND-measurement” and the following inequalities:
+
+mj =mj
+
++
+
+j−1
+
+j , j−1
+
+(j)
+
+j−1
+
+≤ |M| 2−n[I(X;B|U X1 )−2δ] .
+
+(j+1)
+
+Bn Bn
+Pm (j) |(j+1)
+j , j j−1
+
+= ρ j,
+¯
+
+≤ 2n[H(B|XU X1 )+δ] 2−n[H(B|U X1 )−δ]
+
+j+ j
+1
+
+⊗ρmj+1
+
+j j−
+1
+
+(j)
+
+j , j , j−1
+
+(j)
+
+Tr Πρ|
+¯
+
+E
+
+n
+X n |U nX1
+mj =mj
+
+(j+1)
+
+Tr Pm (j) j |(j+1) ρmj
+,
+j−1
+
+j , j−1
+
+{(A)} ≤ 2n[H(B|XU X1 )+δ] 2−n[H(B|U X1 )−δ] ×
+
+n
+X n |U nX1
+
+j ,mj )
+
+=
+
+ρmj ,
+
+The resulting expression in y has the state
+sandwiched
+j−1
+between its typical projector on both sides, and so we can use
+(14). After these steps, we obtain the upper bound:
+
+= τ j,
+τ j] ≥
+
+(j)
+
+j−1
+
+(j)
+ρ j,
+¯
+
+j
+
+⊗ρmj+1
+
+j j−
+1
+
+ρm
+
+which is independent of the state ρmj ,
+
+1
+
+We can split the sum in the second type of error, (II), as
+= j , m (·):
+( ,m )=( j ,mj ) (·) = m =mj (·) +
+j
+
+(j)
+
+Πρ |
+¯
+
+(j)
+
+j+1 , j
+
+j+1 , j
+
+n
+the properties of typical projectors [4]: EX1
+(j+1)
+1 − , Tr[Πτ
+τ ] ≥ 1 − and Lemma 4.
+¯
+¯
+The error term α is bounded in a similar fashion.
+
+(j)
+
+ρ
+¯
+, j | j−1 j | j−1
+
+(j)
+
+.
+
+j
+
+Π
+
+j
+
+E
+
+(j+1)
+Tr[Πτ j
+
+Bn Bn
+Pm (j) |(j+1)
+j , j j−1
+
+j+1 , j
+
+j , j−1
+
+Π(j)
+ρm
+j−1
+
+n
+X n |U nX1
+
+(j+1)
+
+j
+
+(j+1)
+
+⊗ ρmj+1 ,
+
+j , j−1
+
+We now upper bound expression x using (13) and take the
+conditional expectation with respect to X n :
+
+j+1 , j
+
+− ρmj+1 ,
+
+n
+The inequality follows from EU nX n |X1 ρmj+1 ,
+
+j
+
+j+1 , j
+
+y
+
+(j+1)
+
+E
+
+n
+U nX n |X1
+
+j+1 , j
+
+⊗ρmj+1 ,
+
+x
+(j)
+Πρ |
+¯
+
+j−1
+
+where the inequality follows from Lemma 1.
+By taking the expectation over the code randomness, we
+obtain the upper bound:
+
+X1
+
+(j+1)
+
+j , j−1
+
+(j)
+
+ρm j ,
+
+j−1
+
+mj =mj
+
+(j+1)
+Πτ
+¯
+j+1 , j
+
+(j+1)
+E {β} = 1 − E Tr Πτ j
+n
+
+j+ j
+1
+
+(j)
+
+ρm j ,
+
+⊗I B(j+1) ρmj ,
+
+mj =mj
+
+n
+U nX nX1
+
+(j+1)
+
+⊗ρmj+1
+
+j j−
+1
+
+mj =mj
+
+j
+
+(j+1)
+Π(j+1) ρmj+1 ,
+τ j
+
+(14)
+
+mj =mj
+
+ρmj+1 ,
+
+j
+
+.
+
+j | j−1
+
+, (13)
+
+mj =mj
+
+j+1 , j
+
+(j+1)
+
+(j)
+
+j
+
+(j+1)
+
+Π(j+1) Πτ
+¯
+τ
+
+≤ 2−n[H(B|U X1 )−δ] Πρ
+¯
+
+Bn Bn
+
+j
+
+ρmj+1 ,
+
+j , j , j−1
+
+(j)
+
+j | j−1
+
+Tr Pm (j) j |(j+1) ρmj
+,
+j−1
+
+(A) =
+=
+
+n
+B(j+1)
+P j | j−1
+
+≤ 2n[H(B|U XX1 )+δ] ρm
+
+Consider the ﬁrst term:
+
+β
+
+where the inequality follows from Lemma 3.
+We proceed to bound the term β as follows:
+β = Tr
+
+(j)
+
+(j)
+
+=1
+n
+B(j+1)
+P j | j−1
+
+, j | j−1
+
+j+ j
+1
+
+Tr[Π(j+1) ] ≤ 2n[H(B|X1 )+δ] ,
+τ
+
+(16)
+
+j
+
+.
+
+(j+1)
+(j+1)
+Πτ
+τ Πτ
+¯ ¯
+¯
+Tr[Π(j) , |
+ρmj j j−1 ]
+
+lj =lj , mj
+(B)
+(j)
+Πρ |
+¯
+
+We now analyze the two terms (A) and (B) separately.
+
+j−1
+
+4
+
+¯(j)
+ρ| j−1
+
+(j)
+Πρ |
+¯
+
+j−1
+
+≤
+
+(j+1)
+2−n[H(B)−δ] Πτ
+,
+¯
+n[H(B|U XX1 )+δ]
+
+≤2
+≤
+
+(17)
+
+,
+
+(j)
+2−n[H(B|X1 )−δ] Πρ|
+¯
+
+j−1
+
+(18)
+.
+
+(19)
+
+(j+1)
+
+≤ 2−n[H(B)−δ] Tr Π(j+1) Πτ
+¯
+τ
+
+Consider the following term:
+n
+B n B(j+1)
+| j−1
+j j
+
+(j)
+
+Tr Pm (j)
+,
+
+(B) =
+j=
+
+j
+
+(j+1)
+
+⊗ρmj+1
+
+ρm j
+
+j j−
+1
+
+≤ 2−n[H(B)−δ] 2n[H(B|X1 )+δ] = 2−n[I(X1 ;B)−2δ] .
+
+j+ j
+1
+
+j ,mj
+
+=
+
+Tr
+
+Bn
+
+Pm (j)
+,
+j
+
+j|
+
+⊗P
+
+j−1
+
+n
+B(j+1)
+| j−1
+j
+
+(j)
+
+Combining the upper bounds on (B1) and (B2) gives our
+ﬁnal upper bound:
+
+(j+1)
+
+⊗ρmj+1
+
+ρm j
+
+j j−
+1
+
+j+ j
+1
+
+j = j ,mj
+
+Bn
+
+Tr Pm (j)
+,
+
+=
+
+j
+
+(j)
+
+j | j−1
+
+ρm j ,
+
+Tr P
+
+j , j−1
+
+E
+
+n
+B(j+1) (j+1)
+ρmj+1 ,
+j | j−1
+
+n
+U nX nX1
+
+j+1 , j
+
+j = j ,mj
+
+(B1)
+
+j= j,
+
+We want to calculate the expectation of (B) under the
+n
+code randomness EU nX nX1 . The random variables in different
+blocks are independent, and so we can analyze the expectations
+of the terms (B1) and (B2) separately.
+Consider ﬁrst the calculation in block j, which leads to the
+following bound on the expectation of (B1):
+
+(j)
+
+
+
+= E Tr 
+n
+
+X1
+
+n
+U nX |X1
+
+{Πρ
+¯
+
+z
+
+Π(j)
+ρm
+
+|
+j j−1
+
+,
+
+j
+
+{
+(j)
+Πρm
+
+(j)
+
+≤ 2−n[H(B|X1 )−δ] E Tr Πρ | j−1
+¯
+n n n
+j
+U X X1
+
+U X X1
+
+≤2
+
+j
+
+|
+j j−1
+
+}×
+
+,
+
+j
+
+(j)
+
+,
+
+j
+
+j
+
+Πρ
+¯
+
+| j−1
+
+j
+
+We proved achievability of the rates given by the partial
+decode and forward inner bound, thus extending the study of
+classical-quantum channels to multi-hop scenarios. An interesting open question is to determine a compress-and-forward
+strategy for the quantum setting. Another avenue for research
+would be to consider quantum communication scenarios, and
+results here might have applications for the design of quantum
+repeaters. I. Savov acknowledges support from FQRNT and
+NSERC. M. M. Wilde acknowledges support from the Centre
+de Recherches Math´ matiques.
+e
+
+
+
+
+
+
+
+
+
+
+
+
+
+j−1
+
+j−1
+
+−n[H(B|X1 )−δ]
+
+Πρ
+¯
+
+(j)
+¯(j)
+ρ| j−1 Πρ|
+¯
+
+(j)
+Πρ|
+¯
+
+≤ 2−n[H(B|X1 )−δ] E n Π(j)
+Tr ρm
+n n
+
+(j)
+
+|
+j j−1
+
+R EFERENCES
+[1] T. Cover and A. Gamal, “Capacity theorems for the relay channel,” IEEE
+Trans. Inf. Theory, vol. 25, no. 5, pp. 572–584, 1979.
+[2] L. Xie and P. Kumar, “An achievable rate for the multiple-level relay
+channel,” IEEE Trans. Inf. Theory, vol. 51, no. 4, pp. 1348–1358, 2005.
+[3] A. El Gamal and Y.-H. Kim, “Lecture notes on network information
+theory,” January 2010, arXiv:1001.3404.
+[4] M. M. Wilde, From Classical to Quantum Shannon Theory, 2011,
+arXiv:1106.1445.
+[5] A. S. Holevo, “The capacity of the quantum channel with general signal
+states,” IEEE Trans. Inf. Theory, vol. 44, no. 1, pp. 269–273, 1998.
+[6] B. Schumacher and M. D. Westmoreland, “Sending classical information
+via noisy quantum channels,” Phys. Rev. A, vol. 56, pp. 131–138, 1997.
+[7] A. Winter, “The capacity of the quantum multiple-access channel,” IEEE
+Trans. Inf. Theory, vol. 47, no. 7, pp. 3059–3065, 2001.
+[8] O. Fawzi, P. Hayden, I. Savov, P. Sen, and M. M. Wilde, “Classical
+communication over a quantum interference channel,” February 2011,
+arXiv:1102.2624.
+[9] P. Sen, “Achieving the Han-Kobayashi inner bound for the quantum
+interference channel by sequential decoding,” arXiv:1109.0802.
+[10] I. Savov and M. M. Wilde, “Classical codes for quantum broadcast
+channels,” 2011, arXiv:1111.3645.
+[11] V. Giovannetti, S. Guha, S. Lloyd, L. Maccone, J. H. Shapiro, and
+H. P. Yuen, “Classical capacity of the lossy bosonic channel: The exact
+solution,” Phys. Rev. Lett., vol. 92, no. 2, p. 027902, January 2004.
+[12] A. Carleial, “Multiple-access channels with different generalized feedback signals,” IEEE Trans. Inf. Theory, vol. 28, no. 6, pp. 841–850,
+1982.
+[13] M. Hayashi and H. Nagaoka, “General formulas for capacity of classicalquantum channels,” IEEE Trans. Inf. Theory, vol. 49, no. 7, pp. 1753–
+1768, 2003.
+[14] I. Savov, M. M. Wilde, and M. Vu, “Partial decode-forward for quantum
+relay channels,” January 2012, arXiv:1201.0011.
+[15] A. Winter, “Coding theorem and strong converse for quantum channels,”
+IEEE Trans. Inf. Theory, vol. 45, no. 7, pp. 2481–2485, 1999.
+
+(j)
+
+Πρ|
+¯
+
+| j−1
+
+j−1
+
+| j−1
+
+n[H(B|X1 U X)+δ]
+
+E 2
+
+n
+U nX nX1
+
+= 2−n[I(U X;B|X1 )−2δ]
+¯(j)
+The result of the expectation in z is ρ| j−1 , and we can bound
+the expression in { using (19). The ﬁrst inequality follows
+because all the other terms in the trace are positive operators
+less than the identity. The ﬁnal inequality follows from (18).
+Now we consider the expectation of the second term:
+E
+n n
+
+{(B2)} =
+n
+
+U X X1
+
+= Tr P
+= Tr P
+
+Tr P
+
+E
+n n
+
+n
+U X X1
+
+n
+B(j+1)
+j | j−1
+n
+B(j+1)
+j | j−1
+
+(j+1)
+
+= Tr Πτ
+¯
+
+n
+B(j+1)
+j | j−1
+
+(j+1)
+
+ρmj+1 ,
+
+j+1 , j
+
+(j+1)
+
+E
+
+n
+U nX nX1
+
+ρmj+1 ,
+
+j+1 , j
+
+τ ⊗n
+¯
+(j+1)
+
+Π(j+1) Πτ
+¯
+τ
+
+τ ⊗n
+¯
+
+j
+
+(j+1) ⊗n
+
+(j+1)
+= Tr Πτ
+Πτ
+¯
+
+τ
+¯
+
+(20)
+
+V. D ISCUSSION
+
+n
+X1
+
+E
+n
+
+mj
+
+By choosing the size of message sets to satisfy equations (8),
+(15) and (20), the expectation of the average probability of
+error becomes arbitrarily small for n sufﬁciently large.
+
+E
+n n
+
+
+
+j = j ,mj
+
+≤ |L||M| 2−n[I(X1 ;B)+I(U X;B|X1 )−4δ] .
+
+(j)
+
+(j)
+{(B1)} =
+E n Tr Pmj , j | j−1 ρmj , j , j−1
+U X
+U nX nX1
+ (j)
+
+(j)
+(j)
+Πρ |
+Πρm , | j−1 Πρ |
+×
+¯
+¯
+j j
+j j−1
+j j−1
+
+=
+E n Tr 
+(j)
+(j)
+(j)
+U nX nX1
+Πρ |
+ρmj , j , j−1 Πρ|
+¯
+¯
+j−1
+j−1
+
+(j)
+(j)
+(j)
+Πρ |
+}×
+E n {Πρ | j−1 Πρm , |
+¯
+¯
+j
+j j−1
+j j j−1
+ U nX n |X1
+
+(j)
+(j)
+(j)
+= E Tr 
+Πρ |
+ρmj , j , j−1 Πρ|
+E
+¯
+¯
+n
+
+j−1
+j−1 U nX n |X n
+X1
+1
+
+(B1) × (B2)
+
+E
+
+n
+U nX nX1
+
+2−n[I(U X;B|X1 )−2δ] × 2−n[I(X1 ;B)−2δ]
+
+≤
+
+(B2)
+
+Bn
+
+{(B)} =
+
+(j+1)
+
+Πτ
+¯
+
+j
+
+5
+
+

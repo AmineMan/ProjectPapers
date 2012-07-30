@@ -1,0 +1,924 @@
+Title:          Effect of secondary on primary stability_ISIT_Final.pdf
+Author:         Administrator
+Creator:        Adobe Acrobat 10.1.1
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Fri May 18 15:04:10 2012
+ModDate:        Tue Jun 19 12:55:29 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      335787 bytes
+Optimized:      no
+PDF version:    1.7
+ISIT'2012 1569566301
+
+Effect of Secondary Nodes on the Primary’s Stable
+Throughput in a Cognitive Wireless Network
+Anthony Fanous and Anthony Ephremides
+Department of Electrical and Computer Engineering
+University of Maryland, College Park, MD 20742
+{afanous, etony}@umd.edu
+
+many secondary nodes sharing the spectrum with the primary,
+and also, relaying is limited to single node relaying. In [5],
+cognitive relaying has been studied for an uplink where a
+single dedicated cognitive relay forwards unsuccessful packets
+from source nodes during their idle slots under the assumption
+of perfect sensing. In [6], a network consisting of a primary
+TDMA uplink with some dedicated cognitive relays to help
+the primary, and secondary Ad-Hoc network is considered
+with stable throughput as performance criterion. However,
+only the case of perfect sensing of the primary nodes was
+considered and the analysis is limited to collision channel
+model for reception which does not capture the multipacket
+reception (MPR) capability of modern receivers and is not a
+realistic model for Ad-Hoc network where different nodes can
+be largely separated in space and interference is likely to be
+small. Furthermore, only single node relaying was considered
+despite the presence of several dedicated relays in the system.
+In this paper, we study the effect of secondary interference
+on the primary’s stable throughput which may occur due to
+incorrect sensing or even with perfect sensing in the presence of malicious attacks. We adopt the physical interference
+model for reception (SINR threshold model) in contrast with
+the oversimpliﬁed collision model to calculate the maximum
+transmission power and channel access probabilities that secondary users can employ without affecting the primary’s queue
+stability. As a method for mitigating the negative effects
+of secondary interference, we propose a multinode relaying
+protocol that forces all the secondary nodes that can decode
+a primary unsuccessful packet to relay that packet using
+orthogonal space-time block codes [7] and it is shown that
+under this protocol, the more secondary nodes present in the
+network, the more beneﬁt for the primary in terms of his
+maximum stable throughput due to diversity and/or power gain
+introduced while the secondary nodes might beneﬁt by having
+access to a larger fraction of idle slots.
+The paper is organized as follows: In section II, we describe
+the system model. In sections III and IV, we study the primary
+node’s stable throughput in the perfect and imperfect sensing
+cases respectively. In section V, we propose and analyze
+the relaying protocol to beneﬁt of the large population of
+secondary nodes. Section VI presents the numerical results
+and in section VII, we conclude the paper.
+The proofs are omitted due to space limitations but can be
+found in [8].
+
+Abstract—We consider a cognitive network consisting of one
+primary source-destination pair and N secondary cognitive
+source-destination pairs that randomly access the channel during
+the primary user’s idle slots. We ﬁrst study the effect of the
+secondary nodes’ transmission parameters such as power and
+channel access probabilities on the stable throughput of the
+primary node. If the sensing is perfect, then the secondary nodes
+do not interfere with the primary node and thus do not affect its
+stable throughput. In case of imperfect sensing, it is shown that
+if the primary node’s arrival rate is less than some calculated
+value, then the secondary transmissions do not affect its queueing
+stability; otherwise, the secondary nodes should regulate their
+transmission parameters to reduce their interference on the
+primary. Finally, we propose a multinode relaying protocol based
+on distributed space-time orthogonal block codes, that uses the
+secondary nodes as relays of the primary node’s trafﬁc to
+compensate for the interference they might cause. In this case,
+for appropriate modulation scheme and under perfect sensing,
+it is shown that the more secondary nodes in the system, the
+better for the primary user in terms of his stable throughput.
+Meanwhile, the secondary nodes might beneﬁt from relaying by
+having access to a larger number of idle slots becoming available
+to them due to the increase of the service rate of the primary.
+
+I. I NTRODUCTION
+Cognitive Multiple Access was proposed as a possible solution for spectrum scarcity as it was shown that large portions
+of the licensed spectrum remain idle for long proportions
+of time [1], [2]. With cognitive radio technology, secondary
+(unlicensed) users are allowed to access the licensed spectrum
+if sensed to be idle. At the same time, as the sensing procedure
+may be erroneous, some measures must be taken to protect
+the primary (licensed) users from possible interference due to
+sensing errors at the secondary nodes.
+Cognitive radio has been studied from an information theoretic point of view in [3]. However, information theoretic
+analysis does not take into account the bursty nature of the
+trafﬁc which is essential in studying network layer aspects
+such as the stable throughput and the average delay. The
+stable throughput of a simple cognitive network consisting
+of one primary and one secondary source-destination pairs
+was studied in [4], under the SINR threshold model for
+reception with relaying for perfect and erroneous sensing.
+However, such simpliﬁed model does not capture the effect
+of the potential interference induced in a real network with
+This research was supported by MURI grant W911NF-08-1-0238, NSF
+grant CCF-0728966, and ONR grant N000141110127.
+
+1
+
+hSP Sk = hk ∼ CN (0, σ 2 ), for k ∈ {1, 2, ..., N }.
+Under the saturation assumption of the secondary queues, there
+is no issue of stability except for the primary queue. The
+primary queue evolves as:
+
+II. S YSTEM M ODEL
+
+•
+
+The system consists of one primary source-destination pair
+and a secondary Ad-Hoc network consisting of N secondary
+source-destination pairs. All nodes have buffers of inﬁnite
+capacity to store the packets to be transmitted. Time is slotted
+with packet duration equal to one slot duration. The arrival
+process to the primary node is assumed to be stationary
+with an average rate of λP packets/slot, while the secondary
+nodes are assumed to be saturated to avoid queueing interaction. Throughout the paper, we designate the primary source
+node with SP , the primary destination with DP and the ith
+secondary source node with Si , where i ∈ {1, 2, ..., N }.
+The primary source node transmits at power PP while all
+secondary nodes transmit at common power P0 .
+The distance between node i and node j is denoted by rij ,
+where i ∈ {Sk |k = P, 1, 2, ..., N } and j ∈ {DP , Sk |k =
+1, 2, ..., N }. For instance, rSi DP denotes the distance between
+the ith secondary source node and the primary destination
+node. The path loss exponent is assumed to be equal to α
+throughout the network. The link between the (i, j) pair of
+nodes is subject to stationary Rayleigh block fading with
+2
+fading coefﬁcients hij ∼ CN (0, σij ) which are independent
+among links. All nodes are subject to independent additive
+white complex Gaussian noise with zero mean and variance
+N0 . To properly model the interference throughout the network, we adopt the SINR threshold model where node j is
+able to successfully decode a packet if the received signal-tointerference plus noise ratio (SINR) exceeds some threshold
+βj . Upon the success or failure of a packet reception at a
+node, an instantaneous and error free Acknowledgment/NonAcknowledgment (ACK/NACK) message is fedback to the
+corresponding transmitter.
+Both the primary and the secondary users transmit over the
+same frequency band where the primary user has the priority
+for transmission, while the secondary users are restricted to
+use the idle slots of the primary. At the beginning of each
+slot, secondary nodes sense the channel and only if a slot is
+detected to be idle, do they access the channel in a random
+access way. A secondary node transmits with probability q
+whenever it detects an idle slot.
+Secondary nodes should be “transparent” to the primary
+in the sense that their transmissions should not affect some
+performance criterion (here, the queueing stability) of the
+primary node. If the sensing is perfect, the secondary nodes
+do not interfere with the primary and can employ any transmission parameters (power/channel access probability) without
+affecting the primary. However, if the sensing is not perfect,
+the secondary nodes must limit their interference on the
+primary node by controlling their transmission parameters. In
+this paper, we restrict the analysis to the following symmetric
+case, but the analysis of the general non-symmetric case can
+be handled similarly [8]; speciﬁcally, we assume:
+•
+•
+•
+
+t
+Qt+1 = Qt − YP
+P
+P
+
++
+
+t
++ XP
+
+(1)
+
+where Qt is the length of the primary queue at the beginning
+P
+t
+t
+of time slot t; XP and YP are respectively the arrival and the
+service processes at the primary source queue in time slot t
+and (x)+ =max(x, 0). A queue evolving as in (1) is said to be
+stable if for every x ∈ N0 , limt→∞ Pr[Qt < x] = F (x) with
+P
+limx→∞ F (x) = 1. Refer to [9] for more general deﬁnitions.
+III. P ERFECT S ENSING C ASE
+In this case, secondary nodes are able to perfectly identify
+the primary idle slots where they can access the channel from
+the busy slots where they must remain silent.
+The stability condition of the primary queue is given by:
+λP < µmax = exp
+P
+
+−N0 βP
+−α
+2
+PP σSP DP rSP DP
+
+(2)
+
+t
+where µmax = E[YP ] denotes the average service rate at the
+P
+primary node.
+
+IV. I MPERFECT S ENSING C ASE
+Due to fading and other channel impairments, the secondary
+nodes may misidentify the idle slots and hence interfere with
+the primary.
+Two errors may occur while sensing the channel, namely,
+false alarm and misdetection errors. False alarm occurs when
+the primary node is idle but it is sensed to be busy. Clearly,
+false alarm error does not affect the primary’s stable throughput but degrades the throughput of the secondary nodes.
+Misdetection occurs when the primary node is busy but it is
+sensed to be idle. Secondary nodes will then transmit with the
+primary and may lead to the instability of its queue.
+In our case, the probability of the misdetection event Pe
+is the same for all secondary nodes by symmetry of the
+conﬁguration.
+The stability condition of the primary queue in the imperfect
+sensing case is given by λP < µP where:
+µP = µmax 1 −
+P
+=
+
+µmax
+P
+
+qPe
+a+1
+
+N
+
+−α
+2
+P0 r0 βP σ0
+1 − qPe 2
+−α
+−α
+2
+σSP DP PP rSP DP + σ0 P0 r0 βP
+
+N
+
+(3)
+Proposition 1:
+The primary node service rate as given by (3), satisﬁes:
+(i) 0 ≤ µP < µmax
+P
+(ii) lim µP = µmax
+P
+a→∞
+
+rSj DP = r0 , for j ∈ {1, 2, ..., N }.
+rSP Sk = r, for k ∈ {1, 2, ..., N }.
+2
+¯
+hSj DP = hj ∼ CN (0, σ0 ), for j ∈ {1, 2, ..., N }.
+
+N
+
+(iii) lim µP =
+a→0
+
+2
+
+µmax [1 − qPe ] if PP > 0 and P0 → ∞
+P
+0 if PP → 0.
+
+∂µP
+> 0, i.e., µP is strictly increasing with a.
+∂a
+(v) lim µP = µmax
+P
+
+node while there exists a ﬁnite maximum allowed power if
+λP > µmax (1 − qPe )N . This can be understood by noting
+P
+that (1 − qPe )N is the probability that none of the secondary
+source nodes transmit in a slot while the primary is busy, and
+hence, using random access as a multiple access protocol in
+the secondary network provides an additional protection to the
+primary in addition to the simplicity of operation for Ad-Hoc
+networks.
+
+(iv)
+
+q→0
+
+(vi) lim µP = µmax 1 −
+P
+q→1
+
+(vii)
+
+Pe
+a+1
+
+N
+
+∂µP
+< 0, i.e., µP is strictly decreasing with q.
+∂q
+
+From proposition 1, we can draw some important conclusions:
+(i) states that the effect of the interference due to erroneous
+sensing at the secondary nodes is the degradation of the service
+rate of the primary licensed user. (ii),(iii) and (iv) reveal that
+unless a → ∞ i.e. either PP → ∞ or P0 → 0, the primary
+node cannot achieve its maximum service rate µmax that is
+P
+achieved in the case of perfect sensing. Also, for ﬁxed PP ,
+secondary nodes have a maximum power - possibly inﬁnite
+if λP < µmax (1 − qPe )N - at which they can transmit while
+P
+remaining transparent to the primary node. Moreover, even
+if the interference of the secondary nodes is very high (case
+of P0 → ∞), the primary node can still achieve a portion
+(1 − qPe )N of its maximum service rate µmax . Finally, (v),
+P
+(vi) and (vii) show that for ﬁxed PP and P0 , the secondary
+nodes can control their interference level on the primary by
+adjusting their transmission probabilities q which is sometimes
+easier to implement than power control.
+For λP < µP to be satisﬁed, we can solve for minimum
+2
+σS
+
+D
+
+V. R ELAYING IN THE P ERFECT S ENSING C ASE
+Relaying represents an incentive for the primary nodes
+to share their channel resources with secondary users if it
+beneﬁts them. In this section, we propose and analyze a simple
+multinode relaying protocol in the perfect sensing case which
+serves as an upper bound for the imperfect sensing case as well
+as a good approximation for systems employing cooperative
+and sophisticated sensing techniques.
+A. Relaying Protocol
+The relaying protocol achieves a throughput gain with no
+channel state information (CSI) about hSk DP fading coefﬁcients available at the secondary nodes by using Distributed
+Orthogonal Space-Time Block Code (D-OSTBC). That is each
+of the secondary nodes that is able to successfully decode a primary packet will mimic an antenna in a regular STC setting of
+a multiple-input single-output (MISO) channel. Such OSTBC
+always exists for one dimensional signal constellations for any
+number of relaying nodes [10]. In this case, these OSTBC
+schemes achieve full diversity gain and/or power gain at
+coding rate =1 while ensuring simple decoding rule based only
+on linear processing at the receiver. Hence, the assumption of
+one dimensional signal constellation leads to both analytical
+tractability as well as simplicity of implementation by avoiding
+variable rate systems needed in case of two dimensional
+constellations transmitted using orthogonal space-time block
+codes [11] or joint decoding and partial diversity gain in quasiorthogonal full rate space-time codes [12].
+Each of the relaying nodes must know which antenna it mimics
+in the underlying STC used which can be achieved either by
+coordination between the secondary nodes or by prior node
+indexing and observing ACK/NACK packets generated by the
+secondary nodes regarding each primary packet.
+The relaying protocol works as follows: If the primary node
+transmits a packet and is unsuccessful while one or more
+secondary nodes are able to successfully decode that packet,
+then these secondary nodes send an ACK message to the
+primary and the primary node releases the packet from its
+queue. We assume that this ACK will also be heard by all the
+secondary nodes and thus the secondary nodes which could
+not receive that packet will abstain from transmission until
+that packet is successfully delivered to the primary destination
+and thus avoid interfering with the primary’s relayed packets.
+In the next available primary idle slot, the secondary source
+nodes which were able to decode the packet will transmit it
+using D-OSTBC as described above. The primary packets are
+given priority for transmission, i.e., a secondary source node
+
+PP r −α
+
+SP D P
+P P
+value of a =
+and for the maximum value
+−α
+2
+σ0 βP P0 r0
+of q to get the maximum possible transmission power (P0 )
+and maximum possible transmission probability (q) of the
+secondary nodes while remaining “transparent” to the primary
+node, i.e., without affecting its stability.
+From equation (3) and proposition 1, we obtain:
+
+N
+Pe
+1
+if λP < µmax 1 − a+1
+
+P
+
+
+
+1/N
+a+1
+q < qmax =
+1 − µλP
+max
+Pe
+P
+
+
+
+N
+
+
+Pe
+< λP < µmax
+if µmax 1 − a+1
+P
+P
+(4)
+For ﬁxed primary transmission power PP , the maximum
+transmission power allowed at secondary nodes is given by:
+
+N
+∞
+if λP < µmax (1 − qPe )
+
+P
+ 2
+−α
+σS D P P r S D
+1−(λP /µmax )1/N
+max
+P P
+P
+P P
+=
+P0 < P0
+−α
+2
+qPe −1+(λP /µmax )1/N
+r 0 β P σ0
+
+P
+
+
+N
+if µmax (1 − qPe ) < λP < µmax
+P
+P
+(5)
+From equations (4) and (5), we conclude that for ﬁxed PP , if
+
+N
+
+Pe
+λP < µmax 1 − a+1 , secondary nodes can transmit with
+P
+any desired chosen probability without affecting the stability
+of the primary while they have to backoff to reduce their
+N
+
+Pe
+< λP <
+interference on the primary node if µmax 1 − a+1
+P
+max
+µP . On the other hand, for ﬁxed transmission probability
+q, if λP < µmax (1 − qPe )N , secondary nodes can transmit
+P
+at any power without affecting the stability of the primary
+
+3
+
+stable throughput of the primary due to relaying, the fraction
+λ
+1 − µP of idle slots available to the secondary nodes
+P
+increases. A portion of this fraction will be dedicated for
+relaying the primary’s packets and the rest for secondary
+transmissions. Hence, the net beneﬁt for the secondary nodes
+might be an increase or a decrease of throughputs. It is shown
+in [8] that for a single secondary node, either both the primary
+and the secondary beneﬁt from relaying or none. Please refer
+to [8] for detailed and quantitative analysis of the effect of
+relaying on the secondary nodes’ throughputs.
+
+will not transmit its own packets unless it does not have any
+primary packets to relay and none of the other secondary nodes
+has any.
+B. Protocol Analysis
+Results are restricted to the special case of Rayleigh fading,
+but similar conclusions hold for arbitrary fading distributions
+[8]. Under the previously described relaying protocol, the
+stability condition of the system is:
+λP <
+
+µ P Ps
+Ps + (1 − µmax )Pd
+P
+
+(6)
+
+VI. N UMERICAL R ESULTS
+
+where:
+µP = 1 − (1 − µmax )(1 − Pd )N
+P
+
+Figures 1 and 2 illustrate the effect of incorrect sensing
+on the normalized maximum stable throughput of the primary
+
+(7)
+
+2
+σS
+
+N −1
+
+(1 − (1 − µmax )(1 − Pd ))Ps
+P
+> µmax
+P
+Ps + (1 − µmax )Pd
+P
+
+r −α
+
+PP
+
+VII. C ONCLUSION AND F UTURE W ORK
+In this paper, we studied the effect of the interference
+introduced on a primary user sharing the spectrum with some
+secondary nodes because of erroneous sensing. It is shown
+that if the primary arrival rate is less than some ﬁnite value,
+there is no need for controlling the secondary nodes’ transmission parameters (power/transmission probabilities), otherwise,
+these parameters must be appropriately regulated. It is shown
+that if the secondary nodes are forced to relay the primary’s
+packets, then the primary beneﬁts from relaying and meanwhile, the secondary nodes might beneﬁt by increasing the
+fraction of idle slots available for their transmissions. Future
+work includes the analysis of the relaying protocol in the
+
+which can be shown to be equivalent to:
+−α
+2 −α
+2
+P0 σ0 r0 > PP σSP DP rSP DP
+
+⇔ E[SNR on S-P link] > E[SNR on P-P link]
+
+D
+
+SP D
+is ﬁxed at
+node as given by (3). The term P β P r−α σ2P
+P 0
+0
+a value of 10W. Figure 1 shows that µP can degrade from
+its perfect sensing value µmax even for small number of
+P
+secondary nodes and small values of qPe and shows that secondary nodes can effectively limit their interference on the primary by controlling their transmission power P0 , their channel
+access probability q or by enhancing the sensing performance
+to reduce Pe . Figure 2 plots the normalized maximum stable
+throughput rate at the primary node versus the number of secondary nodes N showing a similar effect. However, as shown
+in ﬁgure 1, lima→0 µµP = limP0 →∞ µµP = (1 − qPe )N ,
+max
+max
+P
+P
+1
+limqPe →1 µµP = [1 − a+1 ]N while limN →∞ µµP = 0;
+max
+max
+P
+P
+showing that for small values of λP , controlling the secondary
+nodes’ transmission parameters is not as crucial as controlling
+the number of secondary transmissions in the system. This
+motivates the relaying protocol described above which is
+−α
+P r0 σ 2
+illustrated in Figures 3 and 4. Let SN R = 0 P N0 0 . Figures
+β
+3 and 4 plot the maximum stable throughput rate at the
+primary node (λmax ) as given by (6) versus the number of
+P
+secondary nodes for different SNR values. With no relaying,
+λmax = µmax and is shown by dotted line. It is clear that
+P
+P
+regardless of the parameter values, sufﬁciently large N always
+outperforms the non-relaying case and with higher SNR or
+higher Pd , a smaller number of secondary relays is needed to
+outperform the non-relaying case. We also note that at SNR
+= 0 dB, even one node relaying leads to better performance
+than the non-relaying case.
+
+k
+N − 1 Pd (1 − Pd )N −1−k
+β P N0
+Ps =
+Γ k + 1,
+−α 2
+k
+k!
+P0 r 0 σ 0
+k=0
+(8)
+−α
+PP |hSP Sj |2 rSP Sj
+−βP N0
+> βP = exp
+Pd = Pr
+N0
+σ 2 PP r−α
+(9)
+and Γ(s, x) is the upper incomplete gamma function and can
+∞
+be represented by the integral: Γ(s, x) = x ts−1 e−t dt.
+Proposition 2:
+The success probability Ps as given by (8) is strictly
+increasing with N . Moreover, as N → ∞, Ps → 1.
+Proposition 3:
+N
+Only if µmax < Ps [1−(1−Pd ) ] , the maximum possible arrival
+P
+Pd
+rate at the primary node that keeps the system stable as given
+by (6) increases compared to the case of no-relaying.
+A sufﬁcient condition is to have µmax < Ps which is clearly
+P
+satisﬁed for some N , possibly large.
+Hence, the beneﬁt for the primary user achieved by relaying
+increases with the number of secondary nodes sharing the
+spectrum. If the number of secondary nodes in the network
+cannot satisfy the condition in proposition 3, then increasing
+the secondary nodes’ power (to increase Ps ) will help
+satisfying that condition for a smaller number of secondary
+relaying nodes (See Figures 3 and 4).
+It should be noted that one node relaying (N = 1) always
+leads to higher primary stable throughput rate if:
+
+(10)
+
+In other words, if the primary and secondary nodes transmit
+at the same power, then one node relaying always helps if the
+channel between secondary source and primary destination is
+on average better than the channel between the primary source
+and primary destination as was shown in [5].
+Finally, the effect of relaying on the secondary nodes can
+be intuitively understood by noting that by increasing the
+
+4
+
+0.9
+
+0.9
+
+0.8
+
+max
+)
+P
+
+1
+
+Maximum Stable throughput Rate (λ
+
+0.8
+
+µP / µP
+
+max
+
+0.7
+0.6
+0.5
+
+qPe=0.1, N=1
+
+0.4
+
+qP =0.1, N=5
+e
+
+qP =0.1, N=10
+e
+
+0.3
+
+qPe=0.9, N=1
+
+0.2
+
+qPe=0.9, N=5
+
+0.1
+
+0.7
+
+0.5
+
+0
+
+5
+10
+15
+Secondary Nodes Transmission Power P (Watts)
+
+max
+=0.3
+P
+
+µ
+
+0.4
+0.3
+
+P = 0.3
+
+0.2
+
+qPe=0.9, N=10
+
+0
+
+SNR= 0dB
+SNR= −5dB
+SNR= −7.5dB
+SNR= −10dB
+
+0.6
+
+d
+
+0.1
+0
+
+0
+
+20
+
+5
+
+10
+15
+Number of secondary sources (N)
+
+20
+
+0
+
+Fig. 3. Effect of relaying on maximum stable throughput rate (λmax ) for
+P
+detection probability Pd = 0.3
+
+Fig. 1. Effect of secondary transmission power on primary maximum stable
+throughput rate
+
+0.7
+
+qPe=0.1, P0=10dBW
+
+0.8
+
+qPe=0.1, P0=15dBW
+
+0.7
+
+max
+
+Maximum Stable Throughput Rate (λ
+
+qPe=0.1, P0=0dBW
+
+0.9
+
+µP / µP
+
+max
+)
+P
+
+1
+
+qP =0.9, P =0dBW
+
+0.6
+
+qPe=0.9, P0=10dBW
+
+e
+
+0
+
+qPe=0.9, P0=15dBW
+0.5
+0.4
+0.3
+
+0.6
+
+0.5
+
+0.4
+
+P = 0.9
+d
+
+0.3
+SNR= 0dB
+SNR= −5dB
+SNR= −7.5 dB
+SNR= −10dB
+
+0.2
+
+0.1
+
+max
+=
+P
+
+µ
+
+0.3
+
+0.2
+0
+
+0.1
+0
+
+0
+
+20
+
+40
+60
+Number of secondary nodes (N)
+
+80
+
+100
+
+0
+
+5
+10
+15
+Number of secondary source nodes (N)
+
+20
+
+Fig. 4. Effect of relaying on maximum stable throughput rate (λmax ) for
+P
+detection probability Pd = 0.9
+
+Fig. 2. Effect of number of secondary nodes on primary maximum stable
+throughput rate
+
+[6]
+
+imperfect sensing case. The study of the delay performance of
+our relaying protocol is also necessary for delay constrained
+systems.
+
+[7]
+
+R EFERENCES
+[8]
+[1] N. Devroye, M. Vu, and V. Tarokh. “Cognitive Radio Networks”. IEEE
+Signal Processing Magazine, pages 12–23, November 2008.
+[2] I. F. Akyildiz, Won-Yeol Lee, M. C. Vuran, and S. Mohanty. “NeXt
+generation/dynamic spectrum access/cognitive radio wireless networks:
+A survey”. Computer Networks (Elsevier) Journal, 50(4):2127–2159,
+September 2006.
+[3] N. Devroye, P. Mitran, and V. Tarokh. “Achievable Rates in Cognitive Radio Channels”. IEEE Transactions on Information Theory,
+52(5):1813–1827, May 2006.
+[4] O. Simeone, Y. Bar-Ness, and U. Spagnolini. “Stable Throughput
+of Cognitive Radios With and Without Relaying Capability”. IEEE
+Transactions on Communications, 55(12):2351–2360, December 2007.
+[5] A. K. Sadek, K. J. Ray Liu, and A. Ephremides. “Cognitive multiple
+access via cooperation: Protocol design and performance analysis”.
+
+[9]
+[10]
+[11]
+[12]
+
+5
+
+IEEE Transactions on Information Theory, 53(10):3677–3696, October
+2007.
+A. A. El-Sherif, A. K. Sadek, and K. J. Ray Liu. “Opportunistic Multiple
+Access for Cognitive Radio Networks”. IEEE Journal on Selected Areas
+in Communications, 29(4):704–715, April 2011.
+V. Tarokh, N. Seshadri, and A. R. Calderbank. “Spacetime codes for
+high data rate wireless communication: Performance criterion and code
+construction”. IEEE Transactions on Information Theory, 44(2):744–
+765, March 1998.
+A. Fanous and A. Ephremides. “Stable throughput in a cognitive wireless
+network”. Available on: http://arxiv.org/abs/1205.1731.
+W. Szpankowski. “Stability conditions for some multiqueue distributed
+systems: Buffered random access systems”. ”Adv. Appl. Probab.”,
+26:498–515, 1994.
+V. Tarokh, H. Jafarkhani, and A. R. Calderbank. “Space-time block
+codes from orthogonal designs”. IEEE Transactions on Information
+Theory, 45(5):1456–1467, July 1999.
+H. Wang and Xiang-Gen Xia. “Upper bounds of rates of complex
+orthogonal space-time block codes”. IEEE Transactions on Information
+Theory, 49(10):2788–2796, October 2003.
+H. Jafarkhani. “A Quasi-Orthogonal SpaceTime Block Code”. IEEE
+Transactions on Communications, 49(1):1–4, January 2001.
+
+

@@ -1,0 +1,722 @@
+Creator:        TeX
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Sun Apr 29 17:43:49 2012
+ModDate:        Tue Jun 19 12:54:33 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      414738 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569565565
+
+Efﬁcient Decoding of Permutation Codes Obtained
+from Distance Preserving Maps
+Yeow Meng Chee and Punarbasu Purkayastha
+Division of Mathematical Sciences, School of Physical & Mathematical Sciences
+Nanyang Technological University, Singapore 637371
+Emails: {ymchee, punarbasu}@ntu.edu.sg
+
+written as a vector σ = (σ0 , . . . , σN −1 ), which represents the
+output of the permutation. The distance between two elements
+of SN is taken to be the Hamming distance between their
+vector representations. We use the notation Zn = {0, . . . , q −
+q
+1}n to denote the Hamming space. A distance-preserving map
+Π : Zn → SN is a mapping which preserves the Hamming
+q
+distance between any two vectors, that is, d(Π(x), Π(y)) ≥
+d(x, y) for any vectors x, y ∈ Zn . A distance-increasing map
+q
+Π : Zn → SN strictly increases the Hamming distance, that is,
+q
+d(Π(x), Π(y)) > d(x, y) for any distinct vectors x, y ∈ Zn .
+q
+An upper bound on the size of a permutation code with
+minimum distance d is given by N !/(d − 1)!. Clearly, the
+information rate of a permutation code can be larger than the
+rate achievable by DPMs from q-ary Hamming space (unless
+q is proportional to N ). Sharply k-transitive groups, which
+have efﬁcient decoding, are known to achieve this upper bound
+(see [1], [2]). For such groups either d ≤ 3 or d ≥ N − 4.
+In the latter case, the size of the code is only polynomial in
+N . Thus it is of interest to consider other means of obtaining
+permutation codes, for instance from DPMs.
+In the following sections we consider very speciﬁc DIMs
+and DPMs. All the DIMs and DPMs we use are non-length
+preserving, but ensure that efﬁcient estimation algorithms
+exist. Hence, the rate of the codes decreases by a factor of
+1/ log2 q , compared to the q-ary code in the Hamming space.
+We consider a channel, for instance the PLC channel, which
+introduces both errors and erasures. The simplest such algorithm, and DIM from the binary Hamming space, introduced in
+the next section has only linear complexity. This algorithm also
+guarantees that the estimation procedure does not introduce
+extra errors or erasures in the binary digits. The mappings in
+the subsequent sections are more complicated and require at
+least two symbols in the permutation space to estimate one
+q-ary digit. Hence, such guarantees can be provided if the
+channel introduces only erasures.
+
+Abstract—We study the decoding of permutation codes obtained from distance preserving maps and distance increasing
+maps from Hamming space. We provide efﬁcient algorithms for
+estimating the q-ary digits of the Hamming space so that decoding
+can be performed in the Hamming space.
+Index Terms—Permutation codes, Distance preserving maps
+
+I. I NTRODUCTION
+Transmission of data over high voltage electric power lines
+is a challenging problem due to the harsh nature of the channel.
+The noise characteristics of this channel, called the powerline
+communication (PLC) channel, include permanent narrowband
+noise, impulse noise, in addition to fading and additive white
+Guassian noise. Vinck [8] studied this channel and showed
+that M -ary Frequency Shift Keying (M -FSK) modulation, in
+conjunction with the use of permutation codes, provide the
+required redundancy to correct the errors resulting from the
+harsh noise pattern. This has given rise to increased research
+on codes in the permutation space (see [4] for a survey). One
+method to obtain a permutation code is to consider distance
+increasing maps (DIMs) or distance preserving maps (DPMs)
+from the Hamming space to the permutation space. The
+works in [3], [5]–[7] address the problem of constructing such
+DIMs and DPMs. Unlike the case of codes in the Hamming
+space, decoding of codes in the permutation space is a more
+difﬁcult problem, especially because of the loss of linearity.
+Bailey [1] gave efﬁcient decoding algorithms in the case
+when the permutation codes are subgroups. Unfortunately, the
+permutation codes obtained from DIMs or DPMs of codes
+in the Hamming space are not permutation groups in general.
+Swart and Ferreira [7] studied some DIMs and DPMs from the
+binary Hamming space to permutations and provided efﬁcient
+decoding algorithms for determining the binary vectors.
+In this work we study the problem of decoding permutation
+codes obtained from DIMs or DPMs of q-ary Hamming
+codes. The main idea that we employ is to perform only
+estimation of the q-ary digits from the received vector. The
+actual decoding of the estimated q-ary vector is performed in
+the q-ary Hamming space. Decoding of linear codes is a very
+well studied problem and many efﬁcient decoding algorithms
+exist. Our aim here is to provide efﬁcient ways of estimating
+the q-ary digits so that the overall estimation and decoding
+procedure still retains low complexity.
+We use the notation SN to denote the permutation space
+over the symbols {0, . . . , N − 1}. Each element σ of SN is
+
+II. DIM FROM BINARY VECTORS TO PERMUTATIONS
+In this section we discuss a DIM from binary vectors to
+permutations. Lee [5] studied a DIM and its properties, which
+is similar to this DIM (also, [7, Eg. 1]). We give an efﬁcient
+algorithm in the permutation space which provides only an
+estimate of the bits. We ﬁrst describe the DIM used here.
+The DIM maps a binary vector b = (b0 , . . . , bn−1 ) of length
+n to a vector σ = (σ0 , . . . , σn ) of length n + 1 in Sn+1 .
+
+1
+
+We start from the identity permutation σ (−1) = (0, . . . , n).
+The bit b0 permutes the ﬁrst two coordinates, resulting in a
+(0)
+(0)
+vector σ (0) = (σ0 , . . . , σn ). For i = 1, . . . , n − 1 the bit bi
+(i−1)
+(i−1)
+permutes the coordinates σi
+and σi+1 of σ (i−1) . Let Π0
+denote this mapping. The example below illustrates the map
+of b = (1, 1, 0, 1) to the permutation vector (1, 2, 0, 4, 3). For
+brevity of exposition we write the vector σ in a compact form,
+σ = 12043. Underlined portions denote the affected symbols.
+b =1
+b =0
+b =1
+−→
+−→
+E XAMPLE 2.1: 01234 −0 − 10234 −1 − 12034 −2 −
+−→
+b =1
+12034 −3 − 12043.
+−→
+A LGORITHM 2.2: DIM Π0 from Zn to Sn+1
+2
+Input: b = (b0 , . . . , bn−1 ) ∈ Zn
+2
+Output: σ = (σ0 , . . . , σn ) ∈ Sn+1
+σ (−1) ← (0, . . . , n)
+for i from 0 to n − 1
+σ (i) ← σ (i−1)
+if bi = 1 then
+(i)
+(i−1)
+(i)
+(i−1)
+σi ← σi+1 , σi+1 ← σi
+
+If the rate of the binary code is R then the rate of
+transmission of information bits is Rn/(n+1). From the DIM
+and the estimation algorithm it can be inferred that only about
+“half” the permutation space is used for communication over
+an M -FSK channel. At the i-th time instance, the symbols
+i + 2, . . . , n are used neither during transmission nor during
+the decoding procedure. If the DIM is from a linear binary
+code of dimension k = Rn, then one can achieve a rate of
+k/(n + 1) + (k − 3)/(n − 2) by utilizing the unused symbols
+˜
+to transmit a shortened codeword b of length n − 3, but in
+(−1)
+reverse order of the DIM. If σ
+˜
+= (3, . . . , n) then ˜0 ﬂips
+b
+(−1)
+(−1) ˜
+(0)
+(0)
+σn−3 and σn−4 , b1 ﬂips σn−4 , σn−5 , and so on.
+˜
+˜
+˜
+˜
+III. DIM FROM 2m - ARY VECTORS TO PERMUTATIONS
+In this section we describe a modiﬁcation to the mapping
+in Section II so that it can be used for q-ary vectors where
+q = 2m . The primary aim is to provide a simple means of
+estimating the symbols used. The idea is to use a binary representation of each symbol and map that binary representation
+of length m to an m+1 length permutation vector. We give an
+example below and then we describe the algorithm formally.
+We denote this mapping by Π1 . For brevity, we write the
+vectors in a compact form.
+
+The proposition below can be derived from the results in [5].
+Proposition 2.3: (see [5]) The mapping Π0 is a DIM with
+d(Π0 (b), Π0 (b )) ≥ d(b, b ) + nR , where nR is the number
+of runs of ones in supp b ∪ supp b , where supp b denotes the
+support of the vector b.
+
+E XAMPLE 3.1: Let q = 22 and let the symbols {0, 1, 2, 3}
+be mapped to their natural binary representation as 0 →
+00, 1 → 01, 2 → 10, and 3 → 11. The vector s = 132 is
+mapped to the permutation vector 0234516 in the following
+11
+10
+01
+→
+→
+sequence of steps: 0123456 − 0213456 − 0234156 −
+→
+0234516. The underlined portions denote the affected symbols.
+
+A. Estimating bits from the permutation vector
+A very simple estimation procedure gives the correct binary
+bit if the received symbol is correct in the corresponding
+coordinate. The algorithm is described below. We denote an
+erasure by the symbol ε. Let the vector received as the
+output of the channel be denoted by y. It lies in the space
+{Zn+1 ∪ ε}n+1 .
+A LGORITHM 2.4: Estimating bits from y
+Input: y = (y0 , . . . , yn ) ∈ {Zn+1 ∪ ε}n+1
+ˆ
+Output: b = (ˆ0 , . . . , ˆn−1 ) ∈ {Z2 ∪ ε}n
+b
+b
+for i from 0 to n − 1
+if yi = i + 1 then ˆi ← 1
+b
+elseif yi < i + 1 then ˆi ← 0
+b
+else ˆi ← ε.
+b
+ˆ
+The estimate b can be now provided to the decoder for
+the binary code for decoding. Clearly, the above algorithm
+never introduces any error if the coordinate yi is correct.
+Hence, this procedure can correctly decode with a bounded
+distance decoder if the number of errors ne and the number
+of erasures nε satisfy the condition 2ne + nε < d, where
+d is the minimum distance of the binary code. In practice
+the algorithm potentially corrects more errors. For example if
+the transmitted symbol corresponding to bi = 0 is different
+from the received symbol yi , but the received symbol satisﬁes
+yi < i + 1 then there is no error in estimating the bit ˆi .
+b
+This algorithm performs at most 2n comparisons and has
+a memory requirement of exactly one symbol at each step.
+In comparison the decoding algorithm in Swart & Ferreira
+[7] performs decoding in the permutation space, under M FSK signaling, and requires O(M 2 + nM ) computations and
+2
+o(3nM ) memory.
+
+A LGORITHM 3.2: DIM Π1 from Znm to Smn+1
+2
+Input: s = (s0 , . . . , sn−1 ) ∈ Znm
+2
+Output: σ = (σ0 , . . . , σmn ) ∈ Smn+1
+σ (−1) ← (0, 1, . . . , mn)
+for i from 0 to n − 1
+for j from 0 to m − 1
+σ (im+j) ← σ (im+j−1)
+bi = (bi,0 , . . . , bi,m−1 ), binary representation of si
+if bi,j = 1 then
+(im+j)
+(im+j−1)
+σim+j+1 ← σim+j
+(im+j)
+(im+j−1)
+σim+j ← σim+j+1
+The estimation procedure for the symbols is the same as
+described in Section II-A. We estimate the bits and then
+recombine the bits to form the symbols. This is an efﬁcient
+and reasonably effective method of estimating the symbols
+provided that the number of errors and erasures introduced by
+the channel is low. The number of comparisons required is
+at most 2mn. One drawback of this DIM is that the rate of
+1
+transmission of information bits decreases by a factor of m .
+IV. DPM FROM BINARY VECTORS TO PERMUTATIONS
+In this section we develop a new distance preserving map
+(DPM) from binary vectors to permutation vectors, which
+allows us to estimate the binary symbols efﬁciently. The
+mapping converts a length n binary vector to a length n + 1
+permutation vector in Sn+1 . This method is introduced so that
+
+2
+
+bi−1 . Then we show that either σi = σi or σi−1 = σi−1 .
+n−1
+Let ∆i = l=i bl −bl . Note that if b0 = b0 then the vectors
+are clearly different in at least the ﬁrst 2 positions. So, let
+i ≥ 2. First, suppose that ∆i = 0. Clearly, bi−1 = bi−1 implies
+σi = σi . Now, assume that ∆i = 0. If σi = σi then without
+loss of generality assume that bi−1 = 0 and bi−1 = 1. Using
+Lemma 4.5 in the equation σi = σi leads to the condition
+i = −∆i . We claim that σi−1 = σi−1 . Suppose not. We get
+
+it can be generalized to a new DPM from ternary vectors
+to permutations in the next section. The following lemma is
+essential to the constructions in the remaining sections.
+Lemma 4.1: Let (σ0 , . . . , σl ) be a permutation of
+(0, 1, . . . , l). Then σ = (σ0 +i, . . . , σl +i, l+1+i, . . . , l+j+i)
+mod (l +j + 1) is a permutation of the vector (0, 1, . . . , l +j),
+and the modulo is performed on each coordinate of the vector.
+Proof: Consider the vector Σ = (0, . . . , l, l + 1, . . . , l + j)
+in Sl+j+1 . Adding i modulo l + j + 1 to each coordinate of
+Σ results in a vector Σ + i which is a cyclic shift of Σ to the
+left by i positions. Hence Σ + i is also in Sl+j+1 . Considered
+as an unordered tuple, the elements of σ are the same as the
+elements of Σ + i and hence σ is also a vector in Sl+j+1 .
+We now describe the algorithm to map the binary vectors to the permutation vectors. For a binary vector b =
+(b0 , . . . , bn−1 ) the algorithm proceeds recursively as follows.
+Consider the binary vector as a {0, 1}-vector in R. The
+algorithm is initialized by starting with the identity permutation represented as σ (−1) = (0, 1, . . . , n). For each i =
+0, . . . , n − 1, the element bi is added to the ﬁrst i + 2 positions
+of the permutation vector σ (i−1) modulo (i + 2), where σ (i−1)
+is the vector resulting from the previous iteration. Denote the
+DPM by Π2 . The example below illustrates the procedure.
+E XAMPLE 4.2: We map 1101 to 32140 as follows:
+b =1
+b =0
+b =1
+b =1
+−→
+−→
+−→
+01234 −0 − 10234 −1 − 21034 −2 − 21034 −3 − 32140.
+−→
+A LGORITHM 4.3: DPM Π2 from Zn to Sn+1
+2
+Input: b = (b0 , . . . , bn−1 ) ∈ Zn
+2
+Output: σ = (σ0 , . . . , σn ) ∈ Sn+1
+σ (−1) ← (0, 1, . . . , n)
+for i from 0 to n − 1
+σ (i) ← σ (i−1)
+for j from 0 to i + 1
+(i)
+(i−1)
+σj ← σj
++ bi mod (i + 2)
+Proposition 4.4: Π2 is a DPM from Zn to Sn+1 , that is for
+2
+b, b ∈ Zn , d(Π2 (b), Π2 (b )) ≥ d(b, b ).
+2
+Before providing the proof of the proposition we determine
+the output of the mapping Π2 as a nonrecursive function of the
+input bits bi , i = 0, . . . , n − 1. For brevity of the exposition,
+we introduce the notation [a]p to denote a mod p. Recall that
+the binary vector b is considered as a {0, 1}-vector over R.
+
+[i − 1 + bi−2 ]i +
+
+bl = [i − 1 + bi−2 ]i +
+l≥i−1
+
+bl . (1)
+l≥i−1
+
+We consider the different possibilities of bi−2 and bi−2 . If
+bi−2 = bi−2 then (1) results in ∆i = 1, a contradiction to
+i = −∆i . Similarly, one obtains contradictions for other values
+of bi−2 and bi−2 . Finally, we show by induction that if bi+j =
+bi+j , j = 0, . . . , k − 1, then σi+j = σi+j for at least k terms
+of j ∈ {0, . . . , k}. The case k = 1 is proved above. Assume
+it is true for any k − 1 consecutive bi+j ’s. The only nontrivial case we need to consider is if σi = σi and σi+k =
+σi+k . We claim this is not possible. Suppose σi+k = σi+k .
+Then using bl−1 − bl−1 ∈ {−1, 0, 1}, for l = 1, . . . , n, we
+write σl − σl = −(bl−1 − bl−1 )l + ∆l . Using σi+k − σi+k =
+−(bi+k−1 − bi+k−1 )(i + k) + ∆i+k = 0, we get σi − σi =
+−(bi−1 −bi−1 )i+∆i −∆i+k−1 +(bi+k−1 −bi+k−1 )(i+k +1).
+Since | − (bi−1 − bi−1 )i + ∆i − ∆i+k−1 | ≤ i + k − 1 and the
+last term of σi − σi is ±(i + k + 1), we get σi = σi .
+A. Estimating the bits from the permutation vector
+In this section we consider a method to estimate the
+bits from the permutation vectors, with low complexity. The
+estimated bits can then be provided to the decoder of the
+binary code for further processing. The main idea behind the
+estimation method is the following lemma.
+Lemma 4.6: Let Π2 (b) = σ. The difference between any
+two coordinates σi , σj for j > i satisﬁes
+σi − σj
+
+> 0,
+< 0,
+
+if bj−1 = 1,
+if bj−1 = 0.
+
+Proof: We get,
+j−2
+σi − σj = [i + bi−1 ]i+1 + l=i bl + bj−1 − [j + bj−1 ]j+1 .
+The statements in the lemma follow from the observation that
+j−2
+[i + bi−1 ]i+1 + l=i bl ≤ j − 1.
+Let the received vector from the channel be denoted by
+y ∈ {Zn+1 ∪ ε}n+1 . By Lemma 4.6, it is clear that the
+simplest estimation algorithm will consider a pair of distinct
+coordinates yi , yj and determine bj−1 from their difference.
+This can lead to erroneous estimation if either of the two
+coordinates are in error. However, correct estimation of bj−1
+is guaranteed if both the coordinates are correct. If yj = ε,
+then bj−1 can not be determined from yj and we set ˆj−1 = ε.
+b
+Algorithm 4.7 below describes the procedure.
+The term t > 0 in the algorithm corresponds to performing
+a majority vote for the estimate ˆj for each j = 0, . . . , n − 1.
+b
+Algorithm 4.7 requires at most n(n + 1) additions and subtractions, and 3n + n (n + 1) comparisons. By restricting |Lj |
+2
+
+Lemma 4.5: If Π2 (b) = σ = (σ0 , . . . , σn ), then
+σ0 = b0 + · · · + bn−1 ,
+σl = [l + bl−1 ]l+1 + bl + · · · + bn−1 , l = 1, . . . , n.
+Proof: The output of the mapping Π2 is given by
+σ0 = [· · · [[b0 ]2 + b1 ]3 + · · · + bn−1 ]n+1 ,
+σl = [· · · [[l + bl−1 ]l+1 + bl ]l+2 + · · · + bn−1 ]n+1 , l > 0.
+For any l = 1, . . . , n, we have that [l + bl−1 ]l+1 ≤ l and hence
+[l + bl−1 ]l+1 + bl ≤ l + 1. This implies [[l + bl−1 ]l+1 + bl ]l+2 =
+[l+bl−1 ]l+1 +bl , that is, we can remove the modulo operation.
+Similarly, the modulo operations by l + 3, . . . , n + 1 can be
+removed. The same argument shows that σ0 can be obtained
+by adding up the bits over R.
+Proof of Proposition 4.4: Let b = (b0 , . . . , bn−1 ) and
+b = (b0 , . . . , bn−1 ), be {0, 1}-vectors over R. Suppose bi−1 =
+
+3
+
+σ (−1) ← (0, 1, . . . , 2n)
+for i from 0 to n − 1
+σ (i) ← σ (i−1)
+(i)
+(i)
+σ2i+1 ← [2i+1+si ]2i+3 , σ2(i+1) ← [2(i+1)+si ]2i+3
+for j from 0 to 2i
+(i)
+(i−1)
+σj ← [σj
++ si ]2i+3
+
+to at most a constant number, say , the number of additions
+and subtractions can be reduced to at most 2 n, at the cost of
+less reliable estimate of the bits in the higher indices. If the
+number of errors and erasures are small then one can expect
+the above algorithm to perform well even for small |Lj |.
+ˆ
+A LGORITHM 4.7: Estimating the binary vector b from y
+n+1
+Input: y = (y0 , . . . , yn ) ∈ {Zn+1 ∪ ε}
+ˆ
+Output: b = (ˆ0 , . . . , ˆn−1 ) ∈ {Z2 ∪ ε}n
+b
+b
+L0 ← φ, the empty set
+for j from 1 to n
+Lj ← Lj−1 ∪ {j − 1 : yj−1 = ε}
+if yj = ε then ˆj−1 ← ε
+b
+else t ← 0
+for each l in Lj
+if yl − yj > 0 then t ← t + 1
+else t ← t − 1
+if t > 0 then ˆj−1 ← 1
+b
+elseif t < 0 then ˆj−1 ← 0
+b
+else ˆj−1 ← ε
+b
+
+To prove that the mapping Π3 is a DPM we use an analog
+of Lemma 4.5 to express the coordinates σi in the output σ
+nonrecursively in terms of the input symbols s0 , . . . , sn−1 .
+Lemma 5.3: Let Π3 (s) = σ. Then for all i = 0, . . . , n − 1,
+σ0 = s0 + · · · + sn−1 ,
+σ2i+1 = [2i + 1 + si ]2i+3 + si+1 + · · · + sn−1 ,
+σ2(i+1) = [2(i + 1) + si ]2i+3 + si+1 + · · · + sn−1 .
+Using this lemma, we can prove the following proposition.
+Proposition 5.4: The mapping Π3 from Zn to S2n+1 is a
+3
+DPM, that is, d(Π3 (s), Π3 (s )) ≥ d(s, s ).
+Idea of Proof: We ﬁrst show that si = si implies that either
+at least one of σ2i+j − σ2i+j , j = 1, 2 is nonzero, or if both
+are zero then σ2i = σ2i . In the latter case, if we additionally
+have si−1 = si−1 then we show that σ2i−1 = σ2i−1 .
+
+B. Estimating bits on an erasure channel
+The above algorithm simpliﬁes signiﬁcantly on an erasure
+channel. Using |Lj | = 1 is sufﬁcient to guarantee that the
+ˆ
+number of erasures in the estimated bits b is at most the
+number of erasures in the received symbols y. In addition,
+if the symbol 0 of Sn+1 is present in the received vector
+y, then one can immediately estimate all the succeeding bits
+correctly, irrespective of the received values from the channel.
+This observation is formalized in the following lemma.
+
+A. Estimating the ternary symbols from the permutation vector
+The estimation of the ternary symbols from the received
+vector is, not surprisingly, more computationally intensive than
+the corresponding one in Section IV-A.
+Lemma 5.5: Let Π3 (s) = σ. The differences between the
+symbols {σ2i+1 , σ2(i+1) } and {σ2j+1 , σ2(j+1) } for j > i
+satisﬁes the following conditions. For l ∈ {2i + 1, 2(i + 1)},
+
+Lemma 4.8: Let b ∈ Zn and let σ = Π2 (b). If σj = 0, then
+2
+bj−1 = 1 and bl = 0 for all l ≥ j.
+Proof: If σj = 0 then we have [j + bj−1 ]j+1 + bj + · · · +
+bn−1 = 0 over the reals. This can be achieved only when
+bj−1 = 1 and bj = · · · = bn−1 = 0.
+In the following section we describe how to extend the
+algorithms in this section to a DPM from ternary vectors to
+permutations.
+
+σl − σ2j+1
+
+< 0,
+> 0,
+
+if sj ∈ {0, 1},
+if sj = 2,
+
+σl − σ2(j+1)
+
+< 0,
+> 0,
+
+if sj = 0,
+if sj ∈ {1, 2}.
+
+Proof: We show the proof for only the case σ2i+1 −σ2j+1
+since the other cases are similar. Using Lemma 5.3 we get
+j−1
+
+V. DPM FROM TERNARY VECTORS TO PERMUTATIONS
+
+σ2i+1 −σ2j+1 = [2i+1+si ]2i+3 +
+
+Consider a DPM from ternary vectors in Zn to permutation
+3
+vectors in S2n+1 . For a ternary vector s = (s0 , . . . , sn−1 ),
+the element si permutes the ﬁrst 2i + 3 coordinates of the
+permutation vector. As in the previous section, the construction
+is recursive and the ﬁnal permutation vector also affords a
+nonrecursive representation in terms of the ternary digits. We
+describe the algorithm below. Let the mapping be denoted by
+Π3 and consider the ternary digits as elements of the real ﬁeld
+R for all the operations below. We ﬁrst illustrate this algorithm
+by an example below.
+
+sl +sj −[2j+1+sj ]2j+3 .
+l=i+1
+
+For sj ∈ {0, 1}, we get [2j + 1 + sj ]2j+3 = 2j + 1 + sj . Since
+j−1
+[2i + 1 + si ]2i+3 + l=i+1 sl ≤ 2i + 2 + 2(j − 1 − i) = 2j,
+we get that the RHS of the above equation is strictly negative.
+For sj = 2, we get [2j + 1 + sj ]2j+3 = 0 and hence the RHS
+is always strictly positive.
+This lemma suggests the following algorithm to
+determine the ternary symbol sj . Let y = (y0 , . . . , y2n )
+in {Z2n+1 ∪ ε}2n+1 be the received vector. For l < 2j + 1, if
+yl , y2j+1 , y2j+2 are not erasures then we take the differences
+yl − y2j+1 and yl − y2(j+1) and declare sj = 0 if both the
+differences are negative, sj = 2 if both the differences are
+positive, and sj = 1 otherwise. We formalize this procedure
+in the following algorithm. This algorithm corresponds to
+Algorithm 4.7 of Section IV-A.
+
+E XAMPLE 5.1: We map 121 to 4531260 using Π3 as
+s =1
+s =2
+s =1
+−→
+−→
+follows. 0123456 −0− 1203456 −1− 3420156 −2−
+−→
+4531260.
+A LGORITHM 5.2: DPM Π3 from Zn to S2n+1
+3
+Input: s = (s0 , . . . , sn−1 ) ∈ Zn
+3
+Output: σ = (σ0 , . . . , σ2n ) ∈ S2n+1
+
+4
+
+A LGORITHM 5.6: Estimate ternary symbols from y
+Input: y = (y0 , . . . , y2n ) ∈ {Z2n+1 ∪ ε}2n+1
+ˆ
+Output: s = (ˆ0 , . . . , sn−1 ) ∈ {Z3 ∪ ε}n
+s
+ˆ
+L0 ← φ, the empty set
+for j from 1 to n
+Lj ← Lj−1 ∪ l : yl = ε, l ∈ {2(j − 1), 2(j − 1) − 1}
+if y2j = ε or y2j−1 = ε then sj−1 ← ε
+ˆ
+else
+t = (t0 , t1 , t2 ) ← (0, 0, 0)
+for each l in Lj
+p = (p0 , p1 ) ← (yl − y2j−1 , yl − y2j )
+if p0 < 0 and p1 < 0 then t0 ← t0 + 1
+elseif p0 < 0 and p1 > 0 then t1 ← t1 + 1
+elseif p0 > 0 and p1 > 0 then t2 ← t2 + 1
+if t = (0, 0, 0) then sj−1 ← ε
+ˆ
+else sj−1 ← arg max tl : l ∈ {0, 1, 2}
+ˆ
+The maximum sum of the sizes of Lj is bounded as
+n
+2
+j=1 |Lj | ≤ 1 + 3 + · · · + 2n − 1 = n . Hence the maximum
+number of comparisons required is 8n+6n2 , and the maximum
+number of subtractions and additions required is 3n2 . Using
+at most a constant size of |Lj | ≤ leads to less computations,
+at the loss of reliability of the symbols in the higher indices.
+
+100
+
+Performance of the maps using BCH code [n,k,d]q
+
+Π0 ,[7,3,4]2
+Π1 ,[7,3,4]4
+Π2 ,[7,3,4]2
+Π3 ,[8,3,5]3
+
+Symbol error and erasure rate
+
+10-1
+10-2
+10-3
+10-4
+10-5
+10-6 0
+10
+
+Fig. 1.
+
+10-1
+10-2
+Probability of background noise
+
+10-3
+
+Symbol error and erasure rates under background noise
+
+mappings was to implement simple estimation algorithms in
+the permutation space and provide the estimated digits to
+the q-ary code where efﬁcient decoding algorithms can be
+implemented. Since the length N = q + Q(n − 1), Q =
+log2 q , the information rate of the codes decreases by a
+factor of approximately 1/ log2 q for all the algorithms.
+We believe that it should be possible to generalize the map
+Π3 from ternary vectors to the permutation space to a DPM
+Πq : Zn → SN , by using an additional Q symbols at
+q
+every iteration of the DPM. Hence we have the following:
+Conjecture: Map (s0 , . . . , sn−1 ) to (σ0 , . . . , σN −1 ) by Πq :
+σ (0) ← ([0+s0 ]q , . . . , [q−1+s0 ]q , q, . . . , q+Q(n−1)−1)
+for i from 0 to n − 2
+σ (i+1) ← σ (i)
+(i+1)
+(i)
+σj
+← [σj + si+1 ]Q(i+1)+q , j ≤ q + Q(i + 1) − 1.
+Then Πq is a DPM.
+
+B. Estimating ternary symbols on an erasure channel
+An analog of Lemma 4.8 allows us to adopt a simpler
+decoding procedure in an erasure channel.
+Lemma 5.7: Let s ∈ Zn , σ = Π3 (s). If σ2i+1 = 0 or
+3
+σ2(i+1) = 0 then si = 2 or si = 1, resp., and sj = 0, j > i.
+Remark: If the demodulator can provide soft information on
+the reliability of the symbols, then Algorithms 4.7 and 5.6 can
+be simpliﬁed by ﬁxing |Lj | = 1 and retaining only the most
+reliable symbol from the received symbols at step j.
+VI. S IMULATIONS
+We consider the PLC channel with M -FSK modulation and
+with only background noise, for simplicity. The transmitted
+word is represented as an M × M {0, 1}-matrix, where M
+is the length of the permutation. A 1 in the i-th row and jth column indicates that the permutation symbol i is sent at
+time j. Since we are considering hard decision decoding, we
+simulate background noise by ﬂipping the value of any entry
+of the matrix with a probability p. The codewords are chosen
+at random from BCH codes over the ﬁnite ﬁelds Fq for q =
+2, 3, 4. For the maps Π0 , Π1 , the permutation symbol at time
+i is taken to be i + 1 if the (i + 1, i)-th entry of the received
+matrix is 1; it is assumed ε if all entries (j, i), j ≤ i are
+0; otherwise it is assumed j if any (j, i)-th entry is 1 for
+j ≤ i. For maps Π2 , Π3 we set the permutation symbol at
+time i to ε if the column i does not contain exactly one 1.
+Fig. 1 shows the symbol error and erasure rate of the different
+estimation algorithms, after decoding the estimated symbols
+with a bounded distance error and erasure decoder.
+
+VIII. ACKNOWLEDGEMENT
+We thank the anonymous referees for their careful reading of
+the paper, and for their suggestions, which helped us improve
+the presentation of the paper.
+R EFERENCES
+[1] R. F. Bailey, “Error-correcting codes from permutation groups”, Discrete
+Math. vol. 309, pp. 4253–4265, 2009.
+[2] I. F. Blake, G. Cohen and M. Deza, “Coding with permutations”, Inf.
+and Contr., vol. 43, pp. 1–19, 1979.
+[3] J. C. Chang, “Distance-increasing mappings from binary vectors to
+permutations that increase hamming distances by at least two”, IEEE
+Trans. Inf. Theory, vol. 52, pp. 1683–1689, April 2006.
+[4] S. Huczynska, “Powerline communication and the 36 ofﬁcers problem”,
+Phil. Trans. R. Soc. A, vol. 364, pp. 3199–3214, 2006.
+[5] K. Lee, “Distance-increasing maps of all lengths by simple mapping
+algorithms”, IEEE Trans. Inf. Theory, vol. 52, pp. 3344–3348, July 2006.
+[6] J. Lin, J. Chang, R. Chen, T. Kløve, “Distance-preserving and distanceincreasing mappings from ternary vectors to permutations”, IEEE Trans.
+Inf. Theory, vol. 54, pp. 1334–1339, March 2008.
+[7] T. G. Swart and H. C. Ferreira, “Decoding distance-preserving permutation codes for power-line communications”, Africon 2007, pp. 1–7.
+[8] A. J. H. Vinck, “Coded modulation for power line communications”,
+AEU Int. J. of Elec. and Comm., vol. 54, pp. 45–49, January 2000.
+
+VII. D ISCUSSION AND C ONCLUSION
+We provided several different mappings from q-ary vectors
+in Zn to permutations in SN . The main focus of using such
+q
+
+5
+
+

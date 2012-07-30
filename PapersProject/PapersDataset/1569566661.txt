@@ -1,0 +1,851 @@
+Title:          locality.dvi
+Creator:        www.freepdfconvert.com         
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Fri May 18 13:23:44 2012
+ModDate:        Tue Jun 19 12:54:47 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      364494 bytes
+Optimized:      no
+PDF version:    1.7
+ISIT'2012 1569566661
+
+Degree-guided Map-Reduce Task Assignment
+with Data Locality Constraint
+Qiaomin Xie, Yi Lu
+Department of Electrical and Computer Engineering
+University of Illinois at Urbana-Champaign
+qxie3,yilu4@illinois.edu
+
+systems operate in today, the Random Server algorithm results
+in unnecessary delay of tasks.
+In this paper, we propose a degree-guided task assignment algorithm that signiﬁcantly outperforms the Random
+Server algorithm at light to medium load. We analyze the
+degree-guided algorithm and the Random Server algorithm
+in a discrete-time model using evolution of random graphs.
+We show that the degree-guided algorithm has the same
+performance as the optimal maximum matching algorithm
+below a threshold, and converges to that of the Random
+Server algorithm at high load. We characterize the thresholds
+below which no queueing takes place for both algorithms.
+The degree-guided algorithm experiences queueing at a higher
+load than the Random Server algorithm and has a signiﬁcantly
+higher effective service rate in the region of light to medium
+load. The performance characteristics are further veriﬁed with
+simulation in continuous time.
+
+Abstract—The map-reduce framework is used in many dataintensive parallel processing systems. Data locality is an important problem with map-reduce as tasks with local data complete
+faster than those with remote data. We propose a degreeguided task assignment algorithm, which uses very little extra
+information than the currently implemented Random Server
+algorithm. We analyze a simple version of the degree-guided
+algorithm, called Peeling algorithm, and the Random Server
+algorithm in a discrete-time model using evolution of random
+graphs. We characterize the thresholds below which no queueing
+takes place and compute the effective service rates for both
+algorithms. The degree-guided algorithm achieves the optimal
+performance in the region of practical interest and signiﬁcantly
+outperforms the Random Server algorithm. The performance
+characteristics derived from discrete time model are conﬁrmed
+with simulation in continuous time.
+
+I. I NTRODUCTION
+Cluster computing systems, such as MapReduce [1] and
+Hadoop [2], have become a popular framework for dataintensive applications. Large clusters consisting of tens of
+thousands of machines [3] have been built for web indexing
+and searching; small and mid-size clusters have also been built
+for business analytics and corporate data warehousing [4]. In
+clusters of all sizes, throughput and job completion time are
+important metrics for computation efﬁciency.
+To facilitate parallel computation, a ﬁle is divided into
+many small chunks. Each chunk is replicated three times by
+default and placed on different servers. The default number is
+determined based on availability concerns [5]: The ﬁrst chunk
+is placed on a randomly chosen server; the second chunk is
+placed on a random server in the same rack to protect against
+server failures, and the third chunk is placed on a random
+server outside the rack to protect against rack failures. When a
+task is placed on a server where data are not locally available,
+it will need to retrieve data from one of the remote servers
+hosting the replicas. This increases the completion time of the
+task. As a result, placing tasks as close as possible to data is
+a common practice of data-intensive systems, referred to as
+the data locality problem [1].
+Data locality is an important problem as it signiﬁcantly
+affects system throughput and job completion times. The
+current scheduling algorithms in Hadoop are based on the
+Random Server algorithm [6], which depends on a large
+number of outstanding tasks to achieve high data locality. As
+a result, with light to medium load, which is the region online
+
+This paper is organized as follows. In Section II, we
+describe the algorithms and the model used for analysis.
+Section III derives the mean-ﬁeld model of the assignment
+procedure for a single time slot. We show the performance
+of the Random Server algorithm and the Peeling algorithm
+over one time slot in Section IV. Section V characterizes the
+ﬁxed points and the thresholds below which no queueing takes
+place for both algorithms. We evaluate these two algorithms
+via simulation in continuous time in Section VI.
+II. A LGORITHM D EFINITION
+A. Discrete-time Model
+Consider a discrete-time model for a system with m parallel
+servers. At the beginning of each time slot, a constant number
+of tasks arrive at the system. Each task processes one ﬁle
+chunk, which is replicated d times and placed on d randomly
+selected servers.
+The placement of data can be modelled by bipartite graphs
+G with n task nodes and m server nodes, as illustrated in Fig.
+1. An edge between task node i and server node j indicates
+the presence of data for task i on server j. And we deﬁne the
+degree of a server node as the number of unassigned tasks
+that have data on it. In particular, we consider the default data
+replication scheme of 3 replicas for each data chunk, i.e, d =
+3. The scheme can be easily extended to a variable number
+of replicas for different data chunks, as proposed in [3], [7].
+
+1
+
+Deﬁnition 1: Degree Distributions from A Node Perspective. Given a graph G with n task nodes and m server
+nodes, let Li denote the number of task nodes of degree i,
+i = 0, 1, · · · , lmax , and Rj the number of server nodes of
+degree j, j = 0, 1, · · · , rmax , where lmax and rmax are the
+largest degree of task nodes and server nodes respectively.
+So
+i Li = n and
+i Ri = m. The degree distributions
+from a node perspective are deﬁned by the pair (L, R), where
+L = {L0 , L1 , · · · , Llmax } and R = {R0 , R1 , · · · , Rrmax }.
+
+1
+1
+
+2
+3
+
+2
+
+4
+5
+
+Fig. 1.
+
+Example of a random graph with n = 2, m = 5, d = 3.
+
+Deﬁnition 2: The Standard Ensemble G(L, R). Given
+the degree distributions (L, R), we deﬁne an ensemble of
+bipartite graphs G(L, R) in the following way. Each graph
+in G(L, R) has the degree distributions (L, R). As a node of
+degree i has i sockets from which the i edges emanate, there
+are a total of i iLi = j jRj sockets on each side. Label
+the sockets on each side with numbers {1, · · · , i iLi }. Let
+σ be a permutation on {1, · · · , i iLi }, and associate σ to
+a bipartite graph by connecting the j-th socket on the task
+nodes to the σ(j)-th socket on the server nodes. We deﬁne a
+probability distribution over the set of graphs by placing the
+uniform probability distribution on σ. The deﬁnition is the
+same as the standard ensemble for LDPC codes [8], pg 78.
+
+Assume that each server can process only one task at any
+time. Task assignment is performed at the beginning of a
+slot. All tasks are assigned unless there are no more idle
+servers, and the remaining tasks are kept in a queue. For a
+task assigned to a server with its data, the service time is
+assumed to follow geometric distribution with parameter p,
+and the parameter is q for tasks processed at servers without
+its data, where q < p. We refer to servers serving tasks with
+local data as p-server and servers serving tasks without local
+data as q-server.
+B. Algorithm Description
+We consider the following two algorithms.
+1. Random Server algorithm: Whenever there are outstanding tasks in the system, an idle server is chosen randomly.
+If there exist multiple tasks whose data is replicated on this
+server, one task is uniformly selected from the set. Otherwise,
+this server is assigned for a randomly selected task. This
+models the FIFO scheduler currently used in Hadoop clusters
+[2], [7], which assigns tasks following exactly the same rule.
+2. Degree-guided algorithm: An idle server with the least
+non-zero degree is sampled if outstanding tasks are present.
+And this server is assigned for a task that’s randomly selected
+from all of its connected tasks. When all idle servers are of
+degree 0, a server is selected randomly for a random task.
+The least non-zero degree of the selected server ensures that
+the task is assigned to a p-server. In addition, it maintains
+the connections of unassigned tasks to the remaining idle
+servers to the utmost extend, which increases the probability
+of assigning these tasks to p-servers.
+In this paper, we consider a simple version of the degreeguided algorithm, called Peeling algorithm. With the Peeling
+algorithm, an idle server that has local data for only one outstanding task is assigned to this task. The procedure continues
+until no server of degree 1 exists, which is referred to as the
+peeling stage. Then the assignment procedure continues with
+the Random Server algorithm, which is called the random
+stage. Note that the Peeling algorithm is equivalent to the
+degree-guided algorithm until the peeling stage stops.
+
+We model the assignment procedure as an evolution of the
+random graph ensemble. Let s ∈ N denote the assignment
+step, which starts at zero and increases by one for every task
+assigned. At each step, all edges connected to the selected
+server and those connected to the assigned task are removed
+from the graph. This procedure results in a sequence of residual graphs, denoted by G(L(s), R(s)), where (L(s), R(s))
+are the degree distributions of unsigned tasks and remaining
+idle servers at step s. No edge is left at the end of the
+assignment as either all tasks are assigned or no idle server
+remains. Consider a system with n unassigned tasks and k
+(0)
+idle servers before the assignment (k ≤ m). Then Lin
+(0)
+k
+follows a binomial distribution B(d, m ) and Rik a binomial
+1
+distribution B(dn, m ) truncated at rmax . Hence lmax = d
+and we can set rmax a ﬁxed constant as there is a limited
+amount of storage space on each server. Let Mp (s) and Mq (s)
+denote the increased numbers of p-servers and q-servers at
+s
+the end of step s respectively. Deﬁne the scaled time τ = w ,
+where w = nd denotes the total number of edges in the initial
+M (wτ )
+graph. Let γi (τ ) = Ri (wτ ) , li (τ ) = Li (wτ ) , mp (τ ) = pw ,
+w
+w
+Mq (wτ )
+mq (τ ) =
+, which together determine the assignment
+w
+path for a single slot. We obtain the following theorem. Full
+proof can be found in [9].
+Theorem 1: Evolution of Residual Graph for the Assignment Algorithms. The expected assignment paths of the
+two algorithms are described by the two sets of differential
+equations respectively: Random Server algorithm:
+
+III. M EAN - FIELD M ODEL FOR A S INGLE T IME S LOT
+We need the following deﬁnitions to derive the mean-ﬁeld
+models for the Random Server algorithm and the Peeling
+algorithm. In this section, we focus on the analysis of these
+two algorithms over one time slot.
+
+dli (τ )
+l i γ0
+=−
++
+dτ
+v(τ )c(τ )
+for 0 ≤ i ≤ lmax − 1
+
+2
+
+j≥1
+
+γj (j − 1)(i + 1)li+1 − jili
+,
+c(τ )
+e(τ )
+(1)
+
+dγi (τ )
+dτ
+
+γi
+γ0
++ [(i + 1)γi+1 − iγi ][
+c(τ )
+v(τ )c(τ )
+s(s − 1)ls
+γ0
+s≥1
++ (1 −
+)
+],
+c(τ )
+e2 (τ )
+for 0 ≤ i ≤ rmax − 1
+(2)
+
+We sketch the proof of Theorem 2 here and full proof can
+be found in [9]. Note that the evolution of the assignment
+procedure only depends on the degree distribution of tasks
+nodes and servers nodes, and the sequence of idle servers
+sampled. The random selection of idle servers, it makes no
+difference to determine the sequence of idle servers sampled
+In before the assignment. Then restrict the original graph to
+the tasks nodes and In , denoted by G . With In ﬁxed, σp is
+determined by G , which has the same degree distributions
+for different fi . Hence the resulting σp is the same.
+
+= −
+
+dmp (τ )
+γ0
+=1−
+dτ
+c(τ )
+
+and
+
+dmq (τ )
+γ0
+=
+dτ
+c(τ )
+
+where v(τ ) =
+j lj (τ ), c(τ ) =
+jlj (τ ) = j jγj (τ ).
+j
+
+j
+
+(3)
+
+γj (τ ), and e(τ ) =
+
+i
+
+fraction of p−server assigned σ (r,f )
+
+Peeling algorithm:
+
+dγi (τ )
+dτ
+mp (τ )
+
+=
+=
+
+ili
+, for 2 ≤ i ≤ lmax − 1, (4)
+j jlj (τ )
+(k − 1)klk
+(2γ2 − γi )
+− 1,
+(5)
+j jlj (τ )
+−
+
+k
+
+(k − 1)klk
+,
+j jlj (τ )
+
+=
+
+((i + 1)γi+1 − iγi )
+
+=
+
+for 2 ≤ i ≤ rmax − 1,
+τ and mq (τ ) = 0
+
+k
+
+1
+Random fi=1
+
+p
+
+dli (τ )
+dτ
+dγ1 (τ )
+dτ
+
+(6)
+(7)
+
+0.8
+
+Peeling fi=1
+Peeling f =0.75
+i
+
+0.6
+
+Peeling fi=0.5
+Peeling fi=0.25
+Matching f =1
+i
+
+0.4
+0.2
+0
+0
+
+0.2
+
+0.4
+
+0.6
+
+0.8
+
+1
+
+r=n/m
+
+Plots of σp (r, fi ) with d = 3, for the Random Server
+algorithm and the Peeling algorithm with different fraction of idle
+servers, fi , at the beginning of the assignment process.
+Fig. 2.
+
+where v(τ ), c(τ ) and e(τ ) are deﬁned as above.
+√
+dn
+1
+With probability at least 1 − O(n 6 e− c3 ), the assignment
+path of a speciﬁc instance has maximum L1 -distance from
+1
+the expected assignment path at most O(n− 6 ) from the start
+of the process until either the total number of nodes in the
+residual graph has reached size ηn, where η is an arbitrary
+strictly positive constant, or the algorithm gets stuck.
+
+First, we show that for the Random Server algorithm, the
+function σp (r, fi ) does not depend on the fraction of idle
+servers available at the beginning of the slot, so long as all
+tasks are assigned eventually.
+
+Figure 2 shows the plots of σp (r) for the Random Server
+algorithm and the plots of σp (r, fi ) for the Peeling algorithm
+M (n)
+can
+with different values of fi . Note that σp (r, fi ) = p
+m
+be obtained by solving the differential equations in Theorem
+1 numerically. At the same load, the increased fraction of pservers by the Peeling algorithm is larger than the Random
+Server algorithm.
+Note that for Peeling algorithm with fi = 1, there exists
+an obvious point for r, above which σp (r, fi ) decreases
+before increases again. Below the threshold, γ1 (τ ) > 0 for
+1 fi
+τ ∈ [0, min{ d , dr }]. That is, servers of degree-1 are available
+throughout the assignment procedure so the peeling stage
+doesn’t stop. Hence σp (r, fi ) = min{r, fi }, which equals r if
+r < fi . With fi < 1, however, some tasks are only connected
+to occupied servers, which will result in the emergence of
+random stage and hence decrease σp .
+We also observe that σp (r) increases monotonically for the
+Random Server algorithm. We have the theorem below.
+Theorem 3: Monotonicity. Consider the Random Server
+algorithm for a system with m servers and n = mr tasks
+arriving. Let fi = 1 and r < fi . Then the increased fraction
+of p-servers, σp (r), strictly increases with r.
+The idea of proof for Theorem 3 is induction. We show that
+n
+σp ( m ) < σp ( n+1 ) for n, m ∈ N using coupling. For detailed
+m
+proof, please refer to [9].
+
+Theorem 2: Independence of fi . Consider the Random
+Server algorithm for a system with m servers and n = mr
+unassigned tasks. Let the fraction of servers be (fi , fp , fq )
+before the assignment. If r < fi , the increased fraction of
+p-servers, σp (r, fi ), is independent of fi .
+
+B. Comparison with maximum matching
+The objective of task assignment is to assign as many tasks
+as possible to a server with local data, which is a matching
+problem. The following theorem shows the performance of
+the maximum matching algorithm, which is optimal.
+
+By solving these differential equations, we can obtain the
+expected increased fractions of p-servers and q-servers after
+the assignment, which provide an efﬁcient way to evaluate the
+performance of these two algorithms.
+IV. P ERFORMANCE
+
+FOR
+
+A S INGLE T IME S LOT
+
+Let (fi , fp , fq ) denote the fraction of idle servers, pservers and q-servers at the beginning of a time slot, hence
+fi , fp , fq ∈ [0, 1] and fi + fp + fq = 1. We ﬁrst show
+M (n)
+the property of function σp (r, fi ) = p , which denotes
+m
+the increased fraction of p-servers at the end of assignment
+n
+process for a system with m = r and fi percent of idle servers
+before the assignment. We then evaluate the performance of
+the two algorithms against the maximum matching, which is
+optimal.
+A. Properties of the function σp (r, fi )
+
+3
+
+Theorem 4: [10] Consider a system where n, m → ∞ with
+n
+r = m ﬁxed and each task has its data on d randomly selected
+servers. Let y be the unique solution to the equation:
+d=
+
+y(1 − e−y )
+1 − e−y − ye−y
+
+With the geometric distribution for the service time, a task
+leaves a p-server with probability p and leaves a q-server with
+probability q, we have
+πi
+πp
+
+y
+and r∗ = d(1−e−y )d−1 . If r ≤ r∗ , all tasks are assigned to
+p-servers; if r ≥ r∗ , proportion of p-servers assigned is:
+z
+σp → r + 1 − e−z − ze−z − (1 − e−z )
+(9)
+d
+where z = drx and x is the largest solution to
+
+x = (1 − e
+
+−drx d−1
+
+)
+
+=
+=
+
+πi + πp p + πq q,
+ˆ
+ˆ
+ˆ
+πp (1 − p),
+ˆ
+
+πq
+
+(8)
+
+=
+
+πq (1 − q).
+ˆ
+
+Solving the equations, we obtain
+πi = g(πi ) + r.
+To ensure all tasks assigned, we need πi > r, which yields
+Eq. (11). Substituting πi in the above equations yields the
+ﬁxed point.
+Remark. For the Random Server algorithm with πi > r,
+Theorem 2 indicates that σp (r, πi ) only depends on r. So the
+computation of its ﬁxed point can be simpliﬁed.
+
+(10)
+∗
+
+For the case of d = 3, we obtain r = 0.918. The
+performance of maximum matching is showed in Fig. 2. We
+can see that with all servers idle initially, the Peeling algorithm
+achieves the optimal performance as maximum matching, if
+r is below the threshold for the emergence of the random
+stage. And the improvement of the Peeling algorithm over the
+Random Server algorithm is signiﬁcant. Above the threshold,
+the Peeling algorithm deteriorates from the optimal matching,
+but still performs better than the Random Server algorithm.
+We have the following lemma.
+Lemma 1: The Peeling algorithm achieves the performance
+of optimal matching when the load for the system is below
+the threshold for the emergence of the random stage.
+
+A. Queueing threshold
+From Theorem 5, we can deﬁne the threshold for queueing.
+Deﬁnition 3: Threshold for Queueing. We deﬁne the
+threshold of load below which no queueing takes place as
+ρ∗ (p, q) =
+
+sup {r ∈ [0, 1] : πi = g(πi ) + r and g(πi ) > 0}
+.
+p
+1
+
+g(πi ) = 1 −
+
+0.8
+0.6
+Random Server
+Peeling
+
+*
+
+Threshold ρ for queueing
+
+V. F IXED P OINT C HARACTERIZATION
+In this section, we characterize the ﬁxed points of the
+system evolution when the load is below the threshold that
+no task remains in the queue after the assignment.
+n
+Consider a system with r = m ﬁxed and n, m → ∞ .
+Let (πi , πp , πq ) denote the equilibrium values of (fi , fp , fq )
+before the assignment without tasks queueing, and (ˆi , πp , πq )
+π ˆ ˆ
+the equilibrium values after the assignment.
+Theorem 5: Fixed point characterization. For both the
+Random Server algorithm and the Peeling algorithm, deﬁne
+
+0.4
+0.2
+0
+0
+
+0.2
+
+0.4
+q
+
+0.6
+
+0.8
+
+Fig. 3. Threshold for queuing for the Random Server algorithm and
+
+σp (r, πi ) r − σp (r, πi )
+−
+,
+p
+q
+
+the Peeling algorithm with p = 0.8.
+
+By solving the mean ﬁelds equations in Theorem 1, we
+obtain a table of σp (r, fi ). With the values of σp (r, fi ), we
+can obtain the queueing threshold ρ∗ . For instance, with
+∗
+πi = g(πi ) + r and g(πi ) > 0.
+(11) p = 0.8 and q = 0.4, ρ = 0.695 for the Random Server
+∗
+algorithm and ρ = 0.765 for the Peeling algorithm. Fig. 3
+And the ﬁxed point is
+plots the thresholds for these two algorithms against q with
+p = 0.8. It shows that with the same p and q, the threshold
+(1 − p)σp (r, πi ) (1 − q)(r − σp (r, πi ))
+(πi , πp , πq ) = πi ,
+,
+, under the Random Server algorithm is smaller than that under
+p
+q
+the Peeling algorithm. In addition, the thresholds for both
+σp (r, πi ) r − σp (r, πi )
+algorithms increase to 1 as q increases towards p, since the
+(ˆi , πp , πq ) = g(πi ),
+π ˆ ˆ
+,
+.
+p
+q
+system behaves as a homogeneous system when q almost
+Proof. With n = mr and no tasks in the queue, at the ﬁxed equals p.
+point, all n tasks are assigned, which yields the following:
+B. Effective mean service rate
+πp = πp + σp (r, πi ),
+ˆ
+We deﬁne the effective mean service rate µe as
+πq = πq + r − σp (r, πi ),
+ˆ
+n
+λ
+µe =
+=
+,
+(12)
+πi = πi − r.
+ˆ
+mπp + mπq
+πp + πq
+where g(πi ) is different for these two algorithms. If no
+queueing takes place, πi satisﬁes
+
+4
+
+e
+
+0.8
+Effective mean service rate µ
+
+Effective mean service rate µe
+
+which measures the efﬁciency of the servers. When the load
+is below the queueing threshold, µe can be obtained from
+Theorem 5. We do not have explicit characterization of the
+ﬁxed points at high load. Instead, we iterate the mean-ﬁeld
+equations over multiple time slots to obtain the ﬁxed point.
+
+0.6
+0.55
+
+0.75
+0.7
+0.65
+0.6
+0.55
+0.5
+
+0.4
+0.1
+
+0.5
+
+Random Server
+Peeling
+
+0.45
+0.2
+
+0.3
+
+0.4 0.5 0.6 0.7
+Load on the system ρ
+
+0.8
+
+0.9
+
+1
+
+0.45
+0.4
+
+Fig. 5. Effective mean service rate for the Random Server algorithm
+
+0.35
+
+and the Peeling algorithm (maximum possible service rate is 0.8)
+with p = 0.8, q = 0.4, m = 200 and d = 3.
+
+0.3
+
+Random Server
+Peeling
+
+0.25
+0.2
+0
+
+0.1
+
+0.2
+
+0.3
+
+0.4
+
+0.5
+
+0.6
+
+0.7
+
+0.8
+
+0.9
+
+1
+
+load, while converges to the Random Server algorithm with
+load increasing. Note that these two algorithms show similar
+performance trend in different models. Hence performance
+analysis under the discrete-time model provides insight for
+the performance of these algorithms in real scenario, and also
+offers guidelines for the design of efﬁcient algorithms.
+
+Load on the system ρ
+
+Fig. 4. Effective mean service rate for the Random Server algorithm
+
+and the Peeling algorithm (maximum possible service rate is 0.6)
+with p = 0.6 and q = 0.2. Note that ρ∗ = 0.417 for the Random
+Server algorithm and ρ∗ = 0.55 for the Peeling algorithm. .
+
+Fig. 4 shows the effective mean service rate at the ﬁxed
+points for both algorithms with p = 0.6 and q = 0.2. As soon
+as queueing takes place, the mean service rate for the Peeling
+algorithm decreases drastically and converges to that of the
+Random Server algorithm. This is due to the lack of degreeone server nodes and the peeling stage stops when there are
+still a large number of unassigned tasks.
+VI. P ERFORMANCE
+
+IN
+
+VII. C ONCLUSION
+We proposed a degree-guided task assignment algorithm
+that is shown to signiﬁcantly outperform the Random Server
+algorithm over the region of light to medium load. The future
+work is two-fold: (1) We plan to solve the ﬁxed point problem
+at high load. (2) We are interested in designing an algorithm
+that outperforms the Random Server algorithm at high load.
+
+C ONTINUOUS T IME M ODEL
+
+R EFERENCES
+
+We evaluate the Peeling algorithm against the Random
+Server algorithm via simulation in continuous time. Consider
+a system of m parallel servers. Tasks arrive at the system as
+a Poisson process with rate-mλ. The service time of a task
+assigned to a server with(without) local data is assumed to
+1 1
+i.i.d. with distribution Bp (·) (Bq (·)) with mean p ( q ). Tasks
+are assigned in the following ways:
+Random Server algorithm: When an arriving task sees
+some idle servers, an idle server is randomly selected for
+this task; otherwise this task joins the queue. When a server
+becomes idle, if its degree is zero, a task is sampled from
+the unassigned pool uniformly randomly; otherwise a task is
+selected randomly from the tasks that have data replicated on
+this server. If no unassigned task exists in the system, the
+server just stays idle.
+Peeling algorithm: When a task arrives, if no idle servers
+are available, it joins the queue; otherwise a server with the
+least non-zero degree is selected to process this task. If all idle
+servers are of degree 0, this tasks is assigned to a randomly
+selected idle server. When a server becomes idle, it follows
+the same rule as the Random Server algorithm.
+Consider exponential service time distribution. Fig. 5 shows
+the effective mean service rate. Similar to the results in Fig.
+4, which is obtained from the computation using mean-ﬁeld
+equations in the discrete-time model, the Peeling algorithm
+outperforms the Random Server algorithm at low to moderate
+
+[1] J. Dean and S. Ghemawat, “MapReduce: Simpliﬁed data processing
+on large clusters,” in Proc. USENIX Symp. Operating Syst. Design and
+Implementation (OSDI), 2004, pp. 137–150.
+[2] “Apache
+Hadoop,”
+Jun.
+2011.
+[Online].
+Available:
+http://hadoop.apache.org
+[3] G. Ananthanarayanan, S. Agarwal, S. Kandula, A. Greenberg, I. Stoica,
+D. Harlan, and E. Harris, “Scarlett: Coping with skewed popularity
+content in MapReduce clusters,” in Proc. Eur. Conf. Comput. Syst.
+(EuroSys), 2011.
+[4] J. Dixon, “Pentaho, Hadoop, and data lakes,” blog, Oct. 2010. [Online]. Available: http://jamesdixon.wordpress.com/2010/10/14/pentahohadoop-and-data-lakes
+[5] M. Satyanarayanan, “A survey of distributed ﬁle systems,” Annu. Rev.
+of Comput. Sci., vol. 4, pp. 73–104, 1990.
+[6] M. Zaharia, D. Borthakur, J. Sen Sarma, K. Elmeleegy, S. Shenker, and
+I. Stoica, “Delay scheduling: A simple technique for achieving locality
+and fairness in cluster scheduling,” in Proc. Eur. Conf. Comput. Syst.
+(EuroSys), 2010.
+[7] C. Abad, Y. Lu, and R. Campbell, “Dare: Adaptive data replication for
+efﬁcient cluster scheduling,” in IEEE Cluster, 2011.
+[8] T. Richardson and R. Urbanke, Modern Coding Theory. Cambridge
+University Press, 2007.
+[9] Q. Xie and
+Y. Lu, “Analysis
+of map-reduce
+task
+assignment
+with
+data
+locality
+constraint,”
+Tech
+report.
+https://netﬁles.uiuc.edu/yilu4/www/YLu/ChronologicalFiles/locality.pdf.
+[10] M. L. C. Bordenave and J. Salez, “Matchings on innite graphs.”
+
+5
+
+

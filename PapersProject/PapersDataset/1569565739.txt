@@ -1,0 +1,978 @@
+Creator:        TeX
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Fri May 18 19:16:54 2012
+ModDate:        Tue Jun 19 12:56:25 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      538100 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569565739
+
+Feedback-aided complexity reductions in ML and Lattice decoding
+Arun Singh and Petros Elia
+Mobile Communications Department
+EURECOM, Sophia Antipolis, France
+Email: {singhak, elia}@eurecom.fr
+quasi-static MIMO, without feedback and in the absence of
+lattice reduction techniques3 , the above work revealed that to
+achieve the optimal DMT d∗ (r), the complexity exponent is
+upper bounded by a piecewise linear function which, at integer
+r takes the form
+c(r) = r(nT − r).
+(2)
+
+Abstract—The work analyzes the computational-complexity
+savings that a single bit of feedback can provide in the computationally intense setting of non-ergodic MIMO communications.
+Speciﬁcally we derive upper bounds on the feedback-aided complexity exponent required for the broad families of ML-based
+and lattice based decoders to achieve the optimal diversitymultiplexing behavior. The bounds reveal a complexity that is
+reduced from being exponential in the number of codeword bits,
+to being at most exponential in the rate. Finally the derived
+savings are met by practically constructed ARQ schemes, as
+well as simple lattice designs, decoders, and computation-halting
+policies.
+
+This bound was shown to be tight for a broad range of
+practical settings, and it also revealed a complexity that scales
+exponentially with the number of codeword bits.
+This very considerable complexity brought to the fore the
+need for methods that manage to achieve the same nearoptimal performance, but do so with much reduced computational resources.
+b) Feedback gains: In terms of feedback, the work in
+[5] utilized the DMT machinery to analyze the reliability
+gains of feedback, and to speciﬁcally show that an L-round
+ARQ scheme can provide for a much increased feedback-aided
+DMT which4 was shown to take the form d∗ (r/L).
+Motivated by the considerable magnitude of the complexity
+exponent in (2), we here seek to understand the role of
+feedback in reducing complexity, rather than in improving
+reliability. For this we seek to quantify the feedback-aided
+complexity exponent required to achieve the original d∗ (r) in
+the presence of a modiﬁed version of the above mentioned Lround MIMO ARQ. Speciﬁcally we will derive upper bounds
+on the minimum5 complexity exponent required by ML and
+regularized (MMSE-preprocessed) lattice based sphere decoders (SD) to achieve the optimal DMT d∗ (r) . We will
+focus on the family of minimum delay ARQ schemes (to
+be described later on). The derivations focus on ML-based
+decoding, but given the equivalence of ML and regularized
+lattice based decoding shown in [3], these same results extend
+automatically to the regularized lattice decoding case. We
+note that the validity of the presented bounds depends on the
+existence of actual schemes that meet them. These schemes
+will be here provided, together with the associated lattice
+designs, decoders, as well as halting and ordering polices.
+
+I. I NTRODUCTION
+The current work is a continuation of studies on the ratereliability-complexity limits of non-ergodic MIMO communications1 . In this setting, computational complexity and ratereliability performance are highly intertwined, in the sense that
+limitations to computational resources (commonly measured
+by ﬂoating point operations - ﬂops), bring about substantial
+degradation in the system performance. In the high rate setting
+of interest, the lion’s share of computational costs is due to
+decoding algorithms, on which we here focus, speciﬁcally
+considering the broad family of ML-based and regularized
+(MMSE-preprocessed) lattice decoding algorithms.
+a) Error and complexity exponents: In terms of reliability, the diversity multiplexing tradeoff (DMT, cf. [1]) has
+been extensively used to quantify the relationship between the
+rate, denoted as R, and the probability of error Perr . In the
+high SNR regime (SNR will be henceforth denoted as ρ),
+this relationship was described in [1] using the high SNR
+measures of multiplexing gain r := R/ log ρ and diversity
+gain d(r) := − limρ→∞ log Perr / log ρ. As a result the same
+work revealed, for the case of no feedback, the optimal DMT
+in the form of the maximum possible diversity gain d∗ (r) for
+a given r.
+The work in [2]–[4] provided a similar treatment for
+complexity. Speciﬁcally for Nmax denoting the amount of
+computational reserves, in ﬂops per duration of one codeword,
+that the transceiver is endowed with2 , the work in [2], [3]
+introduced the complexity exponent to take the form
+c(r) := lim
+
+ρ→∞
+
+log Nmax
+,
+log ρ
+
+3 We here note that while lattice reduction (LR) indeed allows here for nearoptimal behavior at very manageable complexity, it is the case that there exist
+scenarios for which these same LR methods cannot be readily applied. Such
+problematic cases include the ubiquitous scenario where outer binary codes
+are employed and decoded using soft information. It is for this exact reason
+that we focus on the complexity analysis of non LR-aided schemes which
+remains of strong interest for many pertinent communication scenarios.
+4 This held for the setting of quasi-static fading and no power adaptation which is the setting of interest here.
+5 By minimum we refer to a minimization over all lattice code designs
+(which must vary accordingly depending on the setting), all policies of
+computational halting, and all policies on decoding ordering. A decoding
+ordering policy describes the order in which the transmitted information
+symbols are decoded by sphere decoding algorithm.
+
+(1)
+
+where the value of the above exponent was derived as a
+function of the desired r and d(r). In the speciﬁc setting of
+1 By non-ergodic MIMO we refer to the setting where there is considerable
+channel state information at the receiver (CSIR), and very little if any channel
+state information at the transmitter (little or no CSIT).
+2 In the sense that after N
+max ﬂops the transceiver must simply terminate
+potentially prematurely and before completion of its task.
+
+1
+
+policies and all decoding order policies. Then c(r) ≤ cred (r)
+where
+1
+cred (r)
+r(nT − r − 1) + (nT r − r(nT − 1))+ ,
+nT
+
+The analysis and the constructed feedback schemes tell us
+how to properly utilize a single bit of feedback to alleviate the
+adverse effects of computational constraints, as those seen in
+the derived rate-reliability-complexity tradeoffs of [4].
+Before proceeding to a brief description of the MIMO ARQ
+signaling, we quickly note that we here employ an ARQ
+variant which reduces the L-round scheme to a two-round
+scheme with uneven but ﬁxed durations, and we do so by
+disregarding all but the ﬁrst and last rounds. Such a scheme
+requires just one bit of feedback. We will however, for clarity
+of exposition, maintain use of the notation of the better known
+L-round scheme.
+
+which is a piecewise linear function that, for integer r, takes
+the form
+1
+cred (r) =
+r(nT − r), for r = 0, 1, · · · , nT .
+nT
+The proof of the above theorem will be presented in
+Appendix A, together with the proofs for the upcoming
+Propositions 1 and 2, and it will include the derivation of
+the upper bound, and the constructive achievement of this
+bound which is presented in Propositions 1, 2. The constructive
+part of the proof is based on designing ARQ schemes and
+implementations (lattice designs and halting policies) that meet
+the bound. We proceed with these propositions where we
+identify cases for which the above complexity bound sufﬁces
+to achieve d∗ (r) with the help of feedback.
+An important aspect in ARQ schemes is knowing when to
+decode and when not to decode across the different rounds.
+Towards this we have the following deﬁnition.
+Deﬁnition 1 (Aggressive intermediate halting policies):
+We deﬁne aggressive intermediate halting policies to be
+the family of policies that halt decoding in the ﬁrst round
+whenever the minimum singular value of the channel scales
+as ρ− for some > 0, which do not decode in the second to
+the L-1 round, and which decode at the last round iff a) they
+have not decoded in the ﬁrst round and b) the channel is not
+in outage with respect to the effective rate of ARQ scheme.
+Given such aggressive halting policies, the L round scheme
+reduces to a two round scheme where the second round
+comprises of (L − 1)T channel uses. As noted before, for
+notational uniformity with earlier works in [5], [6], we will
+continue to use the notation of the L-round schemes but again
+clarify that only one bit of ARQ feedback is needed.
+Furthermore we will henceforth use the term ARQcompatible, minimum delay, NVD, rate-1 lattice designs to
+refer to the family of nT × nT lattice designs XARQ,L with
+C
+total number of transmitted integers κ = 2nT , with nonvanishing determinant (NVD)8 for r ≤ 1, and with all the
+information appearing in all rounds.
+Proposition 1: A minimum delay ARQ scheme with L =
+nT rounds achieves d∗ (r) with c(r) ≤ cred (r), irrespective
+of the ARQ-compatible, minimum delay, NVD, rate-1 lattice
+design, for any aggressive intermediate halting policy, and any
+sphere decoding order policy.
+The following describes a very simple MIMO ARQ coding
+implementation that achieves d∗ (r) with c(r) ≤ cred (r). The
+proof of this proposition will appear later on, and is crucial in
+the achievability part of the proof of Theorem 1.
+Proposition 2: The minimum delay ARQ scheme with L =
+nT rounds, implemented with any aggressive intermediate
+halting policy, any sphere decoding order policy, and a rate-1
+
+A. MIMO-ARQ signaling
+We here present the general nT ×nR MIMO-ARQ signaling
+setting, and focus on the details which are necessary for
+our exposition. For further understanding of the MIMO-ARQ
+channel, the reader is referred to [5] as well as [6].
+Under ARQ signaling, each message is associated to a
+unique block [X1 X2 · · · XL ] of signaling matrices, where
+C
+C
+C
+each Xi ∈ CnT ×T , i = 1, · · · , L, corresponds to the nT × T
+C
+matrix of signals sent during the ith round. The accumulated
+code matrix at the end of round , = 1, · · · , L, takes the form
+XARQ, = [X1 X2 · · · XC ] ∈ CnT × T . We note that the
+C
+C
+C
+signals XARQ,L are drawn from a lattice design that ensures
+C
+unique decodability at every round6 .
+In the quasi-static case of interest, the received signal
+accumulated at the end of the -th round takes the form
+YC = θHC XARQ, + WC ,
+C
+
+= 1, · · · , L,
+
+(3)
+
+nR ×nT
+
+where HC ∈ C
+, where the scaling factor θ is chosen
+such that E( θXi 2 ) ≤ ρT, 1 ≤ i ≤ .
+C
+We proceed with quantifying the complexity reductions due
+to ARQ feedback.
+II. C OMPLEXITY REDUCTION USING ARQ FEEDBACK
+We here seek to analyze the complexity reductions due to
+MIMO ARQ feedback. Speciﬁcally for d∗ (r) denoting the
+optimal DMT of the nT × nR MIMO channel in the absence
+of feedback, we here seek to describe the feedback-aided
+complexity exponent required to meet the same d∗ (r) with
+the assistance now of an L-round ARQ scheme. As stated
+before, our analysis focuses on the setting of L ≤ nT and of
+minimum-delay ARQ schemes, corresponding to T = 1. The
+derived exponent is to be compared with the exponent in (2)
+(cf. [2, Theorem 6] and [3, Corollary 1b]) corresponding to no
+feedback. The following holds for the nT × nR (nR ≥ nT ),
+i.i.d. regular fading7 MIMO channel.
+Theorem 1: Let c(r) be the minimum complexity exponent
+required to achieve d∗ (r), minimized over all lattice designs,
+all ARQ schemes with L ≤ nT rounds of ARQ, all halting
+6 Loosely speaking, unique decodability means that, for any = 1, · · · , L,
+the corresponding XARQ, carries all bits of information.
+C
+7 The i.i.d. regular fading statistics satisfy the general set of conditions as
+described in [7], where a) the near-zero behavior of the fading coefﬁcients h
+is bounded in probability as c1 |h|t ≤ p(h) ≤ c2 |h|t for some positive and
+ﬁnite c1 , c2 and t, where b) the tail behavior of h is bounded in probability
+β
+as p(h) ≤ c2 e−b|h| for some positive and ﬁnite c2 , b and β, and where c)
+p(h) is upper bounded by a constant K.
+
+8 A code has a non-vanishing determinant if, without power normalization,
+there is a lower bound on the minimum determinant that does not depend
+on the constellation size. The determinant of any non-normalized difference
+matrix is lower bounded by a constant independent of ρ (see [8]).
+
+2
+
+Complexity reduction via feeback in 4x4 MIMO
+
+lattice design XARQ,L drawn from the center of perfect codes
+C
+(cf. [8], [9])9 , achieves d∗ (r) with c(r) ≤ cred (r).
+Theorem 1 has quantiﬁed the computational reserves that
+are sufﬁcient to achieve DMT optimality. These computational
+reserves can be seen to be smaller than those required to
+achieve the same optimal DMT d∗ (r) without feedback. For
+example, given any known minimum-delay DMT optimal
+design which remains ﬁxed for all r, in the absence of
+feedback, the exponent needed to achieve d∗ (r) is that in (2)
+(cf. [2, Theorem 6] and [3, Corollary 1b]) and takes the form
+c(r) = r(nT − r),
+
+4
+
+Complexity exponent c(r)
+
+3.5
+
+2
+
+minimum delay ARQ scheme
+Perfect code
+
+1.5
+1
+0.5
+0
+0
+
+Fig. 1.
+
+0.5
+
+1
+
+1.5
+2
+2.5
+Multiplexing Gain (r)
+
+3
+
+3.5
+
+4
+
+Complexity reduction with minimum delay ARQ schemes.
+
+A. Feedback reduction for asymmetric channels: nR ≤ nT
+
+(5)
+
+We now consider the case of nR ≤ nT , and speciﬁcally
+the case where nR |nT (i.e., nT is an integer multiple of nR ),
+to observe again how simple implementations offer substantial
+reductions in complexity. In terms of statistics, the results hold
+for any i.i.d. regular fading distribution.
+
+(for integer r = 0, 1, · · · , nT ), whereas as we have just seen,
+for L = nT , T = 1 this exponent reduces to a much smaller
+c(r) ≤
+
+3
+2.5
+
+1
+r(nT − r).
+nT
+
+Theorem 2: In the MIMO ARQ channel with nR |nT , the
+We proceed with a few examples.
+minimum complexity exponent c(r) required to achieve d∗ (r),
+Example 1 (Corresponding to Theorem 1 and Proposition 2):
+For the general nT × nR setting with nR ≥ nT , and for minimized over all lattice designs, all halting policies, and all
+r = nT /2, the computational resources required to achieve minimum delay ARQ schemes with L ≤ nT rounds of ARQ,
+the optimal d∗ (r) with existing DMT optimal (minimum is bounded as c(r) ≤ cred (r) where
+delay) non-feedback schemes (cf. [2, Theorem 6]), scales as10
+1
+cred (r)
+r(nR − r − 1) + (nR r − r(nR − 1))+ ,
+. n2 /4 . RnT /2
+nR
+Nmax = ρ T = 2
+,
+which is a piecewise linear function that, for integer r, takes
+the form
+
+whereas the feedback aided complexity required by the feedback scheme in Proposition 2 scales as
+.
+.
+Nmax = ρnT /4 = 2R/2 .
+
+cred (r) =
+
+Generally, given a rate that scales linearly with nT , in the
+absence of feedback the complexity exponent of achieving
+d∗ (r) scales with n2 , whereas the feedback aided complexity
+T
+exponent scales with nT .
+Example 2: Figure 1 considers the case of nT = 4 ≤ nR
+and Rayleigh fading, and compares the above complexity
+upper bound in the presence of feedback (L = 4, T = 1),
+to the equivalent complexity exponent in (5) of achieving the
+same optimal DMT d∗ (r) without ARQ feedback (Perfect
+codes and natural, ﬁxed decoding ordering (cf. [2])). The
+feedback-aided complexity exponent reveals an exponential
+reduction by a factor of nT = 4.
+
+1
+r(nR − r), for r = 0, 1, · · · , nR .
+nR
+
+Applying as the constructive part of the proof of the above
+theorem, the following describes a very simple MIMO ARQ
+block-diagonal repetition coding implementation that achieves
+d∗ (r) with a much reduced c(r) ≤ cred (r).
+Proposition 3: A minimum delay ARQ scheme with L =
+nT , T = 1, implemented with any aggressive intermediate
+halting policy, any sphere decoding order policy, and a rateARQ,L
+nR
+where the
+nT block-diagonal repetition lattice design XC
+(rate-1) block component code is drawn from the center of
+nR × nR perfect codes, achieves d∗ (r) with c(r) ≤ cred (r)
+from Theorem 2.
+The proof of Theorem 2 and Proposition 3 will be presented
+in Appendix B. Of interest is the special MISO-ARQ case of
+nR = 1, where the above described scheme will allow for a
+zero complexity exponent, and for a complexity that scales as a
+subpolynomial function of ρ and as a subexponential function
+of the number of codeword bits and of the rate.
+
+9 For
+
+general lattice designs derived from cyclic division algebra (CDA) (cf.
+[8], [9]), F and L are number ﬁelds, with L a ﬁnite, cyclic Galois extension
+of F of degree n. Let σ denote a generator of the Galois group Gal(L/F).
+Let z be an indeterminate satisfying lz = zσ(l), ∀ l ∈ L and z n = γ for
+some non-norm element γ ∈ F∗ . Then the set of all elements of the form
+n−1 i
+i=0 z li forms a CDA D(L/F, σ, γ) with center F and maximal subﬁeld
+L. The mentioned codes are limited in the center of the division algebra and
+take the simple form
+
+
+f0
+γfnT −1 · · · γf1
+ f1
+f0
+· · · γf2 
+
+
+XARQ,L =  .
+(4)
+.
+.  ∈ CnT ×nT ,
+..
+C
+.
+.
+. 
+ .
+.
+.
+.
+fnT −1
+fnT −2
+···
+f0
+
+Corollary 2a: Over the nT ×1 MISO channel, the minimum
+delay ARQ scheme with L = nT rounds, implemented with a
+rate- n1 repetition QAM design XARQ,L , achieves d∗ (r) with
+C
+T
+c(r) = 0.
+This corollary follows directly from Theorem 2.
+We proceed with a few examples.
+Example 3 (Corresponding to Theorem 2 and Proposition 3):
+For the 4 × 2 MIMO channel with L = 4, T = 1, applying a
+
+where fi belong to the QAM constellation.
+.
+.
+10 We use = to denote the exponential equality, i.e., we write f (ρ) = ρB
+.
+.
+log f (ρ)
+˙
+˙
+= B, and ≤, <, and ≥, > are deﬁned similarly.
+to denote lim
+ρ→∞ log ρ
+
+3
+
+lattice design of the form
+
+f0 γf1
+f1 f0
+ARQ,L
+XC
+=
+0
+0
+0
+0
+
+0
+0
+f0
+f1
+
+of d∗ (r) for T = 1, L = nT and κ = 2nT , which in turn
+implies that limρ→∞ r = r1 , where r1 is the multiplexing
+gain for the ﬁrst round of ARQ.
+Having established the necessary parameters we proceed to
+prove the claim of Theorem 1. Following the footsteps of the
+[2, proof of Theorem 2] we can show that in the presence
+of aggressive halting policy and SD with search radius ξ >
+r
+d∗ ( L ) log ρ, an upper bound on the complexity exponent
+for ﬁrst round decoder can be obtained as the solution to a
+constrained maximization problem according to
+
+
+0
+0 
+∈ C4×4 ,
+γf1 
+f0
+
+where f0 , f1 ∼ QAM , together with an aggressive intermediate halting policy for the ﬁrst round decoder, and with
+any sphere decoding ordering policy, can achieve the optimal
+d∗ (r) of the 4 × 2 channel, and can do so with computational
+.
+resources of Nmax = ρcred (r) ﬂops, which for integer r
+nT
++
+r
+r
+r
+. n1 r(nR −r)
+2 (2−r) .
+R
+c1 (r)
+max
+min
+,
+− (1 − µj ),
+=ρ
+translates to Nmax = ρ
+{µ1 < ,
+nT
+nT
+Example 4 (Corresponding to Theorem 2 and Proposition 3):
+µ1 ≥···≥µnT ≥0} j=1
+Figure 2 compares two schemes: the 2 × 2 MIMO channel
+log σj (HH HC )
+C
+, j = 1, · · · , nT with µ1 ≥ · · · ≥
+(minimum delay, DMT optimal lattice design), and the 4 × 2 where µj −
+log ρ
+minimum delay MIMO-ARQ channel with L = nT = 4, 1 µnT , where σj denotes j-th singular value of HH HC and
+C
+bit of feedback, and the implementation of Proposition 3. where we have made use of the fact that limρ→∞ r = r1 . In
+We see a considerably reduced complexity of the feedback the limit → 0 this upper bound simpliﬁes to
+aided scheme (Fig. 2(a), lower line) which, at the same time,
+c1 (r) = 0.
+achieves a much higher DMT performance (Fig. 2(b), upper
+To establish the L-th round complexity exponent, we proceed
+line) than its non-feedback counterpart.
+with the L-th round system model given by
+Complexity reduction via ARQ feeback
+1
+
+7
+
+0.7
+
+minimum delay ARQ scheme
+2 × 2 Perfect code
+
+6
+
+Diversity Gain d(r)
+
+0.8
+Complexity exponent c(r)
+
+L
+L
+YC = θHC XARQ,L + WC ,
+C
+
+Diversity Performance
+8
+
+0.9
+
+0.6
+0.5
+0.4
+0.3
+
+5
+4
+3
+2
+
+0.2
+minimum delay ARQ scheme
+2 × 2 Perfect code
+
+0.1
+0
+0
+
+where for rate-1 lattice designs we have θ2 = ρ1−rL , where
+r
+rL = L denotes multiplexing gain for L-th round of ARQ.
+The vectorized real valued representation of L-th round system
+model takes the form
+
+0.2
+
+0.4
+
+0.6
+
+0.8
+1
+1.2 1.4
+Multiplexing Gain (r)
+
+1.6
+
+1
+1.8
+
+(a) Complexity exponent
+
+2
+
+0
+0
+
+0.2 0.4 0.6 0.8 1 1.2 1.4 1.6 1.8
+Multiplexing Gain (r)
+
+yL = θHL xL + wL , where
+
+2
+
+Re{HC }
+Im{HC }
+
+HL = IL ⊗ HR , with HR =
+
+(b) DMT
+
+Fig. 2. Complexity reduction nR |nT i.i.d. Rayleigh channel with ARQ
+feedback.
+A PPENDIX A
+P ROOF OF T HEOREM 1
+
+(6)
+−Im{HC }
+,
+Re{HC }
+
+∈
+R2nT L with xt
+=
+xL
+=
+(xT , · · · , xT )T
+1
+L
+T T
+T
+ARQ,L
+ARQ,L
+} ]
+for t = 1, · · · , L,
+} , Im{Xt,C
+[Re{Xt,C
+where XARQ,L is t-th column of XARQ,L , wL and yL can
+C
+t,C
+be deﬁned similarly. The vectorized codeword xL takes the
+form (cf. [3])
+
+The proof follows from the footsteps of the [2, proof of
+Theorem 2]. Due to space limitations we restrict this exposition to the proof steps that are necessary to understand the
+complexity exponent for the novel ARQ schemes discussed in
+this paper. For further understanding of encoders and decoders
+considered here, the reader is referred to [2], [4]. We begin by
+establishing necessary conditions for L-round ARQ scheme to
+achieve d∗ (r) over an nT × nR (nR ≥ nT ) MIMO.
+Condition 1: To achieve maximum diversity gain of nR .nT
+the total number of channel uses LT ≥ nT . For minimum
+delay (T = 1) L-round ARQ schemes with L ≤ nT , it then
+follows that L = nT .
+Condition 2: To achieve maximum multiplexing gain of nT
+the total number of integers transmitted κ ≥ 2nT T = 2nT .
+It can be seen from [2] that the complexity of sphere decoder
+increases with κ. Thus, for minimum delay L-round ARQ
+schemes with L ≤ nT , the tightest upper bound on the
+complexity exponent is established by considering T = 1,
+L = nT and κ = 2nT . Setting T = 1 and L = nT implies
+use of at least rate-1 lattice designs for L-round ARQ scheme
+for achieving DMT performance of d∗ (r) for 0 ≤ r ≤ nT .
+We will later show that encoding-decoding policy described
+in Proposition 1 and Proposition 2 achieve DMT performance
+
+xL = Gs,
+
+s ∈ Sκ
+r
+
+Zκ ∩ ρ
+
+rL
+2
+
+R,
+
+(7)
+
+where G ∈ R2LnT ×κ is the lattice generator matrix, where
+κ = 2nT and where R ⊂ Rκ is a natural bijection of the code
+shaping region that preserves the code, and contains the all
+zero vector 0. For simplicity we consider R [−1, 1]κ to be
+a hypercube in Rκ , although this could be relaxed. Combining
+(6) and (7) yields the equivalent system model
+yL =ML s + wL ,
+L
+
+M
+
+where
+[ΓT
+1
+
+ΓT
+2
+
+ρ
+
+rL
+1
+2− 2
+
+(8a)
+
+L
+
+H G∈R
+
+2nR L×κ
+
+.
+
+(8b)
+
+2nT ×2nT
+
+· · · ΓT ]T ,
+L
+
+where Γi ∈ C
+, for i =
+Let G =
+1, · · · , L.
+Then the equivalent code-channel matrix (M L ) takes the
+form
+
+ 
+HR · · ·
+0
+Γ1
+rL
+1
+ .
+.  . ,
+L
+..
+2− 2
+.
+.  . 
+(9)
+M =ρ
+ .
+.
+.
+.
+0
+=ρ
+
+4
+
+rL
+1
+2− 2
+
+[ΓT HT
+1
+R
+
+···
+···
+
+HR
+
+ΓL
+
+ΓT HT ]T .
+L R
+
+(10)
+
+In order to compute the singular values of M L we note that
+
+from Proposition 3 takes the form
+
+
+X ··· 0
+(ML )H (ML ) =ρ1−rL (ΓH HH HR Γ1 + · · · + ΓH HH HC ΓL ),
+1
+R
+L
+C
+.
+.
+(14)
+XARQ,L =  . . . . .  ∈ CnT ×nT ,
+C
+.
+.
+(11)
+ρ1−rL ΓH HH HR Γ1 ,
+1
+R
+0 ··· X
+where A
+B denotes that A − B is positive-semideﬁnite.
+nT r
+1− n L
+n
+2
+R ,
+Without loss of generality we can assume that Γ1 is full-rank. where for rate- nR lattice designs we have θ = ρ
+T
+L
+where rL = r1 denotes multiplexing gain for L-th round of
+It then follows that the singular values of M can be lower
+L
+ARQ, and where block component code X ∈ CnR ×nR . The
+bounded as
+L-th round received signal is given by
+σi ((ML )H (ML )) ≥ρ1−rL σi (ΓH HH HR Γ1 ),
+1
+R
+L
+L
+YC = θHC XARQ,L + WC .
+(15)
+.
+C
+1−rL −µι2 (i)
+,
+(12)
+≥ρ
+Let
+.
+nT
+HC = H1 · · · H nR ∈ CnR ×nT ,
+where we have made use of the fact that σmin (Γ1 ) = ρ0 and
+i
+where ι2 (i)
+nT
+2 .
+where Hi ∈ CnR ×nR , for i = 1, · · · , nR . After substituting
+Using (12) and following the footsteps of the [2, proof of
+ARQ,L
+in (15) we get that
+Theorem 2], the upper bound on the complexity exponent for for HC and XC
+
+
+the L-th round decoding of minimum delay L-round ARQ
+X ··· 0
+schemes achieving d∗ (r) can be obtained as the solution to a
+.
+L
+L
+nT
+.
+YC =θ H1 · · · H nR  . . . . .  + WC ,
+.
+.
+constrained maximization problem according to
+0 ··· X
+nT
++
+r
+r
+L
+˜ C X + WC ,
+=θH
+min
+cred (r) max
+− (1 − µi ),
+(13a)
+µ
+nT
+nT
+i=1
+˜
+where HC = [HT · · · HT T ]T ∈ CnT ×nR .
+n
+1
+nR
+s.t. I(µ) ≤ d∗ (r),
+(13b)
+We observe that the lattice design in (14) converts the
+µ1 ≥ · · · ≥ µnT ≥ 0,
+(13c) system into an equivalent channel H with inverted channel
+˜C
+˜
+dimensions. It follows that for this equivalent channel HC the
+r
+where we have made use of the fact that L = nT and rL = L .
+system parameters are given by nT = nR , nR = nT , T = 1,
+The solution to this optimization problem takes the form
+nT
+L = nT and rL = nR rL . Since for the new system we have
+1
+nR ≥ nT , Proposition 3 and Theorem 2 can now be proved
+cred (r) =
+r(nT − r − 1) + (nT r − r(nT − 1))+ ,
+by following the footsteps of the proof of Theorem 1. This
+nT
+completes the proof of Theorem 2 and Proposition 3.
+which for integer multiplexing gain values simpliﬁes to
+R EFERENCES
+1
+[1] L. Zheng and D. N. C. Tse, “Diversity and Multiplexing: A Fundamental
+cred (r) =
+r(nT − r), for r = 0, 1, · · · , nT .
+nT
+Tradeoff in Multiple-Antenna Channels,” IEEE Trans. Inf. Theory,
+vol. 49, no. 5, pp. 1073–1096, May 2003.
+[2] J. Jald´ n and P. Elia, “Sphere decoding complexity exponent for dee
+coding full rate codes over the quasi-static mimo channel,” Feb. 2012,
+to appear in IEEE Trans. Inform. Theory, available on arXiv:1102.1265
+[cs.IT].
+[3] A. Singh, P. Elia, and J. Jald´ n, “Achieving a vanishing performance-gap
+e
+to exact lattice decoding at a subexponential complexity,” IEEE Trans.
+Inf. Theory, vol. 58, no. 6, pp. 3692 – 3707, Jun. 2012.
+[4] ——, “ Complexity analysis for ML-based sphere decoder achieving a
+vanishing performance-gap to brute force ML decoding,” in Proc. Int.
+Zurich Seminar on Communications (IZS), Mar. 2012, pp. 127–130.
+[5] H. El Gamal, G. Caire, and M. O. Damen, “The MIMO ARQ channel:
+Diversity-multiplexing-delay tradeoff,” IEEE Trans. Inf. Theory, vol. 52,
+no. 8, pp. 3601–3621, Aug. 2006.
+[6] S. A. Pawar, K. Raj Kumar, P. Elia, P. Vijay Kumar, and B. A.
+Sethuraman, “Space-time codes achieving the DMD tradeoff of the
+MIMO-ARQ channel,” IEEE Trans. Inf. Theory, vol. 55, no. 7, Jul.
+2009.
+[7] L. Zhao, W. Mo, Y. Ma, and Z. Wang, “Diversity and multiplexing
+tradeoff in general fading channels,” IEEE Trans. Inf. Theory, vol. 53,
+no. 4, pp. 1547–1557, Apr. 2007.
+[8] J.-C. Belﬁore and G. Rekaya, “Quaternionic lattices for space-time
+coding,” in Proc. IEEE Information Theory Workshop (ITW), Paris,
+France, Mar. 2003.
+[9] B. A. Sethuraman, B. Sundar Rajan, and V. Shashidhar, “Full-diversity,
+high-rate, space-time block codes from division algebras,” IEEE Trans.
+Inf. Theory, vol. 49, no. 10, pp. 2596–2616, Oct. 2003.
+[10] A. Singh, “ Rate-Reliability-Complexity limits in ML and lattice based
+decoding for MIMO, multiuser and cooperative communications,” Ph.D.
+dissertation, EURECOM/Telecom ParisTech: France, 2012.
+
+For the proof to be complete we must now prove that the
+aforementioned family of ARQ schemes, halting policies and
+lattice designs can indeed achieve the desired DMT d∗ (r). For
+this purpose we recall the following lemma from [10]:
+Lemma 1: For an i.i.d. regular fading channel, a minimum
+delay ARQ scheme with L = nT rounds achieves d∗ (r)
+for all ARQ-compatible, minimum delay, NVD, rate-1 lattice
+designs, all intermediate aggressive halting policies and a
+r
+sphere decoder with search radius ξ > d∗ ( L ) log ρ.
+In the presence of Lemma 1 and upper bound cred (r), it is
+direct to see that a minimum delay ARQ scheme with L =
+nT rounds achieves d∗ (r) with c(r) ≤ cred (r), irrespective
+of the ARQ-compatible, minimum delay, NVD, rate-1 lattice
+design, for any aggressive intermediate halting policy, and any
+decoding order policy. This proves Theorem 1, Proposition 1
+and Proposition 2.
+A PPENDIX B
+S KETCH P ROOF OF T HEOREM 2 AND P ROPOSITION 3
+In this section we present the sketch of the proof for
+Theorem 2 and Proposition 3. Let lattice design θXARQ,L
+C
+
+5
+
+

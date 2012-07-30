@@ -1,0 +1,860 @@
+Creator:         TeX output 2012.05.18:2013
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Fri May 18 20:13:46 2012
+ModDate:        Tue Jun 19 12:56:20 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      293251 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569566505
+
+Learning Minimal Latent Directed Information
+Trees
+Jalal Etesami
+
+Negar Kiyavash
+
+Todd P. Coleman
+
+Department of Industrial and
+Enterprising Systems Engineering
+University of Illinois
+Urbana, Illinois 61801
+Email:etesami2@illinois.edu
+
+Department of Industrial and
+Enterprising Systems Engineering
+University of Illinois
+Urbana, Illinois 61801
+Email:kiyavash@illinois.edu
+
+Department of Bioengineering
+University of California, San Diego
+La Jolla, CA 92093
+Email:tpcoleman@ucsd.edu
+
+reconstruction methods have been suggested [2]to discover the
+structure of latent Markov graphical models [6]. In these type
+of graphical models, nodes represent random variables and
+existence or absence of edges represent conditional dependence or independence respectively. Recently, Anandkumar et
+al. applied this approach to learning linear multivariate tree
+models when only the leaves are observed [3]. In [3] the nodes
+are multivariate random vectors and it is assumed that the
+conditional expected value of each node given its parent is
+determined by its parent and a deterministic matrix. Recursive
+grouping (RG) [4] and Chow-Liu recursive grouping (CLRG)
+[5], [4] are two other distance-based learning algorithms that
+can recover latent Markov graphical models [6], where some
+of the observed nodes are internal nodes. Both RG and CLRG
+can only recover latent models on set of hidden and observed
+random which are jointly Gaussian or have a symmetric
+discrete joint distribution [4].
+It is the purpose of this paper to develop a framework to perform structure learning on directed information graphs, where
+we observe subsets of random processes. Speciﬁcally, we
+will consider the scenario of latent directed information trees,
+where the directed information graph representing observed
+and unobserved processes is a tree. In such trees, some of the
+nodes represent the observed processes while others represent
+the hidden ones. Therefore learning such trees requires both
+ﬁnding the number of hidden processes as well as recovering
+the connections among all hidden and observed nodes.
+In the aforementioned graphical models literature, nodes are
+either random variable or multivariate random vectors; hence
+no notion of time dependency is encoded in this class of
+graphical models. Consequently, they are unable to capture
+causal dynamics in stochastic systems. On the contrary, we
+will recover a fundamentally different graphical model for
+which the causation among a set of random processes can be
+encoded. In graphical models of our interest, the nodes encode
+random processes and the observed nodes can be internal or
+leaves.
+The contributions of this work can be summarized as
+follows. We propose an algorithm to recover the minimal
+latent directed information tree on a set of observed and
+unobserved nodes with an associated discrepancy measure. We
+
+Abstract—THIS PAPER IS ELIGIBLE FOR THE STUDENT
+PAPER AWARD– We propose a framework for learning the
+structure of a minimal latent tree with an associated discrepancy
+measure. Speciﬁcally, we apply this algorithm to recover the
+minimal latent directed information tree on a mixture of set of observed and unobserved random processes. Directed information
+trees are a new type of probabilistic graphical model based on
+directed information that represent the casual dynamics among
+random processes in a stochastic systems. To the best of our
+knowledge, this is the ﬁrst approach that recovers these type of
+latent graphical models where samples are available only from
+a subset of processes.
+
+I. I NTRODUCTION
+Latent graphical models refer to a class of probabilistic
+graphical models that relate a set of observed variables to a
+set of hidden variables. Introducing latent variables can greatly
+improve the ﬂexibility of probabilistic modeling, allowing it
+to address a diverse range of problems with hidden factors, for
+instance in speech recognition and bio-informatics to name a
+few.
+Graphical models simplify analysis of multivariate probabilistic complex systems. These graphs can be directed,
+undirected, or a mix. Traditional graphical models explain relationships between groups of random variables without a time
+axis. Physical systems evolve dynamically with time [9], [10].
+To understand causal dynamics, we have recently developed a
+class of directed graphical models that correspond to random
+processes and reﬂect its inherent generative model, analogous
+to such graphs for coupled differential equations [8]. As such,
+these directed graphical models - termed directed information
+graphs - have an advantage over undirected graphical models
+in understanding causation. In this type of graphical models,
+nodes represent random processes and edges are selected using
+a criterion that evaluates the directed information [1].
+Inference on latent graphical models pertains to when
+certain random variables are observed, and others are not. In
+structure learning, it is of interest to discover the topological
+structure of the graphical model itself (i.e. where edges are
+present and when there are not), given observations of a
+subset of the random variables. Some quartet1 -based distance
+1A
+
+quartet is an un-rooted binary tree on a set of four observed nodes.
+
+1
+
+apply our proposed algorithm to ﬁnding the latent directed
+information trees, a new type of probabilistic graphical model
+based on directed information that may be used to succinctly
+represent the casual dynamics among random processes in a
+stochastic systems. In contrast to previous latent tree estimation approaches, (1) our approach is applicable to random
+processes with temporal dependence structure; (2) we allow
+the possibility that some observed nodes are internal and (3)
+we do not require jointly Gaussian or symmetry properties of
+the joint distribution of nodes.
+The remainder of the paper is organized as follows. We
+formally introduce the minimal latent directed information
+trees in Section III. In Section IV, we show that given a
+so-called discrepancy measure on the observed nodes of any
+tree we can recover the entire latent structure. Speciﬁcally in
+Section V, we show that in case of latent directed information
+trees, this measure corresponds to the time delays between
+pairs of observed processes.
+
+X1 > N 2 > X3 > X4 X5 · · ·
+NX .
+.. IIIN. III .. > ..
+> NI N> I
+.. >>> II >>> II >>> ..
+.NNN ..
+.. >>.IIIN>NN I>> ..
+. >N II
+.
+>> II
+.# >>0..# III.0 .NNN>>0 .#
+I
+6 # N96
+Y1 Y2 Y3 Y4 Y5 . . .
+(a) PY||X .
+
+the dependency has a delay of d time steps. We denote the
+causal conditioned distribution with a delay of d ∈ N time
+steps as follows
+PX1 ||d XJ := PX1,1 PX1,(d+1) |X1,1 ,XJ,1
+d
+d
+
+m,1
+
+1,1
+
+In many causal systems, given the full past, the future of
+processes are conditionally independent. In such cases, given
+the full past of all processes the joint distribution can be
+simpliﬁed to
+PXj,i |X i−1 ,...,X i−1 .
+
+(2)
+
+m,1
+
+For example, a collection of random processes described by
+coupled stochastic differential equations satisﬁes the analogous
+statement in continuous time.
+Using casual conditioning notation introduced by Kramer
+[7]2 ,
+PXj || X[j] (Xj || X[j] ) :=
+
+PXj,i |X i−1 ,...,X i−1 ,
+1,1
+
+m,1
+
+(9)
+
+III. G ENERATIVE M ODELS & D IRECTED I NFORMATION
+G RAPHS
+
+we can rewrite (2) as
+PX =
+
+J,1
+
+(
+)
+I(Xj → Xi ||XI ) := D PXi ||XI∪{j} || PXi ||XI |PXI∪{j} .
+
+(3)
+
+i=1
+
+m
+∏
+
+1,1
+
+Consider two random processes Xi and Xj and a set of
+indices I such that I ⊆ [i, j], then the conditional KL
+divergence, directed information, and conditioned directed
+information are given, respectively, by
+[
+]
+D(PXi ||XI || QXi ||XI |PXI ) := EPXI D(PXi ||XI ||QXi ||XI ) ,
+(7)
+(
+)
+I(Xj → Xi ) := D PXi ||Xj || PXi |PXj ,
+(8)
+
+i=1 j=1
+
+n
+∏
+
+PX1,i |X i−1 ,Xi−1 .
+
+(5)
+i−1
+i−1
+In equation (5), Xi−1 stands for (Xj1 ,1 , ..., Xjs ,1 ), and J =
+J,1
+{j1 , ..., js } is a set of random processes which inﬂuence X1 .
+Figure 1 illustrates the time dependency in equation (3) (a)
+and equation (5) when d = 3 (b). It is easy to check that
+for d = 1, equation (5) becomes Kramer’s causal conditioned
+distribution (3).
+Assumption 1: For the reminder of this paper we only
+consider a collection of random processes for which (i) there
+dP
+exists a reference measure ϕ such that dϕX > 0 and (ii) the
+joint distribution is given by (4). For simplicity, we will write
+PX||Y instead of PX||1 Y .
+Denote the Kullback-Leibler divergence for PX and QX as
+[
+]
+PX
+D(PX ||QX ) := EPX log
+.
+(6)
+QX
+
+i=1
+
+1,1
+
+n
+∏
+i=d+2
+
+Consider a stochastic dynamical system described by m
+random processes X = (X1 , ..., Xm ) with joint distribution PX
+such that each random process contains n random variables.
+We denote the jth random variable in the ith random process
+by Xi,j and the random process Xi from time 1 up to time
+j
+j by Xi,1 . Using the chain rule over increasing time indices,
+the distribution can be factored as
+n
+∏
+PX =
+(1)
+PX1,i ,...,Xm,i |X i−1 ,...,X i−1 .
+
+n m
+∏∏
+
+(b) PY||3 X .
+
+Fig. 1: Time dependencies between random processes X and
+Y in two different scenarios. Directed edges are used to show
+which variables of process X take part in generating which
+variable of process Y .
+
+II. N OTATIONS
+
+PX =
+
+X1 IN 2 I X3 > X4 X5 · · ·
+X
+NIN I
+N
+II NN II >> ...
+II NN II >> .
+II NNN I >> .
+I
+II NNI > ..
+I
+II NNN 0 #
+II
+>
+6
+96
+Y1 Y2 Y3 Y4 Y5 . . .
+
+PXj || X[j] (Xj || X[j] ) ,
+
+(4)
+
+Deﬁnition 3.1: For a joint distribution a generative model
+is a function A : {1, ..m} → P({1, ..m}), (power set of
+{1, ..m}) such that for each process j ∈ {1, ..m}, j ∈ A(j)
+/
+and
+D(PX || PA ) = 0 ,
+∏m
+where PA := j=1 PXj || XA(j) (Xj || XA(j) ).
+
+j=1
+
+where [j] := {1, ..., m}\{j}. In this notation the set of random
+processes X[j] inﬂuence the random process Xj by one time
+delay. This notation may be generalized to the case for which
+2 Note the slight difference in conditioning upon X i−1 in this deﬁnition as
+j,1
+i
+compared to Xj,1 in the original causal conditioning deﬁnition.
+
+2
+
+CP
+o
+X2 B
+X3
+BB
+
+BB
+
+BB
+Õ
+BB
+rkXX
+B
+X1 XXXX
+XXXXX BB3 
+XX
+X4
+
+X2 o
+X3
+ BBB
+BB
+
+BB
+Õ
+BB
+BB
+X1
+B3
+X4
+
+Fig. 2: Generative model graph of Example 1.
+
+Fig. 3: Directed information tree of Example 2.
+
+−
+→
+−
+→
+A directed graph G = (V, E ) is characterized by a set V of
+vertices or nodes and a set of ordered pairs of vertices, called
+→
+−
+arrows or edges E ⊂ V × V . An undirected graph is called
+connected if there is at least one path between any two nodes
+and if there is exactly one path between any pair of vertices,
+then it is called tree. A directed tree is a graph such that its
+undirected underlying graph obtained by replacing all arrows
+→
+−
+−
+→
+with undirected edges is a tree. In a directed tree T = (V, E )
+a node r without any incoming arrow is called root and all of
+its neighbors are considered to be its children.
+Deﬁnition 3.2: A generative model graph is a directed
+graph where each node corresponds to a random process, and
+there is an arrow from i to j, for i, j ∈ {1, ..m} if and only if
+i ∈ A(j). It is called minimal if for each i, A(i) has minimal
+cardinality. Under Assumption 1, there is a unique minimal
+generative model graph [8].
+Example 1: Consider the following joint distribution
+
+Assumption 2: We assume that the joint distribution of the
+set of observed processes is tree-decomposable and its minimal
+tree has only one root, i.e., a node without any incoming edge.
+Example 2: Fig. 3 demonstrates a directed information tree
+which satisﬁes Assumption 2.
+PX = PX1 ||X2 PX2 ||X3 PX3 PX4 ||X2 .
+Lemma 3.5: Under Assumption 2, every vertex except the
+root in the minimal latent directed information tree (LDIT) has
+exactly one incoming edge. Moreover, all hidden nodes with
+one incoming and one outgoing edge are redundant hidden
+nodes. In other words, a minimal LDIT has no internal latent
+vertex with degree less than three.
+Proof: The ﬁrst statement is immediate from Assumption 2. As for the second claim, we give a proof sketch.
+Suppose there exists a latent node (X2 ) with one incoming
+and one outgoing arrow (X1 → X2 → X3 ) in a minimal LDIT.
+From the deﬁnition of a generative model graph, it follows that
+
+PX = PX1 ||X4 ,X2 ,X3 PX2 ||X3 PX3 ||X1 ,X2 PX4 ||X2 ,X3 .
+
+PX i−1 |X i−1 ,X1 = PX i−1 |X i−1 ,X i−1 .
+
+I(Xi → Xj || X[i,j] ) > 0 .
+
+3,1
+
+2,1
+
+3,1
+
+2,1
+
+Its generative model graph is depicted in Fig. 2.
+Deﬁnition 3.3: A directed information graph is a directed
+graph over a set of random processes X where there is an
+arrow from i to j for i, j ∈ {1, ..., m} if and only if
+
+(11)
+
+1,1
+
+By the chain rule, we have
+∑
+PX3,i |X i−1 ,X i−1 ,X1 PX i−1 |X i−1 ,X1 .
+PX3,i |X i−1 ,X1 =
+2,1
+
+3,1
+
+3,1
+
+2,1
+
+3,1
+
+i−1
+X2,1
+
+(12)
+From (11), (12) and the fact that A(3) = 2, we obtain
+PX3 |X1 = PX3 ||X1 .
+
+(10)
+
+Theorem 3.4 ([8]): For any joint distribution PX satisfying
+Assumption 1, the corresponding minimal generative model
+graph and directed information graph are equivalent.
+In the reminder of this paper we will refer to generative
+model graphs and directed information graphs interchangeably.
+Consider a set of random processes X for which the directed
+→
+−
+information graph is a tree T = (V, E ), abbreviated as DIT.
+Denote O = (X1 , ..., Xm ) as the set of observable processes
+and their corresponding nodes in the DIT is denoted by
+O. Likewise, denote L = (Y1 , ..., Yk ) as the set of latent
+processes and their corresponding nodes are denoted by L.
+Brieﬂy, X = (O, L) and V = O ∪ L.
+A probability distribution PO is called tree-decomposable if
+it is a marginal of a tree-structured graphical model PO,L . In
+this case, PO,L is said to be a tree-extension of PO ; it is said
+to have a redundant latent node h ∈ L if we could remove h
+and the marginal on the set of visible nodes O remains as PO .
+In other words, h ∈ L is redundant if the directed information
+graph corresponding to the joint distribution of observed and
+latent nodes excluding Yh , (PO,Y[h] ) remains a tree. Finally, a
+latent directed information tree is called minimal if it has no
+redundant hidden node [6].
+
+Lemma 3.6: In a system of random processes X with a
+−
+→
+directed information tree T = (V, E ). If there is a directed
+path from Xi to Xj and a path from Xj to Xk , i.e.,
+· · · → Xi → · · · → Xj → · · · → Xk → · · ·
+Then the joint distribution of Xi , Xj and Xk factors as follows
+PXi ,Xj ,Xk = PXi PXj ||Xi PXk ||Xj ,
+or equivalently,
+(
+)
+(
+)
+D PXj |Xi ||PXj ||Xi = D PXk |Xj ,Xi ||PXk ||Xj = 0 .
+
+(13)
+
+(14)
+
+Proof: Without loss of generality, let X1 to be the root
+then by the deﬁnition of generative model graph and Theorem
+3.4, one can write the joint distribution of X as follows
+PX = PX1 · · · PXi ||XA(i) · · · PXj ||XA(j) · · · PXk ||XA(k) · · · (15)
+By marginalizing over the descendants of Xk and applying
+Lemma 3.5 several times for the intermediate nodes between
+Xi , Xj and Xk , one can obtain
+PXC
+
+3
+
+i
+
+,Xi ,Xj ,Xk
+
+= PXC PXi ||XC PXj ||Xi PXk ||Xj .
+i
+
+i
+
+(16)
+
+v3 eK
+KK
+v2 dI
+KK1
+II
+KK
+II
+KK
+II
+II
+2
+f v5
+v1 n]]]]]]]]] v4 rffffff
+1
+
+Where XCi is the set of all ancestors and siblings of Xi in the
+DIT. The left-hand side of (16) can be expanded by the chain
+rule as follows
+PXC
+
+i
+
+,Xi ,Xj ,Xk
+
+= PXC PXi |XC PXj |XC
+i
+
+i ∪{i}
+
+i
+
+PXk |XC
+
+i ∪{i,j}
+
+. (17)
+
+1
+
+Fig. 4: Directed information tree of Example 3.
+
+Using (16) and (17) and marginalizing over XCi , (14) is
+proven.
+Lemma 3.7: Consider a system of random processes X with
+−
+→
+a directed information tree T = (V, E ). If there is a directed
+path from j to i of length d, i.e., there is a sequence of nodes
+(i1 , ..., id−1 ) where j is the ancestor of i1 , ik is the ancestor
+of ik+1 for (1 ≤ k ≤ d − 2), and id−1 is the ancestor of i
+then
+D(PXi |Xj || PXi ||d Xj ) = 0 .
+(18)
+
+this section, we deﬁne a notion of distance on a tree in order
+to determine the distance from each pair of nodes to their
+common ancestor. Moreover, we will show that given these
+distances for a subset of nodes including leaves, the tree will
+be recoverable uniquely.
+Deﬁnition 4.1: Given a tree T = (V, E) with the root r,
+we deﬁne the discrepancy between two nodes as a function
+γr (v1 , v2 ) : V × V → Z+ , that assigns a positive integer to
+the path from v1 to the common ancestor between v1 and v2 ,
+such that
+1) γr (v1 , v1 ) = 0.
+2) If v1 is the ancestor of v2 then γr (v1 , v2 ) = 0.
+3) If the path from v1 to v3 contains the common ancestor
+of v1 and v2 , then
+
+Proof: It is sufﬁces to prove the lemma for d = 2, as the
+case for larger d, may be proven by induction. Consider the
+case where d = 2 (X → Y → Z). First we prove that
+PZm |Z m−1 ,X = PZm |Z m−1 ,X m−2 ∀m ≤ n ,
+
+(19)
+
+Note that if (19) holds, then by multiplying all terms for m =
+1, ..., n, we obtain
+PZ|X = PZ 2 PZ3 |Z 2 ,X1
+
+n
+∏
+
+γr (v1 , v2 ) < γr (v1 , v3 ).
+
+PZm |Z m−1 ,X m−2 ,
+
+m=4
+
+The image of this function can be presented by the discrepancy
+matrix:
+ΓV := [γr (vi , vj )] , vi , vj ∈ V .
+
+which proves our claim. Equation (19) can be proved by
+induction on n. The base case follows from the deﬁnition of
+causal conditioning and Lemma 3.6. Now suppose that (19)
+holds for m less than k. Note that from the chain rule for any
+m in particular m = k we have
+∑
+PY k−1 |X
+PZk |Z k−1 ,X =
+PZk |Z k−1 ,Y k−1 ,X PZ k−1 |Y k−1 ,X
+PZ k−1 |X
+Y k−1
+(20)
+This equation can be simpliﬁed by using induction hypothesis
+and Lemma 3.6 in particular equations (14) which imply
+PZk |Z k−1 ,Y k−1 ,X = PZk |Z k−1 ,Y k−1 ,X k−2 ,
+
+(21)
+
+PZ k−1 |Y k−1 ,X = PZ k−1 |Y k−1 ,X k−2 ,
+
+(22)
+
+PY k−1 |X = PY k−1 |X k−2 .
+
+Note that for a given tree, the discrepancy matrix is not unique.
+Any function that satisﬁes Deﬁnition 4.1’s conditions is a valid
+discrepancy measure.
+Example 3: Consider the tree depicted in Fig. 4 with root
+v5 and a discrepancy matrix given by
+
+
+0 1 2 1 2
+ 2 0 4 2 4 
+
+
+ΓV =  1 1 0 1 1 
+
+
+ 0 0 1 0 1 
+0 0 0 0 0
+
+(23)
+
+For instance, looking at the third row, this particular function
+assigns 1 to the path from v3 to its common ancestor with v1
+which is v5 . Similarly, the weight of the path from v3 to its
+common ancestor with v2 , v5 , is one and so on.
+Note that the discrepancy matrix describes the topology of a
+tree T = (V, E) uniquely. Moreover, under some conditions a
+tree can be recovered just by knowing the discrepancy matrix
+of a proper subset of V .
+Theorem 4.2: Let T = (V, E) to be a tree with root r and
+S ⊆ V such that every node v ∈ V \ (S ∪ {r}) has degree at
+least 3. Then, the discrepancy matrix of S (ΓS ), will determine
+V and E uniquely.
+Proof: The proof is by induction on |S|. Suppose, a tree
+T = (V, E) can be recovered uniquely, by any S ⊆ V
+such that every node v ∈ V \ (S ∪ {r}) has degree at
+least 3 and |S| ≤ k − 1. For the case that |S| = k, let
+Bv := arg minu∈S\{v} γr (v, u). If Bv = S \ {v} for all
+
+Substituting (21), (22), and (23) into the right-hand side of
+(20) and induction hypothesis prove our claim.
+Lemma 3.7 implies that by walking along the path between
+two random process Xi and Xj , each time we pass a node, the
+time dependency between Xi and Xj decreases at least by one
+unit. In the next sections we will see that these time delays
+will help us to recover the structure of a minimal LDIT.
+IV. R ECOVERY OF L ATENT T REES
+A simple observation about the directed tree with one root
+is that each pair of nodes has a unique common ancestor and
+also we know by Lemma 3.5 that all leaves in a minimal
+LDIT are observable. Therefore, if we could ﬁnd that how
+far each pair of leaves are from their common ancestor then
+intuitively, we expect to be able to recover the entire tree. In
+
+4
+
+v then T is a star with one hidden node at the center.
+Otherwise, ﬁx a vertex v ∈ S such that Bv ̸= S \ {v}. If
+minu∈S\{v} γr (v, u) = 0, then all the nodes in Bv are the
+descendants of v. In this case by induction hypothesis, the
+subtree of T containing v and all its descendant, is recoverable
+by Bv ∪ {v} as well as the rest of the tree by S \ Bv . The
+case of minu∈S\{v} γr (v, u) > 0 is similar, however, in this
+case, Bv and {v} have a common hidden ancestor which is
+also connected to v.
+
+VI. C ONCLUSION AND F UTURE W ORK
+This work develops a new approach for learning a latent
+tree when a certain discrepancy measure is available for the
+observed nodes. This procedure may be applied to learning
+latent directed information trees from the samples of observed
+processes. Our algorithm produces a matrix of integer values
+based on the samples and uses the elements of the matrix to
+discover the hidden nodes and the connections between the
+hidden and observed nodes. Note that Theorem 5.2 showed
+that a discrepancy measure may be obtained for minimal
+DITs. This in conjunction to Theorem 4.2 means that we can
+recover the structure of a minimal LDIT from the samples
+available at the observed nodes. Equation (25) leads us to
+extract the directed measures by estimating mutual information
+between the present of one observed process and past of
+other observed processes. Future work entails consistently
+estimate mutual information from data; this is feasible under
+appropriate statistical assumptions [11]-[15].
+
+V. D ISCREPANCY M EASURE FOR L ATENT D IRECTED
+I NFORMATION T REES
+In this section, we establish the discrepancy measure for
+a minimal directed information tree. Lemma 3.7 states that
+the lag between random processes grow by walking along the
+directed paths in a minimal DIT. This allows us to have the
+following deﬁnition in a minimal DIT.
+Deﬁnition 5.1: For any pairs of random processes
+(Xj , Xk ) ∈ X, we deﬁne the directed measure from Xj to Xk
+denoted by γ(j, k) as follows
+{
+(
+)
+}
+γ(j, k) := max d : D PXk |Xj || PXk ||d Xj = 0 , (24)
+
+ACKNOWLEDGMENT
+This work was supported in part to N. Kiyavash by AFOSR
+under grants FA 9550-11-1-0016, FA 9550-10-1-0573, and FA
+9550-10-1-0345; and by NSF grant CCF 10-54937 CAR; and
+to T. Coleman by NSF Science & Technology Center grant
+CCF-0939370 and NSF grant CCF 10-65352.
+
+d
+
+whenever j ̸= k and it is zero otherwise.
+Clearly, γ(j, k) ̸= γ(k, j). Note, that (24) implies
+γ(j,k)
+
+I(Xj ; Xk,1
+
+γ(j,k)+1
+
+) = 0 & I(Xj ; Xk,1
+
+)>0.
+
+Thus if (24) exists, then equivalently
+{
+}
+d
+γ(j, k) = max d : I(Xj ; Xk,1 ) = 0 .
+d
+
+(25)
+
+R EFERENCES
+[1] J. Massey, “Causality, feedback and directed information,” in Proc. Int.
+Symp. Information Theory Application (ISITA-90), 1990, pp. 303-305.
+[2] T. Jiang, P. E. Kearney, and M. Li, “A polynomial-time approximation
+scheme for inferring evolutionary trees from quartet topologies and its
+application,” SIAM J. Comput. 30, pp. 1942-1961, 2001.
+[3] A. Anandkumar, K. Chaudhuri, D. Hsu, S. M. Kakade, L. Song, and
+T. Zhang, “Spectral Methods for Learning Multivariate Latent Tree
+Structure,” 2011, submitted, arXiv:1107.1283.
+[4] M.J. Choi, V. Tan, A. Anandkumar, and A. Willsky, “Learning Latent
+Tree Graphical Models,” Journal of Machine Learning Research, 2011.
+[5] C. Chow, C. Liu, “Approximating discrete probability distributions with
+dependence trees,” IEEE Transaction on Information Theory, vol. 14, no.
+3, pp. 462-467, 1968.
+[6] J. Pearl, “Probabilistic reasoning in intelligent systems: networks of
+plausible inference,” Morgan Kaufmann, 1988.
+[7] G. Kramer, “Directed information for channels with feedbacks,” Ph.D.
+dissertation, University of Manitoba, Canada, 1998.
+[8] C. Quinn, N. Kiyavash, and T. Coleman, “Directed Information Graphs,”
+in Arxiv preprint arXiv:1204.2003, 2012.
+[9] D. Materassi, and G. Innocenti, “Topological identiﬁcation in networks
+of dynamical systems,” IEEE Transactions on Automatic Control, vol. 55,
+no. 8, pp. 1860-1871, 2010.
+[10] C. Shalizi, M. Camperi, and K. Klinkner, “Discovering functional communities in dynamical networks,” Statistical Network Analysis: Models,
+Issues, and New Directions, pp. 140-157, 2007.
+[11] J. Jiao, H. Permuter, L. Zhao, Y. Kim, and Y.H. Weissman, “Universal
+Estimation of Directed Information,” Arxiv preprint arXiv:1201.2334,
+2012.
+[12] H. Cai, S.R. Kulkarni, and S. Verd´ , “Universal divergence estimation
+u
+for ﬁnite-alphabet sources,” IEEE Transactions on Information Theory,
+vol. 52, no. 8, pp. 3456-3475, 2006.
+[13] H. Cai, S. R. Kulkarni, and S. Verd´ , “Universal entropy estimation
+u
+via block sorting,” Information Theory, IEEE Transactions, vol.50, no. 7,
+pp. 1551-1561, 2004.
+[14] F. Perez-Cruz, “Estimation of information theoretic measures for continuous random variables,” NIPS, 2008.
+[15] K. Sricharan, and A. O. Hero, “Ensemble estimators for multivariate
+entropy estimation,” ArXiv e-prints:1203.5829, 2012.
+
+(26)
+
+Theorem 5.2: Let X be a collection of random processes
+with a graphical model which is a minimal directed informa−
+→
+tion tree T = (V, E ), then the directed measure deﬁned in
+(5.1) is a discrepancy on T .
+Proof: We show that for a given path X → Y → Z
+in a minimal LDIT, if γ(X, Y ) = l and γ(Y, Z) = d then
+γ(X, Z) > max{l, d}.
+Let us prove that γ(X, Z) > d. It sufﬁces to show
+PZd+1 |Z d ,X = PZd+1 |Z d .
+
+(27)
+
+Applying the chain rule to the left-hand side of (27):
+PZd+1 |Z d ,X =
+
+∑
+Y1
+
+PZd+1 |Z d ,Y1 ,X PZ d |Y1 ,X
+
+PY1 |X
+.
+PZ d |X
+
+(28)
+
+Since γ(Y, Z) = d, i.e., D(PZ|Y || PZ||d Y ) = 0, by using the
+same argument as in the proof of Lemma 3.7, we obtain
+PZ d |Y,X = PZ d , PY1 |X = PY1 ,
+
+(29)
+
+PZd+1 |Z d ,Y1 ,X = PZd+1 |Z d ,Y1 .
+
+(30)
+
+Finally, the claim follows by substituting (29) and (30) into
+the right-hand side of (28). The statement γ(X, Z) > l may
+be proven by showing PZl+1 |Z l ,X = PZl+1 |Z l+1 in a similar
+fashion.
+
+5
+
+

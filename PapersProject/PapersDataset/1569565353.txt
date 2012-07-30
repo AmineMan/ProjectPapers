@@ -1,0 +1,819 @@
+Title:          FinalIrregularNBVB.pdf
+Subject:        
+Keywords:       
+Author:         eft-yas
+Creator:        PDFCreator Version 0.9.9
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Mon Apr 23 14:45:52 2012
+ModDate:        Tue Jun 19 12:55:31 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      335136 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569565353
+
+Analysis and Design of Irregular Graphs for
+Node-Based Veriﬁcation-Based Recovery Algorithms in
+Compressed Sensing
+Yaser Eftekhari, Amir H. Banihashemi, Ioannis Lambadaris
+Department of Systems and Computer Engineering, Carleton University, Ottawa, Canada
+sensing graph. The main focus of this paper is on such
+problems. More speciﬁcally, our main interest is in a subclass of message-passing recovery algorithms, called NodeBased Veriﬁcation-Based (NB-VB) algorithms [10]–[13],
+and the performance of these algorithms over irregular
+sparse graphs (matrices). The VB recovery algorithms, in
+general, are iterative and have computational complexity
+O(n), which makes them suitable for applications involving
+recovery of signals with large n. Moreover, if certain
+conditions are satisﬁed, the performance of VB algorithms
+is not sensitive to the distribution of non-zero elements
+in the sensing matrix and the original signal [12], [13].
+Another interesting feature of VB algorithms is that their
+performance can be analyzed in the asymptotic case (n →
+∞) [10]–[15]. These properties make the VB algorithms
+a suitable choice for low-complexity recovery of sparse
+signals. For a comprehensive study on the VB algorithms,
+we refer the interested readers to [12], [16].
+The VB algorithms are, however, sensitive to the presence of noise in the measured data. The authors in [12]
+discussed the use of a thresholding technique to deal with
+noisy measurements. This technique is very effective in
+the high signal to noise ratio (SNR) regime (such as the
+scenario in [4]). Having said that, some compressed sensing
+applications (see [5], [6] for some examples) are formulated
+as noiseless problems with sparse measurement matrices.
+Furthermore, the noise-free analysis of recovery algorithms
+serves as an upper bound for the performance of the noisy
+versions. All of the above highlight the importance of noisefree analysis of the recovery algorithms in compressed
+sensing, in general, and in compressed sensing with sparse
+measurement matrices, in particular.
+The main focus of this paper is to analyze NB-VB
+recovery algorithms for compressed sensing problems with
+irregular sensing graphs and to design sensing graphs that
+perform well with these recovery algorithms. Our results
+are derived in the asymptotic regime (n → ∞). In this
+regime, we assume a probabilistic model for the input
+signal, in which a signal element is zero with probability
+1 − α or takes a value from a continuous distribution with
+probability α. Henceforth, the parameter α is referred to
+as the density factor. Let α(ℓ) denote the probability that
+a signal element is non-zero and unknown at iteration ℓ
+over the ensemble of all sensing graphs and all inputs of
+interest. In the asymptotic regime, the recovery algorithm
+is called successful for the initial density factor α(0) = α if
+
+Abstract—In this paper, we present a probabilistic analysis
+of iterative node-based veriﬁcation-based (NB-VB) recovery
+algorithms over irregular graphs in the context of compressed
+sensing. Veriﬁcation-based algorithms are particularly interesting due to their low complexity (linear in the signal dimension n). The analysis predicts the average fraction of unveriﬁed
+signal elements at each iteration ℓ where the average is taken
+over the ensembles of input signals and sensing matrices. The
+analysis is asymptotic (n → ∞) and is similar in nature to
+the well-known density evolution technique commonly used
+to analyze iterative decoding algorithms. Compared to the
+existing technique for the analysis of NB-VB algorithms,
+which is based on numerically solving a large system of
+coupled differential equations, the proposed method is much
+simpler and more accurate. This allows us to design irregular
+sensing graphs for such recovery algorithms. The designed
+irregular graphs outperform the corresponding regular graphs
+substantially. For example, for the same recovery complexity
+per iteration, we design irregular graphs that can recover up
+to about 40% more non-zero signal elements compared to the
+regular graphs. Simulation results are also provided which
+demonstrate that the proposed asymptotic analysis matches
+the performance of recovery algorithms for large but ﬁnite
+values of n.
+
+I. I NTRODUCTION
+Consider a signal v ∈ Rn with only k non-zero elements.
+Let m be a positive integer so that k < m ≪ n. The
+main idea in compressed sensing is to represent v with
+measurements c ∈ Rm (measuring process), and to be able
+to recover back the original signal v from the measurements
+c (recovery process) [1], [2].
+The measuring process is essentially a linear transformation that can be represented by the matrix multiplication
+c = Gv, or equivalently characterized by a bipartite
+graph [3]. In these representations, G is referred to as the
+sensing matrix and the bipartite graph as the sensing graph,
+respectively. The recovery process is essentially estimating
+v based on the knowledge of c and G and is considered
+successful if v is estimated correctly.
+If the density of edges in the sensing graph is high, the
+computational complexity of ﬁnding the measurements and
+that of the recovery is considerably higher compared to the
+cases where the sensing graph is sparse. The high complexity of recovery for dense graphs hinders their application
+to high-dimensional signal recovery (signals with large n).
+Moreover, in certain compressed sensing applications such
+as computer networks [4]–[6], channel coding [7], spectrum
+sensing [8], and identiﬁcation of linear operators [9], the
+nature of the problem results in a formulation with a sparse
+
+1
+
+and only if limℓ→∞ α(ℓ) = 0. Indeed, if the initial density
+factor is smaller than a certain threshold, referred to as the
+success threshold, then the recovery algorithm is successful
+as n → ∞ and ℓ → ∞ [10]–[15]. Fixing the compression
+ratio m/n, it is desirable to devise sensing graphs with the
+highest success threshold possible.
+An asymptotic analysis of NB-VB algorithms was ﬁrst
+presented in [10], where a system of coupled differential
+equations had to be solved. To cope with the high complexity of solving such a systems, the authors used numerical
+methods to solve the system for ﬁnite values of n, and
+thus obtained an approximation of the asymptotic result by
+choosing a large value of n. The numerical approximation
+in [10] translates to long running times and the possibility
+of numerical errors propagating through the iterations in the
+analysis. The latter would compromise the accuracy of the
+obtained success thresholds [12], [13].
+In [12], [13], the authors developed a low-complexity
+framework for the asymptotic analysis of NB-VB algorithms over sparse random regular sensing graphs. The
+analysis presented in [12], [13] was signiﬁcantly faster
+and more robust against numerical errors compared to the
+approach of [10].
+In this paper, we extend the analysis presented in [12],
+[13] to irregular graphs. Our simulations show that for a
+given compression ratio m/n, irregular graphs can provide
+up to 40% larger success thresholds compared to regular
+graphs. In this comparison, since the number of edges in
+both graphs is the same, the recovery complexity remains
+almost the same. Just like the analysis in [12], [13], the proposed analysis is developed for noiseless measurements and
+its computational complexity increases only linearly with
+the number of iterations. Moreover, the analysis is simple to
+perform, requiring only additions and multiplications. This
+makes it possible to use the analysis at the core of a process
+to design degree distributions for irregular sensing graphs
+that perform well with NB-VB algorithms. The performance
+measure considered in this work is the success threshold.
+
+i
+degree i, respectively. The polynomials λ(x) =
+i λi x
+and ρ(x) = i ρi xi are referred to as degree distributions
+corresponding to nodes in V and C, respectively. Clearly,
+λ(1) = ρ(1) = 1. For mathematical convenience, we deﬁne
+¯
+¯
+dv := i iλi and dc := j jρj and we refer to them as
+the average variable degree and the average check degree,
+respectively.
+For given λ(x), ρ(x) and n, let G n (λ(x), ρ(x)) (G n (λ, ρ)
+for short) denote the ensemble of all irregular bigraphs with
+n variable nodes and degree distributions λ(x) and ρ(x).
+m×n
+Further, let Wf
+be the ensemble of all m × n (m =
+¯ ¯
+ndv /dc ) matrices with i.i.d. entries w drawn according to
+a distribution f (w). Now, for any irregular bigraph G(V ∪
+m×n
+C, E) ∈ G n (λ, ρ) and any weight matrix W ∈ Wf
+, we
+form the corresponding (n, λ, ρ)-weighted irregular bigraph
+G ′ (V ∪ C, W (E)) as follows. Let us assume an arbitrary,
+but ﬁxed, labeling scheme for node sets V and C over the
+ensemble G. To every edge eij ∈ E, 1 ≤ i ≤ m, 1 ≤
+j ≤ n, connecting ci ∈ C and vj ∈ V , we assign the
+weight in row i and column j of the weight matrix W ;
+i.e., w(eij ) = wij . Thus, we construct the ensemble of all
+n
+(n, λ, ρ)-weighted irregular bigraphs, denoted by Gf (λ, ρ),
+m×n
+by freely combining elements in G n (λ, ρ) and Wf
+.
+To describe the inputs of interest, let α ∈ [0, 1] be a ﬁxed
+real number and v be a vector of length n with elements
+v i drawn i.i.d. according to Pr[v i = v] = αg(v) + (1 −
+α)δ(v), where δ(·) and g(·) are the Kronecker delta and
+a probability density function, respectively. We denote the
+n
+ensemble of all such vectors by Vg (α).1
+To build the compressed sensing setup, let G(V ∪
+C, W (E)) be a weighted irregular bigraph drawn uniformly
+n
+at random from the ensemble Gf (λ, ρ) with G as its
+biadjacency matrix. Moreover, let v be a signal vector
+n
+drawn uniformly at random from the ensemble Vg (α).
+Also, let c = Gv. The sets of signal elements v and
+measurements c are respectively mapped to the vertex sets
+V and C (|V | = n, |C| = m) with the sensing matrix being
+the biadjacency matrix G. Henceforth, we refer to the graph
+G as the sensing graph.
+
+II. E NSEMBLES OF S ENSING G RAPHS AND I NPUTS
+
+III. VB A LGORITHMS AND V ERIFICATION RULES
+As a class of iterative recovery algorithms, the VB
+algorithms ﬁnd the value of a set of signal elements in each
+iteration based on the knowledge of the measurements, the
+sensing graph and the previously veriﬁed signal elements. In
+[11]–[13], [17], [18], it was demonstrated that the continuity
+of at least one of the distributions f or g (non-zero weights
+of the sensing graph or non-zero signal elements), is a
+sufﬁcient condition for the assigned value to a variable node
+at a certain iteration to be its true value with probability one
+(zero probability of false veriﬁcation). In this paper also, we
+assume that the probability of false veriﬁcation throughout
+the recovery algorithm is zero.
+
+Let G(V ∪ C, E) denote a bipartite graph or a bigraph
+with the node set V ∪ C and the edge set E, so that every
+edge in E connects a node in V to a node in C. Further, let
+A(G) denote the biadjacency matrix of graph G; the entry
+aij in A is 1 if there exists an edge connecting the nodes
+ci ∈ C and vj ∈ V . Following the coding terminology,
+we refer to the sets V and C as variable nodes and check
+nodes, respectively.
+In general, a bigraph can be weighted and irregular. In
+the weighted bigraph G ′ (V ∪ C, W (E)) a weight wij :=
+w(eij ) ∈ R\{0} is associated with each edge eij ∈ E.
+The weight wij also appears in the (i, j)th entry of the
+biadjacency matrix A(G ′ ) corresponding to the weighted
+bigraph G ′ .
+In a bigraph, a node in V (C) has degree i if it is
+neighbor (connected) to i nodes in C (V ). Let λi ∈ R+
+and ρi ∈ R+ denote the fraction of nodes in V and C with
+
+1 It is worth noting that the expected fraction of non-zero elements in
+such a vector is α. Using a Chernoff bound, it can be shown that the
+actual fraction of non-zero elements in a randomly chosen vector from
+this ensemble is tightly concentrated around its expected value (α) with
+high probability.
+
+2
+
+TABLE I
+S ETS THAT CHANGE IN EACH HALF - ROUND OF EACH ROUND AT ANY
+
+The algorithm discussed in [17], which is the same as
+the LM2 algorithm of [11], performs the best among all
+known VB algorithms in the context of compressed sensing
+[10], [12], [13]. We refer to this algorithm as SBB. The
+analysis of SBB is the focus in this work. The proposed
+analytical framework is, however, general and applicable to
+the analysis of other NB-VB algorithms. In what follows,
+we discuss the veriﬁcation rules of the SBB algorithm.
+When a variable node is veriﬁed at an iteration of an NBVB algorithm, its value is subtracted from the value of all
+its neighboring check nodes. Then, the variable node and
+all its adjacent edges are removed from the sensing bigraph.
+Consequently, all the check nodes neighbor to the veriﬁed
+variable node face a reduction in their degree by one. The
+algorithm stops at an iteration if the set of veriﬁed variable
+nodes remains unchanged for two consecutive iterations or
+when all the variables are veriﬁed. A variable node in SBB
+is veriﬁed based on the following veriﬁcation rules.
+• Zero Check Node (ZCN): All variable nodes neighbor
+to a zero-valued check node are veriﬁed with a value
+equal to zero.
+• Degree One Check Node (D1CN): If a variable node
+is neighbor to a check node of degree 1, it is veriﬁed
+with the value of the check node.
+• Equal Check Nodes (ECN): Let C denote a set of check
+nodes with the same non-zero value. Also, let V denote
+the set of all variable nodes neighbor to at least one
+check node in C. Then, 1) a variable node in V which
+is not connected to all check nodes in C is veriﬁed
+with a value equal to zero; 2) if there exists a unique
+variable node in V that is neighbor to all check nodes
+in C, then it is veriﬁed with the common value of the
+check nodes.
+In order to introduce the asymptotic analysis of NB-VB
+algorithms and prove the concentration results, the authors
+in [12], [13] developed a message passing representation of
+VB algorithms. In this paper, we use the same representation and refer the interested reader to the aforementioned
+references for more details.
+
+ITERATION
+
+R1
+
+R2
+
+HR1
+
+HR2
+
+HR1
+
+HR2
+
+Nk,i → Nk,j
+
+Ki → Kj
+
+Ni,k → Nj,k
+
+∆i → ∆j
+
+being that the NB-VB algorithms do not conform to the
+principle of extrinsic message passing which signiﬁcantly
+simpliﬁes the density evolution analysis in the context of
+coding.
+The mathematical framework for the analysis is similar to
+the one used in [12], [13], however with two extra variables
+dv and dc which represent the degree of a variable and
+a check node, respectively. These variables take different
+values for irregular graphs while for a regular graph they
+each have a ﬁxed value. This makes the derivations more
+tedious. Due to the lack of space, in the following, we only
+provide a sketch of the analysis.
+At the beginning of each iteration ℓ, the analysis partitions the set of all unveriﬁed variable nodes into two
+(disjoint) sets: non-zero variable nodes (K(ℓ) ), zero-valued
+variable nodes (∆(ℓ) ). Should the fraction of variable nodes
+in the set K(ℓ) tend to zero as iterations proceed, the fraction
+of variable nodes in the set ∆(ℓ) will also tend to zero and
+consequently the analysis declares a successful recovery
+[12].
+Each iteration in the SBB algorithm is divided into two
+rounds (R), each consisting of two half-rounds (HR). In
+the ﬁrst and second rounds, veriﬁed variable nodes belong
+to the sets K(ℓ) and ∆(ℓ) , respectively. The conﬁguration
+of the sets at the end of each half-round is speciﬁed using
+the superscript (ℓ, Rx, y), where ℓ, x ∈ {1, 2} and y ∈
+{1, 2} denote the iteration, round and half-round numbers,
+respectively.
+We partition the set of all check nodes with the same
+(ℓ)
+degree (say dc ) into sets Ni,j (dc ), 0 ≤ i ≤ dc , 0 ≤ j ≤
+dc − i, where i and j indicate the number of neighboring
+variable nodes in the sets K(ℓ) and ∆(ℓ) , respectively.
+Let K(ℓ) (dv ) and ∆(ℓ) (dv ) denote the set of all nonzero and zero-valued unveriﬁed variable nodes with the
+same degree dv , respectively. Then, the set K(ℓ) (dv ) is
+(ℓ)
+further divided into subsets Ki (dv ), 0 ≤ i ≤ dv , where
+i denotes the number of neighboring check nodes in the
+(ℓ)
+(ℓ,R1,1)
+dc −1
+set N1 := dc j=0 N1,j
+(dc ). Also, we divide the
+(ℓ)
+(ℓ)
+set ∆ (dv ) into subsets ∆i (dv ), 0 ≤ i ≤ dv , with
+(ℓ)
+the following deﬁnition: a variable node in ∆i has i
+neighboring check nodes which became zero-valued after
+HR1 of R2. Table I summarizes the sets affected in each
+half-round of each round at any iteration.
+Theorems 1 and 2 below, characterize the veriﬁcation of
+unveriﬁed non-zero (K(ℓ) ) and zero-valued (∆(ℓ) ) variable
+nodes at HR2-R1 and HR2-R2 in each iteration ℓ of the
+SBB algorithm, respectively. The proofs of the theorems
+
+IV. A SYMPTOTIC A NALYSIS F RAMEWORK
+Let the probability distributions f and g, the degree
+distributions λ and ρ, and the density factor α be ﬁxed.
+It can be shown that the fraction of unveriﬁed non-zero
+variable nodes at each iteration ℓ of the SBB algorithm
+n
+(α(ℓ) ) over a realization of the sensing graph G ∈ Gf (λ, ρ)
+n
+and a realization of the input signal V ∈ Vg (α) concentrates
+around the average of α(ℓ) taken over all the elements in
+n
+n
+the ensemble Gf (λ, ρ) × Vg (α), as n tends to inﬁnity.2
+The deterministic analysis presented here is to track the
+evolution of this average as n goes to inﬁnity. In the
+language of coding, the analysis is similar to the density
+evolution analysis of iterative decoding algorithms over
+irregular LDPC code ensembles, with the main difference
+2 These concentration results have been proved in detail for regular
+graphs in [12]. Similar results apply to the irregular sensing graphs with
+minor changes, and are therefore not presented in this paper.
+
+3
+
+TABLE II
+S UCCESS T HRESHOLDS FOR R EGULAR , L EFT-R EGULAR ,
+¯
+¯
+R IGHT-R EGULAR , AND B I -I RREGULAR G RAPHS WITH dv = 4, dc = 5
+
+are very similar to the ones presented in [12] and therefore
+omitted.
+Theorem 1. In the ﬁrst round of any iteration ℓ, a nonzero variable node of degree dv is veriﬁed if and only if it
+(ℓ,R1,2)
+dv
+ˆ (ℓ,R1,2) , where the set
+∪ K1
+belongs to the set i=2 Ki
+(ℓ,R1,2)
+(ℓ,R1,2)
+ˆ
+consists of all variable nodes in the set K1
+K1
+(ℓ,R1,1)
+connected to the set N1,0
+.
+
+Graph Type
+
+(ℓ−1,R2,1)
+
+Improvement (%)
+
+Regular
+
+0.4225
+
+-
+
+Right-Regular
+
+0.5319
+
+25.89
+
+Left-Regular
+
+0.5247
+
+24.16
+
+Bi-Irregular
+
+Theorem 2. In the second round of any iteration ℓ, a zerovalued variable node of degree dv is veriﬁed if and only if
+(ℓ)
+dv
+it belongs to the set i=1 ∆i .
+
+Success Threshold
+
+0.5795
+
+37.15
+
+(ℓ−1,R1,2)
+
+, Ki
+, and
+The sets K(ℓ) , ∆(ℓ) , Ni,j
+fully describe the state of the algorithm at the
+beginning of iteration ℓ. The probability that a variable node
+belongs to the set K(ℓ) is α(ℓ) .
+The asymptotic analysis tracks the probability that a
+node (variable node or check node) belongs to a certain
+set at each half-round, round, or iteration. The recovery is
+successful if and only if the probability α(ℓ) tends to zero,
+as ℓ tends to inﬁnity. The analysis is based on the derivation
+of recursive equations that relate the probabilities described
+above for two consecutive iterations. The complexity of the
+analysis thus scales linearly with the number of iterations.
+
+with up to four non-zero components, respectively. For
+the bi-irregular case, however, we restricted the search to
+only two degrees (bimodal distribution) both less than 20
+for both variable and check nodes. The optimized degree
+distributions (λ(x), ρ(x)) are: (0.9310x3 + 0.0350x17 +
+0.0340x18 , x5 ), (x4 , 0.7100x3 +0.1830x5 +0.1070x20 ), and
+(0.9000x3 + 0.1000x13 , 0.9375x4 + 0.0625x20 ) for rightregular, left-regular, and bi-irregular graphs, respectively.
+As expected, the bi-irregular graphs achieve the highest
+success threshold, almost 37% higher than that of the
+regular graphs.
+To investigate the degree of agreement between our
+asymptotic analysis and ﬁnite-length simulations, we have
+presented in Fig. 1 the evolution of α(ℓ) (for the theoretical results) and the average unveriﬁed non-zero variable
+nodes normalized by n (for the ﬁnite-length results) with
+iterations ℓ for the SBB algorithm. The sensing graph is a
+randomly constructed bi-irregular graph with the optimized
+degree distributions λ(x) = 0.9000x3 + 0.1000x13 and
+ρ(x) = 0.9375x4 +0.0625x20 with 105 variable nodes. Two
+values of α(0) are selected: one above the success threshold
+(0.595 > 0.5795) and one below it (0.575 < 0.5795).
+The theoretical results are shown by dotted lines while
+simulations for n = 105 are presented with solid lines. As
+one can see, the two sets of results are in close agreement
+particularly for the cases where α(0) is above the threshold
+and also for smaller values of ℓ.
+
+(ℓ−1,R2,2)
+∆i
+
+V. S IMULATION R ESULTS
+To verify the asymptotic results obtained based on the
+analysis of Section IV, we perform some ﬁnite-length
+simulations for large values of n. The input signal in all
+simulations follows the probabilistic model described in
+Section II. Also, each non-zero signal element is drawn
+from a standard Gaussian distribution (zero-mean with
+variance one). The graphs are constructed randomly with
+no parallel edges and all edge weights are chosen to be
+1. Each simulation point is generated by averaging over
+1000 random instances of the input signal. In simulations,
+the recovery is successful if and only if the input signal
+is recovered perfectly. For the analytical results, based on
+the fact that α(ℓ) is a non-increasing function of iteration
+number ℓ, we consider the following stopping criteria:
+1) Success: α(ℓ) ≤ 10−7 .
+2) Failure: α(ℓ) > 10−7 and |α(ℓ) − α(ℓ−1) | < 10−8 .
+To calculate the success threshold, a binary search is
+performed within a certain range of initial density factors
+which includes the threshold. The search continues until the
+search region is smaller than 10−5 .
+To motivate the use of irregular graphs for the purpose
+of sparse signal recovery, we ﬁrst present some comparison
+with regular graphs. In Table II, we compare the success
+threshold of the SBB algorithm over regular, left-regular
+(all variable nodes have the same degree), right-regular
+(all check nodes have the same degree) and bi-irregular
+graphs, when the average variable and check degrees are
+¯
+¯
+ﬁxed at dv = 4, dc = 5, respectively. The success
+thresholds reported for the left- and right-regular graphs
+are the highest thresholds obtained by optimizing right
+and left degree distributions with maximum degree 20 and
+
+Simulation Below Threshold
+Simulation Above Threshold
+Analysis Below Threshold
+Analysis Above Threshold
+
+0.6
+
+0.5
+
+α(ℓ)
+
+0.4
+
+0.3
+
+0.2
+
+0.1
+
+0
+0
+
+50
+
+100
+
+150
+
+200
+
+250
+
+300
+
+350
+
+Iteration (ℓ)
+
+Fig. 1. Evolution of α(ℓ) , obtained by the theoretical analysis, vs. iteration
+number ℓ (dotted line) and that of the normalized average unveriﬁed nonzero variable nodes vs. ℓ for n = 105 (solid line).
+
+In Figure 2, we have plotted the average normalized
+number of unveriﬁed variables (success ratio) of SBB over
+
+4
+
+TABLE III
+O PTIMAL L EFT D EGREE D ISTRIBUTIONS AND THE C ORRESPONDING
+T HRESHOLDS α∗ OF SBB FOR R IGHT-R EGULAR G RAPHS WITH
+¯
+dv = 4 AND D IFFERENT C HECK D EGREES A LONG WITH THE
+T HRESHOLD α∗ OF THE C ORRESPONDING R EGULAR G RAPHS
+R
+
+α∗
+
+∗
+αR
+
+5
+
+0.931x + 0.035x
+
+18
+
+0.5319
+
+0.4225
+
+6
+
+0.917x3 + 0.082x15 + 0.001x19
+
+0.4137
+
+0.3387
+
+7
+
+0.906x3 + 0.034x13 + 0.06x14
+
+0.3369
+
+0.2811
+
+0.2831
+
+TABLE IV
+S UCCESS T HRESHOLDS α∗ OF SBB OVER R IGHT-R EGULAR G RAPHS
+B
+WITH O PTIMAL B IMODAL L EFT D EGREE D ISTRIBUTIONS A LONG
+WITH THE B IMODAL D EGREE D ISTRIBUTIONS (α∗ IS THE SBB
+T HRESHOLD OF A R IGHT-R EGULAR G RAPH WITH O PTIMAL L EFT
+D EGREE D ISTRIBUTION WITH U P TO 4 NON - ZERO C OMPONENTS )
+
+0.2394
+
+dc
+
+Optimum λ(x)
+3
+
+3
+
+0.896x + 0.04x
+
+8
+
+17
+
+12
+
++ 0.034x
+
++ 0.064x
+
+13
+
+¯
+( d v , dc )
+(4, 5)
+
+1
+
+Success Ratio
+
+0.6
+0.5
+0.4
+0.3
+0.2
+0.1
+0.55
+
+0.56
+α
+
+0.57
+
+0.58
+
+0.59
+
+0.5319
+
+0.9166x + 0.0834x
+
+0.4137
+
+0.4137
+
+0.8750x3 + 0.1250x19
+
+0.3429
+
+0.3431
+
+0.8571x3 + 0.1429x17
+
+0.3001
+
+0.3017
+
+3
+
+[3] W. Xu and B. Hassibi, “Efﬁcient compressive sensing with deterministic guarantees using expander graphs,” in Proc. Information Theory
+Workshop (ITW), September 2007, pp. 414–419.
+[4] A. Abdelkeﬁ, Y. Jiang, W. Wang, and A. Kvittem, “Robust trafﬁc
+anomaly detection with principal component pursuit,” in Proc. 6th
+ACM Int. Conf. on emerging Networking EXperiments and Technologies (CoNEXT) Student Workshop, 2010.
+[5] Y. Lu, A. Montanari, and B. Prabhakar, “Counter braids: Asymptotic optimality of the message passing decoding algorithm,” in
+46th Annual Allerton Conference on Communication, Control, and
+Computing, September 2008, pp. 209 – 216.
+[6] Y. Lu, A. Montanari, B. Prabhakar, S. Dharmapurikar, and A. Kabbani, “Counter braids: A novel counter architecture for per-ﬂow
+measurement,” in Proc. Int. Conf. on Measurement and Modeling
+of Computer Sys. ACM SIGMETRICS, June 2008, pp. 121–132.
+[7] E. Cand` s and T. Tao, “Decoding by linear programming,” IEEE
+e
+Trans. Inform. Theory, vol. 51, pp. 4203–4215, Dec. 2005.
+[8] J. Meng, W. Yin, H. Li, E. Houssain, and Z. Han, “Collaborative
+spectrum sensing from sparse observations using matrix completion
+for cognitive radio networks,” in Proc. IEEE Int. Conf. Acoustics,
+Speech, and Signal Proc. (ICASSP), March 2010, pp. 3114 – 3117.
+[9] R. Heckel and H. Bolcskei, “Compressive identiﬁcation of linear
+operators.” [Online]. Available: http://arxiv.org/abs/1105.5215
+[10] F. Zhang and H. D. Pﬁster, “Analysis of veriﬁcation-based decoding
+on the q-ary symmetric channel for large q,” IEEE Trans. Inform.
+Theory, vol. 57 (10), pp. 6754–6770, 2011.
+[11] ——, “On the iterative decoding of high rate LDPC codes
+with applications in compressed sensing.” [Online]. Available:
+http://arxiv.org/abs/0903.2232
+[12] Y. Eftekhari, A. Heidarzadeh, A. Banihashemi, and I. Lambadaris,
+“An efﬁcient approach toward the asymptotic analysis of node-based
+veriﬁcation-based algorithms in compressed sensing,” Submitted
+to IEEE Trans. Inform. Theory, April 2011. [Online]. Available:
+http://arxiv.org/abs/1104.0224
+[13] ——, “An efﬁcient approach toward the asymptotic analysis of nodebased veriﬁcation-based algorithms in compressed sensing,” in Proc.
+IEEE Int. Symp. Inform. Theory (ISIT), 2011.
+[14] M. Luby and M. Mitzenmacher, “Veriﬁcation-based decoding for
+packet-based low-density parity-check codes,” IEEE Trans. Inform.
+Theory, vol. 51 (1), pp. 120–127, January 2005.
+[15] F. Zhang and H. D. Pﬁster, “List-message passing achieves capacity
+on the q-ary symmetric channel for large q,” in IEEE Global Telecom.
+Conf. (GLOBECOM), November 2007, pp. 283–287.
+[16] R. Berinde, A. Gilbert, P. Indyk, and K. Strauss, “Combining
+geometry and combinatorics: A uniﬁed approach to sparse signal
+recovery,” in 46th Annual Allerton Conference on Communication,
+Control, and Computing, September 2008, pp. 798–805.
+[17] S. Sarvotham, D. Baron, and R. Baraniuk, “Sudocodes - fast measurement and reconstruction of sparse signals,” in Proc. IEEE Int.
+Symp. Information Theory (ISIT), July 2006, pp. 2804–2808.
+[18] F. Zhang and H. D. Pﬁster, “Compressed sensing and linear codes
+over real numbers,” in Proc. Information Theory and Applications
+Workshop, February 2008, pp. 558–561.
+
+0.7
+
+0.54
+
+0.5318
+
+15
+
+(5, 10)
+
+Bi−Irregular
+Right−Regular
+
+0.53
+
+α∗
+
+(5, 9)
+
+0.8
+
+0
+0.52
+
+0.9333x3 + 0.0667x18
+
+∗
+αB
+
+(4, 6)
+
+the graphs with optimized right-regular and bi-irregular
+degree distributions of Table II vs. the initial density factor.
+Each graph has n = 105 variable nodes. We note that
+the success threshold for each graph, demonstrated by a
+vertical line on the ﬁgure, matches the waterfall region of
+the corresponding ﬁnite-length simulations.
+
+0.9
+
+λ(x) Bi-Modal
+
+0.6
+
+Fig. 2. Verifying the success threshold of SBB over right-regular and
+bi-irregular graphs of Table II through ﬁnite-length simulations.
+
+More optimization results for right-regular graphs with
+¯
+dv = 4 and different dc values are presented in Table
+∗
+III. For comparison, the threshold values αR of the corresponding regular graphs are also given in the table. An
+inspection of the threshold values reveals an improvement
+of about 18% to 26% in the threshold of irregular graphs
+in comparison with that of regular graphs.
+To reduce the design complexity of irregular graphs, we
+also investigate the effect of reducing the number of nonzero components in the left degree distribution of rightregular graphs. The results for some optimal bimodal left
+degrees are presented in Table IV. It can be seen from
+∗
+the table that the difference between the thresholds αB of
+∗
+bimodal left degrees and the thresholds α of left degrees
+with up to 4 nonzero components are negligible, i.e., only
+two different degrees on the variable side of a right-regular
+sensing graph sufﬁces to provide very good performance.
+R EFERENCES
+[1] D. Donoho, “Compressed sensing,” IEEE Trans. Inform. Theory, vol.
+52 (4), pp. 1289–1306, April 2006.
+[2] E. Cand` s, J. Romberg, and T. Tao, “Robust uncertainty principles:
+e
+Exact signal reconstruction from highly incomplete frequency information,” IEEE Trans. Inform. Theory, pp. 489–509, February 2006.
+
+5
+
+

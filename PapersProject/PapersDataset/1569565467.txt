@@ -1,0 +1,1081 @@
+Creator:        TeX
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Wed May 16 17:09:05 2012
+ModDate:        Tue Jun 19 12:54:50 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      509403 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569565467
+
+Coding strategies for the uniform noise rewritable
+channel with hidden state
+R. Venkataramanan, S. Tatikonda
+
+L. A. Lastras-Monta˜ o, M. Franceschini
+n
+
+Yale University, USA
+Email: {ramji.venkataramanan, sekhar.tatikonda}@yale.edu
+
+IBM T. J. Watson Research Center, USA
+Email: {lastrasl,franceschini}@us.ibm.com
+
+where S is a hidden (unknown) state variable uniformly
+distributed in [0, B], for some known B > 0. As before, the
+stimulus X ∈ [0, 1] and W is a noise variable uniformly
+distributed in [−a/2, a/2]. For ease of analysis, we will
+assume that B < a. A key distinction between the noise W
+and the state S is that each write attempt on the cell is affected
+with an independent realization of the random variable W ,
+while the state S stays ﬁxed across write attempts. Given a
+constraint κ on the average number of rewrites per cell, the
+problem is to determine the capacity C(κ).
+We consider the following class of coding strategies. To
+write on cell i, the write controller applies stimuli Xi1 , Xi2 , . . .
+until the output falls within a target region Ti , where Ti is a
+subset of the output space [−a/2, 1 + a/2 + B]. Using Xi
+to denote the writing strategy (Xi1 , Xi2 , . . .) for cell i, the
+number of writes needed for the output to fall within region
+Ti is a random variable, denoted τ (Xi , Ti ). More precisely, a
+rewrite code of rate R over an array of n cells is deﬁned by:
+• An encoder mapping which maps a message in
+{1, . . . , 2nR } to a sequence ((X1 , T1 ), . . . , (Xn , Tn )),
+where Ti ⊂ [−a/2, 1 + a/2 + B] is the target region
+for cell i, and Xi = (Xi1 , Xi2 , . . .) is the input strategy
+for cell i with Xik ∈ [0, 1] for all k.
+• A decoder which maps the output sequence (Y1 , . . . Yn )
+to {1, . . . , 2nR }.
+n
+1
+The average write-cost of the code is n i=1 Eτ (Xi , Ti ). Due
+to the statistical independence of the cells, the capacity for an
+average cost constraint κ is [3], [6]
+
+Abstract—Many storage channels admit reading and rewriting
+of the content at a given cost. We consider rewritable channels
+with uniform write noise and a hidden state which models the
+unknown characteristics of the memory cell. In addition to
+mitigating the effect of the write noise, rewrites can help the
+write controller obtain a better estimate of the hidden state.
+We present two coding strategies, each of which yields a lower
+bound on the rewrite capacity. We show that the second strategy
+is asymptotically optimal as the number of rewrites gets large.
+
+I. I NTRODUCTION
+In nonvolatile memory technologies, the write mechanism
+is commonly impaired by write noise due to which the
+value written on a cell is different from the one intended.
+An important feature of many of these technologies such as
+FLASH [1] and Phase Change Memory [2] is that they allow
+rewriting, i.e. the value written on a memory cell can be read
+and rewritten if necessary. Rewrites can increase the storage
+capacity but are costly since they are time consuming and
+degrade the memory. Hence there is a fundamental trade-off
+between the number of writes and the amount of information
+that can be stored in a memory cell.
+Given a memory array of n cells, the goal is to maximize
+the number of distinct messages that can be reliably encoded
+in the array, subject to a constraint on the average or maximum
+number of writes per cell. The cells are assumed to be
+statistically independent. Rewritable channels were introduced
+in [3] and subsequently studied in [4]–[6] under an average
+cost constraint. Maximum cost constrained rewritable channels
+were considered in [7]–[10].
+The uniform noise rewrite channel, introduced in [3], is a
+simple model that captures some essential features of nonvolatile memories such as analog inputs and bounded write
+noise. In this channel, when the input stimulus is X ∈ [0, 1],
+the value stored in the cell is Y = X + W , where W is a
+noise variable uniformly distributed in [−a/2, a/2] for some
+known a > 0. The capacity for this model under an average
+cost constraint was determined in [6].
+In practice, a memory cell is an amalgam of physical
+components which reacts to inputs in some way that designers
+hope to model as well as possible. However, there are always
+some unknown characteristics of the cell (which may be too
+costly to learn) that introduce an extra degree of uncertainty
+into the value written on the cell. In this paper, we model this
+effect with the channel
+Y =X +W +S
+
+C(κ) =
+
+sup
+
+I(XT ; Y ).
+
+(2)
+
+X,T :Eτ (X,T )≤κ
+
+With each write attempt, we get a better estimate of the
+hidden state which can be used to generate the next stimulus.
+For intuition, consider two extreme cases:
+• When κ = 1, we are allowed only one write attempt and
+the hidden state is treated as an additional noise variable.
+• When the average cost constraint κ → ∞, we can spend
+a number of write attempts to get a very good estimate of
+the state, and the remaining write attempts to write on the
+cell by designing the input stimulus to nullify the effect
+of the state. Thus, we expect to approach the no-state
+capacity when κ is very large.
+For 1 < κ < ∞, the challenge is to simultaneously learn the
+state while attempting to store information at a high rate.
+
+(1)
+
+1
+
+−a/2
+
+1
+−a
+2
+
+3a/2 + B
+
+a/2 + B
+
+2
+
+3
+
+4
+0
+
+5
+
+...
+
+For clarity, consider the case where κ is an integer. Divide
+each interval Zi into κ target regions. The target regions for the
+ﬁrst interval are deﬁned as shown in Figure 1. Target region 1
+a
+a
+is the interval [− a , − a + κ ]∪[ a , a + κ ]; region 2 is the interval
+2
+2
+2 2
+a
+a
+2a
+a
+a a
+2a
+a
+[− 2 + κ , − 2 + κ ] ∪ [ 2 + κ , 2 + κ ], and so on. Similarly,
+κ target regions are deﬁned for each of the N intervals.
+Encoding: To reach target region t in interval Zi for t ∈
+{1, . . . , κ}, i ∈ {0, . . . , N −1}, apply input X = (a+B)i until
+the output falls within region t in interval i. With this input,
+the accessible part of the target region has width exactly a/κ
+for any value of S ∈ [0, B]. This is illustrated in the bottom
+part of Figure 1. Regardless of the offset, the probability of
+the output falling within the target region on any write attempt
+is a/κ . The average number of rewrites is therefore κ.
+a
+The total number of target regions is N κ and by assigning
+them equal probability, the rate is
+
+1 + a/2 + B
+
+2 3
+
+1
+a
+2
+
+a
+2
+
++b
+
+a
+2
+
++B
+
+Fig. 1: Each interval of width a + B is divided into κ = 5 target
+regions. The target regions in the interval (−a/2, a/2+B) are shown.
+To write on a region in this interval, the stimulus 0 is applied. The
+dashed lines indicate the part of the interval accessible with S = b.
+We present two code constructions, each of which gives a
+lower bound on the rewrite capacity. The ﬁrst is sub-optimal
+but gives insight into features of good coding strategies. The
+second construction yields the main result of this paper – a
+better lower bound which is asymptotically optimal, i.e., it is
+arbitrarily close to the no-state capacity for sufﬁciently large
+cost constraint.
+
+I(XT ; Y ) = I(T ; Y ) = H(T ) = log N κ
+
+where the ﬁrst equality holds because the input X is a function
+of the target region T , and the second equality is due to T
+being uniquely determined by Y .
+The general case where κ is not an integer can be handled
+by an extension of the above scheme using the techniques in
+[6].
+Remark: When 1+a+B is an integer, (3) can be written as
+a+B
+
+II. C ODE C ONSTRUCTION 1
+For the uniform noise rewrite channel without state given
+by Y = X + W , the basic coding idea is that with an average
+of κ rewrites, we can shrink the effective width of the noise
+interval to a/κ. The average-cost capacity was obtained in [6].
+1+a
+/ 1+a , the rewrite
+Fact 1: [6] For κ ≥ κ0
+a
+a
+capacity with average cost constraint κ is
+C(κ) = log
+
+C(κ) ≥ log2 κ
+
+1+a
+κ .
+a
+
+1+a+B
+a+B
+
+.
+
+1+a
+a
+
+− log2
+
+1 + B/a
+1 + B/(1 + a)
+
+(5)
+
+The ﬁrst term above is the capacity when S = 0, or when S
+is precisely known at the encoder. The second term is the loss
+incurred by the coding scheme due the state being unknown.
+In the above construction, we designed the target regions so
+that each one can be accessed with equal probability regardless
+of the value of S. We did not make use of the fact that with
+each write attempt, we can estimate S with better accuracy.
+This is reﬂected in the fact that even when the number of
+rewrites κ is very large, the lower bound of Proposition 1 is
+strictly less than the capacity with S = 0, given by the ﬁrst
+term in (5). The next construction remedies this deﬁciency.
+
+When 1+a κ is an integer, the capacity is achieved by simply
+a
+dividing the space [−a/2, 1 + a/2] into equal-sized intervals
+of length a/κ and choosing the target region T to be one
+of these intervals with equal probability. The input X is any
+point which maximizes the probability of the output falling
+in the region T . When 1+a κ is not an integer, the capacity
+a
+is achieved by a careful generalization of the above idea,
+described in [6].
+When there is an unknown state offset S ∈ [0, B], the idea
+is to deﬁne each target region such that there is exactly one
+subset of width a/κ that can be accessed with a ﬁxed input
+and an average of κ writes, irrespective of the offset.
+Proposition 1: For the uniform noise rewrite channel with
+hidden state and average cost κ ≥ 2,
+C(κ) ≥ log2 κ
+
+(4)
+
+III. C ODE C ONSTRUCTION 2
+As shown in Figure 2, divide the output space [−a/2, 1 +
+a/2 + B] into two regions: the interval [−a/2 + B, 1 + a/2]
+called the ‘interior’, and the remaining space [−a/2, −a/2 +
+B] ∪ [1 + a/2, 1 + a/2 + B] called the ‘exterior’.
+Interior target regions: Divide the interior into intervals
+(target regions) of width D. The key observation is that if
+D < a − B, regardless of the value of S, each interior
+target region is fully accessible with an average of a/D write
+attempts with a ﬁxed input. As illustrated in the bottom part of
+Figure 2, to access the interior target region [x, x + D], apply
+the stimulus (x + D − a/2)+ . To fully access the region with
+offset b, we need
+
+(3)
+
+Proof: The target regions: Refer Figure 1. The output
+space [−a/2, 1 + a/2 + B] is ﬁrst divided into intervals of
+length (a + B) each. There are N = 1+a+B such intervals,
+a+B
+denoted Zi , 0 ≤ i ≤ N − 1. If 1+a+B is not an integer, the
+a+B
+remaining output space (N (a + B), 1 + a + B] is discarded.
+2
+
+(x + D − a/2)+ + b − a/2 < x
+which holds for all b ∈ [0, B] as long as D < a − B.
+
+2
+
+Interior
+1 2
+
+2m
+
+−a
+2
+
+2m
+
+1 2
+x
+
+−a + B
+2
+
+x+D
+
+1+
+
+a
+2
+
+1+
+
+a
+2
+
++B
+
+x + D − a/2 + B
+x + D − a/2
+
+x x+D
+
+x + a/2
+
+Fig. 2: Construction 2: The output space is divided into interior and exterior target regions. The bottom ﬁgure shows the an interior target
+region [x, x + D]. The state shifts the input x + D − a/2 to the right by an amount at most B. For all b ∈ [0, B], the probability of hitting
+the target region in each write attempt is D/a as long as D < a − B.
+
+Exterior target regions: As shown in Figure 2, deﬁne 2m exterior target regions for an integer m ≥ 1. For i = 1, . . . , 2m,
+the ith exterior target region, labeled Ei , is
+
+Corollary 1: The rate R(κ) achieved by Theorem 1 satisﬁes
+log2
+
+a
+B
+a
+B
+− + (i − 1)
+, − +i
+2
+2m
+2
+2m
+a
+B
+a
+B
+1 + + (i − 1)
+, 1+ +i
+.
+2
+2m
+2
+2m
+
+B
+B
+Proof: Choose D = a/κ and m = 2D = κ 2a . Note that
+for all B < a, D = a/κ < (a − B) for sufﬁciently large
+κ. With this choice and setting δi = 0 for all i, the average
+number of rewrites given by the left-side of (8) becomes
+
+With this construction, we present a coding scheme that
+achieves the following lower bound on the rewrite capacity.
+Theorem 1: For κ ≥ 2
+C(κ) ≥ max h(p) + p log2
+p,D,m
+
+pκ + (1 − p)
+where
+
+1+a−B
++ (1 − p) log2 2m
+D
+
+1+a−B
+1+a ,
+
+where the maximum is over p ∈ [0, 1], D ∈ (0, a − B) and
+integers m ≥ 1 that satisfy
+a
+1
+2m + 1 +
+B
+m
+a
++p ≤κ
+D
+
+(1 − p)
+
+m
+
+ln
+i=1
+
+ln m!
+m
+
+≤ κ.
+
+= κ(1 +
+
+κ ),
+
+= O( log κ ) goes to 0 as κ → ∞. Then with p =
+κ
+we see that
+κ ))
+
+1+a
+κ .
+a
+
+= log2
+
+1+a κ
+a 1+ κ
+
+.
+
+To highlight the main ideas, we start with a simpliﬁed
+coding scheme for the case of m = 1, i.e., two exterior target
+regions.
+
+(6)
+
+2m + 1 +
+
+1
+ln m!
++
+m
+m2
+
+IV. P ROOF OF T HEOREM 1
+
+A. Two Exterior Target Regions
+Coding Scheme: Fix p ∈ [0, 1]. For each cell, an interior
+target region is picked with probability p and an exterior region
+is picked with probability (1 − p). All interior target regions
+are equally likely, as are the exterior regions. Formally, each
+D
+interior region has probability p 1+a−B and the two exterior
+regions each have probability (1 − p)/2. Refer Figure 4. To
+write on interior region [x, x + D], repeatedly apply stimulus
+(x + D − a/2)+ until the output falls within the region.
+To write on exterior region E1 : Apply stimulus 1 until either
+the output falls in (1 + a/2, 1 + a/2 + B/2), or it is less than
+1 − a/2 + B/2. If the former occurs, stop. Otherwise, apply
+stimulus 0 until the output falls in (−a/2, −a/2 + B/2). The
+intuition is that the right bin of E1 is fully accessible with
+stimulus 1 if the offset lies in the interval [B/2, 1]. We switch
+to the left bin of E1 if we detect that the offset lies outside
+this interval.
+
+(7)
+
+The optimal δi for a few values of i are listed in Table I.
+Remark: The δi in the above theorem can chosen to be
+arbitrary values in [0,1). Picking δi that satisfy (7) minimizes
+the number of rewrites, given by the left side of (6). For
+example, (6) can be replaced by a simpler condition obtained
+by setting δi = 0 for all i:
+a
+a
++ (1 − p)
+D
+B
+
+2+
+
+κ
+
+Therefore R(κ) = log2
+
+where the optimal δi ∈ [0, 1) for i = 1, 2, . . . , m is determined
+by the following equation:
+
+p
+
+κ
+2
+
+R(κ(1 +
+
+i − δi
+δi
++
+ln δi
+(1 − δi )2
+1 − δi
+
+2(1 − δi )2 + 3(i − 1)(1 − δi ) + (i − δi ) ln δi = 0.
+
+1+a
+κ − R(κ) → 0 as κ → ∞
+a
+
+(8)
+
+The proof of the theorem is given in the next section. Figure
+3 shows the lower bound of Theorem 1 with a = 1/3 and
+B = a/2 for various values of κ.
+We now show that the above lower bound converges to the
+no-state capacity as the rewrite constraint κ → ∞.
+
+3
+
+TABLE I: Optimal value of δi for 1 ≤ i ≤ m
+i
+δi
+
+1
+0.2032
+
+2
+0.1038
+
+3
+0.0858
+
+4
+0.0782
+
+5
+0.0740
+
+output falls in either (1 + a/2, 1 + a/2 + B/2) or it is less than
+1 − a/2 + B/2. For b ∈ [0, B/2), the probability of the ﬁrst
+event occurring in any write attempt is b/a, and that of the
+second event occurring is (B/2 − b)/a. Hence the probability
+of the ﬁrst step being completed in each write attempt, is
+
+6
+0.0713
+
+6
+
+B/2 − b
+B
+b
++
+=
+.
+(13)
+a
+a
+2a
+Therefore the average number of writes for the ﬁrst step of
+E1 is 2a/B for all b ∈ [0, B/2). The probability of the ﬁrst
+step ending by obtaining an output less than 1 − a/2 + B/2
+is
+(B/2 − b)/a
+B/2 − b
+=
+.
+b/a + (B/2 − b)/a
+B/2
+
+5.5
+
+5
+
+Rate in bits
+
+Capacity with S=0
+4.5
+
+4
+
+3.5
+
+When this event occurs, the average number of additional
+writes required (by applying stimulus 0) is a/(B/2 − b). Thus
+for b ∈ [0, B/2), the average number of writes for writing on
+E1 is
+
+3
+
+2.5
+2
+
+3
+
+4
+
+5
+
+6
+
+7
+
+8
+
+9
+
+10
+
+11
+
+12
+
+Average number of writes
+
+a
+4a
+2a B/2 − b
++
+·
+=
+.
+B
+B/2
+B/2 − b
+B
+(14)
+Substituting in (11), we obtain
+
+Fig. 3: Achievable rate of Theorem 1 with noise width a = 1/3 and
+S uniformly distributed in [0, B] with B = a/2.
+
+E[# writes | E1 , S = b] =
+
+To write on exterior region E2 : Apply stimulus 0 until either
+the output falls in (−a/2 + B/2, −a/2 + B) or it is greater
+than a/2 + B/2. If the former occurs, stop. Otherwise, switch
+to applying stimulus 1 until the output falls in (1 + a/2 +
+B/2, 1 + a/2 + B). If the offset lies in the interval [0, B/2],
+the left bin of E2 is fully accessible with stimulus 0. We switch
+to the right bin of E2 if we detect that the offset lies outside
+this interval.
+Analysis: Since we have two exterior target regions with
+probability (1 − p)/2, and 1+a−B interior regions each with
+D
+probability p/ 1+a−B , the rate of information stored in each
+D
+cell is calculated to be
+1+a−B
+H(T ) = h(p) + p log2
++ (1 − p) log2 2. (9)
+D
+Next we compute the average number of writes and set it
+equal to κ.
+
+E[# writes | exterior] =
+
+a
+3a
++ (1 − p)
+(16)
+D
+B
+which corresponds to (6) with m = 1 and δ1 = 0. We now
+modify the scheme slightly to reduce the average number of
+rewrites to the level stated in Theorem 1:
+3a
+1
+a
+δ1
++ ln
+κ = p + (1 − p)
++
+ln δ1
+(17)
+D
+B
+1 − δ1
+1 − δ1
+κ=p
+
+with δ1 given by Table I.
+Optimizing the Switching Strategy: To write on exterior
+region 1 in Figure 4, the above coding scheme switches from
+stimulus 1 to stimulus 0 when an output less than 1 − a + B
+2
+2
+is obtained. Such an output indicates that the value of the
+hidden state S is less than B which implies that the right bin
+2
+of E1 – the region [1 + a , 1 + a + B ] – is not fully accessible
+2
+2
+2
+with stimulus 1; so the schemes switches to targeting the left
+bin of E1 with stimulus 0. This switching strategy is not
+optimal. Consider a more general switching strategy of the
+following form: switch from stimulus 1 to 0 once you obtain
+an output less than 1 − a + B (1 − δ1 ) for some δ1 ∈ [0, 1).
+2
+2
+This corresponds to switching once you detect that S is less
+than B(1−δ1 ) . We now determine the optimum value of δ1
+2
+that minimizes the average number of rewrites. By symmetry,
+the switching strategy for exterior regions E2 is to switch
+from stimulus 0 to 1 when you get an output greater than
+a
+B
+2 + 2 (1 + δ1 ).
+The average number of rewrites for region E1 is
+
+By symmetry,
+E[# writes | exterior] = E[# writes | ext. region E1 ]
+B
+
+1
+db
+B
+0
+B/2
+1
+=
+E[# writes | E1 , S = b] db +
+B
+0
+E[# writes | E1 , S = b]
+
+B
+B
+2
+
+a 1
+db
+B/2 B
+(11)
+
+since the right bin of E1 is fully accessible with stimulus 1
+when S ∈ [B/2, B]. We now show that for all b ∈ [0, B/2),
+E[# writes | E1 , S = b] = 4a/B.
+
+(15)
+
+Using this in (10), we get
+
+κ = p E[# writes | interior] + (1 − p)E[# writes | exterior]
+a
+= p + (1 − p)E[#writes | exterior].
+D
+(10)
+
+=
+
+3a
+4a 1 2a 1
++
+=
+.
+B 2
+B 2
+B
+
+B
+
+(12)
+
+E[# writes | region E1 ] =
+
+Recall that for E1 , we ﬁrst apply stimulus 1 until either the
+
+4
+
+0
+
+E[# writes | E1 , S = b]
+
+1
+db
+B
+(18)
+
+Interior
+E1 E2
+
+Using this in (18) and calculating the integral, we obtain that
+for 1 ≤ i ≤ m:
+
+E1 E2
+
+−a −a + B −a + B
+2
+2
+2
+2
+
+x x+D
+
+1+
+
+a
+2
+
+1+
+
+a
+2
+
+E[# writes | Ei ] =
+
++B
+
+for
+
+a/b
+
+for
+
+B
+2 (1
+
+2a
+B(1−δ1 )
+
+1+
+
+(1−δ1 )B−2b
+B−2b
+
+1
+a
+2m + 1 +
+B
+m
+
+≤ b ≤ B,
+− δ1 ) ≤ b <
+
+for 0 ≤ b <
+
+B
+2 (1
+
+a
+B
+
+− δ1 ).
+
+B. 2m Exterior Target Regions
+Coding Scheme: Refer Figure 2. Writing on the interior
+regions is the same as before: For interior region [x, x + D],
+repeatedly apply stimulus (x+D−a/2)+ . To write on exterior
+region i, 1 ≤ i ≤ 2m:
+• If 1 ≤ i ≤ m, write 1 until the output falls in region Ei
+or it is less than 1 − a + B(i−δi ) , In the ﬁrst case, stop.
+2
+2m
+In the second case, switch to writing 0 until the output
+falls in the left bin of region i.
+• If m+1 ≤ i ≤ 2m, write 0 until the output falls in region
+Ei or it is greater than a + B(i−1+δ2m+1−i ) . In the ﬁrst
+2
+2m
+case, stop. In the second case, switch to writing 1 until
+the output falls in the right bin of region i.
+Analysis: The rate calculation is straightforward, the only
+change from the previous subsection being that each of the
+exterior target regions now represents log2 2m bits of information. The average number of writes for an interior target region
+is a/D. For an exterior region, we calculate it separately for
+each Ei , i = 1, . . . , m as follows. Note that by symmetry, Ei
+and E2m+1−i have the same average cost. We have
+
+0
+
+E[# writes | Ei , S = b]
+
+for
+
+Bi
+2m
+
+2ma
+2mb−(i−1)B
+
+for
+
+B(i−δi )
+2m
+
+for
+
+B(i−1)
+2m
+
+2ma
+B(1−δi )
+
+1+
+
+2ma
+(i−δi )B−2mb
+
+(i−δi )B−2mb
+iB−2mb
+
++
+
+2ma
+B
+
+≤b<
+
+for 0 ≤ b <
+
+.
+
+[1] M. Grossi, M. Lanzoni, and B. Ricco, “Program schemes for multilevel
+ﬂash memories,” Proc. of the IEEE, vol. 91, pp. 594 – 601, April 2003.
+[2] S. Raoux, G. W. Burr, M. J. Breitwisch, C. T. Rettner, Y.-C. Chen,
+R. M. Shelby, M. Salinga, D. Krebs, S.-H. Chen, H.-L. Lung, and C. H.
+Lam, “Phase-change random access memory: A scalable technology,”
+IBM Journal of Res. and Dev., vol. 52, pp. 465 –479, July 2008.
+[3] L. Lastras-Monta˜ o, M. Franceschini, T. Mittelhozer, and M. Sharma,
+n
+“Rewritable storage channels,” in Int. Symp. on Inf. Theory and its
+Applications, 2008.
+[4] T. Mittelholzer, M. Franceschini, L. Lastras-Monta˜ o, I. Elfadel, and
+n
+M. Sharma, “Rewritable channels with data-dependent noise,” in IEEE
+Int. Conf. on Comm., 2009.
+[5] L. Lastras-Monta˜ o, T. Mittelholzer, and M. Franceschini, “Supern
+position coding in rewritable channels,” in Information Theory and
+Applications Workshop (ITA), 2010.
+[6] L. Lastras-Monta˜ o, M. Franceschini, and T. Mittelhozer, “The capacity
+n
+of the uniform noise rewritable channel with average cost,” in Proc.
+IEEE Int. Symp. on Inf. Theory, 2010.
+[7] T. Mittelholzer, L. Lastras-Monta˜ o, M. Sharma, and M. Franceschini,
+n
+“Rewritable storage channels with limited number of rewrite iterations,”
+in Proc. IEEE Int. Symp. on Inf. Theory, June 2010.
+[8] C. Bunte and A. Lapidoth, “On the storage capacity of rewritable
+memories,” in IEEE Conv. of EE Engineers in Israel, Nov. 2010.
+[9] C. Bunte and A. Lapidoth, “Computing the capacity of rewritable
+memories,” in Proc. IEEE Int. Symp. on Inf. Theory, 2011.
+[10] T. Weissman, “Capacity of channels with action-dependent states,” IEEE
+Trans. on Inf. Theory, vol. 56, pp. 5396 –5411, Nov. 2010.
+
+1
+db
+B
+(21)
+
+≤ b ≤ B,
+≤b<
+
+i=1
+
+δi
+i − δi
+1
+−
+ln
+(1 − δi )2
+1 − δi δi
+
+R EFERENCES
+
+where E[# writes | Ei , S = b] can be calculated to be
+2ma/B
+
+ln
+
+In a channel with hidden state, rewrites increase the capacity
+in two ways: 1) by mitigating the effect of write noise, and
+2) by enabling the write controller to get progressively better
+estimates of the state. The above results generalize to the
+case where the hidden state is uniformly distributed over a
+different support set of the same width B. We also remark
+that the coding scheme of construction 1 can be used when
+B > a as well. Obtaining upper bounds that are smaller
+than the no-state capacity is an interesting open problem.
+Investigating the effect of hidden state in other channel models
+(e.g., rewritable AWGN channels with hidden Gaussian state)
+is another direction for future work.
+
+1
+δ1
++
+ln δ1 .
+1 − δ1
+1 − δ1
+(20)
+Using (20) in (10) completes the proof for m = 1.
+
+B
+
+m
+
+V. C ONCLUSION
+
+3 + ln
+
+E[# writes | region Ei ] =
+
+.
+
+For each i ∈ {1, . . . , m}, it is easily veriﬁed that the δi ∈ [0, 1)
+that minimizes (23) satisﬁes (7). This completes the proof of
+Theorem 1.
+
+B
+2,
+
+(19)
+Substituting this in (18) and calculating the integral, we obtain
+E[# writes | E1 ] =
+
+1
+i − δi
+δi
+ln
+−
+(1 − δi )2
+1 − δi
+δi
+
+The average number of write attempts for an exterior region
+is therefore
+
+where E[# writes | E1 , S = b] with the new switching
+strategy can be calculated to be
+2ma/B
+
+2m + 1 + ln
+
+(23)
+
+Fig. 4: Construction 2 with two exterior target regions.
+
+B
+2
+
+a
+B
+
+Bi
+2m ,
+B(i−δi )
+2m ,
+
+B(i−1)
+2m .
+
+(22)
+
+5
+
+

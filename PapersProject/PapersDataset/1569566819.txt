@@ -1,0 +1,860 @@
+Title:          CamReady_ISIT12SBP.dvi
+Creator:        dvips(k) 5.98 Copyright 2009 Radical Eye Software
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Fri May 18 18:49:07 2012
+ModDate:        Tue Jun 19 12:55:01 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      328407 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569566819
+
+Quantized Stochastic Belief Propagation: Efﬁcient
+Message-Passing for Continuous State Spaces
+Nima Noorshams1, and Martin J. Wainwright1,2
+Department of Statistics2 , and
+Department of Electrical Engineering & Computer Sciences1
+University of California, Berkeley
+
+particles [4], [5], or mixture of Gaussians [11]. Song et al. [10]
+proposed a combined technique, using kernel methods, for
+learning and performing inference in a simultaneous manner.
+In this paper, we present a low-complexity alternative
+to the belief propagation for the case of continuous state
+space problems. Our method, which we refer to as quantized
+stochastic belief propagation (QSBP), is an approximated and
+randomized version of the BP, where each node only passes
+randomly selected partial information to its neighbors at each
+round. Thus, the QSBP updates lead to substantial improvements in communication and computational efﬁciencies. Our
+main contributions are to analyze the convergence properties
+of the QSBP algorithm, and to provide rigorous bounds on
+its approximation error as a function of the associated computational complexity. In particular, for tree-structured graphs,
+we estabish almost sure convergence, and provide an explicit
+inverse polynomial convergence rate. The algorithm of this
+paper is an extension of a method previously introduced in
+our recent work [8] for the case of discrete state spaces.
+
+Abstract—Belief propagation (BP) is a widely used algorithm
+for computing the marginal distributions in graphical models.
+However, in applications involving continuous random variables,
+the messages themselves are real-valued functions, which leads to
+signiﬁcant computational bottlenecks. In this paper, we propose a
+low complexity method for performing belief propagation for continuous state space problems. Our algorithm, which we refer to as
+quantized stochastic belief propagation (QSBP), is a randomized
+variant of BP in which each node only passes stochastically
+chosen information at each round. The most attractive feature of
+QSBP is its signiﬁcant gain in computational and communication
+efﬁciencies. In addition, we provide some theoretical guarantees
+including almost sure convergence and the rate of convergence
+for the case of tree-structured graphical models.
+
+I. I NTRODUCTION
+Graphical models provide a general framework for capturing
+statistical dependencies in large databases. In a wide range of
+applications, including signal and image processing, channel
+and source coding, computer vision, and bioinformatics, a
+fundamental challenge is the computation of marginal distributions over some subset of variables. Such marginalization
+problems, if naively approached, are computationally prohibitive. The sum-product algorithm, also known as belief
+propagation (BP), is a message-passing method for calculating
+exact marginals on tree-structured graphs, and approximate
+marginals for graphs with cycles. For more details on graphical
+models and belief propagation, we refer the reader to the
+papers and books [7], [12], [1], [13].
+Many applications of graphical models involve random variables that take continuous values. Examples of such problems
+include disparity estimation and stereo in computer vision,
+tracking problems in sensor networks, vehicle localization,
+image geotagging, protein folding among other problems. With
+certain exceptions (such as multivariate Gaussian problems),
+it is usually expensive to compute, store and transmit BP
+messages for such continuous problems. Motivated by this
+challenge, researchers have proposed different techniques to
+reduce complexity of BP in different applications (e.g., see
+the papers [2], [11], [4], [5], [3], [6], [10], [8] and references
+therein). Various types of quantization schemes [3], [6] have
+been proposed as a way to reduce the effective state space,
+thereby lowering the complexity. In another line of work,
+researchers have proposed stochastic methods inspired by particle ﬁltering [2], [11], [4], [5]. These techniques are typically
+based on approximating the messages as weighted sum of
+
+II. BACKGROUND
+In this section, we provide some background on graphical
+models as well as the belief propagation algorithm.
+A. Graphical Models
+Consider a random vector X := {X1 , X2 , . . . , Xn }, where
+for each u = 1, 2, . . . , n, the variable Xu takes values in
+some space X . An undirected graphical model, also known as
+a Markov random ﬁeld, deﬁnes a family of joint probability
+distributions over this random vector by associating the index
+set {1, 2, . . . , n} with the vertex set V of an undirected graph
+G = (V, E). In addition to the vertex set, the graph consists of
+a collection of edges E ⊂ V ×V, where a pair (u, v) ∈ E if and
+only if nodes u and v are connected by an edge. The structure
+of the graph describes the statistical dependencies among the
+different random variables. More precisely, consider the set of
+all possible probability distributions, continuous with respect
+to an arbitrary measure µ, that factorizes as
+P(x1 , . . . , xn ) ∝
+
+ψu (xu )
+u∈V
+
+ψuv (xu , xv ),
+
+(1)
+
+(u,v)∈E
+
+where ψu : X → (0, ∞) is the node potential function, and
+ψuv : X ×X → (0, ∞) is the edge potential function. In terms
+
+1
+
+of drawing conclusions about the data, the central object is the
+marginal distribution i.e.
+X
+
+III. A LGORITHM AND MAIN RESULTS
+We now turn to the description of the quantized stochastic
+belief propagation for general state spaces as well as the
+statement of our main theoretical result.
+
+P(x1 , x2 , . . . , xn ) µ(dx2 ) . . . µ(dxn ),
+
+...
+
+P(x1 ) :=
+
+graphs, and are known to be extremely effective for computing
+approximate marginals in numerous applications.
+
+X
+
+(n−1) times
+
+similarly deﬁned for all nodes u ∈ V. The integrals involved
+in the marginalization problem are not tractable. A method for
+computing the marginals is an algorithm known as the belief
+propagation, to which we now turn.
+
+A. Quantized stochastic belief propagation
+As mentioned previously, when belief propagation is
+applied to continous random variables, every node is required
+to compute and transmit a real-valued function (message) to
+its neighbors at every round. With certain exceptions (such
+as multivariate Gaussians), these continuous-valued messages
+do not have ﬁnite representations, so that this approach is not
+computationally feasible. We are thus motivated to develop
+a randomized and approximate algorithm, one which is
+motivated by the following observation: the message-passing
+updates can be formulated as an expectation involving a
+reweighted compatibility function. Here the expectation is
+taken place over a probability distribution that is a function
+of the messages and changes from iteration to iteration.
+Based on this perspective, we are naturally led to an
+adaptively randomized variant of BP: instead of computing
+and transmitting the full expectation, which incurs computing
+an intractable integral and transmitting a function, QSBP
+simply draws samples form the probability distribution and
+perform a simple adaptive update. Moreover, in order to have
+an efﬁcient representation, we approximate the continuous
+messages by truncating their expansion over an appropriately
+chosen basis of functions.
+
+B. Belief Propagation
+Belief propagation, also known as the sum-product algorithm, is an iterative algorithm consisting of a set of local
+message-passing rounds, for computing either exact or approximate marginal distributions. Here we provide a very brief
+treatment, referring the reader to various standard sources [7],
+[1], [12] for further background.
+In order to deﬁne the message-passing updates, we require some further notation. For each node u ∈ V, let
+N (u) := {w | (w, u) ∈ E} denote its set of neighbors, and
+let E := {(u → v) | u ∈ V, v ∈ N (u)} denote the set of all
+directed edges in the graph. Furthermore, let S denote the
+set of all feasible probability densities deﬁned on the space
+X . In belief propagation algorithm, one message muv ∈ S
+is assigned to every directed edge (u → v) ∈ E. With
+slight abuse of notation, we denote the set of all messages
+by m = {muv }(u→v)∈E .
+At each round t = 0, 1, . . ., every node u ∈ V calculates a
+message mt+1 ∈ S to be sent to its neighbor v ∈ N (u). In
+uv
+mathematical terms, this operation can be represented as an
+update of the form mt+1 = Fuv (mt ), where Fuv : S 2|E| → S
+uv
+is the local update operator. In more detail, for each x ∈ X ,
+we have
+
+In order to make these ideas precise, we require some
+notation. Let {φi }∞ be a set of basis functions orthonori=1
+mal in L2 (µ), meaning that φi 2 := X |φi (x)|2 µ(dx) = 1,
+2
+and φi , φj := X φi (x)φj (x)µ(dx) = 0 for all i = 1, 2, . . .,
+and j = i. Assuming that the BP messages can
+be well approximated by the ﬁrst r basis functions,
+we quantize the messages by projecting them onto the
+space Qr := span{φ1 , φ2 , . . . , φr }. More precisely, let
+∞
+muv =
+i=1 auv;i φi be the message expansion in
+r
+the {φi }∞ system, then muv = i=1 auv;i φi denotes its
+ˆ
+i=1
+projection onto the space Qr . Quantizing the messages,
+we can equivalently consider the r-dimensional vector
+auv := [auv;1 , . . . , auv;r ]T ∈ Rr as the message transmitted by
+node u to node v.
+Furthermore, for
+all
+directed edges
+(u → v),
+deﬁne
+the
+marginal
+effect
+of
+the
+potenas
+tials
+βuv (y) := ψu (y) X ψuv (x, y) µ(dx),
+well
+as
+the
+normalized
+compatibility
+function
+ˆ
+Γuv (·, y) := ψuv (·, y)/ x∈X ψuv (x, y) µ(dx). Let Γuv (·, y)
+denote the projection of Γuv (·, y) onto the quantization space
+Qr with the approximation error1
+ˆ
+δuv (·) := sup |Γuv (·, y) − Γuv (·, y)|.
+(3)
+
+mt+1 (x) = [Fuv (mt )](x)
+uv
+ψuv (x, y)ψu (y)
+
+= κ
+X
+
+mt (y) µ(dy),
+wu
+
+(2)
+
+w∈N (u)\{v}
+
+where κ is a normalization constant chosen to ensure that
+mt+1 (x) µ(dx) = 1.
+uv
+X
+Equation (2) is basically an iterative way of solving a set
+of ﬁxed point equations. More precisely, by concatenating
+the local updates (2), we obtain a global update operator
+F : S 2|E| → S 2|E| of the form F (m) = {Fuv (m)}(u→v)∈E .
+The goal of message-passing is to obtain a ﬁxed point,
+meaning a vector m∗ ∈ S 2|E| such that F (m∗ ) = m∗ .
+Given a ﬁxed point m∗ , node v computes its marginal
+∗
+(approximation) τv by combining the local potential function ψv with a product of all incoming messages as
+∗
+τv (x) = κ ψv (x) u∈N (v) m∗ (x), where κ is a normalizauv
+∗
+tion constant chosen so that X τv (x) µ(dx) = 1.
+For tree-structured (cycle-free) graphs, it is known that the
+update (2) has a unique ﬁxed point and BP computes the exact
+marginals in a ﬁnite number of iterations. However, the same
+message-passing updates can also be applied to more general
+
+y∈X
+1 Note
+
+2
+
+that the error can be calculated ofﬂine.
+
+QSBP for continuous state spaces: Now we are ready for a
+precise description of the QSBP algorithm.
+
+Before stating the theoretical results, it is worth taking a
+pause to provide some intuition as to why the update (7) is expected to work. Taking the conditional expectation of the equation (6) given mt or equivalently at := [at ](u→v)∈E ∈ R2|E|r ,
+ˆ
+uv
+we ﬁnd that E[buv;i (Y t+1 )|at ] is equal to
+
+(1) Initialize the message coefﬁcients auv;i = 1 for all
+i = 1, 2, . . . , r and directed edges (u → v) ∈ E.
+(2) For iterations t = 0, 1, . . ., and for each directed edge
+(u → v) ∈ E:
+r
+(a) Compute mt = i=1 at
+ˆ wu
+wu;i φi and form the modiﬁed message
+mt = mt + δwu
+ˆ wu
+wu
+
+Γuv (x, y) [puv (mt )](y) φi (x)µ(dy)µ(dx),
+X
+
+for w ∈ N (u)\{v}. (4)
+
+mt (y) βuv (y).
+wu
+
+X
+
+X
+
+where we used the heuristic that m is a good approximation of
+m. Therefore, in an average sense, update (7) is equivalent of
+the damped version of the usual BP updates projected onto
+the quantization space Qr . The technical difﬁculty lies in
+showing that despite ﬂuctuations and the approximation error,
+the QSBP updates converge to the BP ﬁxed point.
+
+(c) For i = 1, 2, . . . , r, compute the coefﬁcients
+1
+=
+k
+
+k
+
+ℓ=1
+
+X
+
+Γuv (x, Yℓt+1 ) φi (x) µ(dx).
+(6)
+
+B. Main theoretical guarantee
+
+(d) For the step size η t = 1/(t + 1), update the message
+coefﬁcients via
+at+1 = (1 − η t ) at + η t bt (Y t+1 ),
+uv
+uv
+uv
+
+In this section, we state some theoretical results regarding
+the QSBP algorithm. Our theorem provides guarantees on
+the special but very important case of tree-structured graphs.
+Belief propagation is known to have a unique ﬁxed point on
+trees. Denote this ﬁxed point by m∗ , so we have F (m∗ ) = m∗ .
+r
+Let m∗ = i=1 a∗ φi be the projection of the BP ﬁxed
+ˆ uv
+uv;i
+point onto the quantization space Qr with expansion coefﬁcients {a∗ }r . Having the QSBP messages {at }r
+uv;i i=1
+uv;i i=1
+at time t, we deﬁne the local error on the directed edge
+r
+(u → v) as et := i=1 |at − a∗ |2 . In addition, by
+uv
+uv;i
+uv;i
+concatenating the local errors, we form the global error
+vector et := [et ](u→v)∈E ∈ R2|E| . Similarly, we deﬁne the
+uv
+2|E|-dimensional vector
+
+(7)
+
+where buv (Y t+1 ) = [buv;i (Y t+1 )]r ∈ Rr .
+i=1
+Note that after projecting the messages onto the space Qr ,
+they may not stay positive every where on X . Therefore, to
+prevent such unpleasant events, we modify the messages (4).
+As a concrete example, consider the case where
+edge potentials are symmetric, non-negative deﬁnite
+kernels2 . Then, by Mercer’s theorem we have
+∞
+ψuv (x, y) =
+for
+nonj=1 λuv;j φj (x) φj (y),
+negative eigenvalues {λuv;j }∞ . Compute the function
+j=1
+guv (y) := X ψuv (x, y)µ(dx) ofﬂine. Doing some algebra in
+order to simplify the integral (6) yields
+1
+bt (Y t+1 ) =
+uv;i
+k
+
+k
+
+ℓ=1
+
+λuv;i φi (Yℓt+1 )
+guv (Yℓt+1 )
+
+∆ = ∆(r) := [2 δuv
+
+2
+2 ](u→v)∈E ,
+
+(8)
+
+where the edge-based error δuv was previously deﬁned (3).
+Note that this vector of approximation errors is a function of
+the number of coefﬁcients r in our basis approximation.
+Some further remarks on notation before proceeding: for
+a set B we say et → B as t → ∞ if and only if
+inf e∈B |et − e| → 0. We also make use of the element wise
+inequality based on positive orthant. In particular, for vectors
+x, y ∈ Rr we say x
+y if and only if x(i) ≤ y(i) for all
+i = 1, 2, . . . , r, with a similar interpretation for x y. Finally,
+recall that for some integer ℓ, a square matrix D is said to be
+nilpotent of degree ℓ if Dℓ = 0.
+Our results to follow, are based on the assumption that
+the compatibility functions Γuv (x, y), are ﬁnite and bounded
+away from zero. Formally, we assume:
+
+.
+
+Therefore, the coefﬁcients (6) can be calculated with only
+O(kr) summations and/or multiplications. On the other hand,
+using a standard technique such as accept-reject sampling [9],
+we can draw a sample using O(rρmax ) operations, where ρmax
+denotes the maximum degree of the graph. Finally, the update
+equation (7) requires O(r) operations. Putting the pieces
+together, QSBP only requires O(k r ρmax ) summations and/or
+multiplications per iteration per edge, which is substantially
+less than the case of BP. Moreover, since guv and the basis
+functions φi are known to v, node u only requires to transmit
+the k samples {Yℓt+1 }k to node v, demonstrating QSBP’s
+ℓ=1
+signiﬁcant gain in communication efﬁciency.
+2 This
+
+[Fuv (mt )](x) φi (x)µ(dx),
+
+≈
+(5)
+
+w∈N (u)\{v}
+
+bt (Y t+1 )
+uv;i
+
+[Fuv (mt )](x) φi (x)µ(dx)
+
+E[buv;i (Y t+1 )|at ] =
+
+t+1
+(b) Draw samples Y t+1 := {Y1t+1 , Y2t+1 , . . . , Yk }
+from the probability density
+
+[puv (mt )](y) ∝
+
+X
+
+for all i = 1, 2, . . . , r. Doing some algebra simplifying the last
+expression yields
+
+A: for all directed edges (u
+→
+v), we have
+inf x,y∈X Γuv (x, y) > 0, and supx,y∈X Γuv (x, y) < ∞.
+
+includes the popular mixture of Gaussians model among many others.
+
+3
+
+With this setup we have:
+
+Squaring the last equality and using the Cauchy Schwartz
+inequality yields that r |at+1 − a∗ |2 is at most
+uv;i
+uv;i
+i=1
+
+Theorem 1. Consider the sequence of messages {at }∞ gent=0
+erated by the QSBP on a tree-structured graphical model. Under condition A, there exists a nilpotent matrix D ∈ R2|E|×2|E|
+such that
+et → B
+where B := {e ∈ R
+we have
+
+2|E|
+
+2
+t+1
+
+| |e|
+
+E[|et − D(I − D)−1 ∆|]
+
+D(I − D)
+
+2
+(t + 1)2
+
+|bτ − a∗ |2 +
+uv;i
+uv;i
+i=1 τ =0
+
+r
+
+t
+τ +1
+ζuv;i
+
+i=1
+
+2
+
+.
+
+τ =0
+
+stochastic term, Gt+1
+uv;2
+
+(9)
+
+∆}. Furthermore,
+
+O (I − log t D)−1
+
+t
+
+deterministic term, Gt+1
+uv;1
+
+almost surely as t → ∞,
+−1
+
+r
+
+1
+t
+
+The proof consists of three major parts: upper bounding the
+deterministic term Gt+1 in terms of the message expansion
+uv;1
+coefﬁcients aτ , controlling the stochastic term Gt+1 , and
+uv;i
+uv;2
+ﬁnally establishing convergence and the rate of convergence
+by exploiting the results of the previous two parts.
+a) Upper bounding the term Gt+1 : By Parseval’s theouv;1
+rem one can relate Gt+1 to the term Fuv (mt ) − Fuv (m∗ ) 2 .
+uv;1
+On the other hand, under condition A, we can prove that Fuv
+is a Lipschitz operator. Doing some algebra, exploiting these
+facts, we obtain
+
+.
+
+Some comments are in order regarding the interpretation
+and consequences of these results. By Parseval’s theorem, we
+know et = mt − m∗ 2 . As shown by Theorem 1 (a), the
+ˆ uv ˆ uv 2
+uv
+error is guaranteed to almost surely converge to the ball B,
+regardless of the node and edge potentials. Thus, the eventual
+distance between the QSBP message and the quantized BP
+ﬁxed point is of the order D(I − D)−1 ∆ ∞ , where we
+recall that ∆ = ∆(r) is the approximation error introduced
+by truncating to the ﬁrst r basis functions. This approximation
+error can be arbitrarily small by increasing the number of
+expansion coefﬁcients r, albeit with an associated increase in
+computational complexity. In addition, as given by the second
+part of the theorem, the rate of convergence at most O(1/t),
+neglecting logarithmic factors.
+It is interesting to compare these guarantees to those associated with certain types of particle ﬁltering methods, for
+which it is possible to establish consistency as the number of
+particles tends to inﬁnity [4] or ﬁnite-length results inversely
+proportional to the square root of the number of particles [5].
+The computational complexity of particle-based BP scales
+quadratically with the number of particles [5]. Therefore,
+obtaining ǫ-accurate solution requires O(1/ǫ2 ) operations.
+In contrast, we have ﬁnite-length bounds on the error at
+iteration t in terms of the number of expansion coefﬁcients
+and the associated approximate node/edge potentials. The
+complexity per iteration scales linearly with the number of
+expansion coefﬁcients; thus, obtaining ǫ-accurate solution to
+the quantized BP ﬁxed point requires O(r/ǫ) operations. For
+sufﬁciently smooth compatibility functions, the approximation
+error ∆(r) ∞ drops off rapidly as a function of r, so that
+this yields a favorable trade-off.
+
+Gt+1 ≤
+uv;1
+
+1
+t+1
++
+
+r
+
+t
+
+∗
+2
+|aτ
+wu;j − awu;j |
+
+duv,wu
+τ =0 w∈N (u)\{v}
+
+1
+t+1
+
+j=1
+
+t
+
+2 duv,wu δwu 2 ,
+2
+τ =0 w∈N (u)\{v}
+
+for some duv,wu > 0.
+t+1
+b) Controlling the term Gt+1 : The sequence {ζuv;i }∞
+uv;2
+i=1
+forms a bounded martingale difference sequence with respect
+to the ﬁltration F t = σ(a0 , a1 , . . . , at ). Therefore, by standard
+convergence theorems, we have Gt+1 → 0 almost surely as
+uv;2
+t → ∞. Furthermore, by integrating the tail bound we can
+show that E[Gt+1 ] = O(1/t).
+uv;2
+c) Establishing
+the
+convergence:
+Combining
+the scalar inequalities (9) in conjunction with the
+results established so far yields the vector inequality
+t
+1
+τ
+t+1
+et+1
+, where D denotes
+τ =1 D e + D ∆ + ν
+t+1
+a 2|E| × 2|E| matrix with entries duv,wu , indexed by pairs
+of directed edges, and ν t+1 is a small term satisfying
+a.s.
+ν t+1 −→ 0. From Lemma 1 in the paper [8] we know that
+D is a nilpotent matrix with order ℓ = diam(G). Finally,
+unwrapping the recursive vector inequality for a total of
+ℓ = diam(G) times and doing some algebra yields the claims.
+V. E XPERIMENTAL RESULTS
+
+To demonstrate the effectiveness of the QSBP
+algorithm, some experimental results are presented in
+IV. S KETCH OF THE PROOFS
+this section. We consider the simple but popular mixture
+Due to space constraints, we present only rough proof of Gaussians model for node and edge potentials. More
+sketches, leaving the details to the long version. Let bt
+speciﬁcally, for all (u, v) ∈ E and u ∈ V, assume
+uv;i
+3
+2
+2
+denote the basis function expansion coefﬁcients of Fuv (mt ) ψuv (x, y) =
+and
+i=1 puv;i exp − (x − y) /(2σuv;i ) ,
+∞
+t
+t
+3
+2
+2
+i.e. Fuv (m ) = i=1 buv;i φi . Also deﬁne the deviation ψu (x) =
+pu;i exp − (x − µu;i ) /(2σu;i ) ,
+where
+i=1
+t+1
+3
+3
+ζuv;i := bt (Y t+1 ) − bt . Subtracting a∗ from both sides
+uv;i
+uv;i
+uv;i
+i=1 pu;i = 1. The mixture parameters are
+i=1 puv;i =
+2
+2
+of the update (7) and unwrapping the recursion, we obtain
+randomly chosen from the range σu;i , σuv;i ∈ (0, 0.5] and
+µu;i ∈ [−3, 3] for all (u, v) ∈ E, u ∈ V, and i = 1, 2, 3.
+t
+t
+1
+1
+For a chain of size n = 100 and ﬁxed parameters, we ﬁrst
+(bτ − a∗ ) +
+ζ τ +1 .
+at+1 − a∗
+=
+uv;i
+uv;i
+uv;i
+t + 1 τ =0 uv;i
+t + 1 τ =0 uv;i run the belief propagation to compute the ﬁxed point m∗ . In
+
+4
+
+propagation algorithm for the case of continuous state space
+problems. Quantized stochastic belief propagation is inspired
+by the observation that the sum-product update can be formulated as the expectation of a compatibility function. Instead
+of computing the expectation that in general is intractable,
+the idea of QSBP is to draw samples from the appropriate
+distribution and update the messages accordingly. One of the
+additional complications of the continuous case is having an
+efﬁcient representation of the continuous messages. To resolve
+this issue, we expanded the continuous messages in some basis
+functions system and truncated the result. The approximation
+error incurred by the quantization leads to an offset in the error.
+This offset cannot be overcome by any method; however it can
+be made arbitrarily small by a proper choice of basis functions
+and the number of expansion coefﬁcients. In addition, we
+provided some theoretical guarantees including the rate of
+convergence for the case of tree-structured graphs.
+There are a number of problems that remain to be studied,
+among which is conducting more extensive and realistic experiments. Moreover, it would be interesting to develop some
+theory for the general graphical models.
+
+0.22
+0.2
+Normalized error
+
+0.18
+0.16
+0.14
+0.12
+0.1
+0.08
+0.06
+0.04
+0
+
+1
+
+10
+
+2
+
+10
+Number of iterations
+
+10
+
+Fig. 1. Plot of normalized error vs. the number of iterations for 10 different
+sample paths on a chain of size n = 100. Node and edge potentials are
+mixtures of three Gaussians, and we implemented quantized stochastic belief
+propagation using the ﬁrst r = 10 Fourier coefﬁcients with k = 5 samples.
+BP
+SBP, r=2
+SBP, r=5
+SBP, r=10
+
+The message amplitude
+
+0.5
+
+0.4
+
+Acknowledgements
+Work was partially supported by ONR MURI grant:
+N00014-11-1-0688.
+
+0.3
+
+R EFERENCES
+0.2
+
+[1] S. M. Aji and R. J. McEliece. The generalized distributive law and
+free energy minimization. In Allerton Conference on Communication,
+Control, and Computing, October 2001.
+[2] M. S. Arulampalam, S. Maskell, N. Gordon, and T. Clapp. A tutorial
+on particle ﬁlters for online nonlinear/non-Gaussian Bayesian tracking.
+IEEE Transaction on Signal Processing, 50(2):174–188, 2002.
+[3] J. Coughlan and H. Shen. Dynamic quantization for belief propagation in
+sparse spaces. Computer Vision and Image Understanding, 106(1):47–
+58, 2007.
+[4] A. Doucet, N. de Freitas, and N. Gordon. Sequential Monte Carlo
+methods in practice. Springer, New York, 2001.
+[5] A. T. Ihler and D. McAllester. Particle belief propagation. In Proceedings of the Conference on Artiﬁcial Intelligence and Statistics, pages
+256–263, 2009.
+[6] M. Isard, J. MacCormick, and K. Achan. Continuously-adaptive
+discretization for message-passing algorithms. In Proceedings of the
+Advances in Neural Information Processing Systems, 2009.
+[7] F. R. Kschischang, B. J. Frey, and H. A. Loeliger. Factor graphs and
+the sum-product algorithm. IEEE Transaction on Information Theory,
+47(2):498–519, 2001.
+[8] N. Noorshams and M. J. Wainwright. Stochastic belief propagation:
+Low complexity message-passing with guarantees. Submitted to IEEE
+Transaction on Information Theory. Preliminary version appeared in
+Proceedings of Allerton11., November 2011.
+[9] C. P. Robert and G. Casella. Monte Carlo statistical methods. Springer
+texts in statistics. Springer-Verlag, New York, NY, 1999.
+[10] L. Song, A. Gretton, D. Bickson, Y. Low, and C. Guestrin. Kernel belief
+propagation. In Proceedings of the Artiﬁcial Intelligence and Statistics,
+2011.
+[11] E. B. Sudderth, A. T. Ihler, W. T. Freeman, and A. S. Willsky. Nonparametric belief propagation. In Proceedings of the IEEE conference
+on Computer Vision and Pattern Recognition, volume 1, pages 605–612,
+2003.
+[12] M. J. Wainwright and M. I. Jordan. Graphical Models, Exponential
+Families, and Variational Inference. Now Publishers Inc, Hanover, MA
+02339, USA, 2008.
+[13] J. S. Yedidia, W. T. Freeman, and Y. Weiss. Constructing free energy
+approximations and generalized belief propagation algorithms. IEEE
+Transaction on Information Theory, 51(7):2282–2312, July 2005.
+
+0.1
+
+−4
+
+−2
+
+0
+State space
+
+2
+
+4
+
+Fig. 2.
+Plot of a typical BP message and the corresponding QSBP
+approximates for different number of expansion coefﬁcients r ∈ {2, 5, 10}.
+Although the approximation is poor with only r = 2 coefﬁcients, it rapidly
+improves as the number of coefﬁcients is increased.
+
+order to do so, we approximate the integral update (2) with
+its Riemann sum over the range X = [−5, 5] and with 100
+samples per unit time. Then we run the quantized stochastic
+belief propagation3 using the ﬁrst r = 10 Fourier basis coefﬁcients and k = 5 samples to ﬁnd the sequence of messages
+{mt }∞ . Having found the QSBP messages, we calculate
+t=0
+the normalized square error (u→v)∈E mt − m∗ 2 / 2|E|.
+uv
+uv 2
+Figure 1 illustrates the error versus the number of iterations
+for 10 different sample paths. In our next experiment, we
+run QSBP for different number of expansion coefﬁcients
+r ∈ {2, 5, 10} on the same graph. Figure 2 shows a typical
+BP message and the corresponding QSBP approximates after
+t = 100 iterations. As expected, the approximation error
+becomes negligible for large number of expansion coefﬁcients.
+VI. C ONCLUSION
+In this paper, we presented quantized stochastic belief
+propagation as a low-complexity alternative to the belief
+3 For
+
+simplicity, we take the absolute value to form the modiﬁed messages.
+
+5
+
+

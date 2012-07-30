@@ -1,0 +1,1304 @@
+Title:          ISIT12_vector_CEO_final.dvi
+Creator:        www.freepdfconvert.com         
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Thu May 17 22:09:48 2012
+ModDate:        Tue Jun 19 12:54:30 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      284639 bytes
+Optimized:      no
+PDF version:    1.7
+ISIT'2012 1569561185
+
+On the Vector Gaussian L-Terminal CEO Problem
+Jia Wang
+
+Jun Chen
+
+Department of Electronic Engineering
+Shanghai Jiao Tong University
+Shanghai 200240, China
+Email: jiawang@sjtu.edu.cn
+
+Department of Electrical and Computer Engineering
+McMaster University
+Hamilton, ON L8S 4K1, Canada
+Email: junchen@ece.mcmaster.ca
+
+The remainder of this paper is organized as follows. A
+formal deﬁnition of the rate region of the vector Gaussian
+L-terminal CEO problem is given in Section II. In Section
+III we derive an outer bound of the rate region of the vector
+Gaussian CEO problem by establishing a lower bound on each
+supporting hyperplane of the rate region; furthermore, it is
+shown that the outer bound coincides with the Berger-Tung
+inner bound in the high-resolution regime. A new extremal
+inequality, which is the main technical ingredient in the derivation of the outer bound for the vector Gaussian CEO problem,
+is given in Section V; the proof of this extremal inequality
+relies on the connection between differential entropy and
+Fisher information as well as some fundamental estimationtheoretic inequalities. Section VI concludes the paper.
+Throughout this paper, for any random object W and m× n
+1
+random matrix X we deﬁne ΣX = n E[XXT ] and ΣX|W =
+ΣX−E[X|W ] ; we assume the logarithm function is to base e
+and deﬁne log+ x = max(log x, 0).
+
+Abstract—We derive an outer bound of the rate region of
+the vector Gaussian L-terminal CEO problem by establishing a
+lower bound on each supporting hyperplane of the rate region.
+To this end we prove a new extremal inequality by exploiting the
+connection between differential entropy and Fisher information
+as well as some fundamental estimation-theoretic inequalities. It
+is shown that the outer bound matches the Berger-Tung inner
+bound in the high-resolution regime.
+
+I. I NTRODUCTION
+The CEO problem, also known as the indirect multiterminal
+source coding problem, was introduced by Berger, Zhang, and
+Viswanathan in [1]. A series of papers were devoted to the
+scalar Gaussian version of the problem [2]–[4], culminating
+in a complete characterization of the rate region by Oohama
+[5] and Prabhakaran et al. [6] (see also [7] for the solution
+to a generalized version of this problem). However, the proof
+technique in [5], [6] is not completely suitable for the vector
+Gaussian case due to its heavy reliance on the entropy power
+inequality. The reason is that the proportionality condition
+(on the relevant covariance matrices) for the tightness of the
+entropy power inequality is not necessarily satisﬁed in the
+vector source setting, though this technical issue can sometimes be resolved by invoking the entropy power inequality
+in conjunction with an enhancement argument [8] (see, e.g.,
+[9] for bounding the sum rate of the vector Gaussian CEO
+problem via this approach).
+A new approach to the Gaussian CEO problem was proposed in [10], which is directly applicable to the vector case
+due to its estimation-theoretic nature. However, this approach
+is only effective for bounding the sum rate part of the rate
+region. In order to treat a general supporting hyperplane
+of the rate region, one has to resolve the tension among
+various information-theoretic quantities, which calls for a
+certain extremal inequality. It turns out that in the two-terminal
+case [11], [12] the desired extremal inequality is essentially
+a strengthened version of the Liu-Viswanath inequality [13].
+Unfortunately, to handle the general L-terminal case, one has
+to deal with a certain long Markov chain structure and the
+extremal inequality needed for that purpose is signiﬁcantly
+different from the Liu-Viswanath inequality and its variants
+(see, e.g., [14], [15]). Among other contributions of this paper,
+we prove such an extremal inequality for the general vector
+Gaussian L-terminal CEO problem, which yields an outer
+bound of the rate region.
+
+II. P ROBLEM D EFINITION
+Let X0 , N1 , · · · , NL be mutually independent m × 1 Gaussian random vectors with mean zero and positive deﬁnite
+covariance matrices ΣX0 , ΣN1 , · · · , ΣNL , respectively. Let
+Xi = X0 + Ni , i = 1, · · · , L. We refer to X0 as the
+remote source and Xi as the noisy observation at Encoder
+i, i = 1, · · · , L.
+Let {(X0 (t), N1 (t), · · · , NL (t), X1 (t), · · · , XL (t))}∞ be
+t=1
+i.i.d. copies of (X0 , N1 , · · · , NL , X1 , · · · , XL ). The rate
+region of the vector Gaussian L-terminal CEO problem is
+deﬁned as follows.
+Deﬁnition 1: A rate vector (R1 , · · · , RL ) is said to be
+achievable subject to distortion constraint D if for all sufﬁ(n)
+ciently large n, there exist encoding functions fi : Rm×n →
+{1, · · · , Ki }, i = 1, · · · , L, and decoding function g (n) :
+L
+m×n
+such that
+i=1 {1, · · · , Ki } → R
+1
+log Ki ≤ Ri ,
+n
+ΣXn −Xn D,
+ˆ
+0
+
+i = 1, · · · , L,
+(1)
+
+0
+
+(n)
+ˆ
+where Wi = fi (Xn ), i = 1, · · · , L, and Xn =
+0
+i
+(n)
+g (W1 , · · · , WL ). The rate region R(D) is the closure of the
+set of all achievable rate vectors subject to distortion constraint
+D.
+
+1
+
+Remark: Clearly, there is no loss of optimality in assuming
+g (n) (W1 , · · · , WL ) = E[Xn |W1 , · · · , WL ]. Therefore, R(D)
+0
+is not affected if we replace (1) with ΣXn |W1 ,··· ,WL D.
+0
+Since R(D) is a (closed) convex set, it sufﬁces to characterize its supporting hyperplanes, i.e., to solve the following
+optimization problem
+
+One can readily obtain the following upper bound on
+R(D, α) by evaluating the standard Berger-Tung inner bound
+[16], [17]. This result is a straightforward generalization of
+[12, Theorem 3] from the two-terminal case to the L-terminal
+case. The proof is omitted.
+Theorem 2: R(D, α) ≤ R(D, α), where
+
+
+L
+αL
+−1
+−1
+−1 
+R(D, α)
+min
+log |ΣX0 | ΣN −
+ΣNj Dj ΣNj
+D1 ,··· ,DL 2
+j=1
+
+L
+
+R(D, α)
+
+inf
+
+(R1 ,··· ,RL )∈R(D)
+
+αi Ri ,
+i=1
+
+where α = (α1 , · · · , αL ) with αi ≥ 0, i = 1, · · · , L. Note
+that one can obtain an outer bound (inner bound) on R(D)
+by lower-bounding (upper-bounding) R(D, α).
+Deﬁne ΣN = ΣX0 |X1 ,··· ,XL . It can be veriﬁed that
+ΣN =
+
+Σ−1
+Ni
+
++
+
+i=2
+
+.
+
+D ∈S(D)
+
+inf
+
+R(D , α).
+
+L
+
+i=1
+
+ˆ
+D1
+
+ΣNi ,
+
+i = 1, · · · , L,
+
+Di
+
+where
+
+D
+L
+
+Ξi = Σ−1 +
+X0
+j=i
+
+L
+
+Σ−1 −
+Nj
+
+Σ−1 Dj Σ−1 ,
+Nj
+Nj
+j=i
+
+i=2
+
+ΣN1 (Σ−1 − D−1 )ΣN1
+N
+
+(3)
+
+where (3) is due to D
+(Σ−1 − Σ−1 )−1 . One can readily
+N
+N1
+ˆ 1 , · · · , DL ) must also be an optimal solution
+ˆ
+see that (D
+to the minimization problem associated with R(D, α). This
+completes the proof.
+Remark: Theorem 3 implies that R(D) can be completely
+characterized if D satisﬁes the following high-resolution condition
+
+Σ−1 − D−1 ,
+N
+
+i=1
+
+Σ−1 D∗ Σ−1 ΣN1
+Ni i Ni
+
+ΣN1 ,
+
+L
+
+0
+
+Σ−1 − D−1 −
+N
+
+ˆ
+and Di = D∗ , i = 2, · · · , L. Note that (2) is satisﬁed by this
+i
+ˆ
+ˆ
+ˆ
+constructed (D1 , · · · , DL ). Moreover, we have D∗ D1 and
+1
+
+αi−1 − αi
+1
+log+
+2
+|D||Ξi |
+
+Σ−1 Di Σ−1
+Ni
+Ni
+
+(2)
+
+L
+
+ˆ
+D1 = ΣN1
+
+L
+
+subject to
+
+ˆ
+Σ−1 Di Σ−1 = Σ−1 − D−1 .
+Ni
+Ni
+N
+
+Let (D∗ , · · · , D∗ ) be an optimal solution to the minimization
+1
+L
+problem associated with R(D, α). Deﬁne
+
+αL
+|ΣX0 |
+αi
+|ΣNi |
+min
+log
++
+log
+D1 ,··· ,DL 2
+|D|
+2
+|Di |
+i=1
+i=2
+
+i = 1, · · · , L.
+
+It is easy to show that R(D, α) = R(D, α) in the scalar
+case (i.e., m = 1), which recovers the well-known result in
+[5], [6]. The following result provides a simple and explicit
+matching condition for the vector case.
+Theorem 3: R(D, α) = R(D, α) if D (Σ−1 − Σ−1 )−1 .
+N
+N1
+Proof: It is clear that R(D, α) = R(D, α) if there
+ˆ
+ˆ
+exists an optimal solution (D1 , · · · , DL ) to the minimization
+problem associated with R(D, α) such that
+
+R(D ) ,
+
+The following theorem, which is a generalization of [12,
+Theorem 2] from the two-terminal case to the L-terminal case,
+provides a lower bound on R(D, α). The proof of this result
+relies on the extremal inequality (i.e., Theorem 5) in Section
+V.
+Theorem 1: R(D, α) ≥ R(D, α), where
+
+L
+
+ΣNi ,
+
+Di
+
+IV. M ATCHING C ONDITIONS
+
+III. L OWER AND U PPER B OUNDS
+
++
+
+|Ξi |
+
+Σ−1 − D−1 ,
+N
+
+i=1
+
+Therefore, it sufﬁces to focus on R(D) and R(D, α) with
+ΣN ≺ D ΣX0 ; moreover, it is clear that there is no loss of
+generality in considering α with α1 ≥ · · · ≥ αL ≥ 0.
+
+R(D, α)
+
+Σ−1 Dj Σ−1 |
+Nj
+Nj
+
+Σ−1 Di Σ−1
+Ni
+Ni
+0
+
+where S(D) = {D : ΣN ≺ D
+ΣX0 , D
+D} and cl(·)
+is the closure operator. As a consequence, we have
+D ∈S(D)
+
+L
+j=1
+
+L
+
+subject to
+
+Clearly, there is no loss of generality in assuming D ΣN .
+Furthermore, in view of the fact that ΣN ≺ ΣXn |W1 ,··· ,WL
+0
+ΣX0 , one can readily show that
+
+
+
+R(D, α) =
+
+|Σ−1 −
+αi−1 − αi
+N
+log
+2
+
++
+
+i=1
+
+R(D) = cl 
+
+αi
+|ΣNi |
+log
+2
+|Di |
+
+i=1
+L
+
+−1
+
+L
+
+Σ−1
+X0
+
+L
+
++
+
+i = 2, · · · , L.
+
+(Σ−1 − Σ−1 )−1 ,
+N
+Ni
+
+i = 1, · · · , L.
+
+A stronger matching condition can be found for the special
+case α = 1 (1, · · · , 1), which corresponds to the sum rate.
+
+2
+
+Theorem 4: R(D, 1) = R(D, 1) if Σ−1 − LΣ−1
+N
+Ni
+i = 1, · · · , L.
+
+D−1 ,
+
+V. A N E XTREMAL I NEQUALITY
+
+Let X0 , X2 , · · · , XL , N2 , · · · , NL be deﬁned as in Section
+II. For the purpose of subsequent analysis, we deﬁne
+
+Proof: It is clear that R(D, 1) is associated with the
+following convex semideﬁnite programming problem
+
+Y = E[X0 |X2 , · · · , XL ],
+˜
+N = X0 − Y,
+
+L
+
+(P)
+
+1
+|ΣX0 |
+1
+|ΣNi |
+min
+log
++
+log
+D1 ,··· ,DL 2
+|D|
+2
+|Di |
+i=1
+
+˜
+Ni = X0 − E[X0 |Xi ],
+
+L
+
+Σ−1 Di Σ−1
+Ni
+Ni
+
+subject to
+
+ΣNi ,
+
+˜
+˜
+Note that N is independent of (X2 , · · · , XL ), and Ni is
+independent of Xi , i = 2, · · · , L. Moreover, it can be veriﬁed
+that
+
+Σ−1 − D−1 ,
+N
+i = 1, · · · , L.
+
+i=1
+
+0
+
+Di
+
+p(x0 , x2 , · · · , xL , u2 , · · · , uL , v)
+L
+
+= p(x0 , x2 , · · · , xL )p(v)
+
+Λ
+i=1
+
+−
+
+ˆ
+Πi (Di − ΣNi ) = 0,
+L
+
+ˆ
+Σ−1 Di Σ−1
+Ni
+Ni
+i=1
+
+0
+
+ˆ
+Di
+
+ΣNi ,
+
++D
+
+i = 1, · · · , L,
+= 0,
+
+Theorem 5: If ΣXi |X0 ,Ui ,V
+Di for some positive deﬁnite
+ˆ
+matrix Di , i = 2, · · · , L, and there exist matrices Di and Oi
+ˆ i Di and Oi 0, i = 2, · · · , L, such that
+with 0 ≺ D
+
+i = 1, · · · , L,
+
+Σ−1 − D−1 ,
+N
+
+i
+
+ˆ
+ˆ
+L
+µj−1 Σ−1 DX0 |Uj Σ−1 + Oi = αi D−1 ,
+i
+Ni
+Ni
+
+i = 1, · · · , L.
+
+L
+
+i=1
+
+ΣNi ,
+
+i = 1, · · · , L,
+
+ˆ
+Σ−1 Di Σ−1 = Σ−1 − D−1 ,
+Ni
+Ni
+N
+
+p(ui |xi , v).
+
+The main result of this section is the following extremal
+inequality.
+
+j=2
+
+Now we choose
+L
+Λ = (Σ−1 − D−1 )−1 ,
+2 N
+Πi = 0, i = 1, · · · , L,
+1
+ˆ
+Di = ΣNi (Σ−1 − D−1 )ΣNi , i = 1, · · · , L.
+N
+L
+It can be veriﬁed that with such a choice the KKT conditions
+are indeed satisﬁed. In particular, we have
+ˆ
+Di
+
+i=2
+
+Let µi = (αi −αi+1 )θi+1 , i = 1, · · · , L−1, and µL = µL−1 +
+αL , where α1 ≥ · · · αL > 0 and θi ∈ [0, 1], i = 2, · · · , L.
+
+L
+−1
+
+i = 2, · · · , L.
+
+Let U2 , · · · , UL , V be random objects jointly distributed with
+(X0 , X2 , · · · , XL ) such that the joint distribution factors as
+
+where Λ, Π1 , · · · , ΠL are positive semideﬁnite matrices. Note
+ˆ
+ˆ
+that (D1 , · · · , DL ) is an optimal solution to (P) if the
+following KKT conditions are satisﬁed
+
+Σ−1
+N
+
+ΣN Σ−1 Xi ,
+˜ Ni
+
+ΣNi = (Σ−1 + Σ−1 )−1 ,
+˜
+X0
+Ni
+
+tr(Πi (Di − ΣNi )),
+
+ˆ
+Σ−1 Di Σ−1
+Ni
+Ni
+
+,
+
+i=2
+
+Σ−1 Di Σ−1 − Σ−1 + D−1
+Ni
+Ni
+N
+
+∇Di L(D1 , · · · , DL )|Di =Di
+ˆ
+1 ˆ −1
+= − Di + Σ−1 ΛΣ−1 + Πi = 0,
+Ni
+Ni
+2
+
++
+
+L
+
+Y=
+
+L
+
+i=1
+
+Σ−1
+Ni
+i=2
+
+L
+
++
+
+Σ−1
+X0
+
+ΣN =
+˜
+
+L
+
+1
+|ΣX0 |
+1
+|ΣNi |
++
+log
+L(D1 , · · · , DL ) = log
+2
+|D|
+2
+|Di |
+i=1
+i=1
+
+−1
+
+L
+
+The Lagrangian of (P) is given by
+
++ tr Λ
+
+i = 2, · · · , L.
+
+i = 2, · · · , L − 1,
+
+L−1
+
+(6)
+
+ˆ
+ˆ ˆ
+ˆ
+µj−1 Σ−1 DX0 |Uj Σ−1 + µL−1 D−1 DXL |UL D−1 + OL
+L
+NL
+NL
+L
+L
+j=2
+
+ˆ
+= µL D−1 ,
+L
+ˆ
+Oi (Di − Di ) = 0,
+
+(7)
+i = 2, · · · , L,
+
+(8)
+
+then
+L−1
+
+(4)
+i=2
+
+L−1
+
+µi−1 h(X0 |UiL , V ) −
+
+i=2
+
+αi h(Xi |X0 , Ui , V )
+
++ µL−1 h(XL |UL , V ) − µL h(XL |X0 , UL , V )
+
+(5)
+
+L−1
+
+≥
+
+where (4) is due to Σ−1 − LΣ−1
+D−1 , i = 1, · · · , L.
+N
+Ni
+Note that (5) implies R(D, 1) = R(D, 1), which completes
+the proof.
+
+3
+
+L−1
+
+µi−1
+αi
+ˆ
+ˆ
+log |2πeDX0 |UiL | −
+log |2πeDi |
+2
+2
+i=2
+i=2
+µL−1
+ˆ X |U | − µL log |2πeDL |,
+ˆ
++
+log |2πeD L L
+2
+2
+
+L−1
+
+where
+
+
+L
+
+ˆ
+DX0 |UiL = Σ−1 +
+X0
+
+−1
+
+L
+
+j=i
+
+Σ−1 −
+Nj
+
+j=i
+
+ˆ
+Σ−1 Dj Σ−1 
+Nj
+Nj
+
+i=2
+
+,
+
+where
+√
+√
+Xi,λ = λXi + 1 − λXi , i = 2, · · · , L,
+√
+√
+˜
+˜
+XL,λ = λXL + 1 − λXL ,
+√
+√
+Yi,λ = λY + 1 − λYi , i = 2, · · · , L − 1,
+√
+√
+˜
+˜
+Yi,λ = λY + 1 − λY , i = 2, · · · , L − 1.
+
+i = 2, · · · , L − 1,
+
+ˆ
+ˆ
+DXL |UL = (D−1 − Σ−1 ΣNL Σ−1 )−1 .
+˜
+L
+NL
+NL
+
+The proof is based on a monotone path argument [13], [18].
+Deﬁne
+
+
+i−1
+
+ˆ
+DY|X0 ,UiL = ΣN 
+˜
+
+i
+
+It can be readily seen that
+
+L
+
+Σ−1 +
+Nj
+
+j=2
+
+j=i
+
+ˆ
+Σ−1 Dj Σ−1  ΣN ,
+˜
+Nj
+Nj
+
+λ |λ=0
+
+i = 2, · · · , L − 1.
+
+λ |λ=1 =
+
+i
+
+We assume X2 , · · · , XL , N2 , · · · , NL−2 are mutually independent. Deﬁne
+
+
+
+d λ
+=
+dλ
+
+j=2
+
+j=i
+
+i = 2, · · · , L − 1.
+
+L−1
+
+i=2
+
+L−1
+
+αi h(Xi |X0 , Ui , V )
+
+L−1
+
+µi−1 h(Y|UiL , V ) −
+
+i=2
+L−1
+
+−
+
+i=2
+
+µi−1 h(Y|X0 , UiL , V )
+
+L−1
+
+i=2
+
+i=2
+L−1
+
+−
+
+L−1
+
+˜
+µi−1 h(N).
+
+L−1
+
+i=2
+L−1
+
+−
+
+i=2
+
+i=2
+
+1
+
+i=2
+
+i
+
+i
+
+ˆ
+αi tr Di J(Xi,λ |X0 , Ui , V )
+
+ˆ
+˜
++ µL−1 tr DXL |UL J(XL,λ |UL , V ) ,
+
+L−1
+
+˜
+µi−1 h(Yi,λ |UiL , V ) −
+
+=
+
+1
+
+ˆ
+− µL tr DL J(XL,λ |X0 , UL , V )
+
+i=2
+
+For λ ∈ [0, 1], deﬁne
+λ
+
+αi
+ˆ
+m − tr Di J(Xi,λ |X0 , Ui , V )
+2λ
+
+ˆ2
+ˆ2
+tr Bi DY|X0 ,U L J(Yi,λ |X0 , UiL , V )DY|X0 ,U L
+
+fλ =
+
+αi h(Xi |X0 , Ui , V ) + µL−1 h(XL |UL , V )
+
+− µL h(XL |X0 , UL , V ) +
+
+i=2
+
+µi−1
+ˆ
+m − tr DY|X0 ,UiL J(Yi,λ |X0 , UiL , V )
+2λ
+
+µL−1
+ˆ
+˜
++
+m − tr DXL |UL J(XL,λ |UL , V )
+2λ
+µL
+ˆ
+−
+m − tr DL J(XL,λ |X0 , UL , V )
+2λ
+for λ ∈ (0, 1). Deﬁne
+
++ µL−1 h(XL |UL , V ) − µL h(XL |X0 , UL , V )
+=
+
+i=2
+L−1
+
+−
+
+L−1
+
+µi−1 h(X0 |UiL , V ) −
+
+µi−1
+ˆ
+˜
+m − tr DY|UiL J(Yi,λ |UiL , V )
+2λ
+
+i=2
+L−1
+
+−
+
+ˆ
+It can be veriﬁed that ΣYi = DY|X0 ,UiL , i = 2, · · · , L − 1.
+Note that
+
+i=2
+
+L−1
+
+L
+
+Σ−1 Xj  ,
+Nj
+
+αi h(Xi |X0 , Ui , V )
+
+d λ
+≥0
+(9)
+dλ
+for λ ∈ (0, 1). It can be shown by leveraging the de Bruijn’s
+Identity [19] that
+
+ΣNi = ΣNi , i = 2, · · · , L − 2,
+ˆ
+Σ ˜ = DY|U L , i = 2, · · · , L − 1.
+
+Σ−1 Nj +
+Nj
+
+i=2
+
+Therefore, one just need to prove that
+
+L
+
+Yi = ΣN 
+˜
+
+i=2
+
+L−1
+
+µi−1 h(X0 |UiL , V ) −
+
++ µL−1 h(XL |UL , V ) − µL h(XL |X0 , UL , V ).
+
+ˆ
+ΣXi = Di , i = 2, · · · , L,
+ˆ
+ΣX = DXL |UL ,
+˜
+
+i−1
+
+µi−1
+αi
+ˆ
+ˆ
+log |2πeDX0 |UiL | −
+log |2πeDi |
+=
+2
+2
+i=2
+i=2
+µL−1
+µL
+ˆ
+ˆ
++
+log |2πeDXL |UL | −
+log |2πeDL |,
+2
+2
+L−1
+
+Now we shall introduce some auxiliary random ob˜
+˜
+˜
+jects. Let X2 , · · · , XL , XL , N2 , · · · , NL−2 , Y2 , · · · , YL−1
+be zero-mean Gaussian random vectors, independent of
+(X0 , X2 , · · · , XL , U2 , · · · , UL , V ), with
+
+Yi
+
+L−1
+
+L−1
+
+i = 2, · · · , L − 1,
+
+ˆ
+ˆ
+DY|UiL = DX0 |UiL − ΣN ,
+˜
+
+˜
+µi−1 h(N),
+
++
+
+ˆ
+˜
+fi,λ = tr µi−1 DY|UiL J(Yi,λ |UiL , V )
+
+µi−1 h(Yi,λ |X0 , UiL , V )
+
+1
+
+ˆ2
+− tr (Bi + µi−1 Im )DY|X0 ,Ui
+1
+
+αi h(Xi,λ |X0 , Ui , V )
+
+ˆ2
+J(Yi,λ |X0 , UiL , V )DY|X0 ,Ui ,
+
+˜
++ µL−1 h(XL,λ |UL , V ) − µL h(XL,λ |X0 , UL , V )
+
+4
+
+i = 2, · · · , L − 1,
+
+where
+1
+2
+
+[5] Y. Oohama, “Rate-distortion theory for Gaussian multiterminal source
+coding systems with several side informations at the decoder,” IEEE
+Trans. Inf. Theory, vol. 51, no. 7, pp. 2577-2593, Jul. 2005.
+[6] V. Prabhakaran, D. Tse, and K. Ramchandran, “Rate region of the
+quadratic Gaussian CEO problem,” in Proc. IEEE Int. Symp. Information
+Theory, Chicago, IL, Jun. 27-Jul. 2, 2004, p. 117.
+[7] S. Tavildar, P. Viswanath, and A. B. Wagner, ”The Gaussian many-helpone distributed source coding problem,” IEEE Trans. Inf. Theory, vol. 56,
+no. 1, pp. 564-581, Jan. 2010.
+[8] H. Weingarten, Y. Steinberg, and S. Shamai (Shitz), “The capacity region
+of the Gaussian multiple-input multiple-output broadcast channel,” IEEE
+Trans. Inf. Theory, vol. 52, no. 9, pp. 3936-3964, Sep. 2006.
+[9] S. Tavildar and P. Viswanath, “On the sum-rate of the vector Gaussian
+CEO problem,” in Proc. of the 39th Asilomar Conf. on Signals, Systems,
+and Computers, Paciﬁc Grove, CA, Oct. 30-Nov. 2, 2005, pp. 3-7.
+[10] J. Wang, J. Chen, and X. Wu, “On the sum rate of Gaussian multiterminal source coding: New proofs and results,” IEEE Trans. Inf. Theory,
+vol. 56, no. 8, pp. 3946-3960, Aug. 2010.
+[11] J. Chen and J. Wang, “On the vector Gaussian CEO problem,” in Proc.
+IEEE Int. Symp. Information Theory, Saint Petersburg, Russia, Jul. 31Aug. 5, 2011, pp. 2050-2054.
+[12] J. Wang and J. Chen, “Vector Gaussian two-terminal source coding,”
+IEEE Trans. Inf. Theory, submitted for publication.
+[13] T. Liu and P. Viswanath, “An extremal inequality motivated by multiterminal information-theoretic problems,” IEEE Trans. Inf. Theory, vol.
+53, no. 5, pp. 1839-1851, May 2007.
+[14] H. Weingarten, T. Liu, S. Shamai (Shitz), Y. Steinberg, and P. Viswanath,
+“The capacity region of the degraded multiple-input multiple-output
+compound broadcast channel,” IEEE Trans. Inf. Theory, vol. 55, no. 11,
+pp. 5011-5023, Nov. 2009.
+[15] R. Liu, T. Liu, H. V. Poor, and S. Shamai (Shitz), “A vector generalization of Costa’s entropy-power inequality with applications,” IEEE Trans.
+Inf. Theory, vol. 56, no. 4, pp. 1865-1879, Apr. 2010.
+[16] T. Berger, “Multiterminal source coding,” in The Information Theory
+Approach to Communications, G. Longo, Ed. New York: Springer-Verlag,
+1978, vol. 229, CISM Courses and Lectures, pp. 171-231.
+[17] S.-Y. Tung, “Multiterminal Source Coding,” Ph.D. dissertation, Cornell
+Univ., School of Electrical Engineering, Ithaca, NY, 1978.
+[18] A. Dembo, T. M. Cover, and J. A. Thomas, “Information theoretic
+inequalities,” IEEE Trans. Inf. Theory, vol. 37, no. 6, pp. 1501-1518,
+Nov. 1991.
+[19] D. Guo, S. Shamai (Shitz), and S. Verdu, “Mutual information and
+minimum mean-square error in Gaussian channels,” IEEE Trans. Inf.
+Theory, vol. 51, no. 4, pp. 1261-1282, Apr. 2005.
+[20] A. B. Wagner, S. Tavildar, and P. Viswanath, “Rate region of the
+quadratic Gaussian two-encoder source-coding problem,” IEEE Trans. Inf.
+Theory, vol. 54, no. 5, pp. 1938-1961, May 2008.
+[21] Y. Oohama, “Distributed source coding of correlated Gaussian sources.”
+Available at http://arxiv.org/abs/1007.4418
+[22] Y. Yang, Y. Zhang, and Z. Xiong, “A new sufﬁcient condition for
+sum-rate tightness in quadratic Gaussian multiterminal source coding.”
+Available at http://arxiv.org/abs/1009.2077
+[23] J. Wang and J. Chen, “Vector Gaussian multiterminal source coding,”
+IEEE Trans. Inf. Theory, submitted for publication.
+
+1
+2
+
+ˆ
+ˆ
+ˆ
+Bi = µi−1 DY|X0 ,U L Σ−1 DX0 |UiL Σ−1 DY|X0 ,U L ,
+˜
+˜
+N
+N
+i
+
+i
+
+i = 2, · · · , L − 1.
+Note that
+d λ
+1
+=
+dλ
+2λ
+
+L
+
+−m
+
+L−1
+
+i=2
+
+αi − fλ −
+
+fi,λ
+i=2
+
+for λ ∈ (0, 1). As a consequence, for the purpose of proving
+(9), it sufﬁces to establish the following two lemmas.
+Lemma 1: For λ ∈ (0, 1),
+L−1
+
+i=2
+
+L
+
+tr(Bi ) − m
+
+i=2
+
+αi − fλ ≥ 0.
+
+Lemma 2: For λ ∈ (0, 1),
+tr(Bi ) + fi,λ ≤ 0,
+
+i = 2, · · · , L − 1.
+
+The proofs of these two lemmas are omitted due to space
+constraints.
+VI. C ONCLUSION
+A new extremal inequality is established and is leveraged
+to derive an outer bound of the rate region of the vector
+Gaussian CEO problem. Furthermore, it is shown that this
+outer bound coincides with the Berger-Tung inner bound in
+the high-resolution regime.
+It is now well understood that indirect Gaussian multiterminal source coding is intimately connected with its direct
+coding counterpart [10], [20]–[22]. In fact, the direct vector
+Gaussian multiterminal source coding problem can be viewed
+as a limiting version of the vector Gaussian CEO problem. By
+exploiting this connection, one can readily translate the results
+in the present work to the direct Gaussian multiterminal source
+coding setting [23].
+ACKNOWLEDGMENT
+The work of Jia Wang was supported in part by the
+NSFC under Grant 60802020 and in part by the 973 Program
+(2010CB731401, 2010CB731406). The work of Jun Chen
+was supported in part by an Early Research Award from the
+Province of Ontario and in part by the Natural Science and
+Engineering Research Council (NSERC) of Canada under a
+Discovery Grant.
+R EFERENCES
+[1] T. Berger, Z. Zhang, and H. Viswanathan, “The CEO problem,” IEEE
+Trans. Inf. Theory, vol. 42, no. 3, pp. 887-902, May 1996.
+[2] H. Viswanathan and T. Berger, “The quadratic Gaussian CEO problem,”
+IEEE Trans. Inf. Theory, vol. 43, no. 5, pp. 1549-1559, Sep. 1997.
+[3] Y. Oohama, “The rate-distortion function for the quadratic Gaussian CEO
+problem,” IEEE Trans. Inf. Theory, vol. 44, no. 3, pp. 1057-1070, May
+1998.
+[4] J. Chen, X. Zhang, T. Berger, and S. B. Wicker, “An upper bound on the
+sum-rate distortion function and its corresponding rate allocation schemes
+for the CEO problem,” IEEE J. Sele. Areas Commun., vol. 22, no. 6, pp.
+977-987, Aug. 2004.
+
+5
+
+

@@ -1,0 +1,737 @@
+Title:          ISIT-12_S-MIMO_17_05_12.dvi
+Creator:        dvips(k) 5.991 Copyright 2011 Radical Eye Software
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Thu May 17 14:18:48 2012
+ModDate:        Tue Jun 19 12:54:24 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      288211 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569563425
+
+On Optimal Signaling over Secure MIMO Channels
+Sergey Loyka, Charalambos D. Charalambous
+
+is a convex optimization problem (so that all powerful tools
+of convex optimization apply [11]). Corollary 1 reﬁnes the
+estimate of the optimal covariance matrix rank given in [10]
+for the general case.
+
+Abstract—Optimal signalling over the wire-tap MIMO Gaussian channel is studied under the total transmit power constraint.
+A direct proof of the necessary condition of optimality (signaling
+on the positive directions of the difference channel) is given
+using the necessary KKT conditions. Based on it, an explicit,
+closed-form solution for the optimal transmit covariance matrix
+is given when the latter is of the full rank. The cases of weak
+eavesdropper and high SNR are considered. It is shown that
+the optimal covariance does not converge to a scaled identity in
+the latter regime. A reﬁned estimate of the rank of an optimal
+covariance matrix is given for the general case.
+
+II. W IRE -TAP G AUSSIAN MIMO C HANNEL M ODEL
+Let us consider the standard wire-tap Gaussian MIMO
+channel model,
+y1 = H1 x + ξ1 ,
+
+I. I NTRODUCTION
+
+y2 = H2 x + ξ2
+
+(1)
+
+where x = [x1 , x2 , ...xm ]T ∈ C m,1 is the transmitted
+complex-valued signal vector of dimension m×1, “T” denotes
+transposition, y1(2) ∈ C n,1 are the received vectors at the
+receiver (eavesdropper), ξ1(2) is the circularly-symmetric additive white Gaussian noise at the receiver (eavesdropper) (normalized to unit variance in each dimension), H1(2) ∈ C n1(2) ,m
+is the n1(2) × m matrix of the complex channel gains between
+each Tx and each receive (eavesdropper) antenna, n1(2) and
+m are the numbers of Rx (eavesdropper) and Tx antennas
+respectively. The channels H1(2) are assumed to be quasistatic
+(i.e., constant for a sufﬁciently long period of time so that
+the inﬁnite horizon information theory assumption holds) and
+frequency-ﬂat, with full channel state information (CSI) at the
+Rx and Tx ends.
+For a given transmit covariance matrix R = E {xx+ },
+where E {·} is statistical expectation, the maximum achievable
+secure rate between the Tx and Rx (so that the rate between
+the Tx and eavesdropper is zero) is [5]-[10]
+
+Multiple-input multiple-output (MIMO) architecture has
+gain prominence in both academia and industry as a spectrallyefﬁcient approach to wireless communications [1]. With wide
+deployment of wireless networks, security issues have recently
+gained additional importance, including information-theoretic
+approach at the physical layer [2]. The physical-layer security
+in MIMO systems has been recently under active investigation [3]-[10]. It was demonstrated that Gaussian signaling is
+optimal over the wire-tap Gaussian MIMO channels [6]-[10]
+and the optimal transmit covariance has been found for MISO
+systems [3] or in the 2-2-1 system [7] under the total power
+constraint and in the general MIMO case under the transmit
+covariance matrix constraint [5]. The high-SNR regime (SNR
+→ ∞) has been studied in [9]. The general case is still
+an open problem under the total power constraint, since the
+underlying optimization problem is not convex and explicit
+solutions are not known, except for some special cases. The
+main contribution of this paper is an explicit, closed-form
+solution for the optimal full-rank covariance under the total
+power constraint at ﬁnite SNR (Theorem 2). Theorem 1 sets
+the foundation for this giving a direct proof (via the necessary
+KKT conditions) to a necessary condition of optimality, which
+is a transmission of the positive directions of the difference
+channel. The cases of high-SNR and of weak eavesdropper are
+elaborated in Corollaries 3 and 4. The optimal covariance of
+Theorem 2 is shown to have some properties similar to those
+of the conventional water-ﬁlling, but with a few remarkable
+differences. In particular, the optimal covariance does not
+converge to a scaled identity in the high-SNR case and thus
+isotropic signaling is sub-optimal in this regime. Proposition
+1 shows that a transmission on the positive eigenspace of
+the difference channel satisﬁes the necessary condition and
+
+C(R) = ln
+
+|I + W1 R|
+= C1 (R) − C2 (R)
+|I + W2 R|
+
+(2)
+
+where negative C(R) is interpreted as zero rate, Wi =
++
+H+ Hi , () means Hermitian conjugation, and the secrecy
+i
+capacity subject to the total Tx power constraint is
+Cs = max C(R) s.t. trR ≤ PT
+R≥0
+
+(3)
+
+where PT is the total transmit power (also the SNR since the
+noise is normalized). It is well-known that the problem in (3)
+is not convex in general and explicit solutions for the optimal
+Tx covariance are not known except for some special cases
+(e.g. low-SNR or MISO channels). It was conjectured in [10]
+that an optimal transmission in (3) is on the directions where
+the main channel is stronger than the eavesdropper one (i.e. on
+the positive directions of the difference channel W1 − W2 ).
+A similar conclusion, albeit in a different (indirect) form, has
+been obtained in [9] using the degraded channel approach.
+Theorem 1 below gives a direct formulation and proof of
+this fact using the necessary KKT conditions, which is also
+
+S. Loyka is with the School of Electrical Engineering and Computer Science, University of Ottawa, Ontario, Canada, K1N 6N5, e-mail:
+sergey.loyka@ieee.org.
+C.D. Charalambous is with the ECE Department, University of Cyprus,
+75 Kallipoleos Avenue, P.O. Box 20537, Nicosia, 1678, Cyprus, e-mail:
+chadcha@ucy.ac.cy
+
+1
+
+Proposition 1: The following covariance matrix satisﬁes the
+necessary condition of Theorem 1:
+
+instrumental for further development. In particular, Theorem
+2 gives an explicit, closed-form solution for the optimal fullrank covariance in (3) at ﬁnite SNR. A number of additional
+insights follow.
+
+R′ = arg max C+ (R) s.t. trR ≤ PT
+R≥0
+
+where
+III. O PTIMAL S IGNALING : S OLUTIONS
+
+AND
+
+P ROPERTIES
+
+C+ (R) = ln
+
+The following Theorem gives a necessary condition of the
+optimality in (3).
+Theorem 1: Let R∗ be an optimal covariance in (3),
+
+|I + W1+ R|
+|I + W2+ R|
+
+(6)
+
+(7)
+
+and let ui+ be its active eigenvector (i.e. corresponding to a
+positive eigenvalue). Then,
+
+and Wi+ = P+ Wi P+ , P+ = U+ U+ is the projection
++
+matrix on the positive eigenspace of W1 − W2 , U+ is a
+semi-unitary matrix whose columns are the eigenvectors of
+W1 − W2 corresponding to its positive eigenvalues: W+ =
+U+ D+ U+ > 0, and D+ is the diagonal matrix of the positive
++
+eigenvalues. The optimal (maximizing) covariance R′ in (5)
+satisﬁes
+
+u+ (W1 − W2 )ui+ > 0
+i+
+
+span{vi+ (R′ )} ∈ span{vi+ (W1 − W2 )}
+
+R∗ = arg max C(R) s.t. trR ≤ PT
+R≥0
+
+(4)
+
+where {vi+ (R)} denotes a set of eigenvectors corresponding
+to positive eigenvalues of matrix R.
+Proof: see Appendix.
+It follows from (6) that the transmission takes places on the
+projected channels Wi+ = P+ Wi P+ . It should be noted that
+the eigenvectors of the optimal covariance R′ in (5) are not
+necessarily the same as those of W+ . Rather, they span the
+same sub-space. In one special case, R′ and W+ do have the
+same eigenvectors.
+Corollary 2: Consider the secure MIMO channel in (1) such
+that rank(W+ ) = 1. Then
+
+i.e. a necessary condition for an optimal signaling strategy in
+(3) is to transit over the positive directions of W1 −W2 (where
+the legitimate channel is stronger than the eavesdropper) 1 .
+Proof: see the Appendix.
+It was demonstrated in [10] that rank(R∗ ) < m unless
+W1 > W2 2 , i.e. an optimal transmission is of low-rank
+over a non-degraded channel. The Corollary below gives more
+precise characterization.
+Corollary 1: Let W1 − W2 = W+ + W− , where
+W+(−) collects positive (negative and zero) eigenmodes of
+W1 − W2 (found from its eigenvalue decomposition). Then,
+rank(R∗ ) ≤ rank(W+ ) ≤ m, i.e. the rank of an optimal
+covariance R∗ does not exceed the number of positive eigenvalues of W1 − W2 (the rank of W+ ).
+Proof: follows from (4) using the fact that the eigenvectors
+ui+ are orthogonal to each other.
+When rank(W+ ) = 1, the optimal covariance R∗ and
+capacity follow from Corollary 13 :
+Cs = ln λ1 , R∗ = PT u1 u+
+1
+
+(8)
+
+R′ = PT u+ u+
++
+
+(9)
+
+where u+ is the only active eigenvector of W+ (corresponding
+to a positive eigenvalue), i.e. the optimal transmission is
+unique and on the positive eigenvector of W+ with the full
+available power.
+Proof: follows immediately from Proposition 1.
+The problem in (6) has further signiﬁcance: while the
+problem Cs = maxR≥0 C(R) is not convex, so that powerful
+tools of convex optimization [11] cannot be used, the problem
+maxR≥0 C+ (R) is convex, to which all machinery of convex
+optimization can be applied. The following proposition makes
+this precise.
+Proposition 2: C+ (R) is a non-negative, concave and
+non-decreasing function of R (strictly positive, concave and
+increasing when the active eigenmodes of R are in the span
+of the active eigenmodes of W+ ).
+Proof: see Appendix.
+It follows from Proposition 2 that transmission with the full
+available power is optimal: trR′ = PT .
+Let us now consider the original problem in (3) and obtain
+its solution R∗ when the latter is of full rank.
+
+(5)
+
+where λ1 , u1 are the largest eigenvalue and corresponding
+eigenvector of (I+PT W2 )−1 (I+PT W1 ) or, equivalently, the
+largest generalized eigenvalue and corresponding eigenvector
+of (I + PT W1 , I + PT W2 ), so that transmit beamforming
+on u1 is the optimal strategy. Note that this result is more
+general than those in [3][7] as the latter two apply to a single
+antenna channel (either at the receiver or eavesdropper) while
+the result above holds for any number of antennas at any
+end. Furthermore, the signaling at (5) is also optimal for any
+rank(W+ ) ≥ 1 at low SNR, where λ1 , u1 become the largest
+eigenvalue and corresponding eigenvector of W1 − W2 .
+One way to achieve the necessary condition in (4) is to
+transmit over the positive eigenspace of W1 − W2 , as the
+following Proposition shows.
+
+Theorem 2: Consider the case of W1 > W2 > 0 (a
+degraded full-rank channel) and PT > PT 0 , where PT 0 is a
+certain threshold power (i.e. sufﬁciently high but ﬁnite SNR).
+Then, R∗ is of full rank and is given by:
+
+1 After this paper has been submitted, we were informed that a weaker result
+(≥ instead of >) was independently established in [14].
+2 W > W means that W − W is positive deﬁnite.
+1
+2
+1
+2
+3 This result has been obtained before, albeit in a different way, in [14].
+
+−1
+R∗ = UΛ1 U+ − W1
+
+2
+
+(10)
+
+where the columns of the unitary matrix U are the eigenvectors
+−1
+−1
+of W2 − W1 > 0, Λ1 = diag{λ1i } > 0 is a diagonal
+positive-deﬁnite matrix, where
+λ1i =
+
+µi
+2
+
+1+
+
+4
+−1
+λµi
+
+mind, the conditions of Theorem 2 are both sufﬁcient and
+necessary for an optimal covariance to be of full-rank.
+It is instructive to consider the case when the required channel is much stronger than the eavesdropper one, W1 ≫ W2 ,
+meaning that all eigenvalues of W1 are much larger those of
+W2 .
+Corollary 3: Consider the secure MIMO channel in (1)
+under the conditions of Theorem 2 and when the eavesdropper
+channel is much weaker than the required one,
+
+(11)
+
+−1
+−1
+and µi > 0 are the eigenvalues of W2 − W1 ; λ > 0 is
+∗
+found from the total power constraint trR = PT as a unique
+solution of the following equation:
+
+i
+
+µi
+2
+
+1+
+
+4
+1
+−1
+−1
+= PT + tr(W1 + W2 )
+λµi
+2
+
+−1
+λi (W2 ) ≪ m(PT + trW1 )−1 /4
+
+(12)
+
+where λi (W2 ) is i-th eigenvalue of W2 , e.g. when W2 → 0
+and ﬁxed W1 . Then the optimal covariance in (10) becomes
+
+The corresponding secrecy capacity is
+Cs = ln
+
+|W1 |
+|Λ1 |
++ ln
+|W2 |
+|Λ2 |
+
+(14)
+
+R∗ ≈ U1 (λ−1 I − D−1 )U+ − λ−2 W2
+1
+1
+
+(13)
+
+(15)
+
+where W1 = U1 D1 U+ is the eigenvalue decomposition, so
+1
+that the columns of U1 are the eigenvectors, and the diagonal
+entries of D1 are the eigenvalues.
+Proof: see Appendix.
+An interpretation of (15) is immediate: the ﬁrst term is the
+standard water-ﬁlling on the eigenmodes of W1 (which is the
+capacity-achieving strategy for the regular MIMO channel)
+and the second term is a correction due to the secrecy
+requirement: those modes that spill over into the eavesdropper
+channel get less power to accommodate the secrecy requirement.
+Let us know consider the high-SNR regime.
+Corollary 4: The optimal covariance R∗ in (10) in the highSNR regime
+√
+√
+PT ≫ µ1
+µi
+(16)
+
+where Λ2 = Λ1 + diag{µi }. PT 0 can be found as a unique
+solution of the following equation:
+λ1min (PT 0 )λmin (W1 ) = 1
+where λ1min = mini {λ1i } and λmin (W1 ) is the minimum
+eigenvalue of W1 .
+Proof: see Appendix.
+It should be pointed out that Theorem 2 gives an exact
+(not approximate) optimal covariance at ﬁnite SNR (no PT →
+∞) since PT 0 is a ﬁnite constant that depends only on W1
+and W2 and can be found numerically (in fact, it can be not
+high at all, depending on W1 and W2 ). Corollary 4 below
+makes a more concrete statement. 1st term in (13) C∞ =
+|W1 |
+ln |W2 | is SNR-independent and the 2nd one ∆C = ln |Λ1 | <
+|Λ2 |
+0 monotonically increases with the SNR. Furthermore, Cs →
+C∞ , ∆C → 0 as PT → ∞, in agreement with Theorem 2 in
+[9].
+Note also that the second term in (10) de-emphasizes weak
+eigenmodes of W1 . Since λ is monotonically decreasing as PT
+increases (this follows from (12)), λ1i monotonically increases
+with PT , and approaches λ1i ≈ µi /λ at sufﬁciently high
+SNR, which is in contrast with the conventional water-ﬁlling
+(WF), where the uniform power allocation is optimal at high
+SNR. Furthermore, it follows from (11) that λ1i increases
+−1
+−1
+with µi , i.e. stronger eigenmodes of W2 − W1 (which
+correspond to larger eigenmodes of W1 and weaker ones of
+W2 ) receive larger power allocation, which follows the same
+tendency as the conventional WF. It further follows from (9)
+that when W1 and W2 have the same eigenvectors, R∗ also
+has the same eigenvectors, i.e. the optimal signaling is on the
+eigenvectors of W1(2) . While the necessary condition for fullrank R∗ (W1 > W2 ) has been obtained before in [10], no
+solution was found for R∗ , which is given in Theorem 2 here.
+The condition W2 > 0 can be further removed via a limiting
+transition W2ǫ = W2 + ǫI → W2 as ǫ → 0+ . The case
+of singular W1 can also be included by observing that R∗
+puts no power on the null space of W1 so that all matrices
+can be projected, without loss of generality, on the positive
+eigenspace of W1 and Theorem 2 will apply. With this in
+
+i
+
+(e.g. when PT → ∞), where µ1 = maxi µi , simpliﬁes to
+√
+PT µi
+∗
++
+R ≈ Udiag{di }U , di =
+(17)
+√
+i µi
+The corresponding secrecy capacity is
+Cs ≈ ln
+
+|W1 |
+1
+−
+|W2 | PT
+
+i
+
+√
+µi
+
+2
+
+(18)
+
+Proof: follows from Theorem 2 along the same lines as that
+of Corollary 3.
+Note that the optimal signaling is on the eigenmodes of
+−1
+−1
+W2 − W1 with the optimal power allocation given by
+{di }. This somewhat resembles the conventional water-ﬁlling,
+but also has a remarkable difference: unlike the conventional
+WF, the secure WF in (17) does not converge to the uniform
+one in the high-SNR regime 4 . However, strong eigenmodes
+−1
+−1
+of W2 − W1 (which corresponds to weak modes of W2
+and strong ones of W1 ) do get more power, albeit in a form
+different from that of the conventional WF.
+4 The sub-optimality of the isotropic signalling suggested in Theorem 2 of
+[9] is hiding in the o(1) term there. 2nd term of Eq. (18) above reﬁnes that
+o(1) term.
+
+3
+
+IV. C ONCLUSION
+
+MR = 0, λ(trR − PT ) = 0,
+
+Optimal signalling over the wire-tap Gaussian MIMO channel has been studied under the total power constraint. Based on
+the necessary condition of the optimality, an explicit, closedform solution is given for the optimal transmit covariance
+when the latter is of full rank. While the optimal signalling
+has some similarities to the conventional water-ﬁlling, it also
+reveals a number of differences: the optimal signalling does
+not converge to isotropic at high SNR. The weak eavesdropper
+and high-SNR regimes were considered, and a reﬁned estimate
+of the rank of the optimal covariance matrix is given for the
+general case.
+
+(21)
+
+R ≥ 0, M ≥ 0, λ ≥ 0, trR ≤ PT
+where (20) is obtained from ∂L/∂R = 0,
+∂L/∂R = (I+W2 R)−1 W2 −(I+W1 R)−1 W1 +λI−M = 0
+(22)
+and the two equalities in (21) are the complementary slackness
+conditions. Since the original problem is not convex, the KKT
+conditions are not sufﬁcient for optimality [11]. However,
+since the (afﬁne) constraints trR ≤ PT , R ≥ 0 clearly
+satisfy the Slater condition [11][12] and since the maximum
+is achievable (since the constraint set is compact and the
+objective function is continuous), the KKT conditions are
+necessary for optimality [12]. We further need the following
+technical Lemma.
+Lemma 1: Let A, B, C ≥ 0 be positive semi-deﬁnite
+matrices and let ABC be Hermitian. Then ABC ≥ 0.
+Proof: Since A, C ≥ 0, there exists a non-singular matrix
+S such that SAS+ = Da ≥ 0, SCS+ = Dc ≥ 0 are diagonal
+[13]. Using the latter,
+
+R EFERENCES
+[1] H. Bolcskei et al (Eds.), Space-Time Wireless Systems: From Array
+Processing to MIMO Communications, Cambridge University Press,
+Cambridge, 2006.
+[2] Y. Liang, H. V. Poor and S. Shamai(Shitz), Information Theoretic
+Security, Foundations and Trends in Communications and Information
+Theory, v. 5, No. 45 (2008), pp. 355-580.
+[3] Z. Li, W. Trappe, R. Yates, Secret communication via multi-antenna
+transmission, Conf. Information Sciences and Systems (CISS), Mar. 2007.
+[4] P. K. Gopala, L. Lai, H. El Gamal, On the Secrecy Capacity of Fading
+Channels, IEEE Trans. Info. Theory, v. 54, No. 10, Oct. 2008.
+[5] R. Bustin et al, An MMSE Approach to the Secrecy Capacity of
+the MIMO GaussianWiretap Channel, EURASIP Journal on Wireless
+Communications and Networking, 2009, Article ID 370970.
+[6] T. Liu, S. Shamai (Shitz), A Note on the Secrecy Capacity of the MultipleAntenna Wiretap Channel, IEEE Trans. Info. Theory, v. 55, No. 6, June
+2009.
+[7] S. Shaﬁee, N. Liu, S. Ulukus, Towards the Secrecy Capacity of the
+Gaussian MIMO Wire-Tap Channel: The 2-2-1 Channel, IEEE Trans.
+Info. Theory, v. 55, No. 9, Sep. 2009.
+[8] A. Khisti, G.W. Wornell, Secure Transmission With Multiple Antennas—
+Part I: The MISOME Wiretap Channel, IEEE Trans. Info. Theory, v. 56,
+No. 7, July 2010.
+[9] A. Khisti, G.W. Wornell, Secure Transmission With Multiple Antennas—
+Part II: The MIMOME Wiretap Channel, IEEE Trans. Info. Theory, v.
+56, No. 11, Nov. 2010.
+[10] F. Oggier, B. Hassibi, The Secrecy Capacity of the MIMO Wiretap
+Channel, IEEE Trans. Info. Theory, v. 57, No. 8, Aug. 2011.
+[11] S. Boyd, L. Vandenberghe, Convex Optimization, Cambridge University
+Press, 2004.
+[12] D.P. Bertsekas, Nonlinear Programming, Athena Scientiﬁc, 2nd Ed.,
+2008.
+[13] F. Zhang, Matrix Theory, Springer, 1999.
+[14] J. Li, A. Petropulu, Transmitter Optimization for Achieving Secrecy
+Capacity in Gaussian MIMO Wiretap Channels, arXiv:0909.2622v1, Sep
+2009.
+
+ABC = SDa BDc S+
+where B = S+ BS ≥ 0. Observe further that
+
+λi (Da BDc ) = λi ((Dc Da )1/2 B(Dc Da )1/2 ) ≥ 0
+
+(since (Dc Da )1/2 B(Dc Da )1/2 ≥ 0), where λi (B) means
+an eigenvalue of matrix B. Since Da BDc is Hermitian
+(because ABC is) and has non-negative eigenvalues, it is
+positive semi-deﬁnite [13], Da BDc ≥ 0. It follows that
+ABC = SDa BDc S+ ≥ 0. Q.E.D.
+Note that this Lemma is a generalization of a well known
+fact: AB ≥ 0 if A, B ≥ 0 and AB is Hermitian [13]. We
+further prove that Z = (I + W1 R)(I + RW2 ) > 0 when
+R > 0; the case of singular R will follow from the standard
+continuity argument [13]. Assuming R > 0,
+Z = (R−1 + W1 )R2 (R−1 + W2 )
+
+(23)
+
+Now identify the right-hand side of (23) with A, B, C and
+use Lemma 1 to obtain Z ≥ 0 (noting that Z is Hermitian
+from (20)). Therefore, it follows from (20) that W1 − W2 +
+M ≥ 0 (since λ > 0, as λ = 0 implies W1 ≤ W2
+and thus Cs = 0 - trivial case not considered here). Since
+|(I + W1 R)(I + RW2 )| > 0, it further follows that Z > 0
+and W1 −W2 +M > 0. Now, let ui+ be an active eigenvector
+(corresponding to a positive eigenvalue) of R∗ . Then,
+
+V. A PPENDIX
+Proof of Theorem 1: Using Lagrange multiplier technique
+[11][12], the optimization problem in (3) has the following
+Lagrangian:
+
+0 < u+ (W1 − W2 + M)ui+ = u+ (W1 − W2 )ui+
+i+
+i+
+
+L = − ln |I + W1 R|+ln |I + W2 R|+λ(trR−PT )−tr(MR) where the equality follows from MR = 0. Q.E.D.
+(19)
+With more efforts, a stronger statement can be proved:
+where λ ≥ 0 is a Lagrange multiplier responsible for the
+U+ (W1 − W2 )Ur+ > 0
+r+
+power constraint trR ≤ PT and M ≥ 0 is a (positive
+semi-deﬁnite) matrix Lagrange multiplier responsible for the where the columns of Ur+ are {ui+ }.
+constraint R ≥ 0. The associated KKT conditions (see e.g.
+Proof of Proposition 1: Notice that
+[11]) can be expressed as:
+|I + W1 R+ |
+|I + W1+ R|
+C+ (R) = ln
+= ln
+(24)
+λ(I + W1 R)(I + RW2 ) = W1 − W2 + M
+(20)
+|I + W2+ R|
+|I + W2 R+ |
+
+4
+
+are sufﬁcient for optimality. Assuming R > 0 and using M =
+0 (which follows from MR = 0), one obtains from (22),
+
+where R+ = P+ RP+ is the projected covariance. Any
+component of R eliminated by the projection will not affect C+ (R) but can possibly increase the total power, since
+trR+ ≤ trR. Therefore, the optimal covariance R′ in (6) has
+to satisfy
+
+−1
+Wi
+
+R−1 − R−1 = λI
+1
+2
+
+(28)
++
+
+where Ri =
++ R, i = 1, 2. Let R1 = UΛ1 U be
+the eigenvalue decomposition, where the columns of unitary
+matrix U are the eigenvectors, and Λ1 > 0 is a diagonal matrix of the corresponding eigenvalues. Using this in
+(28), one obtains Λ−1 − (U+ R2 U)−1 = λI and therefore
+1
+U+ R2 U = Λ2 is diagonal, so that R2 = UΛ2 U+ is the
+eigenvalue decomposition of R2 , from which it follows that
+R1 and R2 have the same eigenvectors. Using this in (28) one
+obtains
+Λ1 = (λI + Λ−1 )−1
+(29)
+2
+
+span{vi+ (R′ )} ∈ span{U+ } = span{vi+ (W1 − W2 )}
+(25)
+(in which case trR+ = trR) and thus clearly satisﬁes (4).
+Q.E.D.
+Proof of Proposition 2: We will need the following technical Lemma.
+Lemma 2: Consider the function
+f (X) = ln I − B(A + X)−1 B ,
+
+Furthermore,
+
+where A, B, X ≥ 0 are positive semi-deﬁnite matrices, I is the
+identity matrix, BA−1 B ≤ I. It has the following properties:
+1) f (X) is increasing in X: X1 ≤ X2 → f (X1 ) ≤ f (X2 ).
+2) f (X) is concave in X:
+
+−1
+−1
+R2 − R1 = W2 − W1 = U(Λ2 − Λ1 )U+
+
+(30)
+
+so that the columns of U are also the eigenvectors of
+−1
+−1
+W2 −W1 and the diagonal entries of Λ2 −Λ1 = diag{µi }
+are its eigenvalues. Combining the latter with (29), one
+f (αX1 + βX2 ) ≥ αf (X1 ) + βf (X2 ),
+obtains after some manipulations (11). (10) follows from
+−1
+R1 = W1 + R and R1 = UΛ1 U+ . It is straightforward to
+for α + β = 1, 0 ≤ α, β ≤ 1.
+Proof: 1st property follows from the (easy to verify) fact see that λ > 0 (otherwise W1 ≤ W2 ), so that transmission
+that −B(A+X)−1 B is increasing in X (in the matrix positive with the full power is optimal and (12) follows from the
+deﬁnite ordering sense [13]). 2nd one is obtained from the power constraint trR = PT . For (10) to be a valid solution,
+−1
+we need UΛ1 U+ > W1 . This is insured by observing
+following chain argument:
+that the left-hand side of (12) is monotonically decreasing
+f (αX1 + βX2 ) = ln I − B(A + αX1 + βX2 )−1 B (26) in λ, so that the latter is monotonically decreasing as PT
+(a)
+increases and, from (11), λ1i also monotonically increases.
+≥ ln I − αBA−1 B − βBA−1 B
+1
+2
+Therefore, for sufﬁciently large PT , PT > PT 0 for some ﬁnite
+(b)
+P , the minimum eigenvalue of Λ1 exceeds the maximum
+−1
+−1
+≥ α ln I − BA1 B + β ln I − BA2 B T 0
+−1
+−1
+one of W1 and thus the condition UΛ1 U+ > W1
+= αf (X1 ) + βf (X2 )
+follows. Therefore, (10)-(12) solve the KKT conditions and
+where Ai = A + Xi ; (a) follows from the facts that F (X) = thus achieve the global optimum. It can be further seen that
+X−1 is convex in X and F (X) = ln |X| is increasing [11][13]; the solution is unique. Q.E.D.
+√
+(b) follows from the fact that F (X) = ln |X| is concave [11].
+Proof of Corollary 3: Using 1 + x ≈ 1 + x/2 − x2 /8
+Q.E.D.
+when x ≪ 1 in (11), one obtains λ1i ≈ λ−1 + (λ2 µi )−1 , and
+−1
+We now assume that W2+ > 0. The case of singular using this in (12), one obtains λ ≈ m(PT + trW1 )−1 . The
+W2+ will follow from the standard continuity argument [13]. condition x ≪ 1 is equivalent to λµi ≫ 4, which in turn is
+Observe that
+equivalent to (14), and the latter also implies mini λi (W1 ) ≫
+−1
+maxi λi (W2 ) (i.e. the eavesdropper channel is indeed much
+W1+ + R
+|W1+ |
+−1
+C+ (R) = ln
++ ln
+(27) weaker than the main one), from which it follows that W2 −
+−1
+|W2+ |
+W2+ + R
+−1
+−1
+W1 ≈ W2 , and applying these in (10), one obtains (15).
+−1
+= c + ln I − ∆W(W2+ + R)−1
+Q.E.D.
+=
+
+−1
+c + ln I − ∆W1/2 (W2+ + R)−1 ∆W1/2
+
+−1
+−1
+where c = ln |W1+ | − ln |W2+ | and ∆W = W2+ − W1+ ,
+and apply Lemma 2 to the last term of the last expression in (27). It is easy to verify that BA−1 B ≤ I (since
+−1
+−1
+−1
+W2+ −W1+ ≤ W2+ ) and that B ≥ 0 (since W1+ ≥ W2+ ).
+Proposition 2 follows. Q.E.D.
+
+Proof of Theorem 2: It follows from Proposition 2 that
+C(R) is concave when W1 > W2 (no need for projection) so
+that the problem in (3) is convex and thus the KKT conditions
+
+5
+
+

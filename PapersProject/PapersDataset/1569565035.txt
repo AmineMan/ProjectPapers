@@ -1,0 +1,906 @@
+Creator:        TeX
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Fri Feb  3 08:45:06 2012
+ModDate:        Tue Jun 19 12:56:10 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      364292 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569565035
+
+Fourier domain representation of non-binary LDPC
+codes
+Valentin Savin
+CEA-LETI, Minatec Campus, Grenoble, France, valentin.savin@cea.fr
+out that this translation corresponds to the BFT-BP decoding,
+thus the extended binary representation gives a Fourier domain
+representation of the non-binary LDPC code. Although it
+does not allow for any further complexity reduction, this
+graphical representation should be useful for further analysis
+of the BFT-BP decoding. Furthermore, based on the Fourier
+domain representation, we introduce the concept of augmented
+non-binary LDPC codes, which gives a uniﬁed framework
+for rate-ﬂexible coding techniques, such as punctured codes
+[8], [9], extended codes [10], or the the recently introduced
+multiplicatively repeated non-binary LDPC codes [11]. The
+proposed coding scheme allows ﬂexible code-rate encoding at
+the transmitter, without increasing the decoder complexity at
+the receiver end.
+The paper is organized as follows. A brief presentation of
+non-binary LDPC codes is given in Section II. Section III
+introduces the extended binary representation of non-binary
+LDPC codes. BP decoding over the non-binary graph and the
+equivalent decoding over the extended binary representation
+are discussed in Section IV. In Section V we introduce augmented non-binary LDPC codes and demonstrate their beneﬁts
+in terms of rate-ﬂexibility and error-correction capabilities.
+Finally, Section VI concludes the paper.
+
+Abstract—In this paper we propose a binary representation of
+non-binary codes, which consists in a q-fold covering of the nonbinary graph, where q is the size of the non-binary alphabet. It is
+shown that this covering graph is actually the underlying graph
+of the Fourier-domain Belief-Propagation decoding, meaning that
+the exchanged messages carry information about the bit-nodes of
+the covering graph. Finally, a new coding scheme is proposed, in
+which the bits transmitted over the channel correspond to a set
+of bit-nodes of the Fourier domain representation. The proposed
+coding scheme allows using the same decoder, regardless of how
+many and which of the Fourier-domain bit-nodes have been
+transmitted. This considerably increases the ﬂexibility of the
+system, without increasing its complexity.
+
+I. I NTRODUCTION
+LDPC codes [1] are linear block codes deﬁned by sparse
+parity-check matrices. They can be advantageously represented
+by bipartite (Tanner) graphs [2] and decoded by means of
+Bayesian inference. The decoding algorithm, referred to as
+Belief-Propagation (BP), passes messages along the edges of
+the graph, in both directions, which are iteratively updated
+by Bayesian rules. In the non-binary case, each message is
+a probability distribution vector on the code alphabet, which
+gives the probabilities of the incident symbol-node being equal
+to each of its possible values. The complexity, per coded
+symbol, of the BP decoding scales as O(q 2 ), where q is the
+size of the non-binary alphabet [3]. Yet, it can be implemented
+by using Binary Fourier Transforms (BFT) [4], which allows
+decreasing the decoding complexity to O(q log(q)). At the cost
+of a small performance degradation, several low-complexity
+decoding algorithms have been proposed in the literature,
+such as the Extended-Min-Sum decoding [5] or the MinMax decoding [6], which operate in the Log Likelihood Ratio
+(rather than the probability) domain. The complexity of these
+algorithms scales as O(αq 2 ), where α is a constant that can
+be tuned such as to achieve a desired compromise between
+complexity and performance.
+There is however a notable exception with regard to the
+decoding complexity of non-binary LDPC codes. Over the
+Binary Erasure Channel, a decoding algorithm with linear
+complexity, and which was proved to provide the same performance as the non-binary BP decoding, has been proposed
+in [7]. This was achieved by exploiting the extended binary
+representation of the non-binary code, which consists in a qfold covering of the non-binary graph.
+The goal of this paper is to translate the non-binary BP
+decoding into a decoding algorithm operating on the extended
+binary representation, regardless of the channel model. It turns
+
+II. N ON - BINARY CODES AND THEIR BINARY IMAGE
+We consider non-binary codes deﬁned over the General
+Linear group GL(p, F2 ), of p × p invertible matrices with
+coefﬁcients in the binary ﬁeld F2 . The code alphabet is denoted
+by A = Fp , and q = 2p = |A| denotes the cardinality of A.
+2
+Elements X ∈ A will be referred to as (non-binary) symbols.
+Writing X = (x0 , . . . , xp−1 ), we shall refer to the row vector
+(x0 , . . . , xp−1 ) as the binary image of X. We use the standard
+transpose notation X T to denote the corresponding column
+vector. A non-binary code C ⊂ An , of length n, is deﬁned as
+the kernel of a linear system with m equations:
+n
+T
+hi,j Xj = 0, ∀i = 1, . . . , m},
+
+C = {(X1 , . . . , Xn ) ∈ An |
+j=1
+
+where hi,j ∈ GL(p, F2 )∪{0} are binary p×p matrices, which
+are either invertible or all-zero. The parity check matrix of the
+code is given by:
+H = (hi,j )i,j ∈ Mm×n (GL(p, F2 ) ∪ {0})
+A particular case is represented by non-binary codes over
+the ﬁnite ﬁeld with q elements, denoted by Fq . In this case,
+the code alphabet is given by A = Fq . However, by ﬁxing
+
+1
+
+an isomorphism of vector spaces A
+Fp , each symbol of
+2
+X ∈ A has a binary image (x0 , . . . , xp−1 ) ∈ Fp . Furthermore,
+2
+the internal ﬁeld multiplication by an element h ∈ Fq deﬁnes
+a linear application h : A → A, X → h · X, which can be
+identiﬁed with a binary p × p matrix, which is either invertible
+(if h = 0) or all-zero (if h = 0).
+The bipartite graph associated with the non-binary code C,
+denoted by H, consists of n symbol-nodes and m constraintnodes1 representing respectively the n columns and the m
+rows of the parity check matrix H. A symbol-node j and a
+constraint-node i are connected by an edge iff hi,j = 0. Each
+edge of the graph is further labeled by the corresponding nonzero entry of H. We also denote by H(j) the set of constraintnodes connected to a given symbol-node j, and by H(i) the
+set of symbol-nodes connected to a given constraint-node i.
+
+Consequently, Cbin is a binary code of length (q − 1)n, and
+we have:
+(q−1)n
+Cbin ⊂ S n ⊂ F2
+(3)
+In the sequel, we aim to construct a parity check matrix of
+the extended binary code Cbin , starting from the parity check
+matrix H of the non-binary code C.
+Deﬁnition 4: The extended binary image of a binary matrix
+h ∈ Mp (F2 ) is the binary matrix h ∈ Mq−1 (F2 ) deﬁned by:
+hi,j =
+
+(here, [i] · h denotes the usual multiplication between row
+vector [i] and matrix h)
+Proposition 5: The binary matrix h is invertible if and only
+if its extended binary image h is a permutation matrix.
+Proof. For i ∈ {1, . . . , q − 1}, [i] · h is the linear combination
+of rows of h with coefﬁcients given by the binary digits of i.
+Therefore, h is invertible iff [i] · h = [i ] · h, for any 1 ≤ i =
+i ≤ q − 1, in which case there is a unique 1 entry on each
+row and column of h.
+
+
+0 1 1
+Example 6: For p = 3 and h =  1 1 0 , we have:
+
+III. E XTENDED BINARY IMAGE OF NON - BINARY CODES
+p−1
+
+For any U, V ∈ A, let U ·V = i=0 ui vi (mod 2) be the dot
+product of their binary images. For any integer k = 0, . . . , q −1,
+we deﬁne [k] = (k0 , k1 , . . . , kp−1 ) ∈ A to be the vector of
+the binary digits of k, hence k = k0 + 2k1 + · · · + 2p−1 kp−1 .
+We also denote by:
+T
+
+Hp = column [1] , . . . , [q − 1]
+
+T
+
+1, if [i] · h = [j]
+, for all 1 ≤ i = j ≤ q − 1
+0, otherwise
+
+1 1 1
+
+,
+
+
+
+the Hamming matrix of size p × q − 1, constructed by listing
+all the non-zero columns of length p that are pairwise distinct.
+Deﬁnition 1: Let X be a symbol of A. The extended binary
+image of X, denoted by X is deﬁned by
+
+
+
+
+
+h=
+
+
+
+
+
+(1)
+
+X = XHp
+
+0
+0
+0
+0
+0
+0
+1
+
+0
+1
+0
+0
+0
+0
+0
+
+0
+0
+0
+0
+0
+1
+0
+
+0
+0
+1
+0
+0
+0
+0
+
+1
+0
+0
+0
+0
+0
+0
+
+0
+0
+0
+1
+0
+0
+0
+
+
+
+
+
+
+
+
+
+
+
+
+Proposition 7: Let X, Y ∈ Fp and h ∈ GL(p, F2 ). Then:
+2
+
+Setting X = (x0 , . . . , xp−1 ) and X = (x1 , x2 , . . . , xq−1 ), we
+ﬁnd that xk = [k] · X = [k] · (x0 , . . . , xp−1 ) is the linear
+combination of the binary image of X with coefﬁcients given
+by the binary digits of k. Hence, the extended binary image
+of X consists of all the possible linear combinations (except
+the all-zero one) of its binary image. In particular, it contains
+the binary image, as x2i = xi , for all i = 0, . . . , p − 1.
+Example 2: If p = 3, the extended binary image of X =
+(1, 0, 1) is given by X = (1, 0, 1) · H3 = (1, 0, 1, 1, 0, 1, 0).
+Let S be the dual Hamming code of length q − 1, which is
+also referred to as the simplex code. Then, S is the vector space
+spanned by the rows of Hp and, according to Deﬁnition 1, it
+can be seen as the vector space constituted of the extended
+binary images of all the elements X ∈ A:
+S = {X | X ∈ A} ⊂ Fq−1
+2
+
+0
+0
+0
+0
+1
+0
+0
+
+h · X T = Y T ⇔ hX T = Y T
+Proof. We prove the direct implication. Fix k ∈ {1, . . . , q − 1}
+and let l ∈ {1, . . . , q − 1} be the unique integer such that
+q−1
+[k] · h = [l]. We have hX T = l =1 hk,l xl = xl . On the
+k
+other hand,
+p−1
+
+yk = [k] · Y =
+
+p−1
+
+ki yi =
+i=0
+
+p−1
+
+p−1
+
+j=0
+
+i=0
+
+=
+
+ki hi+1,j+1
+
+p−1
+
+ki
+i=0
+
+hi+1,j+1 xj
+j=0
+p−1
+
+lj xj = [l] · X = xl ,
+
+xj =
+j=0
+
+which proves the direct implication. The reverse implication
+can be proven in the same manner.
+Now, consider a non-binary code C deﬁned by a paritycheck matrix H. The extended binary image of H is the binary
+matrix Hbin ∈ M(q−1)m,(q−1)n (F2 ) obtained by replacing
+each entry hi,j of H by its extended binary image hi,j .
+If (X1 , . . . , Xn ) is a non-binary codeword of C, from the
+
+(2)
+
+We also deﬁne:
+(q−1)n
+
+S n = {(X1 , . . . , Xn ) | (X1 , . . . , Xn ) ∈ An } ⊂ F2
+
+Deﬁnition 3: The extended binary image of a non-binary
+code C ⊂ An is deﬁned as the vector space constituted of the
+binary images of all the codewords (X1 , . . . , Xn ) ∈ C:
+
+above proposition it follows that Hbin X1 , . . . , Xn
+Therefore:
+Cbin ⊂ ker Hbin
+
+Cbin = {(X1 , . . . , Xn ) | (X1 , . . . , Xn ) ∈ C}
+
+T
+
+= 0.
+(4)
+
+We note that this is a strict inclusion. However, the following
+property holds.
+
+1 These nodes are generally called check-nodes. However, we will use
+constraint-nodes for non-binary codes, and check-nodes for binary codes.
+
+2
+
+Theorem 8: Let C be a non-binary code with parity-check
+matrix H. Then
+
+Now, assume that f is a probability distribution function
+on A, meaning that f (X) ≥ 0, for any X ∈ A, and
+X∈A f (X) = 1. For any k = 1, . . . , q − 1, let ek denote the
+random variable equal to the k th extended bit of a non-binary
+symbol drawn randomly from A according to the probability
+distribution f . We deﬁne:
+
+Cbin = ker Hbin ∩ S n
+Proof. The inclusion Cbin ⊂ ker Hbin ∩ S n follows from
+equations (3) and (4). Conversely, consider a binary vector
+in ker Hbin ∩ S n . Since it belongs to S n , it is of the form
+
+pk = Pr(ek = 0) − Pr(ek = 1), for k = 1, . . . , q − 1
+[p] = (p0 , p1 , . . . , pq−1 ) , where by convention p0 = 1
+
+X1 , . . . , Xn , for some (X1 , . . . , Xn ) ∈ An (cf. 2), and we also
+
+have Hbin X1 , . . . , Xn
+
+T
+
+The vector [p] is referred to as the extended likelihood difference vector associated with f . Finally, for a given function
+f : A → R, we denote by [f ] = (f0 , f1 , . . . , fq−1 ) ∈ Rq the
+real vector deﬁned by fi = f ([i]). With this notation, we have:
+Proposition 9: The extended likelihood difference vector is
+equal to the binary Fourier transform of the corresponding
+probability distribution function, that is:
+
+= 0, as it belongs to the kernel of
+
+Hbin . Proposition 7 implies that H(X1 , . . . , Xn )T = 0, hence
+(X1 , . . . , Xn ) ∈ C and therefore X1 , . . . , Xn ∈ Cbin .
+Let H be the bipartite graph associated with the non-binary
+parity-check matrix H (Section II). The extended bipartite
+graph, denoted by H, is deﬁned as the bipartite graph associated with the parity check matrix Hbin . Since the non-zero
+entries of H are invertible, it follows from Proposition 7 that
+H is a (q − 1)-fold covering graph of H. There are q − 1
+extended bit-nodes in H for each symbol-node of H and
+q − 1 extended parity check-nodes in H for each constraintnode of H. Moreover, there is a one-to-one correspondance
+between the neighborhood of an extended bit-node (resp.
+extended parity-check node) in H and the neighborhood of
+the corresponding symbol-node (resp. constraint-node) in H.
+According to the terminology in [12], H may be seen as a
+protograph and H as a derived graph. Hence, the binary code
+associated with H is a protograph code. From Theorem 8, it
+follows that there is a one-to-one correspondance between the
+non-binary codewords of H and the binary codewords of H
+that are further constrained by a simplex code (that is, bits
+lying over the same symbol-node of H must form a simplex
+codeword).
+
+[p] = [BFT(f )]
+1
+It also follows that [f ] = BFT([p]).
+q
+Proof. Let i ∈ {0, . . . , q − 1} and X = [i] ∈ A. Hence,
+fi = f (X). For any k = 0, . . . , q−1, let xk = X ·[k] = [i]·[k].
+We have x0 = 0 and, according to (1), X = (x1 , . . . , xq−1 ).
+Consequently, we have:
+BFT(f )k =
+
+fi −
+i=0,...,q−1
+[i]·[k]=0
+
+fi
+i=0,...,q−1
+[i]·[k]=1
+
+f (X) −
+
+=
+X∈A
+xk =0
+
+f (X)
+X∈A
+xk =1
+
+= Pr(ek = 0) − Pr(ek = 1) = pk
+
+A. Belief propagation decoding on the non-binary graph H
+We consider a non-binary codeword [X] = (X1 , . . . , Xn )
+that is sent through a noisy channel, and we denote by [Y ] the
+channel output. For any j = 1, . . . , n, let αj = (αj (X))X∈A
+denote the probability distribution of the j th transmitted symbol, conditioned on the observed channel output:
+
+IV. B ELIEF PROPAGATION DECODING
+Non-binary LDPC codes can be decoded by iterative algorithms that pass messages along the edges of the bipartite
+graph H (in both directions). For the BP decoding, each
+message is a probability distribution vector over the non-binary
+alphabet A, which gives the probability of the symbol-node
+incident to the edge being equal to any of its possible values.
+These probability distributions are updated at each iteration,
+until a codeword has been found (all constraint-nodes are
+veriﬁed) or a maximum number of iterations has been reached.
+Our goal is to propose an equivalent decoding algorithm that
+exchanges messages along the edges of the extended graph H.
+To this end, given some probability distribution f on A, we
+have to determine the probability of an extended bit being
+equal to 0 or 1. We will prove that the probability distribution
+on A and the probabilities of extended bits are related by a
+binary Fourier transform. We recall that the binary Fourier
+transform of a real-valued function f : A → R is the function
+BFT(f ) : A → R deﬁned by:
+BFT(f )(X) =
+
+(−1)[i]·[k] fi =
+i=0,...,q−1
+
+αj (X) = Pr(Xj = X | [Y ]), X ∈ A
+(
+(
+(
+(
+We denote by αi,j) = αi,j) (X)
+and βi,j) = βi,j) (X)
+X∈A
+X∈A
+the messages exchanged, at iteration , between symbol-node
+j = 1, . . . , n and constraint-node i = 1, . . . , m.
+The belief propagation decoding is initialized by setting
+(0)
+αi,j = αj , for all i ∈ H(j). Then, for ≥ 1, exchanged
+messages are computed as follows:
+( )
+• βi,j = the probability distribution of Xj , conditioned on
+the event that the ith constraint-node is veriﬁed and on
+( −1)
+the messages αi,j , with j ∈ H(i) \ {j}. The exact
+( )
+computation of βi,j messages is omitted, as we shall
+make no use of it in this paper.
+( )
+• αi,j = the probability distribution of Xj , conditioned
+( )
+on the channel output and on the messages βi ,j , with
+i ∈ H(j) \ {i}. Setting H(j) \ {i} = {i1 , . . . , id }, this
+probability can be computed by:
+
+( )
+
+(−1)X·Y f (Y ), ∀X ∈ A
+
+( )
+
+αi,j (X) = c · αj (X)
+
+βik ,j (X),
+k=1,...,d
+
+Y ∈A
+
+3
+
+( −1)
+
+check (i, k) is veriﬁed and on the messages pi,j ,l , with
+k
+j ∈ H(i) \ {j}, where lk = li,j ,k .
+( )
+• pi,j,l = the likelihood difference of the extended bit-node
+(j, l), conditioned on channel output and on the messages
+( )
+qi ,j,k , with i ∈ H(j) \ {i} and k such that li ,j,k = l.
+Proposition 10: With the above notation, we have:
+
+where
+
+c is a normalizing constant, such that
+( )
+αi,j (X) = 1.
+X∈A
+Finally, at each iteration , the a posteriori probability distribution of Xj , conditioned on the channel output and on
+( )
+all the messages βi,j , with i ∈ H(j), is computed by
+( )
+( )
+αj (X) = αj (X) i∈H(j) βi,j (X), and a hard decision
+is taken according to the most likely symbol, deﬁned by
+( )
+Xj = argmaxX∈A αj (X) . Decoding algorithm stops if
+
+( −1)
+,lk
+
+( )
+
+qi,j,k =
+
+pi,j
+j ∈H(i)\{j}
+
+either (X1 , . . . , Xn ) is a codeword or a maximum number of
+iterations has been reached.
+
+( )
+
+Proof. We have qi,j,k = Pr (xj,lk = 0) − Pr (xj,lk = 1) =
+2 Pr (xj,lk = 0) − 1, where the above probabilities are conditioned on the event that the extended parity check (i, k)
+( −1)
+is veriﬁed and on the messages pi,j ,l . We also note that
+
+B. Belief propagation decoding on the extended graph H
+Extended bit-nodes of the extended graph H will be denoted
+by (j, l), where j = 1, . . . , n is the index of a symbol-node of
+H and l = 1, . . . , q − 1 is the index of an extended bit of it.
+Similarly, extended parity check-nodes of H will be denoted
+by (i, k), where i = 1, . . . , m is the index of a constraintnode of H and k = 1, . . . , q − 1 is the index of an extended
+parity check of it. According to Proposition 5, extended nodes
+(i, k) and (j, l) are connected iff hi,j = 0 and [k]hi,j = [l].
+Furthermore, we add some “virtual” extended nodes to H,
+with indexes (i, 0) and (j, 0) (otherwise formulated, we allow
+indexes k and l to take on the zero value). Extended bit-node
+(j, 0) should be thought as the all-zero linear combination the
+binary image of the symbol-node j, thus its value will be
+always equal to zero. If hi,j = 0, extended nodes (i, 0) and
+(j, 0) are connected in H, since [0]hi,j = [0]. Now, for k =
+0, . . . , q − 1 there is exactly one l = 0, . . . , q − 1 such that
+[k]hi,j = [l], therefore any extended parity check-node (i, k) is
+connected to exactly one extended bit-node (j, l). The unique
+l with the above property will be denoted in the sequel by
+li,j,k , or simply lk if no confusion is possible.
+As in the previous section, we consider a non-binary
+codeword [X] = (X1 , . . . , Xn ) that is sent through a noisy
+channel, and we denote by [Y ] the channel output. Let pj,l
+denote the likelihood difference of the extended bit-node (j, l),
+conditioned on the observed channel output:
+
+Proof. Follows from Proposition 9.
+( )
+It also follows that messages βi,j , deﬁned in Section IV-A,
+can actually be computed by using Proposition 10 and Theorem 11. To conclude this section, by decoding non-binary
+LDPC codes over the extended graph H, we rediscovered
+the Fourier domain implementation of the non-binary Belief
+Propagation decoding [4]. For that reason, the extended graph
+H will be also referred to as the Fourier domain representation
+of the non-binary LDPC code.
+
+pj,l = Pr(xj,l = 0 | [Y ]) − Pr(xj,l = 1 | [Y ]),
+
+V. AUGMENTED NON - BINARY LDPC CODES
+
+( −1)
+,lk
+
+pi,j
+
+,lk
+
+= 0) − Pr(xj
+
+,lk
+
+= 1) = 1 − 2 Pr(xj
+
+,lk
+
+= 1).
+
+Now, assuming that the extended parity check (i, k) is
+veriﬁed, the extended bit xj,lk is equal to 0 if and only if
+an even number of extended bits xj ,lk are equal to 1. Using
+[1, Lemma 4.1] we obtain:
+
+Pr (xj,lk = 0) =
+
+1+
+
+j
+
+1−2 Pr(xj
+
+,l
+
+k
+
+=1)
+
+2
+
+( )
+qi,j,k
+
+1+
+
+=
+
+It follows that
+= 2 Pr (xj,lk = 0) − 1 =
+Theorem 11: The following equalities hold:
+[pj ]
+
+=
+
+j
+
+=
+
+BFT
+
+( )
+
+=
+
+2
+
+BFT βi,j
+
+qi,j
+
+( −1)
+,l
+k
+
+pi,j
+
+( −1)
+j pi,j ,lk .
+
+[BFT (αj )]
+
+( )
+pi,j
+
+(5)
+
+( )
+αi,j
+
+(6)
+
+( )
+
+(7)
+
+Deﬁnition 12: An augmented non-binary LDPC code is a
+pair (C, E), where C is a non-binary LDPC code and E is a
+set of extended bit-nodes of the corresponding Fourier domain
+representation. The rate of the augmented non-binary code,
+denoted by r(C,E) or simply rE if no confusion is possible, is
+kbin
+, where kbin is the binary dimension of
+deﬁned by rE =
+|E|
+C and |E| denotes the cardinality of E.
+A communication system using an augmented non-binary
+LDPC code works as follows. At the transmitter, kbin information bits (or, equivalently, kbin /p information symbols) are
+encoded using the non-binary code C. The extended binary
+image of the encoded codeword is then computed, and the
+extended bits corresponding to the extended bit-nodes of E
+are transmitted over the channel. At the receiver end, the
+received signal can be decoded by using the Fourier-domain
+
+where (xj,0 , xj,1 , . . . , xj,q−1 ) is the extended binary image of
+the transmitted symbol Xj . As mentioned above, xj,0 = 0,
+hence pj,0 = 1, for any j = 1, . . . , n. We also deﬁne:
+[pj ] = (pj,0 , pj,1 , . . . , pj,q−1 )
+and q( ) = q( )
+We denote by p( ) = p( )
+i,j
+i,j
+i,j,k
+i,j,l
+k=0,...,q−1
+l=0,...,q−1
+the messages exchanged between the extended bit-node (j, lk )
+and the extended parity check-node (i, k) at iteration .
+The belief propagation decoding is initialized by setting
+(0)
+pi,j,l = pj,l , for all i ∈ H(j) and l = 0, . . . , q − 1. Then,
+for ≥ 1, exchanged messages are computed according to the
+following rules:
+•
+
+k
+
+= Pr(xj
+
+( )
+
+qi,j,k = the likelihood difference of the extended bit-node
+(j, lk ), conditioned on the event that the extended parity
+
+4
+
+BP decoding, or any other decoding algorithm for non-binary
+LDPC codes proposed in the literature [6],[13]. Clearly, the
+rate of such a coding scheme is given by rE . Depending on the
+number of transmitted extended-bits, rE can be either greater
+or less than the rate of the mother non-binary code C. A
+signiﬁcant advantage of augmented codes is that they allow
+using the same decoder, regardless of how many and which
+extended bits have been transmitted.
+Augmenting patterns for non-binary LDPC codes can be
+optimized by density evolution, in a similar manner to the
+technique proposed in [9] for optimizing puncturing patterns
+for non-binary LDPC codes. Due to space limitation, this
+optimization will be presented in an extended version of this
+paper. However, we include below the asymptotic thresholds
+over the Binary Input AWGN channel, of augmented regular
+(dv = 2, dc = 4) LDPC codes over the ﬁnite ﬁeld F64 .
+Density evolution of augmented non-binary LDPC codes has
+been approximated by Monte-Carlo simulation, following the
+method introduced in [9], which has been proven to provide
+accurate (very close) and precise (small variance) estimates of
+the asymptotic thresholds.
+We denote by Ej (resp. kj = |Ej |) the set (resp. the number)
+of extended bits transmitted for symbol-node j ∈ {1, . . . , n}.
+Given a target augmented rate rE , we randomly choose an
+augmenting set E, with cardinality |E| = kbin /rE , such that:
+•
+
+•
+
+3
+
+Shannon Limit
+Regular (2,4) code, augmented to specified rate
+Semi-Regular (2, dc) of specified rate
+
+Eb/N0 (dB)
+
+2
+
+1
+
+0
+
+-1
+
+-2
+0.1
+
+0.2
+
+0.3
+
+0.4
+
+0.5
+
+0.6
+
+0.7
+
+0.8
+
+coding rate, r
+
+Figure 1. Asymptotic thresholds over BI-AWGN channel, of augmented
+2
+¯
+regular (dv = 2, dc = 4) and semi-regular (dv = 2, dc = 1−r ) non-binary
+LDPC codes deﬁned over F64
+
+VI. C ONCLUSION
+In this paper, we proposed a graphical representation of
+the Fourier-domain BP decoding for non-binary LDPC codes.
+We showed that the messages exchanged within the BFTBP decoding carry information about the bit-nodes of a qfold covering of the non-binary graph. This representation
+can be advantageously used to deﬁne rate-ﬂexible coding
+schemes, namely augmented non-binary LDPC codes, which
+were proven to outperform semi-regular non-binary LDPC
+codes for small coding rates.
+
+kj = |E| (∀j), if the above ratio is an integer, otherwise
+n
+kj is equal either to |E| or |E| , with average value |E| .
+n
+n
+n
+The set Ej = {(j, l1 ), . . . , (j, lkj )} is chosen so
+that to maximize the minimum distance of HEj =
+column [l1 ]T , . . . , [lkj ]T , which is the submatrix of the
+Hamming matrix Hp , determined by the columns corresponding to the kj extended bits in Ej .
+
+R EFERENCES
+[1] R. G. Gallager, Low Density Parity Check Codes, M.I.T. Press, 1963.
+[2] R. M. Tanner, “A recursive approach to low complexity codes,” IEEE
+Transactions on Information Theory, vol. 27, no. 5, pp. 533–547, 1981.
+[3] N. Wiberg, Codes and decoding on general graphs, Ph.D. thesis,
+Likoping University, 1996, Sweden.
+[4] M.C. Davey, Error-correction using low-density parity-check codes,
+Ph.D. thesis, Univ. of Cambridge, 1999.
+[5] D. Declercq and M. Fossorier, “Extended min-sum algorithm for
+decoding LDPC codes over GF(q),” in Information Theory, 2005. ISIT
+2005. Proceedings. International Symposium on, 2005, pp. 464–468.
+[6] V. Savin, “Min-Max decoding for non binary LDPC codes,” in IEEE
+Int. Symp. on Information Theory, July 2008.
+[7] V. Savin, “Binary linear-time erasure decoding for non binary LDPC
+codes,” in IEEE Inform. Theory Workshop, October 2009, pp. 258–262.
+[8] D. Klinc, J. Ha, and S.W McLaughlin, “On rate-adaptability of nonbinary LDPC codes,” in 5th International Symposium on Turbo codes
+and related topics, 2008.
+[9] M. Gorgoglione, V. Savin, and D. Declercq, “Optimized puncturing
+distributions for irregular non-binary ldpc codes,” in Int. Sym. on Inf.
+Theory and its Applications, 2010, pp. 400–405.
+[10] L. Pham Sy, V. Savin, and D. Declercq, “Extended non-binary lowdensity parity-check codes over erasure channels,” in IEEE International
+Symposium on Wireless Communications Systems, November 2011.
+[11] K. Kasai, D. Declercq, C. Poulliat, and K. Sakaniwa, “Multiplicatively
+repeated non-binary LDPC codes,” IEEE Trans. on Inf. Theory, vol. 57,
+no. 10, pp. 6788–6795, 2011.
+[12] J. Thorpe, “Low-density parity-check (LDPC) codes constructed from
+protographs,” 2003, IPN progress report.
+[13] D. Declercq and M. Fossorier, “Decoding algorithms for nonbinary
+LDPC codes over GF(q),” IEEE Transactions on Communications, vol.
+55, pp. 633–643, 2007.
+
+Under these assumptions, the asymptotic thresholds of augmented regular (dv = 2, dc = 4) LDPC codes over F64
+are presented in Figure 1. For comparison purposes, we have
+also plotted the asymptotic thresholds of semi-regular nonbinary LDPC codes with constant symbol-node degree dv = 2:
+according to the coding rate r speciﬁed on the abscissa, the
+dv
+2
+¯
+average check-node degree is given by dc = 1−r = 1−r ,
+¯
+¯
+and any check-node is of degree either dc or dc . It can
+be seen that augmented non-binary LDPC codes outperform
+semi-regular codes for small coding rates (r < 0.3).
+To explain this, we note that for smaller and smaller coding
+rates, the best codes are deﬁned by graphs with increasingly
+lower average node-degree. Figure 1 suggests that for small
+coding rates, the average symbol-node degree should be further
+decreased below dv = 2. However, by doing so, the graph
+would necessarily contain constraint-nodes of degree 2. Such
+a constraint node, say i, corresponds to an equation hi,j1 Xj1 +
+hi,j2 Xj2 = 0 ⇔ Xj2 = h−12 hi,j1 Xj1 , in which case the
+i,j
+binary image of Xj2 is constituted of p bits from the extended
+binary of Xj1 . Put differently, for small rates, good codes are
+necessarily obtained by augmenting a mother code of higher
+rate. We also note that the results presented in this section can
+be further improved by appropriate optimization techniques.
+
+5
+
+

@@ -1,0 +1,826 @@
+Title:          ./eps/iterVSser_algo.eps
+Subject:        gnuplot plot
+Author:         gotz
+Creator:        gnuplot 4.6 patchlevel 0
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Sat May 19 14:13:28 2012
+ModDate:        Tue Jun 19 12:55:26 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      595 x 842 pts (A4)
+File size:      366866 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569565271
+
+Iterative Encoding with Gauss-Seidel Method for
+Spatially-Coupled Low-Density Lattice Codes
+Hironori Uchikawa∗ , Brian M. Kurkoski† , Kenta Kasai∗ and Kohichi Sakaniwa∗
+∗ Dept.
+
+of Communications and Integrated Systems, Tokyo Institute of Technology, 152-8550 Tokyo, Japan.
+Email: {uchikawa, kenta, sakaniwa}@comm.ss.titech.ac.jp
+† School of Information Science, Japan Advanced Institute of Science and Technology (JAIST), 923-1292 Ishikawa, Japan.
+Email: kurkoski@jaist.ac.jp
+
+Abstract—While it is known that spatially-coupled low-density
+lattice codes (SC-LDLC) have better decoding performance than
+conventional (non-coupled) LDLC lattices, in this paper it is
+shown that their encoding complexity is also lower. Since nonzero elements are mainly in lower triangular entries of the sparse
+inverse generator matrix of SC-LDLC, iterative encoding with
+the Gauss-Seidel method performs well. The convergence speed
+of iterative encoding is evaluated by both the mean square error
+(MSE) and the symbol error rate between a given integer vector b
+and the inversely generated integer vector from the codeword of
+b. Numerical experiments show that the convergence of encoding
+for SC-LDLC is 3 times faster than that of the conventional
+LDLC, at an MSE of 10−10 for dimension n = 10000.
+
+I. I NTRODUCTION
+The additive white Gaussian noise (AWGN) channel is an
+important channel both from theoretical and practical points
+of view. In 1959, Shannon found the capacity of the AWGN
+channel using random coding [1]. Due to the lack of structure,
+random codes are not practical as channel codes. Almost
+40 years later, it was proved that lattice codes achieve the
+channel capacity [2], [3]. Although lattice codes have elegant
+structure, they are not efﬁciently decodable codes, i.e. their
+decoding complexity is not linear in the dimension. In 2008,
+Sommer et al. proposed efﬁciently decodable lattice codes
+called low-density lattice codes (LDLC), by deﬁning a sparse
+inverse generator matrix [4]. Since Sommer et al. did not
+use shaping methods, the term LDLC lattices is used in this
+paper. Although LDLC lattices can be decoded efﬁciently
+using belief-propagation (BP) algorithm, capacity-achieving
+LDLC lattices have not so far been constructed. The noise
+threshold of LDLC lattices in [4] appeared within 0.5 dB of
+the capacity of the unconstrained-power AWGN channel.
+In [5], we developed a new LDLC lattice construction,
+called spatially-coupled (SC) LDLC lattices, based upon spatial coupling principles [6]. Evaluation was performed using
+Monte Carlo density evolution using a single-Gaussian approximated BP decoder [7]. While the conventional lattice
+construction leaves a gap of 0.5 dB to capacity, the SC-LDLC
+lattice construction reduces this gap to 0.33 dB from capacity1 ,
+1 Previously we reported 0.22 dB gap from capacity [5], but the correct
+value is 0.33 dB.
+
+1
+
+of the unconstrained power channel.
+Although the decoder’s computational complexity is only
+O(n), generating lattice points requires computational complexity of O(n2 ) in general. In [4], Sommer et al. suggested
+that linear computational complexity encoding can be accomplished using the Jacobi method, which is an iterative
+algorithm for determining the solution of a system of linear
+equations. Sommer et al. described that the convergence of
+the method was guaranteed by the nature of the sparse
+inverse generator matrix of LDLC lattices. However, they did
+not investigate convergence speed of such iterative encoding
+methods. Since processing over many iterations is time- and
+power-consuming, not only convergence conditions but also
+convergence speed is important for practical applications. In
+this paper, we evaluate the convergence speed of encoding
+using the Gauss-Seidel method, another iterative algorithm [8].
+Numerical experiments show that the SC-LDLC encoder with
+the Gauss-Seidel method has signiﬁcantly faster convergence
+speed than the LDLC encoder with the Gauss-Seidel method
+because of the spatially-coupled structure.
+II. LDLC AND SC-LDLC LATTICES
+A. Lattices
+An n-dimensional lattice Λ is deﬁned by an n-by-n generator matrix G. The lattice consists of the discrete set of points
+x = (x1 , x2 , . . . , xn )T for which
+x = Gb,
+
+(1)
+
+where b = (b1 , . . . , bn )T is from the set of all possible integer
+vectors, bi ∈ Z. The transpose of a vector x is denoted xT .
+Lattices are linear, in the sense that x1 + x2 ∈ Λ if x1 and
+x2 are lattice points. It is assumed that G is n-by-n and full
+rank (note SC-LDLC lattices allow G to have additional rows
+which are linearly dependent).
+The decoding performance of lattices are evaluated over
+the unconstrained-power AWGN channel [4], [5]. Let the
+codeword x be an arbitrary point of the lattice Λ. This
+codeword is transmitted over an AWGN channel, where noise
+zi with noise variance σ 2 is added to each codeword symbol. Then the received sequence y = (y1 , y2 , . . . , yn )T is
+
+yi = xi + zi , for i = 1, 2, . . . , n. The maximum-likelihood
+ˆ
+decoder selects x ∈ Λ as the estimated codeword, and a
+ˆ
+decoding error is declared if x = x. The capacity of this
+channel is the maximum noise power at which a maximumlikelihood decoder can recover the transmitted lattice point
+with error probability as low as desired for sufﬁciently large
+block length. In the limit that n becomes asymptotically large,
+there exist lattices which satisfy this condition if and only if
+[9]:
+| det(G)|2/n
+.
+(2)
+2πe
+In the above | det(G)| is the volume of the Voronoi region,
+which is inversely proportional to lattice density.
+σ2 ≤
+
+B. LDLC lattices
+An LDLC lattice is a lattice which has a sparse inverse
+generator matrix H. Since the inverse generator matrix H =
+G−1 of LDLC lattices is sparse, LDLC lattices can be decoded
+using BP [4]. An (n, α, d) LDLC lattice is deﬁned by the nby-n matrix H which has row and column weight d, where
+each row and column has one entry of weight ±1 and d − 1
+entries with weight which depends upon α. More precisely,
+the matrix H is deﬁned as:
+d
+
+Pi ,
+
+H = P1 + w
+
+(3)
+
+where
+(4)
+
+Si denotes a random sign change matrix, Pi denotes a random
+permutation matrix, and
+w=
+
+α
+.
+d−1
+
+We choose 0 ≤ α < 1, so that BP decoding of LDLC lattices
+will converge exponentially fast [4]. The permutation matrices
+are not chosen in a totally random manner but so as to generate
+H having exactly one ±1 and exactly d − 1 ±w’s in each
+column and row. The random sign change matrix Si is a
+square, diagonal matrix, where the diagonal entries are +1
+or −1 with probability 1/2.
+C. Spatially-Coupled LDLC lattices
+We deﬁne an (N, α, d, L) SC-LDLC lattice as a dimension
+N (L−d+1) lattice with an N L×N L inverse generator matrix
+H[L] as described by Eq. (7). The structure of H[L] is similar
+to the parity check matrix of tail-biting convolutional codes.
+(l)
+(l)
+d
+In Eq. (7), H(l) = P1 +w i=2 Pi is an inverse generator
+matrix of an (N, α, d) LDLC lattice for l ∈ {1, . . . , L}, and
+(l)
+each Pi represents a distinct matrix of the form of Eq. (4),
+for distinct l and i.
+In this construction, N (d − 1) integers are set to 0. The
+integer vector of form:
+˜
+b=
+
+˜ ˜
+x = G[L] b = G[L] b.
+
+(5)
+
+The dimension of the SC-LDLC lattice is, therefore, less
+than the number of elements in x, which is n = N L.
+Dimension ratio is deﬁned as
+RL =
+
+d−1
+N (L − d + 1)
+=1−
+.
+NL
+L
+
+(6)
+
+The ratio RL converges to 1 with increasing L, with a gap
+of O(1/L). Therefore, this dimension loss is negligible for
+sufﬁciently large L. We observe that the noise threshold of
+the (N , 0.8, 7, L) SC-LDLC lattices, with sufﬁciently large
+L, is very close to the theoretical limit [5].
+III. E NCODING WITH THE G AUSS -S EIDEL M ETHOD
+
+i=2
+
+Pi = Si Pi .
+
+is used, so that if the (N, α, d, L) SC-LDLC lattice
+has a lattice point x = (x(1) , . . . , x(l) , . . . , x(L) )T and
+(l)
+(l)
+x(l) = (x1 , . . . , xN ), then H[L] x = b, where b =
+(l)
+(l)
+(b(1) , . . . , b(l) , . . . , b(L−d+1) )T and b(l) = (b1 , . . . , bN ), is
+an information integer vector, and, 0N (d−1) is the all zero
+column vector of length N (d − 1). The inverse matrix of H[L]
+˜
+is deﬁned as G[L] . Since we set 0N (d−1) to the last d − 1
+˜ The sub-matrix G[L] which is from column 1
+sections of b,
+˜
+to N (L − d + 1) of G[L] can be used for generating lattice
+points. Therefore a lattice point in the dimension N (L−d+1)
+SC-LDLC lattice is generated as
+
+b
+,
+0N (d−1)
+
+2
+
+Generally, a lattice encoder generates a lattice point x using
+Eq. (1). For LDLC lattices, G is not sparse in general, and
+so the encoder requires computational complexity and storage
+of O(n2 ). However, b = Hx is a system of linear equations which can be solved using iterative methods. One such
+method, the Jacobi method, can be described as a “parallel”
+approach, ﬁnding a candidate solution x(t) on iteration t, using
+the previous solution x(t−1). This approach was suggested by
+Sommer et al., observing that encoding complexity is O(n),
+since H is sparse [4].
+The Gauss-Seidel method is another iterative method. The
+Gauss-Seidel method is a “serial” approach; in each iteration,
+each element of the candidate solution is computed in turn.
+To perform computations serially, the Gauss-Seidel method
+decomposes the matrix into upper- and lower-triangular parts.
+In this section, LDLC and SC-LDLC encoders with the GaussSeidel method are described. The Gauss-Seidel method has
+faster convergence speed than the Jacobi method. Moreover
+the SC-LDLC encoder with the Gauss-Seidel method performs
+well because of the spatially-coupled structure.
+A. LDLC Encoder with the Gauss-Seidel Method
+Before explanation of the Gauss-Seidel Method, we deﬁne
+the matrix H as a row-permuted version of the sparse inverse
+generator matrix H, such that H has ±1 in the diagonal entries
+(non-zero diagonal elements are required by the Gauss-Seidel
+method). For example, a pictorial view of a matrix H for
+the (100, 0.8, 7) LDLC lattices is shown in Fig. 1. Also the
+vector b is a permuted version of the integer vector b, such
+
+⎡
+
+H[L]
+
+(1)
+
+(L−d+2)
+
+P1
+
+⎢
+⎢wP (1)
+⎢
+2
+⎢ .
+⎢ .
+⎢ .
+⎢
+(1)
+⎢
+⎢wPd
+=⎢
+⎢
+⎢
+⎢
+⎢
+⎢
+⎢
+⎢
+⎣
+
+wPd
+(2)
+
+P1
+.
+.
+.
+
+..
+
+(2)
+wPd−1
+
+..
+
+.
+
+.
+
+..
+
+.
+
+..
+
+.
+
+..
+
+.
+
+..
+
+.
+
+..
+
+..
+
+P1
+
+.
+
+.
+
+..
+
+wP2
+
+.
+
+···
+..
+.
+
+(L−d+1)
+(L−d+1)
+
+.
+.
+.
+
+(L−d+1)
+wPd
+
+(L−d+2)
+
+P1
+
+.
+.
+.
+
+..
+
+(L−d+2)
+wPd−1
+
+.
+
+···
+
+(L)
+
+wP2
+.
+.
+.
+
+⎤
+
+⎥
+⎥
+⎥
+⎥
+(L) ⎥
+wPd ⎥
+⎥
+⎥
+⎥
+⎥
+⎥
+⎥
+⎥
+⎥
+⎥
+⎥
+⎥
+⎦
+(L)
+P1
+
+(7)
+
+The element-wise equation of Eq. (8) is as follows
+xi (t + 1) =
+
+1
+b −
+hi,i i
+
+hi,j xj (t + 1)
+j∈J i ∩{j|j<i}
+
+−
+
+hi,j xj (t) ,
+j ∈J i ∩{j |j >i}
+
+Fig. 1. Pictorial view of a row-permuted matrix H of the (100, 0.8, 7) LDLC
+lattices. Red (resp. blue) dots represent positive (resp. negative) coefﬁcients.
+Dark (resp. light) dots represent ±1 (resp. ±w) coefﬁcients.
+
+that the ith element of b equals the element of b for which
+the corresponding row of H has ±1 at the ith location.
+Using the Gauss-Seidel method [8], an LDLC encoder
+calculates several iterations of the form:
+x(t + 1) = (L + D)−1 (b − Ux(t)),
+
+(8)
+
+where D is the diagonal matrix with the diagonal elements
+of H, and L (resp. U) has the lower (resp. upper) triangular
+elements without the diagonal elements of H. Therefore, H
+is decomposed as:
+H = L + D + U.
+Denote t as the index of iteration and x(0) is initialized with
+0n . The convergence properties are well-studied, and is related
+to the spectral radius of the matrix (L+D)−1 U [8]. However,
+convergence may still occur even if properties are not satisﬁed,
+and arguments concerning convergence are beyond the scope
+of this paper.
+
+3
+
+where xi (t + 1) is the ith entry of x(t + 1), hi,j is the (i, j)
+entry of H, and J i is the column index set of the non-zero
+elements in the row i of H. The computation of xi (t + 1) uses
+the elements of x(t + 1) that have already been computed,
+and the elements of x(t) that have not yet been computed at
+iteration t + 1.
+Consider a sparse inverse generator matrix H[L] of the
+SC-LDLC lattices. Non-zero elements are mainly in lower
+triangular entries of H[L] without the ﬁrst N (d − 1) rows, see
+Eq. (7). Since the Gauss-Seidel method uses already-computed
+elements of x(t + 1) at iteration t + 1 for xi (t + 1) in the case
+that the non-zero elements are in J i ∩{j|j < i}, it is expected
+that the convergence speed of the encoding of the SC-LDLC
+lattices with the Gauss-Seidel method is faster than that of the
+LDLC lattices.
+B. SC-LDLC Encoder with the Gauss-Seidel Method
+An SC-LDLC encoder with the Gauss-Seidel method generates a codeword vector x(l) (t + 1) at section l and iteration
+(l)
+t + 1 by Eq. (9). The matrix Pd is row-permuted version
+(l)
+of the Pd , such that H[L] has ±1 in the diagonal entries.
+For example, a pictorial view of a matrix H[L] for a (5, 0.8,
+7, 20) SC-LDLC lattice is shown in Fig. 2. The vector b(l)
+is a permuted version of the integer vector b(l) , such that the
+ith element of b(l) equals the element of b(l) for which the
+(l)
+corresponding row of P1 has ±1 at the ith location.
+All elements of x(0) are initialized with 0. From Eq. (9), it
+is observed that the SC-LDLC encoder uses the elements of
+x(t)(l) computed at the previous iteration for the ﬁrst d − 1
+sections. For remaining sections, the SC-LDLC encoder uses
+only the elements of x(t + 1)(l) computed at the current
+iteration. Intuitively it is expected that the convergence speed
+of the encoding of SC-LDLC lattices with the Gauss-Seidel
+method is faster than that of LDLC lattices.
+
+x(l) (t + 1)
+
+T
+
+⎧
+⎪ (l) T
+⎪(P )
+⎪
+⎪ 1
+⎪
+⎪
+⎨
+=
+
+⎪
+⎪
+⎪
+⎪ (l) T
+⎪(P )
+⎪
+⎩ 1
+
+(b(l) )T − w
+
+l−1
+
+(l−m)
+
+Pm+1
+
+x(l−m) (t + 1)
+
+T
+
+m=1
+
+(b(l) )T − w
+
+d−1
+
+d−1
+
+−w
+
+(L−m+l)
+
+Pm+1
+
+x(L−m+l) (t)
+
+m=l
+
+(l−m)
+
+Pm+1
+
+x(l−m) (t + 1)
+
+T
+
+for 1 ≤ l < d,
+
+T
+
+for d ≤ l ≤ L
+
+m=1
+
+(9)
+
+We generate 1000 sparse inverse generator matrices for each
+lattice ensemble and evaluate 100 randomly generated integer
+vectors2 for each matrix to compute the average. Mean square
+error (MSE) at iteration t is calculated by
+T
+
+(b − Hx(t)) (b − Hx(t))
+,
+n
+where n is the length of b. Fig. 4 shows MSE(t) for (1000,
+0.8, 7) and (10000, 0.8, 7) LDLC lattices, and (50, 0.8, 7,
+20) and (500, 0.8, 7, 20) SC-LDLC lattices. (1000, 0.8, 7)
+LDLC and (50, 0.8, 7, 20) SC-LDLC resp. (10000, 0.8, 7)
+LDLC and (500, 0.8, 7, 20) SC-LDLC lattices are the same
+dimension n = 1000 (resp. n = 10000). It is observed that
+convergence speed becomes faster with increasing dimension
+n. Convergence of the (500, 0.8, 7, 20) SC-LDLC lattices is
+almost 3 times faster than that of the (10000, 0.8, 7) LDLC
+lattices at an MSE of 10−10 . It is also observed that the
+slopes of the MSE(t) curves for the dimension n = 1000
+both LDLC and SC-LDLC lattices change around an MSE of
+10−5 . We conjecture that this is caused by small cycles in the
+H, similar to error ﬂoors of low-density parity-check codes.
+Section size N does not seem to affect the convergence of
+SC-LDLC lattices because there are small differences in the
+MSE(t) between the (50, 0.8, 7, 20) and (500, 0.8, 7, 20) SCLDLC lattices. Fig. 5 shows MSE(t) for the (50, 0.8, 7, L)
+SC-LDLC lattices for L = 20, 100, 200 and 500. We observe
+that convergence speed accelerates with increasing coupling
+factor L. From the results in Fig. 5, we can obtain sufﬁciently
+accurate codewords for transmission with few iterations if L
+is sufﬁciently large.
+We also show symbol error rate (SER) performance in
+Fig. 6. The SER at iteration t is calculated by
+MSE(t) =
+
+Fig. 2. Pictorial view of a row-permuted matrix H[L] of the (5, 0.8, 7, 20)
+SC-LDLC lattices. Red (resp. blue) dots represent positive (resp. negative)
+coefﬁcients. Dark (resp. light) dots represent ±1 (resp. ±w) coefﬁcients.
+
+Due to the spatially-coupled structure of H[L] , the SCLDLC encoder can be implemented using a transversal ﬁlter
+architecture. The SC-LDLC encoder architecture is shown in
+Fig. 3. The encoder consists of transversal ﬁlter with ring
+FIFOs. This encoder is simple because the encoder does not
+need to manage routing connections with all the elements of
+x for computations differently from the LDLC encoder.
+
+n
+i=1
+
+IV. S IMULATION R ESULTS
+
+I[bi = (Hx(t))i ]
+,
+n
+where I[·] is an indicator function that returns 1 if an argument
+is true, otherwise returns 0, and (·)i denotes ith element of
+an argument vector. The dimension of lattices in Fig. 6 is
+1000, therefore 8 iterations is sufﬁcient for SC-LDLC lattices
+with the Gauss-Seidel method to vanish encoding symbol error
+from expectations. On the other hand, 21 iterations is necessary for LDLC lattices. In addition, the Gauss-Seidel method
+converges slightly faster than Jacobi method for conventional
+LDLC lattices, and signiﬁcantly faster for SC-LDLC lattices.
+
+Convergence speed of the encoding with the Gauss-Seidel
+method is evaluated using Monte-Carlo simulations.
+
+2 In the simulations, b is uniformly distributed over {−10, · · · , 10} for
+i
+i ∈ {1, · · · , n}.
+
+SER(t) =
+
+Fig. 3. Architecture of the iterative encoder of SC-LDLC lattices. Note that
+section index (l) points at (l + L) if the (l) is negative.
+
+4
+
+2
+
+10
+
+0
+
+(1000,0.8,7) LDLC
+(10000,0.8,7) LDLC
+(50,0.8,7,20) SC-LDLC
+(500,0.8,7,20) SC-LDLC
+
+10-4
+10
+
+-6
+
+10
+
+-8
+
+10-10
+10
+
+10
+
+-1
+
+10
+
+-2
+
+10-3
+
+-12
+
+10-14
+
+0
+
+20
+
+40
+
+60
+
+80
+
+100
+
+120
+
+10-4
+
+140
+
+The number of iterations t
+
+10
+
+2
+
+10
+
+0
+
+10-4
+
+-8
+
+10-10
+10-12
+10-14
+
+20
+
+30
+
+40
+
+50
+
+Fig. 6. The number of iterations versus symbol error rate of b. The GaussSeidel method (GS) and the Jacobi method (Jacobi) are evaluated for both
+(1000, 0.8, 7) LDLC and (50, 0.8, 7, 20) SC-LDLC lattices. The Gauss-Seidel
+method converges slightly faster than Jacobi method for conventional LDLC
+lattices, and signiﬁcantly faster for SC-LDLC lattices.
+
+R EFERENCES
+
+-6
+
+10
+
+10
+
+substitution. As in many previous papers, shaping was not
+considered here because of the unconstrained power scenario
+(i.e. Poltyrev setting). It should be further noted that if a purely
+lower-triangular matrix is available, then a power constraint
+can be easily introduced by using cubic shaping, see [10].
+
+(50,0.8,7,20) SC-LDLC
+(50,0.8,7,100) SC-LDLC
+(50,0.8,7,200) SC-LDLC
+(50,0.8,7,500) SC-LDLC
+
+10-2
+
+10
+
+0
+
+The number of iterations t
+
+Fig. 4. The number of iterations t versus mean square error of b. (1000,
+0.8, 7) LDLC and (50, 0.8, 7, 20) SC-LDLC resp. (10000, 0.8, 7) LDLC
+and (500, 0.8, 7, 20) SC-LDLC lattices are the same dimension n = 1000
+(resp. n = 10000). The convergence of SC-LDLC lattices is much faster than
+that of LDLC lattices at each dimension.
+
+Mean square error
+
+(1000,0.8,7) LDLC with GS
+(1000,0.8,7) LDLC with Jacobi
+(50,0.8,7,20) SC-LDLC with GS
+(50,0.8,7,20) SC-LDLC with Jacobi
+
+100
+
+10-2
+
+Symbol error rate
+
+Mean square error
+
+10
+
+0
+
+5
+
+10
+
+15
+
+20
+
+The number of iterations t
+Fig. 5. The number of iterations versus mean square error of b. We observe
+that the convergence speed of SC-LDLC lattices accelerates with increasing
+coupling factor L.
+
+V. D ISCUSSION
+We evaluated the convergence performance of iterative
+encoding with the Gauss-Seidel method for LDLC and SCLDLC lattices. Numerical experiments showed that the convergence of SC-LDLC lattices is signiﬁcantly faster than that
+of LDLC lattices because of the spatially coupled structure.
+The Gauss-Seidel method separates the matrix into lower
+and upper triangular parts. The sparse inverse generator matrix
+of SC-LDLC lattices is dominated by the lower-triangular
+components, and since the upper-triangular part is smaller,
+this may help explain the higher convergence rates for the
+SC-LDLC lattices.
+Note that if SC-LDLC lattices existed where H is purely
+lower-triangular, then encoding would be particularly straightforward and could be implemented by a simple forward-
+
+5
+
+[1] C. E. Shannon, “Probability of error for optimal codes in a Gaussian
+channel,” Bell System Technical Journal, vol. 38, pp. 611–656, May
+1959.
+[2] R. Urbanke and B. Rimoldi, “Lattice codes can achieve capacity on the
+AWGN channel,” IEEE Transactions on Information Theory, vol. 44,
+pp. 273–278, Jan. 1998.
+[3] U. Erez and R. Zamir, “Achieving 1/2 log (1+SNR) on the AWGN
+channel with lattice encoding and decoding,” IEEE Transactions on
+Information Theory, vol. 50, pp. 2293–2314, Oct. 2004.
+[4] N. Sommer, M. Feder, and O. Shalvi, “Low-density lattice codes,” IEEE
+Transactions on Information Theory, vol. 54, pp. 1561–1585, Apr. 2008.
+[5] H. Uchikawa, B. M. Kurkoski, K. Kasai, and K. Sakaniwa, “Threshold
+improvement of low-density lattice codes via spatial coupling,” in
+Proc. 2012 Int. Conf. on Computing, Networking and Communications
+(ICNC), pp. 1036–1040, Jan. 2012. Hawaii, USA.
+[6] S. Kudekar, T. Richardson, and R. Urbanke, “Threshold saturation via
+spatial coupling: Why convolutional LDPC ensembles perform so well
+over the BEC,” IEEE Transactions on Information Theory, vol. 57,
+pp. 803–834, Feb. 2011.
+[7] B. M. Kurkoski, K. Yamaguchi, and K. Kobayashi, “Single-Gaussian
+messages and noise thresholds for decoding low-density lattice codes,”
+in Proc. 2009 IEEE Int. Symp. Inf. Theory (ISIT), pp. 734–738, July
+2009.
+[8] Y. Saad, Iterative Methods for Sparse Linear Systems. New York:
+Society for Industrial and Applied Mathematic (SIAM), 2nd ed., 2003.
+[9] G. Poltyrev, “On coding without restrictions for the AWGN channel,”
+IEEE Transactions on Information Theory, vol. 40, pp. 409–417, Mar.
+1994.
+[10] N. Sommer, M. Feder, and O. Shalvi, “Shaping methods for low-denisty
+lattice codes,” in Proc. 2009 IEEE Information Theory Workshop (ITW),
+pp. 238–242, Oct. 2009.
+
+

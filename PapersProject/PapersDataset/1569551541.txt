@@ -1,0 +1,870 @@
+Creator:        TeX
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Sun Apr 22 11:51:11 2012
+ModDate:        Tue Jun 19 12:55:02 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      345000 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569551541
+
+Data Processing Inequalities Based on a Certain
+Structured Class of Information Measures with
+Application to Estimation Theory
+Neri Merhav
+Department of Electrical Engineering
+Technion – Israel Institute of Technology
+Technion City, Haifa 32000, Israel
+Email: merhav@ee.technion.ac.il
+
+channel input and output) and establish another lower bound
+on the distortion via the inequality RQ (D) ≤ CQ that stems
+from the DPI of IQ . While this lower bound obviously cannot
+be tighter than its classical counterpart in the limit of long
+blocks (which is asymptotically achievable), Ziv and Zakai
+have demonstrated that for short block codes sharper lower
+bounds can be obtained.
+Gurantz, in his M.Sc. work [5] (supervised by Ziv and
+Zakai), continued the work in [17] at a speciﬁc direction:
+He constructed a special class of generalized information
+functionals deﬁned by iteratively alternating between applications of convex functions and multiplications by likelihood
+ratios. After proving that this functional obeys a DPI, Gurantz
+demonstrated how it can be used to improve on the Arimoto
+bound for coding above capacity [1] and on the Gallager upper
+bound of random coding [4] by a pre-factor of 1/2.
+Motivated by the interesting nested structure of Gurantz’
+information functional, we continue to investigate this information measure, ﬁrst of all, in general, on its own right, and
+then we further study its potential. We begin by putting the
+Gurantz’ functional in the broader perspective of the other
+information measures of [15], [17] (Section 2). Speciﬁcally,
+we show that these GMI’s can be viewed as special cases of the
+one in [15], which is based on multivariate convex functions.
+We then focus on a concrete choice of the convex functions
+(Section 3) in the Gurantz’ information measure which turn
+out to yield an extension the notion of the Bhattacharyya
+distance: While the ordinary Bhattacharyya distance is based
+on the geometric mean of two replicas of the channel’s
+conditional distribution (see, e.g., [12, eq. (2.3.15)]), the more
+general measure considered here, allows an arbitrary number
+of replicas. This generalized Bhattacharyya distance is also
+intimately related to the Gallager function E0 (ρ, Q) [4], [12],
+which is indeed another GMI [3] obeying a DPI (see also [7,
+Proposition 2]).
+Finally, we apply the DPI, induced by the above described
+generalized Bhattacharyya distance, to a detailed study of
+lower bounds on parameter estimation under additive white
+Gaussian noise (AWGN) and show that in certain cases,
+tighter bounds can be obtained by using more than two
+
+Abstract—We study data processing inequalities (DPI’s) that
+are derived from a certain class of generalized information
+measures, where a series of convex functions and multiplicative
+likelihood ratios are nested alternately. A certain choice of the
+convex functions leads to an information measure that extends
+the notion of the Bhattacharyya distance: While the ordinary
+Bhattacharyya distance is based on the geometric mean of
+two replicas of the channel’s conditional distribution, the more
+general one allows an arbitrary number of replicas. We apply
+the DPI induced by this information measure to a detailed study
+of lower bounds of parameter estimation under additive white
+Gaussian noise (AWGN) and show that in certain cases, tighter
+bounds can be obtained by using more than two replicas. While
+the resulting bound may not compete favorably with the best
+bounds available for the ordinary AWGN channel, the advantage
+of the new lower bound, becomes signiﬁcant in the presence of
+channel uncertainty, like unknown fading. This is explained by
+the convexity property of the information measure.
+
+I. I NTRODUCTION
+In classical Shannon theory, DPI’s (in various forms) are
+frequently used to prove converses to coding theorems and to
+establish fundamental properties of information measures, like
+the entropy, the mutual information, and the Kullback–Leibler
+divergence. For example, the converse to the joint source–
+channel coding theorem sets the stage for the separation
+theorem: When a source with rate–distortion function R(D)
+is transmitted across a channel with capacity C, the distortion
+at the decoder must obey R(D) ≤ C, or equivalently,
+D ≥ R−1 (C).
+Ziv and Zakai [17] (see also Csisz´ r [3] for related work)
+a
+have observed that in order to obtain a wider class of DPI’s,
+the (negative) logarithm function, that plays a role in the
+classical mutual information, can be replaced by an arbitrary convex function Q. This generalized mutual information
+(GMI), IQ (X; Y ), was further generalized in [15] to be based
+on multivariate convex functions. In analogy to the classical
+converse to the joint source–channel coding theorem, one
+can then deﬁne a generalized rate–distortion function RQ (D)
+(as the minimum of the GMI between the source and the
+reproduction, s.t. some distortion constraint) and a generalized
+channel capacity CQ (as the maximum GMI between the
+
+1
+
+replicas (Section 4). While the resulting lower bound may
+still not compete favorably with the best available bounds
+for the ordinary AWGN channel, the advantage of the new
+lower bound becomes apparent in the presence of channel
+uncertainty, like the case of an AWGN channel with unknown
+fading. This different behavior is explained by the convexity
+property of the information measure.
+
+According to [15, Theorems 3.1 and 5.1], the following
+is true: Let U → X → Y be a Markov chain and
+let V = g(Y ) where g is a deterministic function. Let
+µi (x, y), i = 1, 2, . . . , k, be arbitrary measures and deﬁne
+µi (u, y) = PU (u) dxPX|U (x|u)µi (x, y)/PX (x), µi (u, v) =
+dyµi (u, y), i = 1, . . . , k. Then, IZZ (X; Y ) ≥
+y: g(y)=v
+IZZ (U ; V ). Assuming, in addition, that the encoder x = f (u)
+is deterministic, we can choose (following [15]) µi (x, y) =
+PX (x)PY |X (y|xi ), where xi = f (ui ) is a speciﬁc member in
+X and then µ(y|ui ) = PY |X (y|f (ui )). We then obtain (see
+[10] for details):
+
+II. P RELIMINARIES AND BASIC O BSERVATIONS
+In [5], a generalized information functional was deﬁned in
+the following manner: Let X and Y be random variables
+taking on values in alphabets X and Y, respectively. Let
+x1 , x2 , . . . , xk be a given list of symbols (possibly with repetitions) from X . Let Q1 , Q2 , . . . , Qk be a collection of univariate functions, deﬁned on the positive reals, with the following
+properties, holding for all i: (i) limt→0 tQi (1/t) = 0. (ii)
+ˆ ∆
+|Qi (0)| < ∞. (iii) Either the function Qi = Q1 ◦ Q2 ◦ . . . ◦ Qi
+ˆ
+is monotonically non-decreasing and Qi+1 is convex, or Qi
+is monotonically non–increasing and Qi+1 is concave (here,
+the notation ◦ means function composition). Now, deﬁning
+λyxx = PY |X (y|x)/PY |X (y|x ), the Gurantz’ functional is
+deﬁned as
+G(Y |x, x1 , . . . , xk ) =
+
+EQ1 λY X1 X Q2 . . . Qk λY Xk Xk−1 . . .
+≥ EQ1 λV U1 U Q2 . . . Qk λV Uk Uk−1 . . .
+
+III. C HOICE OF THE C ONVEX F UNCTIONS
+A convenient choice of the functions {Qi } is the following:
+Q1 (t) = −ta1 , and Qi (t) = tai for i ≥ 2, where 0 ≤ ai ≤ 1,
+i = 1, . . . , k. We then have so called the Hellinger transform
+[8]:
+
+dy · PY |X (y|x) · Q1 (λyx1 x ×
+.
+
+The DPI associated with the Gurantz’ functional is
+the following: Let X → Y → Z be a Markov
+chain and let Q1 be a convex function which, together with Q2 , . . . , Qk , complies with (i)–(iii) above.
+Then, G(Y |x, x1 , . . . , xk ) ≥ G(Z|x, x1 , . . . , xk ). Let
+P (x, x1 , . . . , xk ) = PX (x)P (x1 , . . . , xk |x), where PX (·)
+is the actual distribution of the random variable X
+and P (x1 , . . . , xk |x) is an arbitrary conditional distribution of (X1 , . . . , Xk ) given X = x. Now, for a
+given {P (x1 , . . . , xk |x)}, the Gurantz’ mutual information
+IG (X; Y ) can be deﬁned as
+IG (X; Y ) = EG(Y |X, X1 , . . . , Xk )
+
+k
+
+G(Y |x0 , x1 , . . . , xk ) == −
+
+µk (X, Y )
+µ1 (X, Y )
+,...,
+PXY (X, Y )
+PXY (X, Y )
+
+b
+PYi|X (y|xi )
+
+dy
+Y
+
+(4)
+
+i=0
+
+where b0 = 1 − a1 , b1 = (1 − a2 )a1 , b2 = (1 − a3 )a1 a2 , etc.,
+k−1
+k
+and ﬁnally, bk−1 = (1 − ak ) i=1 ai , and bk = i=1 ai .
+Note that b0 , . . . , bk are all non–negative and they sum to
+1. Conversely, for every {bi } with these properties, one can
+ﬁnd a1 , . . . , ak , all in [0, 1], using the inverse transformation:
+a1 = 1 − b0 , a2 = 1 − b1 /(1 − b0 ), etc., and ﬁnally,
+k−2
+ak = 1 − bk−1 /(1 − i=0 bi ). This allows us parametrize
+directly in terms of {bi } without worrying about {ai }. Specializing to the case bi = 1/(k + 1) for all i = 0, 1, . . . , k,
+eq. (4) extends the Bhattacharyya distance [9]. If, in addition,
+k
+we assign PX1 ,...,Xk |X0 (x1 , . . . , xk |x0 ) = i=1 PX (xi ), then
+IG (X; Y ) = EG(Y, X, X1 , . . . , Xk ) = −e−E0 (k,PX ) , where
+E0 is the Gallager function [4]
+
+(1)
+
+where the expectation is w.r.t. the above deﬁned joint distribution of the random variables X, X1 ,..., Xk . This GMI is now
+a well–deﬁned functional of PXY = PX × PY |X . In principle,
+one may apply the generalized DPI IG (X; Y ) ≥ IG (X; Z)
+for any given choice of {P (x1 , . . . , xk |x)} (consider these as
+parameters) and then optimize the resulting distortion bound
+w.r.t. the choice of these parameters.
+Our ﬁrst observation (see the full version of this paper [10]
+for details) is that IG (X; Y ) is a special case of the Zakai–Ziv
+GMI [15] (a.k.a. f –dissimalrity [6]), deﬁned as
+IZZ (X; Y ) = EQ
+
+(3)
+
+where the expectation on the left–hand side is w.r.t.
+PXY (x, y) i PX (xi ), and the expectation on the r.h.s. is w.r.t.
+PU V (u, v) i PU (ui ).
+
+Y
+
+Q2 λyx2 x1 · Q3 . . . Qk λyxk xk−1 . . .
+
+.
+
+1+ρ
+
+E0 (ρ, PX ) = − ln
+
+1/(1+ρ)
+
+dy
+Y
+
+X
+
+dxPX (x)PY |X
+
+(y|x)
+
+Thus, IG (X; Y ) is related also the Gallager function, albeit
+only at integer values of the parameter ρ. Indeed, it known
+that the Gallager function (for every real ρ ≥ 0) is also a
+GMI [3] and hence it satisﬁes a DPI (see also [7, Proposition
+2]). The advantage of working with integer values of ρ, is that
+an integral raised to an integer power (k +1) can be expressed
+in terms of (k + 1)–dimensional integration over the (k + 1)
+replicas, x0 ,x1 ,...,xk , that in turn can be commuted with the
+integration over Y. In some situations, this is convenient.
+
+, (2)
+
+where Q is a multivariate convex function of k variables and
+µi (·, ·), i = 1, 2, . . . , k, are arbitrary measures on X × Y.
+In view of this observation, one can use the Gurantz mutual information to obtain DPI’s for communication systems.
+
+2
+
+.
+
+where c1 =
+
+IV. A PPLICATION TO E STIMATION T HEORY
+In this section, we apply the DPI associated with the
+proposed information measure to obtain a Bayesian lower
+bound on signal parameter estimation. In particular, our model
+is the following. The source symbol U , which is uniformly
+distributed in U = [−1/2, +1/2], is the parameter to be
+estimated. For mathematical convenience, we deﬁne the distortion measure between a realization u of the source and an
+estimate v (both in U) as d(u, v) = [(u − v) mod 1]2 . where
+∆
+1
+t mod 1 = t + 2 − 1 , r being the fractional part of r, that
+2
+is, r = r− r . In the high–resolution limit (corresponding to
+the high signal–to–noise (SNR) limit), the modulo 1 operation
+has a negligible effect, and hence d(u, v) becomes essentially
+equivalent to the ordinary quadratic distortion.
+The channel is assumed to be an AWGN channel, namely,
+the channel output is given by y(t) = x(t, u) + n(t), 0 ≤
+t < T , where x(t, u) is an arbitrary waveform of unlimited
+bandwidth, parametrized by u and n(t) is AWGN with two–
+T
+sided spectral density N0 /2. The energy E = 0 x2 (t, u)dt
+is assumed to be independent of u (for reasons of simplicity).
+The estimator v is a functional of the channel output waveform
+{y(t), 0 ≤ t < T }.
+Before deriving bounds on Ed(U, V ), we ﬁrst need to derive
+the generalized rate–distortion function and the generalized
+channel capacity pertaining to the generalized Bhattacharyya
+distance.
+
+dt/(1 + t2 )2 . For k > 2, we have
+
+D(R) ≈ −
+
+1
+4
+
+1−
+
+2
+k
+
+k
+
+· R,
+
+(9)
+
+The case k = 2 lacks an explicit closed–form direct relation between R and D, but it shows that
+limD→∞ (log D)/ log[−R(D)] = 1, which means that the
+relation between R and D is essentially linear, like in the
+case k > 2, but in a slightly weaker sense.
+B. Derivation of IG (U ; Y )
+The probability law of the channel from U to Y is given
+by
+PY |U (y|u) ∝ exp −
+
+1
+N0
+
+T
+
+[y(t) − x(t, u)]2 dt ,
+
+(10)
+
+0
+
+where y designates the entire channel output waveform
+{y(t), 0 ≤ t < T } (represented using some family of orthnormal basis functions), and ∝ means that
+the constant of proportionality does not depend on u.
+T
+1
+Let ρ(u, u ) = E · 0 x(t, u)x(t, u )dt. The integral
+k
+dy i=0 [PY |U (y|ui )]1/(k+1) is straightforwardly shown to
+be given by
+
+
+
+k
+k
+
+ E
+1
+1 −
+ρ(ui , uj ) ,
+(11)
+exp −
+
+ N0
+(k + 1)2
+
+A. Derivation of R(D)
+
+i=0 j=0
+
+The “rate–distortion function” R(D) w.r.t. the information
+measure under discussion is given by the minimum of
++1/2
+
+I(U ; V ) = −
+
++∞
+−∞
+
++1/2
+
+dv
+−1/2
+
+−1/2
+
+Next, let us take the expectation w.r.t. the randomness of {Ui }.
+As in [15], we resort to a lower bound (hence an upper bound
+on IG (U ; Y )) based on Jensen’s inequality. Denoting x(t) =
+¯
++1/2
+du · x(t, u), it is easily observed that since {Ui } are
+−1/2
+independent, then for all i = j:
+
+k+1
+1/(k+1)
+(v|u)
+duPV |U
+
+subject to Ed(U, V ) ≤ D. This problem is solved using
+calculus of variations (see [10] for details). The result of this
+is as follows. Deﬁne the functions:
++1/2
+
+C(s) =
+−1/2
+
+Eρ(Ui , Uj ) =
+
++1/2
+
+F (s) =
+−1/2
+
+w2 dw
+.
+(1 + sw2 )1+1/k
+
+,
+
+(5)
+
+exp −
+
+(6)
+
++1/2
+−1/2
+
+dw
+.
+(1 + sw2 )1/k
+
+∆
+
+[¯(t)]2 dt = .
+x
+
+(12)
+
+0
+
+E
+k
+·
+(1 − ) .
+N0 (k + 1)
+
+(13)
+
+Accordingly, classes of signals with smaller values of
+(or equivalently, higher values of the integrated variance of
+x(t, U )) are expected to yield higher value of IG (U ; Y ), and
+hence smaller estimation error, at least as far as our bounds
+predict, and since cannot be negative, the best classes of
+signals, in this sense, are those for which = 0. Note also
+that for Jensen’s inequality to be reasonably tight, the random
+variables {ρ(Ui , Uj )} should be all close to their expectation
+with very high probability, and if this expectation vanishes,
+as suggested, then {ρ(Ui , Uj )} should all be nearly zero with
+very high probability. We will get back to classes of signals
+with this desirable rapidly vanishing correlation property later
+on.
+
+and for a given s, let us denote Ds = C(s)F (s). Then,
+−R(Ds ) = C(s)[G(s)]k+1 , where we have deﬁned
+G(s) =
+
+T
+
+Note that the parameter is always between 0 and 1 and it
+depends only on the parametric family of signals. Applying
+Jensen’s inequality on (11), we obtain
+
+−1
+
+dw
+(1 + sw2 )1+1/k
+
+1
+E
+
+(7)
+
+In the limits of very low and very high distortion, one can
+approximate R(D) directly as an explicit function of D. In
+particular, it is shown in [10] that in the high–resolution regime
+(R → 0), the behavior depends on whether k = 1, k = 2, or
+k > 2. For k = 1, the distortion–rate function is approximated
+as
+R2
+D(R) ≈
+,
+(8)
+16c2
+1
+
+3
+
+{x(t, u), u ∈ U}, it does not seem to lend itself easily to
+the derivation of universal lower bounds, as discussed above.
+To this end, in principle, the WWB should be minimized
+over all feasible correlation functions r(·), which is not a
+trivial task. A reasonable compromise is to ﬁrst minimize the
+WWB over r(·) for a given h, and then to maximize the
+resulting expression over h (i.e., max–min instead of min–
+max). Since the expression of the bound is a monotonically
+increasing function of both r(h) and r(2h), and since both
+r(h) and r(2h) cannot be smaller than −1, we end up
+with WWB = e−E/N0 /[2(1 − e−E/N0 )] as a modulation–
+independent bound. This is a faster exponential decay rate
+(and hence weaker asymptotically) than that of our proposed
+bound for k = 2.
+It is possible, however, to obtain a universal lower bound
+stronger than both bounds by a simple channel–coding argument, which is in the spirit of the Ziv–Zakai bound [16]. This
+bound is given by (see [10] for the derivation):
+
+C. Bounds for the AWGN Channel
+We now equate R(D) to IG (U ; Y ) in order to obtain estimation error bounds in the high SNR regime, where the high–
+resolution expressions of R(D) are relevant. As discussed
+above, in this regime, we will neglect the effect of the modulo
+1 operation in the deﬁnition of the distortion measure, and will
+refer to it hereafter as the ordinary quadratic distortion measure. The choice k = 1 yields IG (U ; Y ) ≤ −e−(1− )E/(2N0 )
+(see also [15]), and following eq. (8), this yields
+E(U − V )2 ≥ D −e−(1−
+
+)E/(2N0 )
+
+=
+
+e−(1− )E/N0
+, (14)
+16c2
+1
+
+so, the exponential decay of the lower bound is according
+to e−(1− )E/N0 . For k = 2, we have log D ≈ −2(1 −
+)E/(3N0 ), which means an exponential decay according to
+e−2(1− )E/(3N0 ) , which is better. For k ≥ 3, we use (9) and the
+resulting bound decays according to exp{−(1 − ρ)kE/[(k +
+1)N0 ]}, which is better than the result of k = 1, but not
+as good as the one of k = 2. Thus, the best choice of k
+for the high SNR regime is k = 2, namely, a generalized
+Bhattacharyya distance with k + 1 = 3 replicas, rather than
+the two replicas of the ordinary Bhattacharyya distance.
+Note that since ≥ 0, as mentioned earlier, then for any
+family of signals, the exponential function e−2E/(3N0 ) is a universal lower bound (at high SNR) in the sense that it applies,
+not only to every estimator of U , but also to every parametric
+family of signals {x(t, u)}, i.e., to every modulation scheme
+without being dependent on this modulation scheme (see also
+[15]). This is in contrast to most of the estimation error bounds
+in the literature. In other words, it sets a fundamental limit
+on the entire communication system and not only on the
+receiver end for a given transmitter. Indeed, for some classes of
+signals, an MSE with exponential decay in E/N0 is attainable
+at least in the high SNR regime, although there might be
+gaps in the actual exponential rates compared to the above
+mentioned bound. For example, in [11], it is discussed that
+in the case of time delay estimation (x(t, u) = x0 (t − u)),
+it is possible to achieve an MSE of the exponential order of
+e−E/(3N0 ) by allowing the pulse s0 (t) to have bandwidth that
+grows exponentially with T . Thus, by improving the lower
+bound exp(−E/N0 ) (a special case of the above with k = 1)
+to exp[−2E/(3N0 )], we are halving the gap between the
+exponential rates of the upper bound and the lower bound,
+from 2E/(3N0 ) to E/(3N0 ).
+Our asymptotic lower bound should be compared to other
+lower bounds available in the literature. One natural candidate
+would be the Weiss–Weinstein bound (WWB) [13], [14],
+which for the model under discussion at high SNR, reads [13,
+p. 66]:
+h2 exp{−[1 − r(h)]E/(2N0 )}
+,
+h=0 2(1 − exp{−[1 − r(2h)]E/(2N0 )})
+
+WWB = sup
+
+E(U − V )2 ≥
+
+1
+·Q
+8M 2
+
+E
+M
+·
+N0 M − 2
+
+,
+
+(16)
+
+where M is a free parameter, an even integer not smaller than
+4, which is subjected to optimization. Throughout the sequel,
+we refer to this bound as the channel–coding bound. In the
+high SNR regime, the exponential order of the channel–coding
+bound (for ﬁxed M ) is exp{−EM/[2N0 (M − 2)}, which for
+large enough M becomes arbitrarily close to e−E/(2N0 ) , and
+hence better than the DPI bound of e−2E/(3N0 ) . In view of
+this comparison, it is natural to ask then what is beneﬁt of our
+DPI lower bound. The answer is in the next subsection.
+D. Bounds for the AWGN Channel with Fading
+It turns out that the feature that makes the DPI approach
+to error lower bounds more powerful, relatively to other
+approaches, is the convexity property of the GMI (in this
+case, IG (U ; Y )) w.r.t. the channel PY |U . Suppose that the
+channel actually depends on an additional random parameter
+A (independent of U ), that is known to neither the transmitter
+nor the receiver, namely,
++∞
+
+da · PA (a)PY |U,A (y|u, a).
+
+PY |U (y|u) =
+
+(17)
+
+−∞
+
+where PA (a) is the density of A. If we think of IG (U ; Y ) as a
+functional of PY |U , denoted I(PY |U (·|u)), then it is a convex
+functional, namely,
++∞
+
+I(PY |U (·|u))
+
+= I
+
+daPA (a)PY |U,A (·|u, a)
+−∞
++∞
+
+≤
+
+daPA (a)I(PY |U,A (·|u, a)). (18)
+−∞
+
+This is a desirable property because the r.h.s. reﬂects a
+situation where A is known to both parties, whereas the l.h.s.
+pertains to the situation where A is unknown, so the lower
+bound associated with the case where A is unknown is always
+tighter than the expectation of the lower bound pertaining to
+a known A.
+
+(15)
+
+T
+
+where r(h) = ρ(u, u + h) = 0 x(t, u)x(t, u + h)dt/E
+is assumed to depend only on h and not on u. While
+this is an excellent bound for a given modulation scheme
+
+4
+
+Consider now the case where A is a fading parameter, drawn
+only once and kept ﬁxed throughout the entire observation time
+T . More precisely, our model is the same as before except that
+now the signal is subjected to fading according to
+y(t) = a · x(t, u) + n(t),
+
+0 ≤ t < T,
+
+Thus, the DPI bound is better by a factor of 22.4 (13.5dB).
+Yet another comparison, perhaps more fair, can be made
+with the Chazan–Zakai–Ziv bound (CZZB) [2]. According to
+the CZZB, applied to our problem (see [10] for the derivation),
+
+(19)
+
+lim inf
+
+E/N0 →∞
+
+where a and u are realizations of the random variables A and
+U , respectively. For the sake of convenience in the analysis,
+we assume that A is a zero–mean Gaussian random variable
+with variance σ 2 (other densities are, of course, possible too).
+We next compare the three corresponding bounds in this
+case. The overall channel from U to Y is
+PY |U (y|u) ∝ E
+
+exp −
+
+1
+N0
+
+ACKNOWLEDGMENT
+
+.
+
+Interesting discussions with Shlomo Shamai are acknowledged with thanks.
+
+0
+
+Carrying out the expectation w.r.t. A, we readily obtain
+
+
+2
+
+
+T
+,
+(20)
+PY |U (y|u) ∝ exp θ
+y(t)x(t, u)dt
+
+
+0
+
+R EFERENCES
+[1] S. Arimoto, “On the converse to the coding theorem for discrete memoryless channels”, IEEE Transactions on Information Theory, pp. 357–359,
+May 1973.
+[2] D. Chazan, M. Zakai, and J. Ziv, “Improved lower bounds on signal
+parameter estimation,” IEEE Trans. Inform. Theory, vol. IT–21, no. 1,
+pp. 90–93, January 1975.
+[3] I. Csisz´ r, “A class of measures of informativity of observation channels,”
+a
+Periodica Mathematica Hungarica, vol. 2 (1–4), pp. 191–213, 1972.
+[4] R. G. Gallager, Information Theory and Reliable Communication, J. Wiley & Sons, 1968.
+[5] I. Gurantz, Application of a Generalized Data Processing Theorem, M.Sc.
+ﬁnal paper (in Hebrew), Department of Electrical Engineering, Technion
+– Israel Institute of Technology, Haifa, Israel, August 1974.
+[6] L. G¨ orﬁ and T. Nemetz, “f –dissimilarity: a generalization of the afﬁnity
+y
+of several distributions,” Ann. Inst. Statist. Math., vol. 30, no. 1, pp. 105–
+113, 1978.
+[7] G. Kaplan and S. Shamai (Shitz), “Information rates and error exponents
+of compound channels with application to antipodal signaling in a fading
+¨
+environment,” AEU, vol. 47, no. 4, pp. 228–239, 1993.
+[8] L. Le Cam, Asymptotic Methods in Statistical Decision Theory, Springer–
+Verlag, New York, 1986.
+[9] K. Matusita, “On the notion of afﬁnity of several distributions and some
+of its applications,” Ann. Inst. Statist. Math., vol. 19, no. 2, pp. 181–192,
+1967.
+[10] N. Merhav, “Data processing inequalities based on a certain structured
+class of information measures with application to estimation theory,”
+http://arxiv.org/PS cache/arxiv/pdf/1109/1109.5351v1.pdf
+[11] N. Merhav, “Threshold effects in parameter estimation as phase transitions in statistical mechanics,” IEEE Trans. Inform. Theory, vol. 57, no.
+10, pp. 7000–7010, October 2011.
+[12] A. J. Viterbi and J. K. Omura, Principles of Digital Communication and
+Coding, McGraw–Hill, 1979.
+[13] A. J. Weiss, Fundamental Bounds in Parameter Estimation, Ph.D.
+dissertation, Tel Aviv University, Tel Aviv, Israel, June 1985.
+[14] E. Weinstein and A. J. Weiss, “Lower bounds on the mean square
+estimation error,” Proc. IEEE, vol. 73, no. 9, pp. 1433–1434, September
+1985.
+[15] M. Zakai and J. Ziv, “A generalization of the rate-distortion theory and
+applications,” in: Information Theory New Trends and Open Problems,
+edited by G. Longo, Springer-Verlag, 1975, pp. 87–123.
+[16] J. Ziv and M. Zakai, “Some lower bounds on signal parameter estimation,” IEEE Transactions on Information Theory, vol. IT–15, no. 3,
+pp. 386–391, May 1969.
+[17] J. Ziv and M. Zakai, “On functionals satisfying a data-processing
+theorem,” IEEE Trans. Inform. Theory, vol. IT–19, no. 3, pp. 275–283,
+May 1973.
+
+∆
+
+2
+where θ = 2σ 2 /[N0 (1 + 2σ 2 E/N0 )]. On substituting this
+channel into IG (U ; Y ) and assuming rapidly vanishing correlations (in view of the discussion at the end of Subsection
+IV.B), we eventually obtain in the high SNR regime (see [10]
+for details):
+
+1
+−IG (U ; Y ) ≈ √
+2
+
+1+
+
+1
+k
+
+(k+1)/2
+
+·
+
+1
+σ
+
+fk
+
+∆
+
+E/N0
+
+=
+
+σ
+
+E/N0
+
+.
+
+Applying the high–resolution approximation of D(R) for k ≥
+1
+3, we get: E(U − V )2 ≥ gk · N0 /E, where gk = 4√2 (1 −
+σ
+2/k)k (1 + 1/k)(k+1)/2 . A simple numerical study indicates
+that {gk } is monotonically increasing and so the best bound
+is obtained for k → ∞, where the constant is: limk→∞ gk =
+0.03944. Thus, our asymptotic lower bound for high SNR is
+lim inf
+
+E/N0 →∞
+
+0.03944
+E
+· E(U − V )2 ≥
+.
+N0
+σ
+
+(21)
+
+The WWB [13, p. 51], in this case, becomes
+WWB =
+
+2
+f1 N0 /(σ 2 E)
+
+2[1 − f1 /(σ
+
+E/N0 )]
+
+.
+
+(22)
+
+As can be seen, the WWB decays according to (E/N0 )−1
+rather than (E/N0 )−1/2 and hence inferior to the DPI bound.
+The channel–coding bound is based on a universal lower
+bound on the probability of error, which holds for every signal
+set. The problem is that under fading, we are not aware of such
+a universal lower bound. The only remaining alternative then
+is to use a lower bound corresponding to the case where A is
+known to the receiver, and then to take the expectation w.r.t.
+A, although one might argue that this comparison is not quite
+fair. Nonetheless, the derivation of this appears in [10] and the
+result is
+lim inf
+
+E/N0 →∞
+
+(24)
+
+which is again signiﬁcantly smaller than our bound. Thus,
+we observe that while the WWB and the CZZB are excellent
+bounds for ordinary channels without fading, when it comes
+to channels with fading, the proposed DPI bound has an
+advantage.
+
+T
+
+[y(t) − A · x(t, u)]2 dt
+
+E
+0.00716
+· E(U − V )2 ≥
+,
+N0
+σ
+
+1
+E
+0.001758
+√
+·E(U −V )2 ≥
+. (23)
+=
+N0
+σ
+128π 2σ
+
+5
+
+

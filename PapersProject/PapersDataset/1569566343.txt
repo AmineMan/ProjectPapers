@@ -1,0 +1,920 @@
+Creator:        TeX
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Fri May 18 17:45:17 2012
+ModDate:        Tue Jun 19 12:54:28 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      465804 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569566343
+
+A Coloring Approach to Constructing Deletion
+Correcting Codes from Constant Weight Subgraphs
+Daniel Cullina, Ankur A. Kulkarni, and Negar Kiyavash
+Dept. of Electrical and Computer Eng., Coordinated Science Laboratory, Dept. of Industrial and Enterprise Systems Eng.
+University of Illinois at Urbana-Champaign, Urbana, Illinois 61801
+Email: {cullina,akulkar3,kiyavash}@illinois.edu
+
+n ≤ 11 [1]. Khajouei et al. used a heuristic algorithm to ﬁnd
+the largest known two deletion correcting codes for n ≤ 25
+[3].
+This paper takes a graph theoretic perspective on this
+problem and contributes to both the combinatorial and computational approaches. Our ﬁrst contribution is on the theoretical
+understanding VT codes: we show that VT codes optimally
+solve the coloring problem in the single deletion graph (while
+they have been conjectured to solve the independent set
+problem). Second, we present a new method of constructing codes by solving several problems on smaller graphs, a
+computationally less intensive task. The method decomposes
+the graph of 2n possible bit strings into subgraphs based on
+their Hamming weight, ﬁnds codes in selected subgraphs, and
+takes the union of these codes. In the single deletion case,
+this construction is asymptotically optimal; we show this by
+constructing an optimal coloring of the subgraphs. For larger
+number of deletions, we prove a lower bound on the size of
+codes constructed using these subgraphs.
+The paper is organized as follows. In Section II, we give
+some notation and deﬁnitions related to the deletion channel
+and review the graph theoretic terminology and results. We
+also discuss the VT codes in graph theoretic terms. In Section III, we present our construction of codes for single and
+multiple deletions. Section IV contains some computational
+results on the sizes of some two deletion codes found by
+computer search using our partitioning strategy. In Section V,
+we discuss future work.
+
+Abstract—We take a graph theoretic view of deletion correcting
+codes. The problem of ﬁnding an n-bit s-deletion correcting code
+is equivalent to ﬁnding an independent set in a particular graph.
+We discuss the relationship between codes and colorings and
+demonstrate that the VT codes are optimal in a coloring sense.
+We describe a method of partitioning the set of bit strings by
+Hamming weight and ﬁnding codes within each partition. In the
+single deletion case, we ﬁnd an optimal coloring of the constant
+Hamming weight induced subgraphs. We show that the resulting
+code is asymptotically optimal. We also prove a lower bound on
+size of codes constructed using these partitions for any number
+of deletions.
+
+I. I NTRODUCTION
+Deletion channels output only a subsequence of their input
+while preserving the order of the transmitted symbols. They
+have applications in synchronization problems, communication
+of information over packet networks and biology. This paper
+concerns deletion channels for strings of bits, with ﬁxed input
+bit string length and a ﬁxed number of deletions. Despite
+signiﬁcant effort on this case, there still are many fundamental
+open problems, pertaining speciﬁcally to the design of codes
+and the size of the largest codebook.
+Levenshtein approached the design of codes from a combinatorial and number theoretic perspective [4]. He showed
+that the Varshamov Tenengolts (VT) codes, which had been
+designed for a different channel [8], functioned as codes for the
+single deletion channel. In fact, the VT codes are conjectured
+to optimal for the single deletion channel [7]. Levenshtein also
+derived an upper bound and a nonconstructive lower bound on
+the sizes of codes for any number of deletions. Much less is
+known for channels with larger number of deletions. Helberg
+generalized the VT construction for any number of deletions,
+but the sizes of resulting codes grow very slowly, far below
+Levenshtein’s bound [2].
+Another direction for the construction of codes is computational. It is well known that the problem of ﬁnding deletion
+correcting codes is equivalent to ﬁnding an independent set in
+a particular graph. But since, for general graphs, ﬁnding the
+maximum independent set is NP-hard, exact algorithms rapidly
+become intractable with increasing input string length (n). For
+the case of the single deletion, the computational approach has
+established that VT codes are optimal for n ≤ 11 (graph with
+211 vertices) [6]. For multiple deletions, the best known codes
+have all been found through search algorithms. Butenko et
+al. found two-deletion correcting codes of maximum size for
+
+II. P RELIMINARIES
+A. Notation
+Let [n] be the set of nonnegative integers less that n,
+{0, 1..n − 1}. Let [2]n be the set of bit strings of length n.
+Let H(x) be the Hamming weight of a string x. By [n]
+k
+we denote the set of bit strings of length n with k ones. We
+will need the following asymptotic notation: let a(n) b(n)
+denote that limn→∞ a(n) ≤ 1.
+b(n)
+B. The deletion channel and related graphs
+We will formalize the problem of correcting deletions by
+deﬁning the deletion channel. The deletion channel takes a bit
+string of length n and outputs a substring of length n − s. For
+bit strings x and y, write x < y if x is a substring of y and
+deﬁne the following sets.
+
+1
+
+Deﬁnition 1. For x ∈ [2]n , deﬁne Ds (x) = {z ∈ [2]n−s :
+z < x}, the set of substrings of x that can be produced by
+s deletions. Deﬁne Is (x) = {w ∈ [2]n+s : w > x}, the set of
+superstrings of x that can be produced by s insertions.
+
+using the minimum number of colors is not equivalent to
+ﬁnding the largest independent set. In general there is no
+guarantee that the largest color class in a particular coloring
+is a maximum independent set or that any minimal coloring
+has a maximum independent set as a color class.
+A clique in a graph is a set of vertices that are all adjacent.
+The size of a largest clique in a graph G is denoted by ω(G).
+In a proper coloring, each vertex in a clique must be assigned
+a different color, so for any graph G, χ(G) ≥ ω(G).
+
+If x is the input to an n bit s deletion channel, Ds (x) is the
+set of possible outputs. If x is the output from the channel,
+Is (x) is the set of possible inputs.
+We are interested in zero error codes for the deletion
+channel. Consequently, a code is a set C of bit strings of
+length n such that for any two distinct bit strings x and y in
+C, the intersection Ds (x) ∩ Ds (y) is empty. We can restate
+this in another way by deﬁning a distance measure between
+bit strings.
+
+D. The Varshamov-Tenengolts coloring
+For each string length n, the Varshamov-Tenengolts construction provides n + 1 distinct single deletion correcting
+codes. The largest of these codes is conjectured to be optimal,
+i.e., it is conjectured to solve the independent set problem on
+L1,n . We show that together they optimally solve the coloring
+problem.
+
+Deﬁnition 2. Let x, y ∈ [2]n . Let l be the largest integer
+for which there exists some z ∈ [2]l such that z < x and
+z < y. Deﬁne the deletion distance between x and y to be
+dL (x, y) = n − l.
+
+Deﬁnition 4. For any x ∈ [2]n , let w(x) =
+Call w(x) mod n + 1 the VT weight of x.
+
+An s-deletion correcting code is a set where the deletion
+distance between any two codewords is at least s + 1. Two
+codewords cannot both appear in a code if their deletion
+distance is s or less. We can capture this condition by deﬁning
+the following graph.
+
+n−1
+i=0 (i
+
++ 1)xi .
+
+The VT contruction partitions [2]n into n+1 sets, each with
+a particular VT weight. Each of these sets is a code (cf. [4])
+and an independent set in L1,n . This makes the VT weight a
+coloring of L1,n that uses n + 1 colors, although it has not
+usually been described in this language. To demonstrate that
+one cannot use fewer colors in any coloring of L1,n , we will
+ﬁnd cliques of size n + 1 in L1,n and use ω(G) ≤ χ(G).
+
+Deﬁnition 3. For every distance s and length n, both positive
+integers, let Ls,n be a graph with [2]n as its vertices. Vertices
+x and y are adjacent if and only if dL (x, y) ≤ s.
+A code that can correct s deletions is a set of vertices in
+Ls,n that have no edges between them.
+
+Lemma 1. For each x ∈ [2]n−s , Is (x) induces a clique in
+s
+Ls,n . Furthermore |Is (x)| = i=0 n .
+i
+
+C. Independent Sets, Colorings, and Cliques
+
+Proof: Any two vertices in Is (x) have a common substring of length n − s, x, so their deletion distance is at most
+s and they are adjacent in Ls,n . The size of Is (x) is sourced
+from Levenshtein [5].
+This gives us the result that an optimal coloring of L1,n
+uses n + 1 colors.
+
+Now we will brieﬂy deﬁne some graph notation and review
+a few concepts that will be useful later. All of these are sourced
+from West [9]. Given a graph G, let V (G) denote its vertex
+set and let E(G) denote its edge set. Given S ⊆ V (G), the
+subgraph induced by S contains the vertices in S and the
+edges in E(G) that have both endpoints in S.
+An independent set in a graph is a set of vertices that are
+all nonadjacent. The size of a largest independent set in a
+graph G is denoted by α(G). The degree of a vertex is the
+number of adjacent vertices. The maximum degree of any
+vertex in G is denoted by ∆(G). It is easy to argue that
+α(G) ≥ |V (G)|/(∆(G) + 1).
+A coloring of a graph assigns a color (a number) to each
+vertex. The coloring is proper if it never assigns the same color
+to both endpoints of an edge. Thus a proper coloring of a graph
+partitions its vertices into independent sets; each independent
+set is assigned a single color and called a color class. The
+chromatic number of a graph G, denoted χ(G), is the smallest
+k for which a proper k-coloring of G exists. An argument
+based on greedy coloring of G shows that χ(G) ≤ ∆(G) + 1.
+A coloring gives us several independent sets to choose
+from. At least one of these color classes must be at least
+as large as the average size of a color class. Consequently,
+α(G) ≥ |V (G)|/χ(G). However, properly coloring a graph
+
+Theorem 1. For any n, χ(L1,n ) = ω(L1,n ) = n + 1.
+Proof: The VT coloring uses n + 1 colors, and by taking
+s = 1 in Lemma 1, we see that there are cliques of n + 1
+vertices in L1,n . So n + 1 ≤ ω(L1,n ) ≤ χ(L1,n ) ≤ n + 1.
+The largest color class (corresponding to VT weight zero)
+2n
+in the VT coloring of L1,n always contains at least n+1 codewords. This sequence of independent sets is asymptotically
+maximum [4].
+III. C ODE CONSTRUCTION BY WEIGHT PARTITIONING
+We now describe a new strategy for code construction for
+any number of deletions. For single deletion channels, the
+codes we construct are asymptotically optimal (Section III-A).
+In Section III-B we prove lower bounds on the sizes of our
+codes for any number of deletion. This strategy is inspired by
+a simple bound on deletion distance.
+Lemma 2. For all x, y ∈ [2]n , dL (x, y) ≥ |H(x) − H(y)|.
+
+2
+
+L1,4,0
+
+L1,4,1
+
+L1,4,2
+
+L1,4,3
+
+interval x{i..j−1} shifts right by one space to become y{i+1..j}
+so the contribution to the weight of each one in the interval
+increases by one. The bit xj moves j − i spaces to the left, so
+its contribution decreases by that amount. If l is the number
+of ones in x{i..j−1} , then w(y) − w(x) = l − xj (j − i).
+If xi = 0. then w(y) − w(x) = l ≤ k. Since x = y, l > 0.
+On the other hand, if xi = 1, then w(y) − w(x) = l + i − j.
+There are j − i − l zeros in x[i,j) and only n − k zeros in all
+of x, so w(y) − w(x) ≥ k − n. Because x = y, l < j − i − 1
+and w(y) − w(x) < 0.
+To prove optimality, we need ω(L1,n,k ). As in L1,n we will
+look at cliques whose vertices have a single common substring.
+Let us introduce some notation.
+
+L1,4,4
+
+Fig. 1. L1,4 partitioned by Hamming weight. An independent set in each
+even weight layer is highlighted.
+
+Deﬁnition 5. For x ∈ [n] , let Is,r (x) = Is (x)∩ [n+s] . This
+k
+k+r
+is the number of superstrings of x of length n + s with exactly
+k + r ones.
+
+Proof: If z < x and z < y, then z must have fewer ones
+than either x or y as well as fewer zeros.
+Let Ls,n,k be the subgraph of Ls,n induced by the vertices
+with exactly k ones. The endpoints of any edge in Ls,n
+differ in Hamming weight by at most s. Suppose we ﬁnd an
+independent set composed entirely of vertices of Hamming
+weight k, i.e. an independent set in Ls,n,k , and another
+independent set entirely of vertices of weight k + s + 1, we
+can guarantee that their union is an independent set in Ls,n .
+Then we can add another independent set in Ls,n,k+2(s+1) and
+continue until we have exhausted the weights that are equal
+to k mod s + 1. This procedure gives us an independent set
+in Ls,n . Figure 1 illustrates this for L1,4 .
+More formally, we have the following result.
+
+Just as the size of Is (x) only depends on the length of x, the
+size of the set Is,r (x) only depends on the length and weight
+of x. To prove this we will need the following lemma. Due to
+space limitations, we only sketch the proof.
+Lemma 5. For all x ∈ [n] , all s, and all r
+k
+min(r,s−r) n−k+r k+s−r
+[s + 1],|Is,r (x)| = a=0
+r−a
+s−r−a .
+
+∈
+
+Sketch of proof: For any x ∈ [2]n−s , there is a bijection
+s
+between Is (x) and i=0 [n+i−1] × [2]s−i . Each superstring
+i
+in Is (x) is produced by two types of operations: insertions of
+some number of negated bits before a bit of x and insertion
+of bits at the end of x. The sets [n+i−1] encode the former
+i
+operation and [2]s−i encode the latter. For any superstring in
+Is,r (x), let p be the number of ones and q be the number of
+zeros in the appended bit string, so there are p+q such bit
+p
+strings. There are r − p remaining new ones to insert before
+the n − k existing zeros, which can be done in n−k+r−p−1
+r−p
+ways. The remaining s − r − q zeros can be inserted before
+the k existing ones, in k+s−r−q−1 ways. Summing over all
+s−r−q
+possible values of p and q gives the size of Is,r (x) as
+
+Lemma 3. For each possible remainder a ∈ [s + 1], we have
+n/(s+1)
+α(Ls,n ) ≥ i=0
+α(Ls,n,i(s+1)+a )
+Another way to describe this process is that we start by
+throwing out all the vertices whose Hamming weights do not
+1
+equal a mod s + 1. We keep only about s+1 of the vertices,
+The remaining graph is disconnected. It has broken up into a
+component for each weight.
+A. Explicit construction of a single deletion correcting code
+
+r
+
+The strategy outlined above reduces the problem of ﬁnding
+an independent set in Ls,n to the problem of ﬁnding independent sets in each of Ls,n,k , k = 0, . . . , n. In the single deletion
+case (s = 1), we show an explicit construction of independent
+sets in the graphs L1,n,k . We construct these independent sets
+by ﬁnding an optimal coloring of L1,n,k . This coloring is
+closely related to the optimal VT coloring of L1,n . The code
+that results is asymptotically optimal.
+
+s−r
+
+p=0 q=0
+
+n−k+r−p−1
+r−p
+
+k+s−r−q−1
+s−r−q
+
+p+q
+.
+p
+
+This sum can be simpliﬁed using the Vandermonde identity
+and a variation of it for multisets to give the result.
+6. Ls,n,k
+min(r,s−r) n−k−s+2r
+i=0
+r−i
+
+Lemma
+
+contains
+cliques
+of
+for all r ∈ [s + 1].
+
+sizes
+
+k+s−2r
+s−r−i
+
+Proof: In Lemma 5, we ﬁx the length and weight of the
+substring to be n and k. Here we would like the length and
+weight of the superstrings to be n and k, so we substitute n−s
+for n and k − r for k in the previous result.
+
+Lemma 4. The modiﬁed VT weight f (x) = w(x) mod
+(max(k, n − k) + 1) gives a proper coloring of L1,n,k .
+Proof: Let x and y be adjacent vertices in L1,n,k . To
+show f (x) = f (y), we will show that 0 < |w(y) − w(x)| ≤
+max(k, n − k). Let i be the smallest index where xi = yi and
+let j be the largest such index. Because dL (x, y) = 1, either
+x[n]\i = y[n]\j or x[n]\j = y[n]\i . Without loss of generality
+assume the latter. Because H(x) = H(y) = k, xj = yi . The
+
+Theorem 2. χ(L1,n,k ) = ω(L1,n,k ) = max(k, n − k) + 1.
+Proof: By Lemma 6, L1,n,k contains cliques of sizes k+1
+and n − k + 1. Lemma 4 gives the coloring.
+We now show that this strategy produces independent sets
+in L1,n that are asymptotically of optimal size. Let Cn,k be
+
+3
+
+a largest color class of L1,n,k using the coloring described
+above. Our code is the set Dn,a ,
+Dn,a :=
+
+Proof: We start with the result of Lemma 5. Only the ﬁrst
+min(r,s−r) n−k+r k+s−r
+term of
+a=0
+r−a
+s−r−a is of degree s. Since
+
+0≤i≤n/2
+n
+Lemma 7. |Dn,a | ≥
+2n − k∗ where k ∗ is (n − 1)/2
+if n is odd, (n − 2)/2 if n is even and a ≡ n/2 mod 2 and
+n/2 otherwise.
+1
+n+1
+
+|Cn,k | ≥
+0≤k≤n
+k≡a mod 2
+
+0≤k≤n
+k≡a mod 2
+
+Proof: Due to space limitations, we prove this only for
+the case where s is even. For each r ∈ [s + 1], let fr (p) =
+s
+r
+r s−r
+. In the interval 1 − r+1 ≤ p ≤ 1 − s+1 ,
+s+1
+r (1 − p) p
+fr (p) is the largest of the s + 1 polynomials. The maximum
+of fr (p) occurs at p = 1 − r and the value achieved there is
+s
+s r r (s−r)s−r
+.
+s
+r
+s
+s
+1
+If s is even, then fs/2 (s/2) = 2s s/2 . For all r, fr (p) ≤
+s
+1
+s
+s+2
+2s s/2 in the interval 2s+2 ≤ p ≤ 2s+2 .
+Now we can apply this result to get a bound on degree.
+
+|V (L1,n,k )|
+χ(L1,n,k )
+
+There are n vertices in L1,n,k and χ(L1,n,k ) = max(k, n −
+k
+k) + 1. Without loss of generality suppose (n − 1)/2 ≡ a
+mod 2. Thus |Dn,a | is at least
+(n−1)/2
+
+k=0
+k≡a mod 2
+
+1
+=
+n+1
+
+n
+1
++
+k n−k+1
+
+0≤k≤n
+k=(n−1)/2
+
+n
+k
+
+n
+
+k=(n+3)/2
+k≡a mod 2
+
+n
+1
+k k+1
+
+s
+Lemma 10. Let k = pn. Fix s, r ∈ [s + 1], and 2s+2 ≤ p ≤
+s
+n 2
+s+2
+1
+and if s is odd,
+2s+2 . If s is even, ∆(Ls,n,k )
+2s s/2 s
+
+n
+2n −
+(n − 1)/2
+
+1
+=
+n+1
+
+∆(Ls,n,k )
+
+|Dn,a | ∼
+
+2n
+n+1
+
+1−
+
+n
+n/2
+
+2
+πn
+2n
+n
+
+Levenshtein showed that α(L1,n )
+
+∼ 2n
+∼
+
+2
+πn ,
+
+so
+
+2n
+.
+n
+
+|Is,r (y)|
+y∈[2]n−s :y<x
+
+[4], hence the claim.
+
+Since each vertex has at most n substrings of length n − s,
+s
+there are at most n terms in the sum. We can use Lemma 9
+s
+to bound |Is,r (y)|, which results in the desired bound.
+Finally, we can use the upper bound on degree to get a
+lower bound on code size.
+Theorem 4. For ﬁxed even s, codes produced by the constant
+2n+s
+weight strategy contain asymptotically at least
+2
+s
+(s+1)(s/2)(n)
+s
+2n+s−1
+codewords. For odd s, they contain at least
+2
+2
+s−1
+(s+1)((s−1)/2) (n)
+s
+s
+codewords. For even s this size is a factor of (s + 1) s/2 less
+than Levenstein’s asymptotic lower bound and for odd s it is
+s−1
+a factor of s+1 (s−1)/2 less.
+2
+
+B. A lower bound for multiple deletion code sizes
+For s > 1, we do not have optimal explicit colorings
+of Ls,n,k . However, we can use the maximum degrees of
+Ls,n,k to lower bound the sizes of their maximum independent sets. Recall the relation from Section II-C, α(G) ≥
+|V (G)|/(∆(G) + 1). This is equivalent to considering the
+performance of greedy colorings on these graphs.
+First we will obtain an asymptotic expression for the number
+of superstrings of a particular weight. We will use that to
+bound the degree of a vertex in Ls,n,k . This will translate into
+a bound on independent set size.
+[n]
+k
+
+n 2
+s .
+
+d(x) ≤
+
+Note that maxk χ(L1,n,k ) = n, which is barely better than
+χ(L1,n ) = n + 1. However, most of the vertices are in the
+subgraphs with Hamming weight ≈ n/2, and χ(L1,n,n/2 ) =
+n/2 + 1. Thus, half the vertices have been thrown out, but
+the middle layers are colored about twice as efﬁciently as
+they were in the original graph. This explains the asymptotic
+optimality.
+
+Lemma 8. Let k = pn and x ∈
+s
+s
+|Is,r (x)| ∼ n r (1 − p)r ps−r
+s!
+
+s−1
+1
+2s−1 (s−1)/2
+
+Proof: For x ∈ [n] , let d(x) be the degree of x in
+k
+Ls,n,k . Each vertex adjacent to x shares at least one substring
+of length n − s with it. We bound degree by considering the
+superstrings of the substrings of x. i.e.,
+
+Theorem 3. Dn,a is asymptotically optimal.
+Proof: By Stirling’s formula,
+
+s−r
+
+s+2
+s
+Lemma 9. Let k = pn, 2s+2 ≤ p ≤ 2s+2 , and x ∈ [n] . Fix
+k
+s
+1
+s and r ∈ [s + 1]. If s is even, then |Is,r (x)| 2s s/2 n . If
+s
+s−1
+1
+s is odd, then |Is,r (x)| 2s−1 (s−1)/2 n .
+s
+
+Proof: We only consider the case where n is odd; the
+other case follows similarly. In each graph L1,n,k , some color
+class must be at least as large as the average.
+|Dn,a | =
+
+r
+
+c
+
+which we can
+∼ n , this term becomes (n−pn) (pn)
+c!
+r!(s−r)!
+ns s
+r s−r
+rearrange into s! r (1 − p) p .
+As n becomes large, the weight distribution of vertices
+in Ls,n concentrates around n/2, so we need to bound the
+number of insertions in that region only.
+n
+c
+
+Cn,2i+a .
+
+Proof: There must be some a ∈ [s + 1] such that
+
+0≤k≤n
+k≡a mod s+1
+
+|V (Ls,n,k )|
+1
+≥
+1 + ∆(Ls,n,k )
+s+1
+
+0≤k≤n
+
+|V (Ls,n,k )|
+1 + ∆(Ls,n,k )
+
+We drop the values of k that are outside the interval in the
+condition for Lemma 10.
+1
+n
+1
+≥
+s+1 s
+k 1 + ∆(Ls,n,k )
+s+2
+
+. For ﬁxed p, s, and r,
+
+2s+2 n≤k≤ 2s+2 n
+
+4
+
+Our code
+2
+2
+2
+4
+5
+6
+8
+12
+17
+
+Best known
+2
+2
+2
+4
+5
+7
+11
+16
+24
+
+n
+12
+13
+14
+15
+16
+17
+18
+19
+20
+
+Our code
+27
+40
+60
+100
+161
+264
+449
+744
+1244
+
+Best known
+32
+49
+78
+126
+201
+331
+546
+911
+1539
+
+1.2
+Fraction of Largest Known Code
+
+n
+3
+4
+5
+6
+7
+8
+9
+10
+11
+
+1
+0.8
+0.6
+0.4
+0.2
+0
+1
+
+2
+
+3
+
+4
+
+5
+
+6
+
+7
+
+8
+
+9
+
+10 11 12 13 14 15 16 17 18 19 20
+n
+
+TABLE I
+Fig. 2.
+
+C OMPARISON OF CODE SIZES FOR CORRECTING TWO DELETIONS . S IZES
+OF BEST KNOWN CODES TAKEN FROM K HAJOUEI ET AL . [3]
+
+Ratio of the size of our codes for two deletions to the best known.
+
+Fraction of VT Code size
+
+1.2
+
+The bound in the previous lemma does not depend on k. In
+the case where s is even, we get
+2s
+(s + 1)
+
+s
+s/2
+
+n 2
+s
+
+s+2
+s
+2s+2 n≤k≤ 2s+2 n
+
+n
+.
+k
+
+1
+0.8
+0.6
+0.4
+Actual Size
+
+0.2
+
+Lower Bound
+
+0
+1
+
+2
+
+3
+
+4
+
+5
+
+6
+
+7
+
+8
+
+9
+
+10 11 12 13 14 15 16 17 18 19 20
+n
+
+Fig. 3.
+
+The sum is asymptotic to 2n . The factor is found by compar2
+ison with Levenshtein’s lower bound, 2n+s / n [4].
+s
+
+Ratio of the size of our codes for one deletion to the VT codes.
+
+codes into a set of smaller problems by partitioning Ls,n by
+Hamming weight and ﬁnding codes within each partition. In
+the single deletion case, we found an optimal coloring of
+L1,n,k and showed that the code is asymptotically optimal.
+We proved a lower bound on size of codes constructed using
+these partitions that applies to any number of deletions. In the
+two deletion case, we compared the performance of the best
+known codes, which were found by searching all of L2,n , and
+codes found using our strategy of searching each of L2,n,k
+separately.
+
+IV. C OMPUTATIONAL S EARCHES FOR T WO D ELETION
+C ODES
+To demonstrate how well our construction performs, we
+applied this strategy to the cases of one and two deletions.
+We used a greedy algorithm to ﬁnd maximal independent sets
+in L2,n,k for n ≤ 20. One advantage of working with the
+constant weight subgraphs Ls,n,k is that they are much smaller
+than Ls,n , which makes experiments more tractable. For each
+n, there is a set of layers for each remainder modulo three.
+We computed code sizes for each set and took the largest. The
+sizes of the codes that we found and the best known are given
+in Table I and their ratio is plotted in Figure 2.
+For comparison, we computed the exact sizes of the codes
+given by our construction for s = 1. To do this, we determined
+which color class in L1,n,k was largest for each n and k. The
+sizes of these codes are shown in Figure 3. For very small n,
+the codes are signiﬁcantly larger than the lower bound. This is
+because the gap between the size of largest color class and the
+average size is proportionally largest for small n. The effect
+is large enough that the ratio between these codes and the VT
+codes is fairly ﬂat across the plot even though the codes are
+asymptotically optimal.
+Consequently, it is difﬁcult to conclude much from the plot
+for s = 2. As in the s = 1 plot, the ratio is about 0.8
+throughout. There might be a constant factor gap between the
+performance of the two strategies, convergence that is too slow
+to observe, or perhaps something else.
+
+ACKNOWLEDGMENT
+This work was supported in part by AFOSR under grants FA
+9550-11-1-0016 and FA 9550-10-1-0573; and by NSF grant
+CCF 10-54937 CAR.
+R EFERENCES
+[1] S. Butenko, P. Pardalos, I. Sergienko, V. Shylo, and P. Stetsyuk., “Finding maximum independent sets in graphs arising from coding theory,”
+Proceedings of the 2002 ACM Symposium on Applied Computing, pp.
+542–546, 2002.
+[2] A. S. J. Helberg and H. C. Ferreira, “On multiple insertion/deletion
+correcting codes,” IEEE Trans. Inform. Theory, vol. 48, pp. 305–308,
+January 2002.
+[3] F. Khajouei, M. Zolghadr, and N. Kiyavash, “An algorithmic approach for
+ﬁnding deletion correcting codes,” Information Theory Workshop (ITW),
+2011 IEEE, pp. 25 –29, oct. 2011.
+[4] V. I. Levenshtein, “Binary codes capable of correcting deletions, insertions and reversals,” Soviet Physics - Doklady, vol. 10, no. 8, pp. 707–710,
+February 1966.
+[5] ——, “Efﬁcient reconstruction of sequences from their subsequences or
+supersequences,” J. Comb. Theory, vol. 93, no. 2, pp. 310 – 332, 2001.
+[6] N. Sloane, “Challenge problems: Independent sets in graphs
+http://www2.research.att.com/ njas/doc/graphs.html,” January 2012.
+[Online]. Available: http://www2.research.att.com/ njas/doc/graphs.html
+[7] ——, “On single-deletion-correcting codes,” Codes and Designs, Ohio
+State University, pp. 273–292, May 2002.
+[8] R. R. Varshamov, “On an arithmetic function with an application in the
+theory of coding,” no. 3, pp. 540–543, 1965.
+[9] D. B. West, Introduction to graph theory. Upper Saddle River, NJ:
+Prentice Hall Inc., 1996.
+
+V. C ONCLUSION
+We translated the problem of ﬁnding deletion correcting
+codes into one of ﬁnding independent sets in Ls,n . We discussed coloring as means of constructing independent sets and
+demonstrated the the VT codes are optimal in a coloring sense.
+We described a strategy of decomposing the problem of ﬁnding
+
+5
+
+

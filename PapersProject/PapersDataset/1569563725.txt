@@ -1,0 +1,896 @@
+Creator:        TeX
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Sat May 19 01:58:10 2012
+ModDate:        Tue Jun 19 12:56:12 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      427278 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569563725
+
+Classiﬁcation with High-Dimensional
+Sparse Samples
+Dayu Huang
+
+Sean Meyn
+
+Department of Electrical and Computer Engineering
+University of Illinois at Urbana-Champaign
+Urbana, Illinois 61801
+Email: dhuang8@illinois.edu
+
+Department of Electrical and Computer Engineering
+University of Florida
+Gainesville, FL 32611
+Email: meyn@ece.uﬂ.edu
+
+In many applications such as text classiﬁcation, the number
+of training and test samples observed, N and n, are much
+smaller than the size of alphabet m. This is the so-called sparse
+sample problem. For example, suppose we want to decide,
+given two articles written by two different others, which author
+writes the third article. The number of words appearing in an
+article is much smaller than the English vocabulary, and the
+histogram of words is a sparse one [2].
+The high-dimensional setting, in which N, n, m all tend
+to inﬁnity and m is much large than N, n, is a widelyused approach to analyze classiﬁers for the sparse sample
+problem. A widely-used performance criterion is asymptotic
+consistency: Given some dependence of N, n on m, does
+the probability of error decay to zero as m increases to
+inﬁnity? A fundamental result with respect to this criterion
+was established in [1]: Assuming that the distribution on all
+symbols in the alphabet is of order 1/m, there exists an
+asymptotic consistent classiﬁer if and only if m = o(n2 ).
+Note that the result is established only for the case N = n.
+In most practical scenarios, the number of test samples
+available is smaller than the number of training samples. It
+is thus desirable to understand how N and n affects the performance individually. We thus pose the following questions:
+1) How fast do N and n need to increase with m in order
+to have an asymptotic consistent classiﬁer?
+2) Does the probability of error depend on N and n in the
+same way?
+3) If the number of training samples is limited, can the
+performance be improved by having more test samples?
+The goal of this paper is to answer these questions by
+establishing achievability and converse results on best achieble
+probability of classiﬁcation error. Our tool is the generalized
+error exponent analysis technique from [3]. In this prior work,
+the sparse sample goodness of ﬁt problem is investigated in
+which the number of test samples is much smaller than the
+size of alphabet. The classical error exponent was extended to
+this problem via a different scaling in large deviation analysis.
+In the classiﬁcation problem, the classsical error exponent
+analysis has been applied to the case of ﬁxed alphabet in [4]
+and [5]. It was shown that in order for the probability of error
+to decay exponentially fast with respect to n, the number
+of training samples N must grow at least linearly with n.
+
+Abstract—The task of the binary classiﬁcation problem is to
+determine which of two distributions has generated a length-n
+test sequence. The two distributions are unknown; two training
+sequences of length N , one from each distribution, are observed.
+The distributions share an alphabet of size m, which is signiﬁcantly larger than n and N . How does N, n, m affect the
+probability of classiﬁcation error? We characterize the achievable
+error rate in a high-dimensional setting in which N, n, m all tend
+to inﬁnity, under the assumption that probability of any symbol
+is O(m−1 ). The results are:
+1) There exists an asymptotically consistent classiﬁer if and
+only if m = o(min{N 2 , N n}). This extends the previous
+consistency result in [1] to the case N = n.
+2) For the sparse sample case where max{n, N } = o(m), ﬁner
+results are obtained: The best achievable probability of
+error decays as − log(Pe ) = J min{N 2 , N n}(1 + o(1))/m
+with J > 0.
+3) A weighted coincidence-based classiﬁer has non-zero generalized error exponent J.
+4) The 2 -norm based classiﬁer has J = 0.
+Index Terms—high-dimensional model, large deviations, classiﬁcation, sparse sample, generalized error exponent
+
+I. INTRODUCTION
+Consider the following binary classiﬁcation problem: Two
+training sequences X = {X1 , . . . , XN } and Y = {Y1 , . . . , YN }
+generated from two different unknown sources are observed.
+The two sources share the same alphabet [m] := {1, . . . , m}.
+Given a test sequence Z = {Z1 , . . . , Zn }, the classiﬁer
+decides whether Z comes from the ﬁrst source or the second.
+The performance of a classiﬁer is usually assessed by how
+its probability of classiﬁcation error depends on N, n, m. Since
+the exactly formula for the probability of error is usually
+complicated, asymptotic models and performance criteria are
+used. For example, the classical error exponent criterion characterizes the exponential rate at which the probability of error
+decays as N and n increase to inﬁnity. In addition to assessing
+a particular classiﬁer’s performance, it is desirable to establish
+fundamental limits on the best achievable performance.
+The authors would like to acknowledge help discussions with Tuˇ kan Batu
+g
+and Aaron Wagner.
+Financial support from the National Science Foundation (NSF CCF 0729031 and CCF 08-30776), ITMANET DARPA RK 2006-07284 and AFOSR
+grant FA9550-09-1-0190 is gratefully acknowledged. Any opinions, ﬁndings,
+and conclusions or recommendations expressed in this material are those of the
+authors and do not necessarily reﬂect the views of NSF, DARPA or AFOSR.
+
+1
+
+there are both rare and non-rare symbols is a topic currently
+under investigation.
+In the high-dimensional model, we consider a sequence of
+classiﬁcation problems as described above, indexed by m.
+Thus P([m]), N, n, p, q, Πm all depend on m. Moreover, N, n
+increase to inﬁnity as m increases.
+A classiﬁer φ = {φm }m≥1 is a sequence of binary-valued
+functions with φm : [m]N × [m]N × [m]n → {0, 1}. It decides
+in favor of H1 if φm = 1 and H0 otherwise. Use the notation
+P(µ,π,ν) (A) to denote the probability of the event A when X,
+Y and Z have marginal distributions µ, π, ν respectively. The
+performance of a classiﬁer φ is evaluated using the worst-case
+average probability of error given by
+
+However, in the sparse sample problem, the classical error
+exponent concept is again not applicable, and thus a different
+scaling is needed.
+We identify the appropriate scaling in this paper, and thereby
+obtain a generalized error exponent to approximate the probability of error for large but sparse observations.This analysis
+yields new insights on the best achievable performance:
+1) The numbers of training and test samples N, n have
+different effects on the performance, made precise in
+Theorem IV.1 and Theorem IV.2.
+2) The 2 -norm based classiﬁer investigated in [1], which
+compares the 2 distances from the empirical distribution of the test sequence to those of the two training
+sequences, is sub-optimal in that it has zero generalized error exponent, while a weighted coincidencebased classiﬁer proposed in this paper has a non-zero
+generalized error exponent.
+
+Pe (φm ) =
+
+(π,µ)∈Πm
+
+It is said to be asymptotically consistent if
+lim Pe (φm ) = 0.
+
+Related work: Two problems that are closely related to the
+sparse sample classiﬁcation problem is the goodness of ﬁt
+problem and the problem of testing whether two distributions
+are close. For the goodness of ﬁt problem, achievability and
+converse results with respect to different criteria have been
+established in [6], [7], [8], [9], [3]. For the problem of
+testing the closeness of two distributions, achievability and
+converse results with respect to asymptotic consistency have
+been established in [10], [11]. Our converse result uses the
+concept of proﬁle in [12]. The results in [12] have lead to
+algorithms for classiﬁcation and closeness testing [13], [14].
+
+m→∞
+
+III. A SYMPTOTIC C ONSISTENCY
+We begin with the asymptotic consistency result.
+Theorem III.1. There exists an asymptotically consistent
+classiﬁer if and only if
+m = o(min{N 2 , N n}).
+Proof: The sparse sample case where max{N, n} =
+o(m) is a corollary of the generalized error exponent analysis
+results given in Theorem IV.1 and Theorem IV.2.
+Now consider the case when m = O(N ). The only if
+direction is trivial. For the if direction, when m = o(N ),
+the distributions of X and Y can be essentially be estimated
+with vanishing error since the number of types grows subexponentially in n (See [1, Lemma 3]). When m is linear in N ,
+this problem can be transformed into a (harder) sparse sample
+min{N, n} :
+problem with alphabet size mb where b =
+Associate each symbol in [m] with b symbols. Each observation is then randomly mapped to one of the associated
+symbols. A consistent classiﬁer for the sparse sample problem
+leads to a consistent classiﬁer for the original problem.
+We have a few remarks:
+1) For the case N = n, the conclusion of Theorem III.1 is
+consistent with the results in [1, Theorem 3 and 4].Our
+proof technique is different.
+2) The requirements on N and n for asymptotic consistency are different: The ﬁrst requirement m = o(N 2 )
+needs to be satisﬁed regardless of how many test samples
+are available. The second requirement is active only
+when n = O(N ). Therefore, as long as the number of
+test samples grows linearly with the training samples,
+further increasing the test samples will not improve the
+performance in terms of asymptotic consistency.
+3) On the other hand, increasing the number of training
+samples will always increase the performance. The effect
+of increasing the training samples is different when n =
+o(N ) and N = o(n).
+
+II. N OTATION AND M ODEL
+Consider the following classiﬁcation problem: Two training sequences X and Y are generated i.i.d. with marginal
+distributions π and µ, respectively. Each symbol takes value
+in [m] := {1, 2, . . . , m}. A test sequence Z is observed. The
+sequence Z is i.i.d. with marginal distribution π under the
+null hypothesis H0 and with marginal µ under the alternative
+hypothesis H1. The three sequences X, Y , Z are independent.
+Denote the set of probability distributions over [m] by
+P([m]). The pair of unknown distributions (π, µ) belongs to
+the following set Πm ⊆ P([m]) × P([m]),
+Πm = {(π, µ) : µ − π
+
+1
+
+≥ ε, max πj ≤
+j
+
+sup [ 1 P(π,µ,π) {φm = 1} + 1 P(π,µ,µ) {φm = 0}].
+2
+2
+
+η
+η
+, max µj ≤ },
+m j
+m
+
+where η is a large positive constant. The deﬁnition of Πm
+is essentially the same as the α-large-alphabet source deﬁned
+in [1], except that we allow the number of training and test
+samples to be different. While this assumption that all words
+are rare does not hold for English vocabulary, the insights and
+classiﬁers obtained for rare words will be used to improve the
+algorithms for the case when there are both frequent and rare
+words.
+η
+η
+The assumption that maxj πj ≤ m , maxj µj ≤ m indicates
+that we are interested in how the existence of a large number
+of rare symbols affects the performance, and is motivated by
+the English vocabulary. Extending the results to the case where
+
+2
+
+IV. G ENERALIZED E RROR E XPONENT
+
+This classiﬁer was shown in [1] to be asymptotically consistent
+when N = n and m = o(N 2 ). We now show, however, this
+classiﬁer has zero generalized error exponent:
+
+When m is ﬁxed, the following error exponent criterion has
+been used to evaluate a classiﬁer φ:
+1
+I(φ) := − lim sup log(Pe (φm )).
+(1)
+n→∞ n
+
+Theorem V.1. Suppose Assumption 1 and Assumption 2 hold
+and N = n. Assume in addition that m = o(n2 / log(n)2 ).
+Then
+J(φF ) = 0.
+
+This classical error exponent criterion is no longer applicable
+in the sparse sample case where
+
+The sub-optimality of φF is due to the following reason: For
+any j, a large variation of the value of ay causes a signiﬁcant
+j
+change in the value of the statistic Fn . Assume m is even for
+simplicity of exposition. Let u denote the uniform distribution
+on [m]. Let qj = (1 + ε)/m for j ≤ m/2 and qj = (1 +
+ε)/m for j > m/2. Consider the case where under H0, the
+distribution is given by (q, u, q).
+Considering the following event where one symbol appears
+many times:
+√
+(3)
+Cn := {ay = 4n/ m },
+1
+
+Assumption 1. N = o(m), n = o(m).
+One should consider instead the following generalization,
+deﬁned with respect to the normalization r(N, n, m):
+J(φ) := − lim sup
+n→∞
+
+1
+log(Pe (φm )).
+r(N, n, m)
+
+(2)
+
+The results in Theorem IV.1 and Theorem IV.2 imply that the
+appropriate normalization is
+r(N, n, m) = min{N 2 , N n}/m.
+The generalized error exponent J(φ) could depend on how
+N, n increase with m. Note that to have a consistent classiﬁer,
+the necessary condition in Theorem III.1 must be satisﬁed, as
+summarized in the assumption below:
+
+we claim that this event is likely to cause a false alarm:
+P(q,u,q) {φF = 1|Cn } = 1 − o(1).
+On the other hand, the probability of Cn decays slowly:
+√
+P(q,u,q) (Cn ) = exp{−4(n/ m) log(m)(1 + o(1))}. (4)
+
+2
+
+Assumption 2. m = o(min{N , N n}).
+This is equivalent to limm→∞ r(N, n, m) = ∞.
+The following theorems demonstrate that the deﬁnition in
+(2) is meaningful:
+
+Combining these two equality gives the lower-bound
+log(Pe (φF )) ≥ log
+
+F
+1
+2 P(q,u,q) (Cn )P(q,u,q) {φ
+
+= 1|Cn }
+
+n
+= 34 √ log(m)(1 + o(1))
+m
+
+Theorem IV.1 (Achievability). Suppose Assumption 1 and
+Assumption 2 hold. Then there exists a classiﬁer φ such that
+
+1
+
+Thus this error decays at most as nm− 2 log(m), slower than
+n2 /m. Consequently, J(φF ) = 0.
+
+J(φ) > 0.
+Theorem IV.2 (Converse). Suppose Assumption 1 holds.
+¯
+There exists a constant J such that for any classiﬁer φ,
+
+VI. P ROOF OF ACHIEVABILITY: WEIGHTED
+COINCIDENCE - BASED CLASSIFIER
+
+¯
+− log(Pe (φm )) ≤ r(N, n, m)J.
+
+A nonzero generalized error exponent is achieved by the
+following weighted coincidence-based classiﬁer, whose construction is inspired by the weighted coincidence-based test
+proposed in [3]. Deﬁne the test statistic Tn :
+
+These theorems imply that the best achievable probability
+of error decays approximately as Pe = exp{−r(N, n, m)J}
+for some J > 0. Note that the probability of error changes
+exponetially with respect to n only when n = O(N ). When
+N = o(n), the probability of error is mainly determined by
+the number of training samples. This phenomenon is similar
+to the case with ﬁxed m, for which results in [4] show that
+whether n = O(N ) holds determines whether the probability
+of error decreases exponentially in n.
+V.
+
+Tn =
+j
+
+1
+1
+I{ax = 1, az = 1}+
+I{ay = 1, az = 1}
+j
+j
+j
+j
+nN
+nN
+1
+1
+− 2 I{ay = 0, az = 2}− 2 I{ay = 2, az = 0} .
+j
+j
+j
+j
+n
+N
+
+−
+
+2 - NORM BASED CLASSIFIER HAS A ZERO
+
+The classiﬁer is given by φT = I{Tn ≥ 0}.
+Theorem IV.1 is proved by bounding Pe (φT ) via Chernoff:
+
+GENERALIZED ERROR EXPONENT
+
+Let az be the number of times that jth symbol appears in
+j
+Z. The notations ax and ay are deﬁned similarly.
+The 2 -norm based classiﬁer has the following test statistic:
+1
+1 z
+a − ax
+n
+N
+The classiﬁer is given by
+Fn :=
+
+2
+2
+
+−
+
+1 z
+1
+a − ay
+n
+N
+
+1
+1
+I{ax = 2, az = 0} + 2 I{ax = 0, az = 2}
+j
+j
+j
+j
+N2
+n
+
+log(P(π,µ,π) {φT = 1}) ≤ inf Λ(π,µ,π) (θ).
+θ
+
+log(P(π,µ,µ) {φT = 0}) ≤ inf Λ(π,µ,µ) (θ).
+θ
+
+2
+2.
+
+where Λ(π,µ,ν) (θ) = log E(π,µ,ν) [exp(θKn )] is the logarithmic
+moment generating function of Kn . The main step is to
+obtain an asymptotic approximation to Λ(π,µ,ν) (θ), given in
+the following proposition:
+
+φF = I{Fn ≥ 0}.
+
+3
+
+Proposition VI.1. Let θ = min{N 2 , nN }γ. For γ = O(1),
+
+Lemma VII.1. For any sequence (x, y, z) ⊆ A,
+1
+|Km |
+
+Λ(π,µ,ν) (θ)
+m
+2
+
+( 1 (πj
+2
+
+≤min{N , nN } γ[
+
+2
+
+− νj ) −
+
+1
+2 (µj
+
+2
+
+− νj ) )]
+
+m
+2
+1
+(πj νj + µj νj ) + 2 (πj + µ2 )]
+j
+j=1
+
+min{N 2 , nN } max{N, n}
++ O(
+) + O(1).
+m2
+Proposition VI.1 is obtained using the Poisonnization technique: The distribution of the vector ax is the same as
+j
+the conditional distribution of a vector of Poisson random
+variables whose expected values are given by λπ for some
+constant λ > 0, conditioned on the event that the sum of these
+random variables is equal to N . The main steps are similar to
+those used for results in [3].
+Applying Proposition VI.1 with the Chernoff bound for
+the cases ν = π and ν = µ, and using Assumption 1 and
+m
+Assumption 2, and the facts πj , µj ≤ η/m and j=1 (µj −
+2
+2
+πj ) ≥ ε /m, we obtain
+
++
+
+ε4 min{N 2 , nN }
+(1 + o(1)),
+log(Pπ,µ,π {φ = 1}) ≤ −
+160η 2
+m
+ε4 min{N 2 , nN }
+log(Pπ,µ,µ {φT = 0}) ≤ −
+(1 + o(1)).
+160η 2
+m
+
+≥
+≥
+
+Note that the approximation o(1) is uniform over all (π, µ) ∈
+Πm . Therefore,
+ε4
+J≥
+.
+160η 2
+
+=
+
+VII. P ROOF OF CONVERSE
+
+=
+
+Step 1: Establish the upper bound,
+
+1
+4|Km |
+
+1
+4|Km |
+
+ω
+
+1
+4|Km |
+
+ω
+
+1
+4|Km |
+
+ω
+
+1
+4|Km |
+
+ω
+
+[P(qω ,u,qω ) {φm = 1}+P(qω ,u,u) {φm = 0}]
+ω
+
+[ Pr {φm = 1}+ ω
+Pr {φm = 0})]
+ω
+(u,q ,u)
+
+(q ,u,u)
+
+[ Pr ({φm = 1}∩A)+ ω
+Pr ({φm = 0}∩A)]
+ω
+(u,q ,u)
+
+(5)
+
+(u,q ,u)
+
+(u,q ,u)
+
+Pr (A).
+
+(u,q ω ,u)
+
+Lemma VII.2. The following approximations holds uniformly
+for any ω:
+log
+
+no symbol in Y appears more than once.}
+
+Pr (A) = −(1 + 1 ε2 )
+2
+ω
+
+(u,q ,u)
+
+Assume without loss of generality that m is even. Deﬁne
+a collection of bi-uniform distributions as follows: Let Km
+denote the collection of all subsets of [m] whose cardinality
+is m/2. For each set ω ∈ Km , deﬁne the distribution q ω as
+=
+
+(q ,u,u)
+
+[ Pr ({φm = 1}∩A)+ Pr ({φm = 0}∩A)]
+ω
+ω
+
+A = {No symbol in X appears more than once;
+
+(1 + ε)/m, j ∈ ω;
+(1 − ε)/m, j ∈ [m] \ ω.
+
+(q ω ,u,u)
+
+(7)
+where the ﬁrst inequality follows from the fact that the
+maximum is no smaller than the average, and the second last
+inequality follows from Lemma VII.1. The probability of the
+event A can be lower-bounded.
+
+The main idea of the proof is to consider a event under
+which observations do not give any information regarding the
+hypotheses, and lower-bound the probability of such a event.
+We now make this precise. Deﬁne the event
+
+ω
+qj
+
+Pr (x, y, z).
+
+ω∈Km
+
+Pe (φm )
+1
+[P(u,qω ,u) {φm = 1}+P(u,qω ,qω ) {φm = 0}]
+≥
+4|Km | ω
+
+T
+
+¯
+− log(Pe (φm )) ≤ J1 N 2 /m.
+
+ω∈Km
+
+1
+|Km |
+
+Proof sketch for Lemma VII.1: For any sequence, let ϕi
+denote the number of symbols appearing i times. The vector
+[ϕ1 , ϕ2 , ϕ3 , . . .] is called the proﬁle of the sequence [12].
+Because of the symmetry of the collection of distributions
+{q ω , ω ∈ Km }, the symmetry of the uniform distribution
+u, and the independence among X, Y , Z, the value of
+1
+ω∈Km Pr(u,q ω ,u) (x, y, z) only depends on the proﬁles
+|Km |
+of x, y, and z. In the event A, the proﬁles of x and y are
+ﬁxed, which then leads to the claim of the lemma.
+Lemma VII.1 implies that for any observation (x, y, z) ∈
+A, it is impossible to tell whether it is more likely to come
+from the mixture on the left-hand side or the mixture on the
+right-hand side. Consequently,
+
+j=1
+
++ γ2[
+
+Pr (x, y, z) =
+
+(u,q ω ,u)
+
+N2
+(1 + o(1)) + O(1).
+m
+
+Proof sketch: It follows from a combinatorial argument
+that the probability that no symbol appears twice in X when
+X has marginal distribution u is given by
+N2
+(1 + o(1))}.
+m
+Estimating the probability that no symbol appears twice in Y
+can be done similarly but is more involved.
+The claim (5) follows from applying Lemma VII.2 to (7),
+¯
+and picking a large enough J.
+Step 2: Establish the second upper-bound
+1
+m(m − 1) . . . (m − N + 1)(1/m)N = exp{− 2
+
+(6)
+
+Note that u − q ω 1 = ε, and (u, q ω ) ∈ Πm for all ω.
+We will use the short-hand notation {(x, y, z)} =
+{(X, Y , Z) = (x, y, z)} throughout the paper.
+Our choice of the collection of distributions makes sure that
+the following result holds:
+
+¯
+− log(Pe (φm ) ≤ J2 (N n + n2 )/m.
+
+4
+
+(8)
+
+We consider the following event:
+
+log
+
+B = {No symbol in Z appears more than once;
+
+The proof is similar to that of Lemma VII.2.
+Note that the average probability of error is equal to the
+summation of the left-hand side of (9) over all possible (x, y).
+Applying Lemma VII.4 to lower-bound the right-hand side of
+(9) leads to the claim.
+We now combine (5) and (8). It is straightforward to verify
+that
+min{N 2 , N n + n2 } ≤ min{N 2 , 2N n}.
+
+no symbol in Z has appeared in either X or Y }.
+When this event happens, it is impossible (in the worst-case
+setting) to infer which distribution the test sequence is more
+likely to be generated from. This is captured by the following
+lemma:
+Lemma VII.3. Consider any x, y. For any two sequences
+¯
+¯
+z and z such that (x, y, z) ⊆ B and (x, y, z ) ⊆ B, the
+following holds:
+1
+1
+¯
+Pr (x, y, z) =
+Pr (x, y, z ).
+u,q ω ,u
+|Km |
+|Km |
+(u,q ω ,u)
+ω∈Km
+
+1
+|Km |
+
+Pr
+
+ω∈Km
+
+¯
+¯ ¯
+Taking J = max{J1 , 2J2 } leads to the claim of the theorem.
+VIII. C ONCLUSIONS AND F UTURE W ORK
+We have investigated the binary classiﬁcation problem with
+sparse samples using generalized error exponent concept,
+and established fundamental performance limits. We have
+proposed a classiﬁer that performs better than the 2 -norm
+based classiﬁer. Future directions include:
+1) Investigate classiﬁcation algorithms that are applicable
+when there are both rare and frequent symbols.
+2) The generalized error exponent analysis could be applicable to the problem of testing closeness of distributions.
+
+ω∈Km
+
+(x, y, z) =
+
+(u,q ω ,q ω )
+
+1
+|Km |
+
+¯
+Pr (x, y, z ).
+
+ω∈Km
+
+u,q ω ,q ω
+
+Proof sketch for Lemma VII.3: Since no symbols in
+z have appeared in x and y, due to the symmetry of the
+collection of distributions {q ω , ω ∈ Km } and the symmetry
+of the uniform distribution u, for ﬁxed x and y, the value of
+1
+ω∈Km Pr(u,q ω ,q ω ) (x, y, z) only depends on the proﬁle
+|Km |
+of z. It follows from the deﬁnition of the event B that the
+¯
+proﬁle of z is the same as the proﬁle of z .
+The result of Lemma VII.3 can interpreted as follows: In
+the event B, observing Z does not gives any information since
+under either hypothesis, each sequence z appears with equal
+probability.
+Consider any x, y. Let Dx,y = {z : (x, y, z) ∈ {φm =
+c
+1} ∩ B} and Dx,y = {z : (x, y, z) ∈ {φm = 0} ∩ B}.
+Lemma VII.3 implies that the probability of {X = x, Y =
+y, φm = 1}∩B only depends on the size of Dx,y , rather than
+what sequences the set Dx,y includes. Consequently, We then
+have
+1
+Pr ({X = x, Y = y, φm = 1} ∩ B)
+|Km | ω (u,qω ,u)
++
+
+Pr
+
+R EFERENCES
+[1] B. G. Kelly, T. Tularak, A. B. Wagner, and P. Viswanath, “Universal
+hypothesis testing in the learning-limited regime,” in Proceedings of
+2010 IEEE International Symposium on Information Theory, Austin,
+TX, Jun. 2010, pp. 1478 – 1482.
+[2] T. Zhang and F. Oles, “Text categorization based on regularized linear
+classiﬁcation methods,” Information Retrieval, vol. 4, pp. 5 – 31, 2001.
+[3] D. Huang and S. Meyn, “Error exponents for composite hypothesis
+testing with small samples,” 2012, accepted for presentation at 2012
+International Conference on Acoustic, Speech and Signal Processing.
+[4] J. Ziv, “On classiﬁcation with empirically observed statistics and universal data compression,” IEEE Transactions on Information Theory,
+vol. 34, no. 2, pp. 278 – 286, Mar. 1988.
+[5] M. Gutman, “Asymptotically optimal classiﬁcation for multiple tests
+with empirically observed statistics,” IEEE Transactions on Information
+Theory, vol. 35, no. 2, pp. 401 – 408, Mar. 1989.
+[6] T. Batu, E. Fischer, L. Fortnow, R. Kumar, R. Rubinfeld, and P. White,
+“Testing random variables for independence and identity,” in Proceedings of 42nd IEEE Symposium on Foundations of Computer Science,
+Oct. 2001, pp. 442 – 451.
+[7] L. Paninski, “A coincidence-based test for uniformity given very sparsely
+sampled discrete data,” IEEE Transactions on Information Theory,
+vol. 54, no. 10, pp. 4750 – 4755, Oct. 2008.
+[8] M. S. Ermakov, “Asymptotic minimaxity of chi-square tests,” Theory of
+Probability and its Applications, vol. 42, p. 589, 1998.
+[9] A. R. Barron, “Uniformly powerful goodness of ﬁt tests,” The Annals
+of Statistics, vol. 17, no. 1, pp. 107 – 124, 1989.
+[10] T. Batu, L. Fortnow, R. Rubinfeld, W. D. Smith, and P. White, “Testing
+that distributions are close,” in Proceedings of 41St Annual Symposium
+on Foundations of Computer Science, 2000, pp. 259 – 269.
+[11] P. Valiant, “Testing symmetric properties of distributions,” in Proceedings of the 40th Annual ACM symposium on Theory of Computing. New
+York, NY, USA: ACM, 2008, pp. 383 – 392.
+[12] A. Orlitsky, N. P. Santhanam, and J. Zhang, “Universal compression of
+memoryless sources over unknown alphabets,” IEEE Transactions on
+Information Theory, vol. 50, no. 7, pp. 1469 – 1481, Jul. 2004.
+[13] J. Acharya, H. Das, A. Orlitsky, S. Pan, and N. P. Santhanam, “Classiﬁcation using pattern probability estimators,” in Proceedings of 2010
+IEEE International Symposium on Information Theory, Austin, TX, Jun.
+2010, pp. 1493 – 1497.
+[14] J. Acharya, H. D. A. Jafarpour, A. Orlitsky, and S. Pan, “Competitive
+closeness testing,” in Proceedings of 24th Annual Conference on Learning Theory, Budapest, Hungary, Jun. 2011, pp. 47–68.
+
+({X = x, Y = y, φm = 0} ∩ B)
+
+(u,q ω ,q ω )
+
+|Dx,y |
+c
+Dx,y +Dx,y
+(u,q ,u)
+ω
+c
+|Dx,y |
+1
+Pr ω ({X = x, Y = y}∩B)
++
+c
+|Km | ω (u,qω ,q )
+Dx,y +Dx,y
+1
+≥
+min
+Pr ({X = x, Y = y}∩B),
+|Km |
+(u,q ω ,u)
+ω
+=
+
+1
+|Km |
+
+Pr ({X = x, Y = y}∩B)
+ω
+
+Pr ({X = x, Y = y}∩B) ,
+
+ω
+
+2
+Pr(u,qω ,qω )({X = x, Y = y}∩B)
+¯ Nn+n (1 + o(1)).
+≥ J2
+Pr(u,qω ,qω ){X = x, Y = y}
+m
+
+(u,q ω ,q ω )
+
+(9)
+where the inequality follows from lower-bounding the probability of {X = x, Y = y}∩B under (u, q ω , u) and (u, q ω , q ω )
+by the minimum of these two.
+¯
+Lemma VII.4. Let J2 = 5. Then the following bounds hold
+uniformly over all ω, x, y:
+2
+Pr(u,qω ,u)({X = x, Y = y}∩B)
+¯ Nn+n (1 + o(1)).
+log
+≥ J2
+Pr(u,qω ,u){X = x, Y = y}
+m
+
+5
+
+
