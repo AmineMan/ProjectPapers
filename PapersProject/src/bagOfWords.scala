@@ -1,7 +1,8 @@
 package paper
 import java.io._
 import java.util.Scanner
-import net.sf.classifier4J.SimpleClassifier
+import net.sf.classifier4J._
+
 import java.util.List;
 import java.util.ArrayList;
 import java.io.{Closeable, File, FileWriter, PrintWriter}
@@ -25,12 +26,20 @@ object WordReader {
 val source = scala.io.Source.fromFile("PapersDataset/1569550425.txt")
 val lines = source .mkString
 source.close ()
+val tokenizer = new DefaultTokenizer()
+
+val tokenized = tokenizer.tokenize(lines)
+println(tokenized)
+//val rootDir = new File("/PapersDataset")
+//if (!rootDir.exists) throw new IllegalArgumentException(rootDir + " does not exist")
 
   //showing content of the file
 println(lines)
+///////////////////////////OTHER CODE//////////////////////////////////
+/*
 val rootDir = new File("/PapersDataset")
 if (!rootDir.exists) throw new IllegalArgumentException(rootDir + " does not exist")
- 
+
 /** Iterates over all files under rootDir, opens each one and passes it to the function */
 def files(rootDir: File)(process: File => Unit) {
   for (dir <- rootDir.listFiles; if dir.isDirectory) {
@@ -44,8 +53,9 @@ def files(rootDir: File)(process: File => Unit) {
 val t1 = System.currentTimeMillis
 var counts = Map.empty[String, Int].withDefaultValue(0)
 files(rootDir) { file => 
-  file.split("""\W+""").foreach { word => counts = counts(word.toLowerCase) += 1 }
+  file.split("""\W+""").foreach{ word => counts = counts(word.toLowerCase) += 1 }
 }
+
  
 println("Writing counts in decreasing order")
 write(counts, "counts-descreasing-scala") {_._2 > _._2}
@@ -75,18 +85,17 @@ implicit def file2String(file: File): String = {
   }
   builder.toString
 }
- 
+ */
+
 /** Performs some operation on the specified closeable object and then ensures it gets closed. */
-def using[Closeable <: {def close(): Unit}, B](closeable: Closeable)(getB: Closeable => B): B = 
-  try {
-    getB(closeable)
-  } finally {
-    closeable.close()
-  }
-   
-   
-   
-   
+//def using[Closeable <: {def close(): Unit}, B](closeable: Closeable)(getB: Closeable => B): B = 
+  //try {
+   // getB(closeable)
+  //} finally {
+    //closeable.close()
+  //}
+
+
 
 //TEST reading file: 
 /*// will store the words read from the file
