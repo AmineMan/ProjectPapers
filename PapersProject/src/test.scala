@@ -1,6 +1,6 @@
 package org.cloudmole.feature
 
-import org.cloudmole.dataset.SparseVector
+//import ogrisel-cloudmole-7cbfe58ad7b9.src.main.scala.org.cloudmole.dataset.SparseVector
 
 import scala.collection.mutable.HashMap
 import scala.collection.mutable.HashSet
@@ -54,7 +54,7 @@ class Counter extends HashMap[Int, Long] {
  */
 class HashedTfIdfSampler(hashSize: Int) {
 
-  val hasher = new FeatureHasher(hashSize)
+  //val hasher = new FeatureHasher(hashSize)
 
   val documentCounts = new Counter
   
@@ -66,45 +66,45 @@ class HashedTfIdfSampler(hashSize: Int) {
   /**
    * Update the current estimate of IDF using the terms of 'document'
    */
-  def sampleDocument(document: String): Unit = {
+ // def sampleDocument(document: String): Unit = {
     // scan the unique occurences of terms in the document
     // and increment the document counter
-    tokenize(document).toSet[String].foreach(
-      term => documentCounts.increment(hasher hashTerm term))
-    sampledDocuments += 1
-  }
+   // tokenize(document).toSet[String].foreach(
+     // term => documentCounts.increment(hasher hashTerm term))
+    //sampledDocuments += 1
+  //}
 
-  def sampleCorpus(documents: Iterable[String]): Unit = {
-    documents.foreach(sampleDocument)
-  }
+  //def sampleCorpus(documents: Iterable[String]): Unit = {
+    //documents.foreach(sampleDocument)
+  //}
   
   /**
    * Compute the TF-IDF estimate of the terms in the document
    */
-  def tfidf(document: String): SparseVector = {
+  //def tfidf(document: String): SparseVector = {
 
-    val termCounts = new Counter
-    val hashedTerms = tokenize(document) map (hasher hashTerm _)
+    //val termCounts = new Counter
+    //val hashedTerms = tokenize(document) map (hasher hashTerm _)
 
     // First pass count term occurrences inside current document (tf)
-    hashedTerms.foreach(termCounts.increment)
+   // hashedTerms.foreach(termCounts.increment)
     
 
     // Second pass over distinct terms: compute the tf * idf product for each
     // word
-    def computeOne(sv: SparseVector, t: Int): SparseVector = {
-      val tf = termCounts frequency t
+   // def computeOne(sv: SparseVector, t: Int): SparseVector = {
+     // val tf = termCounts frequency t
       // avoid division by zero by trading some accuracy
-      val idf = sampledDocuments / documentCounts.getCountOrOne(t)
-      sv(t) = tf * log(1 + idf).toFloat
-      sv
-    }
-    hashedTerms.toSet[Int].foldLeft(new SparseVector(hashSize))(computeOne)
-  }
+    //  val idf = sampledDocuments / documentCounts.getCountOrOne(t)
+    //  sv(t) = tf * log(1 + idf).toFloat
+   //   sv
+    //}
+   // hashedTerms.toSet[Int].foldLeft(new SparseVector(hashSize))(computeOne)
+  //}
 
-  def reset: Unit = {
-    documentCounts.clear
-    sampledDocuments = 0
-  }
+  //def reset: Unit = {
+    //documentCounts.clear
+   // sampledDocuments = 0
+  //}
 
 }

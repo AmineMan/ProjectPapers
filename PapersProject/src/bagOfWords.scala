@@ -1,40 +1,106 @@
 package paper
+
 import java.io._
 import java.util.Scanner
 import net.sf.classifier4J._
 
-import java.util.List;
+
 import java.util.ArrayList;
 import java.io.{Closeable, File, FileWriter, PrintWriter}
 
+import scala.List
 
-trait bagOfWords {
-	
-	val classifier = new SimpleClassifier();
-	classifier.setSearchWord( "java" );
-	val sentence : java.lang.String = "This is a sentance about java"
-	println( "The string " + sentence +	" contains the word java:" + classifier.isMatch(sentence) );
+object bagOfWords {
+	def main(args : Array[String]): Unit = {
+// Code has to be made generic for any text file parsed and for the whole dataset to be accurate
+	  
+	  
+	  
+   //reading text from given file
+	  //we create a val string that we will read 
+	  
+	  //First test with 6 papers, reading them, counting occurences of all words, creating a dictionnary
+val source1 = scala.io.Source.fromFile("PapersDataset/1569550425.txt")
+val source2 = scala.io.Source.fromFile("PapersDataset/1569551347.txt")
+val source3 = scala.io.Source.fromFile("PapersDataset/1569551535.txt")
+val source4 = scala.io.Source.fromFile("PapersDataset/1569551539.txt")
+val source5 = scala.io.Source.fromFile("PapersDataset/1569551541.txt")
+val source6 = scala.io.Source.fromFile("PapersDataset/1569551751.txt")
+
+
+val text1 = source1 .mkString
+source1.close ()
+val text2 = source2 .mkString
+source2.close ()
+val text3 = source3 .mkString
+source3.close ()
+val text4 = source4 .mkString
+source4.close ()
+val text5 = source5 .mkString
+source5.close ()
+val text6 = source6 .mkString
+source6.close ()
+
+
+//Computing the number of occurences of each word type grouping by every element with its kind
+val occurences1 = text1.split(" ").groupBy(x=>x)
+val occurences2 = text2.split(" ").groupBy(x=>x)
+val occurences3 = text3.split(" ").groupBy(x=>x)
+val occurences4 = text4.split(" ").groupBy(x=>x)
+val occurences5 = text5.split(" ").groupBy(x=>x)
+val occurences6 = text6.split(" ").groupBy(x=>x)
+
+//now we want to have a map between words and the number of occurences
+val counts1 = occurences1.mapValues(x=>x.length)
+val counts2 = occurences2.mapValues(x=>x.length)
+val counts3 = occurences3.mapValues(x=>x.length)
+val counts4 = occurences4.mapValues(x=>x.length)
+val counts5 = occurences5.mapValues(x=>x.length)
+val counts6 = occurences6.mapValues(x=>x.length)
+
+val countsList1 = counts1.toList
+val countsList2 = counts2.toList
+val countsList3 = counts3.toList
+val countsList4 = counts4.toList
+val countsList5 = counts5.toList
+val countsList6 = counts6.toList
+
+// find the number of distinct words:
+println("the number of distinct words in text 1 is: " + countsList1.length)
+println("the number of distinct words in text 2 is: " + countsList2.length)
+println("the number of distinct words in text 3 is: " + countsList3.length)
+println("the number of distinct words in text 4 is: " + countsList4.length)
+println("the number of distinct words in text 5 is: " + countsList5.length)
+println("the number of distinct words in text 6 is: " + countsList6.length)
+
+
+val textsList = List(countsList1, countsList2, countsList3, countsList4, countsList5, countsList6)
+val texts = textsList.flatten
+
+//this shows all the words from all the texts and their occurences, not the list of unique words (to fix)
+println(texts)
+//val tokenizer = new DefaultTokenizer()
+
+//val tokenized = tokenizer.tokenize(lines)
+//println(tokenized)
+  //showing content of the file
+//println(lines)
+	}
+	//val classifier = new SimpleClassifier();
+	//classifier.setSearchWord( "java" );
+	//val sentence : java.lang.String = "This is a sentance about java"
+	//println( "The string " + sentence +	" contains the word java:" + classifier.isMatch(sentence) );
 
 }
 
 
 
 object WordReader {
- def main(args : Array[String]): Unit = {
-
-   //reading text from given file
-val source = scala.io.Source.fromFile("PapersDataset/1569550425.txt")
-val lines = source .mkString
-source.close ()
-val tokenizer = new DefaultTokenizer()
-
-val tokenized = tokenizer.tokenize(lines)
-println(tokenized)
+ 
 //val rootDir = new File("/PapersDataset")
 //if (!rootDir.exists) throw new IllegalArgumentException(rootDir + " does not exist")
 
-  //showing content of the file
-println(lines)
+
 ///////////////////////////OTHER CODE//////////////////////////////////
 /*
 val rootDir = new File("/PapersDataset")
@@ -137,5 +203,4 @@ println( words(i) );
 }
 }
  */
-}
 }
