@@ -43,12 +43,13 @@ source6.close ()
 
 
 //Computing the number of occurences of each word type grouping by every element with its kind
-val occurences1 = text1.split(" ").groupBy(x=>x)
-val occurences2 = text2.split(" ").groupBy(x=>x)
-val occurences3 = text3.split(" ").groupBy(x=>x)
-val occurences4 = text4.split(" ").groupBy(x=>x)
-val occurences5 = text5.split(" ").groupBy(x=>x)
-val occurences6 = text6.split(" ").groupBy(x=>x)
+//seperate on white spaces (split)
+val occurences1 = text1.split("\\s+").groupBy(x=>x)
+val occurences2 = text2.split("\\s+").groupBy(x=>x)
+val occurences3 = text3.split("\\s+").groupBy(x=>x)
+val occurences4 = text4.split("\\s+").groupBy(x=>x)
+val occurences5 = text5.split("\\s+").groupBy(x=>x)
+val occurences6 = text6.split("\\s+").groupBy(x=>x)
 
 //now we want to have a map between words and the number of occurences
 val counts1 = occurences1.mapValues(x=>x.length)
@@ -58,12 +59,32 @@ val counts4 = occurences4.mapValues(x=>x.length)
 val counts5 = occurences5.mapValues(x=>x.length)
 val counts6 = occurences6.mapValues(x=>x.length)
 
+val k = counts1.keys
+val k2 = counts2.keys
+
+//only working with keys: 
+val klist = k.toList
+val klist2 = k2.toList
+
+// checking if 2 documents have words in common:
+for (k <- counts1.keys){
+  for (j <- counts2.keys){
+    if (k == j) {
+    println(k)
+	}
+	}
+}
+
+
+// working with lists:
+
 val countsList1 = counts1.toList
 val countsList2 = counts2.toList
 val countsList3 = counts3.toList
 val countsList4 = counts4.toList
 val countsList5 = counts5.toList
 val countsList6 = counts6.toList
+
 
 // find the number of distinct words:
 println("the number of distinct words in text 1 is: " + countsList1.length)
@@ -76,9 +97,19 @@ println("the number of distinct words in text 6 is: " + countsList6.length)
 
 val textsList = List(countsList1, countsList2, countsList3, countsList4, countsList5, countsList6)
 val texts = textsList.flatten
+val textsLength = texts.length
+println("the total length of the list is: " + textsLength)
+
+
+
+
+//println("the new total length of the list is: " + textCounts.length)
 
 //this shows all the words from all the texts and their occurences, not the list of unique words (to fix)
-println(texts)
+//println(texts)
+
+
+
 //val tokenizer = new DefaultTokenizer()
 
 //val tokenized = tokenizer.tokenize(lines)
