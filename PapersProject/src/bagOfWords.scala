@@ -3,17 +3,28 @@ package paper
 import java.io._
 import java.util.Scanner
 import net.sf.classifier4J._
-
-
-import java.util.ArrayList;
+import math._
+import java.util.ArrayList
 import java.io.{Closeable, File, FileWriter, PrintWriter}
-
 import scala.List
+import collection.mutable.ArrayBuffer
+import scala.swing.model.Matrix
 
 object bagOfWords {
-	def main(args : Array[String]): Unit = {
+
 // Code has to be made generic for any text file parsed and for the whole dataset to be accurate
-	  
+	  def main(args : Array[String]): Unit = {
+ val tfidfArray = new Array[Array[Double]](dictionnary.length,datasetSize)
+ 
+  for (i <- 0 to dictionnary.length -1){
+    for (j <- 0 to datasetSize -1){
+      tfidfArray(i)(j) = tfidf(dictionnary(i),j)
+    }
+  }
+  
+   
+  }
+
 	  
 	  
    //reading text from given file
@@ -27,6 +38,8 @@ val source4 = scala.io.Source.fromFile("PapersDataset/1569551539.txt")
 val source5 = scala.io.Source.fromFile("PapersDataset/1569551541.txt")
 val source6 = scala.io.Source.fromFile("PapersDataset/1569551751.txt")
 
+//defining the number of documents:
+val datasetSize: Int = 6
 
 val text1 = source1 .mkString
 source1.close ()
@@ -51,22 +64,29 @@ val occurences4 = text4.split("\\s+").groupBy(x=>x)
 val occurences5 = text5.split("\\s+").groupBy(x=>x)
 val occurences6 = text6.split("\\s+").groupBy(x=>x)
 
-//now we want to have a map between words and the number of occurences
-val counts1 = occurences1.mapValues(x=>x.length)
-val counts2 = occurences2.mapValues(x=>x.length)
-val counts3 = occurences3.mapValues(x=>x.length)
-val counts4 = occurences4.mapValues(x=>x.length)
-val counts5 = occurences5.mapValues(x=>x.length)
-val counts6 = occurences6.mapValues(x=>x.length)
 
-val k = counts1.keys
-val k2 = counts2.keys
+//now we want to have a map between words and the number of occurences
+//create an array for easier manipulation
+val counts = new Array[Map[java.lang.String,Int]](6)
+
+counts(0) = occurences1.mapValues(x=>x.length)
+counts(1) = occurences2.mapValues(x=>x.length)
+counts(2) = occurences3.mapValues(x=>x.length)
+counts(3) = occurences4.mapValues(x=>x.length)
+counts(4) = occurences5.mapValues(x=>x.length)
+counts(5) = occurences6.mapValues(x=>x.length)
+
+val k2 = counts(2).keys
+
 
 //only working with keys: 
-val klist = k.toList
+
 val klist2 = k2.toList
 
+//println(klist)
+
 // checking if 2 documents have words in common:
+/*
 for (k <- counts1.keys){
   for (j <- counts2.keys){
     if (k == j) {
@@ -74,33 +94,89 @@ for (k <- counts1.keys){
 	}
 	}
 }
-
+*/
 
 // working with lists:
+//only working with keys for now:
 
-val countsList1 = counts1.toList
-val countsList2 = counts2.toList
-val countsList3 = counts3.toList
-val countsList4 = counts4.toList
-val countsList5 = counts5.toList
-val countsList6 = counts6.toList
+//Create an array of lists to store all different lists of keys:
+val countsList = new Array[List[java.lang.String]](6)
+
+countsList(0) = counts(0).keys.toList
+countsList(1) = counts(1).keys.toList
+countsList(2) = counts(2).keys.toList
+countsList(3) = counts(3).keys.toList
+countsList(4) = counts(4).keys.toList
+countsList(5) = counts(5).keys.toList
+
 
 
 // find the number of distinct words:
-println("the number of distinct words in text 1 is: " + countsList1.length)
-println("the number of distinct words in text 2 is: " + countsList2.length)
-println("the number of distinct words in text 3 is: " + countsList3.length)
-println("the number of distinct words in text 4 is: " + countsList4.length)
-println("the number of distinct words in text 5 is: " + countsList5.length)
-println("the number of distinct words in text 6 is: " + countsList6.length)
+println("the number of distinct words in text 1 is: " + countsList(0).length)
+println("the number of distinct words in text 2 is: " + countsList(1).length)
+println("the number of distinct words in text 3 is: " + countsList(2).length)
+println("the number of distinct words in text 4 is: " + countsList(3).length)
+println("the number of distinct words in text 5 is: " + countsList(4).length)
+println("the number of distinct words in text 6 is: " + countsList(5).length)
 
 
-val textsList = List(countsList1, countsList2, countsList3, countsList4, countsList5, countsList6)
+val textsList = List(countsList(0), countsList(1), countsList(2), countsList(3), countsList(4), countsList(5))
 val texts = textsList.flatten
 val textsLength = texts.length
+
+
+//building dictionnary:
+//find unique words in texts:
+
+val dictionnary = texts.removeDuplicates.sort(_<_)
+
+println("The total length of the dictionnary is given by: " + dictionnary.length)
+
 println("the total length of the list is: " + textsLength)
 
+//Computing TF value:
 
+def tf(term: String, document: Int): Double = {
+val freq = 0
+  if (counts(document).contains(term)){
+    val freq = counts(document)(term)
+  }else{
+    val freq = 0
+  }
+
+ //normalization with respect to the documents length to prevent any bias:
+val keyValue = counts(document).values
+val sum = keyValue.reduceLeft(_+_)
+val normalizedFreq = freq/sum
+
+return normalizedFreq
+}
+
+//Computing IDF value
+
+def idf(term: String): Double = {
+  //math.log(size / index.getDocCount(term))
+  // take the logarithm of the quotient of the number of documents by the documents where term t appears
+  var appearances = 0
+  for(i <- 0 to datasetSize-1){
+  var termFreq = tf(term,i)
+  if (termFreq != 0){
+    appearances += 1
+  }
+  }
+  return math.log(datasetSize/appearances)
+}
+
+def tfidf(term:String, document: Int) : Double = {
+  //create tfidf matrix
+  //tfidf = tf*idf
+  
+val tfidf = tf(term,document)*idf(term)
+return tfidf
+ 
+}
+
+}
 
 
 //println("the new total length of the list is: " + textCounts.length)
@@ -116,18 +192,17 @@ println("the total length of the list is: " + textsLength)
 //println(tokenized)
   //showing content of the file
 //println(lines)
-	}
+	
 	//val classifier = new SimpleClassifier();
 	//classifier.setSearchWord( "java" );
 	//val sentence : java.lang.String = "This is a sentance about java"
 	//println( "The string " + sentence +	" contains the word java:" + classifier.isMatch(sentence) );
 
-}
 
 
 
 object WordReader {
- 
+
 //val rootDir = new File("/PapersDataset")
 //if (!rootDir.exists) throw new IllegalArgumentException(rootDir + " does not exist")
 
