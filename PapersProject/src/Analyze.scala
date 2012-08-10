@@ -1,5 +1,7 @@
 package paper
 
+import paper.bagOfWords$
+
 object Analyze {
   def main(args : Array[String]): Unit = {
 
@@ -43,6 +45,9 @@ class Analyzer extends Object with LoadPaper
     // Compare the papers individually
     val comparedPapers : List[Paper] = compare(xmlPapers, limit)
 
+    //Compare papers with bagOfWords
+    
+   // val comparedPapers2 : List[Paper] = bagOfWords(...)
     // Extend papers with tertiary data
     val extendedPapers : List[Paper] = extend(comparedPapers, sources) 
     

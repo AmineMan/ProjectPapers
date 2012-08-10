@@ -3,6 +3,8 @@ package paper
 import java.io._
 import java.util.Scanner
 import net.sf.classifier4J._
+
+
 import math._
 import java.util.ArrayList
 import java.io.{Closeable, File, FileWriter, PrintWriter}
@@ -14,18 +16,44 @@ object bagOfWords {
 
 // Code has to be made generic for any text file parsed and for the whole dataset to be accurate
 	  def main(args : Array[String]): Unit = {
+	    
+// we compute the array of scores for the vectors of words for every document
  val tfidfArray = new Array[Array[Double]](dictionnary.length,datasetSize)
  
   for (i <- 0 to dictionnary.length -1){
+    println(i)
     for (j <- 0 to datasetSize -1){
       tfidfArray(i)(j) = tfidf(dictionnary(i),j)
+      println(tfidfArray(i)(j))
+    }
+  }
+   
+  //once we have the scores we can compute the absolute distance between papers and classify them
+  //This is performed computing a scalar product on the score vectors for every document
+  //Computation might take some time
+ //temporary while getting "scalala" to work:
+   val scalarProduct = new Array[Array[Double]](datasetSize,datasetSize)
+   //transpose array to perform row Array operations instead of column based operations
+   val tfidfTranspose = tfidfArray.transpose
+    for (i <- 0 to datasetSize -1){
+    println(i)
+    for (j <- 0 to datasetSize -1){
+      if(i!=j){
+    	//Here operations take cost of length O(dictionary length)       
+        scalarProduct(i)(j) = dotProduct(tfidfTranspose(i), tfidfTranspose(j))
+      }else{
+        //does not mean anything
+        scalarProduct(i)(j) = 0
+      }
     }
   }
   
+  //(i,j) of scalarProduct represents the scalar product of document i and document j. Now we have
+  // to sort it in order in a list to return the closest documents to a given document
+  //we have weights (higher weight/score) means being closer document-to-document wise
+   
    
   }
-
-	  
 	  
    //reading text from given file
 	  //we create a val string that we will read 
@@ -157,7 +185,7 @@ return normalizedFreq
 def idf(term: String): Double = {
   //math.log(size / index.getDocCount(term))
   // take the logarithm of the quotient of the number of documents by the documents where term t appears
-  var appearances = 0
+  var appearances = 1
   for(i <- 0 to datasetSize-1){
   var termFreq = tf(term,i)
   if (termFreq != 0){
@@ -175,6 +203,12 @@ val tfidf = tf(term,document)*idf(term)
 return tfidf
  
 }
+
+//defining scala product for array vector operations
+def dotProduct[T <% Double](as: Iterable[T], bs: Iterable[T]) = {
+   require(as.size == bs.size)
+   (for ((a, b) <- as zip bs) yield a * b) sum
+ }
 
 }
 
