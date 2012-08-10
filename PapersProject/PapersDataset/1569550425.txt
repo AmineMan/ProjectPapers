@@ -1,0 +1,881 @@
+Title:          dvm_isit_9.pdf
+Author:         Behzadmina
+Creator:         TeX output 2012.05.09:1156
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Wed May  9 11:57:13 2012
+ModDate:        Tue Jun 19 12:54:14 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      357338 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569550425
+
+Distributed and Cascade Lossy Source Coding with
+a Side Information "Vending Machine"
+Behzad Ahmadi
+
+Osvaldo Simeone
+
+CWCSPR, ECE Dept.
+New Jersey Institute of Technology
+Newark, NJ, 07102, USA
+Email: behzad.ahmadi@njit.edu
+
+CWCSPR, ECE Dept.
+New Jersey Institute of Technology
+Newark, NJ, 07102, USA
+Email: osvaldo.simeone@njit.edu
+
+Abstract—Source coding with a side information "vending machine" is a recently proposed framework in which the statistical
+relationship between the side information available at the decoder
+and the source sequence can be controlled by the decoder based
+on the message received from the encoder. In this paper, the
+characterization of the optimal rate-distortion performance as
+a function of the cost associated with the control actions is
+extended from the previously studied point-to-point set-up to two
+multiterminal models. First, a distributed source coding model
+is studied, in which two encoders communicate over rate-limited
+links to a decoder, whose side information can be controlled based
+on the control actions selected by one of the encoders. The ratedistortion-cost region is characterized under the assumption of
+lossless reconstruction of the source encoded by the node that
+does not control the side information. Then, a three-node cascade
+scenario is investigated, in which the last node has controllable
+side information. The rate-distortion-cost region is derived for
+general distortion requirements and under the assumption of
+"causal" availability of side information at the last node.
+Keywords: Distributed source coding, cascade source coding,
+observation costs, side information, rate-distortion theory.
+
+X 1n
+
+Node 1
+
+R1
+
+ˆ
+X 1n
+ˆ
+Xn
+
+Node 3
+n
+X2
+
+Node 2
+
+R2
+
+X 1n
+n
+X2
+
+2
+
+An
+
+Yn
+
+p( y | a, x1 , x2 )
+
+Figure 1. Distributed source coding with a side information vending machine
+at the decoder. Side information is assumed to be available "non-causally"
+to the decoder.
+
+one without any side information. Reference [4] also solved
+the more general case in which both decoders have access
+to the same vending machine, and either the side informations
+produced by the vending machine at the two decoders satisfy a
+degradedness condition, or lossless source reconstructions are
+required at the decoders. Instead, the work [3] considered a
+set-up that generalizes the Heegard-Berger problem mentioned
+above by allowing for functional reconstructions of the source
+X and of an additional sequence measured only through the
+vending machine at the decoder. A further related work is
+[6], where the model in [1] is extended to include secrecy
+constraints.
+Contributions: In this paper, we study two multi-terminal
+extensions of the set-up of [1], namely the distributed source
+coding setting of Fig. 1 and the cascade model of Fig. 2. In
+the distributed source coding setting of Fig. 1, two encoders
+(Node 1 and Node 2), which measure correlated sources X1
+and X2 , respectively, communicate over rate-limited links, of
+rates R1 and R2 , to a single decoder (Node 3). The action
+sequence controlling the side information at Node 3 is selected
+by Node 3 based on the message M1 (of rate R1 ) received
+from Node 1. In Sec. II, we characterize the set R(D1 , Γ) of all
+achievable rates (R1 , R2 ) for a given distortion constraint D1
+ˆ
+on the reconstruction1 X1 and an action cost constraint of Γ,
+under the requirement that source X2 must be decoded (near)
+
+I. I NTRODUCTION
+Reference [1] introduced the notion of a side information
+"vending machine". In this framework, unlike the conventional
+Wyner-Ziv set-up, the joint distribution of the side information
+Y available at the decoder and of the source X observed at the
+encoder can be controlled through the selection of an "action"
+A. Action A is selected by the decoder based on the message
+M , of R bits per source symbol, received from the encoder,
+and is subject to a cost constraint. The performance of the
+system is thus expressed in terms of the interplay among three
+metrics, namely the rate R, the cost budget Γ on the action A,
+ˆ
+and the distortion D of the reconstruction X at the decoder.
+The rate-distortion-cost function R(D, Γ) is derived in [1] for
+the case in which the side information Y is available "noncausally" to the decoder, as in the standard Wyner-Ziv model,
+and in the case in which it is available "causally", as introduced
+in [2].
+Recent works [3] and [4] generalized the characterization
+of the rate-distortion-cost function in [1] to a multi-terminal
+set-up analogous to the so called Heegard-Berger problem [5],
+in which the side information vending machine may or may
+not be available at the decoder. This entails the presence of
+two decoders, one with access to the vending machine and
+
+1 Reconstruction X may be (a lossy version of) an arbitrary function of
+ˆ1
+sources X1 and X2 .
+
+1
+
+ˆ
+X 1n
+
+X 1n
+
+Node 1
+
+R12
+
+Node 2
+
+R23
+
+n
+X2
+
+X 1n
+n
+X2
+
+ˆ
+X 2i
+
+Node 3
+
+An
+
+n
+measures sequences X2 and encodes it into message M2
+of nR2 bits. Node 3 wishes to reconstruct the two sources
+within given distortion requirements, to be discussed below,
+ˆn
+ˆn
+ˆn
+ˆn
+as X1 ∈ X1 and X2 ∈ X2 .
+To this end, Node 3 selects an action sequence An , where
+n
+A ∈ An , based on the message M1 received from Node
+1. The side information sequence Y n is then realized as the
+n
+n
+output of a memoryless channel with inputs (An , X1 , X2 ).
+n
+n
+n
+n
+Speciﬁcally, given A , X1 and X2 , the sequence Y is
+distributed as
+
+Yi
+
+p ( y | a, x1 , x2 )
+
+Figure 2. Cascade source coding with a side information vending machine.
+Side information is assumed to be available "causally" to the decoder.
+
+n
+
+p(y n |an , xn , xn ) =
+1
+2
+
+pY |AX1 X2 (yi |ai , x1i , x2i ).
+
+(1)
+
+i=1
+
+losslessly at the decoder. We also provide a numerical example
+to obtain further insight into the role of control information
+in achieving optimal performance. This result generalizes the
+classical result of [7] for distributed source coding with "one
+distortion criterion".
+In the cascade model of Fig. 2, Node 1 is connected via a
+rate-limited link, of rate R12 , to Node 2, which is in turn
+communicates with Node 3 with rate R23 . Source X1 is
+measured by Node 1 and the correlated source X2 by both
+Node 1 and Node 2. Node 3 has side information Y , which
+can be controlled via an action A selected by Node 3 based
+on the message received from Node 2. In Sec. III, we derive
+the set R(D1 , D2 , Γ) of all achievable rates (R12 , R23 ) for
+given distortion constraints (D1 , D2 ) on the reconstructions
+ˆ
+ˆ
+X1 and X2 at Node 2 and Node 3, respectively,2 and for
+cost constraint Γ. This characterization is obtained under the
+assumption that the side information Y be available causally
+at Node 3. This result extends the characterization of the
+rate-distortion achievable performance for the cascade model
+studied in [9] to the set-up at hand with a side information
+vending machine at Node 3.
+
+The overall cost of an action sequence an is deﬁned by a persymbol cost function Λ: A →[0, Λmax ] with 0 ≤ Λmax < ∞.
+ˆn
+ˆn
+The estimated sequences X1 and X2 are obtained as a function of both messages M1 and M2 and of the side information
+ˆn
+ˆn
+Y n . The estimates X1 and X2 are constrained to satisfy
+distortion constraints deﬁned by two per-symbol distortion
+ˆ
+metrics, namely d1 (x1 , x2 , y, x1 ): X1 × X2 × Y × X1 →
+ˆ
+[0, Dmax ] with 0 ≤ Dmax < ∞ and d2 (x2 , x2 ) = dH (x2 , x2 ):
+ˆ
+ˆ
+X2 × X2 → {0, 1}. Note that, while metric d1 (x1 , x2 , y, x1 )
+ˆ
+is arbitrary, metric d2 (x2 , x2 ) is assumed to be the Hamming
+ˆ
+distortion dH (x2 , x2 ), where dH (x2 , x2 ) = 0 if x2 = x2 and
+ˆ
+ˆ
+ˆ
+dH (x2 , x2 ) = 1 otherwise.
+ˆ
+More formally, an (n, R1 , R2 , D1 , D2 , Γ) code for the setup of Fig. 1 consists of two source encoders
+
+II. D ISTRIBUTED S OURCE C ODING WITH A S IDE
+I NFORMATION V ENDING M ACHINE
+
+which maps the message M1 into an action sequence A ; and
+a decoding function
+
+n
+g1 : X1 → [1, 2nR1 ],
+n
+and g2 : X2 → [1, 2nR2 ],
+n
+X1
+
+and
+into messages M1 and
+which map the sequences
+M2 , respectively; an “action” function
+: [1, 2nR1 ] → An ,
+
+n
+ˆn
+h: [1, 2nR1 ] × [1, 2nR2 ] × Y n → X1 × X2 ,
+
+(4)
+
+which maps the messages M1 and M2 , and the side informaˆn
+ˆn
+tion sequence Y n into the estimated sequences X1 and X2 ;
+such that the action cost constraint Γ is satisﬁed as
+n
+
+1
+E [Λ(Ai )] ≤ Γ,
+n i=1
+
+A. System Model
+The problem of distributed lossy source coding with
+a vending machine and non-causal side information
+is deﬁned by the probability mass functions (pmfs)
+pX1 X2 (x1 , x2 ) and pY |AX1 X2 (y|a, x1 , x2 ) and discrete
+ˆ
+alphabets X1 , X2 , Y, A and X 1 as follows. The source
+n
+n
+n
+n
+n
+n
+sequences X1 and X2 with X1 ∈ X1 and X2 ∈ X2 ,
+respectively, are such that the pairs (X1i , X2i ) for i ∈ [1, n]
+are independent and identically distributed (i.i.d.) with joint
+n
+pmf pX1 X2 (x1 , x2 ). Node 1 measures sequences X1 and
+encodes it into message M1 of nR1 bits, while Node 2
+X2 .
+
+(3)
+n
+
+In this section, we ﬁrst detail the system model for the
+setting of Fig. 1 of distributed source coding with a vending
+machine. We then present the characterization of the corresponding rate-distortion-cost performance in Sec. II-B. An
+example follows in Sec. II-C.
+
+2 Reconstructions
+
+(2)
+
+n
+X2
+
+(5)
+
+and the distortion constraints D1 and D2 hold, namely
+n
+
+1
+ˆ
+E d1 (X1i , X2i , Yi , X1i ) ≤ D1
+n i=1
+(6a)
+n
+
+and
+
+n
+
+1
+1
+ˆ
+ˆ
+E dH (X2i , X2i ) =
+Pr[X2i = X2i ] ≤ D2 .
+n i=1
+n i=1
+(6b)
+
+Given a distortion-cost tuple (D1 , D2 , Γ), a rate pair
+(R1 , R2 ) is said to be achievable if, for any > 0 and sufﬁciently large n, there exists a (n, R1 , R2 , D1 + , D2 + , Γ+ )
+
+ˆ
+ˆ
+X1 and X2 may be arbitrary functions of both X1 and
+
+2
+
+ˆn
+Finally, the decoder estimates X1 sample by sample by using
+ˆ 1i = x1 (Vi , Yi , Qi ).
+ˆ
+function x1 (v, y, q) as X
+ˆ
+We remark that an extension of Proposition 1 to any number
+of encoders can be found in [8].
+
+code. The rate-distortion-cost region R(D1 , D2 , Γ) is deﬁned
+as closure of all rate pairs (R1 , R2 ) that are achievable given
+the distortion-cost tuple (D1 , D2 , Γ). We focus on characterizing the rate-distortion-cost function R(D1 , Γ), which is
+deﬁned as R(D1 , Γ) = R(D1 , 0, Γ), that is, we impose the
+n
+ˆ
+constraint 1
+Pr[X2i = X2i ] → 0 for n → ∞.
+n
+
+C. A Binary Example
+
+i=1
+
+We now focus on a speciﬁc example in order to illustrate
+the result derived in Proposition 1. Speciﬁcally, we assume
+that all alphabets are binary and that (X1 , X2 ) is a doubly
+symmetric binary source (DSBS) characterized by probability
+p, with 0 ≤ p ≤ 1/2, so that p(x1 ) = p(x2 ) = 1/2 for
+x1 , x2 ∈ {0, 1} and Pr[X1 = X2 ] = p. Moreover, the decoder
+wishes to reconstruct both X1 and X2 losslessly in the sense
+discussed above. This implies that we set d1 (x1 , x2 , y, x1 ) =
+ˆ
+dH (x1 , x1 ) and D1 = 0. The side information Yi is such that
+ˆ
+
+B. Rate-Distortion-Cost Region
+In this section, a single-letter characterization of the ratedistortion-cost region R(D1 , Γ) is derived.
+Proposition 1. The rate-distortion-cost region R(D1 , Γ) for
+the model in Fig. 1 is given by union of the set of all of rate
+tuples (R1 , R2 ) that satisfy the inequalities
+R1 ≥ I(X1 ; A|Q) + I(X1 ; V |A, X2 , Y, Q) (7a)
+R2 ≥ H(X2 |A, Y, V, Q)
+and R1 + R2 ≥ I(X1 ; A|Q) + H(X2 |A, Y, Q)
+
+(7b)
+(7c)
+
+Yi =
+
++ I(X1 ; V |A, X2 , Y, Q),
+ˆ
+p(q, x1 , x2 , y, v, a, x1 ) = p(q)p(x1 , x2 )p(a, v|x1 , q)
+x
+ˆ
+· p(y|a, x1 , x2 )δ(ˆ1 − x1 (v, y, q)),
+(8)
+with pmfs p(q) and p(a, v|x1 , q) and deterministic function
+x1 (v, y, q), such that the action cost and the distortion conˆ
+straints
+ˆ
+and E d1 (X1 , X2 , Y, X1 ) ≤ D1
+
+if Ai = 1
+,
+if Ai = 0
+
+(11)
+
+where f(x1 , x2 ) is a deterministic function to be speciﬁed.
+Therefore, when a unitary action, Ai = 1, is selected, then
+Yi = f(X1i , X2i ) is measured at the receiver, while with Ai =
+0 no useful information is collected by the decoder. The action
+sequence An must satisfy the cost constraint (5), where the
+cost function is deﬁned as Λ(Ai ) = 1 if Ai = 1 and Λ(Ai ) =
+0 if Ai = 0. It follows that, given (11), a cost Γ implies
+that the decoder can observe f(X1i , X2i ) only for at most nΓ
+symbols. As for the function f(x1 , x2 ), we consider two cases,
+namely f(x1 , x2 ) = x1 ⊕ x2 , where ⊕ is the binary sum and
+f(x1 , x2 ) = x1 x2 , where is the binary product.
+Under the requirement of lossless reconstruction for both
+X1 and X2 (i.e., D1 = 0 along with D2 = 0), it can be easily
+shown from Proposition 1 that the minimum sum-rate R1 +R2
+for a given cost constraint Γ, which we denote as Rsum (Γ) is
+given by the right-hand side of (7c) with V = X1 , namely4
+
+for some joint pmfs that factorizes as
+
+E [Λ(A)] ≤ Γ
+
+f(X1i , X2i )
+1
+
+(9)
+(10)
+
+hold. Finally, Q and V are auxiliary random variables whose
+alphabet cardinality can be constrained as |Q| ≤ 6 and |V| ≤
+6 |X1 | |A| + 3 without loss of optimality.
+Remark 2. If we set p(y|a, x1 , x2 ) = p(y|x1 , x2 ), Proposition
+1 reduces to [7, Theorem 1]. If, instead, X1 is independent
+of X2 , the minimum rate R1 , given by the right-hand side of
+(7a), recovers [1, Theorem 1].
+For the proof of converse, we refer to [8]. As for achievability, the scheme at hand combines the distributed Wyner-Ziv
+approach of [10, Theorem II] with the scheme proposed in [1,
+Sec. II-B]. Speciﬁcally, Node 1 ﬁrst maps the input sequence
+n
+X1 into an action sequence An , so that the two sequences
+are jointly typical. Conveying sequence An to the receiver
+requires I(X1 ; A) bits per source sample, as follows easily
+from standard rate-distortion theory results. The sequences
+(An , Y n ) are now regarded as side information available at
+the decoder. Based on this, the distributed Wyner-Ziv scheme
+proposed in [10, Theorem 2] is used to convey an auxiliary
+n
+codeword V n from Node 1 and sequence X2 from Node
+3
+n
+n
+2 . Note that the fact that sequences (A , Y ) are not i.i.d.
+does not affect achievability of the rate region derived in [10].
+
+where
+the
+mutual
+informations
+are
+calculated
+with respect to the distribution p(x1 , x2 , y, a)
+=
+p(x1 , x2 )p(a|x1 )p(y|a, x1 , x2 ), and the minimum is taken
+over all distributions p(a|x1 ) such that E [Λ(A)] = E [A] ≤ Γ.
+Note that, by its deﬁnition, function Rsum (Γ) is nonincreasing for all Γ ≥ 0 (and constant for Γ ≥ 1) so that in
+particular Rsum (1) = minΓ≥0 Rsum (Γ). Given the function
+f(x1 , x2 ), evaluation of (12) requires solving a simple convex
+optimization problem. We do not provide a more explicit
+expression here, as it can be easily derived. Instead, we
+discuss some numerical results for the two functions f(x1 , x2 )
+mentioned above, namely (binary) sum and product.
+To start with, we evaluate the sum-rate (12) Rsum (1), which
+provides the minimum value of Rsum (Γ) over Γ, as discussed
+above. With Γ = 1, it is clearly optimal to set A = 1,
+irrespective of the value of X1 . It is not difﬁcult to see that
+
+3 More precisely, since An is known to Node 1 as well, the codebook used
+n
+to map X1 into V n is generated conditioned on An .
+
+4 The entire rate region R(0, Γ) also follows immediately by setting V =
+X1 .
+
+Rsum (Γ) = min I(X1 ; A) + H(X1 , X2 |A, Y ),
+
+3
+
+(12)
+
+2
+
+the value of the side information is always Y = X1 X2 = 0
+irrespective of the value of X2 . Therefore, if X1 = 0, the
+side information is less informative than if X1 = 1 and thus
+it may be advantageous to save on the action cost by setting
+A = 0. Consequently, choosing actions based on the message
+received from Node 1 can result in a lower sum-rate.
+To illustrate the discussion above, Fig. 3 depicts the sumrates (12) and (14) versus the action cost Γ for p = 0.4. It can
+be seen that, for sufﬁciently large probability p (here, p = 0.4),
+while a product side information is less advantageous that sum
+side information for Γ = 1, as per the discussion above, this
+may not be the case for smaller costs. Moreover, in this case,
+the greedy approach suffers from a signiﬁcant performance
+loss for product side information.
+
+Product side information
+Product side information, greedy
+Sum side information
+Sum side information, greedy
+
+1.8
+
+R
+sum
+
+1.6
+
+1.4
+
+1.2
+
+1
+
+0.8
+0
+
+0.1
+
+0.2
+
+0.3
+
+0.4
+
+0.5
+
+0.6
+
+0.7
+
+0.8
+
+0.9
+
+1
+
+Γ
+
+Figure 3. Sum-rates (12) and (14) versus the action cost Γ for sum and
+product side informations (p = 0.4).
+
+III. C ASCADE S OURCE C ODING WITH A S IDE
+I NFORMATION V ENDING M ACHINE
+
+⊕
+we have Rsum (1) = 1 for the sum side information, while for
+the product side information we obtain
+
+Rsum (1) = H
+
+1−p
+p
+p
+,
+,
+1+p 1+p 1+p
+
+1+p
+2
+
+,
+
+In this section, we ﬁrst describe the system model for the
+setting of Fig. 2 of cascade source coding with a side information vending machine. We recall that side information Y
+is here assumed to be available causally at the decoder (Node
+3). We then present the characterization of the corresponding
+rate-distortion-cost performance in Sec. III-B.
+
+(13)
+
+where we have used the deﬁnition H (p1 , p2 , ..., pk ) =
+k
+− i=1 pi log2 pi . By comparing these two expressions, it can
+be seen that, if p is sufﬁciently small, namely if p 0.33, we
+⊕
+have Rsum (1) < Rsum (1) and thus product side information
+is more informative than the sum, while for p
+0.33 the
+opposite is true (and for p = 1, they are equally informative).
+
+A. System Model
+The problem of cascade lossy computing with causal
+observation costs at second user is deﬁned by the pmfs
+pX1 X2 (x1 , x2 ) and pY |AX1 X2 (y|a, x1 , x2 ) and discrete alphan
+n
+ˆ ˆ
+bets X1 , X2 , Y, A, X1 , X2 . The source sequences X1 and X2
+n
+n
+n
+n
+with X1 ∈ X1 and X2 ∈ X2 , respectively, are such
+that the pairs (X1i , X2i ) for i ∈ [1, n] are i.i.d. with joint
+n
+pmf pX1 X2 (x1 , x2 ). Node 1 measures sequences X1 and
+n
+X2 and encodes them in a message M12 of nR12 bits,
+which is delivered to Node 2. Node 2 estimates a sequence
+ˆn
+ˆn
+X1 ∈ X1 within given distortion requirements. Moreover,
+Node 2 encodes the message M12 , received from Node 1, and
+n
+the locally available sequence X2 in a message M23 of nR23
+bits, which is delivered to node 3.
+ˆn
+ˆn
+Node 3 wishes to estimate a sequence X2 ∈ X2 within
+given distortion requirements. To this end, Node 3 receives
+message M23 and based on this, selects an action sequence
+An , where An ∈ An . The action sequence affects the quality
+n
+n
+of the measurement Y n of sequence X1 and X2 obtained at
+n
+n
+the Node 3. Speciﬁcally, given An , X1 and X2 , the sequence
+ˆ
+Y n is distributed as in (1). The estimated symbol X2i with
+ˆ
+ˆ
+X2i ∈ X2 is then obtained as a function of M23 and Y i for
+ˆn
+i ∈ [1, n]. Estimated sequences Xj for j = 1, 2 must satisfy
+distortion constraints deﬁned by functions dj (x1 , x2 , y, xj ):
+ˆ
+ˆ
+X1 × X2 × Y × Xj → [0, Dmax ] with 0 ≤ Dmax < ∞ for
+j = 1, 2, respectively.
+The formal description of an (n, R12 , R23 , D1 , D2 , Γ) code
+for the set-up of Fig. 2 can be constructed similar to Sec. 2
+following the discussion above and is fully detailed in [8].
+Here we remark that the “action” function at Node 3
+
+We now evaluate the sum-rate (12) for a general cost budget
+0 ≤ Γ ≤ 1 for both sum and product side information. We
+are interested in emphasizing the role of data and control
+information in achieving the optimal sum-rate (12). To this
+end, we compare (12) with the performance attainable by
+imposing that the action A be selected by Node 3 a priori, that
+is, without any control from Node 1. The sum-rate attainable
+by such a scheme, which is referred to as "greedy", following
+[1], can be easily seen to be given by5
+Rsum, greedy (Γ) = ΓH(X1 , X2 |Y ) + (1 − Γ)(1 + H(p)).
+(14)
+⊕
+We use, as above, the notations Rsum, greedy (Γ) and
+Rsum, greedysum (Γ) for (14) as evaluated with sum and product side informations.
+A ﬁrst observation is that, with sum side information, we
+have that (see [8] for details)
+⊕
+⊕
+Rsum, greedy (Γ) = Rsum (Γ).
+
+(15)
+
+This shows that a "greedy" approach, in which only data
+information is conveyed by Node 1, is optimal. Instead, this is
+not the case with product side information and we generally
+have Rsum, greedy (Γ) ≥ Rsum (Γ), where inequality can be
+strict (unless, of course, Γ = 1). The reason is that, if X1 = 0,
+5 It can be obtained from (12) by setting p(a|x ) = Γ for a = 1 irrespective
+1
+of the value of X1 .
+
+: [1, 2nR23 ] → An ,
+
+4
+
+(16)
+
+ˆ
+jointly typical. This requires rate I(X1 , X2 ; X1 |U, A). Levern
+aging the side information X2 available at Node 2, conˆn
+veying the codewords An , X1 and U n to Node 2 requires
+ˆ
+ˆ
+rate I(X1 , X2 ; U, A)+I(X1 , X2 ; X1 |U, A)−I(U, A, X1 ; X2 ),
+which equals the right-hand side of (20a). Node 2 conveys
+U n and An to Node 3 by simply forwarding the index
+received from Node 1 (of rate I(X1 , X2 ; U, A)). Finally, Node
+ˆn
+3 estimates X2 through a symbol-by-symbol function as
+ˆ 2i = x2 (Ui , Yi ) for i ∈ [1, n].
+X
+ˆ
+
+maps the message M23 into an action sequence An ; and that
+we have the decoding function at Node 2
+n
+ˆn
+h1 : [1, 2nR12 ] × X2 → X1 ,
+
+(17)
+
+n
+which maps the message M12 and the measured sequence X2
+n
+ˆ
+into the estimated sequence X1 ; and a sequence of decoding
+functions at Node 3
+
+ˆ
+h2i : [1, 2nR23 ] × Y i → X2 ,
+
+(18)
+
+for i ∈ [1, n] which maps the message M23 and the meaˆ
+sured sequence Y i into the ith estimated symbol X2i =
+i
+h2i (M23 , Y ). We also note that the action cost constraint (5)
+and distortion constraints Dj
+
+IV. C ONCLUDING R EMARKS
+As a concluding remark, one aspect worth emphasizing of
+the two problems solved in this paper concerns the way the
+side information is assumed to be available at the decoder.
+For distributed source coding, we have in fact assumed that
+side information is available in a non-causal fashion in the
+conventional sense of the Wyner-Ziv problem. Adaptation of
+the results given here to a model where side information
+is available only causally, in the sense of [2], proved challenging and is left open by this work. On the contrary, for
+the cascade/triangular model, we have assumed causal side
+information at the decoder. In this case, adaption of the given
+results to the set-up of non-causal side information proved
+difﬁcult, and is again left as an open problem.
+
+n
+
+1
+ˆ
+E dj (X1i , X2i , Yi , Xji ) ≤ Dj for j = 1, 2,
+n i=1
+
+(19)
+
+must be satisﬁed. Achievability and the rate-distortion-cost
+region R(D1 , D2 , Γ) are deﬁned similar to Sec. 2.
+B. Rate-Distortion-Cost Region
+We have the following characterization of the ratedistortion-cost region.
+Proposition 3. The rate-distortion-cost region R(D1 , D2 , Γ)
+for the set-up of Fig. 2 is given by the union of all rate pairs
+(R12 , R23 ) satisfying the inequalities
+ˆ
+R12 ≥ I(X1 ; U, A, X1 |X2 )
+and R23 ≥ I(X1 , X2 ; U, A),
+
+V. ACKNOWLEDGEMENT
+This work was supported in part by the U.S. National
+Science Foundation under Grant No. 0914899.
+
+(20a)
+(20b)
+
+R EFERENCES
+
+for some joint pmf that factorizes as
+
+[1] H. Permuter and T. Weissman, “Source coding with a side information
+“vending machine”,” IEEE Trans. Inf. Theory, vol. 57, pp. 4530–4544,
+Jul 2011.
+[2] T. Weissman and A. El Gamal, “Source coding with limited-look-ahead
+side information at the decoder,” IEEE Trans. Inf. Theory, vol. 52, no.
+12, pp. 5218–5239, Dec. 2006.
+[3] B. Ahmadi and O. Simeone, “Robust coding for lossy computing with
+receiver-side observation costs,” in Proc. IEEE International Symposium
+on Information Theory (ISIT 2011), July 31-Aug. 5, Saint Petersburg,
+Russia, 2011 (see also arXiv:1108.1535).
+[4] Y. Chia, H. Asnani, and T. Weissman, “Multi-terminal source coding
+with action dependent side information,” in Proc. IEEE International
+Symposium on Information Theory (ISIT 2011), July 31-Aug. 5, Saint
+Petersburg, Russia, 2011.
+[5] C. Heegard and T. Berger, “Rate distortion when side information may
+be absent,” IEEE Trans. Inf. Theory, vol. 31, no. 6, pp. 727-734, Nov.
+1985.
+[6] K. Kittichokechai, T. J. Oechtering and M. Skoglund, “Secure Source
+Coding with Action-dependent Side Information,” in Proc. IEEE International Symposium on Information Theory (ISIT 2011), July 31-Aug.
+5, Saint Petersburg, Russia, 2011.
+[7] T. Berger and R. Yeung, “Multiterminal source encoding with one
+distortion criterion,” IEEE Trans. Inform. Theory, vol. 35, pp. 228–236,
+Mar 1989.
+[8] B. Ahmadi and O. Simeone, “Distributed and Cascade Lossy Source
+Coding with a Side Information "Vending Machine",” submitted
+[arXiv:1109.6665].
+[9] Y.-K. Chia and T. Weissman, “Cascade and triangular source coding
+with causal side information,” in Proc. IEEE International Symposium
+on Information Theory (ISIT 2011), July 31-Aug. 5, Saint Petersburg,
+Russia, 2011.
+[10] M. Gastpar, “The Wyner–Ziv problem with multiple sources,” IEEE
+Trans. Inform. Theory, vol. 50, no. 11, pp. 2762–2767, Nov. 2004.
+
+ˆ ˆ
+ˆ
+p(x1 , x2 , y, a, u, x1 , x2 ) = p(x1 , x2 )p(a, u, x1 |x1 , x2 )
+· p(y|a, x1 , x2 )δ(ˆ2 − x2 (u, y)),
+x
+ˆ
+(21)
+with pmf p(a, u, x1 |x1 , x2 ) and deterministic function
+ˆ
+x2 (u, y), such that the action and the distortion constraints
+ˆ
+E [Λ(A)] ≤ Γ
+ˆ
+and E[dj (X1 , X2 , Y, Xj )] ≤ Dj , for j = 1, 2,
+
+(22)
+(23)
+
+respectively, hold. Finally, U is an auxiliary random variable
+whose alphabet cardinality can be constrained as |U| ≤
+|X1 | |X2 | + 4, without loss of optimality.
+Remark 4. If p(y|a, x1 , x2 ) = p(y|x1 , x2 ), Proposition 3
+reduces to [9, Theorem 1].
+The proof of converse is provided in [8]. The coding
+strategy that proves achievability is a combination of the
+techniques proposed in [1] and [9, Theorem 1]. Speciﬁn
+n
+cally, Node 1 ﬁrst maps sequences X1 and X2 into the
+action sequence An and an auxiliary codeword U n using
+the standard joint typicality criterion. This mapping operation
+requires a codebook of rate I(X1 , X2 ; U, A). Then, given
+the so obtained sequences An and U n , source sequences
+n
+n
+ˆn
+X1 and X2 are further mapped into the estimate X1 for
+n
+n
+n
+n ˆn
+Node 2 so that the sequences (X1 , X2 , A , U , X1 ) are
+
+5
+
+

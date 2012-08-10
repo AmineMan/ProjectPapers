@@ -1,0 +1,11 @@
+update
+compile
+env JAVA_OPTS="-Xmx512m" sbt run
+proguard
+compile
+java $SBT_OPTS -Dfile.encoding=UTF-8 -Xss4M -Xmx1024M -XX:MaxPermSize=1024M -XX:NewSize=512M -XX:NewRatio=3 -jar `dirname $0`/project/sbt-launch-0.7.5.jar "$@"
+-Xmx1524M
+compile
+last
+compile
+last
