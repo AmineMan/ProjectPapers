@@ -1,0 +1,948 @@
+Creator:        TeX
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Fri May 18 16:35:47 2012
+ModDate:        Tue Jun 19 12:55:17 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      485009 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569566963
+
+Design of Error-free Perfect Secrecy System by
+Preﬁx Codes and Partition Codes
+Chinthani Uduwerelle, Siu-Wai Ho and Terence Chan
+Institute for Telecommunications Research
+University of South Australia
+Email: uduhk001@mymail.unisa.edu.au, {siuwai.ho, terence.chan}@unisa.edu.au
+
+The approach in this paper is inspired by the work done
+in [2], where it aims to design an EPS system for sources
+with unknown statistics. In [2] two crypto-systems, (U, R, X)
+and (U , R , X ) are considered with probability distributions PU RX (u, r, x) and PU R X (u, r, x) respectively. These
+(U, R, X) and (U , R , X ) satisfy the following criteria:
+(C1) The sample spaces of the pair of random variables
+{U, U } (also of the pair {R, R } and the pair {X, X })
+are the same.
+(C2) The support of PU is a subset of the support of PU . In
+other words, if PU (u) = 0, then PU (u) = 0.
+(C3) PXR|U (x, r|u) = PX R |U (x, r|u) for all x, r, u. It
+means that the encoder in the two crypto-systems are
+essentially the same.
+(C4) (U , R , X ) forms an EPS system.
+The authors showed [2] that if (C1)–(C4) are satisﬁed,
+then (U, R, X) is also an EPS system. This result has a
+very interesting implication in the design methodology of an
+EPS system. Suppose we do not know what the true statistic
+of our source U is. In this case, we can only make our
+best guess (PU ) on the probability distribution of U . Let
+U be the “imaginary source” whose underlying distribution
+is PU . Now, suppose we design an EPS system (speciﬁed
+by the conditional probability distribution PX R |U ) for this
+imaginary source U . The authors thus showed [2] that if we
+use the so-designed EPS encoder for U , the resulting cryptosystem is also an EPS system.
+In addition to the above results, [2] also proved that if the
+crypto-system (U , R , X ) achieves the minimum expected
+key consumption (i.e., I(R ; U X ) = H(U ) or equivalent
+I(X ; R ) = 0) then the expected key consumption in the new
+system [2, Theorem 4] is given by
+
+Abstract—We investigate how to design an error-free and
+perfectly secure crypto-system. In particular, we are interested
+in the efﬁciency of an EPS system. A approach based on preﬁx
+codes is introduced. Also an optimum partition code is introduced
+where the key consumption is minimum for ﬁxed number of
+channel uses. Results obtained in this paper can also be applied to
+study the tradeoff between the key consumption and the number
+of channel uses needed to transmit the encrypted message.
+
+I. I NTRODUCTION
+A crypto-system is deﬁned by a triple of random variables
+(U, X, R) such that U is the input message, R is the random
+key (shared by a pair of legitimate transmitter and receiver)
+and X is the cipher-text. The encrypted message X will be
+sent across a public channel to the receiver. We assume existence of an adversary who can eavesdrop the public channel.
+In many cases, it is often assumed that the random key R
+should be independent of the message U , or equivalently,
+I(U ; R) = 0.
+
+(1)
+
+With this assumption, the secret key can be generated and be
+shared between the transmitter and the receiver even before
+the encoder knows what the message U will be. In this paper,
+we will always keep (1) as our assumption.
+A crypto-system is called perfectly secure if
+I(U ; X) = 0.
+
+(2)
+
+The condition (2) guarantees that any eavesdropper who
+learns X from wiretapping the public channel will obtain no
+information about the input message U .
+In addition to the above two conditions we assume that
+the decoder (which has access to R and receives X) can
+reconstruct U with zero error. Hence, U is a function of the
+cipher-text X and the shared private key R. So
+H(U |R, X) = 0.
+
+(3)
+
+I(R; U X) = H(U ) + D(PU ||PU ).
+
+Deﬁnition 1 (EPS System [1]). A crypto-system (U, X, R)
+is called an error-free and perfectly secure (EPS) system if
+(U, X, R) satisﬁes constraint (1)–(3).
+
+(4)
+
+The formula (4) clearly illustrates the relation between the
+amount of key consumption and the error in estimating the
+source’s distribution. In this paper we will study how these
+results can be further extended in designing efﬁcient EPS
+systems for a given source distribution PU .
+The organisation of this paper is as follows. First, we will
+study whether crypto-systems constructed from preﬁx codes
+(further details will be given later) are efﬁcient or not. We
+will also consider the relationship between the expected key
+
+Once we have identiﬁed the properties of an EPS system
+next task is to investigate how to design an EPS system
+efﬁciently. Efﬁciency of an EPS system is measured by two parameters: 1) Key consumption which is deﬁned by I(R; U X)
+(see [1] for details) and 2) the number of channel uses to
+transmit X which is deﬁned by H(X).
+
+1
+
+source U , then the expected key consumption is equal to
+
+consumption and the expected codeword length. Applications
+of Huffman and Shannon coding to crypto-system design will
+be studied as a special case. Finally we introduce an optimum
+partition code [1] for a ﬁxed number of channel uses which
+can achieve the minimum expected key consumption.
+
+I(R; U X) =
+u
+
+1
+PU (u)lu − log .
+ν
+
+(5)
+
+If
+PU (u) =
+
+II. P REFIX CODES
+
+2−lu
+, for 1 ≤ u ≤ |U|
+ν
+
+(6)
+
+then
+
+In order to construct an EPS system, the conditions (1)–(3)
+must be satisﬁed. To facilitate the discussion, we consider a
+simple approach by using preﬁx code together with one-time
+pad. However, it is easy to see that we need to apply the onetime pad carefully in order to satisfy the security constraint.
+
+I(R; U X) = H(U ) + D(PU ||PU ).
+
+(7)
+
+Proof: We can ﬁrst obtain (7) by substituting (6) in to
+(4). By re-expressing (7), we can get (5) in terms of expected
+codeword length.
+The equation (7) tells that the minimum expected key
+consumption, i.e., I(R; U X) = H(U ) can be achieved if
+D(PU ||PU ) = 0. Therefore, if the source distribution is
+dyadic, Huffman code can achieve the minimum I(R; U X).
+This can be easily veriﬁed from (5) which also shows that
+the expected key consumption is not simply the expected
+codeword length because there is an extra term with ν. We
+will give some examples showing that ν plays a critical role
+here and Huffman code is not always the best to minimize
+the key consumption although it gives the minimum expected
+codeword length. Before that, we present two simple results
+about I(R; U X).
+
+Example 1. Suppose Huffman code is used to compress a
+source U where PU = {0.5, 0.25, 0.125, 0.125}. Then one
+of the possible set of codewords from the Huffman code is
+{0, 10, 110, 111}. Consider one-time pad is directly applied
+to this code (i.e., by doing bitwise XOR between the codeword
+and a key with the same length). Then it will result in
+a variable length cipher-text X which can still give some
+information about the message U . Hence the security condition
+(2) is violated.
+To avoid this problem, we can add some random padding
+bits to the end of the codewords such that all the codewords
+have the same length. A formal deﬁnition is given as follows.
+
+Corollary 2. Following the setup in Theorem 1,
+Deﬁnition 2 (Preﬁx code with padding bits). Consider a preﬁx
+code C and suppose U = u.
+•
+•
+
+•
+
+•
+
+I(R; U X) ≤
+
+PU (u)lu .
+
+(8)
+
+u
+
+Step 1: The codeword C(u) is chosen from C.
+Step 2: Add random padding bits to C(u) so that a
+random variable Vu is constructed where the padding
+bits are uniformly distributed and independent of other
+random variables. The amount of padding bits are chosen
+such that Vu and the longest codeword in C have the same
+length.
+Step 3: Let ϕ be the total number of possible values of
+Vu over all u ∈ U. Choose R to be uniformly distributed
+over ϕ.
+Step 4: X = (Vu + R) mod ϕ.
+
+Proof: Since ν ≤ 1 for preﬁx codes [3], (8) follows from
+(5).
+Corollary 3. Following the setup in Theorem 1, if Shannon
+and Huffman coding is used, then
+I(R; U X) ≤ H(U ) + 1.
+
+(9)
+
+Proof: This follows from the properties of the Huffman
+and Shannon coding [3].
+Since I(R; U X) ≥ H(U ) [1], the Corollary 3 shows that
+the new expected key consumption is within one bit from
+H(U ). Furthermore, Shannon coding can sometimes give a
+smaller I(R; U X) comparing with Huffman coding as shown
+in the example in Table I. However, in some cases Huffman
+code is better than Shannon code as shown in Table II.
+Therefore, it is interesting to ﬁnd a code which can always
+minimize I(R; U X). In particular, we are interest to ﬁnd
+a code which can achieve the minimum, i.e., I(R; U X) =
+H(U ). Furthermore, the above discussion has not considered H(X) yet. Recall that H(X) measures the number of
+channel uses to transmit X. It is also important to minimize
+H(X). From Deﬁnition 2, we can easily check that H(X)
+is equal to the longest codeword length. If we are interested
+in minimizing H(X) as well, Huffman code may not be a
+good choice because the longest codeword in Huffman code
+can be as much as 44% larger than the longest codeword in
+
+Following Example 1, if U = 1 and PU (1) = 0.5, then ‘0’
+is chosen from C. Two random bits are added to this codeword
+so that V1 = (000), (001), (010) or (011) with equal chance.
+Finally, X is generated by applying one-time pad to V1 . Note
+that the key consumption is not simply H(R) = 3 bits. Since
+two extra secret bits are securely received by the decoder, the
+net key consumption in this case is 3 − 2 = 1 bit.
+Here we can easily verify that the system described in
+Deﬁnition 2 is an EPS system, i.e., (1)–(3) are satisﬁed. The
+Following theorem gives the key consumption of this system
+for a source distribution PU .
+Theorem 1. Consider a crypto-system based on the preﬁx
+code C in Deﬁnition 2. Let {lu } be the set of codeword lengths
+in C and ν = u 2−lu . If this crypto-system is applied to a
+
+2
+
+TABLE I
+C OMPARISON OF H UFFMAN AND S HANNON CODING WITH
+PU = {0.8, 0.2}
+Huffman
+Shannon
+
+{lu }
+{1, 1}
+{1, 3}
+
+ν
+1
+0.625
+
+3) Go back: Put j = j + 1 and go to Step 2.
+4) Stop: The output is rθ .
+
+I(R; U X)
+1
+0.7219 = H(U )
+
+For any given θ, the optimal partition code C(Ψθ ) can be
+obtained by letting Ψθ = rθ from Deﬁnition 4 as shown in
+the following theorem.
+
+TABLE II
+C OMPARISON OF H UFFMAN AND S HANNON CODING WITH
+PU = {0.55, 0.45}
+Huffman
+Shannon
+
+{lu }
+{1, 1}
+{1, 2}
+
+ν
+1
+0.75
+
+Theorem 4. For any given PU , the partition code C(rθ )
+constructed from Deﬁnition 4 achieves the minimum I(R; U X)
+among all the partition codes achieving H(X) = log θ.
+
+I(R; U X)
+1
+1.035
+
+Proof: For any given θ, consider the partition code C(Ψθ ).
+In order to prove this theorem, we need to construct some
+auxiliary random variables (U , R , X ). For 1 ≤ i ≤ M , let
+
+Shannon code [4]. In the next section, we will propose a code
+called partition code which will always outperform the coding
+scheme described in Deﬁnition 2.
+
+ψθ (i)
+.
+(14)
+θ
+If the partition code C(Ψθ ) is applied to U , it can be veriﬁed
+that R and X are both uniformly distributed on the set
+{0, 1, . . . , θ − 1} and I(X ; R ) = 0. Also, {U , R , X }
+satisﬁes Deﬁnition 1 for the deﬁnition of an EPS system. Now,
+suppose the partition code C(Ψθ ) is applied to U and we have
+a set of random variables (U, R, X). Note that {U, R, X} and
+{U , R , X } satisfy (C1)–(C4). From (4), the expected key
+consumption for applying C(Ψθ ) on PU is given by
+PU (i) =
+
+III. PARTITION CODE
+The initial ideas about partition code have been introduced
+in [1]. This code was used to achieve the minimum key
+consumption, i.e., I(R; U X) = H(U ). It is speciﬁed by a
+vector of integers Ψ as shown in the following deﬁnition.
+Deﬁnition 3. [Partition Code C(Ψθ )] Assume that U is
+deﬁned on a ﬁnite alphabet with size M . Let Ψθ =
+M
+(ψθ (1), ψθ (2), . . . , ψθ (M )) and let θ = i=1 ψθ (i). If U = i,
+A is uniformly picked from the set {1, 2, . . . , ψθ (i)}. Let
+U −1
+A =
+i=1 ψθ (i) + A − 1, R be uniformly distributed on
+the set {0, 1, . . . , θ − 1} and X = (A + R) mod θ.
+
+I(R; U X) = H(U ) + D(PU ||PU )
+=
+
+=
+=
+
+ψθ (i)=θ
+
+(19)
+
+PU (u) log ψθ (u),
+
+(20)
+
+u
+
+PU (i) log ψθ (i).
+
+(21)
+
+We are going to show that for rθ obtained from Deﬁnition 4,
+Φ(rθ ) ≥ Φ(Ψθ ) and hence the minimum I(R; U X) can be
+achieved by rθ due to (20).
+If θ = M ,
+rθ = (1, 1, . . . , 1),
+
+(12)
+
+(22)
+
+and this is the only vector satisfying the summation of
+elements equal to θ. Therefore, Φ(rθ ) ≥ Φ(Ψθ ).
+For θ ≥ M , assume
+
+where
+i
+
+PU (u) log ψθ (u)
+u
+
+i
+
+(11)
+
+1
+rj (i)
+
+i
+
+Φ(Ψθ ) =
+
+2) Iteration step: If j = θ, then go to Step 4. Otherwise,
+let
+
+= arg max PU (i) log 1 +
+
+ψθ (i)≤θ
+
+(18)
+
+u
+
+where (20) follows from log x is an increasing function of
+x > 0. Deﬁne
+
+For any given PU = {PU (1), PU (2), . . . , PU (M )} and θ ≥
+M , rθ is deﬁned by the following iterative procedure:
+1) Initialization: Put j = M , and let
+
+if i = ,
+if i = ,
+
+i
+
+1
+ψθ (u)
+
+PU (u) log
+
+max
+Ψθ :
+
+(10)
+
+i ψθ (i)≤θ
+
+max
+Ψθ :
+
+(17)
+
+ψθ (i)=θ
+
+min
+Ψθ :
+
+i=1
+
+rj (i)
+rj ( ) + 1
+
+i
+
+=
+
+M
+
+rj+1 (i) =
+
+I(R; U X)
+
+min
+Ψθ :
+
+Deﬁnition 4. [Algorithm to generate rθ ] Let rθ =
+(rθ (1), rθ (2), . . . , rθ (M )) be a vector of positive integers such
+that
+
+rj = (1, 1, . . . , 1).
+
+u
+
+Since PU and θ are given, we only need to consider the last
+summation in (16) in order to ﬁnd the minimum I(R; U X).
+Note that the support of U may be less than θ. Therefore,
+
+M
+
+Note that for θ =
+i=1 ψθ (i), the code C(Ψθ ) gives
+H(X) = log θ. In this section, we will show the optimal
+partition code which can achieve the minimum I(R; U X)
+when θ (i.e., H(X)) is ﬁxed. As we will see, there is a tradeoff
+between I(R; U X) and H(X). Furthermore, partition code
+performs better than Shannon code and Huffman code for both
+aspects in key consumption and number of channel uses.
+
+rθ (i) = θ.
+
+PU (u) log θ +
+u
+
+(15)
+1
+. (16)
+PU (u) log
+ψθ (u)
+
+.
+
+(13)
+Φ(rθ ) ≥ Φ(Ψθ ).
+
+3
+
+(23)
+
+In the following, we are going to show that Φ(rθ+1 ) ≥
+Φ(Ψθ+1 ) for any Ψθ+1 .
+Let wθ+1 = (w(1), . . . , w(M )) be a vector with θ +
+M
+1 =
+i=1 w(i) and wθ+1 = rθ+1 . Now, we prove by
+contradiction with the assumption
+
+3
+
+Partition code
+2.9
+
+I(R;UX)
+
+2.8
+
+2.7
+
+2.6
+
+Φ(wθ+1 ) > Φ(rθ+1 ).
+
+(24)
+Huffman code
+
+2.5
+
+Shannon code
+
+Follow the deﬁnition of in (13) and consider the problem
+into two cases:
+• Case i) w( ) ≥ rθ ( ) + 1.
+Let wθ = (w(1), . . . , w( ) − 1, . . . , w(M )). Then
+
+2.4
+3
+
+3.5
+
+4
+
+4.5
+
+5
+
+5.5
+
+6
+
+H(X)
+
+Fig. 1. Expected key consumption verses the number of channel uses for
+11 7
+4
+2
+1
+1
+1
+1
+PU = { 28 , 28 , 28 , 28 , 28 , 28 , 28 , 28 }.
+
+1
+)
+(25)
+w( )
+1
+≥ PU ( ) log(1 −
+) (26)
+rθ ( ) + 1
+= Φ(rθ ) − Φ(rθ+1 ).
+(27)
+
+Φ(wθ ) − Φ(wθ+1 ) = PU ( ) log(1 −
+
+•
+
+(1)
+
+Therefore, Φ(wθ ) ≥ Φ(rθ ) + (Φ(wθ+1 ) − Φ(rθ+1 )) >
+Φ(rθ ), which contradicts (23). So the assumption (24) is
+incorrect and Φ(wθ+1 ) ≤ Φ(rθ+1 ).
+Case ii) w( ) < rθ ( ) + 1.
+So there exist a j s.t w(j) > r(j). Otherwise it violates
+i w(i) = θ + 1 = 1 +
+i rθ (i). Since w( ) and rθ ( )
+are integers
+w( ) ≤ rθ ( )
+
+(28)
+
+and similarly we have
+w(j) − 1 ≥ rθ (j).
+
+(29)
+
+θ = 3, Ψ3 = (1, 1, 1)
+
+Therefore,
+PU ( ) log(1 +
+
+θ=
+
+(33)
+
+(1)
+
+Now, we construct wθ+1 by changing only w( ) and
+w(j) in wθ+1 . Let
+(1)
+
+wθ+1 =(w(1), . . . , w( ) + 1, . . . , w(j) − 1, . . . ,
+w(M )),
+
+(34)
+
+(1)
+
+(1)
+
+= (2, 1, 1)
+
+(37)
+
+= (1, 2, 1)
+
+(38)
+(39)
+
+Theorem 5. The preﬁx code with padding scheme described in
+Deﬁnition 2 is a special case of partition code in Deﬁnition 3.
+
+so that wθ+1 = wθ+1 . We have
+Φ(wθ+1 ) ≥ Φ(wθ+1 ) > Φ(rθ+1 ),
+
+(36)
+
+In this example, both C(Ψ1 ) and C(Ψ2 ) achieve the minimum
+4
+4
+I(R; U X) for θ = 4.
+If we consider the complexity of this algorithm. In the initial
+step, it will calculate the values for all rθ (i) where 1 ≤ i ≤ M
+and all the values will be stored. For all further steps, it will
+calculate only the l-th term which is selected according to (13)
+and increased by 1 in the last step. So the complexity of this
+algorithm is linear in θ.
+4
+2
+1
+1
+1
+1
+11 7
+For PU = { 28 , 28 , 28 , 28 , 28 , 28 , 28 , 28 }, we have found
+the optimum partition code from Deﬁnition 4 and we have
+plotted I(R; U X) verses H(X) in Fig. 1. The Huffman and
+Shannon coding together with padding are also shown in the
+same picture. We can see that the performance of partition
+code is better than Huffman or Shannon codes. This can be
+explained by Theorem 4 together with the following theorem.
+
+PU ( ) log(w( ) + 1) + PU (j) log(w(j) − 1)
+PU ( ) log w( ) + PU (j) log w(j).
+
+4, Ψ1
+4
+Ψ2
+4
+
+θ = 5, Ψ5 = (2, 2, 1).
+
+1
+1
+) ≥ PU ( ) log(1 +
+)
+(30)
+w( )
+rθ ( )
+1
+≥ PU (j) log(1 +
+) (31)
+rθ (j)
+1
+≥ PU (j) log(1 +
+),
+w(j) − 1
+(32)
+
+where (30)–(32) follows from (28), (13) and (29). This
+can be simpliﬁed to
+≥
+
+(1)
+
+a) We can check case i) for wθ+1 . If wθ+1 ( ) ≥ r( )+
+1, then it leads to a contradiction as shown in case
+i). Therefore, the theorem is proved.
+(1)
+b) If wθ+1 belongs to case ii), we can generate a
+(2)
+new vector wθ+1 according to the above argument.
+After that, we go back to a) and check case i) again.
+(i)
+(j)
+c) Note that wθ+1 = wθ+1 for i = j. Also, the -th
+(i)
+term in wθ+1 is equal to w( ) + i. Therefore, the
+condition in case i) will be satisﬁed in ﬁnite steps
+and the theorem is proved.
+Therefore we have proved that (24) will lead to contradictions
+and hence rθ minimizes I(R; U X).
+Remark: The optimum vector may not be unique. For
+example, if PU = (0.4, 0.4, 0.2), then
+
+(35)
+
+Proof: Let {lu } be the set of codeword lengths given
+by the preﬁx code C in Deﬁnition 2 and Imax to be the
+length of the longest codeword. Take N as the total number
+
+where the inequalities follow from (33) and (24), respectively. Therefore,
+
+4
+
+|U |
+
+of partitions. For 1 ≤ i ≤ M , let ψN (i) = 2{Imax −lu } . The
+code in Deﬁnition 2 can be seen as ΨN in Deﬁnition 3.
+We can see a tradeoff between I(R; U X) and H(X) in
+Fig. 1. Also it is clear from the ﬁgure that there is a signiﬁcant
+reduction in H(X) if partition code is used instead of Huffman
+or Shannon coding for the same I(R; U X). Although we know
+how to ﬁnd the partition code which minimize I(R; U X)
+for any given H(X) = log θ, it is interesting to ﬁnd an
+analytical bound on I(R; U X) as well. Then we can see how
+fast I(R; U X) drops when we increase H(X). This will be
+done in the next section.
+
+=
+
+i=1
+|U |
+
+≤
+
+|H(U ) − H(U )|
+
+I(R; U X) ≤
+
+(42)
+
+(43)
+
+1
+x
+
++ (1 − x) log
+
+1
+1−x
+
+=
+
+(45)
+
+for 0 < x < 1 and
+
+(PU (i) − PU (i)) (46)
+
+2
+
++
+
+|U|
+log |U|.
+N
+
+(50)
+
+H(U ) + h
+
+|U|
+N
+
++
+
+|U|
+log |U|, (51)
+N
+
+[1] S.-W. Ho, T. Chan and C. Uduwerelle, “Error-free Perfect Secrecy
+Systems,” in Proc. 2011 IEEE Int. Symposium Inform. Theory, 2011.
+[2] C. Uduwerelle, S.-W. Ho and T. Chan, “Design of an Error-free Perfect
+Secrecy System for unknown inputs,” in Australian Communication
+Theory Workshop, 2012.
+[3] T. M. Cover and J. A. Thomas, Elements of Information Theory, New
+York: Wiley-Interscience, Second Ed., 2006.
+[4] Y. Abu-Mostafa and R. McEliece, “Maximal codeword lengths in huffman
+codes,” Computers & Mathematics with Applications, vol. 39, no. 11,
+pp. 129–134, 2000.
+[5] A. W. Marshall and I. Olkin, Inequalities: Theory of Majorization and
+Its Applications, Academic Press, New York, 1979.
+[6] S.-W. Ho and S. Verd´ , “On the Interplay Between Conditional Entropy
+u
+and Error Probability.” IEEE Trans. Inform. Theory, vol. 56, pp. 5930–
+5942, Dec 2010.
+[7] S.-W. Ho and R. Yeung, “The interplay Between Entropy and Variational
+Distance.” IEEE Trans. Inform. Theory, vol. 56, pp. 5906–5926, Dec
+2010.
+
+Proof: Consider the partition code deﬁned in (40) and the
+induced PU given in (41). Then the variational distance
+V (PU , PU )
+
+|U|
+N
+
+R EFERENCES
+
+Theorem 6. For any given integer N ≥ |U | + 1, if H(X) =
+log N , then the partition code achieving minimum I(R; U X)
+satisﬁes
+
+where h(x) = x log
+h(0) = h(1) = 0.
+
+h
+
+We studied the relationship between the expected codeword
+length of the encrypted message and the expected key consumption when a preﬁx code is encrypted after padding some
+random bits at the end of the codewords. The expected key
+consumption of EPS systems obtained by this approach is
+determined. Besides this approach, we have proposed a better
+code which achieves the minimum expected key consumption
+among all partition codes when the number of channel uses
+is ﬁxed. Comparing to the approach based on Huffman and
+Shannon coding, the number of channel uses is signiﬁcantly
+reduced in our code for the same amount of key consumption.
+
+By the interesting property in (44), we have the following
+theorem which shows the upper bound on I(R; U X) in terms
+of H(X) for the optimal code.
+
+|U|
+log |U|,
+N
+
+≤
+
+V. C ONCLUSION
+
+(44)
+
++
+
+(48)
+
+so the partition code achieving the minimum I(R; U X) and
+H(X) = log N can give a smaller I(R; U X) and hence (45)
+is justiﬁed.
+The bound (45) can be considered as an inner bound for the
+optimal tradeoff between the expected key consumption and
+the number of channel uses. If N is large, the term |U | log |U|
+N
+is dominated in (45). In this case, I(R; U X) − H(U ) is
+1
+decaying in N . Since H(X) = log N , I(R; U X) − H(U )
+is decaying exponentially fast in H(X).
+
+From (40) it is easy to verify that PU is majorized by PU [5].
+Therefore by applying [6, Theorem 3]
+
+|U|
+N
+
+(PU (i) N − 1)
+N
+
+Together with (44), we have
+
+We can verify that if the partition code C(ΨN ) is used to
+encode PU , then I(X ; R ) = 0. Therefore, if the partition
+code C(ΨN ) is used to encode PU , we can apply (4) to show
+that
+
+I(R; U X) ≤ H(U ) + h
+
+(47)
+
+2|U|
+.
+(49)
+N
+Since we know the variational distance between PU and PU ,
+we can ﬁnd a bound on H(U ). Note that V (PU , PU ) ≤
+2|U |
+|U |+1 because N ≥ |U| + 1. Then we can apply [7, Theorem
+6] to show that
+
+where N is sufﬁciently large such that PU (i)N ≥ 1 for all
+1 ≤ i ≤ |U|. Let
+ψN (i)
+.
+(41)
+PU (i) =
+N
+
+= H(U ).
+
+PU (i) N
+N
+
+=
+
+Suppose the support of PU is {1, . . . , |U|} and PU (i) ≥
+PU (j) if i < j. Consider a partition code C(ΨN ) with
+
+if 1 ≤ i ≤ |U|,
+ PU (i)N
+ψN (i) =
+(40)
+|U |
+N −
+if i = |U| + 1,
+i=1 PU (i)N
+
+I(R; U X) ≤ H(U ) + (H(U ) − H(U ))
+
+PU (i) −
+
+2
+i=1
+
+IV. I NNER BOUND FOR THE EXPECTED KEY CONSUMPTION
+
+I(R; U X) = H(U ) + D(PU ||PU ).
+
+PU (i) −
+
+2
+
+i:PU (i)>PU (i)
+
+5
+
+

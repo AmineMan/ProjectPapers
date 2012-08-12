@@ -1,0 +1,1216 @@
+Title:          Ghostscript wrapper for C:\Users\SUUSER\Desktop\HARQ_ISIT.pdf
+Creator:        GSview
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Fri May 18 16:04:44 2012
+ModDate:        Tue Jun 19 12:54:55 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      595 x 842 pts (A4)
+File size:      291323 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569565989
+
+Wireless Network Control with Privacy Using Hybrid ARQ
+
+1
+
+Yunus Sarikaya, Ozgur Ercetin, C. Emre Koksal
+
+Y.Sarikaya (email: sarikaya@su.sabanciuniv.edu) and O. Ercetin (email:
+oercetin@sabanciuniv.edu) are with the Department of Electronics Engineering,
+Faculty of Engineering and Natural Sciences, Sabanci University, 34956 Istanbul,
+Turkey.
+C. E. Koksal (koksal@ece.osu.edu) is with the Department of Electrical and
+Computer Engineering at The Ohio State University, Columbus, OH.
+
+1
+
+II. S YSTEM M ODEL
+i
+Ajp
+Qjp
+
+Qjo
+
+n
+
+o
+
+Ajo
+
+p,
+Rj
+
+Rj
+
+j
+
+.
+
+Recently, information theoretic security has gained signiﬁcant
+attention, provisioning an ultimate goal of guaranteed security
+against adversaries with unlimited computational resources. The
+foundations of physical layer secrecy have been initially developed in [1], [2] and different variants of the problem -mainly for
+the wireless channel- have been revisited vastly. For example,
+in [3] channel fading has been exploited for secrecy, and more
+recently, multiple antennas [4] and cooperative relays [5] have
+been utilized to increase the achievable secrecy rates. Despite
+the signiﬁcant volume of work in information theoretic secrecy,
+most of work has focused on physical layer techniques and on a
+single link. The area of wireless theoretic secrecy remains in its
+infancy, especially as it relates to the design of wireless networks
+and its impact on network control and protocol development.
+To that end, we investigated [6] the cross-layer resource
+allocation problem with information theoretic security. There,
+we considered a system in which nodes collect both open and
+private information, store them in separate queues and transmit
+them to the base station over block fading uplink channels. We
+ﬁrst introduced the concept of private opportunistic scheduling
+and showed that it achieves the maximum sum private rate
+achievable. We subsequently developed a joint ﬂow control and
+scheduling scheme and showed that it achieves a performance,
+close to the optimal. In [6], we assumed a constant power
+transmission and that information is encoded over individual
+packets. In this paper, we extend our results to the scenario
+with hybrid ARQ (HARQ) transmission based on incremental
+redundancy (INR), which basically relies on mutual information
+accumulation. Furthermore, we include the possibility that nodes
+transmit at varying power levels, subject to an average power
+constraint. We assume that the transmitter has an estimate of its
+uplink channel and only the distribution of the cross channels to
+the every other node. We develop a dynamic cross-layer control
+scheme which maximizes aggregate utility subject to power and
+
+base
+station
+
+.
+
+I. I NTRODUCTION
+
+privacy constraints. We prove the optimality of our scheme by
+Lyapunov optimization theory. Finally, we numerically characterize the performance of the dynamic control algorithm with
+respect to several network parameters.
+The HARQ transmission scheme we use is similar to the
+one employed in [10], which considers a block fading wiretap channel with a single source-destination pair and an (external) eavesdropper and develops sequences of Wyner codes
+to be transmitted in subsequent transmissions of a block of
+information. The main challenge of incorporating information
+encoding across many blocks into our solution was that, it is not
+possible to dynamically update the resource allocation, based on
+the amount of information leakage to the other nodes at each
+retransmission, since the amount of leakage is unknown to the
+transmitting node. Furthermore, the privacy outage probability of
+subsequent retransmissions of a given block cannot be decoupled
+from each other, eliminating the possibility of using standard
+Lyapunov techniques. We resolve that issue by utilizing the
+Markov inequality so that the desired decoupling occurs at the
+expense of some loss in performance. We believe our new
+technique contributes to the ﬁeld of network control [7], [8],
+since it enables the use of Lyapunov techniques in the analysis
+of the schemes such as HARQ, which is based on encoding
+information over many blocks.
+The rest of the paper is organized as follows. Section II
+describes the system model and provides a brief summary of
+INR HARQ. Section III gives the problem formulation. In Section IV, we give our joint ﬂow and scheduling algorithm. Lastly,
+Section V contains the numerical results of the effect of system
+parameters on the performance of the algorithm. Section VI
+concludes this work by summarizing the contributions.
+
+.
+
+Abstract—We consider the problem of resource allocation in a
+wireless cellular network, in which nodes have both open and
+private information to be transmitted to the base station over block
+fading uplink channels. We develop a cross-layer solution, based
+on hybrid ARQ transmission with incremental redundancy. We
+provide a scheme that combines power control, ﬂow control, and
+scheduling in order to maximize a global utility function, subject
+to the stability of the data queues, an average power constraint,
+and a constraint on the privacy outage probability. Our scheme
+is based on the assumption that each node has an estimate of its
+uplink channel gain at each block, while only the distribution of the
+cross channel gains is available. We prove that our scheme achieves
+a utility, arbitrarily close to the maximum achievable utility given
+the available channel state information.
+
+1
+
+Fig. 1.
+
+Multiuser uplink communication system
+
+Network Model: We consider a multiuser uplink network as
+illustrated in Fig. 1. The system consists of multiple nodes and a
+base station. The trafﬁc injected by each of these nodes, consists
+of both open and private packets. Nodes wish to transmit those
+packets to the base station via the uplink channel, which we will
+refer to as the main channel. All private messages of each node
+need to be transmitted to the base station, privately from the other
+nodes. They overhear transmissions from the transmitting node
+over the cross channels. Hence, nodes will treat each other as
+“internal eavesdroppers” when transmitting private information.
+We assume the time to be slotted. Over each block (of time),
+the amount of open information, Ao (k), and private information,
+j
+
+A p (k) injected in the queues at node j are both chosen by node
+j
+j at the beginning of each block. Private and open packets
+ˆj
+ˆj
+have a ﬁxed size R p and Ro respectively. Open and private
+information are stored in separate queues with sizes Qo (k)
+j
+and Q p (k) respectively. At any given block, only one node
+j
+transmits either open or private information (but not both) and
+a scheduler decides on which node will transmit. In addition,
+the scheduler decides the transmission powers for private and
+open transmission, which are denoted by Pj (k) and Pjo (k) for
+user j’s private and open transmissions, respectively. We use
+indicator variables, I jo (k) and I jp (k), which take on a value 0
+or 1, depending on whether or not open or private information
+is transmitted by node j over block k.
+Channel Model: We assume the block length to be identical to
+N channel uses. Both the main and the cross channels experience
+independent identically distributed (i.i.d) block fading, in which
+the channel gain is constant over a block and it is varying
+independently from block to block. We denote the instantaneous
+achievable rate for the main channel of node j and the cross
+channel between nodes j and i by R j (k) and R ji (k) respectively.
+Even though our results are general for all channel state distributions, in numerical evaluations, we assume all channels to
+be Rayleigh fading. Let h j (k) and h ji (k) be power gains of the
+main channel for node j and the cross channel between node
+j and node i, respectively. We normalize the power gains such
+that the additive Gaussian noise has unit variance. Then, the
+instantaneous achievable rates are,
+R j (k) = log (1 + Pj (k)h j (k))
+(1)
+R ji (k) = log (1 + Pj (k)h ji (k)) .
+(2)
+Similarly, the instantaneous achievable rate for the uplink channel of node j for open messages, Ro (k) is:
+j
+Ro (k) = log 1 + Pjo (k)h j (k) .
+j
+
+(3)
+
+We assume that the transmitter has access to a noisy estimate of
+its main channel gain and merely the distribution of its crosschannel gains. After each transmission, the base station informs
+the transmitting node about the amount of mutual information
+accumulated over that block, i.e., R j (k) or Ro (k).
+j
+Coding: We assume that a ﬁxed INR HARQ scheme is employed
+at each node. We ﬁrst explain the details of the version of the
+ˆj
+scheme for private packets: Node j collects each packet of R p
+
+bits1 and encodes it into a codeword xMN called the mother
+j
+code, which is then divided into individual groups symbols,
+N N
+N
+[x1 , x2 , . . . , xM ], of length N channel uses. The mother code is
+ˆ
+ˆj
+encoded by using Wyner code of C(R j /M, R p /M, MN), which
+ˆ
+N R j to convey privacy message
+denotes a Wyner code of size 2
+ˆp
+set W j = (1, 2, ..., 2N R j ) [1]. After the partitioning is realized, the
+ﬁrst transmission of the packet forms a codeword of Wyner code
+ˆ ˆj
+C(R j , R p , N). At the possible mth transmission, the combined
+N N
+N
+codewords, [x1 , x2 , . . . , xm ] form a codeword of length mN as
+p
+ˆ
+ˆ
+C R j /m, R j /m, mN . The maximum number of retransmissions
+is M and we assume that M is sufﬁciently large to keep the
+probability of decoding failure due to exceeding the maximum
+number of retransmissions approximately identical to zero. At
+ˆ
+that, if I jp (k) = 1 and the size of the private queue is smaller than R p ,
+j
+ˆ
+then the transmitter uses dummy bits to complete it to R p .
+j
+1 Note
+
+2
+
+2
+
+each retransmission, base station combines the codeword of
+length N with the previously transmitted codewords of the same
+packet. For a packet with content W j , let the vector of symbols
+N
+N
+received by node i = j be Yi = [Yi,1 , ...,Yi,m ] at the end of
+th retransmission of the packet by node j. To achieve perfect
+m
+privacy, the following constraint must satisﬁed by node j, for all
+i = j.
+1
+I(W j ; Yi ) ≤ ε , ∀ε > 0.
+(4)
+mN
+ˆj
+Note that the amount, R p , of encoded private information and
+ˆ j of bits that encapsulate the private information
+the amount, R
+is ﬁxed and do not change from one packet to another. For INR,
+the mutual information accumulation for the l th private packet
+in the main channel and eavesdropper channels over block n can
+be found (as detailed in [10]) as:
+Dlj (n) =
+
+n
+
+∑
+
+log 1 + Pj (k)h j (k)I jp (k)
+
+(5)
+
+log 1 + Pj (k)h ji (k)I jp (k)
+
+(6)
+
+k=nl−1 +1
+j
+
+Dlji (n) =
+
+n
+
+∑
+k=nl−1 +1
+j
+
+respectively, where nl−1 is the block index at which the (l − 1)st
+j
+private packet is successfully decoded by the base station. Note
+ˆ
+that, if R j < Dlj (n) at block n, we say that the successful decoding
+of the private packet took place.
+If the accumulated information at one of eavesdroppers exˆ
+ˆj
+ceeds R j − R p , perfect privacy constraint (4) is violated and we
+say that the privacy outage occurs. Then, the privacy outage
+probability over block n for the l th private packet is calculated
+as:
+ˆ
+ˆj
+(7)
+ρ jp,l (n) = P R j − R p < max Dlji (n) .
+i= j
+
+For the case of open transmission, at the transmitter, the
+information and CRC bits are encoded by a mother code [9].
+In each transmission, only the systematic part of the codeword
+and a selected number of parity bits are transmitted. Decoding
+is attempted at the receiver side by combining all previously
+transmitted codes. This procedure is again called INR HARQ,
+and mutual information accumulated for the l th private packet in
+the main channel of user j over block n is
+Dl,o (n) =
+j
+
+n
+
+∑
+
+log 1 + Pjo (k)h j (k)I jo (k) ,
+
+(8)
+
+k=nljo −1 +1
+
+where nljo −1 corresponds to the block index, where the (l − 1)st
+open message is successfully decoded by the base station. Here,
+we assume that ﬁxed length packets are encoded with a rate of
+ˆj
+Ro , and arrive to the open queue at node j. If the accumulated
+ˆj
+information is larger than the ﬁxed rate, i.e., Ro < Dl,o (n), the
+j
+decoding of the open message is successful.
+III. P ROBLEM F ORMULATION
+In this section, we formulate the problem as a network utility
+maximization (NUM) problem. Our objective is to choose the
+admission rate and transmission power in order to achieve a long
+term private and open rates close to the optimal, while keeping
+the rate of privacy outages below a certain level.
+Let U jp (x) and U jo (x) be the utilities obtained by node j from
+the transmission of x private and open bits respectively. We assume that U jp (·) and U jo (·) are non-decreasing concave functions
+
+and the utility of a private information is higher than the utility
+of open transmission at the same rate, i.e., U jp (x) > U jo (x). In
+addition, it is assumed that the arrival processes are ergodic.
+To state the problem clearly, we deﬁne the expected service
+and the expected arrival rates of the private and open queues at
+each node as follows. First, the amount of private information
+p
+R p (k)
+j
+
+transmitted from node j in block k is
+ˆp
+Rj
+ˆ
+Rj
+
+ˆ
+Rj
+ˆ R (k),
+Rj j
+
+since
+
+is the fraction of the private information encapsulated within
+
+R j (k) bits of transmitted data. Let µ jp and µ o denote the expected
+j
+service rates of private and open trafﬁc queues, respectively,
+i.e., µ jp = E I jp (k)R p (k) and µ o = E I jo (k)Ro (k) . Note that,
+j
+j
+j
+the “effective” expected rate of private information received at
+the base station without a privacy outage is µ jp,e . Hence, node
+j effectively obtains an utility of U jp (µ jp,e ) from its private
+transmissions. We assume that the utility gained by a packet
+suffering a privacy outage reduces from that of a private packet
+to that of an open packet. Thus, node j obtains an utility of
+U jo (x p − µ jp,e + xo ) from all transmitted open messages as well
+j
+j
+as the messages that have been encoded privately, but have
+undergone a privacy outage. Finally, let the expected arrival rate
+to the private queue of node j be x p E A p (k) and the expected
+j
+j
+xo
+j
+
+arrival rate to the open queue of node j be
+consider the following optimization problem:
+n
+
+p
+
+p,e
+
+p
+
+E
+
+p,e
+
+o
+max ∑ U j (µ j ) +U j (x j − µ j + xo ))
+j
+
+Ao (k)
+j
+
+. We
+(9)
+
+j=1
+
+p
+
+p
+
+x j ≤ µ j , ∀ j, xo ≤ µ o , ∀ j
+j
+j
+
+subject to
+
+p
+
+(10)
+
+E ρ j (k) ≤ γ j , ∀ j
+
+(11)
+
+o
+E Pj (k) + Pj (k) ≤ α j , ∀ j,
+
+(12)
+
+where the maximization is over the parameters
+the
+constraints
+{I jp (k), I jo (k), Pj (k), Pjo (k), A p (k), Ao (k)};
+j
+j
+in (10) ensure the stability of private and open queues,
+respectively; (11) corresponds to the privacy outage constraint,
+which ensures that portion of private packets intercepted by
+the eavesdroppers is below of some threshold, γ j , and (12)
+correspond to average power constraint.
+The challenge in our problem lies in the fact that, the objective
+functions of the nodes are coupled. In other words, the private
+utility function of each node depends on scheduling decision,
+which inevitably affects all the utilities in the system. In order
+to decouple utilities obtained by each user from their private
+transmissions, we introduce an auxiliary variable x p,e for each
+j
+variable µ jp,e . By introducing auxiliary variables, we add a new
+set of constraints and the optimization problem becomes:
+n
+
+p
+
+p,e
+
+p
+
+p,e
+
+o
+max ∑ U j (x j ) +U j (x j − x j + xo ))
+j
+
+(13)
+
+j=1
+
+p
+
+p
+
+x j ≤ µ j , ∀ j, xo ≤ µ o , ∀ j
+j
+j
+
+(14)
+
+p,e
+p,e
+xj ≤ µj ,∀ j
+p,e p
+x j /x j ≥ 1 − γ j , ∀ j
+
+subject to
+
+(15)
+
+E
+
+o
+Pj (k) + Pj (k)
+
+≤ α j , ∀ j.
+
+(16)
+(17)
+
+x p,e
+j
+
+Note that
+in (15) can be interpreted as the long term average arrival rate for packets which do not incur privacy outage.
+Thus, the portion of packets, kept private from eavesdroppers
+
+3
+
+3
+
+should be greater than 1 − γ j . Also note that since objective
+function is an increasing function of x p,e (15) is satisﬁed with
+j
+equality at the optimal point.
+IV. DYNAMIC C ONTROL
+In this section, we present an opportunistic scheduling algorithm maximizing the total expected utility of network while
+satisfying the constraints (14)-(17). In the following, we assume
+that there is an inﬁnite backlog of data at the transport layer of
+each node providing both private and open messages. The private
+ˆ ˆj
+messages are encoded by Wyner code at a ﬁxed rate (R j , R p ).
+However, the challenge here is that the privacy outage probability in (7) depends on the past transmissions and the scheduling
+decision may affect future transmissions, i.e., the events that
+successful decoding occurs by an eavesdropper over subsequent
+retransmissions are non-iid. Then, utilizing standard Lyapunov
+optimization techniques [12] to solve our problem is not possible.
+To address this issue, we need to quantify the privacy outage
+probability over each block independently. For that purpose, we
+make use of Markov’s inequality:
+ˆ
+ˆ
+P R j − R p < max Dlji (n) ≤
+j
+
+maxi= j E Dlji (n)
+
+(18)
+
+ˆ
+ˆ
+R j − Rp
+j
+
+i= j
+
+1
+1
+E Dlji (n) =
+ˆ
+ˆ
+ˆ
+ˆ
+R j − Rp
+R j − Rp
+i= j
+j
+j
+
+n
+
+∑ ∑E
+
+≤∑
+
+I jp (k)R ji (k) ,
+
+(19)
+
+k=nh−1 +1 i= j
+j
+
+where (18) follows from Markov inequality, and (19) is due to
+the fact that maxi= j E Dlji (n) < ∑i= j E Dlji (n) , since Dlji (n) is
+a positive random variable. Recall that Dlji (n) is the accumulated
+information at the eavesdropper i. According to the Markov
+inequality, the fraction of private packets that suffer a privacy
+1
+outage is thus upper bounded by R −R p ∑i= j E [R ji (k)] for any
+ˆj ˆ
+j
+block k. Hence, Markov inequality enables us to quantify the
+amount of information leakage to the other nodes independently
+p
+ˆ
+Rj
+ˆ ˆp
+R j −R j
+
+∑i= j E [R ji (k)]. However, since
+the Markov inequality is merely a bound, the constraint set over
+which we solve the problem shrinks. Hence some performance
+is sacriﬁced. In the simulations, we numerically analyze the
+amount of shrinkage in the constraint set due to the use of the
+Markov inequality and show that it is not signiﬁcant under most
+scenarios.
+The dynamics of private and open trafﬁc queues, Q p (k) and
+j
+o (k) respectively, are given as follows:
+Qj
+over each block k, being
+
+p
+
+p
+
+p
+
+p
+
+Q j (k + 1) = Q j (k) − I j (k)R j (k)
+Qo (k + 1) = Qo (k) − I jo (k)Ro (k)
+j
+j
+j
+
++
+
++
+
++ A j (k),
+
+p
+
+(20)
+
++ Ao (k),
+j
+
+(21)
+
+where [x]+ = max(0, x).
+As shown in [12], each of the constraints (15)-(17) can be
+represented by a virtual queue, and when these virtual queues
+are stabilized the constraints are also satisﬁed.
+p,e
+
+p,e
+
+p
+
+p,e
+
+Q j (k + 1) = Q j (k) − I j (k)R j (k)
+p,e
+
++
+
+p
+
+p,e
+
++ A j (k),
+
+Z j (k + 1) = Z j (k) − A j (k) + A j (k)(1 − γ j )
+p
+
+p
+
+(22)
+
++
+
+o
+Y j (k + 1) = Y j (k) + I j (k)Pj (k) + I j (k)Pj (k) − α j
+
+(23)
++
+
+(24)
+
+where virtual queues in (22-24) represent the constraints in
+(15-17) respectively. In addition, R p,e (k) denotes the private
+j
+information sent to the base station without privacy outage over
+
+block k. By using the result of Markov inequality in (19),
+p
+we obtain R p,e (k) as R p (k) −
+j
+j
+
+ˆ
+Rj
+ˆ ˆp
+R j −R j
+
+∑i= j E [R ji (k)]. The ﬁrst
+term corresponds to the amount of information received by the
+base station and the second term to the amount of information
+captured by the eavesdroppers.
+Control Algorithm: The algorithm executes the following steps
+in each block k:
+(1) Flow control: For some V > 0, each node j injects A p (k),
+j
+and Ao (k) bits to respective queues and update the virtual
+j
+queue with A jp,e . Note that A jp,e (k) can be interpreted as
+private bits for which perfect secrecy constraint is intended
+to be satisﬁed.
+p
+
+p,e
+
+lim sup
+
+A j (k), A j (k), Ao (k) =
+j
+p
+
+4
+
+bounded. Assume that the arrival rates are also bounded by
+A p,max , A jp,e,max , Ao,max . By simple algebraic manipulation one
+j
+j
+can obtain a bound for the difference (Q p (k + 1))2 − (Q p (k))2
+j
+j
+and also for other queues to obtain the result (26).
+We now present our main result showing that our proposed
+dynamic control algorithm can achieve a performance arbitrarily
+close to the solution of the problem with the outage constraint
+tightened via Markov’s inequality.
+Theorem 1: If R p (k) < ∞ and Ro (k) < ∞ for all j, k, then
+j
+j
+dynamic control algorithm satisﬁes:
+B
+1 N−1 n
+U∗ −
+lim inf ∑ ∑ E U jp (k) +U jo (k)
+N→∞ N
+V
+k=0 j=1
+N→∞
+
+p,e
+
+p
+
+p,e
+
+o
+argmax V U j (A j (k)) +U j (A j (k) − A j (k) + Ao (k))
+j
+
+−
+
+p,e
+p
+p
+p
+Q j (k)A j (k) + Qo (k)Ao (k) + Z j (k)(A j (k)(1 − γ j ) − A j (k))
+j
+j
+
+(2) Scheduling: At any given block, scheduler chooses which
+node will transmit and the amount of power used during
+transmission of private messages. In other words, schedule
+node j and transmit privately encoded (I jp = 1), or open
+bits (I jo = 1), with transmit power Pj and Pjo :
+p
+
+o
+I j (k), I jo (k), Pj (k), Pj (k) =
+p
+
+p,e
+
+p,e
+
+p
+
+p
+
+p
+
+argmax I j (k)Q j (k)E R j (k) + I j (k)Q j (k)E R j (k)
+p
+
+o
++Qo (k)E Ro (k) −Y j (k)(I j (k)Pj (k) + I jo (k)Pj (k) ,
+j
+j
+
+where expectation is over the distribution of channel estimation error over block k.
+1) Optimality of Control Algorithm: The optimality of
+the algorithm can be shown using the Lyapunov optip
+p
+mization theorem. Let Qp (k) = (Q1 (k), . . . , Qn (k)), Qo (k) =
+o (k), . . . , Qo (k)), Qp,e (k) = (Q p,e (k), . . . , Q p,e (k)), Z(k) =
+(Q1
+n
+n
+1
+(Z1 (k), . . . , Zn (k)), Y(k) = (Y1 (k), . . . ,Yn (k)) be the vectors of
+real and virtual queues. We consider a quadratic Lyapunov
+function of the form:
+L(k) =
+
+1
+(Q p (k))2 + (Qo (k))2 + (Q p,e (k))2 + (Z j (k))2 + (Y j (k))2 .
+j
+j
+j
+2∑
+j
+
+(25)
+
+One-step expected Lyapunov drift, ∆(k) is the difference
+between the value of Lyapunov function at the (k + 1)st block
+and (k)th block.
+The following lemma provides an upper bound on ∆(k).
+Lemma 1:
+p
+
+p
+
+p
+
+p
+
+p
+
+∆(k) ≤ B − ∑ E Q j (k)(I j (k)R j (k) − A j (k))| Q j (k)
+j
+
+− ∑ E Qo (k)(I jo (k)Ro (k) − Ao (k))| Qo (k)
+j
+j
+j
+j
+j
+
+p,e
+
+p
+
+p,e
+
+p,e
+
+p,e
+
+− ∑ E Q j (k)(I j (k)R j (k) − A j (k))| Q j (k)
+j
+
+p,e
+
+p
+
+− ∑ E Z j (k)(A j (k) − (1 − γ j )A j (k))| Z j (k)
+j
+
+p
+
+o
+− ∑ E Y j (k)(α j − I j (k)Pj (k) − I jo (k)Pj (k))| Y j (k)
+
+(26)
+
+j
+
+where B > 0 is a constant.
+
+Proof: In an interference-limited practical wireless system
+both the the transmission power and the transmission rate are
+
+4
+
+lim sup
+N→∞
+
+1 N−1 n
+∑ ∑ E Q p (k)
+j
+N k=0 j=1
+
+¯
+B +V (U −U ∗ )
+ε1
+
+1 N−1 n
+∑ ∑ E Qoj (k)
+N k=0 j=1
+
+¯
+B +V (U −U ∗ )
+,
+ε2
+
+where B, ε1 , ε2 > 0 are constants, U ∗ is the optimal aggregate
+¯
+utility and U is the maximum possible aggregate utility.
+Proof: The proof of Theorem 1 is given in Appendix.
+V. N UMERICAL R ESULTS
+In our numerical experiments, we consider a network consisting of four nodes and a single base station. The main channel
+between the node and the base station, and the cross-channels
+between nodes are modeled as iid Rayleigh fading Gaussian
+channels. The power gains of the main and cross-channels are
+exponentially distributed with means uniformly chosen in the
+intervals [25,50], [0.5,1.5], respectively. The main channel power
+gain is estimated by an unbiased estimator based on the a priori
+channel measurements. As discussed in [11], the estimation error
+of such an estimator, e j (k) can be modeled with a zero mean
+ﬁnite variance Gaussian random variable, i.e., e ji (k) ∼ N (0, σ 2 )
+for all k. We take σ = 1. In addition, we assume only the
+knowledge of distribution for the cross-channel gains.
+We consider logarithmic private and open utility functions
+where the private utility is κ times more than open utility
+at the same rate. More speciﬁcally, for a scheduled node j,
+U jp (k) = κ · log(1 + R p (k)), and U jo (k) = log(1 + Ro (k)). We take
+j
+j
+κ = 5 in all experiments. We perform the simulation over ﬁve
+ˆj ˆ
+ˆj
+ˆ ˆj
+realizations of R j , Ro and R p . R j and Ro are uniformly chosen
+ˆ p in the interval [5, 10]. The rates
+in the interval [15, 25] and R j
+depicted in the graphs are per node arrival and service rates
+ˆ
+ˆj
+averaged over all realizations of R j and R p , i.e., the unit of
+the plotted rates are bits/channel use/node. All nodes have the
+same privacy outage probability γ . Recall that the private packets
+suffering privacy outage gains a utility of open packets. Thus, in
+all ﬁgures, these packets are considered as open services.
+In Fig. 2(a), we investigate the effect of the tolerable privacy
+outage probability. It is interesting to note that private service rate
+increases with increasing tolerable outage probability, γ . This is
+due to the fact that for low γ values, the privacy outage condition
+is very tight, and this condition is satisﬁed by transmitting
+infrequently only when the channel is at its best condition and
+with low transmit power. The highest private service rate is
+realized when γ = 0.3, which suggests that 30% of the private
+packets undergo privacy outage. In Fig. 2(b), the effect of average
+power constraint, α is investigated. As expected, for a tight
+
+Private Arrival Rate
+Open Arrival Rate
+Private Service Rate
+Open Service Rate
+
+1.6
+
+1.4
+
+1.2
+
+1
+
+0.8
+
+0.6
+
+0.4
+0.1
+
+0.15
+
+0.2
+
+0.25
+
+0.3
+
+0.35
+
+0.4
+
+γ
+
+(a) Rate vs γ
+
+0.45
+
+0.5
+
+5
+
+1.5
+
+Rate (bits/channel use/node)
+
+Rate (bits/channel use/node)
+
+1.8
+
+[11] P. Frenger, “Turbo decoding for wireless systems with imperfect channel
+estimates,” IEEE Transactions on Communications, vol. 48, no. 9, pp. 14371440, 2000.
+[12] L. Georgiadis, M.J. Neely, and L. Tassiulas, “Resource allocation and crosslayer control in wireless networks,” Foundations and Trends in Networking,
+vol. 1, no. 1, 2006.
+
+1
+
+0.5
+
+0
+0.2
+
+Private Arrival Rate
+Open Arrival Rate
+Private Service Rate
+Open Service Rate
+0.4
+
+0.6
+
+0.8
+
+1
+
+1.2
+
+1.4
+
+A PPENDIX
+
+1.6
+
+α
+
+(b) Rate vs α
+
+Fig. 2. Private and open rates with respect to tolerable privacy outage probability
+and average power constraint
+
+Lyapunov Optimization Theorem suggests that a good control
+strategy is the one that minimizes the following:
+∆U (k) = ∆(k) −V E
+
+∑
+
+p
+
+o
+U j (k) +U j (k) | (Qp (k), Qo (k))
+
+(27)
+
+j
+
+power constraint, all rates are lower, since selected powers are
+smaller. The highest rates are obtained when α = 1, and after
+α = 1, the power constraint becomes inactive, since the variance
+of the estimation error increases with the power. In addition,
+the bound on privacy outage probability obtained by Markov
+inequality is 0.24, which is obtained by averaging the resulting
+values of the bound over all simulations, whereas the privacy
+outage probability calculated as in (7) is approximately 0.18. In
+most of the scenarios, this difference is not signiﬁcant as long
+as privacy outage constraint is satisﬁed.
+VI. C ONCLUSION
+We consider the problem of resource allocation in a wireless
+cellular network, in which nodes have both open and private
+information to be transmitted to the base station over block fading uplink channels. We have developed a cross-layer dynamic
+control algorithm in the presence of imperfect knowledge based
+on hybrid ARQ transmission with incremental redundancy. We
+explicitly took into account the privacy and power constraints
+and prove the optimality of our scheme by Lyapunov optimization theory. The main challenge that we faced is that, due to
+encoding of information across many blocks, the privacy outage
+probability of subsequent retransmissions of a given block cannot
+be decoupled from each other. We overcame this challenge by
+introducing a novel technique based on the Markov inequality.
+R EFERENCES
+[1] A.D. Wyner,“The Wire-tap Channel,“ Bell System Technical Journal,
+vol.54, no.8, pp.1355-1387, 1975.
+[2] I. Csiszar and J. Korner, “Broadcast Channels with Conﬁdential Messsages,” IEEE Transactions on Information Theory, vol.24, pp. 339-348,
+May 1978.
+[3] L. lai, H. El Gamal, and H. V. Poor, “Secure Commuunication over Fading
+Channels,” IEEE Transactions on Information Theory, vol. 54, pp. 24702492, June 2008.
+[4] A. Khisti and G. W. Wornel, “Secure Transmissions with Multiple Antennas: The MISOME Wiretap Channel”, IEEE Transactions on Information
+Theory, to be published.
+[5] L. Dong, Z. Han, A. P. Petropulu, and H. V. Poor, “Improving Wireless
+Physical Layer Security via Cooperating Relays”, IEEE Transactions on
+Signal Processing, vol.58, no.3, March 2010.
+[6] C.E. Koksal, O. Ercetin and Y. Sarikaya, “Control of Wireless Networks
+with Secrecy”, submitted to IEEE/ACM Transaction on Networking.
+[7] L. Tassiulas and A. Ephremides, “Jointly optimal routing and scheduling
+in packet ratio networks,” IEEE Transaction on Information Theory, vol.
+38, pp. 165-168, Jan. 1992.
+[8] X. Lin, N.B. Shroff and R. Srikant “A Tutorial on Cross-Layer Optimization
+in Wireless Networks,” IEEE Journal on Selected Areas in Communications, Special Issue on “Non-Linear Optimization of Communication
+Systems,” vol. 24, no. 8, August 2006.
+[9] D.N. Rowitch amd L.B. Milstein, “On the performance of hybrid FEC/ARQ
+systems using rate compatible punctured turbo (RCPT) codes,” IEEE
+Transaction on Communication, vol. 48, pp. 948-959, June 2000.
+[10] X. Tang, R. Liu, P. Spasojevic and H. V. Poor, “On the Throughput of
+Secure Hybrid-ARQ Protocols for Gaussian Block-Fading Channels”, IEEE
+Trans. Inform. Theory, vol.55, no. 4, pp. 1575-1591, March 2009.
+
+5
+
+where U jp (k) and U jo (k) are private and open utility obtained in
+block k.
+By using (26), we may obtain an upper bound for (27), as
+follows:
+∆U (k) < B − ∑ E Q p (k)[I jp (k)R p (k) − A p (k)]|Q p (k)
+j
+j
+j
+j
+j
+
+− ∑ E Qo (k)[I jo (k)Ro (k) − Ao (k)]|Qo (k)
+j
+j
+j
+j
+j
+
+− ∑ E Q p,e (k)[I jp (k)R p,e (k) − A jp,e (k)]|Q p,e (k)
+j
+j
+j
+j
+
+− ∑ E Y j (k)[α j − I jp (k)Pj (k) − I jo (k)Pjo (k)]|Y j (k)
+j
+
+− ∑ E Z j (k)[A jp,e (k) − (1 − γ j )A p (k)]|Z j (k)
+j
+j
+
+∑ U jp (A jp,e (k)) + ∑ U jo (A p (k) − A jp,e (k) + Aoj (k))
+j
+
+−V E
+
+j
+
+(28)
+
+j
+
+Thus, by rearranging the terms in (28) it is easy to observe that
+our proposed dynamic network control algorithm minimizes the
+right hand side of (28) with the available channel information.
+Assume that there exists a stationary scheduling and rate
+control policy that chooses the users and their transmission
+powers independent of queue backlogs and only with respect to
+the channel statistics. Let U ∗ be optimal value of the objective
+function of the problem (13) by the stationary policy. Also let
+x p,e∗ , x p∗ and xo∗ be optimal effective private, private and open
+j
+j
+j
+trafﬁc arrivals. In addition, let Pj∗ be optimal transmission power
+for user j. Note that, the expectations of right hand side (RHS) of
+(28) can be written separately due to independence of backlogs
+with scheduling and rate control policy. Since the rates and
+transmission power are strictly interior of the feasible region,
+the stationary policy should satisfy the following:
+E I jp (k)R p (k) ≥ x p∗ + ε1 , E I jp (k)Ro (k) ≥ xo∗ + ε2
+j
+j
+j
+j
+E I jo (k)R p,e (k) ≥ x p,e∗ + ε3 , E I jp (k)Pj (k) − I jo (k)Pjo (k) ≤ α j + ε4
+j
+j
+x p,e∗ ≥ (1 − γ j )x p∗ + ε5
+j
+j
+
+(29)
+
+Recall that our proposed policy minimizes RHS of (28), hence,
+any other stationary policy has a higher RHS value. By using
+optimal stationary policy, we can obtain an upper bound for the
+RHS of our proposed policy. Inserting (29) into (28) and using
+the independence of queue backlogs with scheduling and rate
+policy, we obtain the following bound:
+p
+
+p,e
+
+RHS <B − ∑ ε1 E Q j (k) − ∑ ε2 E Qo (k) − ∑ ε3 E Q j (k)
+j
+j
+
+j
+
+j
+
+− ∑ ε4 E Y j (k) − ∑ ε5 E Z j (k) −VU ∗ .
+j
+
+j
+
+Now, we can obtain bounds on performance of the proposed
+policy and the sizes of queue backlogs as given in Theorem 1.
+
+

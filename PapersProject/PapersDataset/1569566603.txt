@@ -1,0 +1,905 @@
+Creator:        TeX
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Sat May 12 02:56:53 2012
+ModDate:        Tue Jun 19 12:54:09 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      438552 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569566603
+
+Secrecy Is Cheap if the Adversary Must Reconstruct
+Curt Schieler, Paul Cuff
+Dept. of Electrical Engineering,
+Princeton University, Princeton, NJ 08544.
+E-mail: {schieler, cuff}@princeton.edu
+
+Abstract—A secret key can be used to conceal information
+from an eavesdropper during communication, as in Shannon’s
+cipher system. Most theoretical guarantees of secrecy require
+the secret key space to grow exponentially with the length
+of communication. Here we show that when an eavesdropper
+attempts to reconstruct an information sequence, as posed in the
+literature by Yamamoto, very little secret key is required to effect
+unconditionally maximal distortion; speciﬁcally, we only need the
+secret key space to increase unboundedly, growing arbitrarily
+slowly with the blocklength. As a corollary, even with a secret key
+of constant size we can still cause the adversary arbitrarily close
+to maximal distortion, regardless of the length of the information
+sequence.
+
+K
+Xn
+
+Alice
+
+M
+
+Bob
+
+Eve
+
+ˆ
+Xn
+Zn
+
+Fig. 1. Alice and Bob share secret key K, which Alice uses along with
+her observation of X n to encode a message M . Secrecy is measured by the
+minimum distortion Eve can attain.
+
+I. I NTRODUCTION
+We also show that a constant amount of secret key can yield
+nontrivial distortion at the adversary.
+
+In this work, we consider the Shannon cipher system, ﬁrst
+investigated in [1]. The cipher system is a communication
+system with the addition of secret key that the legitimate
+parties share and use to encrypt messages. A classic result by
+Shannon in [1] states that to achieve perfect secrecy, the size
+of the secret key space must be at least the size of the message
+space. As in [1], we consider the secrecy resource to be shared
+secret key, but we relax the requirement of perfect secrecy
+and instead look at the minimum distortion that an adversary
+attains when attempting to reproduce the source sequence.
+The joint goal of Alice (transmitter) and Bob (receiver) is
+to communicate a source sequence almost losslessly while
+maximizing the adversary’s minimum attainable distortion. In
+contrast to equivocation, a max-min distortion measure provides guarantees about the way in which any adversary could
+use his knowledge; equivocation does not give much insight
+into the structure of the knowledge or how the knowledge can
+be used.
+This measure of security was investigated by Yamamoto
+in the general case where distortion is allowed at the legitimate receiver. In [2], Yamamoto established upper and lower
+bounds on the tradeoff between the rate of secret key and the
+adversary’s distortion.
+In this paper, we solve the problem studied in [2], in the
+case that almost lossless communication is required. We show
+that any positive rate of secret key sufﬁces for Alice and Bob
+to cause the adversary unconditionally maximal distortion (i.e.,
+the distortion incurred by only knowing the source distribution
+and nothing else). A positive rate of secret key R0 means
+the number of secret keys is exponential in the blocklength
+n, because there are 2nR0 secret keys available. However, if
+the secret key space is merely growing unboundedly with n,
+we show that the adversary still suffers maximal distortion.
+
+II. P ROBLEM S TATEMENT
+The system under consideration, shown in Figure 1, operates
+on blocks of length n. Alice is given an i.i.d. source sequence
+X n = (X1 , . . . , Xn ) consisting of symbols drawn from a ﬁnite
+alphabet X according to PX . Alice and Bob share secret key
+in the form of a uniform random variable K taking values
+in an alphabet K. Eve knows the source distribution and the
+operations of Alice and Bob, but does not have access to the
+secret key. At the transmitter, Alice sends M ∈ M based
+on the source sequence X n and secret key K; at the other
+ˆ
+end, Bob observes M and K and produces a sequence X n .
+Eve produces a sequence Z n from M and her knowledge of
+the source distribution and system operations (encoder and
+decoder).
+Deﬁnition 1. Let k : N → N. An (n, k(n), R) code consists
+of an encoder f and a decoder g:
+f : Xn × K → M
+g : M × K → X n,
+where the size of the message set is |M| = 2nR , and the
+number of secret keys available is |K| = k(n).
+We measure secrecy by the distortion between the source
+sequence and an adversary’s estimate of the source sequence.
+Given a per-letter distortion measure d : X × Z → [0, ∞), we
+deﬁne the distortion between two sequences as the average of
+the per-letter distortions:
+dn (xn , z n ) =
+
+1
+
+1
+n
+
+n
+
+d(xi , zi ).
+i=1
+
+Without loss of generality, we assume that for all x ∈ X , there
+exists a z ∈ Z such that d(x, z) = 0.
+For a given amount of secret key, we are interested in
+the rate of communication and the distortion incurred by the
+cleverest adversary.
+
+Corollary 1. Fix PX and d(x, z), and denote Dmax =
+minz E[d(X, z)]. For all D < Dmax and R > H(X), there
+exists k ∗ ∈ N such that (R, D) is achievable under k(n) = k ∗ .
+
+Deﬁnition 2. For a given sequence k(n) and measure of
+distortion d(x, z), we say that the pair (R, D) is achievable
+if there exists a sequence of (n, k(n), R) codes such that
+
+Proof of Corollary 1: Suppose the contrary. That is,
+assume there exists D < Dmax or R > H(X) such that
+˜
+˜
+for all k ∈ N, (R, D) is not achievable under k(n) = k. If
+we denote the minimum attainable distortion for blocklength
+˜
+n and k secret keys by
+
+ˆ
+lim P[X n = X n ] = 0
+
+(1)
+
+dn,k = min E [dn (X n , z n (M ))] ,
+˜
+n
+
+lim inf min E [dn (X n , z n (M ))] ≥ D.
+n
+
+(2)
+
+n→∞
+
+z (m)
+
+˜
+we are asserting that for all (n, k, R) codes, either
+
+and
+n→∞ z (m)
+
+ˆ
+lim sup P[X n = X n ] > 0
+
+(3)
+
+n→∞
+
+The requirement in (1) is that the probability of communication error between Alice and Bob vanishes. In (2), the
+minimum is taken over all functions z n : M → Z n , i.e., all
+possible strategies that Eve can employ. Although not explicit
+in the notation, it should be understood that Eve’s strategy is
+a function of not only the message M , but also the source
+distribution PX and the (n, k(n), R) code.
+
+or lim inf dn,k < D.
+˜
+n→∞
+
+(4)
+
+˜
+In particular, all (n, k, R) codes not satisfying (3) must satisfy
+˜
+(4), which implies that for all k ∈ N, the sequence dn,k is
+˜
+strictly less than D inﬁnitely often. To arrive at a contradiction,
+ˆ
+we will deﬁne an increasing unbounded sequence k(n) such
+that dn,k(n) is strictly less than D inﬁnitely often. Since
+ˆ
+ˆ
+D < Dmax , such a k(n) will imply
+
+III. M AIN R ESULT
+
+lim inf dn,k(n) < Dmax ,
+ˆ
+
+The main result is the following theorem. The restriction on
+R, the communication rate, is the same as the classic result for
+source coding. Notice that minz E[d(X, z)] is the distortion
+between X n and the constant sequence (z ∗ , . . . , z ∗ ), where
+z ∗ = argminz E[d(X, z)].
+
+n→∞
+
+contradicting Theorem 1 and completing the proof. To that
+end, ﬁrst deﬁne the increasing sequence {N } recursively by
+N0 = 0
+N = min{n > N
+
+Theorem 1. Let k(n) be an increasing, unbounded sequence.
+Then (R, D) is achievable if and only if 1
+
+: dn, < D}.
+
+−1
+
+ˆ
+Then we deﬁne k(n) by
+ˆ
+k(n) =
+
+R > H(X)
+
+if N
+
+−1
+
+<n≤N .
+
+D ≤ min E[d(X, z)].
+z
+
+The proof of Theorem 1 is presented in the next section,
+but ﬁrst we provide some intuition for why the result holds
+by brieﬂy addressing some of the proof ideas. In designing
+a code, Alice and Bob can use the secret key K to apply
+a one-time pad to part of the message so that the adversary
+effectively knows that the source sequence X n lies in a subset
+B ⊂ X n , but is unsure which sequence the true one is. The
+number of sequences in B is |K| = k(n), the number of secret
+keys. Under such a scheme, the adversary’s optimal strategy
+for minimizing distortion is to output the following symbol on
+the ith step:
+
+If we wanted to consider rates of secret key, we would set
+k(n) = 2nR0 and deﬁne (R, R0 , D) to be achievable if there
+exists a sequence of codes such that (1) and (2) hold. Then,
+by Theorem 1, we would have that (R, R0 , D) is achievable
+if and only if
+R > H(X)
+R0 > 0
+
+R > H(X)
+or
+
+D ≤ min E[d(X, z)]
+z
+
+R0 = 0
+D=0
+
+This is the solution to the lossless case of the problem posed in
+[2]. It should be noted that with the proper choice of auxilliary
+random variables, the converse bound on R0 in [2] is actually
+the trivial bound, R0 ≥ 0.
+With Theorem 1 in hand, we are able to say something about
+the usefulness of a ﬁnite amount of secret key. The following
+corollary asserts that the cleverest adversary suffers close to
+maximal distortion even if the number of secret keys stays
+constant as blocklength increases.
+1 For
+
+zi (B) = argminz
+xn ∈B
+
+p(xn )
+d(xi , z)
+P[X n ∈ B]
+
+(5)
+
+Note that (5) is the expected value of d(Xi , z) conditioned on
+the event {X n ∈ B}. Now, if each of the sequences in A were
+equally likely to be the source sequence, (5) becomes
+1
+d(xi , z)
+zi (B) = argminz
+|B|
+n
+x ∈B
+
+= argminz
+
+simplicity, we ignore the case R = H(X)
+
+Qi (x) d(x, z),
+x∈X
+
+2
+
+B:
+
+0
+0
+1
+2
+
+0
+2
+0
+1
+
+1
+0
+2
+0
+
+0
+1
+2
+0
+
+0
+1
+0
+2
+
+1
+2
+0
+0
+
+2
+0
+1
+0
+
+2
+0
+0
+1
+
+Lemma 2 (see [3]). Suppose an urn U contains n balls, each
+marked by an element of the set S, whose cardinality c is
+ﬁnite. Let H be the distribution of k draws made at random
+without replacement from U , and M be the distribution of k
+draws made at random with replacement. Thus, H and M are
+two distributions on S k . Then
+ck
+.
+H − M TV ≤
+n
+Thus, sampling without replacement is close in variational
+distance to sampling with replacement (i.e, i.i.d.) provided the
+sample size is small enough and the number of balls is large
+enough. The rate at which the distance vanishes is important
+to our problem. The next lemma is a lower bound on the size
+of a type class.
+
+1
+Fig. 2. Consider PX = { 2 , 1 , 1 }, X = {0, 1, 2}, n = 4, and k(4) = 8.
+4 4
+Suppose Eve knows that the source sequence X 4 is a column of B, but
+does not know which column. Since all the columns are equally likely and
+the empirical distribution of each row matches PX , Eve’s best strategy is to
+output argminz E[d(X, z)] at each step (see (6)). For example, if the distortion
+measure were Hamming distance (i.e., d(x, z) = 1{x = z}), then Eve would
+output (0, 0, 0, 0).
+
+where Qi (x) denotes the empirical distribution of the ith
+symbols of the sequences in B, i.e.,
+Qi (x) =
+
+1
+|B|
+
+Lemma 3 (see [4]). For P ∈ P n ,
+
+1{xi = x}.
+xn ∈B
+
+|P | ≥ (n + 1)−|X | |X |nH(P )
+
+If we could also guarantee that Qi (x) = PX (x) for all x ∈ X ,
+then (5) would become
+zi (B) = argminz E[d(X, z)]
+
+The ﬁnal lemma concerns sufﬁcient statistics in the context
+of our measure of secrecy.
+
+(6)
+
+Lemma 4. Let X, Y , and Z be random variables that form a
+markov chain X − Y − Z and let g be a function on A × Z.
+Deﬁne two sets of functions, F = {f : X × Y → A} and
+F = {f : Y → A}. Then
+
+In the light of this discussion, we want to design a codebook
+and an encryption scheme so that, roughly speaking,
+p(xn )
+1
+≈
+P[X n ∈ B]
+|B|
+
+(7)
+
+Qi ≈ PX , i = 1, . . . , n.
+
+(8)
+
+min E[g(f (X, Y ), Z)] = min E[g(f (Y ), Z)].
+f ∈F
+
+and
+
+Proof of Lemma 4: (≤) follows from F ⊂ F . As for
+(≥), we have
+
+Figure 2 gives an example of (7) and (8). These ideas are
+borne out in the proof of Theorem 1, which we now turn to.
+
+min E[g(f (X, Y ), Z)] =
+f ∈F
+
+IV. P ROOF OF T HEOREM 1
+
+n
+
+n
+
+p(z|y)g(f ∗ (x, y), z)
+
+p(x, y)
+x,y
+
+=
+
+In preparation for the proof of achievability, we ﬁrst deﬁne
+ε-typicality for a distribution P with ﬁnite support X :
+n
+Tε (P )
+
+f ∈F
+
+z
+
+p(x, y)h(x, y)
+x,y
+
+=
+
+= {x ∈ X : |Q (x) − P (x)| < ε, ∀x ∈ X },
+
+p(y)E[h(X, Y )|Y = y]
+y
+
+xn
+
+There exists x∗ (y) such that
+
+1
+where Qxn (x) = n i 1{xi = x} is the empirical distribution, or “type”, of xn . Denote the set of types of sequences
+n
+xn ∈ X n by P n , and let Pε ⊂ P n denote the set of types
+n
+n
+n
+of those sequences x ∈ X satisfying xn ∈ Tε (PX ). For
+n
+P ∈ P , use |P | to denote the number of sequences of type
+P . Finally, deﬁne the variational distance between distributions
+P and Q by
+
+h(x∗ (y), y) ≤ E[h(X, Y )|Y = y],
+so we deﬁne f ∈ F by f (y) = f ∗ (x∗ (y), y). Then
+p(y)h(x∗ (y), y)
+
+p(y)E[h(X, Y )|Y = y] ≥
+y
+
+y
+
+=
+
+P − Q = sup |P (A) − Q(A)|.
+
+p(y)
+y
+
+A
+
+p(z|y)g(f (y), z)
+z
+
+= E[g(f (Y ), Z)]
+
+We will need a few lemmas. The ﬁrst three lemmas will aid
+us in asserting (8).
+
+≥ min E[g(f (Y ), Z)]
+f ∈F
+
+Lemma 1. Let P ∈ P n . Form a matrix whose columns are
+the sequences with type P , with the columns arranged in any
+order. Then each of the rows of the matrix also has type P .
+
+Now we begin the proof of Theorem 1.
+Proof of Theorem 1: The proof of the converse is
+straightforward: the converse for lossless source coding gives
+us R > H(X), and Eve can always produce the constant
+sequence (z ∗ , . . . , z ∗ ) so that her distortion never exceeds
+minz E[d(X, z)].
+
+Proof: Any permutation applied to the rows of the matrix
+simply permutes the columns. Therefore all the rows have
+identical type. Since the matrix as a whole has type P , each
+of the rows must be of type P as well.
+
+3
+
+To begin the proof of achievability, ﬁx PX , d(x, z), and
+an increasing, unbounded sequence k(n). Let ε > 0 and
+R > H(X). We will show that there exists a codebook
+of 2nR sequences and an encryption scheme such that
+ˆ
+P[X n = X n ] < ε
+
+Lemma 4, then restrict attention to typical sequences to get
+min E [dn (X n , z n (J, L ⊕ K))]
+
+Eπ [D(n)] = Eπ
+
+z n (j,l)
+
+= Eπ min E [dn (X n , z n (J))]
+n
+
+(9)
+
+z (j)
+
+p(xn )dn (xn , z n (J(xn )))
+
+≥ Eπ min
+n
+
+and
+
+z (j)
+
+min E [dn (X n , z n (M ))] > min E[d(X, z)] − δ(ε)
+n
+
+z (m)
+
+z
+
+(10)
+
+n
+xn ∈Tε (PX )
+
+Note that although xn is deterministic when inside the summation above, the bin J(xn ) that it belongs to is random because
+we are considering a random partition. Summing over bins and
+moving the summation outside, we have
+
+for sufﬁciently large n, where δ(ε) → 0 as ε → 0.
+Our codebook, the set of sequences that Alice encodes
+uniquely, consists of the ε-typical sequences; thus, (9) is
+satisﬁed by the law of large numbers. For blocklength n, we
+want to consider a partition of the set of typical sequences into
+equally sized subsets (or “bins”) of length k(n). A partition
+will let us encode the message in two parts: in the ﬁrst part,
+we will reveal the identity of the bin that contains the source
+sequence, and in the second part we will encrypt the location
+within the bin by using the secret key to apply a one-time pad.
+Effectively, the second part of the message will be useless to
+Eve. We will denote the set of bins by B, so that each element
+of B is a bin of k(n) sequences.
+For a given partition of the typical sequences, the encoder
+operates as follows. If X n is typical and is the Lth sequence
+in bin J, then transmit the pair (J, L ⊕ K), where K is the
+secret key and ⊕ is addition modulo k(n). If X n is not typical,
+transmit a random message.
+In addition to requiring equal-sized bins, we further restrict
+our attention to partitions in which each bin only contains
+sequences of the same type2 , and denote the set of bins of type
+P by BP ; thus, B = P ∈Pε BP . This restriction addresses (7).
+n
+We claim that there exists a partition so that (10) is satisﬁed.
+To do this, we ﬁrst select a partition uniformly at random and
+average the minimum attainable distortion over all partitions.
+We use Eπ to indicate that expectation is being taken with
+respect to a random partition. If (10) holds for the average,
+then it must hold for at least one partition. This use of the
+probabilistic method should be distinguished from “random
+binning” that is often used in information theory. In random
+binning, each sequence is assigned to a random bin; in
+particular, the bin sizes are random, whereas here they are
+of size k(n).
+Selecting a partition at random is the same as drawing
+typical sequences without replacement to ﬁll equal-sized bins
+of uniform type. This is also equivalent to ﬁrst ﬁxing a
+n
+partition B that meets the criteria, then for each P ∈ Pε
+n
+randomly permuting the sequences in BP , selecting the |Pε |
+random permutations independently.
+Denoting the left-hand side of (10) by D(n), we ﬁrst use
+
+p(xn )dn (xn , z n (J(xn ))
+
+Eπ [D(n)] ≥ Eπ min
+n
+
+z (j)
+
+= Eπ
+
+B∈B xn ∈B
+
+p(xn )dn (xn , z n )
+
+min
+n
+B∈B
+
+z
+
+xn ∈B
+
+Next, we sum over types as well, and use the fact that all
+sequences of type P have probability
+cP = |X |n(H(P )+D(P ||PX ))
+to get
+Eπ [D(n)]
+≥ Eπ
+
+p(xn )dn (xn , z n )
+
+min
+n
+z
+
+n
+P ∈Pε B∈BP
+
+= Eπ
+
+xn ∈B
+
+dn (xn , z n )
+
+cP min
+n
+n
+P ∈Pε
+
+B∈BP
+
+z
+
+xn ∈B
+
+Applying the separability of dn (xn , z n ) and moving the expectation inside, we have
+Eπ [D(n)]
+≥ Eπ
+=
+
+1
+n
+
+1
+n
+
+n
+
+cP min
+n
+i=1 P ∈Pε B∈BP
+
+z
+
+d(xi , z)
+xn ∈B
+
+n
+
+cP Eπ min
+n
+i=1 P ∈Pε B∈BP
+
+z
+
+d(xi , z)
+
+(11)
+
+xn ∈B
+
+Keep in mind that the elements of B are random codewords
+because the partition is random.
+Now we analyze the expectation in (11). Viewing BP as
+a matrix with the constituent sequences forming the columns,
+we denote the ith row by the random sequence (Y1 , . . . , Y|P | ).
+Furthermore, we let (Y1 , . . . , Yk(n) ) denote the ith row of
+B ∈ BP ; this is acceptable because the forthcoming analysis
+is the same for each row of each bin. For ease of exposition,
+we now refer to k(n) as simply k with the dependence on n
+understood. Thus, we have
+
+2 More precisely, we focus on partitions in which the number of bins in
+violation is polynomial in n. The set of such partitions is nonempty since the
+total number of types is polynomial in n (see [4]). The forthcoming analysis
+is easily adjusted accordingly.
+
+d(xi , z) = k · Eπ min
+
+Eπ min
+z
+
+4
+
+xn ∈B
+
+z
+
+QY k (x)d(x, z)
+x∈X
+
+where QY k is the type of Y k . Denoting the event
+k
+{Y k ∈ Tε (P )} by A, we have by the towering property
+of expectation that
+Eπ min
+z
+
+V. C ONCLUSION
+If an eavesdropper is trying to reconstruct an information
+sequence in the Shannon cipher system, we have shown
+that even small amounts of secret key enable the cipher to
+cause maximal distortion in the eavesdropper’s estimate. Any
+positive rate of secret key will sufﬁce. However, the rate of
+secret key, implying exponential growth in the number of
+secret key assignments, is not even the right way to discuss the
+theoretical limits. Corollary 1 shows that the proper question to
+address is the tradeoff between secret key size and guaranteed
+distortion, irrespective of the transmission length.
+
+d(xi , z)
+xn ∈B
+
+≥ k · Pπ [A] · Eπ min
+z
+
+QY k (x)d(x, z) A .
+
+(12)
+
+x∈X
+
+Focusing attention on the conditional expectation in (12), we
+use the deﬁnition of typicality and the triangle inequality to
+get
+
+VI. ACKNOWLEDGEMENTS
+QY k (x)d(x, z) A
+
+Eπ min
+z
+
+≥ Eπ min
+z
+
+(PX (x) − 2ε)d(x, z) A
+x∈X
+
+(PX (x) − 2ε)d(x, z)
+
+= min
+z
+
+This work was supported by the National Science Foundation (NSF) through the grant CCF-1116013 and by the Defense
+Advanced Research Projects Agency (DARPA) through the
+award HR0011-07-1-0002.
+
+x∈X
+
+R EFERENCES
+
+x∈X
+
+≥ min E[d(X, z)] − δ1 (ε)
+
+[1] C. E. Shannon, “Communication theory of secrecy systems,” Bell Syst.
+Tech. J., vol. 28, pp. 656–715, Oct. 1949.
+[2] H. Yamamoto, “Rate-distortion theory for the Shannon cipher system,”
+IEEE Trans. Inf. Theory, vol. 43, no. 3, pp. 827-835, 1997.
+[3] P. Diaconis and D. Freedman, “Finite exchangeable sequences,” Annals
+of Probability, vol. 8, no. 4, pp. 745-764, 1980.
+[4] I. Csisz´ r and J. K¨ rner, Information Theory: Coding Theorems for
+a
+o
+Discrete Memoryless Systems. New York: Academic, 1981.
+
+(13)
+
+z
+
+where δ1 (ε) = 2ε minz x d(x, z) goes to zero as ε → 0
+because the distortion measure d is bounded. Now we bound
+P[A] in (12). We can assume that k(n) ∈ o(|X |nH(P ) ) without
+loss of generality because Alice and Bob can simply ignore
+extra secret key. Invoking Lemmas 1-3 to address (8), we have
+PY k −
+
+P = PY k −
+k
+
+QY |P |
+
+(14)
+
+k
+
+|X | · k(n)
+|P |
+|X | · k(n)
+≤
+(n + 1)−|X | |X |nH(P )
+≤ε
+
+≤
+
+(15)
+(16)
+(17)
+
+for large enough n, where (14) follows from Lemma 1, (15)
+follows from Lemma 2, and (16) follows from Lemma 3.
+By the deﬁnition of variational distance and the law of large
+numbers, (17) gives
+n
+Pπ [Y k ∈ Tε (P )] ≥ P
+
+P [Y
+
+k
+
+n
+∈ Tε (P )] − ε
+
+≥ 1 − 2ε
+
+(18)
+
+for large enough n. The notation P P indicates that the
+probability is evaluated with respect to the i.i.d. distribution
+k P . Now, substituting (13) and (18) into (12), we have
+d(xi , z) ≥ k · (min E[d(X, z)] − δ2 (ε)). (19)
+
+Eπ min
+z
+
+z
+
+xn ∈B
+
+Upon substituting (19) into (11), we conclude the proof by
+noting that
+1
+n
+
+n
+n
+cP · k(n) = P[X n ∈ Tε (PX )]
+i=1
+
+n
+P ∈Pε
+
+B∈BP
+
+≥1−ε
+for large enough n.
+
+5
+
+

@@ -1,0 +1,1294 @@
+Creator:        TeX
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Fri May 18 11:33:43 2012
+ModDate:        Tue Jun 19 12:54:18 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      409091 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569566207
+
+Multiplicative secret sharing schemes from
+Reed-Muller type codes
+Iwan Duursma
+
+Jiashun Shen
+
+Department of Mathematics
+University of Illinois
+Urbana, Illinois 61801
+Email: duursma@math.uiuc.edu
+
+Department of Mathematics
+University of Illinois
+Urbana, Illinois 61801
+Email: shen32@illinois.edu
+
+for the construction of a codex then the code needs to have
+some extra underlying structure in order for the codex to
+be nontrivial. The second difﬁculty arises when one insists
+on long codices deﬁned over a small ﬁeld. In that case
+the Shamir secret sharing scheme, for which the ﬁeld size
+increases with n, can no longer be used. In [5], a construction
+based on algebraic geometry codes is presented for linear
+secret sharing schemes deﬁned over a small ﬁeld with good
+asymptotic properties for multiparty computation.
+
+Abstract—Multiplicative linear secret sharing schemes are
+the building blocks for multiparty computation protocols. Such
+schemes can be deﬁned in terms of linear codes with an additional
+algebraic structure. We show that Reed-Muller codes have the
+required additional structure and we introduce a more general
+class of Reed-Muller type codes suitable for linear secret sharing
+and multiparty computation. The codes have highly structured
+generator and parity check matrices that can be used for very
+efﬁcient implementations over the binary ﬁeld.
+Index Terms—Reed-Muller code, Linear secret sharing scheme
+
+In this paper we investigate the multiplicative properties of
+binary Reed-Muller type codes. This leads to a class of low
+complexity codes over the binary ﬁeld with a rich combinatoial
+structure and with good properties for short to moderate
+length.
+
+I. I NTRODUCTION
+In the Shamir secret sharing scheme [1], a polynomial f
+of degree at most t over a ﬁnite ﬁeld K is evaluated in n + 1
+distinct ﬁeld elements x0 , x1 , . . . , xn . Through interpolation,
+the value of f in x0 can be obtained from the values in
+any t + 1 of the points x1 , . . . , xn . At the same time, no
+information can be obtained from the values in t or fewer
+points. Given a second polynomial g of degree at most t, the
+product f (x0 )g(x0 ) can be obtained through interpolation
+from 2t + 1 of the values f (x1 )g(x1 ), . . . , f (xn )g(xn ).
+
+II. R EED -M ULLER CODES
+We ﬁrst describe the codex structure of Reed-Muller codes.
+The binary Reed-Muller code RM (1, m) of length N = 2m
+and dimension m + 1 is deﬁned with a generator matrix G
+with 2m distinct columns (1, x1 , . . . , xm ). Let (1, 0, . . . , 0) be
+the ﬁrst column and let n = N − 1 = 2m − 1 be the number
+of remaining columns. For C = RM (1, m), C ⊂ K × K n
+and C (d) = RM (d, m). Using the well-known relation
+RM (d, m)⊥ = RM (m − 1 − d, m), we see that the code
+C (m−1) ⊥ 1 and it follows that the codex C = RM (1, m) is
+(m − 1, n)-reconstructing. In particular the code RM (1, 4)
+is (3, n)-reconstructing. Using similar reasoning we see
+that RM (1, 7) is (6, n)-reconstructing, RM (2, 7) is (3, n)reconstructing, and RM (3, 7) is (2, n)-reconstructing.
+
+The notion of a general linear secret sharing scheme
+(LSSS) is deﬁned in [2]. Of special interest for multiparty
+computation (MPC) are linear secret sharing schemes with a
+multiplicative structure. Such schemes are called arithmetic
+secret sharing schemes in [3]. Recently this notion was
+generalized into the notion of an arithmetic codex [4]. An
+arithmetic codex can be described as a K-vector space
+C ⊂ S × K n such that the projection of C on S is surjective
+and the projection of C on K n is injective. Here S is a
+K-algebra of ﬁnite dimension as a vector space over K. If we
+endow K n with coordinate-wise addition and multiplication
+then S × K n becomes a K-algebra and we can deﬁne the set
+C (d) ⊂ S × K n as the set of all d−fold products c1 · · · cd of
+elements in C. The codex C is called (d, r)−reconstructing
+if the projection π(C (d) ) ⊂ S × K r on any r coordinates is
+again a codex. For S = K, the Shamir secret sharing scheme
+can be considered as a (2, 2t + 1)−reconstructing codex.
+
+Note that if a code C ⊂ K × K n is selforthogonal then C (2) ⊥ 1 and thus it is (2, n)reconstructing. Namely, for (f0 g0 , f1 g1 , . . . , fn gn ) ∈ C (2)
+with (f0 , f1 , . . . , fn ), (g0 , g1 , . . . , gn ) ∈ C, the coordinate
+f0 g0 is uniquely determined as the opposite of the sum f1 g1 +
+· · · + fn gn of the remaining coordinates. (2, n)-reconstructing
+linear secret sharing schemes are called multiplicative and are
+important for multiparty computation with a passive adversary.
+Multiparty computation with an active adversary makes use of
+strongly multiplicative linear secret sharing schemes. In that
+case it is required that a product f0 g0 can be expressed as a
+
+The construction of good codices involves at least two
+difﬁculties. If a linear code C is chosen as the starting point
+
+1
+
+linear combination of the subset of coordinates not controlled
+by the adversary. For the deﬁnition of strongly multiplicative
+we refer to [2]. For this paper we use that a sufﬁcient condition
+for C ⊂ K ×K n to be strongly multiplicative is that C (3) ⊥ 1.
+This last condition implies in particular that C is (3, n)reconstructing.
+
+IV. M AIN RESULTS
+Over the vector ﬁeld Fn , besides the usual
+2
+addition, we deﬁne another operator “·” called
+“coordinatewise multiplication”. It is deﬁned as follows:
+for (a1 , a2 , ..., an ), (b1 , b2 , ..., bn ) ∈ Fn ,(a1 , a2 , ..., an ) ·
+2
+(b1 , b2 , ..., bn ) = (a1 b1 , a2 b2 , ..., an bn ). Based on this
+deﬁnition, we will construct codes that can be used for
+multiplicative secret sharing. First of all, we deﬁne a code
+C (1) generated by matrix G
+
+III. S TRONGLY SELF - ORTHOGONAL CODES AND SECRET
+RECONSTRUCTION
+N
+
+Codes C ⊂ K with C (3) ⊥ 1 are called strongly
+self-orthogonal. Write K N = K × K n . For C ⊂ K × K n ,
+the ﬁrst coordinate of a word corresponds to the secret
+and the remaining n coordinates are shares of the secret.
+The access structure of the LSSS C ⊂ K × K n is the
+collection Γ of all those coordinate subsets A ⊂ {1, . . . , n}
+that can reconstruct the secret. The adversary structure of
+the LSSS C ⊂ K × K n is the collection ∆ of all those
+coordinate subsets B ⊂ {1, . . . , n} that can not reconstruct
+the secret. Because of the linearity of C, reconstruction of the
+secret from the coordinates in B is not unique if and only if
+there exists a word in C that is zero on B for a nonzero secret.
+
+G = [Ai1 Ai2 ...Aim ], i1
+
+Example 2. If k = 5, i = 3,
+
+1 1 1 1
+ 1 1 1 0
+
+A3 =  1 0 0 1
+
+ 0 1 0 1
+0 0 1 0
+
+then
+1
+0
+1
+0
+1
+
+ci c∗ c0 .
+ˆ i i
+i=1
+
+N
+
+ci c∗ c0 = 0.
+i i
+i=1
+
+where the last equality uses C (3) ⊥ 1. Finally, for any c1 ∈ C1
+with the given property,
+
+(t)
+
+i=1
+
+i=1
+
+0
+1
+1
+0
+1
+
+0
+1
+0
+1
+1
+
+0
+0
+1
+1
+1
+
+
+
+
+.
+
+
+
+Lemma 3. For 1
+t
+i, Ai is a k × k matrix, the
+t
+i
+i
+weight of each column is t and the weight of each row is
+(t)
+k−t
+i−t . The columns and rows in Ai are all distinct.
+
+n
+
+ci c1 c∗ =
+ˆ i i
+
+ci c1 c1 =
+ˆ i i
+
+0
+1
+1
+1
+0
+
+Next, we deﬁne the t-th generation of C, denoted by C (t) ,
+as follows: C (t) =< S1 , S2 , .., St >, where Si = {c1 · c2 ... ·
+ci |where c1 , c2 ..., ci are different rows in G}. Thus, if j1 +j2 +
+...+jm t, for ejs ∈ C (js ) , 1 s m, then ej1 ·ej2 ...·ejm ∈
+C (t) . For example, if t = 6, then for any e1 , e2 , e3 ∈ C (2) ,
+we have that e1 · e2 · e3 ∈ C (6) .
+Our task is to choose k, i1 , i2 , ..., im such that every vector
+in C (t) has even weight for some t.
+Next, we take any different t(t i) rows c1 , c2 , ..., ct from
+Ai , and we get the following vector c1 ·c2 ...·ct . There are k
+t
+(t)
+such vectors. Then we deﬁne Ai to be the matrix consisting
+(t)
+of all these vectors. So Ai is a k by k matrix. Indeed
+t
+i
+we have the following lemma:
+
+N
+
+n
+
+1
+0
+0
+1
+1
+
+If we multiply any 2 different rows in A3 , we will always get
+a vector of weight 5−2 = 3.
+3−2
+
+And since c∗ is zero in the corrupted positions this equals
+
+n
+
+im
+
+Proof: For the weight of the product of rows, assume
+it is the multiplication of rows r1 , r2 , ..., rt . To count the
+weight, for a certain column j, we have to make sure that
+all r1 , r2 , ...rt have 1 in column j. Since we have listed all
+weight i columns in the matrix Ai , we know that the total
+number of choices for such kind of columns is k−t (this is
+i−t
+beacuse for the rest k − t positions, we can freely chose i − t
+1s.)
+
+For the proof we ﬁrst show that such a c1 ∈ C1 exists.
+Since B ∈ ∆, there exists c∗ ∈ C1 that is zero on B. Since
+c0 ∈ C0 ,
+
+i=1
+
+...
+
+Lemma 1. For a single matrix Ai , let t
+1, if we take t
+different rows from Ai and multiply them together, we will
+always get a vector of weight k−t .
+i−t
+
+Let C be a code of length N = n + 1. Let C0 ⊂ C be
+the subset of vectors in C with 0 in the secret position.
+Let C1 ⊂ C be the coset with 1 in the secret position.
+For a possibly corrupted list of shares c1 , . . . , cn , let
+ˆ
+ˆ
+c1 ∈ C1 be such that for all c0 ∈ C0 ,
+ci c1 c0 = 0. Then
+ˆ i i
+s = − ci c1 c1 .
+ˆ i i
+
+ci c∗ c0 =
+ˆ i i
+
+i3
+
+Ai is a k by
+matrix such that the columns of Ai consist
+of all different vectors of weight i and length k. Notice that
+i
+the weight of each row of Ai is k · k = k−1 . Under the
+i−1
+i
+above construction, we have the result below:
+
+For a strongly self-orthogonal code, the secret can be
+reconstructed by any qualiﬁed subset A ∈ Γ in the presence
+of an unknown active adversary B ∈ ∆. An active adversary
+can change the values on his coordinates. We explain the
+reconstruction procedure [2], [9]. On input n shares, possibly
+corrupted on the subset B ∈ ∆, the procedure yields as
+output the correct value s of the secret but in general without
+information about the adversary B or about which shares
+were corrupted.
+
+n
+
+i2
+
+k
+i
+
+ci c1 c∗ = −s · 1 · 1.
+i i
+i=1
+
+2
+
+u + t − 1, v + t − 1} , and this set has cardinality l − 1. It is
+also obvious that j + l = k − t + 1. We also deﬁne a set of
+vectors G = {ek ∈ Fk |1 r t − 1} .So it is obvious that
+r
+2
+E ∪ F ∪ G gives us a basis for our desired vector space. Since
+|E| = j, |F | = l − 1, |G| = t − 1 and E, F, G are mutually
+disjoint, we have that |E ∪ F ∪ G| = j + l − 1 + t − 1 = k − 1.
+So our proposition holds.
+
+Proof: First, we need to show that each row is different. To show this, we consider two different sets of
+rows. If r1 ·r2 ... · rt = r1 · r2 ...·rt , and by multiplying
+i − t rows s1 , s2 , ..., si−t on both sides, we will get the
+same answer. However, since {r1 , r2 , ...rt , s1 , s2 , ..., si−t } =
+{r1 , r2 , ..., rt , s1 , s2 , ..., si−t }, we see that for any i rows
+production, we would get a weight 1 vector of length k .
+i
+In addtion, for any i rows, there is only one unique column
+such that all rows contain 1 at that column. So different i
+rows will give different products. So it is a contradiction. So
+(t)
+the matrix Ai is a k × k matrix with different rows.
+t
+i
+i
+Next, we need to show the weight of the column is t .
+This is obvious, because we take all the possible products of t
+rows of the original matrix and so the weight of each column
+(t)
+i
+is t . If two columns in Ai are the same, then we would
+see that the corresponding two columns in Ai are the same,
+(t)
+contradiction. So the columns of the matrix Ai are different.
+For the weight of the row, if the row is the product of rows
+r1 , r2 , ..., rt , to count the weight, for a certain column j, we
+have to make sure that all r1 , r2 , ...rt have 1 in column j and
+since we have put all weight i columns in the matrix. We know
+that the total choice for such kind of columns is k−t (this is
+i−t
+beacuse for the rest k − t positions, we can freely chose i − t
+1s). Thus, we could check that the total number of 1s in the
+i
+matrix Ai is k k−t = k t , and this equation is indeed
+t
+i−t
+i
+the subcommittee identity.
+(t)
+(t)
+Let Di be the linear code generated by the rows in Ai .
+(1)
+(1)
+It is easy to see that Di = Ci , which are the linear code
+(t)
+(1)
+(2)
+generated by the rows of Ai . In addition, Ci = Di +Di +
+(t)
+(1)
+(2)
+(k)
+... + Di and C ⊆ C ⊆ ... ⊆ C .
+(t)
+
+Remark 5. The above theorem not only tells us that half
+of the vectors in Fk give even weight vectors, but also tells
+2
+us how to ﬁnd a basis of such vector space. Thus, we have
+characterized all the possible cases of vectors in Fk such that
+2
+for ﬁxed k, t, any row in G(t) has even weight.
+Next, for ﬁxed value k, we wish to ﬁnd some vectors in
+Fk such that those vectors would make the rows of G(t)
+2
+to be even for several choices of t at the same time. For
+example, if k = 10, we may consider this problem: for what
+choice of vectors in F10 , the rows of G(t) are all even for
+2
+t = 1, 2, 3, 4? Indeed, we could use an extension method to
+work this out. Furthermore, we may believe that the cardinality
+of S ∈ {1, 2, 3, ..., k} may determine the number of choices
+of v ∈ Fk . Indeed, we have the following result:
+2
+Theorem 6. If |S| = m, the vectors which makes any matrix
+in GS := G(t) |t ∈ S have all even weight rows form a
+vector space of dimension k−m, and so the number of choices
+for v ∈ Fk is 2k−m .
+2
+Proof: The fact that vectors which make GS is a
+vector space can be proved easily. Consider a set S =
+{a1 , a2 , ..., am } ⊆ {1, 2, 3, ..., k}, with a1 > a2 > a3 >
+... > am . From what we did above, for G(a1 ) to have all
+even weight rows, we know that for the last k − a1 + 1
+positions, we have that the dimension is k − a1 . So the
+dimension of vector space which make G(a1 ) to have all even
+weight rows is a1 + k − a1 + 1 = k − 1. Now consider the
+a2 , a2 +1, ..., a1 −1 positions, if a vector makes G(a1 ) , G(a2 ) to
+have all even weight rows, when the last k − a1 + 1 positions
+are ﬁxed, the positions a2 , a3 , ..., a1 − 1 should rise to dimension a1 − a2 − 1(because half of the vectors with length
+a1 − a2 − 1 give even weight and half odd weight). So for
+G(a1 ) , G(a2 ) to all have even weight rows, the dimension is
+k−a1 +(a1 −a2 −1)+a2 −1 = k−2. Similarly, we can repeat
+this argument, for ﬁxed a2 , a2 + 1, ..., a1 , a1 + 1..., k positions,
+consider the positions a3 , a3 + 1, ..., a2 − 1, half of them make
+that G(a1 ) , G(a2 ) , G(a3 ) all have even weight rows. So the
+dimension is k −a1 +(a1 −a2 −1)+(a2 −a3 −1)−(a3 −1) =
+k − 3. Therefore, we can repeat this argument to see that the
+dimension of the vector space is k − a1 + (a1 − a2 − 1) +
+(a2 − a3 − 1) − ... − (am−1 − am − 1) + (am − 1) = k − m.
+So the number of choices for v ∈ Fk is 2k−m .
+2
+In our construction, we are more interested in [n] =
+{1, 2..., n} for n k. If each row in G(t) has even weight for
+every t n, then for every t n, every vector in D(t) has
+even weight and thus every vector in C (n) has even weight.
+As is shown in the above results, for ﬁxed n k, since [n]
+has cardinality n, the vector space U which makes C (n) have
+
+(t)
+
+Let G(t) = (Ai1 Ai2 ...Aim ) , where (Ai1 Ai2 ...Aim )
+(t)
+is deﬁned in a similar way as Ai . Let D(t) be the linear
+code generated by the rows of G(t) . We consider a vector
+v = (v1 , v2 , ..., vk ) ∈ Fk , and let As be in G if and only
+2
+if vs = 1. Vector v gives us information whether some
+block Ai is chosen or not. For example, if k = 10 and
+v = (1, 0, 1, 0, 0, 1, 1, 0, 1, 1), then G = [A1 A3 A6 A7 A9 A10 ] .
+For ﬁxed k and t, we want to ﬁnd all the possible vectors
+v ∈ Fk such that the weight of each row of G(t) is even.
+2
+Proposition 4. The set of v ∈ Fk such that each row of G(t)
+2
+has even weight is a subspace of Fk with dimension k − 1.
+2
+Proof: It is easy to show that the set is a vector
+space. We know from the above theorem that the weight
+(t)
+of each row of Ai is k−t , consider the binomial coefﬁi−t
+cients k−t , k−t , ..., k−t , if some k−t , k−t , ..., k−t
+0
+1
+k−t
+s1
+s2
+sj
+are even, then we deﬁne the set of vectors E = {ek
+i+t−1 =
+(0, 0, ..0, 1, 0..0) ∈ Fk |t ∈ {s1 , s2 , ..., sj }, and 1 occurs
+2
+at position i + t − 1 in ek
+i+t−1 }. So E has cardinality j.
+Suppose in position t1 , t2 , ..., tl, (t < t1
+t2
+...
+tl ), k−t , k−t , ..., k−t are odd numbers, then we det1
+t2
+tl
+k
+ﬁne the following set of vectors: F = {fu+t−1,v+t−1 =
+k
+(0, 0, .., 1, 0..0, 1, 0..0) ∈ F2 |u
+v are consecutive pairs
+of numbers in {t1 , t2 , ..., tl }, the two 1 s occur at position
+
+3
+
+all even weight vectors has dimension k − n. Let us give a
+way to ﬁnd a basis for the vector space U.
+First, we need to construct a matrix Mk , where the s − t
+entry of Mk is mst = s−1 for s t, for s < t, mst = 0.
+t−1
+Here, we denote 0 = 1.We want to have a matrix Nk such
+0
+that Mk Nk = Ik , where Ik is the k by k identity matrix.
+The ﬁrst column in matrix Nk denotes the choice for which
+C (k−1) have all even weight codes but C (k) has some odd
+weight vector. Similarly, the j th column in matrix Nk denotes
+the choice for which C (k−j) have all even weight codes but
+C (k−j+1) have some odd weights vectors.
+
+For example, if k = 4, R(1, 4) is generated by the matrix
+
+
+
+
+
+
+
+2
+Proof: We just consider Mk , when u < v, the u−v entry
+2
+for Mk is 0 because Mk is an upper triangular matrix. When
+2
+u v, the u − v entry for Mk is
+
+m(2) =
+uv
+i=v
+
+u−1
+i−1
+
+u
+
+i−1
+v−1
+
+=
+i=v
+
+So
+u
+
+m(2) =
+uv
+i=v
+
+u−v
+i−v
+
+u−1
+v−1
+
+1
+1
+1
+1
+0
+
+1
+1
+1
+0
+1
+
+1
+1
+1
+0
+0
+
+1
+1
+0
+1
+1
+
+1
+1
+0
+1
+0
+
+1
+1
+0
+0
+1
+
+1
+1
+0
+0
+0
+
+1
+0
+1
+1
+1
+
+1
+0
+1
+1
+0
+
+1
+0
+1
+0
+1
+
+1
+0
+1
+0
+0
+
+1
+0
+0
+1
+1
+
+1
+0
+0
+1
+0
+
+1
+0
+0
+0
+1
+
+1
+0
+0
+0
+0
+
+
+
+
+.
+
+
+
+If we delete the ﬁrst row of this matrix, we get G =
+[A1 A2 A3 A4 ] for which k = 4. If we just choose blocks
+A1 and A3 . Our code is a punctured code of the linear code
+generated by G.
+
+−1
+Lemma 7. If Mk is deﬁned as above, then Mk = Mk .
+
+u
+
+1
+1
+1
+1
+1
+
+(1)
+
+Dimension and minimum distance of Ci
+
+Since Ai is the most elementary matrix in our construction.
+(1)
+(u − 1)!
+. Ci is the linear code generated by the rows of Ai . The
+(1)
+(u − i)!(i − v)!(v − 1)! dimension of Ci is k if i is odd and k − 1 if i is even.
+For the distance, we introduce the following lemma ﬁrst:
+
+=
+
+u − 1 u−v
+2
+.
+v−1
+
+Lemma 10. Let wu be the weight of a codeword obtained by
+adding u rows from Ai . Then wu depends only on u and not
+on the u rows.
+
+When u > v, we see that muv is even, which is 0 modulo 2.
+2
+When u = v, we see that muv = 1. So Mk = Ikk.
+Therefore, we have the following result:
+
+wu =
+
+Theorem 8. Let U be the subspace of Fk which makes C (t)
+2
+have all even weight codewords. Then for 1 i k − 1, the
+ﬁrst k − t columns of Mk form a basis of the vector space U .
+
+m1 j m2
+
+u
+2j − 1
+
+k−u
+i − 2j + 1
+
+where m1 = max(1, u+1+i−k ) and m2 = min( i+1 , u+1 ).
+2
+2
+2
+(1)
+
+Since the basis of U is clearly described by the above
+theorem, we will need to study the behavior of Mk for certain
+k. The ﬁrst column of Mk has period 1, the second and the
+third columns have period 2. By Lucas’ Theorem, for n 1,
+from the 2n−1 + 1 th column to 2n th column, the period is
+2n . Then we have the following result:
+
+Proof: Let us add u rows of Ai and get a vector, say
+v = r1 + r2 + ... + ru = (v1 , v2 , ..., v(k) ). If vm = 1, then
+i
+{r1m , r2m , ..., rum } has odd number of 1s.
+If {r1m , r2m , ..., rum } contains only one 1 and the rest are
+0. There are u k−1 possible choices. So by this combi1 i−1
+nation, u k−1 1s will appear in the vector v. Similarly,
+1 i−1
+if {r1m , r2m , ..., rum } contains three 1s and the rest are 0.
+There are u k−1 such choices. Therefore, we could follow
+3 i−3
+(1)
+this argument so that the weight of any sum of u rows of Ai
+is
+
+l
+
+Theorem 9. For a ﬁxed k 2l , for any vector v ∈ F2 , deﬁne
+2
+u ∈ Fk in the following way: u = (v, v, ..., v, v ), where v is
+2
+a punctured of v with the last several digits deleted to make
+the length of u be k. Then u is a vector which makes the
+l
+vectors in C (k−2 ) be all even weight. Conversely, If for some
+choice u ∈ Fk , every vector in C (t) has even weight. Assume
+2
+2l−1 k − t 2l , then this vector u is of the following form:
+l
+u = (v, v, ..., v, v ), where v ∈ F2 and v is a punctured of
+2
+v with the last several digits deleted to make the length of u
+be k.
+
+wu =
+j
+
+u
+2j − 1
+
+k−u
+.
+i − 2j + 1
+
+However, there are 4 boundary conditions: 0 2j − 1 u
+and 0 i − 2j + 1 k − u. So the range of j is max(1, u +
+1 + i − k) 2j min(i + 1, u + 1).
+(1)
+Since adding all rows in Ai will give either zero vector
+or all 1 vector, thus, we have the following result:
+
+Relation to Reed-Muller code
+Let R(r, m) be the Reed Muller code deﬁned in a normal
+way. Let Sr be the set which generates R(r, m). Thus, the
+all one vector 1 ∈ Sr . Let Rr be the subcode of R(r, m)
+which is generated by Sr \1. Therefore, no matter how we
+choose blocks A1 , A2 , ..., Ak , we would always see that C (r)
+is a punctured code of Rr . This is the reason why we call the
+code we constructed as Reed-Muller type code.
+
+Theorem 11. If C (1) is generated by one single block Ai , the
+minimum distance of C (1) is min {wu |1 u k − 1}, where
+wu is the weight of the codeword added by u rows.
+For example, let k = 5, i = 3.. For the sum of n rows, the
+
+4
+
+weight w is the following
+
+The following table gives the shortest possible codes obtained with our construction for which C (t) is an even weight
+code.
+
+n = 1, w =
+
+5−1
+3−1
+
+n = 2, w =
+
+2
+1
+
+5−2
+2
+
+= 6.
+
+n = 3, w =
+
+3
+1
+
+5−3
+3−1
+
++
+
+n = 4, w =
+
+4
+3
+
+5−4
+3−3
+
+= 4.
+
+n = 5, w =
+
+5
+3
+
+= 10.
+
+= 6.
+
+3
+3
+
+k
+
+5−3
+3−3
+
+For a ﬁxed k, suppose we want C (t) to have all even weight
+codes. In matrix Mk , the ﬁrst k − t columns give us a basis of
+the subspace U of Fk which makes C (t) have all even weight
+2
+codes. Our task is to pick up a vector u ∈ U such that the
+length of the corresponding C (t) is as short as possible.
+By using the above result, we could ﬁnd the minimum
+distance of any C (1) very quickly. For example, for k = 7,
+consider the sum of column 2 and column 3 in matrix
+M7 , we get a generator matrix G = [A1 A2 A5 A6 ], and
+C (1) , C (2) , C (3) , C (4) have all even weight codewords. The
+length of the code is 7 + 7 + 7 + 7 = 56. To calculate
+1
+2
+5
+6
+the minimum distance of C (1) , we list the sum of n rows for
+1 n k. Let the weight of the sum of n rows be w.
+n = 1, w =
+
+6
+0
+
++
+
+n = 2, w =
+
+2
+1
+
+5
+0
+
+n = 3, w =
+
+3
+1
+
+6
+1
+
++
+
+6
+4
+
++
+
+6
+5
+
++
+
+2
+1
+
+5
+1
+
++
+
+2
+1
+
+5
+4
+
+4
+0
+
++
+
+3
+1
+
+4
+1
+
++
+
+3
+1
+
+2
+1
+
+5
+5
+
++
+
+3
+3
+
+4
+2
+
++
+
+3
+3
+
+4
+1
+
+3
+0
+
++
+
+4
+1
+
+3
+1
+
++
+
+4
+3
+
+3
+2
+
++
+
+4
+3
+
+3
+3
+
+5
+1
+
+2
+0
+
++
+
+5
+1
+
+2
+1
+
++
+
+5
+3
+
+2
+2
+
++
+
+5
+5
+
+2
+0
+
++
+
+1
+0
+
++
+
+6
+1
+
+1
+1
+
++
+
+6
+5
+
+1
+0
+
++
+
+6
+5
+
+1
+1
+
+4
+3
+
++
+
+= 28.
+
+2
+1
+
+= 28.
+n = 6, w =
+
+6
+1
+
+n = 7, w =
+
+7
+1
+
+63
+31
+27
+12
+7
+
+6
+5
+6
+6
+6
+
+32
+16
+12
+4
+2
+
+6
+5
+4
+3
+2
+1
+
+1,2,3,4,5,6,7
+2,4,6
+1,2,5,6
+2,6
+1,6,7
+6
+
+127
+63
+56
+28
+15
+7
+
+7
+6
+7
+6
+7
+6
+
+64
+32
+24
+12
+4
+2
+
+7
+6
+5
+4
+3
+2
+1
+
+1,2,3,4,5,6,7,8
+2,4,6,8
+1,2,5,6
+2,6
+1,2,7,8
+1,7
+1,8
+
+255
+127
+120
+56
+45
+16
+9
+
+8
+7
+8
+7
+8
+8
+8
+
+128
+64
+56
+24
+16
+4
+2
+
+R EFERENCES
+
+= 24.
+
+7
+5
+
+5
+5
+
+1,2,3,4,5,6
+2,4,6
+1,4,5
+1,5
+1,6
+
+[1] A. Shamir, “How to share a secret,” Comm. ACM, vol. 22, no. 11, pp.
+612–613, 1979.
+[2] R. Cramer, V. Daza, I. Gracia, J. Jim´ nez Urroz, G. Leander, J. Mart´e
+ı
+Farr´ , and C. Padr´ , “On codes, matroids, and secure multiparty compue
+o
+tation from linear secret-sharing schemes,” IEEE Trans. Inform. Theory,
+vol. 54, no. 6, pp. 2644–2657, 2008.
+[3] I. Cascudo, H. Chen, R. Cramer, and C. Xing, “Asymptotically good
+ideal linear secret sharing with strong multiplication over any ﬁxed ﬁnite
+ﬁeld,” in Advances in cryptology—CRYPTO 2009, ser. Lecture Notes in
+Comput. Sci. Berlin: Springer, 2009, vol. 5677, pp. 466–486.
+[4] R. Cramer, “The arithmetic codex: Theory and applications,” in Advances
+in Cryptology EUROCRYPT 2011, ser. Lecture Notes in Computer
+Science, K. Paterson, Ed. Springer Berlin / Heidelberg, 2011, vol. 6632,
+pp. 1–1.
+[5] H. Chen and R. Cramer, “Algebraic geometric secret sharing schemes
+and secure multi-party computations over small ﬁelds,” in Advances in
+cryptology—CRYPTO 2006, ser. Lecture Notes in Comput. Sci. Berlin:
+Springer, 2006, vol. 4117, pp. 521–536.
+[6] I. M. Duursma and R. Pellikaan, “A symmetric Roos bound for linear
+codes,” J. Combin. Theory Ser. A, vol. 113, no. 8, pp. 1677–1688, 2006.
+[7] E. Arıkan, “Channel polarization: a method for constructing capacityachieving codes for symmetric binary-input memoryless channels,” IEEE
+Trans. Inform. Theory, vol. 55, no. 7, pp. 3051–3073, 2009.
+[8] S. B. Korada, E. Saso˘ lu, and R. Urbanke, “Polar codes: characterization
+¸ ¸ g
+of exponent, bounds, and constructions,” IEEE Trans. Inform. Theory,
+vol. 56, no. 12, pp. 6253–6264, 2010.
+[9] I. M. Duursma, “Algebraic geometry codes: general theory,” in Advances
+in Algebraic Geometry Codes, ser. Series on Coding Theory and Cryptography, C. M. E. Martinez-Moro and D. Ruano, Eds. World Scientiﬁc,
+2008.
+
+= 32.
+
+n = 5, w =
+
+5
+4
+3
+2
+1
+
+We have given a construction of codes of Reed-Muller type
+suitable for use in multiplicative secret sharing schemes and
+multiparty computation.
+
+= 28.
+n = 4, w =
+
+d
+
+V. C ONCLUSION
+
+= 24.
+
+4
+4
+
+k
+
+TABLE I
+S HORT (t, n)- RECONSTRUCTING CODES
+
+= 28.
++
+
+n
+
+8
+
+Some useful codes
+
+Blocks Ai
+
+7
+
+So the minimum distance is 4 here and the weight distribution
+of our linear code is very clear. In addition, assume we add one
+more block i = 2 here. For i = 2, if we sum one, two ,three,
+four and ﬁve rows, we would get the weights of the resultant
+vectors to be 4, 6, 6, 4, 0 resp. Therefore, if we combine A2
+and A3 together, we would get the weights of the vectors to
+be 10, 12, 10, 8, 10 resp.
+
+t
+
+6
+
+= 4.
+
+Hence, the minimum distance of C (1) is 24. By this method,
+we have constructed a [56, 7, 24] code C (1) which satisﬁes the
+property that C (1) , C (2) , C (3) , C (4) all have even weight.
+Example 12. For k = 10, and for i1 = 3, i2 = 7, the code
+C = C (1) has length 240. The generator matrix for C is
+the 10 × 240 matrix with 10 = 120 columns of weight 3
+3
+and 10 = 120 columns of weight 7. The code C (i) is of
+7
+dimension 10, 45, 120, 195, 230, resp., for i = 1, 2, 3, 4, 5. The
+codes C (i) and C (5−i) are dual codes for i = 1, 2, 3, 4, 5.
+
+5
+
+

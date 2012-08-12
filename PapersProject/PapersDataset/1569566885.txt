@@ -1,0 +1,997 @@
+Creator:        TeX
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Fri May 18 23:08:44 2012
+ModDate:        Tue Jun 19 12:54:33 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      766282 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569566885
+
+Codes Over Non-Abelian Groups: Point-to-Point
+Communications and Computation Over MAC
+Aria G. Sahebi and S. Sandeep Pradhan
+Department of Electrical Engineering and Computer Science,
+University of Michigan, Ann Arbor, MI 48109, USA.
+Email: ariaghs@umich.edu, pradhanv@umich.edu
+
+established in [2], [3], [17].
+In summary, for the point-to-point communication, Abelian
+group codes are, in general, inferior to linear codes. But
+for certain multiuser communication, they can outperform the
+latter.
+The next logical step is to characterize the performance limits of codes over non-abelian groups. It has been conjectured
+by several authors that non-Abelian group codes are inferior
+to Abelian group codes [8] [9] [13]. Moreover, they suggest
+that asymptotically good group codes over non-abelian groups
+may not exist. This motivates a loosening of the structure of
+the code yet further.
+In this work, we deﬁne a class of structured codes which
+includes the class of group codes and has less structure
+compared to group codes. We evaluate the performance of
+such codes over the smallest non-Abelian group D6 and show
+that these codes have a strictly better performance compared
+to Abelian group codes for the point-to-point problem. We
+then use these codes for the problem of computation over
+MAC and show that these codes are superior to random
+codes in certain cases. We use a combination of algebraic
+and information-theoretic tools for this task. This observation
+broadens our view to structured codes for possible use in
+multi-terminal settings.
+
+Abstract—In this paper, we show that good structured codes
+over non-Abelian groups do exist. Speciﬁcally, we construct codes
+over the smallest non-Abelian group D6 and show that the
+performance of these codes is superior to the performance of
+Abelian group codes of the same alphabet size. This promises
+the possibility of using non-Abelian codes for multi-terminal
+settings where the structure of the code can be exploited to gain
+performance. We also show that for the problem of computation
+over MAC, these codes are superior to random codes in certain
+cases.
+
+I. I NTRODUCTION
+Algebraically structured codes are an important class of
+codes in coding/information theory and communications and
+evaluating the information-theoretic performance limits of
+such codes has been an area of signiﬁcance [2], [5], [6],
+[10], [12], [16]. It is well-known that linear codes achieve the
+symmetric capacity of q-ary channels where q is a prime [7]
+[6]. Linear codes can also be used to compress a binary source
+losslessly down to its entropy [11]. Optimality of linear codes
+for certain communication problems motivates the study of
+algebraic-structured codes including Abelian and non-Abelian
+group codes.
+In [11] it has been shown that for some multi-terminal
+communication settings, the average asymptotic performance
+of the ensemble of structured codes can be better than that of
+random codes. In recent years, such gains have been shown
+for a wide class of multi-termianl problems [12], [14], [15].
+Thus, characterization of the information theoretic performance limits of these codes became important. However, the
+structure of the code restricts the encoder to abide by certain
+algebraic rules. This causes the performance of such codes to
+be inferior to random codes in some communication settings.
+Linear codes are highly structured and for some problems in
+information theory they cannot be optimal. Moreover, these
+codes can only be deﬁned over alphabets of size a power of
+a prime.
+Group codes are a generalization of linear codes which are
+algebraically structured and can be deﬁned for any alphabet.
+These codes can outperform unstructured codes in certain
+communication problems [12]. Group codes were ﬁrst studied
+by Slepian [19] for the Gaussian channel. In [1], the capacity
+of group codes for certain classes of channels has been
+computed. Further results on the capacity of group codes were
+
+The paper is organized as follows: In Section II, we introduce our notation. In Section III, we deﬁne the ensemble of
+codes and in Section IV, we analyze the performance of these
+codes for the point-to-point problem. We then simplify this
+ensemble in Section V and evaluate their performance for the
+problem of computation over MAC in Section VI. We compare
+the performance of the constructed codes to the performance
+of Abelian group codes and random codes in Section VII and
+we conclude in Section VIII.
+II. P RELIMINARIES
+1) Groups: A group is a set G equipped with a binary
+operation “·” to form an algebraic structure. The group operation “·” must satisfy the group axioms (closure, associativity,
+identity and invertibility). A group is called Abelian if its
+operation is commutative and non-Abelian otherwise.
+2) Group Codes: Given a group G, a group code C over
+G with block length n is any subgroup of Gn [4], [10]. A
+
+This work was supported by NSF grants CCF-0915619 and CCF-1116021.
+
+1
+
+·
+1
+x
+x2
+y
+xy
+x2 y
+
+shifted group code over G, C + v is a translation of a group
+code C by a ﬁxed vector v ∈ Gn .
+3) Source and Channel Models: We consider discrete memoryless and stationary channels used without feedback. We
+associate two ﬁnite sets X and Y with the channel as the
+channel input and output alphabets. These channels can be
+characterized by a conditional probability law W (y|x) for
+x ∈ X and y ∈ Y . The set X admits the structure of
+a ﬁnite Abelian group G of the same size. The channel is
+speciﬁed by (G, Y , W ). Assuming a perfect source coding
+block applied prior to the channel coding, the source of
+information generates messages over the set {1, 2, . . . , M }
+uniformly.
+4) Achievability and Capacity: A transmission system with
+parameters (n, M, τ ) for reliable communication over a given
+channel (G, Y , W ) consists of an encoding mapping and a
+decoding mapping e : {1, 2, . . . , M } → Gn , f : Y n →
+{1, 2, . . . , M } such that for all m = 1, 2, . . . , M ,
+1
+M
+
+x
+x
+x2
+1
+x2 y
+y
+xy
+
+x2
+x2
+1
+x
+xy
+x2 y
+y
+
+y
+y
+xy
+x2 y
+1
+x
+x2
+
+xy
+xy
+x2 y
+y
+x2
+1
+x
+
+x2 y
+x2 y
+y
+xy
+x
+x2
+1
+
+Note that for two elements g, h in D6 , g · h may not be
+equal to h · g. We construct the ensemble of codes over D6 in
+a more complete version of this paper [18]. Here we directly
+present the resulting ensemble of codes. Each code in this
+k
+ensemble has a rate of R = n log 6.
+•
+
+W n (f (Y n ) = m|X n = e(m)) ≤ τ
+
+For i = 1, · · · , n and j = 1, · · · , k choose gij and hij
+randomly according to Figure 1. for (i, j) = (i , j ),
+(gij , hij ) is chosen independently from (gi j , hi j ).
+
+•
+
+M
+m=1
+
+1
+1
+x
+x2
+y
+xy
+x2 y
+
+For i = 1, · · · , n, choose the dither Bi uniformly randomly from D6 .
+Given the input sequence u = (u1 , · · · , uk ) where ui =
+xai y bi , ai ∈ Z3 , bi ∈ Z2 for i = 1, · · · , k, the output
+sequence is equal to c = (c1 , · · · , cn ) where
+
+•
+
+Given a channel (G, Y , W ), the rate R is said to be achievable
+if for all
+> 0 and for all sufﬁciently large n, there
+exists a transmission system for reliable communication with
+1
+parameters (n, M, τ ) such that n log M ≥ R − and τ ≤ .
+The capacity of the channel is deﬁned as the supremum of the
+set of all achievable rates.
+5) Typicality: We use the notion of strong typicality
+throughout the paper.
+6) Dihedral Groups: A dihedral group of order 2p is the
+group of symmetries of a regular p-gon, including reﬂections
+and rotations and any combination of these operations. A
+dihedral group can be represented as a quotient of a free group
+as follows: D2p = x, y|xp = 1, y 2 = 1, xyxy = 1 . Dihedral
+groups are among the simplest non-Abelian groups.
+7) Notation: In our notation, O( ) is any function of such
+that lim →0 O( ) = 0 and for a set A, |A| denotes its size
+(cardinality).
+
+ak
+a1
+a2
+c1 = g11 hb1 g12 hb2 · · · g1k hbk · B1
+11
+12
+1k
+
+ak
+a1
+a2
+c2 = g21 hb1 g22 hb2 · · · g2k hbk · B2
+21
+22
+2k
+.
+.
+.
+ak
+a1
+a2
+cn = gn1 hb1 gn2 hb2 · · · gnk hbk · Bn
+n1
+n2
+nk
+
+(1)
+
+We denote this by c = G(u) · B.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+hij
+
+
+ 1
+gij
+x
+ 2
+x
+
+1
+
+y
+
+xy
+
+x2 y
+
+1
+10
+
+1
+10
+1
+10
+1
+10
+
+1
+10
+1
+10
+1
+10
+
+1
+10
+1
+10
+1
+10
+
+0
+0
+
+Fig. 1: gij is chosen from {1, x, x2 } and hij is chosen from
+
+{y, xy, x2 y}. The number in the table shows the joint probability
+of (gij , hij ) being picked.
+
+III. A C LASS OF S TRUCTURED C ODES
+Based on Forney’s analysis of group codes [10], we construct a class of structured codes which we call pseudo-group
+codes. The complete description of such codes can be found
+in a more complete version of this work [18]. For Abelian
+groups, the deﬁnition of pseudo-group codes coincides with
+the deﬁnition of group codes but for non-Abelian groups this
+class is larger than the class of group codes; i.e. it includes all
+group codes as well as some non-group codes. In this paper,
+we use these codes for the smallest non-Abelian group D6 and
+show that this loosening of the structure results in a better
+performance. The generalization of the analysis to dihedral
+groups D2p where p is a prime is relatively straight forward.
+The group D6 with presentation D6 =
+x, y|x3 =
+2
+1, y = 1, xyxy = 1 can be characterized by a set
+{1, x, x2 , y, xy, x2 y} with the following table of operations:
+
+We evaluate the performance of these codes using a random
+coding argument in the next section.
+IV. M AIN R ESULT
+In this section we show the existence of good structured
+codes over the non-Abelian group D6 by proving the following
+theorem:
+Theorem IV.1. For the channel (D6 , Y , W ), let X be a
+uniform random variable over the channel input and let the
+random variable [X] indicate the coset of {1, x, x2 } in D6
+where X belongs to. i.e.
+[X] =
+
+2
+
+{1, x, x2 }
+{y, xy, x2 y}
+
+if X ∈ {1, x, x2 }
+if X ∈ {y, xy, x2 y}
+
+Then the rate R∗ is achievable using pseudo-group codes over
+D6 where
+R∗ = min log2 6 − H(X|Y ),
+
+Moreover, for a ﬁxed u, let Tm1 ,m2 (u) be the set of all u with
+˜
+m1 (u, u) = m1 , m2 (u, u) = m2 , then
+˜
+˜
+
+log2 6
+[log2 3 − H(X|[X]Y )]
+log2 3
+
+|Tm1 ,m2 (u)| =
+
+The rest of this section is devoted to give a sketch of the
+proof of this theorem. A more complete version of this proof
+can be found in [18].
+Consider the class of pseudo-group codes over D6 of the form
+(1) used for the channel (D6 , Y , W ). The set of messages is
+D6 and for each message u ∈ Dk the encoder maps it to
+6
+c ∈ Dn where c = G(u) · B. At the receiver, after receiving
+6
+the channel output y ∈ Y n , the decoder looks for a message
+u ∈ Dk such that c = G(ˆ) · B is jointly -typical with y
+ˆ
+ˆ
+u
+6
+with respect to PX WY |X where PX is uniform over D6 and
+> 0 is arbitrary. If it ﬁnds a unique such c, it decodes y to
+ˆ
+u, otherwise it declares error.
+ˆ
+The expected value of the average probability of error for this
+coding scheme is given by
+E{Pavg (err)} =
+
+1
+6k
+k
+
+u∈D6
+
+P (G(u) · B = c)
+
+c∈Dn
+6
+
+=
+
+k
+· 3m1 · 2m2
+m1 , m2 , m3
+k
+k − m1
+· 3m1 · 2m2
+m1
+m2
+
+Proof: The proof involves solving non-commutative linear equations in several cases. It can be found in a more
+complete version of this work [18].
+Deﬁne
+m1
+
+A(m1 ) =
+l=1
+
+m1
+l
+
+9l
+
+odd
+(10m2 + 2)
++
+B(m1 , m2 ) =
+10m2
+l
+
+m1
+
+l
+
+l
+
+9l
+
+m1
+l
+
+9l
+
+even
+m1
+
+(10m2 − 1)
++
+C(m1 , m2 ) =
+10m2
+
+u=u y∈An (Y |c)
+˜
+
+l=2
+
+m1
+l
+
+l=2
+
+even
+
+Using the above lemma and deﬁnitions, the expected value of
+the average probability of error can be upper bounded by:
+
+P (G(˜) · B = c|G(u) · B = c)W (y|c) + O( )
+u
+˜
+
+c∈An (X|y)
+˜
+
+We need to evaluate the conditional probability P (G(˜) ·
+u
+B = c|G(u)·B = c) to proceed. For u, u ∈ Dk and x, x ∈ Dn ,
+˜
+˜
+˜
+6
+6
+let u = (u1 , · · · , uk ) where ui = xai y bi for i = 1, · · · , k
+˜ ˜
+and u = (˜1 , · · · , uk ) where ui = xai y bi for i = 1, · · · , k.
+˜
+u
+˜
+˜
+Also let c = (c1 , · · · , cn ) and c = (˜1 , · · · , cn ) and deﬁne
+˜
+c
+˜
+θ = c˜−1 = (θ1 , · · · , θn ) where θi = xαi y βi . Deﬁne the
+c
+following quantities:
+
+E{Pavg (err)}
+
+n1 (c, c) = |{i ∈ [1, · · · , n]|βi = 1}|
+˜
+
+Note that the cardinality term in the above expression can be
+upper bounded by
+
+k
+
+≤
+
+l=1
+
+odd
+
+n1
+
+m1 l−1 
+9 
+
+l
+
+ 10k−m1 −m2 (10m2 + 2)
++ 10k−m1 · 3
+
+3
+
+
+1
+·
+10kn
+
+c · {y, xy, x2 y}n1 × {1, x, x2 }n−n1 ∩ An (X|y)
+n n[H(X|[X]Y )+O(
+≤
+2
+n1
+
+Lemma IV.1. For u, u ∈ Dk and c, c ∈ Dn , we have
+˜
+˜
+6
+6
+
+l
+
+· 3m1 · 2m2
+
+Lemma IV.2. Let y ∈ Y n be an arbitrary channel output
+sequence. For any x ∈ An (X|y), we have
+
+m3 (u, u) = {i ∈ [1, · · · , k]|bi = ˜i , ai = ai } = k−m1 − m2
+˜
+b
+˜
+
+
+
+k − m1
+m2
+
+and in turn, we have the following lemma:
+
+m2 (u, u) = {i ∈ [1, · · · , k]|bi = ˜i , ai = ai }
+˜
+b
+˜
+
+m1
+
+m1 =0 m2 =0 n1 =0 n2 =0
+
+k
+m1
+
+c · {y, xy, x2 y}n1 × {1, x, x2 }n−n1 ∩ An (X|y)
+
+m1 (u, u) = {i ∈ [1, · · · , k]|bi = ˜i }
+˜
+b
+
+1  k−m1
+10
+·3
+10kn 
+
+n−n1
+
+1
+A(m1 )n1 B(m1 , m2 )n−n1 −n2 C(m1 , m2 )n2 ·
+3n
+x · {y, xy, x2 y}n1×{x, x2 }n2×{1}n−n1 −n2 ∩ An (X|y)
+
+n3 (c, c) = |{i ∈ [1, · · · , n]|βi = 0, αi = 0}| = n − n1 − n2
+˜
+
+=
+
+n
+
+10n(k−m1 ) ·
+
+n2 (c, c) = |{i ∈ [1, · · · , n]|βi = 0, αi = 0}|
+˜
+
+P (G(˜) · B = c|G(u) · B = c)
+u
+˜
+
+
+k−m1
+
+ 10k−m1 −m2 (10m2 − 1)
++ 10k−m1 · 3
+
+3
+
+l
+
+l=2
+
+even
+m1
+
+l
+
+Where the random variable [X] takes value from the set of
+cosets of {1, x, x2 } in D6 .
+
+·
+
+m1
+
+l=2
+
+even
+
+)]
+
+n2
+
+m1 l−1 
+9 
+l
+
+Proof: The complete proof of this lemma can be found
+in a more complete version [18].
+Using these lemmas we can show that ∀δ, δ > 0 if
+
+·
+
+R < log2 [6(1 − δ)] − H(X|Y )
+R < log2 6 {log2 [3(1 − δ )] − H(X|[X]Y )}
+log 3
+
+n3
+
+2
+
+m1 l−1 
+9 
+l
+
+then the expected value of the average probability of error
+vanishes as n increases. This implies that the rate R∗ is
+
+3
+
+achievable.
+
+codebooks corresponding to Users 1 and 2 respectively. If User
+1 sends a message x ∈ C1 and User 2 sends a message z ∈
+C2 , the decoder wishes to reconstruct x · z losslessly where
+the multiplication is the component-wise group operation.
+The average probability of error for any code in this ensemble
+is given by
+
+In the following two sections, we state some recent results
+in this direction without proofs. These results will be published
+in due course.
+V. A S IMPLER C ONSTRUCTION
+In Section III, we deﬁned the class of pseudo-group codes
+based on Forney’s analysis of group codes and in Section
+IV we showed that these codes have a good performance
+for the point-to-point communication problem. In this section,
+we introduce another class of codes over D6 with similar
+properties as those of pseudo-group codes deﬁned in Section
+III. The new class of pseudo-group codes deﬁned in this
+section have the advantage of a simpler construction. This
+enables us to use this ensemble in Section VI for the problem
+of computation over MAC.
+The new ensemble of codes is constructed as follows:
+• For i = 1, · · · , n and j = 1, · · · , k, let
+
+Perr =
+x∈C1 z ∈C2
+
+•
+
++
+
+R2 = log2 3 − H(W |[W ]Y )
+log2 6
+R3 =
+[log2 6 − H(W |Y )]
+log2 12
+
+where
+H∗ =
+
+1
+2
+
+PW |Y (x|s)
+)+
+PW |Y (x|s) + PW |Y (x2 |s)
+PW |Y (xy|s)
+)
+PW |Y (xy|s)+PW |Y (x2 y|s) h(
+PW |Y (xy|s)+PW |Y (x2 y|s)
+1
++ PW |Y (1|s) + PW |Y (y|s)
+2
+PW |Y (x|s) + PW |Y (x2 |s) h(
+
+xi = y Bi (u)+δi xAi (u)+di
+
+We denote this by x = G(u)
+It turns out that this ensemble has the same average performance as the ensemble of codes deﬁned in Section III. i.e. it
+can achieve the rate R∗ deﬁned in Theorem IV.1.
+
+VII. C OMPARISON W ITH A BELIAN G ROUP C ODES AND
+R ANDOM C ODES
+The only Abelian group of size 6 is Z6 = {0, 1, · · · , 5}
+where the group operation is addition mod-6. The best
+achievale rate using Abelian group codes over Z6 is known
+to be [17]
+
+VI. C OMPUTATION OVER MAC
+In this section, we use the ensemble of codes deﬁned in
+Section V for the problem of computation over multiple access
+channels. Consider the two user MAC depicted in Figure 2
+where X, Z take values from the Dihedral group D6 and Y
+takes values from a ﬁnite set Y .
+
+R∗ = min log2 6 − H(X|Y ),
+
+log2 6
+[log2 3 − H(X|[X]3 Y )]
+log2 3
+1
+, log2 6 [1 − H(X|[X]2 Y )]
+2
+
+where [X]3 takes values from cosets of {0, 2, 4} and [X]2
+takes values from cosets of {0, 3}. In the following, we
+present two examples. In the ﬁrst example, we show that the
+achievable rate using the new code can be strictly larger than
+the rate achievable using Abelian group codes for the pointto-point problem. In the second example, we show that under
+certain conditions, the achievable rate using non-Abelian codes
+can be strictly larger than the rate achievable using random
+codes for the problem of computation over MAC.
+
+User 1 (X)
+User 2 (Z)
+
+PY (s)
+s∈Y
+
+k
+u
+j=1 tij bj
+
+The output of the encoder is x = (x1 , x2 , · · · , xn ) ∈ Dn
+6
+where for i = 1, · · · , n,
+
+WY |XZ
+
+1{w∈An (W |y )}
+˜
+
+R1 = log2 6 [1 − H ∗ ]
+
+be uniform and independent random variables over their
+corresponding domains.
+Given the input sequence u = (u1 , u2 , · · · , uk ) ∈ Dk
+6
+u
+u
+where uj = xaj y bj , au ∈ Z3 , bu ∈ Z2 for j = 1, · · · , k,
+j
+j
+deﬁne
+k
+u
+j=1 rij aj
+k
+u
+j=1 sij bj
+
+n
+WY |XZ (y|x, z)
+
+Let X and Z be uniform and independent random variables
+over D6 and let Y be the channel output when the inputs
+are X and Z. Deﬁne W = X · Z where · is the group
+operation. Note that W itself is uniform. It turns out the rate
+R = min(R1 , R2 , R3 ) is achievable using non-Abelian codes
+where
+
+sij , δi ∈ Z2
+
+Ai (u) =
+Bi (u) =
+
+y ∈Y
+
+n
+
+˜
+w∈C1 ·C2
+˜
+w=xz
+
+rij , tij , di ∈ Z3
+
+•
+
+1
+|C1 | · |C2 |
+
+Receiver (Y )
+
+Fig. 2: Two user MAC: Computation of D6 operation.
+When the inputs of the channel are x, z ∈ D6 , the channel
+output is y ∈ Y with conditional probability WY |XZ (y|x, z).
+Let n be the block length and let C1 ⊆ Dn and C2 ⊆ Dn be
+6
+6
+
+4
+
+A. Example 1: Point-to-Point Problem
+
+C. Comparison
+
+We give an example where the capacity of group codes is
+zero whereas the constructed code achieves a strictly positive
+rate. Consider the channel depicted in Figure 3 where 1 = 0.1,
+2 = 0.2 and 3 = 0.15. If we maximize over all possible la-
+
+If we compare the two achievable rates for the point-topoint problem, we observe that for the case of Abelian group
+codes there is an additional term in the minimization which can
+be explained by the additional structure of the Abelian group
+codes. Indeed, the pseudo-group code over D6 is additive
+(homomorphic) with respect to the y generator and is not
+homomorphic with respect to the x generator whereas Abelian
+group codes are homomorphic with respect to both of their
+generators. This means compared to Abelian Group codes, the
+constructed codes gain a higher rate by reducing the structure.
+
+1
+2
+3
+1
+
+VIII. C ONCLUSION
+
+2
+
+We have shown that good structured codes over non-Abelian
+groups do exist. We constructed codes over the smallest nonAbelian group D6 and showed that the performance of these
+codes is superior to the performance of Abelian group codes
+of the same alphabet size. We also showed that such codes can
+be used for multi-terminal problems (such as computation over
+MAC) and can outperform random codes in such settings.
+
+3
+
+Fig. 3: Point-to-Point Channel: The ﬁrst column on the left shows
+the input labels in Z6 and the second column shows the labels in
+D6 .
+
+belings of the channel input alphabet, it can be shown that both
+coding schemes achieve the symmetric capacity of the channel
+which is equal to 0.0139 bits per channel use. However, if
+the labels are assumed to be ﬁxed, the achievable rate using
+pseudo-group codes is equal to R∗ = min(0.0139, 0.0227) =
+0.0139 and the achievable rate using Abelian group codes is
+equal to R = min(0.0139, 0.0227, 0) = 0. Indeed using the
+converse provided in [17] we can show that the capacity of
+Abelian group codes over this channel is equal to zero. We
+observe that for this channel, the codes over D6 outperform
+the codes over Z6 .
+
+R EFERENCES
+[1] R. Ahlswede. “Group codes do not achieve Shannons’s channel capacity
+for general discrete channels”. The annals of Mathematical Statistics,
+42(1):224–240, Feb. 1971.
+[2] R. Ahlswede and J. Gemma. “Bounds on algebraic code capacities for
+noisy channels I”. Information and Control, 19(2):124–145, 1971.
+[3] R. Ahlswede and J. Gemma. “Bounds on algebraic code capacities for
+noisy channels II”. Information and Control, 19(2):146–158, 1971.
+[4] N. J. Bloch. “Abstract Algebra With Applications”. Prentice-Hall, Inc,
+Englewood Cliffs, New Jersey, 1987.
+[5] G. Como and F. Fagnani. “The capacity of ﬁnite abelian group
+codes over symmetric memoryless channels”. IEEE Transactions on
+Information Theory, 55(5):2037–2054, 2009.
+[6] R. L. Dobrushin. “Asymptotic optimality of group and systematic codes
+for some channels”. Theor. Probab. Appl., 8:47–59, 1963.
+[7] P. Elias. “Coding for noisy channels”. IRE Conv. Record, part. 4:37–46,
+1955.
+[8] D. Forney. “On the hamming distance properties of group codes”. IEEE
+Transactions on Information Theory, 38:1797–1801, 1992.
+[9] J. Interlando, R. Palazzo, and M Elia. “Group block codes over
+nonabelian groups are asymptotically bad”. IEEE Transactions on
+Information Theory, 42:1277–1280, 1996.
+[10] G. D. Forney Jr and M. Trott. “The dynamics of group codes: State
+spaces, trellis diagrams, and canonical encoders”. IEEE Transactions
+on Information Theory, 39(9):1491–1513, 1993.
+[11] J. Korner and K. Marton. “How to encode the modulo-two sum of
+binary sources”. IEEE Trans. on Inf. Th., IT-25:219–221, Mar. 1979.
+[12] D. Krithivasan and S. S. Pradhan. “Distributed source coding using
+abelian group codes”. 2011. IEEE Trans. on Inf. Th.(57)1495-1519.
+[13] P. Massey. “Many Non-Abelian Groups Support Only Group Codes That
+Are Conformant To Abelian Group Codes”. ISIT, 1997. Ulm. Germany.
+[14] B. A. Nazer and M. Gastpar. “Computation over multiple-access
+channels”. IEEE Trans. on Inf. Th., 53, Oct. 2007.
+[15] T. Philosof, A. Kishty, U. Erez, and R. Zamir. “Lattice strategies for
+the dirty multiple access channel”. Proceedings of IEEE International
+Symposium on Information Theory, July 2007. Nice, France.
+[16] S. S. Pradhan and K. Ramchandran. “Distributed source coding using
+syndromes (DISCUS): Design and construction”. IEEE Transactions on
+Information Theory, 49(3):626–643, 2003.
+[17] A. G. Sahebi and S. S. Pradhan. “On the Capacity of Abelian Group
+Codes Over Discrete Memoryless Channels”. July 2011. ISIT, Saint
+Petersburg, Russia.
+[18] A. G. Sahebi and S. Sandeep Pradhan. Asymptotically good codes over
+non-abelian groups. 2012. Online: http://arxiv.org/submit/410556.
+[19] D. Slepian. “Group codes for for the Gaussian channel”. Bell Syst.
+Tech. Journal, 1968.
+
+B. Example 2: Computation Over MAC
+Consider the channel depicted in Figure 4 where X,
+Z and W take values form D6 and Y is binary.
+The channel WY |W is characterized the input-output reX
+D6 Multiplier
+
+W =X ·Z
+
+WY |W
+
+Y
+
+Z
+
+Fig. 4: MAC for computation of D6 operation.
+lation Y = W · N where N is a random noise
+taking values from {1, x, x2 , y, xy, x2 y} with probabilities [ 0.1606 0.1396 0.3545 0.0049 0.0230 0.3173 ]
+respectively. Note that the channel WY |W is symmetric. The
+achievable rate using non-Abelian codes can be computed as
+Rnew = min(R1 , R2 , R3 ) = 0.3936 where R1 = 0.5500,
+R2 = 0.4756 and R3 = 0.3936. The achievable rate using
+random codes is equal to
+Rrandom =
+
+1
+I(XZ; Y ) = 0.2729
+2
+
+We observe that for this example, non-Abelian codes outperform random codes.
+
+5
+
+

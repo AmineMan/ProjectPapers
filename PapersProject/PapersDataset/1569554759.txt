@@ -1,0 +1,923 @@
+Creator:        TeX
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Mon Apr 30 08:14:01 2012
+ModDate:        Tue Jun 19 12:54:21 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      344093 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569554759
+
+Quantum polar codes for arbitrary channels
+Mark M. Wilde
+
+Joseph M. Renes
+
+School of Computer Science, McGill University
+Montreal, Quebec, Canada
+
+Institut f¨ r Theoretische Physik, ETH Z¨ rich
+u
+u
+Z¨ rich, Switzerland
+u
+
+CNOT gates.
+The entanglement consumption rate vanishes for an arbitrary degradable channel with qubit input.
+Following the multi-level coding method of Ref. [9], we
+show how to extend the coding scheme to channels with multiple qubit inputs. This gives an explicit code construction for
+the superactivation effect, in which two zero-capacity channels
+have a non-zero quantum capacity when used together [10] (in
+this sense, the channels activate each other).
+
+Abstract—We construct a new entanglement-assisted quantum
+polar coding scheme which achieves the symmetric coherent information rate by synthesizing “amplitude” and “phase” channels
+from a given, arbitrary quantum channel. We ﬁrst demonstrate
+the coding scheme for arbitrary quantum channels with qubit
+inputs, and we show that quantum data can be reliably decoded
+by O(N ) rounds of coherent quantum successive cancellation,
+followed by N controlled-NOT gates (where N is the number of
+channel uses). We also ﬁnd that the entanglement consumption
+rate of the code vanishes for degradable quantum channels.
+Finally, we extend the coding scheme to channels with multiple
+qubit inputs. This gives a near-explicit method for realizing one
+of the most striking phenomena in quantum information theory:
+the superactivation effect, whereby two quantum channels which
+individually have zero quantum capacity can have a non-zero
+quantum capacity when used together.
+
+•
+
+I. Q UANTUM P OLAR C ODING S CHEME
+A. Classical-quantum channels for complementary variables
+Consider a quantum channel N with a two-dimensional
+input system A and a d-dimensional output system B. Let
+A
+UN →BE denote the isometric extension of this channel.
+Let |z denote the computational or “amplitude” basis with
+z ∈ {0, 1}, and let |x denote the conjugate, Hadamard, or
+√
+“phase” basis with x ∈ {+, −} and |± ≡ (|0 ± |1 ) / 2.
+Following Ref. [2], we consider building up a quantum
+communication protocol from two classical communication
+protocols that preserve classical information encoded into
+complementary variables. In this vein, two particular classicalquantum (cq) channels are important. First, consider the cq
+channel induced by sending an amplitude basis state over N :
+
+Polar coding is a promising code construction for transmitting classical information over classical channels [1]. Arikan
+proved that polar codes achieve the symmetric capacity of
+any classical channel [1], with an encoding and decoding
+complexity that is O (N log N ) where N is the number of
+channel uses. These codes exploit the channel polarization
+effect whereby a particular recursive encoding induces a set
+of virtual channels, such that a fraction of the virtual channels
+are perfect for data transmission while the other fraction are
+useless for this task. The fraction containing perfect virtual
+channels is equal to the channel’s symmetric capacity.
+In this paper, we offer a new quantum polar coding scheme
+strongly based on ideas of Renes and Boileau [2], who showed
+that quantum coding protocols can be constructed from two
+different protocols that protect classical information encoded
+into complementary observables. In particular, a protocol for
+reliably transmitting quantum data can be built from a protocol
+that reliably recovers classical information encoded into an
+“amplitude” observable and a protocol that reliably recovers
+“phase” information with the assistance of quantum side
+information (see Refs. [3], [4], [5], [6] for related ideas).
+These ideas were used to construct a quantum polar coding
+scheme with an efﬁcient decoder in [7], but only for a certain
+set of channels with essentially classical outputs. Following
+a different approach, Ref. [8] constructed quantum polar
+codes for degradable channels. Our new quantum polar coding
+scheme has several advantages over these previous schemes:
+•
+
+•
+
+WA : z → N A →B (|z z|) ≡ φB ,
+z
+
+(1)
+
+where the classical input z is a binary variable and the notation
+WA indicates that the classical information is encoded into
+the amplitude basis. We can regard this as the sender (Alice)
+modulating a standard signal |0 with X z and transmitting the
+result to the receiver (Bob).
+For the other cq channel, suppose that Alice instead transmits a binary variable x by modulating the signal with Z x , a
+rephasing of the amplitude basis states. However, instead of
+applying this to |0 , she modulates one half of an entangled
+qubit pair (ebit) shared with Bob. These qubits are in the state
+|Φ
+
+CA
+
+1
+≡√
+|z
+2 z∈{0,1}
+
+C
+
+|z
+
+A
+
+1
+=√
+|x
+2 x∈{+,−}
+e
+
+C
+
+|x
+
+A
+
+,
+
+with Alice holding A and Bob C. The modulation yields
+
+The net rate of quantum communication is equal to the
+symmetric coherent information for an arbitrary quantum
+channel with qubit input.
+The decoder is explicit, and consists of O (N ) rounds of
+coherent quantum successive cancellation followed by N
+
+|σx
+
+BCE
+
+A
+
+A
+= UN →BE (Z x )
+
+=
+
+AC
+
+(−1)xz |φz
+
+1
+√
+2
+z∈{0,1}
+
+1
+
+|Φ
+
+,
+
+BE
+
+(2)
+|z
+
+C
+
+,
+
+(3)
+
+BE
+
+where |φz
+is a puriﬁcation of φB in (1). The resulting cq
+z
+channel is then of the following form:
+BC
+WP : x → σx ,
+
+and GN is Arikan’s encoding circuit matrix built from classical CNOT and permutation gates. The interpretation of this
+channel is that it is the one “seen” by the input ui if all
+of the previous bits ui−1 are available and if we consider
+1
+all the future bits uN as randomized. This motivates the
+i+1
+development of a quantum successive cancellation decoder
+(QSCD) [11] that attempts to distinguish ui = 0 from ui = 1
+by adaptively exploiting the results of previous measurements
+and quantum hypothesis tests for each bit decision.
+(i)
+The synthesized channels WN polarize, in the sense that
+some become nearly perfect for classical data transmission
+while others become nearly useless. To prove this result, one
+can model the channel splitting and combining process as
+a random birth process [1], [11], and one can demonstrate
+that the induced random birth processes corresponding to the
+(i)
+(i)
+channel parameters I(WN ) and F (WN ) are martingales that
+converge almost surely to zero-one valued random variables
+in the limit of many recursions. The following theorem characterizes the rate with which the channel polarization effect
+takes hold [11], and it is useful in proving statements about
+the performance of polar codes for cq channels:
+Theorem 1: Given a binary input cq channel W and any
+
+(4)
+
+where the notation WP indicates that the classical information
+is encoded into a phase variable. In contrast to WA , the
+channel WP is one in which the receiver has quantum side
+information (in the form of system C) that is helpful for
+decoding the transmitted phase information.1
+Both cq channels in (1) and (4) arise in the error analysis
+of our quantum polar coding scheme, in the sense that its
+performance depends on the performance of constituent polar
+codes constructed for these cq channels. Moreover, the two
+channels are more closely related than they may initially
+appear. To see their relationship, consider the state
+|ψ =
+
+A
+1
+√
+|x
+2
+x∈{0,1}
+
+|σx
+
+BCE
+
+=
+
+A
+1
+√
+|z
+2
+z∈{0,1}
+
+|z
+
+C
+
+|φz
+
+BE
+
+.
+
+Measuring system A in the phase basis |x generates the WP
+BE
+output state σx , while measuring A in the amplitude basis
+generates the WA output φB .
+z
+Another important channel is the cq channel WE induced to
+the environment when inputting amplitude-encoded classical
+A
+information: WE : z → TrB {UN →BE (|z z|)}. We do not
+consider this channel for our quantum polar coding scheme
+or its error analysis, but we instead consider it in Section II
+when relating the quantum polar coding scheme of this paper
+to the previous one from Ref. [8].
+B. Channel Polarization
+Two channel parameters that determine the performance
+of a cq channel W : x → ρx are the ﬁdelity F (W ) ≡
+√ √
+2
+ρ0 ρ1 1 and the symmetric Holevo information I (W ) ≡
+H ((ρ0 + ρ1 ) /2) − [H (ρ0 ) + H (ρ1 )] /2 where H (σ) ≡
+−Tr{σ log2 σ} is the von Neumann entropy. These parameters generalize the Bhattacharya parameter and the symmetric mutual information [1], respectively, and are related as
+I (W ) ≈ 1 ⇔ F (W ) ≈ 0 and I (W ) ≈ 0 ⇔ F (W ) ≈ 1
+[11]. The channel W is near perfect when I (W ) ≈ 1 and
+near useless when I (W ) ≈ 0.
+Ref. [11] demonstrated how to construct synthesized versions of W , by channel combining and splitting [1]. The
+synthesized channels are of the following form:
+(i)
+
+U i−1 B N
+
+1
+WN : ui → ρ(i),ui
+
+,
+
+GN (W, β) ≡
+
+U i−1 B N
+
+1
+
+≡
+ui−1
+1
+
+N
+
+ρBi ≡
+u
+1
+
+uN
+i+1
+
+2i−1
+
+ui−1
+1
+
+1 BN
+ρ
+,
+N −i uN GN
+2
+
+ui−1
+1
+
+i−1
+U1
+
+(5)
+
+N
+
+⊗ ρBi ,
+u
+1
+
+i ∈ [N ] :
+
+(i)
+
+F (WN ) < 2−N
+
+β
+
+,
+
+(7)
+
+and BN (W, β) ≡ [N ] \ GN (W, β), so that GN (W, β) is
+the set of “good” channels and BN (W, β) is the set of
+“bad” channels. The sender then transmits the information
+bits through the good channels and “frozen” bits through the
+bad ones. A helpful assumption for error analysis is that the
+frozen bits are chosen uniformly at random such that the
+sender and receiver both have access to these frozen bits.
+Ref. [11] provided an explicit construction of a QSCD that has
+β
+(uAc )
+an error probability equal to o(2−N )—let {ΛuA } denote
+the corresponding decoding POVM, with uA the information
+bits and uAc the frozen bits.
+For our quantum polar coding scheme, we exploit a coherent
+version of Arikan’s encoder [1], meaning that the gates are
+quantum CNOTs and permutations (this is the same encoder
+as in Refs. [7], [8]). When sending amplitude-basis classical
+information through the encoder and channels, the effect is
+(i)
+to induce synthesized channels WA,N as described above.
+Theorem 1 states that the fraction of amplitude-good channels
+(according to the criterion in (7)) is equal to I (Z; B)φ where
+the Holevo information I (Z; B)φ is evaluated with respect
+Z
+1
+to the cq state φZB = 2 z∈{0,1} |z z| ⊗ φB , with φz
+z
+deﬁned in (1). It will be convenient to express this quantity as
+
+where
+1
+ρ(i),ui
+
+nβ
+
+(I)
+
+β < 1/2, it holds that limn→∞ PrI { F (W2n ) < 2−2 } =
+I (W ), where n indicates the level of recursion for the
+(I)
+encoding, W2n is a random variable characterizing the I th
+(I)
+split channel, and F (W2n ) is the ﬁdelity of that channel.
+Assuming knowledge of the good and bad channels, one can
+then construct a coding scheme based on the channel polarization effect, by dividing the synthesized channels according
+to the following polar coding rule:
+
+(6)
+
+N
+
+N
+ρBN ≡ ρB11 ⊗ · · · ⊗ ρBN ,
+x
+x
+x
+
+1 Operationally, this quantum side information becomes available to Bob
+after he coherently decodes the amplitude variable. It does not correspond
+operationally to a Bell state shared before communication begins.
+
+2
+
+I(Z A ; B)ψ using the state |ψ , where the Z A indicates that
+system A is ﬁrst measured in the amplitude basis.
+As in [7], the same encoding operation leads to channel
+polarization for the phase channel WP as well. Suppose Alice
+modulates her halves of the entangled pairs as before, but then
+inputs them to the coherent encoder before sending them via
+the channel to Bob. The result is
+N
+N
+1
+CN
+BN EN
+√
+(−1)x ·z |φzN GN
+|z N
+, (8)
+N
+2 zN ∈{0,1}N
+N
+
+N
+
+N
+
+Z ≡ BN (WA , β) ∩ GN (WP , β) ,
+B ≡ BN (WA , β) ∩ BN (WP , β) .
+Our quantum polar coding scheme has the sender transmit
+information qubits through the inputs in A, frozen bits in
+the phase basis through the inputs in X , frozen bits in the
+amplitude basis through the inputs in Z, and halves of ebits
+[12] through the inputs in B (we can think of these in some
+sense as being frozen simultaneously in both the amplitude and
+phase basis). It is straightforward to prove (see Appendix A
+of Ref. [13]) that the net rate [12] of quantum communication (|A| − |B|) /N is equal to the coherent information
+I (A B) ≡ H (B) − H (AB) by observing that the fraction of
+amplitude-good channels is I Z A ; B ψ , the fraction of phasegood channels is I X A ; BC ψ , and exploiting the relation
+I X A ; BC ψ = 1 − I Z A ; E ψ .
+
+N
+
+†C
+C
+B C
+whose B N C N marginal state is simply UE σxN GT UE ,
+N
+where UE denotes the polar encoder. Here we have used
+the fact that the matrix corresponding to GN is invertible.
+Thus, the coherent encoder also induces synthesized channels
+(i)
+WP,N using the encoding matrix GT instead of GN , modulo
+N
+the additional UE acting on C N . Note that the classical
+(i)
+side information for the WP,N is different from that in (5)
+because the direction of all CNOT gates is ﬂipped due to
+the transpose of GN when acting on phase variables. The
+change in the direction of the CNOT gates means that the
+(i)
+ith synthesized phase channel WP,N is such that all of the
+future bits xN · · · xi+1 are available to help in decoding bit
+xi while all of the previous bits xi−1 · · · x1 are randomized.
+(This is the same as described in Ref. [7] for Pauli channels.)
+For the channel in (4), the fraction of phase-good channels
+is approximately equal to I (X; BC)σ , where the Holevo
+information I (X; BC)σ is with respect to a cq state of the
+X
+BC
+BC
+form 1 x∈{0,1} |x x| ⊗ σx , with σx in (4). Again, we
+2
+can formulate this using |ψ as I(X A ; BC)ψ , this time X A
+indicating A is measured in the phase basis.
+Lemma 2 of Ref. [2] outlines an important relationship between the Holevo information of the phase channel to Bob and
+the Holevo information of the amplitude channel to Eve, which
+for our case reduces to I X A ; BC ψ = 1 − I Z A ; E ψ .
+This relationship already suggests that channels which are
+phase-good for Bob should be amplitude-bad for Eve and that
+channels which are amplitude-good for Eve should be phasebad for Bob, allowing us in Section II to relate the present
+quantum polar coding scheme to that from Ref. [8].
+
+D. Error Analysis
+We now demonstrate that this coding scheme works well.
+The sender and receiver begin with the following state:
+|Ψ0 = N0
+
+|uA |uA |uZ |uX |uB ⊗ |uB ,
+uA ,uB
+
+where Alice possesses the ﬁrst ﬁve registers, Bob the last one,2
+√
+and N0 ≡ 1/ 2|A|+|B| . We also assume for now that the bits
+in uZ and uX are chosen uniformly at random and are known
+to both the sender and receiver. Note that the 4th register is
+expressed in the phase basis; the amplitude basis instead gives
+|Ψ0 = N1
+
+(−1)
+
+uX ·vX
+
+|uA |uA |uZ |vX |uB ⊗ |uB ,
+
+uA ,uB ,vX
+
+√
+where N1 ≡ 1/ 2|A|+|B|+|X | . The sender then feeds the
+middle four registers through the polar encoder and channel,
+leading to a state of the following form:
+|Ψ1 = N1
+
+(−1)
+
+uX ·vX
+
+|uA ⊗ |φuA ,uZ ,vX ,uB
+
+BN EN
+
+|uB ,
+
+uA ,uB ,vX
+BN EN
+
+⊗N
+where |φuA ,uZ ,vX ,uB
+≡ UN UE |uA |uZ |vX |uB
+(abusing notation, the encoding operation GN is left implicit).
+Observe that, conditioned on amplitude measurements of
+|uA and |uB , the B N subsystem is identical to the polarencoded output of WA . Thus, the ﬁrst step of the decoder is
+the following coherent implementation of the QSCD for WA
+as in (1):
+
+C. Coding scheme
+(i)
+
+We divide the synthesized cq amplitude channels WA,N
+into sets GN (WA , β) and BN (WA , β) according to (7), and
+(i)
+similarly, we divide the synthesized cq phase channels WP,N
+into sets GN (WP , β) and BN (WP , β), where β < 1/2. The
+synthesized channels correspond to particular inputs to the
+encoding operation, and thus the set of all inputs divides into
+four groups: those that are good for both the amplitude and
+phase variable, those that are good for amplitude and bad for
+phase, bad for amplitude and good for phase, and those that
+are bad for both variables. We establish notation for these
+channels as follows:
+
+(u ,u )
+
+B
+Z
+ΛuA ,vX ⊗|uA |vX ⊗|uB |uB
+
+uB |⊗|uZ . (9)
+
+uA ,uB ,vX
+
+The idea here is that the decoder is coherently recovering the
+bits in uA and vX while using those in uZ and uB as classical
+and quantum side information, respectively. After doing so, the
+
+A ≡ GN (WA , β) ∩ GN (WP , β) ,
+
+2 In quantum information theory the tensor product symbol is often used
+implicitly. Our convention is to leave it implicit for systems belonging to the
+same party and use it explicitly to denote a division between two parties.
+
+X ≡ GN (WA , β) ∩ BN (WP , β) ,
+
+3
+
+β
+
+resulting state is o(2−N )-close in expected trace distance to
+the following ideal state (see Appendix B of Ref. [13]):
+uX ·vX
+
+|Ψ2 = N1
+
+(−1)
+
+|uA |φuA ,uZ ,vX ,uB
+
+BN EN
+
+Rewriting phase terms with Pauli operators, we then have that
+β
+the actual output of this step of the decoder is o(2−N )-close
+in expected trace distance to the following ideal state:
+
+⊗
+
+|Ψ3 = N4
+
+|xA ⊗ |xA |xZ |uX |xB
+xA ,xB ,xZ
+⊗N
+Z xA ,xZ ,uX ,xB UN UE |ΦA |ΦZ |ΦX |ΦB
+
+uA ,uB ,vX
+
+|uA |vX |uB |uB |uZ .
+
+⊗ |xZ ,
+√
+where N4 ≡ 1/ 2|A|+|B|+|Z| . Here Z xA ,xZ ,uX ,xB is shorthand for Z xA ⊗ Z xZ ⊗ Z uX ⊗ Z xB , which acts on the second
+qubits in the entangled pairs, while the encoding and channel
+unitaries act on the ﬁrst.
+The ﬁnal step in the decoding process is to remove the
+phase operator Z xA ,xZ ,vX ,xB by controlled operations from
+the registers |xA |xZ |uX |xB to the second qubits in the
+entangled pairs. This phase-basis controlled phase operation
+is equivalent to N CNOT operations from the latter systems
+to the former and results in
+
+The expectation is with respect to the uniformly random choice
+of uX . Thus, Bob has coherently recovered the bits uA and
+vX with the decoder in (9), while making a second coherent
+and incoherent copy of the bits uB and uZ , respectively.
+The next step in the process is to make coherent use of the
+WP decoder. For this to be useful, however, we must show
+BCE
+that encoded versions of |σx
+, as in (8), are present in
+|Ψ2 . To see this, ﬁrst observe that we can write
+|Ψ2 = N2
+
+(−1)
+
+uX ·vX +xA ·uA +xB ·uB
+
+|xA ⊗
+
+uA ,uB ,vX ,
+xA ,xB
+BN EN
+
+|φuA ,uZ ,vX ,uB
+|uA |vX |uB |xB |uZ ,
+√
+where N2 ≡ 1/ 22|A|+2|B|+|X | , by expressing the ﬁrst
+register and the second |uB register in the phase basis. This
+is nearly the expression we are looking for, as all the desired
+phase factors are present, except one corresponding to |uZ .
+As uZ is chosen at random, we can describe it quantummechanically as arising from part of an entangled state. The
+other part is shared by Alice and an inaccessible reference.
+Including this puriﬁcation degree of freedom, |Ψ2 becomes
+|Ψ2 = N3
+
+(−1)
+
+uX ·vX +xA ·uA +xB ·uB
+
+|xA ⊗
+
+|uA |vX |uB |xB |uZ ⊗ |uZ ,
+√
+where N3 = N2 / 2|Z| . Again utilizing the phase basis gives
+uX ·vX +xA ·uA +xB ·uB +xZ ·uZ
+
+(−1)
+
+|xA ⊗
+
+uA ,uB ,vX ,uZ ,
+xA ,xB ,xZ
+
+|φuA ,uZ ,vX ,uB
+
+BN EN
+
+|uA |vX |uB |xB |uZ ⊗ |xZ .
+
+Thus, |Ψ2 is a superposition of polar encoded states as in (8)
+and therefore the phase decoder will be useful to the receiver.
+†C N
+In particular, Bob can ﬁrst apply UE
+and then apply
+(x ,u )
+
+B
+X
+ΓxA ,xZ ⊗ |xA |xZ |uX ⊗ |xB
+
+|uX |xB ,
+xB
+
+√
+with Bob sharing 1/ 2|Z| xZ |xZ ⊗ |xZ with the inaccessible reference. Thus the sender and receiver generate |A|
+β
+ebits with ﬁdelity o(2−N ) at the end of the protocol.
+Remark 2: The above scheme performs well with respect
+to a uniformly random choice of the bits uX and uZ , in the
+sense that the expectation of the ﬁdelity is high. Though, we
+can invoke Markov’s inequality to demonstrate that a large
+fraction of the possible codes have good performance.
+Remark 3: The ﬁrst step of the decoder is identical to
+the ﬁrst step of the decoder from Ref. [8]. Though, the
+second step above is an improvement over the second step
+in Ref. [8] because it is an explicit coherent QSCD, rather
+than an inexplicit controlled-decoupling unitary. Additionally,
+the decoder’s complexity is equivalent to O (N ) quantum
+hypothesis tests and other unitaries resulting from the polar
+(xB ,uX )
+(uB ,uZ )
+decompositions of ΛuA ,vX and ΓxA ,xZ , but it remains
+unclear how to implement these efﬁciently.
+
+BN EN
+
+|Ψ2 = N3
+
+⊗N
+⊗ |xA UN UE |ΦA,Z,X ,B
+
+xA
+
+uA ,uB ,vX ,
+uZ ,xA ,xB
+
+|φuA ,uZ ,vX ,uB
+
+|xA
+
+N0
+
+II. Z ERO E - BIT RATE FOR DEGRADABLE CHANNELS
+We can now prove that the entanglement consumption rate
+of our quantum polar coding scheme vanishes for an arbitrary
+degradable quantum channel. We provide a brief summary
+of the proof (see Appendix C of Ref. [13] for more detail).
+Consider the following entropic uncertainty principle [3]:
+H(X A |B)ρ +H(Z A |E)ρ ≥ 1, where the conditional entropies
+are with respect to the phase and amplitude observables
+X and Z measured with respect to a tripartite state ρABE
+with A being a qubit system. Using this and the fact that
+H(X A )+H(Z A ) = 2 for our case, we can prove the following
+(i)
+uncertainty relation for the ith synthesized channels WP,N and
+(i)
+(i)
+(i)
+WE,N : I(WP,N ) + I(WE,N ) ≤ 1, which is reminiscent of
+the relation I (X; BC) = 1 − I (Z; E) mentioned previously.
+The above uncertainty relation then implies the following one:
+
+xB |
+
+xA ,xZ ,xB
+
+to coherently extract the values of xA and xZ using the
+CN
+frozen bits xB and uX . He then applies UE to restore the
+C N registers to their previous form. As with the amplitude
+decoding step, the closeness of the output of this process to
+the ideal output is governed by the error probability of the
+WP decoder (see Appendix B of Ref. [13]). To express the
+ideal output succinctly, we ﬁrst make the assignments
+1
+1
+|ΦA ≡ √
+|uA |uA , |ΦZ ≡ √
+|vZ |vZ ,
+|A|
+2
+2|Z| vZ
+uA
+1
+1
+|ΦX ≡ √
+|vX |vX , |ΦB ≡ √
+|uB |uB .
+|X |
+2
+2|B| uB
+vX
+
+2
+
+4
+
+(i)
+
+F (WP,N ) +
+
+(i)
+
+F (WE,N ) ≥ 1. This in turn implies that
+
+the phase-good channels to Bob are amplitude-“very bad”
+channels to Eve. From degradability, we also know that the
+doubly-bad channels in B are amplitude-bad channels to Eve.
+These two observations imply that the phase-good channels
+to Bob, the doubly-bad channels to Bob, and amplitude-good
+channels to Eve are disjoint sets. Furthermore, we know from
+Theorem 1 that the sum rate of the phase-good channels
+to Bob and the amplitude-good channels to Eve is equal to
+I (X; BC) + I (Z; E) = 1 − I (Z; E) + I (Z; E) = 1 as
+N → ∞, implying that the rate of the doubly-bad channel set
+B (the entanglement consumption rate) approaches zero in the
+same limit. This same argument implies that the entanglement
+consumption rate for the quantum polar codes in Ref. [8]
+vanishes for degradable quantum channels because the rate
+of the phase-good channels to Bob is a lower bound on the
+rate of the amplitude-“very bad” channels to Eve.
+
+variables as QSI.) For the second qubit space in the tensor factor, the net quantum data rate is I (Z2 ; BZ1 ) +
+I (X2 ; BZ1 Z2 Z3 Z4 X1 ) − 1. We can similarly determine the
+respective net quantum data rates for the third and fourth qubit
+spaces as I (Z3 ; BZ1 Z2 ) + I (X3 ; BZ1 Z2 Z3 Z4 X1 X2 ) − 1,
+I (Z4 ; BZ1 Z2 Z3 ) + I (X4 ; BZ1 Z2 Z3 Z4 X1 X2 X3 ) − 1. Summing all these rates together with the chain rule and using the
+fact that any two amplitude and/or phase variables are independent whenever i = j, we obtain the overall net quantum data
+rate: I (Z1 Z2 Z3 Z4 ; B) + I (X1 X2 X3 X4 ; BZ1 Z2 Z3 Z4 ) − 4,
+which is equal to the coherent information of the joint channel
+(by applying the same Lemma 2 of Ref. [2]). The fact that
+our quantum polar code can achieve the symmetric coherent
+information rate then proves that superactivation occurs, given
+that Smith and Yard already showed that this rate is non-zero
+for the channels mentioned above [10].
+
+III. S UPERACTIVATION
+Our quantum polar coding scheme can be adapted to realize
+the superactivation effect, in which two zero-capacity quantum
+channels can activate each other when used jointly, such that
+the joint channel has a non-zero quantum capacity [10]. Recall
+that the channels from Ref. [10] are a four-dimensional PPT
+channel and a four-dimensional 50% erasure channel. Each of
+these have zero quantum capacity, but the joint tensor-product
+channel has non-zero capacity.3
+We now discuss how to realize a quantum polar coding
+scheme for the joint channel. Observe that the input space
+of the joint channel is 16-dimensional and thus has a decomposition as a tensor product of four qubit-input spaces:
+C4 ⊗ C4 C16 C2 ⊗ C2 ⊗ C2 ⊗ C2 . Thus, we can exploit a
+slightly modiﬁed version of our qubit polar coding scheme.
+Following [9], the idea is for Alice and Bob to employ a
+quantum polar code for each qubit in the tensor factor. Let
+Z1 , . . . , Z4 denote the amplitude variables of these qubits and
+let X1 , . . . , X4 denote the phase variables. Bob’s decoder is
+such that he coherently decodes Z1 , uses it as quantum side
+information (QSI) to decode Z2 , uses both Z1 and Z2 as QSI
+to decode Z3 , and then uses all of Z1 , . . . , Z3 to help decode
+Z4 . With all of the amplitude variables decoded, Bob then uses
+these as QSI to decode X1 , and continues successively until
+he coherently decodes X4 . At the end he performs controlled
+phase gates to recover entanglement established with Alice.
+We now calculate the total rate of this scheme. For the
+ﬁrst qubit space in the tensor factor, the channels split up
+into four types depending on whether they are good/bad
+for amplitude/phase. Using the formula (10) in Appendix A
+of Ref. [13], the net quantum data rate for the ﬁrst tensor factor is equal to I (Z1 ; B) + I (X1 ; BZ1 Z2 Z3 Z4 ) − 1.
+(The formula is slightly different here because Bob decodes the phase variable X1 with all of the amplitude
+
+IV. C ONCLUSION
+Our quantum polar coding scheme has two beneﬁts over the
+work in Refs. [8], [7]: it achieves the symmetric coherent information rate for an arbitrary quantum channel and its entanglement consumption rate vanishes for an arbitrary degradable
+channel. Though, we should clarify that the analysis here actually implies that the scheme from Ref. [8] has the above two
+properties. A further beneﬁt over the scheme from Ref. [8] is
+that the decoder here is explicitly realized as O (N ) rounds of
+coherent quantum successive cancellation, followed by O (N )
+controlled-phase gates. Finally, we outlined how the scheme
+here can exhibit the superactivation effect. We acknowledge
+discussions with F. Dupuis, S. Guha, and G. Smith.
+R EFERENCES
+[1] E. Arikan, “Channel polarization: A method for constructing capacityachieving codes for symmetric binary-input memoryless channels,” IEEE
+Trans. Inf. Theory, vol. 55, no. 7, pp. 3051–3073, July 2009.
+[2] J. M. Renes and J.-C. Boileau, “Physical underpinnings of privacy,”
+Physical Review A, vol. 78, p. 032335, September 2008.
+[3] ——, “Conjectured strong complementary information tradeoff,” Phys.
+Rev. Lett., vol. 103, p. 020402, July 2009.
+[4] J.-C. Boileau and J. M. Renes, “Optimal state merging without decoupling,” in Theory of Quantum Comp., Comm., and Crypt., ser. Lecture
+Notes in Computer Science, vol. 5906, 2009, pp. 76–84.
+[5] J. M. Renes, “Approximate quantum error correction via complementary
+observables,” March 2010, arXiv:1003.1150.
+[6] ——, “Duality of privacy ampliﬁcation against quantum adversaries and
+data compression with quantum side information,” Proceedings of the
+Royal Society A, vol. 467, no. 2130, pp. 1604–1623, 2011.
+[7] J. M. Renes, F. Dupuis, and R. Renner, “Efﬁcient quantum polar coding,”
+September 2011, arXiv:1109.3195.
+[8] M. M. Wilde and S. Guha, “Polar codes for degradable quantum
+channels,” September 2011, arXiv:1109.5346.
+[9] E. Sasoglu, E. Telatar, and E. Arikan, “Polarization for arbitrary discrete
+memoryless channels,” 2009 IEEE Information Theory Workshop, pp.
+144–148, 2009, arXiv:0908.0302.
+[10] G. Smith and J. Yard, “Quantum communication with zero-capacity
+channels,” Science, vol. 321, pp. 1812–1815, September 2008.
+[11] M. M. Wilde and S. Guha, “Polar codes for classical-quantum channels,”
+September 2011, arXiv:1109.2591.
+[12] T. A. Brun, I. Devetak, and M.-H. Hsieh, “Correcting quantum errors
+with entanglement,” Science, vol. 314, pp. 436–439, Oct. 2006.
+[13] M. M. Wilde and J. M. Renes, “Quantum polar codes for arbitrary
+channels,” January 2012, arXiv:1201.2906.
+
+3 We are speaking of catalytic superactivation. A catalytic protocol uses
+entanglement assistance, but the ﬁgure of merit is the net rate of quantum
+communication—the total quantum communication rate minus the entanglement consumption rate. Note that the catalytic quantum capacity is equal to
+zero if the standard quantum capacity is zero. Thus, the superactivation effect
+that we speak of in this section is for the catalytic quantum capacity.
+
+5
+
+

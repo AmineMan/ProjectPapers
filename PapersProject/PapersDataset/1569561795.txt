@@ -1,0 +1,926 @@
+Creator:        TeX
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Wed May 16 11:00:52 2012
+ModDate:        Tue Jun 19 12:55:27 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      626323 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569561795
+
+One-Way Rate-Limited Sequential Key-Distillation
+R´ mi A. Chou and Matthieu R. Bloch
+e
+School of Electrical and Computer Engineering, Georgia Institute of Technology, Atlanta, GA 30332
+GT-CNRS UMI 2958, 2 rue Marconi, 57070 Metz, France
+e-mail: remi.chou@gatech.edu, matthieu.bloch@ece.gatech.edu
+
+Alice
+
+Abstract—We study the problem of key-distillation for a source
+model, with a one-way and rate-limited public communication
+between two legitimate users. Although, the secret-key capacity
+is already known, we provide an alternative achievability scheme,
+that directly translates into practical designs. We consider a
+sequential key-distillation strategy, which consists of a reconciliation phase followed by a privacy ampliﬁcation phase performed
+with extractors. We determine the reconciliation capacity and
+show that, for a degraded source, such a sequential strategy leads
+to an optimal key-distillation strategy that achieves the secret-key
+capacity. We illustrate our results in the case of a binary source
+model.
+
+K
+
+RX
+ENCODER
+DECODER
+
+Bob
+X
+
+n
+
+pXY Z
+=
+pX|Y pZ|Y pY
+
+Y
+
+n
+
+ENCODER
+DECODER
+
+ˆ
+K
+
+A
+Zn
+Eve
+one-way public authenticated noiseless channel with limited rate Rp
+
+Fig. 1.
+
+Source model for secret-key agreement.
+
+design; indeed, reconciliation can be efﬁciently implemented
+with LDPC codes [9][10] and privacy ampliﬁcation can be
+performed with hash functions or with extractors [7][8]. Moreover, for a source model [2][11] with a public channel of
+inﬁnite capacity, such a strategy is optimal and both phases
+can be optimized and designed independently, thus allowing a
+Y
+reconciliation Z
+design totally independent of the eavesdropper’s
+BSC(q)
+observation statistics [11] – this contrasts with a joint design
+of reconciliation and privacy ampliﬁcation [3].
+In this paper, we study sequential-key distillation with
+rate-limited public communication to account for realistic
+constraints (real equipment may have limited bandwidth re1
+sources, such as in a wireless sensors network). Although, the
+secret-key capacity is already known, we provide an achievability scheme that, unlike the one in [3], easily translates into
+practical codes. The main contributions are
+• the characterization of the one-way rate-limited reconciliation capacity;
+• the proof that, for a degraded source, the sequential
+application of reconciliation and privacy ampliﬁcation
+with extractors, is an optimal key-distillation strategy for
+a one-way rate-limited public channel;
+• the illustration of our results in the binary case, for which
+reconciliation and privacy ampliﬁcation can be designed
+and optimized independently.
+The remainder of the paper is organized as follows. In
+Section II, we formally introduce the problem studied in the
+paper. In Section III, we characterize the one-way rate-limited
+reconciliation capacity, and we prove that the sequential
+application of reconciliation and privacy ampliﬁcation with
+extractors is an optimal key-distillation strategy. In Section IV,
+we illustrate our results in the binary case.
+
+I. I NTRODUCTION
+Information-theoretic secret-key agreement protocols [1][2]
+draw their strength from a security relying on informationtheoretic metrics rather than on complexity theory, thereby
+avoiding the assumption of limited computational power for
+1
+the eavesdropper. In such protocols, two legitimate users
+X ∼ B( 2 )
+BSC(p)
+(Alice and Bob) and an eavesdropper (Eve) observe the realizations of correlated random variables (RV’s). The legitimate
+users, who can exchange messages over a public channel, aim
+at extracting a common secret key from their observations. The
+rules by which the legitimate users compute the messages they
+exchange over the public channel and agree on a key deﬁne a
+key-distillation strategy. The maximum number of secret-key
+bits per observed realization of the RV’s is called the secretkey capacity [1].
+Closed-form expressions of the secret-key capacity have
+been established for a large variety of models [1][3]. In
+general, however, they do not provide direct insight into the
+design of practical key-distillation strategies achieving the
+secret-key capacity since the proofs handle reliability (the
+legitimate users must share the same key) and secrecy (the
+key must be unknown to the eavesdropper) concurrently.
+For practical key-distillation, as in quantum key distribution [4] or wireless secure communication [5], a sequential
+key-distillation strategy is often used. Such a strategy consists
+of two phases that handle reliability and secrecy successively,
+instead of simultaneously. A reconciliation phase [6] is ﬁrst
+performed, during which Alice and Bob communicate over
+the public channel to agree on a common bit sequence, that
+might not be totally hidden from Eve. Then, a privacy ampliﬁcation phase [7][8] is performed, during which Alice and
+Bob apply a deterministic function to their shared sequence
+to generate their common secret key, this time completely
+unknown from Eve. The main advantage of sequential keydistillation strategies is to provide a practical key-distillation
+
+II. P ROBLEM S TATEMENT
+As illustrated in Figure 1, a source model for secretkey agreement represents a situation in which two legitimate
+
+1
+
+users, Alice and Bob, and one eavesdropper, Eve, observe the
+components, X, Y , and Z, of a discrete memoryless source
+(DMS) (X YZ, pXY Z ), respectively. The DMS is assumed to
+be outside the control of all parties, but its statistics are known.
+We assume a one-way communication over an authenticated
+noiseless public channel with limited rate Rp . We suppose
+that Alice is the one who sends messages,1 and that she is
+allowed to randomize her messages, i.e. she has access to
+a source of local randomness. In addition, we suppose that
+X, Y , and Z form a Markov chain – common examples
+for which this hypothesis is valid, are sources generated over
+the degraded broadcast channel, or over channels such that
+pXZ|Y = pX|Y pZ|Y , as in a wireless context for instance.
+Assuming a key alphabet K of size 2nR , the protocol deﬁned
+by the three following steps is called a (2nR , n, Rp ) keydistillation strategy [1], and it will be denoted by Sn .
+1) Alice observes n realizations of the source X n while Bob
+observes Y n ;
+2) Alice generates a realization RX of her source of local
+randomness and transmits A(X n , RX ), under the restriction H(A) nRp ;
+3) Alice computes K(X n , RX ) ∈ K while Bob computes
+ˆ
+K(Y n , A) ∈ K.
+The performance of a key-distillation strategy Sn is measured
+in terms of the average probability of error between the key K
+ˆ
+generated by Alice and the key K generated by Bob Pe (Sn )
+ˆ
+P[K = K|Sn ], in terms of the information leakage to the
+eavesdropper L(Sn )
+I(K; Z n A|Sn ), and in terms of the
+uniformity of the keys U(Sn ) log 2nR − H(K|Sn ).
+
+are achievable with sequential secret-key distillation strategies
+that consist of a reconciliation protocol and privacy ampliﬁcation with extractors (or hash functions).
+Theorem 2 means that we can handle reliability and secrecy
+successively; reconciliation deals with reliability, whereas privacy ampliﬁcation deals with secrecy.
+Our main result, presented in Section III-C, is similar to
+Theorem 2 for ﬁnite Rp , i.e any secret-key rate below Cs (Rp )
+(Theorem 1) is achievable by a sequential key-distillation
+strategy consisting of one-way rate-limited reconciliation and
+privacy ampliﬁcation with extractors.
+III. S EQUENTIAL KEY- DISTILLATION STRATEGY
+Before we show the main result in Section III-C, we
+determine the reconciliation capacity in Section III-A and we
+review privacy ampliﬁcation with extractors in Section III-B.
+A. Reconciliation
+Deﬁnition 2. Let Rp ∈ R+ . A one-way rate-limited reconciliation protocol Rn (Rp ), noted Rn for convenience, for a
+source model with DMS (X Y, pXY ) consists of
+• an alphabet S = 1, M ;
+• a source of local randomness (R, pR ) for Alice;
+n
+• an encoding function f : X × R → A;
+: X n × R → S and ηb : Y n × A → S;
+• two functions ηa
+and operates as follows
+n
+• Alice observes n realizations of the source X while Bob
+observes Y n ;
+• Alice generates a realization RX of her source of local
+randomness and transmits A = f (X n , RX ), under the
+restriction H(A) nRp ;
+n
+• Alice computes S = ηa (X , RX ) while Bob computes
+ˆ
+S = ηb (Y n , A).
+
+Deﬁnition 1. A secret-key rate R is achievable for a source
+model if there exists a sequence of (2nR , n, Rp ) key-distillation
+strategies {Sn }n 1 such that
+lim Pe (Sn ) = 0
+
+(reliability),
+
+lim L(Sn ) = 0
+
+(strong secrecy),
+
+lim U(Sn ) = 0
+
+(strong uniformity).
+
+n→∞
+n→∞
+n→∞
+
+The reliability performance of a reconciliation protocol
+is measured in terms of the average probability of error
+ˆ
+Pe (Rn )
+P[S = S|Rn ]. In addition, since the common
+sequence S generated by a reconciliation protocol is followed
+by a privacy ampliﬁcation step, the protocol should leak as
+little information as possible over the public channel. As
+in [11] we deﬁne the reconciliation rate of a reconciliation
+protocol as
+1
+R(Rn ) n [H(S) − H(A)] .
+
+Moreover, the supremum of such a rate R is called the secretkey capacity.
+We ﬁrst recall known results regarding this model.
+Theorem 1 ([3],[12]). Let (X YZ, pXY Z ) be a DMS. Let Rp
+be the rate of the public channel. If X → Y → Z forms a
+Markov chain, then the secret-key capacity Cs (Rp ) is
+
+Deﬁnition 3. For a given Rp , a reconciliation rate R is
+achievable, if there exists a sequence of one-way rate-limited
+reconciliation protocols {Rn }n 1 such that
+
+Cs (Rp ) = max [I(Y ; U ) − I(Z; U )]
+U
+
+s.t I(X; U ) − I(Y ; U )
+
+lim Pe (Rn ) = 0 and lim R(Rn )
+
+n→∞
+
+Rp , with U → X → Y.
+
+R.
+
+n→∞
+
+Moreover, the supremum of such a rate R is called the
+reconciliation capacity.
+
+Theorem 2 ([11]). Let (X YZ, pXY Z ) be a DMS. Suppose
+Rp = +∞. Then all secret-key rates Rs that satisfy
+
+Proposition 1. The reconciliation capacity Crec (Rp ) is
+
+Rs < Cs (Rp = +∞) = I(X; Y ) − I(X; Z)
+
+Crec (Rp ) = max I(Y ; U ) s.t I(X; U ) − I(Y ; U )
+U
+
+1 One
+
+could also suppose that Bob is the one who sends messages, in this
+case, we just need to exchange the roles of X and Y .
+
+with U → X → Y, and |U|
+
+2
+
+|X |+1.
+
+Rp
+
+Proof: In the following, we only prove the converse
+part. The achievability is based on Wyner-Ziv coding and is
+similar to the proof in [13]; the determination of the cardinality
+constraint uses standard techniques.
+We ﬁrst establish the rate condition.
+nRp + nδ( )
+
+(a)
+(b)
+
+Remark Reconciliation is closely related to common randomness [2]. Although achievability proofs are similar, converse
+parts differ because the metrics optimized are different.
+B. Privacy ampliﬁcation
+During the privacy ampliﬁcation phase, Alice and Bob
+generate their secret key by applying a deterministic function,
+on which they publicly agreed ahead of time, to their common
+sequence obtained after reconciliation. This phase will be
+performed with extractors [14], which are functions that take
+as input a sequence of n arbitrarily distributed bits and output a
+sequence of k nearly uniformly distributed bits, using another
+input of d truly uniformly distributed bits. The following
+theorem provides a lower bound on the size of the key, on
+which the legitimate users agree.
+
+ˆ
+H(A) + H(S|S)
+H(A|Y n RX ) + H(S|AY n RX )
+
+I(S; A|Y n RX ) + H(S|AY n RX )
+= H(S|RX ) − I(S; Y n |RX )
+
+(c)
+
+= I(S; X n |RX ) − I(S; Y n |RX )
+
+(d)
+
+˜
+˜
+= n[I(S; XJ |U ) − I(S; YJ |U )]
+
+(e)
+
+n
+
+= n [I(U ; XJ ) − I(U ; YJ )] ,
+
+Theorem 3 ([8] [11]). Let S ∈ {0, 1} be the RV that
+represents the common sequence shared by Alice and Bob, and
+let E be the RV that represents the total knowledge about S
+available to Eve. Let e be a particular realization of E. If Alice
+and Bob know the conditional min-entropy H∞ (S|E = e)
+to be at least γn, for some γ ∈ (0, 1), then there exists an
+n
+d
+k
+extractor g : {0, 1} × {0, 1} → {0, 1} with
+
+where (a) holds by the rate condition H(A)
+Rp and by
+Fano’s inequality, since for any > 0, there exists a reconcilˆ
+iation protocol such that P(S = S)
+δ( ),2 (b) holds since
+ˆ = ηb (Y n , A) and conditioning reduces entropy, (c) holds
+S
+because H(S|X n RX ) = 0, since S = ηa (X n , RX ), (d) is
+N
+˜
+from Lemma 4.1 in [2] if we set U = X J−1 YJ+1 RX J with
+J a RV uniformly distributed on 1, n , independent from all
+˜
+previous RV’s, and (e) holds if we set U = S U , since XJ
+˜ are independent.
+and U
+We now determine the reconciliation capacity bound.
+
+d
+
+H(K|Ud , E = e)
+
+= I(S; Y n )
+n
+
+(g)
+
+i=1
+n
+
+n
+I(S; Yi |Yi+1 )
+n
+I(SYi+1 ; Yi )
+
+=
+
+n
+I(SYi+1 X i−1 RX ; Yi )
+i=1
+n
+i=1
+
+n
+P(J = i)I(SYJ+1 X J−1 RX ; YJ |J = i)
+
+C. Sequential key-distillation strategy
+
+= nI(U ; YJ ),
+
+In this section, we prove that the combination of reconciliation and privacy ampliﬁcation is an optimal one-way ratelimited secret-key distillation strategy.
+
+where (f ) holds by Fano’s inequality, and (g) holds since the
+Yi ’s are i.i.d.
+It is reassuring to note that Crec (Rp ) I(X; Y ) by the data
+processing inequality. Note that randomization of Alice’s messages is unnecessary to achieve the reconciliation capacity. Observe also that, if Rp = +∞ and U = X in Proposition 1, we
+re-obtain the result in [11], i.e. Crec (Rp = +∞) = I(X; Y ).
+Moreover, Crec (Rp ) = I(X; Y ) for any Rp > H(X|Y ),
+meaning that all results in [11] for the case Rp = +∞, are in
+fact still valid if Rp > H(X|Y ).
+2 δ(
+
+) denotes a function of
+
+such that lim
+
+→0
+
+k − δ(n).
+
+Remark Privacy ampliﬁcation can be performed with hash
+functions, but their use requires more random bits than extractors; indeed, a hash function needs to be chosen at random in
+universal families, which requires in the order of n random
+bits (see [7][11] for further details).
+
+i=1
+n
+
+=n
+
+d
+
+Note that, the size d of the uniformly distributed input
+sequence is negligible, compared to the size n of the input
+sequence S, so that the effect on the rate of public communication is negligible. Moreover, extractors that extract almost the
+entire min-entropy of the input S and require comparatively
+negligible amount of uniform randomness can be efﬁciently
+constructed [14].
+
+H(S) − I(S; A|Y n ) − H(S|Y n A)
+
+=
+
+n(γ − δ(n)),
+
+and if Ud is a RV with uniform distribution on {0, 1} and
+Alice and Bob choose K = g(S, Ud ) as their secret key, then
+
+H(S) − H(A) − nδ( )
+(f )
+
+nδ(n) and k
+
+Theorem 4. All secret-key rates Rs that satisfy
+Rs < Cs (Rp )
+are achievable with sequential secret key distillation strategies
+that consist of a rate-limited reconciliation protocol and
+privacy ampliﬁcation with extractors.
+Proof: Let 1 > > 0. Let Rp ∈ R+ . Let m, n ∈ N, and
+deﬁne N = nm. Let k ∈ N to be determined later. Consider
+a sequential key-distillation strategy SN that consists of
+
+δ( ) = 0.
+
+3
+
+m repetitions of a reconciliation protocol Rn based on
+Wyner-Ziv coding parametrized by a pdf pXY pX|U (see
+achievability proof of Proposition 1). We have S =
+ˆ
+ˆ
+U n and Bob’s estimate U n of U n satisﬁes P[U n =
+n
+3
+U |Rn ]
+δ 1 (n). Note that by Wyner-Ziv coding,
+we have U n typical and (U n , X n ) jointly typical with
+probability approaching one for n large;
+privacy ampliﬁcation based on extractors, with output size
+k, at the end of which Alice computes her key K =
+ˆ
+ˆ
+g(U N , Ud ), while Bob computes K = g(U N , Ud ), where
+Ud is a sequence of d uniformly distributed random bits.
+
+•
+
+•
+
+To lower bound H(K|Ud Z N A, Υ = 1, Θ = 1), we will lower
+bound H∞ (U N |Z N = z N , A = a, Θ = 1, Υ = 1) and use
+Theorem 3. By deﬁnition of Υ,
+H∞ (U N |Z N = z N , A = a, Θ = 1, Υ = 1)
+
+√
+H∞ (U N |Z N = z N , Θ = 1) − log|A|− N
+(a)
+
+− N (I(U ; X) − I(U ; Y )) −
+
+(b)
+
+(c)
+
+= I(X n ; U n |Z n )
+
+= H(X n |Z n ) − H(X n |Z n U n )
+
+(d)
+
+= nH(X|Z) − H(X n |Z n U n ),
+
+Then, for n sufﬁciently large, P[Θ = 1]
+if z n ∈ T n (Z),
+n
+
+n
+
+n
+
+H∞ (X |Z = z , Θ = 1)
+
+1−2
+
+Γ
+
+n(H(X|Z) − δ( )) − δ (n).
+
+Υ(u)
+
+if H∞ (S) − H∞ (S|u)
+otherwise.
+
+Then, PU [Υ(U ) = 1]
+
+1−2
+
+−r
+
+1
+0
+
+Υ
+
+1
+0
+
+(1 − 2
+3δ
+
+−2
+
+√
+− N
+
+if (X n , U n ) ∈ T n (XU ),
+otherwise.
+
+H(X n Γ∆|Z n U n )
+
+log|U|+r,
+
+= H(Γ∆|Z n U n ) + H(X n |Z n U n Γ∆)
+2+
+
+P(Γ = γ|∆ = δ)P(∆ = δ)
+
+× H(X n |Z n U n , Γ = γ, ∆ = δ)
+
+δ,γ∈{0,1}
+
+.
+
+(e)
+
+n
+
+n
+
+n
+
+2 + H(X |Z U , Γ = 1, ∆ = 1) + 3nδ(n) log|X |,
+
+(4)
+
+where (e) holds since P(∆ = 0) = δ(n) (by WynerZiv coding) and P(Γ = 0|∆ = 1) = δ(n) (by Markov
+Lemma [15]). Then,
+H(X n |Z n U n , Γ = 1, ∆ = 1)
+=
+
+z n ,un
+
+By Lemma 1 applied to the DMS (U n Z n , pU n Z n ), P(Θ =
+√
+√
+1) 1 − 2− m , and by Lemma 2, P(Υ = √
+1) 1 − 2− N .
+√
+Hence, P(Υ = 1, Θ = 1) 1 − 2− m − 2− N , and
+√
+− m
+
+1
+0
+
+H(X n |Z n U n )
+
+if (U N , Z N ) ∈ T2m (U n Z n ) and Z N ∈ T m (Z n ),
+otherwise.
+√
+if H∞ (U N |z N , a, Θ = 1) log|A|+ N ,
+otherwise.
+
+H(K|Ud Z N A)
+
+if (X n , U n , Z n ) ∈ T n (XU Z),
+1
+otherwise.
+
+so that,
+
+Let us start by deﬁning the following RV’s
+Θ
+
+1
+0
+
+∆
+
+. Moreover,
+
+Lemma 2 ([8][11]). Let S ∈ S and U ∈ U be two discrete
+RV’s with joint distribution pSU . For any r > 0, deﬁne the
+function Υ : U → {0, 1} as
+1
+0
+
+(3)
+
+where (b) holds since U n → X n → Z n , (c) holds because
+U n is a function of X n (U n is a quantized version of X n ),
+and (d) is true since the Xi ’s and Zi ’s are i.i.d.. Then, deﬁne
+
+if (X n , Z n ) ∈ T2n (XZ) and Z n ∈ T n (Z),
+otherwise.
+√
+− n
+
+N , (2)
+
+H(U n |Z n ) = I(X n ; U n |Z n ) + H(U n |X n )
+
+Lemma 1 ([8][11]). Consider a DMS (X Z, pXZ ) and deﬁne
+the RV Θ as
+1
+0
+
+√
+
+where (a) follows from Lemma 1,5 and log|A|= N (I(U ; X)−
+I(U ; Y )), i.e the number of bits required to describe the
+messages exchanged during the reconciliation phase. We now
+lower bound H(U n |Z n ). We ﬁrst remark that
+
+The total information available to Eve after reconciliation
+consists of her observation Z N , the public messages A, sent
+by Alice, and Ud . The strategy SN is also known to Eve, but
+we omit the conditioning on SN for convenience.
+By means of Theorem 3, Lemma 1, and Lemma 2, we will
+ﬁrst show that, for a suitable choice of the output size k, we
+have k H(K|Ud Z N A) k − δ(N ).4 Then, we will show
+that the corresponding secret-key rate achieves the secret-key
+capacity of Theorem 1. We ﬁrst recall some useful lemmas.
+
+Θ
+
+m(H(U n |Z n ) − δ( )) − δ (m)
+
+z n ,un
+
+N
+
+)H(K|Ud Z A, Υ = 1, Θ = 1) (1)
+
+z n ,un
+
+p(z n , un |1, 1)
+
+× H(X n |Z n = z n , U n = un , Γ = 1, ∆ = 1)
+
+p(z n , un |1, 1) log|T n (X|z n , un )|
+1
+p(z n , un |1, 1)(nH(X|ZU )(1 +
+
+nH(X|ZU )(1 +
+
+(n) denotes a function of and n such that limn→∞ δ (n) = 0.
+denotes a function of n such that limn→∞ δ(n) = 0.
+
+4 δ(n)
+
+5 The
+
+4
+
+1 ),
+
+1 ))
+
+(5)
+
+m repetitions of the protocol Rn are meant to link H∞ (·) to H(·).
+
+X
+
+0
+
+⇠ B 12
+/
+
+1
+
+Y
+
+1
+
+0
+1
+
+q
+
+0
+
+Z
+
+0.2
+
+Example of a binary DMS studied in Section IV.
+
+hence, combining (3), (4), and (5), we obtain
+H(U n |Z n )
+
+n[H(X|Z)−H(X|ZU )(1+ 1 )]−2−nδ(n). (6)
+
+H∞ (U |Z
+
+N
+
+0.05
+
+N
+
+= z , A = a, Θ = 1, Υ = 1)
+
+0
+
+N (I(U ; Y ) − I(U ; Z)) − N 1 H(X|ZU )
+√
+− 2m − N δ(n) − mδ( ) − δ (m) − N . (7)
+√
+Set k to be less than the lower bound in (7) by N :
+k
+
+I(K; Ud Z N A) = H(K) − H(K|Ud Z N A)
+
+and the secret key rate R
+
+k − δ(N ).
+δ(N ),
+
+k/N is
+
+0.2
+
+0.3
+
+0.4
+
+0.5
+Rp [bits]
+
+0.6
+
+0.7
+
+0.8
+
+0.9
+
+1
+
+Secret-key capacity Cs versus Rp when q = 0.2.
+
+R EFERENCES
+
+R = I(U ; Y ) − I(U ; Z) − δ( 1 ) − δ(N ).
+
+[1] U. Maurer, “Secret Key Agreement by Public Discussion from Common
+Information,” IEEE Trans. Inf. Theory, vol. 39, pp. 733–742, 1993.
+[2] R. Ahlswede and I. Csisz´ r, “Common Randomness in Information
+a
+Theory and Cryptography Part I: Secret Sharing,” IEEE Trans. Inf.
+Theory, vol. 39, pp. 1121–1132, 1993.
+[3] I. Csisz´ r and P. Narayan, “Common Randomness and Secret Key
+a
+Generation with a Helper.” IEEE Trans. Inf. Theory, vol. 46(2), pp.
+344–366, 2000.
+[4] F. Grosshans, G. V. Assche, J. Wenger, R. Brouri, N. Cerf, and P. Grangier, “Quantum Key Distribution using Gaussian-Modulated Coherent
+States,” Nature, vol. 421, pp. 238–241, 2003.
+[5] M. Bloch, J. Barros, M. Rodrigues, and S. McLaughlin, “Wireless
+Information-Theoretic Security,” IEEE Trans. Inf. Theory, vol. 54(6),
+pp. 2515–2534, 2008.
+[6] G. Brassard and L. Salvail, “Secret-Key Reconciliation by Public
+Discussion.” Springer-Verlag, 1994, pp. 410–423.
+[7] C. Bennett, G. Brassard, and U. Maurer, “Generalized Privacy Ampliﬁcation,” IEEE Trans. Inf. Theory, vol. 41, pp. 1915–1923, 1995.
+[8] U. Maurer and S. Wolf, “Information-Theoretic Key Agreement: From
+Weak to Strong Secrecy for Free,” in Lecture Notes in Computer Science.
+Springer-Verlag, 2000, pp. 351–368.
+[9] M. Bloch, A. Thangaraj, S. McLaughlin, and J.-M. Merolla, “LDPCbased Gaussian Key Reconciliation,” in Inf. Theory Workshop, 2006.
+[10] D. Elkouss, A. Leverrier, R. Alleaume, and J. Boutros, “Efﬁcient Reconciliation Protocol for Discrete-Variable Quantum Key Distribution,”
+IEEE Int. Symp. on Information Theory, pp. 1879–1883, 2009.
+[11] M. Bloch and J. Barros, Physical-Layer Security: from Information
+Theory to Security Engineering. Cambridge University Press, 2011.
+[12] S. Watanabe and Y. Oohama, “Secret Key Agreement from Correlated
+Gaussian Sources by Rate Limited Public Communication,” IEICE
+Trans. Fundamentals, vol. E93A, 2010.
+[13] R. Ahlswede and I. Csisz´ r, “Common Randomness in Information
+a
+Theory and Cryptography Part II: CR capacity,” IEEE Trans. Inf. Theory,
+vol. 44, pp. 225–240, 1998.
+[14] S. Vadhan, “Extracting All the Randomness from a Weakly Random
+Source,” Electronic Colloquium on Computational Complexity, Tech.
+Rep., 1998.
+[15] T. Berger, Multiterminal Source Coding.
+The Information Theory
+Approach to Communications, Springer-Verlag, 1978.
+[16] A. Wyner and J. Ziv, “A Theorem on the Entropy of Certain Binary
+Sequences and Applications I,” IEEE Trans. Inf. Theory, vol. 19, pp.
+769–771, 1973.
+[17] R. Rockafellar, Convex Analysis. Princeton University Press, 1970.
+
+Note that, if we take U = X and Rp = +∞ in Theorem 4,
+we re-obtain the secret-key capacity Cs (+∞) = I(X; Y ) −
+I(X; Z) seen in Theorem 2. More precisely, we obtain a result
+similar to the one in Section III-A for reconciliation, that is,
+if Rp is at least H(X|Y ), then Cs (Rp ) = Cs (+∞).
+Theorem 4 states that the sequential application of one-way
+rate-limited reconciliation and privacy ampliﬁcation with extractors, leads to an optimal key-distillation strategy. However,
+an optimal reconciliation in the sense of Proposition 1, may
+not lead to an optimal sequential distillation, since the RV
+U that achieves Crec (Rp ) in Proposition 1 might actually not
+achieve Cs (Rp ) in Theorem 1. In the next section, we study the
+binary case, for which optimal reconciliation leads to optimal
+sequential key distillation.
+IV. B INARY EXAMPLE
+As depicted in Figure 2, assume that X has a Bernoulli
+1
+distribution with parameter 2 , and that X and Y (respectively
+Y and Z) are connected by a binary symmetric channel (BSC)
+with crossover probability p (respectively q).
+Proposition 2. The reconciliation capacity and the secret-key
+capacity are
+1 − Hb (p β0 ), if Rp H(X|Y ),
+Crec (Rp ) =
+1 − Hb (p),
+if Rp H(X|Y ),
+Hb (p β0 q) − Hb (p β0 ), if Rp
+Hb (p q) − Hb (p),
+if Rp
+
+0.1
+
+Proof: Crec is obtained with Mrs Gerber’s Lemma [16].
+The converse for Cs is more involved, it relies on the maximum
+principle and the notion of supporting hyperplane [17], the
+proof is not detailed because of space constraint.
+Proposition 2 means that if we choose U binary and
+connected by a BSC to X, then we achieve Crec (Rp ), as well
+as Cs (Rp ), so that by Proposition 1 and Theorem 4, optimal
+reconciliation leads to optimal sequential key distillation, i.e.
+reconciliation and privacy ampliﬁcation are independent.
+
+√
+− 2m − N δ(n) − mδ( ) − δ (m) − 2 N ,
+
+thus, back to (1), by Theorem 3, H(K|Ud Z N A)
+Moreover, the leakage is such that
+
+0
+
+Fig. 3.
+
+N (I(U ; Y ) − I(U ; Z)) − N 1 H(X|ZU )
+
+Cs (Rp ) =
+
+0.15
+
+0.1
+
+Now, back to (2), we have by (6)
+N
+
+p = 0.15
+p = 0.20
+p = 0.25
+p = 0.30
+
+0.25
+
+1
+
+Cs [bits]
+
+Fig. 2.
+
+0
+
+p
+
+H(X|Y ),
+H(X|Y ),
+
+with Hb (·) the binary entropy, and β0 , any of the two
+symmetric solutions of the equation Hb (p β0 )−Hb (β0 ) = Rp ,
+where p β0 = (1 − β0 )p + β0 (1 − p).
+
+5
+
+

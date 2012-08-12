@@ -1,0 +1,797 @@
+Title:          ISIT2012final.dvi
+Creator:        dvips(k) 5.99 Copyright 2010 Radical Eye Software
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Fri May 18 13:31:12 2012
+ModDate:        Tue Jun 19 12:56:37 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      300105 bytes
+Optimized:      no
+PDF version:    1.7
+ISIT'2012 1569566299
+
+Lossy Communication over Multiple-Access
+Channels with Feedback
+Paolo Minero and Saﬁtha Jayaraj
+Department of Electrical Engineering
+University of Notre Dame
+Notre Dame, IN 46556, USA
+{pminero, sjayaraj}@nd.edu
+Y i−1
+
+Abstract—We consider the problem of lossy communication of
+correlated sources over multiple access channels with noiseless
+causal feedback. A sufﬁcient condition for lossy transmission is
+presented, which generalizes several previous results on communication over multiple access channels, recovering as special cases
+channel coding results by King, Cover, and Leung, and extending
+a previous sufﬁcient condition for lossless communication by
+Cover, El Gamal, and Salehi. The proposed coding scheme
+is based on a recently developed analog-digital hybrid coding
+scheme for joint source–channel coding combined with blockMarkov coding.
+
+n
+S1
+
+n
+S2
+
+j
+
+Encoder 2
+
+X1,i
+X2,i
+
+p(y|x1 , x2 )
+
+Yi
+
+Decoder
+
+ˆn ˆn
+S1 , S2
+
+Y i−1
+Fig. 1.
+Communication of a 2-DMS over a DM-MAC with noiseless
+feedback.
+
+I. I NTRODUCTION
+We study the problem of lossy communication of two
+correlated discrete memoryless sources (2-DMS) (S1 , S2 ) over
+a discrete memoryless multiple-access channel (DM-MAC)
+(X1 × X2 , p(y1 , y2 |x), Y) with noiseless causal feedback (see
+Fig. 1). Here each separate encoder observes the feedback
+from the channel output of the previous time instants as well
+as one of the two source components, which it wishes to
+communicate to the common receiver so that two functions
+of the sources can be reconstructed with desired distortions
+D1 and D2 . This problem models communication scenarios
+where spatially separated senders cooperate in transmitting
+correlated information over a shared medium and serves as
+a building block to study the tradeoff between cooperation
+and competition among users in more general communication
+settings.
+The formal deﬁnition of the problem is as follows. A
+(|S1 |n , |S2 |n , n) joint source–channel code consists of
+• two encoders, where at time i ∈ [1 : n] encoder j = 1, 2
+assigns a symbol xj,i (sn , y i−1 ) ∈ Xj to each sequence
+j
+n
+sn ∈ Sj and past received output sequence y i−1 ∈ Y i−1 ,
+j
+and
+ˆn
+ˆn
+• a decoder that assigns an estimate (ˆn , sn ) ∈ S1 × S2
+s1 ˆ2
+n
+n
+to each sequence y ∈ Y .
+Let d1 (s1 , s1 ) and d2 (s2 , s2 ) be two distortion measures.
+ˆ
+ˆ
+The average per-letter distortion dj (sn , sn ), j = 1, 2, is
+j ˆj
+n
+ˆ
+ˆj
+deﬁned as d(sn , sn ) = (1/n) i=1 d(sji , sji ). A distortion
+j
+pair (D1 , D2 ) is said to be achievable for communication
+of the 2-DMS (S1 , S2 ) over the DM-MAC p(y|x1 , x2 ) with
+feedback if there exists a sequence of (|S1 |n , |S2 |n , n) joint
+source–channel codes such that
+ˆ
+lim sup E(dj (S n , S n )) ≤ Dj , j = 1, 2.
+n→∞
+
+Encoder 1
+
+The optimal distortion region is deﬁned as the closure of the
+set of all achievable distortion pairs (D1 , D2 ). A computable
+characterization of the optimal distortion region is not known
+in general.
+Special instances of this problem have been previously studied in the literature. Ong and Motani [1] studied the lossless
+communication problem where the receiver is interested in
+reconstructing the sources with vanishing error probability and
+derived sufﬁcient conditions for reliable transmission. Lapidoth and Tinguely analyzed the problem of sending a bivariate
+Gaussian source over a Gaussian multiple access with feedback under quadratic distortion measures [2] and characterized
+tight scaling results in the limiting regimes of low and high
+signal-to-noise (SNR) ratios. King [3] investigated the special
+case where S1 = (W0 , W1 ) and S2 = (W0 , W2 ), where W0 ,
+W1 , and W2 are three mutually independent random variables
+of entropies R0 , R1 , and R2 , respectively. In this case, the
+set of triples (R0 , R1 , R2 ) that can be reliably transmitted
+is referred to as the feedback capacity region of the DMMAC. Assuming that the entropy of R0 is zero, Ozarow [4]
+characterized the feedback capacity of a Gaussian MAC with
+feedback, while Cover and Leung [5] established an inner
+bound on the feedback capacity of a general DM-MAC which
+is suboptimal in general [4], [6], [7] but tight for a special
+class of channels [8]. Finally, an inner bound to the optimal
+distortion region in the case where there is no output feedback
+was derived in [9].
+In this paper, we develop an inner bound on the optimal
+distortion region for general multiple access channels with
+feedback. This inner bound generalizes the result by Lim et
+al. [9] to the case where the sources have a common part –
+
+j
+
+1
+
+source (S1 , S2 ) as well as for coherently communicating over
+the DM-MAC. To illustrate the role played by U0 , consider
+the following two extreme cases:
+a) Degraded “source” set problem: On the one hand, consider the degraded “source” set problem where encoder 1 has
+access to both source sequences. This setup can be captured
+˜ ˜
+by considering transmission of a source (S1 , S2 ) such that
+˜1 = (S1 , S2 ), S2 = S2 . For this problem, the sufﬁcient
+˜
+S
+condition in Theorem 1 is also necessary.
+
+in the sense of Gács–Körner [10] and Witsenhausen [11] –
+and noiseless output feedback is available at the transmitters,
+and the result by Ong and Motani [1] to the case of lossy
+communication. When we specialize our result to the problem studied by Lapidoth and Tinguely, the proposed coding
+scheme achieves the optimal scaling results characterized
+in [2]. The achievable region that we obtain includes the
+feedback capacity inner bounds by King [3] and by Cover
+and Leung [5]. However, in the special of case of the Gaussian
+MAC, our inner bound does not achieve the feedback capacity
+characterized by Ozarow [4]. Two special cases of channels
+and sources for which our approach leads to tight conditions
+are presented. The associated coding scheme is based on the
+analog-digital hybrid coding scheme for joint source–channel
+coding proposed in [9], [12]. The novelty of our construction
+lies in combining hybrid coding with a block-Markov coding
+similar to the one used in the analysis of the Cover and Leung’s
+inner bound [13].
+The rest of the paper is organized as follows. In the next
+section, we present the main result of the paper and its
+relationship with existing results in the literature. A sketch of
+the proof of the main coding theorem is given in Section III.
+Section IV concludes the paper. Throughout the paper, we use
+the notation in [13].
+II. M AIN
+We establish the following:
+
+Corollary 1: A distortion pair (D1 , D2 ) is achievable for
+˜ ˜
+communication of the degraded source 2-DMS (S1 , S2 ) over
+a DM-MAC p(y|x1 , x2 ) with noiseless feedback if
+ˆ
+ˆ
+I(S1 ; S1 | S2 ) < I(X1 ; Y |X2 ),
+ˆ ˆ
+I(S1 , S2 ; S1 , S2 ) < I(X1 , X2 ; Y ),
+for some pmf p(ˆ2 |s2 )p(ˆ1 |s1 , s2 )p(x1 , x2 ). Conversely, if a
+s
+s
+distortion pair (D1 , D2 ) can be achieved, then the above inequalities with “<” replaced by “≤” have to be simultaneously
+satisﬁed for some p(ˆ2 |s2 )p(ˆ1 |s1 , s2 )p(x1 , x2 ).
+s
+s
+Proof: For the proof of the direct part, take U0 =
+ˆ
+ˆ
+(S2 , X2 ), U1 = (S1 , X1 ), and U2 = ∅ in Theorem 1 for
+some joint pmf p(ˆ2 |s2 )p(ˆ1 |s1 , s2 )p(x1 , x2 ). The proof of
+s
+s
+the converse follows from standard techniques and therefore
+it is not reported here.
+
+RESULT
+
+Notice that in the proof of Corollary 1 U0 is chosen equal
+ˆ
+ˆ
+to two codewords S2 and X2 . S2 is used by the senders to
+jointly compress the common source S2 , while X2 is used to
+cooperatively communicate the (digital) compression index to
+the receiver. In this case, the special structure of the source
+allows the senders to fully cooperate and so the channel output
+feedback is useless. It is easily veriﬁed, in fact, that the
+sufﬁcient condition in Corollary 1 can be directly obtained
+from the coding scheme in [9], which does not make use
+of channel feedback. This shows that in this case feedback
+does not enlarge the set of achievable distortion pairs for
+communication over a MAC.
+b) Independent sources: On the other hand, consider the
+special case where the sources S1 and S2 are independent
+and the DM-MAC belongs to the class of multiple access
+channels considered by Willems [8], in which one channel
+input is a deterministic function of the channel output and the
+other channel input. For this problem, the sufﬁcient condition
+in Theorem 1 is also necessary.
+
+Theorem 1: A distortion pair (D1 , D2 ) is achievable for
+communication of the 2-DMS (S1 , S2 ) with common part K
+over a DM-MAC p(y|x1 , x2 ) with noiseless feedback if
+I(U1 ; S1 |U0 , U2 ) < I(U1 ; Y |U0 , U2 ),
+I(U2 ; S2 |U0 , U1 ) < I(U2 ; Y |U0 , U1 ),
+I(U0 , U1 , U2 ; S1 , S2 ) < I(U0 , U1 , U2 ; Y ).
+for some pmf p(u0 |k)p(u1 |s1 , u0 )p(u2 |s2 , u0 ), two encoding functions x1 (s1 , u0 , u1 ), x2 (s2 , u0 , u2 ), and two decoding functions s1 (u0 , u1 , u2 , y) and s2 (u0 , u1 , u2 , y) such that
+ˆ
+ˆ
+ˆ
+E(dj (Sj , S j )) ≤ Dj , j = 1, 2.
+A few remarks are in order. The inequalities that appear
+in Theorem 1 have a natural interpretation – the terms at the
+left-hand side denote the rates at which the source (S1 , S2 )
+is compressed (described) by the codewords U0 , U1 , and U2 ,
+while the terms at the right-hand side denote the rates at which
+these codewords are communicated over the channel. Thus,
+Theorem 1 states that a distortion pair (D1 , D2 ) is achievable
+if the source compression rates do not exceed the channel
+communication rates. At a high level, a similar condition
+can also be obtained by performing separate source-channel
+coding, by concatenating, for instance, the distributed source
+coding scheme in [14] with the channel coding scheme in [3].
+The main difference with the separation-base approach is that
+here the same codewords U0 , U1 , and U2 are used for both
+source coding and channel coding.
+In Theorem 1, the codeword U0 is available at both senders
+and is used for jointly compressing the common part K of the
+
+Corollary 2: A distortion pair (D1 , D2 ) is achievable for
+communication of the 2-DMS (S1 , S2 ) over a DM-MAC
+p(y|x1 , x2 ) in the class studied in [8] and with noiseless
+feedback if
+ˆ
+ˆ
+I(S1 ; S1 | S2 ) < I(X1 ; Y |U, X2 ),
+ˆ
+ˆ
+I(S2 ; S2 | S1 ) < I(X2 ; Y |U, X1 ),
+ˆ ˆ
+I(S1 , S2 ; S1 , S2 ) < I(X1 , X2 ; Y ).
+for
+some
+pmf
+p(ˆ1 |s1 )p(ˆ2 |s2 )p(u)p(x1 |u)p(x2 |u).
+s
+s
+Conversely, if a distortion pair (D1 , D2 ) can be
+
+2
+
+for some pmf p(q)p(x1 |q)p(x2 |q). It can be shown that this
+inner bound achieves capacity for the class of multiple access
+channels studied by Willems in [8]. Moreover, by setting
+R0 = 0 we recover the inner bound of Cover and Leung [5]
+for the problem of reliable communication of two independent
+messages over a DM-MAC with feedback. We remark, however, that the resulting region does not include the inner bounds
+derived by Bross and Lapidoth [6] and by Venkataramanan
+and Pradhan [7], which strictly outperform the inner bound
+by Cover and Leung, as well as the result by Ozarow for the
+Gaussian MAC with feedback [4].
+Finally, when we can specialize Theorem 1 to the problem
+of transmitting a Gaussian source over a Gaussian MAC with
+feedback under mean-square distortion, we recover the low
+and high SNR scaling results derived in [2]. On the one
+hand, Lapidoth and Tinguely proved that at low SNR uncoded
+transmission is optimal. We can recover this result by setting
+in Theorem 1 the encoding function x1 (x2 ) proportional to s1
+(s2 ) and the decoding function s1 (ˆ2 ) equal to the minimum
+ˆ s
+mean-square estimate of s1 (s2 ) given y. On the other hand,
+they showed that at high SNR the source-channel separation
+scheme obtained concatenating the Gaussian multiterminal
+source coding scheme in [19], [20] with the channel coding
+scheme by Ozarow is asymptotically optimal. It can be shown
+that the same asymptotic performance can also be obtained
+after replacing the Ozarow’s scheme with the (continuousalphabet version of the) scheme by Cover and Leung, and
+thus it can be achieved by Theorem 1 .
+
+achieved, then the above inequalities with “<” replaced
+by “≤” have to be simultaneously satisﬁed for some
+p(ˆ1 |s1 )p(ˆ2 |s2 )p(u)p(x1 |u)p(x2 |u).
+s
+s
+Proof: For the proof of the direct part, take U0 = U ,
+ˆ
+ˆ
+U1 = (S1 , X1 ), and U2 = (S2 , X2 ) in Theorem 1 for some
+joint pmf p(ˆ2 |s2 )p(ˆ1 |s1 )p(u)p(x1 |u)p(x2 |u). The proof of
+s
+s
+the converse follows by application of [15, Theorem 2] and [8],
+but it can also be proved directly using standard converse
+techniques.
+In this case, the sources are independent and so cooperation
+between the senders can only take place at the channel-coding
+level, through the channel output feedback, while the sourcecoding has to be performed in a distributed manner. In the
+proof of Corollary 2 notice that U0 is chosen independent of
+the sources and is only used to induce coherent transmissions
+over the channel, exactly as in the channel coding scheme
+in [5]. It should also be remarked that the same sufﬁcient
+condition can be obtained by separately performing source and
+channel coding, ﬁrst compressing the sources using the distributed source coding scheme by Berger [16] and Tung [17]
+and then encoding the resulting sequences using the channel
+coding scheme for the DM-MAC with feedback in [5].
+When specialized to the lossless case, wherein d1 and
+d2 are Hamming distortion measures and D1 = D2 = 0,
+Theorem 1 yields the following sufﬁcient condition for lossless
+communication of a 2-DMS over a DM-MAC with feedback:
+Corollary 3: A 2-DMS (S1 , S2 ) with common part K can
+be communicated losslessly over a DM-MAC p(y|x1 , x2 ) with
+noiseless feedback if
+
+III. S KETCH
+
+P ROOF
+
+OF
+
+T HEOREM 1
+
+The coding scheme used for the proof of achievability in
+Theorem 1 uses the hybrid coding technique for joint sourcechannel coding proposed in [9], [12], combined with a block
+Markov coding technique. We provide here a sketch, while
+the full prove can be found in the extended version of this
+paper [21]. Coding is performed in blocks of n transmissions.
+Within each block, the senders select a codebook to use for
+hybrid coding based on the received channel output feedback
+in the previous block. Decoding is performed using backward
+decoding starting from the last transmission block. At a high
+level, the sufﬁcient condition is obtained combining the conditions for distributed source encoding with those for channel
+decoding. Speciﬁcally, in each block the source encoding
+operation is successful if
+
+H(S1 |S2 ) < I(X1 ; Y |X2 , S2 , Q),
+H(S2 |S1 ) < I(X2 ; Y |X1 , S1 , Q),
+H(S1 , S2 ) < I(X1 , X2 ; Y ),
+for some pmf p(q)p(x1 |s1 , q)p(x2 |s2 , q).
+Proof: Take U0 = (K, Q), Uj = (Xj , Sj ), and
+sj = sj , j = 1, 2, in Theorem 1 under the distribution
+ˆ
+p(q)p(x1 |s1 , q)p(x2 |s2 , q).
+Corollary 3 generalizes the sufﬁcient condition derived by
+Cover, El Gamal, and Salehi [18] for lossless communication
+of correlated sources over a DM-MAC to the case where
+noiseless feedback is available at the encoders.
+We can further specialize the result in Corollary 3 to
+the channel coding problem studied by King [3] where
+S1 = (W0 , W1 ) and S2 = (W0 , W2 ), with H(Wj ) = Rj ,
+j = 0, 1, 2. By choosing (X1 , X2 ) to be independent of
+(W0 , W1 , W2 ), Corollary 3 yields King’s inner bound [3] to
+the capacity region, which states that a rate triple (R0 , R1 , R2 )
+is achievable if it satisﬁes
+
+R0 > I(U0 ; S1 , S2 ),
+R1 > I(U1 ; S1 |U0 ),
+R2 > I(U2 ; S2 |U0 ),
+while the channel decoding operation across two consecutive
+blocks is successful if
+
+R1 < I(X1 ; Y |X2 , Q)
+R2 < I(X2 ; Y |X1 , Q)
+R0 + R1 + R2 < I(X1 , X2 ; Y )
+
+OF THE
+
+R1 < I(U1 ; Y, U2 |U0 ),
+R2 < I(U2 ; Y, U1 |U0 ),
+R0 + R1 + R2 < I(U0 , U1 , U2 ; Y ) + I(U1 ; U2 |U0 ).
+
+(1)
+
+3
+
+all i ∈ [1 : n].
+
+Theorem 1 is then established by eliminating the intermediate rate triple (R0 , R1 , R2 ) from the above inequalities and by simplifying the resulting inequalities using the fact that the underlying joint pmf factorizes as
+p(u0 |k)p(u1 |s1 , u0 )p(u2 |s2 , u0 ). We remark that the derivation of the conditions for channel coding requires the use
+of a technique developed in [9] to deal with the dependency
+between the transmitted messages and the codebook. In the remaining of this section, we ﬁrst describe the random codebook
+generation and encoding/decoding scheme, then we outline the
+analysis of the probability of error.
+
+Decoding: Decoding at the receiver is done by
+backward decoding after b blocks are received. For
+j ∈ [b : 1], the decoder ﬁnds the unique index
+triple (m0,j , m1,j , m2,j−1 ) such that un (m0,j , m2,j−1 ),
+ˆ
+ˆ
+ˆ
+ˆ
+0 ˆ
+un (m1,j |m0,j , m2,j−1 ), un (m2,j |m0,j , m2,j−1 ), y n (j)
+ˆ
+ˆ
+ˆ
+ˆ
+∈
+1 ˆ
+2 ˆ
+(n)
+ˆ
+Tǫ , with the initial condition m2,b = 1, and sets
+ˆ
+the reproduction sequences as s1,i (j) = s1 (u0,i m0,j ,
+ˆ
+ˆ
+m2,j−1 ), u1,i (m1,j |m0,j , m2,j−1 ), u2,i (m2,j |m0,j , m2,j−1 ),
+ˆ
+ˆ
+ˆ
+ˆ
+ˆ
+ˆ
+ˆ
+ˆ
+ˆ
+ˆ
+ˆ
+yi (j) and s2,i (j) = s2 (u0,i m0,j , m2,j−1 ), u1,i (m1,j |m0,j ,
+ˆ
+ˆ
+m2,j−1 ), u2,i (m2,j |m0,j , m2,j−1 ), yi (j) for all i ∈ [1 : n].
+ˆ
+ˆ
+ˆ
+ˆ
+
+Codebook generation: Fix ǫ > ǫ′ > 0 and a pmf
+p(u0 |k) p(u1 |u0 , s1 ) p(u2 |u0 , s2 ), two encoding functions
+x1 (s1 , u0 , u1 ) and x2 (s2 , u0 , u2 ), and two reconstruction
+functions s1 (u0 , u1 , u2 , y) and s2 (u0 , u1 , u2 , y). As in block
+ˆ
+ˆ
+Markov coding, we randomly and independently generate a
+codebook for each block. For j ∈ [1 : b], randomly and independently generate 2n(R0 +R2 ) sequences un (m0,j , m2,j−1 ),
+0
+m0,j ∈ [1 : 2nR0 ] and m2,j−1 ∈ [1 : 2nR2 ], each acn
+cording to i=1 pU0 (u0i ). For each (m0,j , m2,j−1 ), randomly
+and conditionally independently generate 2nR1 sequences
+un (m1,j |m0,j , m2,j−1 ), m1,j ∈ [1 : 2nR1 ], each according
+1
+n
+to i=1 pU1 |U0 (u1,i |u0,i (m0,j , m2,j−1 )) and 2nR2 sequences
+n
+u2 (m2,j |m0,j , m2,j−1 ), m2,j ∈ [1 : 2nR2 ], each according to
+n
+i=1 pU2 |U0 (u2,i |u0,i (m0,j , m2,j−1 )).
+
+Analysis of the probability of error: We bound the distortion
+n
+n
+averaged over (S1 (j), S2 (j)), the random codebook, and the
+random index assignments at the encoders. Let M0,j , M1,j ,
+and M2,j be random variables denoting the chosen indixes at
+the encoders in block j ∈ [1 : b]. Deﬁne the “error” event:
+E(j) =
+
+n ˆ
+n
+n
+ˆ
+S1 (j), S2 (j), U0 (M0,j , M2,j−1 ),
+n ˆ
+ˆ
+ˆ
+U1 (M1,j | M0,j , M2,j−1 ),
+n ˆ
+ˆ
+ˆ
+U2 (M2,j | M0,j , M2,j−1 ), Y n (j) ∈ Tǫ(n)
+
+and partition it into six events, three of which account for
+errors in the source encoding procedure
+(n)
+
+n
+˜
+E0 (j) = {(U0 (m0,j , M2,j−1 ), K n ) ∈ Tǫ′
+n
+n
+˜
+E1 (j) = {(S1 (j), U0 (M0,j , M2,j−1 ),
+
+Encoding: Let (sn (j), sn (j)) be the source sequences to
+2
+1
+be sent in block j ∈ [1, b]. Upon observing sn (j), en2
+coder 2 ﬁnds an index m0,j ∈ [1 : 2nR0 ] such that
+(n)
+k n (j), un (m0,j , m2,j−1 ) ∈ Tǫ′ , where by convention
+0
+m2,0 = 1. If there is more than one such index, it chooses
+one of them at random1. If there is no such index, it
+chooses an arbitrary index at random from [1 : 2nR0 ].
+Next, it ﬁnds an index m2,j ∈ [1 : 2nR2 ] such that
+(n)
+un (m0,j , m2,j−1 ), sn (j), un (m2,j |m0,j , m2,j−1 ) ∈ Tǫ′ .
+2
+2
+0
+If there is more than one such index, it chooses one of
+them at random. If there is no such index, it chooses
+an arbitrary index at random. Finally, encoder 2 transmits
+x2,i s2,i (j), u0,i (m0,j , m2,j−1 ), u2,i (m2,j |m0,j , m2,j−1 ) for
+all i ∈ [1 : n].
+At the end of block j − 1, encoder 1 ﬁnds the unique index
+m2,j−1 such that un (m0,j−1 , m2,j−2 ), un (m1,j−1 |m0,j−1 ,
+˜
+˜
+0
+1
+(n)
+n
+˜
+˜
+m2,j−2 ), u2 (m2,j−1 |m0,j−1 , m2,j−2 ), y n (j − 1) ∈ Tǫ ,
+˜
+where by convention m2,0
+˜
+=
+1. In block j,
+encoder 1 ﬁnds an index m0,j
+∈ [1 : 2nR0 ]
+(n)
+˜
+∈ Tǫ′ . Next,
+such that k n (j), un (m0,j , m2,j−1 )
+0
+nR1
+it ﬁnds an index m1,j ∈ [1 : 2
+] such that
+(n)
+˜
+˜
+un (m0,j , m2,j−1 ), sn (j), un (m1,j |m0,j , m2,j−1 ) ∈ Tǫ′ .
+1
+1
+0
+If there is more than one such index, it chooses one of
+them at random. If there is no such index, it chooses an
+arbitrary index at random. Finally, encoder 1 transmits
+x1,i s1,i (j), u0,i (m0,j , m2,j−1 ), u1,i (m1,j |m0,j , m2,j−1 ) for
+˜
+˜
+
+for all m0,j },
+
+(n)
+
+for all m1,j },
+
+(n)
+
+for all m2,j },
+
+n
+˜
+U1 (m1,j |M0,j , M2,j−1 )) ∈ Tǫ′
+
+E2 (j) =
+
+n
+n
+{(S2 (j), U0 (M0,j , M2,j−1 ),
+n
+U2 (m2,j |M0,j , M2,j−1 )) ∈
+
+Tǫ′
+
+while the remaining three are channel decoding error events
+˜
+E3 (j) = {M2,j−1 = M2,j−1 },
+ˆ
+ˆ
+E4 (j + 1) = {M0,j+1 = M0,j+1 , M1,j+1 = M1,j+1 ,
+ˆ
+M2,j = M2,j },
+n
+n
+n
+n
+E5 (j) = {(S1 (j), S2 (j), U0 (M0,j , M2,j−1 ), U1 (M1,j |
+n
+ˆ
+M0,j , M2,j−1 ), U2 (M2,j |M0,j , M2,j−1 ),
+(n)
+
+Y n (j)) ∈ Tǫ′ },
+Then by the union of events bound,
+4
+
+P(E(j)) ≤
+
+P(Ek (j)) + E4 (j + 1)
+k=0
+c
+c
++ P(E5 (j) ∩4 Ek (j) ∩ E4 (j + 1)).
+k=0
+
+(2)
+
+It can be shown by the covering lemma and the conditional
+typicality lemma that the ﬁrst three terms in (2) tend to zero
+as n → ∞ if
+R0 > I(U0 ; K) + δ(ǫ),
+
+speaking, the random index assignment is part of the random
+codebook generation and is revealed to both senders before any transmission
+takes place.
+
+4
+
+(3)
+
+R1 > I(U1 ; S1 |U0 ) + δ(ǫ),
+R2 > I(U2 ; S2 |U0 ) + δ(ǫ),
+
+1 Strictly
+
+(4)
+(5)
+
+where I(U0 ; K) = I(U0 ; S1 , S2 ) under the distribution
+p(s1 , s2 )p(u0 |k).
+Next, consider E3 (j), i.e., the event that encoder 1 fails
+in decoding the message M2,j−1 transmitted by encoder 2
+in block j − 1. Combining similar steps as in the analysis
+of hybrid coding [9] with those in the analysis of multi-hop
+coding for the relay channel [13], it can be shown that the
+probability of decoding error for encoder 1 at the end of block
+j − 1 goes to zero as n → ∞ if
+R2 < I(U2 ; Y, U1 |U0 ) − δ(ǫ).
+
+question that is leitmotif of our future research is how to resolve the tradeoff between competition and cooperation among
+separated senders in a network. This tradeoff is currently fully
+understood only in few special cases of sources and channels.
+V. ACKNOWLEDGMENTS
+This work was supported by the National Science Foundation (NSF) through the grant CCF-1117728.
+R EFERENCES
+
+(6)
+
+[1] L. Ong and M. Motani, “Coding strategies for multiple-access channels
+with feedback and correlated sources,” IEEE Trans. Inf. Theory, vol. 53,
+no. 10, pp. 3476–3497, Oct. 2007.
+[2] A. Lapidoth and S. Tinguely, “Sending a bivariate Gaussian source over
+a Gaussian MAC with feedback,” IEEE Trans. Inf. Theory, vol. 56, no. 4,
+pp. 1852–1864, 2010.
+[3] R. King, “Multiple-access channels with generalized feedback,” Tech.
+Rep. 6152-1, Stanford University, Stanford, CA, Mar. 1978.
+[4] L. H. Ozarow, “Coding and capacity for additive white Gaussian noise
+multi-user channels with feedback,” Ph.D. dissertation, Massachusetts
+Institute of Technology, Cambridge, MA, May 1979.
+[5] T. M. Cover and C. S. K. Leung, “An achievable rate region for
+the multiple-access channel with feedback,” IEEE Trans. Inf. Theory,
+vol. 27, no. 3, pp. 292–298, 1981.
+[6] S. Bross and A. Lapidoth, “An improved achievable region for the
+discrete memoryless two-user multiple-access channel with noiseless
+feedback,” Information Theory, IEEE Transactions on, vol. 51, no. 3,
+pp. 811–833, Mar. 2005.
+[7] R. Venkataramanan and S. Pradhan, “A new achievable rate region
+for the multiple-access channel with noiseless feedback,” Information
+Theory, IEEE Transactions on, vol. 57, no. 12, pp. 8038–8054, Dec.
+2011.
+[8] F. M. J. Willems, “The feedback capacity region of a class of discrete
+memoryless multiple access channels,” IEEE Trans. Inf. Theory, vol. 28,
+no. 1, pp. 93–95, 1982.
+[9] S. H. Lim, P. Minero, and Y.-H. Kim, “Lossy communication of
+correlated sources over multiple access channels,” in Proc. 48th Annual
+Allerton Conference on Communications, Control, and Computing,
+Monticello, IL, Sep. 2010.
+[10] P. Gács and J. Körner, “Common information is far less than mutual
+information,” Probl. Control Inf. Theory, vol. 2, no. 2, pp. 149–162,
+1973.
+[11] H. S. Witsenhausen, “On sequences of pairs of dependent random
+variables,” SIAM J. Appl. Math., vol. 28, pp. 100–113, 1975.
+[12] P. Minero, S. H. Lim, and Y.-H. Kim, “Joint source-channel coding via
+hybrid coding,” in Proc. IEEE International Symposium on Information
+Theory, Aug. 2011, pp. 781–785.
+[13] A. El Gamal and Y.-H. Kim, Network Information Theory. Cambridge
+University Press, 2011.
+[14] A. B. Wagner, B. G. Kelly, and Y. Altu˘ , “Distributed rate-distortion
+g
+with common components,” IEEE Trans. Inf. Theory, vol. 57, no. 7, pp.
+4035–4057, Aug. 2011.
+[15] C. Tian, J. Chen, S. N. Diggavi, and S. Shamai, “Optimality and
+approximate optimality of source-channel separation in networks,”
+2010, submitted to IEEE Trans. Inf. Theory, 2010. [Online]. Available:
+http://arxiv.org/abs/1004.2648/
+[16] T. Berger, “Multiterminal source coding,” in The Information Theory
+Approach to Communications, G. Longo, Ed. New York: SpringerVerlag, 1978.
+[17] S.-Y. Tung, “Multiterminal source coding,” Ph.D. Thesis, Cornell University, Ithaca, NY, 1978.
+[18] T. M. Cover, A. El Gamal, and M. Salehi, “Multiple access channels
+with arbitrarily correlated sources,” IEEE Trans. Inf. Theory, vol. 26,
+no. 6, pp. 648–657, Nov. 1980.
+[19] Y. Oohama, “Gaussian multiterminal source coding,” IEEE Trans. Inf.
+Theory, vol. 43, no. 6, pp. 1912–1923, Nov. 1997.
+[20] A. B. Wagner, S. Tavildar, and P. Viswanath, “Rate region of the
+quadratic Gaussian two-encoder source-coding problem,” IEEE Trans.
+Inf. Theory, vol. 54, no. 5, pp. 1938–1961, May 2008.
+[21] P. Minero and S. Jayaraj, “Lossy communication over multiple-access
+channels with feedback,” 2012, in preparation.
+
+˜
+Since by assumption M2,0 = 1, by forward induction
+P{E3 (j)} → 0 as n → ∞ for every j ∈ [1 : b] if (6) is
+satisﬁed.
+Similarly, by combining the hybrid coding analysis with the
+analysis of backward decoding [13], it can be shown that the
+probability of E4 (j), i.e., the event that the decoder fails in
+decoding the messages M0,j , M1,j , and M2,j−1 , goes to zero
+as n → ∞ if (6) is satisﬁed as well as
+R1 < I(U1 ; Y, U2 |U0 ) − δ(ǫ),
+
+(7)
+
+R0 + R1 + R2 < I(U0 , U1 , U2 ; Y )
++ I(U1 ; U2 |U0 ) − δ(ǫ).
+
+(8)
+
+and
+
+By convention M2,b+1 = M0,b+1 = M1,b = 1, so by
+backward induction P{E4 (j)} → 0 as n → ∞ for every
+j ∈ [1 : b] if (6), (7), and (8) are satisﬁed. Finally, by the
+c
+c
+Markov lemma [13], P(E5 (j) ∩4 Ek (j) ∩ E4 (j + 1)) → 0 as
+k=0
+n → ∞.
+It follows if conditions (3)-(8) are satisﬁed for some
+(R0 , R1 , R2 ), then each term in (2) tends to zero as n → ∞
+and thus the probability of “error” in each block j tends to
+zero as n → ∞. By the law of total expectation and the typical
+average lemma, it then follows that
+ˆ
+lim sup E(d(Sln (j), Sln (j)))
+n→∞
+
+ˆ
+≤ lim sup P(E(j)) E(d(Sln (j), Sln (j))|E(j))
+n→∞
+
+ˆn
++ P(E(j)c ) E(d(Sln (j), S l (j))|E(j)c )
+ˆ
+≤ (1 + ǫ) E(d(Sl (j), S l (j))),
+for l = 1, 2, and hence the average distortion over the random
+codebooks generation and index assignment can be bounded
+as desired. Thus, there exists at least one sequence of codes
+achieving the desired distortion.
+IV. C ONCLUSION
+In this paper, we considered the problem of lossy communication over multiple access channels with feedback. By
+combining the recently proposed analog-digital hybrid coding
+scheme for joint source-channel coding [9], [12] with block
+Markov coding, we presented an inner bound to the optimal
+distortion region which was shown to include and generalize
+several existing results in the literature. The fundamental
+
+5
+
+

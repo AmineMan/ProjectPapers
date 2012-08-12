@@ -1,0 +1,873 @@
+Creator:        TeX
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Fri May 18 19:11:46 2012
+ModDate:        Tue Jun 19 12:56:42 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      614329 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569566843
+
+Feedback in the K -user Interference Channel
+Dimitris S. Papailiopoulos
+
+Changho Suh
+
+Alexandros G. Dimakis
+
+Communication Sciences Institute
+University of Southern California
+Email: papailio@usc.edu
+
+Research Laboratory of Electronics
+Massachusetts Institute of Technology
+Email: chsuh@mit.edu
+
+Communication Sciences Institute
+University of Southern California
+Email: dimakis@usc.edu
+
+even if feedback cost is taken into consideration. A logical next
+step is to explore the promising role of feedback in broader
+contexts.
+In this work, we consider the K-user Gaussian IC with
+feedback, where channel coefﬁcients are constant over time
+and frequency. We focus on two feedback models: (1) the
+received signals of all the receivers are fed back to all of
+the transmitters; (2) functions of the received signals are fed
+back through a backward Gaussian IC. For all cases that we
+consider, we assume the transmitter-receiver links to be fullduplex, i.e., a transceiving user can receive and transmit at the
+same time. For the ﬁrst idealistic and not so practical model,
+we develop a linear achievable scheme and derive a new upper
+bound to show that the fdof is K for all channel realizations
+2
+that ensure the invertibility of the global channel matrix.
+For the second, more realistic, model, we make progress on
+the 3-user IC. We develop a feedback strategy that builds on
+the interference alignment-and-cancellation idea, and achieves
+dof = 3 , almost surely for randomly-drawn channels. For the
+2
+4-user case, we develop a heuristic algorithm that ﬁnds feedback coding coefﬁcients; we observe through simulations that
+4
+this algorithm ensures the achievability of 2 for a multitude of
+experiments. For an arbitrary K number of users, we identify
+a class of channels with speciﬁc spectral properties, where
+nontrivial fdof is achievable with a very simple feedback
+strategy.
+Our results indicate that i) feedback can be used to achieve
+the degrees-of-freedom (dof) of an IC in a ﬁnite number of
+signaling dimensions and ii) feedback can increase the dof
+for some classes of scalar ICs where the non-feedback dof is
+either not achievable using linear schemes or is stricly less
+than K .
+2
+Related Work: Nonfeedback strategies for the K-user
+Gaussian IC were studied previously [9], [10], [11], [12]. In
+their breakthrough paper, Cadambe and Jafar [9] showed that
+interference alignment (IA) [13], can achieve dof = K for
+2
+vector ICs with arbitrarily large channel diversity, e.g., i.i.d
+time-varying channels. This result is tight even if feedback
+or relays are used, i.e., the use of relays or feedback does
+not provide a DoF gain under the i.i.d. time varying channels
+assumption [14]. For the scalar channel case, Motahari et
+al. [11] developed a nonlinear IA technique to show that
+interestingly dof is K with probability 1, for randomly-drawn
+2
+channel coefﬁcients. Etkin and Ordentlich [10] showed that
+dof is strictly less that K for some class of scalar ICs. In [12],
+2
+
+Abstract—We consider the scalar K-user Gaussian interference channel (IC) with feedback, where channel coefﬁcients
+are ﬁxed over time and frequency. We focus on two feedback
+models: (1) each receiver feeds back its received signal to all
+the transmitters and (2) functions of the received signals are fed
+back through a backward IC. We show that the feedback degreesof-freedom (fdof) of the ﬁrst model is K if the global channel
+2
+matrix is invertible. For the second feedback model, we show that
+3
+fdof = 2 is achievable for the 3-user IC. Then, we show how
+nontrivial fdof can be achieved for the K-user IC, when the global
+channel matrix belongs to a speciﬁc spectral family of matrices.
+Our achievable schemes are linear and require a ﬁnite number of
+signal-space dimensions, contrasting the asymptotic interference
+alignment by Cadambe et al. and the real interference alignment
+by Motahari et al. Another consequence of feedback is that it
+can strictly increase the degrees-of-freedom for some classes of
+ICs.
+Index Terms—Degrees-of-freedom, Feedback, K-user Gaussian
+interference channel, Scalar channel
+
+I. I NTRODUCTION
+A traditional viewpoint on feedback capacity has been
+pessimistic over the past few decades. This is mainly due
+to Shannon’s original result [1] which shows that feedback
+provides no increase in capacity for discrete memoryless pointto-point channels. Although feedback can indeed increase
+the capacity of multiple access channels [2], the increase in
+capacity for the Gaussian case is bounded by 1 bit for all
+channel parameters [3].
+Contrary to the traditional belief on feedback capacity,
+recent results show that feedback is of fundamental importance
+when communicating over interference channels (ICs) [4], [5],
+[6]. Speciﬁcally, this feedback gain is shown to be unbounded,
+i.e., the gain can be arbitrarily large for certain channel
+parameters. The promising gain due to feedback is further
+investigated for more realistic scenarios where feedback cost
+is taken into consideration [7], [8]. Vahid et al. in [7] take a
+separation approach which models feedback links (backward
+channels) as rate-constrained bit pipes, and demonstrate that
+under this model, one bit of feedback provides one bit of
+capacity increase. In [8] a new strategy is developed that
+feeds back through a corresponding backward channel without
+the bit-pipe abstraction, and shows that this scheme can
+outperform the separation approach. As a consequence, it is
+shown that feedback can provide a net increase in capacity
+This research was supported in part by NSF Career Grant CCF-1055099
+and research gifts by Intel and Microsoft Research.
+
+1
+
+Y1:K [1 : n − 1]
+W1
+
+Enc 1
+
+tuple (R1 , · · · , RK ) is said to be achievable if there exists
+a family of codewords, subject to the power constraint, and
+encoding/decoding functions such that the average decoding
+error probabilities go to zero as the code length N tends to
+inﬁnity. The capacity region C is the closure of the set of all
+achievable rate pairs. We deﬁne the degrees-of-freedom (dof)
+K
+R
+as dof = limP →∞ max(R1 ,··· ,RK )∈C k=1 logkP and call it
+fdof when feedback is used to achieve it.
+Feedback Model II: We consider another feedback model
+of practical interest where feedback is offered by the backward
+IC. The fed back signal received at transmitter m at time n is
+
+delay
+
+X1 [n]
+
+⊕ Y [n]
+
+Dec 1
+
+ˆ
+W1
+
+Dec 2
+
+.
+.
+.
+
+ˆ
+W2
+
+Dec K
+
+ˆ
+WK
+
+1
+
+Y1:K [1 : n − 1]
+
+delay
+
+X2 [n]
+W2
+
+⊕ Y [n]
+
+Enc 2
+
+.
+.
+.
+
+2
+
+Y1:K [1 : n − 1]
+WK
+
+Enc K
+
+delay
+
+⊕Y
+
+XK [n]
+
+K [n]
+
+K
+
+Fig. 1.
+The scalar K-user Gaussian IC with perfect feedback. Each
+transmitter gets delayed channel-output feedback from all of the receivers
+and the channel coefﬁcients are ﬁxed across time.
+
+˜
+˜
+where Xk [n] indicates the encoded signal of receiver k, hmk
+indicates the backward channel coefﬁcient from receiver k to
+˜
+transmitter m, and Zm [n] denotes the additive white Gaussian
+noise observed by transmitter m with normalized power such
+˜
+that Zm ∼ CN (0, 1). Again, we assume that the average
+transmit power of each receiver is limited by P and that
+channel coefﬁcients are ﬁxed over time. In this model, the
+encoded signal Xk [n] of transmitter k at time slot n is a
+function of the message and feedback signals
+n
+˜ n−1 .
+Xk [n] = gk Wk , Yk
+
+III. M AIN R ESULTS
+In the following we summarize the main results of our work.
+Theorem 1 (Model I): Let H be a global channel matrix,
+i.e., [H]mk = hmk and rank(H) = K. Then, the feedback
+degrees-of-freedom (fdof) of the scalar K-user IC under model
+I is
+K
+fdof = .
+(5)
+2
+Proof: See Section IV.
+Theorem 2 (Model II): Let each hmk be randomly drawn
+from a continuous distribution and i.i.d over m and k. More˜
+over, let the hmk random coefﬁcients be either correlated with
+˜
+or drawn independently to hkm . Then the fdof of the scalar
+3-user IC under model 2 is
+3
+fdof = , almost surely.
+(6)
+2
+Proof: The converse proof follows from that of Theorem 1. See Section V for the achievability.
+Theorem 3 (Model II): Let H be a full-rank symmetric
+channel matrix with L distinct eigenvalues. Then,
+
+K
+
+(1)
+
+m=1
+
+where Xm [n] indicates the encoded signal of transmitter m,
+hkm is the “channel processing” coefﬁcient from transmitter
+m to receiver k, and Zk [n] denotes zero-mean additive white
+Gaussian noise at receiver k with normalized power, i.e.,
+Zk ∼ CN (0, 1). We assume an average power constraint on all
+transmitted signals E{Xm [n]} = P . We note that the channel
+coefﬁcients are assumed ﬁxed over time.
+The transmitters generate K independent and uniformly
+distributed messages, Wk ∈ {1, 2, · · · , Mk } , ∀k ∈ [K], where
+[N ] denotes the set {1, · · · , N }. The encoded signal Xk [n] of
+transmitter k at time n is a function of its own message and
+past output sequences of all receivers
+n−1
+n
+Xk [n] = fk Wk , Y1n−1 , · · · , YK
+,
+
+(4)
+
+In both models we assume full-duplex transceivers.
+
+II. S YSTEM M ODEL
+We assume two feedback models in this work and describe
+them in the following.
+Feedback Model I: In Fig. 1, we provide a sketch of the scalar
+K-user Gaussian IC with perfect feedback. The received signal
+of receiver k at time n is
+hkm Xm [n] + Zk [n],
+
+(3)
+
+k=1
+
+Yetis et al. showed that under linear transceiver assumption,
+dof = 1 for scalar ICs. On the other hand, we show that
+feedback enables dof = K only with linear strategies that
+2
+rely on a ﬁnite number of signal-space dimensions.
+Feedback strategies were studied by Kramer [4], [5] and
+Tandon et al. [15] and Mohaher et al. [16], assuming that
+feedback is available from each receiver to its corresponding transmitter. While all of these techniques result in a
+signiﬁcant capacity increase for a multitude of interesting
+channel regimes, these achieve dof = 1, thereby showing the
+suboptimality of the schemes in general. On the other hand, we
+consider different feedback conﬁgurations to develop coding
+techniques that achieve the optimal dof.
+
+Yk [n] =
+
+˜
+˜
+˜
+hmk Xk [n] + Zm [n],
+
+˜
+Ym [n] =
+
+fdof =
+
+K
+,
+L
+
+(7)
+
+is achievable.
+Proof: See Subection VI-B for the achievability.
+Remark 1 (Linear dof): Assuming linear transceivers, the
+non-feedback dof is 1 for the scalar IC [12]. On the other
+
+(2)
+
+n−1
+where Yk
+= (Yk [1], · · · , Yk [n−1]) denotes the sequence of
+received symbols at receiver k up to time index n − 1. A rate
+
+2
+
+where S = [K]\{i, j}, YS = {Yk }, k ∈ S, and Vij = hij Xj +
+Zi .
+Proof: Ommited due to lack of space. See the full version
+of the paper [17].
+G
+Notice that h(Yi ) − h(Zi ) ≤ log |KYi | and
+
+hand, our feedback strategy is linear and thus shows dof gain
+for arbitrary scalar ICs.
+Remark 2 (Finite Symbol Extensions): In sharp contrast to
+the symbol extended IA schemes and inﬁnite precision real IA
+schemes of [9] and [11], when feedback is used, then the full
+dof of a channel can be achieved in a ﬁxed number of symbol
+extensions.
+Remark 3 (Comparison to the non-feedback dof): As an
+example, we present a channel matrix where the non-feedback
+dof is provably 1 and feedback can provide gain. Note that
+H = [1 − 1 − 1; −1 1 − 1; −1 − 1 1] is invertible and hence
+fdof = 3 , which improves upon the non-feedback dof = 1.
+2
+For a proof see the full version of the paper [17].
+
+˛
+˛
+˛ G
+˛
+˛K(Yj ,YS ,Xi ,XS ,Vij ) ˛
+˛
+˛
+h(Yj , YS |Xi , XS , Vij )−h(Zj , ZS )≤log
+,
+˛ G
+˛
+˛KXi ,XS ,Vij ˛
+G
+where i, j ∈ [K], with i = j, and KX indicates the covariance
+matrix of a Gaussian random vector X. Straightforward computation with Lemma 1 gives Ri + Rj ≤ log P + o(log P ),
+P
+where limP →∞ o(logP ) = 0. Therefore, we get
+log
+
+IV. P ROOF OF T HEOREM 1
+
+K
+
+Rk ≤
+
+A. Achievability
+k=1
+
+Our achievable scheme operates on 4 time slots. In timeslot 1, each transmitter sends its own symbol and the channel
+output is given by
+y[1] = Hx[1],
+
+K
+· log P + o(log P ).
+2
+
+(9)
+
+This completes the proof.
+Remark 5: Alternatively, we can use Theorem 1 in [14] to
+prove dof ≤ K . We instead derive a new outer bound of
+2
+Lemma 1 to prove the converse. Note that Lemma 1 is not
+limited to the degrees-of-freedom.
+
+(8)
+
+where y[1]
+=
+[Y1 [1], · · · , YK [1]]T and x[1]
+=
+T
+[X1 [1], · · · , XK [1]] . We ignore the noise, since we are
+interested in dof. Under this model, feedback is available
+from every receiver to every transmitter and allows each
+transmitter to obtain y[1] at time 2. Meanwhile each
+transmitter sends another new symbol.
+The invertibility assumption on H enables each transmitter
+to compute H−1 y[1] = x[1] and therefore decode all of the
+other users’ symbols. This observation naturally motivates us
+to employ a zero-forcing precoder in the next stage. Notice
+that the channel is now a virtual MIMO broadcast channel.
+Hence, transmitter k computes the vector H−1 x[1] and sends
+its kth component.
+The received signal at time 3 is
+
+V. ACHIEVABILITY P ROOF OF T HEOREM 2
+We will show that 6 symbols can be transmitted during
+4 time slots. During time slot 1 and 2 the transmitters send
+the symbol vectors x[1], x[2]; the received signal at receiver
+k ∈ [3] and time slot n ∈ [2] is
+Yk [n] = hk1 X1 [n] + hk2 X2 [n] + hk3 X3 [n].
+In time-slot 2, while the transmitters send the second batch
+of symbols, each receiver feeds back an appropriately scaled
+version of the previous channel output e.g., Yk [1]. The fed
+back signal received at transmitter k is
+˜
+˜
+˜
+˜
+Ym [2] = h1m Y1 [1] + h2m (b · Y2 [1]) + h3m (c · Y3 [1]), (10)
+˜
+where for simplicity we assume that hkm = hmk , however, the
+following derivations can be carried out to the case, where the
+backward channel coefﬁcients are independent to the forward
+ones. We design the coding coefﬁcients b and c so that the
+X2 [1] component of the signal is cancelled out at transmitters
+1 and 3. That way, transmitter 1 can decode transmitter 3’s
+symbol and vice versa. Expanding (10), we get
+
+y[3] = H(H−1 x[1]) = x[1].
+Meanwhile, the previously-received signals (at time 2) are fed
+back to all of the transmitters. Again each transmitter computes
+H−1 x[2] and then sends its corresponding component. In timeslot 4, the received signal is y[4] = H(H−1 x[2]) = x[2].
+Hence, during 4 time-slots, 2K symbols are transmitted.
+Therefore, fdof = K .
+2
+Remark 4: Observe that our scheme does not require channel diversity. However, it does not either require that the
+channels are static, i.e., if H varied across time-slots, then
+K
+2 would still be achievable through the same scheme.
+
+˜
+Ym [2] = h1m (h11 X1 [1] + h12 X2 [1] + h13 X3 [1])
++ h2m b(h22 X2 [1] + h21 X1 [1] + h23 X3 [1])
++ h3m c(h33 X3 [1] + h31 X1 [1] + h32 X2 [1]).
+
+We ﬁrst select coefﬁcients b and c such that the underlined
+terms are canceled out at transmitters 1 and 3
+
+
+B. Converse
+Our converse is based on the following lemma that bounds
+the rate for any couple of users i, j ∈ [K].
+Lemma 1: We have that ∀ i, j ∈ [K] and i = j,
+
+h21 h22 b + h31 h32 c = −h11 h12
+h23 h22 b + h33 h32 c = −h13 h12
+
+ﬀ
+.
+
+(11)
+
+Transmitters 1 and 3 will receive as feedback a nonzero
+linear combination of X1 [1] and X3 [1], almost surely, when
+assuming channels drawn at random and i.i.d. from continuous
+distributions that do not have mass around zero. Then, assuming that transmitters 1 and 3 have perfect knowledge of the
+
+Ri + Rj ≤ h(Yi ) − h(Zi )
++ h(Yj , YS |Xi , XS , Vij ) − h(Zj , ZS ),
+
+3
+
+channel and the constants b and c, they can each decode the
+other user’s symbols by simply subtracting a scaled version
+of X1 [1] and X3 [1] from their received equations. This extra
+knowledge is key to establishing alignment of interfering terms
+using an extra round of transmissions.
+At time 3, transmitter 2 re-sends X2 [1], while transmitter 1 sends α1 X1 [1] + α3 X3 [1] and transmitter 3 sends
+γ1 X1 [1] + γ3 X3 [1]. These linear combinations are designed
+such that the resulting interference terms of Yk [3] align with
+the ones of Yk [1], while enforcing the useful symbols to be
+distinguishable. This way, each receiver will be able to decode
+the symbol of interest. The received signal at receiver 1 is
+
+nonzero polynomial in the channel coefﬁcients. Then, we use
+the following Lemma.
+Lemma 2: Let
+n
+independent
+random
+variables
+X1 , X2 , . . . , .Xn that are drawn from continuous
+distributions over R with density functions that do not
+have discontinuities around 0. Then, if P (X1 , . . . , Xn ) is a
+non-identically zero polynomial of degree d we have that
+Pr {P (X1 , . . . , Xn ) = 0} = 0.
+Proof: Ommited due to lack of space. See the full version
+of the paper [17].
+Due to Lemma 2, these polynomials are nonzero almost
+surely for channel elements drawn at random and i.i.d. from
+continuous distributions, therefore the conditions hold almost
+surely.
+During time slot 3 the receivers send the corresponding
+feedback that allows, the decoding of the second batch of
+symbols x[2] in time-slot 4. Again this batch of symbols will
+be decodable almost surely. Hence, fdof = 3 is achievable
+2
+almost surely. This completes the proof.
+Remark 6: We would like to note that the above achievability scheme works even if the channel coefﬁcients are varying
+across time-slots.
+
+Y1 [3] = (h11 α1 + h13 γ1 )X1 [1]
++ h12 X2 [1] + (h11 α3 + h13 γ3 )X3 [1],
+and interference alignment can be achieved for α3 and γ3
+satisfying h11 α3 + h13 γ3 = h13 . At receiver 2 we have
+Y2 [3] = h22 X2 [1]
++ (h21 α1 + h23 γ1 )X1 [1] + (h23 γ3 + h21 α3 )X3 [1].
+The interference alignment condition for this receiver is
+h21 α1 + h23 γ1 = −h21 and h23 γ3 + h21 α3 = −h23 . Accordingly, at receiver 3, we have
+
+VI. M ODEL II: B EYOND THE T HREE - USER C ASE
+
+Y3 [3] = (h33 γ3 + h31 α3 )X3 [1]
+
+A. A Heuristic Algorithm
+
++ (h31 α1 + h33 γ1 )X1 [1] + h32 X2 [1]
+
+We continue our study on the K > 3 case, for which we
+develop a heuristic algorithm that ﬁnds coding coefﬁcients
+for the feedback strategy. Similar to the 3-user case, we
+consider a 4 time transmission scheme, where at each round
+we assume that the transmitting end can combine and scale
+all the information that it has available. Let at the ﬁrst round
+that the transmitters send the K-length vector x[1]. Then, the
+received signal at time slot 1 is y[1] = Hx[1]. The receivers
+rescale the channel output and feed it back to the transmitter,
+ˆ
+which receives y[2] = HT D1 Hx[1], where D1 indicates
+a K × K diagonal matrix. At timeslot 3, the transmitters
+ˆ
+combine x[1] with y[2] and x[2], and the received vector is
+y[3] = HD2 HT D1 Hx[1]+HD3 x[1], where Di , i ∈ {1, 2, 3}
+are all K × K diagonal matrices. Hence, a sufﬁcient condition
+for decodability of the ﬁrst batch of symbols is
+
+and its alignment condition is h31 α1 + h33 γ1 = h31 . Solving
+the 4 equations in the 4 unknowns α1 , α3 , γ1 , γ3 yields
+
+
+
+
+h21 α1 + h23 γ1 = −h21
+h31 α1 + h33 γ1 = h31
+h11 α3 + h13 γ3 = h13
+h21 α3 + h23 γ3 = −h23
+
+(
+
+ﬀ
+
+ﬀ
+
+⇔
+(
+⇔
+
+h21 h33 +h
+α1 = − h21 h33 −h23 h31
+23 h31
+2h21 h
+γ1 = h21 h33 −h31 h31
+23
+
+)
+
+2h13 h
+α3 = h11 h23 −h23 h21
+13
+h11 h23 +h13 h21
+γ3 = − h11 h23 −h13 h21
+
+)
+
+,
+.
+
+The decoupling of the equations is possible due to the fact that
+user’s 2 symbols where canceled out in the feedback phase.
+We now continue by rewriting the received signals as
+Y1 [3] = A · X1 [1] + h12 X2 [1] + h13 X3 [1],
+Y2 [3] = h22 X2 [1] − h21 X1 [1] − h23 X3 [1],
+Y3 [3] = C · X3 [1] + h31 X1 [1] + h32 X2 [1],
+
+(12)
+
+where
+
+D4 y[1] + y[3] = D5 x[1],
+
+h21 h33 + h23 h31
+2h21 h31
++ h13
+,
+h21 h33 − h23 h31
+h21 h33 − h23 h31
+h11 h23 + h13 h21
+2h13 h23
+C = −h33
++ h31
+.
+h11 h23 − h13 h21
+h11 h23 − h13 h21
+A = −h11
+
+for some selection of diagonal combining matrices. We can
+rewrite (14) as a set of K 2 equations in the unknown diagonals
+D4 H + HD2 HT D1 H + HD3 = D5 .
+
+Using the two rounds of received signals at slots 1 and 3, each
+receiver can now solve for its symbol of interest
+1
+· (Y1 [3] − Y1 [1]),
+A − h11
+1
+(Y2 [3] + Y2 [2]),
+X2 [1] =
+2h22
+1
+X3 [1] =
+(Y3 [3] − Y3 [1]).
+C − h33
+
+(14)
+
+It is not hard to show that the total number of free variables in
+the above multilinear system of equations is equal to 5K − 2.
+We expect that this system should be feasible when the number
+of unknowns is at most equal to the number of equations,
+which is true for K ≤ 4. For the K = 3 case, we obtained
+a closed form solution solving linear equations. However, for
+the K = 4 case, solving for the unknown diagonals requires
+solving intricate multilinear equations, which we cannot do
+efﬁciently.
+
+X1 [1] =
+
+(13)
+
+The decodability requires A − h11 = 0, 2h22 = 0, and C −
+h33 = 0, where each of the conditions can be restated as a
+
+4
+
+To tackle this intrinsic nonlinearity of ﬁnding fdof achieving
+diagonals, we ﬁrst reformulate the problem as a nonconvex
+optimization, which we subsequently relax to a convex one.
+Ideally, we would like to solve the the following optimization
+
+x[1] and
+L
+X
+
+⇔
+
+F
+
+min
+
+g ({Di }) s.t.: [D5 ]1,1 = 1
+
+We simulate the above heuristic for the 4-user case. We
+set = 10−7 , N = 104 , N1 = 30, 1 = 0.1, N2 = 200
+and 2 = 10−4 . We generate 100 channel realizations. We
+assume that channel coefﬁcients are ﬁxed and drawn i.i.d.
+zero-mean Gaussian with variance 1. All simulation results
+show that the heuristic convergence to the optimal solution,
+1
+thus ensuring 2 signal dimension per user. On the other hand,
+for K > 4, simulations demonstrate the divergence of the
+algorithm for all of the 100 experiments. The difﬁculty comes
+from the fact that this heuristic formulation approximately
+solves O K 2 multilinear equations in O(K) unknowns. In
+general, we would not expect such an approach to work for
+arbitrary K, unless coding coefﬁcients were carefully designed
+to induce signiﬁcant dependencies among these equations.
+B. A Spectral Family of K-user ICs with non-trivial fdof
+Here we present a class of K-user ICs where nontrivial fdof
+can be achieved in a ﬁnite number of symbol extensions. Let
+H = HT and H has L distinct eigenvalues.
+
+ci Λ2i−1 = IK ⇔
+
+2i−1
+ci λj
+= 1, ∀j ∈ [L]
+
+i=1
+
+[1] C. E. Shannon, “The zero error capacity of a noisy channel,” IRE
+Transactions on Information Theory, Sept. 1956.
+[2] N. T. Gaarder and J. K. Wolf, “The capacity region of a multipleaccess discrete memoryless channel can increase with feedback,” IEEE
+Transactions on Information Theory, Jan. 1975.
+[3] L. H. Ozarow, “The capacity of the white Gaussian multiple access
+channel with feedback,” IEEE Transactions on Information Theory, July
+1984.
+[4] G. Kramer, “Feedback strategies for white Gaussian interference networks,” IEEE Transactions on Information Theory, vol. 48, pp. 1423–
+1438, June 2002.
+[5] G. Kramer, “Correction to “Feedback strategies for white Gaussian
+interference networks”, and a capacity theorem for Gaussian interference
+channels with feedback,” IEEE Transactions on Information Theory,
+vol. 50, June 2004.
+[6] C. Suh and D. Tse, “Feedback capacity of the Gaussian interference
+channel to within 2 bits,” IEEE Transactions on Information Theory,
+vol. 57, pp. 2667–2685, May 2011.
+[7] A. Vahid, C. Suh, and S. Avestimehr, “Interference channels with ratelimited feedback,” IEEE Transactions on Information Theory, vol. 58,
+pp. 2788–2812, May 2012.
+[8] C. Suh, I.-H. Wang, and D. Tse, “Two-way interference channels,” Proc.
+of IEEE ISIT, 2012.
+[9] V. R. Cadambe and S. A. Jafar, “Interference alignment and the degrees
+of freedom for the K user interference channel,” IEEE Transactions on
+Information Theory, vol. 54, pp. 3425–3441, Aug. 2008.
+[10] R. Etkin and E. Ordentlich, “The degrees-of-freedom of the K-user
+Gaussian interference channel is discontinuous at rational channel coefﬁcients,” IEEE Transactions on Information Theory, vol. 55, pp. 4932–
+4946, Nov. 2009.
+[11] A. S. Motahari, S. O. Gharan, M. A. Maddah-Ali, and A. K. Khandani,
+“Real interference alignment,” submitted to the IEEE Transactions on
+Information Theory (arXiv:1001.3403), Jan. 2010.
+[12] C. M. Yetis, T. Gou, S. A. Jafar, and A. H. Kayran, “On feasibility of
+interference alignment in MIMO interference networks,” IEEE Transactions on Signal Processing, vol. 58, pp. 4771–4782, Sept. 2010.
+[13] M. Maddah-Ali, A. Motahari, and A. Khandani, “Communication over
+MIMO X channels: Interference alignment, decomposition, and performance analysis,” IEEE Transactions on Information Theory, vol. 54,
+pp. 3457–3470, Aug. 2008.
+[14] V. R. Cadambe and S. A. Jafar, “Degrees of freedom of wireless
+networks with relays, feedback, cooperation, and full duplex operation,”
+IEEE Transactions on Information Theory, vol. 55, pp. 2334–2344, May
+2009.
+[15] R. Tandon, S. Mohajer, and H. V. Poor, “On the symmetric feedback
+capacity of the K-user cyclic Z-interfence channels,” submitted to the
+IEEE Transactions on Information Theory (arXiv:1109.1507).
+[16] S. Mohajer, R. Tandon, and H. V. Poor, “On the feedback capacity of
+the fully connected K-user interfence channel,” submitted to the IEEE
+Transactions on Information Theory (arXiv:1110.6487), Oct. 2011.
+[17] D. S. Papailiopoulos, C. Suh, and A. G. Dimakis, “Feedback in the
+K-user interference channel,” http:// tinyurl.com/ 6qov768.
+
+if (n > N1 and g ({Di }) > 1 )OR
+(n > N2 and g ({Di }) > 2 ) re-draw D1
+
+D1 ,D3 ,D4 ,D5
+
+i=1
+L
+X
+
+L
+
+D1 ,D2 ,D4 ,D5
+
+5:
+
+L
+“
+”2i−1
+X
+ci QΛQH
+= Ik ⇔
+ci QΛ2i−1 QH = IK
+
+and i=1 ci λ2i−1 = 1, ∀j ∈ [L] is a (Vandermonde) system of
+j
+L equations in L unknowns, which admits a solution. Finding
+the ci coefﬁcients is therefore sufﬁcient for decoding the 2K
+transmitted symbols in 2L symbol extensions, thus achieving
+fdof = K .
+L
+ACKNOWLEDGMENT
+We gratefully acknowledge Dr. Viveck R. Cadambe for
+pointing out [14], which can provide an alternative converse
+proof of Theorem 1.
+R EFERENCES
+
+A[n]:
+1: draw at random D1
+2: for N iterations or until g ({Di }) <
+3:
+{Di }i=3 ←
+min
+g ({Di }) s.t.: [D5 ]1,1 = 1
+{Di }i=2 ←
+
+L
+X
+i=1
+
+where the rank constraint enforces that all K symbols are
+distinguishable (i.e. nonzero) at the receivers. Due to the
+rank constraints and the nonconvex cost function the above
+optimization does not seem tractable. To solve it, we relax
+it to an alternating convex optimization problem, where we
+replace the nonconvex rank constraints with afﬁne ones. Let
+g ({Di }) = D4 H + HD2 HT D1 H + HD3 − D5 F , where
+A F indicates the Frobenius norm of matrix A. Then, we
+use the following (randomized) heuristic.
+
+4:
+
+= x[2] since
+
+i=1
+
+‚
+‚
+‚
+‚
+min ‚D4 H + HD2 HT D1 H + HD3 − D5 ‚ s.t. rank(D5 ) = K,
+Di
+
+L
+2i−1
+x[2]
+i=1 ci H
+
+(15)
+
+Our achievable scheme uses 2L number of time-slots to
+transmit 2K symbols. The two batches of symbols along
+with their corresponding fed back symbols are pipelined
+as in the previous 4-time-slot achievability schemes. At
+time-slot 1 the transmitters send x[1], while at time-slot
+ˆ
+2 they send x[2], and they receive as feedback y[2] =
+HT Hx[1] = H2 x[1]. Then, at time slot n ∈ {2, . . . , 2L}
+the received signals at the receiver side is y[n] = Hˆ [n −
+y
+ˆ
+1] and y[n] = Hy[n − 1]. This means that after 2L timesolts
+the receiver end will have {Hx[1], H3 x[1], . . . , H2L−1 x[1]}
+and {Hx[2], H3 x[2], . . . , H2L−1 x[2]}. Using the eigenvalue multiplicity, one can easily show that there exL
+2i−1
+ist constants c1 , . . . , cL such that
+x[1] =
+i=1 ci H
+
+5
+
+

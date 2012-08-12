@@ -1,0 +1,803 @@
+Creator:        TeX
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Fri May 18 15:39:13 2012
+ModDate:        Tue Jun 19 12:55:20 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      396194 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569565033
+
+Wyner-Ziv Type Versus Noisy Network Coding
+For a State-Dependent MAC
+Abdellatif Zaidi †
+
+Pablo Piantanida
+
+Shlomo Shamai (Shitz) ‡
+
+†
+
+Universit´ Paris-Est Marne La Vall´ e, Champs-sur-Marne 77454, France
+e
+e
+Department of Telecommunications, SUPELEC, 91192 Gif-sur-Yvette, France
+‡
+Department of EE, Technion-Israel Institute of Technology, Haifa, Israel
+abdellatif.zaidi@univ-mlv.fr, pablo.piantanida@supelec.fr, sshlomo@ee.technion.ac.il
+
+In [3], they show that strictly causal state information is
+beneﬁcial even if the channel is controlled by two independent
+states each known to one encoder strictly causally. In this
+case, each encoder can help the other encoder transmit at a
+higher rate by sending a compressed version of its state to the
+decoder. In [4], Li, Simeone and Yener improve the results of
+[1], [3] and extend them to the case of multiple encoders. The
+achievability results in [4] are inspired by the noisy network
+coding scheme of [5] and, unlike [1], [3], do not use WynerZiv binning [6] for the compression of the state. In a very
+recent contribution [7], Lapidoth and Steinberg derive a new
+inner bound on the capacity region for the case of a single
+state governing the multiaccess channel. They also prove that
+the inner bound of [4] for the case of two independent states
+each known strictly causally to one encoder can indeed be
+strictly better than previous bounds in [1], [3] – a result which
+is conjectured previously by Li, Simeone and Yener in [4].
+
+Abstract— We consider a two-user state-dependent multiaccess channel in which the states of the channel are
+known non-causally to one of the encoders and only strictly
+causally to the other encoder. Both encoders transmit a
+common message and, in addition, the encoder that knows
+the states non-causally transmits an individual message.
+We ﬁnd explicit characterizations of the capacity region
+of this communication model. The analysis also reveals
+optimal ways of exploiting the knowledge of the state only
+strictly causally at the encoder that sends only the common
+message when such a knowledge is beneﬁcial. The encoders
+collaborate to convey to the decoder a lossy version of the
+state, in addition to transmitting the information messages
+through a generalized Gel’fand-Pinsker binning. Particularly
+important in this problem are the questions of 1) optimal
+ways of performing the state compression and 2) whether
+or not the compression indices should be decoded uniquely.
+We show that both compression a-la noisy network coding,
+`
+i.e., with no binning, and compression using Wyner-Ziv binning are optimal. The scheme that uses Wyner-Ziv binning
+shares elements with Cover and El Gamal original compressand-forward, but diﬀers from it mainly in that backward
+decoding is employed instead of forward decoding and the
+compression indices are not decoded uniquely. Finally, by
+exploring the properties of our outer bound, we show that,
+although not required in general, the compression indices
+can in fact be decoded uniquely essentially without altering
+the capacity region, but at the expense of larger alphabets
+sizes for the auxiliary random variables.
+
+S i−1
+
+Encoder 2
+
+n
+X2
+
+MAC
+
+Wc
+
+WY |X1 ,X2 ,S
+Encoder 1
+
+Yn
+
+Decoder
+
+ˆ ˆ
+(Wc , W1 )
+
+n
+X1
+
+W1
+
+I. Introduction
+
+Sn
+
+Advances in the study of the eﬀect of strictly causal states in
+multiuser channels are rather very recent and concern mainly
+multiple access scenarios. In [1], Lapidoth and Steinberg study
+a two-encoder multiple access channel with independent
+messages and states known causally at the encoders. They
+show that the strictly causal state sequence can be beneﬁcial,
+in the sense that it increases the capacity for this model. This
+result is reminiscent of Dueck’s proof [2] that feedback can
+increase the capacity region of some broadcast channels. In
+accordance with [2], the main idea of the achievability result
+in [1] is a block Markov coding scheme in which the two users
+collaborate to describe the state to the decoder by sending
+cooperatively a compressed version of it. As noticed in [1],
+although some non-zero rate that otherwise could be used to
+transmit pure information is spent in describing the state to
+the decoder, the net eﬀect can be an increase in the capacity.
+
+Fig. 1. State-dependent MAC with degraded message sets and states
+known noncausally at the encoder that sends both messages and only
+strictly causally at the other encoder.
+
+In this paper, which generalizes our former work [8], we
+study a two-user state-dependent multiple access channel
+with the channel states known non-causally at one encoder
+and only strictly causally at the other encoder. The decoder
+is not aware of the channel states. As shown in Figure 1,
+both encoders transmit a common message and, in addition,
+the encoder that knows the states non-causally transmits an
+individual message. More precisely, let Wc and W1 denote
+the common message and the individual message to be
+transmitted in, say, n uses of the channel; and Sn = (S1 , . . . , Sn )
+denote the state sequence aﬀecting the channel during this
+time. At time i, Encoder 1 knows the complete sequence
+Sn = (S1 , . . . , Si−1 , Si , . . . , Sn ) and sends X1i = φ1 (Wc , W1 , Sn ),
+
+1
+
+A rate pair (Rc , R1 ) is said to be achievable if for every > 0
+there exists an (2nRc , 2nR1 , n, ) code for the channel WY|X1 ,X2 ,S .
+The capacity region of the considered state-dependent MAC
+is deﬁned as the closure of the set of achievable rate pairs.
+Due to space limitation, the results of this paper are either
+outlined only or mentioned without proofs. Detailed proofs,
+converse proofs, the characterization of the capacity region in
+the Gaussian case as well as other results and discussions can
+be found in [11].
+
+and Encoder 2 knows only Si−1 = (S1 , . . . , Si−1 ) and sends X2i =
+φ2,i (Wc , Si−1 ) – the functions φ1 and φ2,i are some encoding
+functions. In this paper, we establish the capacity region of
+this state-dependent MAC model. As our analysis will show,
+this requires, among others, understanding the role of the
+strictly causal part of the state that is revealed to Encoder 2.
+We show that both compression of the state a-la noisy network
+`
+coding, i.e., with no binning, and compression using WynerZiv binning with or without non-unique decoding of the
+compresion indices are optimal. The question of whether nonunique decoding is beneﬁcial in Wyner-Ziv type networks is
+important. Related very recent works can be found in [9], [10].
+
+III. Discrete Memoryless Case
+In this section, it is assumed that S, X1 , X2 are ﬁnite.
+
+A. Capacity Region
+
+II. System Model and Definitions
+
+Let P stand for the collection of all random variables
+(S, U, V, X1 , X2 , Y) such that U, V, X1 and X2 take values in
+ﬁnite alphabets U, V, X1 and X2 , respectively, and
+
+We consider a stationary memoryless state-dependent
+MAC WY|X1 ,X2 ,S whose output Y ∈ Y is controlled by the
+channel inputs X1 ∈ X1 and X2 ∈ X2 from the encoders
+and a channel state S ∈ S drawn according to a memoryless
+probability law QS . We assume that the channel state Sn is
+known non-causally at Encoder 1, i.e., beforehand, at the
+beginning of the transmission block. Encoder 2 knows the
+channel states only strictly-causally; that is, at time i, it knows
+the states only up to time i − 1, Si−1 = (S1 , . . . , Si−1 ).
+Both encoders transmit a common message Wc and, in
+addition, Encoder 1 transmits also an individual message
+W1 . We assume that Wc and W1 are independent random
+variables drawn uniformly from the sets Wc = {1, · · · , Mc } and
+n
+n
+W1 = {1, · · · , M1 }, respectively. The sequences X1 and X2 from
+the encoders are sent across a state-dependent multiaccess
+channel modeled as a memoryless conditional probability
+distribution WY|X1 ,X2 ,S . The joint probability mass function on
+Wc ×W1 ×Sn ×Xn ×Xn ×Yn is given by
+2
+1
+
+PS,U,V,X1 ,X2 ,Y (s, u, v, x1 , x2 , y)
+= PS,U,V,X1 X2 (s, u, v, x1 , x2 )WY|X1 ,X2 ,S (y|x1 , x2 , s)
+
+= QS (s)PX2 (x2 )PV|S,X2 (v|s, x2 )PU,X1 |S,V,X2 (u, x1 |s, v, x2 ) (7b)
+PS,U,V,X1 ,X2 (s, u, v, x1 , x2 ) = QS (s).
+
+The relations in (7) imply that (U, V) ↔ (S, X1 , X2 ) ↔ Y is a
+Markov chain, and X2 is independent of S.
+Deﬁne C to be the set of all rate pairs (Rc , R1 ) such that
+R1 ≤ I(U; Y|V, X2 ) − I(U; S|V, X2 )
+Rc + R1 ≤ I(U, V, X2 ; Y) − I(U, V, X2 ; S)
+for some (S, U, V, X1 , X2 , Y) ∈ P.
+
+QS (si )P(x1,i |wc , w1 , sn )
+(1)
+
+ˆ ˆ
+The receiver estimates the pair (Wc , W1 ) from the output Yn .
+Deﬁnition 1: For positive integers n, Mc and M1 , an
+(Mc , M1 , n, ) code for the multiple access channel with states
+known noncausally at one encoder and only strictly causally
+at the other encoder consists of a mapping
+φ1 : Wc ×W1 ×Sn −→ Xn
+1
+
+|V| ≤ |S||X1 ||X2 | + 1
+
+φ2,i : Wc ×S
+
+−→ X2 ,
+
+Theorem 1: The capacity region of the multiple access
+channel with states known only strictly causally at the encoder
+that sends the common message and non-causally at the
+encoder that sends both messages is given by C.
+
+(3)
+
+at Encoder 2, and a decoder map
+ψ : Yn −→ Wc ×W1
+
+Remark 1: The proof of achievability of Theorem 1 is based
+on a block-Markov coding scheme in which a lossy version
+of the state is conveyed to the decoder, in the spirit of [1], [3],
+[7], in addition to a generalized Gel’fand-Pinsker binning for
+the transmission of the information messages [12]. However,
+unlike [1], [3] and [7] where Wyner-Ziv compression is
+utilized for the transmission of the lossy version of the state,
+here, inspired by the noisy network coding scheme of [5], at
+each block the compression index of the state of the previous
+block is sent using standard rate distortion, not WynerZiv binning [6]. Also, unlike [1], [3] and [7] where every
+
+(4)
+
+such that the average probability of error is bounded by ,
+Pn = ES Pr ψ(Yn )
+e
+
+(Wc , W1 )|Sn = sn
+
+≤ .
+
+(5)
+
+The rate of the common message and the rate of the individual
+message are deﬁned as
+Rc =
+
+1
+log Mc
+n
+
+and
+
+R1 =
+
+1
+log M1 ,
+n
+
+(9b)
+
+As stated in the following theorem, the set C characterizes the
+capacity region of the state-dependent discrete memoryless
+MAC model that we study.
+
+(2)
+
+i = 1, . . . , n
+
+(9a)
+
+|U| ≤ |S||X1 ||X2 | + 1 |S||X1 ||X2 |.
+
+at Encoder 1, a sequence of mappings
+i−1
+
+(8)
+
+The following proposition states some properties of C.
+Proposition 1: (properties of capacity region)
+1. The set C is convex.
+2. To exhaust C, it is enough to restrict V and U to satisfy
+
+i=1
+
+·P(x2,i |wc , si−1 )WY|X1 ,X2 ,S (yi |x1,i , x2,i , si ) .
+
+(7c)
+
+u,v,x1 ,x2
+
+n
+
+P(wc , w1 , sn , xn , xn , yn ) = P(wc )P(w1 )
+1 2
+
+(7a)
+
+PS,U,V,X1 ,X2 (s, u, v, x1 , x2 )
+
+(6)
+
+respectively.
+
+2
+
+with s[i] given (x2,i (wc , ti−1 ), vi (wc , ti−1 , ti )). Denote this ji by
+ji = j(s[i], wc , ti−1 , ti , w1 ). If such ji is not found, an error is
+declared and j(s[i], wc , ti−1 , ti , w1 ) is set to ji = J. Encoder 1 then
+transmits a vector x1 [i] which is drawn i.i.d. conditionally
+given ui (wc , ti−1 , ti , w1 , ji ), s[i], vi (wc , ti−1 , ti ) and x2,i (wc , ti−1 )
+(using the conditional measure PX1 |U,S,V,X2 induced by (7)).
+Decoding: At the end of the transmission, the decoder has
+collected all the blocks of channel outputs y[1], . . . , y[B].
+Step (a): The decoder estimates message wc using all blocks i =
+ˆ
+1, . . . , B, i.e., simultaneous decoding. It declares that wc is sent
+ˆ
+if there exist tB = (t1 , . . . , tB ) ∈ [1 : M]B , w1 ∈ [1 : M1 ] and jB =
+ˆ
+ˆ
+(j1 , . . . , jB ) ∈ [1 : J]B such that x2,i (wc , ti−1 ), ui (wc , ti−1 , ti , w1 , ji ),
+ˆ
+vi (wc , ti−1 , ti ) and y[i] are jointly typical for all i = 1, . . . , B. One
+can show that the decoder obtains the correct wc as long as n
+and B are large and
+
+information message is divided into blocks and diﬀerent
+submessages are sent over these blocks and then decoded
+one at a time using the same codebook as in the original
+compress-and-forward scheme by Cover and El Gamal [13],
+here the entire common message and the entire individual
+message are transmitted over all blocks using codebooks that
+are generated independently, one for each block, and the
+decoding is performed simultaneously using all blocks as
+in [5]. At the end of the transmission, the receiver uses the
+outputs of all blocks to perform simultaneous decoding of
+the information common and individual messages, without
+uniquely decoding the compression indices.
+Proof of Achievability:
+The transmission takes place in B blocks. The common
+message Wc and the individual message W1 are sent over
+all blocks. We thus have BWc = nBRc , BW1 = nBR1 , N = nB,
+RWc = BWc /N = Rc and RW1 = BW1 /N = R1 , where BWc is
+the number of common message bits, BW1 is the number of
+individual message bits, N is the number of channel uses
+and RWc and RW1 are the overall rates of the common and
+individual messages, respectively.
+Codebook Generation: Fix a measure PS,U,V,X1 ,X2 ,Y ∈ P. Fix
+ˆ
+> 0, ηc > 0, η1 > 0, η > 0, δ > 1 and denote Mc = 2nB[Rc −ηc ] ,
+ˆ ˆ
+ˆ
+M1 = 2nB[R1 −η1 ] , M = 2n[R+η ] and J = 2n[I(U;S|V,X2 )+δ ] .
+We randomly and independently generate a codebook for
+each block.
+ˆ
+1) For each block i, i = 1, . . . , B, we generate Mc M independent and identically distributed (i.i.d.) codewords
+ˆ
+x2,i (wc , ti ) indexed by wc = 1, . . . , Rc , ti = 1, . . . , M, each
+with i.i.d. components drawn according to PX2 .
+2) For each block i, for each codeword x2,i (wc , ti ), we
+ˆ
+generate M i.i.d. codewords vi (wc , ti , ti ) indexed by ti =
+ˆ each with i.i.d. components drawn according to
+1, . . . , M,
+PV|X2 .
+3) For each block i, for each codeword x2,i (wc , ti ), for each
+codeword vi (wc , ti , ti ), we generate a collection of JM1
+i.i.d. codewords {ui (wc , ti , ti , w1 , ji )} indexed by w1 =
+1, . . . , M1 , ji = 1, . . . , J, each with i.i.d. components draw
+according to PU|V,X2 .
+Encoding: Suppose that a common message Wc = wc and
+an individual message W1 = w1 are to be transmitted. As we
+mentioned previously, wc and w1 will be sent over all blocks.
+We denote by s[i] the state aﬀecting the channel in block i,
+i = 1, . . . , B. For convenience, we let s[0] = ∅ and t−1 = t0 = 1
+(a default value). The encoding at the beginning of block i,
+i = 1, . . . , B, is as follows.
+Encoder 2, which has learned the state sequence s[i−1], knows
+ˆ
+ti−2 and looks for a compression index ti−1 ∈ [1 : M] such that
+vi−1 (wc , ti−2 , ti−1 ) is strongly jointly typical with s[i − 1] and
+x2,i−1 (wc , ti−2 ). If there is no such index or the observed state
+s[i − 1] is not typical, ti−1 is set to 1 and an error is declared.
+If there is more than one such index ti−1 , choose the smallest.
+Encoder 2 then transmits the vector x2,i (wc , ti−1 ).
+Encoder 1 obtains x2,i (wc , ti−1 ) similarly. It then ﬁnds the
+ˆ
+smallest compression index ti ∈ [1 : M] such that vi (wc , ti−i , ti )
+is strongly jointly typical with s[i] and x2,i (wc , ti−1 ). Again, if
+there is no such index or the observed state s[i] is not typical,
+ti is set to 1 and an error is declared. Next, Encoder 1 looks for
+the smallest ji such that ui (wc , ti−1 , ti , w1 , ji ) is jointly typical
+
+Rc + R1 ≤ I(U, V, X2 ; Y) − I(U, V, X2 ; S).
+
+(10)
+
+Step (b): Next, the decoder estimates message w1 using again
+all blocks i = 1, . . . , B, i.e., simultaneous decoding. It declares
+ˆ
+ˆ
+that w1 is sent if there exist tB = (t1 , . . . , tB ) ∈ [1 : M]B , jB =
+ˆ
+ˆ
+ˆ
+(j1 , . . . , jB ) ∈ [1 : J]B such that x2,i (wc , ti−1 ), ui (wc , ti−1 , ti , w1 , ji ),
+ˆ
+vi (wc , ti−1 , ti ) and y[i] are jointly typical for all i = 1, . . . , B. One
+can show that the decoder obtains the correct w1 as long as n
+and B are large and
+R1 ≤ I(U; Y|V, X2 ) − I(U; S|V, X2 )
+
+(11a)
+
+R1 ≤ I(U, V, X2 ; Y) − I(U, V, X2 ; S).
+
+(11b)
+
+B. Wyner-Ziv Binning With Non-unique Decoding is Optimal
+In the coding scheme of Theorem 1, the state compression is
+standard, i.e., uses no Wyner-Ziv binning, the same message
+is sent in every block, and the decoding of the sent message is
+performed jointly using all blocks. Although of no beneﬁt
+in the case of one relay, the combination of these three
+features was shown to be essential in achieving rates that
+are strictly larger than those oﬀered by schemes based on
+Cover and El Gamal classic compress-and-forward scheme
+[13] for certain networks with multiple relays in [5]. That is,
+the coding scheme of [5] outperforms Cover and El Gamal
+classic compress-and-forward for some multi-relay networks
+in [5]. One can wonder whether the same holds for our
+model, i.e., whether schemes based on Cover and El Gamal
+classic compress-and-forward, i.e., block Markov encoding
+combined with Wyner-Ziv binning, fall short of achieving
+optimality for our model. In this paper, we show that the
+capacity region C as given by (8) can be achieved alternatively
+with a coding scheme that we obtain by building upon
+and modifying Cover and El Gamal original compress-andforward scheme. The modiﬁcation consists essentially in 1)
+decoding block-by-block backwardly instead of block-byblock forwardly and 2) non-unique decoding of the compression indices. (In fact, by investigating more closely the
+converse proof of Theorem 1, we will show later that 2) can
+be relaxed essentially without altering the capacity region).
+The following theorem states the result.
+Theorem 2: For the state-dependent multiaccess channel
+model that we study, there exists an optimal coding scheme
+
+3
+
+Encoder 2 then transmits the vector x2 (wc,i , si−1 ), where si−1
+is such that zi−1 ∈ Csi−1 .
+Encoder 1 obtains x2 (wc,i , si−1 ) similarly. It then ﬁnds the
+ˆ
+smallest compression index zi ∈ [1, M] such that v(wc,i , si−1 , zi )
+is strongly jointly typical with s[i] and x2 (wc,i , si−1 ). Again,
+if there is no such index or the observed state s[i] is not
+typical, zi is set to 1 and an error is declared. Let si ∈
+[1, M0 ] such that zi ∈ Csi . Next, Encoder 1 looks for the
+smallest ji such that u(wc,i , si−1 , zi , w1,i , ji ) is jointly typical
+with s[i], x2 (wc,i , si−1 ) and v(wc,i , si−1 , zi ). Denote this ji by
+ji = j(s[i], wc,i , si−1 , zi , w1,i ). If such ji is not found, an
+error is declared and j(s[i], wc,i , si−1 , zi , w1,i ) is set to ji = J.
+Encoder 1 then transmits a vector x1 [i] which is drawn i.i.d.
+conditionally given s[i], u(wc,i , si−1 , zi , w1,i , ji ), v(wc,i , si−1 , zi )
+and x2 (wc,i , si−1 ) (using the conditional measure PX1 |S,U,V,X2
+induced by PS,U,V,X1 ,X2 ,Y ∈ P).
+1) Decoding in Block B − 1:
+The decoding of the pair (wc,B−1 , w1,B−1 ) is performed in four
+steps, as follows.
+Step (a): The decoder knows wc,B = 1 and looks for the unique
+ˆ
+ˆ
+cell index sB−1 such that the vector x2 (wc,B , sB−1 ) is jointly
+typical with y[B]. The decoding operation in this step incurs
+small probability of error as long as n is suﬃciently large and
+
+that uses Wyner-Ziv binning for the state compression. That
+is, the capacity region C given by (8) can also be achieved using
+a coding scheme in which the state compression is performed
+using Wyner-Ziv binning.
+Proof: The achievability proof of Theorem 2 is based
+on a block-Markov coding scheme that combines carefully
+Gel’fand-Pinsker binning and Wyner-Ziv binning, and utilizes backward decoding with non-unique decoding of the
+compression indices.
+The transmission takes place in B blocks. The common
+message Wc is divided into B blocks wc,1 , . . . , wc,B of nRc
+bits each, and the individual messages W1 are divided into
+B blocks w1,1 , . . . , w1,B of nR1 bits each. For convenience,
+we let wc,B = w1,B = 1 (a default value). We thus have
+BWc = n(B − 1)Rc , BW1 = n(B − 1)R1 , N = nB, RWc = BWc /N =
+Rc ·(B − 1)/B and RW1 = BW1 /N = R1 ·(B − 1)/B, where BWc
+is the number of common message bits, BW1 is the number
+of individual message bits, N is the number of channel uses
+and RWc and RW1 are the overall rates of the common and
+individual messages, respectively. For ﬁxed n, the average
+rate pair (RWc , RW1 ) over B blocks can be made as close to
+(Rc , R1 ) as desired by making B large.
+Codebook Generation: Fix a measure PS,U,V,X1 ,X2 ,Y ∈ P. Fix >
+0 and denote Mc = 2n[Rc −ηc ] , M1 = 2n[R1 −η1 ] , M0 = 2n[R0 +η0 ] ,
+ˆ ˆ
+ˆ
+M = 2n[R+η ] , J = 2n[I(U;S|V,X2 )+δU ] .
+1) We generate Mc M0 independent and identically distributed (i.i.d.) codewords x2 (wc , s) indexed by wc =
+1, . . . , Rc , s = 1, . . . , M0 , each with i.i.d. components
+drawn according to PX2 .
+ˆ
+2) For each codeword x2 (wc , s), we generate M independent
+and identically distributed (i.i.d.) codewords v(wc , s, z)
+ˆ
+indexed by z = 1, . . . , M, each with i.i.d. components
+drawn according to PV|X2 .
+3) For each codeword x2 (wc , s), for each codeword v(wc , s, z),
+we generate a collection of JM1 i.i.d. codewords
+{u(wc , s, z, w1 , j)} indexed by w1 = 1, . . . , M1 , j = 1, . . . , J,
+each with i.i.d. components draw according to PU|V,X2 .
+ˆ
+4) Randomly partition the set {1, . . . , M} into M0 cells Cs ,
+s ∈ [1, M0 ].
+Encoding: Suppose that a common message Wc = wc
+and an individual message W1 = w1 are to be transmitted.
+As we mentioned previously, message wc is divided into B
+blocks wc,1 , . . . , wc,B and message w1 is divided into B blocks
+w1,1 , . . . , w1,B , with (wc,i , w1,i ) the pair messages sent in block
+i. We denote by s[i] the channel state in block i, i = 1, . . . , B.
+For convenience, we let s[0] = φ and z0 = 1 (a default value),
+and s0 the index of the cell containing z0 , i.e., z0 ∈ Cs0 . The
+encoding at the beginning of the block i, i = 1, . . . , B, is as
+follows.
+Encoder 2, which has learned the state sequence s[i−1], knows
+ˆ
+si−2 and looks for a compression index zi−1 ∈ [1, M] such that
+v(wc,i−1 , si−2 , zi−1 ) is strongly jointly typical with s[i − 1] and
+x2 (wc,i−1 , si−2 ). If there is no such index or the observed state
+s[i − 1] is not typical, zi−1 is set to 1 and an error is declared.
+If there is more than one such index zi−1 , choose the smallest.
+One can show that the probability of error of this event is
+arbitrarily small provided that n is large and
+ˆ
+R > I(V; S|X2 ).
+
+R0 < I(X2 ; Y).
+
+(13)
+
+ˆ
+Step (b): The decoder now knows sB−1 (i.e., the index of the cell in which the compression index zB−1
+lies). It then decodes message wc,B−1 by looking for the
+ˆ
+ˆ
+ˆ
+unique wc,B−1 such that x2 (wc,B−1 , sB−2 ), v(wc,B−1 , sB−2 , zB−1 ),
+ˆ
+u(wc,B−1 , sB−2 , zB−1 , w1,B−1 , jB−1 ) and y[B − 1] are jointly typical
+for some sB−2 ∈ [1, M0 ], w1,B−1 ∈ [1, M1 ], jB−1 ∈ [1, J] and
+zB−1 ∈ CsB−1 . One can show that the decoder obtains the correct
+ˆ
+wc,B−1 as long as n and B are large and
+ˆ
+R0 + (R − R0 ) + Rc + R1 ≤ I(U, V, X2 ; Y) − I(U; S|V, X2 ).
+
+(14)
+
+ˆ
+Step (c): The decoder knows wc,B−1 and can again obtain the
+correct sB−2 if n is large and (13) is true. This is accomplished by
+ˆ
+ˆ
+ˆ
+looking for the unique sB−2 such that the vector x2 (wc,B−1 , sB−2 )
+is jointly typical with y[B − 1].
+Step (d): Finally, the decoder, which now knows message
+ˆ
+ˆ
+wc,B−1 and the cell index sB−2 (but not the exact compression inˆ
+dex zB−1 ), estimates w1,B−1 using y[B−1]. It declares that w1,B−1
+ˆ
+ˆ
+ˆ
+was sent if there exists a unique w1,B−1 such that x2 (wc,B−1 , sB−2 ),
+ˆ
+ˆ
+ˆ
+ˆ
+ˆ
+v(wc,B−1 , sB−2 , zB−1 ), u(wc,B−1 , sB−2 , zB−1 , w1,B−1 , jB−1 ) and y[B − 1]
+are jointly typical for some zB−1 ∈ CsB−1 and jB−1 ∈ [1, J].
+ˆ
+• If z
+= zB−1 , the decoder ﬁnds the correct w1,b−1 for
+B−1
+suﬃciently large n if
+R1 ≤ I(U; Y|V, X2 ) − I(U; S|V, X2 ).
+•
+
+(15)
+
+If zB−1
+zB−1 , the decoder ﬁnds the correct w1,b−1 for
+suﬃciently large n if
+ˆ
+(R − R0 ) + R1 ≤ I(U, V; Y|X2 ) − I(U; S|V, X2 ).
+
+(16)
+
+2) Decoding in Block b, b = B − 1, B − 2, . . . , 2:
+Next, for b ranging from B − 1 to 2, the decoding of the pair
+(wc,b−1 , w1,b−1 ) is performed similarly, in ﬁve steps, by using
+the information y[b] received in block b and the information
+y[b − 1] received in block b − 1. More speciﬁcally, this is done
+as follows.
+
+(12)
+
+4
+
+Step (a): The decoder knows wc,b and looks for the unique
+ˆ
+ˆ
+cell index sb−1 such that the vector x2 (wc,b , sb−1 ) is jointly
+typical with y[b]. The decoding error in this step is small
+for suﬃciently large n if (13) is true.
+ˆ
+Step (b): The decoder knows sb−1 and decodes message wc,b−1
+ˆ
+ˆ
+from y[b]. It looks for the unique wc,b−1 such that x2 (wc,b−1 , sb−2 ),
+ˆ
+ˆ
+v(wc,b−1 , sb−2 , zb−1 ), u(wc,b−1 , sb−2 , zb−1 , w1,b−1 , jb−1 ) and y[b − 1]
+are jointly typical for some sb−2 ∈ [1, M0 ], w1,b−1 ∈ [1, M1 ],
+jb−1 ∈ [1, J] and zb−1 ∈ Csb−1 . One can show that the decoding
+ˆ
+error in this step is small for suﬃciently large n if (14) is true.
+ˆ
+ˆ
+Step (c): The decoder knows wc,b−1 and obtains sb−2 by looking
+ˆ
+ˆ
+ˆ
+for the unique sb−2 such that the vector x2 (wc,b−1 , sb−2 ) is jointly
+typical with y[b − 1]. For suﬃciently large n, the decoder
+obtains the correct sb−2 with high probability if (13) is true.
+Step (d): Finally, the decoder, which now knows mesˆ
+ˆ
+sage wc,b−1 and the cell index sb−2 (but not the exact
+compression index zb−1 ), estimates message w1,b−1 using
+ˆ
+y[b − 1]. It declares that w1,b−1 was sent if there exists
+ˆ
+ˆ
+ˆ
+ˆ
+ˆ
+a unique w1,b−1 such that x2 (wc,b−1 , sb−2 ), v(wc,b−1 , sb−2 , zb−1 ),
+ˆ
+ˆ
+ˆ
+u(wc,b−1 , sb−2 , zb−1 , w1,b−1 , jb−1 ) and y[b − 1] are jointly typical
+for some zb−1 ∈ Csb−1 and jb−1 ∈ [1, J].
+ˆ
+• If z
+= zb−1 , the decoder ﬁnds the correct w1,b−1 for
+b−1
+suﬃciently large n if (15) is true.
+• If z
+zb−1 , the decoder ﬁnds the correct w1,b−1 for
+b−1
+suﬃciently large n if (16) is true.
+Applying Fourier-Motzkin Elimination (FME) to project
+ˆ
+out R0 and R from (13),(14), (15) and (16), we get the desired
+result (8).
+
+R1 ≤ I(U; Y|V, X2 ) − I(U; S|V, X2 )
+Rc + R1 ≤ I(U, V, X2 ; Y) − I(U, V, X2 ; S)
+for some measure (S, U, V, X1 , X2 , Y) ∈ P and satisfying
+I(V, X2 ; Y) − I(V, X2 ; S) ≥ 0,
+
+|V| ≤ |S||X1 ||X2 | + 2
+
+(21a)
+
+|U| ≤ |S||X1 ||X2 | + 2 |S||X1 ||X2 |.
+
+(21b)
+
+Proof: The coding scheme that we use for the proof of
+Theorem 3 is very similar to that of Theorem 2, but with
+unique decoding of the compression indices. (See [11]).
+
+Acknowledgement
+This work has been supported by the European Commission in the framework of the Network of Excellence
+in Wireless Communications (NEWCOM#). The work of S.
+Shamai was supported by the Philipson Fund for Electrical
+Power, via the Technion research authority.
+
+References
+[1] A. Lapidoth and Y. Steinberg, “The multiple access channel with
+causal and strictly causal side information at the encoders,” in
+Proc. Int. Zurich Seminar on Communications (IZS), Zurich, Switzerland, Mar. 2010, pp. 13–16.
+[2] G. Dueck, “Partial feedback for two-way and broadcast channels,”
+Inf. Contr., vol. 46, pp. 1–15, 1980.
+[3] A. Lapidoth and Y. Steinberg, “The multiple access channel with
+two independent states each known causally at one encoder,” in
+Proc. IEEE Int. Symp. Information Theory, Austin, TX, USA, Jun.
+2010, pp. 480–484.
+[4] M. Li, O. Simeone, and A. Yener, “Multiple access channels with
+states causally known at transmitters,” Submitted for publication
+in IEEE Trans. Inf. Theory. Available at http://arxiv.org/abs/1011.6639,
+2010.
+[5] S. H. Lim, Y.-H. Kim, A. E. Gamal, and S.-Y. Chung, “Noisy
+network coding,” IEEE Trans. Inf. Theory, vol. 57, pp. 3132–3152,
+May 2011.
+[6] A. D. Wyner and J. Ziv, “The rate-distortion function for source
+coding with side information at the decoder,” IEEE Trans. Inf.
+Theory, vol. 22, pp. 1–10, Jan. 1976.
+[7] A. Lapidoth and Y. Steinberg, “A note on multiple access
+channels with strictly causal state information,” in available at
+http://arxiv.org/abs/1106.0380, Jun. 2011.
+[8] A. Zaidi, P. Piantanida, and S. Shamai (Shitz), “Multiple access
+channel with states known noncausally at one encoder and only
+strictly causally at the other encoder,” in Proc. IEEE Int. Symp.
+Information Theory, Saint-Petersburg, Russia, 2011, pp. 2801–2805.
+[9] G. Kramer and J. Hou, “On message lengths for noisy network
+coding,” in Proc. IEEE Information Theory Workshop, Paraty, Brasil,
+Oct. 2011.
+[10] X. Wu and L.-L. Xie, “On the optimal compressions in the
+compress-and-forward relay schemes,” IEEE Trans. Inf. Theory,
+submitted for publication. Available at http://arxiv.org/abs/1009.5959,
+Feb. 2011.
+[11] A. Zaidi, P. Piantanida, and S. Shamai (Shitz), “Capacity region of multiple access channel with states known noncausally
+at one encoder and only strictly causally at the other encoder,” IEEE Trans. Inf. Theory, submitted for publication, available
+at http://arxiv.org/abs/1201.3278, 2012.
+[12] S. I. Gel’fand and M. S. Pinsker, “Coding for channel with random
+parameters,” Problems of Control and Information Theory, vol. 9, pp.
+19–31, 1980.
+[13] T. M. Cover and A. El Gamal, “Capacity theorems for the relay
+channel,” IEEE Trans. Inf. Theory, vol. IT-25, pp. 572–584, Sep. 1979.
+
+As we mentioned previously, the coding scheme of Theorem 2 shares elements with Cover and El Gamal original
+compress-and-forward [13, Theorem 7]; but diﬀers from it
+mainly in two aspects. First, it uses backward decoding
+instead of the forward decoding of [13]; and, second, unlike
+[13] it does not require unique decoding of the compression
+indices. The second aspect is essential for getting the same rate
+expression as in (8), with no additional constraints. However,
+as we will see shortly in the corollary that will follow, one
+can modify the coding scheme of Theorem 2 in a way to get
+the compression indices decoded uniquely and still get the
+capacity region, at the expense of slightly larger |V| and larger
+|U|. The key element is the observation that the constraint
+introduced by getting the compression index decoded, i.e.,
+(17)
+
+or, equivalently,
+I(V, X2 ; Y) − I(V, X2 ; S) ≥ 0,
+
+(20)
+
+where the auxiliary random variables V and U have their
+alphabets bounded as
+
+C. Non-unique Decoding is Not Needed
+
+I(V; S|X2 ) − I(V; Y|X2 ) ≤ I(X2 ; Y),
+
+(19)
+
+(18)
+
+is also implicit in the converse proof of Theorem 1. That is, the
+auxiliary random variables U and V of the converse proof of
+Theorem 1 satisfy (18).
+Theorem 3: The coding scheme of Theorem 2 can be
+modiﬁed in a way to get the compression index decoded.
+The resulting coding scheme is optimal and achieves an
+equivalent characterization of the capacity region of the
+model that we study given by the set of all rate pairs (Rc , R1 )
+such that
+
+5
+
+

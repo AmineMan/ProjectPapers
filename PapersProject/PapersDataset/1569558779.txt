@@ -1,0 +1,997 @@
+Creator:        TeX
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Sun May 13 17:17:43 2012
+ModDate:        Tue Jun 19 12:54:38 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      397547 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569558779
+
+Multiterminal Source Coding
+under Logarithmic Loss
+Thomas A. Courtade
+
+Tsachy Weissman
+
+Department of Electrical Engineering
+University of California, Los Angeles
+Los Angeles, California, USA
+Email: tacourta@ee.ucla.edu
+
+Department of Electrical Engineering
+Stanford University
+Stanford, California, USA
+Email: tsachy@stanford.edu
+
+logarithmic loss. In Section IV we return to the multiterminal
+source coding problem and derive the rate distortion region
+for the two-encoder setting. Section V delivers concluding
+remarks.
+
+Abstract—We consider the two-encoder multiterminal source
+coding problem subject to distortion constraints computed under logarithmic loss. We provide a single-letter description of
+the achievable rate distortion region for arbitrarily correlated
+sources with ﬁnite alphabets. In doing so, we also give the rate
+distortion region for the CEO problem under logarithmic loss.
+Notably, the Berger-Tung inner bound is tight in both settings.
+
+II. P ROBLEM D EFINITION
+n
+
+Let {Y1 (j), Y2 (j)}j=1 be a sequence of independent, identically distributed random variables with ﬁnite alphabets Y1
+and Y2 , respectively, and joint pmf p(y1 , y2 ).
+ˆ
+In this paper, we take the reproduction alphabet Yi to be
+equal to the set of probability distributions over the source
+ˆ
+ˆn
+alphabet Yi for i = 1, 2. Thus, for a vector Yin ∈ Yi , we will
+ˆi [yi ](j) to mean the j th coordinate (1 ≤ j ≤
+use the notation Y
+ˆ
+n) of Yin (which is a probability distribution on Yi ) evaluated
+for the outcome yi ∈ Yi . In other words, the decoder generates
+“soft” estimates of the source sequences.
+We consider the logarithmic loss distortion measure deﬁned
+as follows:
+
+I. I NTRODUCTION
+Characterizing the rate distortion region for the two-encoder
+lossy source coding problem is perhaps the most well-known,
+long-standing open problem in the ﬁeld of multiterminal
+source coding. Indeed, it is commonly referred to as the
+multiterminal source coding problem (a tradition to which we
+adhere in the present paper). Although this problem was posed
+nearly four decades ago, a description of the rate distortion
+region eluded researchers for any nontrivial choice of source
+distribution and distortion measure until the seminal work [1]
+by Wagner et al. in 2008.
+In [1], the authors characterized the rate distortion region for
+jointly Gaussian sources subject to quadratic distortion constraints. Notably, [1] showed that the extension of the singleencoder vector quantization scheme to two encoders (commonly referred to as the Berger-Tung achievability scheme)
+sufﬁces to attain any point in the achievable rate distortion
+region. However, due to the reliance of [1] on the peculiarities
+of the Gaussian distribution, it was still not clear whether the
+Berger-Tung achievability scheme would be optimal in other
+settings of interest.
+In the present paper, we answer this point in the afﬁrmative
+for the two-encoder setting. Speciﬁcally, we show that the
+Berger-Tung achievability scheme is optimal for all ﬁnitealphabet sources when distortion is measured under logarithmic loss. To our knowledge, this constitutes the ﬁrst time that
+the entire rate distortion region has been described for the
+multiterminal source coding problem with nontrivial ﬁnitealphabet sources and nontrivial distortion constraints.
+
+d(yi , yi ) = log
+ˆ
+
+1
+yi [yi ]
+ˆ
+
+for i = 1, 2.
+
+Using this deﬁnition for symbol-wise distortion, it is standard
+to deﬁne the distortion between sequences as
+n n
+d(yi , yi ) =
+ˆ
+
+1
+n
+
+n
+
+d(yi (j), yi (j)) for i = 1, 2.
+ˆ
+j=1
+
+We remark that logarithmic loss is a widely used penalty
+function in the theory of learning and has natural interpretations and applications in gambling and portfolio theory (cf.
+[2, Chapter 9]). Several applications of logarithmic loss in the
+context of source coding are discussed in the full manuscript
+[3]. To the best of our knowledge, logarithmic loss ﬁrst
+appeared explicitly as a distortion measure in the context of
+multiterminal source coding in [4].
+A rate distortion code (of blocklength n) consists of encoding functions:
+
+Organization
+
+(n)
+
+gi
+
+This paper is organized as follows. In Section II we formally
+deﬁne the logarithmic loss function and the multiterminal
+source coding problem we consider. In Section III we deﬁne
+the CEO problem and give the rate distortion region under
+
+(n)
+
+n
+: Yi → 1, . . . , Mi
+
+for i = 1, 2
+
+(1)
+
+and decoding functions
+(n)
+
+ψi
+
+1
+
+(n)
+
+: 1, . . . , M1
+
+(n)
+
+× 1, . . . , M2
+
+ˆn
+→ Yi for i = 1, 2.
+
+Deﬁnition 2. Let RDCEO denote the set of strict-sense
+achievable rate distortion vectors and deﬁne the set of achievable rate distortion vectors to be its closure, RDCEO .
+
+A rate distortion vector (R1 , R2 , D1 , D2 ) is strict-sense
+achievable if there exists a blocklength n, encoding functions
+(n) (n)
+(n)
+(n)
+g1 , g2 , and a decoder (ψ1 , ψ2 ) such that
+1
+(n)
+log Mi for i = 1, 2
+n
+n
+1
+ˆ
+Di ≥
+Ed(Yi (j), Yi (j)) for i = 1, 2.
+n j=1
+
+A. Inner Bound
+
+Ri ≥
+
+Deﬁnition 3. Let (R1 , R2 , D) ∈ RDi
+CEO if and only if there
+exists a joint distribution of the form
+p(x)p(y1 |x)p(y2 |x)p(u1 |y1 , q)p(u2 |y2 , q)p(q)
+
+Where
+
+where |Uj | ≤ |Yj | and |Q| ≤ 4, which satisﬁes
+
+(n) (n)
+(n)
+ˆ
+Yin = ψi (g1 (Y1n ), g2 (Y2n )) for i = 1, 2.
+
+R1 ≥ I(U1 ; Y1 |U2 , Q)
+
+Deﬁnition 1. Let RD denote the set of strict-sense achievable rate distortion vectors and deﬁne the set of achievable
+rate distortion vectors to be its closure, RD .
+
+R2 ≥ I(U2 ; Y2 |U1 , Q)
+R1 + R2 ≥ I(U1 , U2 ; Y1 , Y2 |Q)
+D ≥ H(X|U1 , U2 , Q).
+
+Our ultimate goal in the present paper is to give a singleletter characterization of the region RD . However, in order to
+do this, we ﬁrst consider an associated CEO problem. In this
+sense, the roadmap for our argument is similar to that of [1].
+Speciﬁcally, both arguments couple the multiterminal source
+coding problem to a parametrized family of CEO problems.
+Then, the parameter in the CEO problem is “tuned” to yield
+the converse result. Despite this apparent similarity, the proofs
+are quite different since the results in [1] depend heavily on
+the properties of the Gaussian sources.
+
+Theorem 1. RDi
+CEO ⊆ RD CEO .
+Before proceeding with the proof, we cite the following
+variant of a well-known inner bound:
+Proposition 1 (Berger-Tung Inner Bound [6]). The rate distortion vector (R1 , R2 , D) is achievable if
+R1 ≥ I(U1 ; Y1 |U2 , Q)
+R2 ≥ I(U2 ; Y2 |U1 , Q)
+R1 + R2 ≥ I(U1 , U2 ; Y1 , Y2 |Q)
+
+III. T HE CEO PROBLEM
+
+D ≥ E [d(X, f (U1 , U2 , Q)]
+
+In order to attack the general multiterminal problem, we
+begin by studying the CEO problem (See [5] for an introducn
+tion.). To this end, let {X(j), Y1 (j), Y2 (j)}j=1 be a sequence
+of independent, identically distributed random variables with
+joint pmf p(x, y1 , y2 ) = p(x)p(y1 |x)p(y2 |x). That is, Y1 ↔
+X ↔ Y2 form a Markov chain.
+ˆ
+In this section, we consider the reproduction alphabet X to
+be equal to the set of probability distributions over the source
+ˆ
+ˆ
+alphabet X . As before, for a vector X n ∈ X n , we will use
+ˆ
+ˆ
+the notation X[x](j) to mean the j th coordinate of X n (which
+is a probability distribution on X ) evaluated for the outcome
+x ∈ X . As in the rest of this paper, d(·, ·) is the logarithmic
+loss distortion measure.
+A rate distortion CEO code (of blocklength n) consists of
+(n) (n)
+encoding functions g1 , g2 as in (1), and a decoding function
+ψ (n) :
+
+(n)
+1, . . . , M1
+
+×
+
+(n)
+1, . . . , M2
+
+for a joint distribution
+p(x)p(y1 |x)p(y2 |x)p(u1 |y1 , q)p(u2 |y2 , q)p(q)
+and reproduction function
+ˆ
+f : U1 × U2 × Q → X .
+Proof of Theorem 1: Apply Proposition 1 with the reproduction function f (U1 , U2 , Q) := Pr [X = x|U1 , U2 , Q]. Then
+simply note that E [d(X, f (U1 , U2 , Q)] = H(X|U1 , U2 , Q),
+which yields the desired result.
+Thus, we note that our inner bound is merely the BergerTung inner bound specialized to the case of logarithmic loss.
+B. A Matching Outer Bound
+
+ˆ
+→ X n.
+
+A particularly useful property of the logarithmic loss distortion measure is that the expected distortion is lowerbounded by a conditional entropy, a property also enjoyed
+by quadratic distortion for Gaussian random variables. The
+following lemma is a key tool in the proof of the converse.
+
+A rate distortion vector (R1 , R2 , D) is strict-sense achievable for the CEO problem if there exists a blocklength n,
+(n) (n)
+encoding functions g1 , g2 and a decoder ψ (n) such that
+
+(n)
+
+1
+(n)
+log Mi for i = 1, 2
+n
+n
+1
+ˆ
+D≥
+Ed(X(j), X(j)).
+n j=1
+
+(n)
+
+Lemma 1. Let Z = (g1 (Y1n ), g2 (Y2n )) be the argument
+ˆ
+of the reproduction function ψ (n) . Then nEd(X n , X n ) ≥
+n
+H(X |Z).
+
+Ri ≥
+
+Proof: By deﬁnition of the reproduction alphabet, we can
+ˆ
+consider the reproduction X n to be a probability distribution
+on X n conditioned on the argument Z. In particular, if
+n
+xn = ψ (n) (z), deﬁne s(xn |z) = j=1 x[x(j)](j), which is
+ˆ
+ˆ
+
+Where
+(n)
+(n)
+ˆ
+X n = ψ (n) (g1 (Y1n ), g2 (Y2n )).
+
+2
+
+a probability measure on X n . Then, we obtain the following
+lower bound on the expected distortion, conditioned on Z = z:
+1
+ˆ
+E d(X n , X n )|Z = z =
+n
+
+n
+
+p(xn |z) log
+j=1 xn ∈X n
+
+The non trivial steps above can be justiﬁed as follows:
+n
+• (4) follows since FA is a function of YA .
+n
+• (5) follows since Fk is a function of Yk and hence F1 ↔
+X n ↔ F2 form a Markov chain (since Y1n ↔ X n ↔ Y2n
+form a Markov chain).
+n
+• (6) follows since nD ≥ H(X |F1 , F2 ) by Lemma 1.
+• (7) follows by the chain rule and also from the Markov
+condition Yk (i) ↔ X n ↔ Yk (1 : i − 1) resulting from
+the i.i.d. nature of the source sequences.
+• (8) follows since conditioning reduces entropy.
+Therefore, dividing both sides by n, we have:
+
+1
+x[x(j)](j)
+ˆ
+
+1
+1
+D (p(xn |z) s(xn |z)) + H(X n |Z = z)
+n
+n
+1
+≥ H(X n |Z = z),
+n
+where p(xn |z) = Pr (X n = xn |Z = z) is the true conditional
+distribution. Averaging both sides over all values of Z, we
+obtain the desired result.
+=
+
+Deﬁnition 4. Let (R1 , R2 , D) ∈ RDo
+CEO if and only if there
+exists a joint distribution of the form
+
+Rk ≥
+k∈A
+
+p(x)p(y1 |x)p(y2 |x)p(u1 |y1 , q)p(u2 |y2 , q)p(q),
+(2)
+
+R2 ≥ I(Y2 ; U2 |X, Q) + H(X|U1 , Q) − D
+D ≥ H(X|U1 , U2 , Q).
+
+D≥
+
+(3)
+
+Theorem 2. If (R1 , R2 , D) is strict-sense achievable for the
+CEO problem, then (R1 , R2 , D) ∈ RDo
+CEO .
+
+= I(X
+
+n
+
+= I(X ; FA |FAc ) +
+
+(5)
+
+k∈A
+n
+
+= H(X n |FAc ) − H(X |F1 , F2 )
+
+≥
+
+P3 = (0, I(Y2 ; U2 |Q), I(U1 ; Y1 |X, Q) + H(X|U2 , Q))
+
+k∈A i=1
+H(X n |FAc )
+n
+
+P4 = (I(Y1 ; U1 |Q), I(Y2 ; U2 |U1 , Q), H(X|U1 , U2 , Q))
+P5 = (I(Y1 ; U1 |U2 , Q), I(Y2 ; U2 |Q), H(X|U1 , U2 , Q)),
+
+I(Yk (i); Fk |X n , Yk (1 : i − 1)) − nD
+
+(6)
+
+(j)
+
+H(X(i)|FAc , X(1 : i − 1))
+i=1
+n
+
+I(Yk (i); Uk (i)|X(i), Q(i)) − nD
+
++
+
+(7)
+
+•
+
+k∈A i=1
+n
+
+≥
+
+H(X(i)|UAc (i), Q(i))
+•
+
+i=1
+n
+
+I(Yk (i); Uk (i)|X(i), Q(i)) − nD.
+
++
+
+(j)
+
+where the point Pj is a triple (R1 , R2 , D(j) ). We say a point
+(j)
+(j)
+(R1 , R2 , D(j) ) is dominated by a point in RDi
+CEO if there
+(j)
+exists some (R1 , R2 , D) ∈ RDi
+CEO for which R1 ≤ R1 ,
+(j)
+(j)
+R2 ≤ R2 , and D ≤ D . Observe that each of these extreme
+points is dominated by a point in RDi
+CEO :
+
+k∈A i=1
+n
+
+=
+
+H(X(i)|U1 (i), U2 (i), Q(i)).
+i=1
+
+P2 = (I(Y1 ; U1 |Q), 0, I(U2 ; Y2 |X, Q) + H(X|U1 , Q))
+
+I(Yk (i); Fk |X n , Yk (1 : i − 1))
+
++
+
+n
+
+P1 = (0, 0, I(Y1 ; U1 |X, Q) + I(Y2 ; U2 |X, Q) + H(X))
+
+n
+
++
+
+1
+1
+H(X n |F1 , F2 ) ≥
+n
+n
+
+Proof: We ﬁrst remark that the cardinality bounds in the
+deﬁnition of RDi
+CEO can be imposed without any loss of
+generality. This is a consequence of [7, Lemma 2.2] and is
+discussed in detail in the full manuscript [3].
+Fix p(q), p(u1 |y1 , q), and p(u2 |y2 , q) and consider the
+extreme points of polytope deﬁned by the inequalities (2)-(3):
+
+(4)
+n
+I(Fk ; Yk |X n )
+
+I(Yk (i); Uk (i)|X(i), Q(i)) − D.
+i=1
+
+i
+Theorem 3. RDo
+CEO = RD CEO = RD CEO .
+
+n
+H(Fk ) ≥ I(YA ; FA |FAc )
+
+k∈A
+n
+, YA ; FA |FAc )
+
+n
+
+Observe that Q(i) is independent of (X(i), Y1 (i), Y2 (i)) and,
+conditioned on Q(i), we have the Markov chain U1 (i) ↔
+Y1 (i) ↔ X(i) ↔ Y2 (i) ↔ U2 (i). Thus, a standard timesharing argument proves the theorem.
+
+Proof: Suppose the triple (R1 , R2 , D) is strict-sense
+achievable. Let A be a nonempty subset of {1, 2}, and let
+(n)
+Fj = gj (Yjn ) be the message sent by encoder j. Deﬁne
+Uj (i) = (Fj , Yj (1 : i−1)) and Q(i) = (X(1 : i−1), X(i+1 :
+n)) and observe that:
+Rk ≥
+
+1
+n
+
+Also, using Lemma 1 and the fact that conditioning reduces
+entropy, we have:
+
+R1 + R2 ≥ I(U1 ; Y1 |X, Q) + I(U2 ; Y2 |X, Q) + H(X) − D
+
+n
+
+H(X(i)|UAc (i), Q(i))
+i=1
+
+k∈A
+
+R1 ≥ I(Y1 ; U1 |X, Q) + H(X|U2 , Q) − D
+
+k∈A
+
+n
+
++
+
+which satisﬁes
+
+n
+
+1
+n
+
+(8)
+
+k∈A i=1
+
+3
+
+(4)
+
+(4)
+
+and
+First,
+observe
+that
+(R1 , R2 , D(4) )
+(5)
+(5)
+(5)
+(R1 , R2 , D ) are both in RDi
+, so these
+CEO
+points are not problematic.
+Next, observe that the point (0, 0, H(X)) is in RDi
+CEO ,
+which can be seen by setting all auxiliary random variables to be constant. This point dominates
+(1)
+(1)
+(R1 , R2 , D(1) ).
+
+ˆ ˆ
+By using auxiliary random variables (U1 , U2 , Q) =
+(U1 , ∅, Q), the point (I(Y1 ; U1 |Q), 0, H(X|U1 , Q)) is in
+(2)
+(2)
+(2)
+RDi
+). By
+CEO , and dominates the point (R1 , R2 , D
+(3)
+(3)
+a symmetric argument, the point (R1 , R2 , D(3) ) is also
+dominated by a point in RDi
+CEO .
+o
+Since RDCEO is the convex hull of all such extreme points
+(i.e., the convex hull of the union of extreme points over all
+appropriate joint distributions), the theorem is proved.
+
+B. A Matching Outer Bound
+
+•
+
+Theorem 5. RDi = RD .
+Proof: Assume (R1 , R2 , D1 , D2 ) is strict-sense achievable. We ﬁrst note that the cardinality bounds in the deﬁnition
+of RDi can be imposed without any loss of generality. This
+is a consequence of [7, Lemma 2.2] and is discussed in
+detail in the full manuscript [3]. Thus, it sufﬁces to show that
+(R1 , R2 , D1 , D2 ) ∈ RDi , ignoring the cardinality constraints.
+With foresight, deﬁne a new random variable X as:
+
+Remark 1. Theorem 3 can be extended to the general case of
+m-encoders. Moreover, the converse of the theorem continues
+ˆ
+to hold when the reproduction alphabet X n is not restricted
+to the set of product distributions. The key observation is that
+Lemma 1 continues to hold. The reader is directed to the
+complete manuscript [3] for details.
+
+(Y1 , 1)
+(Y2 , 2)
+
+X=
+
+with probability t
+with probability 1 − t.
+
+(9)
+
+In other words, X = (YB , B), where B is a Bernoulli random
+variable independent of Y1 , Y2 . Observe that we have the
+Markov chain Y1 ↔ X ↔ Y2 , and thus, we are able to apply
+Theorem 3.
+Since (R1 , R2 , D1 , D2 ) is strict-sense achievable, there exist
+ˆ
+reproductions Yin satisfying
+
+IV. M ULTITERMINAL S OURCE C ODING
+With Theorem 3 in hand, we are now in a position to
+characterize the achievable rate distortion region for the multiterminal source coding problem under logarithmic loss.
+
+1
+n
+
+A. Inner Bound
+Deﬁnition 5. Let (R1 , R2 , D1 , D2 ) ∈ RDi if and only if there
+exists a joint distribution of the form
+
+n
+
+ˆ
+Ed(Yi (j), Yi (j)) ≤ Di for i = 1, 2.
+j=1
+
+ˆ
+ˆ
+Fix the encoding operations and set X[(y1 , 1)](j) = tY1 [y1 ](j)
+ˆ
+ˆ
+and X[(y2 , 2)](j) = (1 − t)Y2 [y2 ](j). Then for the CEO
+problem deﬁned by (X, Y1 , Y2 ):
+
+p(y1 , y2 )p(u1 |y1 , q)p(u2 |y2 , q)p(q)
+where |Uj | ≤ |Yj | and |Q| ≤ 5, which satisﬁes
+
+1
+n
+
+R1 ≥ I(U1 ; Y1 |U2 , Q)
+
+n
+
+n
+
+t
+ˆ
+Ed(X(j), X(j)) = h2 (t) +
+n
+j=1
+
+R2 ≥ I(U2 ; Y2 |U1 , Q)
+
+1−t
++
+n
+
+R1 + R2 ≥ I(U1 , U2 ; Y1 , Y2 |Q)
+D1 ≥ H(Y1 |U1 , U2 , Q)
+
+ˆ
+Ed(Y1 (j), Y1 (j))
+j=1
+
+n
+
+ˆ
+Ed(Y2 (j), Y2 (j))
+j=1
+
+≤ h2 (t) + tD1 + (1 − t)D2 ,
+
+D2 ≥ H(Y2 |U1 , U2 , Q).
+
+where h2 (t) is the binary entropy function. Hence, for
+this CEO problem, distortion h2 (t) + tD1 + (1 − t)D2
+is achievable and Theorem 3 yields a joint distribution1
+p(y1 , y2 )pt (u1 |y1 , q)pt (u2 |y2 , q)pt (q) satisfying
+
+(t)
+(t)
+
+R1 ≥ I(U1 ; Y1 |U2 , Q(t) )
+
+(t)
+(t)
+(10)
+R2 ≥ I(U2 ; Y2 |U1 , Q(t) )
+
+(t)
+(t)
+(t) 
+R1 + R2 ≥ I(U1 , U2 ; Y1 , Y2 |Q )
+
+Theorem 4. RDi ⊆ RD .
+Again, we require an appropriate version of the Berger-Tung
+inner bound:
+Proposition 2 (Berger-Tung Inner Bound [6]). The rate distortion vector (R1 , R2 , D1 , D2 ) is achievable if
+R1 ≥ I(U1 ; Y1 |U2 , Q)
+
+(t)
+
+(t)
+
+tD1 + (1 − t)D2 ≥ tH(Y1 |U1 , U2 , Q(t) )
+
+R2 ≥ I(U2 ; Y2 |U1 , Q)
+
+(t)
+
+(t)
+
++ (1 − t)H(Y2 |U1 , U2 , Q(t) ),
+
+R1 + R2 ≥ I(U1 , U2 ; Y1 , Y2 |Q)
+D1 ≥ E [d(Y1 , f1 (U1 , U2 , Q)]
+
+(11)
+
+where the distortion constraint (11) follows since
+
+D2 ≥ E [d(Y2 , f2 (U1 , U2 , Q)] .
+
+(t)
+
+(t)
+
+(t)
+
+(t)
+
+(t)
+
+(t)
+
+H(X|U1 , U2 , Q(t) ) = h2 (t) + tH(Y1 |U1 , U2 , Q(t) )
+
+for a joint distribution
+
++ (1 − t)H(Y2 |U1 , U2 , Q(t) ).
+
+p(y1 , y2 )p(u1 |y1 , q)p(u2 |y2 , q)p(q)
+
+Next, ﬁx > 0, and partition the interval [0, 1] as 0 = t1 <
+t2 < · · · < tm = 1, such that |tj+1 − tj | < H(Y1 ,Y2 ) . We
+have just proven that, for each tj in the partition, there exist
+distributions ptj (u1 |y1 , q), ptj (u2 |y2 , q), ptj (q) for which the
+corresponding joint distribution satisﬁes (10)-(11).
+
+and reproduction functions
+ˆ
+fi : U1 × U2 × Q → Yi , for i = 1, 2.
+Proof of Theorem 4: Similar to the proof of Theorem 1, apply Proposition 2 with the reproduction functions
+fi (U1 , U2 , Q) := Pr [Yi = yi |U1 , U2 , Q].
+
+1 Henceforth, we use the superscript (t) to explicitly denote the dependence
+of the auxiliary random variables on the distribution parametrized by t.
+
+4
+
+where (14) follows since |tj+1 − tj | is small, and (15) follows
+from (13).
+This proves (12) and implies that it is impossible to have
+
+Now, suppose t satisﬁes tj < t < tj+1 . Then we can
+express t as a convex combination t = θtj + (1 − θ)tj+1 .
+By timesharing between the distributions {ptj (u1 |y1 , q),
+ptj (u2 |y2 , q), ptj (q)} with probability θ and the distributions
+{ptj+1 (u1 |y1 , q), ptj+1 (u2 |y2 , q), ptj+1 (q)} with probability
+(1 − θ), we obtain a set of distributions2 {pt (u1 |y1 , q),
+pt (u2 |y2 , q), pt (q)} for which the corresponding joint distribution satisﬁes
+(t)
+
+f1 (t) > D1 + and f2 (t) > D2 +
+simultaneously for any t ∈ [0, 1], else we would contradict
+(16). Also, we have the following two inequalities at the
+endpoints of the interval [0, 1]:
+f1 (1) ≤ D1 and f2 (0) ≤ D2
+
+(t)
+
+R1 ≥ I(U1 ; Y1 |U2 , Q(t) )
+(tj )
+
+= θI(U1
+
+(tj )
+
+; Y1 |U2
+
+(tj+1 )
+
++ (1 − θ)I(U1
+(t)
+
+since t1 = 0 and tm = 1 are in the partition. Combining these
+observations with the fact that f1 and f2 are continuous, there
+must exist some t∗ ∈ [0, 1] for which f1 (t∗ ) ≤ D1 + and
+f2 (t∗ ) ≤ D2 + simultaneously.
+Therefore, distributions {pt∗ (u1 |y1 , q), pt∗ (u2 |y2 , q), pt∗ (q)}
+corresponding to t∗ yield a joint distribution which satisﬁes
+the rate constraints (10) and the distortion constraints
+
+, Q(tj ) )
+(tj+1 )
+
+; Y1 |U2
+
+, Q(tj+1 ) )
+
+(t)
+
+R2 ≥ I(U2 ; Y2 |U1 , Q(t) )
+(tj )
+
+= θI(U2
+
+(tj )
+
+; Y2 |U1
+
+, Q(tj ) )
+
+(tj+1 )
+
++ (1 − θ)I(U2
+(t)
+
+(tj+1 )
+
+; Y2 |U1
+
+, Q(tj+1 ) )
+
+(t∗ )
+
+(t)
+
+Di ≥ H(Yi |U1
+
+R1 + R2 ≥ I(U1 , U2 ; Y1 , Y2 |Q(t) )
+(t )
+(t )
+= θI(U1 j , U2 j ; Y1 , Y2 |Q(tj ) )
+(t
+)
+(t
+)
++ (1 − θ)I(U1 j+1 , U2 j+1 ; Y1 , Y2 |Q(tj+1 ) ).
+
+Since
+
+(t)
+
+(t)
+
+(12)
+(t)
+
+(t)
+
+To simplify notation, deﬁne fi (t) H(Yi |U1 , U2 , Q(t) ) for
+i = 1, 2 and t ∈ [0, 1]. By construction, we have that
+tf1 (t) + (1 − t)f2 (t) ≤ tD1 + (1 − t)D2
+
+(13)
+
+whenever t = tj for some tj in the partition. Next, observe
+that if t = θtj + (1 − θ)tj+1 , then fi (t) = θfi (tj ) + (1 −
+θ)fi (tj+1 ) by virtue of the time-sharing scheme. Furthermore,
+fi is piecewise-linear (and therefore continuous) and bounded
+from above by H(Y1 , Y2 ). Now, suppose t = θtj +(1−θ)tj+1
+for some j and θ. Then some straightforward algebra yields:
+
+[1] A. Wagner, S. Tavildar, and P. Viswanath, “Rate region of the quadratic
+gaussian two-encoder source-coding problem,” Information Theory, IEEE
+Transactions on, vol. 54, pp. 1938 –1961, May 2008.
+[2] N. Cesa-Bianchi and G. Lugosi, Prediction, Learning, and Games. New
+York, NY, USA: Cambridge University Press, 2006.
+[3] T. A. Courtade and T. Weissman, “Multiterminal source coding under
+logarithmic loss,” CoRR, vol. abs/1110.3069, 2011.
+[4] T. Courtade and R. Wesel, “Multiterminal source coding with an entropybased distortion measure,” in Information Theory Proceedings (ISIT),
+2011 IEEE International Symposium on, pp. 2040 –2044, Aug. 2011.
+[5] T. Berger, Z. Zhang, and H. Viswanathan, “The ceo problem [multiterminal source coding],” Information Theory, IEEE Transactions on, vol. 42,
+pp. 887 –902, may 1996.
+[6] T. Berger, Multiterminal Source Coding. In G. Longo (Ed.), The Information Theory Approach to Communications. New York, NY, USA:
+Springer-Verlag, 1977.
+[7] S. Jana, “Alphabet sizes of auxiliary random variables in canonical inner
+bounds,” in Information Sciences and Systems, 2009. CISS 2009. 43rd
+Annual Conference on, pp. 67 –71, March 2009.
+[8] J. Korner and K. Marton, “How to encode the modulo-two sum of binary
+sources (corresp.),” Information Theory, IEEE Transactions on, vol. 25,
+pp. 219 – 221, Mar 1979.
+
+= (θtj + (1 − θ)tj+1 ) (θf1 (tj ) + (1 − θ)f1 (tj+1 ))
++ (1 − θtj − (1 − θ)tj+1 ) (θf2 (tj ) + (1 − θ)f2 (tj+1 ))
+≤ θ2 [tj f1 (tj ) + (1 − tj )f2 (tj )]
++ (1 − θ)2 [tj+1 f1 (tj+1 ) + (1 − tj+1 )f2 (tj+1 )]
++ θ(1 − θ) [(1 − tj+1 )f2 (tj+1 ) + (1 − tj )f2 (tj )
+(14)
+
+2
+
+≤ θ [tj D1 + (1 − tj )D2 ]
++ (1 − θ)2 [tj+1 D1 + (1 − tj+1 )D2 ]
++ θ(1 − θ) [(1 − tj+1 )D2 + (1 − tj )D2
++tj D1 + tj+1 D1 ] +
+= tD1 + (1 − t)D2 + ,
+2 We
+
+was arbitrary, this proves the converse.
+
+R EFERENCES
+
+tf1 (t) + (1 − t)f2 (t)
+
++tj f1 (tj ) + tj+1 f1 (tj+1 )] +
+
+for i = 1, 2.
+
+V. C ONCLUDING R EMARKS
+Generalizing Theorem 5 to three or more encoders represents a formidable challenge. Indeed, an extension of the
+converse alone would not be sufﬁcient since this would imply
+optimality of the Berger-Tung inner bound for more than two
+encoders. This is known to be false since the Berger-Tung
+achievability scheme is suboptimal for the lossless modulosum problem studied by K¨ rner and Marton in [8].
+o
+We refer the reader to the full manuscript [3] for a detailed
+discussion of the relationship between the results presented
+herein and the general multiterminal source coding problem.
+Also, several applications and examples are given in [3] which
+have necessarily been omitted here due to space constraints.
+
+(t)
+
+tH(Y1 |U1 , U2 , Q(t) ) + (1 − t)H(Y2 |U1 , U2 , Q(t) )
+≤ tD1 + (1 − t)D2 + .
+
+∗
+
+, Q(t ) ) −
+
+Remark 2. Like Theorem 3, the converse of Theorem 5
+continues to hold when the reproduction alphabets are not
+restricted to the set of product distributions. Details are in the
+complete manuscript [3].
+
+By repeating this procedure for each interval in the partition,
+we obtain a family of such distributions parametrized by t ∈
+[0, 1]. Next, we show that the following holds for any t:
+(t)
+
+(t∗ )
+
+, U2
+
+(15)
+(16)
+
+can embed the timesharing scheme in the auxiliary variable Q(t) .
+
+5
+
+

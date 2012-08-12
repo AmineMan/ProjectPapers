@@ -1,0 +1,973 @@
+Creator:        TeX
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Thu May 17 13:29:06 2012
+ModDate:        Tue Jun 19 12:54:31 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      667832 bytes
+Optimized:      no
+PDF version:    1.7
+ISIT'2012 1569565537
+
+On Marton’s inner bound for broadcast channels
+Amin Gohari
+
+Chandra Nair
+
+Venkat Anantharam
+
+Dept. of EE
+Sharif University of Technology
+Tehran, Iran
+
+Dept. of IE
+The Chinese University of Hong Kong
+Hong Kong
+
+Dept. of EECS
+University of California, Berkeley
+Berkeley, CA, USA
+
+Abstract—Marton’s inner bound is the best known achievable
+region for a general discrete memoryless broadcast channel. To
+compute Marton’s inner bound one has to solve an optimization
+problem over a set of joint distributions on the input and
+auxiliary random variables. The optimizers turn out to be
+structured in many cases. Finding properties of optimizers not
+only results in efﬁcient evaluation of the region, but it may also
+help one to prove factorization of Marton’s inner bound (and
+thus its optimality). The ﬁrst part of this paper formulates this
+factorization approach explicitly and states some conjectures and
+results along this line. The second part of this paper focuses
+primarily on the structure of the optimizers. This section is
+inspired by a new binary inequality that recently resulted in
+a very simple characterization of the sum-rate of Marton’s inner
+bound for binary input broadcast channels. This prompted us
+to investigate whether this inequality can be extended to larger
+cardinality input alphabets. We show that several of the results
+for the binary input case do carry over for higher cardinality
+alphabets and we present a collection of results that help restrict
+the search space of probability distributions to evaluate the
+boundary of Marton’s inner bound in the general case. We also
+prove a new inequality for the binary skew-symmetric broadcast
+channel that yields a very simple characterization of the entire
+Marton inner bound for this channel.
+
+this region it sufﬁces [4] to consider |W|  |X | + 4, |U| 
+|X |, |V|  |X |.
+
+I. I NTRODUCTION
+A broadcast channel [1] models a communication scenario
+where a single sender wishes to communicate multiple messages to many receivers. A two-receiver discrete memoryless
+broadcast channel consists of a sender X and two receivers
+Y, Z. The sender maps a pair of messages M1 , M2 to a transmit sequence X n (m1 , m2 )(2 X n ) and the receivers each get
+a noisy version Y n (2 Y n ), Z n (2 Z n )Q
+respectively. Further
+n
+n
+|X |, |Y|, |Z| < 1 and p(y1 , z n |xn ) = i=1 p(yi , zi |xi ). For
+more details on this model and a collection of known results
+please refer to Chapters 5 and 8 in [2]. We also adopt most
+of our notation from this book.
+The best known achievable rate region for a broadcast
+channel is the following inner bound due to [3]. Here we
+consider the private messages case.
+
+Remark 1. Due to page limitations we have to omit some of
+the proofs from this version. They can be found in the full
+version [5].
+
+It is not known whether this region is the true capacity
+region since the traditional Gallager-type technique for proving
+converses fails to work in this case. This raises the question of
+whether Marton’s inner bound has an alternative representation
+that is more amenable to analysis. For this it is important
+to understand properties of joint distributions p(u, v, w, x)
+corresponding to extreme points of Marton’s inner bound. Our
+approach to this is twofold. In the ﬁrst part of this paper
+we ﬁnd sufﬁcient conditions on the optimizing distributions
+p(u, v, w, x) which would imply a kind of factorization of
+Marton’s inner bound. Such a factorization would imply that
+Marton’s region is the correct rate region. In the second part
+we ﬁnd necessary conditions on any optimizing p(u, v, w, x).
+Unfortunately the gap between these sufﬁcient and necessary
+conditions is still wide, but we discuss how the necessary
+conditions enhance our understanding of the maximizers of the
+expression I(U ; Y ) + I(V ; Z) I(U ; V ) and may be useful
+in proving the factorization of Marton’s inner bound.
+
+A. Necessary conditions
+The question of whether Marton’s inner bound matches one
+of the known outer bounds has been studied in several works
+recently [6], [7], [4], [8], [9]. Since we build upon these
+results in this work, a brief literature review is in order. It
+was shown in [7] that a gap exists between Marton’s inner
+bound and the best-known outer bound [10] for the binary
+skew-symmetric (BSSC) broadcast channel (Fig. 1) if a certain
+binary inequality, (1) below, holds. A gap between the bounds
+was demonstrated for the BSSC in [4] without explicitly
+having to evaluate the inner bound. The conjectured inequality
+for this channel was established in [8] and hence Marton’s
+sum-rate for BSSC was explicitly evaluated. The inequality
+was shown [9] to hold for all binary input broadcast channels
+thus giving an alternate representation to Marton’s sum-rate
+for binary input broadcast channels.
+
+Bound 1. (Marton) The union of rate pairs R1 , R2 satisfying
+the constraints
+R1 < I(U, W ; Y ),
+R2 < I(V, W ; Z),
+R1 + R2 < min{I(W ; Y ), I(W ; Z)} + I(U ; Y |W )
++ I(V ; Z|W ) I(U ; V |W ),
+
+Theorem 1. [9] For all random variables (U, V, X, Y, Z) such
+that (U, V ) ! X ! (Y, Z) and |X | = 2 the following holds
+
+for any triple of random variables (U, V, W ) such that
+(U, V, W ) ! X ! (Y, Z) is achievable. Further, to compute
+
+I(U ; Y ) + I(V ; Z)
+
+1
+
+I(U ; V )  max{I(X; Y ), I(X; Z)}.
+
+(1)
+
+This yields the following immediate corollary.
+
+product broadcast channel whose transition probability is given
+by q1 (y1 , z1 |x1 )q2 (y2 , z2 |x2 ); i.e. they can be considered as
+parallel non-interfering broadcast channels. For this channel
+the function T (X1 , X2 ) is deﬁned similarly as
+
+Corollary 1. [9] The maximum sum-rate achievable by Marton’s inner bound for any binary input broadcast channel is
+given by
+
+max
+
+max min{I(W ; Y ), I(W ; Z)} + P(W = 0)I(X; Y |W = 0)
+
+p(u,v|x1 ,x2 )
+
+p(w,x)
+
++ P(W = 1)I(X; Z|W = 1).
+
+This characterization is much simpler than that in Bound 1.
+Our results on the necessary conditions of an optimizer
+attempt to extend the new binary inequality to larger alphabets
+and to the entire rate region (rather than just the sum rate).
+
+H(Y1 , Y2 )
+ C[
+
+where ¯ = 1
+
+Suppose we have certain properties of p(u, v, w, x) that
+maximize Marton’s inner bound. How can one use this to
+prove that Marton’s inner bound is tight? The traditional
+Gallager-type technique requires us to consider the n-letter
+expression and to try to identify single-letter auxiliary random
+variables. If any such statement can be shown, it has to hold
+for n = 2 in particular. In [11], the authors studied Marton’s
+inner bound (sum-rate) via a two-letter approach and presented
+an approach to test whether Marton’s inner bound is indeed
+optimal. The crux of [11] is a certain factorization idea which
+if established would yield the optimality of Marton’s inner
+bound for discrete memoryless broadcast channels. Further
+the authors used the same idea to show [12] an example of
+a class of broadcast channels where Marton’s inner bound is
+tight and the best known outer bounds are strictly loose 1 .
+The converse to the capacity region of this class of broadcast
+channels was motivated by the factorization approach. The
+authors also showed that the factorization approach works if
+an optimizer p(u, v, w, x1 x2 ) for the two-letter Marton’s inner
+bound satisﬁes certain conditions.
+In this paper we provide more sufﬁcient conditions that
+imply factorization by forming a more reﬁned version of the
+two-letter approach [12]. Simulations conducted on randomly
+generated binary input broadcast channels indicate that perhaps the factorization stated below (Conjecture 1) is true; thus
+indicating that Marton’s inner bound could be optimal.
+For any broadcast channel q(y, z|x), deﬁne
+
+¯ H(Z1 ) + T (X1 )]
+
+H(Y2 )
+
+¯ H(Z2 ) + T (X2 ), ]
+
+.
+
+Remark 2. The above conjecture was not formally stated in
+[11] as the authors did not have enough numerical evidence
+at that point; however subsequently the evidence has grown
+enough for some of the authors to have reasonable conﬁdence
+in the validity of the above statement.
+It was shown [11] that if Conjecture 1 holds then Marton’s
+inner bound would yield the optimal sum-rate for a tworeceiver discrete memoryless broadcast channel. Hence establishing the veracity of the conjecture becomes an important
+direction in studying the optimality of Marton’s inner bound.
+The validity of Conjecture 1 was established [11] in the
+following three instances:
+1) = 0, = 1, i.e. the extreme points of the interval,
+2) If one of the four channels, say X1 7! Y1 is deterministic,
+3) In one of the components, say the ﬁrst, receiver Y1 is
+more capable3 than receiver Z1 .
+Note that to establish the conjecture one needs to get a
+better handle on T (X). What inequality (1) shows is that when
+|X| = 2 then
+T (X) = max{I(X; Y ), I(X; Z)}.
+
+In this work, we seek generalizations of the inequality (1) in
+two different directions:
+•
+
+I(U ; V ).
+
+Note that T (X) is a function of p(x) for a given broadcast
+channel. Similarly for any function2 f (X) denote by
+X
+C[f (X)] := max
+p(v)f (X|V = v),
+p(v|x)
+
+2 [0, 1] and
+
+¯ H(Z1 , Z2 ) + T (X1 , X2 )
+
+H(Y1 )
+
++ C[
+
+B. Sufﬁcient conditions
+
+p(u,v|x)
+
+I(U ; V ).
+
+Conjecture 1. For all product channels, for all
+for all p(x1 , x2 ) the following holds:
+
+Here W = {0, 1}.
+
+T (X) := max I(U ; Y ) + I(V ; Z)
+
+I(U ; Y1 , Y2 ) + I(V ; Z1 , Z2 )
+
+•
+
+v
+
+the upper concave envelope of f (X) evaluated at p(x). (Note
+that one can restrict the maximization to |V|  |X | by FenchelCaratheodory arguments.) A 2-letter broadcast channel is a
+1 The previous works established a gap between the bounds and in this work
+it was shown that the outer bounds (both in the presence and absence of a
+common message) are strictly sub-optimal.
+2 There is an abuse of notation: f (X) is actually a function of p(x), the
+distribution of X, similar to the notation H(X) for the entropy.
+
+To the entire private messages region: Maximizing
+I(U ; Y ) + I(V ; Z) I(U ; V ) for a given p(x) is related
+to the sum-rate computation of Marton’s inner bound. If
+one is interested in the entire private messages region,
+one must deal with a slightly more general form and this
+is presented in Section I-B1.
+Beyond binary input alphabets: The inequality (1) itself
+fails to hold where |X | = 3, for instance in the Blackwell
+channel4 . Therefore, we attempt to establish properties of
+the optimizing distributions p(u, v|x) that achieve T (X),
+in Section III.
+
+3 A receiver Y is said to be more-capable [13] than receiver Z if I(X; Y )
+I(X; Z) 8p(x).
+4 Blackwell channel is a deterministic broadcast channel with X =
+{0, 1, 2}, with the mapping X 7! Y ⇥ Z given by: 0 7! (0, 0), 1 7!
+(0, 1), 2 7! (1, 1).
+
+2
+
+1) A generalized conjecture: Much of the work in [11]
+focused on the sum-rate. If one is interested in proving
+the optimality of the entire rate-region (for the private message case) then establishing the following equivalent conjecture would be sufﬁcient. For ↵
+1 deﬁne T↵ (X) :=
+maxp(u,v|x) ↵I(U ; Y ) + I(V ; Z) I(U ; V ).
+
+1
+
+¯ )H(Y1 , Y2 )
+
+ C[ (↵
+
+¯ )H(Y2 )
+
++ C[ (↵
+
+Fig. 1.
+
+¯ H(Z2 ) + T↵ (X2 )].
+
+I(U ; Y 0 ) + I(V ; Z)
+
+I(U ; V )
+
+(↵ ¯ )H(Y1 , Y2 ) ¯ H(Z1 , Z2 ) + ↵I(U ; Y1 , Y2 )
++ I(V ; Z1 , Z2 ) I(U ; V )
+= (↵ ¯ )H(Y1 |Z2 ) ¯ H(Z1 |Z2 ) + ↵I(U ; Y1 |Z2 )
+
+The inequality in Equation (2) also holds for the binary
+skew-symmetric broadcast channel shown in Figure 1 (we
+assume p = 1 ); possibly the simplest channel whose capacity
+2
+region is not known. The proof is presented in the full version.
+
++ I(V ; Z1 |Z2 ) I(U ; V |Z2 ) (↵ ¯ )H(Y2 |Y1 )
+¯ H(Z2 |Y1 ) + ↵I(U ; Y2 |Y1 ) + I(V ; Z2 |U, Y1 )
+
+By establishing Equation (2) for this channel, we are now
+able to precisely characterize Marton’s inner bound region for
+this channel. In particular it is straightforward to see that for
+↵ 1, if M represents Marton’s inner bound, then
+
+I(Y1 ; Z2 |U, V ).
+
+Since X2 is a function of U we have
+
+↵I(U ; Y2 |Y1 ) + I(V ; Z2 |U, Y1 ) (↵ 1)I(Y1 ; Z2 |U )
+I(Y1 ; Z2 |U, V ) = ↵I(X2 ; Y2 |Y1 ).
+
+max
+
+ C[ (↵
+
++ C[ (↵
+
+=
+
+¯ )H(Y2 )
+
+↵R1 + R2
+⇣
+max
+min{I(W ; Y ), I(W ; Z)} + (↵
+
+(R1 ,R2 )2M
+
+Hence
+
+¯ )H(Y1 )
+
+I(X; Z): The
+
+(↵ 1)I(U ; Y )  (↵ 1)I(X; Y ),
+I(U ; Y ) + I(V ; Z) I(U ; V )  I(X; Y ).
+
+Proof: By elementary manipulations we have
+
+p(w,x)
+
+1)I(W ; Y )
+
+⌘
++ ↵ P(W = 0)I(X; Y |W = 0) + P(W = 1)I(X; Z|W = 1) .
+
+¯ H(Z1 |Z2 ) + ↵I(U ; Y1 |Z2 )
+
++ I(V ; Z1 |Z2 ) I(U ; V |Z2 ) (↵
+¯ H(Z2 |Y1 ) + ↵I(X2 ; Y2 |Y1 )
+
+I(U ; V )  max{I(X; Y 0 ), I(X; Z)},
+
+the inequality holds.
+2) ↵
+1 and p(x) is such that I(X; Y )
+inequality holds since
+
+and further P(X2 = x2 |U = u) 2 {0, 1} 8u, x2 , then the
+factorization conjecture holds.
+
+(↵
+
+I(U ; V )  max{↵I(X; Y ), I(X; Z)}. (2)
+
+However this inequality turns out to be false in general. A
+counterexample is presented in the full version.
+However the inequality is true in the following cases:
+1) ↵  1: To see this let Y 0 be obtained from Y by
+erasing each received symbol with probability 1 ↵. It
+is straightforward to see that I(U ; Y 0 ) = ↵I(U ; Y ) and
+I(X; Y 0 ) = ↵I(X; Y ). Since
+
+Claim 1. For some p(x1 , x2 ) and a product channel if we
+have a p(u, v|x1 , x2 ) such that
+
+T (X1 , X2 ) =
+
+The binary skew-symmetric broadcast channel
+
+↵I(U ; Y ) + I(V ; Z)
+
+A sufﬁcient condition beyond those established in [11] that
+imply factorization is the following:
+
+¯ )H(Y1 |Z2 )
+
+Z
+
+A. A conjecture for binary alphabets
+A natural guess for extending the inequality (1), so as to
+compute T↵ (X), is the following: for any ↵
+1, for all
+random variables (U, V, X, Y, Z) such that (U, V ) ! X !
+(Y, Z) and |X | = 2, the following holds
+
+II. S UFFICIENT CONDITIONS
+
+1)I(Y1 ; Z2 |U )
+
+0
+p
+1
+
+Remark 3. The sufﬁciency of the conjecture in proving the
+optimality of Marton’s inner bound follows from a 2-letter
+argument similar to that found in [11]. However this conjecture
+is not equivalent to proving the optimality of Marton’s inner
+bound; indeed it is a stronger statement.
+
+(↵
+
+p
+1
+
+¯ H(Z1 ) + T↵ (X1 )]
+
+T (X1 , X2 ) = I(U ; Y1 , Y2 ) + I(V ; Z1 , Z2 )
+
+Y
+
+1
+
+1
+
+¯ H(Z1 , Z2 ) + T↵ (X1 , X2 )
+
+¯ )H(Y1 )
+
+0
+
+X
+
+Conjecture 2. For all product channels, for all 2 [0, 1], for
+all ↵ 1, and for all p(x1 , x2 ) the following holds:
+(↵
+
+p
+p
+
+0
+
+¯ )H(Y2 |Y1 )
+
+A similar statement holds for when the roles of Y, Z are
+interchanged.
+Based on simulations and other evidence we propose the
+following conjecture.
+
+¯ H(Z1 ) + T↵ (X1 )]
+¯ H(Z2 ) + T↵ (X2 )].
+
+Conjecture 3. For all ↵
+with |X | = 2, we have
+
+Remark 4. The main purpose of this claim is to demonstrate
+that if the distributions p(u, v|x) that achieve T (X), we
+will refer to them as extremal distributions, satisfy certain
+properties, then we could employ these properties to establish
+the conjecture. In this paper we will establish some such
+properties of the extremal distributions.
+
+(↵
+
+¯ )H(Y )
+
+ C[ (↵
+
+1, for all (U, V ) ! X ! (Y, Z)
+
+¯ H(Z) + T↵ (X)
+
+¯ )H(Y )
+
+¯ H(Z) + max{↵I(X; Y ), I(X; Z)}].
+
+Remark 5. Clearly for a broadcast channel if Equation (2)
+holds then the conjecture holds. Even though we know that
+
+3
+
+Equation (2) may fail at some p(x) for some channels, the
+conjecture states that Equation (2) holds for a sufﬁcient class
+of p(x) that is needed to compute the concave envelope.
+
+where random variable L is deﬁned to take the value Lu,v
+under the event that (U, V ) = (u, v). Routine calculations
+show that this condition can be rewritten as follows
+XXX
+X 1 2
+Iu,v
+Tf (u,v1 ),f (u,v2 ),u Iu,v1 Iu,v2
+puv
+u,v
+u v1 v2
+XXX
+Tf (u1 ,v),f (u2 ,v),v Iu1 ,v Iu2 ,v 0,
+
+III. N ECESSARY CONDITIONS : BEYOND BINARY INPUT
+ALPHABETS
+
+In this section we compute some properties of the extremal
+distributions for T (X), |X | 3. To understand our approach,
+it is useful to have a quick recap of the proof of equation
+(1) for binary alphabets. The main idea behind the proof is
+to isolate the local maxima of the function p(u, v|x) by a
+perturbation argument, an extension of the ideas introduced in
+[4]. The following facts were established in [4]: for a ﬁxed
+broadcast channel q(y, z|x) to compute
+max I(U ; Y ) + I(V ; Z)
+
+p(u,v|x)
+
+v
+
+V (XOR case),
+
+u,v:x=f (u,v)
+
+Now, let us deﬁne Iu,v as follows: (a) Iu,v = 0 when u 6= u0
+and v 6= v0 , (b) Iu0 ,v = pu0 ,v pv0 when v 6= v0 , (c) Iu,v0 =
+pu,v0 pu0 when u 6= u0 , and (d) Iu0 ,v0 = pu0 v0 (pv0 pu0 ).
+Note that Iu0 ,v > 0 for all v 6= v0 , and Iu,v0 < 0 for all
+u 6= u0 since pu,v > 0.
+It is easy to verify equation (5) for this choice. The second
+derivative constraint reduces (after some manipulation) to
+
+I(U ; V )
+
+X
+
+u,v: u=u0
+or v=v0
+
+X
+
+1 2
+Iu,v
+puv
+
+X
+
+X
+
+2
+Tx0 ,x0 ,u Iu,v0 +
+
+u:u6=u0
+
++ Tx0 ,x0 ,u0 (
+
+2
+Tx0 ,x0 ,v Iu0 ,v
+
+v:v6=v0
+
+Iu0 ,v )2 + Tx0 ,x0 ,v0 (
+
+v
+
+X
+
+Iu,v0 )2 .
+
+(6)
+
+u
+
+Now, using Lemma 2 (a very similar result was used in
+pu0 v0
+1
+[9]) one can see that Tx0 ,x0 ,v
+pu0 v pv0 , Tx0 ,x0 ,v0
+p v0 ,
+pu0 v0
+1
+Tx0 ,x0 ,u
+puv pu and Tx0 ,x0 ,u0
+pu . Hence, observe that
+
+X = U ^ V (AND case).
+
+Hence we adopt the approach of eliminating classes of
+functions where the local maxima may exist and we present
+the generalizations of the AND case and the XOR cases in
+the next two sections.
+In the following sections we assume that p(u, v|x) achieves
+T (X) and X = f (U, V ). Further we assume that q(y, z|x) >
+0 8x, y, z, i.e. we are in a dense subset of channels with nonzero transition probabilities. In this case we can further assume
+that p(u, v) > 0 8u, v, [14].
+
+X
+
+0
+
+0
+
+0
+
+2
+Tx0 ,x0 ,u Iu,v0
+
++ Tx0 ,x0 ,u0 (
+
++
+
+X
+
+X
+
+Iu0 ,v )2
+
+v
+
+u:u6=u0
+
+2
+Tx0 ,x0 ,v Iu0 ,v + Tx0 ,x0 ,v0 (
+
+X
+
+Iu,v0 )2
+
+u
+
+v:v6=v0
+
+X
+
+pu0 v0 2
+1 X
+Iu,v0 +
+(
+Iu0 ,v )2
+puv0 pu0
+p u0 v
+u:u6=u0
+X pu v
+1 X
+2
+0 0
++
+Iu0 ,v +
+(
+Iu,v0 )2 .
+pu0 v pv0
+pv0 u
+
+A. Generalization of the AND case
+We now present an extension of the AND case from the
+proof of the binary inequality [9]. It says that one cannot have
+one column and one row mapped to the same input symbol.
+
+(7)
+
+v:v6=v0
+
+One can verify that for our given choice of Iu,v the right
+hand side of the equation (7) is equal to the left hand side of
+equation (6), i.e.
+
+Theorem 2. For any (U, V, X) such that X = f (U, V ) and
+p(uv|x) achieves T (X) one cannot ﬁnd x0 , u0 and v0 such
+that f (u0 , v) = f (u, v0 ) = x0 for all u 2 U and v 2 V.
+
+u,v:
+
+Proof: Assume otherwise that f (u0 , v) = f (u, v0 ) = x0
+for all u 2 U and v 2 V. Consider the multiplicative
+perturbation qu,v,x = pu,v,x (1 + "Lu,v ) for some " in some
+interval around zero. For this to be a valid perturbation, it has
+to preserve the marginal distribution of X, i.e.
+X
+pu,v,x Lu,v = 0,
+8x .
+(3)
+
+X
+
+1 2
+1 X
+1 X
+Iu,v =
+(
+Iu,v0 )2 +
+(
+Iu0 ,v )2
+puv
+pv0 u
+p u0 v
+u=u0 or v=v0
+X pu v
+X pu v
+2
+2
+0 0
+0 0
++
+Iu0 ,v +
+Iu,v0 .
+pu0 v pv0
+puv0 pu0
+v:v6=v0
+
+u:u6=u0
+
+This implies that both equations (7) and (6) have to hold
+with equality for our choice of Iu,v . Therefore all the inequalities in Lemma 2 have to hold with equality, which happens
+only if U is independent of Y , and V is independent of Z, i.e.
+I(U ; Y ) = I(V ; Z) = 0. This is a contradiction.
+
+u,v
+
+Lemma 1. If there are u1 6= u2 such that f (u1 , v) = f (u2 , v)
+for all v 2 V, one can ﬁnd another optimizer p(u0 , v|x), where
+I(U ; Y )+I(V ; Z) I(U ; V ) = I(U 0 ; Y )+I(V ; Z) I(U 0 ; V )
+and furthermore |U 0 | < |U|. A similar condition holds if one
+can ﬁnd v1 6= v2 such that f (u, v1 ) = f (u, v2 ) for all u 2 U.
+
+We can view the expression I(U ; Y ) + I(V ; Z) I(U ; V )
+evaluated at qu,v,x as a function of ". Non-positivity of the
+second derivative at a local maximum implies
+E(E(L|U, Y )2 ) + E(E(L|V, Z)2 )
+
+u2
+
+P
+1
+where Iu,v = puv Luv , Tx1 ,x2 ,u =
+y py|x1 py|x2 puy , and
+Tx1 ,x2 ,v is deﬁned similarly. Equation (3) can be rewritten as
+X
+Iu,v = 0 8x.
+(5)
+
+if sufﬁces to consider
+1) |U|, |V|  |X |, and
+2) p(x|u, v) 2 {0, 1}, i.e. X is a function of (U, V ), say
+X = f (U, V ).
+When X is binary, there are 16 possible functions from U, V
+to X. The proof [9] essentially boiled down to showing
+that the local maxima may only exist for the following two
+cases: U = X, V = ;; V = X, U = ;, leading to the
+terms I(X; Y ), I(X; Z) respectively. Indeed, in the proof,
+there were only two non-trivial cases to eliminate: these were
+(assume w.l.o.g. all alphabets of U , V, X are {0, 1}):
+X=U
+
+u1
+
+(4)
+
+E(E(L|U, V )2 )  0.
+
+4
+
+Remark 6. The proof can be found in the full version on arXiv.
+
+It is not hard to verify that the above expression is nonnegative, see the full version.
+
+Lemma 2. Take arbitrary u1 , u2 , v, x such that f (u1 , v) = x
+and f (u2 , v) = x. Then any maximizing distribution must
+P p2
+pu1 v
+y|x
+satisfy
+y pu2 y
+pu2 v pu1 . Equality implies that py|x =
+py|u2 = py|u1 for all y.
+
+IV. CONCLUSION
+We propose a pathway for verifying the optimality of
+Marton’s inner bound by trying to determine properties of
+the extremal distributions. We establish some necessary conditions, extending the work in the binary input case. We also
+add to the set of sufﬁcient conditions. We present a few
+conjectures whose veriﬁcations have immediate consequences
+for the optimality of Marton’s region.
+
+Proof: We start with the ﬁrst derivative condition to write
+
+log
+
+X
+p u1 v
+pu y X
+pvz
+
+py|x log 1 +
+pz|x log
+p u2 v
+p u2 y
+pvz
+y
+z
+X
+pu y
+=
+py|x log 1
+p u2 y
+y
+X
+pu py|x X
+py|x
+=
+py|x log 1
+py|x log
+p u2 y
+py|u1
+y
+y
+X
+X
+pu1 py|x
+pu py|x
+
+py|x log
+ log
+py|x 1
+.
+p u2 y
+p u2 y
+y
+y
+
+ACKNOWLEDGMENTS
+Amin Gohari was partially supported by the Iranian National Science Foundation Grant 89003743. Chandra Nair was
+partially supported by the University Grants Committee of the
+Hong Kong Special Administrative Region, China Project No.
+AoE/E-02/08 and GRF Project 415810. He also acknowledges
+the support from the Institute of Theoretical Computer Science and Communications (ITCSC) at the Chinese University
+of Hong Kong. Venkat Anantharam gratefully acknowledges
+research support from the ARO MURI grant W911NF- 08-10233, Tools for the Analysis and Design of Complex MultiScale Networks, from the NSF grant CNS- 0910702, from
+the NSF Science & Technology Center grant CCF-0939370,
+Science of Information, from Marvell Semiconductor Inc., and
+from the U.C. Discovery program.
+
+B. An alternate proof for the XOR case
+In this section we provide an alternative proof for the
+binary XOR case, and its generalization to the non-binary case
+(another extension of the XOR case has been provided in [14]).
+Let U, V be binary random variables, and X = U V . We
+would like to show that under this setting, we have
+I(U ; Y ) + I(V ; Z)  max(I(X; Y ), I(X; Z)).
+
+Deﬁnition 1. Given p(u, x), let cp(u,x) denote the minimum
+value of c such that I(U ; Y )  c·I(X; Y ) holds for all p(y|x)
+for all possible alphabets Y. Alternatively, cp(u,x) is the minimum value of c such that the function q(x) 7! H(U ) cH(X)
+when p(u|x) is ﬁxed, matches its convex envelope at p(x).
+
+R EFERENCES
+[1] T. Cover, “Broadcast channels,” IEEE Trans. Info. Theory, vol. IT-18,
+pp. 2–14, January, 1972.
+[2] A. El Gamal and Y.-H. Kim, Network Information Theory. Cambridge
+University Press, 2012.
+[3] K. Marton, “A coding theorem for the discrete memoryless broadcast
+channel,” IEEE Trans. Info. Theory, vol. IT-25, pp. 306–311, May, 1979.
+[4] A. Gohari and V. Anantharam, “Evaluation of Marton’s inner bound for
+the general broadcast channel,” International Symposium on Information
+Theory, pp. 2462–2466, 2009.
+[5] A. Gohari, C. Nair, and V. Anantharam, “On Marton’s inner bound for
+broadcast channels,” Arxiv:1202.0898, Feb. 2012.
+[6] C. Nair and A. El Gamal, “An outer bound to the capacity region of the
+broadcast channel,” IEEE Trans. Info. Theory, vol. IT-53, pp. 350–355,
+January, 2007.
+[7] C. Nair and Z. V. Wang, “On the inner and outer bounds for 2receiver discrete memoryless broadcast channels,” Proceedings of the
+ITA Workshop, 2008.
+[8] V. Jog and C. Nair, “An information inequality for the bssc channel,”
+Proceedings of the ITA Workshop, 2010.
+[9] C. Nair, Z. V. Wang, and Y. Geng, “An information inequality and
+evaluation of Marton’s inner bound for binary input broadcast channels,”
+International Symposium on Information Theory, 2010.
+[10] A. El Gamal, “The capacity of a class of broadcast channels,” IEEE
+Trans. Info. Theory, vol. IT-25, pp. 166–169, March, 1979.
+[11] Y. Geng, A. Gohari, C. Nair, and Y. Yu, “On Marton’s inner bound for
+two receiver broadcast channels,” Presented at ITA Workshop, 2011.
+[12] ——, “The capacity region of classes of product broadcast channels,”
+Proceedings of IEEE International Symposium on Information Theory,
+pp. 1549–1553, 2011.
+[13] J. K¨ rner and K. Marton, “Comparison of two noisy channels,” Topics
+o
+in Inform. Theory(ed. by I. Csiszar and P.Elias), Keszthely, Hungary,
+pp. 411–423, August, 1975.
+[14] A. Gohari, A. El Gamal, and V. Anantharam, “On an outer bound and an
+inner bound for the general broadcast channel,” International Symposium
+on Information Theory, 2010.
+
+By the data-processing inequality 0  cp(u,x)  1, and the
+minimum is well deﬁned.
+Remark 7. Note that here we are adopting a dual notion. We
+ﬁx the auxiliary channel p(u|x) and then ask for a minimizing
+c over all the forward channels.
+If cp(u,x) + cp(v,x)  1 then note: I(U ; Y ) + I(V ; Z) 
+cp(u,x) I(X; Y ) + cp(v,x) I(X; Z)  max(I(X; Y ), I(X; Z)).
+Theorem 3. For any binary U, V, X and p(u, v, x) such that
+X = U V it holds that cp(u,x) + cp(v,x)  1.
+
+Proof: Let pij = p(U = i, V = j) for i, j 2 {0, 1}. Let
+p00
+p00
+p01
+p01
+↵ := p00 +p11 = p(X=0) and := p01 +p10 = p(X=1) . Then
+we claim that cp(u,x)  |↵
+| and cp(v,x)  |↵ +
+1|.
+This will complete the proof since ↵, 2 [0, 1] implies
+|↵
+
+| + |↵ +
+
+1|  1.
+
+To show that cp(u,x)  |↵ |, it sufﬁces to show that q(x) 7!
+H(U ) |↵
+|H(X) is convex at all q(x). The proof for
+cp(v,x)  |↵ +
+1| is similar. Note that H(U ) |↵
+|H(X) = h(↵q(0) + q(1)) |↵
+|h(q(0)) where h(·)
+is the binary entropy function. Thus, we need to look at the
+function x 7! h(↵x + (1 x)) |↵
+|h(x) for x 2 [0, 1].
+The second derivative is
+(↵x + (1
+
+(↵
+x))(1
+
+)2
+(↵x + (1
+
+x)))
+
++
+
+|↵
+x(1
+
+|
+.
+x)
+
+5
+
+

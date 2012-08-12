@@ -1,0 +1,926 @@
+Creator:        TeX
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Fri May 18 11:25:58 2012
+ModDate:        Tue Jun 19 12:55:39 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      914188 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569566639
+
+Relaxed Gaussian Belief Propagation
+Yousef El-Kurdi, Dennis Giannacopoulos, Warren J. Gross
+Department of Electrical and Computer Engineering
+McGill University, Montreal (QC), H3A 0E9, Canada
+Email: yousef.el-kurdi@mail.mcgill.ca, {dennis.giannacopoulos, warren.gross}@mcgill.ca
+
+GaBP a priori, we propose a second algorithm that incrementally determines a suitable relaxation factor based on iterative
+error improvements that also results in signiﬁcant reductions
+in GaBP iterations. We demonstrate the advantages of our
+algorithms using empirical results of large, ill-conditioned, and
+weakly diagonally dominant inverse covariance matrices.
+
+Abstract—The Gaussian Belief Propagation (GaBP) algorithm
+executed on Gaussian Markov Random Fields can take a large
+number of iterations to converge if the inverse covariance matrix
+of the underlying Gaussian distribution is ill-conditioned and
+weakly diagonally dominant. Such matrices can arise from many
+practical problem domains. In this study, we propose a relaxed
+GaBP algorithm that results in a signiﬁcant reduction in the
+number of GaBP iterations (of up to 12.7 times). We also
+propose a second relaxed GaBP algorithm that avoids the need of
+determining the relaxation factor a priori which can also achieve
+comparable reductions in iterations by only setting two basic
+heuristic measures. We show that the new algorithms can be
+implemented without any signiﬁcant increase, over the original
+GaBP, in both the computational complexity and the memory
+requirements. We also present detailed experimental results of the
+new algorithms and demonstrate their effectiveness in achieving
+signiﬁcant reductions in the iteration count.
+
+II. BACKGROUND
+GaBP was recently introduced in [5] and [6] as an iterative method to solve linear systems of equations which
+algebraically are formulated as Ax = b, where x is the vector
+of unknowns and A is a sparse and positive deﬁnite matrix
+representing the Gaussian graphical model. In this case, A
+is also referred to as the precision matrix or, alternatively,
+the inverse covariance matrix of the multi-variate Gaussian
+distribution. The solution to the linear system can be directly
+computed by x∗ = A−1 b. However, when the linear system
+is large and sparse, iterative methods, e.g. the Preconditioned
+Conjugate Gradient (PCG), are traditionally used to to solve
+such systems, since they exhibit lower computational complexity and memory requirement than directly computing A−1 . We
+believe that GaBP provides an attractive alternative to PCG,
+since the locality and parallelism inherent in such message
+scheduling algorithms provide a potential for efﬁcient acceleration on emerging parallel architectures such as multicore
+CPUs and GPUs [3].
+Considering the matrix A symmetric and positive deﬁnite,
+where the nodal variables denoted by [xi ], the linear system
+Ax = b can be viewed as an undirected graph model,
+also referred to as Gaussian Markov Random Field (GMRF),
+where each non-zero coefﬁcient (Aij = 0) represents an
+undirected edge between random variable node xi and random
+variable node xj . By the Hammersley-Clifford theorem [7],
+the graph’s distribution p(x) can be factored into the nodal
+1
+functions φi (xi ) exp(− 2 Aii x2 + bi xi ) and edge functions
+i
+1
+ψi,j (xi , xj )
+exp(− 2 xi Aij xj ). Therefore, the distribution
+p(x) is a multivariate Gaussian probability with inverse covariance matrix A and nodal variable means µ = A−1 b. Hence
+the solution to the linear system Ax = b can be found by
+employing belief propagation inference algorithm to compute
+the marginal means of the variables xi in the multivariate
+Gaussian distribution p(x) [5].
+In Belief Propagation (BP), each node ni computes a
+message mij towards node nj on a particular pairwise edge
+(i → j) using all messages received from nodes in the
+neighborhood N (i) of node ni excluding the message received
+
+I. I NTRODUCTION
+Gaussian belief propagation is a message passing algorithm
+on Gaussian Markov Random Fields (GMRF) that efﬁciently
+computes the marginal at each node by sharing intermediate
+results. If the graph is a tree, then GaBP is guaranteed to
+converge to exact marginals. However, if the graph contains
+cycles, then GaBP takes an iterative form, also referred to
+as Loopy Belief Propagation (LBP), which was proposed
+by [1] as an approximation. GaBP can be shown to be a
+speciﬁc instance of a more generic message-passing algorithm
+referred to as the sum-product algorithm that operates on
+factor graphs [2]. The solution developed in this paper is
+motivated by the fact that GaBP algorithms exhibit distributed
+computations which potentially make them candidates for
+implementation on emerging parallel architectures. These architectures can achieve good speedups due to parallelism for
+problem domains requiring solutions for a large number of
+unknowns [3], such as the solution to Laplace’s equation using
+the Finite Element Method (FEM) [3].
+GaBP was found to exhibit fast convergence for problems
+where the inverse covariance matrix of the underlying multivariate Gaussian distribution, also referred to as the precision
+matrix, is strictly diagonally dominant [4], [5]. However, if
+the precision matrix is large, sparse and ill-conditioned, then
+GaBP may require a large number of iterations. Such graphs
+can arise from many practical problem domains. In this work,
+we present a relaxed form of GaBP that reduces the number of
+iterations, resulting in signiﬁcant computational reduction for
+ill-conditioned large linear systems. In addition, to circumvent
+the need of determining the relaxation factor for the relaxed
+
+1
+
+from nj . The general BP message update rules for GMRF
+distributions are obtained as follows:
+mij (xj ) ∝
+
+Ψij (xi , xj )Φi (xi )
+xi
+
+The relative error will be an important measure in our development of faster convergent relaxed GaBP algorithms. Another
+important measure for convergence is the normalized residual
+Frobenius norm, which is computed as follows:
+
+mki (xi ) dxi (1)
+k∈N (i)\j
+
+(t)
+
+p(xi ) ∝ Φi (xi )
+
+b − Axest
+b F
+
+(t)
+
+RF =
+
+with marginals computed as:
+mki (xi ).
+
+(2)
+
+Message updates from each node can be performed either
+sequentially or concurrently subject to a speciﬁc schedule.
+Since the underlying distribution is Gaussian, and each of
+the nodal Φi and edge Ψij potentials takes the form of a
+parameterized Gaussian as N (α, β) ∝ exp( −1 αx2 + βx).
+2
+By substituting the corresponding nodal and edge functions
+into (1) and (2), the belief update rules can be derived as
+propagating two edge parameters αij and βij [5] obtained by:
+
+where λmax (A) and λmin (A) are the largest and smallest
+eigenvalues of A. In numerical linear algebra, the condition
+number measures the sensitivity of the solution of the linear
+system to small perturbations in A. It may also be used
+to bound the convergence rate of iterative solvers of linear
+systems. Well-conditioned matrices have k (A) ≈ 1 while illconditioned matrices can have a much larger condition number.
+The matrix A is weakly diagonally dominant if
+
+(3)
+
+βij = −Aij αi\j −1 βi\j
+
+(4)
+
+where:
+αi\j = αi − αji
+
+(5)
+
+βi\j = βi − βji
+
+(11)
+
+where xest is the solution estimate of the iterative solver
+in iteration t. The residual RF provides an upper bound
+for the relative error; however in practice, the relative error
+is used in GaBP to test convergence since it is less costly
+to compute. The residual is only used as the convergence
+termination criteria in our experiments when we compare
+different algorithms.
+The Condition number of a matrix is deﬁned as:
+λmax (A)
+(12)
+k (A)
+λmin (A)
+
+k∈N (i)
+
+αij = −A2 αi\j −1
+ij
+
+F
+
+(6)
+
+|aii | ≥
+
+and:
+
+|aij | for all i,
+
+(13)
+
+j=i
+
+αi = Aii +
+
+αki
+
+(7)
+
+with strict inequality (>) for at least one i. If the inequality
+is replaced by (>) for all i, then the matrix A is referred to
+as strictly diagonally dominant. The work in [4] provides a
+rough upper bound on the number of iterations required by
+GaBP to reach a given convergence tolerance ; however, it is
+only applicable for strictly diagonally dominant matrices. In
+this study we will consider ill-conditioned matrices that are not
+strictly diagonally dominant, which require considerably larger
+number of GaBP iterations. Though, ﬁnding a theoretical
+upper bound for the convergence rate of GaBP for such
+matrices is still an open research question.
+A common convergence acceleration method referred to as
+the Aitken-Steffensen’s iteration was used in [5] to speedup
+GaBP convergence. An improved estimate of a message is
+computed at each third iteration as:
+
+k∈N (i)
+
+β i = bi +
+
+βki .
+
+(8)
+
+k∈N (i)
+
+For large sparse systems, the overall GaBP computational
+complexity per iteration is O (cN ), where N is the number
+of unknowns and c is a constant (c
+N ) determined by the
+sparsity of the underlying problem, e.i. the average number of
+links per node. The marginal means can then be computed by:
+βi
+.
+(9)
+αi
+GaBP was shown in [8] to converge for a particular class
+of matrices referred to as walk-summable models. The walksummability condition states that the spectral radius of the
+normalized off-diagonals of A in the absolute sense should
+1
+1
+be less than one, ρ(|I − D− 2 AD− 2 |) < 1, where D is the
+diagonal elements of A. Diagonally dominant matrices, later
+deﬁned in (13), are a subset of walk-summable models.
+In practice, the relative error norm (er ) can be used as
+a computationally efﬁcient measure to test the convergence
+of GaBP. This error can be computed each iteration, or each
+number of iterations, as an indicator for nodal solution (xi )
+convergence. The relative error norm is computed as follows:
+xi =
+
+e(t)
+r
+
+=
+
+(t)
+(t−1) 2
+N
+)
+i=1 (xi − xi
+(t) 2
+N
+i=1 (xi )
+
+m ≈ m(t+3) = m(t) −
+ˆ
+
+(14)
+
+where m(t) represents a message estimate at iteration t.
+However, when this acceleration is used in GaBP with illconditioned matrices, it yields unstable results even with
+double-precision implementations.
+In the following sections, we will present an iterative
+acceleration approach for GaBP using over-relaxation on the
+aggregates (βi ) of nodal messages that signiﬁcantly reduces
+the GaBP iterations. We will proceed with our discussion
+whereby all the information available from the underlying
+
+1
+2
+
+.
+
+(m(t+1) − m(t) )2
+m(t+2) − 2m(t+1) + m(t)
+
+(10)
+
+2
+
+problem is the matrix A. We will consider matrices that are
+large, sparse, ill-conditioned, and weakly diagonally dominant.
+With such matrices, the original GaBP algorithm requires a
+very large number of iterations to converge, whereby our
+relaxed GaBP algorithm is shown to achieve up to 12.7
+times reduction in iterations. We also present a second relaxed GaBP algorithm that can iteratively update the overrelaxation parameter to circumvent the need to determine the
+over-relaxation parameter a priori, which can also achieve
+comparable reductions in iterations.
+
+is referred to as over-relaxation and is used to accelerate
+convergence which is the objective of this work.
+To investigate the impact of βi relaxation on the original
+BP update rules of βij messages, we substitute (16) into (6)
+and then into (4) to obtain the following:
+−Aij ˆ(t+t )
+ˆ(t+t )
+βij o = ∗ βi\j o
+αi\j
+
+(19)
+
+(t+t )
+ˆ(t+t )
+ˆ(t+t )
+βi\j o = βi o − βji o
+
+(20)
+
+where,
+
+III. N ODAL B ELIEF R ELAXATION
+
+(t+to )
+
+= γβi\j
+
+A. Relaxed GaBP Algorithm
+
+(t+to )
+
+As can be seen from (5), (6) and (9), the marginal mean
+(t)
+of node i, which is also the solution estimate of xi at
+(t)
+(t)
+iteration t, can be obtained using the two sums αi and βi
+of messages received on all connected edges N (i). It can also
+be noted from these equations that applying any relaxation on
+the β messages does not affect the α messages convergence
+properties. Relaxation on βij can be applied as follows:
+(t)
+(t−1)
+ˆ(t)
+βij = γβij + (1 − γ)βij
+
+=
+
+(t)
+γβi
+
++ (1 −
+
+(t−1)
+γ)βi
+.
+
+and,
+(t+to )
+
+∆βji
+
+(15)
+
+1:
+
+(t+to )
+
+(t+to )
+
+= γxi
+
+2:
+3:
+
+(16)
+
+4:
+5:
+6:
+7:
+8:
+9:
+10:
+11:
+12:
+13:
+14:
+
+(17)
+
+(t+to −1)
+
++ (1 − γ)xi
+
+(t+to −1)
+
+− βji
+
+.
+
+(22)
+
+Initialize: ∀i, j
+αij = 0
+
+βij = 0
+(0)
+
+where:
+xi
+ˆ
+
+(t+to )
+
+= βji
+
+It can be seen from the above modiﬁed BP rule for βij
+messages that if γ is chosen such that the relaxed GaBP
+(t+t )
+converges to a ﬁxed point, the additional term ∆βji o
+approaches zero and the relaxed-GaBP ﬁxed point vector [xi ]
+equals the unique ﬁxed point solution of the original GaBP
+for Gaussian models. The detailed relaxed GaBP algorithm is
+shown in Fig. 1. We will refer to this algorithm as R-GaBP.
+
+Relaxing βi messages require additional memory of order
+(t−1)
+O (N ) to store the previous iteration βi
+messages; however, for every matrix we tested from the class of weakly
+diagonally dominant matrices the α messages converged much
+faster (within 10 to 20 iterations as demonstrated by our
+empirical results). If we decide to use this property, we can
+eliminate the additional memory requirement due to relaxing
+βi messages as follows:
+∗ (t+t )
+ˆ(t+t )
+βi o = αi xi o
+ˆ
+
+(21)
+
+− (1 − γ)∆βji
+
+where γ is referred to as the relaxation factor. The new
+(t)
+ˆ(t)
+relaxed message βij can be communicated instead of βij .
+It is clear that this relaxation does not require additional
+memory. However, it was observed that for GaBP based on
+pairwise graphical models, greater reductions in iterations
+can be obtained if we apply relaxation to the nodal sum βi
+messages as opposed to each individual edge message βij .
+Instead, the βi messages can be relaxed as follows:
+ˆ(t)
+βi
+
+(t+to −1)
+
++ (1 − γ)βi\j
+
+15:
+16:
+
+(18)
+
+17:
+
+where
+is the ﬁxed point reached after to iterations. The
+(t−1)
+xi
+values are here reused since they are preserved each
+iteration in order to also test for relative error convergence as
+shown in (10). As will be shown later, the relative error will
+also be used in the second relaxation algorithm as an iterative
+improvement measure. The relaxation factor γ is obtained
+from the limit γ ∈ [0, 2]. if γ is in [0, 1], the method is
+referred to as under-relaxation or damping and is used to make
+divergent algorithms convergent. If γ is in [1, 2], the method
+
+18:
+
+γ ∈ [1, 2]
+xi = 0
+repeat {Start GaBP iteration: t = 1, 2, · · · }
+for each node i do
+αi = Aii + k∈N (i) αki
+βi = bi + k∈N (i) βki
+if ∆αi < ∀i then
+α
+(t−1)
+ˆ
+βi = γβi + (1 − γ)αi xi
+{Relaxation using γ}
+else
+ˆ
+βi = βi
+end if
+ˆ
+xi = βi /αi
+{Message update subject to a schedule}
+for each edge i → j do
+αij = −A2 (αi − αji )−1
+ij
+ˆ
+βij = −Aij (βi − βji )(αi − αji )−1
+end for
+end for
+1
+(t−1) 2
+
+∗
+αi
+
+19:
+20:
+
+Compute: er =
+
+(xi −xi
+x2
+i
+
+)
+
+2
+
+until Convergence check: er <
+Output: x = [xi ]
+Fig. 1.
+
+Relaxed GaBP algorithm (R-GaBP)
+
+The condition for variance convergence in step-6 of Algorithm Fig. 1 is not inherently required and is due to
+implementation purposes. As explained earlier by waiting for
+
+3
+
+(t−1)
+
+(t−1)
+
+the variances to converge, we can obtain βi
+from xi
+(t)
+in order to relaxe βi which saves implementation memory
+of up to O (N ).
+By using an over-relaxation factor γ ∈ [1, 2], our empirical
+results indicate that the optimal γopt , which yields lowest
+iteration count for a given relative error tolerance , depends
+strongly on the elements of the matrix A, which makes
+γopt dependent on the underlying problem. Hence, ﬁnding
+a suitable γ may prove difﬁcult especially since using the
+wrong value will cause the algorithm to fail to converge.
+In the following section, we propose a heuristic algorithm
+that iteratively and incrementally ﬁnds an approximation to
+γ that in general produces a sufﬁciently fast convergence by
+iteratively reducing the relative error.
+
+10 to 20 iterations. We will refer to this algorithm as DRGaBP.
+If ∆γ is chosen sufﬁciently small with a sufﬁciently wide
+error sampling iteration interval d, the DR-GaBP algorithm
+should converge. Unlike the Aitken-Steffensen or similar acceleration methods, this algorithm is computationally more
+stable specially for ill-conditioned matrices. Another key advantage of the DR-GaBP algorithm is that it does not require
+a signiﬁcant increase in both computation and memory over
+the original GaBP algorithm.
+IV. R ESULTS AND D ISCUSSION
+Our test matrices are obtained from the classical L-shaped
+conductor problem in the ﬁeld of Electromagnetics. As shown
+in Fig. 3, the potential in the space between the two square
+conductors carrying different voltages is solved using the
+Laplace equation, 2 u = 0. However in practice, Laplace’s
+equation is solved numerically by dividing the interconductor
+space with triangular elements. These discretization problems
+typically require the solution of linear systems of equations
+that is large, sparse, ill-conditioned, and weakly diagonally
+dominant. In this section, we demonstrate the effectiveness of
+our developed R-GaBP and DR-GaBP algorithms by solving
+Ax = b arising from the Laplace equation discretization. We
+also use a selected set of other generated matrices in order to
+illustrate our empirical results. We used asynchronous message
+scheduling for our algorithms. The relative error er is recorded
+at each iteration. All algorithms were terminated when the
+residual reached RF < 10−9 .
+
+B. Iterative Over-relaxation Parameter Update
+Based on the empirical observation that a threshold γopt
+exists in the interval [1, 2], which is also found to be the only
+maximum in the same interval for given initial conditions. Any
+further increase on γopt will cause a substantial increase in
+(t)
+er . Intuitively then, we can gradually increase γ starting from
+an initial value by adding an increment ∆γ each d number of
+iterations as long as the er is improving. However, if er is
+found not to improve, we can likewise decrement γ. Fig. 2
+shows the details of an algorithm that can be used to ﬁnd
+a rough estimate of the over-relaxation γ which results in a
+higher relative error decrease rate.
+1:
+
+Initialize:
+ebest = 1.0
+
+2:
+3:
+4:
+5:
+6:
+7:
+8:
+9:
+10:
+11:
+12:
+13:
+14:
+
+γ (0) = 1.0
+
+d = 10
+∆γ = 0.1
+repeat {GaBP iteration: t = 1, 2, · · · }
+if t mod d = 0 then
+(t)
+if er < ebest then
+γ (t) = γ (t−1) + ∆γ {Increment γ}
+(t)
+ebest = er
+else
+γ (t) = γ (t−1) − ∆γ {Decrement γ}
+if γ (t) < 1.0 then
+γ (t) = 1.0
+end if
+end if
+end if
+until GaBP terminates
+Fig. 2.
+
+(a)
+
+(b)
+
+Fig. 3. L-shaped conductor problem (a) Illustrated discretization using a
+small mesh (b) Equipotential lines solution of Laplace’s equation
+
+The plots in Fig. 4 demonstrate the iteration reduction
+due to our R-GaBP algorithm. The size of the matrix A is
+N = 2700 unknowns, with number of non-zeros NNZ =
+17572. The original GaBP algorithm required 2449 iterations
+while R-GaBP algorithm required as low as 389 iterations for
+γ = 1.538 resulting in a reduction factor of 6.2. It can be
+observed that the overall relative error decreases consistently
+as γ increase to a certain value in the interval [1, 2]. It is
+expected that for this problem the best γopt can empirically
+be obtained as γopt ≈ 1.538, any further increase on γ will
+cause er to increase, and consequently causing the algorithm
+to fail to converge.
+
+Iterative update algorithm for γ (DR-GaBP)
+
+The algorithm in Fig. 2 relies on two basic settings ∆γ and
+d. The parameter ∆γ is a ﬁxed increment or decrement size
+which nominally can be set to 0.1, while d is the iteration
+interval length on which er can be tested in order to adjust γ.
+The error sampling interval d should be chosen wide enough
+so that the ﬂuctuations in er , resulting from the prior γ change,
+can diminish and a nominal value for er can be tested. In all
+of the cases we analyzed for ill-conditioned weak diagonally
+dominant matrices, a good value for d was found to be around
+
+4
+
+0
+
+Relative error (er) logarithmic scale
+
+10
+
+reductions versus the original GaBP. The performance of DRGaBP algorithm can depend on the choice of ∆γ, however
+the algorithm converged in all cases tested. It was observed
+that a nominal value of ∆γ = 0.1 resulted in best reductions
+on average.
+
+γ = 1.0
+γ = 1.2
+γ = 1.4
+γ = 1.54
+
+−2
+
+10
+
+−4
+
+10
+
+Table I
+R ESULTS OF R-G A BP ON SELECTED TEST MATRICES
+
+−6
+
+10
+
+−8
+
+10
+
+Matrix
+gr 30 30 [9]
+Sp Rand 1
+Sp Rand 2
+
+−10
+
+10
+
+0
+
+500
+
+1000
+1500
+Iterations
+
+2000
+
+2500
+
+Fig. 4. GaBP logarithmic relative error er versus iterations plots for different
+relaxation factors γ
+
+Matrix
+gr 30 30 [9]
+Sp Rand 1
+Sp Rand 2
+
+0
+
+Relative error (er) logarithmic scale
+
+∆γ = 0.01
+∆γ = 0.1
+∆γ = 0.2
+
+−4
+
+10
+
+−6
+
+10
+
+859
+5571
+3028
+
+R-GaB
+Itrs
+γ
+115
+1.59
+437
+1.8
+241
+1.67
+
+Red.
+Factor
+7.5
+12.7
+12.6
+
+∆γ = 0.01
+456
+1873
+732
+
+DR-GaBP
+∆γ = 0.1
+783
+872
+759
+
+∆γ = 0.2
+647
+1492
+963
+
+Red. Factor
+∆γ = 0.1
+1.1
+6.4
+4.0
+
+R EFERENCES
+
+−8
+
+10
+
+[1] J. Pearl, Probabilistic Reasoning in Intelligent Systems: Networks of
+Plausible Inference. Morgan Kaufmann, 1988.
+[2] F. R. Kschischang, B. J. Frey, and H. A. Loeliger, “Factor graphs and
+the sum-product algorithm,” IEEE Trans. Inf. Theory, vol. 47, no. 2, pp.
+498–519, Feb. 2001.
+[3] Y. El-Kurdi, W. J. Gross, and D. Giannacopoulos, “Efﬁcient implementation of Gaussian belief propagation solver for large sparse diagonally
+dominant linear systems,” IEEE Trans. Magn., vol. 48, no. 2, pp. 471
+–474, Feb. 2012.
+[4] Y. Weiss and W. T. Freeman, “Correctness of belief propagation in
+Gaussian graphical models of arbitrary topology,” Neural Computation,
+vol. 13, no. 10, pp. 2173–2200, 2001.
+[5] O. Shental, P. Siegel, J. Wolf, D. Bickson, and D. Dolev, “Gaussian belief
+propagation solver for systems of linear equations,” in IEEE Int. Symp.
+on Inform. Theory (ISIT), 6-11 2008, pp. 1863–1867.
+[6] E. Sudderth, M. Wainwright, and A. Willsky, “Embedded trees: Estimation of Gaussian processes on graphs with cycles,” IEEE Trans. Signal
+Process., vol. 52, no. 11, pp. 3136–3150, nov. 2004.
+[7] J. Hammersley and P. Clifford, “Markov Fields on Finite Graphs and
+Lattices,” 1971.
+[8] J. K. Johnson, D. M. Malioutov, and A. S. Willsky, “Walk-sum interpretation and analysis of Gaussian belief propagation,” in Advances in Neural
+Information Processing Systems 18. MIT Press, 2006, pp. 579–586.
+[9] Matrix Market: Harwell Boeing Collection. [Online]. Available:
+http://math.nist.gov/MatrixMarket/index.html
+
+−10
+
+10
+
+GaBP
+
+V. C ONCLUSION
+We have presented a new relaxed GaBP algorithm (R-GaBP)
+to accelerate GaBP convergence for ill-conditioned weakly
+diagonally dominant inverse covariance matrices. We have
+demonstrated empirical reductions of up to 12.7 times. We
+have also introduced and demonstrated the effectiveness of a
+variant of the relaxed GaBP algorithm (DR-GaBP) that avoids
+the complexity of setting a prior over-relaxation parameter by
+iteratively varying the relaxation factor in a way to achieve a
+faster convergence rate. In addition, the new algorithms do not
+require any increase of the computational complexity or the
+memory requirements of the original GaBP algorithm hence
+facilitating efﬁcient implementations on emerging parallel
+architectures.
+
+10
+
+10
+
+900
+5000
+3000
+
+Density
+(%)
+0.956
+0.4
+0.4
+
+Table II
+R ESULTS OF DR-G A BP ON SELECTED TEST MATRICES
+
+The plots in Fig. 5 shows the results of our DR-GaBP
+algorithm in obtaining a considerably lower GaBP iteration
+count without prior knowledge of γopt . The parameter ∆γ is
+varied from a ﬁne value of 10−2 to a coarser value of 2×10−1 .
+An error sampling interval of d = 10 was used for all plots.
+It is worth noting here that the best iteration reduction was
+found for ∆γ = 2 × 10−1 resulting in 337 iterations. This
+is lower than the previously reported 389 iterations by RGaBP assuming prior knowledge of γopt . This reduction may
+be attributed to the dynamics of the algorithm in alternating
+between two values of γ which are (1.3 and 1.6).
+
+−2
+
+N
+
+0
+
+200
+
+400
+
+600
+800
+Iterations
+
+1000
+
+1200
+
+1400
+
+Fig. 5. GaBP logarithmic relative error er versus iterations plots for different
+relaxation increments ∆γ
+
+We illustrate in Table I a selected set of test matrices. One
+matrix was obtained from the Matrix Market website repository [9]. The other two matrices were generated randomly
+using Matlab and set to be sparse and weakly diagonally dominant. The generated matrices all have negative off-diagonals
+which results in ill-conditioned matrices. For all algorithms we
+used d = 10. The variances for all matrices converged in less
+than 10 iterations. The density % of the matrix is measured
+by NNZ/N 2 × 100.
+Table I demonstrates iteration reductions produced by the
+R-GaBP algorithm in all cases. The second matrix shows
+reduction factor of 12.7 for γ = 1.8. Table II shows the
+results of DR-GaBP which also produced signiﬁcant iteration
+
+5
+
+

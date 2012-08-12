@@ -1,0 +1,807 @@
+Title:          CorrInterfISIT.dvi
+Creator:        dvips(k) 5.99 Copyright 2010 Radical Eye Software
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Fri May 18 23:47:28 2012
+ModDate:        Tue Jun 19 12:56:38 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      382625 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569564795
+
+Asymptotic Data Rates of Receive-Diversity
+Systems with MMSE Estimation and Interferers at
+Correlated Locations
+Siddhartan Govindasamy
+F. W. Olin College of Engineering
+Needham, MA, USA
+Email: siddhartan.govindasamy@olin.edu
+
+Signal-to-Interference-Ratio and reliability regime, where the
+density of active nodes is small. For multi-antenna systems,
+[5] analyzes interference-alignment in such networks and
+[6] analyzes Carrier-Sense-Multiple-Access (CSMA) networks
+with multiple antennas using a Poisson approximation for node
+positions.
+
+Abstract—An asymptotic technique is presented to characterize
+the bits/symbol achievable on a representative wireless link in a
+spatially distributed network with active interferers at correlated
+positions, N receive diversity branches, and linear MinimumMean-Square-Error (MMSE) receivers. The models analyzed
+include analogs to Matern type I and type II networks. It is
+found that for our network models, with large N, the correlation
+between interferer positions does not signiﬁcantly inﬂuence the
+bits/symbol resulting in simple approximations for the data rates
+achievable in such networks with moderately large numbers of
+diversity branches.
+Index Terms—Matern, MIMO, MMSE.
+
+In this work, we consider interference-limited wireless
+networks with interferers distributed on a plane with receive
+diversity and linear Minimum-Mean-Square-Error (MMSE)
+receivers. This diversity could be from multiple antennas,
+multiple frequencies or other forms of diversity. We consider
+interference-limited networks in order to focus on networks
+with a high density of active nodes. The interferers that are
+actively transmitting in this work are spatially correlated. In
+particular, the active interferers in our model could come from
+a dependent thinning of an underlying process of independent
+node positions which we call the dependent thinning model.
+Note that our dependent thinning model can be used to
+analyze hard core models that are very similar to type I and
+type II Matern hard-core processes, which have been used to
+approximate CSMA networks (see e.g. [7], [3] and others).
+Hence our ﬁndings are useful to analyze the behavior of wireless networks that have multi-antenna nodes with CSMA-like
+protocols, and networks with signiﬁcant physical limitations
+on minimum inter-node separation.
+
+I. I NTRODUCTION
+In wireless networks with multiple diversity branches such
+as multi-antenna systems, interference mitigation can improve
+frequency reuse, increasing aggregate data rates. Since signal
+and interference strengths are inﬂuenced by relative node
+positions, the spatial distribution of nodes strongly inﬂuences
+the performance of these networks. Most works on wireless
+networks with spatially-distributed nodes assume that the
+locations of active nodes are independent, a good model for
+networks with uniformly-random spatial node distributions
+and uncoordinated transmissions. In many situations however,
+active nodes may be spatially correlated, e.g. in networks with
+coordinated transmissions such as networks with MediumAccess-Control (MAC), and systems with signiﬁcant physical
+constraints on how close nodes may get to each other such as
+vehicular networks.
+The analysis of wireless networks with spatially correlated
+transmitters is well known to be difﬁcult. Most related results
+in the literature deal with interference modeling for systems
+with no diversity, and utilize bounds or asymptotic approaches
+to handle the complexity associated with correlated node
+positions. For instance [1] analyzes hard-core networks (where
+nodes are prohibited from transmitting in the vicinity of other
+nodes), by ﬁnding bounds on the mean interference in these
+networks. [2] analyzes clustered networks and [3] and [4]
+analyze networks with correlated node positions in the high
+
+We use an asymptotic analysis to handle the complexity
+associated with correlated interferer positions, taking the number of diversity branches N and interferers in the network
+to inﬁnity but keeping their ratio constant to derive simple
+approximations to appropriately normalized versions of the
+Signal-to-Interference-plus-Noise-Ratio (SINR) and achievable data rates (bits/symbol) when Gaussian transmissions are
+assumed, on a representative link. The asymptotic analysis
+indicates that as the diversity order at the receiver increases,
+the spatial dependence between active transmitters does not
+strongly inﬂuence the data rates in such networks which
+result in simple approximate expressions which we validate
+by Monte Carlo simulation.
+
+This research was supported in part by the National Science Foundation
+under Grant CCF-1117218.
+
+1
+
+II. S YSTEM M ODEL
+
+(1) holds. All limiting results refer to this regime. The main
+results are given in terms of limiting values of a normalized
+α
+version of the SINR, βN = N −α/2 rT SINR, at the output
+of the MMSE receiver. This normalization is used because
+the (un-normalized) SINR grows with the number of diversity
+branches as N α/2 .
+
+A. General network model
+Consider a circular network of radius R centered at the
+origin, with a representative receiver at the origin. The representative receiver is in a link with a representative transmitter
+located at a ﬁxed point XT which is at distance rT from the
+origin. Note that these points are assumed to be deterministic
+in our model.
+The representative receiver has N diversity branches (e.g.
+antennas or frequency diversity). In addition to the representative transmitter, there are n other potential transmitters in the
+network which when active, are co-channel interferers to the
+representative link. Some of the potential transmitters will not
+be actively transmitting as described later in this section. Let
+the potential interferer locations be denoted X1 , X2 , · · · , Xn
+with the distance of the i-th potential interferer from the origin
+denoted by ri = |Xi |. The n potential interferers are i.i.d. with
+uniform probability in the circular network such that the area
+density of potential interferers ρp satisﬁes
+n = π ρp R 2 .
+
+B. Spatial Correlation Model
+The active nodes in the network are assigned nonzero transmit powers by a function g(.) such that P =
+g (X1 , · · · , Xn ; XT ), where we emphasize that g(.) could depend on XT . g(.) controls which of the n potential interferers
+are transmitting, and since it is parameterized by XT , the
+transmit powers of the interferers are a function of the locations of all potential transmitters (potential interferers and the
+target transmitter) in the network. We assume that g(.) results
+in a distribution of transmit powers that are stationary with
+respect to the indexing variable i, i.e. P1 , P2 , · · · , Pi , · · · , Pn
+are stationary with respect to i. Note that this is not the same
+as requiring spatial stationarity.
+The correlation between the positions of the active nodes
+needs to satisfy a covariance constraint on the received powers
+from the potential interferers. Deﬁne a variable ai (x) which
+indicates if pi is less than or equal to x i.e.,
+
+(1)
+
+The average power (averaged over the fading realizations)
+received at each diversity branch of the representative receiver
+from an interferer at distance ri transmitting with power Pi is
+−α
+pi = Pi ri , with α > 2. The transmit powers of the potential
+interferers, Pi either equal Pt > 0, or zero, and the transmit
+power of the representative transmitter is ﬁxed at Pt . Therefore, the vector of transmit powers P = (P1 , P2 , · · · , Pn )
+controls which of the potential interferers are active, and the
+representative transmitter is always active. We assume that the
+power used by the active transmitters Pt = N α/2−1 P , with P
+a positive constant. We scale the transmit powers in this way
+to keep the system interference-limited (which is the focus of
+this work) as N increases. Without this assumption, as the
+diversity order of the system increases, the MMSE receiver
+will suppress interference to levels comparable to the noise
+resulting in a system that is no longer interference-limited.
+Scaling the transmit power with the diversity order in this
+manner ensures that the system remains interference-limited
+enabling a meaningful asymptotic analysis. Note that since
+the signal and interference powers are assumed to be equal
+in this work, their speciﬁc value does not inﬂuence the SINR
+when the noise power is negligible.
+The vector y contains the sampled signals at the N diversity
+branches of the representative receiver and is given by
+−α
+
+y = rT 2 gT
+
+n
+
+Pt xT +
+
+−α
+2
+
+ri
+
+gi
+
+Pi xi + w
+
+ai (x) = 1{pi ≤x} ,
+
+(3)
+
+where 1{A} is the indicator function for the condition A. The
+correlation between active transmitters must be such that
+1
+n→∞ n
+
+n
+
+lim
+
+Cov (a1 (x), ai (x)) = 0,
+
+(4)
+
+i=1
+
+for all x > 0 . (4) amounts to requiring that the correlation
+between received powers at the origin due to the transmitters
+that are active decay at a certain rate as the number of potential
+interferers goes to inﬁnity. Finally, we require that for any i,
+as n, N, R → ∞,
+α
+
+−α
+Pr (pi ≤ x) → Pr(Pi > 0) Pr N 2 ri P ≤ x
++ Pr(Pi = 0).
+
+(5)
+
+This last requirement simply means that as the size of the
+network goes to inﬁnity, the probability of an interferer being
+active is independent of its distance from the origin.
+III. M AIN R ESULT
+The normalized SINR βN , converges with probability 1 to
+a deterministic limit as given in the theorem below.
+Theorem 1: In the limit as n, N → ∞ such that n/N =
+c > 0 and (1) hold, βN → β with probability 1 where β is
+the real, positive solution to the following equation.
+
+(2)
+
+i=1
+
+where xi , is the transmitted symbol by node i, and gi is an N ×
+1 vector of i.i.d., zero-mean, unit variance random variables
+(not necessarily Gaussian). The N × 1 vector w represents
+independent zero-mean, circularly-symmetric Gaussian noise
+of variance σ 2 per complex dimension.
+The asymptotic regime we shall consider is the limit as N , n
+and R → ∞, such that n/N = c > 0 and ρp are constants, and
+
+2
+
+2π 2 ρβ α
+csc
+α
+
+2π
+α
+
+2πρβ
+−
+α
+
+b
+0
+
+2
+
+τ−α
+dτ + βσ 2 = 1 (6)
+1 + τβ
+
+where ρ = ρp limn→∞ Pr(Pi > 0) and b = (πρb N/n).
+Proof: Given in Appendix A.
+Note that ρ is the effective density of active transmissions
+in the limit. Additionally, note that when the N is large,
+
+2
+
+of intensity λ. For the Type I process, each point of the
+underlying Poisson process that is within a distance h from
+another point of the underlying process is removed. For the
+Type II process, a point of the underlying Poisson process is
+retained only if there is no other point of the Poisson process
+within a distance h of it which has a mark of lesser value.
+Thus, these processes are the result of dependent thinning of
+an underlying Poisson point process. To incorporate an active
+transmitter at a particular location, the Matern process has
+to be conditioned on having a node at that location which
+leads to added mathematical complexity as the probability
+of a node being at a particular point is zero. We sidestep
+this complexity for HC-I and HC-II by assuming that the
+representative transmitter is not part of the random process
+but is located at a deterministic point.
+Recall that (P1 , P2 , · · · , Pn ) = g(X1 , X2 , · · · , Xn ; XT )
+assigns the transmit powers to the potential interferers and
+can be deﬁned as follows. For the HC-I model, g(.) assigns
+Pi = 0 if either |Xi −XT | < h or ∃j such that |Xi −Xj | < h.
+Pi = Pt otherwise. For the HC-II model, g(.) assigns Pi = 0
+if either |Xi − XT | < h or ∃j such that |Xi − Xj | < h and
+Mi > Mj . Pi = Pt otherwise. These deﬁnitions of g(.) satisfy
+(4) as shown in Appendix B.
+For the HC-I model, in the limit as R → ∞, Pr(Pi >
+0) = exp(−ρp πh2 ), which is the density of a Matern type I
+process. For the HC-II model in the limit as R → ∞, Pr(Pi >
+1
+0) = ρp πh2 (1 − exp(−ρp πh2 )), which is the density of a
+Matern type II process. Thus, the mean bits/symbol for these
+models are given by (8) with ρ = ρp exp(−ρp πh2 ) or ρ =
+1
+2
+πh2 (1 − exp(−ρp πh )).
+Assuming that the approximation in (8) holds, and making
+the simplifying assumption that each link in the network is of
+length rT , we can approximate the mean bits/symbol per unit
+area as
+
+the SINR is not strongly inﬂuenced by the dependence of
+the transmit powers as β is only dependent on the marginal
+probability that a node is selected to transmit. This leads
+to simple approximations to the bits/symbol given later in
+this section as the complicated dependence between transmit
+powers becomes negligible with large N .
+Assuming that all nodes use Gaussian code books we
+estimate the bits/symbol using the Shannon formula, CN =
+log2 (1 + SINR). By the continuity of the log function it can
+be shown that
+α
+
+log2 (1 + SINR) − log2 1 + N 2 β
+
+→0
+
+with probability 1 as N → ∞ in the manner of Theorem 1.
+Furthermore, applying the bounded convergence theorem in
+the manner of [8], we can show that
+α
+
+E [log2 (1 + SINR)] − log2 1 + N 2 β → 0.
+α
+
+Hence, log2 1 + N 2 β is a good approximation for the mean
+bits/symbol when the diversity order N is large.
+Additionally, if the noise power is small and the diversity
+order of the system is much smaller than the number of
+potential interferers n, b is small, and the second two terms
+on the LHS of (6) are small. βN can then be approximated as
+βN
+
+α
+≈
+sin
+2π 2 ρ
+
+2π
+α
+
+α
+2
+
+,
+
+(7)
+
+which leads to the following approximation for the mean
+bits/symbol
+E[C] ≈ log2
+
+1+ N
+
+IV. A PPLICATION
+
+TO
+
+α
+2 sin
+2π 2 ρrT
+
+2π
+α
+
+α
+2
+
+.
+
+(8)
+
+H ARD C ORE M ODELS
+
+We apply the above techniques to two hard-core models
+which we refer to as HC-I and HC-II, which are closely related
+to the Matern Type I and II models commonly used to model
+hard-core processes (e.g. see [9]). Hard-core models can serve
+as simple models for active nodes in systems with mediumaccess-control (MAC) protocols where nodes that are close
+to each other are not allowed to transmit simultaneously. For
+instance, the Matern Type II model has been suggested as
+a model for CSMA networks [10] in which nodes are not
+allowed to transmit if they detect an ongoing transmission in
+their vicinity.
+In the HC-I model we assume that all n potential interferers
+in the radius R network are active unless they are within
+a distance h of any other interferer or the representative
+transmitter. In the HC-II model, each interferer is assigned
+an independent uniform (0, 1] random variable called a mark,
+where the mark assigned to the i-th interferer is Mi . All
+potential interferers are active unless they are within a distance
+h of the representative transmitter, or if they are within a
+distance h of any interferer and have a higher mark than that
+interferer.
+In comparison, the Matern type I and type II point processes
+are constructed from an underlying Poisson point process
+
+E[γ] ≈ ρ log2
+
+α
+1+ N
+sin
+2 ρr2
+2π T
+
+2π
+α
+
+α
+2
+
+.
+
+(9)
+
+Maximizing the RHS of (9) with respect to ρ by setting its
+derivative to zero yields,
+2W0 − α e−α/2
+2
+ρ = −
+2W0 − α e−α/2 + α
+2
+∗
+
+2/α
+
+N
+
+α
+2 sin
+2π 2 rT
+
+2π
+α
+(10)
+
+where W0 (z) is the principle branch of the Lambert-W function. Substituting (10), we ﬁnd that at the optimal ρ the RHS
+−2
+of (9) is proportional to N rT . Note that (10) can be used to
+ﬁnd the optimal exclusion radius h.
+V. N UMERICAL S IMULATIONS
+We conducted Monte Carlo simulations to validate the
+asymptotic results for the bits/symbol derived in the previous
+sections. We simulated both HC-I and HC-II networks with
+path-loss exponents of α = 4. The link-lengths rT for both
+2
+sets of simulations were selected such that πρp rT = 1,
+i.e. on average 1 other potential interferer is closer to the
+
+3
+
+20
+h = 1.414 rT
+
+18
+
+5
+Simulation
+Asymptotic
+5
+
+10
+
+15
+20
+Diversity Order
+
+h = 2rT
+
+16
+
+h=r
+
+T
+
+0
+0
+
+h = 4r
+
+T
+
+10
+
+Data Rate (bits/symbol)
+
+Mean Bits/symbol (b/S)
+
+15
+
+25
+
+30
+
+35
+
+14
+12
+10
+8
+
+Asymptotic
+
+6
+
+Fig. 1. Mean bits/symbol with the HC-I model of interferers. The link length
+2
+rT was such that πρp rT = 1, and the radius of the guard zone, h was a
+multiple of rT as labeled in the ﬁgure.
+
+4
+2
+0
+
+10
+
+20
+
+30
+40
+Diversity Order
+
+50
+
+60
+
+70
+
+Mean Bits/symbol (b/S)
+
+20
+h = 4rT
+
+Fig. 3. Bits/symbol from 100 simulations of HC-II model of interferers vs.
+2
+receive diversity order. The link length rT was such that πρp rT = 1, and
+the radius of the guard zone, h was a multiple of rT as labeled in the ﬁgure.
+
+h = 2rT
+
+15
+
+h = rT
+10
+
+spatially correlated and receivers have N diversity branches
+with linear MMSE processing. In particular, we consider
+networks which are the result of the dependent thinning of
+an underlying process of independent node positions. The
+thinning operation is such that the received powers of pairs
+of nodes satisfy a particular covariance criterion which are
+satisﬁed by the HC-I and HC-II models deﬁned in Section IV,
+which are analogous to Matern type I and II models which are
+popular hard-core models in stochastic geometry.
+For systems satisfying our model, we ﬁnd that when the
+number of diversity branches N grows large, the dependence
+of the interferer locations on the bits/symbol of a representative
+link in the network plays a diminishing role. As a result, the
+mean spectral efﬁciency for large N can be accurately approximated using simple expressions. The asymptotic results are
+validated for ﬁnite-sized systems by Monte carlo simulations.
+These ﬁndings provide insight into wireless networks with
+correlated transmissions, for which only a limited number of
+results exist in the literature.
+
+5
+Simulation
+Asymptotic
+0
+0
+
+10
+
+20
+
+30
+40
+Diversity Order
+
+50
+
+60
+
+70
+
+Fig. 2. Mean bits/symbol with HC-II model of interferers. The link length
+2
+rT was such that πρp rT = 1, and the radius of the guard zone, h was a
+multiple of rT as labeled in the ﬁgure.
+
+representative receiver than the representative transmitter. The
+radius of the guard zones h were varied as a function of rT
+and are given in the corresponding ﬁgures.
+Figure 1 illustrates the mean bits/symbol from simulations
+of the HC-I model with guard zones that are a multiple of
+the length of the representative link. Note from the ﬁgure
+that the asymptotic approximation is very close to the simulated mean bits/symbol. For N ≥ 6 diversity branches, the
+simulated and asymptotic mean bits/symbol (from (8)) with ρ
+deﬁned appropriately) are virtually indistinguishable. Figure 2
+illustrates the mean bits/symbol from simulations of the HC-II
+model with guard zones that are a multiple of the length of the
+representative link. Note from the ﬁgure that the asymptotic
+approximation is very close to the simulated mean bits/symbol,
+even when the number of diversity branches is small. Figure
+3 shows the bits/symbol obtained from 100 simulations of the
+HC-II process for different receive diversity orders. The concentration of points with increasing diversity order indicates
+that the bits/symbol concentrates on the asymptotic prediction
+which implies convergence in probability (although the theory
+predicts convergence with probability 1).
+VI. S UMMARY
+
+AND
+
+VII. ACKNOWLEDGEMENT
+We thank the reviewers of this manuscript and its prior
+versions for constructive comments.
+A PPENDIX
+A. Proof of Main Result
+The main property we use to prove this theorem is the
+convergence of the empirical distribution function (e.d.f.) of
+the pi s which is the proportion of the pi s that are ≤ x.
+Note that the pi s are correlated random variables and the
+convergence of their e.d.f. is not as straightforward as it would
+be if they were uncorrelated. Note that the set of ai s for
+which Pi > 0 forms an associated set, since any subset of
+independent random variables forms an associated set (see e.g.
+[11] Chapter 20). If the associated random variables satisfy
+the covariance requirement in (4), it is known that the ai s
+
+C ONCLUSIONS
+
+An asymptotic technique to compute the bits/symbol achievable in wireless networks where active potential interferers are
+
+4
+
+c
+and ek = E[ak |D1k ], where we have written a1 and ak to
+¯
+represent a1 (x) and aK (x) for simplicity. From the law of
+total covariance, we have
+
+obey the strong law of large numbers [12]. From (3), the e.d.f.
+1
+of received interference powers Hn (x) = n n ai , and as
+i=1
+n, N, R → ∞ in the manner of Theorem 1,
+−α
+Hn (x) → E [ai ] = Pr{ri Pt < x}
+
+Cov(a1 , ak ) = Pr(D1k )Cov [a1 , ak |D1k ]
+c
++ Pr(D1k )e1 ek + Pr(D1k )¯1 ek
+e ¯
+
+(11)
+
+with probability 1. Note that this holds even though Pt
+grows with N as the difference between the terms diminishes
+exponentially [12].
+From [13], it is known that if the e.d.f. of the received
+interference powers (Hn (x) here) of a system with an MMSE
+receiver in the presence of interferers converges to a limit
+H(x), the limiting SINR converges with probability 1 to an
+asymptotic limit which is given by the positive, non-zero
+solution for β in the following equation:
+∞
+
+−βσ 2 + 1 = βc
+0
+
+x dH(x)
+.
+1 + xβ
+
+c
+c
+− (Pr(D1k )e1 + Pr(D1k )¯1 ) (Pr(D1k )ek + Pr(D1k )¯k )
+e
+e
+= Pr(D1k )Cov [a1 , ak |D1k ]
+c
+c
++ Pr(D1k ) Pr(D1k )e1 ek + Pr(D1k ) Pr(D1k )¯1 ek
+e ¯
+c
+c
++ Pr(D1k ) Pr(D1k )e1 ek + Pr(D1k ) Pr(D1k )¯1 ek .
+¯
+e
+
+Note that the CDF of the distance between two i.i.d. points
+distributed with uniform probability in a circle of radius R is
+1
+of order R2 [15]. The distance between X1 and Xk clearly
+1
+follows this distribution. Hence Pr(D1k ) = Θ R2 . There1
+fore, the RHS of the previous equation is of order Θ R2
+and goes to zero as n, N, R → ∞. Hence, (4) is satisﬁed. A
+similar argument can be made for the HC-II model.
+
+(12)
+
+What remains now is to ﬁnd H(x) and evaluate (12). From
+−α
+[14], it is known that the CDF of N α/2 ri is
+πρp − 2
+−α
+Pr(N α/2 ri ≤ x) = 1 −
+x α 1{b<x<N α/2 R−α } (13)
+m
+c
+where Rm is the minimum possible distance between an active
+interferer and the representative receiver at the origin. From
+(5), we have the following as N, n, R → ∞,
+
+R EFERENCES
+[1] M. Haenggi, “Mean interference in hard-core wireless networks,” IEEE
+Commun. Lett., vol. 15, no. 8, pp. 792 –794, Aug. 2011.
+[2] R. Ganti and M. Haenggi, “Interference and outage in clustered wireless
+ad hoc networks,” IEEE Trans. Inf. Theory, vol. 55, no. 9, pp. 4067 –
+4086, Sep. 2009.
+[3] R. Ganti, J. Andrews, and M. Haenggi, “High-SIR transmission capacity
+of wireless networks with general fading and node distribution,” IEEE
+Trans. Inf. Theory, vol. 57, no. 5, May 2011.
+[4] R. Giacomelli, R. Ganti, and M. Haenggi, “Outage probability of general
+ad hoc networks in the high-reliability regime,” IEEE/ACM Trans. Netw.,
+vol. 19, no. 4, pp. 1151–1163, Aug. 2011.
+[5] R. Tresch and M. Guillaud, “Clustered interference alignment in large
+cellular networks,” in IEEE International Symposium on Personal,
+Indoor and Mobile Radio Communications (PIMRC), 2009.
+[6] A. Hunter, R. Ganti, and J. Andrews, “Transmission capacity of multiantenna ad hoc networks with CSMA,” in Conference Record of the 44th
+Asilomar Conference on Signals, Systems and Computers, Nov. 2010.
+[7] F. Baccelli and B. Blaszczyszyn, Stochastic Geometry and Wireless
+Networks, Volume II - Applications, ser. Foundations and Trends in
+Networking: Vol. 4: No 1-2, pp 1-312. NoW Publishers, 2009, vol. 2.
+[8] S. Govindasamy, D. W. Bliss, and D. H. Staelin, “Asymptotic spectral
+efﬁciency of multi-antenna links in wireless networks with limited Tx
+CSI,” to appear in IEEE Trans. Inf. Theory, 2012.
+[9] D. Stoyan, W. S. Kendall, and J. Mecke, Stochastic Geometry and Its
+Applications. John Wiley and Sons, 1995.
+[10] F. Baccelli and B. Blaszczyszyn, Stochastic Geometry and Wireless
+Networks, Volume I - Theory, ser. Foundations and Trends in Networking
+Vol. 3: No 3-4, pp 249-449. NoW Publishers, 2009, vol. 1.
+[11] C. R. Rao and D. Shanbhag, Stochastic processes: theory and methods.
+North-Holland, 2001, vol. 19.
+[12] T. Birkel, “A note on the strong law of large numbers for positively
+dependent random variables,” Statistics & probability letters, vol. 7,
+no. 1, pp. 17–20, 1988.
+[13] Z. Bai and J. W. Silverstein, “On the signal-to-interference-ratio of
+CDMA systems in wireless communications,” Annals of Applied Probability, vol. 17, no. 1, pp. 81–101, 2007.
+[14] S. Govindasamy, D. Bliss, and D. Staelin, “Spectral efﬁciency in singlehop ad-hoc wireless networks with interference using adaptive antenna
+arrays,” IEEE J. Sel. Areas Commun., vol. 25, no. 7, Sep. 2007.
+[15] A. M. Mathai, An Introduction to Geometrical Probability. Gordon
+and Breach Science Publishers, 1999.
+
+−α
+Pr(Pi ri ≤ x) → lim Pr(Pi > 0)×
+n→∞
+πρp − 2
+1−
+x α 1{b<x<∞} + Pr(Pi = 0) ,
+(14)
+c
+where the RHS equals H(x), the limit of Hn (x) from (11).
+Substituting ρ = ρp limn→∞ Pr(Pi > 0), taking the derivative
+of (14), and integrating the RHS of (12) yields (6).
+
+B. Proof that hard-core model satisﬁes covariance criteria
+Consider HC-I model where no interferer within distance
+h of another interferer or the representative transmitter are
+allowed to transmit. Recall that as n → ∞, R → ∞, and
+consider two arbitrary points X1 and Xk . The probability that
+1
+|X1 − XT | < h or |Xk − XT | < h decay to zero as R2 . Thus
+to prove the covariance criteria in the limit as n → ∞, we can
+focus on the case that both |X1 −XT | > h and |Xk −XT | > h.
+If |X1 − Xk | > 2h, then P1 > 0 if and only if there is
+no other interferer in B(X1 , h), where B(X, r) is a disk of
+radius r centered on X. Similarly if |X1 −Xk | > 2h, Pk > 0 if
+and only if there is no interferer in B(Xk , h). Since B(X1 , h)
+and B(Xk , h) are disjoint for |X1 − Xk | > 2h, P1 > 0 and
+Pk > 0 are independent. If |X1 − Xk | > 2h, as n, R → ∞,
+r1 and rK are asymptotically independent so a1 (x) and ak (x)
+are asymptotically independent as well. Furthermore, if |X1 −
+Xk | < h, P1 = Pk = 0 and a1 (x) = ak (x) = 0. Let’s denote
+the event D1k as the event that h < |X1 − Xk | < 2h. Hence,
+conditioned on the complement of the event D1k denoted by
+c
+D1k , a1 (x) and ak (x) are identically zero or asymptotically
+c
+independent. Hence Cov(a1 , ak |D1k ) → 0.
+Additionally, for notational simplicity, deﬁne the random
+c
+variables e1 = E[a1 |D1k ], e1 = E[a1 |D1k ], ek = E[ak |D1k ],
+¯
+
+5
+
+

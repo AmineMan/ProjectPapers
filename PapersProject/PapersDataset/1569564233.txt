@@ -1,0 +1,834 @@
+Title:          porosity-isit.dvi
+Creator:        dvips(k) 5.98 Copyright 2009 Radical Eye Software
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Fri May 18 11:18:19 2012
+ModDate:        Tue Jun 19 12:56:12 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      398585 bytes
+Optimized:      no
+PDF version:    1.7
+ISIT'2012 1569564233
+
+The Porosity of Additive Noise Sequences
+Vinith Misra and Tsachy Weissman
+Stanford University, Department of Electrical Engineering
+Email: {vinith,tsachy}@stanford.edu
+Abstract—Consider a binary modulo-additive noise channel
+with noiseless feedback. When the noise is a stationary and
+ergodic process Z, the capacity is 1 − H(Z) (H(·) denoting
+the entropy rate). It is shown analogously that when the noise
+is a deterministic sequence z ∞ , the capacity under ﬁnite-state
+encoding and decoding is 1 − ρ(z ∞ ), where ρ(·) is Lempel
+and Ziv’s ﬁnite-state compressibility. This quantity is termed
+the porosity σ(·) of an individual noise sequence. A sequence
+of schemes are presented that universally achieve porosity for
+any noise sequence. These results may be interpreted both as
+a channel-coding counterpart to Ziv and Lempel’s work in
+universal source coding, as well as an extension of the work by
+Lomnitz and Feder and Shayevitz and Feder on communication
+across modulo-additive channels.
+
+M∞
+
+E
+Fig. 1.
+
+M∞
+
+E
+
+xi
+
+Unknown Channel
+
+D
+
+M∞
+
+Universal channel coding without feedback.
+
+xi
+
+Unknown Channel
+
+yi−1
+Fig. 2.
+
+yi
+
+yi
+
+D
+
+M∞
+
+z −1
+
+Universal channel coding with noiseless feedback.
+
+I. I NTRODUCTION
+Traditionally, universal source coding has been subject to
+more attention than universal channel coding. The reason for
+this discrepancy is apparent from Fig. 1. While a source
+encoder may adjust its encoding to better suit the unknown
+source, the channel encoder of Fig. 1 has no observation of
+the unknown channel and is therefore unable to adapt. One
+may ask for an adaptive decoder, but this leads to a much
+weaker kind of universality (see, for instance, [1]–[3]).
+However, if a noiseless feedback link is added to the system
+(Fig. 2), both encoder and decoder may adjust to the channel.
+This permits a level of universality more comparable with that
+of universal source coding. To draw an even stronger parallel,
+consider the modulo-additive channel of Fig. 3: one may
+compare the uncharacterized source of universal compression
+to the uncharacterized noise of this setting.
+Ziv and Lempel’s seminal work [4], [5] can be considered
+the canonical treatment of universality in source coding. We
+ﬁnd that an analogous set of questions yields an analogous set
+of answers for the modulo-additive channel with feedback:
+•
+
+•
+
+•
+
+A. Related Work
+The notion of competitive universality in channel coding is
+introduced by Lomnitz and Feder in [6]. The reference class
+consists of iterated ﬁxed-blocklength (IFB) schemes, which
+ignore the feedback channel and simply employ block coding
+across the noisy channel. Rate-adaptive schemes, on the other
+hand, communicate a ﬁxed number of bits over at most n
+channel uses. It is proven that IFB schemes can do no better
+than porosity (rate 1 − ρ(z ∞ )), and a rate-adaptive scheme
+built upon LZ78 is shown to achieve porosity.
+In a sense, the results reported here take these statements
+of competitive optimality a step further: we ask that the
+achievability schemes not only outperform any elements of
+the reference class, but that they are elements of the reference
+class. As IFB codes frequently cannot even achieve porosity
+for a given noise sequence z ∞ , this requires that the reference
+class be widened to the class of all ﬁnite-state schemes.
+In [7], Shayevitz and Feder establish the original results that
+have sparked much of the subsequent work in this problem.
+They construct variable-rate, ﬁxed-blocklength schemes, and
+then demonstrate that these schemes achieve for any noise
+sequence the empirical capacity, or one minus the ﬁrstorder empirical entropy. We ﬁnd that the universal porosityachieving schemes {F m } may be constructed from these
+empirical-capacity-achieving schemes. Note that the achievability structure of [6] is in spirit very similar, but the
+performance guarantees of Shayevitz and Feder prove more
+adaptable to the metrics of interest here.
+Eswaran et al. [8] extend [7] to demonstrate that even when
+the feedback is asymptotically zero-rate, the empirical capacity
+may be still be achieved universally.
+
+Lempel and Ziv take universality to its logical extreme by
+allowing the source to be any individual sequence. Here
+the noise z ∞ is permitted to be any individual sequence.
+For a given source sequence x∞ , Lempel and Ziv show
+that no ﬁnite-state encoder/decoder can achieve a compression rate smaller than the compressibility of x∞ .
+Analogously, the converse results here show that no
+ﬁnite state communication scheme can exceed the noise
+sequence’s porosity.
+Lempel and Ziv construct ﬁnite-state compression
+schemes that achieve the compressibility for any source
+sequence. The ﬁnite-state communication schemes {F m }
+(Sec. IV) serve an identical function here.
+
+1
+
+z∞
+M∞
+
+E
+
+xi
+yi−1
+
+Fig. 3.
+
+yi
+
++
+2
+
+D
+
+M1
+.
+.
+.
+Mpi
+.
+.
+.
+Mpi +
+.
+.
+.
+
+M∞
+
+z −1
+
+θi
+z∞
+E
+
+xi
+yi−1
+
++
+2
+
+yi
+
+D
+
+p
+Mpii +Li −1
+
+z −1
+
+An additive-noise channel with noiseless feedback.
+Fig. 4.
+
+A ﬁnite-state encoding/decoding scheme.
+
+B. Notation
+delays the channel output by one time unit before providing
+it to the encoder. Without essential loss of generality, we will
+concern ourselves primarily with the binary-alphabet case, i.e.
+X = {0, 1}.
+
+Denote the kth order block-by-block empirical distribution
+pk (X k )[xn ] =
+ˆ
+
+1
+n
+k
+
+n/k
+
+1xki+k =X k .
+ki+1
+
+i=0
+
+If the empirical distribution is instead computed in a slidingwindow manner, denote
+pk (X k )[xn ] =
+ˆsw
+
+1
+n−k+1
+
+A. Finite-state Schemes
+A ﬁnite-state (FS) encoder/decoder scheme for an additive
+noise channel — depicted in Fig. 4 — consists of several
+components:
+1) An encoder state variable s(e) and decoder state variable
+i
+s(d) , each taking values in a ﬁnite set S.
+i
+2) A source pointer pi and a ﬁnite lookahead constant .
+3) An iid common randomness source θi ∼ pθ taking
+values in a ﬁnite alphabet.
+p
+4) An encoding function xi = e(s(e) , Mpii + , yi , θi ) ∈ X .
+i
+5) A decoding length function Li = dL (s(d) , yi , θi ) that
+i
+also determines the update of the source pointer: pi+1 =
+pi + L i .
+p
+6) A decoding function Mpii +Li −1 = dM (s(d) , yi , θi ).
+i
+7) State-update functions for both the encoder
+p
+s(e)
+=
+f(e) (s(e) , Mpii + , yi , θi ) and decoder
+i+1
+i
+(d)
+(d)
+si+1 = f(d) (si , yi , θi ).
+At each time step, the encoding function determines the
+input xi to the channel, the decoding function estimates the
+ﬁrst Li source symbols that have yet to be estimated (based
+on the output yi of the channel), and state variables and the
+source pointer location are updated in anticipation of the next
+transmission.
+One may attempt to somewhat generalize class FS by allowing for active feedback. The class of ﬁnite-state active feedback
+(FSAF) schemes accomplishes this: rather than feedback yi−1 ,
+the encoder is provided with the output ui ∈ X of an
+arbitrary ﬁnite-state feedback channel p(u|yi−1 , s(f) ). Note
+i−1
+that if ui = yi−1 this reduces to class FS.
+In [9] Lemma 9, it is shown that the class of FSAF
+schemes is actually equivalent to class FS. The two families
+may therefore be used interchangeably. For convenience, the
+converse is proved for class FS, while the achievability scheme
+given is of class FSAF.
+Observe that FS/FSAF are sufﬁciently general to include
+the following as special cases:
+1) The class of “iterated ﬁxed-length” block schemes, as
+deﬁned by Lomnitz and Feder [6]. These are simply
+block codes that ignore the feedback. The common
+
+n−k+1
+
+1xi+k =X k .
+i=0
+
+i+1
+
+The argument [xn ] is omitted when the context is clear.
+The kth order block-by-block empirical entropy is indicated
+ˆ
+by H k (xn ) = Hpk (X k ). The sliding-window kth order emˆ
+ˆk
+pirical entropy is similarly written as Hsw (xn ) = Hpk (X k ).
+ˆsw
+As shown by Ziv and Lempel [5], the ﬁnite-state compressibility of a sequence x∞ may be written as
+ˆk
+ρ(x∞ ) = lim sup lim sup Hsw (xn ).
+k→∞
+
+(1)
+
+n→∞
+
+An analagous quantity may also be introduced:
+ˆk
+ρ(x∞ ) = lim inf lim inf Hsw (xn ).
+k→∞
+
+n→∞
+
+(2)
+
+By Lemma 1 in [9], both expressions may also be written in
+terms of the block-by-block empirical entropy.
+Operationally, compressibility is the smallest limit supremum compression ratio achievable for a sequence (Theorem 3
+in [5]). It is not difﬁcult to show, in an analogous manner, that
+(2) is the smallest possible limit inﬁmum compression ratio.
+Informed by this, we refer to the original compressibility quantity as the worst-case compressibility and the newly introduced
+limit inﬁmum version as the best-case compressibility.
+The porosity of a noise sequence z ∞ ∈ Z ∞ is deﬁned in
+best-case σ(z ∞ ) = log2 |Z|−ρ(z ∞ ) and worst-case σ(z ∞ ) =
+log2 |Z| − ρ(z ∞ ) varieties as well. This name is chosen in
+analogy with other individual noise sequence properties, such
+as compressibility and predictability, to reﬂect the passage of
+information through a noise sequence. In the remainder of this
+paper, the operational signiﬁcance of porosity is clariﬁed.
+II. P ROBLEM S TATEMENT
+A deterministic additive noise feedback channel, as depicted
+in Fig. 3, is deﬁned by a noise sequence z ∞ ∈ X ∞ , where
+X is a ﬁnite alphabet with a modulo addition operator. The
+channel output at any time i is given by the sum of the noise
+and the input: yi = xi + zi . Noiseless feedback ui = yi−1
+
+2
+
+randomness at encoder and decoder allows for randomly
+generated block codes as well.
+2) Schemes that transmit a variable number of source symbols over a ﬁxed number of channel uses, before reseting
+their state variables and repeating the operation (deﬁned
+more precisely in Sec. IV as “repetition schemes”).
+3) Schemes that transmit a variable (or ﬁxed) number of
+source symbols over a variable (but bounded) number
+of channel uses (including “rate-adaptive” schemes [6]).
+Secondly, notice that without certain restrictions in the
+deﬁnition of class FS, the problem can become trivial:
+1) Suppose that the encoder is permitted to be inﬁnitestate. The system designer may then design the encoder
+(e)
+state si so that the channel input at time i is given
+by e(i, Mpi ) = Mpi − zi . The decoder needs merely
+read the channel output to obtain the message at the
+maximum possible rate, log |X |.
+2) Suppose that the decoder is permitted to be inﬁnitestate. One may reverse the above construction by having
+the encoder blindly send the message bits through the
+channel e(Mpi ) = Mpi and asking the decoder to cancel
+out the noise. Once again, the maximum rate log |X | can
+be achieved for any given noise sequence z ∞ .
+3) Finally, suppose that the ﬁnite-lookahead requirement
+is nonexistant — that is, the encoding function can
+look at the entire untransmitted message stream xi =
+∞
+e(s(e) , Mpi , yi , θi ). This is identical to allowing the
+i
+encoder an inﬁnite number of states: if M ∞ is a
+Bernoulli(1/2) sequence, then with probability one there
+exists a one-to-one map between Mi∞ and i.
+
+Observe that the randomness in these deﬁnitions has two
+possible sources: the source sequence M ∞ and the commoninformation sequence θ∞ used by the FS scheme. Sometimes
+the source M ∞ will be a ﬁxed sequence, but this is always
+made clear from context.
+C. Summary of Results
+The results of this paper are summarized below. Note that
+while these statements are specialized for the binary-alphabet
+case, they can easily and intuitively generalize to any ﬁnite
+alphabet with an addition operation.
+1) A converse that upper-bounds the best-case achievable
+rate by an FS scheme.
+2) A converse that upper-bounds the worst-case achievable
+rate by an FS scheme.
+3) A sequence of universal FS schemes {F m }∞ that
+m=1
+simultaneously achieve the best-case and worst-case
+converse bounds for any noise sequence z ∞ .
+Formally, each of these three statements corresponds to a
+theorem:
+Theorem 1: Suppose an FS scheme best-case p-achieves
+(R, ). If p > 0, then
+R ≤ hb ( ) + σ(z ∞ ).
+Theorem 2: Suppose an FS scheme worst-case p-achieves
+(R, ). If p > 0, then
+R ≤ hb ( ) + σ(z ∞ ).
+Theorem 3: For an iid Bernoulli(1/2) source M ∞ and
+noise sequence z ∞ , the scheme F m best-case achieves
+
+B. Performance Metrics
+
+σ(z ∞ ) − δ m (z ∞ ) ,
+
+Channel coding typically concerns itself with the tradeoff
+between rate of communication and the frequency of errors.
+In the individual sequence setting of interest to us, we deﬁne
+the instantaneous rate and bit-error rate of an FS scheme at
+time n as
+Rn =
+
+1
+n
+
+n
+
+Li , and
+i=1
+
+n
+
+=
+
+1
+nRn
+
+m /(σ(z
+
+∞
+
+) − δ m (z ∞ )),
+
+m /(σ(z
+
+∞
+
+) − δ m (z ∞ )),
+
+and worst-case achieves
+σ(z ∞ ) − δ m (z ∞ ) ,
+
+with probability one, where m , δ m , and δ m all go to zero.
+Theorems 1 and 2 are proven in Section III. In Section IV,
+we deﬁne the schemes {F m }∞ and prove Theorem 3.
+m=1
+
+nRn
+
+1Mi =Mi .
+i=1
+
+III. C ONVERSE
+
+We consider two interpretations of these quantities.
+Best-Case. An FS scheme best-case p-achieves rate/error
+(R, ) for a noise sequence z ∞ if with at least probability
+p there exists a sequence of points {ni } ∈ Z+ such that
+limi→∞ Rni ≥ R and limi→∞ ni ≤ . In other words, a
+performance monitor that observes the system at the “right”
+times will see it achieve (R, ) with probability at least p. If p
+is 1, we say that the scheme simply best-case achieves (R, ).
+Worst-Case. An FS scheme worst-case p-achieves
+rate/error (R, ) if with at least probability p both
+lim inf n→∞ Rn ≥ R and lim supn→∞ n ≤ . In other
+words, a performance monitor observing the system at any
+set of sample times will see it achieve (R, ) with probability
+at least p. If p is one the scheme is said to worst-case achieve
+(R, ).
+
+A. Deﬁnitions and Limiting-Distribution Lemma
+In order to prove the converse theorems, a series of deﬁnitions and a useful lemma are ﬁrst required.
+Deﬁnition 1: Let {Li }∞ be a bounded sequence of noni=1
+negative integers, and let M ∞ , z ∞ , and θ∞ as usual denote
+ﬁnite-alphabet sequences. The k-partition of (M ∞ , z ∞ , θ∞ )
+according to {Li } is the sequence of blocks
+(M Li , z k , θk )i =
+
+M
+
+i
+j=1 Lj
+i−1
+j=1 Lj +1
+
+ik
+ik
+, z(i−1)k+1 , θ(i−1)k+1 .
+
+In this context, {Li } are referred to as the partition lengths.
+Deﬁnition 2: Let x∞ be a sequence of symbols drawn from
+a ﬁnite alphabet X . If there exists a series of sample points
+{ni }∞ such that the sequence p1 (x)[xni ] converges to a
+ˆ
+i=1
+
+3
+
+ˆ
+H k ((zi , θi )n ) → 0 for every k. Let {ni } be the subsequence
+i=1
+on which it is achieved.
+Applying Lemma 5,
+√
+1
+2 log s + + k
++ hb ( ) + 1 − lim sup H k (z ni ),
+R≤
+k
+k i→∞
+
+distribution p(x), p(x) is said to be a limiting distribution
+ˆ
+ˆ
+for x∞ .
+Observe that for any ﬁnite-alphabet sequence x∞ at least
+one limiting distribution exists: Since p1 (x)[xn ] is an inﬁnite
+ˆ
+sequence in a compact set, at least one convergent subsequence
+must exist.
+Deﬁnition 3: Let z ∞ and θ∞ be ﬁnite-alphabet sequences.
+The set Mk (z ∞ , θ∞ ) consists of all binary sequences
+M ∞ such that there exist partition lengths {Li }, a resulting k-partition {(M Li , z k , θk )i }, and a limiting distribution
+p(L, M L , z k ) for the sequence {Li , (M L , z k )i } such that
+ˆ
+E [L]p > Hp (M L |z k ) + 1.
+ˆ
+ˆ
+
+for any k.
+Taking the limit supremum as k → ∞,
+R ≤
+≤
+
+(3)
+
+≤
+
+Lemma 4: Let z ∞ be a ﬁxed binary sequence, let M ∞
+be drawn from an iid Bernoulli(1/2) process, and let θ∞
+be a ﬁnite-alphabet sequence of arbitrary distribution that
+is independent of M ∞ . Then the probability that M ∞ ∈
+Mk ((zi , θi )∞ ) is zero for any k.
+i=1
+As the proof is rather involved, we direct the reader to
+Corollary 7 in [9].
+
+=
+
+1
+lim sup H k (z ni )
+k→∞ k i→∞
+1
+hb ( ) + 1 − lim inf lim inf H k (z ni )
+k→∞ k i→∞
+1
+hb ( ) + 1 − lim inf lim inf H k (z n )
+k→∞ k n→∞
+hb ( ) + 1 − ρ(z ∞ ).
+hb ( ) + 1 − lim inf
+
+Proof of Theorem 2: If (R, ) is worst-case-achieved with
+positive probability p, then it must be worst-case achieved
+for some (M ∞ , θ∞ ) such that M ∞ ∈ Mk ((zi , θi )∞ (be/
+i=1
+cause by Lemma 4 this occurs with probability one) and
+ˆ
+ˆ
+ˆ
+H k (z n )+ H k (θn )− H k ((zi , θi )n ) → 0 (because this occurs
+i=1
+with probability one when θ∞ is chosen iid).
+We may therefore apply Lemma 5 with {ni } = Z+ . For
+any k, we have that
+√
+1
+2 log s + + k
++ hb ( ) + 1 − lim sup H k (z n ).
+R≤
+k
+k n→∞
+
+B. Proof of Converse
+Although the converse results are presented as two distinct
+theorems, at their heart is the same argument.
+Lemma 5: Suppose an s-state -lookahead FS scheme
+achieves (R, ) on points {ni } for a speciﬁc source sequence
+M ∞ , a speciﬁc channel noise sequence z ∞ , and a speciﬁc
+encoder/decoder common information sequence θ∞ . If for
+some k ∈ Z+ M ∞ is not a member of Mk ((zi , θi )∞ ), and
+i=1
+ˆ
+ˆ
+ˆ
+if H k (z n ) + H k (θn ) − H k ((zi , θi )n ) →n→∞ 0, then
+i=1
+√
+1
+2 log s + + k
++ 1 − lim sup H k (z ni ).
+R≤
+k
+i→∞ k
+
+Since this holds for arbitrary k, we may take the limit inﬁmum
+of the expression with k → ∞:
+R ≤
+
+hb ( ) + 1 − lim sup
+
+=
+
+1
+lim sup H k (z n )
+k n→∞
+
+hb ( ) + 1 − ρ(z ).
+
+k→∞
+∞
+
+IV. ACHIEVABILITY
+
+Proof: The general idea in proving this lemma is to
+turn any given FS scheme into a source encoding/decoding
+scheme. Consider an FS decoder that achieves (R, ) on some
+points {ni }, and ignore the minor complication of common
+randomness θ∞ . Given only the channel output y ∞ , the
+decoder produces an estimate of the source sequence M ∞ .
+Knowing the source sequence and the channel output, the
+decoder is technically capable of “simulating” the encoder
+and thereby obtaining both the channel input sequence x∞
+and the noise sequence z ∞ . One may therefore interpret the
+channel output y ∞ as an encoding of the joint source sequence
+(M ∞ , z ∞ ). In [9], an argument inspired by this intuition
+proves the lemma.
+Armed with Lemma 5, it is a relatively straightforward
+matter to prove Theorems 1 and 2.
+Proof of Theorem 1: We ﬁrst note that because θ∞ is drawn
+ˆ
+ˆ
+ˆ
+iid and z ∞ is ﬁxed, H k (z n ) + H k (θn ) − H k ((zi , θi )n ) → 0
+i=1
+with probability one for every k. Furthermore, by Lemma 4,
+M ∞ ∈ Mk ((zi , θi )∞ ) with probability one for every k.
+/
+i=1
+Therefore, if (R, ) is best-case-achieved with positive probability, it must then be achieved for some speciﬁc (M ∞ , θ∞ )
+ˆ
+ˆ
+such that M ∞ ∈ Mk ((zi , θi )∞ and H k (z n ) + H k (θn ) −
+/
+i=1
+
+To construct the universal achievability schemes {F m },
+the ﬁnite-extent and ﬁrst-order-empirical-capacity results of
+Shayevitz and Feder [7] must be extended to inﬁnite-extent and
+m-th-order empirical capacity. We start by introducing a new
+subclass of FSAF (repetition schemes), then build an element
+of this class using the communication scheme of Shayevitz
+and Feder, and ﬁnally prove that this construction achieves
+porosity.
+A. Repetition schemes
+A ﬁnite-extent (FE) scheme F for a channel with alphabet
+X consists of:
+1) An extent n.
+2) A feedback channel with transition probabilities given
+by Ui ∼ pui (ui |ui−1 , y i ) and taking values in X , for
+i ∈ {1, . . . , n}.
+3) A common randomness variable θ drawn from a ﬁnite
+alphabet, independent of the source, and provided to
+both encoder and decoder.
+4) Encoding functions x1
+=
+e1 (M ∞ , θ), x2
+=
+∞
+∞
+e2 (M , θ, u1 ), . . . , xn = en (M , θ, un−1 ).
+
+4
+
+5) A decoding length function L = dL (y n , θ, un−1 ), upper
+bounded by n log |X |.
+6) A decoding function M L = dM (y n , θ, un−1 ).
+Note that an FE scheme is not a member of classes FS or
+FSAF — both of which are inﬁnite-extent.
+A repetition scheme is constructed from an n-extent ﬁnite
+extent scheme F . Let F (M ∞ , z n ) describe the application
+of scheme F to source M ∞ and noise block z n . Then the
+repetition scheme F consists of repeated independent uses of
+F , i.e. F (M ∞ , z ∞ ) is given by
+
+for any z N (m) ∈ X N (m) and M ∞ ∈ {0, 1}∞, and where
+m → 0.
+Proof: For a given m, consider the m-tuple supersymbol channel characterized by inputs Xi = xim
+(i−1)m+1 ,
+im
+noise Zi = z(i−1)m+1 , and outputs Yi = (x(i−1)m+1 +
+z(i−1)m+1 , x(i−1)m+2 + z(i−1)m+2 , . . . , xim + zim ). Applying
+Lemma 7 to channels of this alphabet yields a sequence of
+schemes Fn ({0, 1}m) with
+n,m
+
+(8)
+
+By (8) we may choose N (m) so that N (m),m → 0.
+m→∞
+Denoting F m = FN (m) ({0, 1}m), this proves the lemma.
+The sequence of ﬁnite-extent schemes {F m }∞ form the
+m=1
+basis of the universal achievability construction.
+Deﬁnition 4: The universal achievability scheme of order
+m is the repetition scheme F m formed from the N (m)-extent
+scheme F m .
+
+L1 +n
+n
+n
+2n
+F ((M1 , 0∞ ), z1 ) , F (ML1 +1 , 0∞ ), zn+1 , . . . .
+
+In each block, F is applied to a “virtual source” consisting of
+the ﬁrst n bits of the source that have yet to be transmitted
+and a string of 0s.
+Proposition 6: The class of repetition schemes is a subclass
+of FSAF schemes (and therefore of FS schemes).
+This follows directly from two properties of repetition
+schemes:
+• The block-based structure allows for implementation with
+ﬁnite-state machines.
+• A repetition scheme constructed from an n-extent FE
+scheme has ﬁnite lookahead constant n.
+
+C. Proving achievability
+Corollary 8 identiﬁes two types of “error” events in the
+application of {F m } to a single block: a failure of the rate to
+exceed the threshold 1 − H 1 (z n ) − (n) and an error in the
+reconstruction. Let the indicators for these events in the ith
+block be known as Ti and Ei respectively. In proving Theorem
+3, the probability guarantees for Ei (6) and Ti (7) must be
+connected to the relevant performance metrics: best-case rate,
+worst-case rate, and worst-case error.
+While neither sequence E ∞ nor T ∞ is independent (nor
+identically distributed), both possess certain Markov properties
+L
+with respect to the source bits M(i) used in each block. This
+allows for statements regarding the limiting weighted averages
+n
+1
+of each of these sequences: e.g. lim supn→∞ n i=1 αi Ei ≤
+n
+1
+m lim supn→∞ n
+i=1 αi with probability one. These limiting statements, in turn, can be leveraged to prove the performance guarantees of Theorem 3. For the full proof, see [9].
+
+B. Constructing schemes {F m }
+
+At the core of the achievability scheme is a lemma, introduced by Shayevitz and Feder [7]:
+Lemma 7: (Shayevitz and Feder, 2009) Let X be a ﬁnite
+alphabet with an addition operation. Then there exists a
+sequence of n-extent FE schemes Fn (X ) with the following
+worst-case performance guarantees. For any additive noise
+sequence z ∞ ∈ X ∞ and source sequence M ∞ ∈ {0, 1}∞,
+P M L = M L ≤ (n)
+
+→ 0.
+
+n→∞
+
+(4)
+
+R EFERENCES
+
+and
+P
+
+L
+> 1 − H 1 (z n ) − (n)
+n
+
+> 1 − (n),
+
+[1] A. Lapidoth and J. Ziv, “On the universality of the LZ-based decoding
+algorithm,” Information Theory, IEEE Transactions on, vol. 44, no. 5, pp.
+1746 –1755, sep 1998.
+[2] A. Lapidoth and P. Narayan, “Reliable communication under channel
+uncertainty,” Information Theory, IEEE Transactions on, vol. 44, no. 6,
+pp. 2148 –2177, oct 1998.
+[3] S. Shamai and A. Steiner, “A broadcast approach for a single-user
+slowly fading MIMO channel,” Information Theory, IEEE Transactions
+on, vol. 49, no. 10, pp. 2617 – 2635, oct. 2003.
+[4] J. Ziv and A. Lempel, “A universal algorithm for sequential data compression,” Information Theory, IEEE Transactions on, vol. 23, no. 3, pp.
+337 – 343, may 1977.
+[5] ——, “Compression of individual sequences via variable-rate coding,”
+Info. Theory, IEEE Trans on, vol. 24, no. 5, pp. 530 – 536, sep 1978.
+[6] Y. Lomnitz and M. Feder, “Universal communication over moduloadditive individual noise sequence channels,” in Information Theory
+Proceedings (ISIT), 2011, 31 2011-aug. 5 2011, pp. 229 –233.
+[7] O. Shayevitz and M. Feder, “Achieving the empirical capacity using
+feedback: Memoryless additive models,” Information Theory, IEEE Transactions on, vol. 55, no. 3, pp. 1269 –1295, march 2009.
+[8] K. Eswaran, A. Sarwate, A. Sahai, and M. Gastpar, “Zero-rate feedback
+can achieve the empirical capacity,” Information Theory, IEEE Transactions on, vol. 56, no. 1, pp. 25 –39, jan. 2010.
+[9] V. Misra and T. Weissman, “The porosity of additive noise sequences,”
+preprint (2012), www.stanford.edu/∼ vinith/porosity.pdf.
+
+(5)
+
+where (n) → 0.
+Note that the only randomness in the above probabilistic
+statements is due to the randomness in the feedback channel.
+Observe that Lemma 7 concerns itself with only the ﬁrstorder empirical entropy H 1 (z n ). By specializing to binary
+sequences, this may be replaced by higher-order empirical
+entropies.
+Corollary 8: For binary additive noise channels with feedback, there exists a sequence of ﬁnite extent schemes F m
+with extents N (m) → ∞ and the following performance
+guarantees:
+P ML = ML ≤ m
+(6)
+and
+P
+
+L
+H m (z N (m) )
+>1−
+−
+N (m)
+m
+
+m
+
+>1−
+
+m,
+
+(7)
+
+5
+
+

@@ -1,0 +1,884 @@
+Creator:        TeX
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Fri May 18 13:50:51 2012
+ModDate:        Tue Jun 19 12:55:46 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      340005 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569565589
+
+Oblivious Distributed Guessing
+Serdar Boztas
+RMIT University, Melbourne, VIC 3001, Australia
+Email: serdar.boztas@rmit.edu.au
+
+of the resource as quickly as possible. These problems can be
+framed in terms of the guessing problem we consider, where
+the location of the resource is identiﬁed with a point in X .
+The paper is organised as follows. In Section II, we introduce the relevant deﬁnitions and notation. In section III, we
+state the problem we are considering and deﬁne and analyze
+the guessing algorithm which minimizes the expected number
+of guesses, in a distributed environment. We also provide a
+brief discussion of some possible extensions of the result.
+Section IV concludes the paper, with a discussion of related
+results in guessing theory and puts the results obtained here
+in context.
+
+Abstract—We consider the oblivious distributed guessing of
+a random variable in three scenarios (single guessor, single
+constrained guessor, multiple guessors). The optimal guessing
+schemes in each case are obtained by means of a probability
+distribution which the guessor(s) use in order to determine their
+sequence of guesses. Some of the optimal distributions obtained
+have links to R´ nyi’s generalization of Shannon’s entropy,while
+e
+one of them is related to the rth power means from mathematical
+analysis.
+
+I. I NTRODUCTION
+Let X be an unknown discrete random variable X ∈ X with
+X ﬁnite or countable, and with distribution P. This random
+variable could, for example, represent an unknown key for
+a cryptosystem, or an unknown password. In practice, the
+guessor is not all-powerful and can only ask atomic questions
+(e.g., query keys/passwords) regarding singletons in X . We
+assume that a sequence of questions of the form Is X = x?
+are posed until the ﬁrst YES answer determines the value of
+the random variable X.
+The problem of guessing has been investigated in the
+context of sequential decoding [1] and source-channel coding
+([2], [3], [11]) as well as in security applications ([14], [5],
+[6], [10]). We provide an overview of previous work in the last
+section. It is also possible to deﬁne guessing in the presence
+of distortion or source uncertainty ([2], [11], [15]) but we do
+not pursue this any further here.
+While it is attractive to have a number of different guessors
+working in parallel in trying to obtain the value of the
+random variable X, there are also some pitfalls in making this
+approach ﬂexible, in terms of participants entering and leaving
+the group performing the attack and in terms of partitioning
+the search space X . This can turn out to be complicated,
+since it is quite likely that the computational power of each
+participant (thus the rate at which they can implement the
+guessing mechanism) can vary a great deal. These factors
+make the study of oblivious distributed guessing of interest.
+However the model we are considering in this paper is also
+relevant to distributed attacks where a resource being sought–
+or a target is being blocked–for example in DDOS (Distributed
+Denial of Service) attacks. To make this more precise, consider
+trying to stop the availability of some information which
+is being made available by an adversary, via various IP
+addresses on the internet–possibly by using hosting sites, such
+as Akamai, MegaUpload, etc. In that case, the goal may be to
+identify the location of as many copies of the resource, which
+could be a trojan in the adversarial setting as possible and then
+disable/erase it. Alternatively the goal may be to ﬁnd one copy
+
+II. D EFINITIONS AND N OTATION
+We provide some deﬁnitions in this section. A guessing
+strategy for identifying X is a procedure for generating
+successive questions of the above type until a YES answer
+is obtained. Formally, any such procedure can be represented
+by a function G : X → {1, 2, . . .} where G(k) equals the time
+index of the question Is X = k?.
+Note that functions G corresponding to valid guessing
+strategies cannot be totally arbitrary. Clearly, G must be
+invertible on its range {1, 2, . . .} since only one element
+may be probed at any given time. Moreover, since we are
+assuming the answers to the queries Is X = k? are noiseless,
+it is enough to consider guessing strategies which ask the
+above question exactly once for each k ≥ 1. This formally
+corresponds to the mapping G being one-to-one and onto.
+Any function satisfying these two conditions will be called
+a guessing function. Every guessing function deﬁnes a valid
+guessing strategy and conversely.
+Assuming that the guessor knows the probability distribution P (otherwise see [15]), she is interested in minimizing
+the number of questions required to determine X. This goal
+can be formalised in a number of ways, such as minimizing a
+positive moment E[Gρ ] (mostly ρ = 1 is of interest) where
+E[Gρ ] =
+
+k ρ P(G−1 (k)).
+
+P(x)G(x)ρ =
+x∈X
+
+k≥1
+
+The R´ nyi entropy of order α of X is a generalization of the
+e
+Shannon entropy deﬁned by
+Hα (X) =
+
+log
+
+P(X)α
+1−α
+
+X∈Y
+
+α ∈ [0, 1) ∪ (1, ∞),
+
+and obeys limα→1 Hα (X) = H(X) as well as being strictly
+decreasing in α unless the Y is uniform on its support.
+
+1
+
+we can actually show that E[G] is minimized when we choose
+
+III. L IMITED R ESOURCE P REDICTABILITY
+Brute force predictability uses the idea of guessing every
+value of X one by one in order of decreasing probability, when
+the distribution P(x) is known. We now want to consider the
+case of an attack that is more distributed, perhaps attacking
+multiple targets, whose passwords are assumed to come from
+the same distribution P(x). The question we want to answer
+is the following:
+Given P(x), how should the attacker choose a distribution
+Q(x) in order to optimize some performance criterion, when
+all the attacker does (resp. attackers do) is to draw random
+sequential guesses from Q(x)?
+
+Q(x) ∝
+
+quite an interesting result. This means that the distribution
+Q(x) should be “ﬂatter” than P(x). We have thus proved
+Proposition 1. The distribution which minimizes the expected
+number of guesses for a random variable with a nontrivial
+distribution P, i.e., 0 < P(x) < 1 for all x ∈ X , when a
+single guessor draws her guesses from the distribution Q is
+given by
+P(x)
+Q(x) =
+P(z)
+z∈X
+
+A. Memory Constrained Guessor Minimizing E[G]
+If there are no constraints on time or memory, the optimal
+strategy is to minimize the expected number of guesses E[G]
+and maximize the probability of success at each time index by
+guessing every point in X in decreasing order of probability.
+Let’s consider a single attacker who is memory constrained
+and won’t keep track of past guesses, but knows the distribution P which the opponent uses to draw a single value x from
+X according to P(x).
+The guessor generates i.i.d. X1 , X2 , . . . , from X according
+to a distribution Q(x) again with the goal of minimizing
+E[G]. Deﬁne G = min{k : Xk = X} as a random
+variable which denotes the number of guesses before she is
+successful in exposing X. Note that G = k with probability
+N
+k−1
+Q(x). where k ≥ 1, by a successx=1 P(x)(1 − Q(x))
+fail argument. This is because
+P(G = k)
+
+This can be generalized to the case of multiple independent
+attackers against one target, or against multiple targets, and
+we consider the ﬁrst problem in the rest of this paper.
+Note that the Lagrange multipliers ensure that the solution
+for Q(x) in Proposition 1 is a minimum, since the expression
+in (Q(x1 ), . . . , Q(xN )) if we
+x P(x)/Q(x) is convexrecall that the P(x) are given positive constants. Differentiation
+of J with respect to Q(x) yields
+P(x)
+∂J
+=−
++ λ = 0,
+∂Q(x)
+Q(x)2
+
+x∈X
+
+E[G]
+
+k−1
+
+=
+
+x∈X
+
+=
+
+P(x)(1 − Q(x))k−1 Q(x).
+
+∞
+
+P(x)(1 − Q(x))k−1 Q(x)
+
+k
+k=1
+
+x∈X
+∞
+
+=
+
+k(1 − Q(x))k−1
+
+P(x)Q(x)
+x∈X
+
+=
+x∈X
+
+k=1
+
+P(x)Q(x)
+=
+Q(x)2
+
+x∈X
+
+P(x)
+Q(x)
+
+∞
+
+kuk−1 =
+k=0
+
+kuk−1
+k=1
+
+1
+=
+.
+(1 − u)2
+
+x∈X
+
+Q(x)−1) =
+x∈X
+
+P(x)
++λ(
+Q(x)
+
+P(x)
+
+= 2H1/2 (X)
+
+Consider the case where the guesses are still i.i.d. from
+Q(x) but the guessor (maybe a sensor network node) decides
+ahead of time that she will only use L ∈ N guesses. Again we
+need to ﬁnd the best Q(x), but now the appropriate criterion
+is minimizing the failure probability in L guesses, namely,
+
+(1)
+
+If we apply Lagrange multipliers with the Lagrangian
+J = E[G]+λ(
+
+x∈X
+
+B. Power and Memory Constrained Guessor Minimizing the
+Probability of Failure
+
+where we used the generating function identity
+∞
+
+z∈X
+2
+
+which provides a new operational deﬁnition of R´ nyi entropy
+e
+of order 1/2 relating it exactly to oblivious guessing. If we
+compare this to the results in (4) and (5) in section IV, which
+were derived in [1], [4], we can see that the penalty paid for
+oblivious memory constrained guessing, as opposed to using
+the optimal guessing sequence is roughly a factor of 2 in the
+expectation, and is still much closer to the optimal value than
+the lower bound given in (5).
+
+Note that now that the guessing scheme is randomized, it is
+possible to have an unbounded number of guesses, hence
+=
+
+P(x)
+
+P(x)
+
+P(z)
+
+x∈X
+
+x∈X
+
+E[G]
+
+P(x)
+=
+Q(x)
+
+m=1
+
+x∈X
+
+=
+
+=
+
+{Xm = x} and Xk = x
+
+P(x)P r
+
+∀x ∈ X
+
+which leads to the proposition above. Furthermore, note that if
+we choose Q(x) = P(x) for all x ∈ X which may look like an
+attractive choice, we obtain E[G] = N which is unexpectedly
+high. Let us now consider the optimal value of the expectation
+which the guessor using Proposition 1 achieves. We obtain
+
+P(X = x)P(G = k | X = x)
+
+=
+
+P(x),
+
+P(x)(1 − Q(x))L
+
+Pf ail (L) =
+
+Q(x)−1),
+
+x∈X
+
+x∈X
+
+2
+
+which are deﬁned for real quantities r = 0 where a =
+(a1 , . . . , an ) and w = (w1 , . . . , wn ). Thus we can write the
+above equation as
+
+which yields the Lagrangian
+J
+
+Q(x) − 1)
+
+= Pf ail (L) + λ(
+x∈X
+
+P(x)(1 − Q(x))L + λ(
+
+=
+x∈X
+
+Q(x) − 1),
+
+P(x)−1/(L−1) (N − 1)
+
+Q(x) = 1 −
+
+x∈X
+
+[−L/(L−1)]
+
+MN
+
+−L/(L−1)
+
+(P, P)
+
+which directly leads to the conditions
+∂J
+= −LP(x)(1 − Q(x))L−1 = −λ,
+∂Q(x)
+
+where we deﬁne P = (P(x1 ), . . . , P(xN )) with
+X = {x1 , . . . , xN }. The power means themselves are also
+related to the Shannon entropy in the sense that if we let
+(w1 , . . . , wn ) and (a1 , . . . , an ) be the same ﬁnite probability
+distribution P then we have
+
+∀x ∈ X
+
+and since L is constant, we have
+Q(x) = 1 −
+
+µ
+P(x)
+
+1/(L−1)
+
+[r]
+
+lim log MN (P, P) = H(P).
+
+r→0
+
+for some positive constant µ = λ/L. The second derivative is
+
+C. Multiple Memory Constrained Guessors Using Distributed
+Oblivious Guessing
+
+2
+
+∂ J
+= L(L − 1)P(x)(1 − Q(x))L−2
+∂Q(x)2
+
+We brieﬂy discuss the case of v ≥ 2 guessors working in
+parallel, each drawing from the same distribution Q(x), but not
+coordinating their guesses. First we note that if the guessors
+use some distribution Q(x) and they collectively work at a
+rate equal to v times the rate of the single guessor considered
+in the subsection above, their performance will be within the
+bounds
+EQ [G]
+EQ [G]
+≤ EQ [Gv ] ≤
+v
+v
+
+and if we once again assume the non-degeneracy condition
+0 < Q(x) < 1 for all x ∈ X we conclude that the
+second derivative is positive indicating that the stationary
+point determined minimizes the probability Pf ail (L). Note
+that normalization requires that we have
+x∈X Q(x) = 1
+which then yields
+µ
+P(x)
+
+1−
+x∈X
+
+or
+x∈X
+
+µ
+P(x)
+
+1/(L−1)
+
+=1
+
+where we have used the notation EQ [Gv ] for the expected
+number of guesses when v guessors each use Q(x). We now
+address the issue of optimizing the distribution Q(x) once v is
+ﬁxed, instead of using the Q from the subsection above. From
+the rest of the subsection, we drop the subscript Q from the
+expectations for simplicity of presentation. Note that we can
+write
+
+1/(L−1)
+
+= |X | − 1
+
+which can be satisﬁed by choosing µ as below,
+|X | − 1
+−1/(L−1)
+x∈X P(x)
+
+µ=
+
+L−1
+
+,
+
+P [Gv = k] = P r[G ∈ [(k − 1)v + 1, kv] ∩ Z+ ]
+
+thus proving Proposition 2.
+
+which gives
+
+Proposition 2. If the attacker is restricted to L guesses, her
+optimal oblivious strategy is to generate L i.i.d. guesses from
+the following distribution
+
+E[Gv ] =
+
+−1/(L−1)
+
+z∈X
+
+x∈X
+
+,
+
+∀x ∈ X
+
+j=1
+
+k=0
+
+∞
+
+Note that in this case, a power sum related to the probability
+distribution P(x) is also involved, however this is not a R´ nyi
+e
+entropy since the exponent −1/(L − 1) is negative. Neither
+is it related to any other kind of generalized entropy in the
+literature. However, if we rewrite it as below
+|X | − 1
+,
+−1/(L−1)
+x∈X P(x)
+
+P(x)Q(x)
+x∈X
+
+n
+r
+k=1 wk ak
+n
+k=1 wi
+
+(1 + k)[(1 − Q(x))v ]k
+k=0
+
+1 − (1 − Q(x))v
+,
+Q(x)
+
+if we use the sum of a ﬁnite geometric series. Using once
+again the generating function identity in (1) yields
+E[Gv ] =
+
+∀x ∈ X
+
+P(x)Q(x) [1 − (1 − Q(x))v ]
+
+we note that it is related to the weighted power means that
+are widely used in mathematical analysis [12], namely
+[r]
+Mn (a, w) =
+
+(1−Q(x))j−1 ,
+
+E[Gv ] =
+
+(P(x)/P(z))
+
+Q(x) = 1−P(x)−1/(L−1)
+
+v
+
+(1+k)[(1−Q(x))v ]k
+
+which can be simpliﬁed to
+
+|X | − 1
+
+Q(x) = 1 −
+
+∞
+
+P(x)Q(x)
+
+x∈X
+
+−2
+
+1 − (1 − Q(x))v
+Q(x)
+
+or
+
+1/r
+
+E[Gv ] =
+x∈X
+
+3
+
+P(x)
+1 − (1 − Q(x))v
+
+.
+
+Now we deﬁne the Lagrangian
+Jv = E[Gv ] + λ(
+
+whenever the limit exists. The expectation is taken with
+respect to the joint distribution P(X1 = a1 , . . . , Xn = an ),
+and historically the term ‘self-information’ was used for this
+quantity. We focus on the i.i.d. case this limit is simply
+
+Q(x) − 1)
+
+x∈X
+
+which upon differentiation gives
+∂Jv
+P(x)v(1 − Q(x))v−1
++ λ = 0,
+=−
+∂Q(x)
+(1 − (1 − Q(x))v )2
+
+H(X1 ) = E − log P(X1 ).
+∀x ∈ X
+In previous work Pliam [14] has argued that Shannon entropy
+can be arbitrarily far away from the expected number of
+guesses, and proposed E[G] as a measure of security, calling it
+“guesswork”. This was also discussed by Malone and Sullivan
+who pointed out that while the expected number of guesses
+is closely approximated by the Renyi entropy of order 1/2–
+see also the subsection below–it is still possible that a random
+variable with high expected number of guesses can still be
+vulnerable to a reasonably high probability of a successful
+single guess.
+
+which indicates that the optimum distribution Q(x) satisﬁes
+1
+v(1 − Q(x))v−1
+∝
+.
+(1 − (1 − Q(x))v )2
+P(x)
+Let’s deﬁne R(x) = 1 − Q(x) which takes on values in (0, 1)
+(note that R is not a probability distribution) which means that
+we have
+(1 − R(x)v )2
+∝ P(x).
+vR(x)v−1
+If we now consider the function
+
+B. Entropy and Unpredictability
+
+(1 − uv )2
+f (u) =
+(2)
+vuv−1
+deﬁned on (0, 1) we can see that its derivative can be simpliﬁed to
+
+In this section we ﬁx N = |X | to be a large ﬁnite number
+and concentrate on the relationship between unpredictability
+and entropy. Thus X ∈ X can be deﬁned as a scalar random
+variable whose distribution satisﬁes, without loss of generality,
+
+2u(1 − uv ) + (v − 1)(1 − uv )2
+vuv
+which is clearly negative for integer v ≥ 2 thus f : (0, 1) → R
+is a monotone strictly decreasing one-to-one mapping and thus
+is invertible. We have thus proved
+f (u) = −
+
+P(X = 1) ≥ P(X = 2) ≥ . . . P(X = N ) > 0.
+
+We use the shorthand P(X = k) = pk , for the rest of this
+paper, where we assume X = {1, 2, . . . , n} and we have
+identiﬁed the optimal guessing sequence as G(k) = k for
+k = 1, . . . , N.
+Feder and Merhav [9] investigated the success probability
+in a single guess and the corresponding limits on Shannon
+entropy for a given success probability. Following them, we
+deﬁne the unpredictability as the minimum error probability in
+guessing X, which we denote by π. Clearly π = 1 − p1 , and
+the higher π is, the more unpredictable the random variable X
+is. Upper and lower bounds on H(Y ) for ﬁxed predictability
+π, i.e., for distributions obeying (3) and p1 = 1 − π, can then
+be obtained. The maximum Shannon entropy H is obtained
+when
+
+Proposition 3. If v attackers are using distributed guessing
+their optimal oblivious strategy is to independently generate
+their guesses according to the distribution
+Q(x) ∝
+
+(3)
+
+1 − f −1 (P(x))
+
+which can then be normalized. Note that obtaining the optimal
+distribution here can be achieved by standard numerical
+methods.
+IV. C ONCLUSIONS , D ISCUSSION OF R ESULTS AND
+C OMPLEMENTS
+We have considered randomized guessing schemes for an
+unknown random variable under three different regimes and
+obtained optimal guessing schemes for each case. Here we put
+our work in context, and discuss related work.
+
+P = (1 − π, π/(N − 1), . . . , π/(N − 1))
+and this maximum is given by h(π) + π log(N − 1) where
+h(p) = −p log p − (1 − p) log(1 − p) is the binary entropy
+function. The minimum H is achieved by more complicated
+distributions, see Feder and Merhav [9] for a nice ﬁgure and
+the details.
+
+A. Entropy as a Measure of Randomness
+It is generally accepted that the Shannon entropy measures
+the information rate of a source. If we let P(X1 , . . . , Xn )
+denote the joint probability distribution of the ﬁrst n symbols
+output by a discrete source the entropy rate of this source is
+deﬁned by
+
+C. Brute Force Predictability
+In some contexts, it is more appropriate to allow the
+opponent an arbitrary number of guesses, e.g., from the design
+of cryptosystems point of view. There are a number of bounds
+on E[G] for this scenario. We state two of them, and in
+the unconditional case where they are simpler, even though
+corresponding conditional bounds also exist. The expected
+
+1
+H(X1 , . . . , Xn )
+n
+where the joint Shannon entropy H(X1 , . . . , Xn ) is given by
+H(X ) = lim
+
+n→∞
+
+E − log P(X1 , . . . , Xn ),
+
+4
+
+number of guesses, for a user with the optimal guessing
+sequence, E[G] obeys the upper bound [4]
+E[G] ≤
+
+1
+2
+
+N
+
+2
+
+√
+
+pk
+
++
+
+k=1
+
+1
+2H1/2 (X)+1
+=
+,
+2
+2
+
+R EFERENCES
+[1] E. Arikan; An Inequality on Guessing and Its Application to Sequential
+Decoding, IEEE Transactions on Information Theory, 42(1):99-105, 1996.
+[2] E. Arikan and N. Merhav; Guessing subject to distortion, IEEE Transactions on Information Theory, 44(3):1041-1056, 1998.
+[3] E. Arikan and N. Merhav; Joint Source-channel Coding and Guessing
+with Application to Sequential Decoding, IEEE Transactions on Information Theory, 44(5):1756-1769, 1998.
+[4] S. Boztas; Comments on ‘An Inequality on Guessing and Its Applica¸
+tion to Sequential Decoding’, IEEE Transactions Information Theory,
+43(6):2062-2063, 1997.
+[5] S.S. Dragomir and S. Boztas; Some Estimates of the Average Number
+¸
+of Guesses to Determine a Random Variable, Proc. IEEE International
+Symposium on Information Theory, 1997.
+[6] S.S. Dragomir and S. Boztas; Estimation of Arithmetic Means and Their
+¸
+Applications in Guessing Theory, Mathematical and Computer Modelling,
+28(10):31-43, 1998.
+[7] J. L. Massey; Guessing and entropy, Proc. 1994 IEEE International
+Symposium on Information Theory, p. 204, 1994.
+[8] D. Malone, W.G. Sullivan; Guesswork and entropy, IEEE Transactions
+Information Theory, 50(3):525- 526, 2004.
+[9] M. Feder and N. Merhav; Relations between entropy and Error Probability, IEEE Transactions on Information Theory 40(1):259-266, 1994.
+[10] N. Merhav and E. Arikan; The Shannon Cipher System with a Guessing
+Wiretapper, it IEEE Transactions on Information Theory, 45(6):18601866, 1999.
+[11] N. Merhav, R.M. Roth, E. Arikan; Hierarchical guessing with a ﬁdelity
+criterion, IEEE Transactions Information Theory, 45(1):330-337, 1999.
+[12] D.S. Mitrinovi´ ; Analytic Inequalities, Springer,1970.
+c
+[13] C.-E. Pﬁster, W.G. Sullivan; R´ nyi Entropy, Guesswork Moments,
+e
+and Large Deviations, IEEE Transactions on Information Theory,
+50(11):2794, 2004.
+[14] J. O. Pliam; On the incomparability of Entropy and Marginal Guesswork
+in Brute-force Attacks, Proc. INDOCRYPT 2000, Lecture Notes in
+Computer Science 1977:67–79, 2000.
+[15] R. Sundaresan; Guessing Under Source Uncertainty, IEEE Transactions
+on Information Theory 53(1): 269 - 287, 2007.
+[16] M. K. Hanawal and R. Sundaresan; Randomised Attacks on Passwords,
+Technical Report TR-PME-2010-11, Dept. ECE, Indian Institute of Science, Bangalore, available at
+http://www.pal.ece.iisc.ernet.in/PAM/docs/techreports/tech rep10/
+[17] R. Sundaresan; Guessing and Compression Subject to Distortion, Technical Report TR-PME-2010-12, Dept. ECE, Indian Institute of Science,
+Bangalore, available at
+http://www.pal.ece.iisc.ernet.in/PAM/docs/techreports/tech rep10/
+
+(4)
+
+while all guessing sequences obey the lower bound [1]
+N
+k=1
+
+√
+
+2
+
+pk
+
+N
+k=1
+
+√
+
+2
+
+pk
+
+2H1/2 (Y )
+.
+1 + 1/2 + . . . + 1/N
+1 + ln N
+1 + ln N
+(5)
+Note that the upper and lower bounds are approximately within
+a factor ln N/2 of each other. Thus if N = 264 the upper and
+lower bounds are within a factor ln 64/2 ≈ 22.18 which is
+less than a fraction 25−64 = 2−59 of the size of the search
+space. In this setting, once again the R´ nyi entropy of order
+e
+1/2, or H1/2 (X) plays a role.
+We also remark that Pliam [14] has also investigated the
+discrepancy between marginal guesswork, i.e., the number of
+guesses that the optimal guessor requires to obtain a given
+success probability, and entropy, and point the reader to [14]
+for the details.
+E[G] ≥
+
+≈
+
+=
+
+D. Conclusions
+The results we obtained in this paper have provided a
+complement to the existing results, and have applications in
+key guessing attacks.
+The link between guessing and entropy was popularized by
+Massey [7]. The problem of bounding the expected number of
+guesses in terms of Renyi entropies was investigated by Arikan
+in the context of sequential decoding [1]. Pliam independently
+investigated the relationship between entropy, guesswork and
+security [14]. Feder and Merhav considered the relationship
+between predictability and entropy [9]. Pﬁster and Sullivan
+[13] and Malone and Sullivan [8] also obtained results related
+to guesswork and entropies.
+Independent work in this domain has also been brought to
+the author’s attention. The optimal guessing strategy derived
+in the case of single guesser with constraint on memory was
+proposed as an attack strategy in the context of password
+guessing attacks, which is available online [16].
+The problem of a cipher with a guessing wiretapper, and the
+problem of guessing subject to distortion was investigated by
+Merhav and Arikan [2]. The problem of guessing under source
+uncertainty was investigated by Sundaresan [15]. Hanawal and
+Sundaresan have also uniﬁed the work on guessing exponents,
+using large deviations theory, in [17]. The problem of multilevel guessing was investigated by Merhav, Roth and Arikan
+[11]. In conclusion, the area of guessing continues to be of
+interest to a number of applications.
+V. ACKNOWLEDGEMENT
+This research was supported by the Australian Research
+Council’s Linkage Projects funding scheme (project number
+LP110200321). The author would like to thank the referees
+for useful comments which improved the presentation of the
+paper.
+
+5
+
+

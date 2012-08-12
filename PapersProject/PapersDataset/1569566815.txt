@@ -1,0 +1,762 @@
+Title:          redaction one class (2).dvi
+Creator:        dvips(k) 5.991 Copyright 2011 Radical Eye Software
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Sat Feb  4 03:42:21 2012
+ModDate:        Tue Jun 19 12:55:40 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      595 x 842 pts (A4)
+File size:      285751 bytes
+Optimized:      no
+PDF version:    1.7
+ISIT'2012 1569566815
+
+ON SIMPLE ONE-CLASS CLASSIFICATION METHODS
+C´ dric Richard
+e
+
+Zineb Noumir, Paul Honeine
+
+Laboratoire H. Fizeau
+Universit´ de Nice Sophia-Antipolis
+e
+06108 Nice, France
+
+Institut Charles Delaunay
+Universit´ de technologie de Troyes
+e
+10010 Troyes, France
+ABSTRACT
+The one-class classiﬁcation has been successfully applied in many communication, signal processing, and machine learning tasks. This problem, as deﬁned by the oneclass SVM approach, consists in identifying a sphere enclosing all (or the most) of the data. The classical strategy to solve
+the problem considers a simultaneous estimation of both the
+center and the radius of the sphere. In this paper, we study the
+impact of separating the estimation problem. It turns out that
+simple one-class classiﬁcation methods can be easily derived,
+by considering a least-squares formulation. The proposed
+framework allows us to derive some theoretical results, such
+as an upper bound on the probability of false detection. The
+relevance of this work is illustrated on well-known datasets.
+1. INTRODUCTION
+The one-class classiﬁcation machines has become a very active research domain in machine learning [1, 2], providing a
+detection rule based on recent advances in learning theory.
+In one-class classiﬁcation, the problem consists in covering a
+single target class of samples, represented by a training set,
+and separate it from any novel sample not belonging to the
+same class, i.e., an outlier sample. It has been successfully
+applied in many novelty detection and classiﬁcation tasks,
+including communication network performance [3], wireless
+sensor networks [4], forensic science [5], detection of handwritten digits [6] and objet recognition [7], only to name a
+few. Moreover, it has been extended naturally to binary and
+multiclass classiﬁcation tasks, by applying a single one-class
+classiﬁer to each class and subsequently combining the decision rules [8].
+Since only a single class is identiﬁed, it is essentially a
+data domain description or a class density estimation problem, while it provides a novelty detection rule. Different
+methods to solve the one-class problem have been developed,
+initiated from the so-called one-class support vector machines
+(SVM) [9, 2]. The one-class classiﬁcation task consists in
+identifying a sphere of minimum volume that englobes all (or
+most of) the training data, by estimating jointly its center and
+This work was supported by ANR-08-SECU-013-02 VigiRes’Eau.
+
+1
+
+its radius. These methods exploit many features from conventional SVM [10], including a nonlinear extension thanks
+to the concept of reproducing kernels. They also inherit the
+robustness to outliers in the training set, by providing a sparse
+solution of the center. This sparse solution explores a small
+fraction of the training samples, called support vectors (SVs),
+and lying outside or on the sphere.
+In one-class SVM as deﬁned in [9, 2], the resulting convex
+optimization problem is often solved using a quadratic programming technique. Several efforts have been made in order
+to derive one-class classiﬁcation machines with low computational complexity [11]. In the same sense as least-squares
+SVM is derived from the classical SVM method [12, 13],
+some attempts have been made to derive from the one-class
+SVM a least-squares variant, such as in [14]. However, unlike the former, the latter do not have a decision function, thus
+inappropriate for novelty detection.
+In this paper, we propose to solve the one-class problem
+by decoupling the estimation of the center and the radius of
+the sphere englobing all (or most of) the training samples. In
+the same spirit as the classical one-class SVM machines, we
+consider a sparse solution with SVs lying outside or on the
+sphere. It turns our that the optimal sparse solution can be deﬁned using a least-squares optimization problem, thus leading
+to a low computational complexity problem. This framework
+allows us to derive some theoretical results. We give an upper
+bound on the probability of false detection, i.e., probability
+that a new sample is outside the sphere deﬁned by the sparse
+solution.
+As opposed to the jointly optimization of the center
+and radius by the classical one-class SVM approach, our
+strategy decouples the estimation problem, thus provides a
+sub-optimal solution. Consequently, the proposed approach
+should degrade the performance. In practice, we found that
+the performance is essentially equivalent to the classical technique, while operating a dramatic speed-up. This is illustrated
+on experiments from a well-known benchmark for one-class
+machines [11].
+The rest of the paper is organized as follows. Section 2
+outlines the classical one-class SVM. We describe our approach in Section 3, and derive theoretical results in Section
+
+4. Section 5 illustrates the relevance of our approach on real
+datasets. Conclusion and further directions are given in Section 6.
+2. CLASSICAL ONE-CLASS SVM
+Thanks to the concept of reproducing kernels [15], a (positive semi-deﬁnite) kernel function κ(·, ·) deﬁnes a nonlinear transformation Φ(·) of the input space into some feature
+space. A sphere deﬁned in the latter corresponds (is preimaged [16]) to a nonlinear characteristics in the input space.
+It turns our that only the inner product is often required, which
+can be evaluated using a kernel function, Φ(xi ), Φ(xj ) =
+κ(xi , xj ) for any xi , xj from the input space X .
+The one-class SVM was initially derived in [2] for the
+estimation of the support of a distribution with the ν-SVM,
+and in [9] for novelty detection with the so-called “support
+vector data description”. The principle idea is to ﬁnd a sphere,
+of minimum volume, containing all the training samples. This
+sphere, described by its center c and its radius r, is obtained
+by solving the constrained optimization problem
+min
+r,c
+
+subject to
+
+r
+
+2
+
+1
+sample lying inside the sphere, samples with 0 < αi < νn lie
+1
+on the sphere boundary, and samples with αi = νn lie outside
+the sphere, i.e., are outliers. The samples with non-zero αi
+are called support vectors (SVs) since they are sufﬁcient to
+describe the center as deﬁned in expression (4). In practice,
+only a very small fraction of the data are SV. Let Isv be the
+set of indices associated to SV, namely
+
+αi = 0
+αi = 0
+
+if i ∈ Isv ;
+otherwise.
+
+Finally, the optimal radius is obtained from any SV lying
+1
+on the boundary, namely any xi with 0 < αi < νn , since in
+this case Φ(xi ) − c = r. This is equivalent to
+r = min Φ(xi ) − c .
+i∈Isv
+
+Therefore, the decision rule that any new sample x is not an
+outlier is given as Φ(x) − c < r, where the distance is
+computed by using
+Φ(x)−c
+
+2
+
+=
+
+αi αj κ(xi , xj )−2
+
+i,j∈Isv
+
+αi κ(xi , x)+κ(x, x).
+i∈Isv
+
+(3)
+Φ(xi ) − c
+
+2
+
+≤ r2 for i = 1, 2, . . . , n
+
+While the above constraint may be too restrictive, one
+may tolerate a small fraction of the samples to be outside the
+sphere. This yields robustness, in the sense that it is less sensitive to the presence of outliers in the training dataset. For
+this purpose, let ν be a positive parameter that speciﬁes the
+tradeoff between the sphere volume and the number of outliers. Then the problem becomes the estimation of c, r, and a
+set of non-negative slack variables ζ1 , ζ2 , . . . , ζn :
+1
+min r2 +
+r,c,ζ
+νn
+
+n
+
+ζi
+i=1
+
+subject to Φ(xi ) − c
+
+2
+
+≤ r2 + ζi for all i = 1, 2, . . . , n
+
+By introducing the Karush-Kuhn-Tucker (KKT) optimality
+conditions, we get
+n
+
+αi Φ(xi ),
+
+c=
+
+(1)
+
+3. SIMPLE ONE-CLASS METHODS
+Back to basics, the center (or empirical ﬁrst moment) of a set
+of samples is deﬁned by
+cn =
+
+1
+n
+
+n
+
+Φ(xi ),
+
+(4)
+
+i=1
+
+and the radius of the sphere englobing all (or most of ) the
+samples can be easily considered, where the distance is evaluated using (3) where αi = 1/n for all i = 1, 2, . . . , n and
+Isv = {1, 2, . . . , n}. While the sphere deﬁned by the above
+full-model is extremely sensitive to outliers, one may consider
+a sparse solution by incorporating a small number of relevant
+samples in the model. This is essentially the spirit of the classical one-class SVM, which estimates jointly the center and
+the radius, by identifying the SVs. Our approach towards a
+sparse solution is based on three steps:
+
+i=1
+
+• Determine the full-model center from (4);
+
+where the αi ’s are the solution to the optimization problem:
+
+α
+
+i=1
+n
+
+• Identify the SVs as the farthest samples from the center;
+
+n
+
+n
+
+max
+
+αi κ(xi , xi ) −
+
+αi αj κ(xi , xj )
+
+• Estimate accordingly the sparse model parameters.
+
+i,j=1
+
+1
+for all i = 1, 2, . . . , n. 3.1. Sparsiﬁcation rule
+νn
+i=1
+The classical one-class SVM method provides a sparse model
+(2)
+for the center, where only samples outside or lying on the
+sphere are SVs. Inspired by this result, we consider in our
+In accordance with the KKT conditions, each sample xi can
+approach the distance criterion to identify this subset.
+be classiﬁed into three categories: αi = 0 corresponds to a
+subject to
+
+αi = 1 and 0 ≤ αi ≤
+
+2
+
+The set of SVs can be identiﬁed by considering the distance of each sample to the center, namely
+I
+
+=
+
+arg max Φ(xk ) − cn
+
+=
+
+arg max −2
+
+2
+
+k∈I
+
+n
+
+κ(xi , xk ) + nκ(xk , xk ),
+
+k∈I
+
+3.3. Constrained sparse formulation of the center
+While the box constraint on the coefﬁcients requires advanced
+optimization techniques, it is easy to satisfy the equality constraint (see (2)). The constrained optimization problem becomes
+
+i=1
+
+αeq = arg min
+
+α1 ...,αn
+
+where the number of SVs is ﬁxed in advance. Once the set
+{xi | i ∈ I} is determined, the radius is given as
+
+i=1
+
+2
+
+Φ(xi ) −
+
+αi Φ(xi )
+i∈I
+
+⊤
+
+subject to 1 αeq = 1,
+where 1 is a column vector of 1’s. By using the Lagrangian
+multipliers, we obtain
+
+r = min Φ(xi ) − cI ,
+i∈I
+
+where cI is the sparse model of the center deﬁned by
+cI =
+
+n
+
+1
+n
+
+αeq = α −
+
+αi Φ(xi ),
+
+(5)
+
+i∈I
+
+K −1 1(1⊤ α − 1)
+,
+1⊤ K −1 1
+
+(9)
+
+where α is the unconstrained solution, as given in (7). One
+may also include a regularization term, as above.
+
+the coefﬁcients α1 , α2 , . . . , αn being estimated as follows.
+4. SOME THEORETICAL RESULTS
+3.2. Sparse formulation of the center
+Consider the error of approximating cn with the sparse model
+cI , cn − cI , which indicates the wellness of such approximation using a small subset of the training data. The coefﬁcients in (5) are estimated by minimizing this error, with
+α = arg min
+
+α1 ,...,αn
+
+1
+n
+
+n
+
+i=1
+
+2
+
+Φ(xi ) −
+
+αi Φ(xi )
+
+,
+
+(6)
+
+i∈I
+
+where α is a column vector of the optimal coefﬁcients αk ’s
+for k ∈ I. Taking the derivative of this cost function with respect to each αk , namely −2 Φ(xk ), cn − i∈I αi Φ(xi ) ,
+and setting it to zero, we get
+1
+n
+
+n
+
+κ(xk , xi ) =
+i=1
+
+αi κ(xk , xi ),
+i∈I
+
+for every k ∈ I.
+
+Independently of the algorithm, one is considering a set of
+samples in order to estimate the true expectation. Let
+
+X
+
+be the true expectation, where P (x) is the probability distribution generating the samples x1 , x2 , . . . , xn . From these
+samples, one can give an estimate of c∞ by using the empirical ﬁrst moment cn , as deﬁned in expression (4). The
+accuracy of such approximation is
+ǫ0 = cn − c∞ .
+Based on the Hoeffding’s inequality, it is shown in [17] (see
+also [18]) that, with probability at least 1 − δ over the choice
+of a random set of n samples, we have
+nǫ2 ≤ sup κ(x, x) 2 +
+0
+x∈X
+
+In matrix form, we obtain
+α = K −1 κ,
+
+(7)
+
+where K is the kernel matrix, with entries κ(xi , xj ) for i, j ∈
+n
+1
+I and κ is a column vector with entries n i=1 κ(xk , xi )
+for k ∈ I. To make this problem well-posed in practice,
+we include a regularization parameter ν, namely α = (K +
+νI)−1 κ, where I is the identity matrix of appropriate size.
+The error of approximating the center with the above solution
+is
+cn − cI
+
+2
+
+=
+=
+
+cn
+1
+n2
+
+2
+n
+
+− 2α⊤ κ + α⊤ Kα
+
+i,j=1
+
+Φ(x) dP (x)
+
+c∞ =
+
+3
+
+2
+
+.
+
+By the symmetry of the i.i.d assumption, we can bound
+the probability that a new sample x, generated from the same
+probability distribution, is beyond the boundary deﬁned by
+a one-class classiﬁcation method, as given by the following
+proposition:
+Proposition 1. Consider the sphere centered on cI with radius maxi=1,...,n Φ(xi ) − cI + 2ǫ0 + 2 cn − cI . Then,
+with probability at least 1 − δ over the choice of a random set
+of n samples, we can bound the probability that a new sample
+x is outside this sphere, with
+P
+
+κ(xi , xj ) − κ⊤ K −1 κ. (8)
+
+√
+−2 ln δ
+
+Φ(x) − cI > max
+
+i=1,...,n
+
+≤
+
+1
+.
+n+1
+
+Φ(xi ) − cI + 2ǫ0 + 2 cn − cI
+
+Proof. To show this, we consider Φ(x) − cI and apply the
+triangle inequality twice, we get
+Φ(x) − cI
+
+≤
+
+≤
+
+Φ(x) − cn + cn − cI
+
+Φ(x) − c∞ + ǫ0 + cn − cI ,
+
+where the ﬁrst inequality follows from approximating the fullmodel center by a subset of samples, while the second inequality from estimating the expected center by a ﬁnite set of
+n samples. Equivalently, we have for any xi :
+Φ(xi ) − cI
+
+≥
+≥
+
+Φ(xi ) − cn − cn − cI
+Φ(xi ) − c∞ − ǫ0 − cn − cI .
+
+Therefore, we get
+P
+
+Φ(x) − cI > max
+
+i=1,...,n
+
+≤P
+≤
+
+Φ(xi ) − cI + 2ǫ0 + 2 cn − cI
+
+Φ(x) − c∞ > max
+
+i=1,...,n
+
+Φ(xi ) − c∞
+
+1
+n+1
+
+where the ﬁrst inequality follows from the above inequalities,
+and the last inequality is due to the symmetry of the i.i.d assumption, considering n + 1 samples drawn from the same
+distribution.
+As a special case of this proposition, consider the fullmodel for the empirical center, namely I = {1, 2, . . . , n}. In
+this case we get the relation given in [17, Chapter 5]:
+P Φ(x) − cn > max
+
+i=1,...,n
+
+Φ(xi ) − cn + 2ǫ0 ≤
+
+1
+.
+n+1
+
+We can extend this result to the solution deﬁned by considering that the samples deﬁned by indices I are outliers,
+thus not inside the sphere. The following proposition can be
+easily proven using the same steps as in the proof of Proposition 1.
+Proposition 2. Consider the same setting as in Proposition
+1, where the indices in I deﬁne the outliers with |I| the number of outliers. Then, with probability at least 1 − δ over the
+choice of a random set of n samples, we can bound the probability that a new sample x is outside the sphere excluding
+outliers, with
+P
+
+Φ(x) − cI > min Φ(xi ) − cI + 2ǫ0 + 2 cn − cI
+i∈I
+
+5. EXPERIMENTS
+Since there are few benchmark datasets for one-class classiﬁcation methods, multiclass tasks are often considered. A
+multiclass classiﬁcation task can be tackled by using oneclass machines: each class is deﬁned by a one-class classiﬁer,
+and subsequently we get the decision rule by combining these
+classiﬁers. In practice, the model parameters are estimated by
+considering a subset of the target class (ntrain samples), and
+tested over the remaining samples (ntest ), some from the target class and all the samples from the other classes.
+To illustrate the relevance of the proposed approach, we
+have tested the proposed methods on real datasets well-known
+in the literature of one-class machines [19]: the IRIS dataset
+with 150 samples in 3 classes and 4 features, and WINE with
+178 samples in 3 classes and 13 features. These datasets are
+available from the UCI machine learning repository. For experiments on IRIS data, we used only third and fourth features, as often investigated.
+The Gaussian kernel was applied, with κ(xi , xj ) =
+exp( xi − xj 2 /2σ 2 ). To estimate the classiﬁcation error,
+a ten-fold cross-validation was used, with parameters optimized by a grid search over ν ∈ {2−5 ; 2−4 ; · · · ; 24 ; 25 } and
+σ ∈ {2−5 ; 2−4 ; · · · ; 24 ; 25 }. In order to provide comparable
+results, the number of SVs was ﬁxed for all methods, by considering the optimal conﬁguration for the classical one-class
+SVM. Table (4) gives the results in terms of classiﬁcation error for each of the proposed methods, and compared to the
+classical one-class SVM. We also included the ratio of common SVs between the latter and each of the proposed methods, as well as the mean values. The computational cost of
+these machines, using the best conﬁguration, are illustrated
+in terms of CPU time, as estimated on a 64-bit Matlab running on a Mackbook Pro with a 2.53 GHz Intel Core 2 Duo
+processor and 4 GB RAM.
+6. CONCLUSION
+In this paper, we studied the problem of one-class classiﬁcation. By offering three one-class classiﬁcation methods,
+we have shown that we can achieve a classiﬁcation one-class
+while minimizing the classiﬁcation error and especially with
+less computing time. The relevance of our approach is illustrated by experiments on well-known datasets. In future
+works, we study an online strategy for one-class classiﬁcation, as well as other sparsiﬁcation rules such as the coherence
+criterion.
+7. REFERENCES
+
+|I|
+≤
+.
+n+1
+It is worth noting that in both propositions, the error cn −
+cI is minimized by our approach, as given by (8).
+
+4
+
+[1] D. de Ridder, D. Tax, and R. P. W. Duin, “An experimental
+comparison of one-class classiﬁcation methods,” in Proc. 4th
+Annual Conference of the Advanced School for Computing and
+Imaging. Delft, The Netherlands: ASCI, 1998.
+
+Datasets
+IRIS
+
+WINE
+
+class # ntrain |ntest
+0
+45|105
+1
+45|105
+2
+45|105
+total error
+(total time)
+0
+1
+2
+
+53|125
+64|114
+43|135
+total error
+(total time)
+
+Classical
+one-class
+SVM
+error
+0.28
+0.86
+1.62
+0.92
+(3.42)
+2.96
+3.50
+2.81
+3.09
+(3.65)
+
+Simple one-class methods (this paper)
+Full model
+Sparse model
+Constrained model
+cn in (4)
+cI in (5)-(7)
+cI in (5)-(9)
+error shared SVs error shared SVs error shared SVs
+0
+88%
+0.38
+90%
+0.38
+90%
+2.09
+76%
+1.04
+70%
+1.14
+70%
+3.90
+56%
+1.23
+58%
+1.23
+58%
+1.99
+73%
+0.88
+72%
+0.91
+72%
+(0.52)
+(0.66)
+(0.66)
+2.72
+4.20
+3.26
+3.39
+
+81%
+75%
+85%
+80%
+(0.75)
+
+3.04
+4.29
+3.33
+3.55
+
+81%
+78%
+84%
+81%
+(1.00)
+
+3.04
+4.64
+3.41
+3.69
+
+81%
+78%
+84%
+81%
+(1.01)
+
+Table 1. Experimental results with the classiﬁcation error for each one-class classiﬁer, and the total error, as well as the total
+computational time (in seconds). The ratio of common SVs, with respect to the results obtained from the classical one-class
+SVM, for each of the proposed methods is given, as well as the mean ratio of common SVs.
+[2] B. Sch¨ lkopf, J. C. Platt, J. Shawe-Taylor, A. J. Smola,
+o
+and R. C. Williamson, “Estimating the support of a highdimensional distribution.” Neural Computation, vol. 13, no. 7,
+pp. 1443–1471, 2001.
+[3] R. Zhang, S. Zhang, S. Muthuraman, and J. Jiang, “One class
+support vector machine for anomaly detection in the communication network performance data,” in Proc. of the 5th conference on applied electromagnetics, wireless and optical communications, Stevens Point, Wisconsin, USA, 2007, pp. 31–37.
+[4] Y. Zhang, N. Meratnia, and P. Havinga, “Adaptive and online
+one-class support vector machine-based outlier detection techniques for wireless sensor networks,” in Proc. of the IEEE 23rd
+International Conference on Advanced Information Networking and Applications Workshops/Symposia, Bradford, United
+Kingdom, May 2009, pp. 990–995.
+[5] F. Ratle, M. Kanevski, A.-L. Terrettaz-Zufferey, P. Esseiva, and
+O. Ribaux, “A comparison of one-class classiﬁers for novelty
+detection in forensic case data,” in Proc. 8th international conference on Intelligent data engineering and automated learning. Berlin, Heidelberg: Springer-Verlag, 2007, pp. 67–76.
+[6] D. M. J. Tax and P. Juszczak, “Kernel whitening for one-class
+classiﬁcation,” International Journal of Pattern Recognition
+and Artiﬁcial Intelligence, vol. 17, pp. 333–347, 2003.
+[7] M. Kemmler, E. Rodner, and J. Denzler, “One-class classiﬁcation with gaussian processes,” in Proc. Asian Conference on
+Computer Vision, 2010, pp. 489–500.
+[8] K. Hempstalk and E. Frank, “Discriminating against new
+classes: One-class versus multi-class classiﬁcation,” in Proc.
+21st Australasian Joint Conference on Artiﬁcial Intelligence:
+Advances in Artiﬁcial Intelligence.
+Berlin, Heidelberg:
+Springer-Verlag, 2008, pp. 325–336.
+[9] D. Tax, “One-class classiﬁcation,” PhD thesis, Delft University
+of Technology, Delft, June 2001.
+
+5
+
+[10] V. Vapnik, The Nature of Statistical Learning Theory.
+York: Springer-Verlag, 1995.
+
+New
+
+[11] Y.-H. Liu, Y.-C. Liu, and Y.-J. Chen, “Fast support vector data
+descriptions for novelty detection,” IEEE Trans. on Neural Networks, vol. 21, no. 8, pp. 1296–1313, aug. 2010.
+[12] J. Suykens and J. Vandewalle, “Least squares support vector
+machine classiﬁers,” Neural Processing Letters, vol. 9, no. 3,
+pp. 293–300, 1999.
+[13] R. Rifkin, G. Yeo, and T. Poggio, “Regularized least squares
+classiﬁcation,” in Advances in Learning Theory: Methods,
+Model and Applications, ser. NATO Science Series III: Computer and Systems Sciences, J. Suykens, G. Horvath, S. Basu,
+C. Micchelli, and J. Vandewalle, Eds., vol. 190. Amsterdam,
+Netherlands: VIOS Press, May 2003, pp. 131–154.
+[14] Y.-S. Choi, “Least squares one-class support vector machine,”
+Pattern Recogn. Lett., vol. 30, pp. 1236–1240, October 2009.
+[15] N. Aronszajn, “Theory of reproducing kernels,” Transactions
+of the American Mathematical Society, vol. 68, 1950.
+[16] P. Honeine and C. Richard, “Preimage problem in kernel-based
+machine learning,” IEEE Signal Processing Magazine, vol. 28,
+no. 2, pp. 77–88, 2011.
+[17] J. Shawe-Taylor and N. Cristianini, Kernel Methods for Pattern
+Analysis. Cambridge, UK: Cambridge University Press, 2004.
+[18] O. Bousquet, S. Boucheron, and G. Lugosi, “Introduction to
+Statistical Learning Theory,” in Advanced Lectures on Machine
+Learning, 2004, pp. 169–207.
+[19] D. Wang, D. S. Yeung, and E. C. C. Tsang, “Structured one
+class classiﬁcation,” IEEE Trans. on systems, Man, and Cybernetics, Part B, vol. 36, pp. 1283–1295, 2006.
+
+

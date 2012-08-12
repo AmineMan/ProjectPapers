@@ -1,0 +1,673 @@
+Title:          
+Creator:        www.freepdfconvert.com         
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Wed May 16 02:34:48 2012
+ModDate:        Tue Jun 19 12:56:15 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      283840 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569565041
+
+On Emptying a Wireless Network in Minimum Time
+Vangelis Angelakis1 , Anthony Ephremides1,2, Qing He1 , and Di Yuan1
+1
+
+2
+
+Department of Science and Technology, Link¨ ping University, Sweden
+o
+Department of Electrical and Computer Engineering, University of Maryland, USA
+
+time slots is minimized. Set-covering formulations enabled
+a column generation method for solving the resulting linear
+programming relaxations. For the minimum length scheduling
+problem, a column-generation-based solution method was also
+used in [9], which can approach an optimal solution, with
+the advantage of a potentially reduced complexity. In [12]
+the minimum-length scheduling problem was formulated as
+a shortest path problem on Directed Acyclic Graphs and the
+authors obtained suboptimal analytic characterizations.
+In this paper we consider the scheduling problem when
+there is ﬁnite volumes of trafﬁc that the different users wish to
+transmit over the shared channel to their destinations (which
+may be different or one and the same). That is, we consider
+the multiple access or interference channel with ﬁnite trafﬁc
+volume that must be delivered in minimum time. Our contributions include new results on the combinatorial complexity
+of the problem, on the structure of the optimal schedule,
+and ﬁnally, new necessary and/or sufﬁcient conditions for
+optimality based on the values of the transmission rates that
+the users can transmit at, when these rates depend explicitly
+or implicitly on the set of users who are allowed to transmit
+simultaneously. Thus, our results contribute to the tightening
+of the joint use of physical and MAC layer approaches and
+point to practical and realistic algorithms for approximating,
+or precisely determining, an optimal schedule.
+
+Abstract—We consider N transmitter-receiver pairs that share
+a wireless channel and we address the problem of obtaining a
+schedule for activating subsets of these links so as to empty the
+transmitter queues in minimum time. Our aim is to provide
+theoretical insights for the optimality characterization of the
+problem, using both a cross-layer model formulation, which
+takes into account the effect of interference on achievable
+transmission rates, as well as a collision-based model, which does
+not incorporate the physical layer realities into the problem. We
+present the basic linear programming formulation of the problem
+and establish that the optimal schedule need not consist of more
+than N subset activation frames. We then prove that the problem
+is N P-hard for all reasonable continuous rate functions. Finally,
+we obtain sufﬁcient and/or necessary conditions for optimality in
+a number of special cases.
+Index Terms– interference; optimality; scheduling; wireless
+networks.
+
+I. I NTRODUCTION
+In shared wireless channels coordinating access amongst
+many users remains a vexing problem. Whether the classical
+collision models are used, that have been popular with the
+networking community, or the more relevant and current
+models that enable successful decoding in the presence of
+interference and that use a cross-layer view of transmission
+rate and access control, that are nowadays considered by the
+physical layer community, it is still necessary to decide which
+users are allowed to transmit and for how much time should
+they transmit so as to attain some optimality goal. In other
+words the so-called scheduling problem is still an important
+and unsolved problem despite the fact that it has been studied
+a great deal in the past.
+Past work on this problem includes [8] in which a centralized, polynomial-time algorithm was obtained for static
+networks with speciﬁed link trafﬁc requirements. The formulation was based on mapping the network to an undirected
+graph and on assuming that any two links can be successfully
+activated simultaneously as long as they do not share common
+vertices on the graph. In [6], [7] N P-hardness was addressed
+for the problem of determining a minimum-length schedule
+under a given trafﬁc demand in a wireless network with
+SINR constraints, using respectively the protocol model and a
+collision-based model. In some special cases the structure of
+the trafﬁc demand allowed a polynomial algorithm.
+In [2], [3] it was shown that more fundamental resource
+allocation problems in wireless networks with SINR constraints, such as node and link assignment, are also N Phard. In these problems the goal is to assign at least one
+time slot to each node, or link, such that the number of
+
+II. S YSTEM M ODEL
+We consider a wireless network of N transmitter-receiver
+pairs, or links. These are associated with a vector d of trafﬁc
+demand, corresponding to a ﬁnite amount of backlogged data
+at the transmitters’ queues. Scheduling a group c of these
+N links means that all links in c are concurrently activated,
+with given power each, for some positive amount of time. The
+minimum-length scheduling problem, amounts to determining
+which groups should be selected, and the duration of activating
+each group, such that the entire demand vector is served (i.e.
+the queues are emptied) in minimum time. For any group c ,
+the effective transmit rate ric of any link i ∈ c is directly
+coupled to the composition of the activation group.
+The ﬁrst rate model that we consider, couples the links via
+the G channel gains matrix, whose element Gij is the channel
+gain between the transmitter of link i and the receiver of link
+j. Denoting with Pi the transmission power for link i, and σ 2
+the noise variance, the signal-to-interference-and-noise (SINR)
+ratio for link i, when group c is activated, is given by:
+
+1
+
+γic =
+
+Pi Gii
+Pk Gki + σ 2
+
+.
+
+is useful in our case, as it solidiﬁes the form of LP basic
+solutions to be discussed later.
+
+(1)
+
+Lemma 1. There exists an optimal schedule such that, before
+reaching the end of the time duration of a group, none of the
+link queues in the group is empty.
+
+k∈c ,k=i
+
+Under this model, rate is a function F of SINR, since
+for the transmission to be successful the SINR must exceed
+a threshold, which in turn is an increasing function of the
+rate. This is a common and familiar approach used for the
+AWGN channel, and by extension, an approximation in an
+interference environment, by assuming interference as noise
+(see for example [13] and the references therein). We designate
+this model IA . We also consider the “packet-based” approach
+to “collision” channels, where a packet is successful if and
+only if the SINR meets a threshold γ ∗ without regard to the
+number of bits in it, or its duration. Indeed, this is a popular
+approach in the wireless networking community for the study
+of the scheduling problem (e.g. [2], [3], [5], [9]) as it decouples
+the packet success from the transmission rate. We call this
+model IB .
+In the second model we consider the rates are determined
+solely by the activation group cardinality. In this special case
+of the ﬁrst model all concurrently activated links share the
+same rate value. An example scenario is a system where all
+receivers are located at a central point, with N transmitters
+having the same distance (on a circle) to the center with
+geometric channel gain. A similar case was considered in [5].
+This case is much more structured than the one in the general
+setting, and its properties will be detailed in the subsequent
+sections. Here, the rate is deﬁned using an N -dimensional rate
+vector r = (r1 , . . . , rN ), with each element ri denoting the
+rate of group size i ∈ {1, . . . , N }. We call this model II.
+In both models rate has the following, intuitive, property:
+If two links are activated concurrently their rates can not be
+higher than the rates of their respective individual activation.
+Thus, throughout the paper, we assume that rates in a group
+do not grow when it is augmented. We will be referring to
+this property as augmentation-rate monotonicity.
+
+Proof: Assume the opposite. Then there exists a group
+with activation duration t > 0, and a link i ∈ c , such that
+the queue size served during this time, denoted by δi , satisﬁes
+δ
+the condition δi < ric t. Let t = riic . Consider splitting the
+running time t in two segments with duration t and t − t
+respectively. In the ﬁrst segment, group c is run, and in the
+second segment, the reduced group c \ {i} is run. The lemma
+follows from two observations. First, the served queue volume
+of link i in segment one remains δi . Second, any of the links
+other than i is served for an overall time of t, and their rates
+in c \ {i} are not worse, if not better, than those in c .
+By Lemma 1, we arrive at the following LP formulation.
+Notice that since (2b) are equalities, the formulation is in the
+so called standard LP form, namely
+
+c
+
+min
+
+xc
+
+(2a)
+
+ric xc = di , i = 1, . . . , N,
+
+(2b)
+
+c ∈H
+
+s. t.
+c ∈H
+
+x ≥ 0.
+
+(2c)
+
+There are 2N − 1 possible groups. However, we prove
+below that we can always construct an optimal scheduling
+solution using at most N groups. The result follows from the
+fundamental optimality theory of LP and the structure of (2).
+Lemma 2. There exists an optimal scheduling solution using
+at most N groups, i.e., |H∗ | ≤ N .
+Proof: Formulation (2) is clearly feasible. Hence, by the
+fundamentals of linear programming (e.g., [11]), there exists
+an optimal basic solution. For any feasible basic solution, the
+number of positive values is no more than the number of rows
+N, and equals N if the solution is non-degenerated, and thus
+the lemma follows.
+
+III. L INEAR P ROGRAMMING F ORMULATION
+If all the link rates for all groups c (subsets of the set
+of links) are known, the scheduling problem accepts a linear
+programming (LP) formulation. Although the LP formulation
+does not lead to a practically feasible solution algorithm,
+it enables us to gain structural insights. We introduce the
+following notation:
+Let the link set N = {1, . . . , N } be associated with a
+strictly positive vector of demand d = {d1 , . . . , dN }T . Let
+H denote the set of all subsets of N , excluding the empty
+set. The scheduling decision vector is denoted as x and each
+element xc denotes the time duration of group c ∈ H. Clearly,
+|H| = 2N − 1. Finally, H∗ denotes the set of groups that
+correspond to an optimum schedule.
+By the following lemma, at optimum all queue demands
+will be met exactly (i.e. no link will be active with nothing
+to transmit). This is rather intuitive and has up to now been
+(implicitly) taken for granted (e.g., [5]). Formalizing this result
+
+IV. C OMPLEXITY C ONSIDERATION FOR C ONTINUOUS
+M ONOTONICALLY I NCREASING R ATE F UNCTIONS
+By Lemma 2, there is always a compact representation of
+optimality, thus approaching the globally optimal schedule
+is equivalent to selecting the N “best” groups amongst the
+2N − 1. For model IB , the problem has been shown to be
+N P-hard [1], [3], [7]. A natural follow-up question is whether
+the complexity reduces for IA . Is the problem tractable if
+for example, the Shannon formula is used as rate function,
+as has been widely done in the literature? In the following,
+we provide a negative answer, showing that the problem is
+in general hard for all rates that are continuous and strictly
+increasing functions of the SINR.
+Theorem 3. If the rates are strictly increasing functions of
+the SINR, there are N P-hard instances of the minimum-length
+scheduling problem.
+
+2
+
+Proof: Given the triplet (N, d, F ), where F is a continuous strictly increasing of the SINR, the recognition version of
+the problem, by Lemma 2, is as follows. Are there N groups,
+which can be represented using an N × N matrix, such that
+the total time of satisfying demand d using these groups is at
+most a given positive number? The problem is clearly in class
+N P, as checking the validity of a solution (a certiﬁcate in the
+form of a square matrix of size N ) is straightforward. Consider
+a general-topology graph G = (V, E). Let N = |V|. Thus a
+link in the scheduling instance corresponds to a vertex in G.
+F −1
+1
+Let v = F −1 ( N ), and u = F −1 ((1)) , i.e., F −1 (1) = vu, also
+1
+N
+1
+note that u > 1 since F is strictly increasing. Let σ 2 = u .
+For each edge (i, j) in the graph, set the coupling element
+Gij = Gji = 1. Moreover, Gii = min{v, 1.0}, i ∈ N . All
+other elements of the channel matrix are zero. Finally, the
+v
+transmit power Pi = Gii , i ∈ N .
+Consider i, and any group that contains i, but not any of
+the adjacent vertices in G. The SINR is vu = F −1 (1), thus
+the rate is 1.0. If i is put into a group containing at least
+v
+one adjacent vertex in G, the SINR is no more than v/( Gii +
+1
+v
+−1 1
+( N ), because Gii ≥ 1 and u > 0. Thus
+u) < v = F
+1
+the rate of i becomes strictly less than N . Suppose that at
+optimum, a group c containing two links i and j, that are
+adjacent in G, has a positive amount of time duration t >
+0. Note that, in G, c corresponds to at least one connected
+component (because i and j are adjacent). Denote by m ⊆ V
+the component containing i and j, and let m = |m |. Note that
+m ≥ 2. By the observation before, for each of the links in m ,
+including i and j, the demand served in time t within group
+t
+c is strictly less than N .
+Consider splitting group c into m groups, obtained by
+combining c \ m with each of the individual links in m .
+t
+Each of the m groups is given time m . For all links in m ,
+1
+including i and j, the rate grows from less than N to 1.
+t
+Because m ≤ N , m is strictly more than enough to serve
+t
+demand N , for any link in m . The links in c \ m , are
+served with the same time duration t, with rate no less than
+before. We then repeat the same argument for the remaining
+components, if necessary. In conclusion, there is an optimal
+scheduling solution in which the groups are formed by links
+corresponding to independent sets of G. At this stage, it is
+apparent that solving the scheduling problem provides the
+correct answer to the weighted fractional coloring problem
+[10], with the demand vector d being the weights of the
+vertices, and the result follows.
+Theorem 3 generalizes the observation made in [6] on the
+connection between fractional coloring and scheduling under
+the so called protocol model, which uses a conﬂict graph
+and disregards the channel matrix. As our result applies to
+any monotonically strictly increasing function F in SINR,
+one should not expect that the use of smooth rate functions,
+including even linear ones, can result in reducing complexity.
+
+Here we look into a special case, where the demand values
+are uniform. For this setting, we readily provide a closed-form
+scheduling solution requiring only linear time to compute, and
+show it is globally optimal.
+Theorem 4. For (N, d, r), let m∗ = argmaxN mrm . If all
+m=1
+demand values are uniform and equal to d, then the N groups,
+{1, 2, . . . , m∗ }, {2, 3, . . . , m∗ + 1}, . . . {N, 1, . . . , m∗ − 1},
+each scheduled for a time duration of m∗dm∗ , is optimal.
+r
+Proof: For all the links, the given schedule clearly meets
+demand d exactly. For any feasible scheduling solution (not
+restricted to the case in question) of length T , the total data
+trafﬁc demand, i∈N di , divided by T , gives the average data
+throughput. As i∈N di is a constant, a schedule is minimum
+in time if ( i∈N di )/T attains the maximum possible value.
+By the assumption in the theorem, the instantaneous data
+throughput of any feasible schedule can never exceed m∗ rm∗ .
+This throughput is achieved during the entire duration of the
+proposed solution, and the result follows.
+The discussion here has a direct practical implication.
+Consider a scenario where equal demand transmitters have
+similar distances (and hence close-to-uniform channel gains)
+to their receivers, and the latter are located close to each other.
+For such a case, the above solution could be used to solve the
+minimum-length scheduling problem, fast, and thus provide a
+good approximate solution to the global optimum of the real
+problem.
+VI. BASIC S CHEDULING S TRATEGIES
+C ONDITIONS
+
+AND
+
+O PTIMALITY
+
+Given that the problem in its general form is hard, we
+consider two basic set activation strategies that are the most
+simple choices in constructing a scheduling solution. In the
+ﬁrst, denoted by H1 , the links are activated one at a time
+and so queues are emptied completely separately. That is,
+H1 = {{1}, {2}, . . . , {N }}. The second denoted by HN , follows the very opposite philosophy, namely, links are activated
+all at once, and the N -links group is served until some of
+the queues becomes empty. The next group consists in all the
+links having positive remaining demand, and so on.
+Note that both strategies produce schedules of size N ,
+and hence represent basic solutions (extreme points of the
+polytope). Given N out of the 2N − 1 groups, the computing
+time of the correct time share (or concluding that the N groups
+do not form a feasible schedule) is normally of complexity
+O(N 3 ) due to matrix inversion. Solutions of H1 and HN
+are simpler to construct, namely, after N calls of function F ,
+computing the H1 schedule runs clearly in linear time, whereas
+for the HN schedule the computing time is of O(N 2 ).
+A. Optimality Conditions for Activating One Link at a Time
+Intuitively, strategy H1 is desirable, if the links, when
+activated with others, experience signiﬁcant rate reduction. In
+following condition, where rii denotes the effective transmit
+rate of a link when activated alone, we quantify this notion.
+
+V. S CHEDULING FOR C ARDINALITY-BASED R ATES
+We next consider the complexity issue under the more
+structured model of cardinality-based rates (i.e. model II).
+
+3
+
+Condition 1. For any group c ∈ H, the sum of the ratios
+between the members’ rates in c and their respective rates of
+being served individually, is at most 1, that is,
+ric
+≤ 1, c ∈ H.
+r
+i∈c ii
+
+Remark 1. Both theorems signiﬁcantly extend previous results
+of the optimality characterization of two links [4], [13]. In
+fact, for two links, H1 is optimal if Condition 1 holds for
+c = {i, j}, otherwise H2 is optimal.
+For the case of cardinality-based rates, i.e. when the input
+triplet is (N, d, r), the number of inequalities in Condition 1
+is reduced to N . This, together with the proof of Theorem 5,
+lead to the following corollary.
+
+The above condition is simple in structure. Yet, it is exact
+in characterizing the optimality of H1 .
+Theorem 5. H1 is optimal if and only if Condition 1 holds.
+
+Corollary 7. The following condition is both sufﬁcient and
+necessary for the optimality of H1 in minimum length scheduling with cardinality-based rates.
+
+Proof: Sufﬁciency: Consider the LP formulation (2),
+and the base matrix B for the basic solution H1 .
+The inverse matrix B −1 is diagonal with diag(B −1 ) =
+(1/r11 , . . . , 1/rN N )T . For any non-basic variable xc with
+|c | ≥ 2, the reduced cost equals 1 − eT B −1 rc , where rc
+denotes the column vector corresponding to xc in (2). This
+cost becomes 1− i∈c ric , which is non-negative if Condition
+rii
+1 holds. Because none of the 2N − N − 1 non-basic variables
+have strictly negative reduced cost, H1 is optimal.
+Necessity: If Condition 1 does not hold for some group c , the
+reduced cost of the corresponding non-basic variable is strictly
+negative. Moreover, for H1 , all the basic variables have strictly
+positive values. Therefore the LP pivot operation of bringing in
+xc into the base is not degenerate, meaning that the objective
+function will strictly improve, and the result follows.
+Theorem 5 provides a complete answer to the optimality of
+H1 . The condition consists of one inequality per group and
+from the proof, it is clearly not possible to reduce them.
+Consider a pair of links, and relax the necessity requirement.
+A simpler sufﬁcient condition to exclude the activation of both
+in any group can be formulated if the two links generate high
+interference to each other, while their rates are not signiﬁcantly
+affected by other simultaneous transmissions.
+
+mrm ≤ r1 , m = 2, . . . , N.
+The structure of Condition 2 also simpliﬁes for model II.
+In addition, by augmenting the line of arguments in the proof
+of Theorem 6, we arrive at a sufﬁcient condition for excluding
+the use of any group of a speciﬁc size m.
+Corollary 8. For (N, d, r) and a given group size m ∈ [2, N ],
+if the following condition holds for any m < m, there is an
+optimal schedule that does not use any group of size m.
+mrm ≤ m rm .
+B. Conditions for Group Augmentation & Optimality
+Let us brieﬂy consider when it is preferable to augment
+a group. Intuitively, one can expect that a group should be
+augmented with one link, if the new resulting joint throughput,
+(deﬁned as the amount of data served per time unit), is higher
+than that of any combination of activation durations for the
+group and the link separately. Conversely, if it is optimal to
+activate group c , then the throughput of c , given by i∈c ric ,
+can not be achieved by any combined use of its |c | subsets of
+size |c | − 1. This insight leads to the following condition.
+
+Condition 2. For a pair of links i, j ∈ N , we assume the
+following inequality.
+ri,{i,j}
+rj,{i,j}
++
+≤ 1.
+ri,N \{j}
+rj,N \{i}
+
+Condition 3. Given group c , let n = |c | and denote by
+c˘ , c˘ , . . . , cn its n subsets of cardinality n − 1, obtained
+˘
+1 2
+by respectively removing from c links 1, 2, . . . , n. Denote by
+n
+n
+rc ∈ R+ the vector of rates of the links in c , and r˘ ∈ R+
+i
+the corresponding rate vector for c˘ (with zero rate for i).
+i
+We consider the following condition, which we call condition
+3: For any λ = (λ1 , . . . , λn )T ∈ Rn with eT λ = 1,
++
+i∈c λi r˘ ≤ rc in at least one link.
+i
+
+Theorem 6. If Condition 2 is true, then there exists H∗ in
+which i and j do not appear together in any group, that
+is, in optimizing the schedule, the condition is sufﬁcient for
+discarding any group containing both i and j.
+Proof: Suppose an optimal schedule has a group c having
+both i and j. Without loss of generality, assume the duration
+of c is 1. The demands served equal ric and rj c for the
+two links, respectively. By the property of augmentation-rate
+monotonicity, ric ≤ ri,{i,j} and rj c ≤ ri,{i,j} , giving the
+following inequality.
+ric
+rj c
++
+≤ 1.
+ri,N \{j}
+rj,N \{i}
+
+Remark 2. Note that ﬁnding whether or not there exists a λ
+vector that violates the condition can be formulated as an LP
+of size O(n), Thus the condition can be checked efﬁciently for
+any given group.
+What the above condition states is, in fact, that the rate
+vector of c can not be outperformed by the throughput region
+of the n sub-groups. If group c is active at optimum, then the
+condition must be true, as formulated below.
+
+Consider, instead of c , two groups c \ {j} and c \ {i}. The
+rates of i and j are at least ri,N \{j} and rj,N \{i} , respectively.
+Activating the two groups for time durations ric /ri,N \{j} and
+rj c /rj,N \{i} respectively delivers no less than ric and rj c as
+served demands for i and j, hence the conclusion.
+
+c ∈ H∗ , then Condition 3 holds.
+Suppose group c is activated for any
+
+Theorem 9. If
+
+Proof:
+positive
+time t. Strict inequality
+λi r˘ > rc in all the n elei∈c
+i
+ments means that running c˘ , c˘ , . . . , cn , with time proportions
+˘
+1 2
+
+4
+
+λi , i = 1, . . . , n, respectively, will serve demand trc within
+less time than t, and the result follows.
+
+Moreover, one can show that the dual solution derived from
+these constraints together with the HN solution satisfy the
+complementarity slackness condition.
+
+C. Optimality Conditions for Activating All Links with Positive
+Demand Together
+
+VII. D ISCUSSION
+We addressed the problem of obtaining a schedule for
+activating subsets of N links to empty their transmitter queues
+in minimum time. We approached the problem introducing
+a modeling which provides ﬂexibility on the transmission
+rates used. The rate functions may vary from the asymptotic maximum ones, approaching the capacity region, to
+lower achievable rates that correspond to suboptimal detector
+structures. We proved that the problem is N P-hard for all
+reasonable continuous rate functions. We obtained sufﬁcient
+and/or necessary conditions for optimality in a number of
+special cases, depending on the relative values of the rates.
+We have also established that the optimal schedule need not
+consist of more than N subset activation frames.
+In view of the complexity result in Section IV, one can
+hardly expect an algorithm that is both fast and achieving
+global optimality under model I. Still, the closed-form result of
+4, gives us a good reason to further investigate the tractability
+of the general case in model II. Furthermore, we are working towards a broad algorithmic framework which provides
+ﬂexibility by a modular algorithmic design for the problem.
+
+We now turn our attention to scheduling strategy HN . In
+the solution, the N groups, which are easily identiﬁed, are of
+sizes N, N − 1, . . . , 1. Without loss of generality, assume link
+1 has its queue emptied ﬁrst, followed by link 2 in the second
+group, and so on. Applying Theorem 9 gives immediately the
+following necessary condition for the optimality of HN .
+Corollary 10. If HN is optimal, then Condition 3 must be
+true for the N − 1 groups {1, . . . , N }, {2, . . . , N }, . . . , and
+{N − 1, N }.
+Consider the implication of Condition 3 for cardinalitybased rates (N, d, r), i.e. model II. Because of the rate
+symmetry, i∈c λi r˘ can attain maximum simultaneously in
+i
+1
+all the n elements, only if λi = n for all i = 1, . . . , n. For
+this λ, all elements of i∈c λi r˘ equal n−1 rn−1 , resulting in
+i
+n
+the observation below.
+Corollary 11. If HN is optimal for (N, d, r), then the
+following relation must hold.
+(m − 1)rm−1 ≤ mrm , m = 2, . . . , N.
+
+ACKNOWLEDGEMENTS
+This work was supported in part by: the EU FP7
+IAPP@RANPLAN Marie Curie project, ELLIIT project 1.2,
+CENIIT project 08.01, VR Grant B0581701, MURI grant
+W911NF-08-1-0238, NSF grant CCF-0728966, and ONR
+grant N000141110127.
+
+The inequalities in the above corollary form a hierarchy of
+relations with a clear interpretation. Namely, if HN is optimal,
+then the throughput must be monotonically increasing in group
+size. Conversely, if this monotonicity is violated, we conclude
+HN is not optimal. However, the reverse formulation does
+not hold, i.e., the hierarchy of relations is not sufﬁcient for
+ensuring that HN is optimal.
+To arrive at a sufﬁcient optimality condition for strategy
+HN for the general problem setting (N, d, F ), we consider
+max
+maximum and minimum rates of groups. Denote by rm
+min
+and rm the maximum and minimum link rates, respectively,
+of all groups of size m. Although the exact values of them
+are difﬁcult to calculate in general, in practical systems it
+is typically possible to derive optimistic, albeit conservative,
+bounds on the rates, using the function F and the channel
+matrix G, as replacements of the maximum and minimum
+values.
+
+R EFERENCES
+[1] M. Andrews and M. Dinitz. Maximizing capacity in arbitrary wireless
+networks in the SINR model: complexity and game theory. In Proc. of
+IEEE INFOCOM ’09, 2009.
+[2] P. Bj¨ rklund, P. V¨ rbrand, and D. Yuan. Resource optimization of spatial
+o
+a
+TDMA in ad hoc radio networks: a column generation approach. In Proc.
+of IEEE INFOCOM ’03, 2003.
+[3] P. Bj¨ rklund, P. V¨ rbrand, and D. Yuan. A column generation method
+o
+a
+for spatial TDMA scheduling in ad hoc networks. Ad Hoc Networks,
+2:405-418, 2004.
+[4] S. A. Borbash and A. Ephremides. The feasibility of matchings in a
+wireless network IEEE Trans. Inf. Theory, 52:2749–2755, 2006.
+[5] S. A. Borbash and A. Ephremides. Wireless link scheduling with power
+control and SINR constraints. IEEE Trans. Inf. Theory, 52:5106–5111,
+2006.
+[6] C. Boyac´ , B. Li, and Y. Xia. An investigation on the nature of wireless
+y
+scheduling. In Proc. of IEEE INFOCOM ’10, 2010.
+[7] O. Goussevskaia, Y. A. Oswald, and R. Wattenhofer. Complexity in
+geometric SINR. In Proc. of ACM MobiHoc ’07, 2007.
+[8] B. Hajek and G. Sasaki, Link scheduling in polynomial time, IEEE
+Trans. Inf. Theory, 34:910–917, 1988.
+[9] S. Kompella, J. E. Wieselthier, A. Ephremides, H. D. Sherali, and
+G. D. Nguyen. On Optimal SINR-Based Scheduling in Multihop Wireless
+Networks. IEEE Trans. Inf. Theory, 18:1713–1724, 2010.
+[10] C. Lund and M. Yannakakis. On the hardness of approximating
+minimization problems. Journal of the ACM, 41:960–981, 1994.
+[11] K. G. Murty. Linear Programming, Wiley, 1983.
+[12] A. Pantelidou and A. Ephremides. Minimum schedule lengths with rate
+control in wireless networks. In Proc. of IEEE MILCOM ’08, 2008.
+[13] A. Pantelidou and A. Ephremides. A Cross-Layer View of Optimal
+Scheduling. IEEE Trans. Inf. Theory, 56:5568-5580, 2010.
+
+Condition 4. We deﬁne the following N − 1 inequalities, with
+min
+the convention that r0
+is treated as a huge number.
+1
+1
+2
++ min ≤ max , m = 2, . . . , N.
+min
+rm
+rm−1
+rm−2
+The inequalities in Condition 4 form a chain for group sizes
+moving from one to N . This chain of relations is sufﬁcient
+for the optimality of schedule H N , namely we can show that,
+Theorem 12. If Condition 4 holds, then HN is optimal.
+We provide an outline, but due to space limitations we omit
+the proof details. For the groups in HN , we can prove that the
+corresponding N constraints in the LP dual are all binding.
+
+5
+
+

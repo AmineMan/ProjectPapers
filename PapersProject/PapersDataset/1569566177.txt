@@ -1,0 +1,885 @@
+Creator:        TeX
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Fri May 18 08:21:52 2012
+ModDate:        Tue Jun 19 12:56:26 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      488616 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569566177
+
+A Class of Iterated Fast Decodable Space-Time
+Codes for 2n Tx Antennas
+Nadya Markin and Fr´ d´ rique Oggier
+e e
+Division of Mathematical Sciences
+School of Physical and Mathematical Sciences
+Nanyang Technological University, Singapore
+Email: {NMarkin,frederique}@ntu.edu.sg
+
+the left regular representation typically employed in the area
+[1]. While codes arising from a division algebra are no novelty,
+the iterative nature of this construction endows the resulting
+codes with fast-decodable properties. This is achieved using a
+scaling technique, which allows us to preserve fast-decodable
+properties of the initial code throughout the iterative process.
+The sketch of our construction is as follows. Let D be a
+division algebra contained in the ring M atn×n (K) of n × n
+matrices with coefﬁcients in a number ﬁeld K (in this context,
+the property of being division means that every matrix in
+D is invertible). We provide a general construction which
+allows us to embed the algebra D into a bigger algebra
+A = A(D) ⊂ M at2n×2n (K). Given that the initial algebra D
+was division, a criterion decides when the algebra A is also
+division. The process can thus be repeated, starting with A(D)
+instead of D to construct a sequence of division algebras,
+whose elements are matrices with coefﬁcients in K. At each
+stage of the iteration, a new fully-diverse space-time code is
+derived from the corresponding division algebra.
+
+Abstract—We present an iterative construction of algebraic
+space-time codes. Starting from a division algebra D, we show
+how to embed it into a larger ring A = A(D) and give conditions
+for A to be a new division algebra. Starting from a quaternion
+division algebra D1 , we thus obtain a sequence D1 ⊂ D2 ⊂ . . .
+of division algebras where Di = A(Di−1 ). Each of the Di can
+be used as an underlying structure to build a space-time Ci .
+Furthermore, the iteration step is done such that fast-decodability
+of the original code is preserved. We illustrate our technique by
+creating an iterative version of the Silver code.
+Index Terms—Fast-decodability, Quaternion algebras, Spacetime codes.
+
+I. I NTRODUCTION
+Space-time codes arising from division algebras [1] have
+been used for several years and many codes with good
+performance are available. While supplying full diversity, these
+codes also possess a lattice structure which incurs a high
+complexity of Maximum Likelihood (ML) decoding, typically
+implemented with a sphere decoder [2]. A line of research on
+fast-decodable codes initiated in [3] yielded several families of
+codes with reduced ML decoding complexity, notably in [4]–
+[6], where different notions of fast-decodability are studied
+and categorized. Codes for the Multiple Input Double Output
+(MIDO) channel have been of special interest due to their
+potential application to digital video broadcasting, where the
+number of receive antennas is limited by the size of the
+user’s portable device. In particular, several constructions of
+fast-decodable MIDO codes have been proposed [7]–[9]. Sequences of fast-decodable codes when the number of transmit
+antennas increases can be found in [10].
+In this paper, we are similarly interested in addressing the
+design of fast-decodable codes for possibly large number of
+transmit antennas, and present an iterative construction of
+minimum delay algebraic space-time codes - generalizing the
+method proposed in [11] - which generates for each i ≥ 1 a
+family of fast-decodable full-rate MIDO 2i × 2i codes.
+Each code in this family is a full-rate MIDO code contained
+in the ring of 2i × 2i matrices M at2i ×2i (K) with coefﬁcients
+in a number ﬁeld K. At each step of the iteration, the resulting
+space-time code actually carries an algebra structure, and we
+supply criteria which determine when this algebra is division,
+or alternatively put, when the code is fully diverse. It is worth
+highlighting that the matrix representation of these codes is not
+
+II. S YSTEM M ODEL AND FAST D ECODABILITY
+For each integer i ≥ 1, let T = 2i denote the number of Tx
+antennas. We consider transmission over a coherent Rayleigh
+fading channel with T Tx antennas, 2 Rx antennas and perfect
+channel state information at the receiver (CSIR):
+Y = HX + V,
+
+(1)
+
+where H is the 2 × T channel matrix, V is the 2 × T Gaussian
+noise at the receiver, and X ∈ Ci is a T ×T codeword that can
+be represented as a linear combination g1 B1 + · · · + gri Bri of
+generating matrices B1 , . . . , Bri of the code Ci , weighted by
+coefﬁcients g1 , . . . , gri , which are PAM information symbols.
+The matrices B1 , . . . , Bri will sometimes be referred to as a
+basis of the code Ci and ri as the rank of the code. For each
+i ≥ 1, we construct a code Ci ⊂ M at2i ×2i (K), such that the
+R-rank ri of each iterated code is 2i+2 . Since each codeword
+can transmit up to 4T = 2i+2 PAM information symbols
+(equivalently 2i+1 complex symbols), the resulting codes are
+full-rate MIDO codes. Alternatively, in terms of number of
+complex symbols per channel use (cspcu), the proposed codes
+are of rate two for each i, which is maximal for a MIDO code.
+Maximum-likelihood decoding amounts to searching the code
+
+1
+
+Ci for the codeword
+Z = arg min{||Y −
+
+HX||2 }X∈Ci
+F
+
+A code Ci with such a matrix R is said to be g-group decodable
+and has complexity order κi = max1≤j≤g dj .
+
+(2)
+
+III. A N I TERATED C ODE C ONSTRUCTION
+
+closest to the received matrix Y with respect to the squared
+Frobenius norm. Each 2 × T matrix HBj corresponds, via
+vectorization, to a vector bj ∈ Rri obtained by stacking the
+columns followed by separating the real and imaginary parts
+of HBj . We deﬁne the (generating) matrix
+
+We start with a 4-dimensional algebra D1 , and obtain a
+sequence D1 , D2 , D3 , . . . of division algebras with D1 ∈
+M at2×2 (K), D2 ∈ M at4×4 (K), D3 ∈ M at8×8 (K), etc. For
+i ≥ 1, the code Ci corresponding to Di is a subset of the matrix
+ring M at2i ×2i (K) for some number ﬁeld K. A codeword in
+Ci encodes 2i+2 real symbols (i.e., 4 real symbols pcu).
+
+B = (b1 , b2 , . . . , bri ) ∈ Mri ×ri (R),
+so every received codeword can be represented as a real vector
+Bg, with g = (g1 , . . . , gri )T having coefﬁcients in the real
+alphabet S in use, and ML decoding amounts to ﬁnding
+
+A. The Algebraic Framework
+We describe the general iterative step ﬁrst. Let K be a
+number ﬁeld, and D be a division algebra contained in the
+ring M atn×n (K) of n × n matrices over K (n is some 2i at
+the ith iteration). Given an automorphism τ of K, we extend
+it to a homomorphism of D (still denoted by τ by abuse of
+notation) by pointwise action on K-coefﬁcients of elements
+of D, i.e., for a matrix A ∈ D ⊂ M atn×n (K), we have
+
+arg min{||y − Bg||2 }g∈S ri = arg min{||Q∗ y − Rg||2 }g∈S ri
+E
+E
+(3)
+with respect to the Euclidean norm, where y is the vectorization of Y , and R is an upper right triangular matrix obtained
+through the QR decomposition B = QR, with Q unitary.
+The number and position of nonzero elements in the upper
+right part of R determine the complexity of the sphere decoding [3]: if ri is the number of independent real information
+symbols from S within one codeword from Ci , then the ML
+decoding complexity is the minimum number of values of g
+used in (3) while performing ML decoding. The worst case,
+when the matrix R is a full upper right triangular matrix, is
+the complexity of the exhaustive-search ML decoder, that is
+O(|S|ri ), where |S| is the number of PAM symbols in use.
+Fast decodability is achieved whenever the code structure is
+such that the decoding complexity has an exponent κi of |S|
+smaller than ri . We call κi the complexity order of the code.
+Given an ordered basis B1 , . . . , Bri , we can determine the
+zero structure of R by the zero structure of the matrix M ,
+deﬁned by orthogonality relations of the basis elements:
+∗
+∗
+Mk,l = ||Bk Bl + Bl Bk ||F .
+
+τ : (Aij ) → (τ (Aij )).
+Note that τ (A)τ (B) = τ (AB), hence τ (A−1 ) = τ (A)−1 for
+A invertible . In our construction τ will have to in fact be an
+automorphism of D, i.e., satisfy τ (D) = D.
+We next deﬁne a map αθ which embeds D × D into a
+larger ring. Given an element θ of the center Z(D) of D, let
+αθ : D × D → M at2×2 (D) be the map deﬁned by
+αθ : (x, y) →
+
+∆
+B2
+
+(4)
+
+B1
+,
+B3
+
+where ∆ is a d-dimensional diagonal matrix, then the matrix
+R of the QR decomposition in the sphere decoder as in (3)
+satisﬁes
+∆ B
+R=
+.
+0 R1
+A code Ci corresponding to such an R has complexity order
+κi = ri − d + 1. It was also proven in [4, Lemma 10] that the
+matrix R has the form
+
+
+R1 0
+0
+
+
+R =  0 ... 0 
+0
+where Rj are dj -dimensional
+
+M1
+
+M = 0
+0
+
+0
+
+αθ (x, y) + αθ (u, v)
+
+=
+=
+
+(5)
+
+x θτ (y)
+u
++
+y τ (x)
+v
+αθ (x + u, y + v),
+
+θτ (v)
+τ (u)
+
+while
+
+Rg
+
+αθ (x, y)αθ (u, v)
+
+square matrices, whenever
+
+0
+0
+
+..
+.
+0 .
+0
+
+θτ (y)
+,
+τ (x)
+
+which is seen as an embedding of D × D into M at2n×2n (K).
+For this construction to be iterative, A := αθ (D, D) needs
+to again be a division algebra. We start with a criterion which
+determines when A has the structure of a Z(D)-algebra1 . The
+question of whether it is division is discussed below.
+Lemma 1: Let τ be an automorphism of K of order 2,
+which extends to an automorphism of D and ﬁxes its center
+pointwise, i.e., τ (z) = z for z ∈ Z(D). If θ ∈ Z(D), then
+the image A of αθ forms an algebra of dimension 2d2 over
+Z(D), where d2 is the dimension of D over its center.
+Proof: Note that A = αθ (D, D) is both additively and
+multiplicatively closed, since clearly
+
+It was shown in [4, Lemma 2] that if M has the form
+M=
+
+x
+y
+
+1 Z(D)
+
+Mg
+
+2
+
+xu + θτ (y)v θxτ (v) + θτ (y)τ (u)
+yu + τ (x)v
+θyτ (v) + τ (x)τ (u)
+= αθ (xu + θτ (y)v, yu + τ (x)v)
+=
+
+is generally only a subset of Z(A).
+
+using that τ (θ) = θ, since τ ∈ Z(D), and τ 2 = 1. The center
+of D embeds into the center of A via
+z → αθ (z, 0) =
+
+z
+0
+
+is that elements of D1 can be viewed as 2 × 2 matrices over
+K via left regular representation, namely:
+
+0
+.
+z
+
+c
+d
+
+√
+√
+where τ : a → − a is a Galois F -automorphism, b ∈ F
+and c, d ∈ K. The code C1 consists of the subset of D1 , whose
+coefﬁcients c, d are algebraic integers of K. When F is an
+imaginary quadratic of Q, each symbol from F corresponds
+to 2 rational symbols. Hence each codeword carries 2 Ksymbols, that is 4 F -symbols, or 8 Q-symbols. The rank r1
+of the code C1 is hence 8. Restricting the symbols in F to be
+algebraic integers means that the 8 Q-symbols are in Z.
+First we note that τ is of order 2, and extends to an
+automorphism of D1 :
+
+Since A is additionally a vector space over Z(D), it has the
+structure of a Z(D)-algebra. It is of dimension 2d2 over Z(D).
+We now give a criterion on θ which guarantees that the
+Z(D)-algebra A = αθ (D, D) is division, in other words every
+nonzero element of A is invertible. The following lemma is a
+slight generalization of [11, Lemma 1].
+Lemma 2: Let D be a division algebra, whose elements
+correspond to n × n matrices over a ﬁeld K. Let τ and θ
+satisfy the hypothesis of Lemma 1. Then A = αθ (D, D) is
+division if and only if θ = zτ (z) for all z ∈ D.
+Proof: Suppose that θ = zτ (z) for all z ∈ D. We will
+show that A is division. Consider a nonzero element
+αθ (x, y) =
+
+x
+y
+
+τ
+
+x
+y
+
+det(τ (x) − yx−1 θτ (y)) = 0 ⇐⇒ τ (x) − yx−1 θτ (y) = 0.
+
+A
+B
+
+0
+∈ D1 .
+θ1
+
+θ2 τ (B)
+τ (A)
+
+where A, B ∈ D1 and θ2 is an element of F , possibly equal to θ1 . Continuing, we obtain an iterative sequence of algebras Di = αθi−1 (Di−1 , Di−1 ), whose elements
+are in M at2i ×2i (K). The corresponding codes are Ci =
+αθi−1 (Ci−1 , Ci−1 ). From Lemma 2, θi , i ≥ 1 must satisfy
+
+det(z) det(τ (z) − In z −1 θ)
+det(z) det(τ (z) − In z −1 zτ (z))
+
+=
+
+τ (c) bτ (τ (d))
+τ (c) bd
+=
+τ (d) τ (τ (c))
+τ (d) c
+
+The code C2 is obtained as the image αθ1 (C1 , C1 ) of C1 .
+Similarly, the second step gives the algebra D2 whose elements
+are 8 × 8 matrices of the form
+
+It thus sufﬁces to demonstrate τ (x)−yx−1 θτ (y) = 0. Since y
+is invertible, and recalling that for x ∈ D, τ (x−1 ) = τ (x)−1 ,
+the latter inequality is equivalent to xy −1 τ (xy −1 ) = θ. Letting
+z = xy −1 , by our assumption on θ, we have θ = zτ (z). Hence
+det(αθ (x, y)) = 0.
+Conversely, suppose θ = zτ (z) for some z ∈ D. We verify
+that det(αθ (z, In )) = 0, where In is the identity matrix.
+Indeed
+=
+
+=
+
+Indeed, this is an element of D1 since τ (θ1 ) = θ1 . The ﬁrst
+step of the iteration gives us the algebra D2 = αθ (D1 , D1 )
+whose elements are matrices of the form
+
+
+c bτ (d) θ1 τ (e) θ1 bf
+ d τ (c) θ1 τ (f ) θ1 e 
+.
+
+ e bτ (f )
+τ (c)
+bd 
+f τ (e)
+τ (d)
+c
+
+Now since τ (x) − yx−1 θτ (y) ∈ D, and hence invertible when
+nonzero, we have
+
+=
+
+bτ (d)
+τ (c)
+
+θ1
+0
+
+θτ (y)
+= det(x) det(τ (x) − yx−1 θτ (y)).
+τ (x)
+
+det(αθ (z, In ))
+
+c
+d
+
+is in D1 , since τ (b) = b. Adding that τ (z) = z for every
+z ∈ Z(D1 ) = F , we can use it for the iterative step in αθ .
+Now for any θ1 ∈ Z(D1 ) = F , let θ1 also denote the matrix
+
+θτ (y)
+τ (x)
+
+where the entries x, y are n × n matrices from the division
+algebra D. If x = 0 (resp. y = 0), the matrix is clearly
+invertible. Let us thus assume that both x, y ∈ D are nonzero,
+hence invertible. The formula (sometimes referred to as Schur
+complement) for the determinant of a block matrix gives
+det
+
+bτ (d)
+,
+τ (c)
+
+det(z) det(0) = 0.
+
+θi = zτ (z), z ∈ Di .
+
+Hence A is not division.
+
+C. Scaling
+
+B. The General Code Construction
+
+We now deﬁne a scaled version αθ of the map αθ , which
+˜
+will be useful in constructing fast-decodable codes from the
+iterated construction. Recall the map αθ deﬁned in (5):
+
+Let us now detail how the above general iterative construction induces a family of space-time codes, by ﬁxing for the
+ﬁrst step (i=1) an algebra D1 of dimension 4.
+Let F be a number ﬁeld, and let D1 = (a, b)F be a
+generalized quaternion algebra [12]. By deﬁnition, D1 is of
+dimension 4 over its center F , and has for maximal subﬁeld
+√
+K = F ( a). For coding purposes, what is important to know
+
+αθ : (x, y) →
+
+x
+y
+
+θτ (y)
+,
+τ (x)
+
+where τ and θ are as in the assumptions of Lemma 1 to ensure
+that αθ (D, D) has a Z(D)-algebra structure.
+Let u, v, x, y ∈ D be n × n matrices with coefﬁcients in K.
+We denote by ζ a 4rth root of unity, it does not have to be
+
+3
+
+primitive, that is ζ ∈ {±1, ±i}. Let θ = ζθ with θ > 0 , we
+have that the map
+u
+v
+
+αζθ : (u, v) →
+
+IV. A N I TERATIVE S ILVER C ODE
+We provide a detailed example, using as ﬁrst code the Silver
+code. The Silver code, discovered in [13], and rediscovered in
+[14], is given by codewords of the form
+
+ζθ τ (v)
+τ (u)
+
+and the map αζ √θ deﬁned by
+˜
+αζ √θ
+˜
+
+u
+: (u, v) → √
+θv
+
+−x∗
+1
+2
++
+x∗
+0
+1
+
+x1
+x2
+
+4
+
+X=
+
+B2j−1 xj1 + B2j xj2 ,
+j=1
+
+where xj = xj1 + ixj2 , and xj1 , xj2 ∈ Z are PAM symbols.
+Fixing such an ordering of the basis yields an R matrix [4]
+R=
+
+This allows us to compute
+
+=
+
+α(x, 0)α(0, v)∗
+˜
+˜
+
+=
+
+α(0, y)˜ (u, 0)∗
+˜
+α
+
+=
+
+α(0, y)˜ (0, v)∗
+˜
+α
+
+=
+
+xu
+0
+√
+θ
+√
+θ
+
+0
+yu∗
+
+∆
+0
+
+B
+R1
+
+where ∆ is a 4-dimensional diagonal matrix, thus inducing a
+complexity order of κ1 = 8 − 4 + 1 = 5.
+
+0
+τ (xu∗ )
+0
+xv
+ζ ∗ τ (xv ∗ )
+0
+
+∗
+−z2
+,
+∗
+z1
+
+1 1 + i −1 + 2i x3
+z1
+=√
+1−i
+x4
+z2
+7 1 + 2i
+and x1 , x2 , x3 , x4 ∈ Z[i] are the information symbols.
+A basis for the Silver code is given by {Bj , j = 1, . . . , 8},
+and a Silver codeword X can be written as
+
+α(x, y)˜ (u, v)∗ = α(xu∗ + θτ (yv ∗ ), yu∗ + ζ ∗ τ (xv ∗ )).
+˜
+α
+˜
+
+α(x, 0)˜ (u, 0)∗
+˜
+α
+
+z1
+z2
+
+where
+
+√
+ζ θ τ (v)
+τ (u)
+
+satisﬁes that det(αζθ (u, v)) = det(αζ √θ (u, v)), for all u, v.
+˜
+In particular, the image of α retains the full diversity property.
+˜
+Furthermore, assuming that complex conjugation commutes
+with τ on elements of D, and letting α denote αζ √θ for short,
+˜
+˜
+one can easily check that
+
+∗
+
+0
+−1
+
+(6)
+
+A. First iteration
+To perform the ﬁrst iteration, we need to identify the
+√
+structure of a quaternion algebra. Consider F = Q( −7) and
+its Galois extension K = F (i), with Galois automorphism
+τ : a + bi → a − bi, where a, b ∈ F . Note that τ is not the
+√
+complex conjugation since it ﬁxes −7. Silver codewords can
+also be viewed [15] as (scaled) matrices of the form
+
+∗
+
+ζτ (yu∗ )
+0
+
+θ τ (yv ∗ )
+0
+.
+0
+yv ∗
+
+(7)
+(8)
+(9)
+
+c −τ (d)
+,
+d τ (c)
+
+From the calculations above, we can see how the fast
+decodable properties of the code C with underlying algebra
+D are inherited by the iterated code coming from A(D), as
+we summarize in the lemma below.
+Lemma 1: Let D be a code with basis {D1 , . . . , Dr }. Then
+{˜ (Dj , 0), α(0, Dk ) : 1 ≤ j, k ≤ r} is a basis of A(D).
+α
+˜
+Moreover, if the orthogonality relation
+
+(10)
+
+√
+
+where c, d ∈ Z[i] ⊕ Z[i]( 1+ 2 −7 ). To be more speciﬁc,
+the Silver code is obtained via left regular representation of
+the elements of the natural order of the quaternion algebra
+D1 = (−1, −1)F . Thus for a pair of algebraic integers
+√
+c, d ∈ Q( −7, i) we have a Silver codeword (10) arising
+from D1 . The automorphism τ of order 2 extends to D1 via
+
+∗
+∗
+Dj Dk + Dk Dj = 0
+
+τ:
+
+holds for a pair (j, k), then the following orthogonality relations hold for the basis of A(D) above:
+
+c −τ (d)
+τ (c) −d
+→
+.
+d τ (c)
+τ (d) c
+
+Noting that τ (z) = z for every z ∈ Z(D1 ) = F , we can use
+τ for the iterative construction.
+Given θ1 ∈ Z(D1 ), the ﬁrst iteration D2 = αθ1 (D1 , D1 ) of
+the Silver code is given by matrices looking like
+
+
+a −τ (b) θ1 τ (c) −θ1 d
+ b τ (a) θ1 τ (d) θ1 c 
+
+.
+(11)
+ c −τ (d) τ (a)
+−b 
+d τ (c)
+τ (b)
+a
+
+α(Dj , 0)α(Dk , 0)∗ + α(Dk , 0)˜ (Dj , 0)∗ = 0
+˜
+˜
+˜
+α
+α(0, Dj )˜ (0, Dk )∗ + α(0, Dk )˜ (0, Dj )∗ = 0.
+˜
+α
+˜
+α
+The corresponding code built over the algebra A(D) thus
+enjoys the same orthogonality relations, meaning that with
+each iteration i the worst case increase in complexity order
+is 2i . This gives the following (very) loose bound.
+Corollary 1: Let Di be an iterated code with complexity
+order κi . Then κi+1 ≤ 2i + κi .
+
+To make the corresponding code C1 fully diverse, by Lemma
+2, we need to check that zτ (z) = θ1 , for any z ∈ D1 , that is,
+writing z as in (10)
+c −τ (d)
+d τ (c)
+
+4
+
+τ (c) −d
+θ
+= 1
+τ (d) c
+0
+
+0
+.
+θ1
+
+been studied, however by exploiting the structure of algebraic
+space-time codes, we show here that we can derive conditions
+that generate a sequence of algebras, which can be division.
+Furthermore, we explain how the bigger code can inherit fastdecodability properties from the smaller codes.
+Future work involves a more thorough investigation of the
+code parameters involved, as well as simulations to determine
+which code instances are giving the best performance, in terms
+of diversity, fast-decodability, and coding gain.
+
+By comparing the matrix coefﬁcients, we obtain
+cτ (c) − τ (d)2
+c(d + τ (d))
+
+= θ1
+=
+
+0,
+
+which we do not want simultaneously satisﬁed for any choice
+of c, d ∈ K. By choosing c = 0, we obtain the ﬁrst condition:
+θ1 = −τ (d)2
+for any d ∈ K. Suppose c = 0. Then for d = d1 +id2 , the 2nd
+equality is satisﬁed only when d1 = 0. Thus assume d1 = 0,
+in which case we need that cτ (c) − τ (d)2 = θ1 for d = id2 .
+Write c = c1 + ic2 , this is equivalent to checking
+
+ACKNOWLEDGMENT
+The research of N. Markin for this work is supported by
+the Singapore National Research Foundation under Research
+Grant NRF-CRP2-2007-03.
+The present work of F. Oggier is supported in part by
+the Singapore National Research Foundation under Research
+Grant NRF-CRP2-2007-03 and by the Nanyang Technological
+University under Research Grant M58110049.
+
+(c1 + ic2 )τ (c1 + ic2 ) − τ (id2 )2 = c2 + c2 + d2 = θ1
+1
+2
+2
+√
+with c1 , c2 , d2 ∈ F = Q(i 7). For example, θ = −17 satisﬁes
+the two conditions above. Clearly, θ/−1 = 17 is not a square
+in K. For the second condition, by reducing modulo the ideal
+√
+I = ( 1+ 2 −7 )3 OF , we see that θ ≡ −1 mod I, which we
+verify is not a sum of three squares mod I.
+By picking θ1 of the form a positive multiple of a 4rth
+root of unity, D1 will inherit orthogonal relations from D1 ,
+as explained in III-C. In fact, by being more restrictive and
+picking θ1 to be of the form −θ with θ > 0, one can get a
+better fast-decodability than what predicted in III-C, which is
+what we illustrate now. In that case, the left upper part of the
+R matrix that is obtained is of the form
+
+
+R1 0
+0
+0
+ 0 R2 0
+0
+
+R=
+0
+0 R3 0 
+0
+0
+0 R4
+
+R EFERENCES
+[1] B. A. Sethuraman, B. S. Rajan, and V. Shashidhar, “Full- diversity, highrate space-time block codes from division algebras,” IEEE Trans. Inf.
+Theory, vol. 49, no. 10, Oct. 2003.
+[2] E. Viterbo, J. Boutros, “A universal lattice decoder for fading channels,”
+IEEE Trans. Inf. Theory, vol. 45, no. 5, 1999.
+[3] E. Biglieri, Y. Hong and E. Viterbo, “On fast-decodable space-time block
+codes”, IEEE Trans. Inform. Theory, vol. 55, no. 2, Feb 2009.
+[4] G. R. Jithamitra, B. S. Rajan, “Minimizing the Complexity of
+Fast Sphere Decoding of STBCs,” submitted, preprint available at
+http://arxiv.org/abs/1004.2844
+[5] L. P. Natarajan, B. S. Rajan, “Fast group-decodable STBCs via codes
+over GF(4),” IEEE Int. Symp. Inform. Theory, Austin, TX, June 2010
+[6] L. P. Natarajan and B. S. Rajan, “Fast-Group-Decodable STBCs via codes
+over GF(4): Further Results,” IEEE ICC 2011, Kyoto, Japan, June 2011.
+[7] L. Luzzi, F. Oggier, “A family of fast-decodable MIDO codes from
+crossed-product algebras over Q,” IEEE Int. Symp. Inform. Theory, St
+Petersburg, July 2011.
+[8] F. Oggier, R. Vehkalahti, C. Hollanti, “Fast-decodable MIDO codes from
+crossed product algebras,” IEEE Int. Symp. Inform. Theory, Austin, TX,
+June 2010
+[9] K. P. Srinath, B. S. Rajan, “Low ML-decoding complexity, large coding
+gain, full-diversity STBCs for 2×2 and 4×2 MIMO systems,” IEEE J. on
+Special Topics in Signal Processing: managing complexity in multi-user
+MIMO systems, 2010
+[10] L. P. Natarajan and B. Sundar Rajan, “Asymptotically-Optimal, FastDecodable, Full-Diversity STBCs,” IEEE ICC 2011, Kyoto, Japan, 06-09
+June, 2011.
+[11] N. Markin, F. Oggier, “Iterated MIDO Space-Time Code Constructions,”
+Allerton Conference, 2011.
+[12] T. Unger, N. Markin, “Quadratic Forms and Space-Time Block Codes
+from Generalized Quaternion and Biquaternion Algebras”, IEEE Trans.
+on Information Theory, vol. 57 no. 9, pp. 6148-6156, Sept 2011.
+[13] A. Hottinen and O. Tirkkonen, “Precoder designs for high rate spacetime block codes,” Conference on Information Sciences and Systems,
+2004.
+[14] J. Paredes, A.B. Gershman, and M. G. Alkhanari, “A 2x2 space–
+time code with non-vanishing determinants and fast maximum likelihood
+decoding,” IEEE International Conference on Acoustics, Speech, and
+Signal Processing (ICASSP2007), Hawaii, USA, 2007.
+[15] C. Hollanti, J. Lahtonen, K. Ranto, R. Vehkalahti, and E. Viterbo, “On
+the Algebraic Structure of the Silver Code,”IEEE Information Theory
+Workshop, Portugal, 2008.
+[16] D. R. Estes and J. S. Hsia, “Sums of Three Integer Squares in Complex
+Quadratic Fields”, Proceedings of the Ameriacn Mathematical Society,
+vol. 89, no. 2, 1983.
+
+showing that R is 4-group decodable, once half of the symbols
+are decoding, showing a complexity order of κ2 = 10. Note
+that this was already observed in the case of θ = −1 in [11],
+though in this case the algebra cannot be division.
+B. Second iteration
+Let θ3 be an element of Z(D2 ). We can deﬁne the second
+iteration D3 = αθ3 (D2 , D2 ), whose elements are 8×8 matrices
+with entries in K of the form
+A
+B
+
+θ3 τ (B)
+,
+τ (A)
+
+where A, B are elements of D2 described in (11). To determine
+whether D3 is division, Lemma 2 is applied similarly as in the
+ﬁrst iteration. A minimum gain in fast-decodability is ensured
+using the technique given in Subsection III-C, however, as
+shown for the ﬁrst iteration, a more careful analysis could
+reveal more than the minimal gain predicted.
+V. C ONCLUSION
+In this paper, we proposed a novel method to construct
+space-time codes from division algebras, where instead of
+using the classical left regular representation, we combine
+space-time codes in small dimension in an iterative manner.
+Techniques involving building codes from smaller ones have
+
+5
+
+

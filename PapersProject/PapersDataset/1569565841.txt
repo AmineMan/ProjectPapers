@@ -1,0 +1,908 @@
+Title:          isit2012.dvi
+Creator:        dvips(k) 5.99 Copyright 2010 Radical Eye Software
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Fri May 18 09:55:42 2012
+ModDate:        Tue Jun 19 12:54:24 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      298079 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569565841
+
+Broadcasting Private Messages Securely
+László Czap
+
+Vinod M. Prabhakaran
+
+Suhas Diggavi
+
+Christina Fragouli
+
+EPFL, Switzerland
+Email: laszlo.czap@epﬂ.ch
+
+TIFR, India
+Email: vinodmp@tifr.res.in
+
+UCLA, USA
+Email: suhas@ee.ucla.edu
+
+EPFL, Switzerland
+Email: christina.fragouli@epﬂ.ch
+
+Our achievability scheme has two phases, a key-generation
+and a key-consumption phase. We ﬁrst create, using the erasure
+channel properties, a common key between Alice and each
+user, that is secure from the remaining users (even if they
+collude). Key generation comes at cost since it occupies the
+wireless channel without actually conveying information; we
+thus need to calculate how much key we need, and efﬁciently create it (we construct the key using similar techniques
+proposed in our earlier work [3], [4]). How much key we
+need depends on how we use it. A straightforward approach
+would be to use each secret key as a one-time pad; this is
+too pessimistic. Indeed, assume Alice transmits information
+to Bob: Calvin and David (jointly) are going to receive only
+a fraction of the packets intended for Bob and thus we only
+need to create an amount of key that allows protection of this
+fraction. This is exactly what the scheme we propose does.
+Our main contributions are:
+• we design a simple two phase protocol, that generates
+and consumes keys;
+• we derive an outer bound that explicitly mirrors the
+balance between key generation and key consumption,
+and show that our achievability scheme matches it for
+all the cases where the communication problem is solved
+without security requirements;
+• as a side result, we provide an alternative proof for the
+outer bound of the non-secure communication problem.
+
+Abstract—Consider a source, Alice, broadcasting private messages to multiple receivers through a broadcast erasure channel;
+users send back to Alice public feedback that she causally uses
+to decide the coding strategy for her following transmissions.
+Recently, the multiple unicast capacity region for this problem
+has been exactly characterized for a number of special cases;
+namely the 2-user, 3-user, symmetric K-user, and one-sidedly
+fair K-user [1], [2].
+In this paper, we show that for all the cases where such
+characterizations exist, we can also optimally characterize the
+“secure” communication rates, where the message that Alice
+transmits to each user is information theoretically secure from
+the other users, even if these collude. We show that a simple,
+two-phase strategy, where appropriate amounts of secret keys
+are ﬁrst generated and then consumed, matches a new outer
+bound we derive.
+
+I. I NTRODUCTION
+Wireless communication channels are easier to eavesdrop
+and harder to secure – even towards unintentional eavesdroppers. As an example consider a sender, Alice, who wants
+to send private messages to multiple (say three) receivers,
+Bob, Calvin and David, within her transmission radius, and
+assume public feedback from the receivers to Alice. When
+Alice broadcasts a message W1 intended for Bob, Calvin and
+David should also try to overhear, as the side information
+they possibly collect can enable Alice to make her following
+broadcast transmissions more efﬁcient; but then, this collected
+side information would allow Calvin and David to learn parts
+of Bob’s message. Even worse, Calvin and David could try
+to put together the parts they overheard, to extract increased
+information about Bob’s message. Can we, in such a setting,
+keep the message for each user information theoretically secure from the other users, even if these collaborate? Moreover,
+can we do so, when the users can only communicate through
+shared wireless broadcast channels?
+In this paper we answer these questions when communication happens through broadcast erasure channels. We exactly
+characterize the capacity region in all the cases where the
+problem has been solved with no security constraints, namely,
+the 2-user, 3-user, symmetric K-user, and one-sidedly fair Kuser [2]. For each such case, we present a new outer bound
+and a simple achievability scheme that matches it.
+
+A. Related Work
+Secure transmission of messages using noisy channel properties was pioneered by Wyner [5], who characterized the
+secret message capacity of wiretap channels. This led to a
+long sequence of research on information-theoretic security
+on various generalizations of the wiretap channel [6], [7].
+Notably, when the eavesdropper and legitimate channel are
+statistically identical, then the wiretap framework yields no
+security. The fact that feedback can give security even in this
+case was ﬁrst observed for secret key agreement by Maurer [8]
+and further developed by Ahlswede-Csiszár [9] – but secure
+key agreement is not the same as secure transmission of
+speciﬁc messages. The wiretap channel with secure feedback
+and its variants for message security have been studied in [10],
+[11], [12]; some conclusive results are developed in special
+cases when there is a secure feedback inaccessible to the
+eavesdropper. Security of private message broadcasting without feedback has been studied in [13], where some conclusive
+results have been established. As mentioned earlier, the use
+
+This work was supported by the ERC Starting Grant Project NOWIRE
+ERC-2009-StG-240317. Vinod M. Prabhakaran was supported in part by
+a Ramanujan Fellowship from the Department of Science and Technology,
+Government of India. S N. Diggavi was supported in part by AFOSR under
+MURI grant FA9550-09-064.
+
+1
+
+Deﬁnition 2. The rate tuple (R1 , R2 , R3 ) ∈ R3 is securely
++
+achievable, if beside (1)-(3)
+
+of feedback and broadcast for private message transmission,
+without security requirements has been studied in [14], [15].
+We believe that ours are the ﬁrst conclusive results that use
+insecure (and very limited) feedback for information-theoretic
+security of multiple private messages.
+II. P ROBLEM F ORMULATION
+
+AND
+
+I(W1 ; Y2n Y3n S n ) < ǫ
+
+S YSTEM M ODEL
+
+(6)
+
+RESULTS
+
+Our main result is the characterization of the secrecy
+capacity region for sending private messages to K receivers
+over a broadcast erasure channel, for all the cases where the
+capacity without secrecy constraints has been characterized,
+namely, the 2-user, 3-user, symmetric K-user and one-sidedly
+fair K-user (for exact deﬁnitions see [2]).
+A. The three receivers (K=3) case
+Our ﬁrst result, provided in Section V-A, is a new alternative
+converse proof for the following known theorem [2], [1],
+which characterizes the capacity region in the case of nonsecure communication.
+
+Pr {Yj,i |Xi }
+
+Theorem 1. Any achievable rate tuple (R1 , R2 , R3 ) ∈ R3 as
++
+deﬁned in Deﬁnition 1 satisﬁes
+
+1 − δj , Yj,i = Xi
+δj ,
+Yj =⊥,
+
+max
+π
+
+where ⊥ is the symbol of an erasure.
+Further, we assume that the (erasure) state Si of the channel
+during the ith transmission (i.e., which receivers experienced
+erasures) is strictly causally available to all parties; we use
+when needed the notation Si = CD to denote that Calvin and
+David have correctly received Xi , while Bob experienced an
+erasure, and similarly for the other cases.
+b) Reliability and security: The messages W1 , W2 and
+W3 are deﬁned as vectors of length N1 , N2 and N3 over packets. We assume that messages are independent and uniformly
+distributed over their respective message space. Beside the
+messages, Alice may also generate some private randomness,
+which we denote ΘA .
+
+Rπ1
+Rπ3
+Rπ2
+≤ L log q, (7)
++
++
+1 − δπ 1
+1 − δπ1 δπ 2
+1 − δπ 1 δπ 2 δπ 3
+
+where the maximization is over all permutations π of {1, 2, 3},
+and πi denotes the ith element in the permutation.
+We build on this to characterize the capacity region in the
+case of secure communication.
+Theorem 2. A rate tuple (R1 , R2 , R3 ) ∈ R3 falls into the se+
+crecy capacity region of the 1-to-3 broadcast erasure channel
+with state-feedback as deﬁned in Deﬁnition 3 if and only if
+max
+
+j∈{1,2,3}
+
+max
+
+Deﬁnition 1. A rate tuple (R1 , R2 , R3 ) ∈ R3 is achievable
++
+over the 1-to-3 broadcast channel deﬁned above, if for any
+ǫ > 0 and a sufﬁciently large n there exist encoding maps
+fi (·), and decoding maps φ1 (·), φ2 (·), φ3 (·) such that
+Pr φj (Yjn S n ) = Wj < ǫ, ∀j ∈ {1, 2, 3}
+1
+Rj − ǫ < Nj L log q ∀j ∈ {1, 2, 3}.
+n
+
+<ǫ
+
+III. M AIN
+
+j=1
+
+Xi = fi (W1 , W2 , W3 , S i−1 , ΘA ), i = 1 . . . n
+
+(5)
+
+Deﬁnition 3. The secrecy capacity region of the 1-to-3 broadcast erasure channel with state-feedback is the set of all
+securely achievable rate tuples as described in Deﬁnition 2.
+
+3
+
+∀j ∈ {1, 2, 3} : Pr{Yj,i |Xi } =
+
+<ǫ
+
+are also satisﬁed.
+
+A sender, Alice, wants to send private messages to a set of
+K receivers: she wants to send message Wi to receiver i, so
+that, no other receiver learns Wi , even if all other receivers
+collude. For simplicity, we describe our system for the case
+of three receivers, which we will refer to as Bob, Calvin and
+David, respectively, but the model extends to K receivers.
+a) Communication model: Communication takes place
+over a 1-to-3 broadcast erasure channel, with input at Alice
+and an output each at Bob, Calvin, and David. The channel
+input alphabet consists of all possible vectors of length L over
+a ﬁnite ﬁeld Fq . For convenience, we usually call each such
+vector a packet. We denote by Xi the ith transmission over
+the channel, and by Y1,i , Y2,i , Y3,i the corresponding outputs
+observed by Bob, Calvin and David. We use X n to denote
+the vector (X1 , X2 , . . . , Xn ) and we use a similar notation
+for other vectors as well. The broadcast channel is made up
+of three independent component erasure channels with erasure
+probabilities δ1 , δ2 , δ3 :
+Pr {Y1,i Y2,i Y3,i |Xi } =
+
+(4)
+
+I(W2 ; Y1n Y3n S n )
+I(W3 ; Y1n Y2n S n )
+
+π
+
+Rj (1 −
+
+δ1 δ2 δ3
+δj )
+
+(1 − δj ) δ1 δ2 δ3 (1 − δ1 δ2 δ3 )
+δj
+
++
+
+Rπ1
+Rπ3
+Rπ2
+≤ L log q
++
++
+1 − δπ 1
+1 − δπ 1 δπ 2
+1 − δπ 1 δπ 2 δπ 3
+
+(8)
+
+is satisﬁed, where the latter maximum is taken over all possible
+permutations.
+The ﬁrst term in (8) captures the key generation phase while
+the second term, which is the same as the left-hand side of (7),
+the encrypted transmission phase. To prove this theorem we
+provide in Section IV a scheme that achieves any rate tuple in
+the region deﬁned by (8), and in Section V a matching outer
+bound.
+
+(1)
+(2)
+(3)
+
+2
+
+(expressed in terms of packets) are k1 , k2 and k3 , and the
+length of Phase 1 in terms of transmissions is n1 . We deﬁne
+
+B. Additional cases
+For all cases where we have a non-secure capacity achieving
+scheme as in Theorem 1, we also have a matching secure
+capacity characterization using similar techniques to those in
+Theorem 2. This is the case for K = 2, if the channel parameter δi is the same for every receiver (symmetric channel) or
+when the rate vector is one-sidedly fair [2]. In the remaining
+of the paper we focus on the K = 3 case, but indicatively, we
+state the following result without proof.
+
+kj = Nj
+
+max
+
+j∈{1,...,K}
+
+(1 − δj )
+
+K
+k=1
+δj
+
+δk
+
+K
+k=1
+δj
+
+δk
+
+(1 −
+
+)
+K
+k=1 δk )
+
+K
+
+max
+π
+
+i=1
+
+1−
+
+i
+k=1 δπk
+
+1 − δ1 δ2 δ3
+
++
+
+Nj
+
+1−
+
+δ1 δ2 δ3
+δj
+
+1 − δ1 δ2 δ3
+
+3/4
+
+, and
+
+max
+
+j∈{1,2,3}
+
+kj + kj
+
+δ2
+(1 − δj ) δ1 δj δ3
+
+.
+
+1) Key generation
+Let KB denote the key between Alice and Bob, and
+similarly for KC and KD .
+Alice transmits n1 random packets X1 , . . . , Xn1 generated
+uniformly at random over FL . KB is the vector of the ﬁrst
+q
+k1 packets Xi for which Si = B. If there are less than k1
+such packets, we stop and declare an error. Similarly, key KC
+(and KD ) are created using the ﬁrst k2 (k3 ) packets for which
+Si = C (Si = D), or an error is declared whenever there are
+too few such packets. In other words, Alice transmits random
+packets, and we treat a packet received by only one receiver
+as a shared secret between Alice and that receiver.
+
++
+
+Rπi
+
+δ1 δ2 δ3
+δj
+
+3/4
+
+n1 =
+
+Theorem 3. For a symmetric channel or for a one-sidedly fair
+rate tuple (R1 , . . . , RK ) ∈ RK , the secrecy capacity region of
++
+the 1-to-K broadcast erasure channel with state-feedback is
+characterized by the following inequality:
+Rj (1 −
+
+1−
+
+≤ L log q,
+
+where the second maximization is over all permutations π of
+{1, . . . , K}.
+
+2) Encrypted broadcast
+
+IV. S ECURE 1- TO -3 BROADCAST: ACHIEVABILITY
+
+We now follow the two transmission steps in the non-secure
+protocol IV-A, with the following modiﬁcations: in Step (a),
+we encrypt the message packets using key packets as we
+specify in the following; in Step (b), we simply reuse the
+already encrypted packets from Step (a) to create the required
+linear combinations – we do not use additional key packets.
+Step (2.a): Before transmitting each message packet to
+receiver i, Alice encrypts it by XOR-ing it with a key packet
+that has either not been used for encryption in the past, or
+if used, none of the other users received the corresponding
+transmitted packet.
+Consider the transmissions to Bob. Initially Alice encrypts
+Bob’s ﬁrst packet as W1,1 ⊕ KB,1 and transmits it until it is
+received by at least one of the receivers. If only Bob receives
+this encrypted packet, she reuses the same key packet KB,1
+to encrypt the next message packet. Subsequently, if for some
+′
+i and j < N1 , k < k1 : Xi = W1,j = W1,j ⊕ KB,k , then
+
+Xi ,
+if Si = ∅
+
+′
+Xi+1 = W1,j+1 = W1,j+1 ⊕ KB,k ,
+if Si = B
+ ′
+
+W1,j+1 = W1,j+1 ⊕ KB,k+1 , otherwise.
+
+We ﬁrst give a slightly modiﬁed version of the non-secure
+capacity achieving scheme in [2], that we will use as a building
+block.
+A. Protocol for non-secure 1-to-3 broadcast [2]
+Conceptually, this algorithm has two main steps:
+Step (a) Alice repeats each message packet W1,1 , . . . , W1,N1 ,
+W2,1 , . . . , W2,N2 and W3,1 , . . . , W3,N3 until at least one
+of the three receivers correctly receives it.
+Step (b) Alice sends linear combinations of the packets that are
+not received by their intended receiver in Step (a).
+A key contribution of [2] is in specifying how to construct the
+linear combinations in Step (b) – we refer the reader to [2] for
+the exact constructions, and highlight here the two important
+properties we rely on:
+• A message packet successfully delivered to its intended
+receiver in Step (a) is never used in Step (b).
+• The scheme achieves any rate point within the region
+in (7).
+B. Protocol for secure 1-to-3 broadcast
+Our scheme consists of two phases.
+1) Key generation. We create three different keys, each key
+shared between Alice and one receiver, and perfectly
+secure from the remaining two receivers even if they
+collude.
+2) Encrypted broadcast. Using the keys set up in the ﬁrst
+phase, we employ an encrypted version of the nonsecure 1-to-3 broadcast scheme described.
+To describe each phase in detail, we deﬁne a few parameters.
+The length of the secret keys we aim to set up for the receivers
+
+In other words, a key is reused until a packet encrypted using
+it is received by either Calvin and David. We declare an error
+if the k1 key packets are not sufﬁcient to encrypt all the
+N1 message packets of W1 . Similarly for the other keys and
+messages.
+Step (2.b): At the end of Step (2.a), Bob, Calvin and David
+have received as side information encrypted packets that are
+not intended for them; we use the same encoding as in Step (b)
+of the non-secure protocol IV-A to deliver these packets to
+their intended receivers.
+
+3
+
+Theorem 4. Any securely achievable rate tuple
+(R1 , R2 , R3 ) ∈ R3 as deﬁned in Deﬁnition 2 satisﬁes
++
+
+C. Analysis of the secure protocol IV-B
+Condition (1) is clearly satisﬁed by our scheme. We show
+the other required properties for Bob; the same arguments
+apply to Calvin and David.
+We ﬁrst argue that our scheme satisﬁes (4). From construction, we create at the end of Phase 1 a key KB with
+
+j∈{1,2,3}
+
+(9)
+
+Rj (1 −
+
++
+
++
+
+Rπ1
+Rπ3
+Rπ2
+≤ L log q
++
++
+1 − δπ1
+1 − δπ 1 δπ 2
+1 − δπ 1 δπ 2 δπ3
+
+(10)
+
+holds, which implies the statement of the theorem. Also,
+to avoid cumbersome notation we show (10) for j = 1 and
+π = (1, 2, 3). With simple relabeling, the same argument holds
+for any j and π.
+n
+
+n
+
+H(Xi |Y1i−1 S i−1 ) =
+
+H(Xi ) ≥
+
+nL log q ≥
+
+i=1
+
+i=1
+n
+
+H(Xi |Y1i−1 Y2i−1 S i−1 ) + I(Xi ; Y2i−1 |Y1i−1 S i−1 )
+i=1
+n
+
+H(Xi |Y1i−1 Y2i−1 Y3i−1 S i−1 )
+
+=
+i=1
+
++ I(Xi ; Y2i−1 |Y1i−1 S i−1 )
++ I(Xi ; Y3i−1 |Y1i−1 Y2i−1 S i−1 )
+
+3/4
+
+n
+
+H(Xi |W1 W2 W3 Y1i−1 Y2i−1 Y3i−1 S i−1 )
+
+=
+
+(11)
+
+i=1
+
+The probability of error event (i) equals
+
++ I(Xi ; Y2i−1 |Y1i−1 S i−1 )
+
+3/4
+k1
+
+≤ Pr |E {κ} − κ| >
+
+δ1 δ2 δ3
+δj )
+
+(1 − δj ) δ1 δ2 δ3 (1 − δ1 δ2 δ3 )
+δj
+
+E {κ} = n1 (1 − δ1 )δ2 δ3 ≥ k1 + k1 .
+
+3/4
+k1
+
+(1 − δj ) δ1 δ2 δ3 (1 − δ1 δ2 δ3 )
+δj
+
+Proof: We are going to show that for any j and any π
+
+′
+In Step (2.a), every packet W1,j that Calvin and/or David
+receive has been encrypted using a different key packet KB,i ;
+these key packets, from (9), are secret from Calvin and David.
+Thus the packets received by Calvin and David are onetime-pad encrypted and perfectly secret to them, even if they
+collude. In Step (2.b), Alice transmits linear combinations of
+′
+packets W1,j that have not been received by Bob, but have
+already been received either by Calvin and/or David – thus,
+assuming these receivers collude, they do not receive any
+′
+innovative W1,j . This concludes our argument.
+We next prove (2). Trivially, if no error is declared, Bob can
+′
+retrieve W1 from W1 using his key KB . We next show that
+the probability of declaring an error can be made arbitrarily
+small. It is enough to consider the following two error events
+since the other error events are similar: (i) we do not obtain
+k1 key packets for Bob in Phase 1, and (ii) k1 key packets are
+not sufﬁcient in Step (2.a).
+(i) Denote by κ the number of packets in Phase 1 that are
+received only by Bob. Then, κ is the sum of n1 i.i.d. Bernoulli
+variables drawn from Ber(p), where p = (1 − δ1 )δ2 δ3 . Thus,
+
+Pr {κ < k1 } ≤ Pr E {κ} − κ >
+
+δ1 δ2 δ3
+δj )
+
+Rπ1
+Rπ3
+Rπ2
+≤ L log q
++
++
+1 − δπ 1
+1 − δπ1 δπ 2
+1 − δπ 1 δπ 2 δπ 3
+
+max
+π
+
+I(KB ; Y2n1 Y3n1 S n1 ) = 0.
+
+Rj (1 −
+
+max
+
++
+≤e
+
+√
+−c k1
+
++
+
+,
+
+I(Xi ; Y3i−1 |Y1i−1 Y2i−1 S i−1 )
+I(Xi ; W1 W2 W3 |Y1i−1 Y2i−1 Y3i−1 S i−1 )
+
+(12)
+(13)
+(14)
+
+In the following Lemmas 1-4 we give bounds on each of the
+terms (11)-(14). Combining these results together gives (10)
+and in turn the statement of the theorem. For the detailed
+proofs of our lemmas we refer to the extended version of this
+paper [16].
+
+for some constant c > 0. The last inequality follows from
+the Chernoff-Hoeffding bound. Selecting N1 sufﬁciently large,
+this error probability can be made arbitrarily small.
+(ii) is similar, it occurs if the number of packets that only
+Bob receives is signiﬁcantly less than its expected value, and
+the same technique applies.
+With this we have shown that the scheme satisﬁes (1)(6). A straightforward calculation with the given parameters
+together with the capacity achieving property of the second
+phase shows that our proposed schemes achieves any rate tuple
+within the region given by (8), which concludes the proof of
+achievability of Theorem 2.
+
+A. Converse proof of Theorem 1
+Proof: It is sufﬁcient to prove the inequality for
+π = (1, 2, 3). By relabeling, the same argument holds for any
+π. By repeating the ﬁrst steps of the proof of Theorem 4 and
+bounding term (11) with 0, we have
+n
+
+nL log q ≥
+
+V. O PTIMALITY
+
++
+
+We show that the above scheme is optimal in terms of the
+securely achieved rates by giving a matching outer bound on
+the achievable rates that holds for any scheme.
+
++
+
+I(Xi ; Y2i−1 |Y1i−1 S i−1 )
+
+i=1
+I(Xi ; Y3i−1 |Y1i−1 Y2i−1 S i−1 )
+I(Xi ; W1 W2 W3 |Y1i−1 Y2i−1 Y3i−1 S i−1 )
+
+(15)
+(16)
+(17)
+
+Lemmas 2-4 give bounds on terms (15)-(17) respectively.
+Combining these gives the stated inequality.
+
+4
+
+′
+where E7 = 2E2 + E4 + E5 + E6 , E5 =
+h2 (ǫ)+ǫL log q
+h2 (2ǫ)+2ǫL log q
+′
+.
+1−δ1 δ2 δ3 , and E2 =
+1−δ2 δ3
+
+Lemma 1. From conditions (1)-(4) it follows that
+n
+
+H(Xi |Y1i−1 Y2i−1 Y3i−1 W1 W2 W3 S i−1 )
+
+VI. C ONCLUSIONS
+
+i=1
+
+≥
+
+1−δ 3
+where E8 = E7 (1−δ1 2 δ2 δ3 , and E7 is an error constant speciﬁed
+)δ
+in Lemma 7.
+
+Proof: The statement of the lemma follows from combining the results of Lemma 5 and Lemma 7.
+Lemma 2. From conditions (1)-(3) it follows that
+I(Xi ; Y2i−1 |Y1i−1 S i−1 ) ≥
+i=1
+
+where E1 =
+
+nR1
+nR1
+−
+− E1 ,
+1 − δ1
+1 − δ1 δ2
+
+[1] M. Gatzianas, L. Georgiadis, and L. Tassiulas, “Multiuser broadcast
+erasure channel with feedback-capacity and algorithms,” Arxiv preprint
+arXiv:1009.1254, 2010.
+[2] C. Wang, “Capacity of 1-to-k broadcast packet erasure channels with
+channel output feedback,” in Annual Allerton Conference on Communication, Control, and Computing (Allerton). IEEE, 2010, pp. 1347–1354.
+[3] M. Jafari Siavoshani, S. Diggavi, C. Fragouli, U. K. Pulleti, and K. Argyraki, “Group secret key generation over broadcast erasure channels,”
+in Asilomar Conference on Signals, Systems, and Computers, 2010, pp.
+719–723.
+[4] L. Czap, V. Prabhakaran, C. Fragouli, and S. Diggavi, “Secret message
+capacity of erasure broadcast channels with feedback,” in Information
+Theory Workshop (ITW), 2011, pp. 65–69.
+[5] A. D. Wyner, “The wire-tap channel,” The Bell system Technical Journal,
+vol. 54, no. 8, pp. 1355–1387, 1975.
+[6] I. Csiszár and J. Körner, “Broadcast channels with conﬁdential messages,” IEEE Transactions on Information Theory, vol. 24, no. 3, pp.
+339–348, 1978.
+[7] Y. Liang, H. V. Poor, and S. Shamai, “Information theoretic security.”
+Foundations and Trends in Communications and Information Theory,
+vol. 5, no. 4-5, pp. 355–580, 2009.
+[8] U. Maurer, “Secret key agreement by public discussion from common
+information,” IEEE Transactions on Information Theory, vol. 39, no. 3,
+pp. 733–742, May 1993.
+[9] R. Ahlswede and I. Csiszár, “Common randomness in information theory
+and cryptography - I: Secret sharing,” IEEE Transactions on Information
+Theory, vol. 39, no. 4, pp. 1121–1132, 1993.
+[10] R. Ahlswede and N. Cai, Transmission, Identiﬁcation and Common
+Randomness Capacities for Wire-Tape Channels with Secure Feedback
+from the Decoder., ser. LNCS. Springer, 2006, vol. 4123.
+[11] L. Lai, H. E. Gamal, and H. Poor, “The wiretap channel with feedback:
+Encryption over the channel,” IEEE Transactions on Information Theory,
+vol. 54, no. 11, pp. 5059–5067, 2008.
+[12] E. Ardestanizadeh, M. Franceschetti, T. Javidi, and Y. Kim, “Wiretap
+channel with secure rate-limited feedback,” IEEE Transactions on Information Theory, vol. 55, no. 12, pp. 5353–5361, 2009.
+[13] H. D. Ly, T. Liu, and Y. Liang, “Multiple-Input Multiple-Output Gaussian broadcast channels with common and conﬁdential messages.” IEEE
+Transactions on Information Theory, vol. 56, no. 11, pp. 5477–5487,
+2010.
+[14] L. Georgiadis and L. Tassiulas, “Broadcast erasure channel with
+feedback-capacity and algorithms,” in Workshop on Network Coding,
+Theory, and Applications, (NetCod). IEEE, 2009, pp. 54–61.
+[15] M. Maddah-Ali and D. Tse, “Completely stale transmitter channel state
+information is still very useful,” in 48th Annual Allerton Conference on
+Communication, Control, and Computing (Allerton), 2010, pp. 1188–
+1195.
+[16] L. Czap, V. Prabhakaran, S. Diggavi, and C. Fragouli,
+“Broadcasting private messages securely.” [Online]. Available:
+https://arni.epﬂ.ch/bibliography/attachments/single/109
+[17] L. Czap, V. M. Prabhakaran, S. Diggavi, and C. Fragouli, “Secure
+capacity region for erasure broadcast channels with feedback,” Arxiv
+preprint arXiv:1110.5741, 2011.
+
+Lemma 3. From conditions (1)-(3) it follows that
+n
+
+I(Xi ; Y3i−1 |Y1i−1 Y2i−1 S i−1 ) ≥
+i=1
+
+n(R1 + R2 ) n(R1 + R2 )
+−
+− E2 ,
+1 − δ1 δ2
+1 − δ1 δ2 δ3
+h2 (2ǫ)+2ǫL log q
+.
+1−δ1 δ2
+
+Lemma 4. From conditions (1)-(3) it follows that
+n(R1 + R2 + R3 )
+− E3
+1 − δ1 δ2 δ3
+n
+
+I(Xi ; W1 W2 W3 |Y1i−1 Y2i−1 Y3i−1 S i−1 )
+
+≤
+i=1
+
+≤
+where E3 =
+
+n(R1 + R2 + R3 )
+1 − δ1 δ2 δ3
+
+h2 (3ǫ)+3ǫL log q
+.
+1−δ1 δ2 δ3
+
+Lemma 5. From the deﬁnition of the channel it follows that
+n
+
+H(Xi |Y1i−1 Y2i−1 Y3i−1 W1 W2 W3 S i−1 ) ≥
+i=1
+
+1 − δ2 δ3
+(1 − δ1 )δ2 δ3
+
+n
+
+I(Xi ; Y1i−1 |Y2i−1 Y3i−1 W1 W2 W3 S i−1 )
+i=1
+
+Lemma 6. From the security condition (4) it follows that
+n
+
+E4 >
+where E4 =
+
+D ISCUSSION
+
+R EFERENCES
+
+h2 (ǫ)+ǫL log q
+.
+1−δ1
+
+where E2 =
+
+E6 =
+
+In our security model we assume honest-but-curious adversaries. This means that the security of our scheme relies on the
+honest feedback from every party. Related relevant problems
+are when the adversary is a passive eavesdropper and does
+not give any feedback, or when the feedback she gives can
+be dishonest. Interestingly enough, in the case of one or two
+parties the capacity region does not change compared to the
+honest-but-curious adversary. These problems are addressed
+in [4], [17], however their generalization for more than two
+parties is not trivial.
+
+nR1 (1 − δ2 δ3 )
+− E8 ,
+(1 − δ1 )δ2 δ3 (1 − δ1 δ2 δ3 )
+
+n
+
+AND
+
+h2 (ǫ)+ǫL log q
+,
+1−δ2 δ3
+
+I(Xi ; W1 |Y2i−1 Y3i−1 S i−1 ),
+
+i=1
+ǫ
+1−δ2 δ3 .
+
+Lemma 7. From conditions (1)-(4) it follows that
+n
+
+I(Xi ; Y1i−1 |Y2i−1 Y3i−1 S i−1 W1 W2 W3 ) ≥
+i=1
+
+nR1
+− E7 ,
+1 − δ1 δ2 δ3
+
+5
+
+

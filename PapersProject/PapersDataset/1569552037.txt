@@ -1,0 +1,1586 @@
+Creator:        TeX
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Sun Apr 22 23:43:54 2012
+ModDate:        Tue Jun 19 12:55:02 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      502102 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569552037
+
+Bilateral Random Projections
+Tianyi Zhou
+
+Dacheng Tao
+
+Centre for Quantum Computation & Intelligent Systems
+FEIT, University of Technology Sydney, Australia
+Email: tianyi.zhou@student.uts.edu.au
+
+Centre for Quantum Computation & Intelligent Systems
+FEIT, University of Technology Sydney, Australia
+Email: dacheng.tao@uts.edu.au
+
+II. B ILATERAL RANDOM PROJECTIONS (BRP) BASED LOW- RANK
+
+Abstract—Low-rank structure have been profoundly studied in data
+mining and machine learning. In this paper, we show a dense matrix
+X’s low-rank approximation can be rapidly built from its left and
+right random projections Y1 = XA1 and Y2 = X T A2 , or bilateral
+random projection (BRP). We then show power scheme can further
+improve the precision. The deterministic, average and deviation bounds
+of the proposed method and its power scheme modiﬁcation are proved
+theoretically. The effectiveness and the efﬁciency of BRP based low-rank
+approximation is empirically veriﬁed on both artiﬁcial and real datasets.
+
+APPROXIMATION
+
+We ﬁrst introduce the bilateral random projections (BRP) based
+low-rank approximation and its power scheme modiﬁcation. The
+approximation error bounds of these two methods are discussed at
+the end of this section.
+A. Low-rank approximation with closed form
+
+I. I NTRODUCTION
+
+In order to improve the approximation precision of L in (1) when
+A1 and A2 are standard Gaussian matrices, we use the obtained right
+random projection Y1 to build a better left projection matrix A2 , and
+use Y2 to build a better A1 . In particular, after Y1 = XA1 , we update
+A2 = Y1 and calculate the left random projection Y2 = X T A2 ,
+then we update A1 = Y2 and calculate the right random projection
+Y1 = XA1 . A better low-rank approximation L will be obtained if
+the new Y1 and Y2 are applied to (1). This improvement requires
+additional ﬂops of mnr in BRP calculation.
+
+Recent researches about low-rank structure concentrate on developing
+fast approximation and building meaningful decompositions. Two
+appealing representatives are the randomized approximate matrix
+decomposition [1] and column selection [2]. The former proves that
+a matrix can be well approximated by its projection to the column
+space of its random projections. This rank-revealing method provides
+a fast approximation of SVD/PCA. The latter proves that a column
+subset of a low-rank matrix can span its whole range. The low-rank
+approximation based on random projections for streaming data is also
+studied in [3].
+In this paper, we consider the problem of fast low-rank approximation. Given r bilateral random projections (BRP) of an m × n
+dense matrix X (w.l.o.g, m ≥ n), i.e., Y1 = XA1 and Y2 = X T A2 ,
+wherein A1 ∈ Rn×r and A2 ∈ Rm×r are random matrices,
+L = Y1 AT Y1
+2
+
+−1
+
+Y2T
+
+B. Power scheme modiﬁcation
+When singular values of X decay slowly, (1) may perform poorly.
+We design a modiﬁcation for this situation based on the power scheme
+[5]. In the power scheme modiﬁcation, we instead calculate the BRP
+˜
+of a matrix X = (XX T )q X, whose singular values decay faster
+˜
+˜ 2q+1 . Both X and X share
+˜
+than X. In particular, λi (X) = λi (X)
+˜ is:
+the same singular vectors. The BRP of X
+
+(1)
+
+is a fast rank-r approximation of X. The computation of L includes
+an inverse of an r × r matrix and three matrix multiplications. Thus,
+for a dense X, 2mnr ﬂoating-point operations (ﬂops) are required
+to obtain BRP, r2 (2n + r) + mnr ﬂops are required to obtain L.
+The computational cost is much less than SVD based approximation.
+The L in (1) has been proposed in [4] as a recovery of a rankr matrix X from Y1 and Y2 , where A1 and A2 are independent
+Gaussian/SRFT random matrices. However, we propose that L is
+a tight rank-r approximation of a full rank matrix X, when A1
+and A2 are correlated random matrices updated from Y2 and Y1 ,
+respectively. We then apply power scheme [5] to L for improving
+the approximation precision, especially when the eigenvalues of X
+decay slowly.
+Theoretically, we prove the deterministic bound, average bound and
+deviation bound of the approximation error in BRP based low-rank
+approximation and its power scheme modiﬁcation. The results show
+the error of BRP based approximation is close to the error of SVD
+approximation under mild conditions. Comparing with randomized
+SVD in [1] that extracts the column space from unilateral random
+projections, the BRP based method estimates both column and row
+spaces from bilateral random projections.
+We give an empirical study of BRP on both artiﬁcial data and face
+image dataset. The results show its effectiveness and efﬁciency in
+low-rank approximation and recovery.
+
+˜
+˜
+Y1 = XA1 , Y2 = X T A2 .
+
+(2)
+
+˜
+According to (1), the BRP based r rank approximation of X is:
+˜
+L = Y1 AT Y1
+2
+
+−1
+
+Y2T .
+
+(3)
+
+In order to obtain the approximation of X with rank r, we calculate
+the QR decomposition of Y1 and Y2 , i.e.,
+Y1 = Q1 R1 , Y2 = Q2 R2 .
+
+(4)
+
+The low-rank approximation of X is then given by:
+˜
+L= L
+
+1
+2q+1
+
+= Q1 R1 AT Y1
+2
+
+−1
+
+T
+R2
+
+1
+2q+1
+
+QT .
+2
+
+(5)
+
+The power scheme modiﬁcation (5) requires an inverse of an r × r
+matrix, an SVD of an r × r matrix and ﬁve matrix multiplications.
+Therefore, for dense X, 2(2q + 1)mnr ﬂops are required to obtain
+BRP, r2 (m + n) ﬂops are required to obtain the QR decompositions,
+2r2 (n+2r)+mnr ﬂops are required to obtain L. The power scheme
+modiﬁcation reduces the error of (1) by increasing q. When the
+random matrices A1 and A2 are built from Y1 and Y2 , mnr additional
+ﬂops are required in the BRP calculation.
+
+1
+
+III. A PPROXIMATION ERROR BOUNDS
+
+The average error bound of BRP based low-rank approximation is
+obtained by analyzing the statistical properties of the random matrices
+that appear in the deterministic error bound in Theorem 1.
+
+We analyze the error bounds of the BRP based low-rank approximation (1) and its power scheme modiﬁcation (5).
+The SVD of an m × n (w.l.o.g, m ≥ n) matrix X takes the form:
+X = U ΛV
+
+T
+
+=
+
+U1 Λ1 V1T
+
++
+
+U2 Λ2 V2T ,
+
+Theorem 3. (Average error bound) Frame the hypotheses of
+Theorem 1,
+
+
+r
+λ2
+1
+r+1
++ 1 |λr+1 |
+E X − L ≤
+p − 1 i=1 λ2
+i
+
+(6)
+
+where Λ1 is an r × r diagonal matrix which diagonal elements are
+the ﬁrst largest r singular values, U1 and V1 are the corresponding
+singular vectors, Λ2 , U2 and V2 forms the rest part of SVD. Assume
+that r is the target rank, A1 and A2 have r + p columns for
+oversampling. We consider the spectral norm of the approximation
+error E for (1):
+X − L = X − Y1 AT Y1
+2
+=
+
+−1
+
++
+
+−1
+
+AT X .
+2
+
+(7)
+
+The unitary invariance of the spectral norm leads to
+−1
+
+X − L = U T I − XA1 AT XA1
+2
+= Λ I − V T A1 AT XA1
+2
+
+−1
+
+.
+
+(8)
+
+In low-rank approximation, the left random projection matrix A2 is
+built from the left random projection Y1 = XA1 , and then the right
+random projection matrix A1 is built from the left random projection
+Y2 = X T A2 . Thus A2 = Y1 = XA1 = U ΛV T A1 and A1 = Y2 =
+X T A2 = X T XA1 = V Λ2 V T A1 . Hence the approximation error
+given in (8) has the following form:
+Λ I − Λ2 V T A1 AT V Λ4 V T A1
+1
+
+−1
+
+AT V Λ2
+1
+
+.
+
+See Section IV for the proof of Theorem 4.
+Compared the average error bounds of the BRP based lowrank approximation with its power scheme modiﬁcation, the latter
+produces less error than the former, and the error can be further
+decreased by increasing q.
+The deviation bound for the spectral norm of the approximation error can be obtained by analyzing the deviation bound of
+Λ2 V2T A1 (V1T A1 )† Λ−1 in the deterministic error bound and
+2
+1
+by applying the concentration inequality for Lipschitz functions of a
+Gaussian matrix.
+
+(9)
+
+The following Theorem 1 gives the bound for the spectral norm
+of the deterministic error X − L .
+Theorem 1. (Deterministic error bound) Given an m×n (m ≥ n)
+real matrix X with singular value decomposition X = U ΛV T =
+U1 Λ1 V1T + U2 Λ2 V2T , and chosen a target rank r ≤ n − 1 and an
+n × (r + p) (p ≥ 2) standard Gaussian matrix A1 , the BRP based
+low-rank approximation (1) approximates X with the error upper
+bounded by
+X −L
+
+2
+
+≤ Λ2 V2T A1 (V1T A1 )† Λ−1
+2
+1
+
+2
+
++ Λ2
+
+2
+
+Theorem 5. (Deviation bound) Frame the hypotheses of Theorem
+1. Assume that p ≥ 4. For all u, t ≥ 1, it holds that
+
+1
+√
+r
+2
+e r+p
+−1
+1 + t 12r
+λi
+·
+X −L ≤
++
+p
+p+1
+i=1
+
+.
+
+See Section IV for the proof of Theorem 1.
+If the singular values of X decay fast, the ﬁrst term in the
+deterministic error bound will be very small. The last term is the
+rank-r SVD approximation error. Therefore, the BRP based low-rank
+approximation (1) is nearly optimal.
+
+tuλ−1
+r
+
+X −L
+
+≤
+
+2(2q+1)
+Λ2
+
++ Λ2q+1
+2
+
+2
+
+V2T A1
+
+V1T A1
+
+†
+
+λ2
+r+1
+2
+
+except with probability e−u
+
+Theorem 2. (Deterministic error bound, power scheme) Frame
+the hypotheses of Theorem 1, the power scheme modiﬁcation (5)
+approximates X with the error upper bounded by
+2
+
+i=r+1
+
+λ2
+i
+.
+λ2
+r
+
+Theorem 4. (Average error bound, power scheme) Frame the
+hypotheses of Theorem 1, the power scheme modiﬁcation (5) approximates X with the expected error upper bounded by
+
+
+2(2q+1)
+r
+λr+1
+1
+E X − L ≤ 
++ 1 |λ2q+1 |
+r+1
+p − 1 i=1 λ2(2q+1)
+i
+1/(2q+1)
+√
+n
+2(2q+1)
+λi
+e r+p
+
++
+.
+2(2q+1)
+p
+i=r+1 λr
+
+AT X
+2
+
+AT U Λ
+2
+
+n
+
+See Section IV for the proof of Theorem 3.
+The average error bound will approach to the SVD approximation
+error |λr+1 | if |λr+1 |
+|λi:i=1,··· ,r | and |λr |
+|λi:i=r+1,··· ,n |.
+The average error bound for the power scheme modiﬁcation is then
+obtained from the result of Theorem 3.
+
+Y2T
+
+I − XA1 AT XA1
+2
+
+√
+e r+p
+p
+
+√
+e r+p
++
+· tλ−1
+r
+p+1
+
+/2
+
+1
+2
+
+n
+
+λ2
+i
+
+.
+
+i=r+1
+
++ 4t−p + t−(p+1) .
+
+See Section IV for the proof of Theorem 5.
+IV. P ROOFS OF ERROR BOUNDS
+
+2
+−(2q+1)
+Λ1
+
+A. Proof of Theorem 1
+The following lemma and propositions from [1] will be used in
+the proof.
+
+1/(2q+1)
+
+.
+
+Lemma 1. Suppose that M
+0. In particular,
+
+See Section IV for the proof of Theorem 2.
+If the singular values of X decay slowly, the error produced by the
+power scheme modiﬁcation (5) is less than the BRP based low-rank
+approximation (1) and decreasing with the increasing of q.
+
+M
+
+2
+
+N
+
+0. For every A, the matrix AT M A
+
+⇒ AT M A
+
+AT N A.
+
+(10)
+
+Proposition 1. Suppose range(N ) ⊂ range(M ). Then, for each
+matrix A, it holds that PN A ≤ PM A and that (I −PM )A ≤
+(I − PN )A .
+Proposition 2. Suppose that M
+
+0. Then
+
+I − (I + M )
+Proposition 3. We have M
+positive semideﬁnite matrix
+
+Proof: The power scheme modiﬁcation (5) applies the BRP
+˜
+based low-rank approximation (1) to X = (XX T )q X =
+U Λ2q+1 V T rather than X. In this case, the approximation error is
+
+−1
+
+˜ ˜
+X − L = Λ2q+1 (I − PM ) , M = Λ2(2q+1) V T A1 .
+
+M.
+
+(11)
+
+According to Theorem 1, the error is upper bounded by
+
+≤ A + C for each partitioned
+A
+BT
+
+M=
+
+˜ ˜
+X −L
+
+.
+
+(12)
+
+2
+
+T
+
+E = Λ (I − PM ) , M = Λ V A1 .
+By applying Proposition 1 to the error
+range(M (V1T A1 )† Λ−2 ) ⊂ range(M ), we have
+1
+
+.
+
+E SGT T
+
+I − I + HT H
+−H I + H T H
+
+(15)
+
+−1
+
+−1
+−1
+
+HT H
+−H I + H T H
+
+− I + HT H
+I
+
+−1
+
+−1
+
+Λ1
+
+2
+
+F
+
++ S
+
+F
+
+T .
+
+(20)
+
+1/2
+
+2
+
++ Λ2
+
+2
+
+≤ E Λ2 V2T A1 (V1T A1 )† Λ−1 + Λ2 .
+2
+1
+−ΛT I + H T H
+1
+ΛT Λ2
+2
+
+−1
+
+E Λ2 V2T A1 (V1T A1 )† Λ−1
+2
+1
+
+2
+
++ Λ2
+
+2
+
+≤ Λ2
+2
+.
+
+Λ2
+2
+
+Proposition 4. Let P be an orthogonal projector, and let A be a
+matrix. For each nonnegative q,
+
+2
+F
+
+F
+
+(V1T A1 )† Λ−1
+1
+
+1/2
+
++
+F
+
+= trace Λ−1 (V1T A1 )†
+1
+= trace
+
+1/(2q+1)
+
+.
+
+2
+
++ Λ2
+2
+
+· E (V1T A1 )† · Λ−1 .
+1
+
+(V1T A1 )† Λ−1
+1
+
+The following proposition from [1] will be used in the proof.
+
+A
+
+F
+
+F
+
+(23)
+
+The Frobenius norm of (V1T A1 )† Λ−1 can be calculated as
+1
+
+B. Proof of Theorem 2
+
+q
+
+E (V1T A1 )† Λ−1
+1
+
+(16)
+
+By substituting (16) into (14), we obtain the deterministic error
+bound. This completes the proof.
+
+PA ≤ P AAT
+
+(V1T A1 )† Λ−1
+1
+
+Λ2
+2
+
+≤E
+
+= Λ (I − PN ) Λ
+
+≤ Λ2 V2T A1 (V1T A1 )† Λ−1
+2
+1
+
+(22)
+
+We condition on V1T A1 and apply Proposition 5 to bound the
+expectation w.r.t. V2T A1 , i.e.,
+
+H T Λ2
+
+According to Proposition 3, the spectral norm of Λ(I − PN ) is
+bounded by
+Λ (I − PN )
+
+T
+
+Λ2 V2T A1 (V1T A1 )† Λ−1
+2
+1
+
+E X −L ≤E
+
+Λ (I − PN ) Λ
+−1
+
+≤ S
+
+HT
+
+By applying Lemma 1, we have
+
+ΛT H T HΛ1
+1
+T
+−Λ2 H I + H T H
+
+(19)
+
+The proof of Theorem 3 is given below.
+Proof: The distribution of a standard Gaussian matrix is rotational invariant. Since 1) A1 is a standard Gaussian matrix and 2)
+V is an orthogonal matrix, V T A1 is a standard Gaussian matrix,
+and its disjoint submatrices V1T A1 and V2T A1 are standard Gaussian
+matrices as well.
+Theorem 1 and the H¨ lder’s inequality imply that
+o
+
+− I + HT H
+HT
+−1
+I − H I + HT H
+HT
+
+For the top-left block in (16), Proposition 2 leads to I −
+−1
+I + HT H
+H T H. For the bottom-right block in (16), Lemma
+−1
+1 leads to I − H I + H T H
+HT
+I. Therefore,
+I − PN
+
+.
+
+Proposition 6. Draw an r × (r + p) standard Gaussian matrix G
+with p ≥ 2. Then it holds that
+√
+e r+p
+r
+E G† 2 =
+, E G† ≤
+.
+(21)
+F
+p−1
+p
+
+Thus (I − PN ) can be written as
+I − PN =
+
+2
+
+Proposition 5. Fix matrices S, T , and draw a standard Gaussian
+matrix G. Then it holds that
+
+(14)
+
+I
+H
+
++ Λ2q+1
+2
+
+The following propositions from [1] will be used in the proof.
+
+where
+(V1T A1 )† Λ−2 =
+1
+
+2
+
+C. Proof of Theorem 3
+
+because
+
+E = Λ (I − PM ) ≤ Λ (I − PN ) ,
+
+N=
+
+−(2q+1)
+
+The deterministic error bound for the power scheme modiﬁcation is
+obtained by applying Proposition 4 to (19). This completes the proof.
+
+(13)
+
+(13),
+
+≤
+V2T A1 (V1T A1 )† Λ1
+
+Λ2
+
+The proof of Theorem 1 is given below.
+Proof: Since an orthogonal projector projects a given matrix
+to the range (column space) of a matrix M is deﬁned as PM =
+M (M T M )−1 M T , the deterministic error (9) can be written as
+
+Λ2 V1T A1
+1
+Λ2 V2T A1
+2
+
+2
+
+2(2q+1)
+
+B
+C
+
+(18)
+
+Λ1 V1T A1
+
+T
+
+(V1T A1 )† Λ−1
+1
+
+Λ1 V1T A1
+
+T
+
+−1
+
+.
+
+Since 1) V1T A1 is a standard Gaussian matrix and 2) Λ1
+is a diagonal matrix, each column of Λ1 V1T A1 follows rvariate Gaussian distribution Nr (0, Λ2 ). Thus the random matrix
+1
+
+(17)
+
+The proof of Theorem 2 is given below.
+
+3
+
+Λ1 V1T A1
+
+Λ1 V1T A1
+
+T
+
+−1
+
+E. Proof of Theorem 5
+
+follows the inverted Wishart distri-
+
+−1
+bution Wr (Λ−2 , r + p). According to the expectation of inverted
+1
+Wishart distribution [6], we have
+
+E
+
+|h(X) − h(Y )| ≤ L X − F
+
+F
+
+Λ1 V1T A1
+
+Λ1 V1T A1
+
+= trace E
+
+Λ1 V1T A1
+
+Λ1 V1T A1
+
+1
+p−1
+
+Proposition 7. Suppose that h is a Lipschitz function on matrices:
+
+2
+
+(V1T A1 )† Λ−1
+1
+
+= E trace
+
+=
+
+The following propositions from [1] will be used in the proof.
+
+T
+
+T
+
+−1
+
+Pr {h(G) ≥ Eh(G) + Lt} ≤ e−t
+
+λ−2 .
+i
+
+(24)
+
+i=1
+
+λ2 ·
+i
+
+i=1
+
+i=r+1
+
+√
+λ2
+e r+p
+r+1
++
+λ2
+p
+i
+
+(32)
+
+The proof of Theorem 5 is given below.
+Proof: According to the deterministic error bound in Theorem
+†
+1, we study the deviation of Λ2 V2T A1 V1T A1 Λ−1 . Consider
+2
+1
+the Lipschitz function h(X) = Λ2 X V1T A1 Λ−1 , its Lipschitz
+2
+1
+constant L can be estimated by using the triangle inequality:
+
+n
+
+i=r+1
+
+λ2
+i
+.
+λ2
+r
+
+|h(X) − h(Y )| ≤ Λ2 (X − Y ) V1T A1
+2
+≤ Λ2
+2
+
+(26)
+
+n
+
+i=r+1
+
+λ2
+i
+.
+λ2
+r
+
+†
+
+V1T A1
+
+X −Y
+†
+
+V1T A1
+
+≤ Λ2
+2
+
+By substituting (26) into (22), we obtain the average error bound
+
+
+r
+λ2
+1
+r+1
+E X − L ≤
++ 1 |λr+1 |+
+p − 1 i=1 λ2
+i
+√
+e r+p
+p
+
+≥
+
+G†
+
+Pr
+
+√
+e r+p
+· |λ−1 |
+r
+p
+
+n
+
+λ−2 +
+i
+
+i=1
+
+(31)
+
+†
+
+r
+
+r
+
+.
+
+F
+
+E Λ2 V2T A1 (V1T A1 )† Λ−1
+2
+1
+
+1
+p−1
+
+/2
+
+12r
+· t ≤ 4t−p and
+p
+√
+e r+p
+≥
+· t ≤ t−(p+1) .
+p+1
+
+G†
+
+Pr
+
+Therefore, (23) can be further derived as
+
+= |λr+1 |
+
+2
+
+Proposition 8. Let G be a r × (r + p) standard Gaussian matrix
+where p ≥ 4. For all t ≥ 1,
+
+r
+
+1
+p−1
+
+(30)
+
+Draw a standard Gaussian matrix G. Then
+
+We apply Proposition 6 to the standard Gaussian matrix V1T A1 and
+obtain
+√
+e r+p
+E (V1T A1 )† ≤
+.
+(25)
+p
+
+≤ λ2 ·
+r+1
+
+f or all X, Y.
+
+F
+
+−1
+
+Λ−1
+1
+
+†
+
+Λ−1
+1
+
+Λ−1
+1
+X −Y
+
+F
+
+.
+
+(33)
+
+Hence
+the
+Lipschitz
+constant
+satisﬁes
+L
+≤
+†
+Λ2
+V1T A1
+Λ−1 . We condition on V1T A1 and then
+2
+1
+Proposition 5 implies that
+E h V2T A1 | V1T A1 ≤ Λ2
+2
+
+(27)
+
+V1T A1
+
+Λ2
+2
+
+This completes the proof.
+
+†
+
+V1T A1
+
+F
+
+Λ−1
+1
+F
+†
+
+F
+
++
+
+Λ−1 .
+1
+
+We deﬁne an event T as
+D. Proof of Theorem 4
+T =
+
+The proof of Theorem 4 is given below.
+Proof: By using H¨ lder’s inequality and Theorem 2, we have
+o
+E X −L ≤ E X −L
+
+V1T A1
+
+2q+1 1/(2q+1)
+
+.
+
+(28)
+
+˜
+˜
+˜ ˜
+We apply Theorem 3 to X and L and obtain the bound of E X − L ,
+˜ = λi (X)2q+1 .
+noting that λi (X)
+
+
+2(2q+1)
+r
+λr+1
+1
+2q+1
+˜ ˜
+E X − L =
++ 1 |λr+1 |+
+p − 1 i=1 λ2(2q+1)
+i
+√
+e r+p
+p
+
+n
+
+.
+2(2q+1)
+
+i=r+1
+
+λr
+
+F
+†
+
+(34)
+
+Applying Proposition 7 to the function h V2T A1 , given the event
+T , we have
+Pr
+
+Λ2 V2T A1
+2
+Λ2
+2
+
+2(2q+1)
+
+λi
+
+12r
+· t and
+p
+√
+e r+p
+≤
+·t .
+p+1
+
+≤
+
+According to Proposition 8, the event T happens except with probability
+Pr T ≤ 4t−p + t−(p+1) .
+(35)
+
+1/(2q+1)
+
+˜ ˜
+≤ E X −L
+
+†
+
+V1T A1
+
+(29)
+
+V1T A1
+
+V1T A1
+†
+
+†
+
+Λ−1
+1
+
+Λ−1 >
+1
+F
+
++
+
+F
+
+Λ2
+2
+
+By substituting (29) into (28), we obtain the average error bound of
+the power scheme modiﬁcation shown in Theorem 4. This completes
+the proof.
+
+Λ2
+2
+
+4
+
+F
+
+V1T A1
+V1T A1
+
+†
+
+†
+
+Λ−1 +
+1
+Λ−1 · u | T
+1
+
+2
+
+≤ e−u
+
+/2
+
+.
+
+(36)
+
+1
+
+According to the deﬁnition of the event T and the probability of T ,
+we obtain
+
+Λ−1 F
+1
+
+Λ2
+2
+
+Λ−1
+1
+
++ Λ2
+2
+2
+
+e−u
+
+/2
+
+†
+
+V1T A1
+
+0.8
+
+Λ−1 >
+1
+
+Relative error
+
+Λ2 V2T A1
+2
+
+Pr
+
+√
+e r+p
+12r
+· t + Λ2 F Λ−1
+·t
+2
+1
+p
+p+1
+√
+e r+p
+· tu ≤
+p+1
+
+Pr
+
+†
+T
+V1 A 1
+
+
+1 + t
+
+λ−1
+i
+
+√
+e r+p
+· tλ−1
+r
+p+1
+2
+
+e−u
+
+/2
+
+n
+
+λ2
+i
+
+100
+
+200
+
+300
+
+400
+
+500
+
+600
+
+Fig. 2. low-rank approximation via BRP: the relative approximation error
+for a 1000×1000 matrix with standard normal distributed entries on different
+rank.
+
++ Λ2 >
+
+
+
+√
+e r+p
++
+· tuλ−1  λ2 +
+r
+r+1
+p+1
+
+
+1/2 
+
+At last, we evaluate the efﬁciency and effectiveness of BRP on
+low-rank compression of human face images from dataset FERET
+[7]. We randomly selected 700 face images of 100 individuals from
+FERET and built a 700×1600 data matrix, wherein the 1600 features
+are the 40 × 40 pixels of each image. We then obtain two rank60 compressions of the data matrix by using SVD and the power
+modiﬁcation of BRP based low-rank approximation (5) with q =
+1, respectively. The compressed images and the corresponding time
+costs are shown in Figure 3 and its caption. It indicates that our
+method is able to produce compression with competitive quality in
+considerably less time than SVD.
+
+≤
+
+
+
+i=r+1
+
+0
+
+Rank of approximation matrix
+
+1/2
+
+i=1
+
+0.5
+
+0.2
+
+Λ−1
+1
+
+r
+
+12r
+p
+
+0.6
+
+0.3
+
++ 4t−p + t−(p+1) .
+
+T
+V2 A 1
+
+0.7
+
+0.4
+
+Therefore,
+Λ2
+2
+
+SVD
+BRP(q=0)
+BRP(q=1)
+BRP(q=2)
+BRP(q=3)
+
+0.9
+
++ 4t−p + t−(p+1) .
+
+(37)
+
+Since
+Theorem
+1
+implies
+X −L
+≤
+†
+Λ2 V2T A1 V1T A1 Λ−1 + Λ2 , we obtain the deviation
+2
+1
+bound in Theorem 5. This completes the proof.
+V. E MPIRICAL S TUDY
+We ﬁrst evaluate the efﬁciency of the BRP based low-rank approximation (1) for exact recovery of low-rank matrices. We consider
+square matrices of dimension n from 500 to 30000 with rank r
+from 50 to 500. Each matrix is generated by AB, wherein A and B
+are both n × r standard Gaussian matrices. Figure 1 shows that the
+recovery time is linearly increased w.r.t n. This is consistent with the
+r2 (2n + r) + mnr ﬂops required by (1). The relative error of each
+recovery is less than 10−14 . It also shows that a 30000×30000 matrix
+with rank 500 can be exactly recovered within 200 CPU seconds.
+This suggests the advantage of (1) for large-scale applications.
+
+Fig. 3. low-rank image compression via BRP on FERET: BRP compresses
+700 40×40 face images sampled from 100 individuals to a 700×1600 matrix
+with rank 60. Upper row: Original images. Middle row: images compressed
+by SVD (6.59s). Bottom row: images compressed by BRP (0.36s).
+
+3
+
+10
+
+VI. ACKNOWLEDGEMENT
+
+2
+
+Recovery time (seconds)
+
+10
+
+We would like to thank the reviewers for their constructive comments. This work is supported by the Australian Research Council
+discovery project (ARC DP-120103730).
+
+1
+
+10
+
+0
+
+10
+
+R EFERENCES
+−1
+
+10
+
+−3
+
+10
+
+50
+
+[1] N. Halko, P. G. Martinsson, and J. A. Tropp, “Finding structure with
+randomness: Stochastic algorithms for constructing approximate matrix
+decompositions,” arXiv: 0909.4061, 2009.
+[2] A. Deshpande and S. Vempala, “Adaptive sampling and fast low-rank matrix approximation,” in RANDOM ’06: The 10th International Workshop
+on Randomization and Computation, 2006, pp. 292–303.
+[3] K. L. Clarkson and D. P. Woodruff, “Numerical linear algebra in the
+streaming model,” in Proceedings of the 41st annual ACM symposium on
+Theory of computing, 2009.
+[4] M. Fazel, E. J. Cand` s, B. Recht, and P. Parrilo, “Compressed sensing
+e
+and robust recovery of low rank matrices,” in 42nd Asilomar Conference
+on Signals, Systems and Computers, 2008.
+[5] S. Roweis, “Em algorithms for pca and spca,” in NIPS, 1998, pp. 626–
+632.
+[6] R. J. Muirhead, Aspects of multivariate statistical theory. New York:
+John Wiley & Sons Inc., 1982.
+[7] P. J. Phillips, H. Moon, S. A. Rizvi, and P. J. Rauss, “The feret evaluation
+methodology for face-recognition algorithms,” IEEE Transactions on
+Pattern Analysis and Machine Intelligence, vol. 22, no. 10, pp. 1090–
+1104, 2000.
+
+500x500
+1000x1000
+3000x3000
+5000x5000
+10000x10000
+30000x30000
+
+−2
+
+10
+
+100
+
+150
+
+200
+
+250
+
+300
+
+350
+
+400
+
+450
+
+500
+
+Rank of recovery matrix
+
+Fig. 1. low-rank matrix recovery via BRP: the recovery time for matrices
+of different size and different rank.
+
+We then evaluate the effectiveness of (1) and its power scheme
+modiﬁcation (5) in low-rank approximation of full rank matrix with
+slowly decaying singular values. We generate a square matrix with
+size 1000, whose entries are independently sampled from a standard
+normal distribution with mean 0 and variance 1, and then apply (1)
+(q = 0) and (5) with q = 1, 2, 3 to obtain approximations with
+rank varying from 1 to 600. We show the relative errors in Figure
+2 and the relative error of the corresponding SVD approximation as
+a baseline. The results suggest that our method can obtain a nearly
+optimal approximation when q is sufﬁciently large (e.g., 2).
+
+5
+
+

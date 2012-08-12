@@ -1,0 +1,1095 @@
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Wed May 16 18:49:28 2012
+ModDate:        Tue Jun 19 12:55:09 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      480406 bytes
+Optimized:      no
+PDF version:    1.7
+ISIT'2012 1569564807
+
+Signal Detection Algorithms for Two-Dimensional
+Intersymbol-Interference Channels
+Yiming Chen
+
+Shayan Garani Srinivasa
+
+Western Digital Corporation
+Irvine, CA, 92612
+Email: yiming.chen@wdc.com
+
+Western Digital Corporation
+Irvine, CA, 92612
+Email: shayan.garani@wdc.com
+
+scheme for 2-D equalization. Marrow and Wolf [7] considered
+2-D DFE and MAP-DFE hybrid equalization schemes over an
+L−shaped ISI channel. Wu et al [8] developed 2-D iterative
+detection and decoding scheme for a separable 2-D ISI system.
+In most practical systems, 2-D ISI is generally non-separable.
+Shental et al [9] developed a generalized belief propagation
+approach that achieves near maximum-likelihood (ML) performance for 2-D ISI channels. Simulations in [9] considered
+(20×20) 2-D data sizes with smaller 2-D ISI masks (2×2). It is
+practically difﬁcult to simulate conditions for higher ISI shapes
+and sizes using the method in [9]. In a recent prior work, Chen
+et al [10] developed an iterative soft-decision feedback zigzag MAP algorithm. This method demonstrated performance
+close to nearly optimal detection with lower complexity and
+compared well with the method presented in [9].
+In this paper we are interested in iterative multi-row/column
+MAP detectors for handling 2-D ISI. In section II, we derive
+the general form of the multi-track MAP detector considering
+the feedback information from neighboring bit cells outside
+local 2-D ISI span. We use this algorithm subsequently
+to develop a 2-D iterative multi-row/column turbo-detector.
+Simulation results over the AWGN channel are discussed in
+section III with concluding remarks in section IV. The main
+contribution of this work is a set of low complexity tractable
+2-D detection methods based on the turbo principle.
+
+Abstract—We develop several novel signal detection algorithms
+for two-dimensional intersymbol-interference channels. The core
+in all these schemes is a modiﬁed one-dimensional maximum aposteriori (MAP) detection algorithm that operates over single
+and multiple rows providing a balanced performance vs. complexity tradeoff. We explore 2-D iterative algorithms that operate
+by feeding extrinsic information from multi-row/column detectors
+in a turbo fashion. Multi-row/column MAP detection using 2D turbo-processing yields more than 2 dB signal-to-noise ratio
+(SNR) gain compared to a non-iterative multi-row detector over
+the additive white Gaussian channel and within 0.1 dB of the
+ML estimate.
+Index Terms—Two-dimensional intersymbol interference, Soft
+decision feedback, Row-column algorithm, Maximum a-posterori
+algorithm
+
+I. I NTRODUCTION
+Two-dimensional (2-D) intersymbol-interference (ISI) channels have become practically relevant in various data recording technologies such as two-dimensional magnetic recording
+(TDMR), optical holographic memories [1] [2] as well as in
+other areas such as pixelated wireless optical channels [3] and
+2-D grid networks. From a signal processing view point, data
+recording systems in 2-D have advantages over traditional 1D systems. 2-D recording systems are less sensitive to timing
+instabilities due to wider read sensory elements for tracking
+timing drifts. With efﬁcient 2-D signal detection methods,
+guard bands between 2-D coded blocks can be eliminated,
+thereby, improving format efﬁciency. Thus, 2-D ISI can be
+beneﬁcially combatted to realize SNR gains by clever signal
+processing.
+There is a wide spectrum of 1-D detection techniques
+ranging from decision feedback equalization (DFE) to the
+optimal MAP algorithm that can be extended to the 2-D case.
+2-D DFE methods are easy to implement but suffer from error
+propagation. The 1-D MAP algorithm is theoretically optimal
+and is the best-in-class detector for minimizing bit-error rate.
+However, unlike 1-D MAP detection [4] that can be practically
+realized, 2-D MAP detection is NP-complete [5]. It is difﬁcult
+to realize a 2-D trellis spanning signal dimensions greater
+than just a few bits. We need low complexity 2-D signal
+detection algorithms based on 1-D schemes to get close to
+near optimal 2-D MAP detection performance. Several authors
+have considered various approaches towards 2-D detection.
+Nelson et al [6] derived a multi-dimensional decision feedback
+
+II. T WO D IMENSIONAL D ETECTION A LGORITHMS
+Consider the detection of an M × N equiprobable 2-D
+independent and identically distributed (i.i.d.) binary signal
+x with elements x(k, l) ∈ {−1, +1} from received image y
+with elements
+y(m, n) = g(m, n) + w(m, n),
+
+(1)
+
+where g(m, n) is the 2-D convolution, deﬁned as
+g(m, n) =
+k
+
+l
+
+h(m − k, n − l)x(k, l).
+
+(2)
+
+In the above equations h(k, l) are the elements of a 2-D
+ﬁnite impulse response/2-D blurring mask and w(m, n) are
+zero mean i.i.d. Gaussian random variables (r.v.s). The double
+sum is computed over the non-zero support of h(m− k, n− l).
+The discrete model in (1) and (2) is applicable to most 2-D
+
+1
+
+0
+
+0
+
+K2
+
+0
+
+s, K2,v s K ,v
+
+0
+
+s , 2,v s
+
+2
+
+0
+
+0
+2
+
+K1
+
+1
+
+0
+
+0
+
+1.0
+
+1
+
+1
+
+0
+
+1
+
+0
+2
+
+K1
+
+0
+
+0
+
+,
+
+s
+
+0
+
+K2
+
+0
+
+2,v
+
+s , 1,v s 1,v
+
+s K1,h s, K +1,h
+K1 ,h
+1
+
+s , 2,h s 1,h s,0 s,1,h s2,h
+,
+,
+s 1,h s0 s1,h s2,h s3,h
+
+0
+
+i m,v
+
+}
+}
+1,h
+
+ym,n, with
+i-K2 m<i, n=j-1
+
+s
+
+s
+
+,
+m ,v
+
+sm ,v
+
+1,h
+
+,
+sm ,v sm ,v
+
+K1 ,h
+
+,
+sm+1,v
+
+s
+
+1,v
+
+(c)
+
+the input vector
+ui,j = [ui−K2 ,j , ui−K2 +1,j , . . . , ui−1,j ,
+
+K1 ,h
+
+2,h
+
+}K +i-m
+
+ui,j+K1 , ui+1,j , . . . , ui+K2 −1,j , ui+K2 ,j ],
+
+2
+
+,
+K2 +i,v
+
+,
+sm+2,v
+
+,
+m+K2 ,v
+
+2,h
+
+,
+sm+1,v
+2,h
+
+ym,n, with
+i<m i+K2, n=j-1
+
+(3)
+
+,
+sm 1,v
+K1,h
+
+,
+m 1,v
+
+[s−K2 ,v , . . . , s−1,v , s1,v , . . . , s+K2 ,v , s0 ,
+
+s−K1 ,h , . . . , s−1,h , s1,h . . . , s+K1 ,h ],
+
+,
+sm 2,v
+
+si, K2,v
+
+s
+
+Sj = s
+
+,
+sm K2 ,v
+
+K2+m-i
+2,h
+
+sK1,h
+
+2
+
+1,v
+
+K1,h
+
+1,h
+
+(b)
+
+,
+sK2,v sK ,v
+
+(a)
+i-m
+
+sK1
+
+,
+sK1,h
+
+,
+s1,v s1,v
+,
+s2,v s2,v
+
+2
+
+0
+
+trellis could begin and end in an ‘all -1’ state (zero state bipolar mapped to ‘-1’) as demonstrated in [4].
+For the generalized 2-D mask shown in part (a) of Figure 1,
+given the trellis state
+
+2
+
+m i,v
+
+} m-i
+
+(4)
+
+and the received vector sequence Z (i) {yi,j }1≤j≤N , where
+the vector y i,j is the local received samples for trellis stage j
+at ith row, deﬁned as:
+
+(d)
+
+Fig. 1. (a) The generalized mask for the 2-D channel; (b) The state deﬁnition
+and states transition (red color stands for the previous state S
+j−1 = s ; black
+color stands for the current state Sj = s) of the MAP trellis, ‘h’ denotes
+the horizontal direction and ‘v’ denotes the vertical direction; (c) Expectation
+computation for sample ym,n from received vector yi,j with i−K2 ≤ m < i
+and n = j − 1; (d) Expectation computation for sample ym,n from received
+vector yi,j with i < m ≤ i + K2 and n = j − 1.
+
+yi,j = [yi−k2 ,j−1 , yi−k2 +1,j−1 , · · · , yi−1,j−1 ,
+
+yi,j , yi+1,j−1 , · · · , yi+K2 −1,j−1 , yi+K2 ,j−1 ],
+
+(5)
+
+we deﬁne
+u
+
+P ui,j , Sj = s, Z(i) .
+
+i,j
+λi,j (s)
+
+ISI based storage channels post front-end signal processing
+after dealing with channel/media distortions and whitening the
+media noise.
+We present 2-D non-iterative and iterative MAP based
+detection algorithms in this work and compare their efﬁcacies
+with single row/column and multi-row/column variations. The
+trellis of the multi-row/column detector is compliant with the
+span of the 2-D ISI, while the single-row/column version is
+approximated by a simpliﬁed 1-D MAP trellis with much
+lower complexity.
+
+(6)
+
+We compute the a-posteriori probability for the multi-row
+detector as,
+u
+
+P ui,j | Z(i) =
+
+i,j
+λi,j (s)/P Z(i) ,
+
+(7)
+
+s
+
+using a modiﬁed BCJR algorithm.
+As in [4], we set
+αi,j (s) = P Sj = s, {yi,a }1≤a≤j ,
+
+A. Derivation of the Algorithms
+
+βi,j (s) = P {yi,a }j+1≤a≤N |Sj = s ,
+
+We choose a generalized mask shown in part (a) of
+Figure 1. The coefﬁcients [β −K1 , · · · , β−1 , 1, β1 , · · · , βK1 ]
+denote
+horizontal
+ISI,
+and
+the
+coefﬁcients
+[α−K2 , · · · , α−1 , 1, α1 , · · · , αK2 ] denote vertical ISI. The
+size of this mask is (2K2 + 1) × (2K1 + 1). The coefﬁcients
+with negative indices denote the causal part; while the
+positive indices denote the anti-causal part. Practical 2-D
+runlength-limited ISI channels in recording systems [13]
+could be represented by this ‘band-aid’ shape mask. In
+practice, the span of 2-D diagonal interference over arbitrary
+ISI shapes is small due to the physical constraints [11].
+Though we choose an asymmetric runlength-limited shaped
+mask throughout this paper for the sake of illustration, this
+assumption can be readily generalized for any arbitrary 2-D
+ISI shape within our framework.
+As in the conventional BCJR algorithm [4], we do the scan
+based on the forward-backward procedure. To compute the
+received image y, we assume a boundary of −1 pixels around
+x; the detector uses this boundary condition so that the MAP
+
+(8)
+
+γi,j (s , s) = P (Sj = s, yi,j |Sj−1 = s );
+the state transition probability γ is computed at every stage
+along the trellis. Using the branch metrics (γ’s), the α and β
+terms are computed using the forward-backward recursion:
+αi,j (s) =
+
+αi,j−1 (s )γi,j (s , s),
+
+(9)
+
+βi,j (s)γi,j (s , s).
+
+(10)
+
+s
+
+βi,j−1 (s ) =
+s
+
+Using the equations (8), (9), and (10), equation (6) is
+computed as
+u
+
+i,j
+λi,j (s) =
+
+αi,j−1 (s )γi,j (s , s)βi,j (s).
+
+(11)
+
+s
+
+To estimate the pixel located at (i, j + K 1 ), we marginalize
+ui,j−K
+λi,j−K11 (Sj−K1 ) over all the remaining pixels in the input
+vector ui,j as
+
+2
+
+u
+
+u
+
+i,j−K
+λi,j−K11 (Sj−K1 ).
+
+i,j
+λi,j−K1 (Sj−K1 ) =
+
+K2
+
+(12)
+
+ym,n = sm,v +
+
+ui,j−K \ui,j
+
+αp sm+p,v
+p=1
+
+1
+
+K2 +m−i
+
+The delay K 1 in the index accounts for the ISI shape and
+boundary conditions.
+The output pixel LLR is ﬁnally computed from (12) as
+
++
+p=1
+
+K2
+
+α−p sm−p,v +
+
+p=K2 +m−i+1
+
+K1
+Sj−K1
+
+L(i, j) = ln
+
+Sj−K1
+
+ui,j =+1
+λi,j−K1 (Sj−K1 )
+ui,j =−1
+λi,j−K1 (Sj−K1 )
+
+(13)
+
+p=1
+
+K2
+
+= P (yi,j |Sj = s, Sj−1 = s )P (Sj = s|Sj−1 = s )
+
+ym,n = sm,v +
+
+(14)
+
+p=1
+
+= P (yi,j |Sj = s, Sj−1 = s )P (ui,j ).
+
++
+
+For the non-iterative detection scheme, there is no a-priori
+information. We assume that all the input pixels are equally
+likely when computing P (u i,j ) in equation (14). Since the ﬁrst
+conditional probability term in the product of (14) is Gaussian
+distributed, we compute it as,
+
++ sm,v β1 +
+p=1
+
+P (yi+m,j−1 | Sj = s, Sj−1 = s )
+
+(yi,j − yi,j )2
+1
+exp −
+2
+2
+2σw
+2πσw
+
+m=−K2 ,m=0
+
+2
+2πσw
+
+K1
+
+β−p ω−p,h +
+
+0
+
+(yi+m,j−1 − yi+m,j−1 )2
+2
+2σw
+
+αp ωp−K2 +m−i,v (18)
+p=K2 −m+i+1
+
+βp ωp,h .
+p=2
+
+There are m − i feedback pixels in vertical direction (ω 1,v
+through ω i−m,v ). In the horizontal direction, there are 2K 1 −
+1 feedback pixels (ω 2,h through ω K1 ,h and ω−K1 ,h through
+ω−1,h ), as shown in part (d) of Figure 1.
+The total number of the feedback pixels in the vertical
+direction is |i−m| depending on the index m. In the horizontal
+direction, we have a total of 2K 1 − 1 feedback pixels.
+
+K2
+
+exp −
+
+K2
+
+αp sm+p,v +
+K1
+
+≈ P (yi,j | Sj = s, Sj−1 = s )
+
+1
+
+K2 −m+i
+
+α−p sm−p,v
+
+p=1
+
+P (yi,j | Sj = s, Sj−1 = s )
+
+K2
+
+βp ωp,h .
+p=2
+
+There are i − m (ω 1,v through ω i−m,v ) feedback pixels in the
+vertical direction. In the horizontal direction, there are 2K 1 −
+1 feedback pixels (ω 2,h through ω K1 ,h and ω−K1 ,h through
+ω−1,h ), as also shown in part (c) of Figure 1.
+Given i < m ≤ i + K2 and n = j − 1, the expectation is
+computed as
+
+γi,j (s , s) = P (Sj = s, yi,j |Sj−1 = s )
+
+=
+
+β−p ω−p,h +
+
+(17)
+
+If L(i, j) > 0 pixel (i, j) is detected as +1, otherwise, it is
+detected as −1.
+The conditional probability γ i,j (s , s) is decomposed as
+a product of two other conditional probabilities based on
+Bayesian rule:
+
+m=−K2 ,m=0
+
+K1
+
++ sm,v β1 +
+.
+
+α−p ωp−K2 −m+i,v
+
+.
+
+,
+s0
+
+s1,
+
+s1
+
+yi,j
+
+s0
+
+1.0
+
+1
+
+(15)
+Current input
+
+In the second step of equation (15), we assume statistical
+independence in evaluating the conditional probabilities terms.
+This assumption is not exact, but is a good practical approximation towards a realizable algorithm. For the conditional
+probabilities in equation (15), the expectations are computed
+based on the index (m, n) of the received sample y and the
+components of the 2D mask shown in part (a) of Figure 1.
+Given m = i and n = j, the expectation is
+
+Current state
+
+K1
+
+αp sp,v +
+p=−K2 ,p=0
+
+βp sp,h .
+
+2D convolution
+Feedback
+
+Fig. 2. The states, inputs and inner product deﬁnition for the simpliﬁed MAP
+trellis (row direction), where Sj = {s0 , s1 } and Sj−1 = {s0 , s1 }.
+
+Example:
+Practical channels usually have small ISI span. For purposes
+of computational illustration, we choose a simple 2-D symmetric mask h = [0 α 0; β 1 β; 0 α 0] of size 3 × 3 as shown
+in Figures 2 and 3.
+A trellis based on the 3 × 3 mask h has 5 state pixels (i.e.
+s0 through s 4 and 3 input pixels as shown in Figure 3) . The 3
+input pixels lead to 8 branches coming into/going out from one
+state. There are 4 feedback pixels (ω 0 , ω1 , ω2 , ω3 ) which are
+
+ym,n = s0 +
+K2
+
+Previous state
+
+(16)
+
+p=−K1 ,p=0
+
+Given i − K2 ≤ m < i and n = j − 1, the expectation is
+
+3
+
+1
+
+yi-1,j-1
+
+optionally used to compute the state transition probability. The
+a-priori information for both the input pixels and the feedback
+pixels come from the previous detector iteration cycle. With
+no feedback, they can be assumed to be zero a-priori. With
+feedback, extrinsic information from the previous detector will
+be scaled and set as feedback. We will discuss this in more
+detail in section II-B.
+The branch metrics are the squared Euclidean distances
+(SEDs) between the branch output vectors and the received
+[yi−1,j−1 , yi,j , yi+1,j−1 ] as shown in
+pixel vectors y i,j
+Figure 3. The sample y i,j corresponds to the position of s 1
+or s0 . The samples yi−1,j−1 and yi−1,j+1 correspond to the
+positions s3 and s4 respectively.
+For the 3 × 3 mask shown in Figure 3, the equation (15)
+will be modiﬁed as
+
+s3
+,
+s3
+
+s2
+
+s1,
+
+,
+s2
+
+,
+s0
+
+yi,j
+
+s1
+
+0
+
+s0
+
+1.0
+
+s4
+
+2
+,
+s4
+
+3
+
+yi+1,j-1
+
+Current input
+
+2D convolution
+
+Previous state
+
+Current state
+Expectation
+for yi-1,j-1
+
+Feedback pixel
+
+Expectation
+for yi,j
+
+Expectation
+for yi+1,j-1
+
+Fig. 3. The states, inputs and inner product deﬁnition for MAP trellis threerows version (row direction), where Sj = {s0 , s1 , s2 , s3 , s4 } and Sj−1 =
+{s0 , s1 , s2 , s3 , s4 }.
+
+P (yi,j | Sj = s, Sj−1 = s ) =
+
+ For simpliﬁed MAP trellis
+
+
+
+
+
+P (ω0 )P (ω1 )P (yi,j | s, s , yi,j (ω0 , ω1 ))
+
+
+ ω0 ,ω1
+
+
+
+(19)
+
+ For MAP trellis (three-rows version)
+
+
+
+
+
+P (ω0 )P (ω1 )
+P (yi,j | s, s , yi,j ) ×
+
+ω0 ,ω1
+
+
+
+
+
+
+ P (yi−1,j−1 | s, s , yi−1,j−1 (ω0 , ω1 )) ×
+
+
+
+
+
+
+
+
+
+P (ω2 )P (ω3 )P (yi+1,j−1 | s, s , yi+1,j−1 (ω2 , ω3 )) .
+
+
+
+Lin,C
+e
+
+Row Detector
+
+Lout
+C
+
+R
+
+Lout C
+R
+
+Lin,R
+e
+
+C
+
+R
+
+Column Detector
+
+y
+
+y
+
+Fig. 4. The block diagram of the iterative 2-D detector based on turbo
+principle.
+
+To compute the a-priori probability for a speciﬁed pixel y i,j
+from the incoming extrinsic information of this pixel L in (yi,j ),
+e
+we applied the following equations:
+
+ω2 ,ω3
+
+We deﬁne the non-iterative algorithm with three central rows
+without any feedback pixels (with the trellis deﬁnition as in
+Figure 3) as ‘algorithm A’.
+We deﬁne the non-iterative algorithm with three central
+rows utilizing equally likely feedback information according to
+equation (19) as ‘algorithm B’. In other words, for algorithm
+B, in the computation of P (y i,j | Sj = s, Sj−1 = s ), we
+use the vector y i,j = [yi−1,j−1 , yi,j , yi+1,j−1 ] as opposed to
+yi,j = [yi,j ] for algorithm A.
+Following the above example, over a (2K 1 + 1) × (2K2 +
+1) 2-D ISI span, an algorithm processing R = max(2K 1 +
+1, 2K2 + 1) adjacent rows/data tracks simultaneously yields
+better performance at the cost of higher complexity.
+
+exp(Lin (yi,j ))
+e
+;
+exp(Lin (yi,j )) + 1
+e
+1
+.
+= −1 | yi,j ) =
+˜
+exp(Lin (yi,j )) + 1
+e
+
+P (yi,j = +1 | yi,j ) =
+˜
+P (yi,j
+
+(20)
+
+where yi,j denotes the a-priori information on pixel y i,j .
+˜
+We deﬁne the iterative 2-D algorithm using the a-priori
+information of the feedback pixels as‘algorithm C’. We deﬁne
+the iterative 2-D algorithm taking into a-priori information
+for both input and feedback pixels using equation (19) as
+‘algorithm D’.
+We deﬁne a simpliﬁed 2-D detection scheme that we term
+‘algorithm E’ as follows. We deﬁne a reduced state comprising
+of two adjacent pixels s 0 and s1 in the row direction as shown
+in Figure 2. An input pixel which is a branch connecting
+two neighboring states determines the next state. Two extra
+feedback pixels (ω 0 , ω1 ) are added as shown in Figure 2
+to account for the local 2-D ISI shape. The state transition
+probability is computed using equation (19). The a-priori
+information from the feedback pixels and P (ui,j ) is utilized
+in an iterative fashion.
+Figure 4 shows the block diagram of the iteration detection
+scheme. The row/column detectors pass soft extrinsic informa-
+
+B. Turbo Based 2D Detection
+The 2-D iterative scheme takes advantage of different error
+decisions and noise distribution at the output of the row
+and column detectors by feeding scaled extrinsic information
+back and forth. We assume statistical independence when
+computing the probability of the input and feedback pixels
+using the a-priori information (i.e. the probabilities of all
+the feedback pixels as per equation (19) and P (ui,j ) as
+per equation (14)). The analysis for dependent statistics is
+generally difﬁcult and is a future research topic.
+
+4
+
+-1
+
+10
+
+multiple row/columns have better 2-D ISI cancellation than a
+single-row/column iterative detector. As shown in Figure 5,
+algorithm E at BER 10 −6 is within 0.5 dB of the algorithms
+C and D. At BER 10−6 , the iterative algorithms have 2 dB
+SNR gain over the non-iterative ones.
+Algorithm E with 10 iterations is 0.3% as complex as algorithm D with 5 iterations (complexity computations avoided
+due to page limitations) with a SNR loss of about 0.5 dB at
+BER 10−6 . The performance of the algorithm D is within 0.1
+dB of the ML estimate as per [14].
+
+algorithm A
+algorithm B
+algorithm C
+algorithm D
+algorithm E
+ML estimate from [14]
+
+-2
+
+10
+
+-3
+
+BER
+
+10
+
+-4
+
+10
+
+-5
+
+10
+
+IV. C ONCLUSION AND F UTURE W ORK
+-6
+
+10
+
+Realizing 2-D MAP detection is practically impossible. We
+presented several MAP based signal detection algorithms for
+2-D ISI channels. Turbo feedback based multi-track MAP
+algorithm 2 dB SNR gain over non-iterative methods. We
+also presented and evaluated several techniques that tradeoff
+performance for complexity.
+
+-7
+
+10
+
+9
+
+10
+
+11
+
+Fig. 5.
+
+12
+
+13
+14
+SNR (dB)
+
+15
+
+16
+
+17
+
+18
+
+Monte Carlo simulation results.
+
+R EFERENCES
+
+tion (LLRs) between each other via LLR scaling δ as shown
+in Figure 4. The scaling process avoids quick convergence and
+error propagation during successive iterations.
+The log-likelihood ratio L(i, j) during a current iteration
+depends on the a-priori information L in (i, j) to the current
+e
+(row or column) detector and its own extrinsic information.
+Extrinsic information L out (i, j) is passed to the next detector
+as a-priori information according to
+Lout (i, j) = L(i, j) − Lin (i, j).
+e
+
+[1] R. Wood, M. Williams, A. Kavcic, and J. Miles, “The Feasibility of
+Magnetic Recording at 10 Terabits Per Square Inch on Conventional
+Media,” IEEE Trans. Magn., vol. 45, No. 2, pp. 917-923, Feb. 2009.
+[2] H. J. Coufal, D. Psaltis, and G. Sincerbox, eds., “Holographic Data
+Storage,” New York: Springer-verlag, 2000.
+[3] S. Hranilovic and F. Kschischang, “An Indoor Wireless Optical MIMO
+Channel using Pixelated Arrays of Transmitters and Receivers,” Proc.
+22nd. Bienn. Symp. Comm., Kingston, ON, Canada, pp. 392-394, May.
+2004.
+[4] L. R. Bahl, J. Cocke, F. Jelinek, and J. Raviv, “Optimal decoding of
+linear codes for minimizing symbol error rate,” IEEE Trans. Inform.
+Theory., vol. 20, pp. 284–287, Mar. 1974.
+[5] E. Ordentlich and R. Roth, “On the Computational Complexity of 2D
+Maximum-likelihood Sequence Detection,” Hewlett-Packard Labs, Palo
+Alto, CA, 2006, Tech. Rep. HPL-2006-69.
+[6] J. K. Nelson, A. C. Singer, and U. Madhow, “Multi-directional Decision
+Feedback for 2D Equalization,” in Proc. IEEE Intl. Conf. on Acoust.
+Speech and Signal Proc. ICASSP’04, vol. 4, pp. 921-924, May 2004.
+[7] M. Marrow and J. K. Wolf, “Iterative detection of 2-dimensional ISI
+channels,” in Proc. Info. Theory Workshop, pp. 131-134, Paris, Mar.
+2003.
+[8] Y. Wu, J. A. O’Sullivan, R. S. Indeck, and N. Singla, “Iterative
+Detection and Decoding for Separable Two-Dimensional Intersymbol
+Interference,” IEEE Trans. Magn., vol. 39, pp. 2115–2210, Jul. 2003.
+[9] O. Shental, N. Shental, S. Shamai, I. Kanter, A. J. Weiss, and Y. Weiss,
+“Discrete-Input Two-Dimensional Gaussian Channels With Memory:
+Estimation and Information Rates via Graphical Models and Statistical
+Mechanics,” IEEE Trans. Inform. Theory., vol. 54, pp. 1500–1513, Apr.
+2008.
+[10] Y. Chen, T. Cheng, P. Njeim, B. Belzer, and K. Sivakumar, “Iterative Soft
+Decision Feedback Zig-Zag Equalizer for 2D Intersymbol Interference
+Channels,” IEEE Jour. on Sel. Areas in Comm., vol. 28, pp. 167–180,
+Feb. 2010.
+[11] S. G. Srinivasa, O. Momtahan, A. Karbaschi, S. W. McLaughlin, F.
+Fekri, and A. Adibi, “Volumetric Storage Limits and Space-Volume
+Multiplexing Tradeoffs for Holographic Channels,” Opt. Eng., vol. 49,
+Jan. 2010.
+[12] C. L. Miller, B. R. Hunt, M. W. Marcellin, and M. A. Neifeld, “Image
+restoration using the Viterbi algorithm,” Jour. of the Opt. Soc. of America
+A., vol. 16, pp. 265-274, Feb. 2000.
+[13] S. G. Srinivasa and S. W. McLaughlin, “Capacity Bounds for TwoDimensional Asymmetric M-ary (0, k) and (d, ∞) Runlength-Limited
+Channels,” IEEE Trans. Comm., vol. 57, No. 6, pp. 1584-1587, June.
+2009.
+[14] K. M. Chugg, “Performance of optimal digital page detection in a twodimensional ISI/AWGN channel,” in Proc. Asilomar Conf. on Signals,
+Systems and Comp., pp. 958-962, Nov. 1996.
+
+(21)
+
+III. S IMULATION R ESULTS
+We present Monte Carlo simulation results of the 2-D
+detection algorithms and compare their performance. All simulations employ a random 64×64 binary image with a boundary
+corresponding to the mask size so that the trellis could start
+and end with an all zero state. The SNR is deﬁned as in [12]:
+||hx||2
+2
+σω
+2
+i,j h (i, j)
+
+SNR = 10log10
+= 10log10
+
+(22)
+
+2
+σω
+
+2
+where σω is the variance of the Gaussian r.v.s ω(m, n) in (2).
+We assume α = β = 0.25 in the 3 × 3 mask h, for simulation
+purposes.
+Iterative algorithms C and D employ a 5-iteration scheme
+with scale factor δ = 0.8. Algorithm E uses a 10-iteration
+scheme with weight δ = 0.5. The performance of the algorithms converge, i.e. no more signiﬁcant SNR gain, after these
+numbers of iterations mentioned here.
+Algorithm B performs much better than algorithm A, since
+the state transition probability is computed more accurately
+(i.e. more contributing terms dealing with ISI rather than in
+the single case).
+Algorithms C and D spanning multi-rows/columns perform
+better than algorithm E with simpliﬁed trellis because handling
+
+5
+
+

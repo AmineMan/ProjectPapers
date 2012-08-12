@@ -1,0 +1,690 @@
+Creator:        TeX
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Fri May 18 14:46:41 2012
+ModDate:        Tue Jun 19 12:55:07 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      692708 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569565859
+
+Transmission of non-linear binary input functions
+over a CDMA System
+Elaheh Mohammadi
+
+Amin Gohari
+
+Hassan Aghaeinia
+
+Dept. of EE
+Amirkabir University of Technology
+Tehran, Iran
+
+Dept. of EE
+Sharif University of Technology
+Tehran, Iran
+
+Dept. of EE
+Amirkabir University of Technology
+Tehran, Iran
+
+Abstract—We study the problem of transmission of binary
+input non-linear functions over a network of mobiles based on
+CDMA. Motivation for this study comes from the application
+of using cheap measurement devices installed on personal cellphones to monitor environmental parameters such as air pollution, temperature and noise level. Our model resembles the
+MAC model of Nazer and Gastpar except that the encoders are
+restricted to be CDMA encoders. Unlike the work of Nazer and
+Gastpar whose main attention is transmission of linear functions,
+we deal with non-linear functions with binary inputs. A main
+contribution of this paper is a lower bound on the computational
+capacity for this problem. While in the traditional CDMA
+system the signature matrix of the CDMA system preferably has
+independent rows, here the signature matrix of the CDMA system
+is viewed as the parity check matrix of a linear code, reﬂecting
+our treatment of the interference. We also introduce the problem
+of Slepian-Wolf compression with the same compression matrix.
+
+Fig. 1. The communication model. The observations O1 , · · · , OL are passed
+through encoders (resulting in Ti ’s), multiplied by signatures (the si ’s) of a
+CDMA systems and transmitted over the air (a Gaussian MAC channel). The
+receiver gets sum of the transmitted signals plus noise (i.e. Y ), and wants to
+recover a function f (O1 , · · · , OL ) of the observations (denoted by U ). In
+the general model we also allow for b distinct functions instead of just one.
+
+I. I NTRODUCTION
+
+personal exposures or the general pollution maps). To ﬁnd the
+answer, it is not sufﬁcient to have a pollution map, but also the
+population density at the polluted areas at various times in a
+day. Let us take the average of the measurements by the mobile
+sensors that are being carried by the residents as they move
+in the city. There will be just more cell-phones in populated
+areas and we can simultaneously take into consideration both
+the pollution and the population density.
+Note that when the mobile system in the application is
+employing the CDMA system, it is preferable to use the same
+architecture to transmit functions of measurements by the cellphones. Thus, we are considering the problem of function
+transmission over a network of mobiles based on CDMA.
+We argue that ﬁnding the optimal scheme for transmission
+of functions can be studied from two different criteria: i.e.
+maximizing privacy and minimizing transmission rates. Transmission of the whole data (rather than a function of it) may
+not only be bad in terms of transmission rates, but also it
+may compromise the privacy of cell-phone users. Therefore
+we can either maximize privacy or minimize transmission rates
+over all codes that allow reliable function computation. For the
+Korner-Marton problem [3] the two criteria yield exactly the
+same answer1 ; but we believe in general they may be different.
+Nonetheless in this study we follow the traditional approach
+
+The problem of decoding functions of sources rather than
+the sources themselves in a Multiple Access Channel (MAC)
+has been studied in several works (see for instance [2] and
+its follow up works, also [3] and [4]). It has been shown that
+separation is not always optimal in such scenarios, even when
+the sources are independent [2]. The intuitive reason for this is
+that the interference caused by other users could be exploited
+to compute a given function over the air, if the pattern of the
+interference matches the functions we want to compute.
+All of the previous models for transmission of functions
+over MAC (that we know of) do not impose any restrictions
+on the encoders, except perhaps on the input power. However some promising emerging applications may violate this
+assumption. We were motivated by one such application to
+impose a CDMA system as being part of the encoders.
+The application is monitoring the exposure of humans to
+environmental parameters such as air pollution, temperature,
+etc. since the authors are living in one of the world’s most
+polluted cities. The traditional way of monitoring is to install
+measurement devices distributed over a given area. Suggestion
+has been made to install low cost measurement devices on
+personal cell-phones, e.g. see [1]. Although the focus of this
+paper is not the application, but we would like to mention a
+motivation for this application since it may be new (we have
+not seen it in the literature). Suppose we are interested in
+the collective exposure of residents to air pollution (not just
+
+1 This is because the equivocation rate for each user is bounded from above
+by the entropy of their source conditioned on the function to be computed,
+which is exactly what the Korner-Marton scheme achieves.
+
+1
+
+TABLE I
+N OTATION
+
+of minimizing the transmission rates.
+Our model is shown in Fig. 1 which is similar to the one
+considered in [2], except for addition of the signature matrices.
+It is discussed rigorously in Sec. III. But before that in Sec.
+II, we intuitively discuss our interpretation of the signature
+matrix of the CDMA system as the parity check matrix of
+a linear code, demonstrating our treatment of interference.
+Sec. IV contains our main result, providing a lower bound
+on the computational capacity for our problem. The bound
+is expressed in terms of the answer to another problem that
+we introduce, i.e. the problem of Slepian Wolf with the same
+compression matrices (discussed in Sec. V). We believe the
+latter problem can itself be of independent interest. Sec. VI
+discusses the lower bound of [2] applied to transmission of
+non-linear functions in our setting. We will not be discussing
+any upper bounds, but one can derive an upper bound using the
+ideas in [2] by merging all the transmitters into one node (the
+same technique used in some versions of the cut-set bound).
+
+Variable
+Oi (1 ≤ i ≤ L)
+Ui (1 ≤ i ≤ b)
+Ti
+si
+N
+Vi (1 ≤ i ≤ r)
+
+The above simple example can be extended to more general
+setups. It turns out that if we interpret the signature matrix as
+a parity check matrix, and take a function f that is equal to a
+constant over any coset of the parity check matrix2 , we will
+be able to perfectly recover f when the channel is noiseless.
+When the channel is noisy, one can overcome noise via precoding; this is explained formally in Sec. IV.
+III. T HE C OMMUNICATION M ODEL
+
+II. S IGNATURE M ATRIX AS A PARITY C HECK M ATRIX
+
+In this section we deﬁne the communication model for our
+problem. Some of the notation we encounter as we go along
+the paper are summarized in Table I. For a r.v. T we use T n
+as a shorthand for the sequence (T [1], T [2], . . . , T [n]).
+Assume that there are L cell-phones. Let us denote the
+observation of the i-th cell-phone by r.v. Oi taking values
+in the discrete set Oi . R.Vs O1 , O2 , . . . , OL are jointly distributed according to a given pO1 ,O2 ,...,OL (o1 , o2 , . . . oL ). We
+assume that the L cell-phones are observing i.i.d. repetitions
+O1 , O2 , . . . , OL . The goal of the cell-phones is to enable
+the base station to recover i.i.d. repetitions of b functions
+of the observations which we denote by Ui (1 ≤ i ≤ b),
+Ui = fi (O1 , O2 , . . . , OL ).
+Deﬁnition of a code: (see Fig. 1) A code consists of
+
+In this section we discuss our use of the signature matrix
+as a parity check matrix at a very simplistic level to convey
+the basic intuitions. Let us assume that we have only three
+cell-phones. These cell-phones are observing binary random
+variable O1 , O2 and O3 respectively. The goal of the base
+station is to recover a boolean function of O1 , O2 and O3 .
+Let us assume that the cell-phones directly insert their uncoded
+bits into a CDMA system with a given signature matrix. For
+instance, if the signature matrix is
+1
+1
+
+1
+0
+
+0
+1
+
+Description
+Observations by the nodes.
+Functions to be computed.
+Output of the ith cell-phone
+to be multiplied by the signature.
+The signature of the ith cell-phone.
+Length of the signatures.
+In most places j=1:L hi [j]Oj (modulo 2).
+
+(1)
+
+the signature of the ﬁrst, second and the third cell-phones
+would be the vectors s1 = (1, 1)t , s2 = (1, 0)t and s3 = (0, 1)t
+respectively. Assuming tight power control, the receiver gets
+the vector O1 s1 +O2 s2 +O3 s3 plus some noise. Let us assume
+that there is no noise for now. In this case, the receiver gets two
+symbols, the ﬁrst of which is Y1 = O1 +O2 and the second one
+is Y2 = O1 +O3 . Note that the summation here is real addition
+in R, and not in the ﬁeld F2 . Because Oi takes values in {0, 1},
+Y1 and Y2 will be numbers in the set {0, 1, 2}. If Y1 = 0, we
+can conclude that O1 = O2 = 0. The value of Y2 would then
+specify O3 . Similarly, when (Y1 , Y2 ) = (2, 1) we can ﬁgure
+out O1 , O2 and O3 exactly. However, when (Y1 , Y2 ) = (1, 1),
+there are two possibilities: (O1 , O2 , O3 ) can be (1, 0, 0) or
+(0, 1, 1). If one were to compute a function f (O1 , O2 , O3 ) at
+the receiver, the necessary and sufﬁcient condition for doing
+so would be that f (1, 0, 0) = f (0, 1, 1). Note that this implies
+3
+that among 22 plausible boolean functions, half of them are
+computable with the given signature matrix. Now, observe that
+if we interpret the signature matrix given in equation (1) as
+a parity check matrix, the codewords would be the triples
+(0, 0, 0) and (1, 1, 1). This implies that the triples (1, 0, 0) and
+(0, 1, 1) form a coset for this codebook, because their mod-2
+sum is a codeword. The constraint f (1, 0, 0) = f (0, 1, 1) says
+that f has to be constant over this coset.
+
+k
+1) An encoder for each cell-phone, mapping Oi (k i.i.d.
+repetitions of Oi ) into a sequence of n bits (denoted by
+Tin ),
+2) A binary signature si of length N for the i-th cell-phone,
+3) One decoder at the receiver.
+nN
+The actual signals transmitted over the air are Xi for i ∈
+[1 : L], that are formed by multiplying each bit of encoder’s
+output Tin into the signature si . Note that the length of Tin is
+n, and the length of si is N . Since each bit of Tin is multiplied
+by the whole sequence si in the CDMA system, the output will
+nN
+be a binary string of length nN , denoted by Xi .
+nN
+Assuming a CDMA power control, the transmitted Xi
+goes through a Gaussian MAC channel, and the receiver gets
+L
+Y nN where Y [i] =
+j=1 Xj [i] + Z[i], i ∈ [1 : nN ] for a
+Gaussian noise sequence Z nN . The receiver (base station)
+takes the output sequences Y nN and passes it through a
+decoder to reconstruct the b functions Uik (i ∈ [1 : b]). The
+probability of error of the code is taken to be the probability
+that Uik = Uik for some i ∈ [1 : b]. The rate of the code is
+k
+taken to be R = nN . To impose a power constraint on the
+2 Of
+
+2
+
+course the constant may depend on the coset.
+
+users, we assume that that Tj [i] is taking values in {0, 1},3
+and the variance of Z[i] is σ 2 .
+Computational Capacity: Given a signature length N , A
+communication rate RN is said to be achievable if there is a sequence of codes, Cn for n ∈ N, all having signatures of length
+N , such that limn→∞ Pe (Cn ) = 0 and limn→∞ R(Cn ) = RN
+where Pe (Cn ) and R(Cn ) are the probability of error and rate
+of the code respectively. The computational capacity for a
+signature length N , CN , is taken to be the supremum of the
+set of achievable rates for that signature length N .
+
+distributed according to p(v1 , v2 , v3 ). I.i.d. repetitions of these
+three sources are observed by three parties, who want to communicate these i.i.d. repetitions to a fourth party, Alice, using
+noiseless links of rates R1 , R2 , and R3 . We are interested in
+the case of R1 = R2 = R3 = R. The minimum possible value
+of R will be the minimum value of R such that (R, R, R) is
+in the Slepian-Wolf region. We call this RSW . We know that
+for any R > RSW we can achieve the rate triple (R, R, R)
+using linear codes: there are matrices B1 , B2 and B3 (of size
+nR × n) where the three parties can use and send B1 V1n ,
+B2 V2n and B3 V3n where Vin is a column vector consisting of
+Vi [j] for j ∈ [1 : n]. The multiplication is in the ﬁeld F2 .
+Now, what if we are interested to ﬁnd a single matrix B,
+such that having BV1n , BV2n and BV3n we can recover (V1n ,
+V2n and V3n )? The three parties are sending at rates R1 =
+R2 = R2 = R to Alice using the same compression matrix
+s.c.
+B. We denote the minimum value of R in this case by RSW .
+s.c.
+Clearly RSW is larger than or equal to RSW (deﬁned in the
+previous paragraph), because more restrictions are imposed on
+s.c.
+s.c.
+the deﬁnition of RSW . But is RSW always equal to RSW ? We
+s.c.
+show in Claim 2 that this is not true. The deﬁnition of RSW
+can be extended to more than three parties in the natural way.
+Use of the same matrix B to compress correlated data
+(or Slepian-Wolf with the same compression matrices) arises
+naturally in our problem. It is also related to the “syndrome
+technique” whereby a single code based is constructed for
+distributed compression (see for instance [5][6][7]). And after
+all, it is interesting to ﬁnd the best compression rate one can
+achieve if a universal compression code is used by all nodes
+in a distributed source coding problem.
+s.c.
+We do not know the exact value of RSW , but prove a few
+results about it.
+Claim 1: Let us assume we have only two binary r.v.’s
+s.c.
+V1 and V2 . Let K = V1 + V2 (mod 2). Then RSW for
+transmission of these two r.v’s is less than or equal to
+max(H(K), H(V1 |K)).
+Proof: Let R = max(H(K), H(V1 |K)). Here is the
+sketch of the proof: let us generate the coordinates of the
+common compression matrix B (of size nR × n) uniformly
+and randomly from {0, 1}. Then having BV1n and BV2n , we
+can add them modulo two to get B(V1n + V2n ) = BK n . Since
+R ≥ H(K), B is a good source code for recovering K n
+with high probability. Hence we can decode K n ﬁrst. The
+Slepian-Wolf rate for recovering V1n with K n serving as a
+side information is H(V1 |K). Since R ≥ H(V1 |K), B is a
+good SW code with high probability. Therefore we can ﬁnd
+V1n . Having V1n and K n , we can also recover V2n .
+Claim 2: There exists V1 , · · · , Vr such that the value of
+s.c.
+RSW is strictly larger than RSW . Next, for any p(v1 , · · · , vr ),
+s.c.
+RSW is less than or equal to min(rRSW , maxi H(Vi )).
+Proof: Let V1 = V2 = · · · = Vr . Then RSW , i.e. the
+minimum value of R such that (R, R, R) is in the Slepians.c.
+Wolf region, is equal to H(V1 ) . However, RSW is equal to
+r
+H(V1 ).
+s.c.
+To show that RSW ≤ rRSW always holds, we start from
+an arbitrary code for RSW , and construct another code for
+
+IV. M AIN RESULTS
+In this section we state our main results. Proof is given in
+Sec. VIII.
+Let fi (O1 , . . . , OL ) (1 ≤ i ≤ b) be a set of functions
+satisfying the property that
+fi (o1 , o2 , . . . , oL ) = fi (o1 , o2 , . . . , oL ), i ∈ [1 : b],
+for any two sequences (o1 , o2 , . . . , oL ) and (o1 , o2 , . . . , oL )
+belonging to the same coset of some parity check matrix H.4
+Without loss of generality we can assume that H has distinct
+rows h1 , h2 , ..., hr . Thus matrix H is of size r × L.
+Theorem 1: For any signature length N > r, the following
+rate is achievable
+RN =
+
+c
+c (a)
+≥
+,
+mod 2
+N ·R
+N · maxi H( j=1:L hi [j]Oj )
+
+where R is the minimum Slepian-Wolf rate with the same
+s.c.
+compression matrixes (RSW ), deﬁned in Sec. V, for the choice
+of Vi =
+j=1:L hi [j]Oj (modulo 2). Inequality (a) comes
+from applying Claim 2 of Sec. V, and is an explicit lower
+bound expression.
+The number c is the capacity of a channel with input
+alphabet W = {0, 1} and output alphabet [− 1 , 3 ] deﬁned
+2 2
+as follows: the output is formed by adding W to a Gaussian
+2
+noise with variance σ , and then taking it modulo 2, meaning
+N
+r
+that we add an integer multiple of 2 to it to make it fall into
+the interval [− 1 , 3 ). Note that because of the symmetry the
+2 2
+capacity occurs at a uniform input distribution.
+V. S LEPIAN -W OLF W ITH T HE S AME C OMPRESSION
+M ATRICES
+To understand the statement of the main result, we need
+to introduce the problem of Slepian-Wolf with the same
+compression matrices. We believe this problem can itself be
+of independent interest.
+We ﬁrst begin with the problem in a special case. Suppose
+we have three correlated binary sources V1 , V2 and V3 jointly
+3 There will be a power gain by subtracting the mean of T [i] from it,
+j
+because that would reduce the variance of the transmitted signal. This would
+convert Tj [i] into a ± bipolar signal. However, use of 0/1 signals makes the
+exposition of the paper more appealing. Furthermore random variables Tj [i]
+that we will end up using will have a uniform distribution over {0, 1} and can
+be adjusted to bipolar signals at the very last stage to decrease the average
+power consumption, while leaving the arguments unchanged.
+4 Vectors (o , o , . . . , o ) and (o , o , . . . , o ) belong to the same coset
+1 2
+L
+1 2
+L
+if H[o1 , o2 , . . . , oL ]t = H[o1 , o2 , . . . , oL ]t where the product is in F2 .
+
+3
+
+s.c.
+RSW . Take an arbitrary code with compression matrices
+B1 , B2 , ..., Br all of size nR × n. Let B to be equal to
+t
+t
+t
+[B1 B2 · Br ]t where t is the transpose operation. One can
+verify that matrix B is a valid common compression matrix,
+s.c.
+and is achieving the rate rR for the problem of RSW . Thus
+Rs.c.
+s.c.
+RSW ≤ rRSW . Note this upper bound on the ratio RSW
+SW
+cannot be made smaller than r because of the example given
+at the beginning of this proof.
+s.c.
+To show the inequality RSW ≤ maxi H(Vi ), observe that
+a random compression matrix of size n[maxi (H(Vi ) + ] × n
+allows for recovery of Vin from BVin (for all i ∈ [1 : r]) with
+the average probability of error converging to zero. Thus a
+particular instance should also work.
+
+Fig. 2. A model used for simulations. The observations O1 , · · · , O3 are
+assumed to be the result of a binary source S passed through three independent
+BSC channels.
+
+VI. C OMPARISON WITH THE COMPUTATIONAL CAPACITY
+OF NAZER AND G ASTPAR
+In this section we discuss how our lower bound extends
+the result of Nazer and Gastpar in [2]. We ﬁnd the set of
+functions where we can use the result of Nazer and Gastpar,
+and the lower bound it gives us.
+Our formulation above is similar to the one given by Nazer
+and Gastpar [2], except that we have a signature matrix here.
+Nonetheless, if we ﬁx the signature matrices, we can think
+of a virtual channel between the encoder and decoders that
+includes the signature matrix. The input to this virtual channel
+L
+is (T1 , T2 , ..., TL ) and the output is Y (1 : N ) = i=1 Ti si (1 :
+N )+Z(1 : N ) where the noise vector Z(1 : N ) has covariance
+matrix σ 2 I. If we use the virtual channel n times, we get an
+output vector of size nN that we were denoting by Y nN .
+In this case we can write down the lower bound given in [2]
+when we have a linear function over a ﬁeld. We are mainly
+concerned with functions with binary inputs. The only linear
+function on the ﬁeld F2 is the XOR function. So this already
+puts limitations on the lower bounds we can get by [2]. When
+Ui (for 1 ≤ i ≤ b) is the XOR of a subset of the observations
+O1 , ..., OL , we get the following lower bound
+
+Fig. 3. The lower bound on the computational capacity for O1 , O2 and
+O3 of Fig. 2. The plot is in terms of p(W2 = 1) and p(W3 = 1) when
+p(W1 = 1) = 0.
+
+the same ﬁeld using a particular construction (rather than one
+single linear function over a larger ﬁeld). In order to transmit
+several functions over a channel, [2] uses a successive SlepianWolf type scheme. Our model allows us to do better than this.
+Through an appropriate choice of the signature matrix, we can
+run part of the transmission of the functions in parallel, getting
+an extra gain compared to the scheme considered by [2].
+VII. N UMERICAL E XAMPLE
+Consider the boolean function
+
+I(⊕L Ti ; Y
+i=1
+
+(1 : N ))
+,
+N H(U1 , U2 , . . . Ub )
+
+f (O1 , O2 , O3 ) = O1 O2 O3 + O1 O2 O3
+
+This is not a linear function in the ﬁeld F2 . Let us assume that
+N = 2. We can use the signature matrix given in equation
+1 since f is constant over all of its cosets. We have V1 =
+O1 + O2 (mod 2) and V2 = O1 + O3 (mod 2). Therefore
+
+where the factor N in the denominator comes from our
+deﬁnition of rate. Because we are free to choose the signatures
+s1 , ..., sL we can take maximum of the above expression over
+all s1 , ..., sL .
+max
+
+s1 ,··· ,sL
+
+mod 2.
+
+I(⊕L Ti ; Y (1 : N ))
+i=1
+.
+N H(U1 , U2 , . . . Ub )
+
+H(V1 ) = h(p(O1 = O2 )),
+
+and
+
+H(V2 ) = h(p(O1 = O3 )),
+
+The above result works only when the Ui s are the XOR functions of subsets of O1 , ..., OL , and it involves a maximization
+problem that we found hard to do, even when we have linear
+functions on a ﬁeld.
+To compute arbitrary nonlinear boolean functions of the
+observations, Nazer and Gastpar suggest that we increase
+the ﬁeld size and embed the non-linear function in a linear
+function deﬁned on a larger space (see Theorem 2 of [2]).
+Although this would not solve the maximization problem over
+the signatures s1 , ..., sL mentioned above, it will result in a
+lower bound for non-linear functions. In this paper we take
+an alternative approach of using several linear functions in
+
+where h(·) is the binary entropy function. The main theorem
+implies the following lower bound.
+c
+R=
+.
+2 · max(h(p(O1 = O2 )), h(p(O1 = O3 )))
+The value of c ≤ 1 depends on σ. For the sake of illustration
+we assume that σ is such that c = 0.5.
+Note that R = ∞ when
+p(O1 = O2 ) ∈ {0, 1},
+p(O1 = O3 ) ∈ {0, 1}.
+
+4
+
+and
+
+This is expected since in each of the four cases f (O1 , O2 , O3 )
+is a constant. It would be interesting to understand the behavior
+of the lower bound when p(O1 = O2 ) and p(O1 = O3 ) are
+not exactly in {0, 1}, but rather in its vicinity. To study this,
+let us consider the model depicted in Fig. 2 in which O1 , O2
+and O3 are assumed to be the result of a random variable B
+passing through three independent BSC channels, i.e.
+O1 = S + W1 , O2 = S + W2 , O3 = S + W3
+
+in a coset into the same number, namely fi (o1 , o2 , . . . , oL )
+are all equal, the receiver will be able to exactly recover
+fi (o1 , o2 , . . . , oL ).
+(II) From the ﬁrst part of the proof we conclude that if we reliably communicate i.i.d. repetitions of Vi = j=1:L hi [j]Oj
+(mod 2) to the receiver, it will be able to reliably recover i.i.d.
+repetitions of fi (O1 , O2 , . . . , OL ) (1 ≤ i ≤ b). Therefore we
+have translated the original problem into that of communicating linear functions. If we think of the signature matrix as
+part of a virtual channel between the encoder and decoders,
+this virtual channel will be a set linear MACs (as deﬁned by
+[2]) in parallel because of the postprocessing at the receiver.
+Therefore our setting is not a special case of one considered
+by Theorem 1 of [2] because the channel is not a single linear
+MAC. Nonetheless we borrow ideas from [2] to extend the
+proof of Theorem 1 of [2]; this is not difﬁcult given that the
+structure of the virtual channel and the linear functions to be
+computed (i.e. Vi s) are prepared to “match”.
+It is possible to ﬁnd a binary matrix B of size (kR + ) × k
+for the i.i.d. repetitions of (V1 , V2 , ..., Vr ) such one can recover
+k
+i.i.d. repetitions of V1 , V2 , . . . VL , namely V1k , V2k , . . . , VL ,
+k
+k
+k
+from B[V1 V2 · · · VL ]. within a probability of error ,
+where by V1k we mean a column vector consisting of the k
+i.i.d. repetitions of V1 . The multiplication between the column
+vector Vik and B is done in F2 . Next we ﬁnd a channel
+coding matrix G of size kR+ × (kR + ) for communicating
+c−
+over a Gaussian channel with variance σ 2 . The ith cell-phone
+k
+computes GBOi . It sets this vector of size n = kR+ to
+c−
+n
+be Ti . At time j, the random variable Ti [j] is multiplied by
+signature si . The receiver gets j Ti [j]si plus a noise vector.
+This is equivalent with getting
+
+mod 2,
+
+where Wi ’s are binary random variables. p(Wi = 1) is the
+crossover probability of the ith channel. When p(Wi = 1) ∈
+{0, 1}, the lower bound is ∞. Fig. 3 plots the lower bound R
+in terms of p(W2 = 1) and p(W3 = 1) when p(W1 = 1) = 0.
+VIII. P ROOFS
+Proof of Theorem 1: We create the signature matrix of
+the CDMA by repeating the matrix H to get a matrix of size
+N × L. This means that each of the rows h1 , h2 , ..., hr
+would be repeated N times; extra zeros are padded if N
+r
+r
+is not an integer. At the receiver, we can look at the received
+Y ’s corresponding to each of the N repetitions and take
+r
+their average. This would reduce the variance of noise for
+2
+that transmission to σ 2 = σ . So, this would be as if the
+N
+r
+signature matrix is of size r (instead of N ) identical to H,
+and the noise variance is σ 2 (instead of σ 2 ). We are going
+to continue assuming that the signature matrix and the parity
+check matrix are both H.
+At time i, the cell-phones are sending T1 [i], T2 [i], ..., TL [i]
+t
+respectively. The receiver gets H T1 [i], T2 [i], ..., TL [i] plus
+noise where the matrix multiplication here is in R. To convert
+the matrix multiplication from R to that in F2 , the receiver
+computes the modulo 2 of each received number (as discussed
+in the statement of the theorem), mapping it to the interval
+t
+[− 1 , 3 ). This would be as if H T1 [i], T2 [i], ..., TL [i] (matrix
+2 2
+multiplication in F2 ) is transmitted but the noise added to this
+is no longer Gaussian; it is a Gaussian noise mod 2. Number c
+in the statement of the theorem is the capacity of this channel.
+Having described the signature matrix, and the decoder’s
+mod 2 postprocessing of the signal, we now turn our attention
+to the encoders and the decoder. We can divide the rest of
+the proof into two parts. The ﬁrst part is a general statement
+about recovery of the desired functions of the observations
+from Vi ’s. This is used in the second part of the proof to
+design the encoders and the decoder.
+(I) We ﬁrst claim that given any values for (o1 , o2 , . . . , oL ),
+knowing the values of j=1:L hi [j]oj modulo two for i ∈ [1 :
+r] is sufﬁcient to perfectly recover fi (o1 , o2 , . . . , oL ) (1 ≤ i ≤
+b). To see this note that having r equations j=1:L hi [j]oj
+(mod 2) for i ∈ [1 : r] is equivalent to having the product
+H[o1 , o2 , . . . , oL ]t in the matrix form; here the multiplication
+is in F2 . Note that the number of equations is r whereas the
+number of free variables is L, so it ﬁrst seems that the decoder
+may not be able to ﬁgure out [o1 , o2 , . . . , oL ]. The decoder can
+list the set of all [o1 , o2 , . . . , oL ] such that H[o1 , o2 , . . . , oL ]t
+(mod 2) is equal to the received H[o1 , o2 , . . . , oL ]t (mod 2).
+This would be the coset associated to [o1 , o2 , . . . , oL ] for the
+parity check matrix H. Because fi maps all the sequences
+
+n
+n
+n
+k
+k
+k
+[T1 T2 · · · TL ]H t = GB[O1 O2 · · · OL ]H t
+k
+= GB[V1k V2k · · · VL ],
+
+plus noise. Since G is a channel coding matrix, we can recover
+k
+B[V1k V2k · · · VL ] with high probability. From here we can
+k
+recover Vi because of the property of B mentioned above.
+Thus, we have a good code. The rate of this code is
+k
+Nn
+
+Letting
+
+=
+
+k
+N kR+
+c−
+
+=
+
+c−
+N (R+ k ) .
+
+converge to zero, we get the desired result.
+R EFERENCES
+
+[1] A. Gelman, “Mobile phones: sensors and sensitivity”, The Economist,
+Technology Quarterly, 2009 (23).
+[2] B. Nazer, M. Gastpar, “Computation over Multiple-Access Channels,”
+IEEE Trans. Inf. Theory, 53 (10): 3498-3516, 2007.
+[3] J. K¨ rner and K. Marton, “How to encode the modulo-two sum of binary
+o
+sources,” IEEE Trans. Inf. Theory, 25 (2): 219221, 1979.
+[4] R. Soundararajan and S. Vishwanath, “Communicating Linear Functions
+of Correlated Gaussian Sources Over a MAC”, IEEE Trans. Inf. Theory,
+58 (3): 1853-1860, 2012.
+[5] S. S. Pradhan and K. Ramchandran, “Distributed source coding using
+syndromes (DISCUS): design and construction,” Proc. DCC-1999, Data
+Compression Conf., pp. 158167, 1999.
+[6] V. Toto-Zarasoa, A. Roumy and C. Guillemot, “Rate-adaptive codes for
+the entire Slepian-Wolf region and arbitrarily correlated sources” Proc. of
+the IEEE Int. Conf. on Acoustics, Speech and Signal Processing, USA,
+pp. 2965-2968, 2008.
+[7] N. Gehrig and P. L. Dragotti, “Symmetric and a-symmetric Slepian-Wolf
+codes with systematic and non-systematic linear codes,” IEEE Commun.
+Lett., 9(1):6163, 2005.
+
+5
+
+

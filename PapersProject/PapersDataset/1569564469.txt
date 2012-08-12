@@ -1,0 +1,909 @@
+Creator:        TeX
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Sat May 19 01:01:56 2012
+ModDate:        Tue Jun 19 12:55:30 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      378277 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569564469
+
+Non-adaptive Group Testing: Explicit bounds and
+novel algorithms
+Chun Lam Chan∗ , Sidharth Jaggi∗ , Venkatesh Saligrama+ , and Samar Agnihotri∗
+The Chinese University of Hong Kong∗ , Boston University+
+
+Abstract—1 . We present computationally efﬁcient and provably
+correct algorithms with near-optimal sample-complexity for noisy
+non-adaptive group testing. Group testing involves grouping arbitrary subsets of items into pools. Each pool is then tested to identify
+the defective items, which are usually assumed to be sparsely
+distributed. We consider random non-adaptive pooling where pools
+are selected randomly and independently of the test outcomes. Our
+noisy scenario accounts for both false negatives and false positives
+for the test outcomes. Inspired by compressive sensing algorithms
+we introduce four novel computationally efﬁcient decoding algorithms for group testing, CBP via Linear Programming (CBP-LP),
+NCBP-LP (Noisy CBP-LP), and the two related algorithms NCBPSLP+ and NCBP-SLP- (“Simple” NCBP-LP). The ﬁrst of these
+algorithms deals with the noiseless measurement scenario, and the
+next three with the noisy measurement scenario. We derive explicit
+sample-complexity bounds—with all constants made explicit—for
+these algorithms as a function of the desired error probability;
+the noise parameters; the number of items; and the size of the
+defective set (or an upper bound on it). We show that the samplecomplexities of our algorithms are near-optimal with respect to
+known information-theoretic bounds.
+
+I. I NTRODUCTION
+The goal of group testing is to identify a small unknown
+subset D of defective items embedded in a much larger set N
+(usually in the setting where d = |D| is much smaller than
+n = |N |, i.e., d is o(n)). This problem was ﬁrst considered by
+Dorfman [1] in scenarios where multiple items in a group can
+be simultaneously tested, with a binary output depending on
+whether or not a “defective” item is present in the group being
+tested. In general, the goal of group testing algorithms is to
+identify the defective set with as few measurements as possible.
+As demonstrated in [1] and later work [2], with judicious
+grouping and testing, far fewer than the trivial upper bound
+of n tests may be required to identify D.
+We consider non-adaptive group testing, where the set of
+items being tested in each test is required to be independent
+of the outcome of every other test [2]. This restriction is often
+useful in practice, since this enables parallelization of the testing
+process. We describe computationally efﬁcient algorithms with
+near-optimal performance for noiseless and noisy non-adaptive
+group testing problems. We describe the different aspects of the
+paper in some detail next.
+1 The ﬁrst author is an undergraduate student at CUHK, and this material
+arose from his senior thesis. This work is partially supported by a grant from
+the University Grants Committee of the Hong Kong Special Administrative
+Region, China (Project No. AoE/E-02/08), the CERG grant 412207, and the
+Project MMT-p7-11 of the Shun Hing Institute of Advanced Engineering, The
+Chinese University of Hong Kong.
+
+1
+
+“Noisy” measurements: We also consider the “noisy” variant
+of the group testing problem. In this scenario the result of
+each test may differ from the true result (in an independent
+and identically distributed manner) with a certain pre-speciﬁed
+probability q. This leads to both false positives and negatives in
+the test outcomes. Much of the existing work either considers
+one-sided noise, namely false positives [3] but no false negatives
+or a “worst-case” noise [4] wherein the number of false positives
+and negatives are assumed bounded.2 Since the measurements
+are noisy, the problem of estimating the set of defective items
+is more challenging, and is known to require more tests.3 The
+work closest to this work is [7], where explicit upper and lower
+bounds for the group-testing problem were ﬁrst derived.
+Computationally efﬁcient and near-optimal algorithms:
+Most algorithms in the literature focus on optimizing the number
+of measurements required – in some cases, this leads to algorithms that may not be computationally efﬁcient to implement
+(for e.g. [3]). In this paper we present algorithms that are not
+only computationally efﬁcient but are also near-optimal in the
+number of measurements required.
+We analyze three different types of algorithms (the last one
+has two ﬂavors), related to those described in the compressive
+sensing literature (see Section I-A).
+Our algorithms are related to linear programming relaxations
+used in the compressive sensing (CS) literature. In CS the 0
+norm minimization is relaxed to an 1 norm minimization. In the
+noise-free case this relaxation results in a linear program since
+the measurements are linear. In contrast, in group testing, the
+measurements are non-linear and boolean. Furthermore, noise
+in the group testing scenario is also boolean unlike additive
+noises encountered in CS. Consequently, we also have to relax
+boolean measurements. We do so by using a novel combination
+of inequality and positivity constraints. Our LP formulation and
+analysis is related to LP decoding of error-correcting codes [8],
+where one uses a “minimum distance” decoding criteria based
+2 For instance [4] considers group-testing algorithms that are resilient to all
+noise patterns wherein at most a fraction q of the results differ from their true
+values, rather than the probabilistic guarantee we give against most fractionq errors. This is analogous to the difference between combinatorial codingtheoretic error-correcting codes (for instance Gilbert-Varshamov codes [5]) and
+probabilistic information-theoretic codes (for instance [6]). In this work we
+concern ourselves only with the latter, though it is possible that our techniques
+can also be used to analyzed the former.
+3 We wish to highlight the difference between noise and errors. We use the
+former term to refer to noise in the outcomes of the group-test, regardless
+of the group-testing algorithm used. The latter term is used to refer to the
+error due to the estimation process of the group-testing algorithm.
+
+on perturbation analysis of the norm of the error vector. The
+idea is to decode to a vector pair consisting of defective items,
+x, and the error vector, η such that the error-vector η is as
+“small” as possible by solving a sequence of LPs. We call
+this algorithm the Noisy Combinatorial Basis Pursuit via LP
+decoding (NCBP-LP). Using standard concentration results we
+show that the solution to our LP decoding algorithm recovers
+the true defective items with high probability. Furthermore, we
+achieve near-optimal performance in the sense that our sample
+complexity for NCBP-LP match the lower bounds within a
+constant factor, where the constant is independent of the number
+of items n and the defective set size d (but may depend on
+the noise parameter q, and the error probability ). Based
+on this analysis, we can directly derive the performance of
+two other LP-based decoding algorithms. In particular CBP-LP
+considers the noiseless measurement scenario, and NCBP-SLP+
+and NCBP-SLP- consider the noisy measurement scenario, but
+only use constraints corresponding to positive and negative test
+outcomes respectively. 4
+“Small-error” probability: To gain new insights into the constants involved in sample-complexity we admit a small but ﬁxed
+error probability, . Thus our sample complexity bounds have to
+be interpreted probabilistically, namely, with T measurements,
+we can identify the true set of defectives with probability at
+least (1 − ), where the probability is taken over all the sources
+on randomness. With this new perspective we can derive upper
+bounds that hold not only in an order-wise sense but also where
+the constants involved in these order-wise bounds can be made
+explicit.
+Explicit Sample Complexity Bounds: Our sample complexity
+bounds are of the form T ≥ β(q, )d log(n). The function
+β(q, ) is an explicitly computed function of the noise parameter
+q and admissible error probability . In the literature, orderoptimal upper and lower bounds on the number of tests required
+are known for the problems we consider (for instance [3],
+[10]). In both the noiseless and noisy variants, the number of
+measurements required to identify the set of defective items is
+known to be T = Θ(d log(n)) – here n = |N | is the total
+number of items and d = |D| is the size of the defective
+subset. In fact, if only D, an upper bound on d, is known, then
+T = Θ(D log(n)) measurements are also known to be necessary
+and sufﬁcient. In our algorithms we explicitly demonstrate that
+we require only a knowledge of D rather than the exact value of
+d. Furthermore, in the noisy variant, we show that the number
+of tests required is in general at most a constant factor larger
+than in the noiseless case (where this constant β is independent
+of both n and d, but may depend on the noise parameter q and
+the allowable error-probability of the algorithm).
+This paper is organized as follows. In Section II, we introduce the model and corresponding notation, and describe the
+4 Work by [9] has considered LP decoding for graph constrained group-testing
+with noiseless measurements. However, there are signiﬁcant differences in the
+model (we allow noisy measurements with no constraints on the measurement
+set), analytical techniques (we have a probabilistic perturbation analysis), and
+results (the number of measurements required in our setting is signiﬁcantly
+smaller).
+
+2
+
+algorithms analyzed in this work. In Section III, we describe
+the main results of this work. Section IV contains the analysis
+of the group-testing algorithms considered.
+A. Compressive Sensing
+Compressive sensing has received signiﬁcant attention over
+the last decade. We describe the version most related to the topic
+of this paper [11], [12]. This version considers the following
+problem. Let x be an exactly d-sparse vector in Rn , i.e., a vector
+with at most d non-zero components (in general in the situations
+of interest d = o(n)).
+Let z correspond to a noise vector added to the measurement
+M x. One is given a set of “compressed noisy measurements” of
+x as y = M x+z. (The noise is guaranteed to be not “too large”
+(||z||2 ≤ c2 ).) The T ×n matrix M is designed by choosing each
+entry i.i.d. from a suitable probability distribution (for instance,
+the set of zero-mean, 1/n variance Gaussian random variables).
+The decoder must use the resulting noisy measurement vector
+y ∈ RT and the matrix M to estimate in a computationally
+efﬁcient manner the underlying vector x. The challenge is to do
+so with as few measurements as possible, i.e., with the number
+of rows T of M being as small as possible.
+1) Basis Pursuit: An alternate decoding procedure proceeds
+by relaxing the compressive sensing problem into the convex
+optimization problem called Basis Pursuit (BP).
+x = arg min ||x||1
+
+(1)
+
+subject to ||y − M x||2 ≤ c2
+
+(2)
+
+It can be shown (for instance [11], [12]) that there exist
+constants c4 , c5 and c6 such that with T = c4 d log(n), with
+probability at least 1 − 2c5 n , the solution x∗ to BP satisﬁes
+||x∗ − x||2 ≤ c6 ||z||2 .
+II. BACKGROUND
+A. Model and Notation
+A set N contains n items, of which an unknown subset D are
+said to be “defective”.5 The goal of group-testing is to correctly
+identify the set of defective items via a minimal number of
+“group tests”, as deﬁned below.
+Each row of a T × n binary group-testing matrix M corresponds to a distinct test, and each column corresponds to a
+distinct item. Hence the items that comprise the group being
+tested in the ith test are exactly those corresponding to columns
+containing a 1 in the ith location. The method of generating
+such a matrix M is part of the design of the group test. This
+along with the method of estimating the set D, is described in
+Section II-B.
+The length-n binary input vector x represents the set N , and
+contains 1s exactly in the locations corresponding to the items
+5 It is common (see for example [13]) to assume that the number d of defective
+items in D is known, or at least a good upper bound D on d, is known a priori.
+If not, other work (for example [14]) considers non-adaptive algorithms with
+low query complexity that help estimate d. However, in this work we explicitly
+consider algorithms that do not require such foreknowledge of d – rather, our
+algorithms have “good” performance with O(D log(n)) measurements.
+
+¯
+∀d ∈ {0, . . . , D}, (ˆ (d), η (d)) = arg min
+x ¯ ˆ ¯
+x,η
+
+X
+
+ηi
+
+(3)
+
+i
+
+such that
+−ηi +
+
+X
+
+¯
+ˆ ¯
+∀d ∈ {0, . . . , D}, x(d) = feasible point in
+X
+xj = 0, if yi = 0,
+j:mij =1
+
+xj = 0, if yi = 0,
+ˆ
+
+(4)
+
+X
+
+j:mij =1
+
+ηi +
+
+X
+
+(10)
+(11)
+
+xj ≥ 1, if yi = 1,
+ˆ
+
+xj ≥ 1, if yi = 1,
+
+(5)
+
+X
+
+¯
+xj = d ≤ D
+
+¯
+xj = d ≤ D
+
+(13)
+
+0 ≤ xj ≤ 1
+
+j:mij =1
+
+X
+
+(12)
+
+j:mij =1
+
+(14)
+
+∀i
+
+(6)
+
+∀j
+
+0 ≤ xj ≤ 1.
+
+(7)
+
+0 ≤ ηi ≤ D, if yi = 0,
+ˆ
+
+(8)
+
+0 ≤ ηi ≤ 1, if yi = 1,
+ˆ
+
+(9)
+
+Fig. 1. NCBP-LP: Constraint (7) relaxes the constraint that each xj ∈ {0, 1},
+¯
+¯
+and constraint (6) indicates that there are exactly d defective items in the dth
+iteration of the LP. The variables ηi are “slack variables” in the equations (4)
+and (5). For instance, if test i is truly negative, then all the variables in an
+equation of the form (4) are zero. However, if the test is a false negative, then
+the variable ηi is then set to equal the number of defective items in test i.
+Similarly, if a test i is truly positive, then ηi is zero, and equations of the form
+(5) are satisﬁed. However, if the test is a false positive, then ηi is set to equal
+1 (and the xj variables tested in test j are set to 0). Note that ηi is bounded
+above by 1 in the case of (false) positives, but is only bounded above by D
+in the case of (false) negatives. This is due to the asymmetry of positive and
+negative test outcomes – multiple positive items tested simultaneously do not
+give a different outcome from a single positive item tested.
+
+of D. 6 The outcomes of the noiseless tests correspond to the
+length-T binary noiseless result vector y, with a 1 in the ith
+location if and only if the ith test contains at least one defective
+item. The observed vector of test outcomes in the noisy scenario
+ˆ
+is denoted by the length-T binary noisy result vector y – the
+probability that each entry yi of y differs from the corresponding
+ˆ
+entry yi in y is q, where q is the noise parameter. The locations
+ˆ
+where the noiseless and the noisy result vectors differ is denoted
+by the length-T binary noise vector ν, with 1s in the locations
+where they differ. The estimate of the locations of the defective
+ˆ
+items is encoded in the length-n binary estimate vector x, with
+1s in the locations where the group-testing algorithms described
+in Section II-B estimate the defective items to be.
+The probability of error of any group-testing algorithm is
+deﬁned as the probability (over the input vector x, group-testing
+matrix M , and noise vector ν) that the estimated vector differs
+from the input vector.
+B. Algorithms
+We now describe our algorithms in both the noiseless and
+noisy settings. The algorithms are speciﬁed by the choices of
+encoding matrices and decoding algorithms. The T × n grouptesting matrix M is deﬁned by randomly selecting each entry
+in it in an i.i.d. manner to equal 1 with probability p = 1/D,
+and 0 otherwise.
+Noisy CBP-LP (NCBP-LP):
+A linear relaxation of the group-testing problem leads naturally to NCBP-LP (3-9). In particular, each xi is relaxed to
+¯
+satisfy 0 ≤ xi ≤ 1, d represents our “guess” for the value of
+6 The locations with ones/defective items are said to be positive – the other
+locations are said to be negative. We use these terms interchangeably.
+
+3
+
+Fig. 2. CBP-LP: This LP simply attempts to ﬁnd any feasible solution for
+¯
+any value of d ∈ {0, . . . , D}
+
+d ≤ D, and the non-linear measurements are linearized in (4)(5). Also, we deﬁne “slack” variables ηi for all i ∈ {1, . . . , T }
+to account for errors in the test outcome. For a particular test i
+this ηi is deﬁned to be zero if a particular test result is correct,
+and positive (and at least 1) if the test result is incorrect. Of
+course, the decoder does not know a priori which scenario
+a particular test outcome falls under, and hence has to also
+decode η. Nonetheless, as is common in the ﬁeld of errorcorrection [15], often using a “minimum distance” decoding
+criteria (decoding to a vector pair (x, η) such that the errorvector η is as “small” as possible) leads to good decoding
+performance. Our LP decoder attempts to do so.
+To be more precise, we deﬁne the pair (ˆ , η ) to be feasible
+x ˆ
+ˆ
+if x is a binary vector of weight at most D, and η ∈ RT is
+ˆ
+a vector of Hamming weight at most T q(1 + τ ). (The value
+of τ is a code-design parameter to be speciﬁed later.) We then
+¯
+solve the sequence of LPs in (3–9) for each d ∈ {1, . . . , D}
+¯ η (d)) in the sequence
+¯
+and output the ﬁrst feasible pair (ˆ (d), ˆ
+x
+(and output an error if there are none). That is, the decoder
+sequentially attempts to ﬁnd valid solutions for the above LP
+¯
+for sequentially increasing integers starting from d = 0. If no
+feasible solution is found, or if an infeasible solution is found,
+¯
+the decoder increments d by 1 and continues until it ﬁnds a valid
+¯
+solution for any value of d ≤ D (if so, the decoder stops and
+¯
+outputs that) or it reaches d > D (if so, the decoder declares
+an error). Our analysis demonstrates that this algorithm has a
+“small” probability of error.
+Combinatorial Basis Pursuit via LP decoding (CBP-LP):
+CBP-LP, which analyzes the scenario with noiseless measurements, is a special case of NCBP-LP with each ηj variable set
+to zero. Hence it reduces to the problem of ﬁnding any feasible
+point in the constraint set (11-14)
+NCBP via Simpler LP decoding (NCBP-SLP):
+In fact, it turns out that simpler LPs still gives essentially
+the same performance as NCBP-LP. Consider the two LPs
+given above. The intuition is that if NCBP-LP and works by
+ﬁnding a η vector with low Hamming weight, then NCBP-SLP+
+(respectively NCBP-SLP-) does the same by ﬁnding a η vector
+with low Hamming weight restricted just to the set of positive
+(respectively negative) outcomes. Since the noise that converts
+ˆ
+y to y is probabilistic, by standard concentration results these
+two approaches should, with high probability, lead to the same
+result.
+
+¯
+∀d ∈ {0, . . . , D}, ,
+(ˆ (d), η(d)) = arg min
+x ¯ ˆ ¯
+x,η
+
+X
+
+¯
+∀d ∈ {0, . . . , D},
+X
+ηi ,
+i:yi =0
+ˆ
+
+(ˆ (d), η(d)) = arg min
+x ¯ ˆ ¯
+x,η
+
+ηi ,
+
+i:yi =1
+ˆ
+
+such that
+ηi +
+
+such that
+X
+
+xj ≥ 1, if yi = 1,
+ˆ
+
+X
+
+−ηi +
+
+j:mij =1
+X
+
+(15)
+
+xj = 0, if yi = 0,
+ˆ
+
+(16)
+
+j:mij =1
+X
+
+¯
+xj = d ≤ D,
+
+∀j
+
+¯
+xj = d ≤ D
+
+(17)
+
+∀j
+
+0 ≤ xj ≤ 1,
+
+0 ≤ xj ≤ 1
+
+(18)
+
+0 ≤ ηi ≤ D, if yi = 0,
+ˆ
+NCBP-SLP-
+
+0 ≤ ηi ≤ 1, if yi = 1,
+ˆ
+NCBP-SLP+
+
+(19)
+
+Fig. 3. NCBP-SLP+, NCBP-SLP-: The variables in the objective functions
+and the set of constraints for both these LPs are subsets of those in NCBP-LP.
+
+III. M AIN R ESULTS
+The analysis of the constants in the three main theorems
+are not optimized7 but the constants are given to demonstrate
+the functional dependence on δ and q. Our algorithms’ sample
+complexities are commensurate (up to a constant factor) with
+the information-theoretic lower bound [7], which we restate it
+here for the sake of completion.
+Theorem 1 (Lower Bound): Any group-testing algorithm that
+has measurements that are noisy i.i.d. with probability q and
+that has a probability of error at most requires at least of
+(1−n−δ )
+1−H(q) (D log(n/D)) tests.
+We next derive upper bounds based on LP. We observe that
+when 1 − 2q → 0, the lower and upper bounds have the same
+functional dependence on (1−2q). We deﬁne Γ as ln(D)/ ln(n)
+and γ as (2Γ + δ)/(1 + Γ + δ) (note that in the limit of large n,
+Γ lies in the interval [0, 1) and γ in the interval (δ/(δ + 1), 1].
+1−2q
+Let τ = q(1+γ −1/2 ) .
+Theorem 2: NCBP-LP with error probability at most n−δ
+requires no more than βLP D log n tests, with βLP deﬁned as
+
+max
+
+4e (δ + 1 + 2Γ)
+4(1 − 2q + 2qe)e (δ + 1 + 2Γ)
+, 8e (δ + 1 + 2Γ),
+,
+(1 − 2q)2
+(1 − 2q)2
+)
+√ 2
+8e (δ + 1 + 2Γ) 16(1 + γ ) (1 + δ) ln 2
+,
+.
+(1 − 2q + 2qe)
+(1 − e−2 )(1 − 2q)2
+
+Theorem 3: CBP-LP with error probability at most n−δ
+√ 2
+γ
+ln
+requires no more than 16(1+ −2) (1+δ) 2 2 D log n tests.
+(1−e )(1−2q)
+Theorem 4: NCBP-SLP+ and NCBP-SLP- with error probability at most n−δ require no more than βSLP + D log n and
+βSLP − D log n tests respectively, with βSLP + and βSLP − respectively equaling
+max
+
+8
+< 4e (δ + 1 + 2Γ)
+:
+
+max
+
+(1 − 2q)2
+
+16(1 +
+, 8e (δ + 1 + 2Γ),
+
+8
+< 4(1 − 2q + 2qe)e (δ + 1 + 2Γ)
+:
+
+(1 − 2q)2
+
+p
+
+9
+γ )2 (1 + δ) ln 2 =
+
+(1 − e−2 )(1 − 2q)2
+
+8e (δ + 1 + 2Γ)
+,
+
+16(1 +
+,
+
+(1 − 2q + 2qe)
+
+,
+
+;
+p
+
+9
+γ )2 (1 + δ) ln 2 =
+
+(1 − e−2 )(1 − 2q)2
+
+.
+
+;
+
+IV. A NALYSIS OF ALGORITHMS
+We sketch the proof of Theorem 2 (full details are in [16]),
+and note that Theorems 3 and 4 are direct corollaries.
+Proof sketch of Theorem 2: Without loss of generality, let x
+be the vector with 1s in the ﬁrst d locations, and 0s in the last
+n − d locations.8
+
+For the purpose of exposition we break the main ideas into
+ﬁve steps below. First, we consider the easier case when the
+exact value of d is known.
+(1) Finite set of Perturbation Vectors: For the known d case we
+deﬁne a ﬁnite set Φ (that depends on the true x) containing sod(n−d)
+called “perturbation vectors”.9 In particular, Φ = {φ }k =1
+is the set of d(n − d) vectors with a single −1 in the support of x, a single 1 outside the support of x, and zeroes
+everywhere else. For instance, the ﬁrst φ in the set equals
+(−1, 0, . . . , 0, 1, 0, . . . , 0), where the 1 is in the (d + 1)th
+¯
+location. We demonstrate that any x in the feasible set of the
+constraint set of NCBP-LP can be written as the true x plus a
+non-negative linear combination of perturbation vectors from
+this set. The physical intuition behind the proof is that the
+vectors from Φ correspond to a “mass-conserving” perturbation
+of x. The property of non-negativity of the linear combinations
+arises from a physical argument demonstrating that there is
+a path from x to any point in the feasible set using these
+perturbations, over which one never has to “back-track”. The
+linear combination property is important, since this enables
+us to characterize the directions in which a vector can be
+perturbed from x to another vector that satisﬁes the constraints
+of NCBP-LP, in a “ﬁnite” manner (instead of having to consider
+the uncountably inﬁnite number of directions that x could be
+perturbed to). The non-negativity of the linear combination is
+also crucial since, as we explain below, this property ensures
+that the objective function of the LP can only increase when
+perturbed in a convex combination of the directions in Φ .
+(2) Expected Perturbation Cost: The heart of our argument then
+lies in the characterization with an exhaustive case-analysis
+of the expected change (over randomness in the matrix M
+and noise ν) in the value of each slack variable ηi when x
+¯
+is perturbed to some x by a vector in Φ . In particular, we
+demonstrate that for each such individual perturbation vector,
+the expected change in the value of each slack variable ηi is
+strictly positive with high probability. The actual proof follows
+from a case-analysis similar to that in the example in Table I.
+(3) Concentration & Union Bounding: With slightly careful use
+of standard concentration inequalities (speciﬁcally, we need to
+use both the additive and multiplicative forms of the Chernoff
+bound) we show that the probability distributions derived above
+concentrate. We then take the union bound over all vectors in
+Φ (in fact, there are a total of d(n − d) such vectors in Φ )
+and show that with high probability the expected change in the
+value of the objective function (which equals the weighted sum
+of the changes in the values of the slack variables ηi ) for each
+vector in Φ is also strictly positive.
+(4) Generalization Based on Convexity: We then note that the
+set of feasible (¯ , η) of NCBP-LP forms a convex set. Hence if
+x
+η strictly increases along every direction in Φ , then in fact η
+strictly increases when the true x is perturbed in any direction
+(since, as noted before, any vector in the feasible set can be
+written as x plus a non-negative linear combination of vectors
+
+7 Doing
+
+so is analytically very cumbersome. Detailed calculations are in [16].
+can be veriﬁed, our analysis is agnostic to the actual choice of x, as long
+as it is a vector in {0, 1}n of weight any d ≤ D.
+8 As
+
+4
+
+9 This set is deﬁned just for the purpose of this proof – the encoder/decoder
+do not need to know this set.
+
+1.
+ˆ
+yi
+
+2.
+η(x)
+
+3.
+yi
+0
+
+1
+
+(1 − mi .x)+
+1
+
+4.
+mi
+
+5.
+ˆ
+P (yi , mi |x)
+
+6.
+ηi (mi , x)
+
+x
+(1, 1, 0)
+7.
+ηi (mi , x)
+
+(0, 0, 0)
+(0, 0, 1)
+(0, 1, 0)
+(0, 1, 1)
+(1, 0, 0)
+(1, 0, 1)
+(1, 1, 0)
+(1, 1, 1)
+
+q(1 − p)3
+q(1 − p)2 p
+(1 − q)(1 − p)2 p
+(1 − q)(1 − p)p2
+(1 − q)(1 − p)2 p
+(1 − q)(1 − p)p2
+(1 − q)(1 − p)p2
+(1 − q)p3
+
+1
+(1 − x3 )+
+(1 − x2 )+
+(1 − x2 − x3 )+
+(1 − x1 )+
+(1 − x1 − x3 )+
+(1 − x1 − x2 )+
+(1 − x1 − x2 − x3 )+
+
+1
+1
+0
+0
+0
+0
+0
+0
+
+x =x+φ
+(0, 1, 1)
+8(a).
+ηi (mi , x )
+
+8(b).
+E(mi , ∆i )
+
+1
+0
+0
+0
+1
+0
+0
+0
+
+0
+−q(1 − p)2 p
+0
+0
+(1 − q)(1 − p)2 p
+0
+0
+0
+(1 − 2q)(1 − p)2 p
+
+0
+
+0
+
+mi .x
+1
+
+(0, 0, 0)
+(0, 0, 1)
+(0, 1, 0)
+(0, 1, 1)
+(1, 0, 0)
+(1, 0, 1)
+(1, 1, 0)
+(1, 1, 1)
+
+(1 − q)(1 − p)3
+(1 − q)(1 − p)2 p
+q(1 − p)2 p
+q(1 − p)p2
+q(1 − p)2 p
+q(1 − p)p2
+q(1 − p)p2
+qp3
+
+0
+x3
+x2
+x2 + x3
+x1
+x1 + x3
+x1 + x2
+x1 + x2 + x3
+
+0
+0
+1
+1
+1
+1
+2
+2
+
+0
+1
+1
+2
+
+0
+(1 − q)(1 − p)2 p
+0
+q(1 − p)p2
+
+0
+1
+2
+
+0
+−q(1 − p)p2
+0
+(1 − 2q)(1 − p)2 p
+
+TABLE I. Suppose x = (1, 1, 0). Choose some x = x (in this example, x = x + φ , where φ = (−1, 0, 1) is a perturbation vector). This example analyzes
+the expectation (over the randomness in the particular row mi of the measurement matrix M ) of the difference in value of the corresponding slack variables ηi (x)
+and ηi (x ) in column 8(b). To compute these, we consider the columns of the table above sequentially from left to right. Column 1 considers the two possible
+values of the observed vector yi . Column 2 gives the corresponding values of the slack variables corresponding to the ith test, as returned by the constraints (4)
+ˆ
+and (5) of NCBP-LP – here (f (x))+ denotes the function max{f (x), 0}. Column 3 indexes the possibilities of the (noiseless) test outcomes yi , and column 4
+enumerates possible values for mi , the i-th row of M , that could have generated the values of yi in column 3, given that x = (1, 1, 0). Column 5 computes
+the probability of a particular observation yi and a row mi , given that the noiseless output yi equaled a particular value. Column 6 computes the function in
+ˆ
+column 2, given that mi equals the value given in Column 4. Columns 7 and 8(a) respectively explicitly compute the value of the function in column 6 for the
+vectors x and x – the red entries in column 8(a) index those locations where η(x ), the slack variable for the perturbed vector, is less than η(x), and the green
+cells indicate those locations where the situation is reverse. Column 8(b) then computes the product of column 5 with the difference of the entries in column 7
+from those of column 8(a), i.e., the expected change in the value of the slack variable ηi (.). The value (1 − 2q)(1 − p)2 p in blue at the bottom represents the
+expected change (averaged over all possible tuples (yi , mi , yi )).
+ˆ
+
+in Φ ). Hence the true x must be the solution to NCBP-LP.
+(5) Extension to unknown d: Finally, we invoke Theorem 4
+from [7] that demonstrates that in fact, with high probability
+(for appropriate choice of parameters τ and T ) there is exactly
+¯
+one value of d ≤ D for which a feasible pair (ˆ , η (d)) exists,
+x ˆ ¯
+ˆ
+(and this pair is unique, and the corresponding x = x), and in
+¯
+fact this d = d. The proof in [16] is information-theoretic in
+spirit, and is analogous to “nearest-neighbour decoding”. Hence
+in our proof we can assume that the sequence of LPs returns
+infeasible solutions for each D = d, and a feasible (and correct)
+solution only for the correct D.
+Proof of Theorem 3: We substitute q = 0 into Theorem 2 and
+choose the largest term.
+Proof of Theorem 4: The proof is essentially the same as in
+the case of Theorem 2. Details in [16].
+R EFERENCES
+[1] R. Dorfman, “The detection of defective members of large populations,”
+Annals of Mathematical Statistics, vol. 14, pp. 436–411, 1943.
+[2] D.-Z. Du and F. K. Hwang, Combinatorial Group Testing and Its Applications, 2nd ed. World Scientiﬁc Publishing Company, 2000.
+[3] G. Atia and V. Saligrama, “Boolean compressed sensing and noisy group
+testing,” CoRR, vol. abs/0907.1061, 2009.
+[4] A. J. Macula, “Error-correcting nonadaptive group testing with de-disjunct
+matrices,” Discrete Applied Mathematics, vol. 80, no. 2-3, pp. 217 – 222,
+1997.
+[5] E. N. Gilbert, “A comparison of signaling alphabets,” Bell System Technical Journal, vol. 31, pp. 504–522, 1952.
+[6] C. E. Shannon, “A mathematical theory of communication,” The Bell
+system technical journal, vol. 27, pp. 379–423, Jul. 1948.
+
+5
+
+[7] C. L. Chan, P. H. Che, S. Jaggi, and V. Saligrama, “Non-adaptive
+probabilistic group testing with noisy measurements: Near-optimal bounds
+with efﬁcient algorithms,” in Communication, Control, and Computing
+(Allerton), 2011 49th Annual Allerton Conference on, Oct. 2010.
+[8] J. Feldman, M. J. Wainwright, and D. R. Karger, “Using linear programming to decode binary linear codes,” IEEE Transactions on Information
+Theory, pp. 954–972, 2005.
+[9] W. Xu, E. Mallada, and A. Tang, “Compressive sensing over graphs,” in
+INFOCOM’11, 2011, pp. 2087–2095.
+[10] D. Sejdinovic and O. Johnson, “Note on noisy group testing: Asymptotic
+bounds and belief propagation reconstruction,” in Communication, Control, and Computing (Allerton), 2010 48th Annual Allerton Conference on,
+Oct. 2010, pp. 998 –1003.
+[11] E. J. Cand` s, “The restricted isometry property and its implications for
+e
+compressed sensing,” Comptes Rendus Mathematique, vol. 346, no. 9-10,
+pp. 589–592, 2008.
+[12] R. Baraniuk, M. Davenport, R. DeVore, and M. Wakin, “A simple proof
+of the restricted isometry property for random matrices,” Constructive
+Approximation, vol. 28, no. 3, pp. 253–263, December 2008.
+[13] A. Macula, “Probabilistic nonadaptive group testing in the presence of
+errors and dna library screening,” Annals of Combinatorics, vol. 3, pp.
+61–69, 1999.
+[14] M. Sobel and R. M. Elashoff, “Group testing with a new goal, estimation,”
+Biometrika, vol. 62, no. 1, pp. 181–193, 1975.
+[15] F. J. McWilliams and N. J. A. Sloane, The Theory of Error-Correcting
+Codes. North-Holland, 1977.
+[16] C. L. Chan, S. Jaggi, V. Saligrama, and S. Agnihotri, “Non-adaptive group
+testing: Explicit bounds and novel algorithms,” CoRR, vol. abs/1202.0206,
+2012.
+
+

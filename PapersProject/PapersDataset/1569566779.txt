@@ -1,0 +1,1026 @@
+Creator:        TeX
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Wed May 16 10:49:21 2012
+ModDate:        Tue Jun 19 12:56:27 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      440811 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569566779
+
+On Playback Delay in Streaming Communication
+Gauri Joshi
+
+Yuval Kochman
+
+Gregory W. Wornell
+
+EECS Dept., MIT
+Cambridge, MA 02139, USA
+Email: gauri@mit.edu
+
+School of CSE, HUJI
+Jerusalem, Israel
+Email: yuvalko@cs.huji.ac.il
+
+EECS Dept., MIT
+Cambridge, MA 02139, USA
+Email: gww@mit.edu
+
+Many streaming applications involve playback. We thus
+choose to look at the playback delay, which takes this into
+account and reﬂects the end-to-end performance, rather than
+the more common decoding delay metric. While in audio
+and video applications some packets can be dropped without
+affecting the streaming quality, other applications have strict
+order constraints on the playback of packets. Our deﬁnition
+of playback delay is suitable for these applications. This
+deﬁnition was previously used in [5].
+The delay performance of greedy codes has not been analyzed and compared to other codes. This work aims to ﬁll that
+gap, and in particular consider the playback delay. We show
+that expected playback delay grows proportionally to log n for
+time index n. Thus, the key parameter in understanding the
+asymptotic behavior of delay is the proportionality constant,
+or pre-log. We ﬁnd the optimal constant within a family of
+schemes that we call time-invariant, and conjecture that this
+is the optimum for any scheme. This optimum is attained by
+the conceptually simple coded repetition scheme.
+Further, we show that even with instantaneous feedback, the
+playback delay has similar logarithmic growth, although with
+a smaller pre-log term. We evaluate that constant, and prove
+that feedback strictly helps reduce the growth of delay, though
+the gain vanishes in the limit of inﬁnite bandwidth.
+The paper is organized as follows. We describe the system
+model in Section II and introduce some preliminary concepts
+in Section III. In Section IV we analyze streaming without
+feedback and ﬁnd the optimal pre-log term in the growth of
+playback delay. In Section V we ﬁnd the pre-log term for
+streaming with instantaneous feedback and compare it with
+the no-feedback case. Finally, Section VI concludes the paper
+and presents future research directions.
+
+Abstract—We consider the problem of minimizing playback
+delay in streaming over a packet erasure channel with ﬁxed
+bandwidth. When packets have to be played in order, the expected
+delay inherently grows with time. We analyze two cases, namely
+no feedback and instantaneous feedback. We ﬁnd that in both
+cases the delay grows logarithmically with the time elapsed since
+the start of transmission, and we evaluate the growth constant,
+i.e. the pre-log term, as a function of the transmission bandwidth
+(relative to the source bandwidth). The growth constant with
+feedback is strictly better that the one without, but they have
+the same asymptotic value in the limit of inﬁnite bandwidth.
+
+I. I NTRODUCTION
+In recent years there has been a widespread proliferation of
+streaming applications. Unlike traditional ﬁle transfer where
+only total delay matters, streaming imposes delay constraints
+on each individual packet.
+In the presence of lossless instantaneous feedback, the task
+of transmission is simple: Automatic-repeat-request (ARQ)
+protocols where the encoder only retransmits lost packets are
+optimal under any delay metric. However, when feedback is
+lossy, delayed or completely absent, more efﬁcient erasurecorrecting codes are needed. This is because the encoder has
+inherent uncertainty about the state of the decoder, and it
+must strike a balance between transmitting new packets and
+repeating old packets that could have been erased.
+Only a few papers in literature have analyzed streaming codes. Fountain codes [1] are capacity-achieving erasure
+codes, but they are not suitable for streaming because the
+decoding delay is proportional to the size of the data. Delayoptimal codes without feedback for adversarial and cyclic burst
+erasure channels have been extensively explored in [2]. The
+thesis also proposed universal codes for more general erasure
+models and analyzes their decoding delay. These codes are
+based upon sending linear combinations of source packets;
+indeed, it can be shown that there is no loss in restricting
+the codes to be linear. This reduces the task of the coding
+scheme to deciding which packets should be included in every
+combination. The universal codes proposed in [2] are greedy
+codes where all packets generated so far are included in a
+combination. Greedy codes have also been proposed for other
+applications: in [3] for packet networks, and in [4] for a
+broadcast scenario with perfect feedback.
+
+We consider a point-to-point packet streaming scenario
+where the source generates one packet pn in every time slot n.
+The encoder creates b coded packets yn,i = f (p1 , p2 ..pn ),
+for 1 ≤ i ≤ b in each slot, where we assume that b is an
+integer1 . The channel is i.i.d erasure for every batch of b
+packets. With probability ρ, all b coded packets are correctly
+received, otherwise all are erased. We assume ρb > 1 to ensure
+that the rate of packet generation is less than channel capacity.
+
+This work was supported in part by MIT Lincoln Laboratory, by AFOSR
+under Grant No. FA9550-11-1-0183, and by Hewlett-Packard Laboratories.
+
+1 Since we are interested only in the asymptotic behavior of playback delay,
+the main results of this paper also hold for non-integer values of b.
+
+II. S YSTEM M ODEL
+
+1
+
+Time
+
+1
+
+2
+
+1
+
+2
+
+3
+
+4
+
+5
+
+6
+
+7
+
+8
+
+3
+
+4
+
+5
+
+6
+
+7
+
+8
+
+1
+
+2
+
+3
+
+4
+
+5
+
+6
+
+1
+
+Packets
+Transmitted
+
+2
+
+3
+
+4
+
+5
+
+a2 = 2
+a3 = 3
+
+Time
+
+1
+
+2
+
+3
+
+4
+
+5
+
+6
+
+7
+
+8
+
+k − a1
+
+Packets
+Transmitted
+
+1
+
+2
+
+3
+
+4
+
+5
+
+6
+
+7
+
+1
+
+2
+
+3
+
+4
+
+5
+
+6
+
+k − a3
+
+Channel State
+
+k
+
+k − a2
+
+R1 = 4
+
+Renewals
+Packets played
+
+10
+
+8
+
+9
+
+10
+
+7
+
+8
+
+9
+
+R2 = 6
+
+1
+
+2
+
+3
+
+4
+
+5
+
+Number of combinations
+
+Fig. 1: The time-invariant scheme with b = 3 and pattern
+a = [0 2 3]. Each number n in the packets transmitted denotes
+a linear combination of ﬁrst n packets.
+
+9
+
+The receiver plays one packet per slot in exact order. Any
+packet decoded out of order is buffered until all past packets
+are received and played. We assume that a packet decoded in
+slot n is available for playback from slot n + 1 onwards. We
+choose playback delay Pn , the time between the generation
+and playback of packet pn as the metric of streaming quality.
+III. P RELIMINARY CONCEPTS
+
+Time Slots
+
+A. Advantage of Coding
+
+Fig. 2: Illustration of renewals for the coded repetition scheme.
+Each number n in the packets transmitted denotes a linear
+combination of all packets p1 through pn . The cross marks
+denote erased slots and tick marks denote successful slots.
+
+For the given system model, a simple repetition strategy is
+to transmit packet pn in slots n, n + 1, .. n + b − 1. However,
+if these b slots are erased, pn is lost permanently and the
+playback ceases with probability 1. To avoid this, we can
+n
+transmit a linear combination yn = j=1 cj pj of packets p1
+to pn , instead of packet pn by itself. The coefﬁcients cj ∈ Fq
+and cj = 0 for all j. For large enough ﬁeld size q, there exist
+coefﬁcients such that all linear combinations transmitted are
+independent. Although we consider yn as a linear combination
+here, it can be a general function f (p1 , p2 , ..pn ). Coding
+offers the advantage that if yn is received when pn has been
+already decoded, it can be used to decode previous packets.
+We refer to this scheme as the coded repetition scheme. The
+coded repetition scheme is a special case of a general class of
+schemes which can be deﬁned as,
+
+Deﬁnition 2 (Renewal). A renewal is deﬁned as the earliest
+time n when all packets pj , 1 ≤ j ≤ n have been decoded.
+The time between the (i−1)th and ith renewal is deﬁned as
+inter-renewal time Ri , where we assume that the 0th renewal
+occurs at time zero. It is easy to show that inter-renewal times
+are i.i.d. Note that some packets can be decoded between
+renewal instants. But at least one packet remains undecoded
+until a renewal occurs.
+In the special case of the coded repetition scheme, decoding
+occurs only at renewal instants. Fig. 2 illustrates renewals
+of the coded repetition scheme for b = 2. The plot at the
+bottom of the ﬁgure shows the trajectory of the number of
+undecoded combinations received with time. A renewal takes
+place every time the trajectory hits the slope one line. For the
+coded repetition scheme, the playback delay satisﬁes
+
+Deﬁnition 1 (Time-invariant scheme). A time-invariant
+scheme with pattern a = [a1 a2 .. ab ] is the coding strategy
+where the source transmits combinations yn−ai , for 1 ≤ i ≤ b
+in slot n, where ai > 0, ai < aj for all i < j, and yn is a
+linear combination of packets p1 to pn .
+The coded repetition scheme corresponds to pattern ai =
+i − 1 for all 1 ≤ i ≤ b. Fig. 1 shows a typical timeinvariant scheme. A number k in the ﬁgure denotes the linear
+k
+combination yk =
+j=1 cj pj , with cj = 0 for all j. The
+constraint ai < aj for all i < j ensures that each pattern
+a gives a unique scheme. If for some i, ai = ai+1 , setting
+ai+1 = ai + 1 gives an equivalent scheme.
+
+Pn = max(R1 , R2 , ..RJ ),
+
+(1)
+
+J
+
+where J is smallest integer such that j=1 Rj ≥ n. There is
+an interruption in playback when the new inter-renewal time
+is longer than the current maximum.
+The term information debt introduced in [2] is closely
+related to renewals. Information debt is the amount of more
+information needed for successful decoding. A renewal occurs
+when the information debt becomes non-positive.
+
+B. Renewals in Packet Decoding
+The receiver is able to decode all packets up to the current
+time when the number of combinations received exceeds the
+number of packets generated. After this instant, the decoding
+of future packets is independent of the past, and the system
+behaves as if it was reset. This phenomenon gives rise to the
+following deﬁnition of renewals in packet decoding.
+
+IV. S TREAMING WITHOUT FEEDBACK
+First, we consider the case where the encoder has no
+feedback about channel erasures. We show that for all timeinvariant schemes the expected playback delay is asymptotically 1/λ ·log n where we refer to λ as the growth constant. The
+
+2
+
+coded repetition scheme achieves the largest growth constant
+λ = λc where we deﬁne λc
+D(1/b||ρ). In this deﬁnition,
+D(p||q) is the binary information divergence function which
+is deﬁned for probabilities 0 < p, q < 1 as,
+D(p||q) = p log
+
+Since we are interested in the long term evolution of
+playback delay Pn , it is useful to look at the behavior of the
+distribution Pr(R = n) for large n.
+Lemma 3 (Asymptotic behavior of the PMF). For the coded
+repetition scheme, the tail distribution of inter-renewal time R
+decays exponentially with rate
+
+p
+1−p
++ (1 − p) log
+.
+q
+1−q
+
+We prove the following main theorem,
+
+− lim
+
+Theorem 1 (Expected Playback Delay). For the optimal timeinvariant scheme, the expected playback delay E[Pn ] satisﬁes
+1
+log n + O(log log n).
+E[Pn ] =
+λc
+
+n→∞
+
+The achievability and converse parts of Theorem 1 are
+proved in the following subsections.
+A. Achievability proof
+
+Lemma 1 (Performance of the coded repetition scheme).
+For the coded repetition scheme, the expected playback delay
+E[Pn ] satisﬁes
+
+J−1
+
+i=1
+
+(3)
+
+n/b
+
+E[max(R1 , R2 , ..RJ )] ≤ E[max(G1 , G2 , ..GJ )],
+1
+≤
+log J + O(1),
+λc
+
++
+
+.
+
+(9)
+(10)
+
+where in (10) we use the result given in [7] that the expectation
+of the maximum of J geometric random variables with decay
+J
+rate λc is 1/λc · i=1 1/i, which is asymptotically equal to
+log J. By the strong law of renewal processes [8], we know
+that J grows linearly with n. Thus, the expectation over J of
+(10) replaces J by n and adds an O(1) term to give the upper
+bound (3).
+Similarly, we derive the lower bound (4) by deﬁning another
+geometric random variable H with decay rate λc + (n) and
+shifted g(n) units to the left of 0. The functions g(n) and (n)
+are chosen such that for all m,
+
+Proof: In each slot the decoder receives b equations with
+probability ρ and 0 with probability 1 − ρ. Let Sn be the
+number of equations received until time n. Deﬁne the event
+Gn−1 = {Sj < j for 1 ≤ j ≤ n − 1}, which means that there
+is no renewal until slot n − 1. The Generalized Ballot theorem
+from [6] states that
+Sn−1
+n−1
+
+(8)
+
+where the function f1 (m) is such that limm→∞ f1 (m)/m = 0.
+To get an upper bound we deﬁne a geometric random
+variable G with decay rate λc . We know that Pr(G > m) =
+e−mλc ≥ Pr(R > m) for all m. Thus,
+
+n−1 k
+ρ (1 − ρ)n−k , (5)
+k−1
+
+1−
+
+Ri ≥ n
+
+Pr(R > m) = e−f1 (m)−mλc ,
+
+.
+
+Pr(Gn−1 |Sn−1 ) =
+
+i=1
+
+We now evaluate upper and lower bounds (3) and (4) on E[Pn ].
+From Lemma 3 we know that the tail distribution
+
+(4)
+
+Lemma 2 (Distribution of inter-renewal time). For an i.i.d.
+erasure channel with success probability ρ and bandwidth
+b packets/slot, the probability mass function (PMF) of interrenewal time R for the coded repetition scheme is,
+
+where k =
+
+(7)
+
+J
+
+Ri < n,
+
+E[Pn ] = EJ E max(R1 , R2 , ..RJ )
+
+We prove the achievability by using the following lemmas
+where we ﬁrst determine the distribution of inter-renewal time
+R for the coded repetition scheme and use it to analyze the
+behavior of playback delay of the coded repetition scheme.
+
+Pr(R = n) =
+
+= λc
+
+Proof of Lemma 1: For the coded repetition scheme,
+Pn = max(R1 , R2 , ..RJ ) where J is the smallest interger
+J
+such that k=1 Rk ≥ n, and Rk ’s are i.i.d. with distribution
+of the inter-renewal time in Lemma 2. Thus,
+
+The achievability part of Theorem 1 is an immediate corollary of the following lemma.
+
+b(k − 1)
+1−
+n−1
+
+1
+ρ
+b
+
+.
+The above result can also be stated as, Pr(R > n) = e−nλc
+.
+where = stands for asymptotic equality. This lemma can be
+proved by applying the Stirling’s approximation to the PMF
+of R derived in Lemma 2. The full proof is omitted due
+to space limitations. We now use this result to prove Lemma 1.
+
+(2)
+
+1
+log n + O(1),
+E[Pn ] ≤
+λc
+1
+E[Pn ] ≥
+log n − log log n + O(1).
+λc
+
+log Pr(R > n)
+=D
+n
+
+(6)
+
+For a renewal to occur at time n, b (k − 1) equations where
+k = n/b should be received in n − 1 slots and the channel
+should be good in the nth slot. Thus,
+
+e
+
+Pr(R = n) = ρ · Pr(Gn−1 |Sn−1 ) Pr (Sn−1 = b(k − 1)) .
+
+Pr(H > m) ≤ Pr(R < m),
+
+−(m+g(n))(λc + (n))
+
+≤ e−f1 (m)−mλc ,
+f1 (m) − λc g(n)
+.
+(n) ≥
+m + g(n)
+
+(11)
+
+We choose function g(n) = log log n. For large n, the righthand side of (11) will become negative and we can choose
+
+Substituting (6) and the PMF of binomial distribution for
+Pr (Sn−1 = b(k − 1)), we get the result in (5).
+
+3
+
+.
+
+Time
+
+1
+
+2
+
+3
+
+4
+
+5
+
+6
+
+7
+
+8
+
+9
+
+10
+
+Time
+
+1
+
+2
+
+3
+
+4
+
+5
+
+Packets
+Transmitted
+
+1
+
+2
+
+3
+
+4
+
+5
+
+6
+
+7
+
+8
+
+9
+
+10
+
+Packets
+Transmitted
+
+1
+
+2
+
+4
+
+4
+
+5
+
+1
+
+3
+
+3
+
+1
+
+2
+
+1
+
+2
+
+3
+
+4
+
+5
+
+6
+
+7
+
+8
+
+6
+
+7
+
+8
+
+9
+
+5
+
+5
+
+7
+
+9
+
+6
+
+6
+
+10
+
+8
+
+9
+10
+
+Channel State
+
+Channel State
+
+Ra,1 = 3
+
+Genie Renewals
+
+Renewals
+
+Ra,3 = 3
+
+Ra,2 = 4
+
+Packets played
+
+Genie−assisted
+scheme
+
+1
+1
+
+Time−invariant
+scheme
+
+2
+
+3
+2
+
+4
+3
+
+5
+
+4
+
+5
+
+6
+
+4
+
+5
+
+6
+
+7
+
+8
+
+9
+
+Fig. 4: The optimal ARQ-based scheme for streaming with
+instantaneous feedback
+
+Fig. 3: Difference between the time-invariant scheme with a =
+[0 2] and its genie-assisted form. The two bottom rows show
+the packets played in every slot for the two schemes.
+
+where in (13), R is the inter-renewal time of the coded
+repetition scheme and its tail distribution is as derived in
+Lemma 3.
+Proof of Lemma 4: Since the genie-assisted version gives
+a lower bound on the playback delay of the actual timeinvariant scheme we have,
+
+(n) = 0. Thus for large n,
+E[max(R1 , R2 , .. RJ )] ≥ E[max(H1 , H2 , .. HJ )],
+1
+≥
+log J − g(n) + O(1),
+λc + (n)
+1
+=
+log J − log log n + O(1).
+λc
+
+E[Pn ] ≥ E[max(Ra,1 , Ra,2 ..Ra,K )],
+K
+
+B. Converse proof
+The converse part of Theorem 1 is a corollary of the
+following lemma.
+
+Conjecture 1. No scheme can achieve a larger value of
+growth constant λ than λc for the coded repetition scheme.
+
+Lemma 4 (Performance of any time-invariant scheme). For
+any time-invariant scheme with pattern a as deﬁned in Deﬁnition 1, the expected playback delay E[Pn ] satisﬁes
+1
+log n + O(log log n),
+λa
+
+(14)
+
+where in K is the smallest integer such that i=1 Ra,i ≥ n.
+We then obtain (12) by using analysis similar to the proof
+of Lemma 1, but applied to renewals of the genie-assisted
+scheme.
+Thus, we have shown that the coded repetition scheme gives
+largest growth constant λ among all time-invariant schemes.
+We have the following conjecture about time-varying schemes.
+
+By the strong law of renewal processes and taking the expectation over J we get the lower bound (4).
+
+E[Pn ] ≥
+
+3
+
+6
+
+We believe this is true because in absence of feedback, the
+statistics of undecoded packets are asymptotically stationary.
+Although the playback delay is not stationary, it is a function
+of the undecoded packets. Thus, using a time-varying scheme
+cannot improve the playback delay performance.
+
+(12)
+
+where λa ≤ λc for all a.
+
+V. S TREAMING WITH I NSTANTANEOUS F EEDBACK
+
+To simplify the analysis of playback delay, we deﬁne a
+genie-assisted version for every time-invariant scheme. In
+the genie-assisted scheme, a renewal occurs whenever the
+ﬁrst packet in that interval is decoded. Fig. 3 illustrates the
+difference between the time-invariant scheme with pattern
+a = [0 2] and its genie-assisted version.
+Let Ra be inter-renewal time of the genie-assisted scheme
+∗
+with pattern a. Then, the playback delay after n slots Pn =
+max(Ra,1 , Ra,2 ..Ra,K ) where K is the smallest integer
+K
+such that
+i=1 Ra,i ≥ n. Let λa be the decay rate of its
+tail distribution as deﬁned in Lemma 3. We can prove the
+following result,
+
+Now consider that the source receives instantaneous feedback about past erasures and thus can adapt its transmission
+strategy. For this model, we determine λ, the growth constant
+of playback delay, as a function of bandwidth b and channel
+success probability ρ.
+A. Streaming ARQ scheme
+
+It is clear that a simple ARQ-based scheme as shown in
+Figure 4 is optimal for streaming with instantaneous feedback.
+In every slot, the source transmits the b minimum-index
+packets that have not been decoded yet. If less than b packets
+Lemma 5 (Asymptotic decay rate for time-invariant schemes). remain to be sent, the source transmits all of them.
+The dynamics of the source and receiver buffers can be
+The decay rate λa of the genie-assisted time-invariant scheme
+modeled by considering an equivalent queueing system where,
+with pattern a is such that, λa ≤ λc for all a.
+in every slot one packet enters the source queue. In every slot
+Proof: We lower bound the tail distribution of Ra by
+b packets depart from the queue with probability ρ and 0 with
+probability 1 − ρ. The departures from the source queue enter
+Pr(Ra > n) ≥ (1 − ρ)ab +1 Pr(Ra > n|slots [1, ab + 1] erased),
+the playback queue at the receiver which plays one packet
+≥ (1 − ρ)ab +1 . Pr(R > n − ab − 1),
+(13) in every slot. There is an interruption in playback when the
+.
+= e−nλc .
+receiver queue becomes empty.
+
+4
+
+B. Analysis of playback delay
+
+1
+
+We prove the following theorem about E[Pn ] with feedback.
+0.8
+
+α = 1.
+
+Growth constant λ
+
+Theorem 2. For the streaming ARQ scheme with instantaneous feedback, the expected playback delay satisﬁes (3) and
+(4) with growth constant λ = log(1/α) where α is the real
+positive root of
+1
+αb − 1
+= ,
+α−1
+ρ
+
+(15)
+
+n
+
+.
+= ert
+
+Bandwidth b
+
+100
+
+playback delay with time index n is 1/λ · log n. We derived the
+largest value of λ as a function of b and ρ for the no-feedback
+and instantaneous feedback cases.
+For streaming without feedback, the proposed coded repetition scheme achieves λ = D(1/b||ρ). With instantaneous
+feedback, a simple ARQ based scheme achieves λ = log(1/α)
+where α is the real positive root of (15). The behavior of
+λ with bandwidth b is illustrated in Fig. 5. As b approaches
+inﬁnity, both schemes converge to log(1/1−ρ). However the
+instantaneous feedback converges at a much faster rate. The
+achievable growth rate λ with delayed feedback will lie in the
+region between the two curves in Fig. 5.
+Finding the optimal scheme with delayed feedback is a part
+of ongoing work. Another research direction is to consider
+a broadcast streaming setup and investigate the trade-off
+between delay and the number of users served by the source.
+Although we assumed strict playback in this paper, the
+proposed coding scheme can be extended to allow packet
+dropping to reduce playback delay. Interested readers can refer
+to [9] for details.
+
+(16)
+
+R EFERENCES
+[1] M. Luby, M. Mitzenmacher, A. Shokrollahi, D. Spielman, and V. Stemann, “Practical loss-resilient codes,” in ACM symposium on Theory of
+computing, (New York, NY, USA), pp. 150–159, ACM, 1997.
+[2] E. Martinian, Dynamic Information and Constraints in Source and
+Channel Coding. PhD thesis, MIT, Cambridge , USA, Sept. 2004.
+[3] D. Lun, M. M´ dard, R. Koetter, and M. Effros, “On coding for reliable
+e
+communication over packet networks,” Physical Communication, vol. 1,
+Mar. 2006.
+[4] J. Sundararajan, D. Shah and M. M´ dard, “ARQ for Network Coding,”
+e
+in International Symposium on Information Theory, pp. 1651–1655, jul
+2008.
+[5] H. Yao, Y. Kochman and G. Wornell, “A Multi-Burst Transmission
+Strategy for Streaming over Blockage Channels with Long Feedback
+Delay,” IEEE Journal on Selected Areas in Communications, Dec. 2011.
+[6] R. Durrett, Probability: Theory and Examples. Cambridge University
+Press, 4th ed., 2010.
+[7] B. Eisenberg, “On the expectation of the maximum of iid geometric
+random variables,” Statistics & Probability Letters, vol. 78, pp. 135–143,
+feb 2008.
+[8] R. Gallager, Discrete Stochastic Processes. Kluwer Academic Publishers,
+1st ed., 1996.
+[9] G. Joshi, “On playback delay in streaming communication,” Master’s
+thesis, MIT, Cambridge , USA, June 2012.
+
+(17)
+
+where r is the negative root of γ(r), the semi-invariant moment
+generating function of X. For the binary random variable X
+deﬁned above,
+γ(r) = log ρer(b−1) + (1 − ρ)e−r
+
+10
+
+Fig. 5: Behavior of λ with bandwidth b packets/slot for the
+no-feedback and instantaneous feedback cases. The success
+probability ρ = 0.6, and logarithms are to the natural base.
+
+where K is the smallest integer such that
+Rk ≥ n. The
+random variables Ik are i.i.d. since each belongs to a different
+renewal interval. We now determine the asymptotic decay rate
+of Pr(I > t) as deﬁned by Lemma 3 and use it to ﬁnd E[Pn ].
+We can model the system by a random walk Sn = X1 +
+X2 +..Xn where Xi ’s are i.i.d. binary random variables which
+are b − 1 with probability 1 − ρ and −1 with probability 1 − ρ.
+Sn is the difference between the number of packets decoded
+at receiver and number of packets generated at source until
+time n. Since ρb > 1 this random walk has a positive drift.
+Consider two thresholds 0 and −t such that the random walk
+stops permanently when it crosses any one of them. A renewal
+corresponds to crossing threshold 0. The tail distribution
+Pr(I > t) = Pr ( n {Sn < −t}), the probability that the
+random walk crosses −t before crossing 0. The Kingman
+bound [8] is an asymptotically tight bound on this probability
+for random walk Sn = X1 + X2 + ..Xn . It states that,
+{Sn < −t}
+
+Without feedback
+Instantaneous Feedback
+
+0.4
+
+0
+2
+
+K
+k=1
+
+Pr
+
+0.6
+
+0.2
+
+Proof: Deﬁne a renewal as the instant when the source
+queue is empty, and Rk as the k th inter-renewal time. Assume
+that the system resets to its initial state with both queues empty
+when a renewal takes place. Let Ik be the number of packets
+remaining in the playback queue at the k th renewal instant. For
+the ﬁrst renewal, I1 is equal to the number of interrupted slots
+in that interval. For the k th renewal interval, an interruption
+will occur only if Ik is greater than Ii for all 1 ≤ i < k. Thus,
+the playback delay Pn of packet pn is
+Pn = max(I1 , I2 , I3 , .. IK )
+
+−log(1−ρ)
+
+(18)
+
+Replacing α = er we get (15). Thus, the tail distribution
+Pr(I > t) decays with rate λ = log(1/α). We ﬁnd the bounds
+(3) and (4) by taking an expectation of (16) and applying
+the strong law of renewal processes, as done in the proof of
+Lemma 1.
+VI. D ISCUSSION AND F UTURE W ORK
+In this paper we analyzed the playback delay for streaming
+over an erasure channel with bandwidth b and erasure probability 1−ρ. We showed that the dominant term in the growth of
+
+5
+
+

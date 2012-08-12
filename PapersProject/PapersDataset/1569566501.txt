@@ -1,0 +1,994 @@
+Title:          1569566501.pdf
+Author:         Peng
+Creator:        TeX
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Fri May 18 19:16:06 2012
+ModDate:        Tue Jun 19 12:55:04 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      293657 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569566501
+
+Combined Decode-Forward and Layered Noisy
+Network Coding Schemes for Relay Channels
+Peng Zhong and Mai Vu
+Department of Electrical and Computer Engineering, McGill University, Montreal
+Emails: peng.zhong@mail.mcgill.ca, mai.h.vu@mcgill.ca
+Abstract—We propose two coding schemes combining decodeforward (DF) and noisy network coding (NNC) with different
+ﬂavors. The ﬁrst is a combined DF-NNC scheme for the oneway relay channel which includes both DF and NNC as special
+cases by performing rate splitting, partial block Markov encoding
+and NNC. The second combines two different DF strategies and
+layered NNC for the two-way relay channel. One DF strategy
+performs coherent block Markov encoding at the source at
+the cost of power splitting at the relay, the other performs
+independent source and relay encoding but with full relay
+power, and layered NNC allows a different compression rate
+for each destination. Analysis and simulation show that both
+proposed schemes supersede each individual scheme and take
+full advantage of both DF and NNC.
+
+observation into two layers: one is used at both destinations,
+while the other is only used at one destination.
+In this paper, we ﬁrst propose a combined DF-NNC scheme
+for the one-way channel. Different from [3], our proposed
+scheme performs block Markov encoding and hence encompasses both DF relaying and NNC as special cases. We then
+propose a combined DF-LNNC scheme for the TWRC. This
+scheme also includes partial block Markov encoding and,
+in addition, performs layered NNC. Analysis and numerical
+results show that this scheme outperforms each individual
+scheme in [4]–[6] and also the combined scheme in [3].
+II. C HANNEL M ODELS
+A. Discrete memoryless relay channels
+The discrete memoryless two-way relay channel (DMTWRC) is denoted by (X1 × X2 × Xr , p(y1 , y2 , yr |x1 , x2 , xr ),
+Y1 × Y2 × Yr ) where (x1 , y1 ), (x2 , y2 ), (xr , yr ) are input and
+output signals of user 1, user 2 and the relay, respectively.
+A (n, 2nR1 , 2nR2 , Pe ) code for a DM-TWRC consists of two
+message sets M1 = [1 : 2nR1 ] and M2 = [1 : 2nR2 ],
+three encoding functions f1,i , f2,i , fr,i , i = 1, . . . , n and two
+decoding function g1 , g2 deﬁned as follows:
+
+I. I NTRODUCTION
+The relay channel (RC) ﬁrst introduced by van der Meulen
+consists of a source aiming to communicate with a destination
+with the help of a relay. In [1], Cover and El Gamal propose
+the fundamental decode-forward (DF), compress-forward (CF)
+and combined DF-CF schemes. Lim, Kim, El Gamal and
+Chung recently put forward a noisy network coding (NNC)
+scheme [2] for the general multi-source network. NNC is
+based on CF relaying but involves three new ideas (message
+repetition, no Wyner-Ziv binning and simultaneous decoding)
+and outperforms CF for multi-source networks. In [3], Ramalingam and Wang propose a superposition NNC scheme
+for restricted relay networks, in which source nodes cannot
+act as relays, by combining DF and NNC and show some
+performance improvement over NNC. Their scheme, however,
+does not include DF relaying rate because of no block Markov
+encoding.
+The classical one-way relay channel can be generalized
+to the two-way relay channel (TWRC), in which two users
+exchange messages with the help of a relay. In [4], Rankov
+and Wittneben apply several relay strategies, including decodeforward and compress-forward, to the TRWC. In their proposed DF scheme, the two users perform partial block Markov
+encoding, and the relay sends a superposition of the codewords
+for the two decoded messages in each block. A different
+DF strategy is proposed in [5] by Xie, in which the users
+encode independently with the relay without block Markovity,
+and the relay sends a codeword for the random binning of
+the two decoded messages. These two DF schemes do not
+include each other in general. In [6], Lim, Kim, El Gamal and
+Chung propose an improved NNC scheme termed ”layered
+noisy network coding” (LNNC). The relay compresses its
+
+x1,i = f1,i (M1 , Y1i−1 ), x2,i = f2,i (M2 , Y2i−1 ), xr,i = fr,i (Yri−1 ),
+n
+n
+g 1 : Y 1 × M 1 → M 2 , g 2 : Y2 × M 2 → M 1
+The deﬁnitions for error probability, achievable rates and
+capacity follow standard ones in [7].
+The one-way relay channel can be seen as a special case of
+the TWRC by setting M2 = X2 = Y1 = ∅, f2 = g1 = null
+and R2 = 0.
+B. Gaussian one-way and two-way relay channels
+The Gaussian one-way relay channel can be modeled as
+Y = gX + g2 Xr + Z,
+
+Yr = g 1 X + Z r ,
+
+(1)
+
+where Z, Zr ∼ N (0, 1) are independent Gaussian noises, and
+g, g1 , g2 are the corresponding channel gains.
+The Gaussian two-way relay channel can be modeled as
+Y1 = g12 X2 + g1r Xr + Z1
+Y2 = g21 X1 + g2r Xr + Z2
+Yr = gr1 X1 + gr2 X2 + Zr ,
+
+(2)
+
+where Z1 , Z2 , Zr ∼ N (0, 1) are independent Gaussian noises
+and g12 , g1r , g21 , g2r , gr1 , gr2 are the corresponding channel
+gains. For both channels, the average input power constraints
+at each user and the relay are all P .
+
+1
+
+2) Encoding:
+In block j, the source sends
+xn (m|mj , mj−1 ). Assume that the relay has successfully
+j
+found compression index kj−1 and decoded message mj−1
+of the previous block, it then sends xn (kj−1 |mj−1 ).
+r,j
+3) Decoding at the relay: At the end of block j, upon
+n
+ˆ
+ˆ
+receiving yr,j , the relay ﬁnds a kj and a unique mj such that
+
+III. O NE - WAY R ELAY C HANNEL
+In this section, we propose a coding scheme combing
+decode-forward [1] and noisy network coding [2] for the
+one-way relay channel. The source splits its message into
+two parts, a common and a private message. The common
+message is different in each block and is decoded at both the
+relay and destination as in decode-forward, while the private
+message is the same for all blocks and is decoded only at the
+destination as in noisy network coding. The source encodes the
+common message with block Markovity, then superimposes
+the private message on top. The relay decodes the common
+message at the end of each block and compresses the rest
+as in NNC. In the next block, it sends a codeword which
+encodes both the compression index and the decoded common
+message of the previous block. The destination decodes each
+common message by forward sliding-window decoding over
+two consecutive blocks. Then at the end of all blocks, it
+decodes the private message by simultaneous decoding over
+all blocks. Our proposed scheme includes both DF relaying
+and NNC as special cases and outperforms superposition NNC
+in [3] in that we use block Markov encoding for the common
+messages, which provides coherency between source and relay
+and improves the transmission rate.
+
+(un (mj−1 ), un (mj |mj−1 ), xn (kj−1 |mj−1 ),
+r,j
+j ˆ
+r,j
+n ˆ
+n
+yr,j (kj |kj−1 , mj−1 , mj ), yr,j ) ∈ T (n) , (5)
+ˆ
+ˆ
+(n)
+
+where T
+denotes the strong typical set [7]. By the covering
+lemma and standard analysis, Pe → 0 as n → ∞ if
+ˆ
+ˆ
+R > I(Yr ; Yr |U, Ur , Xr )
+ˆ
+ˆ
+R + R10 ≤ I(Yr ; Yr , U |Ur , Xr ).
+
+4) Decoding at the destination: At the end of each block
+j, the destination ﬁnds the unique mj−1 such that
+ˆ
+(un (mj−1 |mj−2 ), un
+j−1 ˆ
+r,j−1 (mj−2 ),
+n
+(n)
+xn
+r,j−1 (kj−2 |mj−2 ), yj−1 ) ∈ T
+
+Following standard analysis, Pe → 0 as n → ∞ if
+R10 ≤ I(U ; Y |Ur , Xr ) + I(Ur ; Y ).
+ˆ
+(un (mj−1 ), un (mj |mj−1 ), xn (kj−1 |mj−1 ),
+r,j
+j
+r,j
+xn (m|mj , mj−1 ), y n (kj |kj−1 , mj−1 , mj ), y n ) ∈ T (n)
+ˆ
+ˆ ˆ ˆ
+j
+
+R10 ≤ min{I(Yr ; U |Ur , Xr ), I(U ; Y |Ur , Xr ) + I(Ur ; Y )}
+ˆ
+R11 ≤ min{I(X; Y, Yr |U, Ur , Xr ), I(X, Xr ; Y |U, Ur )
+
+•
+
+•
+•
+
+j
+
+ˆ
+for all j ∈ [1 : b] and some vector kj ∈ [1 : 2
+Pe → 0 as n → ∞ if
+
+(3)
+
+] . As in [2],
+
+ˆ
+R11 ≤ min{I1 , I2 − R}, where
+ˆ
+I1 = I(X; Y, Yr |U, Ur , Xr )
+ˆ
+I2 = I(X, Xr ; Y |U, Ur ) + I(Yr ; Y, X|Xr , U, Ur ).
+
+(4)
+
+(8)
+(9)
+
+By applying Fourier-Motzkin Elimination to inequalities
+(6)-(8), the rate in Theorem 1 is achievable.
+
+Proof: We use a block coding scheme in which each user
+sends b − 1 messages over b blocks of n symbols each.
+1) Codebook generation: Fix a joint distribution as in (4).
+For each block j ∈ [1 : b]:
+
+•
+
+r,j
+
+ˆ
+nR b
+
+for some joint distribution that factors as
+
+•
+
+(7)
+
+At the end of block b, it ﬁnds the unique m such that
+ˆ
+
+Theorem 1. The rate R = R10 +R11 is achievable for the oneway relay channel by combining decode-forward and noisy
+network coding
+
+p(ur )p(u|ur )p(x|u, ur )p(xr |ur )
+p(y, yr |x, xr )p(ˆr |yr , u, ur , xr ).
+y
+
+n
+(un (mj−1 ), yj ) ∈ T (n) .
+r,j ˆ
+
+and
+
+A. Achievable rate for the DM one-way relay channel
+
+ˆ
+− I(Yr ; Yr |Xr , U, Ur , X, Y )}
+
+(6)
+
+Remark 1. In relay decoding (5), we perform joint decoding
+of both the message and the compression index. If we use
+sequential decoding to decode the message ﬁrst and then
+to ﬁnd the compression index, we still get the same rate
+constraints as in Theorem 1.
+
+Independently generate 2nR10 sequences un (mj−1 ) ∼
+r,j
+n
+nR10
+].
+i=1 p(ur,i ), where mj−1 ∈ [1 : 2
+For each mj−1 , independently generate 2nR10 sequences
+n
+un (mj |mj−1 ) ∼ i=1 p(ui |ur,i ), mj ∈ [1 : 2nR10 ].
+j
+For each (mj−1 , mj ), independently generate 2nbR11
+n
+sequences xn (m|mj , mj−1 ) ∼ i=1 p(xi | ui , ur,i ), m ∈
+j
+[1 : 2nbR11 ].
+ˆ
+For each mj−1 , independently generate 2nR sequences
+ˆ
+n
+xn (kj−1 |mj−1 ) ∼ i=1 p(xr,i |ur,i ), kj−1 ∈ [1 : 2nR ].
+r,j
+For each (mj−1 , mj , kj−1 ), independently generate
+ˆ
+2nR
+sequences
+yr,j (kj |kj−1 , mj−1 , mj )
+ˆn
+∼
+ˆ
+n
+nR
+y
+].
+i=1 p(ˆr,i |xr,i , ur,i , ui ), kj ∈ [1 : 2
+
+Remark 2. We can check that the rate in (3) is equivalent
+to the combined DF-CF rate in Theorem 7 [1] for the oneway relay channel. This combined DF-CF scheme is recently
+shown by Luo et al. [8] to outperform both individual schemes
+in the Gaussian channel for a small range of SNR. However,
+combined DF-NNC is expected to outperform combined DFCF for multi-source networks.
+ˆ
+Remark 3. By setting Ur = Xr , U = X, Yr = 0, the rate in
+Theorem 1 reduces to the decode-forward relaying rate [1] as
+R ≤ min{I(X; Yr |Xr ), I(X, Xr ; Y )}
+
+2
+
+(10)
+
+for some p(xr )p(x|xr )p(y, yr |x, xr ). By setting U = Ur = 0,
+it reduces to the NNC rate [2] as
+
+user uses the information of both the common and reﬁnement
+layers to decode the other user’s private message.
+
+ˆ
+ˆ
+R ≤ min{I(X; Y, Yr |Xr ), I(X, Xr ; Y ) − I(Yr ; Yr |Xr , X, Y )} Theorem 2. Let R1 denote the set of (R1 , R2 ) as follows:
+R1 ≤ min{I5 , I12 } + min{I5 − I1 , I16 }
+R2 ≤ min{I6 , I14 } + min{I17 − I2 , I19 }
+R1 + R2 ≤ min{min{I5 , I12 } + I15 + I18 − I2 + min{I6 , I14 },
+I10 + I15 + I18 − I2 ,
+I10 + min{I15 − I1 , I16 } + min{I17 − I2 , I19 }}
+2R1 + R2 ≤ min{I5 , I12 } + I15 + I18 − I2 + I10
++ min{I15 − I1 , I16 }
+(14)
+
+for some p(x)p(xr )p(y, yr |x, xr )p(ˆr |yr , xr ).
+y
+Remark 4. The rate constraints in Theorem 1 are similar to
+those in superposition NNC (Theorem 1 in [3]), but the code
+distribution (4) is a larger set because of the joint distribution
+between (x, u, ur ). Hence the achievable rate by the proposed
+scheme is higher than that in [3]. Speciﬁcally, the scheme in
+[3] does not include the decode-forward relaying rate in (10).
+B. Achievable rate for the Gaussian one-way relay channel
+
+for some joint distribution
+
+We now evaluate the achievable rate in Theorem 1 for the
+Gaussian one-way relay channel as in (1).
+
+P∗
+
+Corollary 1. The following rate is achievable for the Gaussian
+one-way relay channel
+2
+(gα1 + g2 α2 )2 + g 2 β1
++
+2 γ 2 + g2 β 2 + 1
+1
+g 1
+2 2
+2
+g 2 γ 2 · g 2 β2
+2
+(11)
+C g 2 γ1 + 2 2 1 2 1 2 2 2 2
+g γ1 + g 1 γ1 + g 2 β2 + 1
+
+R ≤ min C
+
+2 2
+g 1 β1
+2γ2 +
+g1 1
+
+,C
+
+2
+2
+2
+where α1 + β1 + γ1 ≤ P,
+
+2
+2
+α2 + β2 ≤ P.
+
+where Ij are deﬁned in (16)-(21), then R1 is achievable if
+user 2 only uses the common layer, while user 1 uses both
+the common and reﬁnement layers. If the two users exchange
+decoding layers, they can achieve a corresponding set R2 . By
+time sharing, the convex hull of R1 ∪ R2 is achievable.
+
+(12)
+
+To achieve the rate in (11), we set
+U = α 1 S1 + β 1 S2 ,
+X r = α 2 S1 + β 2 S4 ,
+
+X = U + γ 1 S3
+ˆ
+Yr = Yr + Z
+
+p(w1 )p(u1 |w1 )p(v1 |w1 , u1 )p(x1 |w1 , u1 , v1 )p(w2 )
+p(u2 |w2 )p(v2 |w2 , u2 )p(x2 |w2 , u2 , v2 )p(vr |w1 , w2 )
+p(ur |vr , w1 , w2 )p(xr |ur , vr , w1 , w2 )
+p(ˆr , yr |yr , xr , ur , vr , w1 , w2 , u1 , v1 , u2 , v2 ),
+y ˜
+(15)
+
+Proof: We use a block coding scheme in which each user
+sends b − 1 messages over b blocks of n symbols each.
+1) Codebook generation: Fix a joint distribution P ∗ as in
+(15). Each user l ∈ {1, 2} splits its message into three parts:
+ml0 , ml1 and ml2 . For each j ∈ [1 : b] and l ∈ {1, 2}
+nRl0
+n
+• Independently generate 2
+sequences wl,j (ml0,j−1 ) ∼
+n
+nRl0
+].
+i=1 p(wl,i ), ml0,j−1 ∈ [1 : 2
+nRl0
+• For each ml0,j−1 , independently generate 2
+n
+n
+sequences ul,j (ml0,j |ml0,j−1 ) ∼
+i=1 p(ul,i |wl,i ),
+ml0,j ∈ [1 : 2nRl0 ].
+• For
+each ml0,j−1 , ml0,j , independently generate
+n
+sequences
+vl,j (ml1,j |ml0,j , ml0,j−1 )
+∼
+2nRl1
+n
+nRl1
+].
+i=1 p(vl,i |ul,i , wl,i ), ml1,j ∈ [1 : 2
+• For each ml0,j−1 , ml0,j , ml1,j , independently generate 2nbRl2 sequences xn (ml2 |ml1,j , ml0,j , ml0,j−1 ) ∼
+l,j
+n
+nbRl2
+].
+i=1 p(xl,i |vl,i , ul,i , wl,i ), ml2 ∈ [1 : 2
+• For each pair (m10,j−1 , m20,j−1 ), independently genern
+ate 2n(R11 +R21 ) sequences vr (K|m10,j−1 , m20,j−1 ) ∼
+n
+p(vri |w1,i , w2,i ), where K ∈ [1 : 2n(R11 +R21 ) ].
+i=1
+Map each pair (m11,j−1 , m21,j−1 ) to one K.
+• For
+each vector mj−1
+=
+(m10,j−1 , m20,j−1 ,
+˜
+m11,j−1 , m21,j−1 ), independently generate 2nR sen
+quences un (tj−1 |mj−1 ) ∼ i=1 p(ur,i |vr,i , w1,i , w2,i ),
+r,j
+˜
+tj−1 ∈ [1 : 2nR ].
+ˆ
+nR
+• For each (tj−1 , mj−1 ), independently generate 2
+sen
+n
+quences xr,j (lj−1 |tj−1 , mj−1 ) ∼ i=1 p(xr,i |ur,i , vr,i ,
+ˆ
+w1,i , w2,i ), lj−1 ∈ [1 : 2nR ].
+• For each (tj−1 , mj−1 , mj ), independently generate
+˜
+n
+2nR sequences yr,j (tj |tj−1 , mj−1 , mj ) ∼ i=1 p(˜r,i |
+˜n
+y
+˜
+ur,i , vr,i , w1,i , w2,i , u1,i , u2,i , v1,i , v2,i ), tj ∈ [1 : 2nR ].
+
+(13)
+
+where S1 , S2 , S3 , S4 ∼ N (0, 1) and Z ∼ N (0, Q) are
+independent, and the power allocations satisfy constraint (12).
+IV. T WO - WAY RELAY CHANNEL
+In this section, we propose a combined scheme based on
+both decode-forward strategies as in [4] [5] and layered noisy
+network coding [6] for the two-way relay channel. Each user
+splits its message into three parts: an independent common,
+a Markov common and a private message. The independent
+and Markov common messages are encoded differently at the
+source and are different for each block, both are decoded at
+both the relay and destination as in decode-forward. The private message is the same for all blocks and is decoded only at
+the destination as in noisy network coding. Each user encodes
+the Markov common message with block Markov encoding as
+in [4], then superimposes the independent common message
+on top of it without Markovity, and at last superimposes
+the private message on top of both. The relay decodes the
+two common messages and compresses the rest into two
+layers: a common and a reﬁnement layer. In the next block,
+the relay sends a codeword which encodes the two decoded
+common messages and two layered compression indices. Then
+at the end of each block, each user decodes two common
+messages of the other user by sliding-window decoding over
+two consecutive blocks. At the end of all blocks, one user
+uses the information of the common layer to simultaneously
+decode the private message of the other user, while the other
+
+3
+
+For each (tj , tj−1 , lj−1 , mj−1 , mj ), independently genˆ
+erate 2nR sequences yr,j (lj |lj−1 , tj , tj−1 , mj−1 , mj ) ∼
+ˆn
+n
+y y
+i=1 p(ˆr,i |˜r,i , xr,i , ur,i , vr,i , w1,i , w2,i , u1,i , u2,i , v1,i ,
+˜
+v2,i ), tj ∈ [1 : 2nR ].
+2) Encoding: In block j, user l ∈ {1, 2} sends
+xn (ml2 |ml1,j , ml0,j , ml0,j−1 ). Let mj = (m10,j , m20,j ,
+l,j
+m11,j , m21,j ). At the end of block j, the relay has decoded
+n
+ˆ l
+mj−1 , mj . Upon receiving yr,j , it ﬁnds an index pair (tj , ˆj )
+such that
+ˆ
+˜n ˆ
+(ˆr,j (ˆj |lj−1 , tj , tj−1 , mj−1 , mj ), yr,j (tj |tj−1 , mj−1 , mj ),
+yn l
+
+Similarly, for vanishing-error decoding at user 1
+
+•
+
+R21 ≤ I(V2 ; Y1 |Vr , W2 , U2 , W1 , U1 , V1 , X1 )
++ I(Vr ; Y1 |W2 , W1 , U1 , V1 , X1 )
+
+∈T
+
+(n)
+
+I14 .
+
+At the end of last block b, user 2 uses one compression
+layer to ﬁnd the unique m12 such that
+ˆ
+n
+n
+n
+(xn (m12 |m11,j , m10,j , m10,j−1 ), v1,j , un , w1,j , xn , v2,j , un ,
+1,j ˆ
+1,j
+2,j
+2,j
+n
+n
+n
+ˆ
+˜n ˆ ˆ
+w2,j , vr,j , un (tj−1 |mj−1 ), yr,j (tj |tj−1 , mj−1 , mj ), y2,j ) ∈ T (n)
+r,j
+˜
+for all j ∈ [1 : b] and some vector ˆj ∈ [1 : 2nR ]b . As in [6],
+t
+Pe → 0 as n → ∞ if
+
+.
+
+˜
+R12 + R ≤ I(X1 , Ur ; Y2 |X2 , W1 , U1 , V1 , W2 , U2 , V2 , Vr )+
+˜
+I(Yr ; X1 , X2 , Y2 |Ur , W1 , U1 , V1 , W2 , U2 , V2 , Vr ) I15 (20)
+
+According to Lemma 1 in [6], the probability that no such
+ˆ l
+(tj , ˆj ) exists goes to 0 as n → ∞ if
+˜
+˜
+R > I(Yr ; Xr , Yr |Ur , Vr , U1 , V1 , U2 , V2 , W1 , W2 ) I1 (16)
+˜ ˆ
+˜
+R + R > I(Yr ; Xr , Yr |Ur , Vr , U1 , V1 , U2 , V2 , W1 , W2 )+
+˜
+ˆ
+I(Yr ; Yr |Yr , Xr , Ur , Vr , U1 , V1 , U2 , V2 , W1 , W2 )
+
+I13
+
+R20 + R21 ≤ I(W2 , U2 , V2 , Vr ; Y1 |W1 , U1 , V1 , X1 )
+
+n
+n
+xn (lj−1 |tj−1 , mj−1 ), un (tj−1 |mj−1 ), w1,j , w2,j ,
+r,j
+r,j
+n
+n
+n
+n
+vr,j , un , v1,j , un , v2,j , yr,j )
+1,j
+2,j
+
+(19)
+
+˜
+R12 ≤ I(X1 ; Yr , Y2 |X2 , Ur , W1 , U1 , V1 , W2 , U2 , V2 , Vr )
+
+I16
+
+Using both layers, user 1 ﬁnds the unique m22 such that
+ˆ
+
+I2 .
+
+n
+n
+n
+(xn , v1,j , un , w1,j , xn (m22 |m21,j , m20,j , m20,j−1 ), y1,j
+1,j
+1,j
+2,j ˆ
+n
+n
+n
+ˆ
+ˆ
+v2,j , un , w2,j vr,j , un (tj−1 |mj−1 ), xn (ˆj−1 |tj−1 , mj−1 ),
+2,j
+r,j
+r,j l
+
+xn
+r,j+1 (lj |tj , mj )
+
+at block j + 1.
+The relay then sends
+3) Relay decoding: At the end of block j, the relay ﬁnds
+the unique (m10,j , m20,j , m11,j , m21,j ) such that
+ˆ
+ˆ
+ˆ
+ˆ
+
+ˆ
+yr,j (tj |tj−1 , mj−1 , mj ), yr,j (ˆj |tj , ˆj−1 , tj−1 , mj−1 , mj )) ∈ T (n)
+˜n ˆ ˆ
+ˆn l ˆ l
+
+n
+n
+˜
+ˆ
+ˆ
+(w1,j (m10,j−1 ), un (m10,j |m10,j−1 ), v1,j (m11,j |m10,j , m10,j−1 ), for all j ∈ [1 : b] and some vectors ˆj ∈ [1 : 2nR ]b , ˆj ∈ [1 :
+1,j ˆ
+t
+l
+ˆ b
+n
+n
+w2,j (m20,j−1 ), un (m20,j |m20,j−1 ), v2,j (m21,j |m20,j , m20,j−1 ), 2nR ] . As in [6], Pe → 0 as n → ∞ if
+ˆ
+ˆ
+2,j ˆ
+n
+n
+vr,j (m11,j−1 , m21,j−1 |m10,j−1 , m20,j−1 ), yr,j ) ∈ T (n) . R22 + R + R ≤ I(X2 , Xr ; Y1 |X1 , W1 , U1 , V1 , W2 , U2 , V2 , Vr )
+˜ ˆ
+˜
+ˆ
+As in the multiple access channel, Pe → 0 as n → ∞ if
++ I(Yr ; X1 , X2 , Y1 |Yr , Xr , Ur , W1 , U1 , V1 , W2 , U2 , V2 , Vr )
+
+R11 ≤ I(V1 ; Yr |Vr , W1 , U1 , W2 , U2 , V2 )
+
+I3
+
+R21 ≤ I(V2 ; Yr |Vr , W2 , U2 , W1 , U1 , V1 )
+
+I4
+
+R10 + R11 ≤ I(U1 , V1 ; Yr |Vr , W1 , W2 , U2 , V2 )
+R20 + R21 ≤ I(U2 , V2 ; Yr |Vr , W2 , W1 , U1 , V1 )
+R11 + R21 ≤ I(V1 , V2 ; Yr |Vr , W1 , U1 , W2 , U2 )
+
+˜
++ I(Yr ; X1 , X2 , Xr , Y2 |Ur , W1 , U1 , V1 , W2 , U2 , V2 , Vr ) I17
+ˆ
+˜
+R22 + R ≤ I(X2 , Xr ; Y1 , Yr |X1 , Ur , W1 , U1 , V1 , W2 , U2 , V2 , Vr )
+
+˜
+ˆ
+I5 + I(Yr ; X1 , X2 , Y1 |Yr , Xr , Ur , W1 , U1 , V1 , W2 , U2 , V2 , Vr ) I18
+˜ ˆ
+I6 R22 ≤ I(X2 ; Yr , Yr , Y1 |X1 , Ur , Xr , W1 , U1 , V1 , W2 , U2 , V2 , Vr )
+I7
+(21)
+I19 .
+
+R10 + R11 + R21 ≤ I(U1 , V1 , V2 ; Yr |Vr , W1 , W2 , U2 )
+
+I8
+
+R20 + R11 + R21 ≤ I(U2 , V1 , V2 ; Yr |Vr , W1 , W2 , U1 )
+R10 + R20 + R11 + R21 ≤
+
+I9
+
+By applying Fourier-Motzkin Elimination to inequalities
+(16)-(21), the rate region in Theorem 2 is achievable.
+Remark 5. By setting V1 = W2 = U2 = V2 = X2 = Ur =
+˜
+(U1 , V1 , U2 , V2 ; Yr |Vr , W1 , W2 ) I10 . (17) Vr = Yr = 0, we obtain the rate for the one-way channel in
+Theorem 1 from the region in Theorem 2.
+4) User decoding: At the end of block j, user 2 ﬁnds the
+Remark 6. The proposed combined DF-LNNC scheme inunique (m10,j−1 , m11,j−1 ) such that
+ˆ
+ˆ
+cludes each schemes in [4]–[6] as a special case. Speciﬁcally,
+n
+ˆ
+ˆ
+ˆ
+(un
+1,j−1 (m10,j−1 |m10,j−2 ), v1,j−1 (m11,j−1 |m10,j−1 , m10,j−2 ), it reduces to the scheme in [4] by setting U1 = X1 , U2 =
+ˆ
+˜
+n
+n
+n
+n
+n
+n
+(n) X2 , Vr = Xr , V1 = V2 = Ur = Yr = Yr = 0, to the scheme
+w1,j−1 , w2,j−1 , un
+2,j−1 , v2,j−1 , x2,j−1 , vr,j−1 , y2,j−1 ) ∈ T
+in [5] by setting V1 = X1 , V2 = X2 , Vr = Xr , W1 = U1 =
+n
+n
+n
+and
+(w1,j (m10,j−1 ), w2,j , un , v2,j , xn ,
+ˆ
+2,j
+2,j
+ˆ
+˜
+W2 = U2 = Ur = Yr = Yr = 0, and to the scheme in [6] by
+n
+n
+ˆ
+ˆ
+vr,j (m11,j−1 , m21,j−1 |m10,j−1 , m20,j−1 ), y2,j ) ∈ T (n) . setting W1 = U1 = V1 = W2 = U2 = V2 = Vr = 0.
+Remark 7. In our proposed scheme, the Markov common
+The error probability goes to 0 as n → ∞ if
+messages bring a coherent gain between the source and the
+(18)
+R11 ≤ I(V1 ; Y2 |Vr , W1 , U1 , W2 , U2 , V2 , X2 )
+relay, but they require the relay to split its power for each
++ I(Vr ; Y2 |W1 , W2 , U2 , V2 , X2 ) I11
+message because of superposition coding. For the independent
+common messages, the relay can use its whole power to
+R10 + R11 ≤ I(U1 , V1 ; Y2 |Vr , W1 , W2 , U2 , V2 , X2 )
+send their bin index, which can then solely represent one
++ I(W1 , Vr ; Y2 |W2 , U2 , V2 , X2 )
+message when decoding because of side information on the
+= I(W1 , U1 , V1 , Vr ; Y2 |W2 , U2 , V2 , X2 ) I12 .
+other message at each destination.
+
+4
+
+3.6
+
+7
+Indep. DF [5]
+Markov DF [4]
+LNNC [6]
+DF−LNNC
+Cut−set
+
+3.4
+
+6.5
+3.2
+
+6
+Sum Rate
+
+3
+
+Rate
+
+2.8
+2.6
+2.4
+2.2
+
+1.8
+1.6
+
+0
+
+0.2
+
+5
+4.5
+
+DF [1]
+NNC [2]
+Superposition NNC [3]
+DF−NNC
+Cut−set
+
+2
+
+5.5
+
+4
+
+0.4
+0.6
+Relay location d
+
+0.8
+
+3.5
+0
+
+1
+
+0.1
+
+0.2
+0.3
+Relay location d
+
+0.4
+
+0.5
+
+Fig. 2. Sum rate for the two-way relay channel with P = 10, gr1 = g1r =
+d−γ/2 , gr2 = g2r = (1 − d)−γ/2 , g12 = g21 = 1, γ = 3.
+
+Fig. 1. Achievable rate comparison for the one-way relay channel with
+P = 10, g1 = d−γ/2 , g2 = (1 − d)−γ/2 , g = 1, γ = 3.
+
+2
+
+Remark 8. Rate region for the Gaussian TWRC can be
+obtained by applying Theorem 2 with the following signaling:
+= α 1 S1 + β 1 S2 + γ 1 S3 + δ 1 S4
+= α 2 S5 + β 2 S6 + γ 2 S7 + δ 2 S8
+= α31 S1 + α32 S5 + γ3 S9 + β3 S10 + δ3 S11
+ˆ
+˜
+ˆ
+˜
+= Yr + Zr ; Yr = Yr + Zr ,
+
+R2
+
+X1
+X2
+Xr
+ˆ
+Yr
+
+1.5
+
+2
+2
+2
+2
+2
+α31 + α32 + β3 + γ3 + δ3 ≤ P,
+
+Indep. DF [5]
+Markov DF [4]
+LNNC [6]
+DF−LNNC
+Cut−set
+
+0.5
+
+(22)
+0
+
+where the power allocations satisfy
+2
+2
+2
+2
+α1 + β1 + γ1 + δ1 ≤ P,
+
+1
+
+0
+
+0.5
+
+1
+
+1.5
+
+2
+
+2.5
+
+R1
+
+2
+2
+2
+2
+α2 + β2 + γ2 + δ2 ≤ P,
+
+Fig. 3. Achievable rate region comparison for the two-way relay channel
+with P = 3, gr1 = 6, g1r = 2, gr2 = 2, g2r = 3, g12 = 1, g21 = 0.5.
+
+(23)
+
+ˆ
+ˆ ˜
+˜
+all Si ∼ N (0, 1) and Zr ∼ N (0, Q), Zr ∼ N (0, Q) are
+independent. The speciﬁc rate constraints for the Gaussian
+channel, however, are omitted because of the lack of space.
+
+VI. C ONCLUSION
+We have proposed two combined schemes: DF-NNC for the
+one-way and DF-LNNC for the two-way relay channels. Both
+schemes perform message splitting, block Markov encoding,
+superposition coding and noisy network coding. Each combined scheme encompasses all respective individual schemes
+(DF and NNC or LNNC) and strictly outperforms superposition NNC in [3]. These are initial results for combining
+decode-forward and noisy network coding for a multi-source
+network.
+
+V. N UMERICAL R ESULTS
+We numerically compare the performance of the proposed
+combined schemes with the original DF and NNC. The rate
+regions are obtained by exhaustive simulation, but optimization can also be used to achieve the maximum rates. Consider
+the Gaussian channels as in (1) and (2). Assume all the nodes
+are on a straight line. The relay is at a distance d from the
+source and distance 1 − d from the destination which makes
+g1 = d−γ/2 and g2 = (1 − d)−γ/2 , where γ is the path loss
+exponent. Figure 1 shows the achievable rate for the one-way
+relay channel with P = 10, γ = 3. The combined DF-NNC
+scheme supersedes both the DF and NNC schemes. It can
+achieve the capacity of the one-way relay channel when the
+relay is close to either the source or the destination. Figure
+2 shows the sum rate for the two-way relay channel with
+P = 10, γ = 3. Our proposed scheme achieves larger sum
+rate than all 3 individual schemes when the relay is close to
+either user, while reducing to layered NNC when the relay
+is close to the middle of the two users. Figure 3 shows the
+achievable rate regions for the Gaussian TWRC using these
+4 schemes. The achievable region of our proposed scheme
+encompasses all 3 individual schemes.
+
+R EFERENCES
+[1] T. Cover and A. El Gamal, “Capacity theorems for the relay channel,”
+IEEE Trans. on Info. Theory, vol. 25, no. 5, pp. 572–584, 1979.
+[2] S. H. Lim, Y.-H. Kim, A. El Gamal, and S.-Y. Chung, “Noisy network
+coding,” IEEE Trans. on Info. Theory, vol. 57, no. 5, pp. 3132–3152,
+May 2011.
+[3] N. Ramalingam and Z. Wang, “Superposition noisy network coding,” in
+IEEE Int’l Symp. on Info. Theory (ISIT), Aug. 2011.
+[4] B. Rankov and A. Wittneben, “Achievable rate regions for the two-way
+relay channel,” in IEEE Int’l Symp. on Info. Theory (ISIT), 2006.
+[5] L. Xie, “Network coding and random binning for multi-user channels,”
+in 10th Canadian Workshop on Info. Theory (CWIT), 2007, pp. 85–88.
+[6] S. H. Lim, Y.-H. Kim, A. El Gamal, and S.-Y. Chung, “Layered noisy
+network coding,” in IEEE Wireless Net. Coding Conf. (WiNC), June 2010.
+[7] A. E. Gamal and Y.-H. Kim, Network information theory. Cambridge
+University Press, 2011.
+[8] K. Luo, R. H. Gohary, and H. Yanikomeroglu, “On the generalization
+of decode-and-forward and compress-and-forward for Gaussian relay
+channels,” in IEEE Info. Theory Workshop (ITW), Oct. 2011.
+
+5
+
+

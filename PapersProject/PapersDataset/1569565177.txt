@@ -1,0 +1,734 @@
+Title:          ISIT2012_publish.dvi
+Creator:        dvips(k) 5.95a Copyright 2005 Radical Eye Software
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Tue May  8 17:38:50 2012
+ModDate:        Tue Jun 19 12:56:40 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      296151 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569565177
+
+Trapping Set Structure of Finite Geometry LDPC
+Codes
+Qiuju Diao1 , Ying Yu Tai2 , Shu Lin1 , and Khaled Abdel-Ghaffar1
+1
+
+Department of Electrical and Computer Engineering University of California, Davis, CA 95616, USA
+2
+SanDisk Corporation, Milpitas, CA 95035, USA
+Email: {judiao, yytai, shulin, kaghaffar}@ucdavis.edu
+in [3] which resorts to some results in projective geometries
+to derive the results.
+This paper is organized as follows. Relevant deﬁnitions are
+given in Section II. Two-dimensional Euclidean geometries
+and codes are reviewed in Sections III and IV, respectively.
+The main contributions are presented in Section V in which
+the analysis of trapping sets of codes is given. The paper is
+concluded in Section VI.
+
+Abstract—The trapping set structure of LDPC codes constructed using ﬁnite geometries is analyzed. A trapping set is
+modeled as a sub-geometry of the geometry used to construct an
+LDPC code. The variable nodes of a trapping set are viewed
+as points of the geometry and the check nodes adjacent to
+the variable nodes are viewed as the lines passing through any
+of these points. Based on this geometrical representation of a
+trapping set, its conﬁguration can be determined.
+
+I. I NTRODUCTION
+II. DEFINITIONS AND BASIC CONCEPTS
+With iterative decoding, most LDPC codes have a common
+severe weakness, known as the error-ﬂoor. The error-ﬂoor of
+an LDPC code is characterized by the phenomenon that as
+the SNR continues to increase, the error probability suddenly
+drops at a rate much slower than that in the region of low
+to moderate SNR. The error-ﬂoor may preclude LDPC codes
+from applications where very low error rates are required.
+Ever since the phenomenon of the error-ﬂoors of LDPC
+codes with iterative decoding became known [1], a great deal
+of research effort has been expended in ﬁnding its causes and
+methods to resolve or mitigate the error-ﬂoor problem. For the
+AWGN channel, the error-ﬂoor of an LDPC code is mostly
+caused by an undesirable structure, known as a trapping set
+[2], in the Tanner graph on which the decoding is carried out.
+This paper is concerned with the analysis of the trapping set
+structure of LDPC codes constructed using ﬁnite geometries,
+called ﬁnite geometry (FG)-LDPC codes. In this analysis, a
+trapping set is modeled as a sub-geometry of the geometry
+used to construct an FG-LDPC code. The variable nodes (VNs)
+of a trapping set are viewed as points of the geometry and the
+check nodes (CNs) adjacent to the variable nodes are viewed
+as the lines containing any of these points. Based on this
+geometrical representation of a trapping set, we are able to
+determine the conﬁguration of the trapping set.
+In this paper, we focus on the trapping set structure of
+LDPC codes constructed from the two-dimensional Euclidean
+geometry (EG) over ﬁnite ﬁelds. The concepts and the geometrical model developed for this subclass of geometries can be
+applied in a straightforward manner to Euclidean geometries
+of higher dimensions and to projective geometries. It should
+be stated that the geometrical approach has been already used
+to characterize trapping sets of projective geometry codes of
+dimensions 2 and 3 in [3] and the related stopping sets in
+[4]. Our approach is simpler and more elementary than that
+
+Deﬁnition 1. Let G be the Tanner graph of a binary LDPC
+code C of length n given by the null space of an m × n matrix
+H over GF(2). For 1 ≤ κ ≤ n and 0 ≤ τ ≤ m, we have the
+following deﬁnitions [5]:
+1) A (κ, τ ) trapping set is a set of κ VNs in G which
+induces a sub-graph of G with exactly τ odd-degree CNs
+and an arbitrary number of even-degree CNs.
+2) An elementary (κ, τ ) trapping set is a trapping set for
+which all CNs in the induced sub-graph of the Tanner
+graph have degree one or degree two, and there are
+exactly τ degree-one CNs.
+3) A small (κ, τ ) trapping set is a trapping set for which
+√
+κ ≤ n and τ /κ ≤ 4.
+Suppose, in transmission of a codeword in C, an error
+pattern e with κ errors at the locations of the κ VNs of a
+(κ, τ ) trapping set, T, occurs. This error pattern will cause
+τ parity-check failures. In this case, for iterative decoding,
+another decoding iteration must be carried out to correct
+the failed check-sums. Iterative decoding, such as the SumProduct Algorithm (SPA) and the Min-Sum Algorithm (MSA),
+is very susceptible to trapping sets of a code because it works
+locally in a distributed-processing manner. Each CN has a
+local processing unit to process the messages received from
+the VNs connected to it and each VN has a local processing
+unit to process the messages received from the CNs connected
+to it. Hopefully, these local processing units through iterations
+and message exchanges collect enough information to make a
+global optimum decision of the transmitted code bits.
+In each decoding iteration, we call a CN a satisﬁed CN if
+it satisﬁes its corresponding check-sum constraint, otherwise,
+we call it an unsatisﬁed CN. During the decoding process,
+the decoder undergoes state transitions from one state to
+another until all the CNs satisfy their corresponding check-sum
+
+1
+
+the number τ of odd-degree CNs smaller than γ. For several
+classes of algebraic LDPC codes, their Tanner graphs contain
+no harmful trapping sets of sizes smaller than their minimum
+distances, which are relatively large. Hence, the error-ﬂoors of
+these codes are expected to be very low.
+
+constraints or a predetermined maximum number of iterations
+is reached. In the process of a decoding iteration, the messages
+from the satisﬁed CNs try to reinforce the current decoder
+state, while the messages from the unsatisﬁed CNs try to
+change some of the bit decisions to satisfy their check-sum
+constraints. If errors affect the κ code bits (or the κ VNs) of a
+(κ, τ ) trapping set T, the τ odd-degree CNs, each connected to
+an odd number of VNs in T, will not be satisﬁed while all other
+CNs will be satisﬁed. The decoder will succeed in correcting
+the errors in T if the messages coming from the unsatisﬁed
+CNs connected to the VNs in T are strong enough to overcome
+the messages coming from the satisﬁed CNs. However, this
+may not be the case if τ is small. As a result, the decoder
+may not converge to a valid codeword even if more decoding
+iterations are performed and this non-convergence of decoding
+results in an error-ﬂoor.
+For the binary-input AWGN channel, error patterns with
+a small number of errors are more probable to occur than
+error patterns with a larger number of errors. Consequently, in
+message-passing decoding algorithms, the most harmful (κ, τ )
+trapping sets are usually those with small values of κ and τ ,
+especially when the value of τ is very small compared to
+that of κ. From extensive computer simulations reported in
+the literature, it has been observed that most trapping sets
+that exert a strong inﬂuence on the error-ﬂoor are elementary
+trapping sets and small trapping sets, see Deﬁnition 1 parts 2)
+and 3), respectively.
+Furthermore, undetected errors caused by minimum-weight
+codewords also contribute to the error-ﬂoor of the code. These
+minimum-weight codewords correspond to (dmin , 0) trapping
+sets where dmin is the minimum distance of the code. If there
+are no harmful trapping sets of size smaller than dmin , then
+the error-ﬂoor of the code decoded with iterative decoding is
+dominated by the minimum distance of the code.
+A regular binary LDPC code is given by the null space of
+a sparse parity-check matrix H over GF(2) that has constant
+column weight γ and constant row weight ρ. Such an LDPC
+code is said to be (γ, ρ)-regular. In almost all of the proposed
+constructions of LDPC codes, the following constraint on the
+rows and columns of the parity-check matrix H is imposed:
+no two rows (or two columns) can have more than one place
+where they both have non-zero components. This constraint
+on the rows and columns of H is referred to as the rowcolumn (RC)-constraint. The RC-constraint ensures that the
+Tanner graph of the LDPC code given by the null space of H
+has a girth of at least 6 and that the minimum distance of the
+code is at least γ + 1 [6], [7]. A parity-check matrix H that
+satisﬁes the RC-constraint is called an RC-constrained paritycheck matrix and the code given by its null space is called an
+RC-constrained LDPC code. The code is cyclic if the cyclic
+shift of every codeword in the code is also a codeword. If H
+is a column of circulants, then its null space is a cyclic code.
+In a very recent paper [8], we investigated the trapping set
+structure of RC-constrained regular LDPC codes and showed
+that, for an RC-constrained (γ, ρ)-regular LDPC code, its
+Tanner graph contains no trapping set of size κ ≤ γ with
+
+III. TWO-DIMENSIONAL EUCLIDEAN
+GEOMETRIES
+In this section, we give a brief review of two-dimensional
+Euclidean geometries and develop some of their structural
+properties which are pertinent for analyzing the trapping set
+structure of EG-LDPC codes.
+Consider the two-dimensional Euclidean geometry EG(2, q)
+over the ﬁeld GF(q), where q is a power of a prime. This
+geometry consists of q 2 points and q(q + 1) lines. A point in
+EG(2, q) is a two-tuple a = (a0 , a1 ) over GF(q) and the zero
+two-tuple (0, 0) is called the origin. A line in EG(2, q) is a
+one-dimensional subspace or its coset of the vector space of
+all the q 2 two-tuples over GF(q). A line contains q points. If
+a point a is on a line, we say that the line passes through the
+point a. Any two points in EG(2, q) are connected by one and
+only one line.
+The ﬁeld GF(q 2 ), as an extension ﬁeld of the ﬁeld GF(q),
+is a realization of EG(2, q) [7]. Let α be a primitive element
+of GF(q 2 ). Then, the powers of α, α−∞
+0, α0 = 1, α,
+2
+q2 −2
+2
+α ,. . . , α
+, give all the q elements of GF(q 2 ) and they
+represent the q 2 points of EG(2, q). The 0-element represents
+the origin of EG(2, q).
+For every point a in EG(2, q), there are q + 1 lines that
+intersect at (or pass through) the point a. These lines are said
+to form a bundle of lines intersecting at the point a, called an
+intersecting bundle at a and denoted by ∆(a). Any point in
+EG(2, q) other than a lies on one and only one line in ∆(a)
+while the point a lies on every line in ∆(a). Let ∆(b) be the
+bundle of lines intersecting at the point b = a. Then ∆(a)
+and ∆(b) have a unique line in common, namely, the line
+connecting points a and b.
+Two lines in EG(2, q) are called parallel if they do not
+have points in common. The q(q + 1) lines in EG(2, q) can
+be partitioned into q + 1 sets, each set consists of q parallel
+lines and is called a parallel bundle. Each point in EG(2, q)
+lies on one and only one line in each parallel bundle.
+Let α be a primitive element of GF(q 2 ). Then the order
+of αq+1 is q − 1. The set L−∞ = {α−∞ = 0, α0 =
+1, α(q+1) , . . . , α(q−2)(q+1) } of q points in EG(2, q) form a
+line passing through the origin. For 0 ≤ j ≤ q, the set
+αj L−∞ = {0, αj , α(q+1)+j , . . . , α(q−2)(q+1)+j } of q points
+also forms a line passing through the origin of EG(2, q)
+[7]. Hence, L−∞ , αL−∞ , . . . , αq L−∞ give the q + 1 lines
+intersecting at the origin.
+Let L = {αj1 , αj2 , . . . , αjq } be a line in EG(2, q) not
+passing through the origin with αj1 , αj2 , . . . , αjq as its q
+points where 0 ≤ j1 , j2 , . . . , jq < q 2 − 1. For 0 ≤ i < q 2 − 1,
+let αi L = {αj1 +i , αj2 +i , . . . , αjq +i }. Then, the set αi L of q
+points also forms a line in EG(2, q) not passing through the
+
+2
+
+2
+
+origin and α0 L, αL, . . . , αq −2 L give all the q 2 − 1 lines in
+EG(2, q) not passing through the origin.
+
+If we remove the ﬁrst column from the parity-check matrix
+HEG , the top sub-matrix becomes a (q+1)×(q 2 −1) circulant
+2
+2
+H∗
+EG,T and the bottom sub-matrix becomes a (q −1)×(q −1)
+∗
+square circulant HEG,B . The resultant matrix becomes
+
+IV. EG-LDPC CODES
+In this section, we deﬁne parity-check matrices
+for Euclidean geometry codes. For a line, L,
+in EG(2, q), we deﬁne the q 2 -tuple over GF(2):
+vL
+=
+(v−∞ , v0 , v1 , . . . , vq2 −2 ), whose components
+2
+correspond to the q 2 points α−∞ , α0 , α, α2 , . . . , αq −2
+j
+of EG(2, q), where vj = 1 if and only if α is a point on L
+and vj = 0 otherwise. The weight of vL is q. This q 2 -tuple
+vL is called the incidence vector of the line L.
+Form a q(q + 1) × q 2 matrix HEG over GF(2) with the
+incidence vectors of the q(q + 1) lines of EG(2, q) as rows.
+This matrix is constructed as follows. Let L−∞ and L be a line
+passing through the origin of EG(2, q) and a line not passing
+through the origin, respectively. We arrange the rows of HEG
+in such a way that the incidence vectors of the lines L−∞ ,
+αL−∞ , . . ., αq L−∞ are the ﬁrst q + 1 rows of HEG and the
+incidence vectors of the lines αj L with 0 ≤ j < q 2 − 1 are the
+next q 2 − 1 rows of HEG . We label the rows of HEG from
+0 to q(q + 1) − 1 and the columns of HEG from −∞, 0 to
+q 2 −2. The column labeled with −∞ corresponds to the origin
+of the geometry. For 0 ≤ j < q 2 − 1, the column labeled j
+corresponds to the point αj . Let HEG,T and HEG,B be the
+sub-matrices of HEG that consist of the top q + 1 and the
+bottom q 2 − 1 rows of HEG , respectively. Then,
+HEG =
+
+HEG,T
+HEG,B
+
+.
+
+H∗ =
+EG
+
+H∗
+EG,T
+H∗
+EG,B
+
+.
+
+(2)
+
+The null space of H∗ gives a cyclic EG-LDPC code since
+EG
+∗
+both H∗
+EG,T and HEG,B are circulants. This code, which we
+(0)
+denote by CEG,cyc , has length q 2 − 1 and minimum distance
+at least q + 2. If we use the bottom circulant H∗
+EG,B in (2) as
+the parity-check matrix, then the null space of H∗
+EG,B gives a
+(1)
+cyclic-EG-LDPC code CEG,cyc of length q 2 −1 with minimum
+(0)
+distance at least q + 1. The cyclic-LDPC codes, CEG,cyc and
+(1)
+CEG,cyc are called type-0 and type-1 cyclic-EG-LDPC codes,
+respectively. The type-1 cyclic-EG-LDPC codes were ﬁrst
+introduced in [6]. Huang et. al. [8] have recently proved that
+their Tanner graphs do not contain harmful trapping sets of
+sizes smaller than their minimum distances.
+The type-1 cyclic EG-LDPC codes, which were introduced
+in [6], are dual codes of a special subclass of polynomial codes
+discovered in the late 1960’s and early 1970’s [9],[10]. For
+s
+q = 2s , it was proved that the rank of H∗
+EG,B is 3 − 1
+(1)
+and the type-1 cyclic EG-LDPC code CEG,cyc given by the
+s
+null space of H∗
+EG,B has minimum distance exactly 2 + 1.
+(0)
+The type-0 cyclic EG-LDPC code CEG,cyc is a sub-code of
+(1)
+the type-1 cyclic EG-LDPC code CEG,cyc. It can be readily
+proved that the rank of H∗ is 3s and the minimum distance
+EG
+(0)
+of CEG,cyc is exactly 2s + 2. The EG-LDPC code CEG given
+by the parity-check matrix HEG in (1) is an extended code
+(0)
+of CEG,cyc and the rank of HEG is also 3s . The minimum
+distance of CEG is exactly 2s + 2.
+
+(1)
+
+The top sub-matrix HEG,T of HEG is a (q + 1) × q 2 matrix
+over GF(2) which has the following structures: 1) the −∞th column consists of q + 1 1-entries; and 2) the 0-th to the
+(q 2 − 2)-th columns form a row of (q − 1) identity matrices of
+size (q + 1) × (q + 1). The bottom sub-matrix HEG,B of HEG
+has the following structures: 1) the −∞-th column consists
+of q 2 − 1 0-entries; and 2) the other q 2 − 1 columns form a
+(q 2 −1)×(q 2 −1) circulant with both column and row weights
+equal to q. The column and row weights of HEG are q + 1
+and q, respectively. For j = −∞ or 0 ≤ j < q 2 − 2, there
+are q + 1 rows in HEG that have 1-components at the j-th
+position. These rows are the incidence vectors of the q + 1
+lines that intersect at the point αj of EG(2, q). The rows of
+the top sub-matrix HEG,T of HEG correspond to the q + 1
+lines of EG(2, q) that intersect at the origin and the rows of
+the sub-matrix HEG,B of HEG correspond to the q 2 − 1 lines
+that do not pass through the origin.
+Since two lines in EG(2, q) are either parallel or they
+intersect at one and only one point, their corresponding
+incidence vectors have at most one place where they both
+have 1-components. This implies that HEG satisﬁes the
+RC-constraint. Its null space gives a binary RC-constrained
+(q + 1, q)-regular EG-LDPC code CEG . The RC-constraint on
+HEG ensures that the minimum distance of this code is at
+least q + 2 and its Tanner graph has a girth of at least 6.
+
+V. TRAPPING SETS OF EG-LDPC CODES
+In this section, we analyze the structure of trapping sets of
+the EG-LDPC code, CEG , whose parity-check matrix, HEG ,
+is the q(q + 1) × q 2 matrix given by (1).
+A. Geometrical Interpretation of a Trapping Set
+The rows of HEG correspond to the q(q + 1) lines of
+EG(2, q) and the columns correspond to the q 2 points of
+EG(2, q). For the purpose of our analysis, we label the rows
+with L0 , L1 , . . . , Lq(q+1)−1 , the lines of EG(2, q), and label
+2
+the columns with α−∞ = 0, α0 = 1, α, α2 , . . . , αq −2 , the
+points of EG(2, q), where α is a primitive element of GF(q 2 ).
+The Tanner graph GEG associated with the parity-check
+matrix HEG consists of q 2 VNs and q(q + 1) CNs. Since
+the VNs correspond to the columns of HEG and the CNs
+correspond to the rows of HEG , we label the VNs and the
+CNs of GEG as we labeled the columns and the rows of HEG ,
+respectively. A VN αj is connected to a CN Li if and only
+if αj is a point on the line Li in EG(2, q), i.e., if and only if
+the line Li passes through the point αj . Since each point in
+EG(2, q) is intersected by q +1 lines and each line in EG(2, q)
+
+3
+
+consists of q points, we readily see that the degree of each
+VN in the Tanner graph GEG associated with the parity-check
+matrix HEG is q + 1 and the degree of each CN in GEG is q.
+The Tanner graph GEG is actually a graphical representation
+of the geometry EG(2, q).
+Let Λ be a set of κ points and Φ(Λ) be the set of lines,
+each passing through at least one point in Λ. Then, Λ induces
+a (κ, τ ) trapping set where τ is the number of lines in Φ(Λ),
+each passing through an odd number of points in Λ. Hence,
+if ni is the number of lines in Φ(Λ), each passing through
+exactly i points in Λ, then
+τ = n1 + n3 + n5 + · · · .
+
+matrix HEG contains no small trapping set of size κ ≤ q − 3
+as τ /κ ≥ q + 2 − κ > 4 in this case. On the other hand, from
+the same deﬁnition, since the code length n = q 2 , it follows
+that GEG contains no small trapping set of size κ ≥ q + 1
+√
+since κ ≥ n + 1 in this case. For q = 2s , the minimum
+distance of CEG is 2s + 2. The above result basically says that
+the Tanner graph GEG of CEG contains no trapping set of size
+smaller than the minimum distance 2s + 2 of the code with
+the number of CNs of odd degrees smaller than 2s + 1 (the
+column weight of the parity-check matrix HEG ).
+i
+Equality holds in (7) if and only if 2 ni = ini /2 for 2 ≤
+i ≤ κ, which is the case if and only if n3 = n4 = · · · =
+nκ = 0, i.e., each line in Φ(Λ) passes through at most two
+points in Λ. This is the same as saying that no three points
+in Λ are collinear. In this case, we say that the points in Λ
+have a uniform pair-wise distribution. If this condition holds,
+then Λ forms a (κ, (q + 2 − κ)κ) elementary trapping set. Any
+other distribution of points will result in a trapping set with a
+larger number CNs with odd degrees.
+As another special case, we consider the extreme opposite
+case in which all the points in Λ are collinear. Then, n2 =
+· · · = nκ−1 = 0 and nκ = 1. Substituting in (4), it follows
+that n1 = qκ, i.e., the trapping set has qκ CNs of degree 1
+in addition to a CN of degree κ. Hence, Λ forms a (κ, qκ)
+trapping set if κ is even and a (κ, qκ + 1) trapping set if κ
+is odd. Typically, such trapping sets will not trap the iterative
+decoder since they have large numbers of CNs of odd degree.
+
+(3)
+
+Notice that ni = 0 for i = 0 or i > κ. Based on this
+geometrical point of view, a trapping set of an EG-LDPC code
+simply corresponds to a sub-geometry of EG(2, q).
+B. General Bounds on Trapping Sets
+We derive here a lower bound on the number, n1 , of lines
+passing through exactly one point in Λ. This bound will
+certainly give a lower bound on τ in (3).
+First, we count, in two different ways, the number of
+pairs where each pair consists of a point in Λ and a line in
+Φ(Λ) passing through this point. Since each of the κ points
+in Λ is on q + 1 lines, the total number of such pairs is
+(q + 1)κ. Alternatively, since a line passing through i points
+in Λ contributes i such pairs, the total number of pairs is
+n1 + 2n2 + · · · + κnκ . Hence,
+n1 + 2n2 + · · · + κnκ = (q + 1)κ.
+
+C. Detailed Structure of Trapping Sets
+In the previous subsection, we developed a bound on
+the number of odd-degree CNs in the Tanner graph GEG
+associated with the parity-check matrix HEG of the EG-LDPC
+code CEG . In the following, we improve upon this bound by
+considering the detailed conﬁguration of lines passing through
+the points corresponding to the trapping set.
+Based on the geometrical interpretation presented in this
+paper, to characterize the subgraph induced by a trapping set
+of κ VNs, labelled αj1 , αj2 , . . . , αjκ , in the Tanner graph of an
+EG-LDPC code, we consider the set Λ = {αj1 , αj2 , . . . , αjκ }
+in EG(2, q) and the set of lines, Φ(Λ), that contain points
+in Λ. Notice that the set of lines passing through αjl , for
+1 ≤ l ≤ κ, is the intersecting bundle ∆(αjl ). Hence,
+Φ(Λ) = ∆(αj1 ) ∪ ∆(αj2 ) ∪ · · · ∪ ∆(αjκ ). A CN of degree
+1 corresponds to a line passing through one and only one
+point in Λ, i.e., the line belongs to one and only one of
+the intersecting bundles ∆(αj1 ), ∆(αj2 ), . . . , ∆(αjκ ). In the
+following, we lower bound the number of such lines.
+Recall that each parallel bundle, of q lines, contains all the
+points in EG(2, q) and, in particular, all the points in Λ =
+{αj1 , αj2 , . . . , αjκ }. Let P be a parallel bundle of lines and
+Li1 , Li2 , . . . , Lib be the lines in P , each passing through at
+least one point in Λ. For 1 ≤ l ≤ b, let Λl be the set of points
+in Λ that lie on line Lil and let κl be the number of such points.
+Since the lines Li1 , Li2 , . . . , Lib are parallel, each point in Λ
+lies on one and only one of these lines. Hence, Λ1 , Λ2 , . . . , Λb
+are disjoint sets whose union is Λ and κ1 + κ2 + · · · + κb = κ.
+
+(4)
+
+Next, we count, also in two different ways, the number of pairs
+of points in Λ. (Throughout this paper, by a pair of points we
+mean an unordered pair of distinct points.) Since Λ consists of
+κ points, there are κ such pairs. Alternatively, since every
+2
+pair of points in Λ is on a unique line in Φ(Λ) and a line
+i
+passing through i points in Λ connects 2 pairs of points, the
+κ
+i
+total number of pairs of points in Λ is i=1 2 ni . Hence,
+2
+3
+κ
+n2 +
+n3 + · · · +
+nκ =
+2
+2
+2
+As
+
+i
+2
+
+κ
+.
+2
+
+(5)
+
+= i(i − 1)/2 ≥ i/2 for i ≥ 2, it follows from (5) that
+2n2 + 3n3 + · · · + κnκ ≤ 2
+
+κ
+2
+
+= κ(κ − 1).
+
+(6)
+
+From (4) and (6), we obtain
+n1 ≥ (q + 1)κ − κ(κ − 1) = (q + 2 − κ)κ.
+
+(7)
+
+If 1 ≤ κ ≤ q + 1, then (q + 2 − κ)κ ≥ q + 1. This follows
+from the fact that (q + 2 − κ)κ is a concave function in κ
+which equals q + 1 for κ = 1 and q + 1. From (3) and (7),
+we conclude that the number of CNs of odd degree in any
+trapping set of size at most q + 1 is at least q + 1. Since the
+ratio of the number of CNs of odd degree to the number of
+VNs is at least q + 2 − κ, it follows, from Deﬁnition 1 part 3),
+that the Tanner graph GEG associated with the parity-check
+
+4
+
+Let Ωl be the set consisting of the κl intersecting bundles
+whose intersecting points are those points in Λ lying on Lil .
+We call Ωl the congregation with the line Lil as its center.
+Thus, in total we have b center lines and all other lines in
+Φ(Λ) are non-center lines. We denote by n′ the number of
+1
+center lines Lil , 1 ≤ l ≤ b, for which κl = 1, i.e., n′ =
+1
+|{l : 1 ≤ l ≤ b, κl = 1}|. For 1 ≤ i ≤ κ, let n′′ denote the
+i
+number of non-center lines, each passing through i points in
+Λ. Since any two points in Λl are connected by a center line,
+they cannot lie on the same non-center line. Hence, the points
+on any non-center line belong to different sets Λ1 , Λ2 , . . . , Λb .
+This implies that n′′ = 0 for i > b. We are interested in lower
+i
+bounding n1 = n′ + n′′ , the total number of lines in Φ(Λ)
+1
+1
+that pass through exactly one point in Λ.
+Since each of the κ points in Λ is on q + 1 lines, including
+the center line, each point is on exactly q non-center lines.
+Hence, the number of pairs each consisting of a point in Λ
+and a non-center line passing through the point is
+n′′ + 2n′′ + · · · + bn′′ = qκ.
+1
+2
+b
+
+associated with this value of a1 . The q lines associated with the
+q values of a1 ∈ GF(q) form a parallel bundle. (This parallel
+bundle can be viewed as the set of the q horizontal lines in
+a two-dimensional plane where each point in the Euclidean
+geometry is represented by its cartesian coordinates.) The
+number of points in Λ on the line associated with a1 is the
+number of points (a0 , a1 ) ∈ Λ. From this, it is easy to compute
+κ1 , κ2 , . . . , κb which can be used in (12) to obtain a lower
+bound on the number of CNs of degree one in the trapping
+set.
+VI. CONCLUSION
+In this paper, we present a geometrical model to analyze
+the trapping set structure of the Tanner graph of the EGLDPC code with parity-check matrix HEG as given in (1).
+The parity-check matrix H∗ in (2) of the cyclic EG-LDPC
+EG
+(0)
+code CEG,cyc is obtained by removing the origin from the
+Euclidean geometry EG(2, q) and, therefore, (6) also holds
+for its associated trapping sets. By also removing all the lines
+passing through the origin, we obtain the parity-check matrix
+(1)
+H∗
+EG,B of the cyclic-EG-LDPC code CEG,cyc . In this case,
+each point is on q lines rather than on q + 1 lines as in the
+(1)
+case of HEG . Hence, (6) also holds for CEG,cyc after replacing
+q + 1 by q. Our approach can also be applied to analyze the
+trapping set structure of projective geometries and Euclidean
+geometries with dimensions greater than two [11].
+
+(8)
+
+For 1 ≤ r < t ≤ b, there are κr κt pairs of points, one
+belonging to Λr and the other to Λt . Hence, the number of
+pairs of points in Λ that do not belong to the same set Λl for
+1 ≤ l ≤ b, is given by
+ρ=
+
+κr κl =
+
+b
+l=1
+
+(
+
+1≤r<t≤b
+
+κl )2 −
+2
+
+b
+l=1
+
+κ2
+l
+
+=
+
+κ2 −
+
+b
+l=1
+
+2
+
+κ2
+l
+
+.
+
+ACKNOWLEDGMENT
+This work was supported by the National Science Foundation (NSF) under the grant CCF1015548.
+
+(9)
+Since the two points in every such pair are connected by a
+non-center line, and a non-center line passing through i points
+i
+in Λ connects 2 such pairs, we have
+2 ′′
+3 ′′
+b ′′
+n = ρ.
+n2 +
+n3 + · · · +
+2
+2 b
+2
+
+R EFERENCES
+[1] D. J. C. MacKay and M. S. Postol, “Weaknesses of Margulis and
+Ramanujan-Margulis low-density parity-check codes,” Electronic Notes
+in Theoretical Computer Science, vol. 74, pp. 97–104, 2003.
+[2] T. Richardson, “Error ﬂoors of LDPC codes,” in Proc. 41st Annual
+Allerton Conf. Commun., Control and Comp., Monticello, IL, Oct. 2003,
+pp. 1426–1435.
+[3] S. Laendner, T. Hehn, O. Milenkovic, and J. B. Huber, “The trapping
+redundancy of linear block codes,” IEEE Trans. Inform. Theory, vol. 55,
+no. 1, pp. 53–63, Jan. 2009.
+[4] N. Kashyap and A. Vardy, “Stopping sets in codes from designs,” in
+Proc. IEEE Int. Symp. Inform. Theory, Yokohama, Japan, Jun./Jul. 2003,
+p. 122.
+[5] S. L¨ ndner and O. Milenkovic, “Algorithmic and combinatorial analysis
+a
+of trapping sets in structured LDPC codes,” in Proc. Int. Conf. Wireless
+Networks, Communications and Mobile Computing, Maui, HI, Jun.
+2005, pp. 630–635.
+[6] Y. Kou, S. Lin, and M. P. C. Fossorier, “Low density parity-check codes
+based on ﬁnite geometries: A rediscovery and new results,” IEEE Trans.
+Inform. Theory, vol. 47, no. 7, pp. 2711–2736, Nov. 2001.
+[7] S. Lin and D. J. Costello, Jr., Error Control Coding: Fundamentals and
+Applications, 2nd edition. Upper Saddle River, NJ: Prentice Hall, 2004.
+[8] Q. Huang, Q. Diao, S. Lin, and K. Abdel-Ghaffar, “Cyclic and quasicyclic LDPC codes on constrained parity-check matrices and their
+trapping sets,” IEEE Trans. Inform. Theory, vol. 58, no. 5, pp. 2648–
+2671, May 2012.
+[9] T. Kasami, S. Lin, and W. W. Peterson, “Polynomial codes,” IEEE Trans.
+Inform. Theory, vol. 13, no. 6, pp. 807–814, Nov. 1968.
+[10] S. Lin, “On the number of information symbols in the polynomial
+codes,” IEEE Trans. Inform. Theory, vol. 18, no. 6, pp. 785–794, Nov.
+1972.
+[11] H. Tang, J. Xu, S. Lin, and K. A. S. Abdel-Ghaffar, “Codes on ﬁnite
+geometries,” IEEE Trans. Inform. Theory, vol. 51, no. 2, pp. 572–596,
+Feb. 2005.
+
+(10)
+
+From (8) and (10) and following the same argument leading
+to (7), we obtain
+b
+
+n′′ ≥ qκ − 2ρ = qκ − κ2 +
+1
+
+κ2 .
+l
+
+(11)
+
+l=1
+
+Hence, the number of lines in Φ(Λ) passing through a single
+point in Λ, which is n1 = n′ + n′′ , is bounded by
+1
+1
+b
+
+n1 ≥ qκ − κ2 +
+
+l=1
+
+κ2 + |{l : 1 ≤ l ≤ b, κl = 1}|.
+l
+
+(12)
+
+This gives a lower bound on the number of CNs of degree one
+in a trapping set of size κ. We notice that this lower bound
+agrees with the lower bound in (7) whenever κl ≤ 2 for all
+1 ≤ l ≤ b and improves upon it in all other cases.
+Inequality (12) can be applied easily once the points in the
+geometry corresponding to the VNs of the trapping set are
+given. The inequality depends on the numbers κ1 , κ2 , . . . , κb ,
+which in turn depend on the set of points Λ as well as on
+the choice of the parallel bundle P . For example, if each
+point is represented by a two-tuple (a0 , a1 ) over GF(q), then
+{(a0 , a1 ) : a0 ∈ GF(q)} for some a1 ∈ GF(q) is a line
+
+5
+
+

@@ -1,0 +1,979 @@
+Title:          CMMI9
+Creator:        David M. Jones
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Fri May 18 22:54:07 2012
+ModDate:        Tue Jun 19 12:55:18 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      595.28 x 841.89 pts (A4)
+File size:      339495 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569565547
+
+Estimating Multiple Concurrent Processes
+Jayadev Acharya
+
+Hirakendu Das
+
+Ashkan Jafarpour
+
+Alon Orlitsky
+
+Shengjun Pan
+
+ECE, UCSD
+jayadev@ucsd.edu
+
+ECE, UCSD
+hdas@ucsd.edu
+
+ECE, UCSD
+ajafarpo@ucsd.edu
+
+ECE & CSE, UCSD
+alon@ucsd.edu
+
+CSE, UCSD
+s1pan@ucsd.edu
+
+where µ1 ≥ µ2 ≥ · · · ≥ µm > 0, namely, the multiset of
+positive multiplicities, or number of times each process that
+was active, ﬁred till time t. Note that we observe only the m ≤
+k processes that were active at least once during time t, we are
+not given any information about k or the k − m that were not
+active. An estimator Q takes µ as input and outputs a multiset
+def
+of nonnegative reals Qµ = (q1 , q2 , . . . , qk′ ) as an estimate of
+the unknown Λ. To measure the quality of estimation, one may
+use a suitable distance measure D(Λ, Q). One such distance
+def
+∞
+measure is the (sorted) L1 distance |Λ−Q| =
+i=1 |λi −qi |,
+′
+where λi = 0 for i > k and qi = 0 for i > k . The following
+is an example of Poisson multiset estimation.
+
+Abstract—We consider two related problems of estimating
+properties of a collection of point processes: estimating the
+multiset of parameters of continuous-time Poisson processes
+based on their activities over a period of time t, and estimating
+the multiset of activity probabilities of discrete-time Bernoulli
+processes based on their activities over n time instants.
+For both problems, it is sufﬁcient to consider the observations’
+proﬁle—the multiset of activity counts, regardless of their process
+identities. We consider the proﬁle maximum likelihood (PML) estimator that ﬁnds the parameter multiset maximizing the proﬁle’s
+likelihood, and establish some of its competitive performance
+guarantees. For Poisson processes, if any estimator approximates
+the parameter multiset to within distance ǫ with error probability
+δ, then PML approximates the multiset to within distance 2ǫ
+√
+with error probability at most δ · e4 t·S , where S is the sum of
+the Poisson parameters, and the same result holds for Bernoulli
+processes.
+In particular, for the L1 distance metric, we relate the
+problems to the long-studied distribution-estimation problem and
+apply recent results to show that the PML estimator has error
+0.9
+probability e−(t·S) for Poisson processes whenever the number
+of processes is k = O(tS log(tS)), and show a similar result for
+Bernoulli processes. We also show experimental results where the
+EM algorithm is used to compute the PML.
+
+Example 1. For Λ = (λ1 , λ2 , λ3 , λ4 ) = (3.5, 3, 1.2, 0.1)
+and t = 2, we have µ(1) ∼ poi(7), µ(2) ∼ poi(6),
+µ(3) ∼ poi(2.4) and µ(4) ∼ poi(0.2). Let the samples
+produced be µ(1) = 6, µ(2) = 8, µ(3) = 3, µ(4) = 0,
+namely, µ = (8, 6, 3). If Z ∼ poi(λ), then the
+maximum likelihood estimate of λ is Z. Hence,
+Qµ = µ/t = (4, 3, 1.5) is a reasonable estimate of Λ
+and |Λ − Qµ | = 0.5 + 0 + 0.3 + 0.1 = 0.9.
+
+I. I NTRODUCTION
+
+The Bernoulli multiset estimation problem is deﬁned simidef
+larly. Let B = (θ1 , θ2 , . . . , θk ), be the success probabilities of
+k Bernoulli 0-1 distributions, where θ1 ≥ θ2 ≥ · · · ≥ θk ≥ 0.
+def
+For each i ∈ [k], let X(i) = X(i, 1), X(i, 2), . . . , X(i, n) be
+n samples drawn independently according to Bernoulli(θi ).
+The samples X(i, j) take values 1 or 0 depending on whether
+user i is active or inactive at time instant j ∈ [n]. Let
+
+Service providers like websites or phone companies often
+want to estimate the usage patterns of their subscribers as
+a whole. For example, they may want to know how many
+users are active on an average at any point of time, or the
+number of heavy users or other aggregate usage statistics,
+based on observations over a period of time. We consider two
+natural and arguably the simplest models for this problem.
+In the Poisson model, the activities of different users are
+independent Poisson processes and in the Bernoulli model,
+they are independent Bernoulli processes. We want to estimate
+the multiset of Poisson parameters or success probabilities of
+the processes in the respective models, given samples from
+each of them.
+
+def
+
+X = X 1, X 2, . . . , X m
+def
+
+=
+
+j=1
+
+The Poisson multiset estimation problem is mathematically
+def
+deﬁned as follows. Let Λ = (λ1 , λ2 , . . . , λk ) be the parameters of k Poisson processes. Since we are interested in
+estimating only the multiset of Poisson parameters, without
+loss of generality we assume that λ1 ≥ λ2 ≥ · · · ≥ λk ≥ 0.
+Each of these processes is observed for time t and thus, the
+sample or multiplicity µ(i) produced by process i is distributed
+according to poi(λi · t) for i ∈ [k]. Here and throughout this
+paper, poi(λ) denotes the Poisson distribution with mean λ and
+def
+[k] = {1, 2, . . . , k} for any positive integer k. We observe
+def
+
+= (µ1 , . . . , µm )
+
+def
+
+=
+
+X(i, j) > 0, i ∈ [k] ,
+
+where m ≤ k, be the multiset of observed sequences, i.e.,
+that have at least one activity. Let µi be the number of ones
+in X i for i ∈ [m] and let µ = (µ1 , µ2 , . . . , µm ) be the
+multiset of counts of ones in the sequences in X. Without
+loss of generality, µ1 ≥ µ2 ≥ · · · ≥ µm > 0. It is
+sufﬁcient to consider only estimators that depend on X only
+through µ. This is because we are interested in estimating only
+the multiset B as a whole and not the success probabilities
+of speciﬁc processes, and furthermore, the sequences are
+generated i.i.d.. See [3, Section 3.1.3] for a simple proof of
+this fact. Hence, a Bernoulli multiset estimator Q takes X
+def
+def
+and outputs QX = Qµ = (q1 , q2 , . . . , qk′ ) as an estimate of
+B. As earlier, any suitable distance D(B, Q), e.g., the L1
+def
+∞
+distance |B − Q| =
+i=1 |θi − qi |, can be used to measure
+the quality of estimation. The following example illustrates
+Bernoulli multiset estimation.
+
+A. Notation and problem deﬁnition
+
+µ
+
+n
+
+X(i) :
+
+µ(i) : µ(i) > 0, i ∈ [k] ,
+
+1
+
+1
+1
+Example 2. Let B = (θ(1), . . . , θ(5)) = (1, 2 , 1 , 1 , 8 ).
+8 8
+Let n = 3 and the sample sequences obtained be
+X(1) = (1, 1, 1), X(2) = (1, 0, 1), X(3) = (0, 0, 0),
+X(4) = (1, 0, 0), X(5) = (0, 0, 0). We only observe the
+sequences X = X(1), X(2), X(4). The empirical estimator
+2
+outputs Q = µ/n = (1, 3 , 1 ). If in addition, we are given
+3
+that k = 5 and that each of the θ(i) have a uniform prior
+over [0, 1], then one obtains the Laplace or add-one estimate
+3+1
+for each of the processes as ( 3+2 , 2+1 , 1+1 , 0+1 , 0+1 ) and
+3+2 3+2 3+2 3+2
+1
+4 3 2 1 1
+′
+outputs Q = ( 5 , 5 , 5 , 5 , 5 ). The multisets Q′′ = (1, 2 ),
+1
+′′′
+Q = (1, 1, 3 ). are also allowed estimates, although it is
+clear that they cannot generate the given sample sequences.
+Yet, |B − Q′′ | = 3 ≤ |B − Q| = 5 .
+8
+8
+
+is the number of multiplicities in µ that are equal to µ. We
+henceforth use µ and its proﬁle ϕ with the same meaning. The
+likelihood of a µ or its proﬁle ϕ under a collection Λ is
+def
+
+def
+
+Λ(ϕ) = Λ(µ) = Pr (µ(1), . . . , µ(k)) ∈ Sϕ
+Λ(µ(1), . . . , µ(k)),
+
+=
+(µ(1),...,µ(k))∈Sϕ
+def
+
+where Sϕ = Sµ is the collection of all (µ(1), . . . , µ(k))
+whose multiplicity multiset is µ. Similarly, in the Bernoulli
+multiset estimation problem, the probability of a µ and its
+proﬁle ϕ under a collection B is
+def
+
+def
+
+B(ϕ) = B(µ) = Pr (X(1), . . . , X(k)) ∈ Sϕ
+B(x(1), . . . , x(k)),
+
+=
+
+B. Empirical estimators
+
+(x(1),...,x(k))∈Sϕ
+
+For both Poisson and Bernoulli multiset estimation, it is
+natural to consider the empirical estimator Qemp that outdef
+def
+m
+m
+puts Qemp,p = ( µt1 , . . . , µt ) and Qemp,b = ( µ1 , . . . , µn )
+µ
+µ
+n
+for the respective problems. The probability that a collection
+of Poisson processes Λ produce samples (µ(1), . . . , µ(k)) is
+
+where Sϕ is the collection of all (x(1), . . . , x(k)) whose
+multiplicity multiset is µ.
+For both problems we consider the proﬁle maximum
+likelihood (PML) estimator that maximizes the likelihood of observing the proﬁle of the given observations. For Poisson multiset estimation, the PML distribudef
+PML,p def ˆ
+tion is Qϕ
+= Λϕ = arg maxΛ Λ(ϕ) and the PML is
+def
+ˆ
+ˆ
+Λ(ϕ) = maxΛ Λ(ϕ) = Λϕ (ϕ). When the maximization is
+limited to a class of Poisson multisets L, we use the notations
+PML ,p
+ˆ
+QL,ϕ and ΛL,ϕ . Likewise, for Bernoulli multiset estimation,
+def ˆ def
+we have QPML,b = Bϕ = arg maxB B(ϕ) and the PML is
+
+k
+
+Λ(µ(1), . . . , µ(k)) =
+
+(λi t)µ(i) e−λi t
+.
+µ(i)!
+i=1
+
+emp,p
+= maxΛ Λ(µ(1), . . . , µ(k)), i.e., the emHence Qµ
+pirical estimator maximizes the likelihood of observing
+(µ(1), . . . , µ(k)) such that µ(i) = µi for i ∈ [m] and µ(i) = 0
+for i > m.
+Similarly, the probability that a collection of Bernoulli
+processes B produce sequences (x(1), . . . , x(k)), with
+(µ(1), . . . , µ(k)) as the respective counts of ones is
+
+ϕ
+
+def
+ˆ
+ˆ
+B(ϕ) = maxB B(ϕ) = Bϕ (ϕ). When the maximization is
+limited to a class of Bernoulli multisets B, we use the notations
+PML
+ˆ
+QB,ϕ ,b and BB,ϕ .
+In general, QPML is different from Qemp . The PML technique, also known as pattern maximum likelihood, has been
+used earlier in [10], [11], [9] for estimating the probability
+multiset of distributions in the context of universal compression of large alphabet data sources. As we observe later,
+computation of PML Poisson multiset is almost identical to
+computing PML distribution, but PML Bernoulli multiset has
+a much different structure. We also develop useful connections
+between distribution estimation and Poisson and Bernoulli
+multiset estimation. For other recent works that efﬁciently
+exploit proﬁles for problems related to distribution multiset
+estimation and property testing, see [13] and references therein.
+
+k
+µ(i)
+
+θi
+
+B(x(1), . . . , x(k)) =
+i=1
+
+(1 − θi )n−µ(i) .
+
+emp,b
+Qµ
+
+Therefore
+= maxB B(x(1), . . . , x(k)) is the maximum likelihood estimator of (x(1), . . . , x(k)) such that µ(i) =
+µi for i ∈ [m] and µ(i) = 0 for i > m.
+def
+k
+For any Λ, let SΛ =
+i=1 λi and for any B, let
+def
+k
+emp,p
+SB =
+is a good
+i=1 θi . It can be shown that Q
+estimate of Λ in terms of L1 distance when k is small
+compared to t · SΛ since µ(i) concentrates around t · λ(i) for
+i ∈ [k] using Poisson tail bounds of Fact 4. Similarly, Qemp,b
+is a good estimate of B in terms of L1 distance when k is small
+compared to n · SB since µ(i) concentrates around n · θ(i) for
+i ∈ [k] using Chernoff bounds of Fact 7. However, it can also
+be shown similar to the large alphabet examples in [11], [6]
+that the empirical estimators may not be good estimates of Λ
+or B when the number of processes is large and k = Ω(tSΛ )
+or k = Ω(nSB ) respectively. In this paper, we show estimators
+that have good estimation guarantees even for large alphabets.
+
+D. Summary of main results
+We show competitive estimation guarantees for the PML
+estimators that can be described informally as follows. In
+the Poisson model, if there is an estimator Q that estimates
+any Λ to within ǫ in some distance D with high probability
+δ, i.e., Pr(D(Λ, Qϕ ) ≥ ǫ) ≤ δ, then the PML estimator
+ˆ
+provides a similar guarantee that Pr D(Λ, Λϕ ) ≥ 2ǫ ≤
+√
+4 t·SΛ
+−t·SΛ /3
+δ·e
++e
+. In the Bernoulli model, if an estimator Q
+is a good estimate of any B in some distance measure D such
+that Pr(D(B, Qϕ ) ≥ ǫ) ≤ δ, then the PML estimator is such
+√
+ˆ
+that Pr D(B, Bϕ ) ≥ 2ǫ ≤ δ·e4 n·SB +e−n·SB /3 . The results
+are shown using a similar competitive property of maximum
+likelihood estimators in general. Similar arguments have been
+used previously in [9] to show consistency properties of PML
+for distribution estimation.
+For these results to be useful, we need to show estimators
+√
+whose error probability δ is smaller than e−4 t·SΛ in the
+
+C. Proﬁle maximum likelihood (PML) estimators
+The empirical Poisson multiset estimator considers the likelihood of observing a speciﬁc (µ(1), . . . , µ(k)) such that the
+multiset of nonzero multiplicities is µ. However, for estimating
+the multiset Λ, it is natural to consider the overall likelihood of
+µ i.e., the probability of observing any (µ(1), . . . , µ(k)) whose
+multiplicity multiset is µ. The information in µ is equivalently
+def
+def
+conveyed by the proﬁle ϕ = ϕ(µ) = (ϕ1 , ϕ2 , . . .) where
+def
+ϕµ = |{µi : µi = µ, i ∈ [m]}|, called the prevalence of µ,
+2
+
+2
+
+√
+
+ˆ
+ˆ
+D(P, Pz ) ≤ D(P, Qz ) + D(Qz , Pz ) ≤ 2ǫ and
+
+Poisson model or e−4 n·SB in the Bernoulli model. We show
+the existence of such estimators when L1 is used as distance
+by relating these problems to that of distribution multiset
+estimation. It additionally shows that distribution multiset
+estimators can be easily adapted for Poisson and Bernoulli
+multiset estimation. In the distribution estimation problem,
+one wants to estimate the probability multiset {p1 , p2 , . . . , pk }
+k
+of an unknown distribution P , i.e.,
+i=1 pi = 1, given ℓ
+samples generated i.i.d. according to P . This problem has
+been studied for a long time, e.g., see [11], [9], [5], [14], [13]
+and references therein for an overview of past and current
+developments. In particular, estimators are shown in [13]
+that can approximate distributions to within an L1 distance
+of ǫ with high probability, whenever their support size is
+k = O(ǫ2.1 ℓ log(ℓ)). We show that in the Poisson model,
+estimating a Λ to within an L1 distance of ǫSΛ is equivalent
+Λ
+to estimating the distribution P = SΛ to within an L1 distance
+of ǫ using ℓ = O(t · SΛ ) samples. Furthermore, an error
+probability of δ(ℓ) for distribution estimation translates to
+δ(t · SΛ ) in the Poisson model. Likewise, for a Bernoulli
+B
+multiset B, a distribution estimator Q such that Pr(| SB −
+Qϕ | ≤ ǫ) ≤ δ(ℓ) implies a Bernoulli multiset estimator Q such
+that Pr(|B − Qϕ | ≤ ǫ) ≤ δ(n · SB ). where ℓ = O(n · SB ). We
+use the results for distribution estimation in [13] along with
+the competitive estimation guarantees for the PML estimator
+to show that for any Λ such that k = O(ǫ2.1 tSΛ log(tSΛ )),
+0.9
+PML
+Pr(|Λ − Qϕ | ≥ ǫ) ≤ e−(tSΛ ) and for any B such that k =
+0.9
+PML
+O(ǫ2.1 nSB log(nSB )), Pr(|B − Qϕ | ≥ ǫ) ≤ e−(nSB ) .
+Computational aspects of ﬁnding the PML multiset by
+leveraging existing techniques for computing PML distribution
+are discussed towards the end of the paper.
+
+ˆ
+Pr D(P, PZ ) ≥ 2ǫ
+
+ˆ
+= Pr (D(P, PZ ) ≥ 2ǫ) ∧ (P (Z) > δ)
+ˆ
++ Pr (D(P, PZ ) ≥ 2ǫ) ∧ (P (Z) ≤ δ)
+≤ 0 + Pr(P (Z) ≤ δ) ≤ δ · |Z|.
+
+For showing such an estimation guarantee for PML in
+the Poisson model, we use two more facts. In the multiset
+estimation problem, Z is the set of all proﬁles or all µ, which
+is inﬁnite. However, we show that the proﬁles generated by
+any Λ concentrate over a much smaller subset. For any ϕ and
+m
+its corresponding µ let Sϕ = Sµ = i=1 µi be the sum of
+k
+multiplicities. If ϕ ∼ Λ, then Sϕ = i=1 µ(i) is distributed
+according to poi(tSΛ ) by the well known property of sum of
+Poisson random variables. Hence, Sϕ concentrates around SΛ
+by the Poisson tail bounds given below.
+Fact 4. (Also [12, Corollary 32].) For all ǫ ∈ (0, 1)
+and sufﬁciently large λ, if X
+∼
+poi(λ), then
+Pr |X − λ| ≥ ǫλ
+≤ 2 exp(−ǫ2 λ/3). For α ≥ 2,
+Pr X ≥ αλ ≤ exp(−αλ/6).
+def
+
+Secondly, we use the fact that the set ΦS = {ϕ : Sϕ =
+i µi = S} is in 1-1 correspondence with the integer
+partitions of S [10] and can therefore be bounded by this well
+known fact about partition number [4].
+√2√
+√
+Fact 5. For all S, |ΦS | = p(S) ≤ eπ 3 S < e3 S .
+Using the general lemma and these facts, we have the
+following results.
+Lemma 6. Let L be a class of Poisson multisets Λ such that
+SΛ ≥ 2 and D(·, ·) be a distance measure on L. Suppose an
+estimator Q is such that for some ǫ, δ > 0, when ϕ ∼ Λ ∈ L,
+ˆ
+Pr √
+D(Λ, Qϕ ) ≥ ǫ ≤ δ. Then, Pr D(Λ, ΛL,ϕ ) ≥ 2ǫ ≤
+−tSΛ /3
+4 tSΛ
++e
+.
+δe
+
+II. C OMPETITIVE ESTIMATION GUARANTEES FOR THE
+PML ESTIMATOR
+We ﬁrst show a general competitive estimation guarantee
+for maximum likelihood (ML) estimators. Let Z be a discrete
+alphabet of size |Z| and P be a collection of probability
+distributions on Z. Given a sample Z generated according to
+an unknown distribution P ∈ P, we want to estimate P . An
+estimator Q : Z → P, outputs a distribution Qz ∈ P when
+given input z ∈ Z. The ML estimator outputs a distribution
+ˆ def
+Pz = arg maxP ∈P P (z). Let D(·, ·) be a distance measure
+ˆ
+deﬁned on distributions in P. The next lemma shows that PZ
+is almost as good as any other estimator.
+
+Proof Sketch. If ϕ ∼ Λ ∈ L, then
+ˆ
+Pr D(Λ, ΛL,ϕ ) ≥ 2ǫ
++ Pr
+
+√
+
+tSΛ
+
+.
+
+In the last inequality, the bound on the ﬁrst term follows
+from Sϕ ∼ poi(tSΛ ) and Fact 4. For the second term,
+we use Lemma 3, along with Fact 5 which implies that
+√
+|Z| = |{ϕ : Sϕ ≤ 2SΛ }| ≤ 2tSΛ · |Φ2tSΛ | ≤ e4 tSΛ .
+A similar estimation guarantee can be shown for PML
+Bernoulli multiset estimator. This time, we use the fact that
+k
+n
+if ϕ ∼ B, then Sϕ =
+i=1
+j=1 X(i, j) is a sum of
+independent 0-1 random variables and concentrates around its
+mean nSB using the Chernoff bounds below.
+
+Proof Sketch. If Z = z is such that P (z) > δ, then
+ˆ
+D(P, Pz ) ≤ 2ǫ. To see this, note that D(P, Qz ) ≤ ǫ, otherwise
+if D(P, Qz ) ≥ ǫ, then
+=
+
+ˆ
+D(Λ, ΛL,ϕ ) ≥ 2ǫ ∧ (Sϕ ≤ 2tSΛ )
+
+≤ e−tSΛ /3 + δe4
+
+Lemma 3. For some ǫ ≥ 0 and δ ∈ [0, 1], let Q be
+an estimator such that for all P ∈ P, when Z ∼ P ,
+ˆ
+Pr D(P, QZ ) ≥ ǫ ≤ δ. Then, Pr D(P, PZ ) ≥ 2ǫ ≤ δ · |Z|.
+
+Pr D(P, QZ ) ≥ ǫ
+
+≤ Pr Sϕ > 2tSΛ )
+
+n
+
+Fact 7. (Chernoff bounds.) Let X =
+i=1 Yi be a sum
+of independent 0-1 random variables Y1 , . . . , Yn such
+that Pr(Yi = 1) = pi . Let µ = E[X] =
+i pi . For
+2
+ǫ ∈ [0, 1], Pr(|X − µ| ≥ ǫµ) ≤ 2e−µǫ /3 . For ǫ ≥ 1,
+Pr(X ≥ (1 + ǫ)µ) ≤ e−µǫ/3 .
+
+′
+
+P (z )
+
+z ′ ∈Z:D(P,Qz′ )≥2ǫ
+
+≥ P (z) > δ,
+contradicting that Q has error probability at most δ. By a
+ˆ
+similar reasoning, D(Pz , Qz ) ≤ ǫ, since Q is a good estimator
+ˆz ∈ P as well and Pz (z) ≥ P (z) > δ. Hence,
+ˆ
+of P
+
+Lemma 8. Let B be a class of Bernoulli multisets B
+and D(·, ·) be a distance measure on B. For large n,
+3
+
+3
+
+′
+
+Λ
+distribution SΛ . Since the number of samples in the input Y
+Λ
+to Q is Sµ ≥ S2 and δ is monotonically decreasing, the error
+probability is at most δ tSΛ ).
+2
+Again by Fact 4, since Sϕ ∼ poi(tSΛ ),
+
+let Q be an estimator such that for some ǫ, δ > 0
+when X ∼ B ∈ B, Pr D(B, Qϕ(X) ) ≥ ǫ ≤ δ. Then,
+√
+ˆ
+Pr D(B, BB,ϕ(X) ) ≥ 2ǫ ≤ δe4 nSB + e−nSB /3 .
+To make use of these results, we show Poisson and
+Bernoulli√
+multiset estimators whose error probability is less
+√
+than e−5 tSΛ and e−5 nSB respectively by relating these
+problems to distribution multiset estimation.
+
+Pr |Sϕ − tSΛ | ≥ ǫtSΛ ) ≤ 2e−ǫ
+|Λ − Qpoi | = Λ −
+ϕ
+
+.
+
+Sϕ
+· Qϕ
+t
+
+Λ
+1
+tSΛ ·
+− tSΛ · Qϕ + tSΛ · Qϕ − Sϕ · Qϕ
+t
+SΛ
+1
+Λ
+≤ SΛ
+− Qϕ + |tSΛ − Sϕ | ≤ 2ǫSΛ .
+SΛ
+t
+Combining the above observations, by union bound,
+
+MULTISET ESTIMATION AND DISTRIBUTION ESTIMATION
+
+=
+
+A distribution multiset estimator Q takes as input a sequence Y = Y1 , . . . , Yℓ of ℓ samples drawn i.i.d. according
+to an unknown distribution P = (p1 , . . . , pk ) and outputs
+QY = (q1 , . . . , qk′ ) as an estimate of P . We assume the
+probabilities in P and Q are arranged in decreasing order.
+def
+We use µ(i) = µY (i) to denote the number of appearances
+of symbol i (whose probability is pi ) in Y . As earlier,
+def
+def
+µ = (µ1 , . . . , µm ) = {µ(i); µ(i) > 0, i ∈ [k]} is the multidef
+def
+set of nonzero multiplicities and ϕ = ϕ(µ) = ϕ(Y ) denotes
+the corresponding proﬁle. Without loss of generality, we assume Q depends on Y only through its proﬁle, i.e., QY = Qϕ .
+To relate the various estimation problems, it is useful to
+consider the well known useful technique of Poissonization
+which is summarized below.
+
+Λ
+− Qϕ ≤ ǫ
+SΛ
++ Pr |SΛ − Sϕ | ≥ ǫSΛ )
+
+poi
+Pr |Λ − Qϕ | > 2ǫSΛ ) ≤ Pr
+
+≤ δ tSΛ /2 + e−tSΛ /12 + 2e−ǫ
+
+2
+
+tSΛ /3
+
+.
+
+We use similar arguments for converting good distribution
+multiset estimators into good Bernoulli multiset estimators
+under L1 distance guarantees.
+Deﬁnition 12. Let B be a class of Bernoulli multisets and
+def
+θk
+θ1
+B
+P = { SB = ( SB , . . . , SB ) : B ∈ B} be the corresponding
+class of normalized distributions. Let Q be a distribution
+multiset estimator for P. We deﬁne as follows a corresponding
+Bernoulli multiset estimator Qbern that takes input X ∼ B ∈
+B. For i = 1, . . . , m, generate independent ni ∼ poi(n/2).
+If some ni > n, terminate the estimation process and output
+error. Otherwise, for each of i = 1, . . . , m, let Y i consist of
+ﬁrst ni samples of X i , i.e., Y i = Xi,1 , Xi,2 , . . . , Xi,ni .
+def
+Let µ′ = µ(Y i ) be the number of 1’s in Y i for i ∈ [m].
+i
+And let ϕ′ = (ϕ′ , ϕ′ , . . .) be the proﬁle corresponding
+1
+2
+def
+to µ′ = {µ′ : µ′ > 0, i ∈ [m]}. The output of Qbern is
+i
+i
+bern def Sϕ
+Qϕ
+= n · Q ϕ′ .
+
+′
+
+Fact 9. Let Y be a sequence of ℓ ∼ poi(ℓ) samples drawn
+i.i.d. ∼ P . Then, for all i ∈ [k], µY ′ (i) ∼ poi(ℓpi ) and is
+independent of µ(i′ ) for all other i′ ∈ [k].
+In the next deﬁnition and lemma, we show that good
+distribution multiset estimators can be used to construct good
+Poisson multiset estimators, both under L1 distance guarantees.
+Deﬁnition 10. Let L be a class of Poisson multisets and let
+def
+λk
+λ1
+Λ
+P = { SΛ = ( SΛ , . . . , SΛ ) : Λ ∈ L} be the corresponding
+class of normalized distributions. Let Q be a distribution
+multiset estimator for P. Then, the corresponding Poisson
+poi def S
+multiset estimator Qpoi outputs Qϕ = tϕ · Qϕ .
+
+Lemma 13. Let B be a class of distribution multisets and let
+def
+P = {B/SB : B ∈ B}. Let Q be a distribution estimator
+B
+such that for large n and ℓ ≥ n · minB∈B S4 , when Y ∼ P ℓ ,
+Pr |P − Qϕ(Y ) | > ǫ ≤ δ(ℓ), where δ decreases monotonically in ℓ. Then, the corresponding Qbern is such that when
+X ∼ B ∈ B,
+2
+nSB
++ 2e−ǫ nSB /3
+Pr B − Qbern > 2ǫSB ≤ δ
+ϕ(X)
+4
++ e−nSB /12 + ke−n/6 .
+
+Lemma 11. For ǫ ∈ (0, 1), let L be a class of Poisson
+multisets such that SΛ is sufﬁciently large for all Λ ∈ L.
+def
+Let P = {Λ/SΛ : Λ ∈ L}. Let Q be a distribution estimator
+Λ
+such that when ℓ ≥ minΛ∈L S2 and given Y ∼ P ℓ , Pr |P −
+Qϕ(Y ) | > ǫ ≤ δ(ℓ), where δ decreases monotonically in ℓ.
+Then the estimator Qpoi corresponding to Q is such that when
+ϕ ∼ Λ ∈ L,
+2
+tSΛ
++ e−tSΛ /12 + 2e−ǫ tSΛ /3 .
+2
+Proof Sketch. Let µ ∼ Λ ∈ L. Then,
+
+Pr |Λ − Qpoi | > 2ǫSΛ
+ϕ
+
+tSΛ /3
+
+Λ
+Lastly, if | SΛ − Qϕ | ≤ ǫ and |Sϕ − tSΛ | ≤ ǫtSΛ , then
+
+III. R ELATIONSHIP BETWEEN P OISSON AND B ERNOULLI
+
+′
+
+2
+
+≤ δ
+
+Proof. Let X ∼ B ∈ B and ϕ = ϕ(X). We analyze the error
+probability in each of the intermediate steps of Deﬁnition 12.
+Using the Poisson tail bounds in Fact 4 and union bound,
+probability that ni > n for some i ∈ {1, . . . , m} is at most
+me−n/6 ≤ ke−n/6 .
+If all ni < n, by Fact 9 on Poissonization, all µ′ ∼
+i
+poi(nθi /2) = poi (nSB /2) · (θi /SB ) . Again by Fact 9, ϕ′
+′
+has the same distribution as the proﬁle of a sequence Y
+consisting of n′ ∼ poi(nSB /2) samples drawn i.i.d. from
+B
+the distribution SB . Hence ϕ′ has length Sϕ′ = nSB with
+4
+probability ≥ 1 − e−nSB /12 by Poisson tail bounds. In that
+
+Λ
+tSΛ
+− Qϕ ≤ ǫ ≤ Pr Sϕ ≤
+Pr
+SΛ
+2
+tSΛ
+Λ
++ Pr
+− Q ϕ ≤ ǫ ∧ Sϕ ≥
+SΛ
+2
+tSΛ
+.
+≤ e−tSΛ /12 + δ
+2
+Here, the ﬁrst term is due to the Poisson tail bounds of Fact
+4. For the second term, we use Fact 9, which implies that
+′
+′
+ϕ(µ) has the same distribution as ϕ(Y ), where Y is an i.i.d.
+sequence of length Sµ ∼ poi(tSΛ ) drawn according to the
+4
+
+4
+
+B
+case, the estimation guarantee for Q implies Pr | SB − Qϕ′ | ≥
+ǫ ≤ δ(Sϕ′ ) ≤ δ nSB .
+4
+Using Chernoff bounds in Fact 7 and that Sϕ =
+n
+i=1
+j=1 X(i, j) is a sum of independent 0-1 random variables and has mean E[Sϕ ] = nSB , we have Pr |Sϕ − nSB | ≥
+2
+ǫnSB ≤ 2e−ǫ nSB /3 . Similar to the proof of Lemma 11, if
+B
+| SB − Qϕ′ | ≤ ǫ and |Sϕ − nSB | ≤ ǫnSB , then
+
+|B − Qbern | = SB ·
+ϕ
+
+[2], [1] along these lines. We conclude with an example of
+an experimental result for Bernoulli multiset estimation, as
+shown in Figure 1. The underlying multiset B is taken to
+be θi = 0.05 for i ∈ {1, 2, . . . , 500}, i.e., k = 500. The
+empirical estimate, referred to as SML or sequence maximum
+likelihood in the ﬁgure is clearly not a good estimate of B,
+both in terms of support size and shape. Note that we do not
+get to even observe 154 out of the 500 processes. However,
+the PML multiset is seen to be a very good estimate of B.
+It is computed approximately using an EM-MCMC algorithm
+similar to that used in [11], [7] for distribution estimation.
+
+B
+Sϕ
+−
+· Qϕ′ ≤ 2ǫSB .
+SB
+n
+
+Putting these observations together, and using union bound
+for bounding the overall error probability,
+
+3x5, 10x4, 49x3, 109x2, 175x1, 154x0
+
+Pr B − Qϕ(X) > 2ǫSB )
+≤ Pr ni > n for some i ∈ [m]
+nSB
++ Pr Sϕ′ <
+4
+nSB
+B
++ Pr
+− Qϕ′ ≥ ǫ ∧ (Sϕ′ ≥
+)
+SB
+4
++ Pr |Sϕ − nSB | ≥ ǫnSB
+2
+nSB
+≤ ke−n/6 + e−nSB /12 + δ
++ 2e−ǫ nSB /3 .
+4
+
+Underlying
+SML
+PML
+
+−1
+
+10
+
+−2
+
+We note that in both Lemma 11 and Lemma 13, an L1
+distance guarantee of 2ǫSΛ and 2ǫSB is reasonable since the
+maximum L1 distance between any two multisets, each of
+whose sum of parameters is S, is at most 2S. As an application
+of these lemmas, we state and use the main result in [12], [13]
+that shows an estimator which can approximate distributions to
+within a small relative earthmover distance, and hence small
+L1 distance, even when the support size k is superlinear in
+the number of samples ℓ. While the error probability shown
+0.03
+in [12] is e−ℓ , it can be improved to arbitrarily close to
+0.9
+exponential, say e−ℓ , by minor modiﬁcations to the various
+constant parameters of their estimator.
+
+10
+
+100
+
+200
+
+300
+
+400
+
+500
+
+600
+
+Fig. 1.
+Bernoulli multiset estimation using empirical (SML) and PML
+estimators
+
+R EFERENCES
+[1] J. Acharya, H. Das, A. Orlitsky, and S. Pan. Algebraic computation of
+pattern maximum likelihood. In Proceedings of IEEE Symposium on
+Information Theory (ISIT), pages 400–404, 2011.
+[2] J. Acharya, A. Orlitsky, and S. Pan. The maximum likelihood probability
+of unique-singleton, ternary, and length-7 patterns. In Proceedings of
+IEEE Symposium on Information Theory (ISIT), pages 1135 –1139, 2009.
+[3] Tugkan Batu. Testing properties of distributions. PhD thesis, Cornell
+University, 2001.
+[4] G.H. Hardy and S. Ramanujan. Asymptotic formulae in combinatory
+analysis. Proceedings of London Mathematics Society, 17(2):75–115,
+1918.
+[5] Bruno M. Jedynak and Sanjeev Khudanpur. Maximum likelihood set for
+estimating a probability mass function. Neural Computation, 17:1–23,
+2005.
+[6] B. Kelly, T. Tularak, A. B. Wagner, and P. Viswanath. Universal
+hypothesis testing in the learning-limited regime. In Proceedings of IEEE
+Symposium on Information Theory (ISIT), pages 1478–1482, 2010.
+[7] A. Orlitsky, S. Pan, Sajama, N.P. Santhanam, and K. Viswanathan. Pattern maximum likelihood: computaiton and experiments. In preparation,
+2012.
+[8] A. Orlitsky and Shengjun Pan. The maximum likelihood probability of
+skewed patterns. In Proceedings of IEEE Symposium on Information
+Theory (ISIT), pages 1130–1134, 2009.
+[9] A. Orlitsky, N.P. Santhanam, K. Viswanathan, and J. Zhang. Pattern
+maximum likelihood: existence and properties. In Preparation, 2012.
+[10] A. Orlitsky, N.P. Santhanam, and J. Zhang. Universal compression of
+memoryless sources over unknown alphabets. IEEE Transactions on
+Information Theory, 50:1469–1481, 2004.
+[11] Alon Orlitsky, Narayana P. Santhanam, Krishnamurthy Viswanathan, and
+Junan Zhang. On modeling proﬁles instead of values. In UAI ’04, pages
+426–435, 2004.
+[12] Gregory Valiant and Paul Valiant. Estimating the unseen: A sublinearsample canonical estimator of distributions. Electronic Colloquium on
+Computational Complexity (ECCC), 17:180, 2010.
+[13] Gregory Valiant and Paul Valiant. Estimating the unseen: An n/ log(n)sample estimator for entropy, support size, and other distribution properties, with a proof of optimality via two new central limit theorems. In
+STOC ’11: Proceedings of the 42nd annual ACM symposium on Theory
+of computing, 2011.
+[14] Aaron B. Wagner, Pramod Viswanath, and Sanjeev R. Kulkarni. Probability estimation in the rare-events regime. IEEE Transactions on
+Information Theory, 57(6):3207–3229, 2011.
+
+Theorem 14. (Also [12, Theorem 3].) For ǫ > 0 and
+sufﬁciently large ℓ, there is an estimator Q such that for all
+P whose support size is k = O(ǫ2.1 ℓ log(ℓ)), when Y ∼ P ℓ ,
+0.9
+Pr P − Qϕ(Y ) > ǫ ≤ e−ℓ .
+Corollary 15. For ǫ > 0, and for all t and Λ such that t·SΛ is
+sufﬁciently large and k = O(ǫ2.1 tSΛ log(tSΛ )), when ϕ ∼ Λ,
+0.8
+ˆ
+Pr |Λ − Λϕ | ≥ 2ǫSΛ ≤ e−(tSΛ ) .
+For all n and B such that n · SB is sufﬁciently
+large and k = O(ǫ2.1 nSB log(nSB )), when ϕ ∼ B,
+0.8
+ˆ
+Pr |B − Λϕ | ≥ 2ǫSB ≤ e−(nSB ) . In both cases, the
+maximum likelihood is calculated over multisets of the
+respective support size bounds.
+IV. C ALCULATION OF PML AND EXPERIMENTAL RESULTS
+We consider some of the computational aspects of PML
+in this brief ﬁnal section. Due to space constraints, without going into details, we state that for any ϕ, due to the
+similarity between the expressions for likelihoods Λ(ϕ) and
+S
+ˆ
+ˆ
+P (ϕ), Λϕ = tϕ · Pϕ . Thus, computation of PML Poisson
+multiset is equivalent to computing the PML distribution
+multiset of a given proﬁle. However, computation of PML
+ˆ
+ˆ
+Bernoulli multiset Bϕ is somewhat different from that of Pϕ .
+ˆϕ and Bϕ seem to be
+ˆ
+Nonetheless, the computation of both P
+difﬁcult in general, e.g., see [11] and subsequent works [8],
+5
+
+5
+
+

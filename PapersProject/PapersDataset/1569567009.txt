@@ -1,0 +1,718 @@
+Creator:        TeX
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Wed May 16 23:11:29 2012
+ModDate:        Tue Jun 19 12:54:52 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      445172 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569567009
+
+Multi-Level Error-Resilient Neural Networks
+Amir Hesam Salavati and Amin Karbasi
+School of Computer and Communication Sciences, Ecole Polytechnique Federale de Lausanne (EPFL)
+Email: hesam.salavati@epﬂ.ch, amin.karbasi@epﬂ.ch,
+
+An interesting question which arises in this context is
+whether one can increase the storage capacity of neural
+networks beyond the current linear scaling and achieve results
+similar to coding theory. To this end, Kumar et al. [7]
+suggested a new formulation of the problem where only a
+suitable set of patterns was considered for storing. This way
+they could show that the performance of neural networks in
+terms of storage capacity increases signiﬁcantly. Following
+the same philosophy, we will focus on memorizing a random
+subset of patterns of length n such that the dimension of the
+training set is k < n. In other words, we are interested in
+memorizing a set of patterns that have a certain degree of
+structure and redundancy. We exploit this structure both to
+increase the number of patterns that can be memorized (from
+linear to exponential) and to increase the number of errors that
+can be corrected when the network is faced with corrupted
+inputs.
+The success of [7] is mainly due to forming a bipartite
+network/graph (as opposed to a complete graph) whose role
+is to enforce the suitable constraints on the patterns, very
+similar to the role played by Tanner graphs in coding. More
+speciﬁcally, one layer is used to feed the patterns to the
+network (so called variable nodes in coding) and the other
+takes into account the inherent structure of the input patterns
+(so called check nodes in coding). A natural way to enforce
+structures on inputs is to assume that the connectivity matrix
+of the bipartite graph is orthogonal to all of the input patterns.
+However, the authors in [7] heavily rely on the fact that the
+bipartite graph is fully known and given, and satisﬁes some
+sparsity and expansion properties. The expansion assumption
+is made to ensure that the resulting set of patterns are resilient
+against fair amount of noise. Unfortunately, no algorithm for
+ﬁnding such a bipartite graph was proposed.
+Our main contribution in this paper is to relax the above assumptions while achieving better error correction performance.
+More speciﬁcally, we ﬁrst propose an iterative algorithm that
+can ﬁnd a sparse bipartite graph that satisﬁes the desired set of
+constraints. We also provide an upper bound on the block error
+rate of the method that deploys this learning strategy. We then
+proceed to devise a multi-layer network whose performance
+in terms of error tolerance improves signiﬁcantly upon [7] and
+no longer needs to be an expander.
+
+Abstract—The problem of neural network association is to
+retrieve a previously memorized pattern from its noisy version
+using a network of neurons. An ideal neural network should
+include three components simultaneously: a learning algorithm,
+a large pattern retrieval capacity and resilience against noise.
+Prior works in this area usually improve one or two aspects at
+the cost of the third.
+Our work takes a step forward in closing this gap. More
+speciﬁcally, we show that by forcing natural constraints on the
+set of learning patterns, we can drastically improve the retrieval
+capacity of our neural network. Moreover, we devise a learning
+algorithm whose role is to learn those patterns satisfying the
+above mentioned constraints. Finally we show that our neural
+network can cope with a fair amount of noise.
+
+I. I NTRODUCTION
+Neural networks are famous for their ability to learn and
+reliably perform a required task. An important example is the
+case of (associative) memory where we are asked to memorize
+(learn) a set of given patterns. Later, corrupted versions of the
+memorized patterns will be shown to us and we have to return
+the correct memorized patterns. In essence, this problem is
+very similar to the one faced in communication systems where
+the goal is to reliably transmit and efﬁciently decode a set of
+patterns (so called codewords) over a noisy channel.
+As one would naturally expect, reliability is certainly a
+very important issue both in the neural associative memories
+and in communication systems. Indeed, the last three decades
+witnessed many reliable artiﬁcial associative neural networks.
+See for instance [5], [14], [6], [9], [13], [4].
+However, despite common techniques and methods deployed in both ﬁelds (e.g., graphical models, iterative algorithms, etc), there has been a quantitative difference in terms of
+another important criterion: the efﬁciency. In communication
+systems, by using modern coding techniques it has become
+clear that the number of reliably transmitted codewords over
+a noisy channel can be made exponential in n, the length
+of the codewords. However, using current neural networks of
+size n to memorize a set of randomly chosen patterns, the
+maximum number of patterns that can be reliably memorized
+scales linearly in n [8], [14].
+In search for the reasons beyond the inefﬁciency of the
+storage capacity of neural networks, we found out that a large
+body of past work (e.g., [5], [14], [6], [9]) followed a common
+assumption that a neural network should be able to memorize
+any subset of patterns drawn randomly from the set of all
+possible vectors of length n. Although this assumption gives
+the network a sense of generality, it reduces its storage capacity
+to a great extent.
+
+II. P ROBLEM F ORMULATION
+In contrast to the mainstream work in neural associative
+memories, we focus on non-binary neurons, i.e., neurons that
+can assume a ﬁnite set of integer values S = {0, 1, . . . , S − 1}
+
+1
+
+for their states (where S > 2). A natural way to interpret the
+multi-level states is to think of the short-term (normalized)
+ﬁring rate of a neuron as its output. Neurons can only perform
+simple operations. In particular, we restrict the operations at
+each neuron to a linear summation over the inputs, and a
+possibly non-linear thresholding operation. In particular, a
+neuron x updates its state based on the states of its neighbors
+{si }n as follows:
+i=1
+n
+1) It computes the weighted sum h = i=1 wi si , where
+wi denotes the weight of the input link from si .
+2) It updates its state as x = f (h), where f : R → S
+is a possibly non-linear function from the ﬁeld of real
+numbers R to S.
+Neural associative memory aims to memorize C patterns of
+length n by determining the weighted connectivity matrix
+of the neural network (learning phase) such that the given
+patterns are stable states of the network. Furthermore, the
+network should be able to tolerate a fair amount of noise so
+that it can return the correct memorized pattern in response
+to a corrupted query (recall phase). Among the networks with
+these two abilities, the one with largest C is the most desirable.
+We ﬁrst focus on learning the connectivity matrix of a neural
+graph which memorizes a set of patterns having some inherent
+redundancy. More speciﬁcally, we assume to have C vectors
+of length n with non-negative integer entries, where these
+patterns form a subspace of dimension k < n. We would
+like to memorize these patterns by ﬁnding a set of non-zero
+vectors w1 , . . . , wm ∈ Rn that are orthogonal to the set of
+given patterns. Furthermore, we are interested in rather sparse
+vectors. Putting the training patterns in a matrix XC×n and
+focusing on one such vector w, we can formulate the problem
+as:
+min X · w 2
+(1a)
+
+Constraint nodes
+
+Y1
+
+X1
+
+0
+
+≤q
+
+and
+
+w
+
+2
+2
+
+≥
+
+X2
+
+...
+
+...
+
+Ym
+
+Xn
+
+Pattern nodes
+Fig. 1.
+
+A bipartite graph that represents the constraints on the training set.
+
+A. Related Works
+Designing artiﬁcial associative memories has been an active
+topic of research for the past three decades. Inspired by
+the Hebbian learning rule, Hopﬁeld in his seminal work [5]
+introduced the Hopﬁeld network: an auto-associative neural
+mechanism of size n with binary state neurons in which
+patterns are assumed to be binary vectors of length n. The
+capacity of a Hopﬁeld network under vanishing block error
+probability was later shown to be O(n/ log(n)) in [8].
+Due to the low capacity of Hopﬁeld networks, extension
+of associative memories to non-binary neural models has also
+been explored in the past. For instance, in [6] the authors
+investigated a multi-state complex-valued neural associative
+memories for which the estimated capacity is C < 0.15n.
+Under the same model but using a different learning method,
+Muezzinoglu et al. [9] showed that the capacity can be
+increased to C = n. However the complexity of the weight
+computation mechanism is prohibitive.
+A line of recent work has made considerable efforts to
+exploit the inherent structure of the patterns in order to
+increase both capacity and error correction capabilities. Such
+methods either make use of higher order correlations of
+patterns or focus merely on those patterns that have some
+sort of redundancy. As a result, they differ from previous
+methods for which every possible random set of patterns was
+considered. Pioneering this prospect, Berrou and Gripon [4]
+achieved considerable improvements in the pattern retrieval
+capacity of Hopﬁeld networks, by utilizing Walsh-Hadamard
+sequences. Using low correlation sequences has also been
+considered in [13], which results in increasing the storage
+capacity of Hopﬁeld networks to n without requiring any
+separate decoding stage.
+In contrast to the pairwise correlation of the Hopﬁeld model
+[5], Peretto et al. [11] deployed higher order neural models:
+the state of the neurons not only depends on the state of their
+neighbors, but also on the correlation among them. Under this
+model, they showed that the storage capacity of a higher-order
+Hopﬁeld network can be improved to C = O(np−2 ), where
+p is the degree of correlation considered. The main drawback
+of this model was again the huge computational complexity
+required in the learning phase. To address this difﬁculty while
+being able to capture higher-order correlations, a bipartite
+
+subject to
+w
+
+Y2
+
+(1b)
+
+where q ∈ N determines the degree of sparsity and ∈ R+
+prevents the all-zero solution. A solution to the above problem
+yields a sparse bipartite graph which corresponds to the basis
+vectors of the null space speciﬁed by the patterns in the
+training set. It can therefore be described by Figure 1 with
+a connectivity matrix W ∈ Rm×n such that X W T = 0.
+In the recall phase, the neural network is fed with noisy inputs. A possibly noisy version of an input pattern is initialized
+as the states of the pattern neurons x1 , x2 , . . . , xn . Here, we
+assume that the noise is integer valued and additive (modulu
+S). In formula, we have y = W (xµ + z) = W z where z is
+the noise added to pattern xµ . Hence, we are looking for an
+algorithm that can use this information to provably eliminate
+the effect of noise and return the correct pattern.
+Remark 1. A solution in the learning/recall phase is acceptable only if it can be found by simple operations at neurons.
+Before presenting our solution, we brieﬂy overview the
+relation between the previous works and the one presented
+in this paper.
+
+2
+
+Algorithm 1 Iterative Learning
+Input: pattern matrix X , stopping point p.
+Output: w
+while y(t) max > p do
+Compute y(t) = X ·w(t) .
+X 2
+
+graph inspired from iterative coding theory was introduced in
+[7]. Under the assumptions that the bipartite graph is known,
+sparse, and expander, the proposed algorithm increased the
+pattern retrieval capacity to C = O(an ), for some a > 1.
+The main drawbacks in the proposed approach is the lack of
+a learning algorithm as well as the assumption that the weight
+matrix should be an expander. The sparsity criterion on the
+other hand, as it was noted by the authors, is necessary in the
+recall phase and biologically more meaningful.
+In this paper, we focus on solving the above two problems
+in [7]. We start by proposing an iterative learning algorithm
+that identiﬁes a sparse weight matrix W . The weight matrix
+W should satisfy a set of linear constraints X W T = 0. We
+then propose a novel network architecture which eliminates
+the need for the expansion criteria while achieving better
+performance than the error correction algorithm proposed in
+[7].
+To learn a sparse neural graph, we follow ideas borrowed
+from iterative neural learning [15], [10] and compressive
+sensing [2], [3]. Constructing a factor-graph model for neural
+associative memory has been also addressed in [1] where
+a message-passing algorithm is proposed to memorize any
+set of random patterns. However, in this paper we focus on
+memorizing patterns belonging to subspaces with sparsity in
+mind as well. The difference would again be apparent in the
+pattern retrieval capacity (linear vs. exponential in network
+size).
+
+Update w(t + 1) = η (1 + 2λt )w(t) − 2αt X Xy(t)
+2
+Update λt+1 = λt + γ( − w
+t ← t + 1.
+end while
+
+III. L EARNING A LGORITHM
+
+2
+2
+
+− λ( w
+
+− ) + γ(g(w) − q ).
+
+(2)
+
+i=1
+
+where σ is chosen appropriately. By calculating the derivative
+of the objective function and primal-dual optimization techniques we obtain the following iterative algorithm for (2) (the
+details are tedious and left to our technical report [12]):
+X · w(t)
+X 2
+
+w(t + 1) = (1 + 2λt )w(t) − 2αt
+
+E(t + 1) ≤ X .w (t) max + θt . By expanding X .w (t) we
+X 2
+X
+will obtain E(t + 1) ≤ Dt max E(t) + θt where D(t) =
+T
+X
+(1 + 2λt )IC×C − 2αt XX 2 . Hence we need θt → 0 as t → ∞
+2
+and ensuring Dt max < 1. The latter condition is satisﬁed if
+λt ≤ amin /(amax − amin ). For the detailed proof, we refer the
+interested readers to our technical report [12].
+It must be noted that the above algorithm gives one possible
+solution to the learning problem (2), as there are multiple local
+
+X y(t)
+− γt g(w) (3b)
+X 2
+(3c)
+
+γt+1 = [γt + δ(g(w) − q )]
+
+(4)
+
+Sketch of the proof: Let E(t) = y(t) max . We
+would like to show that E(t + 1) < E(t) for all iterations
+t. We can write w(t + 1) = w (t) − χ(w (t); θt ) where
+w (t) = (1 + 2λt )w(t) − 2αt X y . We can then show that
+X 2
+
+(3a)
+
+λt+1 = λt + δ( − w 2 )
+2
+
+u if |u| > θ,
+0 otherwise.
+
+Theorem 1. If θt → 0 as t → ∞ and if λt < amin /(amax −
+amin ), then there is a proper choice of αt in every iteration
+t that ensures constant decrease in the objective function
+X .w(t) max . Here amin = minµ xµ 2 / X 2 and amax =
+maxµ xµ 2 / X 2 . For λt = 0, i.e. w(t) 2 ≥ , picking
+0 < αt < 1 ensures gradual convergence.
+
+2
+tanh(σwi )
+
+y(t) =
+
+.
+
+The next theorem derives the necessary conditions on αt , λt
+and θt such that Algorithm 1 converges to a sparse solution.
+
+In the above problem, we have approximated the constraint
+w 0 ≤ q with g(w) ≤ q since . 0 is not a well-behaved
+function. The function g(w) is chosen such that it favors
+sparsity. For instance one can pick g(w) to be . 1 , which
+leads to 1 -norm minimizations. In this paper, we consider
+the function
+n
+g(w) =
+
+.
+
+Remark 2. the above choice of soft-theresholding function is
+very similar to the one selected by Donoho et al. in [3] in
+order to recover a sparse signal from a set of measurements.
+The authors prove that their choice of soft-threshold function
+results in optimal sparsity-undersampling trade-off.
+
+We are interested in an iterative algorithm that is simple
+enough to be implemented by a network of neurons. Therefore,
+we ﬁrst relax (1) as follows:
+2
+
+θt
+
+where t denotes the iteration number, X is the transpose
+of matrix X , δ and αt are small step sizes and [·]+ denotes
+max(·, 0).
+For our choice of g(w), the ith entry of the function f (w) =
+2
+g(w), denoted by fi (w) reduces to 2σwi (1 − tanh(σwi )2 ).
+For very small values of wi , fi (w) wi and for large values
+of wi , fi (w) 0. Therefore, by looking at (3b) we see that
+the last term is pushing small values in w(t + 1) towards zero
+while leaving the larger values intact. Therefore, we remove
+the last term completely and enforce small entries to zero in
+each update which in turn enforces sparsity. The ﬁnal iterative
+learning procedure is shown in Algorithm 1.
+Here, θt is a positive threshold at iteration t and η(.)θt is
+the point-wise soft-thresholding function given below:
+η(u)θ =
+
+min X · w
+
+2
+2)
+
+(3d)
+
+3
+
+Wg
+
+as feedback to pattern neuron xj from the constraint neurons.
+Hence, the sign of gj provides an indication of the sign of the
+noise that affects xj , and |gj | indicates the conﬁdence level in
+the decision regarding the sign of the noise.
+
+...
+
+...
+
+...
+
+...
+
+...
+
+...
+
+¯
+Theorem 2. Let d and dmin be the average and minimum
+degree of pattern neurons, respectively. Then, Algorithm 2 can
+correct a single error in the input pattern with probability at
+
+...
+
+...
+W1
+
+Fig. 2.
+
+...
+
+W2
+
+WL
+
+least 1 −
+
+A two-level error correcting neural network.
+
+Backward iteration: Each neuron xj computes
+gj =
+
+dmin
+
+if ϕ → 1.
+
+For the proof, we refer the interested readers to our technical
+report [12].
+Given that each local network is able to correct one pattern
+with high probability, L such networks can correct L input
+errors if they are separated such that only one error appears
+in the input of each local network. Otherwise, there would
+be a probability that the network could not handle the errors.
+In that case, we feed the overall pattern of length n to the
+second layer with the connectivity matrix Wg , which enforces
+mg global constraints. And since the probability of correcting
+two erroneous nodes increases with the input size, we expect
+to have a better error correction probability in the second layer.
+Therefore, using this simple scheme we expect to gain a lot in
+correcting errors in the patterns. In the next section, we provide
+simulation results which conﬁrm our expectations and show
+that the block error rate can be improved by a factor of 100
+in some cases.
+
+Algorithm 2 Error Correction
+1: for t = 1 → tmax do
+2:
+Forward iteration: Calculate the weighted input sum
+n
+hi = j=1 Wij xj , for each neuron yi and set:
+
+hi < 0
+ 1,
+0,
+hi = 0 .
+yi =
+
+−1, otherwise
+3:
+
+¯
+d
+m
+
+m
+i=1 Wij yi
+.
+m
+i=1 |Wij |
+
+Update the state of each pattern neuron j according to
+xj = xj + sgn(gj ) only if |gj | > ϕ.
+5:
+t←t+1
+6: end for
+4:
+
+Remark 3. The number of constraints for the second layer affects the gain one obtains in the error performance. Intuitively,
+if the number of global constraints is large, we are enforcing
+more constraints so we expect a better error performance. We
+can think of determining the number even adaptively, i.e. if
+the error performance that we are getting is unacceptable, we
+can look deeper in patterns to identify their internal structure
+by searching for more constraints. This would be a subject of
+our future research.
+
+minimums for this problem corresponding to different nullbases of the subspace deﬁned by the patterns in the training set.
+Any of these vectors are acceptable for the proposed algorithm.
+IV. M ULTI - LEVEL N ETWORK A RCHITECTURE
+In order to have error correction capabilities we propose a
+new network structure (see Figure 2). To make the description
+clear and simple we only concentrate on a two-level neural
+network. However, the generalization of this idea is trivial and
+left to the reader.
+The idea behind this new architecture is that we divide the
+input pattern of size n into L sub-patterns of length n/L.
+Now we feed each sub-pattern to a neural network which
+enforces m constraints1 on the sub-pattern in order to correct
+the input errors. Such model might be specially useful in cases
+where the input is modular, similar to the case of memorizing
+different words of a sentence and enforcing global grammatical
+constraints on the sentence as a whole, or the case where local
+sub-patterns have few dominant principle components.
+The local networks in the ﬁrst level and the global network
+in the second level use Algorithm 2, which is a variant of the
+”bit-ﬂipping” method proposed in [7], to correct the errors.
+Note that if the states of the pattern neurons xi correspond to
+a pattern from X (i.e., the noise-free case), then for all i =
+1, . . . , m we have yi = 0. The quantity gj can be interpreted
+
+V. PATTERN R ETRIEVAL C APACITY
+The following theorem shows that the proposed neural
+architecture is capable of memorizing an exponential number
+of patterns in n.
+Theorem 3. Let X be the C × n matrix, formed by C vectors
+of length n with non-negative integer entries between 0 and
+S − 1. Furthermore, let kg = rn for some 0 < r < 1. Then,
+there exists a data set X with C = arn , a > 1, and rank(X ) =
+kg < n, such that they can be memorized by the proposed
+multi-level neural network shown in ﬁgure 2.
+The proof of the theorem can be found in the technical
+report [12].
+VI. S IMULATION R ESULTS
+We have simulated the proposed learning algorithm in the
+multi-level architecture to investigate the block error rate of
+the suggested approach and the gain we obtain in error rates
+by adding a second level. We constructed 4 local networks,
+each with n/4 pattern and m constraint nodes.
+
+1 The number of constraints for different networks can vary. For simplicity
+of notiﬁcations we assume equal sizes.
+
+4
+
+A. Learning Phase
+We generated a sample data set of C = 10000 patterns of
+length n where each block of n/4 belonged to a subspace of
+dimension k < n/4. Note that C can be an exponential number
+in n. However, we selected C = 10000 as an example to show
+the performance of the algorithm because even for small values
+of k, and exponential number in k will become too large to
+handle numerically. The result of the learning algorithm is
+four different local connectivity matrices W1 , . . . , W4 as well
+as a global weight matrix Wg . The number of local constraints
+was m = n/4 − k and the number of global constraints was
+mg = n − kg , where kg is dimension of the subspace for
+overall pattern.
+Table VI-A shows the average number of iterations executed
+before convergence is reached for different local and global
+constraints. It also gives the average sparsity ratio for the
+columns of weight matrices. The sparsity ratio is deﬁned as
+ρ = κ/n, where κ is the number of non-zero elements.
+
+Fig. 3.
+
+ACKNOWLEDGEMENTS
+The authors would like to thank Prof. Amin Shokrollahi for
+helpful comments and discussions. This work was supported
+by Grant 228021-ECCSciEng of the European Research Council.
+
+TABLE I
+AVERAGE NUMBER OF CONVERGENCE ITERATIONS AND SPARSITY IN THE
+LOCAL AND GLOBAL NETWORKS FOR n = 400
+
+Local
+Global
+
+Sparsity
+kg = 100
+0.28
+0.22
+
+Ratio
+kg = 200
+0.32
+0.26
+
+R EFERENCES
+
+Convergence Steps
+kg = 100
+kg = 200
+4808
+5064
+14426
+33206
+
+[1] A. Braunstein, R. Zecchina, Learning by message-passing in networks
+of discrete synapses, Phys. Rev. Lett., Vol. 96, No. 3, 2006, pp. 0302011-030201-4
+[2] E. Cands, T. Tao, Near optimal signal recovery from random projections:
+Universal encoding strategies?, IEEE Trans. on Information Theory, Vol.
+52, No. 12, 2006, pp. 5406-5425.
+[3] D. L. Donoho, A. Maleki, A. Montanari, Message passing algorithms
+for compressed sensing, Proc. Nat. Acad. Sci., Vol. 106, 2009, pp.
+1891418919.
+[4] V. Gripon, C. Berrou, Sparse neural networks with large learning
+diversity, IEEE Trans. on Neural Networks, Vol. 22, No. 7, 2011, pp.
+10871096.
+[5] J. J. Hopﬁeld, Neural networks and physical systems with emergent
+collective computational abilities, Proc. Natl. Acad. Sci., Vol. 79, 1982,
+pp. 2554-2558.
+[6] S. Jankowski, A. Lozowski, J.M., Zurada, Complex-valued multistate
+neural associative memory, IEEE Tran. Neur. Net., Vol. 1 , No. 6, 1996,
+pp. 1491-1496.
+[7] K.R. Kumar, A.H. Salavati and A. Shokrollahi, Exponential pattern
+retrieval capacity with non-binary associative memory, Proc. IEEE Int.
+Theory Work., 2011, pp. 80-84.
+[8] R. McEliece, E. Posner, E. Rodemich, S. Venkatesh, The capacity of the
+Hopﬁeld associative memory, IEEE Trans. Inf. Theory, Jul. 1987.
+[9] M. K. Muezzinoglu, C. Guzelis, J. M. Zurada, A new design method
+for the complex-valued multistate Hopﬁeld associative memory, IEEE
+Trans. Neur. Net., Vol. 14, No. 4, 2003, pp. 891-899.
+[10] E. Oja, T. Kohonen, The subspace learning algorithm as a formalism
+for pattern recognition and neural networks, Neural Networks, Vol. 1,
+1988, pp. 277-284.
+[11] P. Peretto, J. J. Niez, Long term memory storage capacity of multiconnected neural networks, Biological Cybernetics, Vol. 54, No. 1, 1986,
+pp. 53-63.
+[12] A. H. Salavati, A. Karbasi, Multi-Level Error-Resilient Neural Networks
+with Learning, arXiv:1202.2770v1 [cs.NE]
+[13] A. H. Salavati, K. R. Kumar, W. Gerstner, A. Shokrollahi, Neural
+Pre-coding Increases the Pattern Retrieval Capacity of Hopﬁeld and
+Bidirectional Associative Memories, IEEE Intl. Symp. Inform. Theory
+(ISIT-11), 2011, pp. 850-854.
+[14] S. S. Venkatesh, D. Psaltis, Linear and logarithmic capacities in
+associative neural networks, IEEE Trans. Inf. Theory, Vol. 35, No. 3,
+1989, pp. 558-568.
+[15] L. Xu, A. Krzyzak, E. Oja, Neural nets for dual subspace pattern
+recognition method, Int. J. Neur. Syst., Vol. 2, No. 3, 1991, pp. 169-184.
+
+B. Recall Phase
+For the recall phase, in each trial we pick a pattern randomly
+from the training set, corrupt a given number of its symbols
+with ±1 noise and use the suggested algorithm to correct the
+errors. As mentioned earlier, the errors are corrected ﬁrst at the
+local and the at the global level. When ﬁnished, we compare
+the output of the ﬁrst and the second level with the original
+(uncorrupted) pattern x. An error is declared if the output does
+not match at each stage.
+Figure 3 illustrates the pattern error rates n = 400 with two
+different values of kg = 100 and kg = 200. The results are
+also compared to that of the bit-ﬂipping algorithm in [7] to
+show the improved performance of the proposed algorithm. As
+one can see, having a larger number of constraints at the global
+level, i.e. having a smaller kg , will result in better pattern error
+rates at the end of the second stage.
+Table VI-B shows the gain we obtain by adding an additional second level to the network architecture. The gain is
+calculated as the ratio between the pattern error rate at the
+output of the ﬁrst and the second level.
+TABLE II
+G AIN IN PATTERN E RROR R ATE (PER) FOR DIFFERENT VALUES OF
+n = 400 AND INITIAL NUMBER OF ERRORS
+Number of initial errors
+2
+3
+4
+5
+
+Gain for kg = 100
+10.2
+6.22
+4.58
+3.55
+
+Pattern error rate against the initial number of erroneous nodes
+
+Gain for kg = 200
+2.79
+2.17
+1.88
+1.68
+
+5
+
+

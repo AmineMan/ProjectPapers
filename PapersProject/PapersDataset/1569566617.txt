@@ -1,0 +1,998 @@
+Creator:         TeX output 2012.05.17:0706
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Fri May 18 22:03:24 2012
+ModDate:        Tue Jun 19 12:55:26 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      414339 bytes
+Optimized:      no
+PDF version:    1.7
+ISIT'2012 1569566617
+
+Ripple Design of LT Codes for AWGN Channel
+Jesper H. Sørensen∗† , Toshiaki Koike-Akino† , Philip Orlik† , Jan Østergaard∗ , and Petar Popovski∗
+∗ Aalborg
+
+University, Department of Electronic Systems, Fredrik Bajers Vej 7, 9220 Aalborg, Denmark
+Electric Research Laboratories (MERL), 201 Broadway, Cambridge, MA 02139, USA
+E-mail: {jhs, jo, petarp}@es.aau.dk, {koike, porlik}@merl.com
+
+† Mitsubishi
+
+is divided into k input symbols. From these input symbols
+a potentially inﬁnite amount of encoded symbols, called
+output symbols, are generated. Output symbols are exclusiveor (XOR) combinations of input symbols. The number of
+input symbols used in the XOR is called the degree of
+the output symbol, and all input symbols contained in an
+output symbol are called neighbors of the output symbol. The
+output symbols follow a certain degree distribution, Ω(d). The
+encoding process can be broken down into three steps: 1)
+Randomly choose a degree d by sampling Ω(d). 2) Choose
+uniformly at random d of the k input symbols. 3) Perform
+XOR of the d chosen input symbols. The resulting symbol is
+the output symbol. This process can be iterated as many times
+as needed, that results in a rateless code.
+
+Abstract—In this paper, we present an analytical framework
+for designing LT codes in additive white Gaussian noise (AWGN)
+channels. We show that some of analytical results from binary
+erasure channels (BEC) also hold in AWGN channels with slight
+modiﬁcations. This enables us to apply a ripple-based design
+approach, which until now has only been used in the BEC. LT
+codes designed by this way show promising performance which
+is near the Shannon limit even with short codewords.
+
+I. I NTRODUCTION
+LT codes [1] were the ﬁrst practical examples of a rateless
+erasure correcting code which approaches capacity for increasing message length. Raptor codes [2] were later developed as
+an extension of LT codes. Such rateless codes may potentially
+generate an inﬁnite amount of encoded symbols from ﬁnite
+input symbols. An important element in the design of both
+LT and Raptor codes for the binary erasure channel (BEC)
+is a parameter called the ripple. The performance depends
+signiﬁcantly on how this parameter evolves during decoding,
+and thus successful designs have mostly focused on this.
+Although LT codes were originally developed for the BEC,
+several works have recently focused on designing such codes
+for noisy channels.
+Design of Raptor codes for the binary symmetric channel
+(BSC) and binary-input additive white Gaussian noise (BiAWGN) channel is treated in [3]. This design is based on the
+Gaussian approximation method [4], which is used to derive
+constraints for the degree distribution of the LT code. In [5, 6],
+approaches based on EXIT charts are applied to the design of
+LT and Raptor codes, respectively. Another design of Raptor
+codes for arbitrary symmetric channels is presented in [7],
+where an analogue to the ripple is deﬁned as the increase in
+correct bit estimates in a given decoding round. The design is
+based on ﬁnding an optimal value for this measure.
+In this paper, we present an analytical framework for the
+design of LT codes in the AWGN channel. It has strong
+analogies to the framework presented in [1] for the BEC.
+Interestingly, we show that key analytical results in the BEC
+also hold even in the AWGN channel. This enables us to
+make a ripple-based design for the AWGN channel with slight
+modiﬁcations, which exploit characteristics unique in AWGN.
+The main contribution of this work is a bridge between the
+work in the BEC and the AWGN channel, and it can help
+further design extensions for such noisy channels.
+
+A. Decoding in AWGN Channel
+A widely used decoder for LT codes is a belief propagation
+(BP) decoder. For the BP decoder, messages are passed
+between neighboring symbols, i.e. from output symbols to
+input symbols or vice versa. Such a message reﬂects the
+current belief of the sender on the value of an input symbol.
+The belief is quantiﬁed by the log-likelihood ratio (LLR),
+deﬁned as ln Pr(Xi =1|Y ) , where Xi is the i-th binary input
+Pr(Xi =0|Y )
+symbol and Y is the AWGN channel output symbols vector of
+potentially inﬁnite length. The o-th output symbol is denoted
+as Yo . The -th round of the BP decoder starts with all output
+symbols passing a message, mo,i to all their neighboring input
+symbols. Based on those messages, the input symbols pass a
+message, mi,o , back to all their neighboring output symbols.
+These rounds continue until a speciﬁed stop criterion has been
+reached, e.g. a certain number of rounds or a target error rate.
+The belief messages are updated as follows [3]:
+mo−1 ,
+,i
+
+mi,o =
+o =o
+
+mo,i = 2 arctanh tanh
+
+Zo
+2
+
+·
+
+tanh
+i =i
+
+mi ,o
+2
+
+, (1)
+
+where Zo is the LLR of Yo based only on the channel output.
+The product (sum) is taken over all neighboring input (output)
+symbols other than the message recipient i (o) itself.
+B. Decoding in BEC
+
+II. BACKGROUND OF LT C ODES
+In this section, an overview of LT codes is presented.
+Assume we wish to transmit a given amount of data, which
+
+In the BEC, the BP decoder can be signiﬁcantly simpliﬁed
+since all received symbols in decoding are completely reliable.
+
+1
+
+This implies that the decoder can perform the logical XOR operations inversely from the encoding process. First, all degree1 output symbols are identiﬁed and moved to a storage referred
+to as the ripple. Symbols in the ripple are processed one by
+one, in which they are XOR’ed with all output symbols who
+have them as neighbors. Once a symbol has been processed,
+it is removed from the ripple and considered decoded. The
+processing of symbols in the ripple will potentially reduce
+some of the buffered symbols to degree one, in which case
+they are moved to the ripple. This is called a symbol release.
+The decoder can then process symbols in a successive fashion.
+The ripple is an important parameter in the BEC. In [1],
+a trade-off was described. If a new symbol is released every
+time, there is a risk that it is already in the ripple, that causes
+redundancy. It suggests that the ripple size should be kept low.
+However, in order to decrease the risk of decoding failure,
+which occurs when the ripple size is zero, the ripple size
+should be kept high enough. A good solution to this tradeoff is the main design problem in the BEC. In the following
+analysis, we use information-theoretic tools to present an analytical framework which generalizes the ripple-based approach
+towards the AWGN channel.
+
+IP , is deﬁned as the total amount of information passed from
+input symbols to output symbols. It is given as
+k
+
+IP =
+i=1
+
+p
+1 − H(Zi ) ,
+
+p
+Zi =
+
+o mi,o
+,
+d−1
+
+(4)
+
+p
+where H(Zi ) is interpreted as the entropy of the i-th input
+symbol at the point of its last message passing. Directly
+following from (4), we have the deﬁnition of unprocessed
+k
+p
+information, IL = i=1 H(Zi ).
+When deciding which input symbol should be allowed to
+pass a new message, a uniform random selection is performed
+among the input symbols, which hold information not yet
+passed to its neighbors. We say that these candidates contribute
+to the information ripple. The information ripple, IR , after
+the -th decoding round, is deﬁned as the total amount of
+information, held by the input symbols which have not yet
+been passed to the output symbols. We have
+k
+
+IR =
+i=1
+
+p
+H(Zi ) − H(Zi ) .
+
+(5)
+
+After the input symbol has passed its message, the output
+symbols obtain a chance to pass messages back to their
+neighboring input symbols. Only output symbols, which are
+neighbors to the last message passing input symbol, have new
+information to pass. This new information is referred to as
+released information, denoted IQ . It is expressed as
+
+III. R IPPLE -O RIENTED A NALYSIS
+We consider the BP decoder described in section II-A, with
+a slight modiﬁcation, in order to facilitate the analysis. Instead
+of letting all input symbols pass a new message in a round,
+we allow only one randomly chosen input symbol to do so.
+All other input symbols pass the message in the previous
+round. This modiﬁed BP decoder for input-to-output message
+updating is expressed as
+
+mo−1 , if i is allowed to pass,
+
+,i
+mi,o = o =o
+(2)
+ −1
+mi,o ,
+if i is not allowed to pass.
+
+k
+
+IQ =
+p+
+Zi
+
+=
+
+p
+p+
+H(Zi ) − H(Zi ) ,
+
+i=1
+p
+Zi +
+
+o
+
+−1
+mo,i − mo,i ,
+
+(6)
+
+p+
+where H(Zi ) is interpreted as the entropy of the i-th input
+symbol when processed and newly released information is
+taken into account.
+p
+Here, IQ is deﬁned by H(Zi ) as reference, which is the
+information known by the output symbols. Hence, IQ can be
+regarded as the amount of new information passed to the input
+symbols, as seen from an output symbol perspective. In fact,
+this is not the true amount of new information since it might
+be combined with information in the ripple. For this case,
+the actual reference is H(Zi −1 ) and we can deﬁne the actual
+amount of information added to the ripple, IA , as follows:
+
+This modiﬁcation is known as a random scheduling for BP.
+It is known that such a sequential scheduling offers better
+convergence performance than a standard parallel scheduling.
+Note that a code designed by this analysis can be decoded by
+any BP decoder scheduling.
+A. Analytical Framework
+We ﬁrst express the entropy, H(Zi ), of the i-th input symbol
+after decoding rounds as follows:
+
+k
+
+H(Zi ) = −
+
+Pr(Xi = x|Y ) log2 Pr(Xi = x|Y ) ,
+
+IA =
+
+x∈{0,1}
+
+exp(Zi )
+Pr(Xi = 1|Y ) =
+,
+1 + exp(Zi )
+Pr(Xi = 0|Y ) = 1 − Pr(Xi = 1|Y ),
+Zi =
+
+i=1
+k
+
+(3)
+
+=
+i=1
+
+H(Zi −1 ) − H Zi −1 +
+H Zi −1 − H Zi
+
+.
+
+o
+
+−1
+mo,i − mo,i
+
+(7)
+
+The quantities deﬁned in (3) through (7) are illustrated in
+Fig. 1, where the entropy of a single input symbol has been
+plotted as a function of its LLR. Due to the convexity of the
+entropy function (except at very low LLR), we have IA < IQ ,
+which means loss of information. This is analogous to the risk
+of redundancy for nonzero ripple in the BEC.
+
+mo,i .
+o
+
+When an input symbol passes a new message to its neighbors, we refer to the information it holds as processed information. After the -th decoding round, the processed information,
+
+2
+
+1
+
+0.04
+
+d=2
+d=3
+d=4
+BEC Theory
+
+0.035
+
+IP−1 = IP
+
+0.03
+
+P
+H Zi
+
+0.025
+
+IR−1
+
+IR
+
+H Zi −1
+
+Iq (d, IL )
+
+IQ
+P
+H Zi +
+
+IL−1 = IL
+
+0.015
+
+IA
+
+H Zi
+
+0.02
+
+0.01
+0.005
+
+0
+0
+
+1
+
+2
+
+3
+
+4
+
+5
+
+6
+
+7
+
+0
+
+8
+
+LLR
+
+60
+
+50
+
+40
+
+30
+
+20
+
+10
+
+0
+
+IL
+
+Fig. 1. Entropy as a function of LLR for an input symbol i. The contribution
+to the deﬁned quantities is annotated, assuming that the symbol has not passed
+a new message, but received new information from its neighbors.
+
+Fig. 2. Comparison of simulated IQ as a function of d and quantized IL
+and corresponding curves from (8).
+
+Normalized Frequency
+
+0.1
+
+B. First Moment of Information Ripple
+In general, there is a strong relation between the quantities
+in (3) through (7) and the terms deﬁned in section II-B for
+the BEC decoder. They are essentially continuous entropy
+counterparts of the discrete symbol based versions from the
+BEC. One interesting quantity in a ripple-based design is
+the expected amount of released information from an output
+symbol of degree d as a function of the amount of unprocessed
+information. It expresses the universal connection between the
+degree distribution, which is the design parameter, and the rate
+of recovery of new information during the decoding process.
+It was derived in [1] for the BEC, more speciﬁcally
+
+q(d, L) =
+
+d−3
+j=0 (k
+d−1
+j=0 (k
+
+− (L + 1) − j)
+− j)
+
+q(d, L) = 0, for all other d and L,
+
+IQ
+
+,
+
+−0.5
+
+−0.4
+
+−0.3
+
+−0.2
+
+−0.1
+
+0
+−
+
+0.1
+
+0.2
+
+0.3
+
+0.4
+
+0.5
+
+A
+Q
+
+I
+
+termine how much, we must know IA , the ratio of released
+Q
+information which is added to the ripple. The BEC counterpart
+A(L)
+is Q(L) = L−R(L) , where A(L), Q(L) and R(L) are symbols
+L
+added to the ripple, released symbols and symbols in the ripple
+after the (k − L)-th decoding round, respectively.
+I
+For the AWGN channel, IA has been determined for
+Q
+0 < R ≤ 20 and 0 < L ≤ 64 through a simulation similar
+to the one used for determining Iq (d, IL ). Fig. 3 shows a
+I
+A(L)
+histogram of IA − Q(L) , which illustrates that the AWGN
+Q
+channel behaves as the BEC with a small perturbation.
+A(L)
+Based on q(d, L) and the fact that Q(L) = L−R(L) holds
+L
+in the BEC, it is possible to control the expected amount of
+symbols added to the ripple in each decoding round, through
+the choice of degree distribution. We can now conclude that
+this theory also holds in the AWGN channel. Hence, the same
+ripple-based design approach can be used for the AWGN
+channel, in order to control the ﬁrst moment of the ripple. This
+suggests that degree distributions designed for the BEC should
+also perform well in the AWGN channel, which was also
+concluded in [8]. However, it was also mentioned that there is
+still a room for improvement, and thus behavioral differences
+between the BEC and the AWGN channel. These differences
+should be evident in the higher moments of the ripple. We
+take this into account in our design, which is described next.
+
+(8)
+
+IQ
+Iq (d, IL ) =
+
+0.02
+
+Fig. 3. Histogram of the difference between simulated IA /IQ from AWGN
+channel and theoretic A(L)/Q(L) from the BEC.
+
+where L is the amount of unprocessed input symbols. Deriving
+the AWGN channel equivalent to (8) is outside the scope of
+this paper. However, we can easily obtain an understanding of
+its behavior by simulating an LT code in an AWGN channel
+and logging IQ versus IL for different degrees. In order to
+compare with (8), we quantize this data to integer values of
+IL and normalize such that it sums up to one. We thus have the
+fraction of the released information, which is released when
+IL bits remain unprocessed. This is denoted as Iq (d, IL ) for
+output symbols of degree d and is deﬁned as
+:|IL −IL |<0.5
+
+0.04
+
+IA
+IQ
+
+,
+
+for d = 2, ..., k, and L = k − d + 1, ..., 1,
+
+0.06
+
+0
+
+q(1, k) = 1,
+d(d − 1)L
+
+0.08
+
+(9)
+
+where only information from output symbols of degree d is
+included. Fig. 2 shows a plot of the results at a signal-to-noise
+power ratio (SNR) of 5 dB. It reveals a clear correspondence
+between the theory derived for the BEC and what is observed
+in the AWGN channel.
+However, as described in connection with (7), not all
+released information is added to the ripple. In order to de-
+
+IV. R IPPLE -BASED D ESIGN IN AWGN
+A typical approach to design LT codes is to choose design
+criterion for the ﬁrst moment of the ripple and meet it through
+proper choice of the degree distribution. The ﬁrst moment
+criterion is chosen based on heuristic assumptions about the
+second moment behavior. This approach was taken in both
+
+3
+
+[1] and [2] for the BEC. Using the analytical framework
+presented in the previous section, we will apply the ripplebased approach to designing LT codes in the AWGN channel.
+In [2], the assumptions about the second moment behavior
+of the ripple in the BEC was based on a random walk model. It
+was assumed that the ripple size either increases or decreases
+by one, with equal probabilities, in each decoding round, i.e.,
+R +1 = R ± 1. Since one symbol is processed in each
+round in the BEC, L rounds will remain, and we can calculate
+the expected distance from the origin, E |R +L − R | (E[·]
+denotes an expectation), after the random walk as follows:
+E R
+
++L
+
+E |R
+
+−R
+
++L
+
+2
+
++L−1
+
+=
+j=
+
+−R | =
+
+√
+
+E Rj+1 − Rj
+
+2
+
+Probability
+
+1
+
++L
+
+−R
+
+2
+
+=
+
++θIL −1
+j=
+
+E Rj+1 − Rj
+
+2
+
++L
+
+−R | =α
+
+0
+
+10
+
+20
+
+30
+
+40
+
+50
+
+60
+
+Fig. 4. Probabilities of having 1 and 2 erroneous neighbors, and the difference
+between them, as a function of degree.
+
+input symbols and one correct input symbol. When this new
+output symbol passes a message to an input symbol, it is
+based on a product of the messages from the two other
+neighbors. Hence, for the erroneous input symbols, yet another
+misleading message will be passed, while for the correct input
+symbol, the errors cancel out. If only one erroneous input
+symbol had been a neighbor, the output symbol would have
+made a helpful contribution. Similar examples can be made
+with higher numbers of errors. In general, we can say that
+if it is more likely that an even number of erroneous input
+symbols are neighbors to a new output symbol, compared to
+an odd number, then the errors will be self-perpetuating.
+This observation can be used to create a design criterion,
+where we focus on the cases of 1 and 2 erroneous neighbors,
+since these are most likely. We deﬁne γ(d) = p1 (d) − p2 (d),
+where pe (d) is the probability that a new output symbol of
+degree d has e and only e erroneous neighbor(s) for e = 1, 2.
+(d)(k−d)
+(d)(k−d)
+They are expressed as p1 (d) = 1 k 1 and p2 (d) = 2 k 0
+(2)
+(2)
+and plotted as a function of d in Fig. 4. The plots illustrate that
+high degree symbols should be avoided, whereas degrees in the
+lower half of the spectrum are more useful. In our design, we
+seek to maximize E[γ] = d γ(d)Ω(d), under the constraints
+given by our choice of ripple.
+We now summarize the analysis and the ripple-based design
+method for noisy channels. In section III-B, we showed that
+(8), which was originally derived for the BEC, also holds in
+I
+I −I
+the AWGN channel. Moreover, we showed that IA = LI R
+Q
+L
+is also analogous to the BEC. If we quantize the decoding
+process to integer values of IL , we can express the expected
+evolution of the information ripple for each processed bit:
+
+= L,
+
+= α2 θIL ,
+
+IL
+) + 1 IL .
+(11)
+k
+It determines a desired information ripple evolution with
+properly chosen constants, α and β. Note that this model is
+based on heuristics, as in [1] and [2]. It has been conﬁrmed
+that a higher-order polynomial model of θ had almost no gains.
+The AWGN channel differs from the BEC in another
+signiﬁcant way in BP decoding. Messages passed from output
+symbols may be misleading, in the sense that they contribute
+with an LLR of an opposite sign of the true value of the bit.
+If one or more bits are in error, more output symbols will
+need to be collected. In this case, the errors may propagate
+and make future output symbols misleading as well.
+Consider the example where 2 out of k input symbols are
+in error and a new output symbol of degree 3 is received.
+The three neighbors of the new symbol are the two erroneous
+E |R
+
+−0.5
+
+Degree (d)
+
+Based on this it was argued that the expected ripple should
+√
+be kept at c L, for a properly chosen constant c, when L
+symbols remain unprocessed, i.e. in the (k − L)-th decoding
+round. We will adopt this approach, for our choice of expected
+information ripple for the AWGN channel with a slight modiﬁcation which deals with the characteristics of this channel.
+First, we note that a decoding round does not necessarily
+p
+result in the processing of 1 bit, i.e. H(Zi ) − H(Zi ) ≤ 1.
+Hence, we assume that the ripple will increase or decrease
+by α with equal probabilities. Moreover, it is possible that
+p
+H(Zi ) > H(Zi ), i.e. the messages passed from output
+symbols to input symbol i, since last time it was allowed to
+pass, has increased the entropy of that input symbol. In this
+case, we actually have negative decoding progress. Numerical
+experiments show that this happens more frequently later in
+the decoding progress, which results in an increasing number
+of decoding rounds per one bit of processed information. We
+assume a linear increase, such that the number of steps per
+IL
+processed bit is θ = β(1 − k ) + 1. Hence, we obtain
+E R
+
+0
+
+−1
+
+(10)
+
+L.
+
+p 1 (d)
+p 2 (d)
+γ(d)
+
+0.5
+
+β(1 −
+
+IR (k) = α
+
+IL ,
+
+IR (IL − 1) = IR (IL ) − 1 +
+
+IL − IR (IL )
+IL
+
+for k > IL ≥ 0,
+IQ (d, IL ) =
+d
+
+nI(X; Y )Ω(d)Iq (d, IL ),
+
+IQ (d, IL ),
+d
+
+(12)
+
+d
+
+where I(X; Y ) is the mutual information of the AWGN channel and n is the number of symbols collected for decoding.
+Combining our ripple constraint from (11) with (12), we
+
+4
+
+obtain the system of equations as follows:
+
+
+
+
+IR (k)
+
+
+q(1, k) 0
+0
+∆IR (k − 1)
+ .
+ n Ω(1)
+
+
+..
+ .
+ .  
+
+.
+.
+0  .  = 
+.
+ .
+, (13)
+.
+.
+
+
+q(1, 1) · · · q(k, 1)
+ ∆IR (1) 
+n Ω(k)
+ωγ(1) · · · ωγ(k)
+n ωE[γ]
+where
+
+Avg. Overhead
+
+3.5
+
+2
+
+1
+
+=
+
+(IR (IL −1)−IR (IL )+1)IL
+.
+IL −IR (IL )
+
+0
+
+1
+
+2
+
+3
+
+4
+
+5
+
+6
+
+7
+
+8
+
+9
+
+10
+
+SN R
+
+Fig. 5. Average overhead versus SNR for the simulated degree distributions.
+0
+
+10
+
+Block Error Rate
+
+max E[γ] s.t. |An Ω(d) − b|2 < t,
+
+2.5
+
+1.5
+
+nI(X; Y ) and ∆IR (IL − 1)
+=
+Here we have also added
+E[γ] =
+d γ(d)Ω(d), which we wish to maximize.
+This equation has a multiplier ω
+1 since this is a ﬁrm
+constraint. Note that n acts as a normalization factor, which
+ensures a valid degree distribution.
+We can then formalize the design problem as follows:
+n
+
+RSD
+Γ(d)
+Ω(d)
+Shannon Limit (BPSK)
+
+3
+
+(14)
+
+where A is the matrix in (13), b is the vector on the RHS of
+(13) and t is an appropriately chosen tolerance level of the
+deviation from the target information ripple.
+
+RSD
+Γ(d)
+Ω(d)
+
+−1
+
+10
+
+−2
+
+10
+
+−3
+
+10
+
+1
+
+1.5
+
+2
+
+2.5
+
+3
+
+3.5
+
+4
+
+4.5
+
+5
+
+Overhead (1 + )
+
+Fig. 6. Block error probability versus overhead for the simulated degree
+distributions.
+
+V. N UMERICAL R ESULTS
+Simulations have been performed in order to compare the
+proposed design, Ω(d), with existing degree distributions. A
+tolerance level of t = 0.1 has been chosen for the optimization
+problem in (14). A numerical optimization of the parameters
+α and β has been performed, which revealed that parameter
+pairs where 1.0 ≤ α ≤ 1.4 and 0 ≤ β ≤ 3 perform
+well, depending on the SNR. In general α should increase
+for increasing SNR, while β should decrease. References in
+the ﬁrst simulation are the Robust Soliton Distribution (RSD),
+with parameters c = 0.1 and δ = 1, and a degree distribution
+designed by the proposed approach presented in this work, but
+with the ripple target in (10), which was suggested in [2]. We
+refer to this distribution as Γ(d). A numerical optimization
+resulted in c = 1.3, which has been used. All distributions
+have been evaluated at k = 64 for an SNR of 0, 2, ..., 10 dB
+using BPSK modulations. They are compared with respect to
+average overhead necessary in order to successfully decode
+all input symbols. An input symbol is considered successfully
+decoded if its error probability is below 10−12 . Fig. 5 shows
+the results, where it is evident that the approach presented in
+this work signiﬁcantly outperforms the distributions designed
+for the BEC. Especially at low SNR, where the difference
+between the AWGN channel and the BEC is more signiﬁcant,
+the proposed design excels. In this ﬁgure, we also present the
+lower bound of the overhead calculated by the Shannon limit
+in AWGN (for BPSK-constrained codebooks with an inﬁnite
+length). As we can see, the proposed degree distribution
+approaches the Shannon limit in the low SNR regimes within
+1 dB even for such a very short message length of k = 64.
+Another simulation has been performed, where the purpose
+is to evaluate the degree distributions with respect to block
+error rate at speciﬁc overheads. A block error occurs when
+at least one symbol has an error probability above 10−12
+after 2000 decoding rounds on (1 + )k output symbols. The
+
+simulation is performed at an SNR of 0 dB using the same
+parameters as in the ﬁrst simulation. The results are shown in
+Fig. 6 and it is seen that the proposed design outperforms the
+other degree distributions at any overhead.
+VI. C ONCLUSIONS
+We have presented an analytical framework for LT codes in
+AWGN channels. Surprisingly, key analytical results known
+in the BEC can be applied to AWGN channels within this
+framework. This enables us to introduce a ripple-based design
+scheme in AWGN channels with a few modiﬁcations. LT
+codes based on this design show promising results compared
+to standard designs. In particular, the designed codes can
+approach the capacity in the low SNR regimes even for a very
+short message length. Our analytical framework is a strong
+tool for the ripple-based design in any noisy channels.
+R EFERENCES
+[1] M. Luby, “LT codes,” in The 43rd Annual IEEE Symposium on Foundations of Computer Science, pp. 271–280, 2002.
+[2] A. Shokrollahi, “Raptor codes,” IEEE Transactions on Information Theory, vol. 52, pp. 2551–2567, June 2006.
+[3] O. Etesami and A. Shokrollahi, “Raptor codes on binary memoryless
+symmetric channels,” IEEE Transactions on Information Theory, vol. 52,
+pp. 2033–2051, May 2006.
+[4] S.-Y. Chung, T. Richardson, and R. Urbanke, “Analysis of sum-product
+decoding of low-density parity-check codes using a Gaussian approximation,” IEEE Transactions on Information Theory, vol. 47, pp. 657–670,
+Feb. 2001.
+[5] Z. Cheng, J. Castura, and Y. Mao, “On the design of Raptor codes for
+binary-input Gaussian channels,” IEEE Transactions on Communications,
+vol. 57, pp. 3269–3277, Nov. 2009.
+[6] I. Hussain, M. Xiao, and L. Rasmussen, “LT coded MSK over AWGN
+channels,” in The 6th International Symposium on Turbo Codes and
+Iterative Information Processing (ISTC), pp. 289–293, Sept. 2010.
+[7] P. Pakzad and A. Shokrollahi, “Design principles for Raptor codes,” in
+IEEE ITW ’06 Punta del Este., pp. 165–169, March 2006.
+[8] R. Palanki and J. Yedidia, “Rateless codes on noisy channels,” in
+Available at www.merl.com/papers/TR2003-124/, 2004.
+
+5
+
+

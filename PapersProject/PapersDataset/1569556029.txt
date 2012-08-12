@@ -1,0 +1,981 @@
+Creator:         TeX output 2012.05.10:1158
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Thu May 10 11:58:15 2012
+ModDate:        Tue Jun 19 12:54:45 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      513096 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569556029
+
+Wireless Information Transfer with Opportunistic
+Energy Harvesting
+†
+
+Liang Liu† , Rui Zhang†‡ , and Kee-Chaing Chua†
+ECE Department, National University of Singapore. e-mails:{liu liang,elezhang,eleckc}@nus.edu.sg
+‡
+Institute for Infocomm Research, A*STAR, Singapore.
+h
+
+Abstract—Energy harvesting is a promising solution to prolong the operation of energy-constrained wireless networks. In
+particular, scavenging energy from ambient radio signals, namely
+wireless energy harvesting (WEH), has recently drawn signiﬁcant
+attention. In this paper, we consider a point-to-point wireless
+link over the ﬂat-fading channel subject to the time-varying cochannel interference. It is assumed that the receiver has no
+ﬁxed power supplies and thus needs to replenish energy via
+WEH from the unintended interference and/or the intended
+signal sent by the transmitter. We further assume a singleantenna receiver that can only decode information or harvest
+energy at any given time due to the practical circuit limitation.
+As a result, it is important to investigate when the receiver
+should switch between the two modes of information decoding
+(ID) and energy harvesting (EH), based on the instantaneous
+channel and interference conditions. In this paper, we derive the
+optimal mode switching rule at the receiver to achieve various
+tradeoffs between the minimum transmission outage probability
+for ID and the maximum average harvested energy for EH,
+which are characterized by the boundary of a so-called “outageenergy” region. Moreover, for the case when the channel state
+information (CSI) is known at the transmitter, we investigate
+the joint optimization of transmit power control and scheduling
+for information and energy transfer with the receiver’s mode
+switching. Our results provide useful insights to the optimal
+design of emerging wireless communication systems powered by
+opportunistic WEH.
+
+I.
+
+Tx
+
+I
+
+Fig. 1.
+
+Information
+Decoder
+
+Rx
+
+Energy
+Harvester
+
+System model.
+
+“power splitting” (the receiver splits the received signal for
+decoding information and harvesting energy separately) to enable wireless information transfer with simultaneous wireless
+energy harvesting (WEH).
+In this paper, we investigate further the time-switching
+scheme in [3] for a point-to-point single-antenna ﬂat-fading
+channel subject to the time-varying co-channel interference,
+as shown in Fig. 1. It is assumed that the transmitter has a
+ﬁxed power supply (e.g., battery), whereas the receiver has
+no ﬁxed power supplies and thus needs to replenish energy
+via WEH from the received interference and/or signal sent
+by the transmitter. We consider an opportunistic WEH at
+the single-antenna receiver, i.e., the receiver can only decode
+information or harvest energy at any given time, but not both.
+As a result, the receiver needs to decide when to switch
+between an information decoding (ID) mode and an energy
+harvesting (EH) mode, based on the instantaneous channel
+gain and interference power, which are assumed to be perfectly
+known at the receiver. In this paper, we derive the optimal
+mode switching rule at the receiver to achieve various tradeoffs
+between the minimum transmission outage probability for ID
+and the maximum average harvested energy for EH, which are
+characterized by the boundary of a so-called “outage-energy
+(O-E)” region. Moreover, for the case when the channel state
+information (CSI) is known at the transmitter, we examine
+the optimal design of transmit power control and scheduling
+for information and energy transfer jointly with the receiver’s
+mode switching, to achieve all the boundary outage-energy
+pairs of the O-E region. It is worth noting that from a traditional point of view, interference in general jeopardizes the
+wireless channel capacity unless it is sufﬁciently strong to be
+decoded [4]. However, in our system of interest, interference is
+utilized as a source for WEH. Hence, the fundamental role of
+interference in emerging wireless networks with simultaneous
+information and power transfer still remains unknown and is
+thus worth further investigating.
+
+INTRODUCTION
+
+In conventional energy-constrained wireless networks such
+as sensor networks, the lifetime of the network is an important
+performance indicator since sensors are equipped with ﬁxed
+energy supplies, e.g., battery, which are of limited operation
+time. Therefore, energy harvesting has become an appealing
+solution to prolong the lifetime of wireless networks. In
+addition to other commonly used energy sources such as solar
+and wind, ambient radio signals can be a viable new source for
+energy harvesting, which has recently drawn a great deal of
+interest (see, e.g., [1]-[3] and references therein). Most existing
+works have studied the fundamental performance limits of
+wireless systems with simultaneous information and energy
+transfer under different setups, where the receiver is assumed
+to be able to decode the information and harvest the energy
+independently from the same received signal. However, this assumption relies on that the received signal used for harvesting
+energy can be reused for decoding information, which may not
+be realizable due to practical circuit limitations. Consequently,
+in [3] the authors proposed two practical receiver designs,
+namely “time switching” (the receiver switches between decoding information and harvesting energy dynamically) and
+
+II. S YSTEM M ODEL
+As shown in Fig. 1, this paper considers a wireless point-topoint link consisting of one pair of single-antenna transmitter
+
+1
+
+Tx for each fading state ν. In this case, Tx is able to schedule
+transmission for information and energy transfer to Rx based
+on the instantaneous CSI. As shown in Fig. 2(b), Tx allocates
+time slot 1 for energy transfer, time slot 3 for information
+transfer, and transmits no signals in time slot 2. Accordingly,
+Rx will be in EH mode (i.e., π(ν) = 0) to harvest the energy
+from the received signal (including the interference) in time
+slot 1, and solely from the received interference in time slot
+2, and in ID mode (i.e., π(ν) = 1) to decode the information
+in time slot 3. In addition to transmission scheduling, Tx
+can implement power control based on the CSI to further
+improve the information/energy transmission efﬁciency. Let
+p(ν) denote the transmit power of Tx at fading state ν. In
+this paper, we consider two types of power constraints on
+p(ν), namely average power constraint (APC) and peak power
+constraint (PPC) [5]. The APC limits the average transmit
+power of Tx over all the fading states, i.e., Eν [p(ν)] ≤ Pavg ,
+where Eν [·] denotes the expectation over ν. In contrast, the
+PPC constrains the instantaneous transmit power of Tx at each
+of the fading states, i.e., p(ν) ≤ Ppeak , ∀ν. Without loss of
+generality, we assume Pavg ≤ Ppeak . For convenience, we
+deﬁne the set of feasible power allocation as
+{
+}
+P
+p(ν) : Eν [p(ν)] ≤ Pavg , p(ν) ≤ Ppeak , ∀ν .
+(2)
+
+...
+h
+
+I
+
+ID (ρ=1)
+
+1
+
+2
+
+1
+
+Rx
+
+Tx
+
+3
+
+σ2
+
+1
+
+2
+
+2
+
+3
+
+1
+
+...
+
+2
+
+3
+
+...
+
+3
+
+EH (ρ=0)
+
+(a) CSI Unknown at Tx: Information transmission only with constant power.
+
+h
+
+...
+1
+
+2
+
+3
+
+...
+
+I
+
+ID (ρ=1)
+
+Tx
+
+1
+
+Rx
+σ2
+
+1
+
+2
+
+3
+
+2
+
+3
+
+...
+EH (ρ=0)
+1
+
+2
+
+3
+
+(b) CSI Known at Tx: Scheduled information and energy transmission with power control.
+Information Signal
+
+Energy Singal
+
+Interference Signal
+
+Fig. 2. Encoding and decoding strategies for wireless information transfer
+with opportunistic WEH (via receiver mode switching). The height of the
+block shown in the ﬁgure denotes the signal power.
+
+(Tx) and receiver (Rx) over a ﬂat-fading channel. It is assumed
+that there is an aggregate interference at Rx, which is within
+the same bandwidth as the transmitted signal from Tx, and
+changes over time. For convenience, we assume that the
+channel from Tx to Rx follows a block-fading model [5]
+and the coherence time for the time-varying interference is
+the same as the channel coherence time. The channel power
+gain and the interference power at Rx at one particular fading
+state are denoted by h(ν) and I(ν), respectively, where ν
+denotes the joint fading state. It is assumed that h(ν) and
+I(ν) are independent and identically distributed (i.i.d.) random
+variables (RVs) each having a continuous probability density
+function (PDF). At any fading state ν, h(ν) and I(ν) are
+assumed to be perfectly known at Rx. In addition, the additive
+noise at Rx is assumed to be a circularly symmetric complex
+Gaussian (CSCG) RV with zero mean and variance σ 2 .
+We consider a block-based transmission at Tx and the timeswitching scheme at Rx for decoding information or harvesting
+energy at each fading state. Next, we elaborate the encoding
+and decoding strategies for our system of interest in the
+following two cases: Case I: h(ν) and I(ν) are unknown at
+Tx for all the fading states of ν, referred to as CSI Unknown
+at Tx; and Case II: h(ν) and I(ν) are perfectly known at Tx
+at each fading state ν, referred to as CSI Known at Tx (CSIT).
+First, consider the case of CSI Unknown at Tx, as shown in
+Fig. 2(a). In this case, Tx transmits information continuously
+with constant power P for all the fading states due to the lack
+of CSI. At each fading state ν, Rx decides whether to decode
+the information or harvest the energy from the received signal
+based on h(ν) and I(ν). For example, as shown in Fig. 2(a),
+time slots 1 and 3 are allocated to EH mode at Rx, while time
+slot 2 is allocated to ID mode. For convenience, we deﬁne an
+indicator function to denote the receiver’s mode switching at
+any given ν as follows:
+{
+1, ID mode is active
+π(ν) =
+(1)
+0, EH mode is active.
+
+III. O UTAGE -E NERGY T RADEOFF
+We consider two performance measures at Rx, which are
+the outage probability for wireless information transfer and
+the average harvested energy for WEH. Assuming that the
+interference is treated as additive Gaussian noise at Rx and the
+transmitted signal is Gaussian distributed, the instantaneous
+mutual information (IMI) for the Tx-Rx link at fading state ν
+is expressed as [5]
+(
+)
+h(ν)p(ν)
+r(ν) = π(ν) log 1 +
+.
+(3)
+I(ν) + σ 2
+Note that r(ν) = 0 if Rx switches to EH mode (i.e., π(ν) = 0).
+Thus, considering a delay-limited transmission with constant
+rate r0 , the outage probability at Rx can be expressed as [5]
+ε = P r {r(ν) < r0 } ,
+
+(4)
+
+where P r{·} denotes the probability.
+On the other hand, the amount of energy (normalized to the
+transmission block duration) that can be harvested at Rx at
+fading state ν is assumed to be
+(
+)(
+)
+Q(ν) = α 1 − π(ν) h(ν)p(ν) + I(ν) + σ 2 ,
+(5)
+where α is a constant that accounts for the loss in the energy
+transducer for converting the harvested energy to electrical
+energy to be stored; for convenience, it is assumed that α = 1
+in this paper. Moreover, since the background thermal noise
+has constant power σ 2 for all the fading states, we may ignore
+it in (5). Thus, in the rest of this paper, we assume Q(ν) :=
+(
+)(
+)
+1 − π(ν) h(ν)p(ν) + I(ν) . The average energy that can be
+harvested at Rx is then given by
+
+Next, we consider the case of CSI Known at Tx, i.e., the
+channel gain h(ν) and interference power I(ν) are known at
+
+Qavg = Eν [Q(ν)].
+
+2
+
+(6)
+
+16
+
+where fν (h, I) denotes the joint PDF. Note that Qmin is the
+minimum average harvested energy at Rx when the maximum
+non-outage probability (or minimum outage probability) is
+achieved. Moreover, Qmax is obtained as
+
+O-E region with CSIT
+O-E region without CSIT
+
+14
+(0,Qm ax)
+
+Average Harvested Energy
+
+12
+
+10
+
+Qmax = Eν [h(ν)P + I(ν)],
+
+(11)
+
+8
+
+6
+
+when π(ν) = 0, ∀ν, i.e., EH mode is active all the time
+at Rx and thus the resulted non-outage probability is 0
+(corresponding to the maximum outage probability equal to
+1). Similarly, Qmin , δmax , and Qmax can be deﬁned for the
+case with CSIT; due to the space limitation, we omit their
+expressions.
+Since the optimal tradeoffs between the non-outage probability and average harvested energy are characterized by the
+boundary of the O-E region, it is important to characterize all
+the boundary (δ, Qavg ) pairs in each case of with or without
+CSIT. From Fig. 3, it is easy to observe that if Qavg < Qmin ,
+the non-outage probability δmax can still be achieved for both
+cases. Thus, the remaining boundary of the O-E region yet to
+be characterized is over the intervals Qmin ≤ Qavg ≤ Qmax
+and 0 ≤ δ ≤ δmax .
+For the convenience of analysis, we introduce the following
+indicator function for the event of non-outage transmission at
+fading state ν:
+{
+1, if r(ν) ≥ r0
+(12)
+X(ν) =
+0, otherwise.
+
+(0,Qm ax)
+
+4
+( δmax ,Qm in)
+2
+
+0
+
+( δmax ,Qm in)
+
+0
+
+Fig. 3.
+
+0.1
+
+0.2
+
+0.3
+
+0.4
+0.5
+0.6
+Non-outage Probability
+
+0.7
+
+0.8
+
+0.9
+
+1
+
+An example of the O-E region with or without CSIT.
+
+It is easy to see that there exist non-trivial tradeoffs in
+assigning the receiver mode π(ν) and/or transmit power
+p(ν) (in the case of CSI known at Tx) to balance between
+minimizing the outage probability for information transfer
+and maximizing the average harvested energy for WEH. To
+characterize such tradeoffs, we introduce a so-called OutageEnergy (O-E) region (deﬁned below) that consists of all the
+achievable non-outage probability (deﬁned as δ = 1 − ε with
+outage probability ε given in (4)) and average harvested energy
+pairs for a given set of power constraints. In the case without
+(w/o) CSIT, the corresponding O-E region is deﬁned as
+{
+∪
+w/o CSIT
+CO−E
+(δ, Qavg ) : δ ≤ P r {r(ν) ≥ r0 } ,
+
+It thus follows that the non-outage probability δ can be
+reformulated as
+
+π(ν)∈{0,1},∀ν
+
+Qavg
+
+}
+≤ Eν [Q(ν)] .
+
+δ = P r{r(ν) ≥ r0 } = Eν [X(ν)].
+(7)
+
+(13)
+
+Next, we consider the following two optimization problems.
+(P1) : Maximize
+
+On the other hand, in the case with CSIT, the O-E region
+is deﬁned as
+{
+∪
+with
+(δ, Qavg ) :
+CO−E CSIT
+
+{π(ν)}
+
+Subject to
+
+Eν [X(ν)]
+¯
+Eν [Q(ν)] ≥ Q
+π(ν) ∈ {0, 1}, ∀ν
+
+p(ν)∈P,π(ν)∈{0,1},∀ν
+
+}
+δ ≤ P r {r(ν) ≥ r0 } , Qavg ≤ Eν [Q(ν)] . (8)
+
+(P2) : Maximize
+{p(ν),π(ν)}
+
+Subject to
+
+Fig. 3 shows an example of the O-E region without or with
+CSIT (see Sections IV and V for the details of computing
+the O-E regions). It is assumed that Pavg = 5, Ppeak = 20,
+σ 2 = 0.5, r0 = 0.3, h(ν) and I(ν) are independent exponentially distributed RVs with mean 1 and 3, respectively. It is
+observed that CSIT helps improving the achievable outageenergy tradeoffs. In Fig. 3, there are two boundary points
+shown for each O-E region denoted by (δmax , Qmin ) and
+(0, Qmax ), respectively. For example, in the case without
+CSIT, Qmin and δmax are obtained as
+∫
+(
+)
+Qmin =
+h(ν)P + I(ν) fν (h, I)dν, (9)
+)
+(
+h(ν)P
+ν:log 1+ I(ν)+σ2 <r0
+
+δmax
+
+{ (
+= P r log 1 +
+
+h(ν)P
+I(ν) + σ 2
+
+)
+
+¯
+Eν [Q(ν)] ≥ Q
+p(ν) ∈ P, ∀ν
+π(ν) ∈ {0, 1}, ∀ν
+
+¯
+where Q is the target average harvested energy. By solving
+¯
+Problems (P1) and (P2) for all Qmin ≤ Q ≤ Qmax , we are
+able to characterize the entire boundary of the O-E region
+deﬁned in (7) or (8) (without or with CSIT).
+Problems (P1) and (P2) are both non-convex optimization
+problems. However, it can be veriﬁed that both of them satisfy
+the “time-sharing” condition given in [6]. To show this for
+¯
+Problem (P1), let Φ(Q) denote the optimal problem value
+¯
+given the harvested energy constraint Q, and {π a (ν)} and
+b
+{π (ν)} denote the optimal solutions given the harvested
+¯
+¯
+energy constraints Qa and Qb , respectively. We need to prove
+that for any 0 ≤ θ ≤ 1, there always exists at least one solution
+¯
+¯
+{π c (ν)} such that Eν [X c (ν)] ≥ θΦ(Qa ) + (1 − θ)Φ(Qb )
+
+}
+≥ r0 ,
+
+Eν [X(ν)]
+
+(10)
+
+3
+
+(
+¯a
+¯
+and Eν [Qc (ν)] ≥ θQ) + (1 − θ)Qb , where Qc (ν) = 1 −
+)(
+π c (ν) h(ν)P + I(ν) and X c (ν) is deﬁned accordingly as
+in (12). Due to the space limitation, the above proof is omitted
+¯
+here. In fact, the “time-sharing” condition implies that Φ(Q)
+¯ which then guarantees the zero duality gap
+is concave in Q,
+for Problem (P1) according to the convex analysis in [7].
+Similarly, we can show that the duality gap of Problem (P2)
+is zero. Thereby, in the following two sections, we will utilize
+the Lagrange duality method to solve Problems (P1) and (P2),
+respectively.
+IV. O PTIMAL R ECEIVER M ODE S WITCHING :
+WITHOUT CSIT
+
+h
+λ*Ph+λ*I=1
+Non-Outage Region
+ID(λ*)
+
+EH(λ*)
+
+Outage Region
+h/(I+σ2)=(er0-1)/P
+I
+
+Fig. 4.
+
+C ASE
+
+Illustration of optimal ID and EH regions in the case without CSIT.
+
+We ﬁrst study Problem (P1) for the CSIT-unknown case to
+derive the optimal rule at Rx to switch between EH and ID
+modes. The Lagrangian of Problem (P1) is formulated as
+(
+)
+¯
+L(π(ν), λ) = Eν [X(ν)] + λ Eν [Q(ν)] − Q ,
+(14)
+
+the optimal dual solution to Problem (P1) corresponding to the
+¯
+given Q. Then, from (19) the optimal ID region for Problem
+(P1) is expressed as
+{
+(
+)
+er0 − 1
+h
+∗
+DID (λ )
+>
+, 1 > λ∗ hP + λ∗ I,
+h, I :
+I + σ2
+P
+}
+h > 0, I > 0 .
+(20)
+
+where λ is the dual variable associated with the harvested
+¯
+energy constraint Q. Then, the Lagrange dual function of
+Problem (P1) is expressed as
+
+The rest of the non-negative (h, I) plane is thus the optimal
+EH region, i.e.,
+
+g(λ) =
+
+max
+
+L(π(ν), λ).
+
+π(ν)∈{0,1},∀ν
+
+THE
+
+DEH (λ∗ )
+
+(15)
+
+max
+
+Lν (π),
+
+where
+denotes the two-dimensional nonnegative real domain, and A\B denotes the set {x|x ∈ A and x ̸∈ B}.
+An illustration of DID (λ∗ ) and DEH (λ∗ ) is shown in Fig. 4
+¯
+with Q > Qmin . It is noted that to meet the harvested energy
+¯
+constraint Q, we need to sacriﬁce (increase) the outage probability for information transfer by allocating(some non-outage
+)
+hP
+fading states in the region H = {(h, I) : log 1+ I+σ2 ≥ r0 }
+to EH mode. The problem of interest is to decide which portion
+of H should be allocated to EH mode. It is observed from Fig.
+4 that the optimal solution to this problem is to allocate all
+1
+the (h, I) pairs satisfying 1 < λ∗ hP + λ∗ I or hP + I > λ∗ in
+H to EH mode, i.e., fading states with sufﬁciently large signal
+plus interference total power at Rx should be allocated to EH
+mode. Furthermore, note that λ∗ increases with the increasing
+¯
+of Q. Thus, one boundary line λ∗ hP + λ∗ I = 1 that separates
+the optimal ID and EH regions in Fig. 4 is shifted down as λ∗
+increases, and as a result DID (λ∗ ) shrinks. It can be shown
+1
+that if λ∗ ≥ (er0 −1)σ2 , then DID (λ∗ ) = Ø, which corresponds
+to the point (0, Qmax ) in Fig. 3.
+
+(16)
+
+where Lν (π) = X +λQ. Note that we have dropped the index
+ν for the fading state for brevity.
+To solve Problem (16), we need to compare the values of
+Lν (π) for π = 1 and π = 0. When π = 1, it follows that
+{
+r0
+h
+1, if I+σ2 > e P−1
+Lν (π = 1) =
+(17)
+0, otherwise.
+When π = 0, it then follows that
+Lν (π = 0) = λhP + λI.
+
+(21)
+
+R2
++
+
+The maximization problem (15) can be decoupled into parallel
+subproblems all having the same structure and each for one
+fading state. For a particular fading state ν, the associated
+subproblem is expressed as
+π∈{0,1}
+
+R2 \DID (λ∗ ),
++
+
+(18)
+
+Thus, the optimal solution to Problem (16) is obtained as
+{
+r0
+h
+1, if I+σ2 > e P−1 and 1 > λhP + λI
+∗
+π =
+(19)
+0, otherwise.
+
+V. J OINT I NFORMATION /E NERGY S CHEDULING , P OWER
+C ONTROL , AND R ECEIVER M ODE S WITCHING : THE C ASE
+WITH CSIT
+In this section, we address the case of CSI known at Tx by
+jointly optimizing energy/information scheduling and power
+control at Tx, as well as EH/ID mode switching at Rx, as
+formulated in Problem (P2). For Problem (P2), let λ and
+β denote the dual variables corresponding to the average
+harvested energy constraint and average power constraint,
+respectively. Similarly as for Problem (P1), Problem (P2) can
+be decoupled into parallel subproblems each for one particular
+fading state and expressed as (by ignoring the fading index ν)
+
+With a given λ, Problem (15) can be efﬁciently solved by
+solving Problem (16) for different fading states. Problem (P1)
+is then solved by iteratively solving Problem (15) with ﬁxed
+λ, and updating λ via a simple bisection method until the
+harvested energy constraint is met with equality [8].
+Next, we examine the optimal solution π ∗ to Problem (P1)
+to gain more insights to the optimal receiver mode switching
+in the case without CSIT. With a given harvested energy con¯
+straint Q, we deﬁne the region on the (h, I) plane consisting of
+all the point (h, I)’s for which the optimal solution to Problem
+(P1) is π ∗ = 1 (versus π ∗ = 0) as the optimal ID region
+(versus the optimal EH region). Furthermore, let λ∗ denote
+
+max
+0≤p≤Ppeak ,π∈{0,1}
+
+4
+
+Lν (p, π),
+
+(22)
+
+h
+
+where Lν (p, π) = X + λQ − βp. To solve Problem (22), we
+need to compare the optimal values of Lν (p, π) for π = 1 and
+π = 0, respectively, as shown next.
+When π = 1, it follows that
+{
+1 − βp, if p ≥ p
+¯
+Lν (p, π = 1) =
+(23)
+−βp,
+otherwise
+
+2
+
+EH
+on
+
+EH
+on
+
+ID
+on
+
+ID
+on
+
+2
+
+2
+1
+
+EH
+off
+
+EH
+off
+2
+
+1
+
+1
+
+I
+
+I
+
+(er0 −1)(I+σ 2 )
+
+h
+
+where p =
+¯
+. It can be veriﬁed that the optimal
+h
+power allocation for the ID mode is the well-known “truncated
+channel inversion” policy [5] given by
+{
+h
+p, if I+σ2 ≥ h1
+¯
+(24)
+pID =
+0, otherwise
+
+h
+
+2
+
+2
+
+EH
+on
+
+ID
+on
+ID
+on
+2
+
+2
+1
+
+EH
+off
+
+EH
+on
+2
+
+2
+1
+
+−1
+where h1 = max{β(er0 − 1), e peak }.
+P
+When π = 0, it follows that
+
+EH
+off
+I
+
+r0
+
+Lν (p, π = 0) = λhp + λI − βp.
+
+h
+
+2
+
+I
+
+Fig. 5. Illustration of optimal transmission and reception modes in the case
+with CSIT.
+
+(25)
+
+Deﬁne h2 = β . Then the optimal power allocation for the
+λ
+EH mode can be expressed as
+{
+Ppeak , if h ≥ h2
+pEH =
+(26)
+0,
+otherwise.
+
+also depend on different (λ∗ , β ∗ ) pairs, we omit their details
+due to the space limitation. Deﬁne G1 (h, I) = 1 − β ∗ p − λ∗ I,
+¯
+and G2 (h, I) = 1 − β ∗ p − (λ∗ hPpeak + λ∗ I − β ∗ Ppeak ). Fig.
+¯
+5 shows all the four possible cases of region partitioning for
+ID
+EH
+EH
+Bon (λ∗ , β ∗ ), Bon (λ∗ , β ∗ ), and Boﬀ (λ∗ , β ∗ ). As compared to
+Fig. 4 for the case without CSIT, it is observed from Fig. 5 that
+in the case with CSIT, the transmitter is able to jointly design
+information/energy scheduling and power control to optimally
+match the receiver ID/EH mode switching. The time-varying
+channel and interference are thus better exploited than the
+CSIT-unknown case, but at a cost of higher implementation
+complexity.
+
+To summarize, we have
+{
+h
+1 − β p, if I+σ2 ≥ h1
+¯
+(27)
+Lν (pID , π = 1) =
+0,
+otherwise;
+{
+(λh − β)Ppeak + λI, if h ≥ h2
+Lν (pEH , π = 0) =
+λI,
+otherwise.
+(28)
+Then, given a pair of λ and β, the optimal solution to
+Problem (22) for fading state ν can be expressed as
+{
+1, if Lν (pID , π = 1) > Lν (pEH , π = 0)
+π∗ =
+(29)
+0, otherwise;
+{
+pID , if π ∗ = 1
+p∗ =
+(30)
+pEH , if π ∗ = 0.
+
+VI. C ONCLUSION
+This paper studies an emerging interesting application in
+wireless communication where the receiver opportunistically
+harvests the energy from the received signals in addition to
+decoding their carried information. Under a point-to-point
+ﬂat-fading channel setup with the time-varying interference,
+we derive the optimal ID/EH mode switching at the receiver to optimize the information-outage-probability versus
+average-harvested-energy tradeoffs. When the CSI is known
+at the transmitter, joint optimization of transmitter information/energy scheduling and power control with receiver ID/EH
+mode switching is investigated.
+
+Next, to ﬁnd the optimal dual variables λ∗ and β ∗ for Problem
+(P2), sub-gradient based methods such as the ellipsoid method
+[8] can be applied. It can be shown that the sub-gradient for
+¯
+updating (λ, β) is [Eν [Q∗ (ν)] − Q, Pavg − Eν [p∗ (ν)]], where
+Q∗ (ν) and p∗ (ν) denote the harvested energy and transmit
+power at fading state ν after solving Problem (22) for a given
+pair of λ and β. Hence, Problem (P2) is solved.
+In general, there are three possible transmission modes at
+Tx for the case with CSIT (cf. Fig. 2(b)): “information transfer
+mode” with channel inversion power control, “energy transfer
+mode” with peak transmit power, “silent mode” with no
+transmissions, while the ﬁrst transmission mode corresponds to
+the ID mode at Rx and the remaining two transmission modes
+correspond to the EH mode at Rx. Similarly as in Section
+IV, given a pair of optimal dual solutions to Problem (P2) λ∗
+¯
+and β ∗ associated with a pair of Q and Pavg , we can deﬁne
+ID ∗
+∗
+EH ∗
+∗
+EH
+Bon (λ , β ), Bon (λ , β ), and Boﬀ (λ∗ , β ∗ ) on the nonnegative (h, I) plane as the regions corresponding to the above
+three transmission modes, respectively. Since the explicit expressions for characterizing the above regions are lengthy and
+
+R EFERENCES
+[1] L. R. Varshney, “Transporting information and energy simultaneously,”
+in Proc. IEEE Int. Symp. Inf. Theory (ISIT), pp. 1612-1616, July 2008.
+[2] P. Grover and A. Sahai, “Shannon meets Tesla: wireless information and
+power transfer,” in Proc. IEEE Int. Symp. Inf. Theory (ISIT), pp. 23632367, June 2010.
+[3] R. Zhang and C. K. Ho, “MIMO broadcasting for simultaneous wireless
+information and power transfer,” submitted for publication. (Available
+online at arXiv:1105.4999).
+[4] T. Han and K. Kobayashi, “A new achievable rate region for the
+interference channel,” IEEE Trans. Inf. Theory, vol. 27, pp. 49-60, Jan.
+1981.
+[5] E. Biglieri, J. Proakis, and S. Shamai (Shitz), “Fading channels:
+information-theoretic and communications aspects,” IEEE Trans. Inf.
+Theory, vol. 44, no. 6, pp. 2619-2692, Oct. 1998.
+[6] W. Yu and R. Lui, “Dual methods for nonconvex spectrum optimization
+of multicarrier systems,” IEEE Trans. Commun., vol. 54, no. 7, pp. 13101322, July 2006.
+[7] R. T. Rockafellar, Convex Analysis, Princeton Univ. Press, 1970.
+[8] S. Boyd and L. Vandenberghe, Convex Optimization, Cambidge Univ.
+Press, 2004.
+
+5
+
+

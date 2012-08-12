@@ -1,0 +1,1296 @@
+Creator:        TeX
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Fri May 18 17:02:30 2012
+ModDate:        Tue Jun 19 12:54:36 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      336445 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569551751
+
+Classical codes for quantum broadcast channels
+Ivan Savov and Mark M. Wilde
+School of Computer Science, McGill University, Montr´ al, Qu´ bec, Canada
+e
+e
+Abstract—We discuss two techniques for transmitting classical
+information over quantum broadcast channels. The ﬁrst technique is a quantum generalization of the superposition coding
+scheme for the classical broadcast channel. We use a quantum
+simultaneous nonunique decoder and obtain a simpler proof of
+the rate region recently published by Yard et al. in independent
+work. Our second result is a quantum Marton coding scheme,
+which gives the best known achievable rate region for quantum
+broadcast channels. Both results exploit recent advances in
+quantum simultaneous decoding developed in the context of
+quantum interference channels.
+
+simpler and more in the spirit of its classical analogue [1].
+In Section IV we prove that the quantum Marton rate region
+with no common message is achievable (Theorem 2). In the
+Marton coding scheme, the sub-channels to each receiver are
+essentially point-to-point, but it turns out that a technique that
+we call the “projector trick” seems to be necessary in our
+proof. We discuss open problems and give an outlook for the
+future in Section V.
+
+I. I NTRODUCTION
+How can a broadcast station communicate separate messages to two receivers using a single antenna? Two well
+known strategies [1] for transmitting information over broadcast channels are superposition coding [2], [3] and Marton
+over-binning using correlated auxiliary random variables [4].
+In this paper, we prove that these strategies can be adapted
+to the quantum setting by constructing random codebooks
+and matching decoding measurements that have asymptotically
+vanishing error in the limit of many uses of the channel.
+Sending classical data over a quantum channel is one
+of the fundamental problems of quantum information theory [5]. Single-letter formulas are known for classical-quantum
+point-to-point channels [6], [7] and multiple access channels
+[8]. Classical-quantum channels are a useful abstraction for
+studying general quantum channels and correspond to the
+transmitters being restricted to classical encodings. Codes for
+classical-quantum channels (c-q channels), when augmented
+with an extra optimization over the possible input states, directly generalize to codes for quantum channels. Furthermore,
+it is known that classical encoding (coherent-state encoding
+using classical Gaussian codebooks) is sufﬁcient to achieve
+the capacity of the lossy bosonic channel, which is a realistic
+model for optical communication links [9].
+Previous work on quantum broadcast channels includes
+[10], [11], [12]. Ref. [10] considers both classical and quantum
+communication over quantum broadcast channels and proves
+a superposition coding inner bound similar to our Theorem 1.
+Ref. [11] discusses classical communication over a bosonic
+broadcast channel, and Ref. [12] considers a Marton rate
+region for quantum communication.
+In this paper, we derive two achievable rate regions for
+classical-quantum broadcast channels by exploiting error analysis techniques developed in the context of quantum interference channels [13], [14]. In Section III, we prove achievability
+of the superposition coding inner bound (Theorem 1), by using
+a quantum simultaneous nonunique decoder at one of the
+receivers. Yard et al. independently proved the quantum superposition coding inner bound [10], but our proof is arguably
+
+1) Notation: We denote classical random variables as
+X, U, W , whose realizations are elements of the respective
+ﬁnite alphabets X , U, W. Let pX , pU , pW denote their corresponding probability distributions. We denote quantum systems as A, B, and C and their corresponding Hilbert spaces as
+HA , HB , and HC . We represent quantum states of a system A
+with a density operator ρA , which is a positive semi-deﬁnite
+operator with unit trace. Let H(A)ρ ≡ −Tr ρA log ρA
+denote the von Neumann entropy of the state ρA . A classicalquantum channel, N X→B , is represented by the set of |X |
+possible output states {ρB ≡ N X→B(x)}, meaning that a
+x
+classical input of x leads to a quantum output ρB . In a
+x
+communication scenario, the decoding operations performed
+by the receivers correspond to quantum measurements on the
+outputs of the channel. A quantum measurement is a positive
+operator-valued measure (POVM) {Λm }m∈{1,...,|M|} on the
+system B n , the output of which we denote M . To be a valid
+POVM, the set of |M| operators Λm must all be positive semideﬁnite and sum to the identity: Λm ≥ 0,
+m Λm = I.
+2) Deﬁnitions: We deﬁne a classical-quantum-quantum
+broadcast channel as the following map:
+
+II. P RELIMINARIES
+
+x → ρB1 B2 ,
+x
+
+(1)
+
+where x is a classical letter in an alphabet X and ρB1 B2 is
+x
+a density operator on the tensor product Hilbert space for
+systems B1 and B2 . The model is such that when the sender
+inputs a classical letter x, Receiver 1 obtains system B1 , and
+Receiver 2 obtains system B2 . Since Receiver 1 does not have
+B
+access to the B2 part of the state ρx 1 B2 , we model his state
+B
+as ρB1 = TrB2 ρx 1 B2 , where TrB2 denotes the partial trace
+x
+over Receiver 2’s system.
+3) Information processing task: The task of communication
+over a broadcast channel is to use n independent instances of
+the channel in order to communicate with Receiver 1 at a
+rate R1 and to Receiver 2 at a rate R2 . More speciﬁcally, the
+sender chooses a pair of messages (m1 , m2 ) from message sets
+Mi ≡ {1, 2, . . . , |Mi |}, where |Mi | = 2nRi , and encodes
+these messages into an n-symbol codeword xn (m1 , m2 ) ∈ X n
+suitable as input for the n channel uses.
+
+1
+
+Theorem 1 (Superposition coding inner bound). A rate pair
+(R1 , R2 ) is achievable for the quantum broadcast channel in
+(1) if it satisﬁes the following inequalities:
+
+The output of the channel is a quantum state of the form:
+N ⊗n (xn (m1 , m2 )) ≡ ρ
+
+n n
+B1 B2
+xn (m1 ,m2 )
+
+n
+
+n
+
+∈ H B1 B2 .
+
+(2)
+
+Bn Bn
+
+R1 ≤ I(X; B1 |W )θ ,
+
+pe (m1 , m2 ) ≡ Tr (I − Λm1 ⊗
+
+n n
+B1 B2
+Γm2 ) ρxn (m1 ,m2 )
+
+pe (m1 , m2 ) ≤ .
+
+pW (w)pX|W (x|w) |w w|W ⊗ |x x|X ⊗ ρB1 B2 .
+x
+
+Proof: The new idea in the proof is to exploit superposition encoding and a quantum simultaneous nonunique decoder
+for the decoding of the ﬁrst receiver [2], [3] instead of the
+quantum successive decoding used in [10]. We use a standard
+HSW decoder for the second receiver [6], [7].
+Codebook generation. We generate randomly and independently M2 codewords wn (m2 ) according to the product distri-
+
+,
+
+Πk
+k
+
+n
+
+bution pW n (wn ) ≡
+
+pW (wi ). For each codeword wn (m2 ),
+
+i=1
+
+we randomly and conditionally independently generates M1
+codewords xn (m1 , m2 ) according to the product distribution:
+pX n |W n (xn |wn (m2 )) ≡
+
+(3)
+
+n
+
+pX|W (xi |wi (m2 )). The sender
+i=1
+
+1 ,m2
+
+−1
+2
+
+Πk
+
+W
+
+ρW XB1 =
+
+X
+
+pW (w) pX|W (x|w) |w w| ⊗|x x| ⊗ρB1 .
+x
+w,x
+
+Further tracing over the X system gives
+W
+
+ρW B1 =
+.
+
+n
+
+then transmits the codeword x (m1 , m2 ) if she wishes to send
+(m1 , m2 ).
+POVM Construction. We now describe the POVMs that
+the receivers employ in order to decode the transmitted messages. First consider the state we obtain from (8) by tracing
+over the B2 system:
+
+1
+−2
+
+Πm
+
+(8)
+
+w,x
+
+A rate pair (R1 , R2 ) is achievable if there exists an
+(n, R1 − δ, R2 − δ, ) quantum broadcast channel code for all
+, δ > 0 and sufﬁciently large n.
+When devising coding strategies for c-q channels, the main
+obstacle to overcome is the construction of a decoding POVM
+that correctly decodes the messages. Given a set of positive
+operators {Πm } which are suitable for detecting each message,
+we can construct a POVM by normalizing them using the
+square-root measurement [6], [7]:
+Λm ≡
+
+(7)
+
+where the above information quantities are with respect to a
+state θW XB1 B2 of the form
+
+Deﬁnition 1. An (n, R1 , R2 , ) broadcast channel code consists of a codebook {xn (m1 , m2 )}m1 ∈M1 ,m2 ∈M2 and two
+decoding POVMs {Λm1 }m1 ∈M1 and {Γm2 }m2 ∈M2 such that
+the average probability of error pe is bounded from above as
+1
+|M1 ||M2 | m
+
+(6)
+
+R1 + R2 ≤ I(X; B1 )θ ,
+
+where the measurement operator (I − Λm1 ⊗ Γm2 ) represents
+the complement of the correct decoding outcome.
+
+pe ≡
+
+(5)
+
+R2 ≤ I(W ; B2 )θ ,
+
+1
+1n
+where ρxn 2 ≡ ρB111 B21 ⊗ · · · ⊗ ρBn B2n . To decode the
+x
+x
+message m1 intended for him, Receiver 1 performs a POVM
+n
+{Λm1 }m1 ∈{1,...,|M1 |} on the system B1 , the output of which
+we denote M1 . Receiver 2 similarly performs a POVM
+n
+{Γm2 }m2 ∈{1,...,|M2 |} on the system B2 , and the random
+variable associated with the outcome is denoted M2 .
+An error occurs whenever either of the receivers decodes the
+message incorrectly. The probability of error for a particular
+message pair (m1 , m2 ) is
+
+pW (w) |w w|
+
+B
+⊗ σw 1 ,
+
+w
+
+(4)
+
+B
+σw 1
+
+where
+≡ x pX|W (x|w) ρB1 . For the ﬁrst receiver, we
+x
+exploit a square-root decoding POVM as in (4) based on the
+following positive operators:
+
+k
+
+Thus, the search for a decoding POVM is reduced to the problem of ﬁnding positive operators Πm apt at detecting and distinguishing the output states produced by each of the possible
+input messages (Tr[Πm ρm ] ≥ 1 − and Tr[Πm ρm =m ] ≤ ).
+
+Πm1 ,m2 ≡ Π ΠWn(m2 ) ΠX n (m1 ,m2 ) ΠWn(m2 ) Π,
+
+(9)
+
+where we have made the abbreviations
+Bn
+
+III. S UPERPOSITION CODING INNER BOUND
+
+1
+Π ≡ Πρ,δ ,
+
+One possible strategy for the broadcast channel is to send a
+message at a rate that is low enough so that both receivers are
+able to decode. Furthermore, if we assume that Receiver 1 has
+a better reception signal, then the sender can encode a further
+message superimposed on top of the common message that
+Receiver 1 will be able to decode given the common message.
+The sender encodes the common message at rate R2 using a
+codebook generated from a probability distribution pW (w),
+and the additional message for Receiver 1 at rate R1 using a
+conditional codebook with distribution pX|W (x|w).
+
+Bn
+
+1
+ΠWn(m2 ) ≡ ΠσW n (m
+
+2)
+
+ΠX n (m1 ,m2 ) ≡ Π
+
+n
+B1
+ρX n (m1 ,m2 ) ,δ
+
+,δ ,
+
+.
+
+The above projectors are weakly typical projectors n Section
+[5,
+B
+14.2.1] deﬁned with respect to the states ρ⊗n , σW1n (m2 ) , and
+Bn
+
+ρX1 (m1 ,m2 ) .
+n
+Consider now the state in (8) as it looks from the point of
+view of Receiver 2. If we trace over the X and B1 systems,
+we obtain the following state:
+ρW B2 =
+
+pW (w) |w w|
+w
+
+2
+
+W
+
+B
+⊗ σw 2 ,
+
+B
+where σw 2 ≡ x pX|W (x|w) ρB2 . For the second receiver,
+x
+we exploit a standard HSW decoding POVM that is with
+respect to the above state—it is a square-root measurement
+as in (4), based on the following positive operators:
+
+We now focus on bounding the term in the second line of
+(11). We can expand this term as follows:
+m1 =1
+
+n
+B2
+Πm 2
+
+=
+
+n
+B2
+Πρ,δ
+
+2
+ΠBWn(m ) ,δ
+σ
+2
+
+n
+B2
+Πρ,δ ,
+
++
+
+(10)
+
+E
+
+Xn n
+,W
+
+1
+=
+M 1 M2
+
+I−
+
+Tr
+
+E
+
+m1 =1
+
+Xn n
+,W
+
+E
+
+Xn n
+,W
+
+ρB1 (m1 ,m2 )
+Xn
+
+I−
+
+Tr
+
+ρB1 (m1 ,m2 )
+Xn
+
+.
+
+=K
+
+E
+
+Xn n
+,W
+
+Tr Πm1 ,m2 ρB1 (1,1)
+Xn
+
+=K
+
+≤ K 2−n[H(B1 |W )−δ]
+
+≥1− −4
+
+√
+
+where we deﬁne K ≡ 2n[H(B1 |W X)+δ] . The ﬁrst inequality
+is due to the projector trick inequality [16], [14], [13] which
+states that
+
+. (11)
+
+ΠX n (m1 ,1) ≤ 2n[H(B1 |W X)+δ] ρB1 (m1 ,1) .
+Xn
+
+−Π
+−
+
+Wn
+
+≤ 2−n[I(X;B1 |W )−2δ] M1 ,
+
+ρB1 (1,1)
+Xn
+
+(14)
+
+The second inequality follows from the properties of typical
+projectors: ΠWn(1) σW n (1) ΠWn(1) ≤ 2−n[H(B1 |W )−δ] ΠWn(1) .
+Now consider the term in the second line of (13):
+Xn n
+,W
+
+Tr Πm1 ,m2 ρB1 (1,1)
+Xn
+
+m1 ,
+m2 =1
+
+=
+
+E
+
+Xn n
+,W
+
+Tr ΠΠWn (m2 ) ΠX n (m1 ,m2 ) ΠWn(m2 ) Π ρB1 (1,1)
+Xn
+
+m1 ,
+m2 =1
+
+X ,W
+
+X ,W
+
+E Tr σW n (1)
+
+m1 =1
+
+≥ n n Tr ΠX n (1,1) ρB1 (1,1)
+E
+Xn
+
+− n n
+E
+
+E Tr Π ΠWn(1) Π σW n (1)
+
+Wn
+
+m1 =1
+
+X ,W
+
+ρB1 (1,1)
+Xn
+
+ρB1 (1,1) Π ]
+Xn
+
+E Tr Π ΠWn(1) σW n (1) ΠWn(1) Π σW n (1)
+
+≤ K 2−n[H(B1 |W )−δ]
+
+= n n Tr Π ΠWn(1) ΠX n (1,1) ΠWn(1) Π ρB1 (1,1)
+E
+Xn
+
+X ,W
+
+E
+
+Xn| n
+W
+
+Wn
+
+E
+
+− n n
+E
+
+ΠWn(1)
+
+X |
+W
+
+m1 =1
+
+Tr Π1,1 ρB1 (1,1)
+Xn
+
+ρB1 (1,1)
+Xn
+
+Wn
+
+Π
+
+We begin by bounding the term in the ﬁrst line above.
+Consider the following chain of inequalities:
+E
+
+Tr[ΠWn(1) n n ρX n (m1 ,1)
+E
+
+E
+
+(m1 ,m2 )=(1,1)
+
+Xn n
+,W
+
+Tr Π ΠWn(1) ρX n (m1 ,1) ΠWn(1) Π ρB1 (1,1)
+Xn
+
+E
+
+Xn n
+,W
+
+m1 =1
+
++4
+
+Tr Πm1 ,1 ρB1 (1,1)
+Xn
+
+m1 =1
+Bn
+Γm1 ,m2
+1
+
+I − Π1,1 ρB1 (1,1)
+Xn
+
+X ,W
+
+(13)
+
+Xn n
+,W
+
+≤K
+
+Due to the above exchange between the expectation and the
+average and the symmetry of the code construction (each
+codeword is selected randomly and independently), it sufﬁces
+to analyze the expectation of the average error probability
+for the ﬁrst message pair (m1 = 1, m2 = 1), i.e., the last line
+n
+B1
+above is equal to EXn,Wn Tr I − Γ1,1 ρB1 (1,1)
+. Using
+Xn
+the Hayashi-Nagaoka operator inequality (Lemma 3 in the
+appendix of Ref. [15]), we obtain the following upper bound
+on this term:
+2 n n Tr
+E
+
+.
+
+B
+E Tr Π ΠWn(1) ΠX n (m1 ,1) ΠWn(1) Π ρX1 (1,1)
+n
+
+=
+
+m1 ,m2
+
+m1 ,m2
+
+Xn n
+,W
+
+Consider the term in the ﬁrst line of (13):
+
+m1 =1
+Bn
+Γm1 ,m2
+1
+
+Tr Πm1 ,m2 ρB1 (1,1)
+Xn
+
+E
+
+m1 ,
+m2 =1
+
+where the above projectors are weakly typical projectors
+Bn
+deﬁned with respect to ρ⊗n and σW2n (m2 ) .
+Error analysis. We now analyze the expectation of the
+average error probability for the ﬁrst receiver with the POVM
+deﬁned by (4) and (9):
+1
+M1 M 2
+
+Tr Πm1 ,1 ρB1 (1,1)
+Xn
+
+E
+
+Xn n
+,W
+
+Π
+1
+
+ΠWn(1) ρB1 (1,1)
+Xn
+
+=
+ΠWn(1)
+
+Tr
+
+m1 ,
+m2 =1
+
+1
+
+E
+
+Xn n
+,W
+
+ΠWn(m2 ) ΠX n (m1 ,m2 ) ΠWn(m2 )
+Π n n ρB1 (1,1) Π
+E
+Xn
+X ,W
+
+,
+=
+
+where the ﬁrst inequality follows from the inequality
+Tr {Λρ} ≤ Tr {Λσ} + ρ − σ
+
+1
+
+,
+
+Tr
+
+m1 ,
+m2 =1
+
+(12)
+
+E
+
+Xn n
+,W
+
+≤ 2−n[H(B1 )−δ]
+
+ΠWn(m2 ) ΠX n (m1 ,m2 ) ΠWn(m2 )
+
+Tr n n ΠWn(m2 ) ΠX n (m1 ,m2 ) ΠWn(m2 ) Π
+E
+X ,W
+
+m1 ,
+m2 =1
+
+which holds for all ρ, σ, and Λ such that 0 ≤ ρ, σ, Λ ≤ I. The
+second inequality follows from the Gentle Operator Lemma for
+ensembles (see Lemma 2 in the appendix of Ref. [15]) and
+the properties of typical projectors for sufﬁciently large n.
+
+= 2−n[H(B1 )−δ]
+
+E n Tr ΠX n (m1 ,m2 ) ΠWn(m2 ) ΠΠWn(m2 )
+
+n
+
+m1 , X ,W
+m2 =1
+
+3
+
+Πρ⊗n Π
+
+≤ 2−n[H(B1 )−δ]
+
+E
+
+m2 =1, m1
+
+Xn n
+,W
+
+codeword for message (m1 , m2 ). Expressed in terms of these
+indices the output of the channel is
+
+Tr ΠX n (m1 ,m2 )
+
+≤ 2−n[H(B1 )−δ] 2n[H(B1 |W X)+δ] M1 M2
+−n[I(W X;B1 )−2δ]
+
+=2
+
+n
+B n B2
+n
+1 ),u2 (
+1
+
+1
+ρun (
+
+M1 M2
+
+≡ρ
+
+1, 2
+
+.
+
+(17)
+
+Decoding. The detection POVM for Receiver 1,
+{Λ 1 } 1 ∈[1,...,L1 ] , is constructed by using the square-root
+measurement as in (4) based on the following combination of
+strongly typical projectors:
+Π
+
+I(U1 ; B1 )θ ,
+
+R2
+
+≤
+
+I(U2 ; B2 )θ ,
+
+R1 + R2
+
+≤
+
+I(U1 ; B1 )θ + I(U2 ; B2 )θ − I(U1 ; U2 )θ ,
+
+(15)
+
+where the information quantities are with respect to the state:
+1B
+p(u1 , u2 )|u1 u1 |U1 ⊗|u2 u2 |U2 ⊗ρB(u12 2 ) .
+f
+,u
+
+u1 ,u2
+
+Proof: Consider the classical-quantum broadcast channel
+{N (x) ≡ ρB1 B2 }, and a deterministic mixing function: f :
+x
+U1 × U2 → X . Using the mixing function as a pre-coder to
+the broadcast channel N , we obtain a channel N deﬁned as:
+≡
+
+1 B2
+ρB1 ,u2 .
+u
+
+1
+
+≡ Πn Πun (
+ρ,δ
+¯
+1
+
+1)
+
+Πn .
+ρ,δ
+¯
+
+(19)
+
+The projectors Πun ( 1 ) and Πn are deﬁned with respect to the
+ρ,δ
+¯
+1
+states ωun ( 1 ) and ρ⊗n given in (18). Note that we use strongly
+¯
+1
+typical projectors in this case [5, Section 14.2.3]. Knowing 1
+and the binning scheme, Receiver 1 can deduce the message
+m1 from the bin index. Receiver 2 uses a similar decoding
+strategy to obtain 2 and infer m2 .
+Error analysis. An error occurs if one (or more) of the
+following error events occurs.
+E0 : An encoding error occurs whenever there is no
+jointly typical sequence in Bm1 × Cm2 for some
+message pair (m1 , m2 ).
+E1 : A decoding error occurs at Receiver 1 if L1 = 1 .
+E2 : A decoding error occurs at Receiver 2 if L2 = 2 .
+The probability of an encoding error E0 is bounded like
+in the classical Marton scheme [4], [1], [17]. To see this, we
+use Cover’s counting argument [17]. The probability that two
+random sequences un , un chosen according to the marginals
+1
+2
+are jointly typical is 2−nI(U1 ;U2 ) and since there are on average
+2n[I(U1 ;B1 )−R1 ] and 2n[I(U2 ;B2 )−R2 ] sequences in each bin,
+the expected number of jointly-typical sequences that can be
+constructed from each combination of bins is
+
+Theorem 2 (Marton inner bound). Let {ρB1 B2 } be a classicalx
+quantum broadcast channel and x = f (u1 , u2 ) be a deterministic function. The following rate region is achievable:
+≤
+
+B
+p(u1 )ωu11 . (18)
+u1
+
+u2
+
+We now prove that the Marton inner bound is achievable
+for quantum broadcast channels. The Marton scheme depends
+on auxiliary random variables U1 and U2 , binning, and the
+properties of strongly typical sequences and projectors.
+
+R1
+
+1
+¯
+pU2 |U1 (u2 |u1 )ρB1 ,u2 , ρ ≡
+u
+
+B
+ωu11 ≡
+
+IV. M ARTON CODING SCHEME
+
+N (u1 , u2 ) ≡
+
+1 ),u2i ( 2 ))
+
+Deﬁne the following states:
+
+The equality I(W X; B1 ) = I(X; B1 ) follows from the way
+the codebook is constructed (i.e., the Markov chain W − X −
+B), as discussed also in [14]. This completes the error analysis
+for the ﬁrst receiver.
+The proof for the second receiver is analogous to the pointto-point HSW theorem. The appendix of Ref. [15] gives the
+details for this and ties the coding theorem together so that
+the sender and two receivers can agree on a strategy that has
+asymptotically vanishing error probability in the large n limit.
+
+1B
+ρB(u12 2 )
+f
+,u
+
+B1 B2
+ρf (u1i (
+
+=
+i∈[n]
+
+= 2−n[I(X;B1 )−2δ] M1 M2 .
+
+θU1 U2 B1 B2 =
+
+2)
+
+2n[I(U1 ;B1 )−R1 ] 2n[I(U2 ;B2 )−R2 ] 2−nI(U1 ;U2 ) .
+
+(16)
+
+(20)
+
+Thus, if we choose R1 + R2 + δ ≤ I(U1 ; B1 ) + I(U2 ; B2 ) −
+I(U1 ; U2 ), then the expected number of strongly jointly-typical
+sequences in Bm1 × Cm2 is much larger than one.
+To bound the probability of error event E1 , we use the
+Hayashi-Nagaoka operator inequality (Lemma 3 in the appendix of Ref. [15]):
+
+Codebook construction. Deﬁne two auxiliary indices 1 ∈
+[1, . . . , L1 ], L1 = 2n[I(U1 ;B1 )−δ] and 2 ∈ [1, . . . , L2 ],
+L2 = 2n[I(U2 ;B2 )−δ] . For each 1 generate an i.i.d. random
+n
+sequence un ( 1 ) according to pU1 (un ). Similarly we choose
+1
+1
+n
+L2 random i.i.d. sequences un ( 2 ) according to pU2 (un ).
+2
+2
+Partition the sequences un ( 1 ) into 2nR1 different bins Bm1 .
+1
+Similarly, partition the sequences un ( 2 ) into 2nR2 bins Cm2 .
+2
+For each message pair (m1 , m2 ), the sender selects a sequence
+un ( 1 ), un ( 2 ) ∈ (Bm1 × Cm2 ) ∩ AnU U ,δ , such that each
+1
+2
+p 1 2
+sequence is taken from the appropriate bin and the sender demands that they are strongly jointly-typical (otherwise declaring failure). The codebook xn (m1 , m2 ) is deterministically
+constructed from un ( 1 ), un ( 2 ) by applying the function
+1
+2
+xi = f (u1i , u2i ).
+Transmission. Let ( 1 , 2 ) denote the pair of indices of
+the joint sequence (un ( 1 ), un ( 2 )) which was chosen as the
+1
+2
+
+Pr(E1 ) =
+≤
+
+1
+L1 L2
+
+1
+L1
+
+Tr [(I − Λ 1 )ρ
+
+1, 2
+
+]
+
+1
+
+2 Tr (I − Πn Πun (
+ρ,δ
+¯
+1
+1
+
++4
+
+Tr
+
+1)
+
+Πn )ρ
+ρ,δ
+¯
+
+(T 1)
+Πn Πun (
+ρ,δ
+¯
+1
+
+1)
+
+1, 2
+
+Πn ρ
+ρ,δ
+¯
+
+1= 1
+
+(T 2)
+
+Consider the following lemma [5, Property 14.2.7].
+
+4
+
+1, 2
+
+.
+
+Lemma 1. The state ρ 1 , 2 is well supported by both the
+averaged state projector: Tr Πn ρ 1 , 2 ≥ 1− , ∀ 1 , 2 , and
+ρ,δ
+¯
+B
+the ωu11 conditionally typical projector: Tr Πun ( 1 ) ρ 1 , 2 ≥
+1
+1− , ∀ 2 , when un ( 1 ) and un ( 2 ) are strongly jointly typical.
+1
+2
+
+tool that generalizes El Gamal and Kim’s classical packing
+lemma [1] to the quantum domain. The packing lemma is
+sufﬁcient to prove all of the known coding theorems in
+network information theory. At the moment, it is not clear
+to us whether such a tool exists for the quantum case, but
+evidence in favor of its existence is that 1) one can prove the
+HSW coding theorem by using conditionally typical projectors
+only [5, Exercise 19.3.5], 2) we have solved the quantum
+simultaneous decoding conjecture for the case of two senders
+[13], [14], and 3) we have generalized two important coding
+theorems in the current paper (with proofs somewhat similar to
+the classical proofs). Ideally, such a tool would allow quantum
+information theorists to prove quantum network coding theorems by appealing to it, rather than having to analyze each
+coding scheme in detail on a case by case basis.
+We acknowledge discussions with Patrick Hayden, Omar
+Fawzi, Pranab Sen, and Saikat Guha during the development
+of [13], [14]. I. Savov acknowledges support from FQRNT and
+NSERC. M. M. Wilde acknowledges support from the Centre
+de Recherches Math´ matiques.
+e
+
+To bound the ﬁrst term (T1), we use the following argument:
+1 − (T 1) = Tr Πn Πun (
+ρ,δ
+¯
+1
+= Tr Πun (
+1
+
+1)
+
+1)
+
+Πn ρ
+ρ,δ
+¯
+
+Πn ρ
+ρ,δ
+¯
+
+≥ Tr Πun (
+1
+
+ρ 1,
+1)
+√
+≥ (1 − ) − 2 ,
+
+2
+
+1,
+
+1, 2
+
+Πn
+ρ,δ
+¯
+2
+
+− Πn ρ
+ρ,δ
+¯
+
+1, 2
+
+Πn − ρ
+ρ,δ
+¯
+
+1, 2
+
+1
+
+(21)
+
+where the inequalities follow from (12) and Lemma 1. This
+use of Lemma 1 demonstrates why the Marton coding scheme
+selects the sequences un ( 1 ) and un ( 2 ) such that they are
+1
+2
+strongly jointly typical.
+To bound the second term, we begin by applying a variant
+of the projector trick from (14). In the below, note that the
+expectation EU1 ,U2 over the random code is with respect to
+n
+n
+the product distribution pU1 (un )pU2 (un ):
+1
+2
+
+
+
+
+n
+Tr Πn ΠU1 ( 1 ) Πn ρ 1 , 2
+E {(T 2)} = E
+ρ,δ
+¯
+ρ,δ
+¯
+
+U1 ,U2
+U1 ,U2 
+1= 1
+
+
+
+
+≤ 2n[H(B1 |U1 )+δ] E
+Tr Πn ω 1 Πn ρ 1 , 2
+.
+ρ,δ
+¯
+ρ,δ
+¯
+
+U1 ,U2 
+
+R EFERENCES
+[1] A. El Gamal and Y.-H. Kim, “Lecture notes on network information
+theory,” January 2010, arXiv:1001.3404.
+[2] T. M. Cover, “Broadcast channels,” IEEE Trans. Inf. Theory, vol. 18,
+no. 1, pp. 2–14, January 1972.
+[3] P. P. Bergmans, “Random coding theorem for broadcast channels
+with degraded components,” IEEE Transactions on Information Theory,
+vol. 19, no. 2, pp. 197–207, March 1973.
+[4] K. Marton, “A coding theorem for the discrete memoryless broadcast
+channel,” IEEE Trans. Inf. Theory, vol. 25, no. 3, pp. 306–311, 1979.
+[5] M. M. Wilde, From Classical to Quantum Shannon Theory, 2011,
+arXiv:1106.1445.
+[6] A. S. Holevo, “The capacity of the quantum channel with general signal
+states,” IEEE Trans. Inf. Theory, vol. 44, no. 1, pp. 269–273, 1998.
+[7] B. Schumacher and M. D. Westmoreland, “Sending classical information
+via noisy quantum channels,” Phys. Rev. A, vol. 56, pp. 131–138, 1997.
+[8] A. Winter, “The capacity of the quantum multiple-access channel,” IEEE
+Trans. Inf. Theory, vol. 47, no. 7, pp. 3059–3065, 2001.
+[9] V. Giovannetti, S. Guha, S. Lloyd, L. Maccone, J. H. Shapiro, and
+H. P. Yuen, “Classical capacity of the lossy bosonic channel: The exact
+solution,” Phys. Rev. Lett., vol. 92, no. 2, p. 027902, January 2004.
+[10] J. Yard, P. Hayden, and I. Devetak, “Quantum broadcast channels,” IEEE
+Trans. Inf. Theory, vol. 57, no. 10, pp. 7147–7162, October 2011.
+[11] S. Guha, J. Shapiro, and B. Erkmen, “Classical capacity of bosonic
+broadcast communication and a minimum output entropy conjecture,”
+Physical Review A, vol. 76, no. 3, p. 032303, 2007.
+[12] F. Dupuis, P. Hayden, and K. Li, “A father protocol for quantum
+broadcast channels,” IEEE Trans. Inf. Theory, vol. 56, no. 6, pp. 2946–
+2956, June 2010.
+[13] O. Fawzi, P. Hayden, I. Savov, P. Sen, and M. M. Wilde, “Classical
+communication over a quantum interference channel,” February 2011,
+arXiv:1102.2624.
+[14] P. Sen, “Achieving the Han-Kobayashi inner bound for the quantum interference channel by sequential decoding,” September 2011,
+arXiv:1109.0802.
+[15] I. Savov and M. M. Wilde, “Classical codes for quantum broadcast
+channels,” November 2011, arXiv:1111.3645.
+[16] V. Giovannetti, S. Lloyd, and L. Maccone, “Achieving the Holevo bound
+via sequential measurements,” December 2010, arXiv:1012.0386.
+[17] T. Cover, “Comments on broadcast channels,” IEEE Transactions on
+Information Theory, vol. 44, no. 6, pp. 2524–2530, 1998.
+
+1= 1
+
+We continue the proof using averaging over the choice of
+codebook and the properties of typical projectors:
+= 2n[H(B1 |U1 )+δ] E
+
+U2
+
+Tr Πn E ω
+ρ,δ
+¯
+1=
+
+U1
+
+Tr Πn ρ Πn E {ρ
+ρ,δ ¯ ρ,δ
+¯
+¯
+1=
+
+U1
+
+2
+
+1, 2
+
+}
+
+1, 2
+
+}
+
+1
+
+n[H(B1 |U1 )+δ] −n[H(B1 )−δ]
+
+≤2
+
+U1
+
+1
+
+= 2n[H(B1 |U1 )+δ] E
+
+U2
+
+Πn E {ρ
+ρ,δ
+¯
+
+1
+
+Tr Πn ρ
+ρ,δ
+¯
+
+E
+
+U1 ,U2
+
+≤ 2n[H(B1 |U1 )+δ] 2−n[H(B1 )−δ] E
+
+U1 ,U2
+
+1, 2
+
+1= 1
+
+1
+1= 1
+
+≤ L1 2−n[I(U1 ;B1 )−2δ] .
+Therefore, if we choose 2nR1 = L1 ≤ 2n[I(U1 ;B1 )−3δ] , the
+probability of error will go to zero in the asymptotic limit of
+many channel uses. The analysis of the event E2 is similar.
+V. C ONCLUSION
+We have proved quantum generalizations of the superposition coding inner bound [2], [3] and the Marton rate region
+with no common message [4]. The key ingredient in both
+proofs was the use of the projector trick. A natural followup
+question would be to combine the two strategies to obtain the
+Marton coding scheme with a common message.
+A much broader goal would be to extend all of network
+information theory to the study of quantum channels. To
+accomplish this goal, it would be helpful to have a powerful
+
+5
+
+

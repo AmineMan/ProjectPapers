@@ -1,0 +1,1432 @@
+Title:          PFISIT02Final.pdf
+Author:         Quoc
+Creator:        TeX
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Sat May 19 08:59:43 2012
+ModDate:        Tue Jun 19 12:55:43 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      595.22 x 842 pts (A4)
+File size:      306367 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569563897
+
+On the Sum-capacity of the Linear Deterministic
+Interference Channel with Partial Feedback
+Sy-Quoc Le1 , Ravi Tandon2 , Mehul Motani1 , and H. Vincent Poor2
+1
+
+Department of ECE, National University of Singapore, Singapore.
+2
+Department of EE, Princeton University, Princeton, NJ.
+Z1
+
+Abstract—The linear deterministic interference channel (LDIC) with partial feedback is considered. Partial feedback for the
+LD-IC models a scenario in which the top l most-signiﬁcant-bits
+of the channel output of receiver j are received as feedback at
+transmitter j, for j = 1, 2. The rationale for studying the LDIC with partial feedback comes from the fact that it is a good
+approximation to the Gaussian interference channel with output
+feedback corrupted by additive white Gaussian noise (commonly
+referred to as noisy feedback). The main contribution of this
+paper is a characterization of the sum-capacity of the symmetric
+LD-IC with partial feedback. The differences between the models
+of partial feedback and rate-limited feedback are emphasized
+and highlighted by comparing the corresponding sum-capacities,
+which are shown to differ in general.
+
+Y F1
+
+W1
+
+Tx1
+
+X1
+
+g1
+
+Y1
+
+h11
+h12
+
+W2
+
+Tx2
+
+ˆ
+W1
+
+Z1
+Z2
+
+h21
+
+X2
+
+Rx1
+
+Y2
+
+h22
+
+Rx2
+
+ˆ
+W2
+
+g2
+
+Y F2
+Z2
+
+I. I NTRODUCTION
+
+Fig. 1.
+
+One of the most important issues for communication networks is that of interference management. Characterizing the
+capacity region of the two-user Gaussian interference channel
+(GIC) remains one of the fundamental unresolved problems
+in information theory. Recent breakthroughs in dealing with
+the capacity characterization of the GIC have made use of
+the linear deterministic interference channel (LD-IC) model
+[1], [2], [3]. The basic idea behind these works is that
+an appropriately deﬁned LD model can serve as a good
+approximation to the Gaussian channel. By gaining valuable
+insights from studying the LD-IC, the proof techniques and
+ideas can be lifted over to the GIC. The capacity region of
+the GIC has been characterized to within 1-bit in [2].
+It is well known that feedback does not increase the capacity
+of the discrete memoryless point-to-point channel. However,
+feedback does increase the capacity of multi-user channels.
+The fact that feedback increases the capacity of the discrete
+memoryless multiple-access channel (MAC) was shown by
+Gaarder and Wolf [4]. Afterwards, Ozarow [5] found the
+capacity region of the two-user Gaussian MAC with noiseless
+feedback. Recently, Suh and Tse [6] obtained an interesting
+result that noiseless feedback can provide signiﬁcant capacity
+gains for the GIC. To understand the usefulness of feedback
+for the interference channel, consider the case of very-strong
+interference, in which the direct links are weaker than the
+cross (interference) links. In such a scenario, feedback can
+
+The Gaussian interference channel (GIC) with noisy feedback.
+
+provide a substantial capacity increment by utilizing the alternate path of Tx1 → Rx2 → Tx2 → Rx1 , i.e., the information
+intended from Tx1 ﬁrst reaches Rx2 , which is then received as
+feedback at Tx2 , which utilizes the strong cross (interference)
+link to reach the eventual destination at Rx1 . The approximate
+capacity region of the GIC with noiseless channel output
+feedback has been characterized in [6] within 2-bits. The
+results in [6] have been generalized to the case of the fully
+connected K-user IC [7], and the case of the cyclic K-user IC
+[8]. Vahid et al. consider an interesting generalization of [6] by
+studying the two-user GIC with rate-limited feedback in [9].
+Rate-limited feedback refers to a setting in which the receiver
+can utilize all the information it has received so far and feed
+back information over an orthogonal channel of ﬁnite capacity
+(i.e., a bit-pipe). Several interesting results for the GIC with
+rate-limited feedback are obtained in [9].
+While rate-limited feedback may be useful in scenarios in
+which the feedback links have good coding schemes to protect
+feedback signals from error, it places much complexity on the
+receiver’s side. As a result, this model is not appropriate when
+the complexity of the feedback design is a concern. In order to
+take this issue into account, this paper aims to investigate the
+model in which feedback signals are not well coded, and thus
+suffer from corruption by noise. In particular, if the channel
+output at receiver j is Yj , then the feedback to transmitter
+˜
+j is YF,j = gj Yj + Zj , for j = 1, 2 (see Figure 1). This
+allows us to investigate the trade-off between complexity and
+data rate. With the eventual goal of understanding the capacity
+region of the GIC with noisy feedback, we present a linear
+deterministic model with partial feedback. We show that the
+LD-IC with partial feedback serves as a good approximation
+to the GIC with noisy feedback. The main result of this paper
+
+The work of M. Motani and S.-Q. Le was supported in part by the National
+University of Singapore under Research Grant WBS R-263-000-579-112. Email: {le.sy.quoc, motani}@nus.edu.sg
+The work of H. V. Poor and R. Tandon was supported in part by the Air
+Force Ofﬁce of Scientiﬁc Research under MURI Grant FA9550-09-1-0643,
+and in part by the DTRA under Grant HDTRA-07-1-0037. E-mail: {rtandon,
+poor}@princeton.edu
+
+1
+
+is a complete characterization of the sum-capacity of the LDIC with partial feedback.
+It is worth demarcating the model of partial feedback from
+the model of rate-limited feedback of [9], [10]. For the case of
+rate-limited feedback of l bits, the receiver can exactly control
+(encode) which l bits or functions thereof to feed back to its
+corresponding transmitter. In contrast, for the case of partial
+feedback, the receiver has no control over the feedback bits
+since the top l most signiﬁcant bits are received as feedback.
+Hence partial feedback can also be interpreted as naturally
+selected limited feedback. It is hence clear that the sumcapacity with l-bits of rate-limited feedback always serves
+as an upper bound on the sum-capacity with l-bits of partialfeedback. Our characterization of the sum-capacity of the LDIC with partial feedback reveals that these two models are
+markedly different, and the sum-capacity with rate-limited
+feedback can strictly exceed the sum-capacity with partial
+feedback.
+
+Signal
+
+m
+
+m
+n
+
+Fig. 2.
+
+Rx1 a5 ⊕ b3
+
+n=5
+
+b1
+b2
+b3
+
+b 3 ⊕ a1
+
+T x2
+
+b4
+
+α=
+
+l=4
+
+b1
+b2
+
+β=
+
+3
+5
+4
+5
+
+l
+
+b 4 ⊕ a2
+Rx2 b5 ⊕ a3
+
+The linear deterministic interference channel with partial feedback.
+
+capacity region of the IC with noisy feedback is deﬁned as
+the closure of the set of all achievable rate pairs. With the
+goal of understanding the capacity region of the GIC with
+noisy feedback as deﬁned above, we next describe the linear
+deterministic interference channel with partial feedback.
+Using the deterministic model in [1], a non-negative integer
+nkj is used to represent the channel gain from the transmitter
++
+Txk to the receiver Rxj and it is given by nkj = log hkj .
+Let q denote the maximum channel gains in the interference
+channel, i.e., q = sup(nkj ). Thus, the transmitted signal from
+the transmitter k at the time i will have a maximum of q bits
+q
+q
+1
+visible to any receiver. Denote Xki = [Xki , ..., Xki ]T ∈ F2 ,
+for k = 1, 2, where the leftmost bit is the most signiﬁcant bit
+and the rightmost bit is the least signiﬁcant bit. In this linear
+model, the effect of interference between various signals is
+captured as the superposition of those signals. At the time i,
+the outputs at the receivers are given as
+
+(2)
+(3)
+
+where Xji denotes the signal sent by transmitter j, Yji
+denotes the output at receiver j, and YFj ,i denotes the
+feedback received at transmitter j, for j = 1, 2, at time
+˜
+i, for i ∈ {1, 2, ..., T }, and {Zji }T and {Zji }T are
+i=1
+i=1
+independent, additive white Gaussian noise processes with
+zero means and unit variances. The forward channel gains
+{h11 , h21 , h12 , h22 } and the feedback channel gains {g1 , g2 }
+are assumed to be constant and known at all terminals. Average unit power constraints are imposed at each transmitter,
+i.e., for a code of block length T , input sequences must
+T
+1
+satisfy T E( i=1 |Xji |2 ) ≤ 1, j = 1, 2. The transmitter
+Txj , for j = 1, 2, wishes to communicate a message mj ∈
+{1, 2, ..., Mj } = Wj to the receiver Rxj . It is assumed that
+W1 and W2 are independent. An (M1 , M2 , T, Pe ) feedback
+code for the interference channel (IC) with noisy feedback
+consists of a sequence of encoding functions
+
+Y1i = S q−n11 X1i ⊕ S q−n21 X2i
+Y2i = S
+
+q−n12
+
+X1i ⊕ S
+
+q−n22
+
+X2i ,
+
+(7)
+(8)
+
+where S is the a square shift matrix of size q and the operation
+is modulo 2 addition in F2 . Similarly, the channel gains for
+the feedback links can be represented by lj , for j = 1, 2,
++
+g
+, and hence the feedback signals
+where lj = log √ j
+var(Yj )
+
+at the transmitters are given as
+YF1 i = S q−l1 Y1i ,
+
+YF2 i = S q−l2 Y2i .
+
+(9)
+
+Effectively, via the feedback links, the transmitter j sees only
+the top lj bits of the received signals Rji (see Figure 2).
+The focus of this paper is on the symmetric LD-IC in which
+m = n12 = n21 , n = n11 = n22 , and l = l1 = l2 .
+
+(5)
+
+Deﬁnition 1. Given a triple (n, m, l), let C P−FB (n, m, l)
+denote the set of all achievable rate pairs (R1 , R2 ) with
+partial feedback. We deﬁne the sum-capacity with partial
+feedback as
+
+for j = 1, 2, and i = 1, 2, ..., T ;
+and two decoding functions
+ˆ
+djT : {Yj1 , Yj2 , ..., YjT } → Wj for j = 1, 2;
+
+Feedback
+
+a4 ⊕ b 2
+
+b5
+
+(4)
+
+i
+fj : Wj × {YFj 1 , YFj 2 , ..., YFj ,i−1 } → Xji
+
+l
+
+m=3
+
+(1)
+
+1
+
+a3 ⊕ b 1
+
+T x1
+
+a5
+
+The two-user Gaussian interference channel with noisy
+feedback (see Figure 1), is deﬁned by the following inputoutput relationships:
+
+˜
+YF2 ,i = g2 Y2i + Z2i ,
+
+Interference
+
+a4
+
+II. S YSTEM MODEL
+
+Y1i = h11 X1i + h21 X2i + Z1i
+Y2i = h12 X1i + h22 X2i + Z2i
+˜
+YF ,i = g1 Y1i + Z1i
+
+a3
+
+n
+
+a1
+a2
+
+a1
+a2
+
+(6)
+
+P−FB
+Csum (n, m, l) =
+
+such that max{Pe,1T , Pe,2T } ≤ Pe , where Pe,1T and Pe,2T
+denote the average decoding error probabilities, which are
+ˆ
+computed as Pe,jT = E[P (wj = wj |(w1 , w2 ) were sent )]. A
+rate pair (R1 , R2 ) is achievable for the IC with noisy feedback
+if there exists an (M1 , M2 , T, Pe )-feedback code such that
+Pe → 0 as T → ∞, log(M1 ) ≤ R1 and log(M2 ) ≤ R2 . The
+T
+T
+
+sup
+(R1 ,R2 )∈C P−FB (n,m,l)
+
+(R1 + R2 ).
+
+(10)
+
+We present our results in terms of forward and feedback
+interference parameters deﬁned respectively as follows
+α=
+
+2
+
+m
+,
+n
+
+β=
+
+l
+.
+n
+
+(11)
+
+C∗
+
+The forward interference parameter α measures the normalized interference1 , whereas the feedback interference parameter β measures the level of normalized feedback.
+
+4.0
+
+Deﬁnition 2. The normalized sum-capacity is given by
+∗
+CP−FB (α, β) =
+
+P−FB
+Csum (n, m, l)
+
+n
+
+3.0
+
+(12)
+
+.
+
+Full feedback
+Rate-limited FB
+Partial FB
+No FB
+
+2.0
+
+∗
+∗
+In a similar manner, we denote CN−FB (α), CF−FB (α),
+∗
+and CRL−FB (α, β) as the normalized sum-capacities without
+feedback, with full (perfect) feedback and with rate-limited
+feedback of β (i.e., normalized rate-limited feedback of (l/n)
+bits) respectively.
+
+1.0
+
+0.5
+
+Fig. 3.
+
+1.0
+
+2.0
+
+3.0
+
+Normalized sum-capacities for β =
+
+III. M AIN R ESULTS
+
+∗
+CP−FB (α, β) =
+⎧
+⎪min((2 − 2α) + 2(β − (1 − α))+ , 2 − α),
+⎪
+⎪
+⎪
+⎪min(2α + 2(β − α)+ , 2 − α),
+⎪
+⎨
+2 − α,
+⎪
+⎪
+⎪α,
+⎪
+⎪
+⎪
+⎩min(2 + 2(β − 1)+ , α),
+
+3.25
+3.0
+
+0≤α≤ 1
+2
+1
+≤α≤ 2
+2
+3
+2
+3 ≤α ≤1
+1≤α≤2
+2 ≤ α.
+(13)
+
+2.0
+1.25
+1.0
+
+0.375 0.5
+
+Fig. 4.
+
+2 − α,
+α,
+
+0≤α≤1
+1 ≤ α,
+
+⎧
+⎪min(2 − 2α + 2β, 2 − α),
+⎪
+⎪
+⎪
+⎪min(2α + 2β, 2 − α),
+⎪
+⎨
+∗
+CRL−FB (α, β) = 2 − α,
+⎪
+⎪
+⎪
+⎪α,
+⎪
+⎪
+⎩min(2 + 2β, α),
+
+(15)
+
+0≤α≤ 1
+2
+1
+2
+2 ≤α ≤ 3
+2
+3 ≤α ≤1
+1≤α≤2
+2 ≤ α.
+(16)
+
+We note here that these quantities satisfy the following inequalities
+∗
+∗
+CN−FB (α) ≤ CP−FB (α, β)
+∗
+∗
+≤ CRL−FB (α, β) ≤ CF−FB (α).
+1 with
+
+1.0
+
+2.0
+
+α
+
+3.0 3.25
+
+Normalized sum-capacities for β =
+
+5
+.
+8
+
+Moreover, from Theorem 1, it is clear that all of the
+inequalities above can be strict inequalities in general, depending on the relative values of (α, β). As an example, we
+have shown all four sum-capacities as functions of α, when
+β = 9/8 in Figure 3; and when β = 5/8 in Figure 4. The
+effect of feedback on the sum-capacity of the partial feedback
+model differs from that of the rate-limited feedback model.
+The feedback helps to increase the sum rate only when the
+feedback rate is greater than a certain threshold depending on
+the speciﬁc regime. The threshold is found to be equal to half
+of the sum-capacities in the model of no feedback. Intuitively,
+there is a tradeoff between complexity and capacity here.
+Case 1: Very weak interference: 0 ≤ α ≤ 1
+2
+In this regime, feedback does not increase the sum-capacity
+∗
+CP−FB when 0 ≤ β ≤ 1 − α. The sum-capacity starts
+to increase when 1 − α ≤ β. The difference between our
+∗
+normalized sum-capacity CP−FB and the sum-capacity in rate∗
+limited feedback model CRL−FB is exactly 2(1 − α) in this
+case. The intuition behind this result is that the top n(1 − α)
+bits of the feedback are received perfectly by the intended
+receiver. Thus, feedback is redundant when the feedback link
+is too small.
+Case 2: Weak interference: 1 ≤ α ≤ 2
+2
+3
+The result in this case differs from the previous case. In this
+regime, feedback does not increase the sum-capacity when
+0 ≤ β ≤ α. The sum-capacity starts to increase when α ≤
+β. This result is counter-intuitive. Notice that only the top
+n(1 − α) bits of the feedback are already received perfectly
+by the intended receiver. The result here reﬂects the nature of
+∗
+interference in this regime. The difference between CP−FB
+∗
+and CRL−FB is 2α in this regime.
+Case 3: Moderate to strong interference: 2 ≤ α ≤ 2
+3
+
+The detailed proof of Theorem 1 is omitted due to space
+limitations and can be found in [11]. In comparison, we recall
+here the corresponding (normalized) sum-capacities without
+feedback [1], [3], with full feedback [6], and with rate-limited
+feedback (of l-bits) [9]
+⎧
+⎪2 − 2α, 0 ≤ α ≤ 1
+⎪
+2
+⎪
+⎪
+1
+2
+⎪2α,
+⎪
+⎨
+2 ≤α ≤ 3
+∗
+2
+(14)
+CN−FB (α) = 2 − α,
+3 ≤α ≤1
+⎪
+⎪
+⎪α,
+1≤α≤2
+⎪
+⎪
+⎪
+⎩2,
+2 ≤ α,
+∗
+CF−FB (α) =
+
+9
+.
+8
+
+Full feedback
+Rate-limited FB
+Partial FB
+No feedback
+
+C∗
+
+Theorem 1. The normalized sum-capacity of the symmetric
+LD-IC with partial feedback is given as follows
+
+α
+
+4.0
+
+(17)
+
+respect to n
+
+3
+
+t
+a9
+
+a5
+
+b5
+
+i=3
+
+t
+a1
+
+b1
+
+a5
+
+i=1
+
+i=1
+
+i=3
+
+i=2
+
+a1
+
+a6
+
+a11
+
+a7
+
+a2
+
+a2
+
+a7
+
+a12
+
+b2
+
+−
+
+−
+
+b2
+
+b7
+
+−
+
+−
+
+−
+
+b1
+
+b6
+
+b11
+
+a13
+
+a8
+
+a3
+
+a14
+
+a9
+
+a4
+
+a4
+
+a9 ⊕ a2 a14 ⊕ a7
+
+a15
+
+T x1
+
+a1
+
+b7
+
+b5
+
+a6
+
+a12
+
+a9
+
+b1
+
+a1
+
+i=2
+
+a11
+
+a10
+
+a5
+
+a5
+
+a10
+
+a15
+
+Tx 1
+
+a11
+
+a7
+a8
+
+a4
+
+b9
+
+b5
+
+b1
+
+a5
+
+a7 ⊕ a 1
+
+a11 ⊕ a5
+
+a4
+
+a8
+
+a12
+
+b6
+
+b1
+
+b1
+
+b6
+
+b11
+
+b1
+
+a3
+
+a12
+
+a10 ⊕ b9
+
+a3
+
+a2
+
+a6 ⊕ b 5
+
+b5
+
+b9
+
+b12
+
+b7
+
+b2
+
+b2
+
+b7
+
+b12
+
+a1
+
+a6
+
+a2 ⊕ b 1
+
+b11
+
+a10
+
+a5
+
+a7
+
+a2
+
+−
+
+−
+
+a2
+
+a7
+
+−
+
+−
+
+−
+
+a1
+
+a6
+
+a11
+
+a1
+
+Rx1
+
+T x2
+
+b10
+
+b6
+
+b2
+
+b 2 ⊕ a1
+
+b 6 ⊕ a5
+
+b10 ⊕ a9
+
+b13
+
+b8
+
+b7
+
+b3
+
+b3
+
+b7 ⊕ b1
+
+b11 ⊕ b5
+
+b14
+
+b9
+
+b8
+
+b4
+
+b4
+
+b8
+
+b12
+
+b15
+
+b10
+
+Tx 2
+
+b4
+
+b12
+
+Rx 1
+
+b3
+
+b11
+
+a3 ⊕ b2 a8 ⊕ b7 a13 ⊕ b12
+
+b5
+
+Rx2
+
+Fig. 5. Coding for the very weak interference regime: (n, m, l) = (6, 3, 4).
+
+Fig. 6.
+
+Feedback does not increase the sum-capacity in this regime.
+Case 4: Very strong interference: 2 ≤ α
+In this regime, the sum-capacity starts to increase only
+when 1 ≤ β. Notice that this is the case of very strong
+interference, where all the bits in all positions are interfered
+by the interference channel. Feedback in our model helps only
+when the rate of feedback is greater than the direct link’s. The
+∗
+∗
+difference between CP−FB and CRL−FB is 2.
+
+b4
+
+b9 ⊕ b2 b14 ⊕ b7
+
+b5
+
+b10
+
+b15
+
+Coding for the weak interference regime: (n, m, l) = (7, 4, 5).
+
+We can repeat this encoding scheme again for a duration of
+B time slots. It is easy to see that this scheme asymptotically
+achieves a sum rate of 8 bits/channel use, which matches with
+the normalized sum rate of 2β as stated in Theorem 1.
+B. Weak interference:
+
+1
+2
+
+≤α≤
+
+2
+3
+
+In this subsection, we consider the speciﬁc example, where
+n = 7, m = 4 and l = 5. This corresponds to the case α ≤
+β ≤ 1 (see Figure 6). From the ﬁgure, we can see that a
+sum rate of 10 bits/channel use, i.e., a normalized rate of
+2α is asymptotically achievable, matching with the result in
+Theorem 1.
+
+IV. C ODING SCHEMES
+In this section, sum-capacity achieving coding schemes for
+speciﬁc values of (n, m, l) are presented. Gaining intuition
+from these examples, encoding schemes for arbitrary (n, m, l)
+are deduced in [11]. The converse is partially presented in the
+Appendix.
+A. Very weak interference: 0 ≤ α ≤
+
+b3 ⊕ a2 b8 ⊕ a7 b13 ⊕ a12
+Rx 2
+
+C. Very strong interference: 2 ≤ α
+
+1
+2
+
+The interference channel with n = 1, m = 6, l = 2, i.e.,
+α = 6, β = 2 is considered (see Figure 7). From the ﬁgure,
+it is easy to see that a sum rate of 4 bits/channel use, or a
+normalized sum rate of 2β is achievable, matching the result
+in Theorem 1.
+
+In this subsection, we present a capacity achieving encoding
+scheme for n = 6, m = 3, l = 4, to build intuition for
+the general case. Based on the example, a general encoding
+scheme can be deduced (see Figure 5). From the previous
+section, it is clear that the sum-capacity with no feedback
+is 6, with full feedback is 9, and with rate-limited feedback
+(of 4 bits) is also 9. Whereas, the sum-capacity with partial
+feedback of l = 4 bits is 8 bits/channel use. To this end,
+we will show that it is possible to achieve the rate pair
+(R1 , R2 ) = (4, 4) for the LD-IC in consideration.
+In the ﬁrst time slot t = 1, each transmitter sends 4 fresh
+information bits as shown in the ﬁgure. With a feedback
+channel gain l = 4, Tx1 sees only the top 4 bits, which
+are a1 , −, −, a2 ⊕ b1 , and hence it can recover b1 . Notice
+that the feedback signal a1 is redundant since it is already
+received cleanly at the intended transmitter Rx1 . This is the
+price we have to pay for partial feedback in contrast to ratelimited feedback. In the second time slot i = 2, the transmitter
+Tx1 sends 4 new fresh information bits again and encodes b1
+at the second topmost signal level as shown in the ﬁgure.
+The second topmost signal level is chosen to ensure that the
+resolving signal bit b1 is received cleanly at Tx1 . With the
+help of b1 , Rx1 can resolve the interference in the previous
+time slot and decode a2 successfully. Due to symmetry, the
+same encoding operation is carried out at Tx2 and Rx2 .
+
+V. C ONCLUSIONS
+In this paper, we have characterized the sum-capacity region
+of the deterministic interference channel with partial feedback.
+In addition, our result has been analyzed and compared
+with three other related models: without feedback, with full
+feedback and with rate-limited feedback. Being different from
+the rate-limited model, the feedback in our model helps to
+improve the sum-capacity only when the channel gains for
+the feedback links exceed certain thresholds, depending on
+the speciﬁc regimes. As on-going work, we are focusing on
+the capacity region of the GIC with output feedback corrupted
+by additive white Gaussian noise.
+VI. A PPENDIX
+A. Proof for very strong interference: 2 ≤ α
+In this section, we present a sum-capacity achieving encoding scheme and a converse proof for the very strong
+interference regime (2 ≤ α). The proof for the other regimes
+can be found in [11].
+
+4
+
+i=3
+
+i=2
+
+i=1
+
+i=1
+
+i=2
+
+a3
+
+a1
+
+b1
+
+b3
+
+a4
+
+a2
+
+b2
+
+b4
+
+i=1
+
+n
+
+n
+
+E 13
+
+E 12
+
+i=1
+
+E 11
+
+i=2
+
+i=3
+
+b6
+
+b4
+
+b2
+
+−
+
+−
+Tx 1
+
+Rx 1
+
+a2
+
+a4
+
+−
+
+−
+
+−
+
+−
+
+−
+
+−
+
+−
+
+−
+
+−
+
+−
+
+−
+
+−
+
+−
+
+a1
+
+a3
+
+b5
+
+b3
+
+b1
+
+a1
+
+a3
+
+a5
+
+b6
+
+b4
+
+b2
+
+a2
+
+a4
+
+a2
+
+−
+
+−
+
+b2
+
+b4
+
+Rx 1 B2
+
+E 23
+E 12
+
+E 12
+
+E 13
+
+E 21
+
+E 22
+
+a6
+
+a4
+
+Tx 1
+
+E 22
+E 11
+
+E 21
+A2
+
+a5
+
+B1
+
+A1
+
+−
+
+−
+
+Tx 2
+
+Rx 2
+
+−
+
+−
+
+−
+
+−
+
+−
+
+−
+
+−
+
+−
+
+−
+
+−
+
+−
+
+b1
+
+b3
+
+E 21
+
+A3
+
+n
+
+n
+
+n
+
+E 23
+
+E 22
+
+B3 ⊕ A1
+
+B1
+
+A1
+
+E 21
+
+b5
+
+E 11
+B2
+
+Tx 2
+
+Rx 2 A2
+
+−
+
+−
+
+E 22
+
+−
+
+−
+
+Fig. 7.
+
+i=2
+
+n
+
+b5
+
+a6
+
+i=3
+
+i=3
+
+a5
+
+E 12
+
+E 11
+
+B3
+
+Fig. 8.
+
+Very strong interference: coding for (n, m, l) = (1, 6, 2).
+
+A3 ⊕ B1
+
+Very strong interference: coding for arbitrary (n, m, l).
+T
+T
+≤(c) H(AT , YF2 ) + 1 + T Pe ,
+1
+
+1) Encoding Scheme for (n, m, l) such that 2n ≤ m.: For
+the case of strong interference, max(m, n) = m. The set of
+m bits at the transmitter Tx1 (respectively Tx2 ) is partitioned
+into 3 regions A1 , A2 , A3 , with sizes (n, m − 2n, n). According to the partition sizes, the m bits (channel output) received
+at Rx1 can be described by: Y1 = (B1 , B2 , B3 ⊕ A1 ) (see
+Figure 8). From Theorem 1, it is clear that feedback increases
+sum-capacity only if l > n. Hence, we focus on the case in
+which n < l.
+In all time instances, Tx1 encodes n fresh information bits
+in A1 . An additional E11 bits are encoded in the region A2 .
+The optimal size of E11 is a function of (l, m, n), which is
+chosen as min((l − n), m − n). It remains silent in region
+2
+A3 to avoid interference. Similarly, Tx2 sends fresh bits in
+(B1 , E21 ) and remains silent in B3 .
+In this ﬁrst time slot, Rx2 can receive E11 cleanly; however
+Rx1 cannot. Moreover, via feedback of l most signiﬁcant
+bits, Tx2 has access to E11 and Tx1 has access to E21 . In
+the second time slot, Tx1 , besides sending fresh bits in the
+top min(l, m ) levels, forwards the bits E21 in the remaining
+2
+part of A2 . Similarly, Tx2 forwards the bits E11 in the
+remaining part of B2 . Thus, in this second time slot, Rx1
+can receive E11 , and Rx2 can receive E21 . From the third
+time slot onwards, the same operation is repeated. A sum
+rate of min(2l, m) bits/channel use, or a normalized rate of
+min(2β, α) is achievable.
+T
+2) Converse for (n, m, l) such that 2n ≤ m.: Let YFj
+for j = 1, 2, denote the feedback from Rxj to Txj in the
+duration of T channel uses. Please refer to Figure 8 for the
+partition. We ﬁrst state the following lemma, which gives an
+upper bound on R1 and R2 .
+
+where (a) follows from the independence between W1 and
+T
+T
+W2 ; (b) follows from the fact X2 is a function of (W2 , YF2 ),
+T
+T
+T
+and Y1 is a function of (A1 , X2 ) and (c) follows from Fano’s
+T
+inequality. We next bound the term H(AT , YF2 ).
+1
+T
+Case 1: 0 ≤ l ≤ n. For this case, YF2 is a function of AT
+1
+and we have H(AT ) ≤ nT .
+1
+T
+Case 2: n ≤ l ≤ m. In this case, AT is a function of YF2 .
+1
+T
+We have H(YF2 ) ≤ lT .
+From both these cases, we conclude that R1 ≤ n+(l−n)+ .
+The inequality for R2 can be proved in a similar manner.
+From Lemma 1, we have R1 + R2 ≤ 2n + 2(l − n)+ , thus
+proving the converse for the regime α ≥ 2.
+R EFERENCES
+[1] S. Avestimehr, S. Diggavi, and D. N. C. Tse. Wireless network
+information ﬂow: A deterministic approach. IEEE Transactions on
+Information Theory, 57(4):1872–1905, Apr. 2011.
+[2] R. H. Etkin, D. N. C. Tse, and H. Wang. Gaussian interference channel
+capacity to within one bit. IEEE Transactions on Information Theory,
+54:5534–5562, Dec. 2008.
+[3] G. Bresler and D. N. C. Tse. The two-user Gaussian interference
+channel: A deterministic view. European Transactions on Telecommunications, 19(4):333–354, Jun. 2008.
+[4] N.T. Gaarder and J. K. Wolf. The capacity region of a multipleaccess discrete memoryless channel can increase with feedback. IEEE
+Transactions on Information Theory, 21(1):100–102, Jan. 1975.
+[5] L. H. Ozarow. The capacity of the white Gaussian multiple access
+channel with feedback. IEEE Transactions on Information Theory,
+30(4):623–629, Jul. 1984.
+[6] C. Suh and D. N. C. Tse. Feedback capacity of the Gaussian interference
+channel to within 2 bits. IEEE Transactions on Information Theory,
+57(5):2667–2685, May. 2011.
+[7] S. Mohajer, R. Tandon, and H. V. Poor. On the feedback capacity of
+the fully connected K-user interference channel. IEEE Transactions on
+Information Theory, submitted 2011.
+[8] R. Tandon, S. Mohajer, and H. V. Poor. On the symmetric feedback
+capacity of the K-user cyclic Z-interference channel. IEEE Transactions
+on Information Theory, submitted 2011.
+[9] A. Vahid, C. Suh, and S. Avestimehr. Interference channel with ratelimited feedback. IEEE Transactions on Information Theory, 58:2788–
+2812, May. 2012.
+[10] A. Vahid and A. S. Avestimehr. The two-user deterministic interference
+channel with rate-limited feedback. In Proceedings of IEEE Int. Symp.
+Inf. The., pages 460–464, Austin, TX, 2010.
+[11] S.-Q. Le, R. Tandon, M. Motani, and H. V. Poor.
+On
+the sum-capacity of the linear deterministic interference
+channel with partial feedback.
+Technical report available at
+http://dl.dropbox.com/u/5998959/motani/pubs/LD-IC-PF.pdf, 2012.
+
+Lemma 1. For α ≥ 2, we have Rj ≤ n + (l − n)+ for
+j = 1, 2.
+Proof:
+T R1 = H(W1 ) =(a) H(W1 |W2 )
+T
+T
+= I(W1 ; AT , YF2 |W2 ) + H(W1 |W2 , AT , YF2 )
+1
+1
+
+T
+T
+T
+=(b) I(W1 ; AT , YF2 |W2 ) + H(W1 |W2 , AT , YF2 , X2 , Y1T )
+1
+1
+T
+≤ H(AT , YF2 ) + H(W1 |Y1T )
+1
+
+5
+
+

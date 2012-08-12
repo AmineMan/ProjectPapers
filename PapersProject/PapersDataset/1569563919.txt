@@ -1,0 +1,1133 @@
+Title:          ISIT12_BG_final.dvi
+Creator:        www.freepdfconvert.com         
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Fri May  4 22:00:49 2012
+ModDate:        Tue Jun 19 12:54:14 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      286790 bytes
+Optimized:      no
+PDF version:    1.7
+ISIT'2012 1569563919
+
+Broadcast Correlated Gaussians:
+the Vector-Scalar Case
+Lin Song
+
+Jun Chen
+
+Chao Tian
+
+McMaster University
+Hamilton, ON L8S 4K1, Canada
+
+McMaster University
+Hamilton, ON L8S 4K1, Canada
+
+AT&T Labs-Research
+Florham Park, NJ 07932, USA
+
+Z1n
+
+Abstract—The problem of sending a set of correlated Gaussian
+sources over a bandwidth-matched two-user scalar Gaussian
+broadcast channel is studied in this work, where the strong
+receiver wishes to reconstruct several source components (i.e.,
+a vector source) under a distortion covariance matrix constraint
+and the weak receiver wishes to reconstruct a single source
+component (i.e., a scalar source) under the mean squared error
+distortion constraint. We provide a complete characterization
+of the optimal tradeoff between the transmit power and the
+achievable reconstruction distortion pair for this problem. The
+converse part is based on a new bounding technique which
+involves the introduction of an appropriate remote source. The
+forward part is based on a hybrid scheme where the digital
+portion uses dirty paper channel code and Wyner-Ziv source
+code. This scheme is different from the optimal scheme proposed
+by Tian et al. in a recent work for the scalar-scalar case, which
+implies that the optimal scheme for the scalar-scalar case is in
+fact not unique.
+
+encoder
+
+Xn
+
++
+
+decoder
+
+ˆ ˆ
+ˆ
+S1n,1 , S1n, 2 ,..., S1n, L
+
++
+
+n
+S1n,1 , S1n,2 ,..., S1n,L , S 2
+
+decoder
+
+ˆ
+S 2n
+
+n
+Z2
+
+Fig. 1.
+
+Vector-scalar Gaussian source broadcast.
+
+proposed in [4] for the scalar-scalar case, and this new result
+implies that the optimal scheme for the scalar-scalar case is in
+fact not unique. It is worth noting that the brute-force proof
+method in [4], [5] is difﬁcult to generalize to the problem being
+considered. Therefore, we take a more conceptual approach in
+the present work. In particular, the derivation of our lower
+bound is based on a new bounding technique which involves
+the introduction of an appropriate remote source.
+The remainder of this paper is organized as follows. We
+give a formal problem deﬁnition in Section II and then state
+our main result in Section III. The proof of the main result
+is divided into two parts, which are given in Section IV and
+Section V, respectively. We conclude the paper in Section VI.
+
+I. I NTRODUCTION
+Unlike in point-to-point communication systems where the
+source-channel separation architecture is optimal [1], in multiuser systems, a separation-based architecture is usually not
+optimal. In such scenarios, hybrid schemes have emerged
+as a promising approach to gain performance improvement
+over either pure digital scheme (separation-based scheme)
+or pure analog scheme, e.g., in [2] for bandwidth-mismatch
+Gaussian source broadcast, and in [3] for sending correlated
+sources on multiple access channels. In a recent work [4]
+where the problem of broadcasting bivariate Gaussian was
+considered (see also [5]), it was shown for the ﬁrst time that
+hybrid schemes are not only able to provide such performance
+improvement, they can in fact be optimal.
+In this work, we consider a generalization of the problem
+studied in [4]. In this generalization, there are still two
+receivers and the channel is still scalar Gaussian broadcast
+channel, however the source is not a bivariate but a multivariate
+Gaussian source. The strong receiver wishes to reconstruct
+several source components (i.e., a vector source) under a
+distortion covariance matrix constraint, and the weak receiver
+wishes to reconstruct a single source component (i.e., a scalar
+source) under the mean squared error distortion constraint; see
+Fig. 1. A complete solution is provided for the optimal tradeoff
+between the transmit power and the reconstruction distortion
+pair, and a hybrid scheme where the digital portion uses dirty
+paper channel code and Wyner-Ziv source code is shown to
+be optimal. This scheme is different from the optimal scheme
+
+II. P ROBLEM D EFINITION
+Let S1 and S2 be jointly Gaussian with mean zero and
+positive deﬁnite covariance matrix ΣS1 ,S2 , where S1 is an
+L × 1 Gaussian random vector with covariance matrix ΣS1
+(which is the ﬁrst L × L diagonal submatrix of ΣS1 ,S2 )
+2
+and S2 is a Gaussian random variable with variance σS2
+(which is the (L + 1, L + 1) entry of ΣS1 ,S2 ). Let the
+broadcast channel additive noises Z1 and Z2 be two zero-mean
+Gaussian random variables, jointly independent of (S1 , S2 ),
+with variances N1 and N2 , respectively; it is assumed that
+N2 > N1 . Let {(S1 (t), S2 (t), Z1 (t), Z2 (t))}∞ be i.i.d.
+t=1
+copies of (S1 , S2 , Z1 , Z2 ).
+Deﬁnition 1: An (n, P, D1 , d2 ) source-channel broadcast
+code consists of an encoding function f : RL×n × Rn → Rn
+and two decoding functions g1 : Rn → RL×n and g2 : Rn →
+Rn such that
+1
+E[X n (X n )T ] ≤ P,
+n
+1
+ˆ
+ˆ
+E[(Sn − Sn )(Sn − Sn )T ] D1 ,
+1
+1
+1
+1
+n
+1
+n
+ˆn n ˆn
+E[(S2 − S2 )(S2 − S2 )T ] ≤ d2 ,
+n
+
+1
+
+n
+n
+ˆ
+ˆn
+where X n = f (Sn , S2 ), Sn = g1 (X n + Z1 ), and S2 =
+1
+1
+n
+n
+g2 (X + Z2 ).
+It is clear that the performance of any source-channel broadn
+n
+cast code depends on (Z1 , Z2 ) only through their marginal
+distributions. Therefore, we shall assume the broadcast channel
+n
+n
+is physically degraded and write Z2 = Z1 + ∆n , where ∆n
+is a zero-mean Gaussian random vector with i.i.d. entries of
+n
+variance N2 − N1 and is independent of Z1 .
+Deﬁnition 2: We say power P is achievable subject to distortion constraints D1 and d2 if there exists an (n, P, D1 , d2 )
+source-channel broadcast code. Let P (D1 , d2 ) denote the inﬁmum of all achievable powers subject to distortion constraints
+D1 and d2 .
+With the above deﬁnitions, it is clear that the fundamental
+problem in this joint source-channel coding scenario is to ﬁnd
+a characterization of the function P (D1 , d2 ), and in this work
+we shall provide a complete solution for this function. In the
+remainder of the paper, without loss of generality, we assume
+2
+0 ≺ D1 ΣS1 and 0 < d2 ≤ σS2 .
+
+We shall ﬁrst bound I(V2n ; Y2n ). Note that
+I(V2n ; Y2n ) = h(V2n ) − h(V2n |Y2n )
+n
+2
+2
+= log(2πe(σS2 + σU2 )) − h(V2n |Y2n )
+2
+n
+2
+2
+ˆn
+≥ log(2πe(σS2 + σU2 )) − h(V2n |S2 )
+2
+n
+2
+2
+ˆn
+≥ log(2πe(σS2 + σU2 )) − h(V2n − S2 )
+2
+n
+n
+2
+2
+ˆ
+≥ log(2πe(σS2 + σU2 )) −
+h(V2 (t) − S2 (t))
+2
+t=1
+n
+2
+2
+≥ log(2πe(σS2 + σU2 ))
+2
+n
+1
+ˆ
+log(2πe(E[(V2 (t) − S2 (t))2 ]))
+−
+2
+t=1
+n
+2
+2
+≥ log(σS2 + σU2 )
+2
+n
+1
+2
+ˆ
+log(E[(S2 (t) − S2 (t))2 ] + σU2 )
+−
+2
+t=1
+n
+2
+2
+≥ log(σS2 + σU2 )
+2
+n
+1
+n
+2
+ˆn n ˆn
+− log
+E[(S2 − S2 )(S2 − S2 )T ] + σU2
+2
+n
+2
+σ 2 + σU2
+n
+≥ log S2
+2 .
+2
+d2 + σU2
+
+III. M AIN R ESULT
+The main result of this paper is the following theorem.
+Theorem 1: For any (L + 1) × (L + 1) positive semideﬁnite
+matrix ΣU1 ,U2 , we denote its ﬁrst L × L diagonal submatrix
+2
+by ΣU1 and its (L + 1, L + 1) entry by σU2 . Then
+P (D1 , d2 ) =
+
+sup
+ΣU1 ,U2
+
+N1
+0
+
+On the other hand, in view of the fact that
+
+|ΣS1 ,S2 + ΣU1 ,U2 |
+2
+|D1 + ΣU1 |(d2 + σU2 )
+
++ (N2 − N1 )
+
+2
+σS2
+
+2
++ σU2
+2
+d2 + σU2
+
+n
+0 ≤ I(V2n ; Y2n ) ≤ I(X2 ; Y2n ) ≤
+
+− N2 .
+
+I(V2n ; Y2n ) =
+
+IV. L OWER B OUND
+
+ΣU1 ,U2
+
+N1
+0
+
+(3)
+
+2
+2
+σS2 + σU2
+P + N2
+≤
+,
+2
+d2 + σU2
+αP + N2
+
+|ΣS1 ,S2 + ΣU1 ,U2 |
+2
+|D1 + ΣU1 |(d2 + σU2 )
+
+2
+σ 2 + σU2
++ (N2 − N1 ) S2
+− N2 .
+2
+d2 + σU2
+
+n
+P + N2
+log
+2
+αP + N2
+
+for some α ∈ [0, 1]. Combining (2) and (3) gives
+
+We shall show in this section that for any (n, P, D1 , d2 )
+source-channel broadcast code,
+sup
+
+n
+P + N2
+log
+,
+2
+N2
+
+we have
+
+The rest of the paper is devoted to proving this result.
+
+P ≥
+
+(2)
+
+which implies
+α≤
+
+(1)
+
+Let U1 and U2 be jointly Gaussian with mean zero and
+covariance matrix ΣU1 ,U2 , where U1 is an L × 1 Gaussian
+random vector with covariance matrix ΣU1 (which is the
+ﬁrst L × L diagonal submatrix of ΣU1 ,U2 ) and U2 is a
+2
+Gaussian random variable with variance σU2 (which is the
+(L+1, L+1) entry of ΣU1 ,U2 ). Let {U1 (t), U2 (t)}n be i.i.d.
+t=1
+n
+copies of (U1 , U2 ). We assume that (Un , U2 ) is independent
+1
+n
+n
+of (Sn , S2 , Z1 , ∆n ).
+1
+n
+n
+n
+Deﬁne V1 = Sn + Un , V2n = S2 + U2 , and Yin = X n +
+1
+1
+n
+Zi , i = 1, 2. Here (V1 , V2 ) can be understood as the remote
+source that should be reconstructed, yet the encoder only has
+observation (S1 , S2 ). In this sense, our lower bound can be
+understood as when V2 is provided also to the strong receiver
+by a genie.
+
+2
+(P + N2 )(d2 + σU2 ) N2
+−
+.
+2 + σ2 )
+P (σS2
+P
+U2
+
+(4)
+
+n
+Now we proceed to bound I(V1 ; Y1n |V2n ). Since h(Y2n ) ≤
+log(2πe(P + N2 )), it follows that
+n
+h(Y2n |V2n ) ≤ log(2πe(αP + N2 )).
+(5)
+2
+By the entropy power inequality,
+n
+n
+n
+2
+n
+2
+h(Y2n |V2n ) ≥ log e n h(Y1 |V2 ) + e n h(∆ )
+2
+n
+n
+n
+2
+= log e n h(Y1 |V2 ) + 2πe(N2 − N1 ) ,
+2
+which, together with (5), implies
+n
+h(Y1n |V2n ) ≤ log(2πe(αP + N1 )).
+2
+n
+2
+
+2
+
+ΣU1 ,U2 can be an arbitrary (L + 1) × (L + 1) positive
+semideﬁnite matrix.
+
+Note that
+n
+n
+I(V1 ; Y1n |V2n ) = h(Y1n |V2n ) − h(Y1n |V1 , V2n )
+n
+n
+≤ log(2πe(αP + N1 )) − h(Y1n |V1 , V2n )
+2
+n
+≤ log(2πe(αP + N1 )) − h(Y1n |X n )
+2
+n
+n
+= log(2πe(αP + N1 )) − h(Z1 )
+2
+n
+αP + N1
+= log
+.
+(6)
+2
+N1
+
+V. U PPER B OUND
+We shall show in this section that
+|ΣS1 ,S2 + ΣU1 ,U2 |
+P (D1 , d2 ) ≤ sup N1
+2
+|D1 + ΣU1 |(d2 + σU2 )
+ΣU1 ,U2 0
++ (N2 − N1 )
+
+On the other hand,
+
+The upper bound is based on a hybrid scheme. Let the
+channel input X n , with average power P (θ), be a supern
+n
+position of an analog signal Xa and a digital signal Xd
+n
+n
+n
+(i.e., X = Xa + Xd ). Before describing the scheme, let
+us ﬁrst deﬁne (S1 (θ), S2 (θ)) to be zero-mean and jointly
+Gaussian, which generates (S1 , S2 ) via a backward Gaussian
+test channel (S1 , S2 ) = (S1 (θ) + Q1 , S2 (θ) + Q2 ), where
+(Q1 , Q2 ) is independent of (S1 (θ), S2 (θ)); the covariance
+matrix of (S1 (θ), S2 (θ)) is to be speciﬁed later. We assume
+that (S1 , S2 , S1 (θ), S2 (θ)) is independent of (Z1 , Z2 ). Now
+write
+
+n
+n
+n
+I(V1 ; Y1n |V2n ) = h(V1 |V2n ) − h(V1 |Y1n , V2n )
+n
+n
+= h(V1 , V2n ) − h(V2n ) − h(V1 |Y1n , V2n )
+n
+= log |2πe(ΣS1 ,S2 + ΣU1 ,U2 )|
+2
+n
+2
+2
+n
+− log(2πe(σS2 + σU2 )) − h(V1 |Y1n , V2n )
+2
+n
+≥ log |2πe(ΣS1 ,S2 + ΣU1 ,U2 )|
+2
+n
+2
+2
+n
+− log(2πe(σS2 + σU2 )) − h(V1 |Y1n )
+2
+n
+≥ log |2πe(ΣS1 ,S2 + ΣU1 ,U2 )|
+2
+n
+2
+2
+n ˆ
+− log(2πe(σS2 + σU2 )) − h(V1 |Sn )
+1
+2
+n
+n
+2
+2
+≥ log |2πe(ΣS1 ,S2 + ΣU1 ,U2 )| − log(2πe(σS2 + σU2 ))
+2
+2
+n
+1
+ˆ
+ˆ
+−
+log |2πeE[(V1 (t) − S1 (t))(V1 (t) − S1 (t))T ]|
+2
+t=1
+n
+n
+2
+2
+= log |ΣS1 ,S2 + ΣU1 ,U2 | − log(σS2 + σU2 )
+2
+2
+n
+1
+ˆ
+ˆ
+−
+log |E[(S1 (t) − S1 (t))(S1 (t) − S1 (t))T ] + ΣU1 |
+2
+t=1
+n
+n
+2
+2
+≥ log |ΣS1 ,S2 + ΣU1 ,U2 | − log(σS2 + σU2 )
+2
+2
+n
+1
+ˆ
+ˆ
+− log E[(Sn − Sn )(Sn − Sn )T ] + ΣU1
+1
+1
+1
+1
+2
+n
+n
+|ΣS1 ,S2 + ΣU1 ,U2 |
+≥ log
+.
+(7)
+2
+2
+2
+|D1 + ΣU1 |(σS2 + σU2 )
+
+S1 (θ) = E[S1 (θ)|S1 , S2 , S2 (θ)] + W1
+= A1 S1 + a2 S2 + a3 S2 (θ) + W1
+and
+S2 (θ) = E[S2 (θ)|S1 , S2 ] + W2 = bT S1 + b2 S2 + W2 .
+1
+Note that W1 is independent of (S1 , S2 , S2 (θ)), and W2 is
+independent of (S1 , S2 ). Next deﬁne
+˜
+S1 (θ) = A1 S1 + a2 S2 + W1 .
+
+(8)
+
+Substituting (4) into (8) gives
+2
+(P + N2 )(d2 + σU2 ) N2
+|ΣS1 ,S2 + ΣU1 ,U2 |
+≤
+−
++ 1,
+2
+2
+2
+2
+|D1 + ΣU1 |(σS2 + σU2 )
+N1 (σS2 + σU2 )
+N1
+
+˜
+RW Z = RDP = I(S1 , S2 ; S1 (θ)|Y1 ).
+
+which implies
+
+The parameter β is then chosen such that
+
+|ΣS1 ,S2 + ΣU1 ,U2 |
+P ≥ N1
+2
+|D1 + ΣU1 |(d2 + σU2 )
++ (N2 − N1 )
+
+2
+σS2
+
+2
++ σU2
+2
+d2 + σU2
+
+(9)
+
+We are now in a position to describe the scheme. The analog
+n
+n
+portion is given by Xa = β(bT Sn + b2 S2 ) for some β to be
+1 1
+n
+speciﬁed later. For the digital portion Xd , the encoder ﬁrst
+uses a Wyner-Ziv source code [6] with codewords generated
+˜
+according to S1 (θ), and with Y1 = Xa + Xd + Z1 as the
+decoder side information where Xd is a zero-mean Gaussian
+random variable independent of (S1 , S2 , Xa , Z1 , Z2 ). The
+encoder then determines the digital portion of the channel
+n
+n
+input Xd to send the Wyner-Ziv coding index, treating Xa
+as the channel state information known at the encoder, i.e.,
+2
+using a dirty paper code [7]. We deﬁne Pa = E[Xa ] and
+2
+Pd = E[Xd ]. Note that Pa + Pd = P (θ).
+The Wyner-Ziv coding rate and the dirty paper coding rate
+are set to be equal
+
+Combining (6) and (7) yields
+αP + N1
+|ΣS1 ,S2 + ΣU1 ,U2 |
+.
+2 + σ2 ) ≤
+|D1 + ΣU1 |(σS2
+N1
+U2
+
+2
+2
+σS2 + σU2
+− N2 .
+2
+d2 + σU2
+
+I(Xa ; Y1 ) = I(S1 , S2 ; S2 (θ)),
+
+(10)
+
+which is always possible if we set
+
+− N2 .
+
+I(S1 , S2 ; S1 (θ), S2 (θ)) =
+
+One can readily complete the proof of (1) by noticing that
+
+3
+
+1
+P (θ) + N1
+log
+2
+N1
+
+(11)
+
+= DS1 (θ)
+
+because
+I(S1 , S2 ; S2 (θ)) ≤ I(S1 , S2 ; S1 (θ), S2 (θ)),
+
+where (13) is true because the equivalence of the joint distribu1
+˜
+˜
+tions between (S1 , S2 , S1 (θ), β Y1 ) and (S1 , S2 , S1 (θ), S2 (θ))
+implies the equivalence of the joint distributions between
+ˆ
+(S1 , S1 (θ)) and (S1 , S1 (θ)). Recall as we have deﬁned previously, that the distortion at the weak receiver is d2 (θ), and
+thus the performance of the scheme is also determined.
+It can be shown that both P (θ) and d2 (θ) are continuous
+2
+functions of θ for θ ∈ (0, σS2 ]; moreover, d2 (θ) goes to zero
+as θ → 0. Note that by ignoring the distortion constraint d2 at
+Receiver 2, one can easily obtain the following lower bound on
+P (D1 , d2 ) by invoking the source-channel separation theorem:
+
+1
+and I(Xa ; Y1 ) can take any value in [0, 2 log P (θ)+N1 ] by
+N1
+varying β. It can be shown that (10) implies that the joint
+1
+˜
+distribution of (S1 , S2 , S1 (θ), β Y1 ) is the same as that of
+˜
+(S1 , S2 , S1 (θ), S2 (θ)). Therefore, we have
+
+˜
+˜
+RDP = I(S1 , S2 ; S1 (θ)|Y1 ) = I(S1 , S2 ; S1 (θ)|S2 (θ)).
+Note that
+˜
+I(S1 , S2 ; S1 (θ)|S2 (θ))
+˜
+= I(S1 , S2 ; S1 (θ), S2 (θ)) − I(S1 , S2 ; S2 (θ))
+
+P (D1 , d2 ) ≥ N1
+
+= I(S1 , S2 ; S1 (θ), S2 (θ)) − I(Xa ; Y1 )
+1
+P (θ) + N1
+1
+P (θ) + N1
+− log
+= log
+2
+N1
+2
+Pd + N1
+1
+Pd + N1
+= log
+.
+2
+N1
+
+P (θ) ≤
+
+sup
+ΣU1 ,U2
+
+2
+2
+σS2 + σU2
+2 − N2 .
+d2 (θ) + σU2
+
+(14)
+
+D−1 (θ) − Λ − M = 0,
+
+(15)
+
+Λ1 (D1 − DS1 (θ)) = 0,
+λ2 (θ − dS2 (θ)) = 0,
+
+(16)
+
+M(ΣS1 ,S2 − D(θ)) = 0,
+
+(12)
+
+(17)
+
+where M
+0, Λ1
+0, λ2 ≥ 0, and Λ = diag(Λ1 , λ2 ).
+T
+Let V1 Π1 V1 be the eigenvalue decomposition of Λ1 , where
+V1 is a unitary matrix, and Π = diag(π1 , · · · , πr , 0, · · · , 0)
+T
+with πi > 0, i = 1, · · · , r. Let Λ1, = V1 Π1, V1 , where
+Π1, = diag(π1 − , · · · , πr − , , · · · , ). Furthermore, let
+λ2, = λ2 − if λ2 > 0, and λ2, = if λ2 = 0. We shall
+choose and such that Λ1,
+0 and λ2, > 0; moreover,
+we assume is a function of , and goes to zero as → 0.
+Let Λ = diag(Λ1, , λ2, ) and ΣU1, ,U2, = Λ−1 − D(θ). It
+can be shown that ΣU1, ,U2,
+0 when is sufﬁciently small
+(with ﬁxed).
+Let U1, and U2, be jointly Gaussian with mean zero and
+covariance matrix ΣU1, ,U2, , where U1, is an L×1 Gaussian
+random vector with covariance matrix ΣU1, (which is the
+ﬁrst L × L diagonal submatrix of ΣU1, ,U2, ) and U2, is a
+2
+Gaussian random variable with variance σU2, (which is the
+(L+1, L+1) entry of ΣU1, ,U2, ). We assume that (U1, , U2, )
+is independent of (S1 , S2 , S1 (θ), S2 (θ), Z1 , Z2 ). Note that
+
+ΣS1 ,S2 ,
+
+where DS1 is the ﬁrst L × L diagonal submatrix of D, and
+dS2 is the (L + 1, L + 1) entry of D. We denote the ﬁrst
+L × L diagonal submatrix of D(θ) by DS1 (θ), and the (L +
+1, L + 1) entry of D(θ) by dS2 (θ). Let the covariance matrix
+of (S1 (θ), S2 (θ)) be chosen to be ΣS1 ,S2 − D(θ), where the
+covariance matrix of S1 (θ) is ΣS1 − DS1 (θ), and the variance
+2
+of S2 (θ) is σS2 − dS2 (θ). Accordingly, (11) reduces to
+1
+P (θ) + N1
+1
+|ΣS1 ,S2 |
+log
+= log
+,
+2
+N1
+2
+|D(θ)|
+which determines P (θ). Now the coding scheme including all
+of its parameters is fully speciﬁed.
+With these parameters it is seen that the resulting distortion
+at the strong receiver satisﬁes
+
+|ΣS1 ,S2 + ΣU1, ,U2, |
+|ΣS1 ,S2 + Λ−1 − D(θ)|
+= lim
+→0 |D(θ) + ΣU1, ,U2, |
+→0
+|Λ−1 |
+= lim |Λ ΣS1 ,S2 + I − Λ D(θ)|
+
+lim
+
+ˆ
+ˆ
+E[(S1 − S1 (θ))(S1 − S1 (θ)) ]
+T
+
+= E[(S1 − S1 (θ))(S1 − S1 (θ))T ]
+
+0
+
+|ΣS1 ,S2 + ΣU1 ,U2 |
+2
+|D1 + ΣU1 |(d2 (θ) + σU2 )
+
+To this end we revisit the maximization problem in (12).
+It can be shown that D(θ) must satisfy the following KKT
+conditions
+
+subject to DS1 D1 ,
+dS2 ≤ θ,
+0≺D
+
+N1
+
++ (N2 − N1 )
+
+2
+Given θ ∈ (0, σS2 ], let D(θ) denote the solution to
+D
+
+|ΣS1 |
+− N1 .
+|D1 |
+
+This bound can also be obtained from our general lower bound
+2
+by setting ΣU1 = 0 and sending σU2 to inﬁnity. This lower
+2
+bound is tight when d2 > d2 (σS2 ). Therefore, it sufﬁces to
+2
+show that for θ ∈ (0, σS2 ],
+
+As a consequence, Receiver 1 can correctly decode the dirty
+˜
+paper code, then recover S1 (θ) by decoding the Wyner-Ziv
+code with Y1 as the side information. Furthermore, Receiver
+1
+ˆ
+˜
+1 can use S1 (θ) S1 (θ)+ β a3 Y1 as the reconstruction of S1 .
+Receiver 2 can form a linear MMSE estimate of S2 based on
+Y2
+Xa + Xd + Z2 , and the resulting distortion is denoted
+by d2 (θ). Noting that the power P (θ) is determined by (11),
+it is seen that the scheme is speciﬁed except the covariance
+matrix of (S1 (θ), S2 (θ)), which is subject to optimization
+under the distortion constraints. For the purpose of determining
+the covariance matrix of (S1 (θ), S2 (θ)) we formulate the
+following optimization problem.
+max log |D|
+
+D1 ,
+
+(13)
+
+→0
+
+4
+
+= |ΛΣS1 ,S2 + I − ΛD(θ)|
+−1
+
+= |D (θ)ΣS1 ,S2 − MΣS1 ,S2 + MD(θ)|
+|ΣS,S2 |
+=
+|D(θ)|
+P (θ) + N1
+=
+,
+N1
+
+= I(S1 + U1, , S2 + U2, ; S1 (θ), S2 (θ))
+− I(S2 + U2, ; S1 (θ), S2 (θ))
+
+(18)
+
+= I(S1 + U1, , S2 + U2, ; S1 (θ), S2 (θ))
+− I(S2 + U2, ; S2 (θ))
+
+(19)
+
+= I(S1 + U1, , S2 + U2, ; S1 (θ), S2 (θ)) − I(S2 + U2, ; Y1 )
+|ΣS1 ,S2 + ΣU1, ,U2, | 1
+1
+P (θ) + N1
+− log
+, (27)
+= log
+2
+|D(θ) + ΣU1, ,U2, |
+2
+α P (θ) + N1
+
+(20)
+
+where (18) and (19) are due to (15) and (17), respectively.
+T
+Since Λ1 (D1 − DS1 (θ)) = 0, it implies Π1 V1 (D1 −
+T
+DS1 (θ))V1 = 0, which further implies that V1 (D1 −
+DS1 (θ))V1 is of the form diag(0r×r , A), where 0r×r denotes
+T
+an r × r all-zero matrix. Also note that V1 ΣU1, V1 =
+−1
+T
+Π1, − V1 DS1 (θ)V1 . Therefore,
+
+where (26) is due to (25). Combining (24) and (27) gives
+|ΣS1 ,S2 + ΣU1, ,U2, |
+2
+2
+|DS1 (θ) + ΣU1, |(σS2 + σU2, )
+=
+
+|DS1 (θ) + ΣU1, |
+lim
+→0
+|D1 + ΣU1, |
+T
+|VT DS (θ)V1 + V1 ΣU1, V1 |
+= lim 1 T 1
+T
+→0
+|V1 D1 V1 + V1 ΣU1, V1 |
+= lim
+
+→0
+
+= lim
+
+→0
+
+P (θ) = lim N1
+→0
+
+T
+|Π−1 + V1 (D1 − DS1 (θ))V1 |
+1,
+
+|Π−1 + diag(0r×r , A)|
+1,
+
+= 1.
+
+(21)
+
+2
+2
+σS2 + σU2,
+2
+d2 (θ) + σU2,
+
+− N2 .
+
+Now one can readily prove (14) by invoking (21).
+VI. C ONCLUSION
+We have characterized the optimal tradeoff between the
+transmit power and the achievable distortion pair for the
+problem of sending correlated Gaussian sources over a Gaussian broadcast channel, where the strong receiver wishes to
+reconstruct a vector source and the weak receiver wishes to
+reconstruct a scalar source. It is worth mentioning that our
+achievability scheme, when specialized to the scalar-scalar
+case, is different from the one proposed in [4], which implies
+that the optimal scheme for the scalar-scalar case is in fact not
+unique. Indeed, it can be shown [8] that these two schemes are
+two extremal examples of a general class of hybrid schemes.
+
+I(S2 + U2, ; Y2 ) = h(S2 + U2, ) − h(S2 + U2, |Y2 )
+2
+2
+σS2 + σU2,
+1
+= log
+.
+2
+2
+d2 (θ) + σU2,
+On the other hand,
+I(S2 + U2, ; Y2 ) = h(Y2 ) − h(Y2 |S2 + U2, )
+1
+P (θ) + N2
+= log
+,
+2
+α P (θ) + N2
+1
+P (θ) E[(X
+
+− E[X|S2 + U2, ])2 ]. Therefore,
+
+2
+2
+σS2 + σU2,
+
+d2 (θ) +
+
+2
+σU2,
+
+=
+
+P (θ) + N2
+.
+α P (θ) + N2
+
+R EFERENCES
+(22)
+
+[1] C. E. Shannon, “A mathematical theory of communication,” Bell Syst.
+Tech. J., vol. 27, pp. 379-423, pp. 623-656, Jul., Oct. 1948.
+[2] U. Mittal and N. Phamdo, “Hybrid digital-analog (HDA) joint sourcechannel codes for broadcasting and robust communications,” IEEE Trans.
+Inf. Theory,, vol. 50, no. 5, pp. 1082–1102, May 2002.
+[3] A. Lapidoth and S. Tinguely, “Sending a bivariate Gaussian over a
+Gaussian MAC,” IEEE Trans. Inf. Theory, vol. 56, no. 6, pp. 2714–2752,
+Jun. 2010.
+[4] C. Tian, S. Diggavi, and S. Shamai (Shitz), “The achievable distortion
+region of sending a bivariate Gaussian source on the Gaussian broadcast
+channel,” IEEE Trans. Inf. Theory, vol. 57, no. 10, pp. 6419-6427, Oct.
+2011.
+[5] S. Bross, A. Lapidoth, and S. Tinguely, “Broadcasting correlated Gaussians,” IEEE Trans. Inf. Theory, vol. 56, no. 7, pp. 3057-3068, Jul. 2010.
+[6] A. D. Wyner and J. Ziv, “The rate-distortion function for source coding
+with side information at the decoder,” IEEE Trans. Inf. Theory, vol. 22,
+no. 1, pp. 1-10, Jan. 1976.
+[7] M. Costa, “Writing on dirty paper,” IEEE Trans. Inf. Theory, vol. 29,
+no. 3, pp. 439-411, May 1983.
+[8] L. Song, J. Chen, and C. Tian, “Broadcasting correlated vector Gaussians,” IEEE Trans. Inf. Theory, submitted for publication.
+
+Note that
+I(S1 + U1, ; S1 (θ), S2 (θ)|S2 + U2, )
+= h(S1 + U1, |S2 + U2, )
+− h(S + U1, |S2 + U2, , S1 (θ), S2 (θ))
+= h(S1 + U1, |S2 + U2, ) − h(S + U1, |S1 (θ))
+|ΣS1 ,S2 + ΣU1, ,U2, |
+1
+= log
+,
+2
+2
+2
+|DS1 (θ) + ΣU1, |(σS2 + σU2, )
+
+(23)
+(24)
+
+where (23) follows from the fact that
+D(θ) + ΣU1,
+
+|ΣS1 ,S2 + ΣU1, ,U2, |
+2
+|DS1 (θ) + ΣU1, ||d2 (θ) + σU2, |
++ (N2 − N1 )
+
+It is clear that
+
+where α =
+
+|ΣS1 ,S2 + ΣU1, ,U2, |(α P (θ) + N1 )
+,
+|D(θ) + ΣU1, ,U2, |(P (θ) + N1 )
+
+which, together with (20) and (22), implies that
+
+|Π−1 |
+1,
+|Π−1 |
+1,
+
+(26)
+
+,U2,
+
+2
+= diag(DS1 (θ) + ΣU1, , dS2 (θ) + σU2, ).
+(25)
+
+On the other hand,
+I(S1 + U1, ; S1 (θ), S2 (θ)|S2 + U2, )
+
+5
+
+

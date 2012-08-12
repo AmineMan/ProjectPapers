@@ -1,0 +1,871 @@
+Title:          4userMxN.pdf
+Author:         chenweiw
+Creator:        PScript5.dll Version 5.2.2
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Thu May 17 22:14:41 2012
+ModDate:        Tue Jun 19 12:56:07 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      365063 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569566647
+
+Genie Chains and the Degrees of Freedom of the
+K -User MIMO Interference Channel
+Chenwei Wang, Hua Sun and Syed A. Jafar
+Center for Pervasive Communications and Computing,
+EECS Dept., University of California Irvine, Irvine, CA 92697
+Email: {chenweiw, huas2, syed}@uci.edu
+Abstract—We explore the degrees of freedom (DoF) of the
+K > 3 user MT × MR MIMO Gaussian interference channel where each transmitter is equipped with MT and each
+receiver is equipped with MR antennas. Expressing the DoF
+characterization as a function of the ratio γ = M/N , where
+M = min(MT , MR ) and N = max(MT , MR ), we ﬁnd that when
+K−1
+γ ≤ γo = K(K−2) = γo , the DoF value per user is piecewise
+linear depending on M and N alternately, similar to the DoF
+characterization for K = 3 which has been previously obtained.
+The regime γ > γo , which is the dominant regime for K > 3
+users and is not encountered in the K = 3 user setting, is the
+main focus of this paper. Our DoF results in this regime are
+obtained through a novel “genie chains” approach, which is the
+main contribution of this work. It is a chain of mappings from
+genie signals provided to a receiver to the exposed signal spaces
+at that receiver, which then serve as the genie signals for the
+next receiver in the chain, until an acceptable genie with the
+required number of dimensions is obtained, essentially converting
+an information theoretic problem into a linear algebra problem.
+
+II. S YSTEM M ODEL AND D EFINITIONS
+Consider a fully connected K user MIMO interference
+channel where there are MT and MR antennas at each
+transmitter (TX) and receiver (RX), respectively, each TX
+sending one independent message to its desired RX. Denote
+by H [ji] the MR × MT channel matrix from TX i to RX
+j where i, j ∈ K {1, · · · , K}. For simplicity, we assume
+that the channel coefﬁcients are independently drawn from
+continuous distributions. While our results are valid regardless
+of whether the channel coefﬁcients are constant or varying
+in time/frequency, we assume the channels are constant in
+the exposition. Global channel knowledge is assumed to be
+available at all nodes.
+At time index t ∈ Z+ , TX i sends a complex-valued
+MT ×1 signal vector X[i] (t), which satisﬁes an average power
+T
+1
+constraint T t=1 E[ X[i] (t) 2 ] ≤ ρ for T channel uses. At
+the receiver side, RX j observes an MR × 1 signal vector
+Y[j] (t) at time index t, which is given by:
+
+I. I NTRODUCTION
+The information theoretic degrees of freedom (DoF) characterization of MIMO interference networks is a key objective in
+the quest for understanding the mathematical nature of spatial
+signal dimensions. Starting with the DoF characterization for
+the 2 user arbitrary MIMO interference channel [5], intermediate successes along this path have included the K user
+symmetric MIMO setting [6], the K user SIMO and MISO settings and their spatially scaled versions [1], the K user semisymmetric MIMO setting with sufﬁciently large number of
+users relative to the number of antennas [2], and most recently
+the 3 user semi-symmetric MIMO interference channel [3].
+The DoF characterization for the 3 user setting in particular,
+comprised of a piece-wise linear mapping with inﬁnitely many
+linear intervals over the range of the parameter γ (the ratio of
+numbers of transmit antennas and receiver antennas per user),
+sheds light on several interesting elements such as redundant
+dimensions, decomposability, subspace alignment chains and
+feasibility of linear interference alignment. However, it is not
+clear if the insights from the 3 user setting generalize to more
+than 3 users. Indeed, as we show in this work, the 3 user setting
+represents more of an exception than a rule in many aspects.
+As we ﬁnd out here, the DoF characterization for the K = 4
+user setting, which is in sharp contrast with the K = 3 setting,
+is actually representative of all network size values, K > 4,
+as well.
+
+Y[j] (t) =
+
+K
+i=1
+
+H[ji] X[i] (t) + Z[j] (t)
+
+(1)
+
+where Z[j] (t) is an MR ×1 column vector representing the i.i.d.
+circularly symmetric complex additive white Gaussian noise
+(AWGN) at RX j, each entry of which is an i.i.d. Gaussian
+random variable with zero-mean and unit-variance.
+Let Rk (ρ) = R(ρ) denote the symmetric achievable rate of
+each user where ρ is referred to as the Signal-to-Noise Ratio
+(SNR). We deﬁne d(K, MT , MR )
+limρ→∞ R(ρ)/ log ρ
+as the symmetric DoF per user. Here, the user index k is
+interpreted modulo K so that, e.g., User 1 is the same as User
+K +1, etc. The dependence on K, MT , MR may be dropped
+for compact notation when no ambiguity would be caused.
+Notations: We use A to denote a matrix or column vector.
+Also, we use A or A to represent the |A| dimensional space
+spanned by its column vectors where |A| is the number of
+columns in A. For two subspaces A, B, we denote by A \
+B = A ∩ (A ∩ B)c the intersection of A with the null space
+of A ∩ B. Moreover, we use o(x) to represent any function
+f (x) such that limx→∞ f (x)/x = 0. Furthermore, we deﬁne
+M = min(MT , MR ), N = max(MT , MR ).
+III. M AIN R ESULT
+Theorem 1: For the K ≥ 4 user MT × MR MIMO interference channel where each transmitter has MT and each
+
+1
+
+receiver has MR antennas, the DoF value per user is:
+
+there are no antenna redundancies. Similar to [3] the DoF
+achievability is based on linear schemes without or with ﬁnite
+K−1
+MN
+d = f (K,M,N )1 M ≤ K(K−2) + M +N 1 M ≥ K 2K−2
+(2) number of symbol extensions, i.e., asymptotical alignment
+N
+N
+−3K+1
+where 1(·) is the indicator function, f (K, M, N ) is a piece- is unnecessary. As shown in [8], the system is identiﬁed as
+proper if and only if d ≤ (M + N )/(K + 1). The threshold
+wise linear function given by
+⎧
+M
+1
+between proper and improper systems is shown in red in Fig.1.
+0< N ≤ K
+⎪ M,
+⎪ N
+⎪
+We will refer to this as the linear (outer) bound.
+1
+M
+1
+⎨
+K,
+K ≤ N ≤ K−1
+On the other hand, for M ≥ K KK−2
+and an inﬁnitely
+f (K, M, N ) = (K−1)M
+(3)
+1
+M
+K
+N
+−3K+1
+⎪ K ,
+K−1
+MN
+K−1 ≤ N ≤ K 2 −K−1
+⎪
+many points in ( K(K−2) , K KK−2 ), the value of M +N DoF
+⎪ (K−1)N
+⎩
+−3K+1
+K
+M
+K−1
+2 −K−1 ,
+2 −K−1 ≤ N ≤ K(K−2) .
+K
+K
+is achievable by decomposing antennas at both transmitter
+and receiver sides and then using the asymptotic alignment
+K−1
+Note that the DoF value for M ∈ ( K(K−2) , K 2K−2 )
+N
+−3K+1
+scheme of [6] (CJ scheme) within the rational dimensions
+is not included in Theorem 1, and is generally unknown
+framework, as formulated in [2]. For brevity, we label the
+except for a special set of cases which has a measure zero
+function M N/(M +N ), the decomposition DoF (inner) bound
+M
+in this interval, as shown in [4]. However, for general N ∈
+in green. Fig. 1 shows that whenever the decomposition
+K−1
+( K(K−2) , K 2K−2 ) we have the following conjecture.
+−3K+1
+(inner) bound is larger than the linear (outer) bound, then
+Conjecture 1: For the interference network deﬁned in Thedecomposition bound is also the information theoretic optimal
+K−1
+orem 1, if M ∈ ( K(K−2) , K 2K−2 ), then the DoF value per
+N
+−3K+1
+DoF value. As a side note, this is an important observation that
+MN
+user is given by d = M +N .
+we ﬁnd to be true in other contexts as well (e.g., X networks,
+K−1
+Remark: For the regime M ≤ K(K−2) , the information albeit with only one-sided decomposition in general).
+N
+theoretic DoF outer bound is simply the cooperation outer
+bound [5] combined with a redundancy argument similar to B. Preliminaries
+the three-user MIMO interference channel that we have shown
+For the conference paper, our focus is on conveying the
+K−1
+in [3]. For the remaining region M ≥ K(K−2) , since the intuition and a shorthand notation style is chosen mainly
+N
+achievability has already been shown in [1], [2], we will focus for compactness while deliberately sacriﬁcing mathematical
+on the DoF outer bound characterization, which is the main rigor on many aspects which will be addressed with due
+contribution of this work. Due to the space limitation, in this diligence in the full paper. To illustrate our shorthand notation,
+paper we will focus primarily on the K = 4 case with MT ≤ consider a transmitter, equipped with M antennas, subject
+MR to present the main ideas. The DoF for the rest of settings to a power constraint ρ, which sends a different realization
+follow from a relatively straightforward extension based on the of the (column) vector variable X = {x1 , · · · , xM } over
+same ideas, and thus deferred to the full paper [4].
+each channel use, for a total of n channel uses, in order to
+communicate a message at rate R. The overall transmission
+A. Observations
+is indicated as Xn . Let Zn be additive white Gaussian noise,
+say, i.i.d. with zero mean and unit variance. If H(Xn + Zn )
+The decomposition
+The DoF curve is
+DoF bound is optimal.
+piecewise linear.
+is the differential entropy n Xn + Zn , then we use the h(·)
+of n
+function as h(X) = H(X +Z ) and refer to h(·) simply as
+n log(ρ)
+an entropy function. Further, we suppress o(1) terms, i.e.,
+terms that approach 0 as ﬁrst n and then ρ approaches inﬁnity.
+Note that the bounded variance noise terms are inconsequential
+regions
+in our notation (as they are for DoF calculations), so that
+boundary between proper
+where
+systems are
+and improper systems
+h(X + Z ) = h(X) for any bounded variance AWGN Z .
+proper but
+Also note that following the rules of our notation, we write
+not feasible
+h(X) = d, the DoF value associated with this transmitter.
+We will regard X, within each channel use, as an M diO
+(fix N)
+mensional vector space, with M signaling dimensions aligned
+boundary separating the DoF
+along the natural basis. Clearly h(X) ≤ M , by which we mean,
+benefits of MIMO joint processing
+H(Xn +Zn )
+Fig. 1. d/N as a function of γ = M/N
+n log(ρ) ≤ M + o(1). We will be particularly interested in
+vector subspaces L of the vector space X, denoted as L ⊂ X.
+According to the results shown in Theorem 1, we show the Let L = {l1 , · · · , l|L| } denote an |L| dimensional subspace of
+DoF values per user normalized by N , denoted as d/N , versus X, which implies that L consists of |L| linearly independent
+the ratio γ = M/N in Fig. 1. It can be seen that the value equations in the M variables comprising X. Each li represents
+K−1
+of d/N is a function of γ. Speciﬁcally, M = K(K−2) is a a linearly independent equation, which is given by XT Li
+N
+M
+K−1
+threshold ratio. If N ≤ K(K−2) , the DoF curve is piecewise where the column vector Li contains the coefﬁcients for the
+linear depending on M and N alternately. Intuitively, it means ith linear equation. The vectors Li will be regarded as the
+that there are antenna redundancies at either transmitter or bases vectors for L ⊂ X. If Li may be regarded as generic
+1
+K
+receiver sides except for M = K and K 2 −K−1 where vectors, then we say that L is a generic subspace. With a
+N
+
+2
+
+little abuse of notations, we use L to indicate both the set of
+equations, as well as the vector space spanned by its basis.
+A list of some easy to prove properties is provided next,
+both to familiarize the reader with our compact notation and
+as a reference point for subsequent technical arguments.
+(1) h(L) ≤ |L|.
+det(A)|
+(2) h(AL) = h(L)+ |n log(ρ) = h(L) for any ﬁxed invertible
+matrix A. Note that we dropped o(1) terms.
+(3) For generic subspaces L[1] , L[2] ⊂ X with |L[1] | +
+|L[2] | ≥ M , we have the following statements:
+3a) h(L[1] , L[2] ) = h(X).
+3b) h(L[1] |L[2] ) = h((X \ L[2] )|L[2] ).
+The meaning of these properties should be intuitively clear.
+For example, property (2) states that the entropy of a vector
+space is independent of the basis chosen to represent it. 3a)
+simply states that the M variables X can be reconstructed from
+generic sets of linear equations as long as the total number of
+equations is at least M . The statement of 3b) is also easily
+veriﬁed, because adding h(L[2] ) to each side of the equation
+gives us h(X) on each side.
+
+are set to zero. This is meaningful because the receiver is
+always guaranteed to be able to reliably decode, and therefore
+subtract out, its desired signals, leaving it with a view of only
+the interference subspace from which it may attempt to resolve
+undesired signal dimensions.
+A. The 4 Ideas Comprising the Genie Chains Approach
+The starting point of our outer bound is the common
+principle of providing a receiver enough additional linear
+combinations of transmitted symbols to allow it to resolve
+all of the interferers, so that subject to noise distortion (which
+is inconsequential for DoF), it can decode all messages. In
+general, because we are proving a converse, which means that
+we start with a reliable coding scheme, a receiver is already
+guaranteed to reliably decode its desired message, which
+also allows the receiver to subtract its desired symbols from
+its received signal. Now, the question remains whether the
+receiver can decode all messages. With N receive antennas,
+and 3M > N undesired symbols, we have fewer equations
+and more unknowns, so that resolution of symbols is not
+guaranteed. So, we provide 3M − N genie dimensions, i.e.,
+|G| = 3M−N independent linear combinations of interference
+symbols. This provides the receiver enough equations to resolve all transmitted symbols. Equivalently, the undesired X[i]
+are now invertible (within noise distortion) from the receiver’s
+own observations combined with the genie dimensions. Since
+noise distortion is irrelevant for DoF arguments, the ability to
+resolve all symbols is equivalent to the ability to decode all
+symbols for DoF purposes. This forms the general basis for
+the outer bound, and is so far not a novel concept at all.
+The challenging aspect, and where the novelty of our
+approach comes in, is to determine which genie dimensions
+to provide so that a useful DoF outer bound results. We
+propose a series of steps where we continue to cycle through
+various receivers in a chain of genie aided outer bounds
+containing entropies of various vector subspaces, following
+4 basic principles, that lead us eventually to a cancelation
+of all subspace entropy terms, producing the desired outer
+bound. The 4 basic principles of the “genie chain” approach
+are highlighted next through the simplest examples.
+Idea 1: Use the exposed space from one receiver as a
+genie for the next.
+Example 1: (M, N ) = (2, 5) ⇒ d ≤ 10/7
+In this example, |G| = 3M − N = 1, so we need to
+provide a 1 dimensional genie. Suppose we start with the
+[1]
+generic subspace X(1) as the genie for RX 2. Since this genie
+allows the receiver to decode all messages, we have the Fano’s
+inequality:
+n
+[1] n
+n(R1 +···+R4 ) ≤ I(W1 ,··· ,W4 ;Y [2] ,X(1) )+no(n)
+≤ H(Y[2] n )+H(X[1] n |X[1∼2] n )+no(log(ρ))+no(n)
+1
+(1)
+≤ H(Y[2] n )+H(X[1] n ,X[1∼2] n )−H(X[1∼2] n )
+1
+1
+(1)
+
+IV. K = 4 U SERS : G ENIE C HAINS
+K−1
+Here we will focus on K = 4 and M/N > K(K−2) = 3/8.
+Our goal is to show the information theoretic DoF outer
+MN
+bound d ≤ M +N . We will propose a systematic approach,
+labeled the“genie chains” approach, based on four central
+ideas. To keep the presentation intuitive and compact, we
+need additional terminology, speciﬁcally the notion of exposed
+subspaces and some notations for generic subspaces and the
+interference subspaces available to a receiver after decoding
+and removing its desired signals.
+Exposed Subspace: An exposed subspace, e.g., from TX1
+at RX2, denoted as X[1∼2] refers to the linear equations
+containing only X[1] variables, that are obtained at RX2 after
+subtracting all desired signal variables (for RX2 this would
+be X[2] ), and zero forcing (i.e., projecting into the null space,
+or simply using Gaussian elimination to remove) the other
+interferers (in this case X[3] , X[4] ). For example, consider the
+exposed space X[1∼2] in the (M, N ) = (2, 5) setting. At RX2,
+after removing desired signals X[2] , we have 5 equations in 6
+variables X[1] , X[3] , X[4] (Since M = 2, each X[k] represents
+2 variables). Eliminating 4 variables, X[3] , X[4] , leaves us with
+1 equation in the two variables X[1] . This remaining linear
+equation, containing only variables X[1] is the exposed space
+from TX1 at RX2, i.e., X[1∼2] . The dimensionality of the
+[1∼2]
+exposed space may be indicated with a subscript, e.g., X1
+in this example.
+Generic Subspace: The notion of a generic subspace has
+been deﬁned previously. Here we introduce only the notation.
+[k]
+We use X(m) to denote an m-dimensional generic subspace
+[k]
+
+of the M -dimensional vector space X[k] . Basically, X(m)
+consists of m random linear combinations of the M variables
+comprising X[k] .
+Interference Subspace: We use the notation S[k] to refer to
+the received signal at RX k, after the desired variables X[k]
+
++no(log(ρ))+no(n)
+
+and switching to our compact notation we have:
+4d
+
+3
+
+[1∼2]
+
+≤ 5 + d − h(X1
+
+).
+
+(4)
+
+Note that the exposed space has appeared as a negative entropy
+term. As a rule, in our approach, the negative entropy terms
+will become the genie signals for the subsequent bounds,
+leading to their eventual cancellation. Also, we will use a
+total of M bounds. In this case, M = 2, so we move to
+our ﬁnal bound, and to the next receiver, RX 3. The genie,
+as just mentioned, will be the previous negative entropy term
+[1∼2]
+X1
+. The resulting bound is the following:
+≤
+≤
+
+n(R1 +···+R4 )
+
+n
+
+12d ≤ 21 + 2d ⇒ d ≤ 21/10.
+
+≤ 5 + h(X1
+
+)+no(n)
+
+)
+
+[1∼3]
+
+4d ≤ 7 + d − h(X1
+
+(5)
+
+Adding up the two inequalities (4) and (5), we obtain the
+desired outer bound
+8d ≤ 10 + d ⇒ d ≤ 10/7.
+
+[1∼2]
+
+4d ≤ 7 +
+
+[1]
+h(X(2) |S[2] )
+
+≤7+d−
+
+(6)
+
+[1∼2]
+
+4d ≤ 7+h(X1
+
+[1∼2]
+
+[2]
+
+, X(1) |S[3] )
+
+≤ 7+
+
+[1∼2]
+h(X1
+)
+
++
+
+≤ 7+
+
+[1∼2]
+h(X1
+)
+
++
+
+≤ 7+
+
+[1∼2]
+h(X1
+)
+
+(7)
+
+[1∼2]
+
+).
+
+(17)
+
+Now, the required size of the genie is |G| = 3M −N = 1
+and exposed spaces have size 2. How to create a smaller genie?
+We will do that by creating multiple exposed spaces, each of
+which may be too big to be an acceptable genie, but their
+intersection will turn out to be an acceptable genie.
+A genie provides to RX 3 another random linear combina[1]
+tion of X[1] , i.e, G2 = X(1) , so that we have
+[1∼3]
+
+4d ≤ 8 + d − h(X2
+
+)
+
+(18)
+
+[1∼3]
+X2
+
+is the original two dimensional exposed
+where O =
+[1∼2]
+space of TX 1 at RX 3. Since the construction of O = X2
+and O only involve the channel coefﬁcients associated with
+their own receivers, they are generic and have only 2+2−3 =
+1 dimensional intersection, denoted as I = O ∩ O . Thus, we
+can rewrite (18) as:
+
+(8)
+
+(11)
+
+(9)
+
+[1∼3]
+
+4d ≤ 8 + d − h(X2
+= 8+
+= 8+
+
+Now, with the additional exposed dimension, the exposed
+[2∼3]
+is two-dimensional and matches the desired size
+space X2
+of the genie. This gives us our third, and ﬁnal, bound as we
+cyclically move on to the next receiver, RX 4, with the genie
+[2∼3]
+. Since the channel coefﬁcients associated with
+G3 = X 2
+RX 4 are generic, the one dimensional observation available
+at RX 4 from TX 2 is linear independent with G3 . Thus, RX
+4 can decode all messages, and we have
+)
+
+(16)
+
+Remark: Idea 3 is especially useful in the MT > MR settings.
+Idea 4: Obtain a smaller size genie by intersections.
+Example 3: (M, N ) = (3, 8) ⇒ d ≤ 24/11
+[1]
+Starting with a generic genie G1 = X(1) at RX 2, we have
+the ﬁrst inequality:
+
+(10)
+
+[2∼3]
+
+(15)
+
+12d ≤ 21 + 2d ⇒ d ≤ 21/10.
+
+[1]
+
+[2∼3]
+h(X2
+).
+
+4d ≤ 7 + h(X2
+
+)
+
+4d ≤ 8 + h(X(1) |S[2] ) ≤ 8 + d − h(X2
+
+[2]
+[1∼2]
+h(X(1)|S[3] , X1
+)
+[2]
+[2∼3]
+h(X(1) |X2
+)
+
++d−
+
+[1∼3]
+
+)+h(X1
+
+Adding up the three inequalities above, we again obtain
+
+For the next bound, we move to RX 3. We will use the genie
+[1∼2]
+,
+corresponding to the previous negative entropy term, X1
+but since this is only one dimensional and we need 2 genie
+dimensions, we will complement it with a random dimension
+[2]
+from the next transmitter, X(1) .
+The most important element here is how a new dimension
+gets exposed. RX 3 originally has one exposed dimension
+[1∼2]
+from TX 2, X[2] . However, when the genie provides X1
+,
+it exposes one additional dimension from TX 2, so that the
+[2∼3]
+.
+new exposed space from TX 2 is denoted as X2
+The resulting bound is the following:
+4d ≤ 7 + h(X1
+
+(14)
+
+is the exposed one dimensional observation
+where
+available at RX 3 projecting from TX 1.
+[1∼2]
+[1∼3]
+, X1
+} to RX
+Finally, a genie provides G 3 = {X1
+4 where G 3 is linearly independent with the 7 dimensional
+space after RX 4 removes its desired signal. Thus, RX 4 can
+decode all messages as well. So we have:
+
+. Thus, we have:
+[1∼2]
+h(X1
+).
+
+)
+
+[1∼3]
+X1
+
+Remark: The (M, N ) = (2, 5) example is perhaps a bit
+serendipitous because the size of the exposed space exactly
+matches the required size of the genie at the next receiver. In
+general, the two will not be the same, and we need to create
+either a bigger or a smaller genie. How to achieve a larger or
+smaller genie is the subject of the remaining three ideas.
+Idea 2: Obtain a larger genie by exposing more dimensions.
+Example 2: (M, N ) = (3, 7) ⇒ d ≤ 21/10
+In this example, |G| = 3M −N = 2 so we need 2 genie
+dimensions, but N − 2M = 1, so the exposed space, e.g.,
+X[1∼2] is only 1 dimensional. Similar to Example 1, we start
+[1]
+with a generic genie at RX 2 G1 = X(2) , which is trivially
+linearly independent with X1
+
+(13)
+
+In the following we provide an alternative proof for this
+example to shed light on the following idea.
+Idea 3: Combine exposed subspaces from multiple receivers to create a larger genie.
+After obtaining (7) at RX 2, similarly if a genie provides to
+[1]
+RX 3 two random linear combination of X[1] , i.e, G2 = X(2) ,
+we can have another inequality at RX 3:
+
+n
+[1∼2] n
+H(Y [3] )+H(X1
+)+no(log(ρ))+no(n)
+
+[1∼2]
+
+⇒ 4d
+
+[1∼2] n
+
+I(W1 ,··· ,W4 ;Y [3] ,X1
+
+Adding up (7), (11), (12) produces the desired DoF bound
+
+≤ 8+
+= 8+
+= 8+
+= 8+
+
+[1∼2]
+)
+h(X2
+[1∼2]
+)
+h(X2
+[1∼2]
+)
+h(X2
+[1∼2]
+)
+h(X2
+[1∼2]
+)
+h(X2
+[1∼2]
+h(X2
+)
+
+[1∼2]
+
+) − h(X2
+
+[1∼2]
+
+) + h(X2
+
+)
+
+(19)
+
++ d − h(O \ I, I) − h(O)
+
+(20)
+
++ d − h(I) − h(O \ I|I) − h(O)
+
+(21)
+
++ d − h(I) − h(O \ I|I, O) − h(O) (22)
++ d − h(I) − h(O) − h(O \ I|O)
+
+(23)
+
++ d − h(I) − h(O, O \ I)
+
+(24)
+
+− h(I)
+
+(25)
+
+where (23) is obtained because I is included in O, and (25)
+follows from that {O, O \ I} contributes d DoF. We call the
+
+(12)
+
+4
+
+observations from TX k, released by O, allows RX k+1
+to recover the signal from TX k. This process produces
+one sum DoF inequality 4d ≤ N + d + h(O). Adding up
+all inequalities that we have so far produces the desired
+bound. Then we stop.
+• Step 4:
+[k]
+A genie provides G = {X[k+2] , O, X(M −M0 −|O|) } to
+RX k+1. In the absence of interference from TX k + 2,
+RX k+1 originally has M0 dimensional observations of
+TX k, denoted as O . Since providing O to RX k + 1
+releases other M0 observations of TX k, which is denoted
+¯
+¯
+as O, RX k + 1 has a total of |O| + M0 dimensional
+[k]
+observations of X . This process produces the inequality
+¯
+4d ≤ N + d + h(O) + d − h(O, O ). Now we update
+¯ O } and k = k + 1. Go back to Step 2.
+O = {O,
+• Step 5:
+[k]
+A genie provides G = {O, X(2M −M0 −|O|) } to RX k+1.
+In the N dimensional space S[k+1] , after zero-forcing the
+interference from TX k −2, we still have N −M = M0
+observations of the interference from TX k −1 and TX
+k. After providing O to RX k +1, we continue to zero
+force the remaining M −|O| dimensional observations of
+X[k−1] , thus only leaving M0−(M−|O|) dimensional observations of X[k] , denoted as O . Note that O is linearly
+[k]
+independent with X(2M −M0 −|O|) provided by the genie,
+and they together contribute a total of d DoF. This process
+produces the inequality 4d ≤ N +h(O)+d−h(O ). Now
+we update O = O and k = k + 1. Go back to Step 2.
+Finally, adding up all the inequalities that we have produces
+the desired DoF outer bound.
+Remark: Note that we do not need the intermediate DoF
+outer bound in this case. In contrast, for M/N ∈ [2/5, 1/2)
+and [3/8, 2/5) cases the intermediate bound is necessary, as
+we have shown in Example 3.
+Acknowledgment: This work is supported in part by NSF
+CCF 1143982, NSF CCF 0830809 and by ONR N00014-121-0067.
+
+inequality (25) the “intermediate bound” which is constructed
+by intersecting two subspaces at different receivers.
+Finally, we should provide the observations we obtain in the
+last step as the genie to RX 4, i.e., G3 = I. Since G3 only
+involves the channel coefﬁcients associated with RX 2 and 3,
+it is linearly independent with the original two dimensional
+observations from TX 1 at RX 4. Thus, RX 4 can decode all
+messages, and we have the last inequality:
+4d ≤ 8 + h(I).
+
+(26)
+
+Adding up the inequalities (17), (25) and (26) we have
+12d ≤ 3N + d ⇒ d ≤ 3N/11 = 24/11.
+
+(27)
+
+The three examples above show that our goal is to use a
+chain of arguments, where we start with the exposed spaces
+and continue to build new genies with more dimensions by
+peeling off overlaps, or less dimensions by taking intersections, until we have the genie of the correct size, which
+MN
+requires exactly M steps, and produces the bound d ≤ M +N ,
+if all genies in this process are acceptable, i.e., linearly
+independent of the space already available to the receivers.
+Next, we will sketch the outlines of the general proofs
+through three speciﬁc algorithms for M/N ∈ [3/8, 1]. Due
+to the space limitation, we only present the algorithm for the
+M/N ∈ [1/2, 1] setting next. The algorithms for the other two
+intervals M/N ∈ [2/5, 1/2) and [3/8, 2/5) can be similarly
+constructed based on the 4 ideas highlighted in the paper, and
+we defer them to [4]. Therefore, we covers the entire region
+where decomposable inner bound is DoF optimal.
+B. M/N ∈ [1/2, 1] Case
+Since N − 2M ≤ 0, each receiver cannot directly obtain
+exposed subspaces from any interferer by zero forcing the
+signals from the other two interferers. For brevity we let
+M0 = N −M where M0 is a positive integer. Also, note that
+the random linear combinations provided by a genie in each
+step are generic, although we may use the same notations.
+Algorithm 1: (M/N ∈ [1/2, 1])
+• Step 1:
+Start from RX k = 2. A genie provides to RX k the
+[k−1]
+[k−1]
+set G = {X[k+1] , X(M −M0 ) }, where X(M−M0 ) are M −
+M0 random linear combinations from TX k − 1. In the
+absence of the interference from TX k + 1, RX k has
+M0 dimensional observations from TX k−1, denoted as
+O. This process produces the ﬁrst sum DoF inequality
+4d ≤ N + 2d − h(O).
+• Step 2:
+If |O| = |G| − M = M − M0 , go to Step 3.
+If |O| < |G| − M = M − M0 , go to Step 4.
+If |O| > |G| − M = M − M0 , go to Step 5.
+• Step 3:
+A genie provides to RX k+1 the set G = {X[k+2] , O}.
+Note that in the absence of interference from TX k+2 and
+after zero-forcing the interference from TX k+3, RX k+
+1 originally has M0 dimensional observations of TX k,
+denoted as O , which combined with the |O| dimensional
+
+R EFERENCES
+[1] T. Gou and S. A. Jafar, “Degrees of Freedom of the K User M × N
+MIMO Interference Channel”, IEEE Transactions on Information Theory,
+Dec. 2010, Vol. 56, Issue: 12, pp. 6040–6057.
+[2] A. Ghasemi, A. Motahari, A. Khandani, “Interference Alignment for the
+K User MIMO Interference Channel,” arXiv:0909.4604, Sep. 2009.
+[3] C. Wang, T. Gou, S. Jafar, “Subspace Alignment Chains and the Degrees
+of Freedom of the Three-User MIMO Interference Channel”, e-print
+arXiv:1109.4350, Sept. 2011.
+[4] C. Wang, H. Sun, S. Jafar, “Genie Chains and the Degrees of Freedom
+of the K-User MIMO Interference Channel”, in preparation.
+[5] S. Jafar, M. Fakhereddin, “Degrees of Freedom for the MIMO Interference Channel,” IEEE Transactions on Information Theory, July 2007,
+Vol. 53, No. 7, Pages: 2637-2642.
+[6] V. Cadambe and S. Jafar, “Interference alignment and the degrees of
+freedom of the K user interference channel”, IEEE Trans. on Information
+Theory, vol. 54, pp. 3425–3441, Aug. 2008.
+[7] A. Motahari, S. Gharan, M. A. Maddah-Ali, A, Khandani, “Real Interference Alignment: Exploiting the Potential of Single Antenna Systems”,
+arxiv.org/pdf/0908.2282, August 2009.
+[8] C. Yetis, T. Gou, S. Jafar, A. Kayran, “On Feasibility of Interference
+Alignment in MIMO Interference Networks,” IEEE Trans. Signal Processing, Sep. 2010, Vol. 58, Issue: 9, Pages: 4771-4782.
+
+5
+
+

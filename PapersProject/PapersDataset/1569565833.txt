@@ -1,0 +1,752 @@
+Creator:        TeX
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Fri May 18 21:01:22 2012
+ModDate:        Tue Jun 19 12:54:23 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      313240 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569565833
+
+Is Non-Unique Decoding Necessary?
+Shirin Saeedi Bidokhti
+
+Vinod M. Prabhakaran
+
+Suhas. N. Diggavi
+
+EPFL, Switzerland
+shirin.saeedi@epﬂ.ch
+
+TIFR, India
+vinodmp@tifr.res.in
+
+U.C. Los Angeles, USA
+suhas@ee.ucla.edu
+
+using the codebook structure of all the messages (including
+the ones not of interest). Such a decoder does not uniquely
+decode messages not of interest, though it might narrow it
+to a smaller list. We refer to such a decoder, as an indirect
+decoder. Coding schemes which employ indirect decoders have
+since played a role in achievability schemes in different multiterminal problems such as [6], [7], [8], [9], [10]. It is of
+interest, therefore, to see if they can achieve higher reliable
+transmission rates compared to codes that employ joint unique
+decoders. In this paper, we develop our intuition and ideas
+within the framework of [4]. While much of the discussion in
+this paper is conﬁned to this framework, the technique applies
+more generally to problems studied in [8], [9], [10], as we
+show in [11].
+In [4], the idea of indirect decoding is studied in the context
+of broadcast channels with degraded message sets. Nair and
+El Gamal consider a 3-receiver general broadcast channel
+where a source communicates a common message M0 to three
+receivers Y1 , Y2 , and Y3 and a private message M1 only to one
+of the receivers, Y1 (Fig 1). They characterize an inner-bound
+
+Abstract—In mutiterminal communication systems, signals
+carrying messages meant for different destinations are often
+observed together at any given destination receiver. Han and
+Kobayashi (1981) proposed a receiving strategy which performs
+a joint unique decoding of messages of interest along with a subset
+of messages which are not of interest. It is now well-known that
+this provides an achievable region which is, in general, larger than
+if the receiver treats all messages not of interest as noise. Nair
+and El Gamal (2009) and Chong, Motani, Garg, and El Gamal
+(2008) independently proposed a generalization called indirect
+or non-unique decoding where the receiver uses the codebook
+structure of the messages to only uniquely decode its messages
+of interest. Indirect (non-unique) decoding has since been used in
+various scenarios. The main result in this paper is to provide an
+interpretation and a systematic proof technique for why indirect
+decoding, in all known cases where it has been employed, can
+be replaced by a particularly designed joint unique decoding
+strategy, without any penalty from a rate region viewpoint1 .
+
+I. I NTRODUCTION
+Coding schemes for multiterminal systems with many information sources and many destinations try to exploit the
+broadcast and interference nature of the communication media.
+A consequence of this is that in many schemes the signals
+received at a destination carry information, not only about
+messages that are expected to be decoded at the destination
+(messages of interest), but also about messages that are not of
+interest to that destination.
+Standard methods in (random) code design (at the encoder)
+are rate splitting, superposition coding and Marton’s coding
+[1], [2]. On the other hand, standard decoding techniques are
+successive decoding and joint unique decoding schemes [1],
+[3]. In [3], Han and Kobayashi proposed a receiving strategy
+which performs a joint unique decoding of messages of interest
+along with a subset of messages which are not of interest. We
+refer to a decoder with such a decoding strategy, as a joint
+unique decoder. It is now well-known that employing such a
+joint unique decoder in the code design provides an achievable
+region which is, in general, larger than if the receiver decodes
+the messages of interest while treating all messages not of
+interest as noise. Recently, Nair and El Gamal [4] and Chong,
+Motani, Garg, and El Gamal [5] independently proposed a
+generalization called indirect or non-unique decoding where
+the decoder looks for the unique messages of interest while
+
+YM0 ,- 1
+M
+1
+Decoder
+M0 , M1
+X
+2
+- Encoder - p(y1 , y2 , y3 |x) Y- Decoder M0 YM0 3
+Decoder
+Fig. 1.
+
+The 3-receiver broadcast channel with two degraded message sets.
+
+to the capacity region of this problem using indirect decoding
+and show its tightness for some special cases. It turns out that
+the same inner-bound of [4] can be achieved using a joint
+unique decoding strategy at all receivers. The equivalence of
+the rate region achievable by indirect decoding and that of joint
+unique decoding was observed in [4], but it was arrived at by
+comparing single letter expressions for the two rate regions2 .
+This led the authors to express the hope that in general such
+an equivalence may not exist.
+In this paper we will provide an interpretation together
+with a proof technique which, we believe, systematically,
+shows an equivalence between the rate region achievable
+through indirect decoders and joint unique decoders in several
+
+1 This work was supported in part by ERC Starting Grant Project NOWIRE
+ERC-2009-StG-240317. Vinod M. Prabhakaran was partially supported by
+a Ramanujan Fellowship from the Department of Science and Technology,
+Government of India. The work of Suhas Diggavi was partially supported by
+NSF-CPS award 1136174.
+
+2 A similar equivalence was also noticed in [5], again by comparing singleletter expressions. Similarly, for wireless network information ﬂow of [6], the
+fact that non-unique decoding at the receiver can be replaced by joint unique
+decoding is implied by the combinatorial algorithms in [12], [13] for linear
+deterministic networks and in [14] for memoryless networks.
+
+1
+
+examples. Our technique is based on designing a special
+auxiliary joint unique decoder which replaces the indirect
+decoder and sheds some light on why this equivalence holds.
+This line of argument is applicable to all known instances
+where non-unique (indirect) decoding has been employed
+in the literature [11]. However, we would like to note that
+analysis using non-unique decoding can often give a more
+compact representation of the rate-region – a fact observed in
+[4], [5] – which still makes it a valuable tool for analysis.
+
+1) Random codebook generation and encoding: To design
+the codebook, split the private message M1 into four independent parts, M10 , M11 , M12 , and M13 of non-negative rates
+S0 , S1 , S2 , S3 , respectively. Let R1 = S0 + S1 + S2 + S3 ,
+T2 ≥ S2 and T3 ≥ S3 . Fix a joint probability distribution
+p(u, v2 , v3 , x).
+Randomly and independently generate 2n(R0 +S0 ) sequences
+n
+U (m0 , s0 ), m0 ∈ [1 : 2nR0 ] and s0 ∈ [1 : 2nS0 ], each
+distributed uniformly over the set of typical sequences U n .
+For each sequence U n (m0 , s0 ), generate randomly and conditionally independently (i) 2nT2 sequences V2n (m0 , s0 , t2 ),
+t2 ∈ [1 : 2nT2 ], each distributed uniformly over the set
+of conditionally typical sequences V2n , and (ii) 2nT3 sequences V3n (m0 , s0 , t3 ), t3 ∈ [1 : 2nT3 ], each distributed
+uniformly over the set of conditionally typical sequences
+V3n . Randomly partition sequences V2n (m0 , s0 , t2 ) into 2nS2
+bins B2 (m0 , s0 , s2 ) and sequences V3n (m0 , s0 , t3 ) into 2nS3
+bins B3 (m0 , s0 , s3 ). In each product bin B2 (m0 , s0 , s2 ) ×
+B3 (m0 , s0 , s3 ), choose one (random) jointly typical sequence
+pair (V2n (m0 , s0 , t2 ), V3n (m0 , s0 , t3 )). If there is no such pair,
+declare an error whenever the message (m0 , s0 , s2 , s3 ) is to
+be transmitted. Finally for each chosen jointly typical pair
+(V2n (m0 , s0 , t2 ), V3n (m0 , s0 , t3 )) in each product bin (s2 , s3 ),
+randomly and conditionally independently generate 2nS1 sequences X n (m0 , s0 , s2 , s3 , s1 ), s1 ∈ [1 : 2nS1 ], each distributed uniformly over the set of conditionally typical X n
+sequences. To send the message pair (m0 , m1 ), where m1 is
+expressed as (s0 , s1 , s2 , s3 ), the encoder sends the codeword
+X n (m0 , s0 , s2 , s3 , s1 ).
+2) Indirect decoding: Receiver Y1 jointly uniquely decodes
+all messages M0 , M10 , M11 , M12 , and M13 . Receivers Y2 and
+Y3 , however, decode M0 indirectly. More precisely,
+• Receiver
+Y1 declares that the message tuple
+(m0 , s0 , s2 , s3 , s1 ) was sent if it is the unique quintuple
+such that the received signal Y1n is jointly typical
+with
+(U n (m0 , s0 ), V2n (m0 , s0 , t2 ), V3n (m0 , s0 , t3 ),
+n
+X (m0 , s0 , s2 , s3 , s1 )), where index s2 is the product
+bin number of V2n (m0 , s0 , t2 ) and index s3 is the
+product bin number of V3n (m0 , s0 , t3 ).
+• Receiver Y2 declares that the message pair (M0 , M10 ) =
+(m0 , s0 ) was sent if it ﬁnds a unique pair of indices
+(m0 , s0 ) for which the received signal Y2n is jointly typical with (U n (m0 , s0 ), V2n (m0 , s0 , t2 )) for some index
+t2 ∈ [1 : 2nT2 ].
+• Receiver Y3 is similar to receiver Y2 with V3 and t3 ,
+respectively, instead of V2 and t2 .
+The above encoding/decoding scheme achieves rate pairs
+(R0 , R1 ) for which inequalities (1) to (10) below are satisﬁed
+for a joint distribution p(u, v2 , v3 , x). The reader is referred to
+[4] for the analysis of the error probabilities.
+
+II. W HY J OINT U NIQUE D ECODING S UFFICES IN THE
+I NNER -B OUNDS OF NAIR AND E L G AMAL IN [4]
+We start this section by brieﬂy reviewing the work of [4]
+where inner and outer bounds are derived for the capacity
+region of a 3-receiver broadcast channel with degraded message sets. In particular, we consider the case where a source
+communicates a common message (of rate R0 ) to all receivers,
+and a private message (of rate R1 ) only to one of the receivers.
+A coding scheme is a sequence of ((2nR0 , 2nR1 ), n) codes
+consisting of an encoder and a decoder and is said to achieve
+a rate-tuple (R0 , R1 ) if the probability of error at the decoders
+tend to zero as n → ∞.
+Joint unique decoder vs. Indirect decoder: We consider
+typical set decoding. A decoder at a certain destination may, in
+general, examine a subset of messages which includes, but is
+not necessarily limited to, the messages of interest to that destination. By the term examine, we mean that the decoder will try
+to make use of the structure (of the codebook) associated with
+the messages it examines. We say a coding scheme employs a
+joint unique decoder if every decoder tries to uniquely decode
+all the messages they consider (and declare an error if there is
+ambiguity in any of the messages, irrespective of whether such
+messages are of interest to the destination or not). In contrast,
+we say that a coding scheme employs an indirect decoder if
+the decoder tries to decode uniquely only the messages of
+interest to the destination and tolerates ambiguity in messages
+which are not of interest. Within this framework, Proposition
+5 of [4] establishes an achievable rate region of this problem
+through a coding scheme that employs an indirect decoder.
+It turns out that employing a joint unique decoder, one
+can still achieve the same inner-bound of [4]. In this section,
+we develop a new proof technique to show this equivalence
+systematically. The same technique allows us to show the
+equivalence in all the examples considered in [11].
+A. Indirect decoding in the achievable scheme of Nair and El
+Gamal
+The main problem studied in [4] is that of sending two
+messages over a 3-user discrete memoryless broadcast channel
+p(y1 , y2 , y3 |x). The source intends to communicate messages
+M0 and M1 to receiver 1 and message M0 to receivers 2
+and 3. Rates of messages M0 and M1 are denoted by R0
+and R1 , respectively. In [4] an inner-bound to the capacity
+region is proved using a standard encoding scheme based on
+superposition coding and Marton’s coding, and indirect (or
+non-unique) decoding. We brieﬂy review this scheme.
+
+R1 = S0 + S1 + S2 + S3
+S0 , S1 , S2 , S3 ≥ 0, T2 ≥ S2 , T3 ≥ S3
+
+(2)
+
+T2 + T3 ≥ S2 + S3 + I(V2 ; V3 |U )
+
+(3)
+
+S1 ≤ I(X; Y1 |U, V2 , V3 )
+
+2
+
+(1)
+
+(4)
+
+S1 + S2 ≤ I(X; Y1 |U, V3 )
+
+(5)
+
+S1 + S3 ≤ I(X; Y1 |U, V2 )
+
+(6)
+
+S1 + S2 + S3 ≤ I(X; Y1 |U )
+
+(7)
+
+R0 + S0 + S1 + S2 + S3 ≤ I(X; Y1 )
+
+(8)
+
+R0 + S0 + T2 ≤ I(U, V2 ; Y2 )
+
+(9)
+
+R0 + S0 + T3 ≤ I(U, V3 ; Y3 ).
+
+Inequalities (9) and (11) together guarantee that a joint unique
+decoder can decode messages M0 , M10 , and M12 with high
+probability; In other words, in regime (b) the indirect decoder
+ends up with a unique decoding of the satellite codeword
+V2n (m0 , s0 , t2 ) with high probability. i.e., we may replace the
+indirect decoder with a joint unique decoder for messages
+M0 , M10 , M12 . To summarize loosely, whenever the indirect
+decoder is forced to derive information from the codeword
+V2n (i.e., when treating V2n as noise will not result in correct
+decoding), the indirect decoder will recover this codeword
+also uniquely. We make this loose intuition more concrete in
+Section II-C.
+The same argument goes through for receiver Y3 and
+this shows that insisting on jointly uniquely decoding at all
+receivers is not restrictive in this problem. Thus, we arrive at
+the following:
+Theorem 1: For every rate pair (R0 , R1 ) satisfying the
+inner-bound of (1)-(10), there exists a coding scheme employing a joint unique decoder which achieves the same rate pair.
+The idea behind the proof of Theorem 1 was simple and
+general. Consider an indirect decoder which is decoding some
+messages of interest. The message of interest in our problem
+is M0 . Along with this message of interest, the decoder might
+also decode certain other messages, M10 and M12 for example.
+The two main steps of the proof is then as follows.
+(1) Analyze the indirect decoder to determine what messages
+it decodes uniquely. Depending on the regime of operation, the indirect decoder ends up uniquely decoding a
+subset of its intended messages, and non-uniquely the
+rest of its intended messages. For example in regime (a)
+above, the indirect decoder uniquely decodes only M0
+and M10 and it might not be able to settle on M12 . While
+in regime (b), the indirect decoder ends up decoding all
+of its three messages M0 , M10 , and M12 uniquely.
+(2) In each regime of operation characterized in step (1),
+use a joint unique decoder to only decode the messages
+that the indirect decoder uniquely decodes. In the above
+proof, this would be a joint unique decoder that decodes
+M0 and M10 in regime (a) and a joint unique decoder
+that decodes messages M0 , M10 , and M12 in regime (b).
+Verify that the resulting joint unique decoder does support
+the corresponding part of the rate region achieved by the
+indirect decoding scheme.
+Though the idea is generalizable, analyzing the indirect
+decoder in step (1) is a tedious task. Even for this very
+speciﬁc problem, it may not be entirely clear how the condition
+dividing cases (a) and (b) can be derived. Next, we try to
+resolve this using an approach which generalizes more easily.
+
+(10)
+
+B. Joint unique decoding sufﬁces in the achievable scheme of
+Nair and El Gamal
+Fix the codebook generation and encoding scheme to be
+that of Section II-A. We will demonstrate how a joint unique
+decoding scheme sufﬁces by following these steps:
+(1) We ﬁrst analyze the indirect decoder to characterize
+regimes where it uniquely decodes all the messages it
+considers and regimes where it decodes some of the
+messages non-uniquely.
+(2) For each of the regimes, we deduce that the indirect
+decoder may be replaced by a joint unique decoder.
+For the rest of this section, we only consider decoding schemes
+at receiver Y2 . Similar arguments are valid for receiver Y3
+due to the symmetry of the problem. We refer to inequality
+(9), which is shown in [4] to ensure reliability of the indirect
+decoder at receiver Y2 , as the indirect decoding constraint (9).
+Let the rate pair (R0 , R1 ) be such that the indirect decoder
+of receiver Y2 decodes message M0 with high probability; i.e.,
+the indirect decoding constraint (9) is satisﬁed. Consider the
+following two regimes:
+(a) R0 + S0 < I(U ; Y2 ).
+(b) R0 + S0 > I(U ; Y2 ),
+In regime (a), it is clear from the deﬁning condition
+that a joint unique decoder which decodes (M0 , M10 ) =
+(m0 , s0 ) by ﬁnding the unique sequence U n (m0 , s0 ) such
+that (U n (m0 , s0 ), Y2n ) is jointly typical will succeed with
+high probability. This is the joint unique decoder we may use
+in place of the indirect decoder for this regime. Notice that
+in this regime, while the indirect decoder obtains (m0 , s0 )
+uniquely with high probability, it may not necessarily succeed
+in uniquely decoding t2 . Indeed, in this regime insisting on
+joint unique decoding of U n (m0 , s0 ), V2n (m0 , s0 , t2 ) could,
+in some cases, result in a strictly smaller achievable region.
+Regime (b) is the more interesting regime. Here it is
+clear that simply decoding for (M0 , M10 ) and treating all
+other messages as noise will not work. Indirect decoding
+must indeed be taking advantage of the codeword V2n as
+well. The indirect decoder looks for a unique pair of messages (m0 , s0 ) such that there exists some t2 for which
+(U n (m0 , S0 ), V n (m0 , s0 , t2 ), Y2n ) is jointly typical. One may,
+in general, expect that there could be several choices of t2
+even in this regime. An important observation is that, in this
+regime, there is (with high probability) only one choice for t2 .
+In other words, in this regime, receiver 2 decodes t2 uniquely
+along with m0 and s0 . To see this, notice that using inequality
+(9), we have
+T2 ≤ I(V2 ; Y2 |U ).
+
+C. An alternative proof to Theorem 1: an auxiliary decoder
+We take an alternative approach in this section to prove
+Theorem 1. The proof technique we present here has the
+same spirit as the proof in Section II-B, but the task of
+determining which subset of messages should be decoded in
+what regimes will be implicit rather than explicit as before.
+To this end, we introduce an auxiliary decoder which serves
+
+(11)
+
+3
+
+receiver Y2 declares M0 = 1. By the symmetry of the random
+code construction, the conditional probability of error does not
+depend on which tuple of indices is sent. Thus, the conditional
+probability of error is the same as the unconditional probability
+of error and there is no loss of generality in our assumption.
+Conditioned
+on
+(m0 , s0 , s1 , s2 , s3 , t2 , t3 )
+=
+(1, 1, 1, 1, 1, 1, 1), receiver Y2 makes an error in decoding M0
+only if at least one of the following events occur:
+
+as a tool to help us develop the proof ideas. We do not
+propose this more complicated auxiliary decoder as a new
+decoding technique, but only as a proof technique to show
+sufﬁciency of joint unique decoding in the problem of [4].
+We analyze the auxiliary decoder at receiver Y2 and show that
+under the random coding experiment, it decodes correctly with
+high probability if the indirect decoding constraint (9) holds.
+From this auxiliary decoder and its performance, we will then
+be able to conclude that there exists a joint unique decoding
+scheme that succeeds with high probability.
+We now deﬁne the auxiliary decoder. The auxiliary decoder
+at receiver Y2 is a more involved decoder which has access to
+two component (joint unique) decoders:
+• Decoder 1 is a joint unique decoder which decodes
+messages M0 and M10 . It ﬁnds M0 , and M10 by looking
+for the unique sequence U n (m0 , s0 ) for which the pair
+(U n (m0 , s0 ), Y2n ) is jointly typical, and declares an error
+if there exists no such unique sequence.
+• Decoder 2 is a joint unique decoder which decodes messages M0 , M10 and M12 . It ﬁnds M0 ,
+M10 , and M12 by looking for the unique sequences
+U n (m0 , s0 ) and V2n (m0 , s0 , t2 ) such that the triple
+(U n (m0 , s0 ), V2n (m0 , s0 , t2 ), Y2n ) is jointly typical, and
+declares an error when such sequences do not exist.
+The auxiliary decoder declares an error if either (a) both
+component decoders declare errors, or (b) if both of them
+decode and their decoded (M0 , M10 ) messages do not match.
+In all other cases it declares the (M0 , M10 ) output of a
+component decoder which did not declare an error as the
+decoded message.
+We analyze the error probability under the random coding
+experiment of such an auxiliary decoder at receiver Y2 and
+prove that for any > 0, there is a large enough n such that
+
+E1 : The channel is atypical: the triple (U n (1, 1), V2n (1, 1, 1),
+Y2n ) is not jointly typical.
+E2 : The ﬁrst or the second decoder (uniquely) decodes, but
+incorrectly: there is a unique pair (m0 , s0 ) = (1, 1)
+˜ ˜
+such that the triple (U n (m0 , s0 ), Y2n ) is jointly typical,
+˜ ˜
+or there is a unique triple (m0 , s0 , t2 ) = (1, 1, 1) such
+ˆ ˆ ˆ
+n
+n
+that (U (m0 , s0 ), V2 (m0 , s0 , t2 ), Y2n ) is jointly typical.
+ˆ ˆ
+ˆ ˆ ˆ
+E3 : Both decoders fail to decode uniquely and
+declare errors: there are at least two distinct
+pairs (m0 , s0 ) and (m0 , s0 ) such that both pairs
+˜ ˜
+˘ ˘
+(U n (m0 , s0 ), Y2n ) and (U n (m0 , s0 ), Y2n ) are jointly
+˜ ˜
+˘ ˘
+typical; and similarly there are at least two distinct
+triples (m0 , s0 , t2 ) and (m0 , s0 , t2 ) such that
+ˆ ˆ ˆ
+ˇ ˇ ˇ
+n
+n
+both triples (U (m0 , s0 ), V2 (m0 , s0 , t2 ), Y2n ) and
+ˆ ˆ
+ˆ ˆ ˆ
+n
+n
+ˇ2 ), Y2n ) are jointly typical.
+(U (m0 , s0 ), V2 (m0 , s0 , t
+ˇ ˇ
+ˇ ˇ
+Therefore, the probability that receiver Y2 makes an error is
+upper-bounded in terms of the above events:
+Pr(error at the auxiliary decoder)
+≤
+≤
+
++ 21+n(R0 +S0 +T2 −I(U,V2 ;Y2 )+6 ) .
+
++ 0 + Pr(E3 ).
+
+(13)
+
+where
+(13)
+follows
+because
+Pr(E1 )
+=
+(ensured by
+Pr((U n (1, 1), V2n (1, 1, 1), Y2n ) ∈ T n ) ≤
+/
+the encoding and the Asymptotic Equipartition Property), and
+Pr(E2 |E1 ) = 0. To upper-bound Pr(E3 ), we write
+ n
+
+(U (m0 , s0 ), Y2n ) ∈ An
+˜ ˜
+(a)
+for some (m0 , s0 ) = (1, 1)
+
+˜ ˜
+
+Pr(E3 ) ≤ Pr  n
+(U (m0 , s0 ), V2n (m0 , s0 , t2 ), Y2n ) ∈ An
+ˆ
+ˆ ˆ
+ˆ ˆ
+for some (m0 , s0 , t2 ) = (1, 1, 1)
+ˆ ˆ ˆ
+ n
+
+n
+(U (m0 , s0 ), Y2 ) ∈ An
+˜ ˜
+for some (m0 , s0 ) = (1, 1)
+
+˜ ˜
+
+≤ Pr  n
+(14)
+(U (m0 , s0 ), V2n (m0 , s0 , t2 ), Y2n ) ∈ An
+ˆ ˆ
+ˆ ˆ ˆ
+ˆ
+for some (m0 , s0 ) = (1, 1) and t2
+ˆ ˆ
+
+ n
+n
+n
+(U (m0 , s0 ), Y2 ) ∈ A
+˜ ˜
+for some (m0 , s0 ) = (1, 1), and all the
+
+˜ ˜
+
++ Pr  n
+(U (m0 , s0 ), V2n (m0 , s0 , t2 ), Y2n ) ∈ An are s.t.
+ˆ ˆ
+ˆ ˆ ˆ
+ˆ
+(m0 , s0 ) = (1, 1) with at least one s.t. t2 = 1
+ˆ ˆ
+
+Pr(error at the auxiliary decoder)
+≤
+
+Pr(E1 ) + Pr(E2 |E1 ) + Pr(E3 )
+
+(12)
+
+Inequality (12) shows that for large enough n and under the
+indirect decoding constraint (9), the auxiliary decoder has an
+arbitrary small probability of failure.
+We start by stating the following lemma and the reader is
+referred to [11] for the proof.
+Lemma 1: Fix the probability distribution pU,V,Y (u, v, y)
+and the typical set T n (U, V, Y ) corresponding to it. Consider
+˜ ˆ
+a quadruple of sequences (U n , U n , V n , Y n ), such that
+˜ n is independent of (U n , V n , Y n ) and has the distribuˆ
+• U
+tion i pU (˜i ),
+u
+n
+• U has the distribution
+i pU (ui ),
+n
+ˆ
+• Y
+and V n are independent conditioned on U n ,
+n
+n
+• (U , Y ) has the joint distribution
+i pU,Y (ui , yi ),
+n ˆn
+• (U , V ) has the joint distribution
+ˆ
+i pU,V (ui , vi ).
+˜
+ˆ
+Then, probability Pr((U n , Y n ) ∈ T n (U, Y ), (U n , V n , Y n ) ∈
+T n (U, V, Y )) is upper-bounded by 2−n(I(U,V ;Y )−6 ) .
+Assume now that (m0 , s0 , s1 , s2 , s3 ) = (1, 1, 1, 1, 1) is sent
+and indices t1 and t2 in the encoding procedure are (t2 , t3 ) =
+(1, 1). We analyze in the rest of this section the probability that
+
+In the above chain of inequalities, (a) holds because event E3
+is a subset of the event in the right hand side.
+It is worthwhile to interpret inequality (14). The error event
+of interest, roughly speaking, is partitioned into the following
+two events:
+(1) The auxiliary decoder makes an error and the indirect
+decoder of Section II-A also makes an error.
+
+4
+
+(2) The auxiliary decoder makes an error but the indirect
+decoder of Section II-A decodes correctly. We will show
+that the probability of this event is small. Note that under
+this error event, (a) component decoder 1 fails (i.e., it
+is not possible to decode (M0 , M10 ) by treating V2n as
+noise), but still (b) indirect decoder succeeds (i.e., the
+indirect decoder must be deriving useful information by
+considering V2n ). By showing that this error event has a
+small probability, we in effect show that whenever (a) and
+(b) hold, it is possible to jointly uniquely decode the V2n
+codeword as well. This makes the rough intuition from
+Section II-B more concrete.
+To bound the error probability we bound the two terms of
+inequality (14) separately. First term of (14) is bounded by the
+probability of the indirect decoder making an error:
+(U n (m0 , s0 ), V2n (m0 , s0 , t2 ), Y2n ) ∈ An
+ˆ ˆ
+ˆ ˆ ˆ
+Pr
+ˆ
+for some (m0 , s0 ) = (1, 1) and t2
+ˆ ˆ
+≤ 2nT2 2n(R0 +S0 ) 2−n(I(U,V2 ;Y2 )−3 ) .
+The second term of (14) is upper-bounded as follows.
+ n
+(U (m0 , s0 ), Y2n ) ∈ An
+˜ ˜
+ for some (m0 , s0 ) = (1, 1), and all the
+˜ ˜
+Pr  n
+ (U (m0 , s0 ), V2n (m0 , s0 , t2 ), Y2n ) ∈ An are s.t.
+ˆ ˆ
+ˆ ˆ ˆ
+ˆ
+(m0 , s0 ) = (1, 1) with at least one s.t. t2 = 1
+ˆ ˆ
+≤
+
+Pr
+ˆ
+t2 =1, (m0 ,˜0 )=(1,1)
+˜ s
+
+≤ 2n(R0+S0+T2) Pr
+
+succeeds with high probability under the random coding
+experiment, then there exists a joint unique decoding scheme
+that also succeeds with high probability.
+A similar argument goes through for receiver Y3 . The
+random coding argument for the joint unique decoding scheme
+can now be completed as usual.
+D. Discussion
+Remark 1: In Sections II-B and II-C, we did not consider
+cases where R0 + S0 = I(U ; Y2 ) or R0 + S0 = I(U ; Y3 ) (i.e.,
+a subset of measure zero). This is enough since we may get
+arbitrarily close to such points.
+Remark 2: In Sections II-B and II-C, we ﬁxed the encoding
+scheme to be that of [4]. The message splitting and the
+structure of the codebook is therefore a priori assumed to be
+that of [4], even when R0 + S0 < I(U ; Y2 ) and message
+M12 is not jointly decoded at Y2 . However, in such cases this
+extra message structure is not required and one can consider
+message M12 as a part of message M11 .
+We refer the readers to [11] for details on how we may
+adapt this technique to several instances [8], [9], [10] of nonunique decoding in the literature. We believe this technique
+may be applicable more generally to show the equivalence
+of rate regions achievable using random coding employing an
+indirect decoder and a joint unique decoder.
+
+(15)
+
+
+
+
+
+(U n (m0 , s0 ), Y2n ) ∈ An and
+˜ ˜
+n
+ˆ
+(U (1, 1), V2n (1, 1, t2 ), Y2n ) ∈ An
+(U n(m0 , s0 ), Y2n ) ∈ An and
+˜ ˜
+ˆ
+(U n(1,1), V2n(1,1,t2 ), Y2n) ∈ An
+
+R EFERENCES
+[1] A. El Gamal and Y. H. Kim, Network Information Theory. Cambridge
+University Press, 2011.
+[2] K. Marton, “A coding theorem for the discrete memoryless broadcast
+channel,” IEEE Transactions on Information Theory, vol. 25, pp. 306–
+311, May 1979.
+[3] T. Han and K. Kobayashi, “A new achievable rate region for the interference channel,” IEEE Transactions on Information Theory, vol. 27,
+no. 1, pp. 49–60, January 1981.
+[4] C. Nair and A. El Gamal, “The capacity region of a class of 3-receiver
+broadcast channels with degraded message sets,” IEEE Transactions on
+Information Theory, vol. 55, no. 10, pp. 4479–4493, October 2009.
+[5] H. F. Chong, M. Motani, H. K. Garg, and H. El Gamal, “On the HanKobayashi region for the interference channel,” IEEE Transactions on
+Information Theory, vol. 57, no. 7, pp. 3188–3195, July 2008.
+[6] S. Avestimehr, S. N. Diggavi, and D. N. C. Tse, “Wireless network
+information ﬂow: a deterministic approach,” IEEE Transactions on
+Information Theory, vol. 57, no. 4, pp. 1872–1905, April 2011.
+[7] S. Lim, Y.-H. Kim, A. El-Gamal, and S-Y.Chung, “Noisy network
+coding,” IEEE Transactions on Information Theory, vol. 57, no. 5, p.
+31323152, May 2011.
+[8] Y. K. Chia and A. El Gamal, “3-receiver broadcast channels with
+common and conﬁdential messages,” June 2011. [Online]. Available:
+http://arxiv.org/abs/0910.1407
+[9] B. Bandemer and A. El Gamal, “Interference decoding for deterministic
+channels,” IEEE Transactions on Information Theory, vol. 57, no. 5, pp.
+2966–2975, May 2011.
+[10] C. Nair, A. El Gamal, and Y. K. Chia, “An achievability scheme for
+the compound channel with state noncausally available at the encoder,”
+April 2010. [Online]. Available: http://arxiv.org/abs/1004.3427
+[11] S. Saeedi, V. M. Prabhakaran, and S. N. Diggavi, “Is nonunique decoding necessary?” February 2012. [Online]. Available:
+http://infoscience.epﬂ.ch/record/174716
+[12] J. Ebrahimi and C. Fragouli, “Combinatorial algorithms for wireless
+information ﬂow,” ACM Transactions on Algorithms, 2012, see also
+Proc. SODA, Jan 2009 and http://arxiv.org/abs/0909.4808, 2009.
+[13] M. Goemans, S. Iwata, and R. Zenklusen, “An algorithmic framework
+for wireless information ﬂow,” in Allerton, September 2009.
+[14] G. Kramer and J. Hou, “On message lengths for noisy network coding,”
+in ITW, October 2011, pp. 430–431.
+
+(16)
+
+(a)
+
+≤ 2n(R0 +S0 +T2 ) 2−n(I(U,V2 ;Y2 )−6 ) ,
+
+(17)
+
+ˆ
+where we have (m0 , s0 ) = 1 and t2 = 1 in the event in
+˜ ˜
+inequality (16) and (a) follows from Lemma 1.
+We conclude the error probability analysis by putting together inequalities (13), (14), (15), and (17) to obtain that
+the error probability at the auxiliary decoder is bounded
+as in inequality (12). So for large enough n, the auxiliary
+decoder succeeds with high probability if the indirect decoding
+constraint (9) is satisﬁed; i.e., when the indirect decoder
+succeeds with high probability.
+One can now argue that if the auxiliary decoder succeeds
+with high probability for an operating point, then there also
+exists a joint unique decoding scheme that succeeds with high
+probability. The idea is that for all operating points (except
+in a subset of the rate region of measure zero), each of the
+two component joint unique decoders 1 and 2 have either
+a high or a low probability of success. So, if the operating
+point is such that the auxiliary decoder decodes correctly with
+high probability, then at least one of the component decoders
+should also decode correctly with high probability, giving us
+the joint unique decoding scheme we were looking for. This
+is summarized in Lemma 2, and the reader is referred to [11]
+for the proof.
+Lemma 2: Given any operating point (except in a subset
+of the rate region of measure zero), if the auxiliary decoder
+
+5
+
+

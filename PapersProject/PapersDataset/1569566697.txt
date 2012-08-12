@@ -1,0 +1,741 @@
+Creator:        TeX
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Fri May 18 23:44:09 2012
+ModDate:        Tue Jun 19 12:54:23 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      720777 bytes
+Optimized:      no
+PDF version:    1.7
+ISIT'2012 1569566697
+
+Blind Compute-and-Forward
+Chen Feng
+
+Danilo Silva
+
+Frank R. Kschischang
+
+Dept. of Electrical and Computer Eng.
+Dept. of Electrical Engineering
+Dept. of Electrical and Computer Eng.
+University of Toronto, Canada
+Federal University of Santa Catarina, Brazil
+University of Toronto, Canada
+cfeng@eecg.utoronto.ca
+danilo@eel.ufsc.br
+frank@comm.utoronto.ca
+
+of CSI (even if only at the receivers) may dominate communication when the number of concurrent transmissions is
+large, since channel training is known to effectively reduce
+the degrees of freedom of a wireless link [3].
+The basic idea of our approach to blind C&F is simple.
+Although the optimal scalar is nearly impossible to acquire
+without CSI, some “good” scalars (that allow correct decoding
+of linear combinations) can be obtained with a reasonable
+effort. In particular, when the lattices are asymptotically-good
+(in the sense of [4]), we are able to characterize the region of
+all such good scalars, showing that it is bounded, symmetric,
+and consisting of a union of disks. Based on these properties,
+we propose a generic blind C&F scheme that makes use of
+error-detection codes to ﬁnd a good scalar.
+To control the computational complexity of our blind C&F
+scheme, we propose two strategies that are complementary
+to each other. In particular, we show that, if a blind C&F
+scheme admits Viterbi decoding, then its complexity can
+be signiﬁcantly reduced. For instance, the complexity can
+be made around 10 times the complexity of coherent C&F
+in high-throughput region, as observed from our simulation
+results.
+
+Abstract—Compute-and-forward (C&F) relaying usually requires channel state information (CSI) at the receivers so that
+an “optimal” scale factor can be computed for the purposes
+of decoding. In this paper, a blind C&F scheme—i.e., one
+not requiring CSI—is developed. Rather than attempting to
+compute the optimal scale factor, this new scheme seeks one (or
+more) “good” scalars, i.e., scalars which allow correct decoding
+despite possibly being sub-optimal. The region of all such good
+scalars is characterized. To ﬁnd a good scalar, a computationally
+efﬁcient scheme, involving error-detection and a hierarchically
+organized list, is proposed. Simulation results show that this
+blind C&F scheme achieves—for a class of lattices admitting an
+efﬁcient trellis decoder—the same throughput as its CSI-enabled
+counterpart, at the expense of, approximately, a ten-fold increase
+in computational complexity in the high-throughput region.
+
+I. I NTRODUCTION
+Compute-and-forward (C&F) is a new relaying strategy proposed by Nazer and Gastpar [1]. It enables intermediate nodes
+to recover linear combinations of concurrently transmitted
+messages. As shown in [1], for some AWGN wireless relay
+networks, C&F outperforms other relaying strategies (such
+as compress-and-forward and decode-and-forward) in certain
+SNR region when channel state information (CSI) is known
+at the receivers. If CSI is also known at the transmitters, the
+performance of C&F can be greatly improved, achieving the
+full degrees of freedom for certain network scenarios [2].
+￿
+In C&F, an intermediate node receives y = ￿ h￿ x￿ + z,
+where h￿ are channel gains, and x￿ are points in a multidimensional lattice. Based on the fact that any integer combination
+of lattice points is again a lattice point, the intermediate node
+selects integer coefﬁcients a￿ and a scalar α, and then attempts
+￿
+to decode the lattice point ￿ a￿ x￿ from the scaled signal
+￿
+αy =
+αh￿ x￿ + αz
+=
+
+￿
+￿
+￿
+
+a￿ x ￿ +
+
+￿
+￿
+
+￿
+
+(αh￿ − a￿ )x￿ + αz .
+￿￿
+
+eﬀective noise n
+
+II. C OHERENT C OMPUTE - AND -F ORWARD
+In this section, we brieﬂy review coherent C&F, which
+serves as a natural benchmark for blind C&F. For ease of
+presentation, we focus on a single building block of coherent
+C&F, namely, a system of L concurrent transmitters and a
+single receiver.
+In such a system, each transmitter ￿ sends a length-n
+complex vector x￿ ∈ Cn , which satisﬁes an average power
+￿
+￿
+constraint E ￿x￿ ￿2 ≤ nP . The receiver observes y =
+￿L
+￿=1 h￿ x￿ + z, where h￿ ∈ C are complex-valued channel
+gains and z is i.i.d. circularly-symmetric complex Gaussian
+noise, i.e., z ∼ CN (0, N0 In×n ). The goal of the receiver
+is to reliably recover a linear combination of the transmitted
+messages based on the received signal y and the channel gains
+h￿ , which are assumed to be perfectly known at the receiver.
+Nazer and Gastpar [1] proposed an effective coding scheme
+for the above coherent C&F system. Their scheme makes use
+of asymptotically-good lattice partitions constructed by Erez
+and Zamir [4]. Since asymptotically-good lattice partitions
+require very long block lengths and almost unbounded complexity, several practical C&F schemes have been developed
+(e.g., [5]–[8]) to overcome this difﬁculty. Here, we present a
+generic coherent C&F scheme following the work of [5].
+
+(1)
+
+￿
+
+The scalar α and integer coefﬁcients a￿ are carefully chosen
+based on channel gains h￿ so that the effective noise n is
+made (in some sense) small. Hence, the “optimal” scalar α
+and integer coefﬁcients a￿ depend critically on CSI.
+In this paper, we aim to eliminate the need of CSI in C&F.
+We consider the case when no CSI is available, hereafter called
+blind C&F. This is motivated by the fact that the requirement
+The work of D. Silva was partly supported by CNPq-Brazil.
+
+1
+
+We ﬁrst introduce a class of complex lattices called Rlattices. Let R be a discrete subring of C forming a principle
+ideal domain. Typical examples include Gaussian integers
+Z[i] = {a + bi : a, b ∈ Z} and Eisenstein integers Z[ω] =
+{a + bω : a, b ∈ Z, ω = e2πi/3 }. For any N given linearly
+independent basis vectors g1 , . . . , gN in Cn , the R-lattice
+Λ (generated by them) is deﬁned as the set of all R-linear
+￿
+combinations of these vectors, i.e., Λ = { i ri gi : ri ∈ R}.
+We call N the rank of Λ, and n the dimension of Λ. In general,
+we have N ≤ n. When N = n, the lattice Λ is called a
+full-rank lattice. Throughout this paper, we focus on full-rank
+lattices.
+An R-sublattice Λ￿ of Λ is a subset of Λ which is itself
+an R-lattice. The set of all the cosets of Λ￿ in Λ, denoted by
+Λ/Λ￿ ￿ {λ + Λ￿ : λ ∈ Λ}, forms a partition of Λ, hereafter
+called an R-lattice partition. Without loss of generality, we
+may assume that there is a one-to-one linear map between a
+lattice partition Λ/Λ￿ and a message space W (see [5] for such
+a construction).
+A nearest-lattice-point (NLP) decoder is a map DΛ : Cn →
+Λ that sends a point x ∈ Cn to a nearest lattice point in
+Euclidean distance, i.e.,
+DΛ (x) ￿ arg min ￿x − λ￿.
+λ∈Λ
+￿
+
+is achievable [1], where SNR = P/N0 , h = (h1 , . . . , hL ), and
+log+ (x) = max{log2 (x), 0}. Moreover, the optimal (α, a)
+2
+that maximizes R(α, a) can be obtained by applying Lemma 1
+and Theorem 4 in [1].
+To summarize, in order to recover a best linear combination,
+the receiver ﬁrst computes the optimal scalar α, then maps the
+ˆ
+coset DΛ (αy) + Λ￿ to a message u.
+III. B LIND C OMPUTE - AND -F ORWARD :
+G ENERAL F RAMEWORK
+In this section, we develop a general framework for blind
+C&F, leading to a generic blind C&F scheme. The basic idea
+of our framework is simple: although the optimal scalar is
+nearly impossible to acquire without CSI, some “good” scalars
+can still be obtained by applying an error detection code.
+Formally, we introduce the following deﬁnitions.
+￿Deﬁnition 1:￿ A scalar α is said to be good, if DΛ (αy) ∈
+L
+L
+￿=1 a￿ x￿ + Λ for some (a1 , . . . , aL ) ∈ R \ {0} and is said
+to be bad otherwise.
+￿
+Recall that ￿ recovery of ￿ a￿ w￿ is correct if and only
+the
+if DΛ (αy) ∈ ￿ a￿ x￿ +Λ￿ . This justiﬁes the above deﬁnition.
+Deﬁnition 2: The good region of scalars, denoted Gs , is the
+set of all good α’s, i.e., Gs = {α ∈ C : α is good}.
+Note that the good region depends on the channel gains.
+Thus, it is unknown to the receiver. Nevertheless, it is still
+beneﬁcial to understand some basic properties of the good
+region, which will facilitate our design of blind C&F schemes.
+
+(2)
+
+An element x in a coset λ + Λ is called a coset leader if
+￿x￿ ≤ ￿y￿ for all y ∈ λ + Λ￿ .
+With the above setup, a generic coherent C&F scheme can
+be described as follows.
+￿
+• Transmitter ￿ maps its message w￿ in W to a coset λ￿ +Λ
+￿
+￿
+in Λ/Λ , and then transmits a coset leader x￿ for λ￿ +Λ .
+• The receiver scales the received signal y by α ∈ C,
+decodes the scaled signal αy to a nearest lattice point
+DΛ (αy) in Λ, and then maps the coset DΛ (αy) + Λ￿ to
+ˆ
+a message u in order to recover a linear combination.
+￿
+ˆ
+ˆ
+The recovery u is said to be correct if u = ￿ a￿ w￿ for
+some a = (a1 , . . . , aL ) ∈ RL \ {0}.
+The scaling operation at the receiver plays an important role
+here. To understand this role, recall that (see Eq. (1))
+￿
+αy =
+a￿ x￿ + n,
+
+A. Properties of the good region Gs
+
+It turns out that the good region Gs has a number of
+interesting properties, when the underlying lattice partitions
+Λ/Λ￿ are asymptotically good (in the sense of [4]). Moreover,
+these properties still hold (or approximately hold) even for
+practical lattice partitions.
+When the underlying lattice partitions are asymptotically
+good, Theorem 3 in [1] can be restated as: a scalar α is good if
+and only if the message rate Rm is less than the computation
+rate R(α, a) (given in (3)) for some a ∈ RL \ {0}. Based
+on this fact, we are able to show that the good region Gs is
+bounded, symmetric, and consisting of a union of disks.
+Proposition 1: The good region Gs is bounded.
+Proof: If α is good, then by deﬁnition
+￿
+￿
+SNR
+log2
+> Rm for some a ∈ RL \{0}.
+SNR￿αh − a￿2 + |α|2
+
+￿
+
+￿
+where a￿ ∈ R are coefﬁcients and n = ￿ (αh￿ − a￿ )x￿ + αz
+is the effective noise. In other words, the scaling operation
+induces a “virtual” point-to-point channel with channel input
+￿
+￿ a￿ x￿ and channel noise n.
+Note that if the channel input is￿
+decoded correctly, i.e.,
+￿
+DΛ (αy) = ￿ a￿ x￿ , then a message ￿ a￿ w￿ can be obtained
+￿
+from the coset DΛ (αy) + Λ￿ = ￿ a￿ x￿ + Λ￿ by using the
+one-to-one linear map constructed in [5]. In fact, the recovery
+￿
+￿
+of ￿ a￿ w￿ is correct if and only if DΛ (αy) ∈ ￿ ￿ x￿ + Λ￿
+￿a
+[5], which is a weaker condition than DΛ (αy) = ￿ a￿ x￿ .
+Note also that the effective noise n can be “minimized” by
+choosing the scalar α and the coefﬁcient vector a cleverly. In
+fact, for given (α, a), the computation rate
+￿
+￿
+SNR
++
+R(α, a) = log2
+(3)
+SNR￿αh − a￿2 + |α|2
+
+Note that
+
+log2
+
+￿
+
+SNR
+|α|2
+
+It follows that
+
+￿
+
+≥ log2
+log2
+
+￿
+
+￿
+
+SNR
+SNR￿αh − a￿2 + |α|2
+
+SNR
+|α|2
+
+￿
+
+￿
+
+.
+
+> Rm .
+
+Thus, every good α is bounded by |α|2 < SNR/2Rm .
+Proposition 2: The good region Gs is symmetric with respect to rotations by some angle θ. The angle θ is determined
+by R.
+
+2
+
+Proof: It sufﬁces to show that if α is good, so is eiθ α for
+some angle θ. We need the following fact in abstract algebra.
+Let R be a discrete subring of C forming a principle ideal
+domain. Let U be the set of all the units in R. Then U =
+{e2πki/n : k = 0, 1, . . . , n − 1} for some positive integer n.
+That is, the units of R are also the roots of unity.
+Now choose a unit u = e2πi/n . If α is good, then
+￿
+￿
+(a)
+(b)
+SNR
+log2
+> Rm for some a ∈ RL \{0}.
+2 + |α|2
+SNR￿αh − a￿
+Fig. 1. Good regions for asymptotically-good lattice partitions: (a) Gaussian
+
+lattice partition with h1 = −0.93 + 0.65i, h2 = −0.04i, and SNR = 20dB;
+
+Hence,
+(b) Eisenstein lattice partition with h1 = 0.72 + 0.61i, h2 = −0.05i, and
+SNR = 20dB.
+￿
+￿
+SNR
+L
+log2
+> Rm and ua ∈ R \{0}.
+SNR￿uαh − ua￿2 + |uα|2
+Therefore, uα is good by deﬁnition.
+Proposition 3: The good region Gs consists of a union of
+disks. These disks are pairwise disjoint if the message rate
+Rm ≥ 2.
+Proof: Recall that α is good if and only if Rm < R(α, a)
+for some a ∈ RL \ {0}, or equivalently,
+SNR￿αh − a￿2 + |α|2 < SNR/2Rm for some a ∈ RL \ {0}.
+
+Fig. 2. A good region for a lattice partition Z[i]400 /3Z[i]400 with h1 =
+0.28 − 0.60i, h2 = −0.26 + 0.56i, and SNR = 35dB.
+
+Note that SNR￿αh − a￿2 + |α|2 can be viewed as the squared
+√
+√
+distance between the vector (αh√ SNR, . . . , αhL SNR, α)
+1
+√
+and the vector (a1 SNR, . . . , aL SNR, 0). Hence, we have
+
+B. Generic blind C&F scheme
+
+=
+
+In Sec. III-A, we derived several properties of the good
+region. Here, we present a generic blind C&F scheme that
+aims to ﬁnd a point in the good region, which is inspired by
+these properties
+First, we discuss how these properties can be used to
+facilitate the search of good points. Proposition 1 suggests that,
+to ﬁnd a good point, it sufﬁces to consider a bounded region.
+Proposition 2 shows that, to ﬁnd a good point, it sufﬁces to
+“ignore” some unnecessary areas. For instance, only the region
+in the ﬁrst quadrant is worth investigating for Gaussian lattice
+partitions. Proposition 3 implies that, to ﬁnd a good point, it
+sufﬁces to “probe” a discrete set of points. The denser the
+points, the better the performance.
+Next, let us assume that the discrete set of points is given.
+We now discuss how to “probe” a point by applying a
+linear detection code C. First, the transmitters embed a linear
+detection code C into the message space W so that each valid
+message w￿ (as well as any linear combinations) is a codeword
+in C. Second, the receiver performs a basic probing operation
+as described in Algorithm 1.
+If a point α is good, then Algorithm 1 always declares α to
+ˆ
+be good, since u is a codeword in this case. On the other hand,
+if a point α is bad, then Algorithm 1 might make a mistake
+by declaring α to be good, due to an undetected error. The
+probability of this event can be made very small, when the
+code C has sufﬁciently many parity-checks.
+Now we are ready to describe a generic blind C&F scheme.
+The input to the scheme is an ordered list containing a discrete
+set of points. The scheme probes the points in the list one by
+one until it ﬁnds a good point or until it reaches the end of
+
+SNR￿αh − a￿2 + |α|2
+
+SNR￿α∗ h − a￿2 + |α∗ |2 + |α − α∗ |2 (1 + SNR￿h￿2 ),
+
+where α∗ is the MMSE coefﬁcient given by
+α∗ =
+
+SNRahH
+.
+1 + SNR￿h￿2
+
+(4)
+∗
+
+Recall that SNR￿α∗ h − a￿2 + |α∗ |2 = SNR/2R(α ,a) . Therefore, α is good if and only if
+￿
+￿
+1
+1
+SNR
+|α − α∗ |2 <
+− R(α∗ ,a)
+(5)
+1 + SNR￿h￿2 2Rm
+2
+for some a ∈ RL \ {0}, or equivalently, α is in some disk of
+centre α∗ . This proves the ﬁrst part. The proof of the second
+part is omitted due to space constraints.
+Fig. 1(a) and 1(b) show some typical good regions for
+asymptotically-good Gaussian lattice partitions (R = Z[i])
+and Eisenstein lattice partitions (R = Z[ω]). Since Z[i] has
+four units {1, i, −1, −i} and Z[ω] has six units {ω k : k =
+0, . . . , 5}, the rotation angles in Fig. 1(a) and 1(b) are 90◦
+and 60◦ , respectively.
+Fig. 2 depicts a typical good region for a naive lattice partition Z[i]400 /3Z[i]400 . This lattice partition can be
+viewed as uncoded 9-QAM. Since this lattice partition is not
+asymptotically-good (in the sense of [4]), the disjoint areas
+are not quite disk-like. Nevertheless, the good region is still
+bounded and symmetric (with respect to rotations by 90◦ ).
+
+3
+
+Algorithm 1 Basic probing operation
+Input: a point α.
+Output: α is good or α is bad.
+1. Decode a lattice point DΛ (αy) in Λ.
+ˆ
+2. Map the coset DΛ (αy) + Λ￿ to a message u.
+ˆ
+3. if u is a non-zero codeword in C then
+4.
+Declare α is good.
+5. else
+6.
+Declare α is bad.
+7. end if
+
+Fig. 3. An illustration of three (self-similar) probing grids. We choose Lj =
+(1 + i)j Z[i] (j = 0, 1, 2) and R = [0, 3] × [0, 3]. The sparsest grid consists
+of 4 solid points. The second sparsest grid consists of 4 solid points and 4
+partially solid points.
+
+Algorithm 2 Hierarchically-organized list-building algorithm
+Input: a lattice-partition chain L0 / . . . /Lm with a region R.
+Output: an ordered list of probing points.
+1. Set list = ∅.
+2. Set j = m and set Lm+1 = {0}.
+3. while j ≥ 0 do
+4.
+Let S = (Lj \ Lj+1 ) ∩ R.
+5.
+while |S| > 0 do
+6.
+Find a point α in S of the smallest L1 -norm.
+7.
+Set list = list ∪ {α}. Set S = S \ {α}.
+8.
+end while
+9.
+Set j = j − 1.
+10. end while
+
+the list. Thus, the output is either a (claimed) good point or
+nothing.
+Note that the performance of the scheme is determined by
+the points in the list regardless of their order, whereas the
+computational cost of the scheme depends on the order of these
+points. In other words, two ordered lists containing exactly the
+same points achieve the same performance with possibly quite
+different computational complexity (as we will see in Sec. V).
+IV. B LIND C OMPUTE - AND -F ORWARD :
+E FFICIENT A LGORITHMS
+In this section, we propose two (complementary) strategies
+to control the computational complexity of the generic blind
+C&F scheme presented in Sec. III. The ﬁrst strategy attempts
+to create some “smart” probing lists; the second strategy aims
+to reduce the complexity of the basic probing operation.
+
+Here we propose to conduct an early detection well before
+complete decoding of αy. This can be achieved for certain
+lattice-decoder structures, e.g., a lattice decoder based on the
+Viterbi algorithm.
+Recall that the Viterbi algorithm is an instance of maximumlikelihood decoding for convolutional codes, and it generates a
+list of candidates for each initial message segments along the
+trellis search, where the size of the list is equal to the number
+of states of the Viterbi algorithm. Note that, for certain initial
+message segment, if all current candidates fail to pass the
+parity-checks involved so far, then there is no need to continue
+the trellis search and the algorithm aborts. This suggests an
+early rejection strategy as summarized in Algorithm 3.
+We note that there is an efﬁcient implementation of Algorithm 3 in which each parity-check equation is veriﬁed at
+most M times, where M is the number of states of the Viterbi
+algorithm. Thus, the cost of verifying parity-check equations is
+much less than the cost of the trellis search. In other words, the
+computational cost of Algorithm 3 is dominated by the trellis
+search. If Algorithm 3 stops at some initial message segment
+(ˆ1 , . . . , uj ), then the cost is roughly j/k of the cost of a
+u
+ˆ
+complete trellis search, where k is the length of the messages.
+
+A. Hierarchically-organized list-building strategy
+The choice of the probing list is crucial to attaining good
+performance with low complexity. For instance, the probing
+points can be made relatively sparse when the good region
+consists of many large disjoint areas. Based on this observation, we propose a heuristic method for creating the list.
+First, we choose a well-shaped region R to avoid unnecessary probing (see discussions in Sec. III-B). For Gaussian
+lattice partitions, we note that R can be chosen heuristically
+as [0, log10 (SNR)] × [0, log10 (SNR)]. For example, if SNR =
+10dB, then R = [0, 1] × [0, 1].
+Then, we construct an m-level lattice-partition chain [9]
+L0 /L1 / . . . /Lm in C (i.e., each Lj is a one-dimensional complex lattice and L0 ⊃ L1 ⊃ · · · ⊃ Lm ). Note that the latticepartition chain, together with the region R, induces m + 1
+probing grids {Lj ∩R} satisfying {Lm ∩R} ⊂ · · · ⊂ {L0 ∩R}
+(see Fig. 3 for a concrete example). For Gaussian lattice par1
+titions, we heuristically set Lj = 16 log10 (SNR)(1 + i)j Z[i],
+where j = 0, . . . , 8.
+With these grids, a list-building algorithm is described in
+Algorithm 2. The order in the list is designed such that the
+points in the sparse grids will appear before the points in the
+dense grids.
+
+V. S IMULATION RESULTS
+In this section, we illustrate the feasibility of blind C&F
+through simulations. The setup of our simulation is as follows.
+The lattice partition Λ/Λ￿ is constructed from a terminated
+convolutional code over Z[i]/(3) following Example 7 in [5]
+with the parameters µ = 400, ν = 1. For illustrative purposes,
+the linear detection code C is set to a simple 20 × 20 product
+
+B. Early rejection strategy
+In the basic probing operation, the receiver ﬁrst decodes a
+ˆ
+lattice point DΛ (αy) and then performs error detection for u.
+
+4
+
+Algorithm 3 Early rejection algorithm
+Input: a point α.
+Output: α is good or α is bad.
+1. for j = 1, . . . , k do
+2.
+Decode a list of candidates for (ˆ1 , . . . , uj ) from αy.
+u
+ˆ
+3.
+Let S be the set of parity-check equations involved so
+far.
+4.
+if all the candidates violate at least one equation then
+5.
+Declare α is bad and stop the algorithm.
+6.
+end if
+7. end for
+ˆ
+8. if u is a zero vector then
+9.
+Declare α is bad.
+10. else
+11.
+Declare α is good.
+12. end if
+
+schemes under various SNRs. It is observed that our proposed
+strategies signiﬁcantly reduce the complexity, especially when
+the throughput is high.
+TABLE II
+C OMPLEXITY OF FOUR BLIND C&F SCHEMES .
+SNR
+baseline
+hierarchical grid
+early rejection
+combined
+
+14dB
+73.8%
+73.5%
+
+16dB
+84.8%
+82.9%
+
+18dB
+92.1%
+90.2%
+
+16dB
+95.03
+54.80
+23.04
+12.04
+
+18dB
+74.78
+35.86
+18.74
+8.16
+
+20dB
+59.71
+22.01
+15.50
+5.30
+
+VI. C ONCLUSION
+In this paper, the problem of designing blind C&F schemes
+has been considered. A framework based on error-detection
+has been proposed, which eliminates the need for CSI in
+C&F. In particular, a generic blind C&F scheme has been
+developed, and several strategies have been suggested to make
+it computationally efﬁcient. The effectiveness of our approach
+has been illustrated through simulations. We believe that there
+is still much work to be done in this direction, particularly in
+investigating the performance-complexity tradeoff of the blind
+C&F schemes, as well as devising efﬁcient probing strategies
+for alternative coding structures.
+ACKNOWLEDGMENT
+The authors would like to thank Bobak Nazer and Michael
+Gastpar for suggesting the blind compute-and-forward problem.
+R EFERENCES
+[1] B. Nazer and M. Gastpar, “Compute-and-forward: Harnessing interference through structured codes,” IEEE Trans. Inf. Theory, vol. 57, no. 10,
+pp. 6463–6486, Oct. 2011.
+[2] U. Niesen and P. Whiting, “The degrees of freedom of compute-andforward,” submitted to IEEE Trans. Inf. Theory, Jan. 2011.
+[3] B. Hassibi and B. M. Hochwald, “How much training is needed in
+multiple-antenna wireless links,” IEEE Trans. Inf. Theory, vol. 49, no. 4,
+pp. 951–963, Apr. 2003.
+[4] U. Erez and R. Zamir, “Achieving 1 log(1 + SNR) on the awgn channel
+2
+with lattice encoding and decoding,” IEEE Trans. Inf. Theory, vol. 50,
+no. 10, pp. 2293–2314, Oct. 2004.
+[5] C. Feng, D. Silva, and F. R. Kschischang, “An algebraic approach to
+physical-layer network coding,” submitted to IEEE Trans. Inf. Theory,
+Aug. 2011.
+[6] B. Hern and K. Narayanan, “Multilevel coding schemes for compute-andforward,” in Proc. of IEEE Int. Symp. on Inf. Theory, Saint Petersburg,
+Russia, Jul. 31– Aug. 5, 2011, pp. 1713–1717.
+[7] O. Ordentlich, J. Zhan, U. Erez, M. Gastpar, and B. Nazer, “Practical
+code design for compute-and-forward,” in Proc. of IEEE Int. Symp. on
+Inf. Theory, Saint Petersburg, Russia, Jul. 31– Aug. 5, 2011, pp. 1876–
+1880.
+[8] J.-C. Belﬁore, “Lattice codes for the compute-and-forward protocol: The
+ﬂatness factor,” in IEEE Inf. Theory Workshop, Paraty, Brazil, Oct. 16–20,
+2011, pp. 1876–1880.
+[9] G. D. Forney, Jr., “Coset codes—part II: Binary lattices and related
+codes,” IEEE Trans. Inf. Theory, vol. 34, no. 5, pp. 1152–1187, Sep.
+1988.
+
+TABLE I
+T HROUGHPUT OF COHERENT AND BLIND C&F SCHEMES .
+12dB
+57.0%
+56.8%
+
+14dB
+119.50
+78.50
+28.44
+17.11
+
+To summarize, our simulation results suggest that a blind
+C&F scheme that admits Viterbi decoding is able to approach
+the throughput of coherent C&F with around 10 times complexity in the high-throughput region.
+
+code consisting of a [20, 19] single parity-check code with
+itself over Z[i]/(3). Clearly, the rate of C is 361/400 ≈ 0.9.
+The region R is set to [0, log10 (SNR)] × [0, log10 (SNR)], and
+1
+the lattice-partition chain is Lj = 16 log10 (SNR)(1 + i)j Z[i]
+(j = 0, . . . , 8) as suggested in Sec. IV-A.
+We consider a two-transmitter, single receiver conﬁguration,
+which can be viewed as a building block of a more complicated and realistic network scenario. Communication occurs in
+rounds. In each round, the channel gains are assumed to follow
+independent Rayleigh fading. A round is said to be successful
+if the receiver correctly recovers a linear combination. The
+throughput is deﬁned as the fraction of successful rounds in
+the simulation.
+We have evaluated four blind C&F schemes through simulation by carrying out 1000 rounds. The ﬁrst scheme is a
+baseline scheme where the probing list contains all the points
+in L0 ∩ R ordered so that their L1 -norms are non-decreasing.
+The second and third schemes use the strategies outlined in
+Sec. IV-A and IV-B, respectively, while the fourth scheme uses
+both strategies simultaneously.
+Note that the throughputs of each scheme is the same, as
+each scheme contains the same set of points. Table I compares
+the throughput of these blind schemes with the throughput
+of coherent C&F under various SNRs. It is observed that
+these blind C&F schemes are always able to approach the
+throughput of coherent C&F.
+
+SNR
+Coherent
+Blind
+
+12dB
+152.12
+120.55
+36.55
+27.14
+
+20dB
+97.3%
+95.1%
+
+Next we examine the complexity of these blind C&F
+schemes under various SNRs. Recall that the complexity of
+our blind C&F schemes is dominated by the trellis search. As
+such, the complexity is normalized relative to one complete
+trellis search. Table II compares the complexity of these blind
+
+5
+
+

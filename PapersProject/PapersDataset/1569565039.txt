@@ -1,0 +1,940 @@
+Creator:        TeX
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Mon May 14 19:44:24 2012
+ModDate:        Tue Jun 19 12:56:40 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      433170 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569565039
+
+A Greedy Search for Improved QC LDPC Codes
+with Good Girth Proﬁle and Degree Distribution
+Irina E. Bocharova1 , Florian Hug2 , Rolf Johannesson2 , and Boris D. Kudryashov1
+1
+Dept. of Information Systems
+St. Petersburg Univ. of Information Technologies,
+Mechanics and Optics
+St. Petersburg 197101, Russia
+Email: {irina, boris}@eit.lth.se
+
+2
+
+Dept. of Electrical and Information Technology,
+Lund University
+P. O. Box 118, SE-22100 Lund, Sweden
+Email: {ﬂorian, rolf}@eit.lth.se
+
+therein). When constructing QC LDPC block codes in such a
+way, it is intuitively clear that their BER performance depends
+on the underlying structure of the base matrix. Moreover, there
+exists a common conjecture [5]–[7] that the structure of the
+base matrix has a larger inﬂuence on its BER performance than
+its girth. For example, a QC LDPC block code with “only”
+girth 6, but good degree distribution, which, for example,
+satisﬁes approximately the criterion on the degree proportions
+given in [8], can achieve a BER performance close to its
+theoretical limit. A set of such irregular QC LDPC block codes
+are deﬁned in the IEEE 802.16 WiMAX standard [1], and, to
+the best of our knowledge, nobody reported QC LDPC block
+codes with improved BER performance, especially for block
+lengths as short as n ≈ 576.
+In this paper, we shall study the inﬂuence of the degree
+distribution and the girth proﬁle of QC LDPC block codes,
+as deﬁned in Section II, on the BER performances of BP
+decoding. Two greedy algorithms are presented in Section III:
+one for constructing a base matrix for an irregular QC LDPC
+block code with a given degree distribution and another for
+obtaining a set of labels for (regular and irregular) QC LDPC
+block codes yielding a good girth proﬁle. Note that in case
+of regular QC LDPC block codes which have a constant
+degree distribution, base matrices constructed from all-one
+matrices (AO) and Steiner triple systems (STS) will be used. In
+Section IV, the BER performance of these QC LDPC block
+codes is compared with the corresponding codes deﬁned in
+the IEEE 802.16 standard of the same code rate and block
+length. In particular, we shall show that for a ﬁxed degree
+distribution, the BER performance can be further improved
+by choosing edge labels yielding a good girth proﬁle. The
+paper is concluded with some ﬁnal remarks in Section V.
+
+Abstract—The girth proﬁle is introduced and search algorithms for regular and irregular quasi-cyclic LDPC block codes
+with both good girth proﬁle and good degree distribution are
+presented. New QC LDPC block codes of various code rates are
+obtained and their bit error rate performance is compared with
+that of the corresponding LDPC block codes deﬁned in the IEEE
+802.16 WiMAX standard of the same block length and code rate.
+
+I. I NTRODUCTION
+Due to their low decoding complexity and good bit error
+rate (BER) performance close to the theoretical limit, lowdensity parity-check (LDPC) codes are a suitable choice for
+modern communication standards [1]–[3]. For example, the
+IEEE 802.16 WiMAX standard deﬁnes LDPC block codes
+with code rates from 1/2 up to 5/6 and block lengths between
+576 and 2304.
+In this paper, we shall focus on quasi-cyclic (QC) LDPC
+block codes, which can be efﬁciently represented in the form
+of tailbitten convolutional codes, and, hence, support searching
+for new low-complexity codes. QC LDPC block codes can
+be characterized by being either regular or irregular. If each
+column and each row of its parity-check matrix H contains
+exactly J and K ones, respectively, the corresponding QC
+LDPC block code is said to be (J, K)-regular; and irregular
+otherwise. While the symbol node and constraint node degree
+distribution of the parity-check matrix H is constant for
+regular codes (equal to J and K, respectively), it varies
+for irregular codes, which signiﬁcantly affects the BER performance. Hereinafter we shall focus solely on the degree
+distribution of symbol nodes and will refer to it simply as
+the degree distribution.
+Interpreting the parity-check matrix of an LDPC block code
+as the biadjacency matrix of a bipartite graph yields its corresponding Tanner graph [4]. The length of the shortest cycle
+in a Tanner graph is called the girth of the LDPC block code
+and is commonly considered to be one of the most important
+code parameter, as it determines the number of independent
+iterations in belief-propagation (BP) decoding. Typically, new
+QC LDPC block codes are constructed by assigning suitable
+labels to the edges of its base graph, that is, replacing the
+nonzero entries of its binary base matrix with monomial
+entries, such that the girth of the corresponding QC LDPC
+block code after tailbiting to length M is larger than or equal to
+a certain target value (see, for example, [5]–[7] and references
+
+II. R EGULAR AND IRREGULAR QC LDPC CODES
+A rate R = b/c binary convolutional code C is determined
+by its polynomial parity-check matrix of memory m
+
+
+h11 (D)
+h12 (D)
+...
+h1c (D)
+ h21 (D)
+h22 (D)
+...
+h2c (D) 
+
+
+H(D) = 
+ (1)
+.
+.
+..
+.
+.
+
+
+.
+.
+.
+h(c−b)1 (D) h(c−b)2 (D) . . . h(c−b)c (D)
+where the parity-check polynomials hij (D) are either zero or
+w
+monomial entries Dij of degree wij , where wij are nonneg-
+
+1
+
+let gfree,i be the free girth of the corresponding inﬁnite Tanner
+graph with biadjacency matrix Hi (D). Then the c-tuple
+
+ative integers. Such a parity-check matrix H(D) can be represented by its degree matrix W = (wij ), i = 1, 2, . . . , c − b,
+and j = 1, 2, . . . , c, where wij = −1 if hij (D) = 0. If every
+row and column of H(D) contains K and J nonzero entries,
+respectively, we call C a (J, K)-regular LDPC convolutional
+code; and irregular otherwise.
+Next we express the (c − b) × c parity-check matrix H(D)
+in terms of its m + 1 binary matrices Hi , i = 0, 1, . . . , m,
+H(D) = H0 + H1 D + · · · + Hm D
+
+g p = (gfree,1 gfree,2 . . . gfree,c )
+free
+
+is called the free girth proﬁle (GP) of the parent inﬁnite Tanner
+graph, where gfree,i ≥ gfree,i+1 , i = 1, 2, . . . , c−1, and gfree,c =
+gfree . It can be efﬁciently represented as the ordered set
+(1)
+
+(2)
+
+(l)
+
+Sg = gfree n(1) , gfree n(2) , . . . , gfree n(l)
+
+m
+
+(6)
+
+(j)
+
+where n(j) < n(j+1) , n(l) = c, and gfree,i = gfree (n(j) ) for
+n(j−1) < i ≤ n(j) with n(0) = 0. In other words, the
+submatrix, consisting of up to n(j) columns with smallest
+column weights, has a free girth which is greater than or equal
+(j)
+to gfree . Note that a girth proﬁle g p is said to be better (>)
+free
+than another proﬁle g p if there exists a positive integer
+free
+such that
+(j)
+= gfree j = 1, 2, . . . , − 1
+(j)
+gfree
+(7)
+(j)
+> gfree j ≥
+
+Tailbiting the convolutional code C to length M c-tuples,
+where M > m, yields the M (c − b) × M c parity-check matrix
+of a quasi-cyclic (QC) block code B as
+ T
+
+T
+T
+T
+H0 H1 · · ·
+Hm−1 Hm
+0
+T
+T
+T
+T
+0
+···
+Hm−1 Hm 
+ T H0 H1
+
+T
+T
+T
+T
+ Hm 0
+H0
+H1
+···
+Hm−1  (2)
+HTB = 
+
+ ······································· 
+T
+T
+T
+T
+H1 · · · Hm−1 Hm
+0
+H0
+T
+where T denotes transpose. Interpreting HTB as a biadjacency
+matrix [9] yields the corresponding Tanner graph G of this
+QC LDPC block code. The length of the shortest cycle in this
+graph is called the girth g.
+On the other hand, if we let M tend to inﬁnity we return to
+the convolutional parity-check matrix H(D) (1) of the parent
+convolutional code C. In terms of Tanner graph representations, this corresponds to unwrapping the underlying graph and
+extending it in the time domain towards inﬁnity. The shortest
+cycle in such an inﬁnite Tanner graph shall be called the free
+girth gfree , where gfree ≥ g.
+Moreover, let the base matrix of a tailbiting LDPC block
+code, whose parent convolutional code with parity-check matrix H(D) (1) has only zero or monomial entries, be deﬁned
+as
+B = H(D) D=1
+(3)
+
+Similarly, let Jmax be the maximum number of nonzero
+entries in any column of the parity-check matrix H(D) of
+the parent convolutional code C. Moreover, denote by nd ,
+d = 1, 2, . . . , Jmax , the number of columns (symbols) of the
+parity-check matrix H(D) with d nonzero entries (of degree
+d). Then the Jmax -tuple
+dp = (n1 n2 . . . nJmax )
+s
+
+(8)
+
+is called the (symbol node) degree distribution of the parent
+inﬁnite Tanner graph. Since dp contains mostly zero entries,
+s
+it can be efﬁciently represent as the set
+λs = d(1) n(1) , d(2) n(2) , . . . , d(l) n(l)
+
+(9)
+
+l
+
+(i)
+where the nd(i) = n(i) and, clearly,
+= c. Note
+i=1 n
+that the degree distribution of the convolutional parity-check
+matrix H(D) and its base matrix B coincide. Moreover, its
+degree distribution is invariant among column permutations.
+
+that is, all nonzero entries in H(D) are replaced by 1. Its
+base graph follows as the bipartite graph, whose biadjacency
+matrix is given by the base matrix B. Denote the girth of such
+a base graph by gB .
+The problem of ﬁnding new QC LDPC block codes can
+be separated into two different tasks: ﬁnding a suitable base
+matrix (base graph) and determining a set of suitable labels
+(monomial degrees). In particular, it has been shown that for
+every such base matrix B (with base graph GB ) there exists a
+tailbiting length M and a set of labels, such that the girth g of
+the Tanner graph after tailbiting to length M c-tuples satisﬁes
+the inequality [7]
+g ≥ 2 max {gB + gB /2 , d2 } ≥ 3gB
+
+(5)
+
+III. T WO GREEDY ALGORITHMS FOR OBTAINING QC
+LDPC BLOCK CODES WITH GOOD DEGREE DISTRIBUTION
+AND FREE GIRTH PROFILE
+
+First, we shall determine a base matrix B with a given
+degree distribution λs , having at most Pc and Pr common entires among its columns and rows, respectively. Then, suitable
+labels (monomial degrees wij ) will be obtained, such that the
+inﬁnite Tanner graph corresponding to the constructed polynomial parity-check matrix H(D) has a good free girth proﬁle.
+Finally, tailbiting H(D) to length M yields the corresponding
+parity-check matrix of an (M c, M b) LDPC block code with
+girth g ≤ gfree and similar girth proﬁle. By taking the tailbiting
+length M into account when determining the labels, g = gfree
+can be guaranteed.
+Assume that a base matrix B of size (c − b) × c shall be
+constructed, and let the set
+
+(4)
+
+where d2 is the minimum second generalized Hamming distance of the linear (Jc, (J − 2)c + b) block code whose paritycheck matrix is equal to the incidence matrix of the base graph
+GB .
+Let Hi (D), i = 1, 2, . . . , c, denote the submatrix formed by
+the i columns of H(D) with the smallest column weight and
+
+λts = d
+
+2
+
+(1)
+
+n(1) , d
+
+(2)
+
+n(2) , . . . , d
+
+(l)
+
+n(l)
+
+(10)
+
+TABLE I
+PARAMETERS OF RATE R = 1/2 AND R = 2/3 QC LDPC BLOCK CODES
+OF LENGTH n = 576 (*n = 572)
+Description
+
+g
+
+gfree
+
+IEEE 802.16
+Irregular
+Irregular
+(good GP & BD)
+(3, 6)-reg. STS*
+(3, 6)-reg. STS*
+(good GP)
+(3, 6)-reg. AO
+(good GP)
+(3, 6)-reg. AO
+(random)
+
+4
+8
+
+6
+8
+
+6
+
+6
+
+6
+
+10
+
+8
+
+8
+
+8
+
+8
+
+4
+
+4
+
+IEEE 802.16 (A)
+IEEE 802.16 (B)
+
+6
+4
+
+6
+4
+
+IEEE 802.16 (A)
+(good GP)
+
+6
+
+6
+
+8
+
+8
+
+8
+
+8
+
+4
+
+4
+
+Irregular
+(good GP & BD)
+(3, 9)-reg. AO
+(good GP)
+(3, 9)-reg. AO
+(random)
+
+TABLE II
+PARAMETERS OF RATE R = 3/4 AND R = 5/6 QC LDPC BLOCK CODES
+OF LENGTH n = 576
+Description
+
+4
+4
+
+4
+6
+
+6
+
+6
+
+6
+
+6
+
+4
+
+4
+
+4
+
+6
+
+IEEE 802.16
+(good GP)
+
+R = 2/3
+λs = {2(7), 3(12), 6(5)}
+λs = {2(7), 3(1), 4(16)}
+λs = {2(7), 3(12), 6(5)}
+Sg = {14(11), 12(12), 10(17),
+8(20), 6(24)}
+λs = {2(1), 3(5), 4(6)}
+Sg = {12(2), 8(12)}
+λs = {3(9)}
+Sg = {12(3), 8(9)}
+
+gfree
+
+IEEE 802.16
+
+λs = {3(6)}
+
+g
+
+IEEE 802.16 (A)
+IEEE 802.16 (B)
+IEEE 802.16 (A)
+(good GP)
+(3, 12)-reg. AO
+(good GP)
+(3, 12)-reg. AO
+(random)
+
+distribution
+R = 1/2
+λs = {2(11), 3(8), 6(5)}
+λs = {2(12), 3(4), 4(4), 6(4)}
+λs = {2(12), 3(4), 4(4), 6(4)}
+Sg = {12(18), 10(20), 8(23), 6(24)}
+λs = {3(26)}
+λs = {3(26)}
+Sg = {10(22), 8(26)}
+λs = {3(6)}
+Sg = {12(4), 10(5), 8(6)}
+
+6
+
+(3, 18)-reg. AO
+(good GP)
+(3, 18)-reg. AO
+(random)
+
+6
+4
+
+proﬁles
+R = 3/4
+λs = {2(5), 3(1), 4(18)}
+λs = {2(5), 3(12), 6(7)}
+λs = {2(5), 3(1), 4(18)}
+Sg = {14(6), 12(7), 8(13), 6(24)}
+λs = {3(12)}
+Sg = {12(3), 10(4), 8(11), 6(12)}
+λs = {3(12)}
+
+R = 5/6
+λs = {2(3), 3(10), 4(11)}
+λs = {2(3), 3(10), 4(11)}
+6
+Sg = {14(4), 12(5), 10(6),
+8(13), 6(24)}
+λs = {3(18)}
+6
+Sg = {12(3), 8(9), 6(18)}
+λs = {3(18)}
+
+4
+
+feasible when constructing rather large base matrices. On the
+other hand, Pc = 2 yields the girth of the base graph as gB = 4.
+However, for suitable structured base matrices, it can be shown
+that their second generalized Hamming distance is d2 = 7 and,
+hence, it is possible to ﬁnd a labeling yielding an LDPC block
+code with girth g = 14. This motivated the choice of Pc = 2
+in our search procedures, while Pr is iteratively increased until
+such a base matrix can be found.
+Next, denote by Bi , i = 1, 2, . . . , c, the submatrix formed
+by i columns of the base matrix B with the smallest column
+weight, while the set pz describes the indices of all rows with
+i
+zero entries in column i. Moreover, let the ordered set
+
+λs = {3(9)}
+
+be a given target degree distribution with l entries, such
+that their proportions approximately satisfy, for example, the
+criterion given in [8].
+Algorithm BD: Determine randomly a base matrix B for
+a degree distribution λts and the numbers of overlapping
+positions Pc and Pr .
+
+(1)
+
+(2)
+
+(l)
+
+t
+Sg = g free (n(1) ), g free (n(2) ), . . . , g free (n(l) )
+
+1) Let B be an empty matrix, v a column vector of length
+c−b, set i = 1, j = n = 0, and denote by S the maximum
+number of trials.
+2) While the number of columns of B is less than c:
+(a) If n = 0, then j ← j + 1 and n ← n(j) .
+(j)
+(b) Set t ← d and s ← 1.
+(c) Set t randomly chosen entries of the vector v to 1;
+and all other entries to 0.
+(d) If the vector v and none of the columns and rows of
+B coincide in less than or equal to Pc and Pr entries,
+respectively, set B ← [B ; v], increase i ← i + 1,
+decrease n ← n − 1, and go to step 2).
+(e) If s = S, the algorithm fails and a base matrix B with
+such a degree distribution can not be found within S
+number of trials. Restart at step 1.
+(f) Otherwise, increase s ← s + 1 and go to step 2(c).
+The numbers of overlapping positions Pc and Pr are predetermined constants which directly inﬂuence the girth of the
+base graph gB and its second generalized Hamming distance
+d2 , and, hence, the lower bound (4) on the girth g, achievable
+by a proper labeling of B. From the point of maximizing the
+girth value g, choosing Pc = 1 is most suitable but is only
+
+(11)
+
+be an upper bound on the desired target free girth proﬁle with l
+(j)
+(j+1)
+entries, where g free > g free , n(j) < n(j+1) , j = 1, 2, . . . , l −
+(l)
+1, and n = c. Optionally, denote by M the desired tailbiting
+length.
+Algorithm GP: Determine a set of labels for a given base
+matrix B such that the corresponding inﬁnite Tanner graph
+has a good girth proﬁle Sg .
+1) Set i = 2, j = 1, n = 0, initialize W with a binary
+column vector of length c − b, and set all of its entries
+determined by pz to −1; and to 0 otherwise. Moreover,
+1
+let v be a column vector of length c − b and choose the
+maximum number of trials to be S.
+2) While the number of columns of W is less than c:
+(a) If n = 0, then j ← j + 1 and n ← n(j) .
+(j)
+(b) Set t ← g free , s ← 1, and u ← c − b − |pz |, where |·|
+i
+denotes the cardinality.
+(c) Set all entries in the vector v speciﬁed by the set pz to
+i
+−1. That is, v is a column vector with u unknowns.
+(d) Construct a system of girth inequalities for [W ; v]
+with target girth t using algorithm A or B from [7]
+
+3
+
+Pb
+
+Pb
+
+−3
+
+10
+
+10−3
+
+−4
+
+10
+
+10−4
+
+10−5
+
+10−5
+
+IEEE 802.16
+Irregular
+Irregular (good GP & BD)
+
+10−6
+10−7
+
+10−6
+
+(3, 6)-reg. STS
+
+10
+
+−9
+
+10−7
+
+(3, 6)-reg. STS (good GP)
+
+−8
+
+10−8
+
+(3, 6)-reg. AO (good GP)
+
+10
+
+10−9
+2.0
+
+(3, 6)-reg. AO (random)
+
+2.0
+
+2.5
+
+3.0
+
+3.5
+
+4.0
+
+4.5
+
+(3, 9)-reg. AO (good GP)
+(3, 9)-reg. AO (random)
+
+2.5
+
+3.0
+
+3.5
+
+4.0
+
+4.5
+
+5.0
+
+5.5
+
+SNR [dB]
+
+SNR [dB]
+Fig. 2.
+Fig. 1.
+
+IEEE 802.16 (A)
+IEEE 802.16 (B)
+IEEE 802.16 (A) (good GP)
+Irregular (good GP & BD)
+
+Bit error rate performance for R = 1/2 LDPC block codes.
+
+Bit error rate performance for R = 2/3 LDPC block codes.
+
+for rate R = 1/2
+Regular codes with all-one (AO) base matrices with good
+girth proﬁle (GP)
+• Regular codes with all-one (AO) base matrices and randomly chosen monomial entries
+The corresponding BER performance for those codes is given
+in Figs. 1– 4 using 60 BP decoding iterations. Generally, codes
+with a good girth proﬁle and/or good degree distribution yield
+an improved BER performance, typically around 0.5 − 1 dB
+for small and medium signal-to-noise (SNR) values. In the
+following, the inﬂuence of these parameters shall be discussed
+in more detail.
+
+containing u unknowns, where the tailbiting length
+M can be optionally taken into account.
+(e) Choose randomly these u unknowns.
+(f) If all inequalities are satisﬁed, let W ← [W ; v], set
+i ← i + 1, n ← n − 1, and go to step 2).
+(g) If s = S, then decrease t ← t − 2 (since the girth is
+even), set s ← 1, and go to step 2(d).
+(h) Otherwise, increase s ← s + 1 and go to step 2(e).
+The ﬁnal degree matrix W of size (c − b) × c speciﬁes a convolutional parity-check matrix H(D), whose inﬁnite Tanner
+graph has free girth t. Moreover, if the tailbiting length M has
+been taken into account in step 2(c), the corresponding Tanner
+graph, whose biadjacency matrix is obtained by tailbiting
+H(D) to length M , follows as g = t.
+
+•
+
+A. Monomial labels yielding a good girth proﬁle
+Comparing for example the two irregular QC LDPC block
+codes of R = 1/2 in Fig. 1 with identical degree distribution,
+free girth gfree and girth g, we see that QC LDPC block
+codes with a good girth proﬁle usually yield a better BER
+performance. Note, however, that our search for rate R = 2/3
+QC LDPC block codes with good girth proﬁles did not yield
+any code with an improved BER performance compared to the
+rate R = 2/3 IEEE 802.16 (A) code in Fig. 2, since the girth
+proﬁle for this code, after reordering its columns, is already
+λs = {14(11), 12(12), 10(18)}, and, hence, better than the best
+result that we have obtained from the GP algorithm for this
+code rate. However, when starting from a base matrix with a
+good degree distribution, and applying our GP algorithm, we
+were able to improve the BER performance for SNR values
+above > 4.0 dB.
+
+IV. S IMULATION R ESULTS AND C OMPARISONS
+In the following a small selection of regular and irregular
+QC LDPC block codes of rates 1/2, 2/3, 3/4, and 5/6, with
+block length n ≈ 576 shall be presented and compared with
+the corresponding LDPC block codes as deﬁned in the IEEE
+802.16 WiMAX standard [1]. The corresponding codes are
+given in Table I and Table II together with the free girth gfree
+of the inﬁnite Tanner graph, the girth g of the Tanner graph
+after tailbiting to length M , as well as their degree distribution
+λs and, if applicable, their girth proﬁle Sg in compact form.
+The corresponding degree matrices are omitted due to space
+restriction, but are available online at [10]. Note, that the girth
+proﬁle is only included if the GP algorithm has been applied,
+as it depends on the column order of the parity-check matrix
+H(D) and would otherwise lead to an improper comparison.
+In particular, the following QC LDPC block codes shall be
+compared: (The applied algorithms are given in parenthesis)
+• Irregular codes as deﬁned in the IEEE 802.16 standard
+• Irregular codes with identical degree distribution as
+above, but good girth proﬁle (GP) for rates R ≥ 3/4
+• Irregular codes with both good degree distribution [8] and
+good girth proﬁle (BD & GP) for rates R ≤ 2/3
+• Regular codes with base-matrices constructed from
+Steiner triple systems (STS) and good girth proﬁle (GP)
+
+B. Base matrices with a good degree distribution
+Determining a base matrix for a given target degree distribution λts and the numbers of overlapping positions Pc and Pr
+imposes a lot of restrictions on the entries of the base matrix,
+which often can be satisﬁed only for rather large matrices. For
+rate R = 1/2 LDPC block codes we were able to ﬁnd such
+an irregular base matrix of size 12 × 24 and potential girth 14.
+Its BER performance with random labelings as well as after
+improving its girth proﬁle is illustrated in Fig. 1, where the
+latter case yields the best BER performance for this rate and
+block length.
+
+4
+
+Pb
+
+Pb
+
+10−4
+
+10−3
+10−4
+
+10−5
+10−6
+10
+
+−7
+
+10−8
+
+10−5
+IEEE 802.16 (A)
+IEEE 802.16 (B)
+IEEE 802.16 (A) (good GP)
+
+10−6
+
+(3, 12)-reg. AO (good GP)
+
+(3, 18)-reg. AO (good GP)
+
+(3, 12)-reg. AO (random)
+
+3.0
+
+3.5
+
+(3, 18)-reg. AO (random)
+
+4.0
+
+4.5
+
+5.0
+
+3.5
+
+SNR [dB]
+Fig. 3.
+
+IEEE 802.16
+IEEE 802.16 (good GP)
+
+10−7
+
+4.0
+
+4.5
+
+5.0
+
+5.5
+
+6.0
+
+6.5
+
+SNR [dB]
+
+Bit error rate performance for R = 3/4 LDPC block codes.
+
+Fig. 4.
+
+Bit error rate performance for R = 5/6 LDPC block codes.
+
+improved by a factor of two for the best code, while it
+increased by a factor of two for the worst code.
+
+For rate R = 2/3 we were only able to determine a rather
+small irregular base matrix of size 4 × 12 with potential girth
+12, which yielded the best BER performance for high SNR
+values. For higher rates, we were so far unable to construct
+examples of base matrices for good degree distributions due
+to the additional restrictions imposed by the reduced row
+per column ratio of the corresponding parity-check matrices.
+However, using larger computational resources it should be
+possible to determine similar base matrices of larger sizes and
+for higher code rates.
+
+V. S UMMARY
+Two greedy algorithms for constructing base matrices with
+a given degree distribution and for ﬁnding monomial labels
+yielding a good girth proﬁle have been presented. Newly
+found QC LDPC block codes of rates between R = 1/2
+and R = 5/6 have been compared with the corresponding
+codes deﬁned in the IEEE 802.16 standard. QC LDPC block
+codes with a good girth proﬁle yielded signiﬁcantly better BER
+performances for the rates R = 1/2 and R = 5/6 compared
+to the IEEE 802.16 standard, while for the rates R = 2/3
+and R = 3/4, only moderate improvement, especially in the
+high SNR region, could be achieved. By starting from base
+matrices with a good degree distribution for rates R = 1/2
+and R = 2/3, these results have been further improved.
+
+C. Regular versus irregular
+While irregular LDPC block codes yield the best BER
+performance among all considered rates, the difference between short regular LDPC block codes with good girth proﬁle
+and the best irregular LDPC block codes is surprisingly
+small, in particular for higher rates. For example, the rate
+R = 5/6 (3, 18)-regular QC LDPC block code has a better
+BER performance than the irregular code deﬁned within IEEE
+802.16 with same rate and block length.
+Since (3, K)-regular LDPC block codes can be described
+by a small set of parameters, it should be possible to further
+improve such high-rate codes by combining an extensive
+search with a set of suitable rejection rules.
+
+ACKNOWLEDGEMENTS
+This research was supported in part by the Swedish Research Council under Grant 621-2010-5847.
+R EFERENCES
+[1] Air Interface for Fixed and Mobile Broadband Wireless Access Systems,
+IEEE P802.16e/D12 Draft, Oct. 2005.
+[2] Digital Video Broadcasting (DVB), European Telecommunications Standards Institute ETSI EN 302 307, Rev. 1.2.1, Aug. 2009.
+[3] Digital Video Broadcasting (DVB), European Telecommunications Standards Institute ETSI EN 302 755, Rev. 1.1.1, Jul. 2008.
+[4] R. M. Tanner, “A recursive approach to low-complexity codes,” IEEE
+Trans. Inf. Theory, vol. IT-27, no. 5, pp. 533–546, 1981.
+[5] M. E. O’Sullivan, “Algebraic construction of sparse matrices with large
+girth,” IEEE Trans. Inf. Theory, vol. 52, no. 2, pp. 718–727, Feb. 2006.
+[6] M. Esmaeili and M. Gholami, “Structured quasi-cyclic LDPC codes with
+girth 18 and column-weight J ≥ 3,” International Journal of Electronics
+and Communications (AEU), vol. 64, no. 3, pp. 202–217, Mar. 2010.
+[7] I. Bocharova, R. Johannesson, F. Hug, B. Kudryashov, and R. Satyukov,
+“Searching for voltage graph-based LDPC tailbiting codes with large
+girth,” IEEE Trans. Inf. Theory, vol. 58, no. 4, Apr. 2012.
+[8] T. J. Richardson, M. A. Shokrollahi, and R. L. Urbanke, “Design of
+capacity-approaching irregular low-density parity-check codes,” IEEE
+Trans. Inf. Theory, vol. 47, no. 2, pp. 619–637, Feb. 2001.
+[9] A. S. Asratian, T. M. J. Denley, and R. Haggkvist, Bipartite graphs
+and their applications. Cambridge, U.K: Cambridge University Press,
+1998.
+[10] QC LDPC block codes with good degree distribution and good girth
+proﬁle. [Online]. Available: http://www.eit.lth.se/goto/QC LDPC Codes
+
+D. Error ﬂoor
+In our simulations of the BER performance using BP
+decoding, we were so far unable to observe any error ﬂoor
+behavior for QC LDPC block codes with good girth proﬁle.
+E. Search complexity
+Determining suitable labels for a given base matrix is the
+most complex step in the presented algorithms. We used the
+algorithm as presented in [7] and generated between 103 and
+106 different labelings per column, taking in average between
+one and three hours per code. Among the ﬁnal set of QC LDPC
+block codes with good girth proﬁle, we randomly selected 10
+codes and based our ﬁnal decision on their SNR values which
+lead to a bit error probability around 10−5 .
+Typically the BER performances of all randomly chosen
+codes were very close to each other, where the BER was
+
+5
+
+

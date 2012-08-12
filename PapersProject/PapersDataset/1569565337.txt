@@ -1,0 +1,854 @@
+Title:          The_Jacobi_MIMO_Channel_ISIT.dvi
+Creator:        dvips(k) 5.991 Copyright 2011 Radical Eye Software
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Fri May 18 12:29:04 2012
+ModDate:        Tue Jun 19 12:56:14 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      343485 bytes
+Optimized:      no
+PDF version:    1.7
+ISIT'2012 1569565337
+
+The Jacobi MIMO Channel
+Ronen Dar∗ , Meir Feder† and Mark Shtaif‡
+School of Electrical Engineering
+Tel Aviv University
+Tel Aviv 69978, Israel
+Email: ∗ ronendar@post.tau.ac.il, † meir@eng.tau.ac.il, ‡ shtaif@tauex.tau.ac.il
+
+is highly scalable. Now, a signiﬁcant crosstalk between the
+optical paths raises the need for MIMO signal processing
+techniques. Unfortunately, for large size MIMO (large m) this
+is currently unfeasible in the optical rates. Assuming that faster
+computation will be available in the future and having in mind
+that replacing optical ﬁbers to support SDM is a long and
+expensive procedure, a long term design is sought after. To
+that end and more, it was proposed to design an optical system
+that can support relatively large number of paths for future use,
+but at start to address only some of the paths. In this scenario
+the channel can be modeled as a sub-matrix of a larger unitary
+matrix, i.e., the Jacobi MIMO model is applicable.
+This under-addressed channel is discussed in [7] where
+simulations of the capacities and outage probabilities were
+presented. In this paper we further analyze the channel in
+the ergodic and non-ergodic setting, where we provide analytical expression for the capacity, outage probability and
+the diversity-multiplexing tradeoff. It should be noted that in
+optical systems the outage probability is an important measure,
+required to be very low. Evidently, since the entire channel
+matrix is unitary, when all paths are addressed a zero outage
+probability can be attained for any transmission rate. An
+interesting result that comes out of this work is that there
+are situations where a partial number of pathes are addressed,
+yet a number of streams are guaranteed to experience zero
+outage. Thus, choosing the number of addressed paths and
+the corresponding rate is a very critical design element that
+highly reﬂects on the system outage and performance.
+While the motivation for this work comes from optical ﬁber
+communication, it should be noted that in other cases, such as
+in-line communication and even wireless communication, this
+model and the insights that follow from it can be relevant as
+well. For example, in wireless communication, it is plausible to
+imagine that if there were enough receive antennas capturing
+most, if not all, transmitted energy, the unitary assumption
+can be justiﬁed, and so with the smaller number of antennas
+the channel can be modeled as a sub-matrix of a large
+unitary matrix. Indeed, as will be shown, when m is large in
+comparison to mt , mr , the Jacobi model (up to a normalizing
+constant) approaches the Rayleigh model.
+The paper is organized as follows. We start by deﬁning
+the system model and presenting the channel statistics in
+Section II. An interesting transition threshold is revealed:
+when the number of addressed paths is large enough, so
+that k = mt + mr − m > 0, the statistics of the problem
+
+Abstract—In the Jacobi MIMO channel the transfer matrix
+H which couples the mt inputs into mr outputs is a sub-matrix
+of an m × m random (Haar-distributed) unitary matrix. The
+(squared) singular values of H follow the law of the classical
+Jacobi ensemble of random matrices; hence the name of the
+channel. A motivation to deﬁne such a channel comes from
+multimode/multicore optical ﬁber communication. It turns out
+that this model is qualitatively different than the Rayleigh model,
+leading to interesting practical and theoretical results. This work
+ﬁrst evaluates the ergodic capacity of the channel. In the nonergodic case, it analyzes the outage probability and the diversitymultiplexing tradeoff. In the case where k = mt + mr − m > 0
+at least k degrees of freedom are guaranteed not to fade for any
+channel realization enabling a zero outage probability or inﬁnite
+diversity order at the corresponding rates. Finally, we note that
+the Jacobi channel may provide a new fading model to other
+applications.
+
+I. I NTRODUCTION
+In Multi-Input Multi-Output (MIMO) channels a vector x of
+mt signals is transmitted, a vector y of mr signals is received,
+and an mr × mt random matrix H represents the coupling of
+the input into the output so that the received vector is y =
+Hx + z where z is a noise vector. In this paper we consider a
+channel matrix H which is a sub-matrix of a Haar-distributed
+unitary matrix, i.e., drawn uniformly from the ensemble of all
+m × m unitary matrices, m ≥ mt , mr .
+The three well-studied, classical random matrix ensembles are the Gaussian, Wishart and Jacobi (also known as
+MANOVA) ensembles [1], [2]. In fading wireless communication, the commonly used Rayleigh model assumes that the
+channel matrix H comes from the Gaussian ensemble [3]–
+[5]. In that case, H † H comes from the Wishart ensemble. For
+the model assumed in this paper, H † H follows the Jacobi
+ensemble. It turns out that this model is both practically
+useful and it is qualitatively different than the Rayleigh model,
+leading to interesting theoretical results.
+An important motivation to introduce such channels comes
+from recent developments in optical ﬁber communication. The
+expected capacity crunch in long haul optical ﬁbers [6] led to
+proposals for “space-division multiplexing” (SDM) [7], that
+is to have several links at the same ﬁber, by either multiple single-mode ﬁber strands within a ﬁber cable, multiple
+cores within a multi-core ﬁber, or multiple modes within
+a multi-mode waveguide. An SDM system with m parallel
+transmission paths per wavelength can potentially multiply
+the throughput of a certain link by a factor of m. Since
+m can potentially be chosen very large, SDM technology
+
+1
+
+where A is G(m, n).
+
+changes. Using this observation we give analytic expressions
+for the ergodic capacity in Section III. In Section IV we
+analyze the outage probabilities in the non-ergodic channel
+and show that for k > 0 a strictly zero outage probability
+is obtainable for k degrees of freedom. Section V discusses
+the diversity-multiplexing tradeoff of the channel where we
+show an absorbing difference in the maximum diversity gain
+between the Rayleigh fading and Jacobi channels. Section VI
+summarizes and discusses the results.
+Due to space limitation, all proofs are omitted. We refer the
+reader to [8] for further detail.
+
+Deﬁnition 3 (Jacobi ensemble). J (m1 , m2 , n), where
+m1 , m2 ≥ n, is n × n Hermitian matrix which can be
+constructed as A(A + B)−1 , where A and B are W(m1 , n)
+and W(m2 , n), respectively.
+The ﬁrst two ensembles relate to wireless communication
+[5]. We claim here that the third classical ensemble, the Jacobi
+ensemble, is relevant to this channel model by relating its
+eigenvalues to the singular values of H11 . To that end we quote
+the well-known [1] joint probability density function (PDF) of
+the ordered eigenvalues 0 ≤ λ1 ≤ . . . ≤ λn ≤ 1 of the Jacobi
+ensemble J (m1 , m2 , n)
+
+II. S YSTEM M ODEL AND C HANNEL S TATISTICS
+We consider a space-division multiplexing system that supports m spatial orthogonal propagation modes. Assuming a
+unitary coupling among all transmission modes the overall
+transfer matrix H can be described as an m × m unitary
+matrix, where each entry hij represents the complex path
+gain from transmitted mode i to received mode j. We further
+assume a uniformly distributed unitary coupling, i.e., H is
+drawn uniformly from the ensemble of all m × m unitary
+matrices (Haar distributed). Considering a communication
+system where mt ≤ m and mr ≤ m modes are being
+addressed by the transmitter and receiver, respectively, the
+effective transfer matrix is a truncated version of H. Under
+these conditions the channel can be described as
+√
+(1)
+y = ρ H11 x + z ,
+
+n
+
+−1
+f (λn ) = Km1 ,m2 ,n
+1
+i=1
+
+H11
+H21
+
+H12
+H22
+
+.
+
+i<j
+
+(λi − λj )2 ,
+
+(3)
+where Km1 ,m2 ,n is a normalizing constant. We say that n
+variables follow the law of the Jacobi ensemble J (m1 , m2 , n)
+if their joint PDF follows (3).
+We shall now present the explicit distribution of the channel’s singular values by distinguishing between the following
+two cases:
+A. The case of mt + mr ≤ m
+
+In [9] it was shown that for mt , mr satisfying the conditions mt ≤ mr and mt + mr ≤ m, the eigenvalues of
+H† H11 have the same distribution as the eigenvalues of the
+11
+Jacobi ensemble J (mr , m − mr , mt ). For mt , mr satisfying
+mt > mr and mt + mr ≤ m, since H† share the same
+distribution with H, the eigenvalues of H11 H† follow the law
+11
+of the Jacobi ensemble J (mt , m − mt , mr ). Thus we can say
+that the squared non-zero singular values of H11 share the
+same distribution with the eigenvalues of the Jacobi ensemble
+J (mmax , m − mmax , mmin ), where and throughout this paper
+we denote mmax = max{mt , mr } and mmin = min{mt , mr }..
+
+where the vector x containing mt complex components, represents the transmitted signal, the vector y containing mr
+complex components, represents the received signal, and z
+accounts for the presence of additive Gaussian noise. The
+mr components of z are statistically independent, circularly
+symmetric complex zero-mean Gaussian variables of unit
+energy E(|zj |2 ) = 1. The components of x are constrained
+such that the average energy of each component is equal to 1,
+i.e., E(|xj |2 ) = 1 for all j 1 . The term ρ ≥ 0 is proportional
+to the power per excited mode so that it equals to the signalto-noise ratio in the single mode case (m = 1). The matrix
+H11 is a block of size mr × mt within the m × m random
+unitary matrix H
+H=
+
+λm1 −n (1 − λi )m2 −n
+i
+
+B. The case of mt + mr > m
+The following Lemma provides the joint PDF of the singular
+values of H11 for cases in which mt , mr satisfy mt +mr > m.
+Lemma 1. Suppose H is an m × m Haar distributed unitary
+matrix, divided into blocks as in (2), where H11 is an mr ×mt
+block with mt + mr > m. Then mt + mr − m eigenvalues
+of H† H11 are 1, mt − mmin are 0 and m − mmax equal the
+11
+non-zeros eigenvalues of H† H22 , thereby follow the law of
+22
+the Jacobi ensemble J (m − mmin , mmin , m − mmax ).
+
+(2)
+
+As a ﬁrst stage in our analysis we establish the relation
+between the transfer matrix H11 and the Jacobi ensemble of
+random matrices [1], [2]. Limiting our discussion to complex
+matrices we state the following deﬁnitions:
+
+III. E RGODIC C HANNEL
+
+Deﬁnition 1 (Gaussian ensemble). G(m, n) is m × n matrix
+of i.i.d complex entries distributed as CN (0, 1).
+
+In the ergodic scenario the transmitted signal is assumed
+to sample the entire channel statistics. In this case the mutual
+information between the input and output of the channel is
+averaged with respect to all channel matrix realizations. Since
+we assume that the channel realization at each symbol time
+is known only at the receiver end, it can be shown [8] that
+an input vector of circularly symmetric zero-mean Gaussian
+
+Deﬁnition 2 (Wishart ensemble). W(m, n), where m ≥ n, is
+n × n Hermitian matrix which can be constructed as A† A,
+1 The constant per-mode power constraint, as opposed to the constant total
+power constraint often used in wireless communication, is motivated by the
+optical ﬁber nonlinearity limitation.
+
+2
+
+Theorem 2. The ergodic capacity of the channel deﬁned in
+(1), with mt , mr satisfying mt + mr > m, satisﬁes
+
+4.5
+4x4
+
+Normalized Ergodic Capacity
+
+4
+3.5
+3
+2.5
+
+C(mt , mr , m; ρ) = (mt +mr − m)C(1, 1, 1; ρ)+
++ C(m − mr , m − mt , m; ρ) ,
+
+3x4
+3x3
+
+where C(1, 1, 1; ρ) is the SISO channel capacity C(1, 1, 1; ρ) =
+log(1 + ρ).
+
+2x4
+
+2
+
+2x3
+
+1.5
+
+2x2
+1x4
+1x3
+1x2
+1x1
+
+1
+0.5
+0
+0
+
+10
+
+20
+
+ρ [dB]
+
+30
+
+40
+
+Note that C(m − mr , m − mt , m; ρ) is given by Theorem 1
+and that the second term on the right-hand-side of (7) reduces
+to 0 when mt , or mr is equal to m. The form of Eq. (7)
+follows from the fact that k = mt + mr − m of the singular
+values are equal to unity, while the remaining singular values
+correspond to the Jacobi ensemble; hence the ergodic capacity
+is always at least k log(1+ρ). In Fig. 1 we present the ergodic
+capacity as a function of ρ for m = 4.
+
+50
+
+Fig. 1. The ergodic capacity normalized by C(1, 1, 1; ρ) = log(1 + ρ) vs.
+ρ for m = 4 and various combinations of mt × mr . Note that by applying
+a constant per-mode power constraint the ergodic capacity is symmetric in
+mt , mr .
+
+IV. N ON -E RGODIC C HANNEL
+
+components with covariance matrix Imt maximizes the mutual
+information; thereby the ergodic capacity is
+C(mt , mr , m; ρ) = E[log det(Imt + ρH† H11 )] ,
+11
+
+In the non-ergodic scenario the channel matrix is drawn
+randomly but rather assumed to be constant within the entire
+transmission period of each code-frame. The ﬁgure of merit
+in the non-ergodic case is the outage probability deﬁned as
+the probability that the mutual information induced by the
+channel realization is lower than the rate R at which the link
+is chosen to operate. Note that we assume that the channel
+instantiation is unknown to the transmitter, thus it can not
+adapt the transmission rate. However, the channel is assumed
+to be known at the receiver. By taking an input vector of
+circularly symmetric complex zero-mean Gaussian variables
+with covariance matrix Q the mutual information is maximized
+and the outage probability can be expressed as
+
+(4)
+
+where Imt is the identity mt × mt matrix.
+A. The case of mt + mr ≤ m
+The following theorem gives an analytical expression to
+the ergodic capacity for the case where mt + mr ≤ m.
+Using the joint PDF of the eigenvalues of the Jacobi ensemble
+J (mmax , m − mmax , mmin ) we associate the channel capacity
+with the Jacobi polynomials [10, 8.96].
+Theorem 1. The ergodic capacity of the channel deﬁned in
+(1), with mt , mr satisfying mt + mr ≤ m, reads
+
+¯
+Pout (mt , mr , m; R) =
+
+1
+
+C(mt , mr , m; ρ) =
+0
+
+λα (1 − λ)β log(1 + λρ)×
+
+=
+
+mmin −1
+
+×
+(α,β)
+
+where Pk
+(α,β)
+
+Pk
+
+(α,β)
+
+b−1 [Pk
+k,α,β
+k=0
+
+(1 − 2λ)]2 dλ
+
+(−1)k
+(1
+2k k!
+
+dk
+(1 − x)k+α (1 + x)k+β ,
+dxk
+are given by
+
+the coefﬁcients bk,α,β
+bk,α,β =
+
+1
+2k + α + β
+2k + α + β + 1
+k
+
+2k + α + β
+k+α
+
+P r log det(Imr + ρH11 QH† ) < R ,
+11
+(8)
+
+where the minimization is over all covariance matrices Q
+satisfying the power constraint. The optimal choice of Q may
+depend on R and ρ and in general is unknown, even for the
+Rayleigh fading channel. Nevertheless, it can be shown that
+when ρ ≫ 1, the identity matrix Imt is approximately the
+optimal Q. In the following we make the simpliﬁed assumption
+that the transmitted covariance matrix is the commonly used
+choice Q = Imt . We denote the outage probability in this case
+by Pout (mt , mr , m; R).
+Now, let the transmission rate be R = r log(1 + ρ)
+(bits/symbols) and let λ = {λmmin } be the ordered non-zeros
+1
+eigenvalues of H† H11 . We can write
+11
+
+− x)−α (1 + x)−β ×
+
+×
+
+inf
+
+Q: Q 0
+Qii ≤1 ∀ i=1,...,mt
+
+(5)
+
+(x) are the Jacobi polynomials
+
+(x) =
+
+(7)
+
+(6)
+
+−1
+
+,
+
+and α = |mr − mt |, β = m − mt − mr .
+
+Pout (mt , mr , m; r log(1 + ρ)) =
+= P r log det(Imt + ρH† H11 ) < R
+11
+
+B. The case of mt + mr > m
+
+(9)
+
+mmin
+
+Applying Lemma 1 to the channel capacity given by (4)
+readily results in the following theorem.
+
+(1 + ρλi ) < (1 + ρ)r .
+
+= Pr
+i=1
+
+3
+
+(10)
+
+show an exemplary calculation of the outage probability. These
+curves, obtained from our analysis were plotted in the same
+form as the numerical results reported in [7]. Note how the
+outage probability abruptly drops to 0 whenever r becomes
+smaller than mt + mr − m.
+
+0
+
+10
+
+1x1
+
+Outage Probability
+
+−2
+
+10
+
+2x2
+
+1x2
+
+2x3
+
+1x3
+
+3x3
+
+2x4
+
+1x4
+
+3x4
+
+4x4
+
+V. D IVERSITY M ULTIPLEXING T RADEOFF
+
+−4
+
+10
+
+Using multiple modes/antennas is an important mean to
+improve performance in optical/wireless systems. The performance can be improved by increasing the transmission rate
+or by reducing the error probability. A coding scheme can
+achieve both performance gains, however there is a fundamental tradeoff between how much each can get. This tradeoff
+is known as the diversity-multiplexing tradeoff (DMT). The
+optimal tradeoff for the Rayleigh fading channel was found in
+[11]. In this section we seek to ﬁnd the optimal tradeoff for
+the Jacobi channel.
+We start by formalizing the concepts of diversity gain and
+multiplexing gain. To that end we quote some deﬁnitions from
+[11] 2 .
+
+−6
+
+10
+
+0
+
+1
+
+2
+r=R/log(1+ρ)
+
+3
+
+4
+
+Fig. 2.
+Outage probability vs. r, the normalized rate, for ρ =
+20dB, m = 4 and various combinations of mt × mr . Note that
+by applying a constant per-mode power constraint the outage probability
+Pout (mt , mr , m; r log(1 + ρ)) is symmetric in mt , mr .
+
+A. The case of mt + mr ≤ m
+
+Using (3) we can apply the joint PDF of λ into (10) to get
+
+Deﬁnition 4. Let a scheme be a family of codes C(ρ) of
+block length l, one at each ρ level. Let R(ρ) (bits/symbols) be
+the rate of the code C(ρ). A scheme C(ρ) is said to achieve
+spatial multiplexing gain r and diversity gain d if the data
+rate satisﬁes
+R(ρ)
+lim
+=r
+ρ→∞ log ρ
+
+Pout (mt , mr , m; r log(1 + ρ)) =
+mmin
+−1
+= Kmt ,mr ,m
+
+|mr −mt |
+
+B i=1
+
+λi
+
+×
+
+i<j
+
+(1 − λi )m−mr −mt ×
+
+(λi − λj )2 dλ ,
+
+(11)
+
+where Kmt ,mr ,m is a normalizing factor and B describes the
+outage event
+
+end the average error probability satisﬁes
+lim
+
+mmin
+
+B=
+
+(1 + ρλi ) < (1 + ρ)r
+
+λ:
+
+ρ→∞
+
+.
+
+For each r, deﬁne d∗ (r) to be the supremum of the diversity
+advantage achieved over all schemes.
+
+i=1
+
+This gives an analytical expression to the outage probability
+and is further exempliﬁed in Fig. 2.
+
+A. The case of mt + mr ≤ m
+
+Theorem 4. Suppose l ≥ mt +mr −1. The optimal DMT curve
+d∗ (r) for the channel deﬁned in (1), with mt , mr satisfying
+mt + mr ≤ m, is given by the piecewise linear function that
+connects the points (k, d∗ (k)) for k = 0, 1, · · · , mmin , where
+
+B. The case of mt + mr > m
+Applying Lemma 1 into (10) results the following.
+Theorem 3. The outage probability of the channel deﬁned in
+(1), with mt , mr satisfying mt + mr > m satisﬁes
+P out (mt , mr , m; r log(1 + ρ)) =
+= Pout (m − mr , m − mt , m; r log(1 + ρ)) ,
+˜
+
+Pe (ρ)
+= −d .
+log ρ
+
+d∗ (k) = (mt − k)(mr − k) .
+
+(13)
+
+We refer the reader to [8] for further discussion about the
+optimal DMT curve for l < mt + mr − 1.
+Theorem 4 suggests that for mt + mr ≤ m, the optimal
+DMT curve does not depend on m. Note that m relates to the
+extent in which the elements of H11 are mutually independent
+– the dependency is smaller as m is larger. Thus, at high SNR
+(ρ ≫ 1) and for mt + mr ≤ m, the impact of the correlation
+between the path gains on the error probability is negligible
+and the decaying order of the error probability behaves as in
+the Rayleigh channel (where the path gains are independent).
+
+(12)
+
+where r is the larger between r − (mt + mr − m) and 0.
+˜
+Note that the right-hand-side drops to 0, when mr , or
+mt equals m. Most importantly, when r < mt + mr − m,
+r = 0, implying that for such rates zero outage probability
+˜
+is achievable. A practical scheme for achieving zero outage
+under these conditions is proposed and discussed in [8]. In
+addition, when r ≥ mt + mr − m > 0, Eq. (12) implies
+that the outage probability is identical to that of a channel
+with m − mr modes addressed by the transmitter and m − mt
+modes addressed by the receiver, which is designed to support
+a transmission rate equivalent to r single-mode channels. Thus
+˜
+the right-hand-side of (12) applies to Eq. (11). In Fig. 2 we
+
+2 Note that in [11] the deﬁnitions in 4 were made with respect to the
+average signal-to-noise ratio at each receive mode, denoted ρ. However, since
+˜
+ρ = ρE[ tr(H11 QH† )]/mr , where Q is the transmitted covariance matrix,
+˜
+11
+we can write limρ→∞ log ρ = limρ→∞ log ρ . Hence the deﬁnitions in 4
+˜
+˜
+coincide with those in [11].
+
+4
+
+4
+
+4
+
+3.5
+
+3.5
+
+3.5
+
+3
+
+3
+
+2.5
+2
+1.5
+1
+0.5
+0
+0
+
+2.5
+2
+1.5
+1
+0.5
+
+0.5
+
+1
+1.5
+Spatial Multiplexing (r)
+
+Fig. 3.
+
+2
+
+0
+0
+
+m=2
+
+2.5
+2
+1.5
+1
+0.5
+
+0.5
+1
+1.5
+Spatial Multiplexing (r)
+
+2
+
+0
+0
+
+0.5
+
+1
+1.5
+Spatial Multiplexing (r)
+
+2
+
+Optimal DMT curve, d∗ (r), for mt = mr = 2 and l ≥ 3, for various numbers of supported modes, m.
+
+B. The case of mt + mr > m
+
+as the number of orthogonal propagation paths in space,
+whereas mt and mr are the number of addressed paths at the
+transmitter and receiver, respectively. For ﬁxed mt , mr , the
+parameter m may be deﬁned as the “independence measure”
+of the channel. For example, when mt = mr = m the
+transfer matrix H11 is unitary, all propagations paths are
+orthogonal and H11 ’s elements are highly dependent. As m
+is larger, the orthogonality of the columns and rows of H11
+fades and the dependency between the path gains becomes
+weaker. Indeed, in [8] we show that as m increases, the Jacobi
+channel approaches to a Rayleigh channel in terms of the
+singular values statistics. Thus, the Jacobi model introduces
+new concepts in MIMO channel modeling, providing a degree
+of freedom to scale the MIMO model from a unitary channel
+up to a Rayleigh channel.
+
+According to Theorem 3 a zero outage probability is achievable for rates below (mt + mr − m) log(1 + ρ). Hence, for
+any (mt + mr − m) > δ > 0 there is a scheme C(ρ)
+where the rate of each code is (mt + mr − m − δ) log(1 + ρ)
+that achieve zero outage probability, thereby an exponentially
+decaying error probability. In this case the discussion about
+diversity is no longer of relevance. Nonetheless, one can think
+of the gain as inﬁnite. This reveals an interesting difference
+between the Jacobi and Rayleigh channels - the maximum
+diversity gain is “unbounded” as opposed to mr mt in the later
+case.
+Theorem 5. The optimal diversity multiplexing tradeoff curve
+d∗ (r) for the channel deﬁned in (1), with mt , mr satisfying
+mt + mr ≤ m, is given by
+d∗ (r) =
+
+3
+
+m=3
+
+Diversity Gain (d)
+
+m≥4
+
+Diversity Gain (d)
+
+Diversity Gain (d)
+
+4
+
+d∗
+risdual (r − (mt + mr − m))
+∞
+
+VII. ACKNOWLEDGEMENTS
+We gratefully acknowledge Amir Dembo for discussions on
+Lemma 1.
+
+, r ≥ mt + mr − m
+, r < mt + mr − m
+(14)
+
+. d∗
+risdual (r) is the optimal curve for a channel with m − mr
+
+R EFERENCES
+
+transmit and m − mt receive modes.
+
+[1] R. J. Muirhead, Aspects of Multivariate Statistical Theory. New York:
+Wiley, 1982.
+[2] A. Edelman and N. R. Rao, “Random matrix theory,” Acta Numerica,
+vol. 14, pp. 233–297, 2005.
+[3] G. J. Foschini, “Layered space-time architecture for wireless communication in a fading environment when using multi-element antennas,”
+Bell Labs Technical Journal, vol. 1, no. 2, pp. 41–59, 1996.
+[4] I. E. Telatar, “Capacity of multi-antenna gaussian channels,” European
+Transactions on Telecommunications, vol. 10, pp. 585–595, 1999.
+[5] A. M. Tulino and S. Verd´ , “Random matrix theory and wireless
+u
+communications,” Commun. Inf. Theory, vol. 1, pp. 1–182, June 2004.
+[6] A. R. Chraplyvy, “The coming capacity crunch,” European Conference
+on Optical Communication (ECOC), plenary talk, 2009.
+[7] P. J. Winzer and G. J. Foschini, “Mimo capacities and outage probabilities in spatially multiplexed optical transport systems.” Optics Express,
+vol. 19, no. 17, pp. 16 680–96, 2011.
+[8] R. Dar, M. Feder, and M. Shtaif, “The jacobi mimo channel,” Available
+on arxiv.org.
+[9] A. Edelman and B. D. Sutton, “The beta-jacobi matrix model, the cs
+decomposition, and generalized singular value problems,” Foundations
+of Computational Mathematics, vol. 8, no. 1, pp. 259–285, 2008.
+[10] I. S. Gradshteyn and I. M. Ryzhik, Table of Integrals, Series, and
+Products, A. Jeffrey and D. Zwillinger, Eds. Academic Press, 2007,
+vol. 48.
+[11] L. Zheng and D. N. C. Tse, “Diversity and multiplexing: A fundamental
+tradeoff in multiple antenna channels,” IEEE Trans. Inform. Theory,
+vol. 49, pp. 1073–1096, 2002.
+
+Note that d∗
+risdual (r) is given by Theorem 4 for any block
+length l satisfying l ≥ mt + mr − 1. In Fig. 3 we show the
+optimal DMT curves for mt = mr = 2.
+VI. D ISCUSSION
+The Jacobi MIMO channel is deﬁned by the transfer matrix
+H11 , a truncated mr × mt portion of an m × m Haar
+distributed unitary matrix. By establishing the relation between
+the channel’s singular values and the Jacobi ensemble of
+random matrices we derived the ergodic capacity, outage
+probability and optimal diversity-multiplexing tradeoff. An
+interesting phenomenon is observed when mt + mr > m: for
+any realization of H11 , mt +mr −m singular values are 1. This
+results in an ergodic capacity which is at least mt + mr − m
+times the SISO capacity. In the non-ergodic scenario this
+results a promise for strictly zero outage probability and an
+exponentially decaying error probability (“inﬁnite diversity”)
+for any transmission rate below (mt + mr − m) log(1 + ρ).
+The results here provide conceptual insights on MIMO
+channels. The size of the unitary matrix, m, can be viewed
+
+5
+
+

@@ -1,0 +1,780 @@
+Title:          greedy_energy_isit2.dvi
+Creator:        dvips(k) 5.991 Copyright 2011 Radical Eye Software
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Fri May 18 22:21:50 2012
+ModDate:        Tue Jun 19 12:54:40 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      305412 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569566975
+
+Energy Efﬁcient Greedy Link Scheduling and
+Power Control in wireless networks
+∗ Arun
+
+Sridharan, † Changhee Joo, and ∗ C. Emre Koksal
+† School of Electrical and Computer Engineering
+of Electrical and Computer Engineering
+The Ohio State University
+Ulsan National Institute of Science and Technology
+Columbus, Ohio 43210
+Ulsan, South Korea 330-708
+{sridhara,koksal}@ece.osu.edu
+cjoo@unist.ac.kr
+
+∗ Department
+
+transmission power are imposed, a link scheduler could end
+up expending more average power than necessary, even when
+the arrival rate is admissible, as seen from the following
+example: Consider the case of transmission over a single
+link where one is allowed to either transmit 2 packets in
+a time slot by expending 2 units of power, or 1 packet in
+a time slot by expending 0.75 units of power. Suppose the
+arrival process is such that two packets arrive at the start
+of every odd numbered time slot. The link scheduler would
+cause the link to transmit whenever there are packets in the
+queue, i.e., every other time slot, consequently requiring an
+average power of 1 unit. If the average power constraint
+was less than one units, the link scheduler would be unable
+to meet the power constraint, whereas by transmitting one
+packet in each time slot one would consume a lesser average
+power of 0.75 units and yet guarantee the same throughput.
+The same limitations of the link scheduler carries over to
+the scenario in which multiple interfering links are present.
+Thus, link scheduling needs to be combined with an effective
+power control strategy in order to ensure that the largest set
+of admissible arrival rates can be stabilized while meeting
+average energy requirements. The optimal link scheduling and
+power control policy, proposed in [3] however, suffers from
+high computation complexity, which is also one of the main
+challenges in optimal link scheduling. It is thus natural to ask
+if one can design low-complexity link scheduling and power
+control policies, motivated by the study of low-complexity
+link schedulers. In this context, our contribution is that we
+extend the scope of greedy schedulers such as Longest-QueueFirst and Greedy Maximal Scheduling [10] to handle energy
+constraints in wireless networks. Our link scheduling and
+power control policy, GECS, is based on properties of both
+greedy schedulers as well as optimal schedulers. Interestingly,
+we are able to characterize the performance of GECS in terms
+of the LPF of a network graph, a parameter that has been used
+to characterize the performance of GMS in wireless networks.
+Previous studies have focused on energy efﬁciency in a
+particular aspect of network control, (e.g., Energy efﬁcient
+routing, or energy efﬁcient MAC protocols) as well as over
+control decisions spread across the network layers; For instance, [1] and [2] consider the problem of joint routing,
+scheduling and power control in wireless networks. In [1],
+the authors develop a power control and link scheduling policy
+
+Abstract—We consider the problem of joint link scheduling and
+power control for wireless networks with average transmission
+power constraints. Due to the high computational complexity
+of the optimal policies, we extend the class of greedy link
+scheduling policies to handle average power constraints. We
+develop a greedy link scheduling and power control scheme
+GECS, with provable performance guarantees. We show that the
+performance of our greedy scheduler can be characterized using
+the Local Pooling Factor (LPF) of a network graph, which has
+been previously used to characterize the stability of the Greedy
+Maximal Scheduling (GMS) policy for wireless networks. We
+also simulate the performance of GECS on wireless network,
+and compare its performance to another candidate greedy link
+scheduling and power control policy.
+
+I. I NTRODUCTION
+Energy efﬁcient networking principles have received signiﬁcant attention in the recent past. Network devices are often provisioned with multiple transmit power levels, but are limited by
+peak as well as average energy constraints. These constraints
+are determined by factors such as ampliﬁer characteristics,
+energy costs and battery limitations. Consequently, one needs
+efﬁcient control strategies aimed at achieving different performance objectives such as maximizing network lifetime, or
+maximizing network throughput while satisfying the energy
+constraints for the network. Conversely, in many scenarios, one
+wants to guarantee a certain network throughput region, while
+minimizing long term average energy expended to sustain any
+admissible arrival rate. In this paper, we consider the problem
+of link scheduling over a wireless network in the presence of
+average energy constraints. Owing to the high computational
+complexity of the optimal policy, we propose low complexity
+energy efﬁcient link scheduling and power control policies.
+We exploit the property of Longest Queue First (LQF)-based
+algorithms to develop a low-complexity greedy power control
+and scheduling scheme (GECS) for wireless networks under
+binary interference models. We then analyze its performance
+in wireless networks and show that their performance can be
+characterized using the LPF Of a wireless network. We thus
+show that the LPF can be used to characterize the performance
+of cross-layer schemes, spanning multiple layers.
+A link scheduler selects a non-interfering subset of links in
+a wireless network to schedule at every instance. A throughput optimal link scheduler is one that keeps the queues in
+the network stable for the largest set of admissible arrival
+rates for that network. However, when constraints on average
+
+1
+
+that minimizes total average power, while satisfying minimum
+rate constraints over each link. The optimal policy has high
+computational complexity, exponential in general. The model
+moreover does not consider the stochasticity of arrivals and
+dynamic queue control. In [2], the authors provide a low
+complexity approximation algorithm to solve the joint routing,
+scheduling and power control problem in wireless networks
+under a node-exclusive interference model.
+While the above network optimization problems assume
+that the long term average rate constraints are known, this is
+not true in general. Stochastic network optimization considers
+the problem of dynamic queue control in the presence of
+unknown arrival rates in order to optimize some quantity such
+as total average expended power. Stochastic network optimization problems have been addressed using stochastic gradient
+techniques ([4], [6]) or Lyapunov optimization techniques [3].
+In [3], a Lyapunov drift based optimization technique was
+used to obtain asymptotically optimal policies that minimized
+the total average power for any arrival rate feasible under
+the peak power constraints. Lyapunov based optimization has
+also been used in energy constrained scheduling, where the
+objective is to maximize the network throughput region (set of
+stabilizable arrival rates) subject to average energy constraints.
+Subsequently, such techniques have been used in dynamic
+channel acquisition and scheduling to minimize energy ([3],
+[5]) consumed for transmission as well as channel acquisition,
+or to maximize throughput when only limited channel information may be acquired by a link. In all these studies however, the
+optimal policy has high computational complexity motivating
+the study of low complexity algorithms with good performance
+guarantees. While low complexity approximation algorithms
+have been proposed in speciﬁc interference models [7], or
+for speciﬁc networks [6], ﬁnding a low complexity dynamic
+control algorithm with good performance guarantees remains
+largely unaddressed.
+In the context of link scheduling, the LQF policy, and
+its variant Greedy Maximal Scheduling (GMS) have been
+analyzed extensively as low-complexity scheduling policy
+for wireless networks. The performance of GMS has been
+characterized recently using the Local Pooling Factor, a graph
+theoretic parameter, and LPF has been studied for a large
+class of graphs and interference models [10], [15]. It is thus
+beneﬁcial to integrate power control with existing greedy link
+scheduling policies. In the next section, we describe the system
+model. We then describe and analyze the GECS policy in
+Sections II and III respectively.
+
+cmax
+1
+l2
+av
+C1
+
+Λ
+ΛP av
+
+l1
+
+av
+C2 cmax
+2
+av
+Figure 1: Stability region for a two link network graph. C1
+av
+and C2 represent the maximum admissible arrival rate for
+the two links. The stability region ΛP av is the region enclosed
+within dotted lines.
+
+from a convex rate-power curve represented by a function
+fl (cl ), where fl (cl ) is the power required to transmit at rate
+cl . The function fl (cl ) depends on the channel conditions
+of link l, which are assumed to be static for the wireless
+network. For example, in the case of an AWGN channel with a
+bandwidth W , noise spectral density N0 , and a power gain hl „
+cl
+0
+the power consumed for a rate cl is given by NhW 2 W −1
+l
+(Assuming Gaussian codewords with average power Pl ). The
+rates corresponding to the available transmit power levels are
+denoted by {c1 , c2 · · · cmax }.
+l
+l
+l
+We further assume that each link is also associated with an average power constraint Plav , so that
+T
+1
+lim supT →∞ T t=1 Pl (t) ≤ Plav . We assume that time is
+slotted so that Pl (t) is the power consumed during time slot
+t. Let Ql denote the queue of link l into which packets arrive
+at the beginning of every time slot. Packets arrive into queue
+Ql according to an I.I.D. process with ﬁnite mean λl .
+For a given vector of transmit powers P (t), let r, {rl =
+fl−1 (Pl )} denote the rate allocation vector achieved by using
+P (t) in time slot t. We deﬁne a rate allocation vector r as
+being feasible if it satisﬁes interference constraints, i.e., r(l) =
+0 ⇒ r(k) = 0, ∀k ∈ Il , k = l. Let R = {r | r is feasible} and
+P = {P | r deﬁned by rl = fl−1 (Pl ) is feasible} denote the
+set of all feasible rate allocation vectors and power allocation
+vectors for the network. A scheduling policy π : Q → P
+selects a feasible power allocation vector in each time slot t.
+Let P av denotes the vector of average power constraints for
+all links. The power constrained stability region ΛP av can be
+then deﬁned as [3], [16]:
+ΛP av = {λ | ∃ P (1), P (2), · · · such that
+(1)
+T
+
+T
+
+1
+1
+r(t) ≻ λ and P av
+lim
+P (t))},
+T →∞ T
+T →∞ T
+t=1
+t=1
+where ≻ and represent component wise inequalities. Fig. 1
+lim
+
+II. S YSTEM M ODEL
+We consider a wireless network represented by a network
+graph G = (V, E). For simplicity, we initially consider wireless
+networks with single-hop trafﬁc, so that each link l is a
+source-destination pair. We assume that link l is associated
+with interference set Il , so that if link l is active, then no
+other link in Il can be active. Every link l is associated
+with a peak transmit power constraint. We also assume that a
+transmitter can transmit using a discrete set of power levels
+{Pl1 , Pl2 · · · Plmax }. These discrete power levels are chosen
+
+shows ΛP av for a simple two link network graph with transmit
+power levels Pl = {0, Plmax } l = 1, 2 and average power
+constraints Plav < Plmax . Links l1 and l2 are in each other’s
+interference sets. Clav denotes the highest admissible arrival
+rate for link l. Note that when the available transmit power
+ˆ
+levels for each link l is increased to Pl = {0, Pl1 , Plmax } ⊃
+Pl , l = 1, 2, then the power constrained stability region
+increases as well, so that ΛP av ,P ⊆ ΛP av ,P . This follows from
+ˆ
+
+2
+
+l2
+the convexity of rate-power curve fl (cl ). When the average
+l3
+l1
+power constraint Plav is set to Plmax , then every link l could
+max
+always transmit at maximum power Pl
+when scheduled,
+and no power control would be necessary. Otherwise, when
+Plmax > P av , then a joint link scheduling and power control
+l4
+l6
+policy is required even when the link channel conditions are
+l5
+static. We are interested in a joint power control and link
+scheduling policy that stabilizes the queues in the network for
+Figure 2: Six-cycle network graph
+any arrival rate in ΛP av while satisfying the power constraints.
+In order to satisfy the average power constraints, we employ
+(2) Select the power level as:
+virtual power queues for each link, as ﬁrst proposed in [3].
+∗
+−1
+Pm ∈ argmaxPm ∈{Pm ,Pm ···Pm } Qm fm (Pm )−Um Pm .
+1
+2
+max
+Every link l keeps a virtual queue Ul that is used to track
+−1
+∗
+the excess power expended beyond the link’s power constraint (3a) The scheduler then sets r(m) = fm (Pm ), and r(k) = 0,
+for all k ∈ Im ∩ Z, with k = m.
+Plav . The departures from the virtual queue Ul follow an I.I.D.
+(3b) Update Z as Z ← Z/Im to remove interfering links.
+av
+process with mean Pl . The arrivals in each time slot represent
+the power expended during that slot. Let Pl (t) be the power (4) If Z = {∅}, then repeat step 1.
+In step 1 as well as step 3, the GECS policy breaks ties
+which link l transmits during time slot t, then Pl packets are
+randomly. Note that step 2 is only performed on links selected
+assumed to have arrived at the beginning of time slot t + 1.
+The dynamics of the real and virtual queues in each time slot in step 1, and does not increase the computational complexity
+of the greedy policy, which is O(|E| log|E|) considering a
+are then given by:
+av
++
+centralized implementation. The following example illustrates
+Ul (t + 1) = [Ul (t) − Pl (t)] + Pl (t), and
++
+the GECS policy on a 6-cycle network graph under the oneQl (t + 1) = [Ql (t) − Sl (t)] + Al (t).
+From Lemma 3 of [3], if the virtual queue Ul is stable, hop interference model.
+Example 1. Consider the six cycle graph shown in Fig. 2
+then the average power constraint is satisﬁed. An optimal with links l to l . Let the available transmit power levels for
+1
+6
+scheduling policy is one which can stabilize any λ ∈ ΛP av , link l be P ∈ 0, 1. Let the corresponding rates achieved by
+l
+while ensuring that the power constraints in each link are c ∈ {0, 1}. Suppose at time t, the Q(t) = [2 3 8 5 2 10], and
+l
+satisﬁed. An optimal scheduling strategy is given in [3] as: U (t) = [1 4 7 5 3 12 ]. Since link l has the highest weight
+6
+Q2 + Ul2 , GECS selects link l6 ﬁrst. However, in step 3, the
+l
+argmax
+(Ql (t)rl (P (t)) − Ul (t)Pl (t))
+(2) transmit power level that maximizes the weight of link l6 is
+Pl ,l∈E
+l∈E
+0. Thus l6 is not scheduled. The next highest weight belongs
+The computational complexity of the optimal policy is howto l3 and link l3 is added to the schedule. Under the one-hop
+ever, very high, formidably hard with most interference models
+interference model, links l2 and l4 are interfering links and
+[9]. Indeed, even under the binary interference model, eq. (2)
+can not be scheduled. The scheduler then deactivates link l5 ,
+describes a Max-weight policy as the solution maximizes
+and schedules link l1 . At the end of this procedure, the rate
+the sum of weights of each link in the selected transmisallocation vector is r = [1 0 1 0 0 0]. Note that GECS does
+sion power vector, where the weight of link l is given by
+not necessarily yield a schedule that is a maximal matching
+−1
+maxPl Ql f (Pl )−Ul Pl . The Max-weight scheduler is known
+on the graph G.
+to be NP-hard in many cases including K-hop interference
+The intuition behind the performance of the GECS schedmodels [9]. This motivates the need for a low complexity
+uler can be explained using the properties of the LQF and the
+power control and link scheduling policy with good perforoptimal policies. For any arrival rate inside ΛP av , the optimal
+mance guarantees.
+In the following section, we describe our link scheduling policy causes the drift of a quadratic Lyapunov function to
+and power control policy, the Greedy Energy Constrained be negative; LQF policy, on the other hand causes the set of
+longest queues to decrease in the ﬂuid limit if the local pooling
+Scheduler (GECS).
+conditions are satisﬁed [8]. Since GECS combines LQF (for
+III. G REEDY E NERGY C ONSTRAINED S CHEDULER
+link selection) and the optimal policy (for power control),
+(GECS)
+one expects GECS to cause the drift of a quadratic function
+The GECS scheduler exploits the properties of both LQF as to be negative whenever certain local pooling conditions are
+well as Maxweight policies in order to perform link scheduling satisﬁed. This indeed turns out to be the case, although local
+and power control. The GECS scheduler ﬁrst greedily selects pooling occurs in a manner different from [8]. Nevertheless,
+links, based on the queue weights Q2 + Ul2 . It then assigns the local pooling enables characterizing the performance of
+l
+power levels optimally to the selected link, by applying the GECS using the LPF. In the next section, we analyze the
+optimal power control strategy in (2) as if link l alone is active. performance of GECS and make these relations precise.
+This procedure continues until no more links remain to be
+IV. P ERFORMANCE C HARACTERIZATION
+selected. The GECS scheduler can be formally described as
+We analyze the performance of the GECS scheduler by
+follows: We ﬁrst initialize the set Z to E.
+characterizing its efﬁciency ratio. The efﬁciency ratio of GECS
+is deﬁned as the largest fraction of ΛP av , that can be stabilized
+(1) Select link m ← argmaxl∈Z {Q2 + Ul2 }.
+l
+
+3
+
+4
+
+6
+
+x 10
+
+GECS
+GMW
+
+argmaxl∈E {maxPl (Ql f −1 (Pl ) − Ul Pl )}. It then proceeds by
+removing interfering links and repeating this process until no
+other interfering links remain to be scheduled. Fig. 3 plots
+the total queue sizes as the offered load λl in each link is
+increased towards its maximum admissible arrival rate. The
+available transmit power levels for each link are assumed to be
+in the set {0, 1, 3, 7, 15} units. We assume the node exclusive
+interference model. The average power constraint for each link
+is set at 2.75. The corresponding rates are chosen by assuming
+an AWGN channel so that Cl = log(1 + Pl hl /N0 ) where the
+path loss hl is arbitrarily chosen for each link but ﬁxed over
+the scheduling time-frame. The highest admissible arrival rate
+for each link is given by [2 3.5 4.2 5.1 4.7 4]. Since the LPF of
+the network graph is 2/3, we expect GECS to simultaneously
+schedule one third the maximum admissible arrival rate on
+each link l (since by scheduling 3 of the 6 links at a time, half
+the maximum admissible arrival rate is admissible for every
+link) this is indeed seen to be the case. Although performance
+guarantees for the GMW policy have not been analyzed using
+the LPF as we did for GECS in the previous section, the plots
+show that GECS performs better than GMW at higher loads,
+and reduces the average sum queue size by 30-75%. This could
+be attributed to the fact that GMW only looks at the difference
+in queue weights and may be insensitive to links that have long
+queue lengths but with relatively low weight values.
+VI. CONCLUSION
+
+sum queue size
+
+5
+
+4
+
+3
+
+2
+
+1
+
+0
+
+0.8
+
+1
+
+1.2
+
+1.4
+
+1.6
+
+1.8
+
+2
+
+2.2
+
+λl
+Figure 3: The performance of GECS and GMW is plotted for
+the network graph in Fig. 2
+by GECS. We show that the efﬁciency ratio of GECS is can
+be related to the LPF of a network graph, which depends on
+the topology of the network and the interference model. The
+LPF can be deﬁned using the local pooling conditions which
+are given below [11]:
+Deﬁnition 2. Let L ⊂ E be any subgraph of G. Let sL , where
+sL (l) ∈ {0, 1}, ∀l ∈ L be any 1 × |L| link activation vector
+with the following properties: (i) sL satisﬁes interference
+constraints, and (ii) sL is maximal, i.e., ∃ no l ∈ L with
+sL (l) = 0 such that l satisﬁes interference constraints. Let
+ML be the set of all such link activation vectors sL . Then,
+L satisﬁes σ-local pooling if, for any given pair µ, ν, where µ
+and ν are convex combinations of elements in ML , we have
+σµ ν. The LPF σ ∗ , for the network is then deﬁned as:
+σ ∗ = sup {σ | ∀ L ⊂ G, L satisﬁes σ-local pooling} .
+
+In this paper, we addressed the problem of link scheduling
+and power control for wireless networks under average power
+constraints. Owing to the high computational complexity of
+the optimal policy, we extended the scope of greedy link
+schedulers to handle average power constraints for wireless
+networks under a binary interference model. We proposed
+a greedy link scheduling and power control scheme, GECS,
+and show that the efﬁciency ratio of GECS for any wireless
+network is lower bounded by the Local Pooling Factor (LPF)
+of the network graph. LPF has been previously used to
+characterize the performance of certain greedy schedulers,
+separately from the rest of the system. Here, we show that
+LPF can be used to characterize the performance of cross-layer
+schemes, spanning multiple layers. Some interesting future
+directions include analyzing the performance of GECS under
+fading channels, and under more general interference models.
+
+In Theorem 3, we show that the efﬁciency ratio of the
+GECS policy for a network graph G is lower bounded by
+the LPF σ ∗ of G.
+Theorem 3. Consider a network graph G with LPF σ ∗ . The
+GECS policy stabilizes any λ ∈ σ ∗ ΛPav .
+The proof is given in Appendix A. Although GECS is
+also in the spirit of the LQF policy, we use a Lyapunov
+function V (Q, U ) = maxl∈E Q2 + Ul2 , that is different from
+l
+the ones used for LQF and GMS in [8], [10]. The performance
+guarantees of GECS in terms of LPF is attractive as the LPF
+has been extensively studied in context of characterizing the
+performance of GMS in wireless networks [10], [11] and
+[14]. Indeed, [15],for instance identiﬁes all network graphs
+whose LPF is 1 under node-exclusive interference models.
+Here we show that the LPF can be used to characterize the
+performance of a joint power controller and scheduler, rather
+than only the scheduler. This is a step towards a complete
+performance characterization of cross-layer schemes with a
+single parameter.
+V. S IMULATIONS
+In this section we simulate the performance of GECS
+for the six-cycle graph in Fig. 2. For the same network
+graph, we also simulate the performance of another candidate
+greedy scheduler, which we call Greedy Max-weight (GMW).
+GMW is a greedy approximation of the optimal policy in
+(2) that gives priority to the link with the highest weight
+
+A PPENDIX A
+P ROOF OF T HEOREM 3
+Due to space considerations, we provide a sketch of the
+proof here and leave the detailed proof to the technical
+report[19] We ﬁrst provide the following Lemma that shows
+the existence of a stationary policy that keeps the queues
+stable.
+Lemma 1. For any arrival rate λ ∈ σ ∗ ΛP av , there is a
+stationary policy ΦS such that λl < σ ∗ µl (ΦS ), ∀l ∈ E, and
+Plav ≥ Pl (ΦS ), ∀l ∈ E.
+We prove Theorem 1 by identifying a Lyapunov function
+and showing that its drift is negative for the ﬂuid limit model
+of the system. Let Al (t) be the process representing the
+cumulative arrivals upto time t, and Sl (t) be the cumulative
+
+4
+
+service process for queue Ql . Similarly let Wl (t) and Y(t)
+be the cumulative arrival and service process for the virtual
+queue Ul (t). We deﬁne Gli (t) as the number of time slots
+upto time t that link l was served with power level Pli . Let
+Gl (t) be the number of time slots upto time t that link l was
+selected by GECS in step 1 of the description of the GECS
+policy given in section III. Consider the sequence of scaled
+1
+1
+1
+1
+1
+processes { n Al (nt), n Sl (nt), n Ql (nt), n Wl (nt), n Y(nt),
+1
+1
+1
+Ul (nt), n Gl (nt), n Gli (nt)}. Then, there exists a subsen
+quence xn such that x1 Al (xn t) → λl t, x1 Sl (xn t) → sl (t),
+n
+n
+1
+1
+1
+xn Ql (xn t) → ql (t), xn Wl (xn t) → wl (t), xn Yl (xn t) →
+1
+1
+av
+Pl t, xn Ul (xn t) → ul (t), xn Gl (xn t) → gl (t), and
+1
+xn Gli (xn t) → gli (t) w.p. 1. The ﬂuid limits are absolutely
+continuous, and satisfy:
+d
+ql (t) =
+dt
+
+[λl − µl (t)]+ , if ql (t) > 0;
+0
+o.w
+[wl (t) − Plav ]+ ,
+ˆ
+0
+
+The proof of Lemma 4 is given in [19]. Lemma 4 shows
+d 2
+that there exists a link l ∈ L(t) such that dt ql (t) + u2 (t) <
+l
+0. Considering the Lyapunov function V (q(t), u(t)), we have
+d
+1 d
+2
+2
+dt V (q(t), u(t)) ≤ maxl∈L(t) 2 dt (ql (t) + ul (t)) < 0. This
+establishes the negative drift of the Lyapunov function and
+hence the ﬂuid limit model of the system is stable. Then, the
+corresponding qeueuing sytem is also stable as a consequence
+of Theorem 4 [18].
+R EFERENCES
+[1] R. L. Cruz and A. Santhanam, “Optimal Routing, Link Scheduling , and
+Power Control in Multi-hop Wireless Networks", IEEE Infocom 2003.
+[2] R. Bhatia and M. S. Kodialam, “On Power Efﬁcient Communication
+over Multi-hop Wireless Networks: Joint Routing, Scheduling and Power
+Control", IEEE Infocom 2004.
+[3] M. J. Neely, “Energy optimal control for time-varying wireless networks", IEEE Transactions on Information Theory, July 2006.
+[4] A. L. Stolyar. 2005. Maximizing Queueing Network Utility Subject to
+Stability: Greedy Primal-Dual Algorithm. Queueing Syst. Theory Appl.
+50, 4 (August 2005), 401-457.
+[5] C. Li and M. J. Neely. 2010. Energy-Optimal Scheduling with Dynamic
+Channel Acquisition in Wireless Downlinks. IEEE Transactions on
+Mobile Computing 9, 4 (April 2010)
+[6] J. W. Lee, R. Majumdar, N. B. Shroff, “Downlink power allocation for
+multi-class wireless systems", IEEE/ACM Trans. Netw. 13(4): 854-867
+(2005)
+[7] L. Lin, X. Lin, and N. B. Shroff, “Low-complexity and distributed
+energy minimization in multihop wireless networks," IEEE/ACM Trans.
+Netw. 18, 2 April 2010,
+[8] A. Dimakis and J. Walrand, “Sufﬁcient conditions for stability of
+Longest-Queue-First scheduling: Second order properties using ﬂuid
+limits," Advances in Applied probability, vol. 38, no. 2, pp.505-521,
+2006.
+[9] G. Sharma, N. B. Shroff, and R. R. Mazumdar,“On the Complexity of
+Scheduling in Wireless Networks,"ACM MobiCom, September 2006.
+[10] C. Joo, X. Lin and Ness. B. Shroff,“Understanding the capacity region
+of the Greedy maximal scheduling algorithm in multihop wireless
+networks", IEEE/ACM Trans. Netw. 17, August 2009.
+[11] C. Joo, X. Lin and Ness. B. Shroff, “Greedy Maximal Matching:
+Performance Limits for Arbitrary Network Graphs Under the Nodeexclusive Interference Model” IEEE Transactions on Automatic Control,
+vol. 54, no. 12, pp. 2734–2744, Dec. 2009.
+[12] G. Zussman, A. Brzezinski, and E. Modiano, “Multihop Local Pooling
+for Distributed Throughput Maximization in Wireless Networks,” in
+IEEE INFOCOM, Apr. 2008.
+[13] M. Leconte, J. Ni, and R. Srikant, “Improved bounds on the throughput
+efﬁciency of greedy maximal scheduling in wireless networks," ACM
+MobiHoc 2009.
+[14] Bo Li, Chem Boyaci and Ye Xia, “A Reﬁned Performance Characterization of Longest-Queue-First Policy in Wireless Networks,”, Proceedings
+of ACM MobiHoc, 2009.
+[15] B. Birand, M. Chudnovsky, B. Ries, P. Seymour, G. Zussman, and Y.
+Zwols, “Analyzing the performance of greedy maximal scheduling via
+local pooling and graph theory." In Proc. INFOCOM’10.
+[16] L.Tassiulas, and A.Ephremides, “Stability properties of constrained
+queueing systems and scheduling policies for maximum throughput in
+multi-hop radio networks,” IEEE Transactions on Automatic Control,
+pages 1936-1948, December 1992.
+[17] J. G. Dai, “ On positive Harris Recurrence of Multiclass Queueing
+Networks: A Uniﬁed approach via Fluid Limit Models", Annals of
+Applied Probability, vol. 5, no. 1, pp. 49-77, 1995.
+[18] M. Andrews, K. Kumaran, K. Ramanan, A. Stolyar, R. Vijayakumar,
+P. Whiting, “ Scheduling in a Queueing System with Asynchronously
+Varying Service Rates", Probability in the Engineering and Informational
+Sciences, Volume 18, Issue 2, April 2004, pages 191 - 217.
+[19] A. Sridharan, C. Joo, and C. E. Koksal, “ Energy Efﬁcient Greedy Link
+Scheduling and Power Control in wireless networks", Technical Report,
+url=http://www.ece.osu.edu/∼sridhara/greedyschedulingreport.pdf
+
+(3)
+
+d
+ul (t) =
+dt
+
+following lemma is the ﬁnal step in establishing the negative
+drift of the Lyapunov function.
+Lemma 4. There exists a link ˜ ∈ L(t) such that q˜(t)µ˜(t) −
+l
+l
+l
+S
+S
+ˆl
+u˜(t)w˜(t) ≥ σ ∗ (q˜(t)µ˜ − u˜(t)w˜ ).
+ˆl
+l
+l
+l
+l
+
+(4)
+
+if ul (t) > 0,
+o.w .
+
+Cli [gli (t2 ) − gli (t1 )], if q(t) > 0; (5)
+
+sl (t2 ) − sl (t1 ) =
+i
+t
+
+Cli gli (t); if q(t) > 0;
+
+(6)
+
+Pli gli (t);
+
+µl (t) =
+0
+
+(7)
+
+i
+t
+
+wl (t) =
+ˆ
+0
+
+i
+
+gl (t2 ) − gl (t1 ) =
+
+gli (t2 ) − gli (t1 );
+
+(8)
+
+i
+
+gl (t) =
+˙
+
+gli (t);
+˙
+
+(9)
+
+i
+
+d
+Here, µl (t) = dt sl (t) is the service rate into queue ql , whereas
+d
+wl (t) = dt wl (t) is the arrival rate into queue ul . Let ML(t)
+ˆ
+be the set of link activation vectors on the set L(t), as given
+in Deﬁnition 2. We deﬁne the projection of a vector a on a
+set of edges L, denoted by a|L as Pa, where P is a |L| × |a|1
+matrix such that Pij = 1, if i = j and 0 otherwise.
+˙
+Lemma 2. Consider the vector g(t) = gl (t) , i.e., its lth
+˙
+˙
+element being gl (t). Then, g(t), when projected on the set L(t)
+˙
+is a convex combination of link activation vectors in ML(t) .
+
+Lemma 3. Under the GECS policy, for each link l, if there
+exist power levels i and j such that ql (t)Cli − ul (t)Pli >
+ql (t)Clj − ul (t)Plj , then glj (t) = 0.
+˙
+We now consider the Lyapunov function, V (q(t), u(t)) =
+1 2
+maxl∈E 2 (ql (t) + u2 (t)). Then, for any l ∈ L(t),
+l
+d 2
+(ql (t) + u2 (t))
+(10)
+l
+dt
+= ql (t)(λl − µl (t)) + ul (t)(wl (t) − Plav )
+ˆ
+(11)
+= ql (t)(λl − σ ∗ µS ) − ul (t)(Plav − wl ) + ql (t)σ ∗ µS
+ˆS
+l
+− ul (t)wl − [ql (t)µl (t) − ul (t)wl (t)]
+ˆS
+ˆ
+∗ S
+
+≤ ql (t)(λl − σ µ ) −
+∗
+
+ul (t)(Plav
+
+−
+
+wl )
+ˆS
+
++σ
+
+∗
+
+(12)
+
+ql (t)µS
+l
+
+ul (t)wl )
+ˆS
+
+−σ
+− [ql (t)µl (t) − ul (t)wl (t)]
+ˆ
+(13)
+By Lemma 1, we have λl −σ ∗ µS < 0 and Plav − wl ≤ 0. The
+ˆS
+
+5
+
+

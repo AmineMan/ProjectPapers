@@ -1,0 +1,939 @@
+Creator:         TeX output 2012.05.18:1821
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Fri May 18 18:22:01 2012
+ModDate:        Tue Jun 19 12:54:14 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      336274 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569566381
+
+Multiple Description Coding Based
+Compress-and-Forward for the Broadcast Relay
+Channel
+Seckin Anıl Yıldırım
+¸
+
+Melda Yuksel
+
+Department of Electrical and
+Electronics Engineering
+Hacettepe University
+Ankara, Turkey
+Email: seckin@ee.hacettepe.edu.tr
+
+Department of Electrical and
+Electronics Engineering
+TOBB University of Economics and Technology
+Ankara, Turkey
+Email: yuksel@etu.edu.tr
+
+K-receiver case in [8]. The capacity region of a degraded
+Gaussian BRC, for which DF is optimal, is established in
+[9]. Another DF relaying based achievable scheme, which
+improves upon [6] is found in [10]. Finally, an outer bound
+on the capacity region of BRC is derived by jointly exploiting
+the ideas of outer bounds on the broadcast channel and the
+cut-set bound in [11].
+As the above references suggest, all the achievability
+schemes for the BRC combine either superposition or Marton
+coding with DF relaying. However, DF relaying does not
+perform well, unless the relay can easily decode the source
+signal. In such cases, it is advantageous if the relay performs
+CF.
+Although there is not much attention in the BRC set-up,
+various types of CF relaying are used in other relay networks.
+The naive CF technique, which is a straightforward extension
+of simple CF [2], is used in the two-way relay channel
+setting in [12]. A successive reﬁnement based CF scheme
+is suggested for the two-way relay channel in [13]. The socalled generalized CF and nCF based achievability schemes
+are proposed for the interference relay channel in [14]. In
+[15], the authors extend the joint source-channel coding result
+of [16] to the multiple multicast single relay network. CF
+based achievable rates are also derived for simultaneous relay
+channels in [10]. In [17], noisy network coding is proposed
+for general multicast networks.
+None of the above results are directly applicable to the BRC,
+in which a single source node broadcasts a different message
+to each destination. In this work, we investigate CF based
+achievability schemes for the BRC. We ﬁrst study naive CF
+(nCF), in which the relay forms a single representation and
+uses Wyner-Ziv binning to send the compressed signal to both
+destinations. Secondly, we investigate joint CF (jCF). Similar
+to nCF, jCF generates a single compression, but avoids WynerZiv binning. Finally, we propose using multiple description
+coding based CF (mdCF) at the relay. Multiple description
+coding is a source coding technique, in which a source is
+encoded into multiple representations at different levels of
+
+Abstract—In this work, the broadcast relay channel (BRC)
+with one source, two destinations and a dedicated relay node
+is studied for both discrete memoryless and Gaussian channels.
+Unlike all the existing achievability schemes, which use decodeand-forward (DF) relaying for the BRC, the new achievability schemes are based on compress-and-forward (CF). Three
+different compression methods are proposed: naive, joint and
+multiple description coding based. In naive CF (nCF) and joint
+CF (jCF), the relay forms a single representation, conveying
+its observation to both destinations at a single quality level.
+On the other hand, in multiple description coding based CF
+(mdCF), the relay utilizes multiple description coding and forms
+two representations, which allows for the two destinations to
+receive the relay observation at different quality levels. Through
+Gaussian examples, it is observed that mdCF enlarges nCF and
+jCF rate regions. Moreover, mdCF is the only scheme, which
+can achieve both of the single user CF rates achievable in the
+constituent single user relay channels.
+
+I. I NTRODUCTION
+The idea of increasing achievable rates in point-to-point
+channels by relaying dates back to [1]. The capacity of some
+classes of relay channels was studied and decode-and-forward
+(DF) and compress-and-forward (CF) schemes were proposed
+in [2]. Another building block in multiuser networks is the
+broadcast channel [3]. The capacity region for degraded broadcast channels was established in [4] and superposition coding
+was proved to be the capacity achieving encoding scheme.
+Although superposition coding is optimal for degraded, less
+noisy or more capable broadcast channels, it is known to be
+suboptimal in general. Marton coding [5], on the other hand,
+gives the best known achievable rate region for the general
+broadcast channel.
+As in point-to-point channels, relaying can enable signiﬁcant gains in the rate region of broadcast channels. The
+broadcast relay channel (BRC), which models the transmission
+between one source and two destinations with the aid of a
+dedicated relay, is ﬁrst studied in [6]. In [6], the authors ﬁnd
+an achievable scheme using Marton coding and DF relaying.
+A superposition coding and DF relaying based achievability
+scheme is proposed in [7]. This result is extended to the
+
+1
+
+Y1
+
+M1,M2
+
+Yr
+
+X
+
+Deﬁnition 2: Assuming the transmitted message (M1 , M2 )
+is uniformly distributed over (M1 × M2 ), the average probability of error for a (2nR1 , 2nR2 , n) code is deﬁned as:
+{
+}
+∑
+1
+(n)
+ˆ
+ˆ
+Pr (M1 ̸= M1 ) ∪ (M2 ̸= M2 ) .
+Pe = n(R +R )
+2 1 2
+
+ˆ
+M1
+
+Xr
+
+(M1 ,M2 )
+
+Y2
+
+Fig. 1.
+
+The rate tuple (R1 , R2 ) is said to be achievable for
+the broadcast relay channel if there exists a sequence of
+(n)
+(2nR1 , 2nR2 , n) codes with Pe → 0 as n → ∞.
+
+ˆ
+M2
+
+The broadcast relay channel (BRC) with a dedicated relay.
+
+III. M AIN R ESULTS
+In this section, we propose ﬁve new achievable schemes
+for the BRC. In the ﬁrst and second schemes, the source
+respectively uses Marton coding and superposition coding. In
+both cases the relay does Wyner-Ziv binning on the single
+representation it forms, which is reconstructed at both destinations. We call this type of compression naive. In the third
+scheme called jCF, the relay adopts the source coding idea
+of [16] and does not perform any binning on the compressed
+signal. The source does superposition coding. In the fourth
+and ﬁfth schemes the source respectively employs Marton and
+superposition coding. In both cases the relay compresses its
+observation into two different representations using multiple
+description coding and forwards them to the destinations using
+superposition coding. In the following, we will omit all the
+proofs due to space limitations.
+Theorem 1: For the discrete memoryless BRC, the rate pair
+nCF
+nCF
+(R1 , R2 ) is achievable, where
+
+quality [18]. In mdCF scheme we suggest, unlike nCF or
+jCF, the relay constructs two descriptions of its observation instead of just one. The relay then uses superposition
+coding to convey these descriptions to the destinations. The
+source can broadcast its messages using either superposition
+or Marton coding. We compare our results with nCF and
+jCF techniques and show that the relay does not need to
+adjust the compression rate according to the worse relaydestination link, or the worse available side information at the
+destinations, but can send its observation at different quality
+levels to the destinations. In [13], an alternative solution is
+proposed from a successive reﬁnement coding perspective.
+However, in successive reﬁnement coding based approach,
+both destinations should reconstruct the coarser description,
+which leads to a different tradeoff between the ﬁdelity levels
+of two descriptions. In mdCF, we tailor each description to its
+own destination individually.
+The organization of the paper is as follows: Section II
+describes the system model for the BRC. Section III presents
+the new achievable rate regions, Section IV extends the
+achievability schemes to Gaussian channels and Section V
+concludes the paper.
+
+nCF
+ˆ
+R1
+≤ I(U1 ; Yr , Y1 |Xr )
+nCF
+ˆ
+R2
+≤ I(U2 ; Yr , Y2 |Xr )
+nCF
+R1
+
+=
+
+n
+∏
+
+(1b)
+ˆr , Y1 |Xr ) + I(U2 ; Yr , Y2 |Xr )
+ˆ
+≤ I(U1 ; Y
+
+− I(U1 ; U2 )
+
+II. S YSTEM M ODEL
+We consider a discrete memoryless broadcast relay channel
+(X × Xr , p(yr , y1 , y2 |x, xr ), Yr × Y1 × Y2 ), which consists of
+a transmitter with channel input x ∈ X , a dedicated relay with
+relay input xr ∈ Xr and relay output yr ∈ Yr , two receivers
+with channel outputs y1 ∈ Y1 and y2 ∈ Y2 , and a channel
+probability transition function p(yr , y1 , y2 |x, xr ). As the BRC
+is memoryless, the joint probability mass function
+n n n
+p(yr , y1 , y2 |xn , xn )
+r
+
++
+
+nCF
+R2
+
+(1a)
+
+(1c)
+
+subject to the constraint
+ˆ
+ˆ
+max{I(Yr ; Yr |Y2 , Xr ), I(Yr ; Yr |Y1 , Xr )}
+≤ min{I(Xr ; Y1 ), I(Xr ; Y2 )}
+
+(2)
+
+for some joint distribution of the form p(u1 , u2 )p(x|u1 , u2 )
+p(xr )p(yr , y1 , y2 |x, xr )p(ˆr |xr , yr ).
+y
+To achieve this rate pair, the source uses Marton coding, and
+the relay does naive CF. In naive CF, the relay compresses its
+observation in Wyner-Ziv fashion to form only one description.
+The maximization in (2) indicates that the compression rate
+must be adjusted to the worse side information, either y1 or
+y2 ; and the minimization in (2) implies that the compressed
+signal yr must be reliably decoded at both destinations. To
+ˆ
+enable cooperation among the source and the relay, a block
+Markov coding structure is used, and the encoding is carried
+over B blocks. Decoding is backwards at both destinations.
+In each block, the destinations ﬁrst decode the relay signal
+xr , treating the source signal x as noise. Then they obtain
+yr . Combining yr with yk , k = 1, 2, each destination decodes
+ˆ
+ˆ
+their respective messages M1 and M2 .
+
+p(yr,i , y1,i , y2,i |xi , xr,i ).
+
+i=1
+
+In the BRC, the source sends two private messages M1 and
+M2 to destinations 1 and 2, respectively as shown in Fig.1.
+Deﬁnition 1: A (2nR1 , 2nR2 , n) code for a BRC con{
+}
+sists of two }message sets M1 = 1, . . . , 2nR1 , M2 =
+{
+1, . . . , 2nR2 , a source encoder M1 × M2 → X n ,
+which assigns a codeword x(M1 , M2 ) to each message pair
+(M1 , M2 ) ∈ (M1 , M2 ), a set of relay functions {fi }n :
+i=1
+n
+xr,i = f (Yr,1 , Yr,2 , ..., Yr,i−1 ), and two decoders {gk : Yk →
+n
+Mk }k=1,2 , which map the received sequence yk to a message
+ˆ
+Mk ∈ Mk , k = 1, 2.
+
+2
+
+Theorem 2: For the discrete memoryless BRC, the rate pair
+¯ nCF ¯ nCF
+(R1 , R2 ) is achievable, where
+¯ nCF ≤ I(X; Yr , Y1 |U, Xr )
+ˆ
+R1
+¯ nCF ≤ min{I(U ; Yr , Y1 |Xr ), I(U ; Yr , Y2 |Xr )}
+ˆ
+ˆ
+R2
+
+the next two theorems, we present the rate pairs achievable
+with mdCF.
+Theorem 4: For the discrete memoryless BRC, the rate pair
+mdCF
+mdCF
+(R1
+, R2
+) is achievable, where
+
+(3a)
+(3b)
+
+mdCF
+R1
+mdCF
+R2
+
+subject to the constraint
+ˆ
+ˆ
+max{I(Yr ; Yr |Y2 , Xr ), I(Yr ; Yr |Y1 , Xr )}
+≤ min{I(Xr ; Y1 ), I(Xr ; Y2 )},
+
+mdCF
+mdCF
+R1
++ R2
+
+−I(U1 ; U2 )
+
+(4)
+
+2
+
+ˆ
+I(Yr ; Y1 |V, Xr , Y1 )
+ˆ
+I(Yr ; Y2 |V, Y2 )
+
+≤ I(Xr ; Y1 )
+≤ I(Xr ; Y2 )
+
+≤ I(Xr ; Y1 |V )
+(8a)
+≤ min{I(V ; Y1 ), I(V ; Y2 )} (8b)
+
+for some joint distribution of the form p(u1 , u2 )p(x|u1 , u2 )
+p(v)p(xr |v)p(yr , y1 , y2 |x, xr )p(ˆ1 |v, xr , yr )p(ˆ2 |v, yr ).
+y
+y
+To achieve this rate pair, the source uses Marton coding; and
+the relay does multiple description coding based compression.
+The relay then sends these two descriptions to the destinations
+using superposition coding. As in the previous achievability
+schemes, a block Markov coding structure is used, and the
+encoding is carried over B blocks. Backward decoding is used
+at both destinations. Note that, instead of transmitting y2 at
+ˆ
+the base layer, the relay can send y1 at the base layer. If
+ˆ
+this is case, the subscripts 1 and 2 in (7) and (8) must be
+interchanged.
+Theorem 5: For the discrete memoryless BRC, the rate pair
+¯
+¯ mdCF , RmdCF ) is achievable, where
+(R1
+2
+
+(5a)
+(5b)
+
+¯ mdCF
+R1
+¯ mdCF
+R2
+
+subject to the constraints
+ˆ
+I(Yr ; Yr |Xr , Y1 )
+ˆ
+I(Yr ; Yr |Xr , Y2 )
+
+(7c)
+
+subject to the constraints
+
+for some joint distribution of the form p(u)p(x|u)p(xr )
+p(yr , y1 , y2 |x, xr )p(ˆr |xr , yr ).
+y
+¯ nCF ¯ nCF
+To achieve the above (R1 , R2 ) pair, the source uses
+superposition coding and the relay does nCF. Similar to
+Theorem 1, block Markov coding over B blocks and backward
+decoding is used. Decoding xr and yr , both destinations
+ˆ
+recover u and thus M2 . The ﬁrst destination then recovers M1 .
+Note that, switching the order of superposition at the source
+is also possible and can increase the achievable rates.
+The strict constraint on the compression rate posed by
+nCF relaying can be loosened if an advanced compression
+technique [16], is used. In the following theorem, we present
+the rates achievable with jCF in the BRC.
+jCF
+jCF
+Theorem 3: The rate pair (R1 , R2 ) is achievable in a
+discrete memoryless BRC where
+jCF
+ˆ
+≤ I(X; Yr , Y1 |U, Xr )
+R1
+jCF
+ˆ
+ˆ
+≤ min{I(U ; Yr , Y1 |Xr ), I(U ; Yr , Y2 |Xr )}
+R
+
+ˆ
+≤ I(U1 ; Y1 , Y1 |V, Xr )
+(7a)
+ˆ
+≤ I(U2 ; Y2 , Y2 |V )
+(7b)
+ˆ
+ˆ
+≤ I(U1 ; Y1 , Y1 |V, Xr ) + I(U2 ; Y2 , Y2 |V )
+
+(6a)
+(6b)
+
+ˆ
+≤ I(X; Y1 , Y1 |U, V, Xr )
+(9a)
+ˆ
+ˆ
+≤ min{I(U ; Y1 , Y1 |V, Xr ), I(U ; Y2 , Y2 |V )}9b)
+(
+
+subject to the constraints
+ˆ
+I(Yr ; Y1 |V, Xr , Y1 )
+ˆ
+I(Yr ; Y2 |V, Y2 )
+
+for some joint distribution of the form p(u)p(x|u)p(xr )
+p(yr , y1 , y2 |x, xr )p(ˆr |xr , yr ).
+y
+To achieve this rate pair, the source uses superposition
+coding, and the relay does jCF over B blocks. The destinations
+employ backward decoding. Note that, switching the order of
+superposition is also possible and can increase the achievable
+rates.
+Similar to nCF, in jCF, the relay compresses its observation
+according to the side informations available at the destinations.
+However, unlike nCF, there is no explicit binning operation.
+In jCF, each destination forms a list of possible compressed
+versions. The length of each user’s list depends on its relaydestination link quality. Destinations further resolve the uncertainty in the list by using their own side informations.
+Although the constraint on the compression rate is relaxed with
+respect to nCF, the relay should still choose a compression
+rate which ensures that both destinations can resolve the
+uncertainty in their lists. Therefore, jCF is also limited by the
+fact that there is a single representation. However, if multiple
+description coding is used at the relay, the relay can send
+two different descriptions at two different distortions. This will
+enable an improved system with more degrees of freedom. In
+
+≤ I(Xr ; Y1 |V )
+(10a)
+≤ min{I(V ; Y1 ), I(V ; Y2 )}.(10b)
+
+Switching the superposition order at the source, the rate pair
+˜
+˜ mdCF , RmdCF ) is also achievable, where
+(R1
+2
+˜ mdCF
+R1
+˜ mdCF
+R2
+
+ˆ
+ˆ
+≤ min{I(U ; Y1 , Y1 |V, Xr ), I(U ; Y2 , Y2 |V (11a)
+)}
+ˆ2 , Y2 |U, V )
+≤ I(X; Y
+(11b)
+
+subject to the constraints
+ˆ
+I(Yr ; Y1 |V, Xr , Y1 )
+ˆ
+I(Yr ; Y2 |V, Y2 )
+
+≤ I(Xr ; Y1 |V )
+(12a)
+≤ min{I(V ; Y1 ), I(V ; Y2 )}(12b)
+
+for some joint distribution of the form p(u)p(x|u)p(v)p(xr |v)
+p(yr , y1 , y2 |x, xr )p(ˆ1 |v, xr , yr )p(ˆ2 |v, yr ).
+y
+y
+To achieve this rate pair, the source and the relay both
+use superposition coding, and the relay does mdCF. As in
+the previous theorems, a block Markov coding structure is
+used, and the encoding is carried over B blocks. Decoding is
+backwards at both destinations.
+¯ mdCF , RmdCF ), the source and
+¯
+To attain the rate pair (R1
+2
+the relay respectively transmit M2 and y2 at the base layer.
+ˆ
+However, it is important to note that the order of superposition
+
+3
+
+at the source and the relay need not be the same. For example,
+˜ mdCF , RmdCF ), the source inverses
+˜
+to attain the rate pair (R1
+2
+its superposition order and sends M1 at the base layer, while
+the relay keeps the superposition order the same. It is possible
+to improve the achievable rates further, if the other two cases,
+in which 1) the source sends M1 and the relay transmits y1
+ˆ
+at the base layer, and 2) the source sends M2 and the relay
+transmits y1 at the base layer, are also considered.
+ˆ
+
+¯
+˜
+where Ni = h2 βPr + Ni . Then, the corresponding achievable
+ri
+rate pair of (9) is found as
+(
+)
+2
+2
+¯
+¯
+¯ mdCF = 1 log 1 + h1 αP + hr αP
+R1
+(19)
+ˆ
+2
+N1
+Nr + N1
+
+
+h2 αP
+h2 αP
+i
+r
+1
+ˆ
+fN (i) + Nr +Ni
+¯ mdCF = min log 1 + 2
+(20)
+R2
+hi αP
+¯
+h2 αP
+¯
+i=1,2 2
++ r
++1
+
+IV. G AUSSIAN C HANNELS
+In this section, we investigate the Gaussian BRC. The inputoutput relationships for the additive white Gaussian noise
+channel are deﬁned as follows:
+
+˜
+where fN (1) = N1 and fN (2) = N2 . If the source and the
+ˆ
+relay respectively allocate all available power to M1 and Y1
+¯ mdCF = 0 and (19) becomes
+(α = 0, β = 0) then R2
+
+
+h2 P h2 Pr
+r
+r1
+1
+h2 P
+Nr
+N1
+¯ mdCF = log 1 + 1 + 2
+ (21)
+R1
+h2 P
+h1 P
+h2 P
+2
+N1
++ r + r1 r + 1
+
+Yr = hr X + Zr
+Yi = hi X + hri Xr + Zi , for i = 1, 2.
+
+fN (i)
+
+(13a)
+(13b)
+
+N1
+
+N1
+
+which is equal to the relay channel CF rate for the ﬁrst
+destination in the absence of the second destination. Similarly,
+setting α = 1 and β = 1 and choosing an appropriate
+superposition order, mdCF achieves the relay channel CF rate
+for the second destination, while the ﬁrst destination has rate
+0.
+For the numerical results, we investigate our achievability schemes for two scenarios. In the ﬁrst scenario, hr =
+1.25, h1 = 0.64, h2 = 1.00, hr1 = 1.75 and hr2 = 50. This is
+the case, where the relay is very close to the second destination
+but not so close to the ﬁrst destination. In the second scenario,
+the channel gains are hr = 1, h1 = 1, h2 = 8, hr1 = 4, hr2 =
+4. The second scenario corresponds to the case, where the relay
+is close to the both destinations and the second destination has
+a strong direct link. In both scenarios, the source and the relay
+transmit powers are P = Pr = 10 dB and the noise variances
+are Nr = N1 = N2 = 0 dB.
+In Fig. 2 and Fig. 3, we plot the rate regions achievable
+with nCF (Theorem 2), jCF (Theorem 3), mdCF (Theorem 5)
+and DF [9]. Although the theorem statements are given for
+only one superposition order, here we plot the convex hull
+of all possible superposition orders for all schemes, which
+is also achievable via time sharing. We also plot four points
+on the ﬁgures: the relay channel CF rates and relay channel
+cut-set bounds. The relay channel CF rates indicate the rates
+achievable with CF [2] at ith destination, i = 1, 2, if the
+other destination did not exist in the system. Similarly, the
+relay channel cut-set bounds [19] indicate an upper bound on
+rates achievable at ith destination, i = 1, 2, assuming the other
+destination is not present.
+In Fig. 2, we observe that nCF and jCF result in the same
+rate region as for certain relations between channel gains
+ˆ nCF = N jCF and nCF and jCF result in the same rate
+ˆ
+Nr
+r
+region. The mdCF scheme improves upon these schemes and
+achieves a larger rate region. However, in this ﬁrst scenario, as
+hr and h1 are comparable, CF based schemes are not favorable
+from the ﬁrst destination’s perspective and DF achieves larger
+rates. Yet, it is interesting to observe that mdCF is the only
+scheme, which achieves the relay channel CF rates for both
+destinations. Fig. 2 also suggests that a combination of DF and
+
+The Gaussian noises at the relay and at the ith destination
+are i.i.d with zero-mean and variances Nr and Ni , respectively.
+hr , hi and hri are the corresponding channel gains of sourcerelay, source-ith destination and relay-ith destination links.
+The source and the relay power constraints are E{X 2 } = P
+2
+and E{Xr } = Pr .
+We ﬁrst consider nCF and jCF schemes, in which only a
+single representation of Yr is formed at the relay. Let the
+compressed version of the relay’s observation is deﬁned as
+ˆ
+ˆ
+ˆ
+Yr = Yr + Zr , where the compression noise Zr is modeled as
+an independent Gaussian noise with zero-mean and variance
+ˆQ
+Nr , Q ∈ {nCF, jCF }. Then, for successful transmission of
+the compressed signal to both users,
+(
+) 2
+hj P + Nj
+h2 P
+ˆQ
+Nr ≥ max Nr + Ni 2 r
+(14)
+hi P + Ni
+h2 Pr
+SQ
+rj
+must be satisﬁed, where the maximization is carried over
+S nCF = {(i, j) : i ∈ {1, 2}, j ∈ {1, 2}} for nCF and over
+S jCF = {(i, j) : i = j, i ∈ {1, 2}, j ∈ {1, 2}} for jCF. Then
+the achievable rate pair of Theorems 2 and 3 for the particular
+superposition order stated in (3) and (5) becomes
+)
+(
+1
+¯
+h2 αP
+h2 αP
+Q
+r¯
+R1 =
+log 1 + 1
++
+(15)
+ˆQ
+2
+N1
+Nr + Nr
+
+
+h2 αP
+h2 αP
+i
+r
+ˆQ
+1
+Ni + Nr +Nr
+Q
+ . (16)
+R2 = min log 1 + h2 αP
+¯
+h2 αP
+¯
+i=1,2 2
+i
++ r Q +1
+Ni
+
+Nr
+
+ˆ
+Nr +Ni
+
+ˆ
+Nr +Nr
+
+Unlike nCF or jCF, in mdCF, the relay forms two different
+representations for its observation Yr . They are deﬁned as
+ˆ
+ˆ
+ˆ
+ˆ
+ˆ
+Yi = Yr + Zi with Zi ⊥ Yr where Zi ∼ N (0, Ni ), i = 1, 2.
+As we have discussed earlier, the source and the relay can
+use four different superposition orders in total, which lead to
+ˆ
+ˆ
+different N1 and N2 and different rate pairs. For the particular
+superposition order assumed in (10), the compression noise
+variances must satisfy
+) 2
+(
+h1 P + N1
+h2 P
+ˆ
+N1 ≥
++ N1 2 r
+Nr
+(17)
+¯
+h1 P + N1
+h2 βPr
+) r1 2
+(
+˜
+h P + Ni
+h2 P
+ˆ
+˜
+max i 2
+(18)
+N2 ≥
+Nr + N2 2 r
+˜
+h2 P + N2 i=1,2 hri βPr
+
+4
+
+2.5
+
+2.5
+Relay Chn Cut−Set Bounds
+Relay Chn CF Rates
+DF
+nCF
+jCF
+mdCF
+
+2
+
+Relay Chn Cut−Set Bounds
+Relay Chn CF Rates
+DF
+nCF
+jCF
+mdCF
+
+2
+
+R1
+
+1.5
+
+R1
+
+1.5
+
+1
+
+1
+
+0.5
+
+0.5
+
+0
+
+0
+
+0.5
+
+1
+
+1.5
+
+2
+
+0
+
+2.5
+
+R2
+
+0
+
+1
+
+2
+
+3
+
+4
+
+5
+
+R2
+
+Fig. 2. The achievable rate regions in the Gaussian BRC for the ﬁrst scenario:
+hr = 1.25, h1 = 0.64, h2 = 1.00, hr1 = 1.75, hr2 = 50. In this case, the
+relay is very close to the second destination.
+
+Fig. 3. The achievable rate regions in the Gaussian BRC for the second
+scenario: hr = 1, h1 = 1, h2 = 8, hr1 = 4, hr2 = 4. In this case, the relay
+is close to both destinations.
+
+R EFERENCES
+
+CF schemes can be especially useful in networks with multiple
+receivers. Similar to Fig. 2, in Fig. 3, we observe that mdCF
+is the only scheme, which connects the two relay channel CF
+rate points. As nCF and jCF form only one representation
+for the relay’s observation, they are unable to create a balance
+between relay channel CF rates for each destination. Note that
+the mdCF proposed in this paper is separation based, i.e. it ﬁrst
+requires the relay signal (V and/or Xr ) and then the related
+ˆ
+ˆ
+representation (Y1 and Y2 ) to be decoded at the corresponding
+receivers. However this condition can be relaxed if the joint
+coding scheme of [16] is employed, leading into a larger mdCF
+based rate region then the shown in Fig. 3.
+
+[1] E. C. van der Meulen, “Three-terminal communication channels,” Adv.
+Appl. Prob., vol. 3, pp. 120-154, 1971.
+[2] T. M. Cover and A. El Gamal, “Capacity theorems for the relay channel,”
+IEEE IT, vol. 25, no. 5, pp. 572-584, Sep. 1979.
+[3] T. M. Cover, “Broadcast channels,” IEEE IT, vol. 8, no. 1, pp. 2-14, Jan.
+1972.
+[4] P. P. Bergmans, “Random coding theorem for broadcast channels with
+degraded components,” IEEE IT, vol. 19, no. 2, pp. 197-207, Mar. 1973.
+[5] K. Marton, “A coding theorem for the discrete memoryless broadcast
+channel,” IEEE IT, vol. 25, no. 3, pp. 306-311, May 1979.
+[6] G. Kramer, M. Gastpar, and P. Gupta, “Cooperative strategies and capacity
+theorems for relay networks,” IEEE IT, vol. 51, no. 9, pp. 3037-3063, Sep.
+2005.
+[7] Y. Liang and V. V. Veeravalli, “The impact of relaying on the capacity of
+broadcast channels,” in Proc. IEEE ISIT, Chicago, IL, pp. 403, Jun.-Jul.
+2004.
+[8] L. Chen, “On rate region bounds of broadcast relay channels,” in Proc.
+CISS, Princeton, NJ, pp. 1-6, Mar. 2010.
+[9] S. R. Bhaskaran, “Gaussian degraded relay broadcast channel,” IEEE IT,
+vol. 55, no. 8, pp. 3699-3709, Aug. 2008.
+[10] A. Behboodi and P. Piantanida, “Cooperative strategies for
+simultaneous and broadcast relay channels.” [Online] Available:
+http://arxiv.org/abs/1103.5133.
+[11] S. Salehkalaibar, L. Ghabeli and M. R. Aref, “An outer bound on the
+capacity region of broadcast relay channel,” in Proc. IEEE ISIT, Austin,
+TX, pp. 599-603, Jun. 2010.
+[12] B. Rankov and A. Wittneben, “Achievable rate regions for the two-way
+relay channel,” in Proc. IEEE ISIT, Seattle, WA, pp.1668-1672, July 2006.
+[13] D. G¨ nd¨ z, and E. Tuncel, “Rate regions for the separated two-way
+u u
+relay channel,” in Proc. 46th Allerton, Monticello, IL, pp. 1333-1340,
+Sept. 2008.
+[14] Y. Tian, and A. Yener, “The Gaussian interference relay channel:
+Improved achievable rates and sum rate upperbounds using a potent
+relay,” IEEE IT, vol. 57, no. 5, pp. 2865-2879, May 2011.
+u u
+[15] D. G¨ nd¨ z, O. Simeone, A. J. Goldsmith, H. V. Poor and
+S. Shamai(Shitz), “Multiple multicasts with the help of a relay,” IEEE
+IT, vol. 56, no. 12, pp. 6142-6158, Dec. 2010.
+u u
+[16] J.Nayak, E. Tuncel, and D. G¨ nd¨ z, “Wyner-Ziv coding over broadcast
+channels: Digital schemes,” IEEE IT, vol. 56, no. 4, pp. 1782-1799, Apr.
+2010.
+[17] S. H. Lim, Y.-H. Kim, and A. El Gamal, S.-Y. Chung, “Noisy network
+coding,” IEEE IT, vol. 57, no. 5, pp. 3132-3152, May 2011.
+[18] A. El Gamal and T. M. Cover, “Achivable rates for multiple descriptions,” IEEE IT, vol. 28, no. 6, pp. 851-857, Nov. 1982.
+[19] T. M. Cover and J. A. Thomas, Elements of Information Theory, 2nd
+ed., Wiley, New York, 2006.
+
+V. C ONCLUSION
+In this work the four terminal broadcast relay channel with
+one source, two destinations and a dedicated relay node is
+studied for both discrete memoryless channels and Gaussian
+channels. Three types of CF based achievability schemes are
+presented. In naive CF and joint CF, there is a single compressed signal, which has to be decoded at both destinations.
+This limits the compression quality to be adjusted to the worse
+relay-destination link and/or the worse side information. On
+the other hand, in multiple-description coding based CF, the
+relay produces two different representations at two different
+ﬁdelity levels, which are then broadcast to the two destinations.
+It is observed that multiple description based CF improves
+upon both naive CF and joint CF, and is the only scheme that
+merges the relay channel CF rates; i.e. the rates achievable
+with CF at each destination, assuming the other destination is
+not present. The new achievability schemes also improve upon
+DF based relaying schemes, especially when the decoding
+requirement at the relay is too restrictive. Future work includes
+studying advanced joint-source channel coding schemes at the
+relay.
+
+5
+
+

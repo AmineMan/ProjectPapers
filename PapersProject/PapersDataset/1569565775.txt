@@ -1,0 +1,871 @@
+Creator:         TeX output 2012.05.16:1349
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Wed May 16 13:49:40 2012
+ModDate:        Tue Jun 19 12:54:41 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      300842 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569565775
+
+New Constructions of Codes for Asymmetric
+Channels via Concatenation
+Markus Grassl∗ , Peter Shor† , Graeme Smith‡ , John Smolin‡ , and Bei Zeng§¶
+∗ Centre
+
+for Quantum Technologies, National University of Singapore, Singapore 117543
+of Mathematics, Massachusetts Institute of Technology, Cambridge MA 02139, USA
+‡ IBM T. J. Watson Research Center, Yorktown Heights, NY 10598, USA
+§ Department of Mathematics & Statistics, University of Guelph, Guelph, ON, N1G 2W1, Canada
+¶ Institute for Quantum Computing, University of Waterloo, Waterloo, Ontario, N2L 3G1, Canada
+
+† Department
+
+Coding problems for asymmetric channels were discussed
+by Varshamov in 1965 [1]. For the characterization of codes
+for these channels, we need the following.
+Deﬁnition 1 (see [1], [7], [8]): For x, y ∈ An , where x =
+(x1 , x2 , . . . , xn ) and y = (y1 , y2 , . . . , yn ), let
+(i) w(x) ∶= ∑n xi ,
+i=1
+(ii) N (x, y) ∶= ∑n max{yi − xi , 0}, and
+i=1
+(iii) ∆(x, y) ∶= max{N (x, y), N (y, x)}.
+Here w(x) is the weight of x, and ∆(x, y) is called the
+asymmetric distance between x and y. If x is sent and y
+is received, we say that w(x − y) errors have occurred. Note
+that w(x − y) ≥ 0 for asymmetric channels.
+In this model, a code correcting t-errors is called a tcode [8]. The following theorem naturally follows.
+Theorem 2 (see [8]): A set C ⊂ An is a t-code if and only
+if ∆(x, y) > t for all x, y ∈ C, x ≠ y.
+Apparently, any code which can correct t errors on a symmetric channel will also be capable of correcting t asymmetric
+errors, but the converse is not true in general. However,
+Varshamov showed that almost all linear binary codes which
+are able to correct t errors for the Z-channel are also able to
+correct t symmetric errors [1]. Therefore, in order to construct
+good codes for the Z-channel, nonlinear constructions are
+needed. Varshamov and Tenengol’ts [9], followed by Constantin and Rao [10], constructed families of 1-codes for the
+2n
+Z-channel with size ≥ n+1 . These codes are constructed based
+on an Abelian group G for which the group operation is
+denoted by ‘+’ and the identity of G is denoted by 0G or
+just 0.
+Deﬁnition 3 (Constantin-Rao (CR) codes): Let G be an
+Abelian group of order n + 1 and identity 0G . For ﬁxed g ∈ G,
+the CR code Cg is given by
+
+Abstract—We present new constructions of codes for asymmetric channels for both binary and nonbinary alphabets, based
+on methods of generalized code concatenation. For the binary
+asymmetric channel, our methods construct nonlinear singleerror-correcting codes from ternary outer codes. We show that
+some of the Varshamov-Tenengol’ts-Constantin-Rao codes, a
+class of binary nonlinear codes for this channel, have a nice
+structure when viewed as ternary codes. In many cases, our
+ternary construction yields even better codes. For the nonbinary
+asymmetric channel, our methods construct linear codes for
+many lengths and distances which are superior to the linear
+codes of the same length capable of correcting the same number
+of symmetric errors.
+In the binary case, Varshamov [1] has shown that almost all
+good linear codes for the asymmetric channel are also good for
+the symmetric channel. Our results indicate that Varshamov’s
+argument does not extend to the nonbinary case, i.e., one can ﬁnd
+better linear codes for asymmetric channels than for symmetric
+ones.
+
+I. I NTRODUCTION
+In communication systems, the signal transmitted is conventionally represented as a ﬁnite sequence of elements from
+an alphabet A, which we assume to be ﬁnite. In general, we
+may take A = {0, 1, . . . , q − 1}, and if needed, some additional
+structure is assumed, e.g., A = Zq or A = Fq . The most
+commonly discussed channel model is the uniform symmetric
+channel, that is, an error a → b happens with equal probability
+for any a, b ∈ A and a ≠ b. Error-correcting codes for these
+channels are extensively studied, see, for instance, [2].
+However, in some other systems, such as some data storing
+systems including ﬂash memories [3], [4] and optical communication [5], the probability of the error a → b is no longer
+independent of a and b and might vary a lot. If some errors
+of low probability are neglected, some of those channels can
+be modeled as ‘asymmetric channels’.
+More precisely, let the alphabet be A = {0, 1, . . . , q − 1} ⊂
+Z with the ordering 0 < 1 < 2 < ⋯ < q − 1. A channel is
+called asymmetric if any transmitted symbol a is received as
+b ≤ a. For example, for q = 2, the symbol 0 is always received
+correctly while 1 may be received as 0 or 1. The corresponding
+channel is called Z-channel, see Fig. 1. For q > 2, one can
+have different types of asymmetric channels [6].
+
+n
+
+Cg = ({(x1 , x2 , . . . , xn )∣ ∑ xi gi = g}),
+
+(1)
+
+i=1
+
+where g1 , g2 , . . . , gn are the non-identity elements of G, xi ∈
+{0, 1}, and the product xi gi is deﬁned in the canonical way
+1gi = gi and 0gi = 0G .
+If the group G is a cyclic group of order n + 1, then the
+corresponding codes are Varshamov-Tenengol’ts (VT) codes
+
+1
+
+[9] (denoted by Vg ). It is known that the largest ConstantinRao code of length n is the code C0 based on the group
+np
+G = ⊕p∣(n+1) ⊕i=1 Zp , where n + 1 = Πp∣(n+1) pnp is the prime
+factorization of n + 1 and ⊕ denotes the direct product of
+groups (see [8]). These VT-CR codes have better rates than
+the corresponding single-error-correcting codes for the binary
+symmetric channel for all lengths n apart from n = 2r − 1,
+where the binary Hamming codes are perfect.
+These VT-CR codes have a direct generalization to the
+nonbinary case. The modiﬁcation of Deﬁnition 3 is to let
+xi ∈ A = {0, 1, . . . , q − 1} and require that the order of gi
+is at least q. The resulting nonlinear codes have cardinality
+qn
+∣Cg ∣ ≥ n+1 , and hence for q > 3 and all lengths n, they are
+larger than the best single-error-correcting symmetric codes
+of the same length. The construction can also be generalized
+to the case of t-codes with t > 1, for both binary and nonbinary
+alphabets [8].
+Some other constructions for designing single-error-correcting codes for the Z-channel have also been introduced. In
+particular the partition method based on a similar technique
+building large length constant weight codes from smaller
+length, together with some heuristics search give good lower
+bounds for small length codes with n ≤ 25 [11]–[14]. Nevertheless, the VT-CR construction remains the best systematical
+construction of binary 1-codes to date, and the situation is
+similar for the nonbinary case.
+In this paper, we present new constructions of codes for
+asymmetric channels for both binary and nonbinary alphabets,
+based on methods of generalized code concatenation. For the
+binary asymmetric channel, our methods construct nonlinear
+1-codes from ternary outer codes which are better than the VTCR codes. For nonbinary asymmetric channels, our methods
+yield linear codes for many lengths and distances, which
+outperform the linear codes of the same lengths capable of
+correcting the same number of symmetric errors. For certain
+lengths, our construction gives linear codes with equal cardinality as the nonlinear VT-CR codes.
+
+0 the inverse map gives the two binary codewords 00 and 11,
+while for 1 and 2 we get the unique codewords 01 and 10,
+respectively.
+Deﬁnition 5: The map S∶ F3 → ℘(F2 ) is deﬁned by
+2
+S∶ 0 ↦ {00, 11}, 1 ↦ {01}, 2 ↦ {10}.
+
+Note that for a binary code of length n = 2m, by choosing a
+˜
+pairing of coordinates, the map Sm ∶ F2m → Fm takes a given
+2
+3
+binary code of length 2m to a ternary code of length m. On
+the other hand, Deﬁnition 5 can be naturally extended as well,
+i.e., the map Sm takes a given ternary code of length m to a
+binary code of length 2m. The map Sm hence speciﬁes the
+encoding of an outer ternary code into the inner codes Ci .
+˜
+For a better understanding of the maps Sm and Sm , we
+look at some examples.
+Example 6: By starting from the ternary outer code of
+length n = 3 with the codewords 000 , 111 , 122 , 212 , 221 , the
+map S3 yields the binary code C (6) with the 12 codewords
+000000, 000011, 001100, 001111, 110000, 110011,
+111100, 111111, 010101, 011010, 100110, 101001.
+(4)
+The code C (6) has asymmetric distance 2, hence correcting
+one asymmetric error. This is known to be an optimal 1-code
+for n = 6 [8].
+By starting from the linear ternary code [4, 2, 3]3 with
+generators 0111 , 1012 , the map S4 yields the binary code
+C (8) with 32 codewords. C (8) has asymmetric distance 2,
+hence correcting one asymmetric error. We observe that C (8)
+is exactly the CR code C0 of length n = 8 constructed from
+the group Z3 ⊕ Z3 , which hints some relationship between the
+ternary construction and CR codes. We will discuss this in
+more detail in Sec. IV.
+˜
+Combining the action of the channel Z × Z and the map S,
+we obtain the ternary channel T as shown in middle of Fig. 1.
+Note that T is different from the ternary symmetric channel
+R3 , which is also shown in Fig. 1.
+
+II. B INARY ASYMMETRIC CODES FROM TERNARY OUTER
+
+01 
+
+CODES
+
+11
+
+j 00 
+
+To discuss our new construction for asymmetric codes based
+on the generalized concatenation method, we start with the
+binary case. For a review of generalized concatenated codes,
+see [15].
+To construct 1-codes for the Z-channel, we ﬁrst partition
+all two-bit strings {00, 01, 10, 11} into three 1-codes, which
+are C0 = {00, 11}, C1 = {01}, C2 = {10}. Then we further
+ﬁnd some outer codes over the alphabet {0 , 1 , 2 } (i.e. ternary
+outer codes). Each code symbol is encoded into each of the
+1-codes by i ↦ Ci . To be more precise, deﬁne a binary to
+˜
+ternary map S, which maps two bits to one trit.
+˜
+Deﬁnition 4: The map S∶ F2 → F3 is deﬁned by
+2
+˜
+S∶ 00 ↦ 0 , 11 ↦ 0 , 01 ↦ 1 , 10 ↦ 2 .
+
+(3)
+
+0
+Z
+
+1
+
+j 10
+
+1  - 0  -2
+T
+
+0
+
+]
+ ^
+1  -2
+R3
+
+Fig. 1. The binary asymmetric channel Z, the ternary channel T derived
+˜
+from Z × Z and S, and the ternary symmetric channel R3 . The arrows
+indicate the possible transitions between symbols.
+
+Now we come to the main result of this section.
+Theorem 7: If C ′ is a single-error-correcting ternary code
+of length m for the channel T , then C = Sm (C ′ ) is a 1-code
+of length 2m.
+Proof: For any two codewords c′ , c′ ∈ C ′ , we need
+1 2
+to show that the asymmetric distance between Sm (c′ ) and
+1
+Sm (c′ ) is at least two.
+2
+By construction, if the Hamming distance between c′ and
+1
+′
+c2 is at least three, then the Hamming distance between
+
+(2)
+
+The encoding i → Ci is then given by the inverse map of
+˜
+˜
+S. Note that S is not one-to-one. So for the ternary symbol
+
+2
+
+TABLE I
+R ATIO s OF THE RATES OF F3 - LINEAR CODES AND LINEAR BINARY CODES
+
+Sm (c′ ) and Sm (c′ ) is also at least three. Hence the asym1
+2
+metric distance between Sm (c′ ) and Sm (c′ ) is at least two.
+1
+2
+If the Hamming distance between c′ and c′ is two, then the
+1
+2
+following ten pairs of ternary words can be uniquely decoded
+if a single error happens in the channel T × T :
+01 , 22
+20 , 11
+
+10 , 22
+02 , 21
+
+01 , 12
+20 , 12
+
+10 , 21
+11 , 22
+
+02 , 11 ,
+12 , 21 .
+
+n
+s
+n
+s
+n
+s
+n
+s
+n
+s
+n
+s
+
+(5)
+
+Again, the asymmetric distance between the images of each
+pair under S2 is at least two.
+The following corollary is straightforward.
+Corollary 8: If C ′ is an (m, K, 3)3 code, then Sm (C ′ ) is
+a 1-code of length 2m.
+The size of the binary code can be computed as follows.
+Theorem 9: Let C ′ be a ternary code of length m with
+homogeneous weight enumerator
+′
+
+′
+
+WC ′ (X, Y ) = ∑ X m−wgt(c ) Y wgt(c ) ,
+
+6
+1.107
+20
+1.017
+34
+0.988
+48
+0.992
+62
+0.994
+76
+1.010
+
+8
+1.250
+22
+1.015
+36
+0.988
+50
+0.992
+64
+1.012
+78
+1.009
+
+10
+0.950
+24
+1.013
+38
+0.989
+52
+0.992
+66
+1.011
+80
+1.009
+
+12
+0.931
+26
+1.012
+40
+0.990
+54
+0.993
+68
+1.011
+82
+0.987
+
+14
+0.932
+28
+0.941
+42
+0.990
+56
+0.993
+70
+1.010
+84
+0.988
+
+16
+1.025
+30
+0.946
+44
+0.991
+58
+0.993
+72
+1.010
+86
+0.988
+
+18
+1.020
+32
+0.987
+46
+0.991
+60
+0.994
+74
+1.010
+88
+0.988
+
+ternary code T of Hamming distance three, and a linear binary
+code B of Hamming distance three, respectively.
+From Table I we see that for certain lengths, the 1-codes
+obtained from ternary linear codes indeed encode more bits
+than the corresponding linear binary codes. In particular, for
+n = 8 the 1-code of cardinality 32 encodes one bit more than
+the linear binary code of size 16. Also, the 1-codes of length 64
+through 80 outperform the corresponding linear binary code,
+i.e. s > 1. A general understanding of the condition under
+which s > 1 for those F3 -linear codes for the Z-channel is
+still lacking.
+Recall that Example 6 starts from a single-error-correcting
+ternary cyclic code of length 3, and results in a 1-code of
+length 6 achieving the upper bound given in [8] via the map
+S3 . Note that by the ternary construction, ternary cyclic codes
+give binary quasi-cyclic codes. It turns out that we cand ﬁnd
+more good 1-codes from cyclic ternary codes of length m.
+For m = 4, we have found a ternary cyclic code with
+codewords 0000 , 0112 , 1222 , 1111 , and their cyclic shifts,
+which leads to a 1-code with parameters (8, 29). For m = 5,
+we have found a unique ternary cyclic code which lead to a
+1-code with parameters (10, 98). For m = 6 and m = 7, we
+have found ternary cyclic codes which lead to 1-codes with
+parameters (12, 336) and (14, 1200), respectively.
+From Table II below we see that the 1-codes from cyclic
+ternary codes are not as good as the codes (8, 32) (given in
+Example 6) and (10, 105), (12, 351) which are obtained via
+random numerical search based on the ternary construction.
+However, with growing length imposing the cyclic structure
+reduces the search complexity. The code (14, 1200) listed in
+Table II, for example, is obtained from a ternary cyclic code
+of length m = 7, while random numerical search did not give
+anything better as the search space is too large.
+We ﬁnally note that we use nonlinear cyclic codes. This
+makes it more complicated to ﬁnd a systematical generalized
+construction for larger length.
+
+(6)
+
+c′ ∈C ′
+
+where wgt(c′ ) denotes the Hamming weight of c′ . Then C =
+Sm (C ′ ) has cardinality ∣C∣ = WC ′ (2, 1).
+Proof: By Deﬁnition 5, for every zero in the codeword
+c′ the corresponding pair in the binary codeword can take two
+′
+different values. Hence ∣Sm (c′ )∣ = 2m−wgt(c ) .
+Theorem 7 only works for designing 1-codes of even length.
+So we generalize this construction to odd length, starting from
+‘adding a bit’ to the ternary code.
+Theorem 10: If C ′ is a single-error-correcting code of
+length m + 1 for the channel Z × T m , then C = Sm (C ′ ) is
+a 1-code of length 2m + 1, where Sm acts on the last m
+coordinates of C ′ .
+Proof: First note that the combined channel Z × T m has
+a mixed input alphabet. Hence the ﬁrst coordinate in C is
+binary while the others are ternary. For any two codewords
+c′ , c′ ∈ C ′ , we need to show that the asymmetric distance
+1 2
+between Sm (c′ ) and Sm (c′ ) is at least two.
+1
+2
+Again, if the Hamming distance between c′ and c′ is at
+2
+1
+least three, then the distance between Sm (c′ ) and Sm (c′ )
+1
+2
+is also at least three. Hence the asymmetric distance between
+Sm (c′ ) and Sm (c′ ) is at least two.
+1
+2
+If the Hamming distance between c′ and c′ is two, the case
+2
+1
+that the positions where they differ does not involve the ﬁrst
+coordinate has already been covered in the proof of Theorem
+7. So assume that the ﬁrst coordinate is a bit and the second
+is a trit. There are the two pairs 01 , 12 and 12 , 11 which can
+correct a single error on Z × T . The corresponding images
+of each pair under Sm give binary codewords of asymmetric
+distance two.
+III. N EW BINARY ASYMMETRIC CODES WITH STRUCTURE
+
+IV. T HE BINARY VT-CR CODES VIEWED AS TERNARY
+
+In the following, we compare nonlinear binary codes for
+the Z-channel which are the image of ternary linear codes
+(“F3 -linear codes”), and linear binary codes. For this, we
+compare the rate of 1-codes for various length. The ratio of the
+rates is given by s = log2 ∣T ∣/ log2 ∣B∣, where ∣T ∣ and ∣B∣ are
+the cardinalities of the nonlinear binary 1-code from a linear
+
+CODES
+
+In this section we clarify the relationship between the
+ternary construction and the VT-CR codes, by showing that
+certain VT-CR codes are a special case of the ternary construction. We start from the following.
+
+3
+
+TABLE II
+S IZE OF 1- CODES FROM TERNARY CONSTRUCTION VIA NUMERICAL
+SEARCH , COMPARED TO CR CODES , CODES OBTAINED BY THE PARTITION
+METHOD , AND THE KNOWN BOUNDS FROM [8], [13], [16].
+
+Deﬁnition 11: A binary code C of even length n = 2m is
+˜
+called ternary if Sm (Sm (C)) = C.
+Based on this deﬁnition, if a binary code C of even length
+is ternary, then it can be constructed from some ternary code
+via the map S. The following theorem shows that certain VTCR codes are a special case of asymmetric codes constructed
+from some ternary codes.
+Theorem 12: For n even, the VT code Vg and the CR code
+Cg are ternary for any g.
+Proof: Let C = Vg or C = Cg . We only need to prove
+that there exists a pairing of the coordinates of C such that
+for any codeword v ∈ C the following holds: if for a pair α of
+coordinates the code symbols of v are 00, denoted by v∣α = 00,
+then there exists another codeword v ′ ∈ C with v ′ ∣α = 11 and
+v ′ ∣α = v∣α . Here α denotes all coordinates except the pair α.
+¯
+¯
+¯
+Both the VT code Vh and the CR code Cg are deﬁned by
+a group G of odd order n + 1, and the coordinates of the
+codewords correspond to the non-identity group elements. As
+the group order is odd, the only group element that is its
+own inverse is identity. Hence we can pair every non-identity
+element g ∈ G with its inverse −g. If neither g nor −g are
+contained in the sum in Eq. (1), then the sum clearly does not
+change when including both g and −g.
+The images of the VT code V0 for n = 6 and the CR code
+˜
+C0 of largest cardinality for n = 8 under Sn are linear codes
+[3, 1, 3]3 and [4, 2, 3]3 , respectively (for the latter see Example
+6). For n = 10, the image of the VT code V0 = (10, 94) under
+˜
+S10 is equivalent to a cyclic ternary code with m = 5, but note
+that there exists a 1-code (10, 98) which is obtained from a
+cyclic ternary code (see Sec. III).
+Now we consider the case of odd length.
+Deﬁnition 13: A binary code C of odd length n = 2m + 1
+˜
+˜
+is called generalized ternary if Sm (Sm (C)) = C, where Sm
+acts on the last 2m coordinates of C.
+Based on this deﬁnition, if a binary code C of odd length
+2m + 1 is generalized ternary, then it can be constructed from
+some single-error-correcting code for the channel Z × T m via
+˜
+the map S.
+Theorem 14: For n odd, the VT code Vg is generalized
+ternary for any g.
+Proof: We only need to prove that there exists a pairing
+which leaves a single coordinate as a bit, such that for any
+codeword v ∈ Vg , if v restricted to a chosen pair α is 00, then
+there exist another codeword v ′ ∈ Vg such that v ′ ∣α = 11 and
+v ′ ∣α = v∣α .
+˜
+˜
+For a VT code Vg of odd length, choose the pairing {i, n +
+n/2
+1 − i}i=1 and leave the coordinate (n + 1)/2 as a bit. Then the
+above condition is satisﬁed.
+In Table II, the cardinality of codes found by the (generalized) ternary method is compared to the size of the corresponding VT-CR codes. One can see that the (generalized) ternary
+construction indeed outperforms the VT-CR construction, in
+particular for larger n.
+The column in Table II labeled “partition” is obtained from
+the partition method in Ref. [11]. The code (a) is found
+from the partition of constant weight codes of length 6 and
+
+n
+6
+7
+8
+9
+10
+11
+12
+13
+14
+
+CR
+10
+16
+32
+52
+94
+172
+316
+586
+1096
+
+cyclic ternary
+12
+–
+29
+–
+98
+–
+336
+–
+1200
+
+ternary
+12
+16
+32
+55
+105
+180
+351
+600
+1200
+
+partition
+*
+*
+*
+*
+104(a)
+180(b)
+336(b)
+652(c)
+1228(c)
+
+known bounds
+12
+18
+36
+62
+112–117
+198–210
+379–410
+699–786
+1273–1500
+
+asymmetric codes of length 4. Codes (b) and codes (c) are
+from Ref. [11] and [13], respectively. For n = 10, 11, 12, the
+ternary construction yields codes of equal size or even more
+codewords compared to the partition method. However, the
+best codes are obtained by heuristic methods, which, e.g., give
+(10, 112) [13] and (12, 379) [14]. This is not surprising as
+both the ternary construction and the partition method assume
+some additional structure of the binary 1-codes.
+V. N ONBINARY ASYMMETRIC - ERROR - CORRECTING CODES
+In this section, we consider the construction of 1-codes for
+nonbinary asymmetric channels. Recall that the characteristic
+properties of codes for this channel model are given by
+Deﬁnition 1 and Theorem 2. Our construction will again be
+based on concatenation, generalizing the map Sm .
+For a given q, choose the outer code as some code over the
+alphabet A = {0, 1, . . . , q − 1}, which encodes to some inner
+codes {C0 , C1 , . . . , Cq−1 } via i ↦ Ci . Now choose the q inner
+codes as the double-repetition code C0 = {00, 11, . . . , (q −
+1)(q − 1)} and all its q − 1 cosets Ci = C0 + (0i), i.e., we
+have the rule that (0i) ∈ Ci . It is straightforward to check that
+each Ci is a 1-code, i.e., has asymmetric distance 2. Note that
+a single asymmetric error will only drive transitions between
+i, j for i = j ± 1. For instance, for q = 3, 4, 5, the induced
+channels R3 , R4 , R5 are shown in Fig. 2. In general, we
+will write the induced channel as Rq for outer codes over the
+alphabet A = {0, 1, . . . , q − 1}.
+
+0
+
+]
+
+ ^
+1 - 2
+R3
+
+0 3
+6
+?
+
+6
+?
+
+1 2
+R4
+
+0
+
+>} 4
+~
+MN 
+-
+
+1=
+2
+
+R5
+
+3
+
+Fig. 2.
+The induced channel R3 for q = 3 (which is just the ternary
+symmetric channel), the induced channel R4 for q = 4, and the induced
+channel R5 for q = 5. The arrows indicate the possible transitions between
+symbols.
+
+Similar to Theorems 7 and 10, we have the following
+Theorem 15: For n even, an outer (n/2, K)q code correcting a single error for the channel Rq leads to an (n, q n/2 K)q
+1-code C, for q > 2. For n odd, an outer ((n + 1)/2, K)q
+code correcting a single error for the channel Rq leads to an
+(n, q (n−1)/2 K)q 1-code C, for q > 2.
+
+4
+
+If the outer code is linear, then our construction gives linear
+codes for the asymmetric channel.
+Corollary 16: An outer [m, k]q linear code correcting a
+single error for the channel Rq leads to a [2m, m + k]q 1code and a [2m − 1, m + k − 1]q 1-code, for q > 2.
+It turns out that in many cases, our construction gives linear
+codes with larger cardinality than the distance-three symmetric
+codes of equal length. We ﬁrst discuss the case of q = 3. In
+this case, R3 is the ternary symmetric channel, so we will just
+use outer codes of Hamming distance 3. We consider some
+examples.
+Example 17: Consider q = 3 and take the outer code as
+[3, 1, 3]3 , with codewords 000 , 111 , 222 . This will give a
+[5, 3]3 1-code, while the best linear single-symmetric-errorcorrecting code is [5, 2, 3]3 . The [3, 1, 3]3 outer code also
+yields a [6, 4]3 1-code, while the best linear single-symmetricerror-correcting code is [6, 3, 3]3 .
+Now take the outer code as [4, 2, 3]3 . This will give a
+[7, 5]3 1-code, while the best linear single-symmetric-errorcorrecting code is [7, 4, 3]3 . We can also construct a [8, 6]3
+1-code, while the best linear single-symmetric-error-correcting
+code is [8, 5, 3]3 .
+This example can be directly generalized to other lengths.
+Furthermore, the constructions extend trivially to q > 3, as
+any code of Hamming distance 3 corrects a single error for
+the channel Rq . Note that Hamming codes over Fq have length
+nr = (q r − 1)/(q − 1). For a given nr , our construction then
+allows to construct asymmetric 1-codes of all length [nr +
+1, 2nr ] for nr odd or all lengths [nr + 2, 2nr ] for nr even.
+These codes outperform the best linear single-symmetric-errorcorrecting codes.
+Now consider the case q > 3 in more detail. The channel
+Rq (see Fig. 2) is no longer a symmetric channel, so outer
+codes of Hamming distance 3 are no longer expected to
+give good 1-codes. It turns out, however, that single-errorcorrecting codes for the channel Rq are equivalent to singlesymmetric-error correcting codes with respect to Lee metric
+[17] (see also [18]), for which optimal linear codes are known.
+We consider an example.
+Example 18: For q = 5 consider the parity check matrix
+(
+
+1 1
+0 1
+
+1
+2
+
+1
+3
+
+1
+4
+
+2
+0
+
+2
+1
+
+2
+2
+
+2
+3
+
+gives codes of the same cardinality as the VT-CR codes, while
+our codes are linear, but the VT-CR codes are not.
+Finally, we brieﬂy discuss the extension of our concatenation method to construct t-asymmetric-error-correcting codes
+for t > 1. We look at some examples.
+Example 19: Consider the case of q = 3. Take the outer
+code as the [5, 3]3 1-code constructed in Example 17, which
+has asymmetric distance 2. Now take the encoding to the inner
+code as 0 ↦ 00 , 1 ↦ 11 , 2 ↦ 22 . Then the concatenated code
+has asymmetric distance 4, which gives a [10, 3]3 3-code,
+while the best linear triple-error-correcting code is [10, 2, 7]3 .
+Similarly, take the outer code as the [6, 4]3 1-code, then the
+concatenated code is a [12, 4]3 3-code, while the best 3-errorcorrecting linear code is [12, 3, 7]3 .
+These initial results on good linear t-codes with t > 1 and
+q > 2 are rather promising as they might ﬁnd application in
+the context of ﬂash memories.
+R EFERENCES
+[1] R. R. Varshamov, “Some Features of Linear Codes that Correct Asymmetric Errors,” Soviet Physics Doklady, vol. 9, pp. 538–540, Jan. 1965.
+[2] F. J. MacWilliams and N. J. A. Sloane, The Theory of Error-Correcting
+Codes. Amsterdam: North-Holland Publishing Company, 1977.
+[3] S. D. Constantin and T. R. M. Rao, “Concatenated group theoretic codes
+for binary asymmetric channels,” AFIPS Conf. Proc., vol. 46, pp. 837–
+842, 1979.
+[4] P. Cappelletti, C. Golla, P. Olivo, and E. Zanoni, Flash Memories.
+Boston: Kluwer Academic, 1999.
+[5] R. J. McEliece and E. R. Rodemich, “The Constantin-Rao construction
+for binary asymmetric error-correcting-codes,” Information and Control,
+vol. 44, pp. 187–196, 1980.
+[6] T. Kløve, Codes for error detection. Singapore: World Scientiﬁc, 2007.
+[7] R. Varshamov, “A class of codes for asymmetric channels and a problem
+from the additive theory of numbers,” IEEE Transactions on Information
+Theory, vol. 19, no. 1, pp. 92–95, 1973.
+[8] T. Kløve, “Error correcting codes for the asymmetric channel,” Report
+18-09-07-81, Department of Informatics, University of Bergen, 1981.
+[9] R. R. Varshamov and G. M. Tenengolts, “Correcting code for single
+asymmetric errors,” Avtomatika i Telemekhanika (in Russian), vol. 26,
+no. 2, pp. 228–292, 1965.
+[10] S. D. Constantin and T. R. M. Rao, “On the theory of binary asymmetric
+error correcting codes,” Information and Control, vol. 40, pp. 20–36,
+1979.
+[11] T. Etzion, “New lower bounds for asymmetric and unidirectional codes,”
+IEEE Transactions on Information Theory, vol. 37, no. 6, pp. 1696–
+1704, 1991.
+[12] B. Al-Bassam, “New single asymmetric error-correcting codes,” IEEE
+Transactions on Information Theory, vol. 43, no. 5, pp. 1619–1623,
+1997.
+¨
+[13] T. Etzion and P. R. J. Osterg˚ rd, “Greedy and heuristic algorithms for
+a
+codes and colorings,” IEEE Transactions on Information Theory, vol. 44,
+no. 1, pp. 382–338, 1998.
+[14] V. P. Shilo, “New lower bounds of the size of error-correcting codes for
+the Z-channel,” Cybernetics and Systems Analysis, vol. 38, no. 1, pp.
+13–16, 2002.
+[15] I. Dumer, “Concatenated codes and their multilevel generalizations,” in
+Handbook of Coding Theory, V. S. Pless and W. C. Huffman, Eds.
+Amsterdam: Elsevier Science, 1998, pp. 1911–1988.
+[16] N. J. A. Sloane, “Challenge problems: Independent sets in graphs,”
+http://www2.research.att.com/∼njas/doc/graphs.html, accessed on 201202-02.
+[17] E. Berlekamp, Algebraic Coding Theory. New York: McGraw-Hill,
+1968.
+[18] T. Kløve, B. Bose, and N. Elarief, “Systematic, single limited magnitude
+error correcting codes for ﬂash memories,” IEEE Transactions on
+Information Theory, vol. 57, no. 7, pp. 4477–4487, 2011.
+
+2
+),
+4
+
+which gives a [10, 8]5 code correcting a single error for the
+channel R5 , and hence a [20, 18]5 1-code. Note that the best
+linear single-symmetric-error-correcting code for n = 20 is
+[20, 17, 3]5 .
+Our new linear codes for asymmetric channels for q > 2
+show that Varshamov’s argument that for the binary case,
+there is almost no hope to ﬁnd good linear codes for the
+asymmetric channel, does not hold for the nonbinary case.
+There is indeed room for constructing good linear codes
+adapted to the asymmetric channel.
+Note that contrary to the binary case, the nonlinear VTCR codes can no longer be viewed as a special case of our
+construction. However, for lengths nr = q r −1, our construction
+
+5
+
+

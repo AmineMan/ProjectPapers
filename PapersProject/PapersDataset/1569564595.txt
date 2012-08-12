@@ -1,0 +1,898 @@
+Creator:         TeX output 2012.05.17:2132
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Thu May 17 21:32:24 2012
+ModDate:        Tue Jun 19 12:54:50 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      290419 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569564595
+
+Optimized Cell Programming for Flash Memories
+with Quantizers
+Minghai Qin∗ , Eitan Yaakobi∗† , Paul H. Siegel∗
+
+∗ University
+
+of California, San Diego
+Electrical and Computer Engineering Department
+
+† California
+
+Institute of Technology
+Electrical Engineering Department
+
+Emails: {mqin, eyaakobi, psiegel}@ucsd.edu
+capacity analysis and coding strategies are discussed in [1],
+[5], [11].
+Parallel programming is a crucial tool to increase the write
+speed when programming ﬂash memory cells. Two important
+properties of parallel programming are the use of shared program voltages and the need to account for variation in charge
+injection [12]. Instead of applying distinct program voltages to
+different cells, parallel programming applies a common program voltage to many cells simultaneously. Consequently, the
+complexity of hardware realization is substantially reduced and
+the write speed is therefore increased. Parallel programming
+must also account for the fact that cells have different hardness
+with respect to charge injection [3], [9]. When applying the
+same program voltage to cells, the amount of charge trapped in
+different cells may vary. Those cells that have a large amount
+of trapped charge are called easy-to-program cells and those
+with little trapped charge are called hard-to-program cells. Understanding this intrinsic property of cells will allow the programming of cells according to their hardness of charge injection. One widely-used programming method is the Incremental
+Step Pulse Programming (ISPP) scheme [3], [9], which allows
+easy-to-program cells to be programmed with a lower program
+voltage and hard-to-program cells to be programmed with a
+higher program voltage.
+In [6], [7], the optimized programming for a single ﬂash
+memory cell was studied. A programming strategy to optimize
+the expected precision with respect to two cost functions was
+proposed, where one of the cost functions is the ℓp metric and
+the other is related to rank modulation [8]. It was assumed that
+the programming noise follows a uniform distribution and the
+level increment is chosen adaptively according to the current
+cell level to minimize the cost function.
+In [12], algorithms for parallel programming were studied.
+The underlying model incorporated shared program voltages
+and variations in cell hardness, as well as a cost function based
+upon the ℓp metric. The programming problem was formulated as a special case of the Subspace/Subset Selection Problem (SSP) [4] and the Sparse Approximate Solution Problem
+(SAS) [10], both of which are NP-hard. Then an algorithm
+with polynomial time complexity was proposed to search for
+the optimal programming voltages.
+We note that ﬂash memories use multiple discrete levels
+to represent data in real applications [2]. Hence, if the actual
+cell level is within a certain distance from the target level, it
+will be quantized to the correct target level even though there
+is a gap between them. Read errors can be mitigated by use
+of error correction codes. If the error correction capability is
+
+Abstract—Multi-level ﬂash memory cells represent data by the
+amount of charge stored in them. Certain voltages are applied
+to the ﬂash memory cells to inject charges when programming
+and the cell level can be only increased during the programming process as a result of the high cost of block erasures. To
+achieve a high speed during writing, parallel programming is
+used, whereby a common voltage is applied to a group of cells to
+inject charges simultaneously. The voltage sharing simpliﬁes the
+circuitry and increases the programming speed, but it also affects
+the precision of charge injection and limits the storage capacity
+of ﬂash memory cells. Another factor that limits the precision
+of cell programming is the thermal electronics noise induced in
+charge injection.
+In this paper, we focus on noiseless parallel programming of
+multiple cells and noisy programming of a single cell. We propose
+a new criterion to evaluate the performance of the cell programming which is more suitable for ﬂash memories in practice and
+then we optimize the parallel programming strategy accordingly.
+We then proceed to noisy programming and consider the two
+scenarios where feedback on cell levels is either available during
+programming or not. We study the optimization problem under both circumstances and present algorithms to achieve the
+optimal performance.
+
+I. I NTRODUCTION
+Flash memories are a widely-used technology for nonvolatile data storage. The basic memory units in ﬂash
+memories are ﬂoating-gate cells, which use charge (i.e., electrons) stored in them to represent data, and the amount of
+charge stored in a cell determines its level. The hot-electron
+injection mechanism or Fowler-Nordheim tunneling mechanism [2] is used to increase and decrease a cell level by
+injecting charge into it or by removing charge from it, respectively. The cells in ﬂash memories are organized as
+blocks, each of which contains about 106 cells. One of the
+most prominent features of programming ﬂash memory cells
+is its asymmetry; that is, increasing a cell level, i.e., injecting charge into a cell, is easy to accomplish by applying a
+certain voltage to the cell, while decreasing a cell level, i.e.,
+removing charge from a cell, is expensive in the sense that
+the block containing the cell must ﬁrst be erased, i.e., all
+charge in the cells within the block is totally removed, before
+reprogramming to their target levels. The erase operation,
+called a block erasure, is not only time consuming, but also
+degrades the performance and reduces the longevity of ﬂash
+memories [2].
+In order to minimize the number of block erasures, programming ﬂash memories is accomplished very carefully using multiple rounds of charge injection to avoid “overshooting” the desired cell level. Therefore, a ﬂash memory can be
+modeled as a Write Asymmetric Memory (WAM), for which
+
+1
+
+e, then any read error will be totally eliminated as long as
+the number of read errors is less than e. This motivates us to
+consider another cost function, which is the number of cells
+that are not quantized correctly to their target levels.
+Assume that Θ = (θ1 , . . . , θn ) is the vector of target cell
+levels and ℓt = (ℓ1,t , . . . , ℓn,t ) is a vector of random variables which represent the level of every cell after t programming rounds. Note that in general the value of ℓi,t , for 1
+i
+n, depends on the applied voltages, the hardness of the
+cell, and the programming noise. We will evaluate the performance of any programming method by some cost function C(Θ, ℓt ) between the target cell levels Θ and the actual
+cell levels ℓt . Then, the programming problem is to ﬁnd an
+algorithm which minimizes the expected value of C(Θ, ℓt ).
+In [12], the ℓp metric was considered as the cost function
+1
+(∑n
+p) p
+. Motivated by the nature of
+Cp (Θ, ℓt ) =
+i=1 θi − ℓi,t
+quantization of the cell levels, we study in this paper the cost
+function
+{
+}
+C∆ (Θ, ℓt ) = i ∈ [n] : θi − ℓi,t > ∆i ,
+
+Let Θ = (θ1 , . . . , θn ) be the target cell levels and α =
+(α1 , . . . , αn ) be the hardness of charge injection. Let V =
+(V1 , V2 , . . . , Vt )T be the voltages applied on the t rounds of
+programming. Let bi,j ∈ {0, 1} for i ∈ [n] and j ∈ [t] indicate
+whether ci is programmed on the j-th round; i.e., bi,j = 1 if
+voltage Vj is applied to cell ci , and bi,j = 0, otherwise. Let
+ℓi,t for i ∈ [n] be a random variable, representing the level of
+ci after t rounds of programming. Then
+t
+∑
+ℓi,t =
+(αi Vj + ϵi,j ) bi,j ,
+
+where ∆i is the quantization distance for the i-th cell. We
+solve this problem for the special case where the hardness of
+each cell is known and there is no programming noise. We
+also study the problem in the presence of noise for a single
+cell with and without feedback.
+The rest of the paper is organized as follows. In Section II,
+we propose a new cost function and deﬁne the parallel programming problem when ﬂash memories quantize the amount
+of charge to discrete levels. In Section III, we present a
+polynomial-time algorithm to optimize the noiseless parallel
+programming with deterministic parameters deﬁned in Section II. In Section IV, single cell programming with noise is
+studied where there is no feedback information on the cell
+level. In Section V, noisy cell programming is studied where
+we can adaptively apply voltages according to the feedback
+of the current cell level. Due to the lack of space, some
+proofs will be omitted.
+
+to be the indicator matrix of the programmed cell on each
+round of programming.
+We evaluate the performance of the programming by some
+cost function C(Θ, ℓt ). The programming problem is to minimize the expected value of C(Θ, ℓt ) over V and B. That is,
+given the information of Θ, α and {ϵi,j }n×t , we seek to solve
+
+j=1
+
+where ϵi,j , for i ∈ [n] and j ∈ [t], is the programming noise
+of the i-th cell on the j-th programming round. We deﬁne
+ℓt = (ℓ1,t , . . . , ℓn,t ) to be the cell-state vector after t rounds
+of programming and we deﬁne the matrix
+
+
+b1,1 b2,1 · · · bn,1
+ b1,2 b2,2 · · · bn,2 
+
+
+t×n
+B= .
+.
+.  ∈ {0, 1}
+..
+.
+.
+. 
+ .
+.
+.
+.
+b1,t
+
+b2,t
+
+···
+
+bn,t
+
+minimize E [C(Θ, ℓt )] ,
+(P1)
+t×n
+with V ∈
+and B ∈ {0, 1} , where E [X] is the expected
+value of the random variable X.
+Rt
++
+
+Remark 1. We use R+ to denote the set of all non-negative
+real numbers, i.e., R+ = {x ∈ R : x 0}.
+In [12], the ℓp metric is considered as the cost function, i.e.
+1
+( n
+)p
+∑
+p
+Cp (Θ, ℓt ) =
+θi − ℓi,t
+,
+i=1
+
+and the optimal solution for (P1) was derived for known α
+in the absence of noise. However, in real applications, ﬂash
+memories use multiple discrete levels to represent data and if
+the cell level ℓi,t is within a certain distance from the target
+level θi , it will be quantized to the correct target level even
+though there is a gap between ℓi,t and θi . This motivates us to
+consider the number of cells that are not correctly quantized
+to their target levels as the cost function. To be more precise,
+letting ∆ = (∆1 , . . . , ∆n ), we deﬁne
+{
+}
+C∆ (Θ, ℓt ) = i ∈ [n] : θi − ℓi,t > ∆i
+to be the cost function, where ∆i is the quantization distance
+for ci . Therefore, the cell programming problem is to solve
+[ {
+} ]
+minimize E
+i ∈ [n] : θi − ℓi,t > ∆i
+,
+(P2)
+
+II. P RELIMINARIES
+Let c1 , c2 , . . . , cn be n ﬂash memory cells, with erased level
+denoted by 0. Their levels can be increased by injecting electrons, but cannot be decreased. We denote by [n] the set of positive integers less than or equal to n, i.e., [n] = {1, 2, . . . , n}.
+When applying a voltage V to a memory cell ci , where i ∈ [n],
+we assume that the increase of the level of cell ci is linear with
+V , that is, the level of ci will increase by
+αi V + ϵ,
+where αi and ϵ are random variables. We call the αi ’s, where
+αi > 0, i ∈ [n], the hardness of charge injection for cell ci ,
+and ϵ is the programming noise. (Note that the distribution of
+ϵ may vary among different cells and different writes.)
+We denote by θi
+0, i ∈ [n], the target level of ci . The
+programming process consists of t rounds of charge injection
+achieved by applying a speciﬁed voltage to all of the cells.
+The goal is to program the cell levels to be as close as possible to the target levels. We deﬁne the parallel programming
+problem in detail as follows.
+
+with V ∈ Rt and B ∈ {0, 1}t×n .
++
+III. N OISELESS PARALLEL P ROGRAMMING
+In this section, we assume that the cell hardness parameters (α1 , . . . , αn ) are known and deterministic, and there is no
+programming noise, i.e., ϵi,j = 0, ∀i ∈ [n], j ∈ [t]. In this scenario, ℓi,t is deterministic so that we can omit the expectation
+∑t
+in (P2) and ℓi,t = αi j=1 Vj bi,j . Let n, t, ∆1 , . . . , ∆n and
+
+2
+
+Rt , there is an uncountably inﬁnite number of choices of V
++
+to consider. Lemma 2 states that we can limit the number under consideration to be polynomial in n, and guarantee that
+an optimal solution can be found. Although this lemma plays
+the most important role in deriving the algorithm, the proof is
+too long to present due to space limitations.
+Lemma 2. There exists an invertible matrix A ∈ {0, 1}t×t ,
+such that
+A · V = p,
+where V is an optimal solution for (P3) and p ∈ T t .
+
+θ1 , . . . , θn denote the block length, number of programming
+rounds, quantization distances and target levels, respectively.
+Our goal is to ﬁnd an optimal solution to (P2).
+Lemma 1. The solution to Problem (P2) is equivalent to the solution of the following:
+maximize f (V , B),
+(P3)
+with V = (V1 , . . . , Vt )T ∈ Rt , bi = (bi,1 , . . . , bi,t )T ∈
++
+{0, 1}t and B = (b1 , . . . ,{ n ), where ui = θi −∆i , vi = θi +∆i ,
+b
+αi
+} αi
+i ∈ [n] and f (V , B) =
+
+i ∈ [n] : ui
+
+bT · V
+i
+
+vi
+
+.
+
+Proof: The following chain of equations is easily established. {
+}
+min i ∈ [n] : θi − ℓi,t > ∆i
+V ,B
+{
+}
+=n − max i ∈ [n] : θi − ℓi,t
+∆i
+V ,B
+{
+}
+θi
+ℓi,t
+∆i
+=n − max i ∈ [n] :
+−
+V ,B
+αi
+αi
+αi
+{
+}
+θi
+∆i
+T
+=n − max i ∈ [n] :
+− bi · V
+V ,B
+αi
+αi
+{
+}
+θi
+∆i
+θi
+∆i
+=n − max i ∈ [n] :
+−
+bT · V
++
+i
+V ,B
+αi
+αi
+αi
+αi
+{
+}
+T
+=n − max i ∈ [n] : ui bi · V
+vi ,
+
+Remark 4. In Lemma 2 and Algorithm 1 below, the matrix
+A has to be invertible over R instead of GF (2). Therefore,
+enumerating only the invertible matrices over GF (2) is not
+sufﬁcient to ﬁnd an optimal solution.
+Next we give an algorithm to search for an optimal solution to (P3), which, as we have shown, is also an optimal
+solution to (P2). Let {p1 , . . . , pM } be an arbitrary ordering
+of the points in T , where M = |T | is the number of different threshold point values and pi can be the value of either
+an upper or a lower threshold point, for i ∈ [M ]. Since p
+is of length t, there are N = M t choices of p (the entries
+can be repeated). Let {p1 , . . . , pN } be an arbitrary ordering
+of the choices. A matrix A ∈ {0, 1}t×t is formed such that
+no two ∏ are the same. Thus, the number of different A’s
+rows
+t−1
+is Q = k=0 (2t − k). Let {A1 , . . . , AQ } be an arbitrary ordering of all possible A’s. Algorithm 1 will iterate over all
+choices of p and those A’s that are invertible.
+
+V ,B
+
+where V ∈ Rt , B ∈ {0, 1}t×n , ui = θi −∆i and vi = θi +∆i .
++
+αi
+αi
+This establishes the chain.
+Since ui and vi , i ∈ [n] are the boundaries of the correct
+quantization interval for ci , we call them the upper threshold
+point and the lower threshold point for ci and we call the interval [ui , vi ] the quantization interval for ci . Any pair (V , B)
+that achieves the maximum for (P3) is called an optimal solution pair, and V is called optimal or an optimal solution if
+there exists B such that (V , B) is an optimal solution pair.
+
+Algorithm 1 PARALLEL P ROGRAMMING
+Let f ∗ = 0;
+Let V = V ∗ = (0, . . . , 0), V , V ∗ both have length t;
+Let B = (b1 , . . . , bn ) ∈ {0, 1}t×n , bi = 0, ∀i ∈ [n];
+Let B∗ ∈ {0, 1}t×n , b∗ = 0, ∀i ∈ [t], j ∈ [n];
+i,j
+For i = 1, 2, . . . , N {
+For j = 1, 2, . . . , Q {
+If Aj is invertible and A−1 · pi ∈ Rt {
++
+j
+Let V = A−1 · pi ;
+j
+Let f = 0;
+For k = 1, 2, . . . , n {
+If ∃z ∈ SV , such that uk z vk {
+Find b ∈ {0, 1}t , such that bT · V = z ;
+Let bk = b;
+f = f + 1;
+}}
+If f > f ∗ {
+f ∗ = f , V ∗ = V , B∗ = B; }
+}}}
+Output the optimal solution pair (V ∗ , B∗ ) with maximized
+f (V ∗ , B∗ ) = f ∗ .
+
+Deﬁnition 1. Suppose ui and vi , i ∈ [n], are deﬁned as in
+Lemma 1. Let Tu be the set of upper threshold points and Tv
+∪
+be the∪ of lower threshold points, i.e., Tu = i∈[n] {ui } and
+set
+Tv = i∈[n] {vi }. Let T = Tu ∪ Tv be the set of all upper and
+lower threshold points.
+Remark 2. We assume that |T | > t since otherwise we can
+easily achieve C∆ (Θ, ℓt ) = 0 by setting {V1 , . . . , Vt } = T .
+Deﬁnition 2. Suppose V = (V1 , . . . , Vt )T ∈ Rt . We deﬁne
++
+∪
+SV to be
+T
+SV =
+{b · V }.
+b∈{0,1}t
+
+and call it the attainable set of V . That is, SV is the set of
+voltage values that can be injected by applying V .
+Remark 3. For each i ∈ [n], if there exists z ∈ SV such that
+ui
+z
+vi , then there exists b ∈ {0, 1}t such that ui
+T
+b ·V
+vi , and thus ci can be quantized to the correct target
+level.
+For a ﬁxed V , optimizing the cost function over B is easy
+to accomplish by checking whether there exists z ∈ SV such
+that ui z vi for each i. Intuitively, we can enumerate every possible V and calculate the cost function to search for
+an optimal solution. However, since V can be any point in
+
+Remark 5. Since any matrix with two identical rows is not
+invertible, we only enumerated A matrices with distinct rows
+and then checked their invertibility. Therefore, the number
+∏t−1
+of A ∈ {0, 1}t×t that we considered is k=0 (2t − k). Furthermore, note that the complexity of the algorithm could be
+slightly reduced if we enumerated only the set of invertible
+matrices A over R.
+
+3
+
+Theorem 1. Algorithm 1 ﬁnds the optimal solution pair
+(V ∗ , B∗ ) and computes the optimal value f (V ∗ , B∗ ) for (P3).
+The time complexity of the algorithm is O(nt+1 ).
+Proof: According to Lemma 2, there exists an optimal
+solution (V , B), an invertible matrix A ∈ {0, 1}t×t , and a
+threshold-point vector p ∈ T t , such that
+A · V = p.
+In Algorithm 1, all possible A’s and p’s, have been exhaustively iterated and there is at least one optimal V among all
+the V ’s derived from A’s and p’s. The algorithm outputs the
+best V among them. This proves that this algorithm will ﬁnd
+an optimal solution to (P3).
+The number of iterations of the algorithm is of order
+∏t−1
+N Qt3 n2t , where N = M t (2n)t and Q = k=0 (2t − k).
+Therefore, the complexity is O(nt+1 ).
+
+c(x) =
+
+σ
+
+j=1
+
+x2
+j
+
+.
+
+2
+
+σ
+
+j=1
+
+xj
+
+when the context makes the meaning clear.
+The following lemma will be used to determine the optimal
+solution to (P5) in Theorem 2.
+Lemma 4. If x∗ is the optimal solution to (P5), then ∀i, j ∈
+[t], x∗ = x, for some constant x ∈ R+ .
+i
+Theorem 2. The optimal solution x to (P5) satisﬁes the following: xj = x, ∀j ∈ [t] where x is the positive root of the equation
+(
+)
+b
+2 ln
+x2 + 2(b − a)cx + (a2 − b2 ) = 0,
+a
+
+In this section, programming noise is assumed to exist. There is a single cell with injection hardness α, and
+the number of programming rounds is t. The programming
+noises ϵ1 , . . . , ϵt are assumed to be independently distributed
+Gaussian random variables with zero mean and variance
+2
+σϵj , j ∈ [t], respectively.
+Remark 6. Note that according to this model, after every
+programming round the level of each cell can decrease even
+though in real applications, the cell level of ﬂash memories
+can only increase. We choose to study this model while assuming that the variance σϵj , j ∈ [t] is much smaller than
+αVj , i.e., P (αVj + ϵj < 0) is very small, such that the probability of decreasing the cell levels is negligible. This model
+is a reasonable approximation to a physical cell and it can be
+studied analytically, as will be seen in this section.
+Another reasonable assumption we make is σϵj = σVj ,j ∈
+[t], where σ is a ﬁxed number; that is, the standard deviation
+of the programming noise is proportional to the programming
+voltage. This makes sense since large voltage applied to the
+cell results in large power of the programming noise. During
+programming, no feedback information is available, meaning
+that the actual amount of charge trapped in the cell after each
+round of programming is not known. The goal is to maximize
+the probability that after t rounds of programming the ﬁnal
+level is in [θ − ∆, θ + ∆], i.e.,
+t
+(
+)
+∑
+maximize P θ − ∆
+(αVj + ϵj ) θ + ∆ ,
+(P4)
+
+where a =
+
+−∆+θ
+√ ,b
+σ t
+
+=
+
+∆+θ
+√ ,c
+σ t
+
+=
+
+√
+α t
+σ .
+
+Proof: According to Lemma 3,
+∫ c(x)+δ(x)
+2
+1
+e−u /2 du
+g(x) = √
+2π c(x)−δ(x)
+∑
+∫ ∆+θ−α xj
+√∑ 2
+2
+1
+σ
+x
+j
+=√
+e−u /2 du
+∑
+2π −∆+θ−α 2 xj
+√∑
+σ
+
+1
+√
+2π
+
+∫
+
+x
+
+j
+
+∆+θ−αtx
+√
+σ tx2
+−∆+θ−αtx
+√
+σ tx2
+
+e−u
+
+2
+
+/2
+
+du
+
+∫ b−cx
+x
+u2
+1
+e− 2 du
+=√
+2π a−cx
+x
+1
+:= √ h(x),
+2π
+√
+
+√
+√
+where a = −∆+θ , b = ∆+θ , c = ασ t . The inequality follows
+σ t
+σ t
+from Lemma 4 and it is satisﬁed with equality if xj = x, ∀j ∈
+[t]. Differentiating h(x) with respect to x, we have
+1 b−cx 2
+dh
+−cx − (b − cx)
+= e− 2 ( x ) ·
+dx
+x2
+1 a−cx 2
+−cx − (a − cx)
+− e− 2 ( x ) ·
+= 0,
+x2
+(
+)
+b
+⇔ 2 ln
+x2 + 2(b − a)cx + (a2 − b2 ) = 0.
+a
+
+j=1
+
+with V ∈ Rt .
++
+In the rest of the section, (P4) is recast as an optimization problem and the vector of voltages V is written as x in
+accordance with convention.
+Lemma 3. Assume that σϵj = σVj , j ∈ [t], where σ is a ﬁxed
+number and feedback information is not available, the cell programming problem (P4) is equivalent to
+maximize g(x),
+(P5)
+
+1
+g(x) = √
+2π
+
+∆
+and δ(x) = √∑t
+
+Let p(y) = √1 e−y /2 be the N (0, 1) Gaussian probabil2π
+ity density function. Then g(x) can be interpreted as the area
+between the curves p(y) and y = 0 on the interval determined
+∑
+θ−α t
+xj
+by x, where the interval is centered at √∑tj=1 2 , with raσ
+xj
+j=1
+∑t
+∑
+∆
+dius 2 √∑t
+. For simplicity, j=1 (·) is written as (·)
+2
+
+IV. S INGLE C ELL N OISY P ROGRAMMING WITHOUT
+F EEDBACK
+
+with x ∈ Rt , where
++
+
+∑
+x
+θ−α t
+√∑tj=1 2j ,
+σ
+xj
+j=1
+
+It can be seen that there is only one extremal point for f (x)
+when x
+0 and that f (x)
+0, ∀x
+0. Meanwhile, f (x)
+approaches 0 as x approaches +∞. It follows that the extreme
+point can only be where f (x) achieves its maximum, which
+completes the proof.
+V. S INGLE C ELL N OISY P ROGRAMMING WITH F EEDBACK
+
+∫
+
+c(x)+δ(x)
+
+−u2 /2
+
+e
+
+In this section, we assume that after every round of programming, we can evaluate the amount of charge that has
+already been trapped in the cells. That is, we can measure
+
+du,
+
+c(x)−δ(x)
+
+4
+
+∑k
+
++ ϵj ) after the k-th round of programming1 , ∀k ∈
+[t]. Therefore, we can adaptively choose the applied voltages
+according to the current cell level. Similarly, we assume the
+injection hardness α of the cell is known and ﬁxed, and the
+programming noise values ϵ1 , . . . , ϵt are independent random
+variables with probability density functions pj (x), ∀j ∈ [t].
+Our goal is to maximize the probability that after t rounds
+of programming the ﬁnal level is in [θ − ∆, θ + ∆], i.e.,
+t
+(
+)
+∑
+maximize P θ − ∆
+(αVj + ϵj ) θ + ∆ ,
+(P6)
+j=1 (αVj
+
+Next we give an algorithm for determining the optimal cell
+programming for Problem (P6), where feedback information
+is available.
+Algorithm 2 Suppose the cell voltage is xj before the j -th
+write, where 1 j t and x1 = 0. Then on the j -th write, set
+θ−xj +∆
+Vj = α+δ2 .
+Theorem 4. Algorithm 2 gives an optimal solution for the cell
+programming problem (P6).
+VI. C ONCLUSION
+
+j=1
+
+with V ∈ Rt .
++
+Deﬁnition 3. Let P (V t , θ, ∆, t) be the probability that
+1
+the ﬁnal cell level after t rounds of programming is in
+[θ − ∆, θ + ∆] when the voltages applied are V t , where
+1
+V j = (Vi , Vi+1 , . . . , Vj ). Let P (θ, ∆, t) be the maximum
+i
+probability over all choices of V t , i.e.,
+1
+
+The study of cell programming for ﬂash memories is an important step toward understanding their storage capacity. Flash
+memories have a unique property that the cell levels can only
+increase during programming, which gives rise to a monotonic
+cell-programming model. In this paper, a new criterion to measure the performance of cell programming is proposed. Both
+noiseless parallel programming and noisy single cell programming are studied. The potential beneﬁt of using feedback to
+adaptively choose the programming voltages is considered.
+
+P (θ, ∆, t) = maxt P (V t , θ, ∆, t),
+1
+t
+ V 1 ∈R+
+
+where
+t
+∑
+t
+P (V 1 , θ, ∆, t) = P θ − ∆
+(αVj + ϵj ) θ + ∆ .
+
+VII. ACKNOWLEDGMENT
+
+j=1
+
+Suppose the target level and quantization distance are θ and
+∆, respectively. Let P (θ, ∆, t) be as in Deﬁnition 3. Then the
+following recursion holds:
+∫
+P (θ, ∆, t) = max
+
+V1 ∈R+
+
+for t
+
+R+
+
+This research was supported in part by the ISEF Foundation, the Lester Deutsch Fellowship, the University of California Lab Fees Research Program, Award No. 09-LR-06118620-SIEP, the National Science Foundation under Grant
+CCF-1116739, and the Center for Magnetic Recording Research at the University of California, San Diego.
+The authors would like to thank Lele Wang for her comments on the statement and proof of Lemma 2.
+
+p1 (x − αV1 )P (θ − x, ∆, t − 1)dx,
+
+2 and
+
+∫
+
+θ+∆
+
+p1 (x − αV1 )dx.
+
+P (θ, ∆, 1) = max
+
+V1 ∈R+
+
+θ−∆
+
+We can compute P (θ, ∆, t) numerically using the recursion
+once we know the distribution of the noise pj (x), j ∈ [t]. However, analytical results are difﬁcult to derive since the noise
+distribution pj (x), j ∈ [t] could be an arbitrary probability
+distribution. In the sequel, we assume a simple yet nontrivial noise distribution, namely, ϵj is uniformly distributed over
+[αVj − δ1 Vj , αVj + δ2 Vj ] for j ∈ [t], where 0 δ1 α and
+1
+δ2 0. Thus pj (x) = (δ1 +δ2 )Vj Ix∈[−δ1 Vj ,δ2 Vj ] . This assumption is very similar to the one made in [6]. The size of the
+support set of the noise distribution is proportional to the programming voltage, which is reasonable since larger voltages
+result in larger deviations of the noise distribution.
+Theorem 3. In Deﬁnition 3,
+{
+1
+if θ−∆ < α−δ2 ,
+1,
+θ+∆
+α+δ
+P (θ, ∆, 1) = α+δ2 2∆
+α−δ1
+θ−∆
+if θ+∆
+δ1 +δ2 θ+∆
+α+δ2 ,
+
+and the optimal solution is achieved by V1 =
+
+R EFERENCES
+[1] V. Bohossian, A. Jiang, and J. Bruck, “Buffer codes for asymmetric
+multi-level memory,” in Proc. IEEE Int. Symp. Inform. Theory, June
+2007, pp. 1186–1190.
+[2] P. Cappelletti, C. Golla, P. Olivo, and E. Zanoni, Flash Memories.
+Kluwer Academic Publishers, 1st Edition, 1999.
+[3] K. D. S. et al, “A 3.3V 32 Mb NAND ﬂash memory with incremental
+step pulse programming scheme,” IEEE Journal of Solid-State Circuits,
+vol. 30, no. 11, pp. 1149–1156, November 1995.
+[4] D. Haugland, “A bidirectional greedy heuristic for the subspace selection
+problem,” Lecture Notes in Computer Science, vol. 4638, pp. 162–176,
+August 2007.
+[5] A. Jiang, V. Bohossian, and J. Bruck, “Floating codes for joint information storage in write asymmetric memories,” in Proc. IEEE Int. Symp.
+Inform. Theory, June 2007, pp. 1166–1170.
+[6] A. Jiang and H. Li, “Optimized cell programming for ﬂash memories,”
+in Proc. IEEE Paciﬁc Rim Conference on Communications, Computers
+and Signal Processing (PACRIM), August 2009, pp. 914–919.
+[7] A. Jiang, H. Li, and J. Bruck, “On the capacity and programming of
+ﬂash memories,” IEEE Trans. Inform. Theory, vol. 58, no. 3, pp. 1549
+– 1564, March 2012.
+[8] A. Jiang, R. Mateescu, M. Schwartz, and J. Bruck, “Rank modulation
+for ﬂash memories,” IEEE Trans. Inform. Theory, vol. 55, no. 6, pp.
+2659 – 2673, June 2009.
+[9] H. T. Lue, T. H. Hsu, S. Y. Wang, E. K. Lai, K. Y. Hsieh, R. Liu, and
+C. Y. Lu, “Study of incremental step pulse programming (ISPP) and
+STI edge efﬁect of BE-SONOS NAND ﬂash,” in Proc. IEEE int. Symp.
+on Reliability Physiscs, vol. 30, no. 11, May 2008, pp. 693–694.
+[10] B. K. Natarajan, “Sparse approximate solutions to linear systems,” SIAM
+J. Comput., vol. 30, no. 2, pp. 227–234, April 1995.
+[11] R. Rivest and A. Shamir, “How to reuse a write-once memory,” Inform.
+and Contr., vol. 55, no. 1-3, pp. 1–19, December 1982.
+[12] E. Yaakobi, A. Jiang, P. H. Siegel, A. Vardy, and J. K. Wolf, “On the
+parallel programming of ﬂash memory cells,” in Proc. IEEE Inform.
+Theory Workshop, Dublin, Ireland, August-September 2010, pp. 1–5.
+
+θ+∆
+α+δ2 .
+
+Next we would like to ﬁnd the values of V t that maximize
+1
+P (V t , θ, ∆, t) with feedback information, for arbitrary t.
+1
+Lemma 5. P (θ, ∆, t) is a non-increasing function of θ.
+Lemma 6. P (V t , θ, ∆, t) is maximized when V1 =
+1
+
+θ+∆
+α+δ2 .
+
+1 Measuring the exact amount of charge injected is time consuming for real
+applications, thus it is common to compare the cell level to certain threshold
+values and to obtain a range for the cell level. In this work, we follow the
+assumption that the actual cell level is available, as in [6].
+
+5
+
+

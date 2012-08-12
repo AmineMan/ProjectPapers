@@ -1,0 +1,858 @@
+Title:          On the Complete Monotonicity of Symbol Error Rates.dvi
+Creator:        dvips(k) 5.98 Copyright 2009 Radical Eye Software
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Sun Apr 29 18:53:43 2012
+ModDate:        Tue Jun 19 12:55:08 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      314676 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569566419
+
+On the Complete Monotonicity of Symbol Error
+Rates
+Adithya Rajan and Cihan Tepedelenlioglu
+School of Electrical, Computer and Energy Engineering
+Arizona State University
+Tempe, Arizona 85287
+Email: {arajan2, cihan}@asu.edu
+convexity properties of the SER of such constellations are
+relatively scarce in the literature, even though they could prove
+to be useful in system optimization. It is known that the second
+derivative of the SER of a constellation of dimensionality
+greater than two is non-negative at sufﬁciently high SNR [2].
+Although this result is a general one, it does not provide a
+conclusive means of determining whether a given arbitrary
+constellation has a convex SER or not. For certain higher
+dimensional constellations, analytical expressions for the SER
+have been derived in the literature, which can be used to
+deduce the convexity of the SER. For example, the class of
+constellations of dimensionality 2, 3, 4 and 5 described in [7]
+can be veriﬁed to have convex SERs under AWGN. On the
+other hand, verifying if a SER is completely monotone is
+difﬁcult, even if a closed form expression for the SER is
+available. In addition, there has been no investigation into
+the complete monotonicity properties of the SER for higher
+dimensional constellations, which can be used to simplify the
+expressions for average SERs in fading channels, as well as
+to establish useful comparisons of average SERs of a system
+under two different fading channels [3], using the tools of
+stochastic ordering, introduced in [3], [8].
+In this work, it is shown that the SER of an arbitrary
+multi-dimensional constellation impaired by additive independent and identically distributed (i.i.d) Gaussian noise under
+maximum likelihood detection is completely monotone in the
+average SNR if the constellation matrix (i.e. the matrix with
+column vectors as the constellation points) has a rank of one
+or two. This includes all constellation of dimensionality one
+and two, and also many constellations of higher dimensions.
+The result on the complete monotonicity of SER is shown
+generalize to the case where the noise follows a dependent
+compound Gaussian distribution, which includes a number
+of non-Gaussian models such as Cauchy, Middleton classA and symmetric alpha-stable distributions. Since complete
+monotonicity implies convexity, it is seen that the SER is a
+convex function of the SNR regardless of the constellation
+dimensionality, provided that the constellation matrix has a
+rank of one or two. The complete monotonicity of SER can be
+used to compare the average SER over pairs of fading channels
+at all values of average SNR, even for such cases where
+the exact expression for the average error rate is intractable.
+Therefore, the contributions of this work are threefold: (i)
+
+Abstract—In this paper, it is shown that the symbol error
+rate of an arbitrary multi-dimensional constellation impaired
+by independent and identically distributed additive white Gaussian noise under maximum likelihood detection is completely
+monotonic in the average SNR, if the rank of the constellation
+matrix is either one or two. Further, under minimum distance
+detection, this result generalizes to the case when the noise follows
+a dependent and identically distributed compound Gaussian
+distribution. Classes of constellations with dimensionality greater
+than two, which have completely monotone and convex error
+rates are also identiﬁed herein. The applications of the complete
+monotonicity of the symbol error rate in obtaining generic
+comparisons of average error rates over pairs of fading channels
+are also discussed.
+
+I. I NTRODUCTION
+An important performance metric in digital communications
+is the symbol error rate (SER). Its convexity in the signal to
+noise ratio (SNR) plays a critical role in various optimization
+problems [1]. When convex, the error rate has a negative ﬁrst
+derivative and a positive second derivative. Additionally, if
+all the successive derivatives of the SER alternate in sign
+(referred to as complete monotonicity), then it is possible
+to express error rates as a positive mixture of decaying
+exponentials, which has applications in obtaining comparisons
+of average error rates over fading channels. This motivates us
+to explore the complete monotonicity properties of the SER of
+arbitrary multi-dimensional constellations, which are stronger
+than the corresponding convexity results in [2]. We now give
+an overview of the literature addressing such properties of the
+SER.
+One-dimensional and two-dimensional constellations have
+been adopted in many communication systems in the literature,
+and investigations into the properties of the SER of these
+constellations have revealed the conditions on the convexity of
+the SER with respect to the signal-to-noise ratio (SNR) under
+impairing additive white Gaussian noise (AWGN) [2]. Some
+special cases of two dimensional constellations such as M -ary
+phase shift keying (M -PSK) and M -ary quadrature amplitude
+modulation (M -QAM) have SERs which are known to be
+completely monotonic functions of the SNR [3], [4], which is a
+stronger condition than convexity. On the other hand, constellations of dimensionality greater than two (which we refer to
+as “higher dimensional constellations” henceforth) have found
+practical applications in satellite communications [5] and more
+recently, in optical communications [6]. Investigations of the
+
+1
+
+the notion of complete monotonicity of SERs is investigated;
+(ii) the concept of the reduced dimension of a constellation
+is proposed as a relevant quantity that affects convexity and
+complete monotonicity; (iii) stochastic ordering is proposed as
+an alternative application to complement existing optimization
+related applications of these results.
+The rest of the paper is organized as follows: Section
+II surveys some of the relevant mathematical background.
+In Section III, we describe the system model considered in
+this paper. The main results of this work on the complete
+monotonicity of error rates are in Section IV. The applications
+of complete monotonicity of error rates in ordering the average
+error rates over two different fading channels is presented in
+Section V. For the ease of readability, the proofs have been
+delegated to the appendices.
+Throughout this paper, sets are denoted using calligraphic
+font, vectors are denoted using boldface lower-case notation,
+and matrices are denoted using the boldface upper-case notation. E [f (X)] is used to denote the expectation of the
+function f (·) over the distribution of the random variable X.
+Pe,i (ρ) denotes the SER conditioned on the ith symbol of
+the constellation being transmitted, Pe (ρ) denotes the SER
+averaged over the entire constellation, ||·|| denotes the vector2 norm as well as the matrix-2 norm, and I[·] is the indicator
+function, deﬁned as I[x ∈ S] = 1, if x ∈ S and 0 otherwise.
+
+the signal energy is normalized as M −1
+
+i=1
+
+ˆ = argmin ||y − s||2 .
+s
+
+In this case, the decision region for any symbol si is a
+polyhedron [10] denoted by Ωi , given by {x|Ai x ≤ bi }, i =
+1 . . . , M . Further, the j th row of Ai is aT = (sj −
+j,i
+si )/ ||sj − si || and the j th element of bi : bj,i = ||sj − si || /2.
+In what follows, the complete monotonicity properties of
+the symbol error rate of an arbitrary N dimensional constellation are investigated. Before proceeding, the concept of an
+equivalent constellation and reduced dimension is introduced,
+which will be used in the results.
+Deﬁnition : Let S := [s1 . . . sM ] ∈ RN ×M denote the
+˜
+constellation matrix whose rank is N ≤ N , and has a singular
+˜
+value decomposition S = UΣVT , where U ∈ RN ×N ,
+˜ ˜
+N ×N
+˜ . We deﬁne the constellation
+Σ ∈ R
+and V ∈ M × N
+˜
+matrix S = ΣVT to be unitarily equivalent to S.
+˜
+The SER of S and S are identical for the minimum
+˜
+distance receiver under AWGN, since, S = UT S, is a unitary
+transformation on S, which preserves the distances between
+constellation points, and the energy of each constellation point.
+Further, the noise statistics remain unchanged when multiplied
+by a unitary matrix.
+IV. E RROR R ATES OF M ULTI -D IMENSIONAL
+C ONSTELLATIONS
+
+A function f : (0, ∞) → R is completely monotone (c.m.),
+if it has derivatives of all orders, and satisﬁes
+
+Now, the complete monotonicity properties of the symbol
+error rate Pe (ρ) are discussed, which constitutes the main
+theorem of the paper. Throughout, the aim of this paper is not
+to obtain the exact performance analysis of multi-dimensional
+constellations. Rather, its analytical properties are the main
+focus.
+
+dn
+f (x) ≥ 0, x > 0 ,
+(1)
+dxn
+for all n ∈ N ∪ 0, where the derivative of order n = 0 in (1)
+is deﬁned as f (x) itself. The celebrated Bernstein’s theorem
+[9] asserts that, f : (0, ∞) → R is c.m. if and only if it can
+be written in the form
+(−1)n
+
+Theorem 1. The SER of an arbitrary multi-dimensional constellation impaired by AWGN is c.m. under minimum distance
+˜
+detection, if the constellation has a reduced dimension N ≤ 2.
+
+∞
+
+0
+
+(2)
+
+Proof: See Appendix A. Appendix B has an alternate
+proof.
+Clearly, all constellations of dimensionality one and two
+satisfy the conditions of Theorem 1. Thus, it is immediate
+that some commonly used constellations such as the square
+M -QAM and M -PSK have c.m. error rates, which is also
+corroborated by [3], [4]. As a corollary of Theorem 1, it is
+seen that all two dimensional constellations have convex SERs.
+The convexity of error rates for two dimensional constellations
+has been previously shown in [2]. A generalization of the
+proof in [2] is provided in Appendix A. An alternate proof
+of Theorem 1 is detailed in Appendix B, which relies on a
+different approach.
+In addition to one and two dimensional constellations,
+Theorem 1 implies that any higher dimensional constellation
+will have a c.m. and convex error rate provided it has a reduced
+
+which is a Lebesgue integral with respect to a positive measure
+µ on [0, ∞). It is straightforward to verify that c.m. functions
+are positive and convex, and also that positive linear combinations of c.m. functions are also c.m.
+III. S YSTEM M ODEL
+Consider the transmission of the N -dimensional baseband
+signal s through i.i.d AWGN:
+y =s+z,
+
+(4)
+
+s∈S
+
+A. Complete Monotonicity
+
+exp(−sx)µ(ds), ∀x > 0 ,
+
+2
+
+||si || = 1. The
+
+maximum likelihood detector is employed at the receiver, and
+the detected symbol is given by
+
+II. M ATHEMATICAL P RELIMINARIES
+
+f (x) =
+
+M
+
+(3)
+
+where the transmitted symbol s ∈ RN is chosen from a set
+S of M constellation points, with M ≥ N . The additive
+noise is i.i.d Gaussian i.e. z := [z1 , . . . , zN ] can be written as
+zi ∼ N (0, 1/ρ), where ρ is the average SNR. As mentioned,
+ρ > 0 represents the average SNR, with the assumption that
+
+2
+
+dimension of one or two, which is seen to occur when the
+constellation is unitarily equivalent to a constellation whose
+points lie on a plane or a line. This is an important reﬁnement
+to [2, Theorem 2].
+Next, it is shown that Theorem 1 generalizes to the case
+where the noise follows a dependent and identically distributed
+compound Gaussian distribution, which has been used in the
+wireless communications literature to model impulsive noise
+[11]. The noise model is the following:
+√
+(5)
+z = νg,
+
+Now, consider the channel model
+√
+y = ρhs + z ,
+
+where z := [z1 , z2 ] is the AWGN with unit variance, ρ > 0
+represents the average SNR, h captures the effect of quasistatic fading and s is the transmitted symbol, chosen from a
+˜
+constellation matrix with reduced dimension N ≤ 2.
+In order to compare the average symbol error rate of the
+above system in two different fading environments, let the
+instantaneous channel gain in the ﬁrst scenario is given by
+X := |h|2 , while that in the second being Y := |h|2 . It
+has been established in [3] that if X and Y represent the
+instantaneous channel gains corresponding to Nakagami-m
+fading with two different line of sight parameters mX ≤ mY ,
+then X ≤Lt Y . The same is true for Rician fading with
+parameters KX ≤ KY . Interpreting g(x) in (7) as the
+instantaneous SER of a modulation scheme with c.m. SER,
+through the deﬁnition of X ≤Lt Y , it is observed that if
+the average error rate of differential phase shift keying is
+consistently lesser in Y than in X ∀ρ, then so will be the
+˜
+average error rate of any constellation with N ≤ 2. In other
+˜ ≤ 2, (7) implies that
+words, for any constellation with N
+E [Pe (ρY )] ≤ E [Pe (ρX)] ∀ρ > 0, whenever X ≤Lt Y . This
+serves as a way of comparing the average error rates over two
+fading channels, even in cases where the expression for the
+average error rate is not analytically tractable.
+
+where g := [g1 , . . . , gN ], with gj ∼ N (0, 1), j = 1, . . . , N
+and ν is a positive random variable. The compound Gaussian
+distribution includes a number of non-Gaussian noise models
+based on the distribution of ν in (5). For example, when ν
+is chosen as an afﬁne function of a Poisson random variable,
+z follows the Middleton class-A distribution [12], and when
+ν is chosen from a positive valued alpha-stable distribution,
+z follows the symmetric alpha-stable distribution [13], which
+includes Cauchy distributed noise as a special case.
+Under this noise model, it is easy to verify that the SER of a
+˜
+constellation S and its unitarily equivalent constellation S will
+be identical, since the distribution of UT z will be identical to
+that of z. As a result, for any constellation of dimension N , we
+˜
+consider its unitarily equivalent constellation of dimension N .
+Now, in order to extend Theorem 1 to the case of dependent
+compound Gaussian noise, we restrict our attention to the
+˜
+case when N ≤ 2. Conditioning on ν in (5), the noise is
+AWGN, and according to Theorem 1, for any constellation,
+˜
+Pe (ρ|ν) under minimum distance detection is c.m. if N ≤ 2.
+Consequently, we see that Pe (ρ) = E [Pe (ρ|ν)] is c.m., which
+can be veriﬁed by using the deﬁnition in (2). Although the
+above extension of Theorem 1 applies to dependent compound
+Gaussian noise, we note that it is possible to form a similar
+extension to some special cases of i.i.d compound Gaussian
+noise, using a minimum distance receiver. However, such a
+generalization is beyond the scope of this paper.
+
+VI. C ONCLUSIONS
+In this paper, for the ﬁrst time in the literature, it is
+established that the symbol error rate of any arbitrary multidimensional constellation which is unitarily equivalent to a
+constellation whose points lie on a line or a plane is completely
+monotonic in the average SNR parameter. This result is
+stronger than the corresponding convexity results which have
+been previously established. As an application of complete
+monotonicity of symbol error rates, it is shown the stochastic
+Laplace transform order can be systematically exploited in
+order to obtain generic comparisons of the average symbol
+error rate over a pair of parametric fading channels, even in
+cases where the expressions for the same are intractable.
+
+V. S TOCHASTIC O RDERING OF AVERAGE E RROR R ATES IN
+FADING C HANNELS
+Complete monotonicity of Pe (ρ) for arbitrary constella˜
+tions with N ≤ 2 ﬁnds direct application in comparing the
+average error rate of such constellations over two different
+fading channels. Such generic comparisons are obtained using
+the stochastic Laplace transform order, which is summarized
+below. A detailed exposition of the theory of stochastic orders
+can be found in [15].
+For any two non-negative random variables X and Y , Y is
+said to dominate X in the Laplace transform sense (denoted
+by X ≤Lt Y ) if and only if
+E [exp(−sY )] ≤ E [exp(−sX)] ∀ s ≥ 0 .
+
+VII. ACKNOWLEDGMENT
+This work was supported in part by the National Science
+Foundation under Grant CCF 1117041.
+A PPENDIX A
+P ROOF OF T HEOREM 1
+In this Appendix, we show that the proof for convexity of
+the SER of arbitrary constellations in [2, Appendix] can be
+generalized to establish its complete monotonicity.
+For any given constellation S, we consider the its unitarily
+˜
+equivalent constellation S, since they have identical symbol
+˜
+error rates. Further, we restrict our proof to the case of N = 2,
+˜
+since constellations with N = 1 can be viewed as a special
+˜
+cases of constellations with N = 2.
+
+(6)
+
+One useful property of Laplace transform ordered random
+variables is that for all c.m. functions g(·), we have
+E [g(sY )] ≤ E [g(sX)] ∀ s ≥ 0 .
+
+(8)
+
+(7)
+
+3
+
+2
+2
+Let Pz (z; ρ) := (ρ/(2π)) exp(−(ρ/2)(z1 + z2 )) denote the
+two dimensional Gaussian density function, and Pc,i (ρ) :=
+1 − Pe,i (ρ) denote the probability of correct decision conditioned on the si being transmitted1 . The k th derivative of
+Pc,i (ρ) for k = 1, 2, . . . is given by
+
+dk
+Pz (z; ρ) dz .
+dρk
+
+dk
+Pc,i (ρ) =
+dρk
+
+when k is even, while the inequality in (15) is reversed when
+k is odd. Thus,
+dk
+Pz (z; ρ) dz ≤
+dρk
+
+when k is even, while the inequality in (16) is reversed when
+k is odd. It is easy to see that the right hand side of (16) is
+zero for both these cases, since the Gaussian PDF integrates to
+unity, whose second k th differential equals zero. Thus, all even
+order derivatives of Pc,i (ρ) are negative when ρ ≤ αk /d2
+max,i ,
+while all odd order derivatives are positive in this regime.
+
+,
+
+Case (iii) : Intermediate SNR regime
+This SNR regime corresponds to {ρ|αk /d2
+max,i ≤ ρ ≤
+αk /d2 , where dmax,i and dmin,i are as deﬁned in (13)
+min,i
+and (14) respectively. Deﬁne Ωcon as the region formed by
+2
+the intersection of the circle {z : ||z|| ≤ αk /ρ}, and the
+Voronoi region Ωi . Clearly, Ωcon is the cone whose base
+2
+is the intersection of aT z = bj,i and ||z|| ≤ αk /ρ. Note
+j,i
+that Ωcon partitions the Voronoi region into two sub-regions:
+Ωb := Ωi ∩ Ωcon and Ωa := Ωi − Ωb .
+2
+By deﬁnition, Ωb consists of {z : ||z|| ≤ αk /ρ}, which
+2
+together with (11) implies gk (||z|| ) ≤ 0. Thus, for z ∈ Ωb ,
+(10) is negative for even k, and positive for odd k. Using this
+in (9), we get
+
+for k = 1, 2, . . ., where
+
+αk =
+
+2
+
+= ||z|| −
+
+αk
+,
+ρ
+
+4, k even
+6, k odd
+
+.
+
+(11)
+(12)
+
+Since (10) depends on the value of ρ, we consider three different intervals for ρ, corresponding to high SNR, intermediate
+SNR and low SNR and obtain the sign of the RHS of (9) in
+each of these SNR regimes.
+Case (i) : Low SNR regime
+
+dk
+Pz (z; ρ) dz ≤ 0, even k
+dρk
+
+2
+
+:= max ||z|| ,
+Ai z≤bi
+
+Ωb
+2
+
+Now, ∀ {z : ||z|| ≥ αk /ρ}, (10) is positive when k is even
+(negative, when k is odd). This region includes {z : z ∈ R2 −
+Ωcon ∪ Ωi }. Using this fact, we can upper-bound the integral
+of (10) over Ωa for even k as follows:
+
+This SNR regime corresponds to {ρ|ρ ≥ αk /d2 }, where
+min,i
+
+Ωa
+
+Ωa
+
+(14)
+
+dk
+= k
+dρ
+
+2
+
+R2 −Ω
+
+(19)
+
+Pz (z; ρ) dz ,
+
+R2 −Ω
+
+gk ||z|| ≥ 0. Since {z : ||z|| ≥ d2 } ⊃ R2 − Ωi (where
+min,i
+A − B : {x ∈ A|x ∈ B}) , we have
+/
+dk
+Pz (z; ρ) dz ≥ 0,
+dρk
+
+dk
+Pz (z; ρ) dz
+dρk
+
++
+
+is the minimum distance from the origin to the boundary of Ωi .
+2
+In this case, αk /ρ ≤ d2 , and ∀z ∈ {z : ||z|| ≥ d2 },
+min,i
+min,i
+2
+
+dk
+Pz (z; ρ) dz
+dρk
+
+dk
+Pz (z; ρ) dz ≤
+dρk
+
+Case (ii) : High SNR regime
+
+j
+
+(18)
+
+Ωb
+
+(13)
+
+is the square of the maximum distance from the origin to
+2
+the boundary of Ωi . Now, ∀ z ∈ Ωi , gk ||z|| ≤ 0, and
+hence, from (10), all even order derivatives of Pc,i (ρ) are
+negative when ρ ≤ αk /d2
+max,i , while all odd order derivatives
+are positive in this regime.
+
+dmin,i := min bj,i ,
+
+(17)
+
+dk
+Pz (z; ρ) dz ≥ 0, odd k.
+dρk
+
+This SNR regime corresponds to {ρ|ρ ≤ αk /d2
+max,i }, where
+d2
+max,i
+
+(16)
+
+Ωi
+
+(10)
+
+2
+
+d
+Pz (z; ρ) dz ,
+dρk
+
++
+
+(9)
+
+Through direct differentiation, it can be shown that the integrand of (9) can be written as follows:
+
+gk ||z||
+
+R2 −Ωi
+k
+
+Ωi
+
+Ωi
+
+ρ
+dk
+2k−2 −ρ||z||2 /2
+2
+Pz (z; ρ) = (−1)k
+||z||
+e
+gk ||z||
+dρk
+8π
+
+dk
+Pz (z; ρ) dz
+dρk
+
+(20)
+
+con ∪Ωi
+
+R2 −Ω
+
+con
+
+while proceeding similarly as above, the inequality in (19) is
+reversed for the case of odd k. The integral in (20) can be
+viewed as the integral of the 2-dimensional Gaussian density
+over the solid angle θ spanned by Ωcon , which is given by
+1 − θ/2π. Using this fact with (19), we get
+
+(15)
+
+i
+
+1 Although we initially deﬁned s as a constellation point of S, in order
+i
+to avoid cumbersome notation, in the appendices si represents the respective
+˜
+constellation point from S, and correspondingly, {z|Ai z ≤ bi } represents
+the Voronoi region.
+
+dk
+Pz (z; ρ) dz ≤ 0 ,
+dρk
+
+Ωa
+
+4
+
+(21)
+
+Through a change of variables, u = 1/2 sin2 (φ + ψf,i ), (26)
+can be expressed in the form
+
+when k is even, and a reverse in the inequality in (21), when k
+is odd. Adding (17) and (21), we see that in the intermediate
+SNR regime, (9) is negative, when k is even, and vice-versa,
+when k is odd.
+Combining the results from Cases (i), (ii) and (iii), we
+conclude that the derivatives of Pc,i (ρ) alternate in sign, with
+the ﬁrst derivative being positive. Consequently, Pe,i (ρ) is a
+c.m. function. This implies Pe (ρ) := i Pr[s = si ]Pe,i (ρ)
+is also a c.m. function, since c.m. functions are closed under
+conic combinations.
+
+Fi
+
+where µ(u) is given by
+
+1
+ √
+,
+µf,i (u) = 4πu 2u−1
+0,
+
+Pe,i (ρ) =
+f =1ξ
+
+f,i
+
+φf
+
+∞
+
+Pe,i (ρ) =
+f =1 0
+Rf,i (φ)
+
+(23)
+
+(24)
+
+where φf is the angle between the lines joining the origin and
+the vertices on the f th edge of the decision region, and Rf,i (φ)
+equals the distance of point (r, φ) on the edge aT z = bf,i
+f,i
+from the origin, and is given by
+bf,i
+,
+(25)
+Rf,i (φ) =
+sin(φ + ψf,i )
+where bf,i is the f th element of bi , and ψf,i :=
+a1,f,i / a2 + a2 , where aj,f,i := [Ai ]j,f , j = 1, 2.
+1,f,i
+2,f,i
+Now, using (25) in (24) and carrying out the integration
+with respect to r, we get
+1
+Pe,i (ρ) =
+2π
+
+Fi
+
+φf
+
+f =1 0
+
+exp −
+
+ρ
+dφ .
+2 sin2 (ψf,i + φ)
+
+.
+
+otherwise
+(28)
+
+[1] Y. Lin and S. Phoong, “BER minimized OFDM systems with channel
+independent precoders,” IEEE Trans. Signal Process., vol. 51, pp. 2369–
+2380, Sep. 2003.
+[2] S. Loyka, V. Kostina, and F. Gagnon, “Error rates of the maximumlikelihood detector for arbitrary constellations: convex/concave behavior
+and applications,” IEEE Trans. Inf. Theory, vol. 56, pp. 1948–1960, Apr.
+2010.
+[3] C. Tepedelenlioglu, A. Rajan, and Y. Zhang, “Applications of stochastic
+ordering to wireless communications,” IEEE Trans. Wireless Commun.,
+vol. 10, pp. 4249 –4257, Dec. 2011.
+[4] M. Nesenbergs, “Error probability for multipath fading - the slow and
+ﬂat idealization,” IEEE Trans. Commun. Technol., vol. 15, pp. 797–805,
+Dec. 1967.
+[5] E. Biglieri, “Advanced modulation formats for satellite communications,” Advanced Methods for Satellite and Deep Space Communications, pp. 61–80, 1992.
+[6] H. B¨ low, “Polarization QAM modulation (POL-QAM) for coherent
+u
+detection schemes,” in Proc. Optical Fiber Communication and National
+Fiber Optic Engineers Conference, 2009.
+[7] E. Agrell and M. Karlsson, “On the symbol error probability of regular
+polytopes,” IEEE Trans. Inf. Theory, vol. 57, pp. 3411 –3415, Jun. 2011.
+[8] C. Tepedelenlioglu, A. Rajan, and Y. Zhang, “Stochastic ordering of
+fading channels,” in Proc. 12th IEEE Int. Workshop Signal Process.
+Adv. in Wireless Commun. (SPAWC), Jun. 2011, pp. 211 –215.
+[9] R. Schilling, R. Song, and Z. Vondraˇ ek, Bernstein functions: theory
+c
+and applications. Walter de Gruyter, 2010.
+[10] S. Boyd and L. Vandenberghe, Convex optimization. Cambridge Univ.
+Press, 2004.
+[11] C. Tepedelenlioglu and P. Gao, “On diversity reception over fading
+channels with impulsive noise,” IEEE Trans. Veh. Technol., vol. 54, no. 6,
+pp. 2037–2047, 2005.
+[12] D. Middleton, “Statistical-physical models of electromagnetic interference,” IEEE Trans. Electromagn. Compat., no. 3, pp. 106–127, 1977.
+[13] M. Taqqu, Stable non-Gaussian random processes: stochastic models
+with inﬁnite variance. Chapman & Hall/CRC, 1994.
+[14] A. Rajan and C. Tepedelenlio˘ lu, “A new representation for the symbol
+g
+error rate,” IEEE Trans. Inf. Theory, (To be submitted).
+[15] M. Shaked and J. G. Shanthikumar, Stochastic orders and their applications, 1st ed. Springer, Oct. 1994.
+[16] J. Craig, “A new, simple and exact result for calculating the probability of
+error for two-dimensional signal constellations,” in Proc. IEEE Military
+Communications Conf., 1991, pp. 571–575.
+
+f
+
+r
+r2
+drdφ ,
+exp −
+2π
+2
+
+1
+1
+,
+2 sin2 (ψf,i +φf,i ) 2 sin2 (ψf,i )
+
+R EFERENCES
+
+Now, applying the transformation z1 = σr cos φ and z2 =
+σr sin φ, on (23), we get
+Fi
+
+u∈
+
+Clearly µf,i (u) ≥ 0 ∀u ∈ [0, ∞). Thus, through Bernstein’s
+Theorem Pe,i (ρ) is a c.m. function of ρ. Finally, Pe (ρ) =
+M
+i=1 Pe,i (ρ) Pr[s = si ] is a positive linear combination of
+Pe,i (ρ), which is also c.m., since c.m. functions are closed
+under positive linear combinations.
+
+R2 −Ωi
+
+
+
+2
+2
+zj
+1
+ dz1 dz2 .
+exp −
+2πσ 2
+2σ 2
+j=1
+
+(27)
+
+f =1 0
+
+where the origin of the coordinate system has been shifted
+to si . Let Fi denote the total number of edges of Ωi . Then,
+following the procedure outlined in [16], the R2 space can be
+partitioned into a number of disjoint conical regions Ωcon,f,i ,
+each of which is formed by joining the origin and the vertices
+of Ωi . Thus, the error region for si is given by ξf,i , where
+
+Fi
+
+exp(−ρu)µf,i (u)du ,
+
+Pe,i (ρ) =
+
+A PPENDIX B
+A LTERNATE P ROOF OF T HEOREM 1
+As in Appendix A, we consider the unitarily equivalent
+˜
+constellation S, instead of S,and restrict our proof to the case
+˜
+˜
+of N = 2, since constellations with N = 1 are special cases
+˜
+of constellations with N = 2.
+Since z is AWGN, the decision region for the symbol si
+is a polygon, denoted by Ωi , and the corresponding SER is
+given by
+
+
+2
+2
+zj
+1
+ dz1 dz2 , (22)
+exp −
+Pe,i (ρ) =
+2πσ 2
+2σ 2
+j=1
+
+ξf,i := Ωcon − Ωi [16], so that
+
+∞
+
+(26)
+
+5
+
+

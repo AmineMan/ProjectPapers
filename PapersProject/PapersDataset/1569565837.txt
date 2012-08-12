@@ -1,0 +1,811 @@
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Thu May 17 06:29:12 2012
+ModDate:        Tue Jun 19 12:55:31 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      367502 bytes
+Optimized:      no
+PDF version:    1.7
+ISIT'2012 1569565837
+
+Space Information Flow: Multiple Unicast
+Zongpeng Li
+
+Chuan Wu
+
+Dept. of Computer Science, University of Calgary
+and Institute of Network Coding, CUHK
+zongpeng@ucalgary.ca
+
+Department of Computer Science
+The University of Hong Kong
+cwu@cs.hku.hk
+
+achievable with network coding over that with routing, may
+grow linearly with the network size [9].
+
+Abstract— The multiple unicast network coding conjecture
+states that for multiple unicast in an undirected network, network
+coding is equivalent to routing. Simple and intuitive as it appears,
+the conjecture has remained open since its proposal in 2004
+[1], [2], and is now a well-known unsolved problem in the
+ﬁeld of network coding. In this work, we provide a proof to
+the conjecture in its space/geometric version. Space information
+ﬂow is a new paradigm being proposed [3], [4]. It studies
+the transmission of information in a geometric space, where
+information ﬂows are free to propagate along any trajectories,
+and may be encoded wherever they meet. The goal is to minimize
+a natural bandwidth-distance sum-product (network volume),
+while sustaining end-to-end unicast and multicast communication
+demands among terminals at known coordinates. The conjecture
+is true in networks only if it is true in space. Our main result is
+that network coding is indeed equivalent to routing in the space
+model. Besides its own merit, this partially veriﬁes the original
+conjecture, and further leads to a geometric framework [5] for
+a hopeful proof to the conjecture.
+
+s1
+x1
+
+x1
+x 1+x 2
+x 1+x 2
+
+t2
+
+x2
+
+s2
+
+s1
+
+s2
+
+x 1+x 2
+t1
+
+t2
+
+x 11
+
+x 21
+
+x 21
+
+x 12
+
+x2
+
+x 12 x 21
+
+x 11
+
+x 12
+
+x 22
+
+x 22
+
+x 11 x 22
+
+t1
+
+Fig. 1. (Example from [1].) Two unicast sessions, from s1 to t1 and from
+s2 to t2 , each with target rate 1. All link capacities are 1. (A). Solution with
+network coding. (B) Solution without network coding.
+
+The work of Zongpeng Li
+
+However, no >1 coding advantage has been observed
+for multiple unicast in the undirected setting. For example,
+Fig. 1(B) shows a MCF with end-to-end ﬂow rate of 1 for
+each of the two unicast sessions. Li and Li [1] and Harvey et
+al. [2] conjectured that network coding is equivalent to routing
+for multiple unicast in undirected networks.
+
+I. BACKGROUND AND I NTRODUCTION
+A. The Multiple Unicast Network Coding Conjecture
+Departing from the classic store-and-forward principle of
+data networking, network coding encourages information ﬂows
+to be “mixed” in the middle of a network, via means of coding
+[6], [7]. While network coding for a single communication
+session (unicast, broadcast or multicast) is well understood by
+now, the case of multiple independent sessions (multi-source,
+multi-sink) is much harder, with less results known [8]. A
+basic scenario in the latter is the multiple unicast setting, where
+multiple independent one-to-one communication demands coexist in a network. With routing, the optimal solution can be
+computed by solving a multicommodity ﬂow (MCF) linear
+program; with network coding, the structure and the computational complexity of the optimal solution are largely unknown.
+In directed networks, network coding can augment the
+capacity region of multiple unicast. For example, Fig. 1(A)
+shows a network coding solution for two unicast sessions in
+a directed network, where each session has a throughput of 1.
+Without network coding, it is not hard to verify that achieving
+a throughput of 1 and 1 for both sessions concurrently is
+infeasible, given the pre-deﬁned link directions. In general,
+the coding advantage, the ratio of the maximum throughput
+
+Despite a series of research effort devoted [10]–[12], rather
+limited progresses have been made towards settling this fundamental problem in network coding. Besides “easy” cases
+where the cut set bounds can be achieved without network
+coding [1], [2], the conjecture has been veriﬁed only in small,
+ﬁxed networks and their variations, such as the OkamuraSeymour network [10], [11]. It is worth noting that such
+veriﬁcation already involves new tools in network information theory such as information dominance [10], input-output
+equality and crypto equality [11]. A growing agreement is
+that new tools beyond a “simple blend” of graph theory and
+information theory are required for eventually settling the
+conjecture. In this work, we prove the geometric version of the
+multiple unicast conjecture, by further incorporating mature
+techniques in geometry into the picture.
+In 2007, Mitzenmacher et al. compiled a list of seven open
+problems in network coding [13], where the multiple unicast
+conjecture appears as problem number 1. Chekuri commented
+that claiming an equivalence between network coding and
+routing for all undirected networks is a “bold conjecture”, and
+that the problem of fully understanding network coding for
+multiple unicast sessions is still “wild open” ( [14], p51-55).
+
+The work of Zongpeng Li was partially supported by a grant from the
+University Grants Committee (Project No. AoE/E-02/08) of the Hong Kong
+Special Administrative Region, China.
+
+1
+
+B. Space Information Flow
+Space information ﬂow is a new subject of study being
+proposed [3], [4]. It considers terminals at known locations
+in a geometric space, with unicast, broadcast or multicast
+communication demands among them. Information ﬂows can
+be transmitted along any trajectories in the space, and may be
+replicated wherever desired, or encoded wherever they meet.
+The goal is to minimize the total bandwidth-distance sumproduct, while sustaining given end-to-end communication
+rates. Besides being a conceivable theoretical problem of
+“network coding in space”, space information ﬂow models the
+min-cost design of a blueprint of a communication network,
+which deserves renewed research attention given network
+coding [3]. As we will discuss later, space information ﬂow
+also opens the door to geometric approaches for studying
+network information ﬂow problems, including in particular the
+multiple unicast network coding conjecture in graphs.
+x2
+
+x2
+3
+
+t3
+
+3
+
+t2
+
+0
+
+t3
+
+t2
+
+2
+
+2
+1
+
+multiple unicast solution here is that, at any given point A, the
+total amount of ﬂows at A, aggregated from both directions,
+should be at least the total demand of unicast sessions whose
+terminals reside on different sides of A. We take integration
+on both sides of this inequality along all points in the 1-D
+space, and prove that network coding can not improve upon
+an optimal solution based on routing (MCF).
+For the general case of a h-D space, h ≥ 2, our approach is
+to reduce the problem into 1-D, by applying the mature tool of
+projection in geometry. We prove that, if network coding can
+outperform MCF in h-D, then it can do so in 1-D, thereby
+leading to a contradiction. More speciﬁcally, we show that
+in a given case where a network coding based solution has a
+smaller cost than that of MCF, there must exist a 1-D subspace,
+onto which the projection of the network coding solution is
+still cheaper than the projection of the MCF solution. The
+challenge here is that such a “good” candidate subspace for
+projection is hard to ﬁnd. It is problem dependent and no
+ﬁxed subspace always works. We prove the existence of such
+an elusive subspace without explicitly identifying it, through
+an argument of integrating the projected network coding and
+MCF solutions over all possible 1-D rays from origin.
+
+s1 s2
+1
+
+s3 t 1
+2
+
+3
+
+1
+
+x1
+
+0
+
+s1 s2
+1
+
+s3 t 1
+2
+
+3
+
+D. Relevance and Discussions
+In Sec. II-C, we prove that the cost advantage, the potential
+advantage of network coding over routing in terms of reducing
+data transmission cost, is always at least as high in networks
+than in space. Therefore, our result in this paper partially
+veriﬁes the original multiple unicast network coding conjecture
+in networks.
+Perhaps more interesting is that the new space information
+ﬂow perspective provides a promising direction for attacking
+the original conjecture itself. In a sibling work [5], we describe
+a geometric framework that is hopeful for eventually resolving
+the original conjecture. We brieﬂy preview this geometric
+framework, as well its connection to this work, in Sec. III-D.
+Given that network coding is equivalent to routing for
+multiple unicast in a Euclidean space, it is interesting to ask
+whether the same holds for multicast. In two sibling work [3],
+[4], we study the multicast problem in space, with network
+coding explicitly considered. There we present examples that
+show network coding and routing are indeed different in
+space, prove upper-bounds on the cost advantage, analyze the
+achievability of optimality with ﬁnite solutions, and discuss
+the complexity of optimal multicast in a geometric space.
+
+x1
+
+Fig. 2. A 2-D example of space information ﬂow: meeting communication
+demands among nodes in space. A min-cost solution is to be computed, for
+three unit-demand unicast sessions from s1 to t1 , from s2 to t2 and from
+s3 to t3 , respectively (left). Given network coding, is there a solution better
+than MCF (right)?
+
+For a quick feel of space information ﬂow, consider three
+unicast sessions each with unit demand, from s 1 to t1 , from s2
+to t2 and from s 3 to t3 , respectively, in a 2-D Euclidean space
+as shown in Fig.1. We can route an information ﬂow along
+any path in space, insert relay nodes wherever desired, and
+replicate or encode information ﬂows wherever desired. We
+aim to minimize the volume of the solution network induced,
+e ||e||f (e). Here e is a link employed for ﬂow transmission,
+||e|| is the length of e in space, and f (e) is the rate of
+information ﬂow routed across e. What is the optimal solution
+for satisfying the three unicast demands? Can network coding
+lead to better solutions than routing (MCF)? Recent examples
+show that network coding can outperform routing when the
+demand in space is multicast [3], [4]. What about multiple
+unicast?
+
+II. P ROBLEM M ODELS
+
+C. Summary of Results
+Our main result in this work is that network coding is
+equivalent to routing, for multiple unicast in the new space
+information ﬂow model. We restrict our attention to Euclidean spaces; the case of non-Euclidean spaces, such as ndimensional spaces under Chebyshev distance, is still being
+investigated [5].
+We ﬁrst analyze the simple case of a 1-D space, where a
+single point constitutes a cut. A natural requirement on a valid
+
+A. Network Information Flow
+We represent an existing network, directed or undirected,
+using a graph G = (V, E). The vector c ∈ Z E stores capacities
++
+of links in E. Here Z+ is the set of positive integers. Another
+vector w ∈ QE represents the distance or cost of links in
++
+E, and we can be interpreted as the cost of routing a unit
+ﬂow through that link. Here Q + represents the set of positive
+rational numbers.
+
+2
+
+For the min-cost multiple unicast problem, we consider k
+unicast sessions co-existing in network G, and let s i and ti be
+the sender and receiver of session i ∈ {1, . . . , k}. We use r to
+denote the target throughput vector of the k sessions, and r i is
+the required throughput of session i. Without network coding,
+a solution to the multiple unicast problem is a multicommodity
+ﬂow (MCF), which can be represented using a link ﬂow vector
+f ∈ QE . The min-cost MCF can be computed by solving a
++
+linear program [1], [2].
+A network coding solution to the multiple unicast problem
+has two components: (A) a ﬂow component, for how much
+ﬂow to transmit over each link, and (B) a coding component,
+for where and how to encode and decode the information
+ﬂows. We denote the underlying link ﬂow vector in (A) using
+f ∈ QE too. In undirected networks, a network coding scheme
++
+may be dynamic in that the transmission scheme is a timeslotted one (a convolutional code), and a different ﬂow routing
+and coding scheme is adopted in each different time slot [6],
+[10]. In this case, we simply let f e be the time-average ﬂow
+rate at link e. There is no known linear program of polynomial
+size that computes the min-cost network coding solution.
+
+We can create a corresponding problem instance ∆ d for the
+directed setting, by viewing f as the directed network, while
+keeping the terminal nodes, link costs and target throughput
+intact. With network coding, the cost of the optimal solution
+is the same in ∆d and in ∆u . Without network coding, the
+cost of the optimal solution can only increase from ∆ u to ∆d ,
+since the latter is more restrictive. Therefore β d ≥ βu .
+The proof to β u ≥ βs is similar, by viewing the underlying
+ﬂow f of the optimal network coding solution for ∆ s as an
+undirected network. The directions in f are ignored. The cost
+of a link e is taken as ||e|| h .
+Given Theorem 2.1, we know that all upper-bounds on the
+cost advantage proven for the undirected model are still valid
+in the space model. Conversely, all lower-bounds that we can
+prove for the space model will also be valid for the undirected
+model. For example, an upper-bound of 2 is known for cost
+advantage in undirected multicast networks [15]–[17]. This
+bound automatically holds for multicast in a space of any
+dimension. In Sec. III, we prove that the cost advantage for
+multiple unicast is always 1 in space. Unfortunately, this does
+not directly imply the multiple unicast conjecture in undirected
+networks. We discuss how this bound is connected to the
+conjecture in Sec. III-D.
+
+B. Space Information Flow
+In the space information ﬂow problem, we are given a
+set of terminal nodes, with (multiple) unicast or multicast
+communication demand. The space we consider in this work
+is a h-D Euclidean space, h ≥ 1. A node u has coordinate
+(x1,u , x2,u , . . . , xh,u ). The Euclidean distance between two
+nodes u and v is
+
+A. The Multiple Unicast Conjecture for Network Information
+Flow
+In their original work where the multiple unicast conjecture
+was proposed [1], Li and Li ﬁrst formulated the conjecture in
+the throughput domain, and then applied linear programming
+duality to translate it into an equivalent version in the cost
+domain.
+The Multiple Unicast Conjecture [1], [2]
+Throughput domain: For k independent unicast sessions
+in a capacitated undirected network (G, c), a throughput
+vector r is feasible with network coding if and only if it is
+feasible with routing.
+Cost domain: Let f be the underlying ﬂow vector of a
+network coding solution for k independent unicast sessions
+with throughput vector r, in a cost-weighted undirected
+network (G, w). Then
+e we fe ≥
+i di ri , where di is
+the shortest path distance between the sender and receiver
+of session i under metric w.
+
+1/2
+
+h
+
+||uv||h =
+
+III. S PACE I NFORMATION F LOW: MULTIPLE UNICAST
+
+2
+
+i=1
+
+(xi,u − xi,v )
+
+Given a space information ﬂow vector f , a network can be
+induced, over the same nodes and links as in f , by viewing
+fe as the capacity of e. The distance of e is denoted as ||e|| h .
+The cost of f is then e ||e||h fe . This reﬂects the general rule
+that the longer and the wider a communication cable, the more
+expensive it is. For the sake of cost minimization, apparently,
+only straight line segments need to be considered in f .
+→
+→ → →
+Given two vectors p and q , p · q = ||p||||q||| cos θ| is the
+→
+→
+absolute value of the inner product of p and q , where θ is
+→
+→
+the angle between p and q .
+C. Paradigm Comparison
+
+Intuitively, the throughput version of the conjecture claims
+that network coding cannot help improve throughput, while the
+cost version claims that network coding cannot help reduce
+transmission cost. In the rest of this section, we prove the
+cost version of the multiple unicast conjecture for space
+information ﬂow, where the cost w e becomes, naturally, the
+Euclidean length ||e|| of link e.
+
+We can establish a connection between the cost advantage
+in space and that in graphs. Given a problem instance, in the
+form of either multiple unicast or multicast, let β d , βu and
+βs be the max cost advantage possible in directed networks,
+undirected networks, and space, respectively. Then we have
+the following relation among the three:
+Theorem 2.1. βd ≥ βu ≥ βs .
+Proof: We ﬁrst show that β d ≥ βu . Given the max cost
+advantage β u in undirected networks, let ∆ u be a problem
+instance where this cost advantage is achieved, and let f be
+the underlying ﬂow of the optimal network coding solution.
+
+B. Multiple Unicast in 1-D Space
+In a 1-D space, each line segment (or edge) e between two
+neighboring vertices forms a cut of the network. The amount
+of ﬂow f 1 e over e has to be at least the total throughput
+
+3
+
+requirement of terminal pairs separated by the removal of e.
+We next prove that this implies the multiple unicast conjecture
+in 1-D space.
+s1
+
+s3
+
+t2
+
+t3
+
+x0
+
+t1
+
+its network coding solution in 1-D by projecting their counter
+parts from h-D. Our goal is to show that there exists a 1-D subspace/direction in the h-D space, onto which the projection
+satisﬁes e (f 1 e ||e||1 ) < i (||si ti ||1 ri ), and therefore obtain
+a contradiction to Theorem 3.1.
+As shown in Fig. 4, let Φ be the surface of the h-D unit
+hyper-sphere at the origin. We can enumerate all possible
+directions in h-D by traversing all points on Φ, and connecting
+→
+to there from the origin. Let p be the vector from origin
+→
+to the corresponding point on Φ, let 1 be the unit vector
+(1, 0, 0, . . . , 0).
+
+s2
+x
+
+Fig. 3. Three unicast sessions in 1-D. Total ﬂow crossing point x0 , f 1 x0 ,
+is lower-bounded by Demand((−∞, x0 ); (x0 , ∞)) = r1 + r2 .
+
+Theorem 3.1. Given k independent unicast sessions in 1-D
+space, let f 1 be the underlying ﬂow vector of a network coding
+1
+solution achieving a rate vector r. Then
+e (||e||1 f e ) ≥
+i (||si ti ||1 ri ).
+Proof: For a given point x in the 1-D space, let f 1 x be the
+total amount of ﬂow crossing x, in both directions. Note that
+the point x constitutes a cut of the 1-D space, and therefore
+f 1 x is lower-bounded by the ﬂow demand between the left
+sub-space (−∞, x) and the right sub-space (x, ∞), denoted
+as Demand((−∞, x); (x, ∞)). We integrate both sizes over
+the entire 1-D space, and obtain:
+∞
+x=−∞
+
+f 1 x dx ≥
+
+∞
+x=−∞
+
+=
+i
+
+Furthermore,
+conclude that
+
+p
+
+Project and Integrate over all possible diretions p .
+
+The integration over the closed surface Φ for all the projections of f h is:
+§¤
+¦¥
+
+Demand((−∞, x); (x, ∞))dx
+
+Φ
+
+||si ti ||1 ri
+
+∞
+1
+1
+note that
+e (||e||1 f e ) = x=−∞ f x dx.
+1
+e (||e||1 f e ) ≥
+i (||si ti ||1 ri ).
+
+→
+
+Fig. 4.
+
+§¤ h
+→
+¦ ¥f e (e · p )dΦ
+
+→
+
+e
+
+(f h e (e · p ))dΦ =1
+
+§¤ h
+¦ ¥f e ||e||h ( 1 · p )dΦ
+→ →
+
+=2
+e
+
+We
+
+Φ
+
+e
+
+=3
+e
+
+Φ
+
+§ ¤→ →
+(f h e ||e||h ) ¦ ¥ 1 · p )dΦ
+(
+Φ
+
+The nice property of this integration is that it is separable,
+in the sense that we can perform integration for each link ﬂow
+segment ﬁrst, and then take the summation (= 1 ). Furthermore,
+we observe that when we integrate for each line segment, the
+orientation of that line segment does not matter, since we vary
+the projection direction to take all possible values (= 2 ).
+The integration over the closed surface Φ for all the projec→
+tions of {si ti |i = 1, . . . , k} is:
+→ →
+§¤
+§¤ → →
+(
+¦ ¥ (si ti · p )dΦ =
+¦ ¥ si ti · p )dΦ
+
+C. Multiple Unicast in h-D Space
+We now consider multiple unicast demands in a h-D space,
+for h ≥ 2. While only the cases of h = 2 and h = 3 allow
+intuitive interpretations, the problem is as well-deﬁned for
+higher dimensions, which is helpful in connecting to the original multiple unicast conjecture in graphs, because embedding
+a graph metric into a geometric space often requires a high
+dimension space [5].
+We prove the multiple unicast conjecture by projecting the
+problem from h-D to 1-D, and then apply Theorem 3.1. The
+requirement on the projection is: a coding solution has total
+cost less than the speciﬁed bound in the conjecture, only if it
+does so after the projection. The main difﬁculty of the proof is
+that an optimal or “good” direction for projection is actually
+hard to ﬁnd. In particular, it is not sufﬁcient to always project
+onto one of the axes. We show indirect evidence instead, for
+the existence of such a good direction, by taking an integration
+over all possible rays at origin for projection.
+
+Φ
+
+§¤
+(||s
+¦ ¥ i ti ||h ( 1 · p ))dΦ =
+i
+
+Φ
+
+i
+
+→ →
+
+=
+e
+
+Since
+that:
+
+h
+
+e (f e ||e||h )
+
+§¤
+¦¥
+Φ
+
+e
+
+<
+
+i
+
+i
+
+§ ¤→ →
+||si ti ||h ¦ ¥ 1 · p ))dΦ
+(
+Φ
+
+||si ti ||h by assumption, we claim
+
+§¤
+→
+(f h e (e · p ))dΦ < ¦ ¥
+Φ
+
+→
+
+i
+
+→
+
+(si ti · p )dΦ
+
+Since the terms being integrated on both sides are nonnegative, we claim that, there must exist a particular direction
+→
+p∗ , for which
+
+Theorem 3.2. For k independent unicast sessions in a h-D
+space, h ≥ 2, assume there is a network coding solution
+h
+with underlying ﬂow vector f h , we have
+e (f e ||e||h ) ≥
+i (||si ti ||h ri ).
+Proof: Assume, by way of contradiction, that e (f h e ||e||h ) <
+i (||si ti ||h ri ). We construct the k pairs unicast instance and
+
+→
+
+e
+
+4
+
+(f h e (e · p∗ )) <
+
+→
+
+i
+
+→
+
+(si ti ·p∗ )
+
+D. Connection to the Multiple Unicast Conjecture
+
+in network coding. This result, together with the new space
+information ﬂow perspective, leads to a new geometric framework for studying the original multiple unicast conjecture. For
+the paradigm of space information ﬂows, the multicast case
+appears even more interesting, where basic problems such as
+the computational complexity of the optimal multicast solution
+in space are yet to be investigated.
+
+Comparing Theorem 3.2 with the original multiple unicast
+conjecture in undirected networks, we note that the two
+statements are rather similar. The only difference lies in the
+fact that Theorem 3.2 is based on Euclidean distances, whereas
+the conjecture is based on a cost metric induced from a graph.
+A natural direction for settling the conjecture is then to embed
+the graph metric into a geometric space, and then utilize
+Theorem 3.2.
+An isometric embedding of a graph G into a space is one
+that preserves pairwise node distances in G. The distance
+between two nodes u and v in G is the shortest path length
+between u and v in G. By Theorem 3.2, we can see that, if
+there exists a certain space to which an isometric embedding
+of the network is feasible, and our projection based proof
+technique for dimension reduction can be adapted to carry
+through, then we can prove the multiple unicast conjecture.
+While no Euclidean space always permits isometric embedding
+of graphs, there do exist non-Euclidean spaces that satisfy this
+property [5]. For embedding into Euclidean spaces, if we relax
+the isometric requirement and allow a distance distortion ratio
+up to α in the embedding, we can prove the cost advantage is
+upper-bounded by α in the original graph.
+Following this direction, we present a geometric framework
+for studying the multiple unicast network coding conjecture
+in a sibling work [5]. The framework consists of four major
+steps: (i) translating the conjecture from throughput domain
+to cost domain, (ii) embed the network into an Euclidean or
+non-Euclidean space, in an isometric or low-distortion manner,
+(iii) reduce the problem from high-dimension space to low
+dimension space, and (iv) prove that there cannot be a counter
+example to the conjecture in low dimension.
+Based on this framework, we have been able to formulate
+a uniﬁed proof to a number of results, including (1) the
+conjecture holds for two unicast sessions, (2) the gap between
+a network coding solution and a routing solutions is at
+most O(log k), (3) the conjecture holds for uniform complete
+graphs, (4) the gap between a √
+network coding solution and
+a routing solutions is at most 2 in uniform grid networks,
+(5) the conjecture is true in star networks [18], and (6) the
+conjecture is true in a class of inﬁnitely many layered or
+bipartite networks. Among these, (1) and (2) were known
+before, but were proved using different techniques. Results (3)(6) are new and not previously known. The proofs to results
+(2), (3) and (4) resort to embedding into a Euclidean space,
+and directly build upon the main result in this work. The
+proofs to results (1), (5) and (6) resort to embedding into a
+non-Euclidean space instead, where isometric embedding of a
+graph metric is feasible.
+
+R EFERENCES
+[1] Z. Li and B. Li, “Network Coding: The Case of Multiple Unicast
+Sessions,” in Proc. of The 42nd Annual Allerton Conference on
+Communication, Control, and Computing, 2004.
+[2] N. J. A. Harvey, R. D. Kleinberg, and A. R. Lehman, “Comparing Network Coding with Multicommodity Flow for the kpairs Communication Problem,”
+Tech. Rep., CSAIL, MIT,
+http://theory.csail.mit.edu/ nickh/Publications/Gaps/TR964.pdf, November 2004.
+[3] Z. Li and C. Wu, “Space Information Flow,” Technical Report,
+University of Calgary.
+[4] X. Yin, Y. Wang, X. Wang, X. Xue, and Z. Li, “Min-Cost Multicast
+Network in Euclidean Space,” in Proc. of IEEE International Symposium
+on Information Theory (ISIT), 2012.
+[5] T. Xiahou, C. Wu, J. Huang, and Z. Li, “A Geometric Framework for
+Studying the Multiple Unicast Network Coding Conjecture,” in Proc. of
+the 2012 International Symposium on Network Coding (NetCod), 2012.
+[6] R. Ahlswede, N. Cai, S. R. Li, and R. W. Yeung, “Network Information
+Flow,” IEEE Transactions on Information Theory, vol. 46, no. 4, pp.
+1204–1216, July 2000.
+[7] R. Koetter and M. M´dard, “An Algebraic Approach to Network
+e
+Coding,” IEEE/ACM Transactions on Networking, vol. 11, no. 5, pp.
+782–795, October 2003.
+[8] X. Yan, R. W. Yeung, and Z. Zhang, “The Capacity Region for Multisource Multi-sink Network Coding,” in Proc. of IEEE International
+Symposium on Information Theory (ISIT), 2007.
+[9] S. Jaggi, P. Sanders, P. A. Chou, M. Effros, S. Egner, K. Jain, and
+L. M. G. Tolhuizen, “Polynomial Time Algorithms for Multicast Network Code Construction,” IEEE Transactions on Information Theory,
+vol. 51, no. 6, pp. 1973–1982, June 2005.
+[10] N. J. A. Harvey, R. Kleinberg, and A. R. Lehman, “On the Capacity of
+Information Networks,” IEEE Transactions on Information Theory, vol.
+52, no. 6, pp. 2345–2364, June 2006.
+[11] K. Jain, V. V. Vazirani, R. W. H. Yeung, and G. Yuval, “On the Capacity
+of Multiple Unicast Sessions in Undirected Graphs,” in Proc. of IEEE
+International Symposium on Information Theory (ISIT), 2005.
+[12] M. Langberg and M. M´dard, “On the Multiple Unicast Network Coding
+e
+Conjecture,” in 47th Annual Allerton Conference on Communication,
+Control, and Computing, 2009.
+[13] M. Mitzenmacher,
+“Network Coding: Open Problems,”
+Tech.
+Rep., http://mybiasedcoin.blogspot.com/2007/08/network-coding-openproblems.html, August 2007.
+[14] C. Chekuri,
+“Routing vs. Network Coding,”
+Tech.
+Rep.,
+University
+of
+Illinois,
+Urbana-Champaign,
+temple.birs.ca/∼09w5103/chekuri 09w5103 talk.pptx, 2009.
+[15] Z. Li and B. Li, “Network Coding in Undirected Networks,” in Proc.
+of the 38th Annual Conference on Information Sciences and Systems
+(CISS), 2004.
+[16] A. Agarwal and M. Charikar, “On the Advantage of Network Coding
+for Improving Network Throughput,” in IEEE Information Theory
+Workshop, October 2004.
+[17] C. Fragouli and E. Soljanin, Network Coding Fundamentals, Now
+Publishers, 2007.
+[18] S. M. S. T. Yazdi, S. A. Savari, and G. Kramer, “Network Coding in Star
+Networks,” in Proc. of IEEE International Symposium on Information
+Theory (ISIT), 2008.
+
+IV. C ONCLUSION AND F UTURE D IRECTIONS
+This work is among the ﬁrst that studies the problem of
+space information ﬂow, with a focus on the case of multiple
+unicast sessions. We proved that for multiple unicast in a
+Euclidean space, network coding is equivalent to routing. This
+partially veriﬁes the well-known multiple unicast conjecture
+
+5
+
+

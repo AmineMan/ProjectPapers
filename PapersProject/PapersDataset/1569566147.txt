@@ -1,0 +1,742 @@
+Creator:         TeX output 2012.05.18:1236
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Fri May 18 12:36:38 2012
+ModDate:        Tue Jun 19 12:54:32 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      334630 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569566147
+
+Capacity Achieving Linear Codes with Random
+Binary Sparse Generating Matrices over the Binary
+Symmetric Channel
+A. Makhdoumi Kakhaki1,3 , H. Karkeh Abadi1,4 , P. Pad1,5 , H. Saeedi2 , F. Marvasti1 , K. Alishahi1
+1 Advanced Communications Research Institute, Sharif University of Technology, Tehran, Iran
+2 Department of ECE, Tarbiat Modares University, Tehran, Iran
+3 Department of EECS, Massachusetts Institute of Technology, Cambridge, MA, USA
+4 Department of EE, Stanford University, Stanford, CA, USA
+5 School of Engineering, Ecole Polytechnique F´ d´ rale de Lausanne, Lausanne, Switzerland
+´
+e e
+Email: makhdoum@mit.edu, hosseink@stanford.edu, pedram.pad@epﬂ.ch, hsaeedi@modares.ac.ir
+{marvasti, alishahi}@sharif.edu
+error exponent of a typical random linear code can, in fact, be
+larger than a typical random code, implying a faster decaying
+of error as n increases. Some bounds on the decoding error
+probability of linear codes have been derived in [7]. The result
+reported in [4]-[7] are all based on the fact that the elements
+of generating matrices of the capacity achieving linear codes
+should be one or zero with equal probability; therefore the
+generating matrix of such approaches are not sparse.1 Moreover, most papers on capacity achieving sparse linear codes
+are concentrated on codes with sparse parity-check matrices.
+In particular, an important class of codes called Low-Density
+Parity-Check (LDPC) codes [8], [9] have been of major
+interest in the past decade. While these codes have sparse
+parity-check matrices, they do not necessarily exhibit sparse
+generating matrices which are the focus of this paper. In [10][11], some Low-Density Generating-Matrix (LDGM) schemes
+have been proposed which have performance approaching the
+capacity.2 Some other related literature on the codes with
+sparse generating matrices having performance close to capacity includes [12]-[14]; in [12], a capacity-achieving scheme
+has been proposed based on serially concatenated codes with
+an outer LDPC code and an inner LDGM code. However,
+the generating matrix corresponding to the concatenation is
+not necessarily sparse. On the other hand, rateless codes have
+been proposed in [13] and [14] which have sparse generating
+matrices but are only proved to be capacity achieving over the
+Binary Erasure Channel (BEC).
+In this paper, using a novel approach, we prove the existence
+of capacity achieving linear codes with sparse generating matrices that can provide reliable communications over the BSC
+
+Abstract—In this paper, we prove the existence of capacity
+achieving linear codes with random binary sparse generating
+matrices over the Binary Symmetric Channel (BSC). The results
+on the existence of capacity achieving linear codes in the literature
+are limited to the random binary codes with equal probability
+generating matrix elements and sparse parity-check matrices.
+Moreover, the codes with sparse generating matrices reported in
+the literature are not proved to be capacity achieving for channels
+other than Binary Erasure Channel. As opposed to the existing
+results in the literature, which are based on optimal maximum a
+posteriori decoders, the proposed approach is based on a different
+decoder and consequently is suboptimal. We also demonstrate
+an interesting trade-off between the sparsity of the generating
+matrix and the error exponent (a constant which determines how
+exponentially fast the probability of error decays as block length
+tends to inﬁnity). Based on our results, we also propose a channel
+coding rate achievable by linear codes at a given block length and
+error probability. Moreover, we prove the existence of capacity
+achieving linear codes with a given (arbitrarily low) density of
+ones on rows of the generating matrix. In addition to proving
+the existence of capacity achieving sparse codes, an important
+conclusion of our paper is to prove that any arbitrarily selected
+sequence of sparse generating matrices is capacity achieving with
+high probability.
+
+I. I NTRODUCTION
+The Shannon coding theorem [1] states that for a variety of
+channels with a given capacity C, if the information transmission rate R over the channel is below C, there exists a coding
+scheme for which the information can be transmitted with an
+arbitrarily low probability of error. For Discrete Memoryless
+Channels (DMC), it has been shown [2] that the probability
+of error can be bounded between two exponentially decaying
+functions of the codeword blocklength, n. In this theorem,
+there is no constraint on the codes in terms of linearity. In [3],
+a simpler proof of the Shannon theorem has been provided.
+The existence of capacity achieving linear codes over the
+Binary Symmetric Channel (BSC) was shown by Elias [4]
+where it was also proved that random linear codes have the
+same error exponent as random codes. A similar result has
+been obtained in [5]. It was recently shown in [6] that the
+
+1 A sparse generating matrix is a matrix with a statistically low density of
+ones, see Section II for the exact deﬁnition.
+2 We distinguish between “capacity approaching” and “capacity achieving”
+codes. The former term is used when the performance of the code can be
+shown numerically to approach capacity without any guarantee to achieve it.
+The latter term is used if the performance can be rigorously proved to achieve
+the capacity. The subject of this paper is on the latter case.
+
+1
+
+about n log n which is asymptotically less than n3/2 log n, the
+number of ones in the case of BSC.
+The organization of the paper is as follows: In the next section, some preliminary deﬁnitions and notations are presented.
+In Sections III we present our theorems for BSC and Section
+IV concludes the paper. Due to lack of space, we have omitted
+the proof of theorems and propositions. They can be found in
+the full version of the paper [16].
+
+at rates below the channel capacity. The proof is accomplished
+by ﬁrst deriving a lower bound on the probability of correct
+detection for a given generating matrix and then by taking the
+expectation of that lower bound over all possible generating
+matrices with elements 1 and 0 with probability ρ and 1 − ρ,
+respectively. By showing that this expectation goes to one as n
+approaches inﬁnity, we prove the existence of linear capacity
+achieving codes. To show the sparsity, we extend this result
+by taking the expectation over a subset of matrices for which
+the density of ones could be made arbitrarily close to any
+target ρ. We then prove a stronger result that indicates the
+existence of capacity achieving linear codes with the same
+low density of ones in each row of the generating matrix. In
+addition to proving the existence of capacity achieving sparse
+codes, we also show that for a sufﬁciently large code length, no
+search is necessary in practice to ﬁnd the desired deterministic
+matrix. This means that a randomly chosen code can have the
+desired error correcting property with high probability. This
+is done by proving that the error probability of a sequence
+of codes, corresponding to a randomly selected sequence of
+sparse generating matrices tends to zero as n approaches
+inﬁnity, in probability. This important result is then extended to
+generating matrices with low density rows. As opposed to the
+existing results in the literature, which are based on Maximum
+A Posteriori (MAP) decoders, the proposed proofs are based
+on a suboptimal decoder,3 which makes our approach also
+novel from decoder point of view.
+Although in reality the block length of codes is ﬁnite, in
+order to prove that a class of codes is capacity achieving, we
+assume that the block length goes to inﬁnity. An interesting
+question is that for a given error probability and block length,
+how close to capacity the rate of the code can be. An
+upper bound for the coding rate achievable at a given block
+length and error probability is the sphere packing bound (see
+Equation (5.8.19) in [4]). In [15], for a given block length
+and error probability performance, the authors have obtained
+a lower bound on the achievable rate called Random Coding
+Union (RCU) bound. In this paper, we compare the rate of our
+sparse linear codes with these bounds. We also demonstrate
+an interesting trade-off between the sparsity of the generating
+matrix and the error exponent such that the sparser the matrix,
+the smaller the error exponent becomes.
+It is important to note that we rigorously prove the existence
+of capacity achieving linear codes for a constant ρ resulting
+in a non-vanishing density of ones on the generating matrix
+as n tends to inﬁnity. However, we have made a conjecture
+√n
+that if we choose ρ(n) of O( logn ), the resulting codes can
+still be capacity achieving, which implies a vanishing density
+of ones. It is worth mentioning that in the full version of this
+paper [16], we have proved similar results on the existence
+of capacity achieving linear sparse codes over the BEC. In
+particular, we have been able to prove that to have capacity
+achieving generating matrices, ρ(n) can be of O( log n ). This
+n
+implies that the number of ones in the generating matrix is
+3 See
+
+II. P RELIMINARIES
+Consider a Discrete Memoryless channel (DMC) which is
+characterized by X and Y as its input and output alphabet sets,
+respectively, and the transition probability function P(y|x),
+where x ∈ X is the input, and y ∈ Y is the output of the
+channel. In this paper, we consider the binary case where
+X = {0, 1}. A binary code C(n, k) of rate R is a mapping
+from the set of 2k k-tuples Xi to n-tuples Zi , 0 ≤ i ≤ 2k − 1,
+where Xi ∈ {0, 1}k , Zi ∈ {0, 1}n , and the code rate R is
+deﬁned as the ratio of k by n. Since we are only interested in
+Linear Codes, the mapping is fully speciﬁed by an n×k binary
+matrix A = {Aij } (the generating matrix), and encoding is
+accomplished by a left multiplication by A:
+Zi = AXi ,
+where the calculations are in GF (2). The vector Zi is then
+transmitted through the DMC. Decoding is deﬁned as recovering the vector Xi from the possibly corrupted received version
+of Zi .
+In this paper the employed decoding scheme relies on the
+a posteriori probability distribution. Let A be the generating
+matrix. For a received vector Y = y, the decoder allocates
+a random vector such as X = x as the original transmitted
+message with the conditional probability P(X = x|Y = y).
+Clearly, the probability of correct detection using A as the
+generating matrix is
+∑
+pc (A) =
+P(xi )P(yj |xi )P(xi |yj ) =
+i,j
+
+∑
+
+P(xi , yj )P(xi |yj ) = EX,Y (P(X|Y )),
+
+(1)
+
+i,j
+
+where P(X, Y ) depends on A.
+Note that the optimal decoder is a MAP decoder which
+allocates argmaxx P(X = x|Y = y) and that the probability
+of correct detection using MAP is more than or equal to the
+probability of correct detection in (1). Throughout the paper,
+the index i in Xi and Zi may be dropped for more clarity. For
+the sake of convenience, the following notations are used for
+the remainder of the paper.
+Deﬁnition 1: Let An×k be the set of all binary n × k
+matrices. The density of an A ∈ An×k is deﬁned as the total
+number of ones within the matrix divided by the number of
+its elements (nk). A matrix with a density less than 0.5 is
+called sparse; the smaller the density, the sparser the matrix
+becomes.
+
+the details in the next section.
+
+2
+
+Deﬁnition 2: Let each entry of each element of An×k
+has a Bernoulli(ρ) distribution, 0 < ρ < 1.4 This scheme
+induces a probability distribution on the set An×k , denoted
+by Bernoulli(n, k, ρ). For the rest of paper, we consider this
+distribution on the set An×k .
+Note that as n approaches inﬁnity, the typical matrices of
+An×k have a density close to ρ.
+
+ρ for a BSC with ϵ = .11. Note that for this value of ϵ,
+the capacity of BSC is equal to 0.5. This plot is numerically
+evaluated from Theorem 1 where the average probability of
+error is set to 10−3 . As can be seen, at block length of 1000,
+we can achieve the rate of 0.4 which is about 80% of the
+capacity. Another interesting observation of this ﬁgure is that
+when the block length n increases, the achievable coding rate
+becomes independent of the density ρ. The signiﬁcance of
+this observation is that sparse generating matrices can replace
+non-sparse ones for large block sizes which implies a simpler
+encoder structure.
+Fig. 2 shows the comparison of our result to the sphere
+packing bound and the RCU bound of [15] for ϵ = .11 and
+average probability error of 10−3 . As can be seen, the rate of
+our codes follows both bounds pretty closely. It is important
+to note that the RCU bound guarantees a lower bound on
+the achievable rate for codes which are not necessarily linear.
+Consequently, it is not surprising that the rate of our linear
+codes have not achieved the RCU bound.
+Now using the results of Theorem 1, we want to prove the
+existence of capacity achieving linear codes. In the following
+theorem, we will show that the expected value of the correct
+detection probability over all generating matrices from An×k
+approaches 1 indicting the existence of at least one linear
+capacity achieving code.
+
+III. C APACITY ACHIEVING S PARSE L INEAR C ODES FOR
+B INARY S YMMETRIC C HANNEL
+Consider a BSC with cross-over probability ϵ. The capacity of this channel is given by C = 1 − h(ϵ), where
+h (ϵ) = −ϵ log ϵ − (1 − ϵ) log (1 − ϵ). We suppose that R,
+the rate of the code, is less than C. In this section, we
+prove the existence of capacity achieving linear codes with
+arbitrarily sparse generating matrices over the BSC. We prove
+the existence by showing that the average error probability
+over such generating matrices tends to zero as n approaches
+inﬁnity.
+A. Channel Modeling
+Assume that we encode a message vector X to generate the
+codeword AX. Note that X is chosen uniformly from the set
+{0, 1}k . Due to the effect of error in the BSC, each entry of
+the transmitted codeword AX can be changed from 0 to 1
+and vice versa. These changes can be modeled by adding 1
+to erroneous entries of AX (in GF(2)). Therefore, the error
+of a BSC with cross-over probability ϵ can be modeled by a
+binary n-dimensional error vector N with i.i.d. entries with
+Bernoulli(ϵ) distribution. Thus, if the output of the channel is
+shown by Y , the following equation models the channel:
+Yn×1 = An×k Xk×1 + Nn×1 .
+
+Theorem 2: For any 0 < ρ < 1, for a BSC we have
+lim EA∈An×k (pc (A)) = 1.
+
+(4)
+
+n→∞
+
+The performance of linear codes is determined by the error
+exponent which is deﬁned as follows:
+Deﬁnition 3: The error exponent of a family of codes C of
+rate R is deﬁned as
+1
+(5)
+EC (R) = lim − log pe ,
+n→∞
+n
+where pe is the average probability of decoding error.
+
+(2)
+
+Note that X and N are independent.
+B. Capacity achieving sparse linear codes for the BSC
+In the following theorem, a lower bound for the average
+probability of correct detection over the set An×k , is obtained.
+
+0.45
+
+Theorem 1: Consider a BSC with cross-over probability ϵ.
+A lower bound for the average probability of correct detection
+over all n × k generating matrices with Bernoulli(n, k, ρ)
+distribution is given by
+n
+∑ ( n)
+EA∈An×k (pc (A)) ≥
+×
+i
+i=0
+
+0.4
+0.35
+
+R at e
+
+0.3
+0.25
+
+ρ = 0.5
+0.2
+
+ρ = 0.45
+0.15
+
+ρ = 0.4
+
+0.1
+
+2(n−i)
+
+2n ϵ2i (1 − ϵ)
+
+.
+(k)
+j i
+j n−i
+j=0 j (1 − (1 − 2ϵ)(1 − 2ρ) ) (1 + (1 − 2ϵ)(1 − 2ρ) )
+(3)
+An important result of this theorem is that if we ﬁx the
+average error probability, we can ﬁnd the maximal achievable
+rate for a given block length over a given channel. Fig. 1
+is a plot of the coding rate versus n for different values of
+∑k
+
+4A
+
+binary random variable has Bernoulli(ρ) distribution if it is equal to 1
+with probability of ρ and equal to 0 with probability of 1 − ρ.
+
+3
+
+0.05
+0
+0
+
+200
+
+400
+
+600
+
+800
+
+1000
+
+n
+
+Fig. 1. Coding rate versus block length for different values of ρ with ϵ = .11
+and average error probability of 10−3 .
+
+If the limit is greater than zero, the average error probability
+of the proposed codes decreases exponentially to zero as n
+increases. The error exponent is an index such that the larger
+
+ing concentration theory [17], we can see that for a sufﬁciently
+large n, a randomly chosen matrix from An×k is in the subset
+η
+Tn×k with high probability. In other words, we can state the
+following proposition which implies the existence of capacity
+achieving codes which are sparse.
+
+0.44
+0.42
+0.4
+
+R at e
+
+0.38
+0.36
+0.34
+0.32
+
+η
+Proposition 1: Let Tn×k be the set of typical matrices
+deﬁned in Deﬁnition (4). We then have
+
+C onv er se
+RCU
+
+η
+lim EA∈Tn×k (pe ) = 0.
+
+0.3
+
+ρ = 0.3
+
+(6)
+
+n→∞
+
+0.28
+0.26
+200
+
+300
+
+400
+
+500
+
+600
+
+700
+
+800
+
+900
+
+Deﬁnition 5: We deﬁne Rn×k as the set of all binary n×k
+matrices with rows that have kρ ones. We also consider a
+uniform distribution on the set Rn×k for the rest of the paper.
+
+1000
+
+n
+
+Fig. 2. Coding rate versus block length with ϵ = .11 and average error
+probability of 10−3 for sphere-packing bound, Random Coding Union (RCU)
+bound [15] and our random linear code with ρ = .3.
+
+In the next theorem, we will prove a stronger result on capacity
+achieving sparse codes. We show the existence of capacity
+achieving matrices with rows containing exactly kρ ones. In
+other words, the density of ones in each row is exactly equal to
+ρ. This also implies that the generating matrix has a density
+of ones exactly equal to ρ. In Theorem 3, we shall derive
+a lower bound on the average probability of correct detection
+and in Theorem 4 we will prove that this lower bound tends to
+one. This shows that the average probability of error over the
+set Rn×k approaches zero, implying the existence of capacity
+achieving codes with generating matrices taken from Rn×k .
+
+0
+
+Average error probability
+
+10
+
+−1
+
+10
+
+ρ = 0.1
+−2
+
+10
+
+ρ = 0.05
+ρ = 0.15
+
+Theorem 3: For a binary symmetric channel with crossover probability ϵ, a lower bound for the expected value of the
+probability of correct detection over all generating matrices in
+Rn×k is given by
+n
+∑ ( n)
+(n−i)
+EA∈Rn×k (pc (A)) ≥
+ϵi (1 − ϵ)
+×
+i
+i=0
+
+−3
+
+10
+
+0
+
+50
+
+100
+
+150
+n
+
+200
+
+250
+
+300
+
+Fig. 3. The average error probability versus n for different values of ρ,
+ϵ = 0.05, R = 0.8C.
+
+(n−i)
+
+ϵi (1 − ϵ)
+.
+(k)
+i
+n−i
+j=0 j (ϵAj + (1 − ϵ)Bj ) ((1 − ϵ)Aj + ϵBj )
+
+the error exponent, the faster the probability of error decays as
+n increases. Based on our observation, there is an interesting
+relation between the error exponent of the codes constructed
+by generating matrices with Bernoulli(n, k, ρ) distribution and
+the values of ρ. In Fig. 3, we have plotted the average
+probability of error versus n for various values of ρ and a
+ﬁxed code rate. As can be seen, the error exponent which
+is equal to the slope of the curves, increases as ρ increases
+(the generating matrix become less sparse). In other words,
+although the probability of error for sparse codes goes to to
+zero exponentially as n increases; this decrease is not as fast
+as high density codes.
+
+∑k
+where
+
+Aj =
+
+(j )( k−j )
+
+∑
+
+q
+
+q is odd
+
+kρ−q
+(k)
+kρ
+
+, Bj =
+
+∑
+
+(7)
+
+(j )( k−j )
+
+q is even
+
+q
+
+kρ−q
+
+(k)
+
+.
+
+kρ
+
+Theorem 4: For each 0 < ρ < 1, we have
+lim EA∈Rn×k (pc (A)) = 1.
+
+n→∞
+
+(8)
+
+In Theorems 1 and 2, we proved the existence of capacity achieving linear codes with generating matrices having
+Bernoulli(n, k, ρ) distribution by showing that the average
+probability of error over all generating matrices tends to zero
+as n approaches inﬁnity. This implies that we may have to
+perform a search over An×k to ﬁnd such a matrix. Assume
+that we simply pick matrices randomly for each n from the
+set An×k . This constitutes a sequence of n × nR matrices.
+Now consider the resulting sequence of error probabilities
+corresponding to the sequence of generating matrices. In the
+following proposition, we shall prove that the limit of this
+sequence is zero in probability, i.e., a sequence of randomly
+chosen matrices is capacity achieving with high probability.
+
+Deﬁnition 4: Let W (A) be the number of ones in a given
+η
+binary matrix A and η be an arbitrary positive constant. Tn×k
+W (A)
+is deﬁned as a subset of An×k for which | nk − ρ| <
+η
+η, η > 0. By choosing a sufﬁciently small η, the set Tn×k
+is in fact a subset of An×k which contains matrices having
+density of ones arbitrarily close to any given ρ. Note that
+η
+the probability distribution on Tn×k is induced from the
+probability distribution on An×k .
+In Theorems 1 and 2, we proved the existence of capacity
+achieving codes for any value of ρ. We did not explicitly prove
+the existence of sparse capacity achieving codes. However, us-
+
+4
+
+This suggests that for sufﬁciently large n, no search is necessary to ﬁnd a desired deterministic generating matrix.
+
+densities are closer to capacity for small block sizes. For
+larger block sizes, however, the rate becomes independent of
+the generating matrix density. In our proofs, we have used
+a suboptimal decoder while previous works in the literature
+were based on a MAP decoder. This implies that we can get
+stronger results if we use the optimal MAP decoder.
+For future work, one can try to rigorously prove Conjecture
+1 and possibly extend it to the case of matrices in the set
+Rn×k . The improvement in the bounds using a MAP decoder
+can be an interesting topic to investigate. The extension of the
+results to other memoryless channels is another challenging
+topic to be explored. A very interesting work is to analytically
+derive the error exponent to prove the trade-off between error
+exponent and sparsity of the generating matrix.
+
+Proposition 2: Let {An×nR }∞ be the sequence of matrin=0
+ces, where An×nR is selected randomly from An×nR . If we
+denote the error probability of the generating matrix An×nR
+over BSC by pe (An ), then pe (An ) converges in probability
+to zero as n tends to inﬁnity.
+Note 1: If we use the result of Theorem 4, we can extend
+Proposition 2 to the case where we construct the matrix
+sequence by choosing the matrices from the set Rn×k . In
+other words, in order to have capacity achieving sequences of
+generating matrices for BSC with arbitrarily low density rows,
+we can simply pick generating matrices randomly from Rn×k .
+At this stage, we have been able to rigorously prove the
+existence of capacity achieving sparse linear codes over the
+BSC. However for a given ρ, although the density of ones
+can be made arbitrarily small, it does not go to zero even
+when n approaches inﬁnity. Let us assume the case where ρ
+is a decreasing function of n such that limn→∞ ρ(n) = 0,
+resulting in zero density of ones as n goes to inﬁnity. In the
+following conjecture, we will propose a result indicating that
+this assumption can in fact be true. Although, we have not
+been able to rigorously prove the conjecture, a sketch of the
+proof has been presented in [16].
+
+ACKNOWLEDGMENT
+The authors would like to thank Professor G. D. Forney for
+his valuable comments and suggestions and Mr. R. Farhoudi
+for his comments about proof of theorems.
+R EFERENCES
+[1] C. E. Shannon, A mathmatical theory of communications, Bell Systems
+Technical Journal, vol. 27, pp. 379-429, 1948.
+[2] R. M. Fano, Transmisson of Information, The M.I.T. Press, Cambridge,
+1961.
+[3] R. Gallager, “A simple derivation of the coding theorem and some
+applications,” IEEE Transactions Information Theory, vol. 11, no. 1,
+pp. 3-18, Jan. 1965.
+[4] R. G. Gallager, Information Theory and Reliable Communication, John
+Wiley and Sons Inc. New York, NY, USA 1968, p. 204.
+[5] M. Mezard and A. Montanari, Information, physics, and computation,
+Oxford University Press, USA, 2009, pp. 105-128.
+[6] A. Barg and G. D. Forney, “Random codes: Minimum distances and
+error exponents,” IEEE Transactions Information Theory, vol. 48, no. 9,
+pp. 2568-2573, Sept. 2002.
+[7] G. Poltyrev, “Bounds on the decoding error probability of linear binary
+codes via their spectra,” IEEE Transactions Information Theory, vol. 40,
+no. 4, pp. 1284-1292, Jul. 1994.
+[8] R. G. Gallager, “Low density parity check codes,” IRE Transactions
+Information Theory, vol. IT-8, pp. 21, Jan. 1964.
+[9] D. J. C. MacKay and R. M. Neal, “Near Shannon limit performance of
+low density parity check codes,” IEE Electronics Letters, vol. 33, no. 6,
+pp. 457-458, Jul. 1997.
+[10] F. J. Vazquez-Araujo, M. Gonzalez-Lopez, L. Castedo, and J. GarciaFrias, “Capacity approaching low-rate LDGM codes,” IEEE Transactions
+Communications, vol. 59, no. 2, pp. 352-356, Feb 2011.
+[11] J. Garcia-Frias and Z. Wei, “Approaching Shannon performance by
+iterative decoding of linear codes with low-density generator matrix,”
+IEEE Communications Letters, vol. 7, no. 6, pp. 266-268, June 2003.
+[12] H. Chun-Hao and A. Anastasopoulos, “Capacity-achieving codes with
+bounded graphical complexity and maximum likelihood decoding,” IEEE
+Transactions Information Theory, vol. 56, no. 3, pp. 992-1006, March
+2010.
+[13] M. Luby, “LT codes,” in Proc. IEEE Symposium on Foundations of
+Computer Science, pp. 271-280, 2002.
+[14] A. Shokorollahi, “Raptor codes,” IEEE Transactions Information Theory, vol. 52, no. 6, pp. 2551-2567, June 2006.
+[15] Y. Polyanskiy, H. Vincent Poor, and S. Verdu, “Channel Coding Rate in
+the Finite Blocklength Regime,” IEEE Transactions Information Theory,
+vol. 56, issue 5, pp. 2307-2359, May 2010.
+[16] A. Makhdoumi Kakhaki, H. Karkeh Abadi, P. Pad, H. Saeedi,
+F. Marvasti, and K. AlishahiA, “Capacity Achieving Linear Codes
+with Random Binary Sparse Generating Matrices,” [Online], Available:
+http://arxiv.org/abs/1102.4099
+[17] A. Dembo and O. Zeitouni, Large Deviation Techniques and Application,
+Springer, 2009.
+
+√n
+Conjecture 1: For any ρ(n) of O( logn ), by assuming the
+Bernoulli(n, k, ρ(n)) distribution on the set An×k , we have
+
+lim EA∈An×k (pc (A)) = 1
+
+n→∞
+
+(9)
+
+IV. C ONCLUSIONS
+In this paper, a novel approach to prove the existence of
+capacity achieving sparse linear codes over the BSC was
+proposed. In Theorem 1, we derived a lower bound on the
+average probability of correct detection over the set An×k . In
+Theorem 2, we proved that the average probability of error
+over An×k tends to zero. Then we proved the existence of
+sparse capacity achieving codes in Proposition 2. In Theorem
+3, we derived a lower bound on the average probability of
+correct detection over the set Rn×k . Using this lower bound
+in Theorem 4, we proved the existence of capacity achieving
+codes with generating matrices with the same density in each
+row. In Proposition 2 and its preceding note, we showed that
+the error probability of codes corresponding to any randomly
+chosen sequence of generating matrices tends to zero in
+probability. This implies that for a sufﬁciently large n, a
+randomly chosen matrix from An×k and Rn×k will have the
+average error correcting capability. In addition, we conjectured
+√n
+that Theorem 2 can hold for the case where ρ is of O( logn ).
+This implies that for a capacity achieving code over a BSC, the
+density of the generating matrix can approach zero. We also
+demonstrated an interesting trade-off between the sparsity of
+the generating matrix and the error exponent indicating that a
+sparser generating matrix results in a smaller error exponent.
+We also observed that ﬁxing the average bit error rate and
+ϵ, the rates for the codes with generating matrices of higher
+
+5
+
+
