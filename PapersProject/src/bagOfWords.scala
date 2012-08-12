@@ -15,50 +15,24 @@ import scala.collection.immutable.List
 
 object bagOfWords {
 
-	// Code has to be made generic for any text file parsed and for the whole dataset to be accurate
-	def main(args : Array[String]): Unit = {
-
-			// we compute the array of scores for the vectors of words for every document
-			val tfidfArray = new Array[Array[Double]](dictionary.length,datasetSize)
-
-					for (i <- 0 to dictionary.length -1){
-						println(i)
-						for (j <- 0 to datasetSize -1){
-							tfidfArray(i)(j) = tfidf(dictionary(i),j)
-									println(tfidfArray(i)(j))
-						}
-					}
-
-			//once we have the scores we can compute the absolute distance between papers and classify them
-			//This is performed computing a scalar product on the score vectors for every document
-			//Computation might take some time
-			//temporary while getting "scalala" to work:
-			val scalarProduct = new Array[Array[Double]](datasetSize,datasetSize)
-					//transpose array to perform row Array operations instead of column based operations
-					val tfidfTranspose = tfidfArray.transpose
-					for (i <- 0 to datasetSize -1){
-						println(i)
-						for (j <- 0 to datasetSize -1){
-							if(i!=j){
-								//Here operations take cost of length O(dictionary length)       
-								scalarProduct(i)(j) = dotProduct(tfidfTranspose(i), tfidfTranspose(j))
-							}else{
-								//does not mean anything
-								scalarProduct(i)(j) = 0
-							}
-						}
-					}
-
-			//(i,j) of scalarProduct represents the scalar product of document i and document j. Now we have
-			// to sort it in order in a list to return the closest documents to a given document
-			//we have weights (higher weight/score) means being closer document-to-document wise
-
-
-	}
-
-	//reading text from given file
-	//Loading the List of all available text files in directory
-	val filesList = new java.io.File("PapersDataset/").listFiles.filter(_.getName.endsWith(".txt"))
+  
+  //return list of papers linked?
+  //def compare(papers : List[Paper], limit : Int) : List[Paper] = {
+  //papers.map(p => {
+    //if (p.meta.get("linked") == None) {
+      
+    //}
+  //}
+  
+  //}
+  //compare based on scores and return List[Paper]
+  def compare(){
+    
+  }
+  
+  def getScores(directory: java.io.File): Array[Array[Double]] ={
+    
+    val filesList = new java.io.File(directory.toString).listFiles.filter(_.getName.endsWith(".txt"))
 
 			val datasetSize = filesList.length
 
@@ -105,8 +79,50 @@ object bagOfWords {
 val textsLength = textsList.length
 
 val dictionary = textsList.removeDuplicates.sort(_<_)
+    // we compute the array of scores for the vectors of words for every document
+			val tfidfArray = new Array[Array[Double]](dictionary.length,datasetSize)
+
+					for (i <- 0 to dictionary.length -1){
+						println(i)
+						for (j <- 0 to datasetSize -1){
+						  //compute tfidf value for word i and document j
+							tfidfArray(i)(j) = tfidf(dictionary(i),j,datasetSize,counts)
+									println(tfidfArray(i)(j))
+						}
+					}
+
+			//once we have the scores we can compute the absolute distance between papers and classify them
+			//This is performed computing a scalar product on the score vectors for every document
+			//Computation might take some time
+			//temporary while getting "scalala" to work:
+			val scalarProduct = new Array[Array[Double]](datasetSize,datasetSize)
+					//transpose array to perform row Array operations instead of column based operations
+					val tfidfTranspose = tfidfArray.transpose
+					for (i <- 0 to datasetSize -1){
+						println(i)
+						for (j <- 0 to datasetSize -1){
+							if(i!=j){
+								//Here operations take cost of length O(dictionary length)       
+								scalarProduct(i)(j) = dotProduct(tfidfTranspose(i), tfidfTranspose(j))
+							}else{
+								//does not mean anything
+								scalarProduct(i)(j) = 0
+							}
+						}
+					}
+			//return array of scores
+return scalarProduct
+			//(i,j) of scalarProduct represents the scalar product of document i and document j. Now we have
+			// to sort it in order in a list to return the closest documents to a given document
+			//we have weights (higher weight/score) means being closer document-to-document wise
 
 
+  }
+	// Code has to be made generic for any text file parsed and for the whole dataset to be accurate
+
+	//reading text from given file
+	//Loading the List of all available text files in directory
+	
 
 /*
 val source2 = scala.io.Source.fromFile("PapersDataset/1569551347.txt")
@@ -199,13 +215,13 @@ println("the number of distinct words in text 6 is: " + countsList(5).length)
 //find unique words in texts:
 
 
-println("The total length of the dictionnary is given by: " + dictionary.length)
+//println("The total length of the dictionnary is given by: " + dictionary.length)
 
-println("the total length of the list is: " + textsLength)
+//println("the total length of the list is: " + textsLength)
 
 //Computing TF value:
 
-def tf(term: String, document: Int): Double = {
+def tf(term: String, document: Int, counts: Array[Map[java.lang.String,Int]]): Double = {
 	val freq = 0
 			if (counts(document).contains(term)){
 				val freq = counts(document)(term)
@@ -223,12 +239,12 @@ def tf(term: String, document: Int): Double = {
 
 //Computing IDF value
 
-def idf(term: String): Double = {
+def idf(term: String, datasetSize : Int, counts: Array[Map[java.lang.String,Int]]): Double = {
 	//math.log(size / index.getDocCount(term))
 	// take the logarithm of the quotient of the number of documents by the documents where term t appears
 	var appearances = 1
 			for(i <- 0 to datasetSize-1){
-				var termFreq = tf(term,i)
+				var termFreq = tf(term,i,counts)
 						if (termFreq != 0){
 							appearances += 1
 						}
@@ -236,11 +252,11 @@ def idf(term: String): Double = {
 	return math.log(datasetSize/appearances)
 }
 
-def tfidf(term:String, document: Int) : Double = {
+def tfidf(term:String, document: Int, datasetSize : Int, counts: Array[Map[java.lang.String,Int]]) : Double = {
 	//create tfidf matrix
 	//tfidf = tf*idf
 
-	val tfidf = tf(term,document)*idf(term)
+	val tfidf = tf(term,document,counts)*idf(term,datasetSize,counts)
 			return tfidf
 
 }
