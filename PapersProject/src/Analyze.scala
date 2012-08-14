@@ -18,6 +18,7 @@ object Analyze {
 class Analyzer extends Object with LoadPaper
                               with ParsePaper 
                               with ExtendPaper
+                              with bagOfWords
                               with ComparePaper
                               with XMLScheduleParser
                               with Graphs {
@@ -37,6 +38,7 @@ class Analyzer extends Object with LoadPaper
 
     // Get a list of parsed papers
     val papers : List[Paper] = load(paperPos, cache, Isit)
+    println(papers)
 
     // Mix in the schedule XML data
     val xmlPapers : List[Paper] = getXMLSchedule(paperPos, papers)

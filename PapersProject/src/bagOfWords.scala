@@ -13,8 +13,9 @@ import scala.io.BufferedSource
 import scala.collection.immutable.List
 
 
-object bagOfWords {
-
+trait bagOfWords {
+  
+  
   
   //return list of papers linked?
   //def compare(papers : List[Paper], limit : Int) : List[Paper] = {
@@ -115,9 +116,9 @@ return scalarProduct
 			//(i,j) of scalarProduct represents the scalar product of document i and document j. Now we have
 			// to sort it in order in a list to return the closest documents to a given document
 			//we have weights (higher weight/score) means being closer document-to-document wise
-
-
   }
+  
+
 	// Code has to be made generic for any text file parsed and for the whole dataset to be accurate
 
 	//reading text from given file
