@@ -57,6 +57,9 @@ class Analyzer extends Object with LoadPaper
 
     // Print graph to file 'data.json'
     graph.save
+    
+    // Export in cvs for import in Gephi
+    graph.exportToGephi
 
   }
 }

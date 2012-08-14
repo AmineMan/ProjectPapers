@@ -14,8 +14,7 @@ import scala.collection.immutable.List
 
 
 trait bagOfWords {
-  
-  
+   
   
   //return list of papers linked?
   //def compare(papers : List[Paper], limit : Int) : List[Paper] = {

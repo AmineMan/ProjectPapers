@@ -51,6 +51,19 @@ class Graph(nodes : List[Node], edges : List[Edge]) {
     p.close
   }
 
+  def exportToGephi : Unit = {
+    val f = new java.io.File("exportToGephi.csv")
+    val p = new java.io.PrintWriter(f)
+
+    var expStr : String = ""
+    
+    expStr += edges.foreach(x => x.exportToGephi) + "\n"
+    
+    p.println(expStr)
+    p.close
+  }
+
+  
   override def toString : String = {
     var ret : String = "{\n"
 
@@ -83,6 +96,9 @@ case class Node(id : Int, title : String, authors : String, pdf : String, date :
 
 case class Edge(from : Int, to : Int, weight : Int) {
   override def toString : String = "{\"source\":" + from + ",\"target\":" + to + ",\"value\":" + weight + "}"
+  
+  def exportToGephi : String = from + " ; " + to + " ; Directed ; ; " + weight
+  
 }
 
 /** Escapes a raw string for use in HTML.*/
