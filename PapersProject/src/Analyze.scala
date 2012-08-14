@@ -1,6 +1,5 @@
 package paper
 
-import paper.bagOfWords$
 
 object Analyze {
   def main(args : Array[String]): Unit = {
