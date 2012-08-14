@@ -1,0 +1,851 @@
+Creator:        TeX
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Wed May  2 14:55:19 2012
+ModDate:        Tue Jun 19 12:54:18 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      479041 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569560213
+
+Projected Subcodes of the Second Order Binary
+Reed-Muller Code
+Matthieu Legeay
+
+Pierre Loidreau
+
+Universit´ de Rennes 1
+e
+IRMAR
+Rennes, France
+Email: matthieu.legeay@univ-rennes1.fr
+
+DGA MI and Universit´ de Rennes 1
+e
+IRMAR
+Rennes, France
+Email: pierre.loidreau@univ-rennes1.fr
+
+In this paper, we aim at studying the projection of second
+order Reed-Muller codes by using elements of the permuations group of the code. It not only contains the group of
+translations, but also the general linear group. We show that it
+is possible to project the second order Reed-Muller code onto
+many codes with smaller parameters - typically of the order of
+the parameters of the ﬁrst order Reed-Muller code. This many
+codes could then be used in the design of algebraic decoding
+algorithms with better performances. The reason why we chose
+to focus on the second order Reed-Muller code is that it is the
+simplest non-trivial code of the Reed-Muller codes family, that
+its structure is perfectly known, and also that it is an optimal
+code in the sense of minimum distance decoding, [6].
+In section II, we introduce binary Reed-Muller codes as
+evaluation codes of boolean functions of a ﬁxed degree. We
+also recall some well known properties, in particular that their
+permutation group is exactly the general afﬁne group, which
+is the semi-direct product of the group of translations and the
+general linear group. In section III, we describe the properties
+of the codes obtained by the projection of the second order
+Reed-Muller code using elements of the permutation group. In
+the case of a translation, we always obtain a ﬁrst order ReedMuller code. In the case where the permutation is an invertible
+linear permutation, the code that we obtain depends on the
+dimension of the eigenspace associated to the eigenvalue 1.
+We then derive bounds on the so-called projected subcodes. In
+Section IV we illustrate our approach with different examples.
+
+Abstract—In this paper we construct new subcodes of the
+second-order binary Reed-Muller code by using the permutation
+group and by projecting the code onto codes with smaller
+parameters. The permutation group of Reed-Muller codes is the
+general afﬁne group and can be decomposed into the semi-direct
+product of the translation group and the general linear group.
+The action of the translation group projects the second order
+Reed-Muller code onto copies of the ﬁrst order Reed-Muller
+code. The general linear group projects the code onto codes for
+which we can control the useful length and the dimension. These
+parameters depend on the dimension of the eigenspace of the
+chosen element of the general linear group for the eigenvalue 1.
+
+I. I NTRODUCTION
+Binary Reed-Muller codes are an ancient family of codes.
+Since their invention in 1954, many articles were dedicated
+to the study of their properties. They have especially efﬁcient
+decoding algorithms. The most efﬁcient in complexity (linear
+or quasi-linear) are the so-called recursive, or GMC (Generalized Multiple Concatenation) decoding algorithms,[1], [2], [3].
+Although extremely fast, no algorithm of this type and none
+of their variants reaches the lower bound on the minimum
+distance decoding capability given for the BSC channel in [4]
+Corollary 2.
+There exists another class of algorithms using algebraic
+properties of Reed-Muller codes, attempting to improve their
+decoding capacity, [4]. Although for second order Reed-Muller
+code, the best variants of the original algorithm practically
+correct more errors than the recursive decoding algorithms,
+the complexity of the decoder is quadratic in the code length
+rather than quasi-linear [7], [8]. The very interesting idea in
+the original paper is the algebraic approach that the authors
+use: they explicitly use a subgroup of the permutation group
+of Reed-Muller codes and project the r-order Reed-Muller
+code onto many copies of the r − 1-order Reed-Muller code.
+They chain this projection until ﬁrst order Reed-Muller code
+is reached. Then they decode in the many copies of the ﬁrst
+order Reed-Muller code with a minimum distance decoder.
+To do this projection, they deﬁne an action of the group
+of translations on Reed-Muller codes and use it to construct
+the projection. Although this algebraic approach is seducing
+the number of different copies of the code that they obtain
+by projection is not sufﬁcient enough to improve on the
+asymptotic performances of recursive decoding.
+
+II. P RELIMINARIES
+Binary Reed-Muller codes are among the oldest and best
+understood codes. They are relatively easy to decode but,
+except for the ﬁrst order Reed-Muller code, they are not very
+good codes in terms of the number of errors that it is possible
+to practically correct over a BSC channel. In this section, we
+introduce the codes as evaluation codes of boolean functions.
+A. Binary Reed-Muller Codes
+There are many ways to introduce binary Reed-Muller
+codes. One of them consists in using properties of boolean
+functions.
+
+1
+
+where σ(C) = {σ(c) | c ∈ C}.
+Generally speaking, the permutation group of a code without
+any particular structure is trivial. Instead, the permutation
+group of Reed-Muller codes is known and is far from being
+trivial, [5]. Namely, let A be the following transformation:
+
+Deﬁnition 1: A Boolean function f in m variables
+x1 , . . . , xm is a function f :
+Fm
+2
+x1 , . . . , x m
+
+→ F2
+→ f (x1 , . . . , xm )
+
+Deﬁnition 2: Let 0 ≤ r ≤ m, n = 2m and let (α1 , . . . , αn ),
+where αi ∈ Fm be some ordering of the vector space (Fm )n .
+2
+2
+The r-th order binary Reed-Muller code R(r, m) is the set of
+all binary strings
+
+A : Fm → Fm
+2
+2
+x = (x1 , . . . , xm ) → Gxt + α,
+where G = (gi,j )i,j∈{1,...,m} is a non-singular m × m binary
+matrix and α = (α(i) )i∈{1,...,m} ∈ Fm . We deﬁne the
+2
+following action of A on the set of Boolean functions:
+
+(f (α1 ), . . . , f (αn )) ∈ Fn ,
+2
+where f (x1 , . . . , xm ) describes the set of binary multivariate
+polynomials of degree ≤ r.
+r
+
+m
+
+The code R(r, m) is a [n = 2 , k =
+i=0
+
+m
+i
+
+m−r
+
+,d = 2
+
+(A · f )(x1 , . . . , xm )
+
+=
+
+f (A · (x1 , . . . , xm ))
+
+=
+
+f
+
+m
+
+]
+
+g1,j xj + α(1) , . . . ,
+
+j=1
+
+m
+
+gm,j xj + α(m)
+
+j=1
+
+binary linear code.
+Example 1:
+• R(0, m) is the repetition code.
+n
+m
+• R(m, m) is all the ambient space F2 , with n = 2 .
+m
+• R(2, m) is the code of length n = 2
+given by the
+Boolean functions of order ≤ 2, that is all quadratic forms
+We now identify a codeword of R(r, m) and its associated
+Boolean function:
+
+This action does not increase the degree: if f is a Boolean
+function of degree r, A · f has degree ≤ r. The set of all
+transformations A, with the composition operation forms the
+group GAm (F2 ). This groups is clearly a subgroup of the
+permutation group of R(r, m). The converse is trickier to
+show.
+Theorem 1 ([5]):
+
+f ↔ cf = (f (α1 ), . . . , f (αn )).
+
+A transformation A in GAm (F2 ) can be decomposed into two
+parts:
+t
+• First, x = (x1 , . . . , xm ) is mapped to x = Gx .
+• Second, x = (x1 , . . . , xm ) is mapped to x + α = (x1 +
+α(1) , . . . , xm + α(m) ).
+Therefore GAm (F2 ) can be decomposed into the semidirect product T GLm (F2 ), where
+• T is the group of all translations
+
+P erm(R(r, m)) = GAm (F2 ).
+
+Since the second order Reed-Muller code R(2, m) is central
+in our study, we detail its structure. A codeword in R(2, m)
+is represented by the following function:
+f (x) =
+
+fij xi xj +
+1≤i<j≤m
+
+li xi + af ,
+1≤i≤m
+
+where fij , li , af ∈ F2 . Since x2 = xi in characteristic 2, an
+i
+equivalent form is:
+f (x) =
+
+Tα : Fm
+2
+x
+
+fij xi xj + af ,
+1≤i≤j≤m
+
+def
+
+•
+
+where fii = li Therefore any codeword is uniquely represented by the following boolean function
+t
+
+f (x) = x F x + af ,
+
+→ Fm
+2
+→ x + α,
+
+where α ∈ Fm . The cardinality of T is n = 2m .
+2
+GLm (F2 ) is the group of all non-singular binary matrices
+of size m × m with coefﬁcients in F2 . The cardinality of
+m−1
+
+(1)
+
+2
+
+(2m − 2i ) = O(2m ).
+
+GLm (F2 ) is equal to
+i=0
+
+The group operation ◦ is deﬁned by: let (α, G), (α , G ) ∈
+T GLm (F2 ), then
+
+where F = (fi,j )i,j=1,..,m is an upper triangular binary matrix
+(the diagonal forming the linear part) and af is a constant. The
+number of bits involved in F being m(m + 1)/2, we have the
+correct dimension.
+
+(α , G ) ◦ (α, G) = (G αt + α , G G).
+The permutation group of Reed-Muller codes has therefore
+m−1
+
+B. Permutation Group
+
+(2m − 2i ).
+
+cardinality n
+
+Let C be a binary linear code of length n. Let σ ∈
+Sn be a permutation of the set {1, . . . , n}. The permutation σ acts on vectors of Fn as follows: if c =
+2
+(ci )i∈{1,...,n} is a vector of Fn then
+2
+
+i=0
+
+III. ACTIONS OF THE PERMUTATION GROUP ON R(2, m)
+As shown in previous section, the permutation group of
+the second order Reed-Muller code R(2, m) is GAm (F2 ) =
+T GLm (F2 ), where T is the group of all translations Tα of
+the element α ∈ Fm , and where and GLm (F2 ) is the group
+2
+of all invertible matrices of size m × m with coefﬁcients in
+F2 .
+
+σ(c) = (cσ−1 (i) )i∈{1,...,n} .
+Deﬁnition 3: The permutation group of C is the set
+P erm(C) = {σ ∈ Sn | σ(C) = C},
+
+2
+
+The action of the group T is clearly described in [4]. In
+the ﬁrst part we recall its main properties and in the second
+part forming the heart of the paper we describe how the action
+of GLm (F2 ) the second order Reed-Muller code can produce
+subcodes with smaller parameters.
+
+As we now understand perfectly how the group of translations T can project second order Reed-Muller codes, we show
+in next section how to copy the previous construction by using
+elements of GLm (F2 ) rather than translations.
+B. The action of GLm (F2 )
+We show that if the permutations are carefully chosen, we
+obtain new codes of smaller parameters by projection. As
+usual, the action of an element G ∈ GLm (F2 ) on a codeword
+is deﬁned by
+G · f (x) = f (G · x).
+
+A. The action of T
+Every element Tα of T is a permutation of order 2,
+with orbits of size 2. We show how to use this group to
+project R(2, m), on a subcode which is in fact isomorphic
+to R(1, m − 1).
+Recall from previous section that for α ∈ Fm , the action of
+2
+Tα on a codeword f is given by
+
+Given G ∈ GLm (F2 ), we write
+def
+
+(Id + G) · R(2, m) = {f + G · f |f ∈ R(2, m)}
+
+Tα · f (x) = f (Tα (x)) = f (x + α).
+
+Proposition 2: Given G ∈ GLm (F2 ), the set (Id + G) ·
+R(2, m) is a subcode of R(2, m).
+Proof: Since ∀f ∈ R(2, m) we have G · f ∈ R(2, m)
+this implies
+
+Given α ∈ Fm , we write
+2
+def
+
+(Id + Tα ) · R(2, m) = {f + Tα · f |f ∈ R(2, m).}
+Hence, we have
+Proposition 1: The set (Id + Tα ) · R(2, m) is a subcode of
+R(2, m) and is isomorphic to R(1, m − 1).
+Proof: Let f be a codeword under the form (1). We have
+(f + Tα · f ) (x)
+
+=
+=
+=
+=
+=
+
+(Id + G) · R(2, m) ⊂ R(2, m).
+Second, let f1 , f2 ∈ R(2, m). It is straightforward to verify
+that
+
+xt F x + af + (x + α)t F (x + α) + af
+xt F x + xt F x + xt F α + αt F x + αt F α
+xt F α + αt F x + αt F α
+αt (F + F t )x + αt F α
+λi xi + af +Tα .f
+
+(f1 + G · f1 ) + (f2 + G · f2 ) ∈ (Id + G) · R(2, m).
+From now on, our motivations are to study properties of this
+subcode. They clearly depend on the choice of the element G
+in the permutation group. From the deﬁnition of the second
+order Reed-Muller code and from the representation (1) we can
+explicit the structure of the codewords of (Id + G) · R(2, m):
+
+1≤i≤m
+
+Thus the function characterizing the codeword f + Tα · f is
+an afﬁne function. Moreover, the obtained codeword is formed
+by two copies of the same codeword of length 2m−1 . Namely,
+(f + Tα · f ) (x + α)
+
+=
+=
+=
+=
+=
+
+(f + G · f )(x)
+
+αt (F + F t )(x + α) + αt F α
+αt (F + F t )x + αt F α + αt F t α
++αt F α
+αt (F + F t )x + αt F t α
+αt (F + F t )x + αt F α
+(f + Tα · f ) (x)
+
+= xt F x + af + (Gx)t F (Gx) + af
+= xt F x + xt Gt F Gx
+= xt (F + Gt F G)x
+
+If we ﬁx G ∈ GLm (F2 ), and if Mm (F2 ) denotes the vector
+space of m × m binary matrices then the mapping
+PG : Mm (F2 ) → Mm (F2 )
+F
+→ F + Gt F G
+
+This means that f + Tα · f takes always the same values on
+the positions x and x + α. Therefore we can divide the set of
+positions by two without loosing information. It is the reason
+why we conclude that (Id + Tα ) · R(2, m) is isomorphic to
+R(1, m − 1).
+This is also the reason why we say that we project the
+second-order Reed-Muller code on copies of the ﬁrst order
+Reed-Muller codes. All these copies are isomorphic. We now
+explicit the isomorphism: suppose that a codeword of length
+n is written under the form
+
+is linear. However studying its properties in the general case
+is difﬁcult. Namely, a codeword f corresponds a unique
+uppertriangular matrix F . However the transformation PG
+does not keep upper-triangularity. An upper-triangular matrix
+is transformed into a matrix which is not necessarily uppertriangular. However the size of PG (Mm (F2 )) is an upper
+bound on the size of (Id+G)·R(2, m). Since under this form
+obtaining a bound on the size of PG (Mm (F2 )) is difﬁcult,
+we chose to rewrite the matrix G under the particular form
+G = Id + E. Now we have:
+(f + G · f )(x) = xt (F + (Id + E)t F (Id + E))x
+= xt (E t F + F E + E t F E)x
+
+cf = (f (α1 ), . . . , f (αn )),
+where αi runs through Fm for i = 1, . . . , n. The codeword
+2
+(Id + Tα ) · f corresponds to:
+cf +Tα ·f = (f (α1 ) + f (α1 + α), . . . , f (αn ) + f (αn + α)).
+
+The idea is now to study, for a ﬁxed E ∈ Mm (F2 ), the
+mapping
+
+Since any position in the codeword is symmetric in α if we
+keep only one element per orbit in Fm /(α), we get a codeword
+2
+of R(1, m − 1).
+
+Mm (F2 ) →
+Mm (F2 )
+F
+→ EtF + F E + EtF E
+
+3
+
+Let r be the rank of E. We have the following upper bound
+on the dimension of (Id + G) · R(2, m):
+Proposition 3: The dimension k of the subcode (Id + G) ·
+R(2, m) satisﬁes
+k ≤ 4r(m − r) + 1
+
+By solving this equation, we ﬁnd that the bound gives a smaller
+dimension than the dimension of RM(2, m) if:
+√
+2− 2
+r≤m
+0.15m.
+4
+
+(2)
+
+Deﬁnition 4: Let G = Id + E ∈ GLm (F2 ), and let
+r = Rk(E). The subcode of length n − 2r obtained from
+(Id + G) · R(2, m) by removing the 2r positions equal to 0
+corresponding to the kernel of E is called G-projected subcode
+of R(2, m).
+
+Moreover (Id+G)·R(2, m) is isomorphic to a code of length
+n − 2m−r
+Proof: By using the fact that
+Rk(AB) ≤ min(Rk(A), Rk(B)),
+
+We now improve the bound (2) by
+matrices E. We choose to consider E
+gular form with zero diagonal:
+
+0
+ e1
+
+E(e1 , . . . , em−1 ) = 
+.
+.
+
+.
+
+we get
+Rk(E t F + F E + E t F E) = Rk(E t F + (F + E t F )E) ≤ 2r.
+By construction, the number of codewords in (Id + G) ·
+R(2, m) is upper bounded by the number of m × m binary
+matrices of the form E t F + F E + E t F E. This quantity is
+itself upper-bounded by the number of matrices of rank ≤ 2r.
+Therefore, the size of (Id + G) · R(2, m) is upper-bounded
+by the number of binary matrices of size m × m and of rank
+≤ 2r.
+From [9] for instance, it is well known that the number of
+binary matrices of size m × n and of rank r is equal to
+r
+
+j−1
+
+j=0 i=0
+
+m
+
+i
+
+n
+
+0
+0
+.
+.
+.
+
+
+
+
+
+
+
+0
+
+EtF + F E + EtF E
+r−1
+
+(m − i) bits where r is the rank of E.
+
+depends on at most
+i=0
+
+Our improvement on bound (2) is:
+r−1
+
+(m − i) = rm −
+
+k ≤
+
+. Therefore,
+
+i=0
+
+2k ≤ 24r(m−r)+1 ,
+
+r(r − 1)
+2
+
+This bound is always less than the dimension of RM(2, m).
+To illustrate this property, suppose that we take
+E(0, . . . , 0, em ), where em = (em,j )m−1 = 0. Then E
+j=1
+has rank 1 and if we deﬁne F = (fi,j ) upper triangular, and
+if we deﬁne em,m = 0, we have
+
+which gives the bound on the dimension of the code.
+Now, we show that there are coordinates in the code which
+are always equal to 0. Let α ∈ Fm , be such that Gα = α, that
+2
+is α is a ﬁxed point of G or equivalently α is in the kernel of
+E. In this case (f + G · f )(α) = 0, for all f . The number of
+coordinates on which every codeword is equal zero is at least
+equal to the size of the kernel of E, that is 2m−r . We can
+remove all these positions equal to 0 and obtain an isomorphic
+subcode of dimension k and of length n = n − 2m−r .
+The bounds for r = 1 and r = 2 give:
+m−1
+• If r = 1, then k ≤ 4(m − 1) + 1, for a length of 2
+.
+m
+• If r = 2, then k ≤ 8(m − 2) + 1, for a length of 2 −
+2m−2 .
+The bound show that if one ﬁxes the rank of E, then the
+dimension of the projected subcodes cannot grow faster than
+linearly in the number of variables. Therefore we come close
+to construct codes which are similar to ﬁrst order Reed-Muller
+code, and which could be minimum distance decoded in linear
+time.
+The bound remains interesting if it does not exceed the
+dimension of the second order Reed-Muller code, that is if
+4r(m − r) + 1 ≤
+
+···
+···
+..
+.
+
+where ei is a binary vector of length i. This construction
+implies in particular that G = Id + E((e1 , . . . , em−1 ) is nonsingular. Written under this form, the matricial product
+
+(2 − 2 )(2 − 2 )
+.
+2j − 2i
+
+This quantity is upper bounded by 2
+
+0
+0
+.
+.
+.
+
+em−1
+
+i
+
+(m+n−r)r+1
+
+constructing explicitly
+under the under trian-
+
+(F E + E t F + E t F E)i,j = em,j (fi,m + em,i fm,m ),
+
+(3)
+
+∀i, j ∈ [1, . . . , m]. This quantity depends on the m bits
+(f1,m , . . . , fm,m ). Hence the dimension k ≤ m. Moreover,
+since the eigenspace with eigenvalue 1 has dimension m − 1,
+the corresponding G-projected subcode has length 2m−1 and
+dimension ≤ m.
+We made some simulations in the Magma language. These
+simulations are presented in the next section. In practice the
+bound is never reached. For the case where E(0, . . . , 0, em ),
+where em = (0, . . . , 0, 1), we have
+m−1
+
+(f + G · f )(x) = x1
+
+(xi fi,m ) + (f1,m + fm,m ) .
+i=2
+
+This means that on the positions where x1 = 0, the subcode
+is equal to 0 and on the positions where x1 = 1, the subcode
+corresponds to the ﬁrst-order Reed-Muller code R(1, m − 2)
+(doubled because it is the same for xm = 0 and xm = 1).
+Therefore its dimension k = m − 1. If we do the same
+
+m(m + 1)
++ 1.
+2
+
+4
+
+for every matrix E(e1 , . . . , em−1 ) of rank 1, we see that the
+corresponding projected subcdoes are always isomorphic to
+R(1, m − 2).
+For ranks higher than 1, it is difﬁcult to ﬁnd a general
+structure in the matrix which would allow to prove that the
+dimension does not reach the bound.
+The ﬁnal parameter of the G-projected codes that we
+would like to study are their minimal distance. Since they
+are isomorphic to subcodes of RM(2, m) we have a lower
+bound which is 2m−2 . In our simulations, we always found
+d = d = 2m−2 but so far we have been unable to proove it.
+
+•
+
+•
+
+IV. E XAMPLES
+To illustrate our results we made some simulations in the
+Magma language whose results are presented below.
+
+•
+
+A. Example for the translation group
+Let α = (1, 0, 1, 0, 1). Then (Id + Tα )
+[32, 5, 16] subcode. However, on the ﬁrst 16
+its generator matrix, we have the submatrix
+
+1 0 0 1 0 1 1 0 0 1 1 0
+ 0 1 0 1 0 1 0 1 0 1 0 1
+
+ 0 0 1 1 0 0 1 1 0 0 1 1
+
+ 0 0 0 0 1 1 1 1 0 0 0 0
+0 0 0 0 0 0 0 0 1 1 1 1
+
+•
+
+· R(2, 5) is a
+coordinates of
+1
+0
+0
+1
+1
+
+0
+1
+0
+1
+1
+
+0
+0
+1
+1
+1
+
+1
+1
+1
+1
+1
+
+
+
+G1 is the matrix G with g1 = 1 and g2 = g3 = g4 = 0.
+Then (Id + G1 ) · R(2, 5) is a [32, 4, 8] subcode, isomorphic to the ﬁrst-order Reed-Muller code R(1, 3)
+
+
+1 0 0 1 0 1 1 0
+ 0 1 0 1 0 1 0 1 
+
+
+ 0 0 1 1 0 0 1 1 
+0 0 0 0 1 1 1 1
+by deleting the columns as said in the previous section.
+In this case, the subcode became a [8,4,4] code.
+G2 is the matrix G with g1 = g2 = 1 and g3 = g4 = 0.
+Then (Id + G2 ) · R(2, 5) is a [32, 8, 8] subcode. We have
+k = 2m − 2 ≤ 2m − 1.
+G1 is the matrix G with g1 = g2 = g3 = 1 and g4 = 0.
+Then (Id+G3 )·R(2, 5) is a [32, 10, 8] subcode. We have
+k = 3m − 5 ≤ 3m − 3.
+G1 is the matrix G with g1 = g2 = g3 = g4 = 1. Then
+(Id + G4 ) · R(2, 5) is a [32, 12, 8] subcode. We have
+k = 4m − 8 ≤ 4m − 6.
+V. C ONCLUSION
+
+We have constructed numerous codes from the second order
+
+ Reed-Muller code by projecting the code under the action of
+
+ an element of the general linear group. We have obtained a
+
+bound on the dimension of the projected codes, and in some
+cases we were able to tighten it.
+which is exactly a generator matrix of the ﬁrst-order ReedR EFERENCES
+Muller code R(1, 4) ;
+on the last 16 coordinates, we have the submatrix
+[1] G. Schnabl and M. Bossert, Soft Decision Decoding of Reed-Muller
+
+
+Codes as Generalized Multiple Concatenated Codes, IEEE Transactions
+1 0 0 1 0 1 1 0 0 1 1 0 1 0 0 1
+on Information Theory, 41(1):304-308, 1995.
+ 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0  [2] I. Dumer, Recursive Decoding and its performance for low-rate Reed
+
+Muller codes, IEEE Transactions on Information Theory, 50(5):811-822,
+ 0 0 1 1 0 0 1 1 0 0 1 1 0 0 1 1 
+
+
+ 1 1 1 1 0 0 0 0 1 1 1 1 0 0 0 0  [3] 2004.
+I. Dumer and K. Shabunov, Recursive error construction for general
+Reed-Muller codes, Discrete Applied Mathematics, 154:253-269, 2006.
+0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1
+[4] V. M. Sidel’nikov and A. S. Pershakov, Decoding Reed-Muller codes
+
+which is the same matrix as above but permuted with
+with a large number of errors, Problems of Information Transmission,
+28(3):80-94, 1992.
+(1, 6)(2, 5)(3, 8)(4, 7)(9, 14)(10, 13)(11, 16)(12, 15).
+[5] F. J. MacWilliams and N. J. Sloane, The theory of error-correcting codes,
+Thus the permutation of the global matrix is
+3nd edition Amsterdam, The Nederlands : North-Holland, 2009.
+σ = (1, 22)(6, 17)(2, 21)(5, 18)(3, 24)(8, 19)(4, 23)(7, 20)(9, 30) [6] T. Helleseth, T. Klove and V. I. Levenshtein, Error-Correction Capability
+of Binary Linear Codes, IEEE Transactions on Information Theory,
+(14, 25)(10, 29)(13, 26)(11, 32)(16, 27)(12, 31)(15, 28)
+51(4):1408-1423, 2005.
+[7] P. Loidreau and B. Sakkour, Modiﬁed version of the Sidel’nikovPershakov decoding algorithm for binary second order Reed-Muller
+codes, Algebraic and Combinatorial Theory - ACCT-9, pp 266-271,
+Kranevo, June 2004.
+[8] B. Sakkour, Decoding of Second Order Reed-Muller Codes with a Large
+Number of Errors, In ITW 2005,pp 176-179, Rotoua, New Zealand,
+2005.
+[9] R. Lidl and H. Niederreiter, Finite Fields, Cambridge University Press,
+2nd edition, 1997.
+
+As explained in section III.A,
+• α1 = (1, 0, 0, 0, 0) ↔ σ1 = (1, 2)(3, 4) . . . (31, 32)
+• α3 = (0, 0, 1, 0, 0) ↔ σ3 = (1, 5)(2, 6) . . . (28, 32)
+• α5 = (0, 0, 0, 0, 1) ↔ σ5 = (1, 17)(2, 18) . . . (16, 32)
+It is easy to verify that α = α1 + α3 + α5 and so that σ =
+σ1 ◦ σ3 ◦ σ5 .
+B. Example for the general linear group
+Let
+
+
+
+G = Id + E = 
+
+
+
+1
+g1
+0
+0
+0
+
+0
+1
+g2
+0
+0
+
+0
+0
+1
+g3
+0
+
+0
+0
+0
+1
+g4
+
+0
+0
+0
+0
+1
+
+
+
+
+
+
+
+
+and let the successive matrices be
+
+5
+
+

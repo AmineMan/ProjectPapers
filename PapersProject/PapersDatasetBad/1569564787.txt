@@ -1,0 +1,814 @@
+Title:          vontobel_isit2012_final1.dvi
+Creator:        dvips(k) 5.99 Copyright 2010 Radical Eye Software
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Fri May 18 16:36:01 2012
+ModDate:        Tue Jun 19 12:55:39 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      363688 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569564787
+
+The Bethe Approximation of the
+Pattern Maximum Likelihood Distribution
+Pascal O. Vontobel
+Hewlett–Packard Laboratories
+1501 Page Mill Road
+Palo Alto, CA 94304, USA
+pascal.vontobel@ieee.org
+
+has length n = 9, contains m = 4 distinct symbols, and has
+pattern ψ = 1, 1, 2, 3, 1, 3, 3, 4, 2.
+Clearly, the length of ψ is n, i.e., the same as the length
+of x, and the number of distinct integers in ψ equals m, i.e.,
+the same as the number of distinct symbols in x.
+Let the multiplicity µψ (ψ) of the integer ψ in the pattern
+ψ be the number of times that ψ appears in ψ, i.e., µψ (ψ)
+{i | ψi = ψ}. All multiplicities are collected in the multiplicity
+vector µ(ψ). Obviously, ψ µψ (ψ) = n.
+
+Abstract—Among all memoryless source distributions, the pattern maximum likelihood (PML) distribution is the distribution
+which maximizes the probability that a memoryless source
+produces a string with a given pattern. Equivalently, the PML
+distribution maximizes the permanent of a certain non-negative
+matrix. We reformulate this maximization problem as a double
+minimization problem of a suitable Gibbs free energy function.
+Because ﬁnding the minimum of this function appears intractable
+for practically relevant problem sizes, one must look for tractable
+approximations.
+One approach is to approximately ﬁnd a minimum (or at least
+a local minimum) of the Gibbs free energy function by applying
+an alternating minimization algorithm where the steps are based
+on quantities that are obtained by Markov chain Monte Carlo
+sampling. One can show that this approach is equivalent to an
+algorithm that was proposed by Orlitsky et al..
+An alternative approach is to replace the Gibbs free energy
+function by a tractable approximation like the Bethe free energy
+function and to apply an alternating minimization algorithm to
+this function. As it turns out, empirically, this latter approach
+gives very good approximations to the PML distribution (or at
+least a locally optimal PML distribution), and, for the same level
+of accuracy, is two to three orders of magnitude faster than the
+former approach for practically relevant problem sizes.
+Moreover, the above free energy framework allows us to
+simplify some earlier proofs of properties of the PML distribution
+and to derive some new properties of the PML distribution, along
+with obtaining similar results for its Bethe approximation.
+
+Example 2 We continue Example 1. The multiplicities of the
+integers in the pattern ψ = 1, 1, 2, 3, 1, 3, 3, 4, 2 are µ1 = 3,
+µ2 = 2, µ3 = 3, and µ4 = 1.
+The probability P (ψ; π) of a pattern ψ is deﬁned to be the
+probability that the memoryless source outputs a sequence of
+length n with the pattern ψ: P (ψ; π)
+Prπ ψ(X) = ψ .
+In the following, we will assume that X has size k for some
+k
+m, and, without loss of generality, we also assume that
+X = {1, 2, . . . , k}.
+Deﬁnition 3 For a given pattern ψ, the pattern maximum
+likelihood (PML) distribution is deﬁned to be
+pPML
+
+I. I NTRODUCTION
+Consider a memoryless source with alphabet X of ﬁnite
+size |X | and with distribution π = (πx )x∈X , i.e., the probability that the source outputs the symbol x ∈ X is πx .
+Therefore, the probability that the source outputs the sequence
+x x1 , x2 , . . . , xn of length n equals
+
+arg max P (ψ; p),
+p
+
+where p varies over all distributions over X . Actually, because
+of symmetry considerations, we allow only distributions that
+satisfy p1 p2 · · · pk .
+The PML distribution has many interesting properties and
+uses; for an in-depth discussion we refer the interested reader
+to the relevant literature (in particular [1], but also [2]–[9]).
+The pattern probability P (ψ; p) of a pattern ψ with m
+distinct integers and multiplicity vector µ
+µ(ψ) can be
+written as follows
+
+Prπ (X = x) = πx1 · πx2 · · · πxn .
+Because this probability depends only on how often every
+symbol appears in x, we can write
+|{i
+πx | xi =x}| .
+
+Prπ (X = x) =
+
+pPML (ψ)
+
+x′ ∈X x′ ∈X ,
+2
+1
+x′ =x′
+2
+1
+
+Let us denote the number of distinct symbols in x by m.
+The pattern ψ ψ(x) ψ1 , ψ2 , . . . , ψn of a sequence x is
+deﬁned to be the integer sequence derived by replacing each
+symbol in x by its order of appearance.
+
+pµ′1 pµ′2 · · · pµ′m .
+xm
+x x
+
+···
+
+P (ψ; p) =
+
+x∈X
+
+x′ ∈X
+m
+x′ =x′ ,x′ ,...
+m
+1 2
+
+1
+
+2
+
+Deﬁnition 4 (see, e.g., [10]) Let θ = (θi,j )i,j be a real
+matrix of size k × k. The permanent of θ is deﬁned to be the
+scalar perm(θ) = σ i∈[k] θi,σ(i) , where the summation is
+over all k! permutations of the set [k] {1, 2, . . . , k}.
+
+Example 1 Consider the alphabet X = {a, b, c, . . . , z} of
+size |X | = 26. Then the sequence x = c, c, a, y, c, y, y, t, a
+
+1
+
+With this, one can then verify (see [11]) that the pattern
+probability P (ψ; p) can be written in terms of the permanent
+of a suitably deﬁned square matrix, i.e.,
+1
+P (ψ; p) =
+· perm θ p, µ(ψ) ,
+(k − m)!
+
+ µ1
+p µ 2 · · · pµ m 1 · · · 1
+p1
+1
+1
+pµ1 pµ2 · · · pµm 1 · · · 1
+2
+2
+
+ 2
+θ(p, µ)  .
+.
+.
+.
+.  . (1)
+.
+.
+.
+.
+ .
+.
+.
+.
+.
+.
+
+in [13], [14] vs. source distribution here) that maximize a
+model ﬁtness function that is expressed in terms of some
+permanent. The conclusions in both setups are very similar:
+for the same level of accuracy, the Bethe free energy based
+approach is much faster than the Gibbs free energy / MCMC
+based approach. There are two notable differences between
+the setups though. First, our model has typically many more
+parameters than the setup in [13], [14]. Second, the structure of
+the matrix θ(p, µ) can be used towards signiﬁcantly speeding
+up the SPA computations.
+
+We simplify the notation by deﬁning µj 0, m < j k: the
+µ
+entries of θ = θ(p, µ) are then θi,j = pi j , (i, j) ∈ [k]2 .
+
+B. Basic Notations and Deﬁnitions
+Scalars are denoted by non-boldface characters, whereas
+vectors and matrices are denoted by boldface characters. The
+size of a set S is denoted by |S|. For any positive integer L
+we deﬁne [L] {1, . . . , L}. Moreover, 0 · log(0) 0.
+For a non-negative matrix θ = (θi,j )i,j , i.e., a matrix with
+only non-negative entries, we deﬁne log◦(θ) to be the matrix
+where the logarithm function is applied component-wise to
+θ, i.e., log◦(θ)
+log(θi,j ) i,j . The inner product of two
+matrices U = (Ui,j )i,j and V = (Vi,j )i,j of the same size
+is deﬁned to be U , V
+i,j Ui,j Vi,j . Let U be a matrix
+of size L1 × L2 ; for integers i ∈ [L1 ], j ∈ [L2 ], the matrix
+U∼i,∼j is the submatrix of U where the i-th row and the j-th
+column are omitted.
+Moreover, for a ﬁnite set S, we deﬁne ΠS to be the set
+of probability mass functions over S. If there is a total order
+on the set S then we deﬁne ΠS to be the set of monotone
+p ∈ ΠS
+probability mass functions over S, i.e., ΠS
+ps ps′ if s s′ , where s, s′ ∈ S . For any positive integer
+L, we let ΓL×L be the set of doubly stochastic matrices of
+size L × L.
+
+pµ1
+k
+
+pµ 2
+k
+
+···
+
+pµ m
+k
+
+1 ···
+
+1
+
+Deﬁnition 5 (Restatement of Deﬁnition 3) For a given pattern ψ, the PML distribution is deﬁned to be
+pPML
+
+pPML (ψ)
+
+arg max perm θ p, µ(ψ)
+
+,
+
+p
+
+where p varies over all distributions over X that satisfy p1
+p2 · · · pk and where θ p, µ(ψ) is deﬁned in (1).
+Because ﬁnding the PML distribution of a pattern appears
+to be intractable for practically relevant problem sizes, it is
+desirable to devise efﬁcient algorithms that ﬁnd approximations to the PML distribution. This is the topic of the rest of
+this paper that presents two different approximations.
+• In the ﬁrst approach, discussed in Sec. II, we express
+pPML (ψ) as the solution of a certain Gibbs free energy
+minimization problem. We will then approximately ﬁnd a
+minimum (or at least a stationary point) of this Gibbs free
+energy function by applying an alternating minimization
+algorithm where the steps are based on quantities that
+are obtained by Markov chain Monte Carlo (MCMC)
+sampling. One can show that this approach is equivalent
+to an algorithm that was proposed by Orlitsky et al. (an
+early version of that algorithm was mentioned in [12];
+for a detailed discussion see [8]).
+• In the second approach, discussed in Sec. III, we replace
+the above Gibbs free energy function by a tractable approximation like the Bethe free energy function and apply
+an alternating minimization algorithm to this function.
+Along the way we will show (as far as space constraints
+allow us) that the above free energy framework allows us
+to simplify some earlier proofs of properties of the PML
+distribution and to derive some new properties of the PML
+distribution. Moreover, we will see that the Bethe approximation of the PML distribution behaves in many ways similar to
+the PML distribution.
+
+II. A G IBBS F REE E NERGY F UNCTION A PPROACH TO THE
+PATTERN M AXIMUM L IKELIHOOD D ISTRIBUTION
+In this section we show an alternative derivation of a
+PML distribution estimation algorithm that was proposed by
+Orlitsky et al. [8], [12]. The main ideas behind our approach,
+which is based on Gibbs free energy functions, are:1
+• Set up a graphical model N whose partition function
+equals perm(θ) with θ
+θ p, µ(ψ) , where ψ and p
+are auxiliary parameters. Here we will use the graphical
+model N N(θ) that was deﬁned in [17, Sec. II].
+• Express the partition function of N as the solution of a
+maximization problem.
+• Combine this maximization problem with the maximization over p to obtain a double maximization problem.
+• Find the maximum (or at least a stationary point) with
+the help of an alternating maximization algorithm.
+• There is a tuning parameter T
+0, called the temperature.
+As we will see, T = 1 yields the PML distribution,
+whereas T = 0 yields the so-called sequence maximum
+likelihood (SML) distribution.
+Actually, because of the way that things are typically expressed
+in the Gibbs variational approach, we will end up with a double
+minimization problem, not a double maximization problem.
+
+A. Related Work
+The Bethe free energy approach that is pursued in this paper
+leverages results from [13]–[15] on how to approximate the
+permanent of a non-negative matrix with the help of the sumproduct algorithm (SPA) (see also [16]–[19]). Note that there
+are some high-level similarities between the problem setup
+in [13], [14] and the problem setup here: namely, in both setups
+one tries to learn some model parameters (ﬂow parameters
+
+1 For
+
+2
+
+more details, we refer the interested reader to, for example, [20].
+
+– Compute p(t) according to
+
+Lemma 6 Deﬁne the functions
+
+p(t)
+
+FG ( · ; θ) : Γk×k → R, γ → UG (γ; θ) − T · HG (γ),
+
+p
+
+UG ( · ; θ) : Γk×k → R, γ → − γ, log◦(θ) ,
+
+µ(ψ)
+.
+(3)
+n
+Let us comment on this algorithm.
+• For the special case T = 1, one can show that Algorithm 8 is equivalent to the expectation maximization
+(EM) type algorithm that was proposed by Orlitsky et
+al. [8], [12].
+• For the special case T = 1, one can verify that the
+expression in (2) is equivalent to
+= γ (t) ·
+
+¯ γ
+HG ( · ) : Γk×k → R, γ → min γ, γ − − HG (¯ ) ,
+¯
+γ
+¯
+
+¯
+with HG : Rn×n → R, γ → log
+¯
+¯
+c exp(− c, γ ) . Here, c
+ranges over all k×k permutation matrices, T 0 is called the
+temperature, and FG , UG , and HG are called the Gibbs free
+energy function, the Gibbs average energy function, and the
+Gibbs entropy function, respectively. The permanent of θ can
+then be expressed as the solution of an optimization problem,
+namely,
+
+(t)
+
+perm(θ) = max exp − FG (γ; θ) ,
+
+γi,j
+
+γ
+
+where the maximization is over γ ∈ Γk×k and where T = 1.
+
+arg min min FG γ; θ p, µ(ψ)
+p
+
+Proof: Follows from certain symmetries of the permanent as
+a function of the entries of a matrix. We omit the details.
+B. The Case T = 0
+For T = 0, ﬁnding the p and γ that minimize
+FG γ; θ p, µ(ψ) is equivalent to ﬁnding the p that maximizes maxx′ ∈X maxx′ ∈X ,x′ =x′ · · · maxx′ ∈X ,x′ =x′ ,x′ ,...
+m
+m
+1
+2
+2
+1
+1 2
+pµ′1 pµ′2 · · · pµ′m . The resulting probability vector pSML is
+xm
+x1 x2
+called the sequence maximum likelihood (SML) distribution
+and can be expressed explicitly as follows: pSML = µ(ψ)/n.
+
+Note that the function (p, γ) → FG γ; θ p, µ(ψ) is
+convex in p for ﬁxed γ, and convex in γ for ﬁxed p, but
+in general it is not convex in (p, γ).
+In the following, we will distinguish between the case T > 0
+and the case T = 0.
+A. The Case T > 0
+The expression for pPML in Deﬁnition 7 makes it clear
+that we can use an alternating minimization approach to ﬁnd
+the minimum of (p, γ) → FG γ; θ p, µ(ψ) , or at least a
+stationary point thereof, i.e., we ﬁx p and optimize over γ,
+then we ﬁx γ and optimize over p, etc..
+
+C. Majorization
+Let p and q be two non-negative vectors of length k such
+that i∈[k] pi = i∈[k] qi , and let p↓ and q ↓ be vectors with
+the same components as p and q, respectively, but sorted in
+decreasing order. One says that the vector p is majorized by
+↓
+′
+q if i∈[k′ ] p↓
+i
+i∈[k′ ] qi for all k ∈ [k] (see, e.g., [22]).
+
+Algorithm 8 Fix some T > 0 and consider a pattern ψ.
+(0)
+• Arbitrarily initialize the vector p
+∈ Π[k] .
+• For t = 1, 2, . . . alternatingly apply the following two
+steps until a suitable convergence criterion is met.
+– Compute γ (t) according to
+γ
+
+arg min FG γ; θ p
+
+(t−1)
+
+, µ(ψ) .
+
+(4)
+
+Theorem 9 For p(t) as deﬁned in Algorithm 8 it holds that
+p(t) ∈ Π[k] for all t = 0, 1, . . . .
+
+,
+
+γ
+
+where p varies over ΠS , where γ varies over Γk×k , and where
+θ p, µ(ψ) is deﬁned in (1). (Note that the maximization over
+p in Deﬁnitions 3 and 5 turned into a minimization over p.)
+
+(t)
+
+(i, j) ∈ [k]2 .
+
+It appears that the update equation in (2) (or, alternatively,
+(4)) is not tractable for practically relevant problem
+sizes. A way out of this dilemma is to approximate
+the permanent-based quantities in (4) by quantities that
+are obtained by MCMC based techniques; for a detailed
+discussion of such an approach see [8].
+(t)
+• For proving convergence of p
+and γ (t) to a stationary
+point of (p, γ) → FG γ; θ p, µ(ψ) , one can use
+standard results for alternating minimization algorithms
+(see, e.g., [21, Proposition 2.7.1]).
+As we show next, Algorithm 8 has the pleasing property that
+(t)
+the ordering of the pi values is maintained from iteration to
+iteration.
+
+Deﬁnition 7 (Restatement of Deﬁnitions 3 and 5) For a
+given pattern ψ, the pattern maximum likelihood (PML)
+distribution is deﬁned to be
+pPML (ψ)
+
+θi,j · perm θ∼i,∼j
+,
+perm θ
+
+•
+
+Proof: Omitted.
+Usually, the Gibbs free energy function is a function over
+the probability polytope over all valid conﬁgurations of a
+graphical model. However, in Lemma 6 we have used a version
+whose domain is projected onto Γk×k . (See also the comments
+after the upcoming Deﬁnition 12.)
+The reformulation of the permanent in Lemma 6 allows us
+to rewrite the expression that deﬁnes pPML .
+
+pPML
+
+arg min FG γ (t) ; θ p, µ(ψ)
+
+Theorem 10 Fix some T > 0. For p(t) as deﬁned in Algorithm 8, it holds that p(t) is majorized by pSML for all
+t = 1, 2, . . . .
+Proof: From (3) and Sec. II-B it follows that p(t) = γ (t) ·pSML
+for some doubly stochastic matrix γ (t) . It is well known that
+this implies that p(t) is majorized by pSML .
+
+(2)
+
+γ
+
+3
+
+Corollary 11 Fix some T > 0. It holds that pPML is majorized by pSML .
+
+energy function equals the Bethe average energy function,
+i.e., UB (γ; θ) = UG (γ; θ), whereas in general HB (γ) is an
+approximation of HG (γ).
+
+Proof: Apply Theorem 10 with p(0) pPML and use the fact
+that p(t) = pPML for t = 1, 2, . . . .
+Note that the majorization statement in Corollary 11 appears
+already in [9]. However, the proof therein is much longer and
+less intuitive.
+
+Deﬁnition 13 For a given pattern ψ, the Bethe approximation
+of the PML (BPML) distribution pBPML is deﬁned to be
+pBPML
+
+pBPML (ψ)
+
+arg min min FB γ; θ p, µ(ψ)
+p
+
+III. T HE B ETHE A PPROXIMATION TO THE
+PATTERN M AXIMUM L IKELIHOOD D ISTRIBUTION
+
+where p varies over ΠS and where γ varies over Γk×k .
+
+As we have discussed in the previous sections, some of
+the quantities that appear in Algorithm 8 do not seem to be
+tractable for practically relevant problem sizes. In Sec. II we
+have also discussed an approach to circumvent these computational problems by approximately computing the relevant
+quantities.
+In this section, we explore an alternative approach.
+Namely, we replace the ﬁtness function that is optimized
+in Deﬁnitions 5: instead of maximizing the permanent
+perm θ p, µ(ψ) , we will maximize the Bethe approximation of the permanent perm θ p, µ(ψ) , i.e., we will
+maximize the Bethe permanent permB θ p, µ(ψ) . Although there are potentially other functions that could be
+optimized, the Bethe permanent has the advantage of being
+reasonably close to the permanent [17], [18], yet being algorithmically tractable. Equivalently, this approach can be seen
+as replacing the cost function that is optimized in Deﬁnitions 7: instead of minimizing the Gibbs free energy function
+FG γ; θ(p, µ(ψ)) , we will minimize the Bethe free energy
+function FB γ; θ(p, µ(ψ)) .
+
+Algorithm 14 Fix some T > 0 and consider a pattern ψ.
+(0)
+• Arbitrarily initialize the vector p
+∈ Π[k] .
+• For t = 1, 2, . . . alternatingly apply the following two
+steps until a suitable convergence criterion is met.
+– Compute γ (t) according to
+γ (t)
+
+p(t) = arg min FB (γ (t) ; θ p, µ(ψ)
+γ
+
+µ(ψ)
+.
+n
+The Bethe free energy function (and the corresponding
+Algorithm 14) behave in many ways similar to the Gibbs free
+energy function (and the corresponding Algorithm 8):
+• The function (p, γ) → FB γ; θ p, µ(ψ)
+is convex
+in p for ﬁxed γ, and convex in γ for ﬁxed p (cf. [17,
+Corollary 23]), but in general it is not convex in (p, γ).
+(t)
+(t)
+• For showing convergence of (p , γ ) in Algorithm 14
+to a stationary point of of (p, γ) → FB γ; θ p, µ(ψ) ,
+one can for example use standard results for alternating minimization algorithms (see, e.g., [21, Proposition 2.7.1]).
+• A statement analogous to Theorems 9 can be proven
+using a combinatorial characterization of the Bethe permanent that is presented in [17, Sec. VI], in particular by
+using its symmetries.
+• Statements analogous to Theorem 10 and Corollary 11
+can easily be proven.
+• A naive implementation of the SPA to solve (5) in
+round t for a given vector p(t−1) has a time and space
+complexity proportional to k 2 per iteration. However,
+using the structure of the matrix θ p(t−1) , µ(ψ) , this
+complexity can be reduced to be proportional to k times
+the number of distinct entries in the vector µ(ψ). Moreover, typically only few iterations are necessary because
+the SPA messages can be initialized with the messages
+of the SPA run in round t − 1.
+• Empirically, the BPML gives very good approximations
+to the PML distribution (or at least a locally optimal PML
+distribution), cf. Figs. 1 and 2. Moreover, for the same
+level of accuracy, Algorithm 14 is two to three orders
+=γ
+
+γ → − γ, log◦(θ)
+
+HB ( · ) : Γk×k → R,
+
+γ → − γ, log◦(γ)
++ 1−γ, log◦(1−γ) .
+
+Here, T 0 is called the temperature, and FG , UG , and HG
+are called the Bethe free energy function, the Bethe average
+energy function, and the Bethe entropy function, respectively.
+The Bethe permanent of a non-negative matrix θ of size k × k
+is then deﬁned to be
+permB (θ)
+
+(5)
+
+The matrix γ (t) can for example be obtained with the
+help of the sum-product algorithm (cf. [17, Sec. V]).
+– Compute p(t) according to
+
+γ → UB (γ; θ) − T · HB (γ),
+
+UB ( · ; θ) : Γk×k → R,
+
+arg min FB γ; θ p(t−1) , µ(ψ) .
+γ
+
+Deﬁnition 12 Deﬁne the functions
+FB ( · ; θ) : Γk×k → R,
+
+,
+
+γ
+
+max exp − FB (γ; θ) ,
+γ
+
+where the maximization is over all γ ∈ Γk×k . (See [17,
+Corollary 15]; alternatively, see also [13]–[15].)
+Usually, the Bethe free energy is deﬁned over the local
+marginal polytope of a graphical model (see, e.g., [23], [24]).
+However, for the factor graph under consideration one can
+show that there is a bijective mapping between the local
+marginal polytope and Γk×k . The fact that the Gibbs and
+the Bethe free energy functions can be expressed as functions
+over the same domain allows one to compare these functions
+more easily. In particular, we observe that the Gibbs average
+
+4
+
+(t)
+
+·
+
+R EFERENCES
+−2
+
+[1] A. Orlitsky, N. P. Santhanam, K. Viswanathan, and J. Zhang, “On
+modeling proﬁles instead of values,” in Proc. Uncertainty in Artiﬁcial
+Intelligence, Banff, Canada, Jul. 7–11 2004.
+[2] A. Orlitsky, N. P. Santhanam, and J. Zhang, “Universal compression of
+memoryless sources over unknown alphabets,” IEEE Trans. Inf. Theory,
+vol. 50, no. 7, pp. 1469–1481, Jul. 2004.
+[3] G. I. Shamir, “Universal lossless compression with unknown alphabets
+— the average case,” IEEE Trans. Inf. Theory, vol. 52, no. 11, pp. 4915–
+4944, Nov. 2006.
+[4] A. B. Wagner, P. Viswanath, and S. R. Kulkarni, “A better Good-Turing
+estimator for sequence probabilities,” in Proc. IEEE Int. Symp. Inf.
+Theory, Nice, France, June 24–29 2007, pp. 2356–2360.
+[5] J. Acharya, A. Orlitsky, and S. Pan, “Recent results on pattern maximum
+likelihood,” in Proc. IEEE Inf. Theory Workshop, Volos, Greece, Jun. 10–
+12 2009.
+[6] A. Orlitsky and S. Pan, “The maximum likelihood probability of skewed
+patterns,” in Proc. IEEE Int. Symp. Inf. Theory, Seoul, Korea, June 28–
+July 3 2009.
+[7] A. B. Wagner, P. Viswanath, and S. R. Kulkarni, “Probability estimation
+in the rare-events regime,” IEEE Trans. Inf. Theory, vol. 57, no. 6, pp.
+3207–3229, Jun. 2011.
+[8] A. Orlitsky, S. Pan, Sajama, N. P. Santhanam, K. Viswanathan, and
+J. Zhang, “Approximation of the pattern maximum linkelihood distribution,” draft, Oct. 2011.
+[9] A. Orlitsky, N. P. Santhanam, K. Viswanathan, and J. Zhang, “On
+estimating the probability multiset,” draft, Oct. 2011.
+[10] H. Minc, Permanents. Reading, MA: Addison-Wesley, 1978.
+[11] K. Viswanathan, “Pattern maximum-likelihood,” Talk at Workshop on
+“Permanents and modeling probability distributions,” American Institute
+of Mathematics, Palo Alto, CA, USA, Sep. 1 2009.
+[12] A. Orlitsky, Sajama, N. P. Santhanam, K. Viswanathan, and J. Zhang,
+“Algorithms for modeling distributions over large alphabets,” in Proc.
+IEEE Int. Symp. Inf. Theory, Chicago, IL, USA, June 27–July 2 2004,
+p. 304.
+[13] M. Chertkov, L. Kroc, and M. Vergassola, “Belief propagation and
+beyond for particle tracking,” CoRR, available online under http://
+arxiv.org/abs/0806.1199, Jun. 2008.
+[14] M. Chertkov, L. Kroc, F. Krzakala, M. Vergassola, and L. Zdeborov´ ,
+a
+“Inference in particle tracking experiments by passing messsages between images,” Proc. Natl. Acad. Sci., vol. 107, no. 17, pp. 7663–7668,
+Apr. 2010.
+[15] B. Huang and T. Jebara, “Approximating the permanent with belief propagation,” CoRR, available online under http://arxiv.org/abs/
+0908.1769, Aug. 2009.
+[16] Y. Watanabe and M. Chertkov, “Belief propagation and loop calculus
+for the permanent of a non-negative matrix,” Journal of Physics A:
+Mathematical and Theoretical, vol. 43, p. 242002, 2010.
+[17] P. O. Vontobel, “The Bethe permanent of a non-negative matrix,” accepted for IEEE Trans. Inf. Theory, available online under
+http://arxiv.org/abs/1107.4196, Jan. 2012.
+[18] L. Gurvits, “Unleashing the power of Schrijver’s permanental inequality
+with the help of the Bethe approximation,” Elec. Coll. Comp. Compl.,
+Dec. 2011.
+[19] A. B. Yedidia and M. Chertkov, “Computing the permanent with belief
+propagation,” submitted to J. Mach. Learn. Res., available online under
+http://arxiv.org/abs/1108.0065, Jul. 2011.
+[20] J. S. Yedidia, W. T. Freeman, and Y. Weiss, “Constructing free-energy
+approximations and generalized belief propagation algorithms,” IEEE
+Trans. Inf. Theory, vol. 51, no. 7, pp. 2282–2312, Jul. 2005.
+[21] D. Bertsekas, Nonlinear Programming, 2nd ed. Belmont, MA: Athena
+Scientiﬁc, 1999.
+[22] A. Marshall and I. Olkin, Inequalities: Theory of Majorization and Its
+Applications. San Diego, CA: Academic Press, 1979.
+[23] M. J. Wainwright and M. I. Jordan, “Graphical models, exponential
+families, and variational inference,” Foundations and Trends in Machine
+Learning, vol. 1, no. 1–2, pp. 1–305, Jan. 2008.
+[24] P. O. Vontobel, “Counting in graph covers: a combinatorial characterization of the Bethe entropy function,” submitted to IEEE Trans. Inf. Theory,
+available online under http://arxiv.org/abs/1012.0065,
+Nov. 2010.
+[25] G. Valiant and P. Valiant, “Estimating the unseen: a sublinear-sample
+canonical estimator of distributions,” in Proc. 43rd Annual ACM Symp.
+Theory of Computing, San Jose, CA, USA, June 6–8 2011.
+
+10
+
+−3
+
+10
+
+−4
+
+10
+
+0
+
+Underlying
+SML
+PML (MCMC: 1e4, 1e3)
+PML (MCMC: 1e5, 1e3)
+PML (MCMC: 1e6, 1e3)
+PML (MCMC: 1e7, 1e3)
+PML (MCMC: 1e8, 1e3)
+PML (MCMC: 1e9, 1e3)
+BPML
+100
+
+200
+
+300
+
+400
+
+500
+
+600
+
+700
+
+Fig. 1. Setup with alphabet size k = 750 and an underlying distribution
+where the ﬁrst 500 symbols are uniformly distributed and the remaining 250
+symbols have probability 0. The PML distribution estimate is obtained by
+applying 200 iterations of Algorithm 8 (MCMC parameter settings: number
+of samples, sample interval). Similarly, the BPML distribution estimate is
+obtained by applying 200 iterations of Algorithm 14. (Both algorithms would
+need more iterations to reach convergence; one of the main points of the
+plot is to show that for a given number of iterations, the BPML distribution
+estimate approximates the PML estimate very well even before convergence.)
+
+−2
+
+10
+
+−3
+
+10
+
+−4
+
+10
+
+0
+
+Underlying
+SML
+PML (MCMC: 1e4, 1e3)
+PML (MCMC: 1e5, 1e3)
+PML (MCMC: 1e6, 1e3)
+PML (MCMC: 1e7, 1e3)
+PML (MCMC: 1e8, 1e3)
+PML (MCMC: 1e9, 1e3)
+BPML
+100
+
+200
+
+300
+
+400
+
+500
+
+600
+
+700
+
+Fig. 2. Same setup as in Fig. 1. Here the underlying distribution is such
+that the ﬁrst 500 symbols are distributed according to a Zipf distribution i →
+c/(50+i), where c is a suitable normalization constant, and the remaining 250
+symbols have probability 0. (The comment at the end of the caption of Fig. 1
+applies also here.)
+
+•
+
+of magnitude faster than the algorithm of the previous
+section for problem sizes as in the setups of Figs. 1 and 2.
+It is worthwhile to also consider other permanent approximations (see, e.g., [19]) and, more generally, other source
+distribution estimation setups, along with comparing the
+PML/BPML to the setup and algorithm in [25]; however,
+due to space limits we have to omit these aspects.
+ACKNOWLEDGMENT
+
+I am indebted to my colleague Krishna Viswanathan for
+introducing me to the topic of the PML distribution and for
+answering all my subsequent questions.
+
+5
+
+

@@ -170,7 +170,7 @@ trait LoadPaper {
     // If paper exists and parsed, save it in cache
     if (maybePaper != None) {
       // Get index
-      var id = file.getPath.split('/').last.split('.').first.toInt
+      var id = file.getPath.split('\\').last.split('.').first.toInt
       // Set filename and id
       val paper : Paper = maybePaper.get.setMeta("file" -> file.getPath).setId(id)
       // Save and return

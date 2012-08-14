@@ -1,0 +1,805 @@
+Creator:        TeX
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Fri May 18 22:20:39 2012
+ModDate:        Tue Jun 19 12:54:21 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      454211 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569566563
+
+Quantum LDPC codes obtained by non-binary
+constructions
+Iryna Andriyanova ∗ , Denise Maurice† , Jean-Pierre Tillich†
+∗
+
+†
+
+ETIS group, ENSEA/UCP/CNRS-UMR8051, France
+INRIA, Equipe Secret, Domaine de Voluceau BP 105, F-78153 Le Chesnay cedex, France.
+
+lengths. This is illustrated for instance in our case by the codes
+constructed in [KHIK11] whose performance under iterative
+decoding is quite good even if their minimum distance might
+be bounded. Their construction can be summarized as follows.
+There are three ingredients:
+(i) The starting point is a CSS quantum code associated
+to a couple (CX , CZ ) of binary LDPC codes satisfying
+CZ ⊥ ⊂ CX (see Section II) obtained from a construction
+due to [HI07]. These LDPC codes have parity check
+matrices HX and HZ which are (2, L)-regular, meaning
+that each column contains exactly 2 “1”’s and each row
+contains exactly L-ones.
+(ii) From this construction, a pair of q-ary LDPC codes
+(q)
+(q)
+(q) ⊥
+(q)
+(CX , CZ ) is deduced which satisﬁes CZ
+⊂ CX ,
+m
+where q is some power of two, q = 2 . These codes have
+(q)
+(q)
+parity-check matrices HX and HZ of the same size as
+HX and HX respectively and which have nonzero entries
+whenever the corresponding entry of HX (respectively
+HZ ) is equal to 1, that is
+
+Abstract—We generalize a construction of non-binary quantum
+LDPC codes over F2m due to [KHIK11] and apply it in particular
+to toric codes. We obtain in this way not only codes with
+better rates than toric codes but also improve dramatically the
+performance of standard iterative decoding. Moreover, the new
+codes obtained in this fashion inherit the distance properties
+of the underlying toric codes and have therefore a minimum
+distance which grows as the square root of the length of the
+code for ﬁxed m.
+
+I. I NTRODUCTION
+LDPC codes [Gal63] and their variants are one of the
+most satisfying answers to the problem of devising codes
+guaranteed by Shannon’s theorem. They display outstanding
+performance for a large class of error models with a fast
+decoding algorithm. Generalizing these codes to the quantum
+setting seems a promising way to devise powerful quantum
+error correcting codes for protecting, for instance, the very
+fragile superpositions manipulated in a quantum computer.
+Quantum generalizations of LDPC codes have indeed been
+proposed in [MMM04]. However, it has turned out that the
+design of high performance quantum LDPC codes is much
+more complicated than in the classical setting. This is due
+to several reasons, the most obvious of which being that the
+parity-check matrix of quantum LDPC codes must satisfy certain orthogonality constraints. This complicates signiﬁcantly
+the construction of such codes. In particular, the plain random
+constructions that work so well in the classical setting are
+pointless here. There have been a number of attempts at
+overcoming this difﬁculty and a variety of methods for constructing quantum LDPC codes have been proposed [Kit03],
+[MMM04], [COT05], [COT07], [LGF06], [GFL08], [HI07],
+[IM07], [Djo08], [SMK08], [Aly07], [Aly08], [HBD08],
+[TZ09], [TL10], [KHIK11]. However, with the exception of
+[TZ09] which gives a construction of LDPC codes with
+minimum distance of the order of the square root of the blocklength, all of these constructions suffer from disappointingly
+small minimum distances, namely whenever they have nonvanishing rate and parity-check matrices with bounded rowweight, their minimum distance is either proved to be bounded,
+or unknown and with little hope for unboundedness.
+The point has been made several times that minimum
+distance is not everything, because there are complex decoding
+issues involved, whose behavior depends only in part on the
+minimum distance, and also because a poor asymptotic behavior may be acceptable when one limits oneself to practical
+
+(q)
+
+(q)
+
+xi,j = 0 ⇔ xi,j = 1, zi,j = 0 ⇔ zi,j = 1,
+(q)
+
+(q)
+
+(1)
+
+where xi,j,, xi,j,, zi,j , zi,j denote the entry corresponding to the i-th row and the j-th column of
+(q)
+(q)
+HX , HX , HZ , HZ respectively.
+(q)
+(q)
+(iii) By denoting the length of CX , CZ , CX , CZ by n, and
+(q)
+(q)
+by replacing each entry of HX and HZ in the ﬁnite ﬁeld
+Fq over q elements by a binary matrix of size 2m × 2m ,
+through a ring isomorphism A : F2m → M2m where
+M2m is a certain subring of binary 2m ×2m matrices (i.e.
+a one-to-one mapping preserving ﬁeld addition and multiˆ
+ˆ
+plication), a pair of two parity-check matrices (HX , HZ )
+ˆ , CZ )
+is obtained. They deﬁne a pair of binary codes (CX ˆ
+ˆ ⊥
+ˆ
+of length n×m satisfying the CSS condition CZ ⊂ CX .
+The point of this construction is that the new quantum code
+ˆ ˆ
+associated to the pair (CX , CZ ) can now be decoded on
+the extension ﬁeld Fq and this improves signiﬁcantly the
+performance in the same way as the performance of classical
+binary (2, L) regular LDPC codes is improved by moving to
+a larger extension ﬁeld F2m as shown in [Hu02].
+Our purpose in this article is here to generalize the construction of [KHIK11] and to show that it can be applied to any
+pair of binary codes (CX , CZ ) satisfying CZ ⊥ ⊂ CX which
+are LDPC codes which have parity check matrices which have
+
+1
+
+exactly 2 “1”’s per column, not only the particular family of
+quasi-cyclic codes of this type which are constructed in [HI07].
+We apply this generalized construction to the toric codes of
+[Kit03] which are a particular instance of the CSS construction
+corresponding to a pair of LDPC codes (CX , CZ ) which are
+(2, 4)-regular. It presents the advantage of having a minimum
+distance which grows like the square root of the length but
+has also the drawback to be able to encode only 2 qubits. We
+obtain in this way a new code family which displays several
+attractive features compared to the toric code family:
+(i) it has the same two dimensional structure as toric codes,
+this might turn out to be very helpful for its implementation.
+It represents for instance a quite attractive code choice for
+performing quantum fault-tolerant computation [Kit03].
+(ii) it inherits the distance properties from the underlying toric
+code and has therefore a minimum distance which grows like
+the square root of the length,
+(iii) the number of encoded qubits is not constant anymore as
+for toric codes but grows as 2m where m is the degree of the
+extension ﬁeld,
+(iv) whereas iterative decoding displays very bad performances
+when applied to toric codes, plain iterative decoding behaves
+much better for this new family of codes and when m = 9 we
+obtain codes for which iterative decoding performs quite well
+for instance (see Section V).
+Apart from the practical relevance of the codes constructed,
+there is also a theoretical aspect. This shows for instance
+that it is possible to obtain families of CSS codes with a
+prescribed degree distribution on the check nodes with an
+unbounded minimum distance with the construction strategy
+of [KHIK11]. It is questionable whether or not the codes
+constructed in [KHIK11] meet this property (one of the
+drawback of the codes constructed there is that they start with
+a certain construction of quasi-cyclic CSS codes which can be
+easily proved to have bounded minimum distance).
+All the statements made in this paper are given without
+proofs. They can be found in the full version of the paper in
+[AMT12]. We also observe that the results given in this paper
+can be rephrased into the language of homology on graphs
+on the multiplicative group of the ﬁnite ﬁeld Fq ∗ and that
+homological constructions of quantum codes can be traced
+back to [Kit03], [BMD07].
+
+code is given by
+dQ
+
+def
+
+dX
+
+def
+
+=
+
+min{|x|, x ∈ CX \ CZ },
+
+dZ
+
+def
+
+min{|x|, x ∈ CZ \ CX ⊥ }.
+
+=
+
+=
+
+min{dX , dZ }, where
+
+(2)
+⊥
+
+Such a code allows to protect a subspace of kQ qubits against
+errors where
+def
+
+kQ = dim CX − dim CZ ⊥ .
+
+(3)
+
+kQ is called the quantum dimension of the CSS code.
+b) LDPC codes: LDPC codes are linear codes which
+have a sparse parity-check matrix. They can be decoded by
+using the Tanner graph associated to such a parity-check
+matrix H. This graph is deﬁned as follows. Assume that
+H = (Hij ) 1≤i≤r is an r × n matrix (where n is the length of
+1≤j≤n
+
+the code). The associated Tanner graph is bipartite and has:
+(i) vertex set V ∪ C, where the ﬁrst set V is in bijection with
+the indices of the columns of H, say V = {1, . . . , n} and is
+called the set of variable nodes, whereas the second set C
+is called the set of check nodes and is in bijection with the
+indices of the rows of H: C = {⊕1 , . . . , ⊕r }.
+(ii) edge set E; there is an edge between ⊕i and j if and
+only if Hij = 0 and the edge receives label Hij in this case.
+A CSS code deﬁned by a couple of binary code (CX , CZ )
+is said to be a quantum LDPC code if and only if CX and CZ
+are LDPC codes.
+III. A GENERALIZATION OF THE CONSTRUCTION OF
+[KHIK11]
+We show in this section how to derive for any integer m > 1
+from a pair of binary LDPC codes (CX , CZ ) with parity-check
+matrices HX and HZ satisfying
+(1) HX HZ T = 0,
+(2) all the columns of HX and HZ have exactly 2 “1”’s in it,
+(q)
+(q)
+a pair of 2m -ary LDPC codes (CX , CZ ) with parity-check
+(q)
+(q)
+matrices HX and HZ satisfying
+(q)
+
+(q) T
+
+(1) HX HZ = 0,
+(2) all the columns of HX and HZ have exactly 2 non zero
+elements in it.
+This generalizes the construction of [KHIK11] to other codes
+than the ones obtained from [HI07] by using the ring isomorphism A from the ﬁnite ﬁeld F2m to M2m which is described
+in Subsection II.C of [KHIK11].
+(q)
+(q)
+We show the existence of the couple (CX , CZ ) by
+providing an efﬁcient algorithm which outputs a couple of
+(q)
+(q)
+matrices (HX , HZ ) meeting (1) and (2). To explain how
+the algorithm works let us bring in the following deﬁnition
+Deﬁnition 1: To each row k of HZ we associate a paritycheck matrix HX (k) consisting of the submatrix of HX
+formed by the columns j of HX such that zk,j = 0 and by
+keeping only the non zero rows in it. Let GX (k) be the Tanner
+graph associated to this parity-check matrix.
+The crucial point is the following lemma
+
+II. CSS CODES AND TANNER GRAPHS
+a) CSS codes: The codes constructed in this paper fall
+into the category of Calderbank-Shor-Steane (CSS) codes
+[CS96], [Ste96] which belong to a more general class of
+quantum codes called stabilizer codes [Got97], [CRSS98]. The
+second class is given by an additive self-orthogonal code over
+F4 with respect to the trace hermitian product. For the subclass
+of CSS codes, this representation in terms of additive selforthogonal codes is equivalent to a representation in terms of
+a pair (CX , CZ ) of binary linear codes satisfying the condition
+CZ ⊥ ⊂ CX . The quantum minimum distance of such a CSS
+
+2
+
+(q)
+
+Lemma 1: The degree of every variable node of GX (k)
+is two, whereas the degree of every check node is an even
+positive number.
+Proof: The fact that the degree of every variable node is
+exactly two is a direct consequence of the fact that the columns
+of HX (k) are all of weight 2 since the columns of HX have
+exactly this property. The second claim can be veriﬁed as
+follows. Each check node corresponds to a row of HX (k)
+which corresponds itself to some row of HX . We denote such
+a row by i. The degree of the check node corresponding to i
+is nothing but the weight of row i of HX (k). It is equal to the
+number of j’s such that we both have xi,j = zk,j = 1. Notice
+that HX HZ T = 0 implies in particular that
+xi,j zk,j = 0
+
+(q)
+
+the product of the labels xi,j along C is equal to 1 and from
+Proposition 1. It just amounts to choose a non-zero codeword
+in the code whose Tanner graph is given by C and the labels
+(q)
+of the edges are given by the xi,j ’s. This leads to two matrices
+
+(4)
+
+j
+
+(q)
+
+for all cycles C of GX , Π(C) = 1.
+
+(q)
+
+(q) T
+
+(6)
+
+The fact that the product over all cycles of GX will be equal
+to 1 (and not only the cycles of the subgraphs GX (k)) will be
+quite useful when applied to the toric code and this stronger
+condition can be met with Algorithm 2 which gives a very
+large choice for the coefﬁcients.
+
+(q) T
+
+(q) (q)
+
+(q)
+
+HX and HZ which satisfy Condition (1) and HX HZ =
+0. Finally, it remains to explain how we choose the entries
+(q)
+(q)
+xi,j of HX . We will actually provide an algorithm which
+(q)
+provides a stronger condition on the xi,j ’s, namely that
+
+HX HZ = 0 is to look for solutions which satisfy for all
+(q)
+rows k of HZ , all cycles C of CycX (k), and all check nodes
+⊕i belonging to C
+xi,j zk,j = 0
+
+(q)
+
+Choose the entries xi,j of HX such that for all rows k of
+(q)
+HZ and all cycles of CycX (k) the product of the labels
+(q)
+xi,j along these cycles is equal to 1.
+(q)
+for all rows k of HZ do
+for all cycles C of CycX (k) do
+(q)
+Choose non-zero entries zk,j for all variable nodes j
+of C such that (5) holds for all edges of C.
+end for
+end for
+
+This implies the aforementioned claim about the degree of
+the check node, since the aforementioned number of j’s is
+necessarily even in order to meet (4).
+Since the degrees of all the vertices of GX (k) is even,
+GX (k) can be decomposed in an edge-disjoint subset of cycles
+CycX (k). Each variable node vertex j belongs to a unique
+cycle of this kind whereas a check node ⊕i may belong to
+several cycles of CycX (k). Our strategy to ensure that there
+(q)
+(q)
+is a choice of HX and HZ meeting Condition (1) and
+(q)
+
+(q)
+
+Algorithm 1 Choosing the entries of HX and HZ
+
+(5)
+
+j:⊕i ,j∈E
+
+Algorithm 2 Algorithm to ensure (6)
+for all check nodes ⊕k of the Tanner graph GX associated
+to HX do
+Choose arbitrarily a non zero element ak and non-zero
+elements bjk for all variable nodes j adjacent to ⊕k .
+end for
+for all variable nodes j of GX do
+(q)
+xi,j ← ai bij bkj
+(q)
+xk,j ← ak bkj bij {Here ⊕i and ⊕k denote the two check
+nodes adjacent to j.}
+end for
+
+where we denote by E the set of edges of C. Notice that there
+are exactly two variable nodes which are adjacent to ⊕i in C.
+(q) (q)
+The ﬁrst point is that the sum
+j xi,j zk,j can be decom(q) (q)
+posed as a sum
+C:C∈CycX (k),⊕i ∈C
+j:⊕i j edge of C xi,j zk,j
+which implies that ensuring (5) implies (4) and therefore
+(q) (q) T
+HX HZ
+= 0. Moreover the code associated to the cyclic
+Tanner graph C is non trivial if and only if the product of its
+labels on its cycle is equal to 1. We deﬁne here for a Tanner
+graph the product over a cycle by
+Deﬁnition 1 (product over a cycle of a Tanner graph):
+Let C = v1 , c1 , v2 , . . . , ck , v1 be a cycle in the Tanner graph
+code. Then the product over this cycle is the product of all
+the coefﬁcients of the edges over this cycle, with a power 1
+if it is a check-to-node edge, and −1 if it is node-to-check.
+We denote this product by Π(C).
+It is namely well known that
+Proposition 1: The code associated to Tanner graph which
+is a unique cycle is not reduced to the zero codeword if and
+only if the product of the labels over the cycle is equal to 1.
+In such a case, all the non-zero codewords have only non-zero
+positions.
+(q)
+(q)
+The algorithm for choosing the entries of HX and HZ is
+(q)
+described below as Algorithm 1. The fact that the zk,j ’s can
+be chosen to be different from zero comes from the fact that
+
+The correctness of this algorithm is proved in [AMT12].
+Remark: One might wonder whether or not it is possible
+to obtain q-ary versions of HX and HZ which satisfy the
+(q) (q) T
+orthogonality condition HX HZ = 0 when the columns of
+HX and HZ have weight greater than 2. While this can be
+easily done for certain structured constructions such as the one
+proposed in [TZ09], it is not clear how to achieve this in all
+generality. The difﬁculty is the following. Consider the code
+deﬁned by a Tanner graph which is a subgraph of GX labelled
+(q)
+by a certain choice of the xi,j and which consists in codewords
+(q)
+of the form (zk,j )j:zk,j =1 satisfying (4). All these codes (for k
+(q)
+ranging over all rows of HZ ) should be non trivial. While this
+
+3
+
+is easily achieved in the case of column weight 2 essentially by
+the fact that the number of check nodes of the Tanner graphs
+GX (k) is always less than or equal to the number of variable
+nodes (since by Lemma 1 the degree of the check nodes is
+greater than or equal to 2 and the degree of the variable nodes
+is constant and equal to 2), this is not the case anymore when
+the column weight is higher.
+
+Now we construct a q-ary version of this code, in the same
+way as in Section III. In other terms, we just put some non-zero
+labels on the edges of the graph. For simplicity of notation we
+(q)
+will further use xi,j to design xi,j , the label in Fq \ {0} on
+the edge between check i and node j.
+Labeling is performed through Algorithm 1 by choosing the
+coefﬁcients ai and bjk at random in Algorithm 2. We obtain
+(q)
+(q)
+a couple (CX , CZ ) of q-ary codes satisfying
+
+IV. A N APPLICATION : THE EXTENDED TORIC CODE
+
+(q) ⊥
+
+CZ
+
+A. Deﬁnition of the toric code and its extended version
+
+We obtain the extended toric code by applying the aforementioned ring isomorphism to the entries of the parity-check
+(q)
+(q)
+(q)
+(q)
+matrices HX and HZ of CX and CZ : the resulting code
+2
+has length 2mn . We denote the couple of binary codes
+ˆ ˆ
+deﬁning this toric code by (CX , CZ ).
+
+The quantum toric code (see [Kit03] for more details) is a
+CSS code of length 2n2 which encodes 2 qubits. It is convenient to deﬁne the Tanner graphs GX and GZ of the couple
+(CX , CZ ) of binary codes of the CSS code simultaneously.
+Let CX and CZ be the set of variable nodes of GX and GZ
+respectively and we identify the variable node sets VX and VZ
+of both codes, say VX = VZ = V . These graphs are deﬁned
+as follows:
+V
+
+B. Dimension
+Strictly speaking, by applying Algorithm 1, the dimension
+(q)
+(q) ⊥
+of CX minus the dimension of CZ
+could be smaller than
+(q)
+(q)
+dim CX − dim CZ . Indeed HX and HZ might now be of
+
+= {(i, j) ∈ [0..2n − 1] × [0..2n − 1] : i + j even}
+
+CX
+
+= {(i, j) ∈ [0..2n − 1] × [0..2n − 1] : i odd, j even}
+
+CZ
+
+= {(i, j) ∈ [0..2n − 1] × [0..2n − 1] : i even, j odd}
+
+(i-1,j)
+
+(q)
+
+(q) ⊥
+
+CZ
+2m.
+
+(i+1,j)
+
+(q)
+
+⊂ CX , then the extended toric code has dimension
+
+Proof: This is shown with the help of two lemmas:
+(q)
+(q)
+(q) ⊥
+(q)
+⊂ CX , then CZ
+Lemma 2: If CX veriﬁes (6) and CZ
+veriﬁes also (6).
+(q)
+Lemma 3: If CX veriﬁes (6), then it has q-ary dimension
+n2 + 1.
+From these two lemmas, we obtain that the dimension
+(q)
+(q)
+(q)
+of CX and CZ is n2 + 1, which gives dim CX −
+
+(i+2,j)
+
+(i,j-1)
+
+(q) ⊥
+
+then it will turn out that dim CX − dim CZ
+= dim CX −
+ˆ
+ˆ
+dim CZ ⊥ = 2, so that dim CX − dim CZ = 2m. This means
+that
+Theorem 1 (Dimension of the extended toric code): If
+(q)
+(q)
+(q)
+CX and CZ are constructed such that CX veriﬁes (6) and
+
+(i+1,j+1)
+
+(i,j)
+
+(q) ⊥
+
+(q)
+
+full rank and we might have dim CX = dim CZ
+= n2 .
+⊥
+ˆ
+ˆ
+This would imply that dim CX = dim CZ and the quantum
+dimension of the extended toric code would be 0. However,
+when we apply Algorithm 2 to choose the labels (so that the
+product of the labels xi,j over all cycles of GX is equal to 1),
+
+A check node (i, j) is connected to 4 variable nodes (i±1, j ±
+1) in both graphs (where addition is performed modulo 2n).
+The degree of the variable nodes is of course 2.
+The construction, summarized on Fig 1, has the shape of a
+torus of length and width n.
+
+(i,j+1)
+
+(q)
+
+⊂ CX .
+
+(i+1,j-1)
+
+Fig. 1. The Tanner graph of the toric code, with both X and Z parts together.
+The black dots are the qubits, the dotted crosses the checks of the Z part,
+and the black crosses the checks of the X part. Here we assume that i and
+j are even. The left part is identiﬁed to the right part, and the upper part to
+the lower part, so that the global shape of the graph is a torus.
+
+(q) ⊥
+
+dim(CZ ) = 2. This implies that the quantum dimension
+ˆ
+ˆ ⊥
+of the extended toric code is dim(CX ) − dim(CZ ) =
+(q)
+
+(q) ⊥
+
+m(dim CX − dim(CZ )) = 2m.
+The proof of the two lemmas is given in the full version of
+the paper [AMT12].
+
+Even if this code has as many checks as qubits, its dimension is positive: the rank of HX and HZ associated to
+GX and GZ is n2 − 1 instead of n2 , thus the dimension is
+dim(CX )−dim(CZ ⊥ ) = n2 +1−(n2 −1) = 2 (from (3)). The
+code has a rather large minimum distance [Kit03], however its
+performances when decoded with standard belief propagation
+are quite bad, because of the presence of many small cycles
+and also because the (classical) minimum distance of CX and
+CZ is only 4.
+
+C. Minimum distance
+Choosing the product of the labels to be equal to 1 on all
+cycles of GX brings another beneﬁt: it allows to control the
+minimum distance, since we have in this case
+(q)
+(q) ⊥
+(q)
+Lemma 4: min{|x| ∈ CX \ CZ } = min{|x| ∈ CZ \
+(q) ⊥
+
+CX } = n.
+The proof is given in the full version of the paper [AMT12].
+This implies that
+
+4
+
+R EFERENCES
+
+Theorem 2 (minimum distance of the extended toric code):
+The minimum distance of the extended toric code is ≥ n.
+Proof: The minimum distance of the extended toric code
+ˆ
+ˆ ⊥
+ˆ
+is the minimal weight of a word from CX \ CZ or CZ \
+⊥
+ˆ
+CX . which is greater than or equal to the weight of the
+(q)
+corresponding (by the ring isomorphism A) word in CX \
+(q) ⊥
+
+CZ
+
+(q)
+
+(q) ⊥
+
+or CZ \ CX
+
+[Aly07]
+
+S. A. Aly. A class of quantum LDPC codes derived from Latin
+squares and combinatorial objects. Technical report, Department
+of Computer Science, Texas A&M University, April 2007.
+[Aly08]
+S. A. Aly. A class of quantum LDPC codes constructed from
+ﬁnite geometries. In Proceedings of IEEE GLOBECOM 2008,
+pages 1–5, December 2008.
+[AMT12] I. Andriyanova, D. Maurice, and J. P. Tillich. Quantum LDPC
+codes obtained by non-binary constructions, 2012. quant-ph,
+arXiv:1202.3338.
+[BMD07] H. Bombin and M. A. Martin-Delgado. Homological error correction: classical and quantum codes. J. Math. Phys., 48:052105–
+1–052105–35, 2007.
+[COT05] T. Camara, H. Ollivier, and J.-P. Tillich.
+Constructions
+and performance of classes of quantum LDPC codes, 2005.
+arXiv:quant-ph/0502086v2.
+[COT07] T. Camara, H. Ollivier, and J.-P. Tillich. A class of quantum LDPC
+codes: construction and performances under iterative decoding. In
+Proceedings of ISIT 2007, pages 811–815, Nice, June 2007. IEEE.
+[CRSS98] A. R. Calderbank, E. M. Rains, P. W. Shor, and N. J. A. Sloane.
+Quantum error correction via codes over GF(4). IEEE Trans. Info.
+Theor., 44:1369, 1998.
+[CS96]
+A. R. Calderbank and P. W. Shor. Good quantum error-correcting
+codes exist. Phys. Rev. A, 54:1098–1105, 1996.
+[DCP10] G. Duclos-Cianci and D. Poulin. Fast decoders for topological
+quantum codes. Phys. Rev. Lett., 104(050504), 2010.
+[Djo08]
+I. B. Djordjevic. Quantum LDPC codes from incomplete block
+designs. IEEE Communication Letters, 12(5):389–391, May 2008.
+[Gal63]
+R. G. Gallager. Low Density Parity Check Codes. M.I.T. Press,
+Cambridge, Massachusetts, 1963.
+[GFL08] J. Garcia-Frias and K. Liu. Design of near-optimum quantum
+error-correcting codes based on generator and parity-check matrices of LDGM codes. In Proceedings of CISS, pages 562–567,
+Princeton, March 2008.
+[Got97]
+D. Gottesman. Stabilizer codes and quantum error correction.
+PhD thesis, California Institute of Technology, Pasadena, CA,
+1997.
+[HBD08] M-H. Hsieh, T. A. Brun, and I. Devetak.
+Quantum
+quasi-cyclic low-density parity check codes, March 2008.
+arXiv:0803.0100v1 [quant-ph].
+[HI07]
+M. Hagiwara and H. Imai. Quantum quasi-cyclic LDPC codes.
+In Proc. IEEE Int. Symp. Info. Theo. (ISIT’07), pages 806–811,
+Nice, June 2007. IEEE.
+[Hu02]
+X. Hu. Low-delay low-complexity error-correcting codes on
+sparse graphs. PhD thesis, EPFL, Lausanne, Switzerland, 2002.
+[IM07]
+L. Ioffe and M. M´ zard. Asymmetric quantum error-correcting
+e
+codes. Phys. Rev. Lett. A., 2007.
+[KHIK11] K. Kasai, M. Hagiwara, H. Imai, and Sakaniwa K. Quantum error correction beyond the bounded distance decoding
+limit. IEEE Trans. Info. Theor., 2011. to appear, see also
+arXiv:1007.17782v2[cs.IT].
+[Kit03]
+A. Y. Kitaev. Fault-tolerant quantum computation by anyons. Ann.
+Phys., 303:2, 2003.
+[LGF06] H. Lou and J. Garcia-Frias. On the application of error-correcting
+codes with low-density generator matrix over different quantum
+channels. In Proceedings of Turbo-coding 2006, Munich, April
+2006.
+[MMM04] D. J. C. MacKay, G. Mitchison, and P. L. MacFadden. Sparse
+graph codes for quantum error-correction. IEEE Trans. Info.
+Theor., 50(10):2315–2330, 2004.
+[SMK08] K. P. Sarvepalli, M.R¨ tteler, and A. Klappenecker. Asymmetric
+o
+quantum LDPC codes. In IEEE, editor, Proceedings of ISIT 2008,
+pages 305–309, Toronto, Canada, July 2008.
+[Ste96]
+A. M. Steane. Multiple particle interference and quantum error
+correction. Proc. R. Soc. Lond. A, 452:2551–2577, 1996.
+[TL10]
+P. Tan and J. Li. Efﬁcient quantum stabilizer codes: LDPC
+and LDPC-convolutional constructions. IEEE Trans. Info. Theor.,
+56(1):476–491, 2010.
+[TZ09]
+J.-P. Tillich and G. Z´ mor. Quantum LDPC codes with positive
+e
+1
+rate and minimum distance proportional to n 2 . In Proceedings
+of ISIT 2009, pages 799–803, July 2009.
+
+.
+V. R ESULTS
+
+We have implemented standard belief propagation over F2m
+to decode extended toric codes for several values of n and m
+(see Section III of [KHIK11]) but which correspond to the
+same ﬁnal length 2mn2 , which is 1152 here. We have chosen
+(i) m = 1, n = 24,
+(ii) m = 4, n = 12
+(iii) m = 9, n = 8.
+The channel error model is the depolarizing channel model
+with depolarizing probability p, meaning that the probability
+ˆ
+of an X, Y or Z error is p/3 which implies that the codes CX
+ˆ see a binary symmetric channel of probability 2p .
+and CZ
+3
+The performance of belief propagation is quite bad in the
+binary case (that is for standard toric code), even if the qubit
+error rate is rather low, the whole error is typically badly
+estimated. On the other hand the performances get better by
+moving from F2 to F16 and become quite good over F512 .
+This is remarkable since the length of these CSS codes is
+constant but the rate increases with m. For instance, the rate
+1
+of the toric code is 576 whereas the rate of the extended toric
+1
+code over F512 is equal to 64 . It would be interesting to carry
+over the renormalizing approach of [DCP10] which improves
+dramatically belief propagation over standard toric codes and
+study how much it is able to improve the performance of
+standard belief propagation over these larger alphabets.
+
+Fig. 2.
+
+Word and qubit error rates for several extended toric codes.
+
+VI. ACKNOWLEDGEMENT
+This work was supported by the French ANR Deﬁs program
+under contract ANR-08-EMER-003 (COCQ project).
+
+5
+
+
