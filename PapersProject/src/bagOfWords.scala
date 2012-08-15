@@ -25,6 +25,9 @@ trait bagOfWords {
   //}
   
   //}
+
+  
+  
   //compare based on scores and return List[Paper]
   def compare(){
     
@@ -54,6 +57,8 @@ trait bagOfWords {
 			for (k <- 0 to filesList.length){
 				source(k) = scala.io.Source.fromFile(filesList(k))
 						text(k) = source(k).mkString
+						//leave out unecessary characters from the analysis
+						text(k) = clean(text(k))
 						source(k).close ()
 
 						occurences(k) = text(k).split("\\s+").groupBy(x=>x)
@@ -266,6 +271,9 @@ def dotProduct[T <% Double](as: Iterable[T], bs: Iterable[T]) = {
 	require(as.size == bs.size)
 	(for ((a, b) <- as zip bs) yield a * b) sum
 }
+
+//replace all characters of a string except for a-z or A-Z and 0-9 and finally _: 
+def clean(in : String) =  if (in == null) "" else in.replaceAll("[^a-zA-Z0-9_]", " ")
 
 }
 

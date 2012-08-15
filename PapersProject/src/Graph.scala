@@ -20,6 +20,7 @@ trait Graphs {
     val nodes : List[Node] = for (p <- papers) yield makeNode(p)
 
     // Then create all edges
+    //for every paper check through list of weights with respect to other papers -> make edges accordingly
     val edges : List[Edge] = for (p <- papers; e <- makeEdges(p, nodes)) yield e
 
     return new Graph(nodes, edges)
@@ -55,10 +56,8 @@ class Graph(nodes : List[Node], edges : List[Edge]) {
     val f = new java.io.File("exportToGephi.csv")
     val p = new java.io.PrintWriter(f)
 
-    var expStr : String = ""
-    
-    expStr += edges.foreach(x => x.exportToGephi) + "\n"
-    
+    var expStr : String = "Source; Target; Type;; Weight"
+    edges.foreach(x => expStr += x.exportToGephi)
     p.println(expStr)
     p.close
   }
@@ -97,7 +96,7 @@ case class Node(id : Int, title : String, authors : String, pdf : String, date :
 case class Edge(from : Int, to : Int, weight : Int) {
   override def toString : String = "{\"source\":" + from + ",\"target\":" + to + ",\"value\":" + weight + "}"
   
-  def exportToGephi : String = from + " ; " + to + " ; Directed ; ; " + weight
+  def exportToGephi : String = from + " ; " + to + " ; Undirected ; ; " + weight + "\n"
   
 }
 
