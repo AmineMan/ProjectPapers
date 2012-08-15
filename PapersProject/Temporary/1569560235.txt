@@ -1,0 +1,873 @@
+Title:          Bn2.tex
+Subject:        gnuplot plot
+Author:         ursn
+Creator:        gnuplot 4.6 patchlevel 0
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Thu Apr 26 18:52:56 2012
+ModDate:        Tue Jun 19 12:55:42 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      345503 bytes
+Optimized:      no
+PDF version:    1.7
+ISIT'2012 1569560235
+
+Interference Alignment: From Degrees-of-Freedom
+to Constant-Gap Capacity Approximations
+Urs Niesen
+
+Mohammad A. Maddah-Ali
+
+Bell Laboratories, Alcatel-Lucent
+Murray Hill, NJ 07974
+urs.niesen@alcatel-lucent.com
+
+Bell Laboratories, Alcatel-Lucent
+Holmdel, NJ 07733
+mohammadali.maddah-ali@alcatel-lucent.com
+
+inputs and outputs are binary vectors, representing the binary
+expansion of the real valued signals in the Gaussian case.
+The actions of the channel are modeled by shifting these
+vectors up or down, depending on the most-signiﬁcant bit of
+the channel gains, and by bitwise addition over the binary
+ﬁeld of interfering vectors. The signal layers are represented
+by the different bits in the binary expansion of the signals. In
+the second step, the signaling schemes and the outer bounds
+developed for this simpler deterministic model are used to
+guide the design of efﬁcient signaling schemes for the original
+Gaussian problem.
+For communication scenarios in which interference alignment is required, this strategy has only been successfully
+used to obtain constant-gap capacity approximations for the
+fairly restrictive many-to-one interference channel [6]. Even
+for the X-channel, one of the simplest Gaussian network in
+which interference alignment is required, only weaker (generalized) degrees-of-freedom capacity approximations were
+derived using the deterministic approach [7]. The resulting
+communication scheme for the Gaussian X-channel is quite
+complicated and cannot be used to derive a constant-gap
+capacity approximation.
+For the real interference alignment approach, each transmitter modulates its signal using an integer lattice transmit
+constellation. The transmit constellations are then scaled by a
+constant to ensure that at each receiver all interfering lattice
+constellations coincide, while desired lattice constellations are
+disjoint. Each receiver recovers the desired signals using a
+minimum-distance decoder. A number-theoretic result concerning the approximability of real numbers by rationals,
+called Groshev’s theorem, is used to analyze the minimum
+constellation distance at the receivers. For almost all channel
+gains, this scheme is shown to achieve the full degrees-offreedom of the Gaussian X-channel and the Gaussian interference channel [3]. While this scheme is asymptotically
+optimal for almost all channel gains, there are inﬁnitely
+many channel gains for which the scheme fails, for example
+when the channel gains are rational. This leads to concerns
+about the robustness of this approach with respect to channel
+measurement errors. Moreover, this approach can again not be
+used to derive stronger constant-gap capacity approximations.
+Some of these concerns follow from the fact that real
+interference alignment is somehow isolated from other known
+
+Abstract—Interference alignment is a key technique for communication scenarios with multiple interfering links. In several
+such scenarios, interference alignment was used to characterize
+the degrees-of-freedom of the channel. However, these degreesof-freedom capacity approximations are often too weak to make
+accurate predictions about the behavior of channel capacity
+at ﬁnite signal-to-noise ratios. The aim of this paper is to
+signiﬁcantly strengthen these results by showing that interference
+alignment can be used to characterize capacity to within a
+constant gap.
+We focus on real time-invariant frequency-ﬂat X-channels, for
+which only the degrees-of-freedom are known. We propose a new
+communication scheme and show that it achieves the capacity
+of the Gaussian X-channel to within a constant gap. To aid in
+this process, we develop a novel deterministic channel model,
+admitting a wider range of achievable schemes that can be
+translated to the Gaussian channel. For this deterministic model,
+we ﬁnd an approximately optimal communication scheme. We
+then translate this scheme for the deterministic channel to the
+original Gaussian X-channel and show that it achieves capacity
+to within a constant gap. This is the ﬁrst constant-gap result for
+a fully-connected network requiring interference alignment.
+
+I. I NTRODUCTION
+Interference alignment has been shown to be a key technique to achieve optimal degrees-of-freedom (capacity prelog factor) in several common wireless network conﬁgurations such as X-channels [1], interference channels [2], [3],
+multi-user systems with delayed feedback [4], and distributed
+computation [5], among others. The main idea of interference
+alignment is to force all interfering signals at the receivers to
+be aligned, thereby maximizing the number of interferencefree signaling dimensions.
+For time-invariant frequency-ﬂat channels, as considered
+in this paper, this alignment can be achieved in the signal
+scale [3], [6]. Using lattice codes, the transmitted and received
+signals are split into several superimposed layers. The transmitted signals are chosen such that all interfering signals are
+observed within the same layers at the receivers. Signal-scale
+interference alignment can be subdivided into two different,
+and seemingly completely unrelated, approaches: alignment
+schemes motivated by signal-strength deterministic models
+[6], [7] and real interference alignment [3].
+For the signal-strength deterministic approach introduced
+in [8], the channel is ﬁrst approximated by a deterministic
+noise-free channel. In this deterministic model, all channel
+
+1
+
+signaling schemes and only poorly understood. Unlike the
+signal-strength deterministic approach, no vector space interpretation is known for real interference alignment, making it
+harder to obtain intuition. On the other hand, it is known that
+the degrees-of-freedom of the interference channel itself is
+an everywhere discontinuous function of the channel realizations [9]. It should therefore not be surprising that the rates
+achieved by real interference alignment share this characteristic. Rather, it appears that the degrees-of-freedom capacity
+approximation is too weak to make accurate predictions about
+the behavior of channel capacity at ﬁnite signal-to-noise ratios
+(SNRs), and that the everywhere discontinuity of the degreesof-freedom in the channel coefﬁcients are mainly caused by
+taking a limit as SNR approaches inﬁnity. Thus, a stronger
+capacity approximation is needed.
+In this paper, we derive such a stronger capacity approximation for the Gaussian X-channel by characterizing its
+capacity to within a constant gap independent of the SNR
+and the channel gains, up to an (easily computable) “outage” set of channel realizations of arbitrarily small measure.
+In order to obtain this approximation result, we develop a
+novel deterministic channel model. In this deterministic model,
+each channel gain is modeled by a lower-triangular binary
+Toeplitz matrix. The entries in this matrix consist of the ﬁrst
+1
+2 log(SNR) bits in the binary expansion of the channel gain
+in the corresponding Gaussian model. This contrasts with the
+traditional deterministic model, which is based only on the
+single most-signiﬁcant nonzero bit in the binary expansion
+of the Gaussian channel gain. The proposed deterministic
+model is rich enough to explain the real interference alignment
+approach. Thus, it unites the so far disparate deterministic and
+real interference alignment approaches mentioned above.
+The solution for the proposed deterministic X-channel is
+simple enough to be mimicked for the original Gaussian
+channel. We show that this scheme achieves the capacity of
+the Gaussian X-channel to within a constant gap. To prove
+achievability for the Gaussian case, we extend Groshev’s
+theorem to handle ﬁnite SNRs as well as channel gains of
+different magnitudes. To derive the constant-gap approximation of capacity, we introduced a new outer bound on the sum
+capacity of the Gaussian X-channel. In addition, we show that,
+similarly to the Gaussian point-to-point channel, capacity is
+not sensitive to channel quantization and measurement errors
+smaller than SNR−1/2 .
+One implication of these results is that the complicated
+solution achieving the degrees-of-freedom of the Gaussian Xchannel in [7] is a result of oversimpliﬁcation in the signalstrength deterministic model rather than the properties of the
+original Gaussian channel itself. Moreover, the results in this
+paper imply that the discontinuity of the degrees-of-freedom of
+the Gaussian X-channel with respect to the channel coefﬁcients
+is due to the large SNR limit and is not present at ﬁnite SNRs.
+The remainder of this paper is organized as follows. Section II formally deﬁnes the Gaussian X-channel and introduces
+a deterministic channel model approximating it. Section III
+presents the main results of the paper. Section IV concludes
+
+the paper.
+Due to space constraints, results are presented here without
+proof. These can be found in the full version of the paper [10].
+II. N ETWORK M ODEL
+The Gaussian X-channel consists of two transmitters and
+two receivers. The channel output ym at receiver m ∈ {1, 2}
+and time t ∈ N is
+ym [t]
+
+2nm1 hm1 x1 [t] + 2nm2 hm2 x2 [t] + zm [t],
+
+(1)
+
+where xk [t] is the channel input at transmitter k ∈ {1, 2},
+where 2nmk hmk is the channel gain from transmitter k to
+receiver m, and where zm [t] ∼ N (0, 1) is additive white Gaussian receiver noise. The channel gains consist of two parts,
+2nmk and hmk . The parameter nmk captures the magnitude
+or coarse structure of the channel gain, the parameter hmk
+captures the ﬁne structure of the channel gain. We assume
+that nmk ∈ Z+ and that hmk ∈ (1, 2] for each m, k. Since
+2nmk hmk varies over (2nmk , 2nmk +1 ] when hmk varies over
+(1, 2], we see that any real channel gain greater than one can be
+written in this form. Channel gains with magnitude less than
+one are not relevant for a constant-gap capacity approximation,
+and hence are ignored here. Similarly, negative channel gains
+have no effect on the achievable schemes and outer bounds
+presented later, and are therefore ignored as well. In other
+words, (1) models essentially the general Gaussian X-channel.
+Denote by
+n11 n12
+N
+n21 n22
+the collection of channel parameters.
+Each transmitter has one message to communicate to each
+receiver. So there are a total of four messages, denoted by wmk
+for m, k ∈ {1, 2}. We impose a unit average power constraint
+on each transmitted signal. Deﬁne the sum capacity C(N ) of
+the Gaussian X-channel in the usual way.
+In the following, we will be interested in a particular modulation scheme for the Gaussian channel, which we describe
+next. Fix a time slot t; to simplify notation, we will drop in the
+following the dependence of variables on t whenever there is
+no risk of confusion. Assume each message wmk is modulated
+into the signal umk of the form
+∞
+
+[umk ]i 2−i
+
+umk
+i=3
+
+with [umk ]i ∈ {0, 1}. Transmitter one forms the channel input
+x1
+
+h22 u11 + h12 u21 .
+
+Similarly, transmitter two forms the channel input
+x2
+
+h11 u22 + h21 u12 .
+
+Since |hmk | ≤ 2 and |umk | ≤ 1/4, this satisﬁes the unit
+average power constraint at the transmitters.
+The received signals are then given by
+y1 = 2n11 g11 u11 + 2n12 g12 u12 + g10 (2n11 u21 + 2n12 u22 ) + z1 ,
+y2 = 2n22 g22 u22 + 2n21 g21 u21 + g20 (2n22 u12 + 2n21 u11 ) + z2 ,
+
+2
+
+where we have used
+g10
+
+h11 h12 ,
+
+g20
+
+h22 h21 ,
+
+g11
+
+h11 h22 ,
+
+g21
+
+h21 h12 ,
+
+g12
+
+h12 h21 ,
+
+g22
+
+is the deterministic channel matrix corresponding to the binary
+expansion of the channel gain
+
+h22 h11 .
+
+∞
+i=0
+
+(see Figs. 1 and 2). Since gmk ∈ (1, 2] by assumption, the
+¯
+¯
+diagonal values of Gmk are equal to one. The matrix G1k is
+¯ 2k is of dimension n22 ×n22 for
+of dimension n11 ×n11 and G
+all k ∈ {0, 1, 2}. A more detailed description and derivation
+of this lower-triangular deterministic channel model can be
+found in the full version of the paper [10].
+
+Since hmk ∈ (1, 2], we have gmk ∈ (1, 4]. Receiver one is
+interested in the signals u11 and u12 . The other two signals
+u21 and u22 are interference. We see that the interfering signals
+u21 and u22 are received with the same coefﬁcient g10 . The
+situation is analogous at the second receiver.
+To gain intuition for the modulated Gaussian X-channel,
+we develop a corresponding deterministic channel model. It
+turns out that existing deterministic models, such as the one
+introduced by Avestimehr et al. in [8], are not sufﬁcient for
+the purpose of approximating the Gaussian X-channel. Instead,
+we introduce a novel deterministic channel model, referred to
+as lower-triangular deterministic model.
+For ease of exposition, we assume in the following that the
+direct links are stronger than the cross links1 , i.e.,
+
+n11 − n12
+
+n21
+
+n22 − n21
+
+¯
+y1
+
+0
+¯C
+u22
+
+¯
+¯ ¯
+G22 u22 ⊕ G21
+
+0
+¯ 21
+uC
+
+¯
+¯
+⊕ G20 u12 ⊕
+
+0
+¯ 11
+uC
+
+¯ 21
+uC
+¯ 22
+uP n22 − n12
+
+¯
+Let C(N ) be the sum capacity of the deterministic Xchannel (2). Note that, unlike the Gaussian channel, this
+¯
+deterministic X-channel has four channel inputs umk , and we
+impose that there are four corresponding encoders.
+
+, (2b)
+
+where ⊕ denotes (mod 2)-addition. Here,
+
+[gmk ]0
+0
+···
+0
+ [gmk ]1
+[gmk ]0
+···
+0
+
+.
+.
+.
+..
+¯ mk 
+.
+.
+.
+G
+
+.
+.
+.
+.
+
+[gmk ]n−2 [gmk ]n−3 · · · [gmk ]0
+[gmk ]n−1 [gmk ]n−2 · · · [gmk ]1
+
+n12
+
+¯
+Fig. 2. Deterministic model at receiver two. The matrices Gmk are again
+¯
+¯
+omitted. The interference terms u11 and u12 are observed at receiver one
+¯
+¯
+¯
+multiplied by the same matrix G20 . The desired terms u21 and u22 are
+¯
+¯
+multiplied by different matrices G21 and G22 , respectively.
+
+, (2a)
+
+¯
+y2
+
+¯ 11
+uC
+¯ 12
+uP
+
+¯ m2
+¯ m1
+where uC ∈ Zn21 and uC ∈ Zn12 for m ∈ {1, 2}. As we
+2
+2
+will see shortly, the common portions of the channel input are
+observable at both receivers, whereas the private portions are
+only observable at one of the receivers.
+The proposed lower-triangular deterministic channel be¯
+¯
+tween umk and ym is deﬁned as
+¯
+¯
+⊕ G10 u21 ⊕
+
+¯ 22
+uC
+
+¯ 12
+uC
+n21
+
+0
+¯C
+u12
+
+n12
+
+¯
+Fig. 1. Deterministic model at receiver one. For simplicity, the matrices Gmk
+¯
+¯
+are omitted. The interference terms u21 and u22 are observed at receiver
+¯
+¯
+¯
+one multiplied by the same matrix G10 . The desired terms u11 and u12 are
+¯
+¯
+multiplied by different matrices G11 and G12 , respectively.
+
+,
+
+¯
+¯ ¯
+G11 u11 ⊕ G12
+
+¯ 22
+uC
+¯ 21
+uP
+
+n11 − n21 uP
+¯ 11
+
+For the deterministic channel model, we will furthermore
+assume that the channel gains gmk are in (1, 2]—the Gaussian
+setting will be analyzed for the general case.
+¯
+We construct a deterministic channel with inputs umk ∈
+¯
+Znkk for m, k ∈ {1, 2} and with channel outputs ym ∈ Znmm
+2
+2
+for m ∈ {1, 2}. It will be convenient to split the channel input
+into “common” and “private” portions, i.e.,
+¯
+umk
+
+¯ 21
+uC
+
+¯ 11
+uC
+¯ 12
+uC
+
+min{n11 , n22 } ≥ max{n12 , n21 }.
+
+¯ mk
+uC
+¯ mk
+uP
+
+[gmk ]i 2−i
+
+gmk =
+
+III. M AIN R ESULTS
+0
+0
+.
+.
+.
+
+0
+[gmk ]0
+
+The main result of this paper is a constant-gap approximation of the capacity of the Gaussian X-channel. To develop
+intuition, we start with the analysis of the deterministic Xchannel. The next theorem provides an approximate charac¯
+terization of the sum capacity C(N ) of the deterministic Xchannel with bit levels N .
+
+
+
+
+
+
+
+
+
+Theorem 1. For every δ ∈ (0, 1] and N ∈ Z2×2 such
++
+that min{n11 , n22 } ≥ max{n12 , n21 } there exists a set
+B ⊆ (1, 2]2×3 of Lebesgue measure
+
+1 This assumption is made to simplify the presentation. Since the labeling
+of the receivers is arbitrary, all results carry immediately over to the case
+min{n12 , n21 } ≥ max{n11 , n22 }. The models and tools developed in this
+paper for these two cases can be applied to the other cases as well.
+
+µ(B) ≤ δ
+
+3
+
+such that for all channel gains (gmk ) ∈ (1, 2]2×3 \ B the sum
+¯
+capacity C(N ) of the (modulated) deterministic X-channel (2)
+satisﬁes
+
+n22 − n21
+
+¯
+RC
+22
+
+n11 − n12
+
+¯
+R12
+
+¯
+RC
+11
+
+n12
+¯
+R21
+
+¯
+D(N ) − 2 log(c1 /δ) ≤ C(N ) ≤ D(N )
+for some positive universal constant c1 , and where
+D(N )
+
+¯
+RP
+22
+
+min D1 (N ), D2 (N ), D3 (N ), D4 (N )
++ (n11 − n21 ) + (n22 − n12 )
+
+¯
+u11
+
+and
++
+
+(n12 + n21 − n11 ) + (n12 + n21 − n22 ) ,
+
+D2 (N )
+
+1
+2 n12 + n21 +
+1
+2 n12 + n21 +
+2
+3 (n12 + n21 ).
+
+D3 (N )
+D4 (N )
+
+(n12 + n21 − n22 )+ ,
+(n12 + n21 − n11 )+ ,
+
+22
+
+¯P
+R22
+
+¯
+R12
+
+¯
+RP
+11
+¯
+u11
+
+¯
+u12
+
+¯
+u21
+
+¯
+u22
+
+¯
+¯
+Fig. 3. Allocation of bits at receiver one. Here, u11 and u12 are the desired
+¯
+¯
+bits and are received multiplied by the matrices G11 and G12 (not shown in
+¯
+¯
+the ﬁgure), respectively. The vectors u21 and u22 are interference and are
+¯
+both received multiplied by the same matrix G10 .
+
+¯ 11
+¯
+Observe that the n11 −n21 least-signiﬁcant bits uP of u11 are
+not visible at the second receiver. Therefore, we can use these
+bits to privately carry n11 − n21 bits from the ﬁrst transmitter
+to the ﬁrst receiver without affecting the second receiver. The
+¯P
+rate of this private message is denoted by R11 . The remaining
+¯ C , i.e.,
+rate is denoted by R11
+¯
+R11
+
+Theorem 2. For every δ ∈ (0, 1] and N ∈ Z2×2 such
++
+that min{n11 , n22 } ≥ max{n12 , n21 } there exists a set
+B ⊆ (1, 2]2×2 of Lebesgue measure
+µ(B) ≤ δ
+
+¯C
+¯P
+R11 + R11 ,
+
+¯P
+R11
+
+n22 − n12 .
+
+¯C ¯C ¯
+¯
+It remains to choose the values of R11 , R22 , R12 , and R21 .
+Our proposed design rules are as follows.
+¯C
+¯
+• We dedicate the R11 most-signiﬁcant bits of u11 to carry
+information from transmitter one to receiver one.
+¯C
+¯
+• We dedicate the R22 most-signiﬁcant bits of u22 to carry
+information from transmitter two to receiver two.
+¯
+• We set the n22 − n21 most-signiﬁcant bits of u12 to
+¯
+¯
+zero. The next R12 bits of u12 carry information from
+transmitter two to receiver one. As shown in Fig. 4, this
+¯
+¯
+guarantees the (partial) alignment of u12 with u11 at the
+second receiver.
+¯
+• We set the n11 − n12 most-signiﬁcant bits of u21 to
+¯
+¯
+zero. The next R21 bits of u21 carry information from
+transmitter one to receiver two. As shown in Fig. 3, this
+¯
+¯
+guarantees the (partial) alignment of u21 with u22 at the
+ﬁrst receiver.
+¯
+Optimizing the values of the rates Rmk subject to the
+condition that both receivers can decode the desired messages,
+yields the lower bound in Theorem 1.
+Generalizing these ideas from the deterministic to the Gaussian model, we obtain the following constant-gap capacity
+approximation for the Gaussian X-channel.
+
+n22 − n21
+
+¯
+RC
+22
+
+¯
+R21
+
+22
+
+where
+
+n11 − n12
+
+n21
+
+¯
+u22
+
+¯ 22
+¯
+Similarly, the n22 − n12 least-signiﬁcant bits uP of u22 are
+not visible at the ﬁrst receiver. Therefore, we can use this part
+to privately carry n22 − n12 bits from the second transmitter
+to the second receiver without affecting the ﬁrst receiver. The
+¯P
+rate of this private message is denoted by R22 . The remaining
+C
+¯
+rate is denoted by R22 , i.e.,
+¯
+¯
+¯
+R22 RC + RP ,
+
+Theorem 1 approximates the capacity of the modulated
+deterministic X-channel (2) up to a constant gap for all channel
+gains gmk ∈ (1, 2] except for a set B of arbitrarily small
+measure. The event (gmk ) ∈ B can be interpreted as an
+outage event, as in this case the proposed achievable scheme
+fails to deliver the target rate of D(N ) − 2 log(c1 /δ). Here δ
+parametrizes the trade-off between the measure of the outage
+event and the target rate: decreasing δ decreases the measure
+of the outage event B, but at the same time also decreases the
+target rate D(N ) − 2 log(c1 /δ). We point out that δ can be
+chosen independently of the number of input bits N , hence
+the approximation gap is uniform in N .
+We now provide a sketch of the communication scheme
+achieving the lower bound in Theorem 1 (see Figs. 3 and 4).
+¯
+RC
+11
+
+¯
+u21
+
+¯
+¯
+Fig. 4. Allocation of bits at receiver two. Here, u21 and u22 are the desired
+¯
+¯
+bits and are received multiplied by the matrices G21 and G22 (not shown in
+¯
+¯
+the ﬁgure), respectively. The vectors u11 and u12 are interference and are
+¯
+both received multiplied by the same matrix G20 .
+
++
+
+D1 (N )
+
+¯
+u12
+
+n11 − n21 .
+
+such that for all channel gains (hmk ) ∈ (1, 2]2×2 \ B the sum
+capacity C(N ) of the Gaussian X-channel (1) satisﬁes
+
+where
+
+D(N ) − 2 log(c2 /δ) ≤ C(N ) ≤ D(N ) + 4
+
+4
+
+for some positive universal constant c2 , and with D(N )
+as deﬁned in Theorem 1. Moreover, the lower bound on
+C(N ) is achievable with only a max{nmk }-bit quantization
+of the channel gains hmk available at both transmitters and
+receivers.
+
+(and hence ﬁnite channel SNRs), the question of rationality
+or irrationality of the channel gains hmk is largely irrelevant
+to determining membership in the outage set B.
+IV. C ONCLUSION
+In this paper, we derived a constant-gap capacity approximation for the Gaussian X-channel. This derivation was aided
+by a novel deterministic channel model used to approximate
+the Gaussian channel. In the proposed deterministic channel
+model, the actions of the channel are described by a lowertriangular Toeplitz matrix with coefﬁcients determined by the
+bits in the binary expansion of the corresponding channel gain
+in the original Gaussian problem. This is in contrast to traditional deterministic models, in which the actions of the channel
+are only dependent on the single most-signiﬁcant bits of the
+channel gains in the original Gaussian problem. Preserving
+this dependence on the ﬁne structure of the Gaussian channel
+gains turned out to be crucial to approximate the Gaussian
+X-channel by a deterministic channel model.
+This paper focused on the Gaussian X-channel as an example of a fully-connected communication network in which
+interference alignment seems necessary. The hope is that the
+tools developed in this paper can also be used to analyze more
+general networks requiring interference alignment. Ultimately,
+the goal should be to move from degrees-of-freedom capacity
+approximations to stronger constant-gap capacity approximations.
+
+Theorem 2 provides a constant-gap capacity approximation
+for the Gaussian X-channel. The constant in the approximation
+is uniform in the channel gains hmk ∈ (1, 2] except for a set B
+of arbitrarily small measure, and uniform in N . The event B
+can again be interpreted as an outage event, and δ parametrizes
+the trade-off between the measure of the outage event B and
+the target rate. Since δ can be chosen independently of N ,
+the approximation gap is uniform in the channel SNRs, i.e.,
+uniform in 22nmk . Comparing Theorem 2 with Theorem 1, we
+see furthermore that, up to a constant gap, the Gaussian Xchannel and its lower-triangular deterministic approximation
+have the same capacity.
+The lower bound in Theorem 2 is achieved by encoders
+and decoders that have access to only a max{nmk }-bit quantization ˆ mk of the channel gains hmk . These encoders and
+h
+decoders are mismatched in the sense that they are operating
+ˆ
+under the assumption that hmk is the correct channel gain. This
+shows that the proposed communication scheme is quite robust
+with respect to channel estimation and quantization errors.
+2
+
+R EFERENCES
+[1] M. A. Maddah-Ali, A. S. Motahari, and A. K. Khandani, “Communication over MIMO X channels: Interference alignment, decomposition,
+and performance analysis,” IEEE Trans. Inf. Theory, vol. 54, pp. 3457–
+3470, Aug. 2008.
+[2] V. R. Cadambe and S. A. Jafar, “Interference alignment and degrees of
+freedom of the K-user interference channel,” IEEE Trans. Inf. Theory,
+vol. 54, pp. 3425–3441, Aug. 2008.
+[3] A. S. Motahari, S. O. Gharan, M. A. Maddah-Ali, and A. K. Khandani,
+“Real interference alignment: Exploiting the potential of single antenna
+systems,” arXiv:0908.2282 [cs.IT], Aug. 2009. Submitted to IEEE
+Trans. Inf. Theory.
+[4] M. A. Maddah-Ali and D. Tse, “Completely stale transmitter channel
+state information is still very useful,” in Proc. Allerton Conf., pp. 1188–
+1195, Sept. 2010.
+[5] U. Niesen and P. Whiting, “The degrees of freedom of compute-andforward,” arXiv:1101.2182 [cs.IT], Jan. 2011. Submitted to IEEE Trans.
+Inf. Theory.
+[6] G. Bresler, A. Parekh, and D. N. C. Tse, “The approximate capacity
+of the many-to-one and one-to-many Gaussian interference channels,”
+IEEE Trans. Inf. Theory, vol. 56, pp. 4566–4592, Sept. 2010.
+[7] C. Huang, V. R. Cadambe, and S. A. Jafar, “On the capacity and
+generalized degrees of freedom of the X channel,” arXiv:0810.4741
+[cs.IT], Oct. 2008.
+[8] A. S. Avestimehr, S. N. Diggavi, and D. N. C. Tse, “Wireless network
+information ﬂow: A deterministic approach,” IEEE Trans. Inf. Theory,
+Apr. 2011.
+[9] R. H. Etkin and E. Ordentlich, “The degrees-of-freedom of the Kuser Gaussian interference channel is discontinuous at rational channel
+coefﬁcients,” IEEE Trans. Inf. Theory, vol. 55, pp. 4932–4946, Nov.
+2009.
+[10] U. Niesen and M. A. Maddah-Ali, “Interference alignment: From
+degrees-of-freedom to constant-gap capacity approximations,”
+arXiv:1112.4879 [cs.IT], Dec. 2011.
+Submitted to IEEE Trans.
+Inf. Theory.
+
+1.8
+
+h12
+
+1.6
+
+1.4
+
+1.2
+
+1
+1
+
+1.2
+
+1.4
+
+1.6
+
+1.8
+
+2
+
+h21
+Fig. 5. Representative outage set B. The x-axis is h21 , the y-axis is h12 ;
+the values of h11 and h22 are both ﬁxed to 1.5. Points shown in black in the
+ﬁgure belong to the set B.
+
+Remark: It is worth pointing out that the set B in Theorem 2
+can be explicitly computed: Given channel gains hmk , there
+is an algorithm that can determine in bounded time if these
+channel gains are in the outage set B. More precisely, B is
+the union of 2Θ(max{nmk }) strips (see Fig. 5). Membership
+of (hmk ) in the outage set B is mostly determined by the
+Θ(max{nmk }) most-signiﬁcant bits in the binary expansion
+of the channel gains hmk . In particular, for any ﬁnite N
+
+5
+
+

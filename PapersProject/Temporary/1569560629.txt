@@ -1,0 +1,1033 @@
+Creator:        TeX
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Tue May 15 15:58:31 2012
+ModDate:        Tue Jun 19 12:54:52 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      1232794 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569560629
+
+Estimation of the Entropy on the Basis of its
+Polynomial Representation
+Martin Vinck∗ , Francesco P. Battaglia∗ , Vladimir B. Balakirsky† , A. J. Han Vinck† and Cyriel Pennartz∗
+∗ Center
+
+for Neuroscience
+University of Amsterdam
+Amsterdam, The Netherlands, 1098 XH
+martinvinck@gmail.com
+† Institute for Experimental Mathematics
+University of Essen
+Essen, Germany, 45326
+prior distribution over the values of the entropy constructed as
+a mixture of symmetric Dirichlet distributions [3]. The NSB
+estimator exhibits rapid convergence to the entropy and has
+good performance in terms of bias and robustness in comparison to other available estimators [1], [3], although systematic
+comparisons between available estimators are lacking.
+In the present correspondence, we show that further improvements can be made on the NSB estimator in terms of
+estimator bias. The paper is organized as follows. We use the
+Taylor power series for the logarithm function to decompose
+the entropy into two terms, called the polynomial approximation term and the remainder. An accurate and unbiased
+estimate for the polynomial approximation term, which is of
+interest by itself, is presented. The remainder is estimated using the known Bayesian approaches. The combined estimator
+has essentially better performance than the known estimators.
+This claim is also conﬁrmed by simulation results.
+
+Abstract—An algorithm for estimating the entropy, which is
+based on the representation of the entropy function as the sum
+of two polynomial terms, called the polynomial approximation
+function and the remainder, is proposed. We construct an
+accurate and unbiased estimate of the value of the polynomial
+approximation function and use the known Bayesian approach
+to estimate the remainder. The combined estimator essentially
+reduces the bias of the constructed estimate as compared to the
+known estimators. Simulation results that conﬁrm the claim are
+presented.
+
+I. I NTRODUCTION
+We consider the estimation of the entropy of the probability
+distributions for discrete memoryless sources when a limited
+amount of observed data is available. This mathematical
+problem is important for many applications. In particular,
+it received a great attention in neurophysiology where the
+performance of networks of neurons is evaluated by information theoretical quantities [1]. Plugging in the empirical
+frequencies into the entropy function yields a direct estimate
+of entropy, which is strongly negatively biased by sample
+size. This negative estimator bias can translate into a strong
+positive bias in mutual information. This is a serious issue for
+ﬁelds such as neuroscience, where obtaining large amounts of
+data is virtually impossible, because of technical limitations in
+maintaining stable monitoring of neural signals for long times,
+or because the brain remains in the same state only for short
+periods.
+Searching for an entropy estimator with minimum bias or
+distortion leads to large variance and asymptotical efﬁciency
+issues, and there is a general trade-off between the variance
+and bias of entropy estimators [2]. A particularly promising
+framework to estimate entropy is the Bayesian one [3], [4].
+Wolpert and Wolf [4] developed a Bayesian estimator based
+on a uniform prior distribution of probabilities. Nemenman et
+al. [3], [5] pointed out that this uniform prior distribution of
+probabilities corresponds to a peaked and informative prior
+on the entropy with an expected value that is relatively
+close to maximum entropy, leading to large errors when the
+actual value of the entropy is small. Therefore, the Bayesian
+Nemenman-Shafee-Bialek (NSB) estimator uses a nearly ﬂat
+
+II. P ROBLEM OF ENTROPY ESTIMATION
+Suppose that there is a discrete memoryless source which
+generates one of M values (states or symbols) from the set
+R = {r1 , . . . , rM } speciﬁed by the vector of probabilities
+p ≡ (p1 , . . . , pM ). The (Shannon) entropy function [6] is
+M
+deﬁned as H(p) ≡ − m=1 pm ln(pm ) (hereafter, we assume
+that 0 ln 0 = 0). The received vector of outcomes of n independent observations is deﬁned as x ≡ (x1 , . . . , xn ) ∈ Rn . Let
+N ≡ (n1 , . . . , nM ) with the m-th component deﬁned as the
+number of symbols rm in the vector x. The ‘plugin’ entropy
+M
+m
+m
+ˆ
+estimator is deﬁned as Hplugin (n) = − m=1 nn ln nn
+and it is well-known that it has a strict non–positive bias:
+As f (pm ) ≡ −pm ln(pm ) is a concave function of pm , the
+m
+m
+m
+m
+inequality E{− nn ln( nn )} ≤ − E{ nn } ln(E{ nn }) stems
+from Jensen’s inequality.
+The problem under consideration is to provide an estimate
+ˆ
+of H(p) based on the observation n, H(n), that has both
+ˆ
+low bias | E{H(n)} − H(p)| and low mean absolute error
+ˆ
+E{|H(n) − H(p)|}. We want bias and mean absolute error to
+be small for all vectors of probabilities p (equivalently, for all
+entropies H(p) ∈ [0, log(M )]).
+
+1
+
+IV. A N UNBIASED ESTIMATOR OF THE FUNCTION T (p)
+
+III. P OLYNOMIAL REPRESENTATION OF THE ENTROPY
+FUNCTION .
+
+The problem is formulated as ﬁnding an unbiased and
+asymptotically convergent estimator of T (p) with controlled
+variance. We will show that as far as estimation of T (p) is
+concerned, the ‘bias problem’ can be solved completely, and
+does not require the speciﬁcation of a prior distribution on the
+entropy.
+We ﬁrst consider the problem of deriving an unbiased estiM
+mate of the sum S(p, k) = m=1 pk for all k ∈ {1, . . . , n}.
+m
+Let
+
+For all n ≥ 2, we represent the entropy function as the sum
+H(p) = T (p) + R(p) .
+
+(1)
+
+The polynomial approximation T (p) is deﬁned as
+M
+
+n
+
+ak pk ,
+m
+
+T (p) ≡
+
+(2)
+
+m=1 k=1
+
+M
+
+ˆ
+S(n, k) =
+
+where the coefﬁcients ak are deﬁned as
+
+c(nm , n, k),
+
+(6)
+
+m=1
+n−1
+
+ak ≡
+j=k
+
+j
+1
+(−1)k−1 .
+j j−k+1
+
+where
+
+(3)
+
+The remainder function R(p) is deﬁned as
+M
+
+∞
+
+pm (1 − pm )n
+
+R(p) ≡
+m=1 k=0
+
+(1 − pm )k
+.
+k+n
+
+Since
+(4)
+
+nm
+k
+
+n
+nm
+
+M
+
+n
+k
+
+(−1)k
+
+1
+j
+pk+1 .
+j j−k m
+
+m=1
+M
+
+=
+m=1
+
+n
+k
+
+n
+k
+
+=
+
+ˆ
+E{S} =
+
+n−1 n−1
+
+k=0 j=k
+
+⇒ c(nm , n, k) =
+
+nm < k
+
+Such a polynomial representation follows from the (n − 1)th order Taylor expansion of − ln(pm ) around pm = 1,
+n−1 (1−pm )k
+− ln(pm ) ≈
+. The polynomial approximation
+k=1
+k
+of f (pm ) ≡ −pm ln(pm ) is then deﬁned as g(pm ) ≡
+n−1
+(1−pm )k
+. By the binomial theorem, (1 − pm )k =
+k=1 pm
+k
+k
+k
+k−j
+, and we can represent the approximation
+j=0 j (−pm )
+function g(pm ) as
+g(pm ) =
+
+nm !(n − k)!
+,
+n!(nm − k)!
+⇒ c(nm , n, k) = 0.
+
+nm ≥ k
+
+−1
+
+n−k
+nm −k
+
+for all nk ≥ k,
+
+n
+
+−1
+
+Pr{Nm = nm }
+nm =k
+n
+
+nm =k
+
+nm
+k
+
+nm
+n
+pnm (1 − pm )n−nm
+m
+nm
+k
+
+M
+
+pk ,
+m
+
+=
+
+(7)
+
+m=1
+
+and the claim that the estimate is unbiased follows.
+By the linearity of the expectation, it then follows that the
+unbiased estimator of T (p) is given by
+
+(5)
+
+n
+
+ˆ
+T (n) ≡
+
+j
+j−k
+
+where we deﬁne
+≡ 0 if j < k.
+The polynomial representation T (p) is a meaningful function in itself that shares various properties with the entropy
+function. (i) Like entropy, T (p) is a non-negative function.
+(ii) Like the entropy function, the function T (p) is strictly
+concave. (iii) Both H(p) and T (p) attain maximum values
+when all probabilities are equal, and any change towards
+equalization of the probabilities increases both of them. (iv)
+The function T (p) is a monotonically increasing function of
+M when all pm ’s are equal to each other. (v) The inequality
+T (p) ≤ H(p) holds. (vi) As n → ∞, T (p) → H(p). (vii) The
+function T (p) outputs larger values for the joint distribution of
+multiple independent random variables than for the marginal
+distributions of the individual random variables. However,
+while the entropy of the joint probability distribution is the
+sum of the entropies of the marginal probability distributions
+of the independent random variables [6], this property does
+not hold for T (p) for ﬁnite n. This is the main difference
+between the entropy function and the polynomial approximation function T (p), and justiﬁes the use of the entropy
+function as a measure of uncertainty about a random variable
+for applications where the property of additivity is important.
+
+ˆ
+ak S(n, k) .
+
+(8)
+
+k=1
+
+Using the Newton series for the digamma function ψ(nm ) =
+k
+nm
+m
+−γ − k=1 (−1) nk − n1 , the expression for the polynok
+m
+mial estimator then simpliﬁes to
+M
+
+1
+ˆ
+T (n) = ψ(n) −
+nm ψ(nm ) .
+n m=1
+
+(9)
+
+ˆ
+It follows that T (n) is an asymptotically consistent estimator
+of H(p), since ψ(nm ) → ln(npm ) and ψ(n) → ln(n) as
+n → ∞. The asymptotic expansion series of ψ(x) is given
+∞
+1
+as ψ(x) = ln(x) − 2x + j=1 ζ(1−2j) with ζ the Riemann
+x2j
+Zeta function. It follows that our estimator is closely related
+to the classic Miller-Madow estimator [7], which is known to
+have a faster convergence rate than the plugin estimator, and
+is deﬁned as
+M
+
+1
+1
+1
+ˆ
+M (n) ≡ ln(n) −
+−
+nm ln(nm ) −
+2n n m=1
+2nm
+
+(10)
+
+0
+where we assume 0 ≡ 0. Our estimator is less biased than
+the Miller-Madow and plugin estimator. Since the inequality
+
+2
+
+Miller-Madow(M)
+Polynomial(P)
+
+A
+log2 average bias
+
+1.0
+0.0
+−1.0
+−2.0
+−3.0
+−4.0
+−5.0
+−6.0
+
+log2 mean absolute error
+
+C
+
+0.0
+
+−0.5
+−1.0
+−1.5
+−2.0
+−2.5
+−3.0
+
+Nemenman-Shafee-Bialek(N)
+Polynomial-Bayesian(PB)
+
+M = 16
+
+B
+
+1.5
+
+ˆ
+ˆ
+where T (n) is deﬁned in Eq. 8 and Rβ is the Bayesian
+estimator of the remainder based on a symmetric Dirichlet
+prior on p with concentration parameter β, deﬁned as
+
+Direct(D)
+
+M = 225
+
+ˆ
+ˆ
+ˆ
+Rβ (n) ≡ Hβ (n) − Tβ (n) .
+
+0.5
+−0.5
+
+ˆ
+Here, Tβ (n) is the Bayesian estimate of T (p),
+
+−1.5
+
+5% bias
+
+−2.5
+
+2 4 6 8 101214
+
+−3.5
+
+D
+
+(12)
+
+M
+
+n
+
+ˆ
+Tβ (n) ≡
+5% bias
+
+ak
+m=1 k=1
+
+2 4 6 8 1012 14
+
+Γ(βM + n)Γ(β + k + nm )
+Γ(βM + n + k)Γ(β + nm )
+
+(13)
+
+ˆ
+and Hβ (n) is the Bayesian estimate of the entropy,
+
+1.5
+1.0
+0.5
+0.0
+−0.5
+−1.0
+−1.5
+−2.0
+
+M
+
+ˆ
+Hβ (n) ≡
+
+(nm + β)
+·
+(n + βM )
+m=1
+
+(14)
+
+(ψ(n + 1 + βM ) − ψ(nm + β + 1)) .
+These expressions are obtained using the following considerations. By Bayes’ theorem, the posterior probability of
+the vector p given observation of n and prior P (p) is given
+as P (p|n) = P (n|p)P (p)/P (n) where P is a probability
+density function on the probability distribution of the source.
+The Bayesian estimator of the function of the probability
+ˆ
+distribution of the source, Q(p), is then deﬁned as Q(n) ≡
+Q(p)P (p|n)dp. Wolpert and Wolf [4] have shown that the
+ˆ
+Bayesian estimator Q(n) with P (p) = Dβ (p) is found by
+computing the ratio of integrals [4]
+
+2 4 6 8 101214
+2 4 6 8 1012 14
+Number of observations
+
+Fig. 1. Bias and average mean absolute error of various estimators. (A)
+Average log2 transformed bias (in nats) across the [0, log(M )] interval (yaxis), as a function of the number of observations n (x-axis), with M =
+16. Dashed green: polynomial-Bayesian Υβ (p) entropy estimator. Dashed
+¯
+ˆ
+cyan: polynomial estimator T (n). Dashed-dotted red: NSB estimator. Blue:
+Miller-Madow estimator. Dashed-dotted black: plugin estimator. Dashed grey,
+horizontal: 5% bias of the average entropy across the [0, ln(M )] interval. (B)
+As in (A), but now for M = 225. (C) Average absolute error of the entropy
+estimates, averaged across the [0, log(M )] interval, with M = 16. Legends
+are similar to (A-B). (D): Similar to (C), but now for M = 225.
+
+ˆ
+Q(n) = I[Q(p), n]/I[1, n] ,
+
+(15)
+
+where
+M
+
+1
+1
+ln(n) − 2n − ψ(n) ≤ ln(nm ) − 2nm − ψ(nm ) holds, it follows
+ˆ
+ˆ
+ˆ
+ˆ
+that T (n) ≥ M (n) ≥ Hplugin (n). As E{T (n)} ≤ H(p), the
+claim follows.
+
+I[Q(p), n] =
+
+M
+
+pnm
+m
+
+Q(p)
+m=1
+
+pβ−1 dp .
+m
+
+(16)
+
+m=1
+
+M
+
+β−1
+Note that m=1 pm ∝ Dβ (p) where the beta normalization
+has been omitted because it is eliminated by division in eq.
+M
+15, and m=1 pnm is the multinomial probability of observing
+m
+n, where the multinomial normalization coefﬁcient has been
+omitted again. Wolpert and Wolf [4] have shown that
+
+V. E STIMATION OF THE REMAINDER FUNCTION R(p)
+Let us address the problem of constructing a Bayesian
+estimator of the remainder function R(p). We ﬁrst design
+such an estimator using a symmetric Dirichlet prior over
+the vectors p, which has a disadvantage that it imposes an
+informative prior on H(p) [3] (see Section VI). The symmetric
+Dirichlet distribution has a probability density function deﬁned
+M
+as Dβ (p) = Γ(β)M /Γ(M β) m=1 pβ−1 . If β → 0, then it is
+m
+concentrated on probability vectors that specify small values
+of the entropy. If β = 1, then all p ∈ ∆M ≡ {(p1 , . . . , pM ) ∈
+M
+RM | ( m=1 pm ) = 1, pm ≥ 0 for all m} have a probability
+density of 1, meaning that the prior on p is uniform.
+We deﬁne the estimator of the entropy with Bayesian
+estimation of the remainder according to a Dirichlet prior as
+ˆ
+ˆ
+Υβ (n) ≡ T (n) + Rβ (n) ,
+
+I[1, n] =
+Γ
+
+M
+m=1 Γ(β
+M
+m=1 (β
+
++ nm )
+
+.
+
+(17)
+
++ nm )
+
+Using the extensive derivations from Section IV in [4] based
+on the Laplace transformation of pnm (which hold similarly
+m
+for pnm +β+1 ), the expression for the Bayesian estimator of
+m
+ˆ
+the entropy Hβ (n) (eq. 14) given a symmetric Dirichlet prior
+is obtained.
+Using the linearity property of integration, eq. 17, and the
+equality Γ(x + y) = Γ(x)(x + y − 1)!/(x − 1)! for any (x, y),
+
+(11)
+
+3
+
+A
+
+the integral I[T (p), n] evaluates to
+n
+
+I[T (p), n] =
+n
+
+M
+
+=
+
+ak
+k=0
+n
+
+=
+
+k=1
+M
+m=1
+
+M
+
+pnm +β−1
+nm
+
+ak
+m=1
+
+pk dp
+m
+m=1
+
+Γ (nm + β + kδl,m )
+Γ(n + βM + k)
+
+l=1
+M
+
+ak
+k=1
+
+M
+
+0.4
+0.2
+0
+−0.2
+−0.4
+−0.6
+−0.8
+−1
+−1.2
+−1.4
+−1.6
+
+(18)
+
+M
+
+(nm + β + k − 1)! m=1 Γ(β + nm )
+,
+(nm + β − 1)!
+Γ(βM + n + k)
+m=1
+
+B
+
+M = 16, n = 4
+
+0.5
+0
+−0.5
+−1
+−1.5
+−2
+−2.5
+−3
+
+0 0.5 1 1.5 2 2.5 3
+E{H(p)} for Dirichlet (nats)
+
+where δl.m is the Kronecker delta, and the nm + β terms in
+eq. 17 were replaced by nm + β + kδl,m . The expression for
+ˆ
+the Bayesian estimator Tβ (n) in eq. 13 then follows.
+
+C
+
+3.0
+
+0 1 2 3 4 5 6
+E{H(p)} for Dirichlet (nats)
+
+D
+
+True entropy
+
+M = 225, n = 15
+
+5.5
+
+VI. BAYESIAN ESTIMATION OF THE REMAINDER
+FUNCTION BASED ON A NEARLY FLAT PRIOR ON THE
+ENTROPY
+
+2.5
+
+4.5
+
+2.0
+
+3.5
+
+As discussed in the introduction, Nemenman et al. developed a nearly ﬂat prior, as a mixture of Dirichlet distributions,
+on the entropy and a Bayesian (the NSB) entropy estimate
+based on that [3]. Here, we will use the same prior as
+developed by Nemenman et al. [3] to provide an estimator of
+the remainder R(p). The uniform prior on the entropy has the
+following justiﬁcation: When estimating the entropy without
+any a priori knowledge about the probability distribution of
+p or H(p), we can either choose to use a uniform prior on
+H(p) [3], or on p [4]. A uniform prior on p imposes an
+informative prior on H(p), and vice versa. While the uniform
+prior on p is a sensible choice for computing the posterior
+estimate P (p | n), it dominates the estimation of H(p), such
+that relatively small errors in estimating p are traded against
+relatively large errors in estimating H(p).
+Our polynomial-Bayesian estimator of the entropy Υβ (n)
+¯
+then becomes
+
+1.5
+
+2.5
+
+1.0
+
+True entropy
+
+1.5
+
+ˆ
+ˆ¯
+Υβ (n) = T (n) + Rβ (n) .
+¯
+
+0.5
+
+E
+
+0.8
+
+∞
+0
+
+ˆ
+p(β, n)Rβ (n) d E{H(p);β} dβ
+dβ
+∞
+0
+
+p(β, n) d E{H(p);β} dβ
+dβ
+
+0.6
+0.4
+0.2
+
+Fig. 2. (A-D) Expected entropy values for varying Dirichlet probability distributions. The expected entropy was parametrized by varying the concentration
+parameter β of a Dirichlet distribution and drawing a vector of probabilities
+p from this Dirichlet distribution. The x-axis corresponds to the expected
+entropy for a given Dirichlet distribution. The y-axis corresponds to the bias
+in nats. (A-B) correspond to M = 16, 225 and n = 4, 15 respectively.
+Color/line coding as in Figure 1. (C-D) Expected entropy of various estimators
+(y-axis) as a function of the number of observations with the expected entropy
+of the Dirichlet equal to ln(M )−1/1000. (C-D) correspond to M = 16, 225,
+respectively. (E-F) Similar to (C-D), but now for a Dirichlet distribution with
+the expected entropy equal to 1/10000.
+
+(20)
+
+ˆ¯
+The Bayesian estimator Rβ is based on a nearly ﬂat prior
+distribution (the ‘NSB’ distribution) on the entropy that is
+obtained as mixture of Dirichlet distributions Pβ (p) [3] as
+
+(21)
+
+where E{H(p); β} is the expected value of the entropy for a
+Dirichlet distribution,
+
+∞
+
+¯
+D(p) =
+
+Pβ (p)
+0
+
+E{H(p); β} ≡
+
+Pβ (p)H(p)dp
+
+= ψ0 (M β + 1) − ψ0 (β + 1) ,
+
+1.0
+
+0.0
+3 5 7 9 1113 15
+3 5 7 9 1113 15
+Number of observations
+
+M
+
+Γ(nm + β)
+,
+Γ(β)
+m=1
+
+3 5 7 9 1113 15
+
+0.8
+
+0.2
+
+ˆ
+where Rβ (n) is deﬁned in eq 12, and where the posterior
+probability density of β given observation of n is proportional
+to
+Γ(M β)
+p(β, n) =
+n + Mβ
+
+F
+
+0.4
+
+(19)
+
+,
+
+0.5
+
+0.6
+
+The Bayesian estimator of the remainder is deﬁned as
+ˆ¯
+Rβ (n) ≡
+
+3 5 7 9 1113 15
+
+d E{H(p); β}
+dβ .
+dβ
+
+(23)
+
+The rationale of the Dirichlet mixture is that the distribution of
+the entropy H(p) is very peaked around E{H(p); β} if p is
+Dirichlet-distributed with concentration parameter β [3]. Since
+the integral in eq. 23 runs effectively over d E{H(p);β} dβ =
+dβ
+
+(22)
+
+with ψ0 (x) the polygamma function of order zero.
+
+4
+
+¯
+E{H(p); β}, it follows that the prior distribution D(p) of p
+translates into a nearly ﬂat prior distribution of the entropy
+H(p) for the interval [0, ln(M )] [3]. However, since there is
+¯
+some spread of H(p) around E{H(p); β}, the D(p) prior
+does not translate into a completely ﬂat prior distribution of
+the entropy.
+Nemenman et al. [3] showed that the expression for the
+Bayesian estimator of the entropy given this prior reduces to
+the one-dimensional integral
+ˆ¯
+Hβ (n) =
+=
+
+vectors of p (minimax principle). However, the reduction in
+bias was accompanied by a balanced increase in variance such
+that the mean absolute errors of the NSB and Υβ (n) estimator
+¯
+were close to each other.
+VIII. C ONCLUSION
+We have proposed a new algorithm for estimating the
+entropy, which is based on the representation of the entropy
+function as the sum of two polynomial terms, called the
+polynomial approximation function and the remainder. We
+have shown that an accurate and unbiased estimate of the
+value of the polynomial approximation function exists that
+does not depend on the choice of any particular prior on the
+probability distribution of the source. In addition, we have used
+the known Bayesian approach with a nearly ﬂat prior on the
+entropy [3] to estimate the remainder. Our simulations show
+that the combined estimator essentially reduces the bias of the
+constructed estimate as compared to the known estimators.
+An advantage of our estimator relative to the NSB estimator
+is that part of the entropy function is estimated without the
+dependence on any particular prior, since the nearly uniform
+prior developed by [3] as a mixture of Dirichlet distributions
+is not the only possible uniform prior on the entropy, and is
+uniform only by approximation.
+
+H(p)P (p | n)dp
+∞
+0
+
+ˆ ˆ
+p(β, n)Hβ (p) d E{H(p);β} dβ
+dβ
+∞
+0
+
+p(β, n) d E{H(p);β} dβ
+dβ
+
+.
+
+(24)
+
+Using the linearity property of integration, we substitute
+ˆ
+ˆ
+Hβ (n) for Rβ (n) and the deﬁnition eq. 20 is obtained.
+VII. C OMPARISON OF BIAS AND ERROR OF ENTROPY
+ESTIMATORS
+
+We performed an exact (by computing probability of all n)
+evaluation of the bias and mean absolute error of: (i) The
+ˆ
+plugin estimator Hplugin (n). (ii) The classic Miller-Madow
+ˆ¯
+estimator [7] (eq. 10) (iii) The Bayesian Hβ (n) estimator
+ˆ
+(eq. 24) [3]. (iv) Our newly developed polynomial T (n) (eq.
+8) estimator and our polynomial-Bayesian estimator Υβ (n)
+¯
+(eq. 19). For a given number of symbols M ∈ {16, 225}, we
+varied the concentration parameter β of a symmetric Dirichlet
+distribution such that we covered the expected entropies in the
+interval [1/10000, ln(M ) − 1/1000] with a step-size of 1/10.
+Note that the number of trials in neuroscience experiments
+is typically small and often does not exceed tens of trials per
+stimulus. For a particular symmetric Dirichlet distribution with
+concentration parameter β and expected entropy E{H(p); β}
+(eq. 22), we then drew a vector of probabilities p from that
+Dirichlet distribution. The entropy of the drawn vector of probabilities p, H(p), does not exactly coincide with E{H(p); β},
+but lies relatively close to it, since the distribution of H(p) is
+highly peaked if p is Dirichlet-distributed [3].
+Our polynomial-Bayesian Υβ (n) estimator, exhibited a sig¯
+niﬁcant reduction in bias in comparison to the other entropy
+estimators, having the lowest overall bias of all estimators,
+for all number of symbols M tested (Figure 1) (M = 5 and
+81 gave similar results, data not presented). Furthermore, it
+had the smallest bias across the interval [0, ln(M )] for all
+estimators tested (Figure 2). The average reduction in bias
+in comparison to the NSB estimator was particularly strong
+when M was relatively small. This is a particularly useful
+property for applications where many symbols have pm = 0,
+and M is over-estimated. Similarly, the reduction in bias of the
+Υβ (n) estimator relative to the NSB estimator was particularly
+¯
+pronounced when the entropy was close to 0, but was also
+present when the entropy was close to ln(M ). This shows
+that, for this particular setting, the Υβ (n) estimator is, in
+¯
+terms of bias, more robust than the NSB estimator, since
+it exhibited the smallest maximum bias across probability
+
+R EFERENCES
+[1] S. Panzeri, R. Senatore, M. A. Montemurro, and R. S. Petersen, “Correcting for the sampling bias problem in spike train information measures,”
+J Neurophysiol, vol. 98, pp. 1064–72, 2007.
+[2] L. Paninski, “Estimation of entropy and mutual information,” Neural
+Computation, vol. 15, pp. 1191–1253, 2003.
+[3] I. Nemenman, W. Bialek, and R. de Ruyter van Steveninck, “Entropy and
+information in neural spike trains: Progress on the sampling problem,”
+Physical Review E, vol. 69, p. 056111, 2004.
+[4] D. H. Wolpert and D. R. Wolf, “Estimating functions of probability
+distributions from a ﬁnite set of samples,” Phys Rev E, vol. 52, pp. 6841–
+6854, 1995.
+[5] I. Nemenman, F. Shafee, and W. Bialek, “Entropy and inference, revisited,” Arxiv preprint physics/0108025, 2001.
+[6] C. Shannon, “A mathematical theory of communication,” Bell System
+Technical Journal, vol. 27, pp. 379–423, 1948.
+[7] G. Miller, “Note on the bias on information estimates Information Theory
+in Psychology,” in Information Theory in Psychology; Problems and
+Methods II-B, H. Quastler, Ed. Free Press, Glencoe, IL, 1955, pp. 95–
+100.
+
+5
+
+

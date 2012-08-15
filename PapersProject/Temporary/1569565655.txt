@@ -1,0 +1,909 @@
+Creator:        TeX
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Sat May 19 06:09:00 2012
+ModDate:        Tue Jun 19 12:54:52 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      406142 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569565655
+
+Achievability Proof via Output Statistics of Random
+Binning
+Mohammad Hossein Yassaee, Mohammad Reza Aref, Amin Gohari
+Information Systems and Security Lab (ISSL),
+Sharif University of Technology, Tehran, Iran,
+E-mail: yassaee@ee.sharif.edu, {aref,aminzadeh}@sharif.edu.
+framework treats source coding and channel coding problems
+on the same footing.
+Consider the problem of sending a message M over the
+channel q(y|x). Traditional random coding considers an enˆ
+coder X n (M, F ) and a decoder M (Y n , F ) where F is a
+common randomness, independent of M , available to both
+the transmitter and receiver. R.v. F represents the random
+nature of codebook generation. Since the probability of error
+is the average of that over all realizations of F , one can
+ˆ
+ﬁnd f such that X n (M, F = f ) and M (Y n , F = f ) form
+appropriate encoder and decoder. We depart from this by
+ﬁrst generating n i.i.d. copies of X n and Y n . Then we take
+both F and M to be functions of X n such that F is nearly
+independent of M . Note that we still have the property that
+p(y n |xn , F = f ) = p(y n |xn ) and p(m|F = f ) ≈ p(m)
+ˆ
+meaning that X n (M, F = f ) and M (Y n , F = f ) are
+legitimate choices as stochastic encoder and decoder. We
+construct F and M as random partitions (binnings) of X n . The
+question then arises that under what conditions two random
+bin indices are independent (as in the case of F and M ), and
+what is the sufﬁcient condition for recovering X n from Y n
+and a bin index F .
+To answer these questions in a more general framework,
+in Section II, we prove two main theorems on approximating
+the joint pmf of the bin indices in a distributed random binning. We study properties of random binning in two extreme
+regimes, namely, when the binning rates are low and high. In
+the ﬁrst case, we observe that if the rates of a distributed random binning are sufﬁciently small, the bin indices are nearly
+jointly independent, uniformly distributed and independent of
+a non-binned source Z n . This result generalizes the one for the
+channel intrinsic randomness [5]. The second case is the S-W
+region, which shows that if the rates of distributed binning are
+sufﬁciently large, the outputs of random binning are enough
+to recover the sources.
+We argue that not only the new framework has a simple
+structure (it uses only random binning), but it can solve some
+problems much easier than the traditional techniques; see [11],
+[12] for two examples. These examples consider the problems
+of channel simulation and coordination. Furthermore, we believe that the framework leads to more rigorous and simpler
+proofs for problems in secrecy (See the full version of this
+paper [10]).
+This paper is organized as follows: in Section III we begin
+
+Abstract—This paper presents a new and ubiquitous framework for establishing achievability results in network information
+theory (NIT) problems. The framework is used to prove various
+new results. To express the main tool, consider a set of discrete
+memoryless correlated sources (DMCS). Assume that each source
+(except one, Z n ) is randomly binned at a ﬁnite rate. We ﬁnd
+sufﬁcient conditions on these rates such that the bin indices are
+nearly mutually independent of each other and of Z n . This is
+used in conjunction with the Slepian-Wolf (S-W) result to set
+up the framework. We begin by illustrating this method via
+examples from channel coding and rate-distortion (or covering
+problems). Next, we use the framework to prove a new result
+on the lossy transmission of a source over a broadcast channel.
+We also prove a new lower bound to a three receiver wiretap
+broadcast channel under a strong secrecy criterion. We observe
+that we can directly prove the strong notion of secrecy without
+resorting to the common techniques, e.g., the leftover hash lemma.
+We have also used our technique to solve the problem of two-node
+interactive channel simulation and the problem of coordination
+via a relay.
+
+I. INTRODUCTION
+Random coding and random binning are widely used in the
+achievability proofs of the network information theory (NIT)
+problems. Random coding is a channel coding technique that
+allows one to prove the existence of a good codebook (which is
+T
+n
+a subset of the product set X[1:T ] := i=1 Xin ), while random
+binning is a source coding technique that partitions the product
+set into bins with desired properties.
+Existing achievability proofs for source coding and channel coding problems are mostly based on repeated use of
+these techniques. Moreover some connections between certain source coding and channel coding problems has been
+observed. Slepian and Wolf, in their seminal paper on the
+lossless source coding [2], interpreted the achievability of the
+rate R = H(X|Y ) for compressing the source X n at rate R to
+the destination with access to the source Y n , through a channel
+coding problem. In contrast, Csiszar and Korner, obtained
+an achievability proof for multiple access channels (MAC)
+through the distributed source coding problem of Slepian and
+Wolf, [3]. In a recent work [4], Renes and Renner showed
+the achievability of the channel capacity via a combination
+of Slepian-Wolf (S-W) coding and privacy ampliﬁcation. The
+main theme in these works is that the set of sequences
+mapped to the same index through S-W coding constitutes
+a good channel code, and hence we have a decomposition
+of the product set into the channel codebooks. Similarly our
+This work was supported by Iran-NSF under grant No. 88114.46.
+
+1
+
+by demonstrating our approach for some primitive problems
+of NIT, i.e. channel coding and lossy source coding problems,
+before getting into our new results. Then we apply our
+approach to two complicated scenarios, i.e., lossy coding over
+broadcast channels and a three receiver wiretap broadcast
+channel under a strong secrecy constraint. In Section IV, we
+discuss connections between our framework and the covering
+and packing lemmas in a multivariate setup. We show that the
+set of typical sequences can be decomposed into covering and
+packing codebooks. Finally in Section V, we give a summary
+of our framework.
+Notation: In this paper, we use XS to denote (Xj : j ∈ S),
+pU to denote the uniform distribution over the set A and
+A
+n
+p(xn ) to denote the the i.i.d. pmf i=1 p(xi ), unless otherwise
+stated. The total variation between two pmf’s p and q on
+the same alphabet X , is deﬁned by p(x) − q(x) 1 :=
+1
+x |p(x) − q(x)|. When a pmf itself is random, we use
+2
+capital letter, e.g. PX . For simplicity of notation, we write
+PX ≈ QX if E PX − QX 1 < , where PX and QX are
+random pmf. The notation pX ≈ qX is deﬁned, similarly.
+
+channel outputs independently of the channel input and the
+other random bits. Theorem 1 gives an achievable rate region
+for this scenario and implies that random binning is sufﬁcient
+to prove the achievability.1
+Theorem 1 enables us to approximate the pmf P (z n , b1:T ).
+We now consider another region for which we can approximate
+a speciﬁed pmf. This region is the Slepian-Wolf region for
+n
+reconstructing X[1:T ] in the presence of (B1:T , Z n ) at the
+decoder. As in the achievability proof of the [7, Lemma 7.2.1],
+we can deﬁne a decoder with respect to any ﬁxed distributed
+binning. We denote the decoder by the random conditional
+pmf P SW (ˆn ] |z n , b[1:T ] ) (note that since the decoder is a
+x[1:T
+function, this pmf takes only two values, 0 and 1). Now we
+write the Slepian-Wolf theorem in the following equivalent
+form. See [10] for details.
+Lemma 1: If for each S ⊆ [1 : T ], the following constraint
+holds
+Rt > H(XS |XS c , Z),
+(3)
+t∈S
+
+then as n goes to inﬁnity, we have
+
+II. O UTPUT STATISTICS OF RANDOM BINNING
+
+E P (xn ] , z n , xn ] ) − p(xn ] , z n )1{ˆn ] = xn ] }
+ˆ[1:T
+x[1:T
+[1:T
+[1:T
+[1:T
+
+Let (X[1:T ] , Z) be a DMCS distributed according to a
+T
+joint pmf pX[1:T ] ,Z on a countably inﬁnite set i=1 Xi × Z.
+A distributed random binning consists of a set of random
+mappings Bi : Xin → [1 : 2nRi ], i ∈ [1 : T ], in which Bi
+maps each sequence of Xin uniformly and independently to
+n
+the set [1 : 2nRi ]. We denote the random variable Bt (Xt )
+by Bt . A random distributed binning induces the following
+T
+n
+random pmf on the set X[1:T ] × Z n × t=1 [1 : 2nRt ],
+
+III. ACHIEVABILITY PROOF THROUGH PROBABILITY
+APPROXIMATION
+
+In this section, we illustrate the use of Theorem 1 and
+Slepian-Wolf binning (Lemma 1) through some examples.
+Before going through these examples, we state a useful lemma
+on total variation of arbitrary (random) pmfs. Its proof can be
+found in [10].
+Lemma 2: We have
+1) pX pY |X − qX pY |X 1 = pX − qX 1
+pX − qX 1 ≤ pX pY |X − qX qY |X 1
+2) If pX pY |X ≈ qX qY |X , then there exists x ∈ X such
+
+T
+
+P (xn ] , z n , b[1:T ] ) = p(xn ] , z n )
+[1:T
+[1:T
+
+1{Bt (xn ) = bt }.
+t
+t=1
+
+One can easily verify that (B1 , · · · , BT ) are uniformly
+distributed and mutually independent of Z n in the mean, that
+is
+T
+T
+EP (z n , b[1:T ] ) = 2−n t=1 Rt p(z n ) = p(z n ) t=1 pU nRt ] (bt ).
+[1:2
+
+2
+
+that pY |X=x ≈ qY |X=x .
+3) If PX
+
+A. Channel coding
+Consider a channel with the conditional pmf p(y|x). We
+want to prove that for any p(x), R < I(X; Y ) is an
+achievable rate for the channel. Let M = [1 : 2nR ] be
+the message set. The joint pmf of (M, X n , Y n ) is equal
+to pU (m)p(xn |m)p(y n |xn ), where p(xn |m) can be nonM
+deterministic (although it is deterministic in the standard
+deﬁnition) and M has uniform distribution due to the deﬁnition
+of channel coding. Here we want to determine p(xn |m) and
+a decoder such that we have reliable communication. In our
+
+t∈S
+T
+
+t=1
+
+→ 0.
+
+δ
+
+≈ PX QY |X , then
+
+PX PY |X ≈ QX QY |X .
+
+then as n goes to inﬁnity, we have
+pU nRt ] (bt )
+[1:2
+
+≈ QX and PX PY |X
++δ
+
+The following theorem ﬁnds constraints on the rate-tuple
+(R1 , · · · , RT ), such that the preceding observation about the
+mean holds for almost any distributed binning. See [10] for
+the proof.
+Theorem 1: If for each S ⊆ [1 : T ], the following
+constraint holds
+Rt < H(XS |Z),
+(1)
+
+E P (z n , b[1:T ] ) − p(z n )
+
+→ 0.
+1
+
+(2)
+
+1
+
+Remark 1: In [5], the channel intrinsic randomness was
+deﬁned “as the maximum random bit rate that can be extracted
+from a channel output independently of an input with known
+statistics”. One can generalize this deﬁnition to the broadcast
+channel pX[1:T ] |Z , in the sense of ﬁnding random bit rates
+(R1 , · · · , RT ) that can be extracted individually from the
+
+1 In fact, [5] considered the case for general channel with general input and
+the results is based on the information spectrum methods. The achievability
+proof in [5] follows from [6, Theorem 1] whose proof is based on graphcoloring. In [10] we have proved a generalized version of this theorem for
+the general case , in which the average entropy was replaced with spectral
+inf-entropy, [7]. We have provided a new proof for the multi-terminal setting
+based on the Cauchy-Schwarz inequality.
+
+2
+
+pmf between (X n , M, Y n ) factors as p(xn )p(m|xn )p(y n |m).
+The goal is to determine p(m|xn ) and p(y n |m) as the
+pair of encoder-decoder. As the case of channel coding, let
+(X n , Y n ) be i.i.d. and distributed according to p(x, y). We
+have Ep(xn ,yn ) d(X n , Y n ) = Ed(X, Y ) < D. Again, to each
+˜
+y n , we assign two random bins m and f at the rates R and R,
+n
+respectively. Since the decoder aims to produce Y which has
+˜
+the desired distortion with X n , we assume that R+R > H(Y )
+n
+resulting in reliable decoding of Y from (M, F ). Hence, we
+expect that if the encoder and decoder agree on an appropriate
+value of F = f , the decoder can reliably recover Y n using
+the S-W decoder. However, conditioning on F = f changes
+the distribution p(xn ) to P (xn |f ) and we obtain an scheme
+that achieves distortion D w.r.t. P (xn |f ) rather than p(xn ).
+Despite this fact, roughly speaking, Theorem 1 says that F
+and X n are independent and P (xn |f ) is close to p(xn ) if
+˜
+R < H(Y |X). Hence, we can choose the encoder-decoder
+w.r.t. P (xn |f ) for p(xn ). Now, we go through the details
+ˆ
+of the proof. Let Y n be the output of the S-W decoder,
+SW
+n
+P
+(ˆ |m, f ). Theorem 1 and Lemma 1 imply that there
+y
+exist n , δn → 0 such that
+
+approach, we let (X n , Y n ) be i.i.d. and distributed according
+to p(x, y). We deﬁne two random mappings on X n as follows:
+to each xn , we assign two random bin indices m ∈ [1 : 2nR ]
+˜
+and f ∈ [1 : 2nR ], uniformly and independently. Then the
+induced random pmf is
+p(xn , y n )P (m|xn )P (f |xn ) = P (m, f )P (xn |m, f )p(y n |xn ).
+˜
+Now, Slepian-Wolf binning shows that if R > H(X|Y ),
+n
+the decoder can reliably reconstruct X using (F, Y n ) and
+therefore decode M which is a function of X n . Thus, for
+almost any F = f , the decoding is reliable. Hence, if the
+transmitter and receiver agree on an appropriate F = f , then
+we can choose P (xn |m, f ) as the encoder and the SlepianWolf decoder as a decoder. Note that P (y n |xn , F = f ) =
+p(y n |xn ), so conditioning on f simulates a DMC channel.
+However, notice that after conditioning on F = f , P (m|f ) is
+˜
+not necessarily uniform. But if R + R < H(X), Theorem 1
+implies that M has uniform distribution and roughly speaking,
+is independent of F . Hence R < I(X; Y ) is achievable using
+this encoder and decoder. More precisely, applying Theorem
+1 and Lemma 1 results in the existence of n , δn → 0, such
+that
+
+δn
+
+n
+
+ˆ
+y
+P (xn , f ) ≈ p(xn )pU (f ), P (xn , y n , y n ) ≈ p(xn , y n )1{ˆn = y n }.
+F
+
+δn
+
+n
+
+ˆ
+x
+P (m, f ) ≈ pU (m)pU (f ), P (xn , y n , xn ) ≈ p(xn , y n )1{ˆn = xn }.
+F
+M
+
+Using Lemma 2, we have (similar to (5))
+
+Now we have
+n
+
+n
+
+n
+
+n
+
+δn
+
+n
+
+n
+
+n
+
+P (m, f, x , y )1{ˆ = x } ≈ P (m, f, x , y , x )
+x
+ˆ
+n +δn
+
+≈
+
+pU (m)pU (f )P (xn , y n , xn |m, f )
+ˆ
+M
+F
+
+p(xn )pU (f )P (m, y n , y n |xn , f )
+ˆ
+F
+
+(4)
+
+n +δn
+
+≈
+
+P (xn , y n , m, f )1{ˆn = y n }
+y
+
+= p(xn , y n )P (m, f |y n )1{ˆn = y n }.
+y
+
+(5)
+
+(7)
+
+Now, there exists a ﬁxed binning with the corresponding
+pmf p such that (7) is satisﬁed with p. Deﬁne
+¯
+¯
+
+where (4) follows from the ﬁrst part of Lemma 2 and the fact
+that (M, F ) is a function of X n and (5) follows from the third
+part of Lemma 2.
+Now the deﬁnition of ≈ and (5) guarantee the existence of
+¯
+a ﬁxed binning B with the corresponding pmf p such that (5)
+¯
+is satisﬁed with the ﬁxed pmf p instead of P . The second part
+¯
+of Lemma 2 implies that there exists F = f such that
+
+q(xn , y n , m, f, y n ) := p(xn )pU (f )¯(m, y n , y n |xn , f )
+ˆ
+p
+ˆ
+F
+q (xn , y n , m, f, y n ) := p(xn , y n )¯(m, f |y n )1{ˆn = y n }.
+˜
+ˆ
+p
+y
+We have q
+
+n +δn
+
+≈
+
+q and q (xn , y n ) = pX n Y n (xn , y n ), thus
+˜
+˜
+ˆ
+ˆ
+
+n +δn
+
+we get qX n Y n ≈ pX n Y n . This can lead to a proof that
+ˆ
+ˆ
+the average distortion between X n and Y n is close to the
+n
+n
+average distortion between X and Y . However, if we want
+to prove the stronger claim that the latter distortion is in
+the vicinity of the former distortion with probability close
+to one, we can proceed as follows: using the weak law of
+large number (WLLN), we show that there exists f such that
+ˆ
+q(d(X n , Y n ) < D|f ) is close to one. Since d is per letter
+distortion and p is i.i.d., WLLN yields that
+
+βn
+
+p(m, xn ,y n |f )1{ˆn = xn } ≈ pU (m)¯(xn , y n , xn |m, f )
+¯
+x
+p
+ˆ
+M
+= pU (m)¯(xn |m, f )p(y n |xn )¯SW (ˆn |y n , f ), (6)
+p
+p
+x
+M
+where βn = 2( n + δn ) → 0. Finally, identifying p(xn |m, f )
+¯
+as the encoder and pSW (ˆn |y n , f ) as the decoder results in a
+¯
+x
+pair of encoder-decoder with the probability of error at most
+βn .
+B. Lossy source coding
+
+ˆ
+ˆ
+d(X n , Y n ) → Ep d(X n , Y n ) < D,
+
+Consider the problem of lossy compression of a source
+within a desired distortion. In this setting, there is an i.i.d.
+source X n distributed according to p(x), an (stochastic) encoder mapping X n to M ∈ [1 : 2nR ], a decoder that reconstructs a lossy version of X n (namely Y n ) and a distortion
+measure d : X × Y → [0, dmax ]. A rate R is said to be
+achievable at the distortion D, if E(d(X n , Y n )) ≤ D + n ,
+where n → 0 and d(X n , Y n ) is the average per letter
+distortion. Here we wish to prove the achievability of the
+rate R > I(X; Y ) when Ed(X, Y ) < D. Note that the joint
+
+in pX n Y n ,
+
+hence there exists ˜n → 0 such that
+ˆ
+qX n Y n (d(X n , Y n ) < D) > 1 − ˜n −
+ˆ
+
+n
+
+− δn .
+
+This
+implies
+that
+there
+exists
+f
+such
+that
+ˆ
+qX n Y n |f (d(X n , Y n ) < D) > 1 − ˜n − n − δn . This also
+ˆ
+ˆ
+shows that for sufﬁciently large n, Eq [d(X n , Y n )|f ] < D.
+Note that
+q(xn , y n , m, y n |f ) = p(xn )¯(y n |xn , f )¯(m|y n )¯SW (ˆn |m, f ).
+ˆ
+p
+p
+p
+y
+
+3
+
+Finally, specifying p(m|xn , f ) as the encoder (which is
+¯
+equivalent to generating a random sequence y n according to
+p(y n |xn , f ) and then transmitting the bin index m assigned
+¯
+to y n ) and pSW (ˆn |m, f ) as the decoder results in a pair of
+¯
+y
+encoder-decoder obeying the desired distortion.
+
+must take care of the change
+conditioning on f[0:2] . Again
+U0 Uj , Z = S in Theorem
+independent of F[0:2] and that
+
+in the given pmf p(sn ), when
+substituting X1 = U0 , X2 =
+1 implies that S n is nearly
+its pmf is close to p(sn ), if
+
+R0 < H(U0 |S),
+
+C. Lossy coding over broadcast channels
+
+R0 + Rj < H(U0 Uj |S) , j = 1, 2,
+
+Consider the problem of lossy transmission of an i.i.d.
+source S n distributed according to p(s), over the broadcast
+channel p(y1 , y2 |x). Here, the sender wishes to communicate
+the source to the two receivers within desired distortions
+(D1 , D2 ). Formally, there are
+n
+• an encoder that assigns a random sequence x to each
+n
+enc n n
+s according to p (x |s ),
+• two decoders, where decoder j = 1, 2 assigns an estimate
+n
+ˆ
+sn ∈ Sj to each yj according to pdecj (ˆn |yj ),
+ˆj
+sj n
+• two distortion measures dj (s, sj ).
+ˆ
+A distortion pair (D1 , D2 ) is said to be achievable, if there
+ˆn
+exists a sequence of encoder-decoder such that Edj (S n , Sj ) ≤
+Dj + n , j = 1, 2 and n → 0.
+Theorem 2: A distortion pair (D1 , D2 ) is achievable for
+the lossy transmission of the source S over the broadcast
+channel p(y1 y2 |x), if there exist a pmf p(u[0:2] ), an encoding
+function x(u[0:2] , s) and two decoding functions s1 (u0 , u1 )
+ˆ
+ˆ
+and s2 (u0 , u2 ) such that Edj (S, Sj ) ≤ Dj , j = 1, 2 and the
+ˆ
+following inequalities hold:
+I(U0 Uj ; S) < I(U0 Uj ; Yj ) , j = 1, 2,
+
+R0 + R1 + R2 < H(U[0:2] |S).
+
+(10)
+
+Applying Fourier-Motzkin elimination (FME) on (9) and
+(10) gives (8). More precisely, following similar steps as
+in the case of lossy coding, we can prove the existence
+of a ﬁxed binning with the corresponding pmf p such that
+¯
+p(f[0:2] , sn ) ≈ pU (f[0:2] )p(sn ) and pSW (un , un , un , un ) ≈
+¯
+¯j
+ˆ0,j ˆj
+0
+j
+ˆ
+ˆ
+1{ˆn = un , un = un } for j = 1, 2, where (U0,j , Uj ) is the
+u0,j
+0 ˆ1
+1
+SW
+n
+output of S-W decoder pj (ˆ0,j , uj |yj , f{0,j} ). Deﬁne
+¯
+u
+ˆ
+n n
+q(sn ,f[0:2] , un , y1 , y2 , un , un , un , un ) := pU[0:2] (f[0:2] )
+ˆ0,1 ˆ1 ˆ0,2 ˆ2
+F
+[0:2]
+
+× p(sn )¯(un , y1 , y2 , un , un , un , un |sn , f[0:2] ).
+p [0:2] n n ˆ0,1 ˆ1 ˆ0,2 ˆ2
+n n
+We have qS n U n U n Y n ≈ pS n U0 Uj Yjn . The proof continˆ
+ˆ
+0,j j j
+ues through the same lines as in the lossy source coding.
+First we apply WLLN to prove the existence of f[0:2] such
+ˆn
+that Eq [d(S n , Sj |f[0:2] ] < Dj . Then by expanding q we
+n
+adopt (¯(u[0:2] |f[0:2] , sn ), xn (un , sn )) as the encoder and
+p
+[0:2]
+(¯SW (ˆ0,j , uj |yj , f{0,j} ), sn (ˆ0,j , uj , yj )) as the decoder j.
+pj u
+ˆ n
+ˆj u
+ˆ n
+
+D. Wiretap broadcast channels with strong secrecy criterion
+
+Consider the problem of secure transmission over a broadcast channel with a wiretapper, p(y1 , y2 , z|x). Here, we wish
++ I(U1 ; Y1 |U0 ) + I(U2 ; Y2 |U0 ),
+to securely transmit a common message m0 ∈ [1 : 2nR0 ]
+I(U0 U1 ; S) + I(U0 U2 ; S) < I(U0 U1 ; Y1 ) + I(U0 U2 ; Y2 )
+to the receivers Y1 , Y2 and two private messages mj ∈ [1 :
+− I(U1 ; U2 |U0 S).
+(8) 2nRj ], j = 1, 2 to the receivers Yj , j = 1, 2, respectively,
+Remark 2: The above result generalizes the result of Han while concealing them from the wiretapper. We use the total
+and Costa, [9] for the lossless transmission of correlated variation distance as a measure for analyzing the secrecy.
+sources over broadcast channels if we assume that S is of Formally speaking there are,
+the form (S1 , S2 ). See [10].
+• Three messages M0 , M1 , M2 which are mutually inden
+Sketch of the proof: Let (S n , U[0:2] , Y1n , Y2n ) be i.i.d.
+pendent and uniformly distributed,
+enc n
+and distributed according to p(s, u[0:2] , y1 , y2 ) such that
+• A stochastic encoder p
+(x |m[0:2] ),
+ˆj ) < Dj , j = 1, 2. We have Edj (S n , S n ) < Dj ,
+ˆ
+Edj (S, S
+• Two decoders, where decoder j assigns an estimate
+j
+n
+n
+n
+ˆn
+(m0,j , mj ) of (m0 , mj ) to each yj .
+ˆ
+ˆ
+j = 1, 2. Since Sj is a function of (U0 , Uj ), if the decoder
+n
+n
+n
+ˆ
+A rate-tuple (R0 , R1 , R2 ) is said to be achievable if
+j can decode (U0 , Uj ), then it can construct an estimate Sj
+ˆ
+ˆ
+within the desired distortion. We proceed in a similar way to Pr{∪j=1,2 (M0,j , Mj ) = (M0 , Mj )} → 0 and M[0:2] is nearly
+the case of lossy coding. First, we use the following random independent of the wiretapper output, Z n , that is,
+n
+n
+binning for the decoding of (U0 , Uj ).
+p(m[0:2] , z n ) − pU [0:2] (m[0:2] )p(z n ) → 0,
+M
+n
+nR0
+• To each u0 assign a random bin index f0 ∈ [1 : 2
+].
+1
+n
+n
+n
+• For j = 1, 2, to each pair (u0 , uj ) assign a random bin
+where, here p(z ) is the induced pmf on Z n and is not an
+index fj ∈ [1 : 2nRj ].
+i.i.d. pmf.
+Applying the S-W decoder and setting X1 = U0 , X2 =
+Theorem 3: A rate-tuple (R0 , R1 , R2 ) is achievable for the
+n n
+U0 Uj , Z = Yj in Lemma 1, yields that the decoding of U0 Uj
+secure transmission over the wiretap broadcast channel, if
+is reliable if,
+R0 + Rj < I(U0 Uj ; Y1 ) − I(U0 Uj ; Z), j = 1, 2.
+I(U[0:2] ; S) + I(U1 ; U2 |U0 ) < min {I(U0 ; Y1 ), I(U0 ; Y2 )}
+
+R0 + R1 + R2 < min {I(U0 ; Y1 ), I(U0 ; Y2 )} + I(U1 ; Y1 |U0 )
+
+R0 + Rj > H(U0 Uj |Yj ), Rj > H(Uj |U0 Yj ) for j = 1, 2. (9)
+
++ I(U2 ; Y2 |U0 ) − I(U1 ; U2 |U0 ) − I(U[0:2] ; Z)
+
+Hence if the encoder and decoders agree on an appropriate
+n
+n
+F[0:2] = f[0:2] , decoder j = 1, 2 can reliably decode U0 , Uj .
+However, like the case of channel coding and lossy coding, we
+
+2R0 + R1 + R2 < I(U0 U1 ; Y1 ) − I(U0 U1 ; Z) + I(U0 U2 ; Y2 )
+− I(U0 U2 ; Z) − I(U1 ; U2 |U0 Z)
+
+4
+
+(11)
+
+where U[0:2] − X − (Y1 , Y2 , Z) forms a Markov chain.
+n
+Sketch of the proof: Let (U[0:2] , X n , Y1n , Y2n , Z n ) be i.i.d.
+and distributed according to p(u[0:2] , x, y1 , y2 , z). Consider the
+following random binning:
+n
+• To each u0 assign independently two random bins m0 ∈
+˜
+nR0
+[1 : 2
+] and f0 ∈ [1 : 2nR0 ],
+n
+n
+• For j = 1, 2, to each pair (u0 , uj ) assign independently
+˜
+nRj
+two random bins mj ∈ [1 : 2
+] and fj ∈ [1 : 2nRj ].
+Here as in the case of channel coding, we use the SW decoder for decoding of the messages (M0 , Mj ) through
+n
+n
+decoding of (U0 , Uj ), when the decoder accesses to Yjn
+n
+n
+and F0 Fj . Lemma 1 yields that the decoding of (U0 , Uj )
+is reliable if
+˜
+˜
+˜
+R0 + Rj > H(U0 Uj |Yj ), Rj > H(Uj |U0 Yj ), j = 1, 2. (12)
+Thus, if the encoder and decoders agree on an appropriate
+n
+n
+f[0:2] , decoder j can reliably decode (U0 , Uj ) and therefore
+(M0 , Mj ). However, as in the case of channel coding, we must
+take care of uniformity of the messages when conditioned on
+f[0:2] , as well as the mutual independence of the messages and
+the wiretapper’s output, Z n . Now, Theorem 1 yields that if
+˜
+R0 + R0 < H(U0 |Z)
+˜
+˜
+R0 + Rj + R0 + Rj < H(U0 Uj |Z) , j = 1, 2,
+˜
+˜
+˜
+R0 + R1 + R2 + R0 + R1 + R2 < H(U[0:2] |Z),
+
+the rate of the bins, Ri are given in inequality (14). This is a
+generalization of the mutual information terms showing up in
+Marton coding and match the ones reported in [1].
+To show this let T n [X[1:T ] Z] be the set of strongly typical
+sequences w.r.t. pX[1:T ] Z . Theorem 1 says that if
+∀S ⊆ [1 : T ] :
+
+(14)
+
+t∈S
+
+then P (b[1:T ] , z n ) ≈ pU (b[1:T ] )p(z n ). One can show that
+with high probability the number of the typical sequences assigned to each bin bi ∈ [1 : 2nRi ] is about 2nRi , for i = 1 : T ,
+provided that Ri < H(Xi ) . This fact alongside with Theorem
+1 implies that there exists a ﬁxed binning with the corresponding pmf p such that p(z n , b[1:T ] ) ≈ pU (b[1:T ] )p(z n ) and the
+¯
+¯
+number of the typical sequences assigned to each bin bi ∈
+[1 : 2nRi ] is about 2nRi , provided that (14) is satisﬁed. Let
+q(b[1:T ] , xn ] , z n ) = pU (b[1:T ] )p(z n )¯(xn ] |b, z n ). Since
+p [1:T
+[1:T
+p(xn ] , z n ) = p(xn ] , z n ), we have p(T n [X[1:T ] Z]c ) <
+¯ [1:T
+¯
+[1:T
+→ 0. Markov inequality and q ≈ p imply that
+¯
+n
+√
+qB[1:T ] ({b[1:T ] : q(T n [X[1:T ] Z]c |b[1:T ] ) >
+n }) → 0.
+Therefore for almost all the choices of b[1:T ] , the probability of
+the typical set conditioned on b[1:T ] is large, implying a nonzero intersection of the typical set and the product partition
+set (see [10] for details).
+V. S UMMARY OF THE FRAMEWORK
+We are ready to state the steps of the probabilistic proof,
+precisely. The probabilistic proof is done in three steps:
+1) Specifying r.v.’s via which the information is transmitted,
+e.g., X in the channel coding, U0:2 in the last two examples.
+2) Solving the S-W problem corresponding to decoding the
+desired information at each receiver through random binning,
+n
+e.g., decoding of U[0:1] in the last two examples at decoder 1.
+3) Sharing an appropriate bin between terminals such that
+decoding is reliable, while ensuring that conditioning on a bin
+does not affect the problem formulation, e.g. the uniformity
+of the message in channel coding and independence of the
+messages and wiretapper’s output in the secrecy problems, etc.
+R EFERENCES
+
+(13)
+
+then F[0:2] , M[0:2] and Z n are nearly independent, and roughly
+speaking M[0:2] has uniform distribution and the pmf P (z n )
+is close to i.i.d. pmf p(z n ). The proof continues in the similar
+steps as in the previous cases. Finally, applying FME on (12)
+and (13) gives (11).
+Remark 3: If one only wants to securely transmit a common message M0 as in [8] (i.e. R1 = R2 = 0), we have shown
+in [10] the following lower bound on R0 . This lower bound
+subsumes the one given in [8] under weak secrecy criterion:
+R0 = max min I(U0 U1 ; Y1 |Q) − I(U0 U1 ; Z|Q), I(U0 U2 ; Y2 |Q) − I(U0 U2 ; Z|Q),
+pU[0:2] X
+
+1
+2
+
+H(Xt ) − H(XS |Z),
+
+Rt >
+t∈S
+
+I(U0 U1 ; Y1 |Q) − I(U0 U1 ; Z|Q) + I(U0 U2 ; Y2 |Q) − I(U0 U2 ; Z|Q) − I(U1 ; U2 |U0 ZQ)
+
+[1] A. El Gamal and Y.-H. Kim, “Lecture notes on network information
+theory,” available online, Arxiv:1001.3404, 2010.
+[2] D. Slepian and J. K. Wolf, “Noiseless coding of correlated information
+sources,” IEEE Trans. IT, 19(4): 471–480, 1973.
+[3] I. Csiszar and J. Korner, “Information theory: coding theorems for
+discrete memoryless systems,” Akademiai Kiado, 1997.
+[4] J. M. Renes and R. Renner, “Noisy channel coding via privacy ampliﬁcation and information reconciliation,” IEEE Trans. IT, 57(11):7377-7385.
+[5] M. Bloch, “Channel Intrinsic Randomness,” in Proc. IEEE Int. Symp.
+Inform. Theory (ISIT), 2010, pp.2607-2611.
+[6] I. Csiszar, “Almost Independence and Secrecy Capacity,” Problems of
+Information Transmission, 32(1), 40-47, 1996.
+[7] T. S. Han, “Information-spectrum methods in information theory,”
+Springer, 2003.
+[8] Y.-K. Chia and A. El Gamal, “3-receiver broadcast channels with
+common and conﬁdential messages”, Arxiv:0910.1407.
+[9] T. S. Han and M. M. H. Costa, “Broadcast channels with arbitrarily
+correlated sources,” IEEE Trans. IT, 33(5), 641– 650, 1987.
+[10] M. H. Yassaee, M. R. Aref and A. Gohari, “Achievability proof via
+output statistics of random binning,” arXiv:1203.0730.
+[11] M. H. Yassaee, A. Gohari and M. R. Aref, “Channel simulation via
+interactive communications”, to appear in ISIT 2012, arXiv:1203.3217.
+[12] F. Haddadpour, M. H. Yassaee, A. Gohari and M. R. Aref, “Coordination
+via a relay,” to appear in ISIT 2012, arXiv:1203.0731.
+
+IV. C OVERING AND PACKING : R EVISITED
+Most of the achievability proofs in NIT are based on two
+primitive lemmas, namely packing lemma and covering lemma
+[1]. Thus it would be interesting to see how our probabilistic
+proofs relate to these lemmas. We show that Theorem 1
+implies a certain form of multivariate covering (but not exactly
+the one mentioned in [1]). The discussion on packing lemma
+is similar and can be found at [10].
+Multivariate covering: We prove a version of multivariate
+covering that is similar to Marton coding [1]. Consider r.v.’s
+X[1:T ] Z. Roughly speaking, we want to prove that under certain conditions on Ri ’s, there exists a partition of set of typical
+sequences of Xin into 2nRi bins of size 2nRi = 2n(H(Xi )−Ri )
+for i = 1 : T , such that if we choose any of the partitions of
+n
+n
+X1 , and any of the partitions of X2 , etc, we can ﬁnd sequences
+xn , xn ,..., xn in these partitions such that they are jointly
+1
+2
+T
+typical with each other and with Z n with high probability,
+for almost all choice of partitions. The conditions imposed on
+
+5
+
+

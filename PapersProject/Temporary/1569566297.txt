@@ -1,0 +1,630 @@
+Creator:         TeX output 2012.05.11:0758
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Fri May 11 07:58:42 2012
+ModDate:        Tue Jun 19 12:55:32 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      303887 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569566297
+
+Network Coding for Two-Unicast with Rate (1,2)
+Wentu Song and Rongquan Feng
+
+Kai Cai and Junshan Zhang
+
+LMAM, School of Mathematical Sciences
+Peking University, Beijing, China
+songwentu@gmail.com; fengrq@math.pku.edu.cn
+
+School of Electrical, Computer and Energy Engineering
+Arizona State University, Tempe 85287 USA
+{kai.cai,junshan.zhang}@asu.edu
+
+nodes and E is the set of links. In this work, we assume that
+G is a two-unicast network with rate (1,2), i.e., G has two
+source-sink pairs {s1 , t1 } and {s2 , t2 }. The source s1 wishes
+to communicate a message X1 to the sink t1 and the source s2
+wishes to communicate two messages X2 and X3 to the sink
+t2 , where Xi , i = 1, 2, 3, are independent random variables
+taking values from a ﬁxed ﬁnite ﬁeld F. A link e = (u, v) can
+transmit one symbol, i.e., one element of the ﬁeld F, from
+node u to v per transmission.
+As in [1], we assume that the source s1 has one virtual
+incoming link, called the X1 source link, and the source s2
+has two virtual incoming links, called the X2 source link and
+X3 source link respectively. Correspondingly, the sink t1 has
+a virtual outgoing link, called the X1 sink link and the sink t2
+has two virtual outgoing links, called the X2 sink link and X3
+sink link respectively. A link e is called a source (sink) link if
+it is a virtual incoming (outgoing) link of the sources (sinks).
+If e is not a source link, we call e a non-source link.
+For a link e = (u, v), u is called the tail of e and v is called
+the head of e, and are denoted by u = tail(e) and v = head(e),
+respectively. For two links e, e′ ∈ E, we call e′ an incoming
+link of e (e an outgoing link of e′ ) if tail(e) = head(e′ ). For
+any e ∈ E, denoted by In(e) the set of incoming links of
+e. We assume that In(e) ̸= ∅ if e ∈ E is not the source link.
+Otherwise, e has no impact on the network communication and
+can be removed from G. Note that G = (V, E) is acyclic, in
+this paper, we always assume that E is sequentially indexed
+as E = {e1 , e2 , e3 , · · · , e|E| } such that ei is the Xi source
+link, i = 1, 2, 3 and i < j if ei is an incoming link of ej .
+Let A, B ⊆ V and S ⊆ E. S is called an A-B cut if
+there is no directed path from any vertex in A to any vertex
+in B in the graph G \ S. Deﬁne the mincut from A to B by
+c(A; B) := min{|S|; S is an A-B cut}, where |S| is the size
+of S. For v1 , v2 ∈ V , we denote v1 → v2 if there is a path in
+G from v1 to v2 . Else, we denote v1
+v2 .
+For i ∈ {1, 2, 3}, denote αi the vector of F3 with the ith
+component being 1 and all the other components being 0. For
+Ψ ⊆ F3 , denote ⟨Ψ⟩ the subspace of F3 spanned by Ψ.
+Deﬁnition 2.1 (Linear Network Code [1]): A linear network code (LNC) of G over the ﬁnite ﬁeld F is a collection
+of vectors C = {de ∈ F3 ; e ∈ E ′ } such that
+
+Abstract—We consider a directed acyclic network with two
+source-sink pairs {s1 , t1 } and {s2 , t2 }. The source s1 wishes to
+communicate a message X1 to the sink t1 and the source s2 wishes
+to communicate two messages X2 and X3 to the sink t2 , where
+Xi , i = 1, 2, 3, are independent random variables of unit rate.
+We give a simple characterization for linear solvability of such
+networks under the condition that the minimum cut from {s1 , s2 }
+to t2 equals 3. We develop a region decomposition method for
+proving this result, which we believe can be an effective approach
+for non-multicast network coding problem.
+
+I. I NTRODUCTION
+Multi-source multi-sink (non-multicast) network coding is a
+well known open problem[1]. It has shown that characterizing
+the solvability of a general non-multicast network is a difﬁcult
+task [2]. The multiple-unicast problem is of great interest
+for non-multicast network coding studies [3], [4]. Dougherty
+and Zeger proved that any ﬁnite directed acyclic network is
+CSLS-equivalent to a multiple-unicast network [5]. Some outer
+bounds on the achievable rate-region for the multiple-unicast
+problem were presented in [6], [7]. However, it remains open
+to give an exact characterization for the solvability of general
+multiple-unicast problems except the two-unicast case with
+rate (1,1)[8],[9].
+In this paper, we consider the two-unicast network coding
+problem with rate (1,2), i.e., one source (s1 ) wishes to communicate a message X1 to one sink (t1 ) and the other source (s2 )
+wishes to communicate two messages X2 and X3 to another
+sink (t2 ). We give a necessary and sufﬁcient condition on
+the linear solvability under the condition that the maximum
+ﬂow from {s1 , s2 } to t2 is 3. To this end, we develop a
+region decomposition approach in the spirt of the information
+ﬂow decomposition approach proposed by C. Fragouli and
+E. Soljanin [10]. We believe that the region decomposition
+approach can be a useful method for non-multicast network
+coding problem [9].
+This paper is organized as follows. In Section II, we introduce the basic notion and the region decomposition method.
+In Section III, the region decomposition method is further
+developed. The main result is presented in Section IV, and
+the paper is concluded in Section V.
+II. P RELIMINARIES
+
+(1) If e is the Xi source link or the Xi sink link (i ∈
+{1, 2, 3}), then de = αi ;
+(2) If e is not a source link, then de ∈ ⟨{de′ ; e′ ∈ In(e)}⟩.
+
+A. Model and Basic Notion
+Consider a communication network modeled as a ﬁnite,
+directed, acyclic graph G = (V, E), where V is the set of
+
+1
+
+e1
+s1
+
+e2
+
+e3
+
+Since G is acyclic, it is easy to see that RG(D) is acyclic. A path from R0 to Rk , denoted lR0 →Rk is a subset
+{R0 , R1 , · · · , Rk } ⊆ D such that Ri−1 is a parent of Ri . For
+R, Q ∈ D, we denote R → Q if there is a path from R to Q.
+Else, we denote R
+Q.
+Deﬁnition 2.4 (Codes on Region Graph): Let D be a nonsingular region decomposition of G. A linear network code
+(LNC) of RG(D) over the ﬁnite ﬁeld F is a collection of
+¯
+vectors C = {dR ∈ F3 ; R ∈ D} such that
+(1) dSi = dTi = αi (i = 1, 2, 3);
+(2) If R is a non-source region, then dR ∈ ⟨{dP ; P ∈
+In(R)}⟩.
+The vector dR is called the global encoding vector of R.
+The region graph RG(D) is said to be linearly solvable if it
+has a linear network code over some ﬁnite ﬁeld F.
+Clearly, an LNC of RG(D) can be extended to an LNC
+of G. Thus if RG(D) is linearly solvable then the original
+network G is linearly solvable.
+As in [9], we have an O(|E|) time algorithm (See Fig. 2) to
+obtain a special region decomposition, namely D1 of G such
+that G is linearly solvable if and only if RG(D1 ) is linearly
+solvable and each non-source region has at least two parents.
+In what follows, we will always use D1 to denote the region
+decomposition obtained by algorithm 1.
+
+s2
+v1
+
+v2
+
+v3
+
+v4
+
+v5
+
+v6
+
+v7
+v8
+v9
+t1
+e4
+
+v10
+v11
+t2
+e5
+
+e6
+
+Fig 1. An example network G1 : e1 , e2 , e3 are the X1 , X2 , X3 source link
+and e4 , e5 , e6 are the X1 , X2 , X3 sink link respectively.
+
+The vector de is called the global encoding vector of e. G
+is said to be linearly solvable if G has a linear network code
+over some ﬁnite ﬁeld F.
+
+Algorithm 1: Region Decomposing (G = (V, E))
+j ← from 1 to 3
+
+B. Region Decomposition
+
+Rj = {ej };
+
+Deﬁnition 2.2 (Region Decomposition): Let R be a nonempty subset of E. R is called a region of G if there is a
+e0 ∈ R such that any e ∈ R \ {e0 } has an incoming link
+in R. Meanwhile, e0 is called the head of R and is denoted
+by e0 = head(R). If E is partitioned into mutually disjoint
+regions, say R1 , · · · , Rn , we call D = {R1 , · · · , Rn } a region
+decomposition of G.
+Let D be a region decomposition of G and R ∈ D. For
+i ∈ {1, 2, 3}, R is called the Xi source region if head(R) is
+the Xi source link; R is called the Xi sink region if R contains
+the Xi sink link; R is called an Xi region if R is the Xi source
+region or the Xi sink region. R is called a singular region if
+R is both an Xi region and an Xj region for some i ̸= j.
+D is called a singular region decomposition if it contains a
+singular region; otherwise, it is called nonsingular.
+Convention: All the Xi source (sink) regions are called
+source (sink) regions. The other regions are called coding
+regions. The terminology non-source region refers to a region
+which is not a source region.
+Let D be a region decomposition of G and {R, R′ } ⊆ D.
+We say that R′ is a parent of R (R a child of R′ ) if
+In(head(R)) ∩ R′ ̸= ∅, i.e., head(R) has an incoming link
+in R′ . Denoted by In(R) the set of parents of R.
+Deﬁnition 2.3 (Region Graph): Let D be a region decomposition of G. The region graph with respect to D, denoted
+by RG(D), is a directed, simple graph with vertex set D and
+edge set {(R′ , R) ∈ D2 ; R′ is a parent of R}.
+
+n = 3;
+j ← from 4 to |E|
+if there is an i ∈ {1, · · · , n} such that In(ej ) ⊆ Ri then
+
+Ri = Ri ∪ {ej };
+else
+
+n = n + 1;
+Rn = {ej };
+end if
+return D1 = {R1 , · · · , Rn };
+
+Fig 2. Region decomposing: This algorithm is based on the fact that E can
+be sequentially indexed as E = {e1 , e2 , e3 , · · · , e|E| } such that ei is the
+Xi source link, i = 1, 2, 3 and i < j if ei is an incoming link of ej .
+
+Example 2.5: By Algorithm 1, we can decompose the network G1 in Fig. 1 with R1 = {e1 , (s1 , v3 ), (s1 , v7 ), (s1 , v10 )},
+R2 = {e2 }, R3 = {e3 }, R4 = {(s2 , v1 ), (v1 , v3 ), (v1 , v4 )},
+R5 = {(s2 , v2 ), (v2 , v4 )}, R6 = {(v3 , v5 ), (v5 , v7 ), (v5 , v11 )},
+R7 = {(v4 , v6 ), (v6 , v9 ), (v6 , v11 )}, R8 = {(v7 , v8 ), (v8 , v9 ),
+(v8 , t2 )}, R9 = {(v9 , t1 ), (t1 , v10 ), (t1 , v11 ), (t1 , t2 ), e4 },
+R10 = {(v10 , v11 )}, R11 = {(v11 , t2 )}, R12 = {e5 }, R13 =
+{e6 }. Then D1 = {R1 , · · · , R13 } is a nonsingular region
+decomposition of G1 , where R1 , R2 , R3 are the X1 , X2 , X3
+source region and R9 , R12 , R13 are the X1 , X2 , X3 sink region
+respectively. The region graph RG(D1 ) is shown in Fig. 3.
+
+2
+
+R1
+
+R2
+
+R3
+
+R4
+
+R5
+
+R6
+
+R7
+
+Algorithm 2: 2d-Region Decomposing (D = {R1 , · · · , Rn })
+k = 0;
+j ← from 1 to n
+if In(Rj ) ⊆ Πi for some i ∈ {1, · · · , k} then
+Rj ∈ Πi
+
+R8
+
+else
+if |In(Rj )| = 2 then
+k = k + 1;
+
+R9
+
+Πk =In(Rj ) ∪ {Rj };
+
+R10
+
+end if
+end if
+return {Π1 , · · · , Πk };
+
+R11
+R12 R13
+
+Fig 4. Finding all 2-dimensional regions of RG(D): This algorithm is based
+on the fact that D can be sequentially indexed as D = {R1 , · · · , Rn } such
+that Ri is the Xi source region (i = 1, 2, 3), and i < j if Ri → Rj .
+
+Fig 3. The region graph RG(D1 ), where the network G1 and the region
+decomposition D1 are as in Example 2.5.
+
+Step 1: We prove that there exist W1 , W2 ∈ D such
+that {W1 , W2 } ⊆ reg(R1 , R2 ) ∩ reg(Q1 , Q2 ) and W1 , W2 ∈
+/
+reg◦ (R1 , R2 ) ∩ reg◦ (Q1 , Q2 ). Consider the following two
+cases:
+Case 1: reg◦ (R1 , R2 ) ∩ reg◦ (Q1 , Q2 ) = ∅. It is obviously.
+Case 2: reg◦ (R1 , R2 ) ∩ reg◦ (Q1 , Q2 ) ̸= ∅. Since RG(D)
+is ﬁnite, there exists at least one region, say W , in
+reg◦ (R1 , R2 )∩reg◦ (Q1 , Q2 ) such that no parent of W belongs
+to reg◦ (R1 , R2 ) ∩ reg◦ (Q1 , Q2 ). Let {W1 , W2 } ⊆ In(W ).
+Then {W1 , W2 } ⊆ reg(R1 , R2 ) ∩ reg(Q1 , Q2 ) and W1 , W2 ∈
+/
+reg◦ (R1 , R2 ) ∩ reg◦ (Q1 , Q2 ).
+Step 2: We prove that reg(R1 , R2 ) ⊆ reg(Q1 , Q2 ) or
+reg(Q1 , Q2 ) ⊆ reg(R1 , R2 ). In step 1, we have proven
+that there are two regions W1 , W2 such that {W1 , W2 } ⊆
+reg(R1 , R2 ) ∩ reg(Q1 , Q2 ) and W1 , W2 ∈ reg◦ (R1 , R2 ) ∩
+/
+reg◦ (Q1 , Q2 ). We have the following three cases.
+Case 1: {W1 , W2 } = {R1 , R2 }. For this case,
+reg(R1 , R2 ) ⊆ reg(Q1 , Q2 ).
+Case 2: {W1 , W2 } = {Q1 , Q2 }. For this case,
+reg(Q1 , Q2 ) ⊆ reg(R1 , R2 ).
+Case 3: W1 ∈ {R1 , R2 } ∩ reg◦ (Q1 , Q2 ) and W2 ∈
+{Q1 , Q2 } ∩ reg◦ (R1 , R2 ). Since each non-source region has
+at least 2 parents, by Deﬁnition 3.1, we can easily ﬁnd a path
+from W1 to W2 and a path from W2 to W1 , which contradicts
+to the fact that RG(D) is acyclic.
+By the above discussion, the result follows.
+Corollary 3.4: For any two different 2-dimensional regions
+ΠR1 ,R2 and ΠQ1 ,Q2 , |ΠR1 ,R2 ∩ ΠQ1 ,Q2 | ≤ 1.
+Corollary 3.5: Let |In(R)| = 2. Then there exists an
+unique 2-dimensional region ΠU1 ,U2 such that R ∈ Π◦ 1 ,U2 .
+U
+Theorem 3.3, Corollary 3.4 and Corollary 3.5 establish the
+basic properties of the super regions of a region graph. (In
+fact, we have developed more relations on the super regions,
+due to the space limitation, we omit them.)
+
+III. T WO - DIMENSIONAL R EGION
+The region decomposition method can be used to characterize the solvability of 2-simple multicast networks [9]. However, to characterize the solvability of the 2-unicast network with
+rate (1,2), further development of the region decomposition
+method is need. First, we give the following deﬁnitions.
+Deﬁnition 3.1 (Super Region): Let ∅ = Θ ⊆ D. The super
+̸
+region generated by Θ, is a subset reg(Θ) of D satisﬁes:
+(1) Θ ⊆ reg(Θ);
+(2) For any R ∈ D, if In(R) ⊆ reg(Θ), then R ∈ reg(Θ).
+Since RG(D) is acyclic, reg(Θ) is well deﬁned. Denote
+reg◦ (Θ) = reg(Θ) \ Θ, and reg(Θ) = reg(R1 , · · · , Rk ) if
+Θ = {R1 , · · · , Rk }.
+Deﬁnition 3.2 (2-dimensional Region): Let {R1 , R2 } ⊆ D
+and reg◦ (R1 , R2 ) ̸= ∅. reg(R1 , R2 ) is called a 2-dimensional
+region of RG(D) if for any {Q1 , Q2 } ⊆ D, reg(R1 , R2 ) ⊆
+reg(Q1 , Q2 ) implies {R1 , R2 } = {Q1 , Q2 }.
+Convention: To differentiate with the general super regions, in the following, we denote a 2-dimensional region
+reg(R1 , R2 ) as ΠR1 ,R2 and meanwhile denote reg◦ (R1 , R2 )
+as Π◦ 1 ,R2 .
+R
+We can use the algorithm in Fig. 4 to ﬁnd out all 2dimensional regions for any region decomposition D.
+Reconsider Example 2.5. By algorithm 2, we can see that
+ΠR2 ,R3 = {R2 , R3 , R4 , R5 , R7 }, ΠR1 ,R4 = {R1 , R4 , R6 ,
+R8 }, ΠR7 ,R8 = {R7 , R8 , R9 }, and ΠR1 ,R9 = {R1 , R9 , R10 }
+are all 2-dimensional regions of RG(D1 ).
+Theorem 3.3: Let D be a region decomposition of G
+such that each non-source region has at least 2 parents. If
+R1 , R2 , Q1 , Q2 ∈ D such that |reg(R1 , R2 ) ∩ reg(Q1 , Q2 )| ≥
+2, then either reg(R1 , R2 ) ⊆ reg(Q1 , Q2 ) or reg(Q1 , Q2 ) ⊆
+reg(R1 , R2 ).
+Proof: We prove this result by two steps.
+
+3
+
+R1 ∪ R10
+
+R3
+R5
+
+R6
+
+In this section, we ﬁrst construct a special region graph
+NRG(D∗ ), called the normal region graph of G, such that G
+is linearly solvable if and only if NRG(D∗ ) is linearly solvable.
+Then we characterize the linear solvability of G by NRG(D∗ ).
+
+R2
+R4
+
+IV. S UMMARY OF M AIN R ESULTS
+
+R7
+
+R8
+
+A. Normal Region Graph
+∗
+
+The construction process of NRG(D ) is as follows:
+Step 1: Generate D1 by Algorithm 1.
+By Algorithm 1, we can see that D1 satisﬁes: each nonsource region has at least 2 parents. To get NRG(D∗ ), we
+need more operations on RG(D1 ). Note that by deﬁnition of
+regions, a parent and a child can always be combined together
+to form a new region. We can have the following lemma.
+Lemma 4.1: Suppose {R1 , R2 }
+⊆
+D1 such that
+′
+reg◦ (R1 , R2 ) ̸= ∅. Let R1 = R1 ∪ reg◦ (R1 , R2 ) and
+′
+D′ = D1 ∪ {R1 } \ ({R1 } ∪ reg◦ (R1 , R2 )). Then D′ is a
+region decomposition of G.
+Step 2: Construct region decomposition D2 .
+′
+Let S1 and T1 denote the X1 source region and X1 sink
+′
+′
+region respectively. If reg◦ (S1 , T1 ) ̸= ∅, let S1 = S1 ∪
+◦
+′
+′
+◦
+′
+reg (S1 , T1 ) and D2 = D1 ∪ {S1 } \ ({S1 } ∪ reg (S1 , T1 )).
+′
+Else, let D2 = D1 and S1 = S1 . By Lemma 4.1, D2 is
+a region decomposition of G. Clearly, D2 satisﬁes: (1) each
+non-source region has at least 2 parents; (2) S1 is the X1
+source region and reg◦ (S1 , T1 ) = ∅.
+Consider D1 of network G1 in Example 2.5. We have
+′
+′
+S1 = R1 , T1 = R9 and reg◦ (S1 , T1 ) = {R10 }, then
+D2 = {R1 ∪ R10 , R2 , · · · , R9 , R11 , · · · , R13 } is still a region
+decomposition of G1 and S1 = R1 ∪ R10 is the X1 source
+region of D2 .
+Step 3: Construct the region graph NRG(D∗ ).
+The region graph NRG(D∗ ) can be obtained from RG(D2 )
+by the following three steps.
+Step 3.1: If there is an R ∈ D2 such that R is a common
+child of S1 and T1 , then delete the edge (T1 , R). Repeat this
+operation until S1 and T1 have no common child.
+Step 3.2: If R is a child of T1 , then delete edge (T1 , R)
+and add a new edge (S1 , R) to RG(D2 ). Repeat this operation
+until T1 has no child.
+Step 3.3: If there is a coding region R which has more
+than 2 parents, say P1 , · · · , Pk , then delete edges (Pi , R), i =
+1, · · · , k − 1 and add k − 2 extra regions QR,1 , · · · , QR,k−2
+and new edges (P1 , QR,1 ), (P2 , QR,1 ), (QR,i−1 , QR,i ),
+(Pi+1 , QR,i )(i = 2, · · · , k − 2) and (QR,k−2 , R). Repeat this
+operation until each coding region has exactly two parents.
+By the above process, we get NRG(D∗ ), the normal region
+graph, of G, where D∗ is the corresponded vertex set. Fig. 5
+is the normal region graph of G1 in Example 2.5.
+Clearly, NRG(D∗ ) is a simple, acyclic graph and satisﬁes:
+(1) the sink regions have no child; (2) each coding region has
+exactly 2 parents; and (3) In(T2 ) = In(T3 ).
+Theorem 4.2: G is linearly solvable if and only if
+NRG(D∗ ) is linearly solvable.
+Proof: Suppose {dR ; R ∈ D∗ } is an LNC of NRG(D∗ ).
+By the construction of NRG(D∗ ), {dR ; R ∈ D2 } is an LNC
+
+R9
+
+Q
+
+R11
+R12 R13
+Fig 5.
+
+The normal region graph NRG(D∗ ) of G1 in Example 2.5.
+
+of RG(D2 ). Let C = {de ; e ∈ E, de = dR if e ∈ R}, then C
+is an LNC of G.
+Conversely, suppose C is an LNC of G. According to
+Algorithm 1 and as in [9], it is easy to see that there exists
+an LNC {dR ; R ∈ D1 } of RG(D1 ) such that dR = dhead(R) .
+For RG(D2 ), let dS1 = α1 and keep the rest encoding vectors
+as in RG(D1 ). Then obviously, {dR ; R ∈ D2 } is an LNC
+∑k
+of RG(D2 ). In step 3.3, if dR = i=1 λi dPi (k ≥ 3), then
+∑i
+let dQR,i = j=1 λj dPj and keep the other encoding vectors
+as in RG(D2 ); and we obtain an LNC of NRG(D∗ ), which
+complete the proof.
+B. Main Result
+We now give a sufﬁcient and necessary condition on the linear solvability of the 2-unicast networks with c({s1 , s2 }, t2 ) =
+3 by analyzing the 2-dimensional regions of NRG(D∗ ). Since
+the detailed proof is complicated, we just show the sketch of
+the proof here.
+We suppose the considered network satisﬁes the following
+two conditions:
+A1: c({s1 }; {t1 }) ≥ 1, c({s2 }; {t2 }) ≥ 2, s1 → t2 and
+s2 → t1 .
+A2: If {e1 , e2 } is an {s1 , s2 }-{t1 } cut, then it is not an
+{s2 }-{t2 } cut.
+We note that A1 is natural because if c({s1 }; {t1 }) < 1 or
+c({s2 }; {t2 }) < 2, then the network is unsolvable obviously.
+If s2
+t1 or s1
+t2 , the network becomes two independent
+unicast network and it is trivial to determine its solvability. A2
+is also natural because for a solvable network, {e1 , e2 } is an
+{s1 , s2 } − {t1 } means that α1 ∈ ⟨de1 , de2 ⟩. It is an {s2 }-{t2 }
+cut means that α2 , α3 ∈ ⟨α1 , de1 , de2 ⟩. Hence, α1 , α2 , α3 ∈
+⟨de1 , de2 ⟩, which derives a contradiction.
+We use Si and Ti to denote the Xi source region and Xi
+sink region respectively, where i ∈ {1, 2, 3}. We can give the
+main result as follows.
+
+4
+
+Theorem 4.3: Suppose c({s1 , s2 }; t2 ) = 3. Then NRG(D∗ )
+is not linearly solvable if and only if one of the following two
+conditions hold:
+
+S1
+
+S3
+
+R2
+
+(1) There are two different 2-dimensional region ΠR1 ,R2
+and ΠS1 ,R3 and a P ∈ reg(S1 , R2 , R3 ) such that
+R1 ∈ Π◦ 1 ,R3 , R3 ∈ reg(S1 , R1 , R2 ), T1 ∈ Π◦ 1 ,R2 , and
+/
+S
+R
+In(T2 ) ⊆ reg(S1 , R1 , P );
+(2) There are three different 2-dimensional regions ΠS1 ,R2 ,
+ΠR1 ,R2 and ΠR3 ,R4 , and a region P ∈ reg(S1 , R2 , R3 )
+such that R4 ∈ Π◦ 1 ,R2 , T1 ∈ Π◦ 1 ,R2 , R2 ∈
+S
+R
+reg(S2 , S3 , P ) and In(T2 ) ⊆ reg(R1 , R4 , P ).
+
+S2
+
+R3
+
+R4
+
+R1
+
+Example 4.4: Let G1 be as in Example 2.5. The normal
+region graph NRG(D∗ ) of G1 has been shown in Fig. 5, where
+S1 = R1 ∪ R10 , S2 = R2 , S3 = R3 , T1 = R9 , T2 = R12 and
+T3 = R13 . By Algorithm 2 (See Fig. 2), we can ﬁnd that
+ΠS2 ,S3 = {S2 , S3 , R4 , R5 , R7 }, ΠS1 ,R4 = {S1 , R4 , R6 , R8 ,
+Q}, ΠR7 ,R8 = {R7 , R8 , T1 }, and ΠR7 ,Q = {R7 , Q, R11 } are
+all 2-dimensional regions of NRG(D∗ ). Rename R8 by R1 ,
+R7 by R2 , R4 by R3 , and R11 by P . Then condition (1) of
+Theorem 4.3 holds. So NRG(D∗ ) is not linearly solvable.
+Example 4.5: Consider a region graph NRG(D∗ ) in Fig. 6.
+By algorithm 2, we can ﬁnd that ΠS2 ,S3 = {S2 , S3 , R2 , R3 },
+ΠS1 ,R2 = {S1 , R2 , R4 , R5 }, ΠR3 ,R4 = {R3 , R4 , R1 },
+ΠR3 ,R5 = {R3 , R5 , P }, and ΠR1 ,R2 = {R1 , R2 , T1 } are all
+2-dimensional regions of NRG(D∗ ). Clearly, condition (2) of
+Theorem 4.3 holds. So NRG(D∗ ) is not linearly solvable.
+¯
+Proof of Sufﬁciency: Suppose C = {dR ∈ F3 ; R ∈ D}
+is a LNC of NRG(D∗ ).
+Suppose condition (1) holds. If ⟨dR1 ⟩ = ⟨α1 ⟩, then by
+Deﬁnition 2.4, {α2 , α3 } ⊆ ⟨dS1 , dR1 , dP ⟩ = ⟨α1 , dP ⟩, a
+contradiction. If ⟨dR1 ⟩ = ⟨α1 ⟩, then dR1 and α1 are lin̸
+early independent. By Deﬁnition 2.4, dR1 ∈ ⟨dS1 , dR3 ⟩ =
+⟨α1 , dR3 ⟩. So dR3 ∈ ⟨α1 , dR1 ⟩. Similarly, since dT1 = α1 ∈
+⟨dR1 , dR2 ⟩, we have dR2 ∈ ⟨α1 , dR1 ⟩. So by Deﬁnition 2.4,
+{α2 , α3 } ⊆ ⟨dS1 , dR1 , dP ⟩ ⊆ ⟨dS1 , dR2 , dR3 ⟩ ⊆ ⟨α1 , dR1 ⟩, a
+contradiction.
+Suppose condition (2) holds. If ⟨dR1 ⟩ = ⟨dR4 ⟩, then by
+Deﬁnition 2.4, {α2 , α3 } ⊆ ⟨dR1 , dR4 , dP ⟩ = ⟨dR1 , dP ⟩. So
+⟨dR1 , dP ⟩ = ⟨α2 , α3 ⟩. By Deﬁnition 2.4, dT1 = α1 ∈
+⟨dR1 , dR2 ⟩ ⊆ ⟨dR1 , dS2 , dS3 , dP ⟩ = ⟨α2 , α3 ⟩, a contradiction.
+If ⟨dR1 ⟩ ̸= ⟨dR4 ⟩, then dR1 and dR4 are linearly independent.
+By Deﬁnition 2.4, dR1 ∈ ⟨dR4 , dR3 ⟩. So dR3 ∈ ⟨dR4 , dR1 ⟩.
+By Deﬁnition 2.4, dS1 = dT1 = α1 ∈ ⟨dR1 , dR2 ⟩ and dR4 ∈
+⟨dS1 , dR2 ⟩. So dR4 ∈ ⟨dR1 , dR2 ⟩. Thus, dR3 ∈ ⟨dR1 , dR2 ⟩.
+Also, by Deﬁnition 2.4, {α2 , α3 } ⊆ ⟨dR4 , dR1 , dP ⟩ ⊆
+⟨dS1 , dR2 , dR3 ⟩ ⊆ ⟨dR1 , dR2 ⟩. So {α1 , α2 , α3 } ⊆ ⟨dR1 , dR2 ⟩,
+a contradiction.
+The proof of the necessity is omitted.
+
+R5
+
+P
+T1
+
+T2
+
+T3
+
+Fig 6. An example of insolvable region graph: Condition (2) of Theorem
+4.3 holds. So this region graph is not linearly solvable.
+
+ACKNOWLEDGMENT
+This paper was supported by NSFC (No. 10990011 and No.
+61170264) and the research fund for the Doctoral Program of
+Higher Education of China, and was supported in part by U.S.
+National Science Foundation grant CNS-0917087, AFOSR
+grant FA9550-11-C-0006, and DoD MURI Project FA955009-1-0643.
+R EFERENCES
+[1] R. Yeung, S.-Y. Li, and N. Cai, Network Coding Theory (Foundations and
+Trends in Communications and Information Theory). New York: Now,
+2006.
+[2] A. R. Lehman and E. Lehman, “Complexity classiﬁcation of network
+information ﬂow problems,” in Proc. 41st Annu. Allerton Conf. Communication Control and Computing, Monticello, IL, Oct. 2003.
+[3] A. Das, S. Vishwanath, S. Jafar, and A. Markopoulou, “Network Coding
+for Multiple Unicasts: An Interference Alignment Approach,” In Proc.
+ISIT, 2010.
+[4] D. Traskov, N. Ratnakar, D. S. Lun, R. Koetter, and M. Mdard, “Network
+Coding for Multiple Unicasts: An Approach based on Linear Optimization,” In Proc. ISIT, 2006.
+[5] R. Dougherty and K. Zeger, “Nonreversibility and equivalent constructions of multiple-unicast networks,” IEEE Trans. Inf. Theory, vol. 52, no.
+11, pp. 5067-5077, Nov. 2006.
+[6] S. U. Kamath, David N. C. Tse and V. Anantharam, “Generalized
+Network Sharing Outer Bound and the Two-Unicast Problem,” in Proc.
+NetCod, July. 2011.
+[7] X. Yan, J. Yang, and Z. Zhang, “An outer bound for multisource multisink
+network coding with minimum cost consideration,” IEEE Trans. Inf.
+Theory, vol. 52, no. 6, pp. 2373-2385, June. 2008.
+[8] C.-C. Wang and N. B. Shroff, “Beyond the butterﬂy−A graph- theoretic
+characterization of the feasibility of network coding with two simple
+unicast sessions,” In Proc. ISIT, 2007.
+[9] W. Song, K. Cai and R. Feng, “The Encoding Complexity of Network
+Coding for Two Simple Multicast Sessions,” IEEE Trans. Inf. Theory,
+submitted. (Avalilable at: http://arxiv.org/pdf/1007.2928.)
+[10] C. Fragouli and E. Soljanin, “Information ﬂow decomposition for
+network coding,” IEEE Trans. Inf. Theory, vol. 52, no. 3, pp. 829-848,
+Mar. 2006.
+
+V. C ONCLUSIONS
+We investigated the network coding problem of two-unicast
+network with rate (1,2). We gave a characterization of its
+linearly solvability under the condition that c({s1 , s2 }, t) = 3
+by developing a region decomposition method.
+
+5
+
+

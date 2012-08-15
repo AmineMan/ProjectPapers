@@ -1,0 +1,807 @@
+Creator:        TeX
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Fri May 18 12:32:10 2012
+ModDate:        Tue Jun 19 12:54:45 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      518643 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569566547
+
+Erasure-Correcting vs. Erasure-Detecting Codes for
+the Full-Duplex Binary Erasure Relay Channel
+Marina Ivashkina
+
+Iryna Andriyanova
+
+ETIS-UMR8051, ENSEA–
+Univ. of Cergy-Pontoise – CNRS
+Cergy-Pontoise, France
+marina.ivashkina@ensea.fr
+
+ETIS-UMR8051, ENSEA–
+Univ. of Cergy-Pontoise – CNRS
+Cergy-Pontoise, France
+iryna.andriyanova@ensea.fr
+
+Pablo Piantanida
+
+Charly Poulliat
+
+Dept. of Telecoms
+Dept. of Telecoms
+ENSEEIHT,
+SUPELEC
+Toulouse, France
+Gif-sur-Yvette, France
+pablo.piantanida@supelec.fr poulliat@enseeiht.fr
+
+model, assuming the binary erasure channel for simplicity
+of calculation. Two big classes of sparse-graph codes are
+considered: good erasure-correcting codes and good erasuredetecting (i.e. bad erasure-correcting) codes. The efﬁciency of
+both of them in the BM transmission model is studied, in order
+to giving an insight what are the efﬁcient codes for the BM
+model, and for the FD channel in particular.
+A notation, ﬁrst used in the paper, is marked by blue.
+
+Abstract—In this paper, the asymptotic iterative performance
+of block-Markov, sparse-graph codes over the binary erasure
+relay channel is investigated. Note that the full-duplex relay
+channel is a particular case of the considered model. We obtain
+two interesting results: a) the block-Markov structure does not
+improve the asymptotic performance of good erasure-correcting
+sparse-graph codes; b) under certain conditions, it does however
+improve the asymptotic performance of good erasure-detecting
+(i.e. bad erasure-correcting) sparse-graph codes.
+
+I. I NTRODUCTION
+
+II. O UR F RAMEWORK
+
+Over the last decade, coding for cooperative communications using the Decode-and-Forward (DF) strategy has received a growing attention from both the coding and communication theory communities. Since the early works on
+distributed turbo-codes [1], they have been numerous coding
+schemes, proposed for different duplexing modes (half- (HD)
+and full-duplex (FD) communications) and over different
+channels (erasure, Gaussian or Rayleigh-fading models) [1][2]. Among the proposed schemes, the ones based on sparsegraph codes have been usually considered; their iterative performance was mainly evaluated over HD relay channels (asusming both orthorgonal and non-orthogonal multiple accesses at
+the destination terminal). The most studied sparse-graph codes
+for relay channels are bilayer Low-Density Parity-Check (BLDPC) codes [3]. The B-LDPC scheme gave rise to numerous
+extensions and improvements (see [4] and references therein).
+A recent extension of the B-LDPC scheme is spatially-coupled
+B-LDPC codes [2].
+An interesting question is whether the sparse-graph codes
+perform well over the FD relay channel. Note that the FD
+case is more involved than the HD case: the FD communication often assumes the non-orthogonal multiple access
+at the destination end, thus implying a potential decrease
+in performance of sparse-graph codes (see, for instance, [5]
+where the observed performance of B-LDPC codes over the
+FD binary erasure relay channel is not impressive).
+What are the codes performing well over the FD relay
+channel? Trying to respond to this question, we focus on
+a more general transmission model, the so called blockMarkov (BM) DF scheme. Note that the FD relay channel is a
+particular case of this model. We investigate the asymptotic
+iterative performance of sparse-graph codes under the BM
+
+A. Transmission Model
+Consider a relay channel that consists of the source S,
+communicating with the destination D, with the help of the
+relay node R. For simplicity of analysis, the SR link is
+assumed to be perfect and all links to D are modeled by binary
+erasure channels. The channel is described by the operations
+at S, R and D:
+(R) At R, the DF protocol is assumed [6], i.e. R (perfectly)
+receives the source message X1 , computes the bin message b, re-encodes b to message X2 (b), using a code CR ,
+and sends X2 it to D during the next time slot.
+(D) D receives erased versions of X1 and X2 , by orthogonal
+reception (OR) or non-orthogonal reception (NOR):
+(i) for OR, the erased versions of X1 and X2 (denote
+them by YS and YR ) are received separately, via independent binary erasure channels with respective erasure
+probabilities SD and RD ;
+(ii) for NOR, the link from S and R to D is a multiple
+access channel (MAC) with output Y . W.l.o.g, it is
+assumed to be the sum mod-2 MAC [5] such that
+
+w.p.(1 − SD )(1 − RD );
+X1 ,
+
+
+X ⊕ X , w.p. (1 −
+1
+2
+SD ) RD ;
+Y =
+X2 ,
+w.p. SD (1 − RD );
+
+
+
+?,
+w.p. SD RD ,
+where SD and RD are probabilities, quantifying the
+quality of SD and RD links.
+(S) At S, let ω1 . . . ωM be M information packets to be sent
+to D. Then, for each ω, S generates a message X, using
+
+1
+
+CS CR
+0
+
+CS CR
+
+CS CR
+
+block 1
+
+block 2
+
+block M
+
+disjoint) only in the case of independent encoding at S and
+OR at D.
+Examples of CS CR :
+1) If b(X) = ω, this corresponds to the bilayer-lengthened
+(BL) construction from [3]. One thus deﬁnes the BLLDPC ensemble if both CS and CR codes are LDPC,
+or the BL-LDGM ensemble (if both codes are LDGM1 );
+2) If b is a linear combination of bits of X, this corresponds
+to the bilayer-expurgated (BE) construction from [3].
+Usually, |b| < |ω|. BE-LDPC or BE-LDGM ensembles
+may be deﬁned in a similar way.
+Examples of transmission functions T : Assume binary erasure channel. Denote by p and p2 the respective erasure
+probabilities of messages X and X2 . Also, denote x = 1 − x.
+¯
+Then there are four cases:
+1) Independent encoding + OR: p = SD , p2 = RD ;
+2) Block-Markov encoding + OR:
+p = 1 − ¯SD p2 , p2 = RD (1 − ¯SD p) ;
+¯
+¯
+3) Independent encoding + NOR:
+p = SD + ¯SD RD p2 , p2 = SD RD + ¯SD (1 − p RD );
+¯
+4) Block-Markov encoding + NOR:
+p = SD + ¯SD ¯RD p2 , p2 = RD + ¯SD ¯RD p.
+
+0
+
+X2 , X
+
+...
+
+T1
+
+T2
+
+TM
+Y or (YS , YR )
+
+Fig. 1. General block-Markov structure to transmit M information messages
+w. CR CS blocks are coding blocks, T blocks are transmission blocks.
+Messages X and X2 are respectively presented by back and white nodes.
+Grey nodes represent are received messages (couples (YS , YR ) for OR and
+Y ’s for NOR).
+
+ω
+
+CS
+
+X
+
+b(X)
+
+CR
+
+X2
+
+Fig. 2. Bilayer code CS CR : ω is the information word of code CS ; X and
+X2 are codewords of codes CS and CR respectively; b is the information
+word of code CR is the bin number for codewords of CS .
+
+C. Decoding Schedules for the BM Scheme
+One takes advantage of the memory of the block-Markov
+X ⊕ X2 (bpast ), if block-Markov encoding used; scheme during decoding process. Let us consider two possible
+X1 =
+decoding schedules: joint iterative decoding and backward
+X,
+if independent encoding.
+decoding.
+Here bpast denotes the bin message computed for the
+Joint iterative decoding is a version of the joint decoding
+previous transmitted codeword X, and X2 (bpast ) is the algorithm, and it consists of the following steps:
+codeword from code CR , corresponding to bpast . Also, (1) Set l = 1.
+bpast = 0 at the beginning of the transmission.
+(2) Perform one forward and one backward steps of decoding
+(SR) If S and R transmit to D simultaneously, the communithrough the Markov chain and compute the estimates
+cation is full-duplex (FD), and it is half-duplex (HD) if S
+ˆ
+ˆ (l)
+X (l) (i) and X2 (i) for each block i, 1 ≤ i ≤ M .
+and R transmit at different time intervals. In FD regime, (3) Set l := l + 1 and return to Step (2), until the maximum
+at time slot i, R should be able to receive X1 (ωi ) from
+number L of forward/backward decodings is reached.
+S and to send X2 (bi (X(i − 1))) to D at the same time. (4) Compute ﬁnal estimates w’s given X (L) ’s and X (L) ’s.
+ˆ
+ˆ
+ˆ
+2
+Note that the HD communication is always OR at D, the
+Note that the joint iterative decoding is optimal, if the local
+FD one may be both OR (reception at separate frequency decoding of each C C block is based on the maximumS R
+bands for SD and RD links) and NOR (same frequency likelihood decoding algorithm; it is therefore sub-optimal if
+band).
+CS CR block are based on sparse-graph codes and are decoded
+iteratively.
+B. General Block-Markov (BM) Scheme
+Backward decoding is simply deﬁned as the ﬁrst backward
+All versions of the transmission protocol from the previous
+step of the joint iterative decoding.
+section can be represented by means of a general block-Markov
+For a decoding algorithm A, let us deﬁne the decoding
+(BM) scheme, given in Fig.1. In this ﬁgure, the i-th block
+success and the decoding convergence region:
+CS CR represents the bilayer coding block [3] with two codes
+Deﬁnition 1: Given the couple ( SD , RD ), the decoding
+CS and CR , corresponding to information message ωi , and is said to be successful under decoding algorithm A if all
+linked through the bin message b(X(i)) (see Fig.2). The block messages X(i), 1 ≤ i ≤ M , are successfully recovered.
+Ti represents the transmission function, used at transmission Moreover, the convergence region Γ(A) , associated with A, is
+i. This function depends on the reception mode at D (OR the ensemble of all couples (
+SD , RD ) so that the decoding
+or NOR), on the encoding procedure at S (block-Markov or is successful.
+independent encoding) and on the channel model (e.g. binary
+Remark that Γ(A) is in fact included into the ”true” conerasure channel).
+vergence region, for which one would ask for recovering w’s
+The general scheme in Fig.1 is a block-Markov chain of
+1 Low-Density Generator Matrix
+order 1. It degenerates to order 0 (i.e. al CS CR blocks become
+a code CS , and transmits the following message X1 :
+
+2
+
+(l)
+
+(
+
+/F
+
+SD ,
+
+(l)
+
+βi
+
+βi
+Ti
+
+RD )
+
+(
+
+SD ,
+
+RD )
+
+Fig. 4. Block Ti and its input/output forward/backward erasure probabilities.
+
+B. T Block: Transfer Functions Gfwd /Gbwd
+Similarly to the previous case, output erasure probabilities at
+forward/backward step l for transmission block Ti are linked
+with input probabilities as (see Fig.4):
+
+In order to perform the analysis, one should deﬁne the
+evolution of erasure probabilities during forward and backward
+steps of joint iterative decoding (while backward decoding is
+a particular case of the joint iterative one).
+A. CS CR Block: Transfer Functions F
+
+(l)
+
+αi
+Ti
+
+III. D ENSITY E VOLUTION OF THE BM S CHEME
+
+fwd
+
+(l)
+
+αi
+
+only, instead of recovering X’s in whole. However, numerical
+results show that the two regions are very close, and the region
+Γ(A) is much easier to manipulate.
+In next sections, we ﬁnd convergence regions ΓBWD and
+JNT
+Γ
+for respective backward and joint iterative decoding algorithms. Two cases are treated separately: erasure correcting
+(EC) codes and erasure-detecting (ED) codes.
+
+(l)
+
+αi
+
+bwd
+
+(l)
+βi
+
+Consider the i-th block CS CR . During forward step l, one
+computes the estimate of X2 (i), given the estimate of X(i)
+from step l and the estimate of X2 (i) from step (l − 1) (see
+(l)
+Fig.2). We denote by αi−1 the erasure probability of X(i)
+(l)
+and by αi – the erasure probability of X2 (i) after forward
+decoding. Similarly, during backward step l, one computes
+the estimate of X(i), given the estimate of X2 (i) from step
+l and the estimate of X(i) from step (l − 1). We denote
+(l)
+(l)
+by βi the erasure probability of X2 (i) and by βi−1 – the
+erasure probability of X(i) after backward decoding. These
+four probabilities are shown in Fig.3.
+
+=
+
+Gfwd ,
+SD
+
+=
+
+(l)
+
+G
+
+(l)
+
+(3)
+
+(l)
+(βi ).
+
+(4)
+
+(αi ) = Gfwd (αi );
+
+bwd
+
+RD
+
+(l)
+(βi )
+SD , RD
+
+bwd
+
+=G
+
+where Gfwd and Gbwd are forward and backward transfer
+functions for transmission block T .
+In what follows, the subscript ( SD , RD ) is omitted.
+C. Density Evolution Equations Using Transfer Functions
+Density evolution equations for some BM schemes have
+been ﬁrst derived in [5]. However, here we present them by
+means of transfer functions F fwd , F bwd , Gfwd and Gbwd . Such
+a representation is easier to understand as it is somewhat
+similar to EXIT charts [8].
+The density evolution of the BM scheme is given by:
+(0)
+
+βi−1
+
+Gfwd (1), if 2 ≤ i ≤ M,
+Gfwd (0), if i = 1,
+
+(5)
+
+(0)
+
+CS CR block i
+αi−1
+
+=
+=
+
+Gbwd (1), if 1 ≤ i ≤ M − 1,
+Gbwd (0), if i = M,
+
+(6)
+
+αi
+βi
+
+αi
+
+βi
+
+for l = 0 and
+Fig. 3.
+Block CS CR and related input/output erasure probabilities for
+forward (α’s) and backward (β’s) steps.
+
+αi
+
+Now note that αi ’s, αi ’s, βi ’s and βi ’s are linked as follows:
+
+βi
+
+(l)
+
+(l)
+
+βi−1
+
+=
+
+(l)
+
+(l)
+
+fwd
+Fβ (l−1) (αi−1 ) = F fwd (αi−1 );
+(l)
+
+(l)
+
+bwd
+Fα(l−1) (βi ) = F bwd (βi );
+
+(l)
+
+(7)
+
+= Gbwd F bwd (βi+1 ) ;
+
+(l)
+
+(8)
+
+for l > 0.
+The density evolution at step l can be represented graphically. As an example , the evolution of α’s is given in Fig.5.
+
+(1)
+
+i
+
+=
+
+= Gfwd F fwd (αi−1 ) ;
+
+(l)
+
+αi
+
+(l)
+
+(2)
+
+i−1
+
+α(l)
+
+where F fwd and F bwd are forward and backward transfer
+functions for block CS CR . If CS CR is a sparse-graph bilayer
+code, decoded iteratively, the transfer functions may be computed via corresponding BP EXIT curves (see, for instance,
+Thm.3.120 [7]). Note that both F fwd and F bwd are indexed by
+erasure probabilities from step (l − 1). It can be shown that:
+Proposition 1: 1) Fx (y) is non-decreasing both with x and
+with y; 2) F0 (0) = 0 and F1 (1) = 1.
+The indices will be further omitted for simpliﬁcation.
+We will further need the following quantity:
+Deﬁnition 2: Given erasure probabilities and 2 , related
+to messages X and X2 at two inputs of block CS CR , one
+deﬁnes Γ( , 1 ) to be the convergence region of CS CR , i.e.
+the ensemble of all couples ( , 2 ) so that the decoding of the
+block CS CR is successful.
+
+α(l) = F fwd (α(l) )
+
+i=∞
+
+α(l) = Gfwd (α(l) )
+i=0
+Fig. 5.
+
+Evolution of
+
+(l)
+αi
+
+α(l)
+with i for some ﬁxed l > 0.
+
+The joint iterative decoding converges asymptotically for
+(∞)
+(∞)
+given couple ( SD, RD ), if at least one of α∞ and β∞ is 0.
+(1)
+The backward decoding converges asymptotically, if β∞ = 0.
+
+3
+
+IV. C ASE OF E RASURE -C ORRECTING (EC) C ODES
+
+And follows directly that:
+Theorem 2: ΓBWD ⊇ Γ and ΓJNT ⊇ Γ.
+We obtain an interesting result here: the performance of
+the BM scheme based on ED codes may be better than the
+performance of one ED CS CR block. So, is it possible to attain
+the theoretical limit by using this scheme, for any couple of
+channel erasure probabilitiies? Unfortunately,
+Theorem 3: The BM scheme based on ED codes is bounded
+away from capacity for SD = 1.
+Proof: W.l.o.g., consider OR. For SD = 1, one has
+Gfwd (y) = 1 and Gbwd (y) = RD . Thus the BM scheme
+is broken into separate blocks CS CR . So, ΓJNT = Γ, which is
+strictly included into the capacity convergence region.
+One can show that at another extreme point RD = 1,
+the BM scheme is not bounded from the capacity. Therefore,
+the use of an ED CS code may be beneﬁcial for asymptotic
+performance of the overall BM scheme, while it is better to
+keep the EC CR code. Such a construction is given in Section
+VI. However, before it let us give an example of two ED codes,
+in order to illustrate Theorem 2 and to show that indeed one
+gets an improvement of the convergence region, if the blockMarkov encoding is used (i.e. the BM chain has memory > 1,
+independently on the reception mode).
+
+Consider the BM scheme based on two EC codes.
+Deﬁnition 3: EC codes are codes so that, in the limit of
+large codelengths n, the erasure probability after decoding x
+given input erasure probability is 0 if < ∗ and is
+0 for
+≥ ∗ . ∗ is the decoding threshold.
+Many known families of existing codes (e.g. convolutional
+codes, LDPC codes, turbo codes etc.) are EC codes.
+When the bilayer CS CR scheme is based on good EC codes,
+then the following approximations are tight:
+fwd
+Fβ (α) ≈ 1{(α, β) ∈ Γ},
+
+bwd
+Fα (β) ≈ 1{(β, α) ∈ Γ}, (9)
+
+namely F fwd and F bwd can be approximated by step functions.
+Then the following holds:
+Lemma 1: For a BM structure based on EC codes,
+ΓBWD
+
+=
+
+Γ(Gfwd (1), Gbwd (0));
+
+ΓJNT
+
+=
+
+Γ(Gfwd (1), Gbwd (0)) ∪ Γ(Gfwd (0), Gbwd (1)).
+
+Main idea of the proof: Consider the forward step (the
+backward step is similar). By Fig.1, the input message of
+the 1st block CS CR is Gfwd (0), while the initial parameter
+β = Gbwd (1). If (Gfwd (0), 1) ∈ Γ, then the output message
+is 0, and the input message of the 2nd block CS CR is again
+Gfwd (0). Therefore, one can show that the forward step of
+decoding is successful if and only if the decoding of one
+CS CR block with input parameters Gfwd (0) and Gbwd (1) is
+successful.
+Note that, for EC codes, the forward/backward evolution
+has a different behaviour than illustrated in Fig.5: as the curve
+F is a step function, then the convergence point is achieved
+in only one step, and it is either (1, 1) (decoding failure) or
+(0, 0) (decoding success).
+It immediately follows that:
+Theorem 1: For EC codes, ΓBWD ⊆ Γ and ΓJNT ⊆ Γ.
+Therefore:
+Corrollary 1: The necessary condition to design a capacityapproaching BM scheme based on EC codes, is to choose a
+capacity-approaching CS CR bilayer code.
+
+A. Example of a BM Scheme Based on ED Codes
+Consider the example when the CS CR code is a BLLDGM code, i.e. two ED codes CS and CR are two LDGM
+codes with respective degree distributions (λS (x), ρS (x)) and
+(λR (x), ρR (x)). To improve ΓJNT , one can optimize distributions λS (x) and λR (x) (for simplicity, ﬁxed ρ’s are assumed):
+imax
+
+imax
+
+λS,i /i
+
+max
+i=1
+
+given
+
+(∞)
+(∞)
+(α∞ , β∞ )
+
+∈ Γ;
+
+λS,i = 1;
+i=1
+
+λS,i ≥ 0; 1 ≤ i ≤ imax .
+This is a non-linear optimization problem, and it can be solved
+numerically (e.g. using blind random search optimization [9]).
+Example 1: Let CR be a code taken from a regular (x4 , x4 )
+LDGM ensemble, having the iterative decoding threshold
+∗
+= 0.313. Soving the optimization problem stated above,
+we obtain
+
+V. C ASE OF E RASURE -D ETECTING (ED) C ODES
+Now consider the BM scheme based on two ED codes.
+Deﬁnition 4: ED codes are codes so that, in the limit of
+large codelengths n, the erasure probability after decoding x
+smoothly increases with input erasure probability . So, if ∗
+is the decoding threshold, then x( ∗ + ∆ ) = x( ∗ ) + ∆x with
+∆x relatively small.
+ED codes are typically bad erasure-correctors (e.g. LDGM
+codes under iterative decoding), as their threshold ∗ lies far
+from the theoretical limit. Using ED codes simply imply that
+F fwd and F bwd are smoothly increasing with channel erasure
+probabilities. So the forward/backward evolution of erasure
+probabilities is smooth as well, as it is illustrated in Fig.5.
+Similar as in the previous section:
+Lemma 2: For ED codes, ΓBWD = Γ(Gfwd (1), Gbwd (0)) and
+(∞)
+(∞)
+JNT
+Γ
+= Γ(α∞ , β∞ ).
+
+λS (x) = 0.048x + 0.048x2 + 0.02x3 + 0.0196x4 + 0.046x5
++0.044x6 + 0.103x7 + 0.064x8 + 0.061x9 + 0.017x10
++0.116x11 + 0.089x12 + 0.1096x13 + 0.086x14 + 0.129x15 .
+The upper boundary of ΓJNT of the obtained BM scheme,
+with the block-Markov encoding, is given in Fig.6. Dashed
+lines represent OR, full lines – NOR. Black curves are
+computed upper boundaries; theoretical limits are drawn in
+grey. Note that at RD = 1, the gap to capacity is very
+small, around 0.003, due to the ED CR code and the BM
+structure. The gap to capacity is large at SD = 1, which is
+also consistent with our analysis.
+
+4
+
+SD
+
+SD
+
+, NOR
+NOR
+(3,6,128) LDPC, OR
+
+RD
+
+RD
+
+Fig. 6. Upper boundary of ΓJNT for the BM scheme based on BL-LDGM
+codes, for block-Markov encoding and OR/NOR.
+
+Fig. 7. Upper boundary of ΓJNT of the BM scheme based on BE-LDGM
+codes, for block-Markov encoding and OR/NOR.
+
+VI. ED+EC B ILAYER C ONSTRUCTION
+
+only concerns two extreme points
+
+A possible way to design an efﬁcient bilayer CS CR code
+in the BM scheme of memory > 1 is to choose the CR code
+to be a (capacity-approaching) EC code and the CS code to
+be an ED code. Let us consider the following construction:
+Deﬁnition 5: Bilayer-Expurgated LDGM (BE-LDGM)
+codes are bilayer CS CR codes such that CS and CR codes
+are given respectively by an LDGM and an LDPC, and
+b(X) = ω. Corresponding degree distributions are denoted
+by (λS (x), ρS (x)) and (λR (x), ρR (x)).
+This will be our design criterion:
+Proposition 2: Consider a BE-LDGM ensemble, and let
+∗
+LDP C be the iterative threshold of the constituent LDPC
+part. The BE-LDGM ensemble simultaneously approaches the
+theoretical limit in both points SD = 1 and RD = 1 if
+∗
+LDP C
+∗
+LDP C
+
+=
+≥
+
+th
+SD ,
+th
+RD LS (1
+
+− (1 −
+
+−
+
+th
+SD )),
+
+= 1 and
+
+RD
+
+= 1.
+
+VII. ACKNOWLEDGEMENT
+M.I. was ﬁnanced by the DIM COREPHY project. Authors
+thank K. Kasai for providing simulation results of spatiallycoupled bilayer codes.
+VIII. C ONCLUSION
+In this paper, we have shown that one can design efﬁcient
+sparse-graph bilayer codes, by choosing the CS code to be
+erasure-detecting (ED) and making use of the block-Markov
+encoding at S. Note that the construction behaves well for any
+reception mode, OR or NOR, in contrast to all other bilayer
+structures, which behave well for OR only. Whether or not one
+can approach the capacity boundary with this construction is
+still an open question.
+
+(10)
+th
+SD )ρS (1
+
+SD
+
+R EFERENCES
+
+(11)
+
+[1] M. Valenti and B. Zhao, “Distributed turbo codes: towards the capacity
+of the relay channel,” in Vehicular Technology Conference, 2003. VTC
+2003-Fall. 2003 IEEE 58th, vol. 1, 2003, pp. 322 – 326 Vol.1.
+[2] H. Uchikawa, K. Kasai, and K. Sakaniwa, “Spatially coupled ldpc codes
+for decode-and-forward in erasure relay channel,” in Information Theory
+Proceedings (ISIT), 2011 IEEE International Symposium on, 31 2011aug. 5 2011, pp. 1474 –1478.
+[3] P. Razaghi and W. Yu, “Design of joint network-low density parity check
+codes based on the EXIT charts,” Transactions on Information Theory,
+IEEE, vol. 57, no. 10, Oct. 2007.
+[4] T. V. Nguyen, A. Nosratinia, and D. Divsalar, “Bilayer protograph codes
+for half-duplex relay channels,” in Information Theory Proceedings
+(ISIT), 2010 IEEE International Symposium on, 2010, pp. 948 –952.
+[5] M. Ivashkina, I. Andriyanova, C. Poulliat, and P. Piantanida, “Blockmarkov ldpc scheme for half- and full-duplex erasure relay channel,”
+in Information Theory, 2011. ISIT 2011. IEEE International Symposium
+on, 31 July 2011-August 5 2011.
+[6] T. Cover and A. Gamal, “Capacity theorems for the relay channel,”
+Information Theory, IEEE Transactions on, vol. 25, no. 5, pp. 572–584,
+Sep 1979.
+[7] T. Richardson and R. Urbanke, “Modern coding theory,” Cambridge
+University Press, 2008.
+[8] S. ten Brink, “Convergence of iterative decoding,” Electron. Lett.,
+vol. 35, 1999.
+[9] W. H. J. Gentle and Y. Mori, Handbook of Computational Statistics.
+Springer, 2004.
+[10] P. Oswald and A. Shokrollahi, “Capacity-achieving sequences for the
+erasure channel,” Information Theory, IEEE Transactions on, vol. 48,
+no. 12, pp. 3017 – 3028, dec 2002.
+
+where th and th denote Shannon limits for R-D and S-D
+SD
+RD
+links, and LS (x) is the node-perspective degree distribution
+of variable nodes for the CS ensemble (i.e. LDGM).
+Proof: For SD = 1, the CS CR performance is conditioned by the performance of the LDPC part (the LDGM is
+not able to decode at all), so (10) follows directly. Further, if
+RD = 1, then the CS CR decoding succeeds if the decoding
+of the LDGM part has the output probability < ∗ C .
+LDP
+Example 2: Choose the CR part to be an LDPC ensemble
+with a constant check degree and λ(x) taken from [10]. Such
+an ensemble has the gap to capacity 10−3 over the BEC.
+Choose the CS part to be the (x4 , x4 ) LDGM ensemble. Note
+that (10) and (11) both hold. Upper boundaries of ΓJNT are
+shown in Fig.7: dashed lines represent OR, full lines – NOR.
+One can see that the obtained boundaries lie quite close to
+theoretical limits. For comparison, the dotted curve represents
+the upper boundary for the scheme with independent encoding
+and OR, based on spatially-coupled (3,6,128) LDPC ensemble
+from [2], which is one of efﬁcient codes for OR, known by
+now. The boundary of our scheme (black dashed one) lies
+below the dotted curve; however, any optimization of the BELDGM code have not been done yet – our design criterion
+
+5
+
+

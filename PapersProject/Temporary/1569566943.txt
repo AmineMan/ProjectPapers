@@ -1,0 +1,826 @@
+Creator:        TeX
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Fri May 18 23:24:35 2012
+ModDate:        Tue Jun 19 12:54:32 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      444851 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569566943
+
+Nested Lattice Codes for Arbitrary Continuous
+Sources and Channels
+Aria G. Sahebi and S. Sandeep Pradhan
+Department of Electrical Engineering and Computer Science,
+University of Michigan, Ann Arbor, MI 48109, USA.
+Email: ariaghs@umich.edu, pradhanv@umich.edu
+
+decoder (the Winer-Ziv problem [22], [23]). We consider these
+two problems in their most general settings i.e. when the
+source and the channel are arbitrary but memoryless. We use
+nested lattice codes with joint typicality decoding/encoding
+rather than lattice decoding. We consider a lattice code ensemble with simpler random dithers and without modulo-Λ
+transformations as used in [25]. We show that in both settings,
+from an information-theoretic point of view, nested lattice
+codes are optimal.
+The paper is organized as follows: in Section II we present
+the required preliminaries and introduce our notation. In Section III we show the optimality of nested lattice codes for channels with state information (the Gelfand-Pinsker problem).
+We brieﬂy present the optimality of nested lattice codes for
+source coding with side information (the Wyner-Ziv problem)
+in Section IV and we conclude in Section V.
+
+Abstract—In this paper, we show that nested lattice codes
+achieve the capacity of arbitrary continuous channels with or
+without non-causal state information at the transmitter. We also
+show that nested lattice codes are optimal for source coding
+with or without non-causal side information at the receiver for
+arbitrary continuous sources. We show the optimality of lattice
+codes for the Gelfand-Pinsker and Wyner-Ziv problems in their
+most general settings.
+
+I. I NTRODUCTION
+Lattice codes for continuous sources and channels are the
+analogue of linear codes for discrete sources and channels and
+play an important role in information theory and communications. Linear/lattice and nested linear/lattice codes have been
+used in many communication settings to improve upon the
+existing random coding bounds [2], [10]–[13], [16], [18], [20].
+In [2] and [12] the existence of lattice codes satisfying
+Shannon’s bound has been shown. These results have been
+generalized and the close relation between linear and lattice
+codes has been pointed out in [13]. In [24], several results
+regarding lattice quantization noise in high resolution has
+been derived and the problem of constructing lattices with
+an arbitrary quantization noise distribution has been studied
+in [7].
+Nested lattice codes were introduced in [26] where the
+concept of structured binning is presented. Nested linear/lattice
+codes are important because in many communication problems, specially multi-terminal settings, such codes can be
+superior in average performance compared to random codes
+[11]. It has been shown in [25] that nested lattice codes are
+optimal for the Wyner-Ziv problem when the source and side
+information are jointly Gaussian. The dual problem of channel
+coding with state information has been addressed in [4]–[6],
+[21] and the optimality of lattice codes for Gaussian channels
+has been shown. In [3], it was shown that random linear
+codes provide good binning schemes for general Slepian-Wolf
+coding.
+In a recent work [17], it has been shown that nested linear
+codes are optimal for arbitrary discrete memoryless channels
+with state information at the transmitter. In this paper we focus
+on two problems: 1) The point to point channel coding with
+state information at the encoder (the Gelfand-Pinsker problem
+[8]) and 2) Lossy source coding with side information at the
+
+II. P RELIMINARIES
+1) Channel Model: We associate two sets X and Y with
+the channel as the channel input and output alphabets. The set
+of channel states is denoted by S and it is assumed that the
+channel state is distributed over S according to PS . When the
+state of the channel S is s ∈ S, the input-output relation of the
+channel is characterized by a transition kernel WY |XS (y|x, s)
+for x ∈ X and y ∈ Y. We assume the state of the channel is
+known at the transmitter non-causally. The channel is speciﬁed
+by (X , Y, S, PS , WY |XS , w) where w is the cost function.
+2) Source Model: The source is modeled as a discretetime random process X with each sample taking values in
+a ﬁxed set X called alphabet. Assume X is distributed jointly
+with the random variable S according to the measure PXS
+over X × S where S is an arbitrary set. We assume that
+the side information S is known to the receiver non-causally.
+The reconstruction alphabet is denoted by U and the quality
+of reconstruction is measured by a single-letter distortion
+functions d : X × U → R+ . We denote such sources by
+(X , S, U, PXS , d).
+3) Linear and Coset Codes Over Zp : For a prime number
+k
+p, a linear code over Zp of length n and rate R = n log p
+k
+is a collection of p codewords of length n which is closed
+under mod-p addition. Any such code can be characterized
+by its generator matrix G ∈ Zk×n . The set of all message
+p
+tuples for this code is Zk and the set of all codewords is the
+p
+range of the matrix G. The linear encoder maps a message
+
+This work was supported by NSF grants CCF-0915619 and CCF-1116021.
+
+1
+
+¯
+The set of messages consists of the set of all bins of Λi in
+¯ o . We denote a nested lattice code by a pair (Λi , Λo ).
+¯ ¯
+Λ
+7) Achievability for Channel Coding: A transmission system with parameters (n, M, Γ, τ ) for reliable communication
+over a given channel (X , Y, S, PS , WY |XS ) with cost function
+w : X → R+ consists of an encoding mapping and a
+decoding mapping e : S n × {1, 2, . . . , M } → X n , f :
+Y n → {1, 2, . . . , M } such that for all m = 1, 2, . . . , M ,
+
+tuple u ∈ Zk to the codeword x where x = uG and the
+p
+operations are done mod-p. A coset code over Zp is a shift
+of a linear code by a ﬁxed vector. A coset code of length n
+k
+and rate R = n log p is characterized by its generator matrix
+k×n
+G ∈ Zp and it’s shift vector (dither) B ∈ Zn . The encoding
+p
+rule for the corresponding coset code is given by x = uG+B,
+where u is the message tuple and x is the codeword.
+4) Lattice Codes and Shifted Lattice Codes: A lattice code
+of length n is a collection of codewords in Rn which is closed
+under real addition. A shifted lattice code is any translation
+of a lattice code by a real vector. In this paper, we use coset
+codes to construct (shifted) lattice codes as follows: Given a
+coset code C of length n over Zp and a step size γ, deﬁne
+Λ(C, γ, p) = γ(C − p−1 ). Then the corresponding mod-p
+2
+¯
+lattice code Λ(C, γ, p) is the disjoint union of shifts of Λ by
+¯
+(γv + Λ). Note that
+vectors in γpZn . i.e. Λ(C, γ, p) =
+
+n
+
+if x = (x1 , · · · , xn ) = e(m) then
+M
+1
+n
+m=1 M P r (f (Y )
+
+v∈pZn
+
+(1)
+
+Ci = aG + B|a ∈ Zl
+p
+
+(2)
+
+It is clear that the inner code is contained in the outer code.
+Furthermore, the inner code induces a partition of the outer
+code through its shifts. For m ∈ Zk deﬁne the mth bin of Ci
+p
+in Co as Bm = aG + m∆G + B|a ∈ Zl . The outer code
+p
+is the disjoint union of all the bins and each bin index m ∈ Zk
+p
+is considered as a message. We denote a nested linear code
+by a pair (Ci , Co ).
+6) Nested Lattice Codes: Given a nested linear code
+(Ci , Co ) over Zp and a step size γ, deﬁne
+p−1
+Λi (Ci , γ, p) = γ(Ci −
+),
+(3)
+2
+p−1
+Λo (Co , γ, p) = γ(Co −
+)
+(4)
+2
+Then the corresponding nested lattice code consists of an inner
+lattice code and an outer lattice code
+¯
+Λi (Ci , γ, p) = ∪v∈pZn (γv + Λi )
+(5)
+¯
+Λo (Co , γ, p) = ∪v∈pZn (γv + Λo )
+
+w(xi ) < Γ and
+i=1
+
+= m|X n = e(m)) ≤ τ .
+Given a channel (X , Y, S, fS , fY |XS ), a pair of non negative
+numbers (R, W ) is said to be achievable if for all > 0 and
+for all sufﬁciently large n, there exists a transmission system
+for reliable communication with parameters (n, M, Γ, τ ) such
+1
+that n log M ≥ R − , Γ ≤ W + and τ ≤ .
+8) Achievability for Source Coding: A transmission system with parameters (n, Θ, ∆, τ ) for compressing a given
+source (X , S, U, PXS , d(·)) consists of an encoding mapping
+e : X n → {1, 2, · · · , Θ} and a decoding mapping g : S n ×
+{1, 2, · · · , Θ} → U n such that P (d(X n , g(e(X n ))) > ∆) ≤
+τ where X n is the random vector of length n generated by
+the source. In this transmission system, n denotes the block
+length, log Θ denotes the number of channel uses, ∆ denotes
+the distortion level and τ denotes the probability of exceeding
+the distortion level ∆.
+Given a source, a pair of non-negative real numbers (R, D)
+is said to be achievable if there exists for every > 0, and
+for all sufﬁciently large numbers n a transmission system with
+parameters (n, Θ, ∆, τ ) for compressing the source such that
+1
+n log Θ ≤ R + , ∆ ≤ D + and τ ≤ .
+9) Mutual Information and Kullback-Leibler divergence:
+Let Q = {A1 , A2 , · · · , Ar } be a ﬁnite measurable partition
+of Rd . For random variables U and Y on Rd with measure
+PU Y deﬁne the quantized random variables UQ and YQ
+on Q with measure PUQ YQ (Ai , Aj ) = PU Y (Ai , Aj ). The
+Kullback-Leibler divergence between U and Y is deﬁned
+as D(U Y ) = supQ D(UQ YQ ) where D(UQ YQ ) is the
+discrete Kullback-Leibler divergence and the supremum
+is taken over all ﬁnite partitions Q of Rd . Similarly,
+the mutual information between U and Y is deﬁned as
+I(U ; Y ) = supQ I(UQ ; YQ ) where I(UQ ; YQ ) is the discrete
+mutual information between the two random variables and
+the supremum is taken over all ﬁnite partitions Q of Rd .
+
+¯
+Λ(C, γ, p) ⊆ Λ(C, γ, p) is a scaled and shifted copy of the
+linear code C.
+5) Nested Linear Codes: A nested linear code consists of
+two linear codes, with the property than one of the codes (the
+inner linear code) is a subset of the other code (the outer
+linear code). For positive integers k and l, let the outer and
+inner codes Ci and Co be linear codes over Zp characterized
+(k+l)×n
+by their generator matrices G ∈ Zl×n and G ∈ Zp
+p
+and their shift vectors B ∈ Zn and B ∈ Zn respectively.
+p
+p
+G
+Furthermore, assume G =
+for some ∆G ∈ Zk×n
+p
+∆G
+and B = B. In this case,
+Co = aG + m∆G + B|a ∈ Zl , m ∈ Zk ,
+p
+p
+
+1
+n
+
+10) Typicality: We use the notion of weak* typicality with
+Prokhorov metric introduced in [14]. Let M (Rd ) be the set of
+probability measures on Rd . For a subset A of Rd deﬁne its
+-neighborhood by A = {x ∈ Rd |∃y ∈ A such that x −
+y < } where · denotes the Euclidean norm in Rd .
+The Prokhorov distance between two probability measures
+P1 , P2 ∈ M (Rd ) is deﬁned as follows:
+
+(6)
+
+In this case as well, the inner lattice code induces a partition of
+the outer lattice code. For m ∈ Zk , deﬁne Bm = γ(Bm − p−1 )
+p
+2
+where Bm is the mth bin of Ci in Co . The mth bin of the
+inner lattice code in the outer lattice code is deﬁned by:
+¯
+Bm = ∪v∈pZn (γv + Bm )
+
+πd (P1 , P2 ) = inf{ > 0|P1 (A) > P2 (A ) + and
+P2 (A) > P1 (A ) +
+
+2
+
+∀ Borel set A in Rd }
+
+1) Encoding Error: Let S = [ −γp , γp ]n ∩ γZn . For a ∈
+2
+2
+m ∈ Zl , deﬁne
+p
+
+Consider two random variables X and Y with joint distribution
+PXY (·, ·) over X × Y ⊆ R2 . Let n be an integer and be a
+positive real number. For the sequence pair (x, y) belonging
+to X n × Y n where x = (x1 , · · · , xn ) and y = (y1 , · · · , yn )
+deﬁne the empirical joint distribution by
+Pxy (A, B) =
+
+1
+n
+
+Zk ,
+p
+
+g(a, m) = γ (aG + m∆G + B) −
+
+n
+
+(p − 1)
+2
+
+g(a, m) has the following properties:
+
+1{xi ∈A,yi ∈B}
+
+Lemma III.2. For a ∈ Zl and m ∈ Zk , g(a, m) is uniformly
+p
+p
+distributed over S .
+
+i=1
+
+for Borel sets A and B. Let Px and Py be the corresponding marginal probability measures. It is said that the
+sequence x is weakly* -typical with respect to PX if
+π1 (PX , Px ) < . We denote the set of all weakly* -typical
+sequences of length n by An (X). Similarly, x and y are
+said to be jointly weakly* -typical with respect to PXY if
+π2 (Pxy , PXY ) < . We denote the set of all weakly* typical sequence pairs of length n by An (XY ). We deﬁne
+An (Y |x) = {y ∈ Y n |(x, y) ∈ An (X, Y ) }.
+11) Notation: In our notation, O( ) is any function of
+such that lim →0 O( ) = 0 and for a set G, |G| denotes the
+cardinality (size) of G.
+
+Proof: Follows from the fact that B is independent of G
+and ∆G and is uniformly distributed.
+Lemma III.3. For a, a ∈ Zl and m ∈ Zk if a = a then
+˜
+˜
+p
+p
+g(a, m) and g(˜, m) are pairwise independent.
+a
+Proof: Follows from a counting argument.
+For message m ∈ Zk and state s ∈ S n , the encoder declares
+p
+error if there is no sequence in Bm jointly typical with s.
+Deﬁne
+θ(s) =
+
+1{u∈An (U |s)} =
+ˆ
+u∈Bm
+
+III. C HANNEL C ODING
+
+1{g(a,m)∈An (U |s)}
+ˆ
+a∈Zl
+p
+
+Let Z be a uniform random variable over S . Then we have
+
+We show the achievability of the rate R = I(U ; Y ) −
+I(U ; S) for the Gelfand-Pinsker channel using nested lattice
+code for U .
+
+ˆ
+P Z n ∈ An (U |s)
+
+E{θ(s)} =
+a∈Zl
+p
+
+Theorem III.1. For the channel (X , Y, S, PS , WY |XS ) where
+X , X , X ⊆ R, let w : X → R+ be a continuous cost function.
+Let U be an arbitrary set and let SU XY be distributed over
+S × U × X × Y according to PS PU |S WX|U S WY |SX where
+PU |S and WX|U S are such that E{w(X)} ≤ W . Then the
+pair (R, W ) is achievable using nested lattice codes where
+R = I(U ; Y ) − I(U ; S).
+
+Lemma III.4. Let PXY be a joint distribution on R2 and PX
+and PY denote its marginals. Let y be a sequence and Z n a
+n
+random sequence drawn according to PZ . If D(PXY PZ PY )
+is ﬁnite then for each δ > 0, there exist (δ) and ¯(δ) such
+that if < (δ), ¯ < ¯(δ) and y ∈ An (PY ) then
+¯
+
+A. Discrete U and Bounded Continuous Cost Function
+
+lim sup
+
+In this section we prove the theorem for the case when
+ˆ
+U = U takes values from the discrete set γ(Zp − p−1 ) where
+2
+p is a prime and γ is a positive number. We use a random
+coding argument over the ensemble of mod-p lattice codes to
+prove the achievability. Let Co and Ci be deﬁned as (1) and
+(2) where G is a random matrix in Zl×n , ∆G is a random
+p
+matrix in Zk×n and B is a random vector in Zn , all uniformly
+p
+p
+¯
+distributed over their respective domains. Deﬁne Λi (Ci , γ, p)
+¯
+and Λo (Co , γ, p) accordingly. The ensemble of nested lattice
+codes consists of all lattices of the form (3) and (4). The set
+of messages consists of all bins Bm indexed by m ∈ Zk . The
+p
+encoder observes the message m ∈ Zk and the channel state
+p
+s ∈ S n and looks for a vector u in the mth bin Bm which is
+jointly weak* typical with s and encodes the message m to
+x according to WX|SU . The encoder declares error if it does
+not ﬁnd such a vector.
+After receiving y ∈ Y n , the decoder decodes it to m ∈ Zk if
+p
+m is the unique tuple such that the mth bin Bm contains a
+sequence jointly typical with y. Otherwise it declares error.
+
+Proof: This lemma is a generalization of theorem 21 of
+[14]. The complete proof can be found in a more complete
+version of this work [19].
+
+we need the following lemmas to proceed:
+
+1
+n
+log PZ ((Z n , y) ∈ An (PXY ) ≤ −D(PXY PZ PY )+δ
+n
+
+Lemma III.5. Let PXY be a joint distribution on R2 and PX
+and PY denote its marginals. Let y be a sequence and Z n
+n
+a random sequence drawn according to PZ . Then for each
+, δ > 0, there exist ¯( , δ) such that if y ∈ An (PY ) then
+¯
+lim inf
+
+1
+n
+log PZ ((Z n , y) ∈ An (PXY ) ≥ −D(PXY PZ PY )−δ
+n
+
+Proof: This lemma is a generalization of theorem 22 of
+[14]. The complete proof can be found in [19].
+Using these lemmas we get
+ˆ
+E{θ(s)} = pk 2−n[D(PU S
+
+PZ PS )+O( )]
+
+˜
+Similarly, let Z n = g(a, m) and Z n = g(˜, m). Note that Z n
+a
+˜
+and Z n are equal if a = a and are independent if a = a. We
+˜
+˜
+
+3
+
+the quantization Qγ,p as Qγ,p = {A0 , A2 , · · · , Ap−1 } where
+A0 = (−∞, a0 ], Ap−1 = (ap−2 , +∞) and Ai = (ai−1 , ai ]
+ˆ
+for i = 1, · · · , p − 2. Let the random variable Uγ,p take values
+from {a0 , · · · , ap−1 } according to joint measure
+
+have
+ˆ
+P Z , Z ∈ A (U |s)
+
+2
+
+n
+
+E{θ(s) } =
+
+˜n
+
+n
+
+a,˜∈Zl
+a
+p
+
+ˆ
+P Z n ∈ An (U |s)
+
+=
+
+ˆ
+PS U XY (U = ai , SXY ∈ B) = PSU XY (U∈ Ai , SXY ∈ B) (7)
+ˆ
+
+a∈Zl
+p
+
+ˆ
+P Z n ∈ An (U |s)
+
++
+
+For all Borel sets B ⊆ R3 . For a ﬁxed γ, let p ≤ q be two
+primes. Then the σ-algebra induced by Qγ,p is included in the
+σ-algebra induced by Qγ,q . Therefore, for a ﬁxed γ, we can
+use the above theorem to get
+
+2
+
+a,˜∈Zl
+a
+p
+a=˜
+a
+ˆ
+= pk 2−n[D(PU S
+
+PZ PS )+O( )]
+
+ˆ
++ pk (pk − 1)2−2n[D(PU S
+
+I(U |Fγ,p ; Y |Fγ,p ) → I(U |Fγ,∞ ; Y |Fγ,∞ ) as p → ∞
+
+PZ PS )+O( )]
+
+where U |Fγ,∞ is a random variable over Qγ,∞ = {Ai |i ∈ Z}
+where Ai = γ + (γi, γ(i + 1)] with measure PU |Fγ,∞ (Ai ) =
+2
+PU (Ai ).
+Let γ0 = 1 and deﬁne γn = 21 . Note that if m > n then
+n
+Fγn ,∞ is included in Fγm ,∞ . Also, since dyadic intervals
+generate the Borel Sigma ﬁeld ( [15] for example), the
+restriction of U to the sigma algebra generated by ∪∞ Fγn ,∞
+n=1
+is U itself. We can use Theorem III.6 to get
+
+Therefore, using Chebyshev’s inequality we obtain
+P (θ(s) = 0) ≤
+
+var{θ(s)}
+ˆ
+≤ pk 2−n[D(PU S
+E{θ(s)}2
+
+PZ PS ]+O( )]
+
+l
+Therefore if n log p > D(PU S PZ PS ) then the probability of
+ˆ
+encoding error goes to zero as the block length increases.
+2) Decoding Error: The decoder declares error if there is
+no bin Bm containing a sequence jointly typical with the channel output y or if there are multiple bins containing sequences
+jointly typical with y. Assume that the message m has been
+encoded to x according to WX|SU where u = g(a, m) and
+the channel state is s. The channel output y is jointly typical
+with u with high probability. It can be shown [19] that the
+probability of decoding error is upper bounded by
+ˆ
+Perr ≤ pl pk 2−n[D(PU Y
+
+(8)
+
+I(U |Fγn ,∞ ; Y |Fγn ,∞ ) → I(U ; Y ) as n → ∞
+
+(9)
+
+Combining (8) and (9) we conclude that for all > 0, there
+exist Γ and P such that if γ ≤ Γ and p ≥ Γ then
+I(U |Fγ,p ; Y |Fγ,p ) − I(U ; Y ) <
+Since quantization reduces the mutual information (XQ →
+X → Y ), we have
+
+PZ PY )+O( )]
+
+Hence the probability of decoding error goes to zero if
+l
+k+l
+ˆ
+n log p < D(PU Y PZ PY ). If we choose n log p sufﬁciently
+k+l
+close to D(PU S PZ PS ) and n log p sufﬁciently close to
+ˆ
+D(PU S PZ PS ) we can achieve the rate
+ˆ
+
+I(U |Fγ,p ; Y |Fγ,p ) ≤ I(U |Fγ,p ; Y ) ≤ I(U ; Y )
+Therefore I(U |Fγ,p ; Y ) − I(U ; Y ) < . Also note that
+ˆ
+I(U |Fγ,p ; Y ) = I(Uγ,p ; Y ) since we deﬁne the joint measure
+to be the same. Therefore
+
+k
+log p ≈ D(PU Y PZ PY ) − D(PU S PZ PS )
+ˆ
+ˆ
+n
+ˆ
+ˆ
+= I(U ; Y ) − I(U ; S)
+
+R=
+
+ˆ
+I(Uγ,p ; Y ) − I(U ; Y ) ≤
+
+(10)
+
+With a similar argument, ∀ > 0 there exist γ and p such that
+
+B. Arbitrary U and Bounded Continuous Cost Function
+
+ˆ
+I(Uγ,p ; S) − I(U ; S) ≤
+
+We have shown in Section III-A that for discrete random
+variables the region given in Theorem III.1 is achievable. In
+this part, we make a quantization argument to generalize this
+result to arbitrary auxiliary random variables. Let S, U, X, Y
+be distributed according to PS PU |S PX|U S WY |X where in this
+case U is an arbitrary random variable. We start with the
+following theorem:
+
+(11)
+
+if we take the maximum of the two p’s and the minimum of
+the two γ’s, we can say for all > 0 there exist γ and p such
+that both (10) and (11) happen.
+Lemma III.7. The sequence PS Uγ ,p X converges to PSU X in
+ˆ
+p
+the weak* sense as p → ∞.
+
+Theorem III.6. Let F1 ⊆ F2 ⊆ · · · be an increasing
+sequence of σ-algebras on a measurable set A. Let F∞ denote
+the σ-algebra generated by the union ∪∞ Fn . Let P and Q
+n=1
+be probability measures on A. Then
+
+Proof: Provided in a more complete version [19].
+The above lemma implies EPSUγ ,p X {w(X)} converges to
+ˆ
+p
+EPSU X {w(X)} ≤ W since w is assumed to be bounded
+continuous.
+We have shown that for arbitrary PU |S and WX|SU , one can
+ˆ
+ﬁnd PU |S and WX|S U induced from (7) such that U is a
+ˆ
+ˆ
+discrete variable and
+
+D(P |Fn Q|Fn ) → D(P |F∞ Q|F∞ ) as n → ∞
+where P |F denotes the restriction of P on F.
+Proof: Provided in [9] and [1].
+For a prime p > 2 and a real positive number γ and
+for i = 0 · · · , p − 1 deﬁne ai = −γ(p−1) + γi and deﬁne
+2
+
+ˆ
+ˆ
+I(U ; Y ) − I(U ; S) ≈ I(U ; Y ) − I(U ; S)
+EPSU X {w(X)} ≈ EPSU X {w(X)}
+ˆ
+
+4
+
+V. C ONCLUSION
+
+Hence, using the result of section III-A, we have shown the
+achievability of the rate region given in Theorem III.1 for
+arbitrary auxiliary random variables when the cost function
+is bounded and continuous.
+
+We have shown that nested lattice codes are optimal for the
+Gelfand-Pinsker problem as well as the Wyner-Ziv problem.
+R EFERENCES
+
+C. Arbitrary U and Continuous Cost Function
+
+[1] A. R. Barron. Limits of Information, Markov Chains, and Projection.
+Proceedings of IEEE International Symposium on Information Theory,
+2000. Sorrento, Italy.
+[2] R. De Buda. Some optimal codes have structure. IEEE Journal on
+Selected Areas in Communications, 7:893–899, 1989.
+[3] I. Csiszar. Linear Codes for Sources and Source Networks: Error
+Exponents, Universal Coding.
+1
+[4] U. Erez and R. Zamir. Achieving 2 log(1 + SNR) on the AWGN
+Channel With Lattice Encoding and Decoding. IEEE Transactions on
+Information Theory, 50:2293–2314, 2004.
+[5] U. Erez and R. Zamir. Capacity and Lattice Strategies for Canceling Known Interference. IEEE Transactions on Information Theory,
+51:3820–3833, 2005.
+[6] U. Erez and R. Zamir. Lattices Which Are Good for (Almost)
+Everything. IEEE Transactions on Information Theory, 51:3401–3416,
+2005.
+[7] T. Gariby and U. Erez. On General Lattice Quantization Noise.
+Proceedings of IEEE International Symposium on Information Theory,
+2008. Toronto, Canada.
+[8] S. I. Gelfand and M. S. Pinsker. Coding for channel with random
+parameters. Problems of Control and Information Theory, 9:19–31,
+1980.
+[9] P Harremos and K Khler Holst. Convergence of Markov Chains in
+Information Divergence. Journal of Theoretical Probability, 22(1):186–
+202, 2011.
+[10] J. Korner and K. Marton. How to encode the modulo-two sum of binary
+sources. IEEE Transactions on Information Theory, IT-25:219–221, Mar.
+1979.
+[11] D. Krithivasan and S. S. Pradhan. Distributed source coding using abelian group codes. 2011. IEEE Transactions on Information
+Theory(57)1495-1519.
+[12] T. Linder and C. Schlegel. Corrected Proof of de Buda’s Theorem. IEEE
+Transactions on Information Theory, 39:1735–1737, 1993.
+[13] H. A. Loeliger. Averaging bounds for lattices and linear codes. IEEE
+Transactions on Information Theory, 43:1767–1773, 1997.
+[14] P. Mitran. Typical Sequences for Polish Alphabets. 2010. Online:
+http://arxiv.org/abs/1005.2321.
+[15] P. Mrters, O. Schramm Y. Peres, and W. Werner. Brownian Motion.
+Cambridge University Press, 2010.
+[16] B. A. Nazer and M. Gastpar. Computation over multiple-access
+channels. IEEE Trans. on Inf. Th., 53, Oct. 2007.
+[17] A. Padakandla and S. S. Pradhan. Nested linear codes achieve martons
+inner bound for general broadcast channels. Proc. IEEE Int. Symp.
+Information Theory, 2011. Saint Petersburg, Russia.
+[18] T. Philosof, A. Kishty, U. Erez, and R. Zamir. Lattice strategies for
+the dirty multiple access channel. Proceedings of IEEE International
+Symposium on Information Theory, July 2007. Nice, France.
+[19] A. G. Sahebi and S. Sandeep Pradhan.
+Nested lattice codes
+for arbitrary continuous sources and channels.
+2012.
+Online:
+http://arxiv.org/submit/410552.
+[20] S. Sridharan, A. Jafarian, S. Vishwanath, S. A. Jafar, and S. Shamai.
+A layered lattice coding scheme for a class of three user gaussian
+interference channels. 2008. Online: http://arxiv.org/abs/0809.4316.
+[21] R. Urbanke and B. Rimoldi. Lattice Codes Can Achieve Capacity on
+the AWGN Channel. IEEE Trans. on Inf. Th., 44:273–278, 1998.
+[22] A. Wyner. The rate distortion function for source coding with side
+information at the decoder-ii. Information and Control, 38:60–80, 1978.
+[23] A. Wyner and J. Ziv. The rate distortion function for source coding
+with side information at the decoder. IEEE Transactions on Information
+Theory, 22:1–10, 1976.
+[24] R. Zamir and M. Feder. On lattice quantization noise. IEEE Transactions
+on Information Theory, 42:1152–1159, 1996.
+[25] R. Zamir and S. Shamai. Nested linear/lattice codes for wyner-ziv
+encoding. ITW, 1998. Ireland.
+[26] R. Zamir, S. Shamai, and U. Erez. Nested linear/lattice codes for
+structured multiterminal binning. IEEE Transactions on Information
+Theory, 48(6):1250–1276, 2002.
+
+For a positive number l, deﬁne the bounded random variable
+ˆ
+ˆ
+ˆ
+X by X = sign(X) min(l, |X|) and let Y be distributed
+according to WY |X (·, x) = WY |X (·, x).
+ˆ
+ˆ
+ˆ ˆ
+ˆ
+Lemma III.8. As l → ∞, I(U ; Y ) → I(U ; Y ).
+Proof: Proved in a more complete version [19].
+ˆ
+Since X is bounded and w is assumed to be continuous, w
+is also bounded. This completes the proof.
+IV. S OURCE C ODING
+We show the achievability of the rate R = I(U ; X) −
+I(U ; S) for the Wyner-Ziv problem using nested lattice codes.
+ˆ
+Theorem IV.1. For the source (X , S, X , PXS , d(·)) assume
+ˆ
+X , S, X ⊆ R and d(·) is continuous. Let U be a random
+variable taking values from the set U jointly distributed with X
+and S according to PXS WU |X where WU |X (·|·) is a transition
+kernel. Further assume that there exists a measurable function
+ˆ
+f : S × U → X such that E{d(X, f (S, U ))} ≤ D. Then the
+rate R∗ (D) = I(X; U ) − I(S; U ) is achievable using nested
+lattice codes.
+Here we present a sketch of the proof of this theorem. The
+complete proof is similar to the channel coding problem and
+is provided in [19]. The ensemble of codes used for source
+coding is based on the parity check matrix representation of
+linear and lattice codes. For a prime number p, the linear code
+over Zp corresponding to the parity check matrix H ∈ Zk×n is
+p
+the kernel of the matrix H; i.e. C = u ∈ Zn |Hu = 0 where
+p
+the operations are done mod-p. The coset code corresponding
+to the parity check matrix H ∈ Zk×n and the bias vector
+p
+c ∈ Zk is deﬁned as C = u ∈ Zn |Hu = c .
+p
+p
+Nested linear codes based on the parity check representation
+of linear codes can be deﬁned as follows
+Co = u ∈ Zn |Hu = c ,
+p
+Ci = u ∈ Zn |Hu = c, ∆Hu = ∆c
+p
+where H ∈ Zk×n and ∆H ∈ Zk×n . The ensemble of lattice
+p
+p
+codes are then constructed using (1) and (4). The encoding
+and decoding rules are as follows: For m ∈ Zk , Let Bm be
+p
+the mth bin of Λi in Λo . The encoder observes the source
+sequence x ∈ X n and looks for a vector u in the outer code
+Λo which is typical with x and encodes the sequence x to the
+bin of Λi in Λo containing u. The encoder declares error if it
+does not ﬁnd such a vector.
+Having observed the index of the bin m and the side information s, the decoder looks for a unique sequence u in the
+mth bin which is jointly typical with s and outputs f (u, s).
+Otherwise it declares error. Similar to the channel coding
+problem, this theorem is ﬁrst proved for discrete auxiliary
+random variables and then it is generalized to arbitrary sources.
+
+5
+
+

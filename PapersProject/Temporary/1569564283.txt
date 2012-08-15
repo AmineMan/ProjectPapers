@@ -1,0 +1,986 @@
+Creator:        TeX
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Wed May 16 13:47:56 2012
+ModDate:        Tue Jun 19 12:55:16 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      443149 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569564283
+
+Computing Extensions of Linear Codes
+using a Greedy Algorithm
+Markus Grassl
+
+Sunghyu Han
+
+Centre for Quantum Technologies
+National University of Singapore
+3 Science Drive 2, Singapore 117543, Republic of Singapore
+Email: Markus.Grassl@nus.edu.sg
+
+School of Liberal Arts
+Korea University of Technology and Education
+Cheonan 330-708, South Korea
+Email: sunghyu@koreatech.ac.kr
+
+Theorem 2: Let C = [n, k, d]q be a linear code over Fq with
+minimum distance d. Furthermore, let G ∈ Fk×n be a generq
+ator matrix for C of full rank. By Sd = {c ∈ C| wgt c = d}
+we denote the set of all codewords of minimum weight and by
+Jd = {v ∈ Fk | wgt(vG) = d} we denote the corresponding
+q
+information vectors.
+The code C can be extended to a code C = [n + m, k, d +
+1]q if and only if there is a matrix X ∈ Fk×m such that
+q
+
+Abstract—This paper deals with the problem of increasing
+the minimum distance of a linear code by adding one or more
+columns to the generator matrix. We present a simple greedy
+algorithm which surprisingly yields many codes improving the
+previously known lower bounds on the minimum distance. We
+also discuss variations of the algorithm that succeed when the
+greedy algorithm is not feasible or fails.
+
+I. I NTRODUCTION
+
+k
+
+In this paper we consider the question when a linear code
+C = [n, k, d]q over Fq of length n, dimension k, and minimum
+distance d can be extended to a code C = [n + m, k, d + 1]q .
+It is a well known fact in coding theory that every binary
+linear code C = [n, k, d]2 whose minimum weight d is odd
+can be extended to a code [n + 1, k, d + 1]2 by adding a
+single parity check. This can also be expressed in terms of
+Construction X [16] applied to the code C, its even-weight
+subcode C0 of co-dimension one, and the trivial code [1, 1, 1]2 .
+While this result does not have an immediate generalization
+to non-binary alphabets, Hill and Lizak [8], [9] proved the
+following theorem:
+Theorem 1: Let C be an [n, k, d]q code with gcd(d, q) = 1
+and with all weights congruent to 0 or d (modulo q). Then
+C can be extended to an [n + 1, k, d + 1]q code all of whose
+weights are congruent to 0 or d + 1 (modulo q).
+In order to apply this theorem, knowledge about the weight
+spectrum of the code C is required. A generalization of this
+theorem due to Simonis [15] can be applied when additional
+information on the weight distribution of the code C is
+available [15]. The special cases with gcd(q, d) = 1 and in
+particular ternary codes have been treated by Maruta [12]–
+[14]. These results are of rather theoretical nature and have
+mainly be used to prove the non-existence of codes with
+certain parameters. The application to a speciﬁc code might be
+difﬁcult since one has to compute information on the weight
+distribution of the code ﬁrst.
+In [5] we have presented several approaches to the problem
+to test if a code C = [n, k, d]q which is explicitly given
+by a generator matrix G can be extended and to compute
+an extension if it exists. Based on the set of all codewords
+of minimum weight, we gave the following criterion for the
+extendability of a linear code:
+
+vi Xi = 0 for all v ∈ Jd ,
+
+(1)
+
+i=1
+
+where Xi denotes the i-th row of the matrix X.
+Proof: Let G = (G|X) be the matrix that is obtained by
+appending the matrix X to G. Encoding an information vector
+v with the matrix G we get
+k
+
+c = vG = (vG|
+
+vi Xi ).
+i=1
+
+The weight of a non-zero codeword c is d if and only if
+k
+wgt(vG) = d and i=1 vi Xi = 0.
+Note that in order to apply criterion (1), we have to compute
+information vectors of all codewords of minimum weight. For
+this task, one can use a slight modiﬁcation of an algorithm for
+computing the minimum weight of a general linear code [4],
+[5].
+The main idea presented in [5] is to transform criterion (1)
+into a system of polynomial equations over the alphabet of the
+code and use Gr¨ bner basis techniques to ﬁnd solutions. While
+o
+many new codes have been found, this approach is limited
+to moderate dimension k and extensions by a few additional
+columns, i.e., the size of the matrix X should not be too big.
+Kohnert [10], [11] has proposed to compute extensions using integer linear programming by reformulating (1) as hittingset problem. The ground set of the hitting-set problem is the
+set of all normalized non-zero vectors that can be appended
+to the generator matrix, so its size grows exponentially in the
+dimension of the code.
+Zwanzger [17] described a heuristic method for the construction of linear codes with given [n, k, ≥ d]q . The approach
+is based on a function estimating the probability that a code
+of dimension k and block length n < n over Fq is extendable
+
+1
+
+G of the code C. Then by Lemma 3, none of the columns of
+the matrix Y = X t M vanishes. Hence the rows of the matrix
+Y are m codewords γ1 , . . . , γm such that the union of their
+support equals {1, . . . , ν}.
+On the other hand, starting with m codewords γ1 , . . . , γm ,
+we combine them as the rows of a matrix Y and solve eq. (3)
+for the matrix X.
+In order to search for the codewords γi ∈ Caux from Theorem
+5, we can use a greedy strategy which searches for a codeword
+γ1 ∈ Caux of maximal weight. One way to proceed would be
+to search for another codeword γ2 ∈ Caux such that the union
+of the supports of γ1 and γ2 is as large as possible. Instead,
+(1)
+we consider the code Caux that is obtained by puncturing Caux
+at the support of the codeword γ1 since those positions are
+already covered. Note that this does not only reduce the length
+of the auxiliary code, but it reduces the dimension at least
+by one since we are puncturing at all non-zero positions of
+a codeword. Hence the complexity of ﬁnding a codeword of
+(1)
+maximal weight in Caux is reduced by at least a factor of q
+compared to a strategy that uses only Caux .
+The implementation of the Greedy strategy in MAGMA [1]
+is given in Algorithm 1. Before searching for a codeword in
+Caux of maximal weight, we compute the weight distribution
+of Caux . While this might double the computation time by
+enumerating all codewords of twice, this allows us to use
+rather efﬁcient built-in functions to search for a single word
+of speciﬁc weight. It also turned out that it is more convenient
+to set those columns in the matrix M that have already been
+covered to zero instead of constructing a new matrix in each
+iteration step.
+The running time of the greedy algorithm is dominated
+by the computation of all words of minimum weight of the
+original code C and the search for a word of maximal weight
+(i)
+in the auxiliary code Caux = [νi , κi ]q for which we have
+κi
+to enumerate all q codewords. As already mentioned, the
+dimension κi of Caux is strictly decreasing in each step.
+Possibly variations of the greedy strategy may consider
+more than one codeword of Caux in each step, for example
+all codewords of the µ largest weights. Then one could
+either perform a breadth-ﬁrst search or use some backtracking.
+Another option is to randomize the search for a codeword
+in Caux of maximal weight, i.e., reducing the complexity by
+only searching for a codeword of large weight which is not
+guaranteed to be maximal.
+
+to a code with the given properties. Again, the complexity of
+evaluating this function, and therefore the complexity of the
+search algorithm as well, grows exponentially in the dimension
+of the code.
+To overcome this problem, a simple greedy search was
+proposed in [7]. In the following, we will present a reﬁned
+version of that algorithm.
+II. C OMPUTING E XTENSIONS
+Recall from (1) that we are searching for a matrix X ∈
+Fk×m with few columns such that
+q
+k
+
+vi Xi = 0 for all v ∈ Jd ,
+
+(2)
+
+i=1
+
+where Xi denotes the i-th row of the matrix X and Jd =
+{v ∈ Fk | wgt(vG) = d} is the set of all information vectors
+q
+corresponding to a minimum weight codeword. Clearly, it is
+sufﬁcient to consider only normalized vectors in Jd , e.g., those
+where the ﬁrst non-zero component equals one.
+Lemma 3: Let M be the matrix with k rows whose ν =
+|Jd |/(q − 1) columns are the normalized information vectors
+v ∈ Jd . Then condition (2) is equivalent to asking that none
+of the columns of the m × ν matrix
+Y = X tM
+
+(3)
+
+is zero.
+Proof: Note that the columns of the matrix M , and hence
+the columns of the matrix Y , can be labeled by the normalized
+vectors v ∈ Jd . A column of Y labeled by a ﬁxed vector v
+vanishes if and only if eq. (2) is violated for v.
+For our search algorithm, we may consider the matrix M as
+generator matrix of a linear code Caux = [ν, κ ≤ k]q . Note
+that the dimension κ of Caux is smaller than k if the minimum
+weight codewords of the original code C generate a proper
+subcode.
+Lemma 4: With the deﬁnitions as above, a code C =
+[n, k, d]q can be extended to a code C = [n + 1, k, d + 1]q if
+and only if the code Caux of length ν contains a codeword of
+weight ν.
+Proof: Every row of the matrix Y = X t M is a codeword
+of Caux . Hence the weight of every row of Y is bounded from
+above by the maximal weight of a codeword of Caux . Hence we
+ﬁnd a suitable matrix Y with a single row—corresponding to
+a matrix X with a single column—if and only if the maximal
+weight in Caux equals the length of the code.
+This observation can be generalized to the situation of an
+extension by m columns.
+Theorem 5: Let Caux = [ν, κ]q be the linear code generated by the matrix M whose columns are the (normalized)
+information vectors of the minimum weight codewords of a
+code C = [n, k, d]q . The code C can be extended to a code
+C = [n + m, k, d + 1]q if and only if the code Caux contains
+m codewords γ1 , . . . , γm such that the union of the supports
+of the codewords equals {1, . . . , ν}.
+Proof: Let G = (G|X) be the generator matrix of the
+code C obtained by adding m columns to the generator matrix
+
+III. E XAMPLES
+We tested the greedy algorithm using the best known linear
+codes (BKLC) from MAGMA [1] and the linear codes from [3]
+which establish or improve the lower bound on the minimum
+distance in Brouwer’s tables [2]. Good candidates for codes
+[n, k, d]q that can be extended to a code [n + m, k, d + 1]q are
+those for which the minimum distance remains constant for a
+large interval, i.e., if n − n is big where n is the minimal
+length of a known code [n , k, d + 1]q .
+In Tables I–VII at the end of this article, we list the parameters of the new codes obtained using the greedy algorithm.
+
+2
+
+Algorithm 1 Greedy code extension
+
+minimum distance by one.) Examples start with the seed
+codes [183, 21, 88]3 , [112, 18, 60]4 , [30, 15, 12]5 , [88, 17, 46]5 ,
+[76, 13, 46]7 , [58, 14, 33]7 , [97, 11, 65]8 , and [102, 11, 69]8 .
+The seed codes [55, 25, 18]3 , [58, 28, 18]3 , and [68, 23, 28]5
+were chosen as candidates since previously the shortest codes
+increasing the minimum distance by one were [65, 25, 19]3 ,
+[68, 28, 19]3 , and [73, 23, 29]5 , respectively. We cannot apply
+our full greedy algorithm in those cases as the auxiliary code
+Caux is too big for complete enumeration. Instead, we have
+randomly searched for codewords in Caux of high weight and
+found the new codes [63, 25, 19]3 , [64, 25, 20]3 , [66, 25, 21]3 ,
+[67, 28, 19]3 , [68, 28, 20]3 , and [72, 23, 29]5 .
+Finally, puncturing the new code [179, 25, 80]3 at carefully chosen positions (see [6]), we obtain the three ternary
+codes [176, 25, 78]3 , [173, 25, 76]3 , and [171, 25, 75]3 . Then, in
+turn, applying the greedy algorithm to the code [171, 25, 75]3
+(typeset in boldface in Table IV), we ﬁnd the new codes
+[172, 25, 76]3 and [174, 25, 77]3 .
+
+findExtensionGreedy :=function ( c ) ;
+/ / c o m p u t e t h e m a t r i x M whose c o l u m n s a r e t h e
+/ / c o o r d i n a t e s o f t h e minimum w e i g h t c o d e w o r d s
+minwords : ={ N o r m a l i z e ( x ) : x i n MinimumWords ( c ) } ;
+c o o r d s : ={ C o o r d i n a t e s ( c , v ) : v i n minwords } ;
+M: = T r a n s p o s e ( M a t r i x ( [ x : x i n c o o r d s ] ) ) ;
+ext := [ ] ;
+ind : ={}; / / t h e columns o f M t h a t have been d e l e t e d
+repeat
+/ / s e a r c h a codeword o f max . w e i g h t i n C aux
+C aux0 : = L i n e a r C o d e (M) ;
+C aux : = P u n c t u r e C o d e ( C aux0 , i n d ) ;
+/ / f i r s t we c o m p u t e t h e w e i g h t d i s t r i b u t i o n
+/ / t h e n s e a r c h f o r a word o f max . w e i g h t
+t i m e wd : = W e i g h t D i s t r i b u t i o n ( C aux ) ;
+wgt : =Maximum ( { x [ 1 ] : x i n wd } ) ;
+t i m e v1 : =Rep ( Words ( C aux , wgt : NumWords : = 1 ) ) ;
+/ / f i r s t d e t e r m i n e t h e codeword
+//
+i n t h e non−p u n c t u r e d c o d e
+v : = V e c t o r ( C o o r d i n a t e s ( C aux , v1 ) )
+∗ G e n e r a t o r M a t r i x ( C aux0 ) ;
+
+ACKNOWLEDGMENT
+S. Han was supported by the Basic Science Research
+Program through the National Research Foundation of Korea
+(NRF), which is supported by the Ministry of Education,
+Science and Technology (2010-0007232). M. Grassl would
+like to thank the Institut f¨ r Kryptographie und Sicherheit
+u
+(IKS), Karlsruhe, Germany, as well as Benoˆt Gr´ maud at
+ı
+e
+CQT for providing additional computational resources. The
+Centre for Quantum Technologies (CQT) is a Research Centre
+of Excellence funded by the Ministry of Education and the
+National Research Foundation of Singapore.
+
+/ / t h e n compute a c o r r e s p o n d i n g v e c t o r
+//
+v e c s u c h t h a t v e c ∗M=v
+v e c : = S o l u t i o n (M, v ) ;
+Append ( ˜ e x t , v e c ) ;
+ind j o i n : =Support ( v ) ;
+/ / i n s t e a d o f m a n u a l l y c r e a t i n g a new m a t r i x ,
+//
+s e t t h e co rr es po nd in g columns i n M t o zero
+f o r i i n S u p p o r t ( v ) do
+M u l t i p l y C o l u m n ( ˜M, 0 , i ) ;
+end f o r ;
+C aux : = L i n e a r C o d e (M) ;
+u n t i l D i m e n s i o n ( C aux ) eq 0 ;
+cc : =LinearCode (
+HorizontalJoin ( GeneratorMatrix ( c ) ,
+Transpose ( Matrix ( ext ) ) ) ) ;
+return cc ;
+
+R EFERENCES
+[1] W. Bosma, J. J. Cannon, and C. Playoust, “The Magma Algebra System
+I: The User Language,” Journal of Symbolic Computation, vol. 24, no.
+3–4, pp. 235–265, 1997.
+[2] A. E. Brouwer, “Bounds on the Size of Linear Codes,” in Handbook
+of Coding Theory, V. S. Pless and W. C. Huffman, Eds. Amsterdam:
+Elsevier, 1998, pp. 295–461.
+[3] M. Grassl, “Tables of linear codes,” on-line available at http://www.
+codetables.de/.
+[4] ——, “Searching for linear codes with large minimum distance,” in
+Discovering Mathematics with Magma — Reducing the Abstract to the
+Concrete, W. Bosma and J. Cannon, Eds. Heidelberg: Springer, 2006,
+pp. 287–313.
+[5] ——, “Computing Extensions of Linear Codes,” in Proceedings 2007
+IEEE International Symposium on Information Theory (ISIT 2007),
+Nice, France, June 2007, pp. 476–480, preprint arXiv:0704.2596v1
+[cs.IT].
+[6] M. Grassl and G. White, “New Good Linear Codes by Special Puncturings,” in Proceedings 2004 IEEE International Symposium on Information Theory, Chicago, USA, June 27 – July 2 2004, p. 454.
+[7] S. Han, “Finding Good Linear Codes Using a Simple Extension Algorithm,” IEEE Transactions on Information Theory, vol. 57, no. 10, pp.
+6729–6733, Oct. 2011.
+[8] R. Hill and P. Lizak, “Extensions of Linear Codes,” in Proceedings 1995
+International Symposium on Information Theory, Whistler, BC, Canada,
+September 17–22 1995, p. 345.
+[9] R. Hill, “An Extension Theorem for Linear Codes,” Designs, Codes and
+Cryptography, vol. 17, no. 1–3, pp. 151–157, Sept. 1999.
+[10] A. Kohnert, “Update on the Extension of Good Linear Codes,” Electronic Notes in Discrete Mathematics, vol. 26, pp. 81–85, Sept. 2006.
+[11] ——, “(l, s)-Extension of Linear Codes,” in Proceedings Combinatorics
+2006, 2007, preprint arxiv:cs.IT/0701112.
+
+end f u n c t i o n ;
+
+In the ﬁrst column we give the parameter of the code from [3]
+(seed code) which was the starting point for the greedy search.
+In combination with standard constructions like shortening,
+puncturing, and lengthening the lower bounds of more than
+250 codes in [3] have been improved. (Note that [3] has
+already been updated accordingly.)
+Quite often—including many of the codes from [7]—we
+found more new codes by repeatedly applying our greedy
+algorithm. Sometimes the greedy algorithm did not yield
+an improved code, but only a code with the same parameters as in [3]. Nonetheless, we continued with the
+greedy algorithm until either the minimum distance of the
+new code did no longer reach the lower bound in [3], or
+an improved code was found. In Tables I–VII, this is reﬂected by subsequent codes in the same row whose minimum distances differ by more than one. (Note that we
+list only codes which improve the minimum distance. Furthermore, every step of the greedy algorithm increases the
+
+3
+
+TABLE II
+PARAMETERS OF THE NEW CODES OVER GF (4) TOGETHER WITH THOSE
+OF THE SEED CODE TAKEN FROM [3] THAT HAS BEEN EXTENDED . T HE
+CODE PARAMETERS TYPESET IN italics HAVE ALREADY BEEN REPORTED
+IN [7].
+
+[12] T. Maruta, “Extendability of Linear Codes over GF (q) with Minimum
+Distance d, gcd(d, q) = 1,” Discrete Mathematic, vol. 266, no. 1–3,
+pp. 377–385, May 2003.
+[13] ——, “A New Extension Theorem for Linear Codes,” Finite Fields and
+Their Applications, vol. 10, pp. 674–685, 2004.
+[14] ——, “Extendability of Ternary Linear Codes,” Designs, Codes and
+Cryptography, vol. 35, no. 2, pp. 175–190, May 2005.
+[15] J. Simonis, “Adding a Parity-Check Bit,” IEEE Transactions on Information Theory, vol. 46, no. 4, pp. 1544–1545, July 2000.
+[16] N. J. A. Sloane, S. M. Reddy, and C.-L. Chen, “New Binary Codes,”
+IEEE Transactions on Information Theory, vol. 18, no. 4, pp. 503–510,
+July 1972.
+[17] J. Zwanzger, “A heuristic algorithm for the construction of good linear
+codes,” IEEE Transactions on Information Theory, vol. 54, no. 5, pp.
+2388–2392, May 2008.
+
+seed code
+[239, 9, 164]4
+
+seed code
+[165, 21, 64]2
+[196, 25, 72]2
+
+[174, 21, 65]2
+[201 , 25 , 73 ]2
+
+new codes
+[175, 21, 66]2
+[202 , 25 , 74 ]2
+
+[198, 26, 72]2
+
+[204 , 26 , 73 ]2
+
+[205 , 26 , 74 ]2
+
+[199, 27, 72]2
+[230, 27, 88]2
+[158, 28, 54]2
+[200, 28, 72]2
+[231, 28, 88]2
+[196, 29, 68]2
+
+[206, 27, 73]2
+[240, 27, 89]2
+[162, 28, 55]2
+[207, 28, 73]2
+[242, 28, 89]2
+[201, 29, 69]2
+
+[207, 27, 74]2
+[241, 27, 90]2
+[163, 28, 56]2
+[208, 28, 74]2
+[243, 28, 90]2
+[202, 29, 70]2
+
+[136, 30, 44]2
+
+[143, 30, 45]2
+
+[144, 30, 46]2
+
+[198, 30, 68]2
+
+[204, 30, 69]2
+
+[205, 30, 70]2
+
+[140, 31, 44]2
+[152, 31, 48]2
+[199, 31, 68]2
+[219, 31, 76]2
+[156, 32, 48]2
+[200, 32, 68]2
+[220, 32, 76]2
+[196, 33, 64]2
+
+[147, 31, 45]2
+[160, 31, 49]2
+[206, 31, 69]2
+[226, 31, 77]2
+[163, 32, 49]2
+[207, 32, 69]2
+[227, 32, 77]2
+[201, 33, 65]2
+
+[148, 31, 46]2
+[161, 31, 50]2
+[207, 31, 70]2
+[227, 31, 78]2
+[164, 32, 50]2
+[208, 32, 70]2
+[228, 32, 78]2
+[202, 33, 66]2
+
+[216, 33, 72]2
+
+[221, 33, 73]2
+
+[222, 33, 74]2
+
+[96 , 12 , 55 ]4
+[97 , 13 , 55 ]4
+[34 , 14 , 13 ]4
+[119 , 14 , 69 ]4
+
+[97, 12, 56]4
+[98, 13, 56]4
+[35, 14, 14]4
+[120, 14, 70]4
+
+[161 , 14 , 97 ]4
+[186 , 14 , 113 ]4
+[188, 15, 113]4
+[113, 16, 61]4
+[115, 17, 61]4
+[197, 17, 115]4
+[224, 17, 135]4
+[236, 17, 141]4
+[242, 17, 145]4
+
+[162, 14, 98]4
+[187, 14, 114]4
+[189, 15, 114]4
+[114, 16, 62]4
+[116, 17, 62]4
+[198, 17, 116]4
+[225, 17, 136]4
+[237, 17, 142]4
+[243, 17, 146]4
+
+[112, 18, 60]4
+
+[116, 18, 61]4
+[122, 18, 64]4
+
+[117, 18, 62]4
+[124, 18, 65]4
+[136, 18, 72]4
+
+[244, 17, 147]4
+[245, 17, 148]4
+[120, 18, 63]4
+[135, 18, 71]4
+[138, 18, 73]4
+
+[142, 18, 76]4
+[195, 18, 114]4
+[202, 18, 116]4
+[224, 18, 132]4
+
+[144, 18, 77]4
+[199, 18, 115]4
+[203, 18, 117]4
+[227, 18, 133]4
+[230, 18, 136]4
+
+[200, 18, 116]4
+
+[203, 18, 117]4
+
+[228, 18, 134]4
+[234, 18, 137]4
+[237, 18, 139]4
+
+[229, 18, 135]4
+[235, 18, 138]4
+[238, 18, 140]4
+
+[140, 19, 73]4
+[140, 20, 72]4
+[249, 20, 143]4
+[109, 21, 51]4
+[112, 21, 52]4
+[118, 21, 56]4
+
+[205, 29, 71]2
+[206, 29, 72]2
+[147, 30, 47]2
+[148, 30, 48]2
+[208, 30, 71]2
+[209, 30, 72]2
+
+[243, 10, 166]4
+
+[159, 14, 96]4
+[184, 14, 112]4
+[186, 15, 112]4
+[109, 16, 60]4
+[110, 17, 60]4
+[194, 17, 114]4
+[223, 17, 134]4
+[232, 17, 140]4
+[240, 17, 144]4
+
+[205, 25, 75]2
+[206, 25, 76]2
+[208, 26, 75]2
+[209, 26, 76]2
+
+[242 , 10 , 165 ]4
+
+[94, 12, 54]4
+[95, 13, 54]4
+[29, 14, 12]4
+[113, 14, 68]4
+
+PARAMETERS OF THE NEW CODES OVER GF (2) TOGETHER WITH THOSE
+OF THE SEED CODE TAKEN FROM [3] THAT HAS BEEN EXTENDED . T HE
+CODE PARAMETERS TYPESET IN italics HAVE ALREADY BEEN REPORTED
+IN [7].
+
+new codes
+[242, 9, 166]4
+
+[240, 10, 164]4
+
+TABLE I
+
+[241 , 9 , 165 ]4
+
+[142, 19, 74]4
+[142, 20, 73]4
+[250, 20, 144]4
+[111, 21, 52]4
+[113, 21, 53]4
+[119, 21, 57]4
+
+[243, 9, 167]4
+[244, 9, 168]4
+[244, 10, 167]4
+[245, 10, 168]4
+
+[122, 14, 71]4
+[123, 14, 72]4
+
+[190, 15, 115]4
+[117, 16, 63]4
+
+TABLE III
+PARAMETERS OF THE NEW CODES OVER GF (5) TOGETHER WITH THOSE
+OF THE SEED CODE TAKEN FROM [3] THAT HAS BEEN EXTENDED . T HE
+CODE PARAMETERS TYPESET IN italics HAVE ALREADY BEEN REPORTED
+IN [7].
+[205, 33, 67]2
+[206, 33, 68]2
+[225, 33, 75]2
+[226, 33, 76]2
+
+seed code
+[106, 7, 78]5
+[57, 13, 30]5
+[58, 14, 30]5
+[70, 14, 38]5
+[92, 14, 52]5
+[104, 14, 61]5
+[124, 14, 77]5
+[30, 15, 12]5
+[62, 15, 31]5
+[71, 15, 38]5
+[83, 15, 44]5
+[93, 15, 52]5
+[41, 16, 16]5
+[73, 16, 38]5
+[93, 16, 51]5
+[104, 16, 58]5
+[124, 16, 74]5
+[69, 17, 33]5
+[88, 17, 46]5
+[68, 23, 28]5
+
+4
+
+[108 , 7 , 79 ]5
+[59, 13, 31]5
+[60, 14, 31]5
+[73 , 14 , 39 ]5
+[94 , 14 , 53 ]5
+[106, 14, 62]5
+[127, 14, 78]5
+[34, 15, 13]5
+[64, 15, 32]5
+[74, 15, 39]5
+[84, 15, 45]5
+[95, 15, 53]5
+[43, 16, 17]5
+[76, 16, 39]5
+[95, 16, 52]5
+[106, 16, 59]5
+[127, 16, 75]5
+[71, 17, 34]5
+[90, 17, 47]5
+[72, 23, 29]5
+
+new codes
+[109, 7, 80]5
+[62, 14, 32]5
+[74, 14, 40]5
+[95, 14, 54]5
+
+[38, 15, 15]5
+[76, 15, 40]5
+
+[93, 17, 49]5
+
+[65, 14, 34]5
+
+TABLE V
+PARAMETERS OF THE NEW CODES OVER GF (7) TOGETHER WITH THOSE
+OF THE SEED CODE TAKEN FROM [3] THAT HAS BEEN EXTENDED . T HE
+CODE PARAMETERS TYPESET IN italics HAVE ALREADY BEEN REPORTED
+IN [7].
+
+TABLE IV
+PARAMETERS OF THE NEW CODES OVER GF (3) TOGETHER WITH THOSE
+OF THE SEED CODE TAKEN FROM [3] THAT HAS BEEN EXTENDED . T HE
+CODE PARAMETERS TYPESET IN italics HAVE ALREADY BEEN REPORTED
+IN [7]. T HE CODES MARKED WITH →p ARE OBTAINED VIA PUNCTURING
+AT SPECIFIC COORDINATES .
+seed code
+[84, 12, 45]3
+[104, 13, 54]3
+[119, 13, 63]3
+[231, 13, 132]3
+[186, 14, 102]3
+[88, 15, 45]3
+[90, 16, 45]3
+[90, 17, 42]3
+[118, 17, 57]3
+[147, 17, 73]3
+[170, 17, 87]3
+[186, 17, 96]3
+[195, 17, 102]3
+[204, 17, 108]3
+[213, 17, 114]3
+[147, 19, 70]3
+[166, 19, 82]3
+[64, 20, 24]3
+[148, 20, 70]3
+[170, 20, 82]3
+[184, 20, 93]3
+[213, 20, 108]3
+[134, 21, 63]3
+[183, 21, 88]3
+[52, 22, 18]3
+[68, 22, 24]3
+[69, 22, 24]3
+[79, 22, 30]3
+[84, 22, 32]3
+[106, 22, 43]3
+[140, 22, 63]3
+[147, 22, 64]3
+[70, 23, 24]3
+[80, 23, 30]3
+[167, 23, 76]3
+[63, 24, 20]3
+[94, 24, 36]3
+[175, 24, 79]3
+[179, 24, 81]3
+[208, 24, 99]3
+[55, 25, 18]3
+[150, 25, 64]3
+[171, 25, 75]3
+[178, 25, 79]3
+[180, 25, 80]3
+[183, 25, 82]3
+[186, 25, 84]3
+[188, 25, 85]3
+[191, 25, 87]3
+[58, 28, 18]3
+
+[87 , 12 , 46 ]3
+[108 , 13 , 55 ]3
+[123 , 13 , 64 ]3
+[234 , 13 , 133 ]3
+[189 , 14 , 103 ]3
+[91 , 15 , 46 ]3
+
+new codes
+[88, 12, 47]3
+[109, 13, 56]3
+[124, 13, 65]3
+[235, 13, 134]3
+[190, 14, 104]3
+[92, 15, 47]3
+
+seed code
+[88, 7, 66]7
+[51, 8, 35]7
+[48, 11, 28]7
+[49, 12, 28]7
+[86, 12, 55]7
+[65, 13, 37]7
+[76, 13, 46]7
+[58, 14, 33]7
+[80, 14, 47]7
+[36, 15, 15]7
+[81, 15, 46]7
+
+[90, 12, 48]3
+
+[94, 15, 48]3
+[98, 15, 49]3
+[96, 16, 48]3
+
+[93 , 16 , 46 ]3
+[94, 16, 47]3
+[95 , 17 , 43 ]3
+[96, 17, 44]3
+[122 , 17 , 58 ]3
+[123, 17, 59]3
+[150, 17, 74]3
+[152, 17, 75]3
+[173 , 17 , 88 ]3
+[174, 17, 89]3
+[189 , 17 , 97 ]3
+[190, 17, 98]3
+[198 , 17 , 103 ]3 [199, 17, 104]3
+[207 , 17 , 109 ]3 [208, 17, 110]3
+[216 , 17 , 115 ]3 [217, 17, 116]3
+[150, 19, 71]3
+[169, 19, 83]3
+[170, 19, 84]3
+[173, 19, 85]3
+[69, 20, 25]3
+[70, 20, 26]3
+[151, 20, 71]3
+[172, 20, 83]3
+[190, 20, 94]3
+[191, 20, 95]3
+[193, 20, 96]3
+[216, 20, 109]3
+[217, 20, 110]3
+[140, 21, 64]3
+[141, 21, 65]3
+[186, 21, 89]3
+[190, 21, 91]3
+[59, 22, 19]3
+[60, 22, 20]3
+[62, 22, 21]3
+[72, 22, 25]3
+[72, 22, 25]3
+[73, 22, 26]3
+[82, 22, 31]3
+[83, 22, 32]3
+[85, 22, 33]3
+[86, 22, 33]3
+[108, 22, 44]3
+[110, 22, 45]3
+[146, 22, 64]3
+[147, 22, 65]3
+[149, 22, 66]3
+[148, 22, 65]3
+[73, 23, 25]3
+[74, 23, 26]3
+[83, 23, 31]3
+[84, 23, 32]3
+[86, 23, 33]3
+[169, 23, 76]3
+[171, 23, 78]3
+[173, 23, 79]3
+[65, 24, 21]3
+[98, 24, 37]3
+[99, 24, 38]3
+[101, 24, 39]3
+[177, 24, 80]3
+[179, 24, 81]3
+[181, 24, 82]3
+[181, 24, 82]3
+[182, 24, 83]3
+[183, 24, 84]3
+[209, 24, 100]3
+[63, 25, 19]3
+[64, 25, 20]3
+[66, 25, 21]3
+[152, 25, 65]3
+[172, 25, 76]3
+[174, 25, 77]3
+[179, 25, 80]3 →p [176, 25, 78]3
+→p [173, 25, 76]3 →p [171, 25, 75]3
+[181, 25, 81]3
+[184, 25, 83]3
+[187, 25, 85]3
+[189, 25, 86]3
+[192, 25, 88]3
+[67, 28, 19]3
+[68, 28, 20]3
+
+[90, 7, 67]7
+[53, 8, 36]7
+[50 , 11 , 29 ]7
+[51, 12, 29]7
+[88, 12, 56]7
+[66, 13, 38]7
+[78, 13, 47]7
+[61, 14, 34]7
+
+new codes
+
+[82, 14, 48]7
+[37, 15, 16]7
+[82, 15, 47]7
+
+[51, 11, 30]7
+[52, 12, 30]7
+
+[81, 13, 49]7
+[63, 14, 35]7
+[68, 14, 38]7
+[83, 14, 49]7
+
+[82, 13, 50]7
+[66, 14, 37]7
+[69, 14, 39]7
+
+TABLE VI
+PARAMETERS OF THE NEW CODES OVER GF (8) TOGETHER WITH THOSE
+OF THE SEED CODE TAKEN FROM [3] THAT HAS BEEN EXTENDED .
+seed code
+[97, 11, 65]8
+[102, 11, 69]8
+[95, 12, 62]8
+[105, 12, 70]8
+[120, 12, 82]8
+[37, 13, 18]8
+[50, 13, 27]8
+[103, 13, 67]8
+[117, 13, 80]8
+[39, 14, 18]8
+
+[98, 11, 66]8
+[103, 11, 70]8
+[96, 12, 63]8
+[106, 12, 71]8
+[121, 12, 83]8
+[38, 13, 19]8
+[51, 13, 28]8
+[104, 13, 68]8
+[120, 13, 81]8
+[40, 14, 19]8
+
+new codes
+[99, 11, 67]8
+[104, 11, 71]8
+[100, 12, 66]8
+
+[103, 11, 70]8
+[109, 11, 75]8
+[101, 12, 67]8
+
+[39, 13, 20]8
+
+[41, 13, 21]8
+
+[41, 14, 20]8
+
+TABLE VII
+PARAMETERS OF THE NEW CODES OVER GF (9) TOGETHER WITH THOSE
+OF THE CODE THAT HAS BEEN EXTENDED TAKEN FROM [3]. T HE CODE
+PARAMETERS TYPESET IN italics HAVE ALREADY BEEN REPORTED IN [7].
+seed code
+[64, 10, 43]9
+[85, 10, 59]9
+[111, 10, 81]9
+[122, 10, 90]9
+[81, 11, 56]9
+[105, 11, 73]9
+[124, 11, 90]9
+[82, 12, 56]9
+[83, 12, 56]9
+[100, 13, 66]9
+[108, 13, 72]9
+[124, 13, 85]9
+
+5
+
+[65 , 10 , 44 ]9
+[86 , 10 , 60 ]9
+[113 , 10 , 82 ]9
+[124 , 10 , 91 ]9
+[83, 11, 57]9
+[106, 11, 74]9
+[126, 11, 91]9
+[85, 12, 57]9
+[85, 12, 57]9
+[101, 13, 67]9
+[109, 13, 73]9
+[125, 13, 86]9
+
+new codes
+[67, 10, 45]9
+[87, 10, 61]9
+[114, 10, 83]9
+[126, 10, 92]9
+[85, 11, 58]9
+[107, 11, 75]9
+
+[127, 10, 93]9
+[128, 10, 94]9
+
+

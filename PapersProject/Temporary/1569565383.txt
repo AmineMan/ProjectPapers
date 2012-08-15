@@ -1,0 +1,833 @@
+Creator:        TeX
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Wed May 16 12:05:43 2012
+ModDate:        Tue Jun 19 12:54:35 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      456834 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569565383
+
+Pointwise Relations between Information and
+Estimation in Gaussian Noise
+Kartik Venkat
+
+Tsachy Weissman
+
+Department of Electrical Engineering
+Stanford University
+Email: kvenkat@stanford.edu
+
+Department of Electrical Engineering
+Stanford University
+Email: tsachy@stanford.edu
+
+the difference of the mismatched and matched mean squared
+errors are bridged together: Mismatched estimation in the
+scalar Gaussian channel was considered by Verd´ in [3]. In [4],
+u
+a generalization of Duncan’s result to incorporate mismatch
+in the generality of continuous time processes is provided. In
+[5], Kadota et al. generalize Duncan’s theorem to the presence
+of feedback. These, and similar relations between information
+and estimation are quite intriguing, and merit further study of
+their inner workings, which is the goal of this paper.
+The basic information-estimation identities, such as the ones
+mentioned above, can be formulated as expectation identities.
+We explicitly characterize the random quantities involved in
+a pointwise sense, and in the process ﬁnd new connections
+between information and estimation for the Gaussian channel.
+Girsanov theory and Itˆ calculus provide us with tools to
+o
+understand the pointwise behavior of these random quantities,
+and to explore their properties.
+The paper is organized as follows. In Section II, we present
+and discuss our main results. In Section III, we present further
+results and observations for scalar random variables. We refer
+the reader to [6] for proofs of the stated results as well as a
+more elaborate discussion of their implications. We conclude
+in Section IV with a summary of our main ﬁndings.
+
+Abstract—Many of the classical and recent relations between
+information and estimation in the presence of Gaussian noise
+can be viewed as identities between expectations of random
+quantities. These include the I-MMSE relationship of Guo et al.;
+the relative entropy and mismatched estimation relationship of
+´
+Verdu; the relationship between causal estimation and mutual
+information of Duncan, and its extension to the presence of
+feedback by Kadota et al.; the relationship between causal and
+non-casual estimation of Guo et al., and its mismatched version
+of Weissman. We dispense with the expectations and explore the
+nature of the pointwise relations between the respective random
+quantities. The pointwise relations that we ﬁnd are as succinctly
+stated as - and give considerable insight into - the original
+expectation identities.
+As an illustration of our results, consider Duncan’s 1970 discovery that the mutual information is equal to the causal MMSE
+in the AWGN channel, which can equivalently be expressed
+saying that the difference between the input-output information
+density and half the causal estimation error is a zero mean
+random variable (regardless of the distribution of the channel
+input). We characterize this random variable explicitly, rather
+than merely its expectation. Classical estimation and information
+theoretic quantities emerge with new and surprising roles. For
+example, the variance of this random variable turns out to be
+given by the causal MMSE (which, in turn, is equal to the mutual
+information by Duncan’s result).
+
+I. I NTRODUCTION
+
+II. M AIN R ESULTS
+A. Scalar Estimation
+1) Matched Case: We begin by describing the problem
+setting. We are looking at mean square estimation in the
+presence of additive white Gaussian noise. This problem is
+characterized by an underlying clean signal X (which follows
+a law PX ) and its AWGN corrupted version Yγ measured at
+a given ‘signal-to-noise ratio’ γ.
+In a communication setting, we are interested in the mutual
+information between the input X and the output Yγ . In
+an estimation setting, one would be interested in using the
+observed output to estimate the underlying input signal while
+minimizing a given loss function. Deﬁne mmse(γ) to be the
+minimum mean square error at ‘signal-to-noise ratio’ γ
+
+The literature abounds with results that relate classical
+quantities in information and estimation theory. Of particular elegance are relations that have been established in the
+presence of additive Gaussian noise. In this work, we reﬁne
+and deepen our understanding of these relations by exploring
+their ‘pointwise’ properties.
+Duncan, in [1], showed that for the continuous-time additive
+white Gaussian noise channel, the minimum mean squared
+ﬁltering (causal estimation) error is twice the input-output
+mutual information for any underlying signal distribution.
+Another discovery was made by Guo et al. in [2], where the
+derivative of the mutual information was found to equal half
+the minimum mean squared error in non-causal estimation. By
+combining these results, the authors of [2] also establish the
+remarkable equality of the causal mean squared error (at some
+‘signal to noise’ level snr) and the non-causal error averaged
+over ‘signal to noise’ ratio uniformly distributed between 0
+and snr. There have been extensions of these results to the
+presence of mismatch. In this case, the relative entropy and
+
+mmse(γ) = E (X − E[X|Yγ ])2 .
+
+(1)
+
+In [2], Guo et. al. discovered the I-MMSE relationship:
+I(X; Ysnr ) =
+
+1
+
+1
+2
+
+snr
+
+mmse(γ) dγ.
+0
+
+(2)
+
+Recall now that we can express the mutual information between two random variables as
+dPY |X
+I(X; Y ) = E log
+,
+(3)
+dPY
+
+have equal expectations. That the variance of their difference
+can be described directly in terms of the original estimation
+error is striking.
+2) Mismatched Case: In the scenario of mismatched scalar
+estimation, [3] presents a relationship between the relative
+entropy of the true and mismatched output laws, and the
+difference between the mismatched and matched estimation
+losses
+
+where the quantity in the brackets denotes the log RadonNikodym derivative of the measure induced by the conditional
+law of Y |X with respect to the measure induced by the law of
+Y . This quantity is referred to in some parts of the literature
+as the input-output information density i(X, Y ) (cf. [7]). In
+particular, let us look at the following additive Gaussian
+channel at ‘signal-to-noise ratio’ γ,
+Yγ = γ X + Wγ ,
+
+D(P ∗ N (0, 1/snr)||Q ∗ N (0, 1/snr)) =
+1 snr
+mseP,Q (γ) − mseP,P (γ) dγ,
+2 0
+
+(4)
+
+1
+=E
+2
+
+mseP,Q (γ) = EP [(X − EQ [X|Yγ ])2 ].
+
+Towards deriving a pointwise extension of (11), we note that
+it can be recast, assuming again the observation model in (4),
+as the expectation identity
+E log
+
+(X − E[X|Yγ ]) dγ .
+
+(5)
+
+ZM = log
+
+0
+
+snr
+
+(X − E[X|Yγ ])2 dγ
+
+(7)
+
+0
+
+snr
+
+(X − EQ [X|Yγ ])2 − (X − EP [X|Yγ ])2 dγ.
+
+0
+
+(14)
+
+snr
+
+a.s.,
+
+P − a.s. (15)
+
+0
+
+We observe that the above Itˆ integral is a martingale and
+o
+consequently has zero expectation E[ZM ] = 0, recovering
+(13), i.e., Verd´ ’s relation from [3]. A further implication that
+u
+can be read off of Proposition 2 rather immediately is the
+following:
+Theorem 2: Assuming X has ﬁnite variance under both P
+and Q, ZM deﬁned in (14), satisﬁes
+
+(8)
+
+0
+
+where the integral on the right hand side of (8) denotes the
+Itˆ integral with respect to W· .
+o
+In particular, the above characterization implies that Z is a
+martingale, and (by virtue of having zero expectation) directly
+implies the I-MMSE relationship in (6) (which is equivalent
+to (2)). Another immediate consequence of Proposition 1 is
+the following:
+Theorem 1: Assume X has ﬁnite variance. Then
+
+snr
+
+mseP,Q (γ) − mseP,P (γ) dγ
+
+(16)
+
+= 2D(P ∗ N (0, 1/snr)||Q ∗ N (0, 1/snr)).
+
+(17)
+
+Var(ZM ) =
+0
+
+Similarly as in the non-mismatched case, we observe that the
+variance of the difference between the information and estimation theoretic random variables whose expectations comprise
+the respective two sides of Verd´ ’s mismatch relationship has
+u
+a distribution independent characterization in terms of the
+matched and mismatched estimation errors and, consequently,
+in terms of the relative entropy between the output distributions. In the following subsection we extend this line of inquiry
+and results from the scalar case to that where the channel input
+is a continuous-time process.
+
+snr
+
+mmse(γ) dγ = 2I(X; Ysnr ).
+
+(EP [X|Yγ ] − EQ [X|Yγ ]) · dWγ
+
+ZM =
+
+snr
+
+(X − E[X|Yγ ]) · dWγ
+
+1
+dPYsnr
+−
+dQYsnr
+2
+
+In the following, we provide an explicit characterization of
+this random variable.
+Proposition 2: Assuming X has ﬁnite variance under both
+P and Q, ZM deﬁned in (14), satisﬁes
+
+denotes the “tracking error between the information density
+and half the squared error integrated over snr”. But what can
+we say about the random variable Z itself, beyond the fact that
+it has zero mean? The answer lies in the following Proposition.
+Proposition 1: Assume X has ﬁnite variance. Z, as deﬁned
+in (7), satisﬁes
+
+Var(Z) =
+
+(X − EQ [X|Yγ ])2 − (X − EP [X|Yγ ])2 dγ .
+
+(6)
+
+where
+
+Z=
+
+snr
+
+Let ZM denote the difference between the random quantities
+appearing in the above expression, i.e.
+
+0
+
+E[Z] = 0,
+dPYsnr |X
+1
+−
+dPYsnr
+2
+
+dPYsnr
+1
+=E
+dQYsnr
+2
+
+(13)
+
+In other words, the I-MMSE relationship can be restated
+succinctly as:
+
+Z = log
+
+(12)
+
+snr
+2
+
+(11)
+
+where mseP,Q (γ) is deﬁned as
+
+for γ ∈ [0, snr], where W· is a standard Brownian motion,
+independent of X.
+Now that (X, Y0snr ) are on the same probability space (where
+throughout Y0snr is shorthand for {Yγ , 0 ≤ γ ≤ snr}), it is
+meaningful to exchange the expectation and integration in
+the right hand side of (2) to yield the following equivalent
+representation of the I-MMSE result
+dPYsnr |X
+E log
+dPYsnr
+
+(10)
+
+(9)
+
+0
+
+Thus we observe a remarkable and simple characterization of
+the second moment of the tracking error, in terms of classical
+estimation and information quantities. The relationship in
+(9) tells us how far apart the information density and the
+estimation error typically are, two quantities that we know to
+
+2
+
+In conjunction with Duncan’s theorem (20), we get the following triangular relationship,
+
+B. Continuous Time
+We now turn to the continuous-time Gaussian channel. Let
+T
+X0 be the underlying noise-free process (with ﬁnite power)
+to be estimated. The continuous time channel is characterized
+by the following relationship between the input and output
+processes,
+dYt = Xt dt + dWt ,
+(18)
+
+Var(D(T )) = cmmse(T ) = 2I(X T ; Y T )
+
+which parallels our discovery for scalar random variables, in
+(9). Thus, we ﬁnd that the pointwise tracking error satisﬁes
+this intriguing distribution independent property, in the full
+generality of continuous time inputs for the Gaussian Channel.
+That the estimation error and mutual information emerge in
+the characterization of the variance of this pointwise object is
+striking.
+2) Pointwise Mismatch: We now consider the setting in [4],
+where a continuous time signal Xt , distributed according to
+a law P is observed through additive Gaussian noise, and is
+estimated by an estimator that would have been optimal if the
+signal had followed the law Q. In this general setting , the main
+result in [4] shows that the relative entropy between the laws
+of the output for the two different underlying distributions (P
+and Q), is exactly half the difference between the mismatched
+and matched ﬁltering errors. Let Yt be the continuous time
+AWGN corrupted version of Xt as given by (18). Let PY0T and
+QY0T be the output distributions when the underlying signal
+T
+X0 has law P and Q, respectively. As before, T denotes the
+time duration for which the process is observed. We denote
+the mismatched causal mean squared error,
+
+where {Wt }t≥0 is a standard Brownian motion, independent
+T
+of X0 .
+1) “Pointwise Duncan”: In [1], Duncan proved the equality
+between input-output mutual information and the ﬁltering
+squared error, of a ﬁnite power continuous time signal Xt ,
+corrupted according to (18) to yield the noise corrupted
+process Yt . The signal is observed for a time duration [0, T ].
+Denoting the time averaged ﬁltering squared error,
+T
+
+cmmse(T )
+
+E[(Xt − E[Xt |Y t ])2 ]dt
+
+=
+
+(19)
+
+0
+
+and letting I(X T ; Y T ) denote the input-output mutual information, Duncan’s theorem then states that,
+1
+(20)
+I(X T ; Y T ) = cmmse(T ).
+2
+In [5], Kadota et al. extend this result to communication over
+channels with feedback, and in the recent [8] this result is
+extended to more general scenarios involving the presence of
+feedback, and it is shown that (20) remains true in these more
+general cases upon replacing the mutual information on the left
+hand side with directed information. In [9], several properties
+of likelihood ratios and their relationships with estimation
+error are studied. We now proceed to describe a pointwise
+characterization of Duncan’s theorem.
+Considering the random variable D(T ) deﬁned as
+D(T ) = log
+
+dPY T |X T
+1
+−
+dPY T
+2
+
+T
+
+In this setting, [4] established that the relative entropy between
+the output distributions is half the difference between the
+mismatched and matched ﬁltering errors, i.e.
+1
+[cmseP,Q (T ) − cmseP,P (T )].
+(27)
+2
+Deﬁne the pointwise difference between the log RadonNikodym derivative and half the mismatched causal squared
+error difference,
+D(PY0T ||QY0T ) =
+
+(Xt − E[Xt |Y t ])2 dt, (21)
+0
+
+M (T ) = log
+
+(22)
+T
+
+(EQ [Xt |Y t ] − Xt )2 − (EP [Xt |Y t ] − Xt )2 dt. (28)
+0
+
+(23)
+
+T
+
+(EP [Xt |Y t ]−EQ [Xt |Y t ]) dWt P −a.s., (29)
+
+M (T ) =
+
+0
+
+0
+
+Note that on the the right side of (23) is a stochastic integral
+with respect to the Brownian motion W· driving the noise
+in the channel. With this representation, Duncan’s theorem
+follows from the mere fact that this stochastic integral is a
+martingale and, in particular, has zero expectation.
+On applying another basic property of the stochastic integral
+we get the following characterization of the variance of D(T ).
+T
+Theorem 3: For a continuous-time signal X0 with ﬁnite
+power, D(T ) as deﬁned in (21) satisﬁes
+Var(D(T )) = cmmse(T ).
+
+0
+
+The following Proposition explicitly characterizes M (T ):
+Proposition 4:
+
+T
+
+a.s.,
+
+dPY T
+dQY T
+0
+
+1
+−
+2
+
+We now present an explicit formula for D(T ) in the following
+Proposition.
+Proposition 3: Let D(T ) be as deﬁned in (21). Then,
+(Xt − E[Xt |Y t ])dWt
+
+(26)
+
+0
+
+Duncan’s theorem is equivalently expressed as
+
+D(T ) =
+
+EP [(Xt − EQ [Xt |Y t ])2 ] dt.
+
+cmseP,Q (T ) =
+
+T
+
+E[D(T )] = 0.
+
+(25)
+
+where M (T ) is as deﬁned in (28), and Xt is assumed to have
+ﬁnite power under the laws P and Q.
+We note that relation (27) is implied immediately by Proposition 4 due to the ‘zero mean’ property of the martingale
+M (T ). Analogous to the mismatched scalar setting, we also
+have the following result.
+Theorem 4: M (T ) as deﬁned in (27), satisﬁes
+Var(M (T ))
+
+(24)
+
+= cmseP,Q (T ) − cmseP,P (T )
+=
+
+3
+
+2D(PY0T ||QY0T ).
+
+(30)
+(31)
+
+Thus, the variance of M (T ) is exactly the difference between
+the causal mismatched and matched squared errors. And
+further, from [4] we know that it is equal to twice the relative
+entropy between the output distributions according to laws
+P and Q. Thus, the remarkable equivalence between the
+estimation error and the variance of the pointwise tracking
+error emerges in this setting as well.
+Remark 1: One can note that for the DC signal Xt ≡ X
+in the interval [0, T ], we can employ the continuous time
+results, to recover the corresponding scalar estimation results
+in Section II-A. A discussion on the relation between the
+ﬁltering error in continuous-time for a DC input, and the scalar
+MMSE can be found in [2, Section III.E].
+3) Extensions and Generalizations: The pointwise characterizations discussed above lead to an understanding of well
+known information-estimation results, which emerge as direct
+corollaries of our characterization of the tracking errors as
+stochastic integrals. Similar techniques can be applied to yield
+pointwise characterizations of other well known identities
+in the information-estimation arena. Examples include: the
+extension of Duncan’s result for channels with feedback, the
+I-MMSE relationship for processes, as well as the relation
+between causal and anticausal squared error. We refer to [6]
+for a detailed presentation of these and related results.
+
+the various SNR levels to be the components of a Brownian
+motion, as in (4), is but one possibility for a coupling that
+respects (35).
+As mentioned, however, there are several ways in which we
+can couple the input X and outputs {Y0snr } together so that
+they satisfy (35). The I-MMSE relationship implies that for
+all such couplings we have E[Z] = 0. Before exploring some
+other possible couplings and their properties, let us note a
+reﬁnement of this zero-mean property pertaining to the random
+variable Z, which holds regardless of the coupling.
+Proposition 5: Suppose X has ﬁnite variance and that Z
+is deﬁned as in Deﬁnition 1, under a joint distribution on
+(X, Y0snr ) satisfying (35). Then,
+E[Z|X] = 0,
+
+B. Additive Standard Gaussian
+An alternative coupling between X and Yγ that respects
+(35), is achieved by using a scaled standard Gaussian random
+variable as additive noise, instead of the Brownian motion
+considered in the previous setting. The channel is described
+by letting, for γ ∈ [0, snr],
+√
+(37)
+Yγ = γX + N,
+
+Returning to the scalar channel setting of Subsection II-A,
+we introduce notation as follows:
+Deﬁnition 1:
+=
+
+log
+
+dPYsnr |X
+dPYsnr
+
+(32)
+(33)
+
+where N ∼ N (0, 1) is independent of X. A pointwise characterization of the ‘tracking error’ for this setting is presented
+in [6, Lemma 11].
+
+(34)
+
+C. Independent Standard Gaussian’s
+
+snr
+
+I2
+Z
+
+1
+(X − E[X|Yγ ])2 dγ
+2 0
+= I1 − I2 ,
+=
+
+(36)
+
+Thus, not only is the tracking error a zero-mean random
+variable, but even its conditional expectation E[Z|X] is zero.
+Having brieﬂy touched upon the idea of ways other than
+the channel in (4), in which we can comply with the marginal
+channel requirements in (35), let us look at some concrete
+examples and draw a comparison between them.
+
+III. S CALAR S ETTING : E XAMPLES , ALTERNATIVE
+C OUPLINGS , FURTHER O BSERVATIONS , AND I DENTITIES
+
+I1
+
+a.s.
+
+where Z, as in the previous section, is informally referred to
+as the “tracking error”.
+
+Unlike the previous two examples of Sections III-A and
+III-B, respectively, our third example looks at the limiting
+behavior of a family of couplings achieved by the following
+construction.
+Let ∆ > 0. Deﬁne ∆ = snr for M natural. Let Ii ≡
+M
+[(i − 1)∆, i∆) for i ∈ {1, 2, 3 . . . M }. Let Ni be independent
+standard Gaussian random variables ∼ N (0, 1). Now we
+deﬁne the following process
+√
+Yγ = γX + Nγ ,
+(38)
+
+A. The Original Coupling
+We studied the example of the scalar Gaussian channel
+corrupted by additive Gaussian noise where the additive noise
+components for the different SNR levels were coupled via
+a standard Brownian motion, as in (4). We characterized
+explicitly, in Proposition 1, the tracking error Z between the
+information density and half the estimation error.
+We shall now look at the pointwise scalar estimation
+problem in a new light. Recall that in moving from (2) to
+(5), we put all the random variables (X, Y0snr ) on the same
+probability space, via a standard Brownian motion, as in (4).
+Note, however, that the only assumption for the original results
+that hold in expectation is that, for each γ > 0,
+√
+(35)
+Yγ |X ∼ N ( γX, 1),
+
+where Nγ = Ni for γ ∈ Ii . Note that this is a coupling of the
+channel noise components at different SNR’s that adheres to
+(35). Let Z∆ be the ‘tracking error’ (34) for this process. We
+now consider the limiting process as ∆ → 0+ . We observe
+that, under mild regularity conditions on the distribution of
+X,
+l.i.m.∆→0+ Z∆
+
+where N (µ, σ 2 ) denotes the Gaussian distribution with mean
+µ and variance σ 2 . Taking the channel noise variables for
+
+= I1 − E[I1 |X],
+
+which is the tracking error for the limiting process.
+
+4
+
+(39)
+
+In future work, we would like to explore higher order
+moments of the tracking error. In addition, it would be interesting to investigate whether pointwise relationships similar
+to those presented here, hold also for the Poissonian channel,
+where relations between estimation and information have been
+recently uncovered in [10] for a natural loss function.
+
+4.5
+
+4
+
+3.5
+
+Variance(Z)
+
+3
+
+Yγ = √γ X + N
+
+Y =γX+W
+
+2.5
+
+γ
+
+γ
+
+ACKNOWLEDGEMENT
+2
+
+The authors thank Rami Atar for valuable discussions. This
+work has been supported under a Stanford Graduate Fellowship, NSF grant CCF-0729195, and the Center for Science of
+Information (CSoI), an NSF Science and Technology Center,
+under grant agreement CCF-0939370.
+
+1.5
+
+Yγ = √γ X + Nγ
+
+1
+
+0.5
+
+0
+
+0
+
+1
+
+2
+
+3
+
+4
+
+5
+
+6
+
+7
+
+8
+
+9
+
+R EFERENCES
+
+10
+
+snr
+
+[1] T. E. Duncan, ”On the calculation of Mutual Information,” SIAM J. Appl.
+Math., vol. 19, pp. 215-220, Jul. 1970.
+[2] D. Guo, S. Shamai and S. Verd´ , ”Mutual Information and minimum
+u
+mean-square error in Gaussian channels”, IEEE Trans. Information
+theory, vol. IT-51, no. 4, pp.1261-1283, Apr. 2005.
+[3] S. Verd´ , “Mismatched Estimation and relative Entropy”, IEEE Trans.
+u
+Information theory, vol 56., no. 8, pp. 3712-3720, Aug. 2010.
+[4] T. Weissman, “The Relationship Between Causal and Noncausal Mismatched Estimation in Continuous-Time AWGN Channels”, IEEE
+Trans. Information theory, vol. 56, no. 9, pp. 4256 - 4273, September
+2010.
+[5] T.T. Kadota, M. Zakai, J. Ziv, “Mutual Information of the White.
+Gaussian Channel With and Without Feedback”, IEEE Transactions on
+Information theory, vol. IT-17, no. 4, July 1971.
+[6] K. Venkat, T. Weissman, “Pointwise Relations between Information
+and Estimation in Gaussian Noise”, submitted to IEEE Transactions
+on Information Theory. available at http://arxiv.org/abs/1110.6654.
+[7] Y. Polyanskiy, H. V. Poor, S. Verd´ , “New Channel Coding Achievability
+u
+Bounds”, IEEE Int. Symposium on Information Theory 2008, Toronto,
+Ontario, Canada, July 6-11, 2008
+[8] T. Weissman, Y.-H. Kim, H. H. Permuter, “Directed Information,
+Causal Estimation, and Communication in Continuous Time”, submitted to IEEE Transactions on Information Theory. available at
+http://arxiv.org/abs/1109.0351.
+[9] M. Zakai, “On Mutual Information, Likelihood Ratios, and Estimation
+Error for the Additive Gaussian Channel”, IEEE Transactions on Information theory, vol. 51, No. 9, September 2005.
+[10] R. Atar, T. Weissman, “Mutual Information, Relative Entropy, and
+Estimation in the Poisson Channel”, IEEE Transactions on Information
+theory, vol. 58, no. 3, March 2012.
+
+Fig. 1: Variance of Tracking Error Z vs. snr for the examples
+of sections III-A, III-B and III-C.
+
+D. Comparison of Variances
+Previously, in III-A, III-B and III-C we have considered
+different couplings that are consistent with (35) and give rise
+to different pointwise relations between X and Y0snr . For the
+special case when X ∼ N (0, 1) we explicitly compute and
+plot the variances of the tracking errors in Fig. 1, for each of
+the three couplings. This comparison effectively tells us which
+particular relationship results in a better pointwise tracking
+of the information density and the actual squared error of
+the MMSE estimators. We observe that in this example of
+a Gaussian input, the coupling III-C results in the lowest
+variance of the tracking error, while that of III-B in the highest
+variance. We conjecture that to be the case in general, i.e., for
+any distribution of X with ﬁnite power.
+IV. C ONCLUSION
+We consider the scenario of mean square estimation of a
+signal observed through additive white Gaussian noise. We
+formulate classical information and estimation relationships
+in these contexts as expectation identities. We explicitly characterize the input-output information density for both scalar
+and continuous time Gaussian channels. Using this characterization, which relies on Girsanov theory, we obtain pointwise
+representations of these identities with the expectations removed and discover that these random quantities themselves
+are intimately connected to the classical quantities of information and estimation. In particular, information and estimation
+appear to be bridged by the second moment of the pointwise
+tracking error between the information density and the scaled
+ﬁltering error. In this manner, we present pointwise relations
+for Duncan’s theorem, mismatched estimation, channels with
+feedback, the I-MMSE relationship, as well as the causal vs.
+non-causal and causal vs. anticausal errors. A special treatment
+for scalar estimation is also provided where we present and
+discuss alternative ways of coupling the channel outputs across
+the different values of SNR.
+
+5
+
+

@@ -1,0 +1,1189 @@
+Creator:        TeX
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Fri May 18 14:18:26 2012
+ModDate:        Tue Jun 19 12:54:20 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      467568 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569566687
+
+An Efﬁcient Algorithm to Calculate BICM Capacity
+Georg B¨ cherer∗ , Fabian Altenbach§ , Alex Alvarado‡ , Steven Corroy§ , and Rudolf Mathar§
+o
+∗ Institute
+
+for Communications Engineering, Technische Universit¨ t M¨ nchen, Germany
+a
+u
+Email: georg.boecherer@tum.de
+§ Institute for Theoretical Information Technology, RWTH Aachen University, Germany
+Email: {altenbach,corroy,mathar}@ti.rwth-aachen.de
+‡ Signal Processing and Communications Laboratory, University of Cambridge, UK
+Email: alex.alvarado@ieee.org
+
+Our approach is as follows. We start by considering a
+discrete memoryless channel (DMC) operated by a BICM
+transceiver. To calculate BICM capacity, we develop a
+new algorithm called bit alternating convex-concave method
+(BACM), which combines two optimization techniques: ﬁrst,
+maximization is done sequentially over one bit pmf at a time,
+and second, the maximization over one bit pmf is done using
+the convex-concave procedure [7]. We then show how an
+average power constraint can be taken into account by BACM.
+This allows us to use BACM to calculate BICM capacity of
+PAM constellations in AWGN. We provide numerical results
+for 4 and 8-PAM and, for the ﬁrst time in the literature, for 16,
+32, and 64-PAM. The results show that BICM capacity is close
+to AWGN capacity and signiﬁcantly larger than what can be
+achieved by operating BICM with uniform bit pmfs. Finally,
+we argue that the complexity of BACM scales approximately
+as m3 and logarithmically in the precision with which the
+optimal bit pmfs are calculated. An implementation of BACM
+in Matlab is available on our website [8].
+
+Abstract—Bit-interleaved coded modulation (BICM) is a practical approach for reliable communication over the AWGN
+channel in the bandwidth limited regime. For a signal point
+constellation with 2m points, BICM labels the signal points with
+bit strings of length m and then treats these m bits separately
+both at the transmitter and the receiver. BICM capacity is deﬁned
+as the maximum of a certain achievable rate. Maximization
+has to be done over the probability mass functions (pmf) of
+the bits. This is a non-convex optimization problem. So far,
+the optimal bit pmfs were determined via exhaustive search,
+which is of exponential complexity in m. In this work, an
+algorithm called bit-alternating convex concave method (BACM)
+is developed. This algorithm calculates BICM capacity with
+a complexity that scales approximately as m3 . The algorithm
+iteratively applies convex optimization techniques. BACM is used
+to calculate BICM capacity of 4, 8, 16, 32, and 64-PAM in AWGN.
+For PAM constellations with more than 8 points, the presented
+values are the ﬁrst results known in the literature.
+
+I. I NTRODUCTION
+Bit-interleaved coded modulation (BICM) [1]–[3] is a de
+facto standard for wireless communications, and it is used in
+e.g., HSPA, IEEE 802.11a/g/n, and the latest DVB standards
+(DVB-T2/S2/C2).
+In BICM, signal points from a ﬁnite constellation are
+labeled with bit strings. E.g., for 16-PAM, the signal points
+are labeled with log2 16 = 4 bits each. The bits in the labels
+are then treated independently both at the transmitter and
+the receiver. According to [4], to determine BICM capacity,
+a certain achievable rate has to be maximized over the bit
+probability mass functions (pmf). We will make this statement
+precise later in this work. This maximization is a non-convex
+optimization problem [5, Fig. 1]. So far, BICM capacity has
+been calculated using exhaustive search only. For the AWGN
+channel, results are presented for 8-PAM in [6, Fig. 3] and
+[5, Fig. 1] and for 16-QAM in [4, Fig. 2]. The complexity of
+exhaustive search is exponential in the number of bits in the
+labels, and calculating BICM capacity becomes an intractable
+problem for large constellations. This motivates the present
+work.
+
+II. S YSTEM M ODEL AND P ROBLEM S TATEMENT
+Consider a DMC with 2m input symbols X = {1, . . . , 2m }
+and n output symbols Y = {1, . . . , n}. The channel is
+m
+speciﬁed by a matrix of transition probabilities H ∈ Rn×2 ,
+where R denotes the set of real numbers. The input of the
+channel is the random variable X, which takes values in X
+according to the pmf p. The channel output is the random
+variable Y , which takes values in Y according to the pmf
+r = Hp.
+A. DMC Capacity
+We denote the mutual information between X and Y either
+by I(X; Y ) or by I(p). The DMC capacity is [9, Eq. (7.1)]
+C = max
+p
+
+This work was supported by the German Ministry of Education and
+Research in the framework of an Alexander von Humboldt Professorship,
+by the UMIC Research Center, RWTH Aachen University, by The British
+Academy and The Royal Society (via the Newton International Fellowship
+scheme), UK, and by the European Community’s Seventh’s Framework
+Programme (FP7/2007-2013) under grant agreement No. 271986.
+
+I(p).
+
+(1)
+
+The maximization is a convex optimization problem [10,
+Prob. 4.57] and it can be solved by the Blahut-Arimoto
+algorithm [11], [12] or by a software package such as CVX
+[13].
+
+1
+
+ˆ
+for j = i by pj and the pmf of Bi by pi . The function Ibicm
+can now be written as
+
+B. BICM Capacity
+In BICM, the input symbols are represented by their m-bit
+binary expansion, i.e,
+
+m
+
+Ibicm (p1 , . . . , pm ) =
+
+m bits
+
+1 ↔ 0 · · · 00
+
+= m H(Y ) − H(Y |Bi ) −
+
+2 ↔ 0 · · · 01
+.
+.
+.
+
+p = p ⊗ ··· ⊗ p
+
+Deﬁne
+i
+ˆ
+ˆ
+q0 := p1 ⊗ · · · ⊗ pi−1 ⊗ 1
+
+(3)
+
+i
+ˆ
+ˆ
+q1 := p1 ⊗ · · · ⊗ pi−1 ⊗ 0
+
+where pi is the pmf of Bi and where ⊗ denotes the
+Kronecker product, see [14, Def. 4.2.1].
+
+T
+
+1
+
+ˆ
+ˆ
+⊗ pi+1 ⊗ · · · ⊗ pm
+
+T
+
+0
+
+ˆ
+ˆ
+⊗ pi+1 ⊗ · · · ⊗ pm . (9)
+
+(8)
+
+The channel seen by the ith bit is now given by
+
+According to [15, Theorem 1], the following sum of mutual
+informations is an achievable rate for a BICM transceiver:
+
+i
+H i = H q0
+
+i
+q1 ∈ Rn×2 .
+
+(10)
+
+The output pmf can now be written as
+
+m
+
+Ibicm (p1 , . . . , pm ) :=
+
+(7)
+
+A. Output entropy as a function of p i
+
+[4, Eq. (8)]: The bits Bi in positions i of the channel
+input are stochastically independent, i.e., the channel
+input pmf p is given by
+m
+
+H(Y |Bj ).
+
+We see that there are three kinds of terms that we need to
+express as functions of pi : the output entropy H(Y ), the
+conditional entropy H(Y |Bi ), and the conditional entropy
+H(Y |Bj ) for j = i.
+
+Each bit position of the channel input is treated independently
+both at the transmitter and the receiver, see [3], [4] for details.
+This leads to the following constraint at the transmitter:
+
+1
+
+(6)
+
+j=i
+
+(2)
+
+2m ↔ 1 · · · 11.
+
+•
+
+[H(Y ) − H(Y |Bj )]
+j=1
+
+I(Bi ; Y ).
+
+(4)
+r = Hp = H i pi .
+
+i=1
+
+Following [4, Eq. (19)], the “BICM capacity” Cbicm is now
+given by
+
+(11)
+
+Thus, the output entropy as a function of pi is given by
+n
+
+Cbicm = 1maxm
+p ,...,p
+
+Ibicm (p1 , . . . , pm ).
+
+H(Y ) = −
+
+(5)
+
+rk log rk
+
+(12)
+
+(r)k log(r)k
+
+(13)
+
+k=1
+n
+
+Unfortunately, the maximization is a non-convex problem.
+This will become clear in Sec. III.
+
+=−
+
+k=1
+n
+
+C. Problem Statement
+
+(H i pi )k log(H i pi )k
+
+=−
+
+So far, BICM capacity has been calculated in literature via
+exhaustive search [4]–[6]. To determine the optimal bit pmfs
+1
+with a precision of ±d, Ibicm has to be evaluated ( d )m times,
+so the complexity of this approach increases exponentially
+in the number of bit positions m and polynomially in the
+precision d. The objective of this work is to develop an
+algorithm that efﬁciently (compared to exhaustive search)
+calculates BICM capacity.
+
+(14)
+
+k=1
+
+where (x)k denotes the kth entry of the vector x. Since
+−x log x is concave in x, we conclude that the output entropy
+is concave in pi .
+B. Conditional entropy H(Y |Bi ) as a function of p i
+The output entropy conditioned on the ith bit can be written
+as
+
+III. P RELIMINARY: Ibicm AS A F UNCTION OF p i
+
+n
+
+1
+
+The goal of this section is to characterize the objective Ibicm
+as a function of one bit pmf pi . By this characterization, it
+will become clear that Ibicm is a non-convex function, and
+furthermore, we will see how we can maximize over pi . To
+this end, we pick an arbitrary bit position i and assume that
+for each j = i, Bj is distributed according to a ﬁxed pmf and
+that Bi is distributed according to a pmf that we interpret as
+a variable. To emphasize this distinction, we denote the pmfs
+
+pi
+b
+
+H(Y |Bi ) = −
+b=0
+
+(H i )kb log(H i )kb
+
+(15)
+
+k=1
+
+where we index the rows of H i by 1, . . . , k and the columns
+by the binary values 0,1, e.g., (H i )10 is the entry of H i
+in the ﬁrst row and ﬁrst column. We conclude from (15) that
+H(Y |Bi ) [and thereby − H(Y |Bi ), which contributes to the
+objective function] is linear in pi .
+
+2
+
+Algorithm 1.(BACM)
+
+C. Conditional entropy H(Y |Bj ) as a function of p i
+
+ˆ
+ˆ
+p1 , . . . , pm ← starting point
+repeat bit alternation, outer loop
+for i = 1, . . . , m bit alternation, inner loop
+maximize Ibicm over pi see Alg. 2
+ˆ
+update pi with the maximizing pi
+end for
+until convergence
+
+Deﬁne
+ji
+ˆ
+ˆ
+q00 := p1 ⊗ · · · ⊗ pj−1 ⊗ 1
+
+ˆ
+⊗ pi−1 ⊗ 1
+
+0
+0
+
+ji
+ˆ
+ˆ
+q01 := p1 ⊗ · · · ⊗ pj−1 ⊗ 1
+
+ˆ
+⊗ pi−1 ⊗ 0
+
+0
+1
+
+ji
+ˆ
+ˆ
+q10 := p1 ⊗ · · · ⊗ pj−1 ⊗ 0
+
+ˆ
+⊗ pi−1 ⊗ 1
+
+T
+
+1
+0
+
+ji
+ˆ
+ˆ
+q11 := p1 ⊗ · · · ⊗ pj−1 ⊗ 0
+
+ˆ
+⊗ pi−1 ⊗ 0
+
+T
+
+T
+
+1
+1
+
+T
+
+T
+
+ˆ
+⊗ pj+1 ⊗ · · ·
+
+ˆ
+ˆ
+⊗ pi+1 ⊗ · · · ⊗ pm (16)
+T
+
+ˆ
+⊗ pj+1 ⊗ · · ·
+
+ˆ
+ˆ
+⊗ pi+1 ⊗ · · · ⊗ pm (17)
+T
+
+ˆ
+⊗ pj+1 ⊗ · · ·
+
+ˆ
+ˆ
+⊗ pi+1 ⊗ · · · ⊗ pm (18)
+
+Algorithm 2.(convex-concave procedure)
+
+T
+
+calculate H i and H ji , j = i
+ˆ
+pi ← pi
+repeat
+ˆ
+1. pi ← pi
+ˆ
+2. pi ← argmax f i (pi , pi ) see Subsec. IV-B
+
+ˆ
+⊗ pj+1 ⊗ · · ·
+
+ˆ
+ˆ
+⊗ pi+1 ⊗ · · · ⊗ pm . (19)
+
+Now, the channel seen by the jth and the ith bit is given by
+ji
+H ji = H q00
+
+ji
+q01
+
+ji
+q10
+
+ji
+q11 ∈ Rn×4 .
+
+(20)
+
+pi
+
+until convergence
+
+The channel seen by the jth bit can be written as
+H j = H ji
+
+pi
+0
+
+0
+.
+pi
+
+Since −x log x is concave in x, we conclude that H(Y |Bj ) is
+concave in pi . As a consequence, the term − H(Y |Bj ), which
+contributes to the objective function, is convex in pi .
+
+We maximize over one bit pmf pi at a time and then
+cycle through the i = 1, . . . , m until convergence. This
+approach goes under the name alternating maximization.
+i
+• To maximize over one bit pmf p , we iteratively approxbicm
+imate I
+by a lower bound that is concave in pi and
+maximize this concave lower bound. After convergence,
+the maximum of the concave lower bound is also a local
+maximum of Ibicm as a function of pi . This technique is
+known as the convex-concave procedure [7].
+We call this approach the bit-alternating convex-concave
+method (BACM). The alternating maximization over the bit
+pmfs is displayed in Alg. 1. The maximization over one bit
+pmf is detailed next.
+
+D. Summary
+
+A. Concave Lower Bound
+
+(21)
+
+•
+
+Thus, the output entropy conditioned on the jth is
+n
+
+1
+
+pj
+b
+
+H(Y |Bj ) = −
+b=0
+
+pj
+b
+b=0
+
+(22)
+
+k=1
+
+n
+
+1
+
+=−
+
+(H j )kb log(H j )kb
+
+H ji
+k=1
+
+pi
+0
+
+0
+pi
+
+log H ji
+kb
+
+pi
+0
+
+0
+pi
+
+.
+kb
+
+(23)
+
+The objective function as a function of pi can be characterized as follows:
+
+As the objective is the sum of concave and convex functions,
+it cannot be maximized directly. However, the convex-concave
+procedure as deﬁned in [16, slide 26] can be applied. Deﬁne
+the function hj (pi ) as the negative of the right-hand side
+of (23). This function is convex in pi . The convex-concave
+procedure is an iterative method and works as follows. Denote
+ˆ
+by pi the result for pi in the previous step. Then, in the current
+step, approximate hj (pi ) by its ﬁrst order Taylor expansion in
+ˆ
+pi , i.e., by
+
+ˆ
+ˆ
+ˆ
+ˆ
+Ibicm (p1 , . . . , pi−1 , pi , pi+1 , . . . , pm )
+= m H(Y ) − H(Y |Bi ) +
+concave in pi
+
+linear in pi
+
+[− H(Y |Bj )] . (24)
+j=i
+
+convex in pi
+
+As a sum of convex and concave terms, Ibicm is a non-convex
+function. However, as we detail in the next section, the convexconcave procedure [7] can be applied to maximize Ibicm over
+pi .
+
+ˆ
+ˆ
+ˆ
+hj (pi , pi ) := hj (pi ) +
+
+IV. BACM A LGORITHM
+
+ˆ
+ˆ
+hj (pi )T (pi − pi ).
+
+(25)
+
+Note that since hj (pi ) is convex in pi and the approximation
+ˆ
+ˆ
+ˆ
+ˆ
+hj (pi , pi ) is linear in pi , the approximation hj (pi , pi ) lower
+j
+i
+i
+bounds h (p ) for any value of p . By a calculation similar
+ˆ
+to [17, (7.61)–(7.63)] it can be shown that hj is given by
+
+The objective Ibicm is a non-convex function of the pmfs
+p1 , . . . , pm with potentially more than one local maximum.
+Thus, ﬁnding an efﬁcient algorithm that provably ﬁnds the
+global maximum is difﬁcult. Therefore, we resort to the
+simpler problem of ﬁnding a local maximum. With a good
+starting point, the global maximum is nevertheless found by
+such an approach. To ﬁnd local maxima, efﬁcient methods are
+available. For the problem at hand, we choose the combination
+of two methods.
+
+ˆ
+ˆ
+hj (pi , pi ) =
+n
+
+1
+
+pj
+b
+b=0
+
+H ji
+k=1
+
+pi
+0
+
+0
+pi
+
+log H ji
+kb
+
+ˆ
+pi
+0
+
+0
+ˆ
+pi
+
+.
+kb
+
+(26)
+
+3
+
+Putting all together, we have a concave lower bound of Ibicm
+as a function of pi given by
+ˆ
+ˆ
+hj (pi , pi )
+
+ˆ
+f i (pi , pi ) := m H(Y ) − H(Y |Bi ) +
+
+E.g., (H ji )110 denotes the entry of H ji in the 1st row and
+the 3rd column. For notational convenience, we write
+
+(27)
+
+i
+ˆ
+df0 (p0 , pi ) :=
+
+j=i
+n
+
+i
+∂f0 (pi , pi )
+0 ˆ
+.
+∂pi
+0
+
+(35)
+
+n
+
+1
+
+Putting the expressions above together according to (27),
+(H i )kb log(H i )kb we get the ﬁrst derivative of f i . Since f i is concave, df i
+0
+0
+0
+k=1
+b=0
+k=1
+is monotonically decreasing in pi . Consequently, we can
+0
+1
+n
+i
+maximize f0 over pi ∈ [0, 1] as follows.
+ˆ
+pi 0
+pi 0
+0
++
+pj
+H ji
+log H ji
+.
+i
+i
+b
+
+ˆ
+0 p
+0 p
+i
+kb
+kb
+j=i b=0
+k=1
+0
+ˆ
+df0 (0+ , pi ) < 0
+
+(28) argmax f i (pi , pi ) = 1
+i − ˆi
+df0 (1 , p ) > 0
+0 0 ˆ
+ i
+pi
+
+i
+0
+i
+i
+ˆ
+p0 : df0 (pi , pi ) = 0 otherwise.
+Since f is a concave function of p , it can be maximized
+0
+efﬁciently over pi , as we will explain in detail in the next
+(36)
+ˆ
+subsection. We iteratively update pi with the value of pi that
+In our implementation [8], we use the bisection method to ﬁnd
+ˆ
+maximizes f i (pi , pi ). Algorithm 2 illustrates this procedure.
+pi in the third case. See Sec. VII for details.
+bicm
+0
+After convergence, the pmf pi locally maximizes I
+over
+ˆ
+pi given the ﬁxed pmfs pj for j = i.
+V. A DDING AN AVERAGE COST CONSTRAINT
+= −m
+
+(H i pi )k log(H i pi )k +
+
+pi
+b
+
+We discuss how BACM can be used to calculate BICM
+capacity when the bit pmfs are subject to an average cost
+m
+constraint. Suppose we have a cost vector w ∈ R2 , where
+>0
+R>0 denotes the set of positive real numbers. Then, the
+symbol costs seen by the ith bit are given by
+
+B. Solving the Inner Optimization Problem
+We need to solve the optimization problem
+ˆ
+maximize f i (pi , pi ).
+i
+
+(29)
+
+pmf p
+
+Any pmf pi can for some pi ∈ [0, 1] be written as pi =
+0
+pi
+0
+. We deﬁne
+i
+1−p
+
+i
+wi = [wT q0
+
+pi
+0
+1−pi
+0
+
+i
+
+=f (
+
+i
+
+ˆ
+, p ).
+
+(30)
+
+We can now formulate our optimization problem as
+
+T
+
+ˆ
+maximize[f i (pi , pi ) − λwi pi ].
+i
+
+i
+maximize f0 (pi , pi ).
+0 ˆ
+i
+
+p
+
+(31)
+
+p0 ∈[0,1]
+
+Hi 1
+
+−1
+
+T
+
+log(H i
+k
+
+k=1
+
++ Hi 1
+
+−1
+
+pi
+0
+1−pi
+0
+
+T
+
+maximize
+1
+m
+
+ˆ
+∂ hj (
+
+Ibicm (p1 , . . . , pm )
+
+subject to
+
+wT (p1 ⊗ · · · ⊗ pm ) ≤ E.
+
+We use BACM to calculate BICM capacity of PAM constellations in AWGN. To calculate the BICM capacity of
+PAM constellations in AWGN, optimization has to be done
+over the labeling of the signal points, the scaling of the
+constellation, and the bit pmfs, see [6, Eq. (40)] for details.
+Here, we ﬁx the labeling to the binary reﬂected Gray code
+[6, Sec. II-B] and optimize over constellation scaling and bit
+pmfs. To be able to use BACM, we discretize the channel
+output into 200 equally spaced points. For each scaling, the
+discretized AWGN channel with M = 2m constellation points
+at the input can thus be represented by a DMC speciﬁed
+by a transition matrix H ∈ R200×M . For this DMC, we
+
+n
+
+(H i )k0 log(H i )k0 − (H i )k1 log(H i )k1
+k=1
+
+ˆ
+, pi )
+
+n
+
+1
+
+pj
+b
+
+=
+b=0
+
+(40)
+
+VI. A PPLICATION TO PAM IN AWGN
+(32)
+
+(33)
+pi
+0
+1−pi
+0
+∂pi
+0
+
+(39)
+
+where p∗ = p1∗ ⊗ · · · ⊗ pm∗ . Then, it can be shown that the
+bit pmfs p1∗ , . . . , pm∗ solve the optimization problem
+
+)k
+
+k
+
+∂H(Y |Bi )
+=
+∂pi
+0
+
+E = w T p∗
+
+p ,...,p
+
+n
+
+(38)
+
+This simply adds another linear term and our algorithm works
+in exactly the same way as before. Denote by pi∗ the optimal
+pmfs found by this modiﬁed version of BACM for some λ.
+Consider the resulting cost
+
+Note that the problems (29) and (31) are equivalent and
+i
+furthermore, by [10, Sec. 3.2.2], f0 is a concave function of
+p0 . Thus, our problem reduces to ﬁnding the maximum of a
+concave function with a scalar argument. This can be done as
+follows.
+The ﬁrst derivative of H(Y ), H(Y |Bi ), and
+i
+ˆ j ( p0 i , pi ), j = i with respect to pi are respectively
+ˆ
+h 1−p
+0
+0
+given by
+∂H(Y )
+=−
+∂pi
+0
+
+(37)
+
+The average cost can now be included by adding a weighted
+T
+version of the average cost wi pi to f i , i.e., the inner
+optimization problem in Alg. 2 now becomes
+
+0
+
+i
+f0 (pi , pi )
+0 ˆ
+
+i
+q1 ] T .
+
+(H ji )kb0 − (H ji )kb1
+k=1
+
+· log(H j )kb (34)
+where we index the rows of H ji by k = 1, . . . , n and the
+columns by the binary expansion bj bi = 00,01,10,11.
+
+4
+
+1
+
+AWGN capacity: 0.5 log(1 + snr)
+
+Therefore, the number of iterations until convergence in Alg. 2
+should be approximately invariant under m and we denote it
+by a constant K. For our AWGN simulations, this number was
+around K = 3, independent of m. The complexity of maximiz1
+ing Ibicm over one bit pmf is thus approximately Km log2 2d .
+This maximization has to be done for i = 1, . . . , m, i.e., m
+times, which adds another factor of m to the complexity. This
+procedure has to be repeated L times until convergence in
+the outer loop of Alg. 1. This number depends on m. For
+the AWGN simulations, we observed for m = 2, 3, 4, 5, 6,
+respectively, the values
+
+0
+gap to AWGN capacity in %
+
+-1
+-2
+-3
+-4
+
+4-PAM
+
+8-PAM
+
+16-PAM
+
+32-PAM
+
+64-PAM
+
+-5
+-6
+-7
+
+2.00
+
+-8
+BICM capacity
+CM capacity
+Uniform BICM
+
+-9
+-10
+
+5
+
+10
+
+15
+
+20
+SNR in dB
+
+25
+
+30
+
+VII. C OMPLEXITY OF BACM
+
+1−0
+1
+= log2
+.
+2d
+2d
+
+4.31.
+
+(42)
+
+[1] E. Zehavi, “8-PSK trellis codes for a Rayleigh channel,” IEEE Trans.
+Commun., vol. 40, no. 3, pp. 873–884, May 1992.
+[2] G. Caire, G. Taricco, and E. Biglieri, “Bit-interleaved coded modulation,” IEEE Trans. Inf. Theory, vol. 44, no. 3, pp. 927–946, May 1998.
+[3] A. Guill´ n i F` bregas, A. Martinez, and G. Caire, “Bit-interleaved coded
+e
+a
+modulation,” Found. Trends Comm. Inf. Theory, vol. 5, no. 1–2, pp. 1–
+153, 2008.
+[4] A. Guill´ n i F` bregas and A. Martinez, “Bit-interleaved coded modulae
+a
+tion with shaping,” in Proc. IEEE Information Theory Workshop (ITW),
+2010, pp. 1–5.
+[5] A. Alvarado, F. Br¨ nnstr¨ m, and E. Agrell, “High SNR bounds for the
+a
+o
+BICM capacity,” in Proc. IEEE Information Theory Workshop (ITW),
+2011, pp. 360–364.
+[6] E. Agrell and A. Alvarado, “Optimal alphabets and binary labelings
+for BICM at low SNR,” IEEE Trans. Inf. Theory, vol. 57, no. 10, pp.
+6650–6672, Oct. 2011.
+[7] A. L. Yuille and A. Rangarajan, “The concave-convex procedure,”
+Neural Computation, vol. 15, pp. 915–936, 2003.
+[8] “BACM–an algorithm for calculating BICM capacity.” [Online].
+Available: http://www.georg-boecherer.de/bacm
+[9] T. M. Cover and J. A. Thomas, Elements of Information Theory, 2nd ed.
+John Wiley & Sons, Inc., 2006.
+[10] S. Boyd and L. Vandenberghe, Convex Optimization.
+Cambridge
+University Press, 2004.
+[11] R. Blahut, “Computation of channel capacity and rate-distortion functions,” IEEE Trans. Inf. Theory, vol. 18, no. 4, pp. 460–473, 1972.
+[12] S. Arimoto, “An algorithm for computing the capacity of arbitrary
+discrete memoryless channels,” IEEE Trans. Inf. Theory, vol. 18, no. 1,
+pp. 14–20, 1972.
+[13] M. Grant and S. Boyd, “CVX: Matlab software for disciplined convex
+programming, version 1.21,” http://cvxr.com/cvx, Jul. 2010.
+[14] R. A. Horn and C. R. Johnson, Topics in Matrix Analysis. Cambridge
+University Press, 1991.
+[15] A. Martinez, A. Guill´ n i F` bregas, G. Caire, and F. Willems, “Bite
+a
+interleaved coded modulation revisited: A mismatched decoding perspective,” vol. 55, no. 6, pp. 2756–2765, 2009.
+[16] S. Boyd, “Convex optimization II, lecture 14: Sequential convex
+programming,” lecture notes, 2008. [Online]. Available: http://www.
+stanford.edu/class/ee364b/lectures/seq slides.pdf
+[17] G. B¨ cherer, “Capacity-achieving probabilistic shaping for noisy
+o
+and noiseless channels,” Ph.D. dissertation, RWTH Aachen
+University, 2012. [Online]. Available: http://www.georg-boecherer.
+de/capacityAchievingShaping.pdf
+
+We start by analyzing the complexity of the inner optimization problem. To cover the ﬁrst two cases in (36), we need to
+i
+evaluate df0 two times. To ﬁnd the pi in the third case we use
+0
+the bisection method starting with the upper bound u = 1 and
+the lower bound = 0, and we terminate when u − ≤ 2d.
+After termination, we assign pi = u+ . Thus, we calculate pi
+0
+0
+2
+with a precision of ±d. According to [10, p. 146], the number
+i
+of times we need to evaluate df0 until termination is given by
+= log2
+
+4.24
+
+R EFERENCES
+
+use the method proposed in Sec. V to calculate the BICM
+capacity. To achieve a target SNR, we iteratively adapt the
+weighting λ of the average power in (38). We repeat this
+for different constellation scalings and choose the scaling
+that yields the largest value for Ibicm . This largest value is
+the BICM capacity and we denote it by Cbicm (snr). Results
+for 4, 8, 16, 32, and 64-PAM are displayed in Fig. 1. For
+comparison, coded modulation (CM) capacity [6, Eq. (28)]
+of the corresponding constellation and Ibicm for uniform bit
+pmfs are displayed. The values for CM capacity were obtained
+via CVX [13]. The BICM capacity signiﬁcantly outperforms
+uniform BICM and gets close to CM capacity. We calculated
+the optimal bit pmfs with a precision of d = 10−5 .
+
+u−
+2d
+
+3.90
+
+The average for each m is taken separately over all values
+that were observed when executing BACM. This value increases slightly with m. To have a rough bound on complexity, we assume that L increases at most linearly with m,
+which is consistent with the observed data (42). All together,
+we have a complexity that is approximately of the order
+1
+1
+LKm2 log2 2d ≤ Km3 log2 2d . In summary, BACM scales
+3
+as m and logarithmically in the precision d.
+
+Fig. 1. Results for 4, 8, 16, 32, and 64-PAM in AWGN. In the horizontal
+direction, SNR is displayed in dB. In the vertical direction, we show the
+gap in percent to the AWGN capacity C(snr) = 0.5 log(1 + snr). E.g.,
+C(snr)
+for BICM capacity, the gap is calculated as 100 · (1 − Cbicm (snr) ). For
+each constellation size and a corresponding target SNR, CM capacity, BICM
+capacity, and uniform BICM capacity are displayed. For BICM capacity, we
+display several values since we could adjust the effective SNR only via the
+weighting factor λ, see Sec. V.
+
+log2
+
+3.27
+
+(41)
+
+ˆ
+When evaluating df i , by (27), we need to evaluate ∂ hj /∂pi
+0
+for each j = i, which results in a number of m − 1 or
+roughly m evaluations. Overall, the number of evaluations
+needed for solving the inner optimization problem once is
+1
+roughly m log2 2d . The sizes of the matrices involved in (28)
+are invariant under m, i.e., H ji ∈ Rn×4 and H i ∈ Rn×2 .
+
+5
+
+

@@ -1,0 +1,876 @@
+Creator:        TeX
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Mon May 14 23:22:22 2012
+ModDate:        Tue Jun 19 12:56:23 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      384028 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569559889
+
+Modeling Biological Circuits with Urn Functions
+David Lee
+
+Jehoshua Bruck
+
+Dept. of Electrical Engineering
+Stanford University
+Palo Alto, CA 94305
+Email: davidtlee@stanford.edu
+
+Dept. of Electrical Engineering
+California Institute of Technology
+Pasadena, CA 91125
+Email: bruck@caltech.edu
+
+behaviors when small numbers of molecules are involved, such
+as in genetic networks of single cells[15][3].
+One of these behaviors is bistability[21][1], a phenomena
+where populations of cells or bacteria tend to one of two
+stable states given the same initial conditions. This behavior
+is particularly interesting from the perspective of computation
+because it resembles a switch. A natural question to ask is:
+how does such switching phenomena arise? How can we
+design similar mechanisms with a set of randomly interacting
+agents? An answer to this question would provide a new means
+for analyzing and designing biological systems and to new
+approaches for utilizing randomness in computation.
+
+Abstract—Motivated to understand the role of randomness in
+biological computation, we study a class of urn models that
+are characterized by urn functions. At each step, one ball is
+randomly sampled according to an urn function and replaced
+with a different colored ball. This process is repeated until the
+urn contains a single color, at which point the process halts. Such
+an urn can be thought of as a random switch; depending on the
+initial ball colors and the urn function, the urn population has
+some probability of converging to any of the initial ball colors. We
+ﬁnd that these probabilities have surprisingly simple closed-form
+solutions and also derive expressions for the switching time.
+We demonstrate the application of such urn models to biological systems by deriving the urn function for the genetic
+network controlling the lysis-lysogeny decision in the Lambda
+phage virus. By applying our results to this system, we then
+derive an intriguing hypothesis on the role of dimers in genetic
+switches. Many open questions exist on further generalizations
+of such urn models and their applications to the understanding
+of randomness and biological computation.
+
+B. Urn models
+A natural way to approach this problem is through the
+literature of urn models. Urn models were mentioned as far
+back as Bernoulli’s Ars Conjectandi (1713) as a tool for
+describing different probability distributions. In the model,
+there is an urn with an initial number of balls, each of which
+has a color. Balls are then randomly selected with or without
+replacement to describe different probability distributions.
+In the 1900s, researchers began to study the dynamics of
+urn models under repeated sampling and modiﬁcation rules. In
+the general model, a ball is drawn uniformly at random from
+the urn. If the ball color is i, then aij balls of color j are added
+into the urn, where aij are entries of a matrix. Many results
+on the convergence properties of such urns have been shown
+for various classes of urns (see [16] for an excellent survey
+as well as the classical Johnston and Kotz book[11] and its
+sequel[13]). For example, in the original P´ lya-Eggenberger
+o
+urn, balls are either red or blue. Each time a ball is sampled,
+it is returned along with an additional ball of the same color
+(aii = 1, aij = 0, i = j). Letting Rt , Bt be the numbers of
+red and blue balls after t sampling steps and {Xt , t ≥ 0} be
+the stochastic process representing the fraction of red balls
+Rt
+Rt +Bt , it was shown that Xt converges almost surely to the
+beta distribution β(R0 , B0 ).
+Urn models have also been generalized in other directions.
+One particularly interesting model was introduced by Hill et
+al.[9], who put forward the concept of an urn function. Rather
+than sampling a red ball with probability Xt and a blue ball
+with probability 1 − Xt , they generalize the original P´ lya urn
+o
+by sampling a red ball with probability f (Xt ) and a blue ball
+with probability 1 − f (Xt ), where f : [0, 1] → [0, 1] is called
+
+I. I NTRODUCTION
+A. Randomness in Biology and Computation
+The typical engineering mindset is to eliminate randomness
+– deemed as ‘noise’ – in a system. Yet, randomness has been
+steadily playing a larger role in computation and problem
+solving. Beyond the prevalence of Monte Carlo methods
+that are used to attack high-dimensional problems[2], there
+have also been surprising theoretical results indicating that
+randomized methods may, on occasion, be fundamentally more
+powerful than deterministic algorithms[10][20].
+These results are even more thought-provoking when placed
+next to increasing observations in the biological community
+of randomness in nature. For example, the ﬁring of neurons
+is governed by the release of ions into the synpase; these
+ions arrive in vesicles that have a ‘vesicle release probability’,
+which has been hypothesized to play a role in several parts of
+the neural decision making process[19][22].
+Many of these high-level behaviors can be traced to biological reactions of the form:
+k
+
+A+B →C
+The above equation means that when A and B interact with
+each other, they can be replaced by C with some probability
+related to the constant k. Typically, such behavior is analyzed
+with deterministic or continuous approximations, which are
+accurate for large numbers of molecules. However, studies
+show that such approximations can overlook signiﬁcant system
+
+1
+
+an urn function. The sampled ball is then returned to the urn
+along with an additional ball of the same color.
+
+that the Ehrenfest urn is simply a ﬁxed size urn with the urn
+function f (p) = p while the Mabinogian urn is a ﬁxed size
+urn with urn function f (p) = 1 − p.
+In this paper, we highlight the main results, leaving the
+details and additional work for the longer version[14]. The
+remaining sections will be structured as follows:
+1) (Section II) We derive the switching probability of ﬁrst
+reaching all red or blue. Speciﬁcally, given an initial
+urn conﬁguration with some urn function f , we ﬁnd the
+probability that it converges to (or ﬁrst hits) all red or
+all blue. This distribution is shaped like the cumulative
+distribution function of a generalized binomial-like distribution and acts as a soft switch for certain f ; that is, if
+a sufﬁcient majority is red or blue, the urn will converge
+to the respective majority.
+2) (Section III) We show an application of the above results
+to a proof-of-principle analysis of Lambda phage, a virus
+that infects the E. Coli bacterium. We ﬁnd that, with a
+little work, we are able to describe the lysis-lysogeny
+decision with an urn function. In addition, we derive
+a surprising hypothesis on the importance of dimers in
+genetic switches: if the same negative feedback switch
+was implemented with monomers, we would no longer
+get crisp switching behavior.
+3) (Section IV) We summarize other results detailed in the
+long version: a gaussian approximation to the switching probability, the entropy of a switch, and expected
+switching time.
+
+C. The Ehrenfest and Mabinogian urns
+There are two speciﬁc urn models that are of special interest
+to us. In both of these models, the total number of balls
+remains constant after each sampling and modiﬁcation step.
+The Ehrenfest urn was introduced in 1907 as a way of
+modeling diffusion. The urn starts with n balls, each of which
+are red or blue. Each time a ball is sampled, it is replaced with
+a ball of the opposite color (aii = −1 and aij = 1, i = j).
+As this process is repeated, Rt converges to the binomial
+distribution Bin(n, 1 ).
+2
+The dual of this urn is the Mabinogian urn[5]. Each time
+a ball is sampled, it is placed back into the urn and a ball
+of the opposite color is changed to match the drawn ball’s
+color (aii = 1 and aij = −1, i = j). This replacement rule is
+unusual in that it cannot be followed indeﬁnitely; once all the
+balls have converged to the same color, there are no balls of the
+opposite color to change. Flajolet and Huillet deal with this by
+halting the random process at this point. They prove that for
+urns with a ﬁxed fraction of red balls c > 1 , the probability
+2
+that the urn will converge to all red becomes exponentially
+close to 1 as n → ∞.
+Each of these urns can be represented by a random walk on
+the integers 0, 1, . . . , n. The random walk starts at some initial
+position i, which represents the number of red balls in the urn.
+If a blue ball is changed to a red ball, the random walk moves
+from i to i+1. Similarly, if a red ball is changed to a blue ball,
+the random walk moves from i to i − 1. If there is no change
+in ball color, the random walk stays at i. The probabilities of
+each of these possible transitions are denoted by pi , qi , and ri
+respectively. When pi = qi = 1 or when pi = p, qi = q, there
+2
+are several standard martingale methods for deriving properties
+such as absorption probabilities or convergence times of these
+random walks[4][7]. More recently, Rudolph also derived
+closed form expressions for many relevant quantities of these
+random walks with general parameters pi , qi , and ri [18].
+
+II. S WITCHING P ROBABILITY
+We are interested in characterizing the switching behavior
+of a ﬁxed size urn with an arbitrary urn function. Speciﬁcally,
+let T be the ﬁrst time when the balls are all red or all blue. We
+want to ﬁnd βn (i) = Pr[RT = n | R0 = i]. In this section, we
+ﬁrst deﬁne a useful intermediate operator n . We then derive
+n f for simple functions and prove results on the composition
+of functions. Finally, we derive switching probabilities of urns
+in terms of these expressions.
+We will use the notation δn (i) = βn (i)−βn (i−1). Also, n
+k
+will be generalized to allow reals (see Fowler[6] for intuitions),
+Γ(n+1)
+so n = Γ(k+1)Γ(n−k+1) . We will also have expressions
+k
+
+D. The Model: Fixed size urns with urn functions
+The model we deﬁne is a Hill-like generalization of the
+Mabinogian and Ehrenfest urns where sampling is according
+to an urn function f : [0, 1] → [0, 1]. At each step,
+1) a red ball is sampled w.p.1 f (Xt ),
+2) a blue ball is sampled w.p. f (1 − Xt ),
+3) or nothing happens w.p. 1 − f (Xt ) − f (1 − Xt ).
+If a ball was sampled, it is replaced with a ball of the opposite
+color. The urn process halts if it has no more red balls and
+f (0) > 0 or if it has no more blue balls and f (1) < 1.
+The main intuition in sampling red balls w.p. f (Xt ) and
+blue balls w.p. f (1 − Xt ) (as opposed to 1 − f (Xt )) is to
+use the urn function f to capture structure or symmetry in the
+interactions. Then, the sampling of red and blue balls should
+also have a symmetry to it. With this deﬁnition, we can note
+1 w.p.
+
+0
+
+0
+
+(·) = 1 and
+
+where the notations
+
+(·) = 0 are assumed.
+
+k=1
+
+k=1
+
+Deﬁnition 1. Deﬁne the operator
+
+n
+
+i−1
+
+(
+
+n f )i
+
+=
+k=1
+
+f
+f
+
+as
+
+k
+n
+n−k
+n
+
+Theorem 1. Let f (p) = p − z, where z ∈ C is a real number
+k
+such that z = n for any k = 1, 2, . . . , n. Then,
+(
+
+n f )i
+
+∝
+
+(2z − 1)n − 1
+(z − 1)n + i − 1
+
+(
+
+n f )i
+
+∝
+
+(1 − 2z)n − 1
+−zn + i − 1
+
+and
+
+stands for ‘with probability’.
+
+2
+
+−1
+
+Proof: βn (i) satisﬁes the recurrence relation
+
+Proof:
+i−1
+
+(
+
+n f )i
+
+i−1
+
+k
+f(n)
+
+=
+k=1
+
+=
+
+f ( n−k )
+n
+
+i−1
+
+k
+n −z
+n−k
+−z
+k=1 n
+
+=
+k=1
+
+βn (i) = pi βn (i + 1) + qi βn (i − 1) + ri βn (i)
+
+k − zn
+n − k − zn
+
+Then using the deﬁnition of δn (i), we can simplify this in the
+following way:
+
+Recall that Γ(x + 1) = xΓ(x). Then we have
+(
+
+(pi + qi + ri )βn (i) = pi βn (i + 1) + qi βn (i − 1) + ri βn (i)
+
+Γ(i − 1 − zn + 1)/Γ(0 − zn + 1)
+Γ(n − 1 − zn + 1)/Γ(n − i − zn + 1)
+∝ Γ(i − zn)Γ(n − i − zn + 1)
+
+n f )i
+
+=
+
+−1
+
+(1 − 2z)n − 1
+−zn + i − 1
+
+∝
+
+pi (βn (i + 1) − βn (i)) = qi (βn (i) − βn (i − 1))
+qi
+δn (i + 1) = δn (i)
+pi
+i
+
+δn (i + 1) = δn (1)
+k=1
+
+Alternatively, we also have
+i−1
+
+(
+
+Then we get our ﬁnal result by noting that βn (n) = 1.
+
+zn − k
+zn − n + k
+
+n f )i =
+k=1
+
+qk
+pk
+
+Theorem 4. Let a ﬁxed size urn sample a red ball with probability kr f (Xt ) and a blue ball with probability kb f (1 − Xt ),
+where 0 ≤ kr f (x) + kb f (1 − x) ≤ 1 for 0 ≤ x ≤ 1. Then,
+
+Γ(zn − 1 + 1)/Γ(zn − i + 1)
+Γ(zn − n + i − 1 + 1)/Γ(zn − n + 0 + 1)
+1
+∝
+Γ(zn − n + i)Γ(zn − i + 1)
+(2z − 1)n − 1
+∝
+(z − 1)n + i − 1
+=
+
+δn (i) =
+n
+
+where Z =
+i=1
+
+kr
+kb
+
+1
+Z
+
+kr
+kb
+
+i−1
+
+(
+
+n f )i
+
+i−1
+
+(
+
+n f )i .
+
+Proof: By Lemma 1 and Deﬁnition 1, we have
+Theorem 2. Let f (p) = g(p)h(p). Then,
+(
+
+n f )i
+
+=(
+
+·(
+
+n g)i
+
+δn (i) =
+
+n h)i
+
+1
+Z
+
+i−1
+
+k=1
+
+kr f
+kb f
+
+k
+n
+n−k
+n
+
+=
+
+1
+Z
+
+kr
+kb
+
+i−1
+
+(
+
+n f )i
+
+Proof: By applying Deﬁnition 1,
+i−1
+
+(
+
+n f )i
+
+=
+k=1
+
+k
+n
+n−k
+n
+
+g
+g
+
+Theorem 3. Let f (p) =
+(
+
+k
+n
+n−k
+n
+
+h
+h
+
+=(
+
+g(p)
+g(p)+g(1−p) .
+n f )i
+
+=(
+
+n g)i
+
+·(
+
+III. A N A NALYSIS OF A B IOLOGICAL S WITCH
+A. Lambda phage Background
+The behavior of Lambda phage is controlled by a small
+‘molecular program’ written into its DNA. When Lambda
+phage injects its DNA into the host cell, the host will transcribe
+proteins encoded by the DNA. These proteins can interact with
+each other and also affect the future transcription of other
+proteins. The primary initial decision that Lambda phage needs
+to make is whether to go into the lytic or the lysogenic cycle.
+If the host cell is healthy, then Lambda phage would rather
+enter the lytic cycle where it repeatedly duplicates itself until it
+bursts the cell and ﬁnds another host to infect. However, if the
+host cell is unhealthy, or if there are already other infections
+in the bacterium, then it is likely that there will not be many
+other host cells to infect. In this case, Lambda phage prefers
+to enter the lysogenic cycle where it remains dormant until a
+better time.
+The genetic circuits of Lambda phage have been thoroughly
+studied (see [17] for more details). Roughly speaking, there
+is a portion of the network that is in charge of sensing
+environmental signals and setting two proteins, cro and cI,
+at certain concentration levels. As the levels of cro and cI
+increase, they inhibit the previous proteins, which slowly
+degrade away.
+The main decision making portion now ends with a biological switch implemented by the cro and cI proteins. It can be
+described in three parts:
+
+n h)i
+
+Then,
+
+n g)i
+
+Proof: By applying Deﬁnition 1,
+i−1
+
+(
+
+n f )i
+
+=
+k=1
+
+k
+g( n )
+k
+g ( n )+g ( n−k )
+n
+
+g ( n−k )
+n
+g(
+
+n−k
+n
+
+i−1
+
+=
+k=1
+
+k
+)+g( n )
+
+g
+g
+
+k
+n
+n−k
+n
+
+=(
+
+n g)i
+
+We can now derive the switching probabilities in terms of
+We will express the results in terms of δn (i). Note that
+
+nf .
+
+i
+
+since βn (0) = 0, we have βn (i) =
+
+δn (j).
+j=1
+
+Lemma 1. For a random walk between absorbing boundaries
+0 and n, and general transition probabilities pi , qi , and ri for
+transitions i → i + 1, i → i − 1, and i → i, we have
+δn (i) =
+n j−1
+
+where Z =
+j=1 k=1
+
+1
+Z
+
+i−1
+
+k=1
+
+qk
+pk
+
+qk
+pk .
+
+3
+
+respectively, D1 and D2 as the degradation rates of cro and
+cI respectively, E1 and E2 as constants calculated from the
+binding energies of cro and cI to the DNA, n as the total
+number of cro and cI in solution, and [n] as the concentration
+n
+of n in moles per liter, e.g. [n] = moles n = V NA , where V is
+V
+the volume and NA is avogadro’s number.
+The ﬁrst observation to make is that despite what we have
+claimed previously, it is not clear that this system can be
+modeled by an urn function. Because of the reversible dimer
+formation reactions, it is not true that dcro/cI and tcro/cI are
+i
+solely functions of p = n , the fraction of cro proteins. Indeed,
+as seen in Lemma 2 below, the expressions are also dependent
+on the volume of the cell, as captured by [n].
+
+1) The cro and cI proteins can combine to form dimers
+according to cro + cro
+cro2 and cI + cI
+cI2 .
+2) The dimers can bind to a promoter region on the Lambda
+phage DNA; the monomers can be degraded at some
+rate.
+3) When RNA polymerase (RNAP) attaches to transcribe
+(create) a new protein, it will transcribe a cro protein if it
+moves right along the DNA and a cI protein if it moves
+left along the DNA; however, if a cro2 dimer is bound, it
+will block RNAP from transcribing cI. Likewise, if a cI2
+dimer is bound, it will block RNAP from transcribing
+cro2 .
+The system will tend to either all cro proteins or all cI proteins
+since whichever protein begins to dominate will block further
+transcription of the opposing protein. Existing proteins of the
+opposing type will gradually degrade over time according to
+the degradation rates of the cro and cI monomers. Eventually,
+if cro dominates, then Lambda phage will enter the lytic cycle.
+If cI dominates, it will enter the lysogenic cycle.
+
+Lemma 2.
+dcro (p) ∝ D1 ( 8K1 [n]p + 1 − 1)/K1
+dcI (p) ∝ D2 ( 8K2 [n](1 − p) + 1 − 1)/K2
+tcro (p) ∝ E1 ( 8K1 [n]p + 1 − 1)2 /K1
+tcI (p) ∝ E2 ( 8K2 [n](1 − p) + 1 − 1)2 /K2
+
+B. Modeling the Lambda phage Switch
+Because of the small numbers of proteins involved, deterministic modeling of this system does not accurately predict
+experimental results and stochastic simulations are the primary
+method of analyzing such systems[1]. We will show how the
+behavior of the Lambda phage switch can be modeled with a
+ﬁxed size urn with an urn function.
+In our model, we begin the urn process from the time when
+the other proteins are no longer relevant to the continued
+production of cro and cI and have reached a total number
+of proteins where the degradation rate is approximately equal
+to the transcription rate (so the number of proteins remains
+roughly constant). In addition,
+1) We approximate transcription and degradation as occuring simultaneously.
+2) We assume the rate of the reversible monomer-dimer
+reaction occurs much faster than the rate of transcription,
+so that the relative dimer-monomer concentrations can
+be approximated as in equilibrium.
+3) We assume that most of the time, one of cro2 or cI2 is
+bound to the promoter.
+It is now easy to see how such a system ﬁts into our model:
+the cro and cI proteins are the red and blue balls in the urn.
+#cro
+For p = #cro+#cI , let dcro (p) and dcI (p) be the probabilities
+that either cro or cI, respectively, will be the next protein to
+degrade. Let tcro (p) and tcI (p) be the probabilities that either
+cro or cI, respectively, will be the next protein to be transcribed. Then, for i representing the number of cro proteins,
+we can calculate the probability of replacing a cro with cI or
+vice versa. Speciﬁcally, for the corresponding random walk on
+i
+i
+i
+i
+a line, qi = dcro ( n )tcI ( n ) and pi = dcI ( n )tcro ( n ).
+For the following expressions, we will use K1 and K2
+for the equilibrium constants of cro and cI dimer formation
+
+Proof: dcro/cI (p) is proportional to the number of cro and
+cI monomers respectively multiplied by the degradation rates;
+tcro/cI (p) is proportional to the number of cro2 and cI2 dimers
+multiplied by the binding probabilities. The proof is detailed
+in the long version.
+Theorem 5 (Probability of Entering the Lytic Cycle). For a
+E. Coli bacterium infected by a single Lambda phage virus,
+let n be the total number of cro and cI proteins when the other
+(cII, cIII, N) protein concentrations have become negligible.
+Represent the number of cro proteins with i and the number
+of cI proteins with n − i. Then for small concentrations of
+protein [n] → 0, the probability of entering the lytic cycle can
+be found by
+δn (i) =
+
+1
+Z
+
+D1 E2 K2
+D2 E1 K1
+
+j−1
+
+n−1
+j−1
+
+Similarly, for large concentrations of protein [n] → ∞,
+√
+j−1
+1/2
+1 D1 E2 K2
+n−1
+√
+δn (i) =
+j−1
+Z D2 E1 K1
+C. The Role of Dimers
+The previous result becomes even more interesting when we
+consider what happens without dimers. Consider the following
+situation: suppose that the cI and cro monomers did not form
+dimers, but could directly bind to the promoter region to
+suppress transcription of the opposing protein. What would
+happen then? This question is essentially asking whether the
+negative feedback of the switch is sufﬁcient for creating switch
+behavior. Surprisingly, we ﬁnd that in this case, we do not get
+crisp switching behavior anymore (see Fig. 1).
+Theorem 6. For an E. Coli bacterium infected by a single
+Lambda phage virus, let n be the total number of cro and cI
+proteins when the other (cII, CIII, N) protein concentrations
+have become negligible. Suppose that cro and cI proteins
+
+2 This is a greatly simpliﬁed view. A more accurate view is to use binding
+energies of RNA polymerase, which describe the probability of transcribing
+either cro or cI, which will be tiny when there is a suppressing dimer
+
+4
+
+C. Next steps
+There are several directions for extending this work. On
+the model itself, it would be great to generalize the results
+to multi-colored urns (with multivariable urn functions) or to
+allow more types of transitions. It would also be interesting
+to use urn functions to analyze other behaviors, such as
+oscillations. Finally, it would be interesting to see what other
+algorithmic applications may arise from ﬁxed size urns with
+urn functions.
+ACKNOWLEDGMENT
+The authors would like to thank Tony Wong for helpful
+discussions on the switching probability and Persi Diaconis
+for pointing us to the P´ lya urn literature. This work was
+o
+supported in part by the Molecular Programming Project
+funded by the NSF Expeditions in Computing Program under
+grant CCF-0832824.
+
+Fig. 1: We plot the probability of lysis for three different
+values of D1 E2 K2 : 0.5, 1, and 2. In the case of dimers, we
+D2 E1 K1
+get three different soft switching points. However, in the case
+of monomers, we either get lysis or lysogeny with probability
+∼ 1, or a linear transition from lysogeny to lysis.
+
+R EFERENCES
+[1] A Arkin, J Ross, and H McAdams. Stochastic kinetic analysis of
+developmental pathway bifurcation in phage lambda-infected escherichia
+coli cells. Genetics, 1998.
+[2] P Diaconis. The markov chain monte carlo revolution. Bulletin (New
+Series) of the AMS, 2009.
+[3] M Elowitz. Stochastic gene expression in a single cell. Science, 2002.
+[4] W Feller. An Introduction to Probability Theory and Its Applications.
+Wiley, 1950.
+[5] P Flajolet and T Huillet. Analytic combinatorics of the mabinogion urn.
+In Discrete Mathematics and Theoretical Computer Science proc, 2008.
+[6] D Fowler. The binomial coefﬁcient function. The American Mathematical Monthly, 103:1–17, 1996.
+[7] G Grimmett and D Stirzaker. Probability and Random Processes, 3rd
+edition. Oxford University Press, USA, 2001.
+[8] C Heldin. Dimerization of cell surface receptors in signal transduction.
+Cell, 1995.
+[9] B Hill, D Lane, and W Sudderth. A strong law for some generalized
+urn processes. Annals of Probability, 8(2):214–226, 1980.
+[10] M Jerrum, A Sinclair, and E Vigoda. A polynomial-time approximation
+algorithm for the permanent of a matrix with nonnegative entries.
+Journal of the ACM, 2004.
+[11] N Johnson and S Kotz. Urn models and their application: an approach
+to modern discrete probability theory. Wiley, 1977.
+[12] J Klemm, S Schreiber, and G Crabtree. Dimerization as a regulatory
+mechanism in signal transduction. Annual Reviews in Immunology, 1998.
+[13] S Kotz and N Balakrishnan. Advances in urn models during the past
+two decades. In Advances in combinatorial methods and applications
+to probability and statistics. Birkh¨ user, 1997.
+a
+[14] D Lee and J Bruck. Switching and stabilizing in urn models. To be
+posted on arXiv, 2012.
+[15] H McAdams and A Arkin. Stochastic mechanisms in gene expression.
+PNAS, 1997.
+[16] R Pemantle. A survey of random processes with reinforcement.
+Probability Surveys, 4:1–79, 2007.
+[17] M Ptashne. A Genetic Swtich: Phage λ and Higher Organisms.
+Blackwell Science and Cell Press, 1992.
+[18] G Rudolph. The fundamental matrix of the general random walk with
+absorbing boundaries. Technical report, University of Dortmund, 1999.
+[19] E Schneidman, B Freedman, and I Segev. Ion channel stochasticity may
+be critical in determining the reliability and precision of spike timing.
+Neural Computation, 1998.
+[20] D Soloveichik, M Cook, E Winfree, and J Bruck. Computation with
+ﬁnite stochastic chemical reaction networks. Natural Computing, 2008.
+[21] J Veening, W Smits, and O Kuipers. Bistability, epigenetics, and bethedging in bacteria. Annual Reviews of Microbiology, 2008.
+[22] T Yang and M Shadlen. Probabilistic reasoning by neurons. Nature,
+2007.
+
+did not form dimers, but directly bound to the promoter to
+inhibit transcription of the opposing protein. Then for small
+concentrations of protein [n] → 0, the probability of entering
+the lytic cycle can be found by
+δn (i) =
+
+1
+Z
+
+D1 E2 K2
+D2 E1 K1
+
+j−1
+
+Similarly, for large concentrations of protein [n] → ∞,
+√
+j−1
+1 D1 E2 K2
+√
+δn (i) =
+Z D2 E1 K1
+This is particularly interesting in light of the ubiquity of
+dimers in genetic networks[12][8]. Perhaps dimers are not
+just needed for their ‘device level’ functionalities. The dimer
+formation process itself may be essential for a successful
+implementation of various phenomena.
+IV. OTHER RESULTS AND FUTURE DIRECTIONS
+A. Gaussian approximation and entropy
+We show that the generalized binomial expressions of
+Theorem 1 can be approximated by a gaussian and we derive
+a simple relation of the variance to the urn function. This
+gives another interpretation to the urns: by using different urn
+functions, a small number of molecules in an urn may be able
+to approximately simulate a much larger number of coin ﬂips.
+In addition, this approximation allows us to also calculate
+n
+1
+bounds for n i=0 H(βn (i)), which is the average switching
+entropy of the urn.
+B. Expected switching time
+It is also important to characterize the time it takes to switch.
+In the longer version, we derive bounds on the expected
+switching time for ﬁxed size urns which sample red balls with
+probability f (Xt ) and blue balls with probability f (1 − Xt ).
+
+5
+
+

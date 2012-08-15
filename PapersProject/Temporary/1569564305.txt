@@ -1,0 +1,1323 @@
+Title:          isit.pdf
+Author:         Keeper
+Creator:        PrimoPDF http://www.primopdf.com/
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Fri May 18 20:42:22 2012
+ModDate:        Fri May 18 20:42:22 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      300539 bytes
+Optimized:      no
+PDF version:    1.7
+ISIT'2012 1569564305
+
+Polar Coding without Alphabet Extension for
+Asymmetric Channels
+Junya Honda and Hirosuke Yamamoto
+Graduate School of Frontier Sciences, University of Tokyo
+Kashiwa-shi Chiba 277–8561, Japan
+Email: honda@it.k.u-tokyo.ac.jp, Hirosuke@ieee.org
+
+the decoding error probability may worsen because the input
+probability of X ′ is restricted to the uniform probability
+distribution.
+
+Abstract—We consider channel coding of binary asymmetric memoryless channels with polar codes. The difﬁculty for
+asymmetric channels comes from the fact that the optimal
+input probability distributions are not always uniform. Saso˘ lu
+¸ ¸ g
+et al. realized a nonuniform input distribution by mapping
+multiple auxiliary symbols distributed uniformly to an actual
+input symbol. However, the complexity of the scheme increases
+considerably for the case that the input distribution cannot
+be approximated by simple rational numbers. To overcome
+this problem, we propose another polar coding scheme for
+asymmetric channels, which realizes the optimal nonuniform
+input distribution by randomizing symbols in the frozen bits
+with an appropriate probability distribution.
+
+To overcome these defects, we need to generate the given
+input distribution PX (·) without any extended alphabet. A key
+idea to generate a desired input distribution can be found
+in the lossless compression by polar codes [4]. In this case
+n
+an original message X1 = (X1 , · · · , Xn ) with nonuniform
+n
+n
+distribution is transformed to U1 = X1 Gn by the generator
+matrix Gn of polar codes. It is shown that the elements of
+n
+U1 polarize into two groups, F and F c . Each bit Ui in F
+is almost uniformly distributed and independent of previous
+bits U1 , · · · , Ui−1 , and each bit in F c is determined from the
+previous bits almost surely.
+
+I. I NTRODUCTION
+Recently polar coding is attracting much attention for its
+achievability of Shannon bound with polynomial complexity.
+Polar codes are originally proposed by Arikan [1] for binary
+memoryless symmetric sources and generalized for Galois
+ﬁelds [2] and arbitrary q-ary alphabets [3]. The idea of polar
+codes is also extended to lossless and lossy source coding and
+some multiterminal problems [4].
+We consider channel coding with polar codes for asymmetric memoryless channels. For asymmetric channels, the ideal
+input probability distribution to achieve the capacity is not
+always uniform. In the previous works on the polar coding
+for asymmetric channels, a nonuniform input distribution is
+generated based on the technique of nonlinear mapping of
+symbols discussed in [5]. This technique is illustrated by
+the following example. Consider the case that the optimal
+input distribution is PX (0) = 2/3 and PX (1) = 1/3 with
+alphabet X = {0, 1}. This input distribution can be realized
+by considering a ternary polar code with an extended alphabet
+X ′ = {0, 1, 2}. Mapping symbols 0, 1 ∈ X ′ to 0 ∈ X and
+2 ∈ X ′ to 1 ∈ X in codewords, we obtain codewords on X
+with the desired distribution.
+Although this technique is simple and applicable widely,
+a large-sized extended alphabet is required if the optimal
+distribution PX (·) cannot be approximated by simple rational
+numbers. In such cases, the complexity of decoding increases
+considerably. The mapping from X ′ to X is equivalent to
+the case that the auxiliary channel W ′ : X ′ → X with
+W ′ (0|0) = W ′ (0|1) = W ′ (1|2) = 1 is pre-cascaded to
+the original channel W . This auxiliary channel does not
+decrease the channel capacity since we have I(X ′ ; Y ) =
+I(X; Y )−I(X; Y |X ′ ) = I(X; Y ) for the cascade of channels
+W ′ (x|x′ ) and W (y|x). But, in the case of ﬁnite code length,
+
+This result implies that when we have a uniform source,
+we can obtain a nonuniform input for a given channel in
+the following way: (a) choose a value of Ui for i ∈ F
+uniformly, (b) determine each bit Ui for i ∈ F c approprin
+n
+ately from U1 · · · , Ui−1 and (c) transform U1 to X1 by
+n
+n (−1)
+n
+X1 = U1 Gn = U1 Gn . In the case of the channel coding,
+the bits of F polarize further into I ⊂ F and F \ I. Here
+I is the set of information bits such that each bit of I is
+almost independent of the previous bits but determined from
+the channel output almost surely. F \I is the set of bits almost
+independent of the previous bits and the channel output. By
+assigning a message to the bits of I, we can send it with small
+decoding error probability.
+In the above scheme, we have to share symbols of I c
+between the encoder and the decoder. In our scheme we
+choose symbols in I c with a randomized algorithm, using
+common randomness or practically pseudo random numbers
+shared between the encoder and the decoder. The idea of
+this randomized algorithm comes from the polar coding for
+lossy compression [6]. As in the case of the lossy coding, the
+randomization makes the theoretical analysis much easier.
+This paper is organized as follows. In Sect. II, we give notation and derive basic inequalities on conditional entropies. We
+examine the channel polarization of the asymmetric channels
+in Sect. III. In Sect. IV we propose a new polar coding scheme
+for asymmetric channels and show that it achieves the channel
+capacity asymptotically. In Sect. V, we give a simulation result
+of the proposed scheme. Finally we prove the main result of
+this paper in Sect. VI.
+
+1
+
+II. P RELIMINARY
+We consider a discrete memoryless channel with transition
+probability W (y|x) for input x ∈ X and output y ∈ Y. Note
+that W (y|x) is not necessarily symmetric. For simplicity, we
+assume in the theoretical analysis that X is binary, i.e., X =
+{0, 1}, although the result can be extended to the nonbinary
+case, i.e., |X | ≥ 3 in the same way as the case of symmetric
+channels [2][3].
+The channel capacity is given by C(W ) = maxX I(X; Y )
+where Y is a random variable such that the joint probability
+is given by PX,Y (x, y) = PX (x)W (y|x). In the following
+of this paper, X and Y always denote the random variables
+that achieve the channel capacity. We assume without loss of
+generality that 0 < PX (0) < 1.
+n
+Let X1 = (X1 , · · · , Xn ) and Y1n = (Y1 , · · · , Yn ) denote
+i.i.d. copies of X and Y , respectively. For n = 2k , the
+generator matrix for polar codes is given by Gn = F ⊗k
+where F = 1 0 and ⊗ denotes the Kronecker power.
+11
+
+can achieve the channel capacity by using the bits of group (b)
+to transmit a message. Note that the probability distribution
+of each Ui depends on block length n = 2k . Superscript
+(k)
+i−1
+“(k)”, e.g. Z (k) (Ui ; U1 ) or PU |U i−1 , is used to represent
+i
+1
+the length.
+Now we consider the evolution of joint probabilities for our
+setting. First, the joint probability of U and Y for n = 1 is
+(1)
+given by PU 1 ,Y 1 (u, y) = PX,Y (u, y).
+1
+1
+Next, in the same way as the Prop. 3 of [1], we have
+(k+1)
+2i−2 2n
+, y1 )
+2i−2
+2n (u, u1
+,Y1
+2i−1 ,U1
+(k)
+n
+=
+PU ,U i−1 ,Y n (u ⊕ u′ , u2i−2 ⊕ u2i−2 , y1 )
+1,e
+1,o
+i
+1
+1
+′
+u
+(k)
+2n
+· PU ,U i−1 ,Y n (u′ , u2i−2 , yn+1 ) ,
+1,o
+i
+1
+1
+(k+1)
+2n
+PU ,U 2i−1 ,Y 2n (u, u2i−1 , y1 )
+1
+2i
+1
+1
+(k)
+n
+= PU ,U i−1 ,Y n (u ⊕ u2i−1 , u2i−2 ⊕ u2i−2 , y1 )
+1,e
+1,o
+i
+1
+1
+(k)
+2n
+· PU ,U i−1 ,Y n (u, u2i−2 , yn+1 )
+1,o
+i
+1
+1
+
+PU
+
+(−1)
+
+n
+n
+n
+n
+= X1 Gn . Let
+Then U1 is deﬁned as U1 ≡ X1 Gn
+j
+n
+Xi , i < j, stand for subvector (Xi , · · · , Xj ) of X1 . Similarly,
+let XA , A ⊂ {1, · · · , n}, represent subvector {Xi }i∈A .
+In the case of symmetric channels, Bhattacharyya parameter
+ZB (W ), which is deﬁned by
+
+(k+1)
+2i−1 we
+2i ,U1
+2n
+over all y1 .
+
+PU
+
+y
+
+is used to evaluate the error probability. But, in this paper, we
+use another parameter Z(S; T ) deﬁned by
+Z(S; T )
+
+≡
+
+2
+
+PT (t)
+
+2
+
+PS|T (0|t)PS|T (1|t)
+
+(k+1)
+
+WU 2i−2 ,Y 2n |U
+
+PS,T (0, t)PS,T (1, t)
+
+1
+
+for random variables S ∈ {0, 1} and T . Note that Z(S; T )
+coincides with the Bhattacharyya parameter ZB (PT |S ) when
+S is uniformly distributed.
+In the case of asymmetric channels, it is convenient to use
+conditional entropy H(S|T ) rather than mutual information
+I(S; T ) = H(S) − H(S|T ). For any random variables S ∈
+{0, 1} and T , H(S|T ) can be lower and upper bounded by
+functions of Z(S; T ) as follows.
+
+1
+
+1
+2
+
+2i−1
+
+2n
+(u2i−2 , y1 |u)
+1
+
+(k)
+
+n
+WU i−1 ,Y n |U (u2i−2 ⊕ u2i−2 , y1 |u ⊕ u′ )
+1,e
+1,o
+i
+
+1
+
+1
+
+u′
+
+(k)
+
+2n
+WU i−1 ,Y n |U (u2i−2 , yn+1 |u′ ) ,
+1,o
+1
+
+(3)
+
+i
+
+1
+
+(k+1)
+
+2n
+WU 2i−1 ,Y 2n |U (u2i−1 , y1 |u)
+1
+1
+
+1
+
+2i
+
+1 (k)
+n
+(u2i−2 ⊕ u2i−2 , y1 |u ⊕ u2i−1 )
+W i−1
+1,o
+2 U1 ,Y1n |Ui 1,e
+(k)
+2n
+(4)
+WU i−1 ,Y n |U (u2i−2 , yn+1 |u) .
+1,o
+
+=
+
+1
+
+1
+
+i
+
+Here note that for the symmetric case
+
+Lemma 1.
+2
+
+H(S|T ) ≤
+
+1
+
+=
+
+t
+
+H(S|T ) ≥
+
+2i−1
+
+obtain similar expressions by taking the sum
+
+Remark 1. In the case of symmetric channel [1], the evolution
+of channel probabilities is given by
+
+t
+
+=
+
+(2)
+
+where ⊕ represents the addition on GF(2), and uj and
+1,e
+uj denote the subsequence of uj with even and odd in1,o
+1
+(k+1)
+and
+dices, respectively. For marginal probabilities PU
+,U 2i−2
+
+W (y|0)W (y|1) ,
+
+ZB (W ) ≡
+
+(1)
+
+1 − Z(S; T )
+,
+2 ln 2
+log 1 + (2PS (0) − 1)2 + Z(S; T ) .
+
+(k)
+j−1 n
+, y1 ) .
+j−1
+n(uj , u1
+,Y1
+j ,U1
+
+(k)
+
+n
+WU j−1 ,Y n |U (uj−1, y1 |uj ) = 2PU
+1
+
+1−
+
+1
+
+1
+
+j
+
+(5)
+
+Substituting (5) into (3) and (4), we have the same expression
+as the case of the asymmetric channel, (1) and (2). In this
+way we can develop the argument on the polarization of the
+parameters Z and H similarly to the symmetric case.
+
+We omit the proof but it can be shown in a similar way to
+[1, Prop. 1]. From this lemma, H(S|T ) → 1 as Z(S; T ) → 1.
+Further, H(S|T ) → 0 as Z(S; T ) → 0 and PS (0) → 1 .
+2
+
+(k)
+¯ (k)
+For simplicity, deﬁne Pi ≡ 2|PUi (0) − 1 | and
+2
+
+III. P OLARIZATION OF A SYMMETRIC C HANNELS
+n
+In this section, we show that elements Ui of U1 =
+n
+X1 Gn polarize into three groups, which satisfy (a) H(Ui |
+i−1
+i−1
+i−1
+U1 ) ≈ H(Ui |U1 , Y1n ) ≈ 0, (b) H(Ui |U1 ) ≈ 1,
+i−1
+i−1
+i−1
+H(Ui |U1 , Y1n ) ≈ 0 and (c) H(Ui |U1 ) ≈ H(Ui |U1 ,
+n
+Y1 ) ≈ 1, respectively. We show in the next section that we
+
+(k)
+
+Zi
+
+(k)
+
+Hi
+
+i−1
+i−1
+˜ (k)
+≡ Z (k) (Ui ; U1 , Y1n ) , Zi ≡ Z (k) (Ui ; U1 ) ,
+˜ (k)
+≡ H (k) (Ui |U i−1 , Y1n ) , H ≡ H (k) (Ui |U i−1 ) .
+1
+
+Then the following lemma holds.
+
+2
+
+i
+
+1
+
+¯
+¯
+¯
+¯ (k+1) = (P (k) )2 , P (k+1) = P (k) .
+Lemma 2. (i) P2i
+i
+2i−1
+i
+(k+1)
+(k)
+(k+1)
+(k+1)
+(k)
+˜ (k+1)
+˜
+˜
+(ii) 2Hi = H2i−1 + H2i−2 , 2Hi = H2i−1 + H2i−2 .
+(k+1)
+(k)
+(iii) Z2i
+= (Zi )2 ,
+(k+1)
+
+(k)
+
+(k)
+
+(k)
+
+2(Zi )2 − (Zi )4 ≤ Z2i−1 ≤ 2Zi
+
+λI c ≡ {λi }i∈I c . The maps λI c are used to determine the
+frozen bits and are shared between the encoder and the
+decoder.
+Let M denote a message uniformly distributed on {0, 1}|I| .
+Then the encoder determines a codeword from M in the
+following way. First, the encoder determines the information
+bits by uI = M . Next, for the frozen bits I c , the encoder
+determines the value ui , i ∈ I c , in the ascending order
+by ui = λi (ui−1 ). We represent the resulting sequence of
+1
+ui by un (M, λI c ). Third, the encoder sends the codeword
+1
+xn = Gn un = Gn un (M, λI c ) with code length n. Thus the
+1
+1
+1
+coding rate is given by R = |I|/n.
+n
+The decoder receives a sequence y1 according to the
+n n n
+channel probability W (y1 |x1 ). The decoder estimates un by
+1
+ˆ1 n
+un = un (y1 , λI c ) as follow:
+ˆ1
+
+(k)
+
+− (Zi )2 .
+
+˜ (k+1) = (Z (k) )2 ,
+˜
+(iv) Z2i
+i
+˜ (k)
+˜ (k)
+˜ (k+1)
+˜ (k)
+˜ (k)
+2(Zi )2 − (Zi )4 ≤ Z2i−1 ≤ 2Zi − (Zi )2 .
+We can obtain (i) by taking the marginal of (1) and (2),
+(k)
+(k)
+and substituting 1 − PUi (0) for PUi (1). It is obvious that (ii)
+follows from the chain rule of the entropy. Further, (iii) and
+(iv) can be proved by the same argument as for the symmetric
+channel [1, Prop. 7][6, Lemma 20] with the relation given by
+(5) in Remark 1.
+From this lemma we can obtain the following theorem on
+the polarization of asymmetric channels.
+(k)
+
+βk
+
+(k)
+
+βk
+
+˜
+∩ Zi ≥ 1 − 2−2 }|
+≥ I(X; Y ) .
+k
+k→∞
+2
+This theorem asserts that the fraction of the bits Ui that
+i−1
+but almost deterministic given
+are almost noisy given U1
+i−1
+n
+(U1 , Y1 ) approaches the channel capacity.
+Sketch of Proof: First we can show from Lemma 2 (i) that
+¯ (k) → 0, that is, Ui is uniformly distributed for almost
+Pi
+all i as k → ∞. Then, from Lemma 1, the convergence of
+(k)
+(k)
+Zi to 0 or 1 implies the convergence of Hi to 0 or 1,
+(k)
+˜
+respectively. Similarly the convergence of Zi implies the
+˜ (k) . From these relations and Lemma 2 (ii)–
+convergence of Hi
+(iv), we can develop the same argument as the symmetric case,
+which shows that
+kβ
+1
+(k)
+≥ 1 − H(X|Y ) ,
+lim inf k i : Zi ≤ 2−2
+k→∞ 2
+kβ
+1
+˜ (k)
+lim inf k i : 1 − Zi ≤ 2−2
+≥ H(X)
+k→∞ 2
+from the martingale convergence theorem. Combining these
+two inequalities we obtain the theorem.
+|{i : Zi
+
+≤ 2−2
+
+i ∈ I,
+
+λi (ˆi−1 )
+u1
+
+i ∈ I c.
+
+1
+
+1
+
+(6)
+
+The decoding is successful if uI = uI which means un =
+ˆ
+ˆ1
+un . We deﬁne the decoding error probability by Pe (λI c ) ≡
+1
+Pr [ˆn (Y1n , λI c ) = un (M, λI c )].
+u1
+1
+Now consider the choice of maps λI c . Let ΛI c ≡ {Λi ∈
+Li }i∈I c be random variables which are independent of each
+n
+other and of X1 , Y1n , and satisfy PΛi [Λi (ui−1 ) = 1] =
+1
+PUi |U i−1 (1|ui−1 ) for all ui−1 ∈ {0, 1}i−1 .
+1
+1
+1
+From Theorem 1 there exists a subset I of {1, · · · , n} such
+that |I| = nR and
+
+Theorem 1. For any β < 1/2,
+lim inf
+
+n
+u1
+argmaxu PUi |U i−1 ,Y n (u|ˆi−1 , y1 )
+
+ui =
+ˆ
+
+(k)
+
+Zi
+
+β
+
+≤ 2−n ,
+
+β
+˜ (k)
+Zi ≥ 1 − 2−n .
+
+(7)
+
+for all i ∈ I if R < I(X; Y ), β < 1/2, and n is sufﬁciently
+large. For this I the following theorem holds.
+Theorem 2. Let M be a message chosen uniformly from
+{0, 1}|I| and I ⊂ {1, · · · , n} be a set satisfying (7). Then the
+expectation of the decoding error probability over the maps
+β
+ΛI c satisﬁes EΛIc [Pe (ΛI c )] ≤ 2−n for any β < 1/2 and
+sufﬁciently large n. Consequently, there exists a deterministic
+β
+map λI c = {λi ∈ Li }i∈I c such that Pe (λI c ) ≤ 2−n .
+B. Implementation
+We can easily construct a stochastic encoder ΛI c rather than
+a deterministic encoder λI c if we share |I c | i.i.d. random variables VI c ≡ {Vi }i∈I c between the encoder and the decoder,
+where each Vi is distributed uniformly on [0, 1]. We obtain ΛI c
+i−1
+with desired properties by letting Λi (u1 ) = 1[Vi ≤ PUi |U i−1
+1
+1
+i−1
+(0|u1 )], where 1[·] denotes the indicator function.
+1
+In the encoding of this scheme, it is necessary to compute
+{PUi |U i−1 (0|ui−1 )}i∈I c . Similarly in the decoding, {PUi |U i−1
+1
+1
+1
+n
+(0|ui−1 )}i∈I c and {PUi |U i−1 ,Y n (0|ui−1 , y1 )}i∈I are com1
+1
+1
+1
+puted. We can compute them with complexity O(n log n) by a
+dynamic programming technique from the recursive formulae
+for PUi |U i−1 , as in the case of the symmetric channel.
+
+IV. P OLAR C ODES FOR A SYMMETRIC C HANNELS
+In this section we construct polar codes which achieve the
+capacity for asymmetric memoryless channels.
+A. Code Construction
+Assume that an information set I ⊂ {1, · · · , n} and a
+frozen set I c = {1, · · · , n} \ I is given. We use information
+bits uI to send a message.
+In the case of symmetric channels, the values of frozen
+bits uI c are chosen randomly with the uniform distribution on
+{0, 1} in the code construction but are ﬁxed when the code
+is used. In our scheme, the values of the frozen bits uI c are
+deterministic but dependent on the value of previous bits ui−1 .
+1
+Furthermore, unlike the symmetric case, we choose the value
+of ui given ui−1 not uniformly in the code construction.
+1
+Let Li be the family of functions λi : {0, 1}i−1 → {0, 1}.
+Now we consider a polar code with frozen set I c and maps
+
+1
+
+Remark 2. The randomized map ΛI c is equivalent to the
+following randomized mapping of ui , i ∈ I c .
+ui =
+
+0 with probability PUi |U i−1 (0|ui−1 ) ,
+1
+1
+
+1 with probability PUi |U i−1 (1|ui−1 ) .
+1
+1
+
+3
+
+(8)
+
+100
+
+Practically this randomized mapping can be realized by pseudo
+random numbers shared between the encoder and the decoder.
+
+AE
+random
+MAP
+
+10
+
+−6
+
+k=8
+k=10
+k=12
+
+0.10
+
+1
+
+1
+
+1
+
+1
+
+Consider the block decoding error probability Pe (ΛI c ) for
+the map ΛI c . Since each codeword un (M, ΛI c ) appears with
+1
+probability
+2−|I|1
+1
+
+{Λi (ui−1 ) = ui } ,
+1
+i∈I c
+
+Pe (ΛI c ) is given by
+2−|I|1
+1
+
+Pe (ΛI c ) =
+
+As reported in the case of lossy coding [6], the MAP scheme
+works better than the randomized scheme although the theoretical analysis is difﬁcult. Further, in spite of the small
+complexity, both proposed schemes using (8) and (9) perform
+comparably to the scheme AE, especially for the region that
+the redundancy of the rate is small. Note that if the same
+complexity as the scheme AE is allowed then we can further
+improve the performance of the proposed scheme by using
+the same F as the scheme AE and the binary expression of
+elements of the Galois ﬁeld.
+Note that the channel used in this simulation is somewhat
+artiﬁcially designed so that the ideal input distribution is a
+simple rational number. However, in general cases, the ideal
+input distribution may require a large alphabet size for the
+alphabet extension. In such cases, the proposed scheme has
+much advantage since it can deal with any input distribution
+in the same manner.
+
+{Λi (ui−1 ) = ui }
+1
+
+n
+un ,y1
+1
+
+·
+
+i∈I c
+n n
+n
+1 1 n
+PY1n |U1 (y1 |u1 ) 1 [(un , y1 )
+
+∈ E] .
+
+Hence, the expectation of the decoding error probability is
+bounded as
+2−|I|
+
+E[Pe (ΛI c )] =
+
+PUi |U i−1 (ui |ui−1 )
+1
+1
+
+n
+un ,y1
+1
+
+·
+
+i∈I c
+n
+n
+n |U n (y |u ) 1 [(u , y )
+P Y1 1 1 n 1 n 1
+1
+1
+
+∈ E] .
+
+(10)
+
+n
+Then, for probability distribution QU1 ,Y1n deﬁned as
+
+n
+n
+QU1 ,Y1n (un , y1 )
+1
+
+≡
+
+n
+n
+PY1n |U1 (y1 |un )2−|I|
+1
+
+i−1
+PUi |U i−1 (ui |u1 ) ,
+i∈I c
+
+1
+
+n
+(10) can be rewritten as E[Pe (ΛI c )] = QU1 ,Y1n (E). Let F −
+G be the variational distance deﬁned by
+
+VI. P ROOF OF T HEOREM 2
+un
+1
+
+1
+
+1
+
+n
+≤ PUi |U i−1 ,Y n (ui ⊕ 1|ui−1 , y1 )} .
+1
+
+(9)
+
+1
+
+0.30
+
+n
+n
+Ei ⊂ {(un , y1 ) : PUi |U i−1 ,Y n (ui |ui−1 , y1 )
+1
+1
+
+i−1
+by Monte Carlo simulation on U1 , Y1n , where D(· ·) is the
+relative entropy. We chose frozen bits in the order that the
+estimated mutual information is small.
+In Fig. 1, “AE” denotes the result of the known scheme
+[5] with the alphabet extension. The plots “random” denote
+the scheme proposed in Sect. IV. “MAP” denotes the scheme
+obtained by replacing the randomization (8) with MAP assignment
+
+u∈{0,1}
+
+0.25
+
+Under decoding given in (6) with an arbitrary tie-breaking
+rule, each Ei satisﬁes
+
+1
+
+ui = argmax PUi |U i−1 (u|ui−1 ) .
+1
+
+0.20
+
+Fig. 1. Block decoding error probabilities of polar codes for an asymmetric
+erasure channel with k = 8, 10, 12.
+
+i−1
+i−1
+= EU i−1 ,Y n D(PUi |U i−1 ,Y n (·|U1 , Y1n ) PUi |U i−1 (·|U1 ))
+1
+
+0.15
+
+rate
+
+i−1
+i−1
+i−1
+H(Ui |U1 ) − H(Ui |U1 , Y1n ) = I(Ui ; Y1n |U1 )
+1
+
+10−2
+
+In this section we compare the proposed scheme with the
+scheme based on the alphabet extension [5]. In Fig. 1 we
+used binary asymmetric erasure channel such that erasure
+probabilities for input 0 and 1 are ǫ0 = 0.4 and ǫ1 = 0.8159,
+respectively. The ideal input distribution of this channel is
+given by (PX (0), PX (1)) = (7/16, 9/16) and the capacity is
+C(W ) = 0.4498. In the scheme with the alphabet extension,
+we used 16-ary polar codes with generator matrix Gn = F ⊗k
+1
+where F = γ 0 for a primitive element γ ∈ GF(16). In the
+1
+proposed scheme we used the binary polar code with generator
+matrix F ⊗k for F = 1 0 . Then, the complexity of the
+11
+proposed scheme is at least 16/2 = 8 times less than that
+of the scheme with alphabet extension.
+In the proposed scheme frozen bits have to be chosen so
+i−1
+i−1
+that H(Ui |U1 , Y1n ) is small and H(Ui |U1 ) is large. To
+determine the frozen bits we estimated
+
+10−4
+
+block error probability
+
+V. S IMULATION
+
+F −G ≡
+
+un (M, ΛI c )
+1
+
+Let Ei be the the set of codewords
+=
+and
+n
+received words y1 such that decoding error occurs at the ith
+bit. The block decoding error event is given by E ≡ i∈I Ei .
+
+1
+2
+
+|F (x) − G(x)|
+x
+
+for probability distributions F, G. The variational distance
+n
+n
+between QU1 ,Y1n and PU1 ,Y1n satisﬁes the following lemma.
+
+4
+
+n
+n
+n
+≤ QU1 ,Y1n − PU1 ,Y1n + PU1 ,Y1n (E)
+
+Lemma 3. For any β < 1/2 and sufﬁciently large n,
+β
+
+2−n .
+
+≤
+
+n
+n
+PU1 ,Y1n − QU1 ,Y1n
+
+i∈I
+
+Proof: We use an argument similar to [6, Lemma 4] based
+on the expression
+n
+
+and each term in the summation can be bounded as
+
+n
+n
+Ai−1 Bi −
+1
+
+n
+B1 − An =
+1
+
+n
+Ai Bi+1
+1
+
+i=1
+
+n
+PU1 ,Y1n (Ei )
+
+(12)
+
+n
+n
+P (ui−1 , y1 )P (ui |ui−1 , y1 )·
+1
+1
+
+≤
+
+i=1
+k
+
+n
+PU1 ,Y1n (Ei ) (15)
+
+n
+n
+≤ QU1 ,Y1n − PU1 ,Y1n +
+
+(11)
+
+n
+ui ,y1
+1
+
+k
+
+j
+where Aj and Bk denote the products i=j Ai and i=j Bi ,
+k
+respectively.
+For simplicity, we omit the symbols of random variables,
+n
+n
+n
+n
+e.g. P (un , y1 ) and Q(ui |ui−1 , y1 ) for PU1 ,Y1n (un , y1 ) and
+1
+1
+1
+i−1 n
+n ,Y n −
+QUi |U i−1 ,Y n (ui |u1 , y1 ) in the following. Now PU1 1
+1
+1
+n
+QU1 ,Y1n is bounded by (14).
+
+n
+n
+1 P (ui |ui−1 , y1 ) ≤ P (ui ⊕ 1|ui−1 , y1 )
+1
+1
+1
+i−1 n
+n
+P (u1 , y1 )P (ui |ui−1 , y1 )
+1
+
+≤
+
+n
+ui ,y1
+1
+
+(k)
+
+= Zi
+
+n
+P (ui ⊕ 1|ui−1 , y1 )
+1
+i−1 n
+P (ui |u1 , y1 )
+
+β
+
+≤ 2−n .
+
+(16)
+β
+
+From (11), (15) and (16), we have E[Pe (ΛI c )] = O(2−n ).
+
+(See below for Eq. (14).)
+Hence, we obtain
+
+R EFERENCES
+
+i−1
+(2 ln 2)D(PUi QUi |U1 )
+
+n
+n
+2 PU1 ,Y1n − QU1 ,Y1n ≤
+
+[1] E. Arikan, “Channel polarization: a method for constructing capacityachieving codes for symmetric binary-input memoryless channels,” IEEE
+Trans. Inform. Theory, vol. 55, no. 7, pp. 3051–3073, 2009.
+[2] R. Mori and T. Tanaka, “Channel polarization on q-ary discrete memoryless channels by arbitrary kernels,” in Proceedings of IEEE International
+Symposium on Information Theory (ISIT10), 2010, pp. 894–898.
+[3] E. Saso˘ lu, E. Telatar, and E. Arikan, “Polarization for arbitrary discrete
+¸ ¸ g
+memoryless channels,” in Proceedings of Information Theory Workshop
+(ITW2009), 2009, pp. 144–148.
+[4] S. B. Korada, “Polar codes for channel and source
+coding,” Ph.D. dissertation, Lausanne, 2009. [Online]. Available:
+http://library.epﬂ.ch/theses/?nr=4461
+[5] R. G. Gallager, Information Theory and Reliable Communication. New
+York: Wiley, 1968.
+[6] S. Korada and R. Urbanke, “Polar codes are optimal for lossy source
+coding,” IEEE Trans. Inform. Theory, vol. 56, no. 4, pp. 1751–1768,
+2010.
+
+i∈I
+i−1
+(2 ln 2)(1 − H(Ui |U1 ))
+
+=
+i∈I
+
+(QUi |U i−1 =
+1
+
+1
+2
+
+for i ∈ I)
+
+(k)
+
+˜
+1 − (Zi )2 (by Lemma 1)
+
+≤
+i∈I
+
+2 · 2−nβ
+
+≤ n
+
+′
+
+(by (7))
+
+where β ′ ∈ (β, 1/2) is arbitrary. Eq. (11) follows since
+β
+′
+n 2 · 2−nβ < 2−n for sufﬁciently large n.
+Proof of Theorem 2: First we have
+n
+E[Pe (ΛI c )] = QU1 ,Y1n (E)
+
+n
+n
+|Q(xn , y1 ) − P (xn , y1 )|
+1
+1
+
+n
+n
+2 PU1 ,Y1n − QU1 ,Y1n =
+n
+un ,y1
+1
+
+i−1
+n
+un ,y1
+1
+
+i
+
++
+
+n
+n
+(Q(y1 |un ) − P (y1 |un ))
+1
+1
+
+N
+
+P (uj |uj−1 )
+1
+
+(Q(ui |ui−1 ) − P (ui |ui−1 ))
+1
+1
+
+≤
+
+n
+n
+Q(uj |uj−1 ) P (y1 |un )Q(y1 |un )
+1
+1
+1
+
+j=1
+
+j=i+1
+
+P (uj |uj−1 )
+1
+
+n
+un ,y1
+1
+
+(by (12))
+
+j
+i−1
+n
+P (uj |uj−1 ) P (y1 |un )
+1
+1
+
+Q(ui |ui−1 ) − P (ui |ui−1 )
+1
+1
+
+≤
+n
+y1
+
+(13)
+
+j=1
+
+i∈I ui
+1
+
+2P (ui−1 ) QUi |U i−1 =ui−1 − PUi |U i−1 =ui−1
+1
+
+=
+
+1
+
+i∈I ui−1
+1
+
+P (ui−1 )
+1
+
+≤
+i∈I ui−1
+1
+
+i∈I
+
+1
+
+1
+
+(2 ln 2)D(PUi |U i−1 =ui−1 QUi |U i−1 =ui−1 )
+1
+
+1
+
+1
+
+1
+
+P (ui−1 )D(PUi |U i−1 =ui−1 QUi |U i−1 =ui−1 )
+1
+
+(2 ln 2)
+
+≤
+
+1
+
+ui−1
+1
+
+1
+
+1
+
+1
+
+1
+
+by F − G ≤
+
+(by Jensen’s inequality)
+
+n
+n
+where (13) follows from Q(ui |ui−1 ) = P (ui |ui−1 ) for i ∈ I c and Q(y1 |un ) = P (y1 |un ).
+1
+1
+1
+1
+
+5
+
+(ln 2)D(F G)/2
+(14)
+
+

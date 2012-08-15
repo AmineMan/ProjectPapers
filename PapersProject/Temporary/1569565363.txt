@@ -1,0 +1,1167 @@
+Title:          energyharvest6.dvi
+Creator:        www.freepdfconvert.com         
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Fri May 18 12:41:31 2012
+ModDate:        Tue Jun 19 12:54:46 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      320304 bytes
+Optimized:      no
+PDF version:    1.7
+ISIT'2012 1569565363
+
+On Optimal Online Policies in Energy Harvesting
+Systems For Compound Poisson Energy Arrivals
+Patrick Mitran
+Department of Electrical and Computer Engineering
+University of Waterloo
+Waterloo, Ontario, Canada
+Email: pmitran@ecemail.uwaterloo.ca
+throughput within a deadline, as well as minimizing the transmission time for a given session are considered. Ofﬂine energy
+harvesting has been extended to multiple access channels [14],
+interference channels [9], broadcast channels [13], and battery
+imperfections [2].
+In terms of online solutions, many works with optimal
+ofﬂine policies propose heuristics for the online problem based
+on ofﬂine solutions. In [4], an online approach is proposed
+using dynamic programming and quantizing time, although
+the curse of dimensionality results in an intractable problem.
+In [8] the online problem is considered in a discrete-time
+setting and while dynamic programing is used, some structural
+results on the optimal solution are proved. In [5], the online
+problem is also considered in a discrete-time setting where at
+each time instant a random amount of energy is harvested.
+Two approaches, save-and-transmit, and best-effort-transmit,
+are proposed that achieve the capacity of the channel for the
+harvesting model, but implicitly require that the battery have
+inﬁnite capacity. A similar discrete-time model but for fading
+channels is considered in [7], and also requires an inﬁnite
+capacity battery. In [12], the continuous-time online problem
+is considered to minimize the time taken to deliver a given
+amount of information.
+In this paper, we consider the online problem in the
+continuous-time setting. We assume the transmitter always
+has data to send. Our objective is to determine the optimal
+transmission power as a function of remaining battery energy
+(referred to as transmission power policy) to maximize longterm average throughput. We initially consider batteries with
+both ﬁnite and inﬁnite capacity, although in the inﬁnite capacity case, we restrict ourselves to transmission power policies
+that do not result in the stored battery energy to diverge to
+inﬁnity, i.e., we consider stable policies only. Energy arrival
+times and amounts are unknown, though the distributions
+are assumed to be a Poisson point process and exponential
+distribution respectively. The optimization problem that results
+is found to be closely connected to a compound Poisson dam
+model [1]. Using results from compound Poisson dams we
+establish structural results. First, we establish concavity of the
+problem in the stationary distribution of the stored energy in
+the battery. This is non-trivial as the transmission power policy
+is related in a non-linear manner to the stationary distribution.
+Second, for batteries with ﬁnite capacity, using the calculus
+of variations, we establish a ﬁrst order non-linear autonomous
+ordinary differential equation for the optimal power control
+policy. This ODE has two degrees of freedom to be optimized
+(one is via its initial condition which must be strictly positive).
+The ODE can be solved numerically, and we thus compute
+achieved rates for various battery capacities. We conjecture
+that the optimal policy is in fact obtained by taking the limit
+as the initial condition goes to 0.
+
+Abstract— We consider the problem of optimal transmission
+power for a continuous-time energy harvesting system where
+energy arrivals occur at random times in random amounts. We
+do not assume that the energy arrivals are known non-causally
+and consider the online setting. Here, there is a tradeoff between
+increasing instantaneous transmission power, which increases
+instantaneous transmission rate and can reduce battery overﬂow,
+and decreasing transmission power, which increases battery life
+and energy efﬁciency.
+We formulate the problem as that of maximizing the average
+transmission rate or throughput. We ﬁrst ﬁnd the non-linear
+relationship between the transmission power (which is a function
+of remaining battery energy) and the stationary distribution on
+the remaining battery energy. We then show that the resulting
+maximization problem is concave in the distribution of the
+remaining battery energy. This is non-trivial due to the nonlinear relationship with the transmission power. We then use a
+calculus of variations approach to derive necessary conditions on
+the optimal transmission power. Speciﬁcally, we ﬁnd that it must
+satisfy a ﬁrst order non-linear autonomous ordinary differential
+equation (ODE) that has two degree of freedom for optimization
+purposes, one of which is the initial condition of the ODE. Solving
+the ODE numerically we compute achieved throughputs as a
+function of the battery capacity.
+Index Terms— Energy Harvesting; Point-to-point channel
+
+I. I NTRODUCTION
+While traditional communication system design is concerned with power efﬁciency, it is usually in the context
+of reducing average transmitter power. Battery capacity and
+lifetime do not explicitly take an active role in the formulation
+other than for the broad observation that lesser transmission
+power results in a longer battery life. With the advance in
+renewable energy sources where the supply of energy is
+now no longer constant, but time varying, the interactions
+between battery capacity, energy arrivals, transmission power,
+and communications throughput must be explicitly considered.
+Solar energy, for example, can only harvest energy during
+the daytime, and even then, the supply of energy depends on
+weather conditions that cannot be reliably predicted.
+Motivated by this, there has been an increasing interest to
+include the effects of battery charge and energy arrival times
+explicitly into communication system models. Among the ﬁrst
+to consider energy explicitly in this sense is [11], where total
+transmission energy is minimized by reducing transmission
+rate subject to certain time constraints, and the optimal ofﬂine
+solution is found. More recent work can be found in [4], [5],
+[7]–[9], [12]–[16].
+In [16] the problem is formulated in the ofﬂine and
+continuous-time setting where energy arrival instants and
+amounts are known non-causally, and energy is minimized
+subject to deadline constraints. In [4] optimal continuoustime policies for the ofﬂine problem when maximizing the
+
+1
+
+We further assume that p(z) > 0 for z > 0, since if not, then
+the battery always has a reserve of energy that can never be
+consumed. Following [1] we also assume sup0<z<L p(z) < ∞
+∀L > 0.
+This storage model is known as a compound Poisson dam,
+for which it is known that the process is either positive recurrent, null recurrent, or transient in the sense that P [Z(t) →
+∞] = 1 [1]. As the transient case is a poor model for battery
+storage, we restrict ourselves to the recurrent case.
+For the positive recurrent case, it is known that there is
+always a stationary measure with the following properties [1]:
+Theorem 2: The process Z(t) is positive recurrent iff there
+is a probability measure π that is absolutely continuous on
+(0, ∞) and which may have an atom π0 = π(0), i.e.,
+
+Numerical result show that for a battery capacity large
+enough to absorb a few (say 5) average energy arrivals, the
+achieved rate is at least 88% compared to a transmitter whose
+transmission power is constant and equal to the average rate
+of energy harvesting, i.e., the cost of ﬁnite battery capacity is
+at most 12% in this case.
+This paper is structured as follows. In Section II, the
+notation and storage model are provided. In Section III we
+provide the problem formulation, and show that it is in fact
+concave. In Section IV, we derive an ODE for the optimal
+transmission policy, and in Section V, consider numerical
+solutions. Finally, Section VI concludes this paper.
+II. N OTATION AND BACKGROUND
+We assume that there is a non-negative rate function r(p) ≥
+0 deﬁned for p ≥ 0 and with r(0) = 0 that describes the
+instantaneous rate in bits/sec as a function of the instantaneous transmission power p. Furthermore, the rate function is
+assumed to satisfy the following properties:
+[R1] r(p) is three times continuously differentiable,
+[R2] r(p) is non-decreasing in p, i.e., r (p) ≥ 0,
+[R3] r(p) is concave, i.e., r (p) ≤ 0.
+For example, the Shannon rate function r(p) = log(1 + p/σ 2 )
+for any σ 2 > 0 satisﬁes these constraints. In addition, the
+choice r(p) = βpγ for any β > 0 and 0 < γ ≤ 1 satisﬁes
+these constraints (γ = 1/3 has been found to be a good
+approximation for practically realizable rates according to [3]).
+Given such a rate function r(p), we also have the following
+properties:
+Lemma 1: A rate function that satisﬁes properties [R1] –
+[R3] also satisﬁes
+[R4] r(p) ≥ p × r (p),
+[R5] for u > 0 and any ﬁxed constant k > 0, u × r(k/u)
+is concave in u.
+Proof: [R4] follows since it is clearly true for p = 0,
+d
+and for p > 0 we have r (p) ≥ r (p) + pr (p) = dp (pr (p)).
+d2
+[R5] follows since du2 (u × r(k/u)) = r (k/u) × k 2 /u3 ≤ 0.
+
+z
+
+π(z) = π0 +
+
+f (z) =
+
+(1 − B(z − y))f (y)dy .
+0
+
+(4)
+
+δe−λz
+p(z)
+
+z
+
+eλu f (u)du .
+
+π0 +
+
+(5)
+
+0
+
+Since p(z) < ∞ then clearly the density component f (z)
+of π satisﬁes f (z) > 0 for all z > 0, and, given π, from (5)
+one can always then solve for p(z); z > 0. Furthermore, if
+f (z) is continuous on (0, ∞), then so is p(z).
+In the case of a battery with ﬁnite storage capacity L, i.e.,
+Z(t) ∈ [0, L] for some L > 0, if the arrival of an energy
+packet that replenishes the battery exceeds the capacity of the
+battery, then the excess energy is lost, i.e., the battery is ﬁlled
+to its capacity L. For such a case, it is known (see [1]) that i)
+the process Z(t) is always positive recurrent, ii) the stationary
+distribution π again may have an atom of measure π0 at 0
+and iii) π is absolutely continuous on (0, L) with density f
+satisfying (4) and thus (5). (Note that since p(L) > 0, there
+is no probability mass at z = L.)
+In the sequel, L = ∞ in the inﬁnite battery capacity case
+and L < ∞ in the ﬁnite battery case.
+III. P ROBLEM F ORMULATION
+Given parameter δ > 0 that characterizes the arrival times of
+the energy packets, and parameter λ characterizing the distribution B(.) of the size of the energy packets, we would like
+to determine good power transmission policies. Speciﬁcally,
+transmitting at power p(z) results in an instantaneous rate
+of r(p(z)). In this paper we wish to optimize the long term
+average rate, i.e., we wish to maximize
+
+(1)
+
+and the amount of energy in the battery at time t is given by
+t
+
+p(Z(s)) ds,
+
+z
+
+π0 · (1 − B(z)) +
+
+f (z) =
+
+n=1
+
+Z(t) = z0 + A(t) −
+
+δ
+p(z)
+
+Furthermore, π is the unique stationary distribution of Z.
+In this paper, we are only concerned with the positive
+recurrent case as the others do not have physical signiﬁcance.
+Furthermore, we will consider the case that the energy
+arrivals Ui follow an exponential distribution with mean 1/λ,
+i.e., B(x) = 1 − exp(−λx). In this case, (4) reduces to
+
+N (t)
+
+Un ,
+
+(3)
+
+that satisﬁes
+
+We now describe the storage model, proceeding ﬁrst with
+the inﬁnite battery case. We consider a battery which at time
+t has Z(t) units of energy stored. Energy is consumed for
+transmission at a rate p(z) < ∞ with p(0) = 0, i.e., the
+transmission power is a function of the current state of the
+battery, and the transmission power is 0 when the battery is
+drained.
+Energy is replenished into the battery according to energy
+arrivals U1 , U2 , . . ., which occur at random times T1 < T2 <
+. . .. The energy arrivals Ui are assumed i.i.d. with P [U ≤ x] =
+B(x), and the number of energy arrivals up to time t, N (t),
+is assumed to be a homogeneous Poisson process of intensity
+δ. Then the total energy harvested until time t is
+A(t) =
+
+f (u)du,
+0
+
+(2)
+
+1
+T →∞ T
+
+0
+
+T
+
+r(p(Z(t)) dt.
+
+R := lim
+
+where z0 is the initial storage of the battery at time 0.
+
+2
+
+0
+
+(6)
+
+over all choices of transmission power policies p(z). Since
+Z(t) is positive recurrent, we have that
+
+and thus, it is not clear if the objective function is concave.
+We show next that this is indeed the case.
+Lemma 3: Let the objective function (14) evaluated
+1
+2
+for (g 1 (z), π0 ), (g 2 (z), π0 ) and the convex combination
+α
+α
+1
+2
+(g (z), π0 ) be J , J and J α respectively. Then J α ≥
+αJ 1 + (1 − α)J 2 , i.e., the objective function is concave.
+Proof: Evaluating J α explicitly, we have
+
+L
+
+R = r(0)π0 +
+
+r(p(z))f (z)dz
+
+(7)
+
+0
+
+with probability 1. Hence, since r(0) = 0, the optimization
+thus reduces to
+
+L
+
+L
+
+sup
+
+r(p(z))f (z)dz
+
+f (z),π0
+
+(8)
+
+0
+
+0
+
+δe−λz
+s.t. f (z) =
+p(z)
+
+z
+λu
+
+π0 +
+
+e f (u)du
+
+×r δ
+
+(9)
+
+0
+
+f (u)du = 1
+
+(10)
+
+f (u) ≥ 0, π0 ≥ 0
+
+αG1 (z)e−λz + (1 − α)G2 (z)e−λz
+dz (19)
+αg 1 (z)e−λz + (1 − α)g 2 (z)e−λz
+L
+αG1 (z)e−λz
+(20)
+αg 1 (z)e−λz r δ 1
+≥(a)
+αg (z)e−λz
+0
+(1 − α)G2 (z)e−λz
+dz
++ (1 − α)g 2 (z)e−λz r δ
+(1 − α)g 2 (z)e−λz
+= αJ 1 + (1 − α)J 2 ,
+(21)
+×r δ
+
+(11)
+
+f (z) = g(z)e−λz .
+
+where in (a) we have used a variation of the log-sum
+inequality as proved in Lemma 5 in the Appendix with
+a1 = αg 1 (z) exp(−λz), a2 = (1 − α)g 2 (z) exp(−λz), b1 =
+αG1 (z) exp(−λz) and b2 = (1 − α)G2 (z) exp(−λz).
+Since the change of variables (12) is a linear mapping
+between f (z) and g(z), we also conclude that the original
+problem given by (8)–(11) is also concave in (f (z), π0 ).
+
+(12)
+
+Then (5) simpliﬁes to
+z
+
+π0 +
+
+g(u)du
+
+=
+
+0
+
+δG(z)
+,
+g(z)
+
+(13)
+
+z
+
+and we have deﬁned G(z) := π0 + 0 g(u)du. Thus, under this
+change of variable, the power transmission policy p(z) can be
+solved explicitly in terms of g(z). In the case that L = ∞,
+and thus no harvested energy is lost to battery overﬂow, from
+(12), (13), and integrating by parts
+∞
+
+E[p(Z)] =
+
+IV. S TRUCTURE OF O PTIMAL p(z)
+Assume now L < ∞. A necessary condition for a transmission power policy to be a global optimal solution is to be a
+local optimal solution. Speciﬁcally, if (g(z), π0 ) with π0 > 0
+and corresponding p(z) is a local maximum, then consider any
+h(z) continuous on [0, L] such that
+
+∞
+
+e−λz G(z)dz = δ/λ,
+
+f (z)p(z)dz = δ
+0
+
+0
+
+L
+
+i.e., the average transmission power equals the average arrival
+rate of energy1 . With the substitution (12) and (13), the
+problem (8)–(11) reduces to
+L
+−λz
+
+sup
+g(z),π0
+
+e
+
+g(z) · r
+
+0
+
+δG(z)
+g(z)
+
+dz
+
+h(u)du = 0
+
+g(u)du
+
+e−λu h(u)du = 0,
+0
+
+(14)
+
+and sufﬁciently small > 0 such that the perturbation g (u) =
+g(u)+ h(u) satisﬁes the constraints (16) – (17) (with the same
+probability mass π0 due to (23)). For small enough > 0 it
+must then be true that
+
+(15)
+
+L
+
+e−λu g(u)du = 1
+
+g(u) ≥ 0, π0 ≥ 0
+1
+(z), π0 )
+
+2
+
+L
+
+L
+
+(16)
+
+e−λz g (z)r(p (z)) dz, (24)
+
+e−λz g(z)r(p(z))dz ≥
+
+0
+
+1
+
+(23)
+
+L
+
+0
+
+π0 +
+
+(22)
+
+0
+
+z
+
+s.t. G(z) = π0 +
+
+(18)
+
+0
+
+In the following, we will ﬁrst show that i) the problem is
+concave over a convex set, and ii) determine the structure of
+optimal p(z) using the calculus of variations.
+The problem given by (8)–(11) is non-trivial in part as the
+relation between f (z) and p(z) given by (9) is non-linear.
+Nevertheless, we will show that the optimization is concave.
+First, consider the change of variable
+
+δ
+g(z)
+
+dz
+
+αg 1 (z)e−λz + (1 − α)g 2 (z)e−λz
+
+=
+
+0
+
+p(z) =
+
+αG1 (z) + (1 − α)G2 (z)
+αg 1 (z) + (1 − α)g 2 (z)
+
+L
+
+L
+
+π0 +
+
+αg 1 (z) + (1 − α)g 2 (z) e−λz
+
+Jα =
+
+0
+
+(17)
+
+0
+
+where p (z) is the power transmission policy corresponding
+to g (z) according to (13). Expanding terms to ﬁrst order in
+in the right hand side of (24),
+
+2
+(z), π0 )
+
+Now, let (g
+and (g
+be two choices of
+g(z) and π0 that satisfy the constraints (16) – (17) with
+corresponding transmission power p1 (z) and p2 (z) according to (13). Then clearly, the convex combination g α (z) =
+α
+1
+2
+αg 1 (z)+(1−α)g 2 (z) and π0 = απ0 +(1−α)π0 for 0 ≤ α ≤ 1
+satisﬁes (16) – (17) as well, and thus the optimization is over a
+convex set. However, it is not necessary that the corresponding
+transmission power policy pα (z) = αp1 (z) + (1 − α)p2 (z),
+
+L
+
+e−λz [g(z) + h(z)] r(p(z)) + r (p(z))
+0
+
+d
+p (z)
+d
+
+dz.
+=0
+
+Hence a necessary condition for g(z) to be a global maximum
+is thus
+L
+d
+dz = 0.
+e−λz h(z)r(p(z)) + e−λz g(z)r (p(z)) p (z)
+d
+0
+=0
+(25)
+
+1 When the battery capacity L is ﬁnite, this is no longer the case as energy
+overﬂow is possible and thus lost through means other than transmission.
+
+3
+
+We claim the right hand side is non-negative. This is because
+i) r (p) ≥ 0 for p ≥ 0, ii) r(p) − r (p)p ≥ 0 for p ≥ 0 by
+[R4], and iii) r (p) ≤ 0 for p > 0 as r is concave in p.
+Remark: One physical interpretation of K is that it can be
+used to control p (z)|z=0+ via (34), although the “cost” is to
+change the ODE itself (see (33)).
+While the above differential equation has no apparent analytical solution in terms of r(p), we now consider a numerical
+solution.
+
+From (13) and since g (z) has the same mass π0 as g(z),
+p (z) = δ
+z
+0
+
+where H(z) =
+g(z)
+
+G(z) + H(z)
+,
+g(z) + h(z)
+
+(26)
+
+h(u)du, and thus by (13)
+
+d
+p (z)
+d
+
+= δH(z) − δG(z)h(z)/g(z)
+=0
+
+= δH(z) − p(z)h(z).
+
+V. N UMERICAL S OLUTION
+The solution of (33) does not appear to have a closed form.
+However, for a speciﬁed K and initial condition p(z)|z=0+ :=
+p0 , it can be solved to arbitrary precision using standard
+numerical ODE solvers. From (13) we have that
+
+(27)
+
+Substituting (27) into (25), we obtain as a necessary condition
+L
+
+e−λz H(z)r (p(z))dz
+
+δ
+0
+
+g(z)/G(z) = δ/p(z),
+
+L
+−λz
+
+e
+
++
+
+[h(z)r(p(z)) − r (p(z))p(z)h(z)]dz = 0. (28)
+
+(35)
+
+and thus integrating on both sides from z = 0,
+
+0
+
+z
+
+Integrating the second integral by parts, we have
+
+ln G(z) − ln G(0) =
+
+δ/p(u)du.
+
+(36)
+
+0
+
+L
+
+e−λz [r(p(z)) − r (p(z))p(z)]h(z)dz
+
+Since G(0) = π0 ,
+
+0
+
+z
+
+L
+
+= e−λz [r(p(z)) − r (p(z))p(z)]H(z)|0
+L
+
+−
+0
+
+G(z) = π0 exp
+
+(37)
+
+or, differentiating with respect to z,
+
+Since H(0) = 0 and H(L) = 0 by (22), a necessary condition
+for optimality of the transmission power policy p(z) is
+
+g(z) = π0
+
+z
+
+δ
+exp
+p(z)
+
+δ/p(u)du ,
+
+(38)
+
+0
+
+and from (12), one can then compute f (z) provided π0 is
+known. Since
+
+L
+
+δe−λz r (p(z))
+
+0=
+
+δ/p(u)du ,
+0
+
+d
+e−λz [r(p(z)) − r (p(z))p(z)] H(z)dz. (29)
+dz
+
+0
+
+L
+
+d
+e−λz [r(p(z)) − r (p(z))p(z)]
+−
+dz
+
+H(z)dz. (30)
+
+we can ﬁnally compute the mass π0 from
+L
+
+π0 = 1 +
+
+L
+
+e
+
+0=
+
+h(u)du
+
+0
+
+(31)
+
+0
+
+=e
+
+H(u)|L
+0
+
+−λu
+
++λ
+
+e
+
+H(u)du,
+
+(32)
+
+0
+L
+
+or, equivalently, H(0) = H(L) = 0 and 0 e−λu H(u)du = 0.
+Therefore, the term inside the square brackets of (30) must be
+some multiple of exp(−λz), say −K exp(−λz), (K may be
+a function of the constants δ, λ and L) and hence
+δr (p(z)) + λr(p(z))
++ r (p(z))p(z)p (z) − λr (p(z))p(z) + K = 0, (33)
+which is a ﬁrst order non-linear autonomous ODE for p(z).
+Although it is difﬁcult to say anything structurally about the
+solution without making further assumptions, the following
+result can be shown
+Lemma 4: Any solution p(z) of the differential equation
+(33) for K ≥ 0 is non-decreasing in z for p(z) ≥ 0.
+Proof: Solving for p (z) we have
+p (z) =
+
+δe−λz
+exp
+p(z)
+
+−1
+
+z
+
+δ/p(u)du dz
+
+.
+
+(40)
+
+0
+
+Thus, while there is no closed form solution to the ODE, for
+a given initial p0 and parameter K, we can determine both
+the power transmission policy p(z) as well as the stationary
+measure π, and thus the average transmission rate (7).
+We now consider the Shannon rate function r(p) = log(1 +
+p/σ 2 ) and the case δ = λ = 1, and noise power σ 2 = 1,
+i.e., energy arrives at an average rate of 1 unit of energy per
+unit of time. A communication system that transmitted with
+a constant power that is precisely this average power would
+obtain a rate of log(1 + 1/1) = 1. For an inﬁnite capacity
+battery, any rate (1/(1 + )) log(2 + ) can be achieved by a
+stable policy that transmits with power (1 + ) whenever the
+battery is not depleted, i.e., for a fraction 1/(1+ ) of the time.
+Thus any rate strictly less than 1 can be achieved, but at the
+cost that P [Z(t) > M ] > 0 for all M then.
+For a system with a ﬁnite battery, this rate cannot be
+achieved. (The ofﬂine problem with ﬁnite battery has been
+considered in [10] and a case with no battery in [6].) Table I
+shows the rate from (7) obtained by numerically solving the
+ODE for various p0 with K = 0 and K = −0.6 respectively
+(the later choice was found to provide good performance).
+Fig. 1 shows the optimal transmission power and absolutely
+
+L
+−λu
+
+(39)
+
+0
+
+The set of functions for which (30) is true has H(0) =
+H(L) = 0 and due to (23),
+−λu
+
+g(z)e−λz dz = 1,
+
+π0 +
+
+K + δr (p(z)) + λ[r(p(z)) − r (p(z))p(z)]
+. (34)
+−r (p(z))p(z)
+
+4
+
+TABLE I
+T HROUGHPUT AS COMPUTED BY (7) FOR S HANNON RATE FUNCTION FOR
+VARIOUS BATTERY CAPACITY L AND INITIAL p(0+ ) := p0 .
+T OP : K = 0; B OTTOM : K = −0.6
+
+1
+
+10
+
+0
+
+Transmission Power p(z)
+
+10
+
+p0
+1.000
+0.100
+0.010
+0.001
+
+−2
+
+10
+
++
+
+p(0 ) = 1.000
++
+
+p(0 ) = 0.100
++
+
+p(0 ) = 0.010
++
+
+p(0 ) = 0.001
+
+−3
+
+10
+
+0
+
+0.5
+
+1
+
+1.5
+
+2
+
+2.5
+
+3
+
+3.5
+
+4
+
+4.5
+
+L=2
+0.510
+0.598
+0.600
+0.600
+
+L=3
+0.512
+0.606
+0.607
+0.607
+
+L=4
+0.512
+0.605
+0.607
+0.607
+
+L=5
+0.513
+0.605
+0.607
+0.607
+
+p0
+1.000
+0.100
+0.010
+0.001
+
+−1
+
+10
+
+L=1
+0.437
+0.500
+0.501
+0.501
+L=1
+0.501
+0.495
+0.494
+0.494
+
+L=2
+0.678
+0.681
+0.680
+0.680
+
+L=3
+0.761
+0.789
+0.789
+0.789
+
+L=4
+0.798
+0.853
+0.853
+0.853
+
+L=5
+0.810
+0.888
+0.888
+0.888
+
+5
+
+Battery Charge z
+2
+
+10
+
++
+
+p(0 ) = 1.000
+
+where a = i ai , b = i bi .
+Proof: Since i ai r(δ·bi /ai ) = i bi ·ai /bi ·r(δ·bi /ai ),
+then letting V (p) = pr(δ/p), which is known to be concave
+from [R5],
+
++
+
+Absolutely Continuous Part f(z) of π(z)
+
+p(0 ) = 0.100
++
+
+p(0 ) = 0.010
+
+1
+
+10
+
++
+
+p(0 ) = 0.001
+
+0
+
+10
+
+(bi /b)V (ai /bi )
+
+ai r(δ · bi /ai ) = b
+−1
+
+≤ bV
+−2
+
+10
+
+(42)
+
+i
+
+i
+
+10
+
+bi /b × ai /bi = bV (a/b) = ar(δ · b/a).
+
+(43)
+
+i
+
+−3
+
+10
+
+0
+
+0.5
+
+1
+
+1.5
+
+2
+
+2.5
+
+3
+
+3.5
+
+4
+
+4.5
+
+5
+
+R EFERENCES
+
+Battery Charge z
+
+[1] S. Asmussen, Applied Probability and Queues. Wiley, 1987.
+[2] B. Devillers and D. G¨ nd¨ z, “A general framework for the optimization
+u u
+of energy harvesting communication systems with battery imperfections,” preprint, Oct. 2011, arxiv:1109.5490v1.
+[3] D. Kivanc, G. Li, and H. Liu, “Computationally efﬁcient bandwidth
+allocation and power control for ofdma,” IEEE Tran. Wireless Commun.,
+vol. 2, no. 6, pp. 1150 – 1158, Nov. 2003.
+[4] O. Ozel, K. Tutuncuoglu, J. Yang, S. Ulukus, and A. Yener, “Transmission with energy harvesting nodes in fading wireless channels: Optimal
+policies,” IEEE J. Select. Areas Commun., vol. 29, no. 8, pp. 1732 –
+1742, Sept. 2011.
+[5] O. Ozel and S. Ulukus, “Information-theoretic analysis of an energy
+harvesting communication system,” in Proc. IEEE Int. Symp. Personal,
+Indoor, Mobile Radio Commun., Sept. 2010, pp. 330 – 335.
+[6] ——, “Awgn channel under time-varying amplitude constraints with
+causal information at the transmitter,” in Proc. Asilomar Conf. Signals,
+Systems and Computers, Paciﬁc Grive, CA, Nov. 2011.
+[7] R. Rajesh, V. Sharma, and P. Viswanath, “Capacity of fading gaussian
+channel with an energy harvesting sensor,” in Proc. IEEE Int. Conf.
+Commun., Sept. 2011.
+[8] A. Sinha and P. Chaporkar, “Optimal power allocation for a renewable
+energy source,” preprint, Oct. 2011, arxiv:1110.2288v1.
+[9] K. Tutuncuoglu and A. Yener, “Sum-rate optimal power policies for
+energy harvesting transmitters in an interference channel,” preprint, Oct.
+2011, arxiv:1110.6161v1.
+[10] ——, “Optimum transmission policies for battery limited energy harvesting nodes,” IEEE Tran. Wireless Commun., vol. 11, no. 3, pp. 1180
+– 1189, Mar. 2012.
+[11] E. Uysal-Biyikoglu, B. Prabhakar, and A. El Gamal, “Energy-efﬁcient
+packet transmission over a wireless link,” IEEE/ACM Tran. on Networking, vol. 10, no. 4, pp. 487 –499, Aug. 2002.
+[12] R. Vaze, “Competitive ratio analysis of online algorithms to minimize
+data transmission time in energy harvesting system,” preprint, Dec. 2011,
+arxiv:1010.2993v1.
+[13] J. Yang, O. Ozel, and S. Ulukus, “Broadcasting with an energy harvesting rechargeable transmitter,” IEEE Tran. Wireless Commun., vol. 11,
+no. 2, pp. 571 – 583, 2012.
+[14] J. Yang and S. Ulukus, “Optimal packet scheduling in a multiple access
+channel with rechargeable nodes,” in Proc. IEEE Int. Conf. Commun.,
+2011.
+[15] ——, “Optimal packet scheduling in an energy harvesting communication system,” IEEE Trans. Commun., vol. 60, no. 1, pp. 220 – 230, Jan.
+2012.
+[16] M. A. Zafer and E. Modiano, “A calculus approach to energy-efﬁcient
+transmission with quality-of-service constraints,” IEEE/ACM Tran. on
+Networking, vol. 17, no. 3, pp. 898 – 911, June 2009.
+
+Fig. 1. Battery capacity L = 5 and K = −0.6. Top: Optimal Transmission
+power p(z); Bottom: Absolutely continuous part f (z) of the distribution π(z).
+
+continuous part f (z) of the stationary distribution π for L = 4
+with K = −0.6. From the table, it is observed that the
+throughput R achieves at least 88% of that of the inﬁnite
+battery case when L is only 5, i.e., the penalty is at most
+12% in this case. Also, while the achieved throughput appears
+as it might be non-decreasing with decreasing p0 (with L = 1
+and K = −0.6 a clear exception), it is conjectured that if K
+is optimized for each choice of p0 and L then throughput is
+increasing with increasing L and increasing with decreasing
+p0 .
+VI. C ONCLUSION
+We have considered the problem of optimal power transmission policy for online energy harvesting with energy arrivals that occur at random times and in random amounts. A
+structural result on the concavity of the problem was shown,
+and a differential equation was derived that any local optimal
+solution must satisfy. Future work includes considering different energy arrival distributions as well as determining the
+optimal values of the parameters of the differential equation
+and therefore, the optimal long term average rate that can be
+achieved by energy harvesting as a function of the battery
+capacity L.
+A PPENDIX
+Lemma 5: Let δ > 0, ai > 0, bi > 0 be given. Then
+ai r(δ · bi /ai ) ≤ ar(δ · b/a),
+
+(41)
+
+i
+
+5
+
+

@@ -1,0 +1,1040 @@
+Title:          ISIT_1.dvi
+Creator:        dvips(k) 5.99 Copyright 2010 Radical Eye Software
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Fri May 18 18:46:50 2012
+ModDate:        Tue Jun 19 12:55:39 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      595 x 842 pts (A4)
+File size:      292563 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569566171
+
+Convergence of Generalized Linear Coordinate-Descent
+Message-Passing for Quadratic Optimization
+Guoqiang Zhang and Richard Heusdens
+Signal and Information Processing Lab
+Delft University of Technology
+Delft, the Netherlands
+Email: {g.zhang-1,r.heusdens}@tudelft.nl
+
+Abstract—We study the generalized linear coordinate-descent
+(GLiCD) algorithm for the quadratic optimization problem. As
+an extension of the linear coordinate-descent (LiCD) algorithm,
+the GLiCD algorithm incorporates feedback from last iteration
+in generating new messages. We show that if the amount of
+feedback signal from last iteration is above a threshold and the
+GLiCD algorithm converges, it computes the optimal solution.
+Based on the result, we further show that if the feedback signal
+is large enough, the GLiCD algorithm is guaranteed to converge.
+
+I. I NTRODUCTION
+In this paper we consider solving a quadratic optimization
+problem in a distributed fashion, namely
+1 ⊤
+x Jx − h⊤ x,
+(1)
+x∈R
+2
+where the quadratic matrix J is symmetric positive deﬁnite
+and h ∈ Rn . We may assume, without loss of generality, that
+J is of unit-diagonal. It is known that the optimal solution is
+given by x∗ = J −1 h. We note that even though the optimal
+solution takes a simple closed-form expression, it is not trivial
+to come up with an efﬁcient distributed algorithm that solves
+the problem with guaranteed convergence. Existing algorithms
+are either applicable to a speciﬁc class of J or converge slowly.
+In the literature, the Jacobi algorithm is a natural approach
+in solving the quadratic problem [1]. However, the Jacobi
+algorithm only converges for a particular class of J matrices.
+To overcome the convergence failure in the general case, the
+Jacobi algorithm was relaxed by incorporating an estimate of
+x∗ from last iteration in computing a new estimate. It is well
+known that if the relaxation parameter is properly chosen, the
+Jacobi over-relaxation (JOR) algorithm always converges [1].
+An alternative scheme for solving the quadratic problem
+is by relating the quadratic function f (x) with a Gaussian
+distribution. The optimal solution x∗ can then be taken as
+the mean value of a Gaussian random variable. The min-sum
+algorithm is one popular approach to compute the mean value
+x∗ [2], [3]. Differently from the JOR algorithm, the min-sum
+algorithm may not converge for some J matrices. The question
+of convergence has usually proved difﬁcult (see [2], [3], [4],
+[5], [6]). In [3], Weiss and Freeman established a convergence
+condition where the quadratic matrix J is required to be
+∆
+
+min f (x) =
+n
+
+1
+
+diagonal dominant1. Later on, Johnson et al. discovered a
+more general convergence condition [4], [5]. They found that
+if the matrix J is walk-summable2, the min-sum algorithm is
+guaranteed to converge.
+Recently, the linear coordinate-descent (LiCD) algorithm
+has been proposed for the quadratic optimization problem [7].
+The LiCD algorithm was motivated by the block coordinatedescent algorithms (see [8]) which were proposed for discrete
+MAP problems. The LiCD algorithm has the advantage that
+each message is described by only one parameter, as apposed
+to the min-sum algorithm of which each message is described
+by two parameters. A sufﬁcient convergence condition of the
+LiCD algorithm requires that the matrix J is walk-summable
+(like the min-sum algorithm). In order to ﬁx the convergence
+for a general matrix J (i.e., arbitrarily symmetric positive
+deﬁnite), the LiCD-based double-loop algorithm was also
+proposed in [7]. The double-loop algorithm performs diagonalloading on J to obtain a new quadratic matrix that is walksummable, thus allowing usage of the LiCD algorithm.
+Inspired by the JOR algorithm, the generalized linear
+coordinate-descent (GLiCD) algorithm was proposed in [9]
+to solve a general convex optimization problem. The GLiCD
+algorithm extends the LiCD algorithm by incorporating feedback (an estimate of x∗ ) from last iteration in computing new
+messages. A sufﬁcient convergence condition of the algorithm
+was derived in [9].
+In this work, we revisit the GLiCD algorithm for solving
+the quadratic optimization problem (1). Motivated by the
+convergence of the JOR algorithm, our primary concern is
+to study if the GLiCD algorithm converges for a general
+symmetric positive deﬁnite matrix J. The convergence of the
+GLiCD algorithm for a general matrix J is of great importance
+in practice. This is because both the JOR algorithm and the
+LiCD-based double-loop algorithm usually possess a slow
+convergence rate.
+We study the convergence of the GLiCD algorithm in two
+steps. In the ﬁrst step, an algebraic relationship between the
+GLiCD and the LiCD-based double-loop algorithm is estab1 The matrix J is diagonally dominant if |Jii | >
+j=i |Jij | for all i.
+2 See subsection II-C for the deﬁnition of walk-summability. It can be
+shown by algebra that if a matrix is diagonal dominant, then it is also walksummable.
+
+lished. In particular, the message-updating expressions of the
+two algorithms can be derived from each other mathematically.
+With the algebraic relationship, we show that if the the amount
+of the feedback signal is above a threshold and the GLiCD
+algorithm converges, it computes the optimal solution. In the
+second step, we show that by setting the feedback signal large
+enough in computing new messages, the algorithm possesses
+a guaranteed convergence.
+II. G ENERALIZED L INEAR C OORDINATE -D ESCENT
+MESSAGE -PASSING
+In this section, we brieﬂy present the GLiCD algorithm for
+the quadratic optimization problem. The GLiCD algorithm
+was ﬁrst proposed in [9] for a general convex optimization
+problem. We point out that in this paper the feedback signal
+will be constructed differently than that of [9]. The new
+construction of the feedback signal enables the convergence
+argument for the algorithm in Section IV.
+A. Message-passing framework
+Consider the quadratic optimization problem (1). By using
+the sparsity of the matrix J, the quadratic function f (x) can
+be decomposed with the aid of a graph G = (V, E)
+f (x) =
+
+fij (xi , xj ),
+
+fi (xi ) +
+i∈V
+
+(i,j)∈E
+
+where the node and edge functions are given by
+fi (xi ) =
+fij (xi , xj ) =
+
+1 2
+x − hi xi
+i∈V
+2 i
+Jij xi xj
+(i, j) ∈ E.
+
+(2)
+(3)
+
+An edge exists between node i and j in the graph only if
+Jij = 0. For each node i ∈ V , we denote the set of neighbors
+∆
+of node i as N (i) = {j ∈ V : (i, j) ∈ E}. For each edge
+(i, j) ∈ E, we use [j, i] and [i, j] to denote its two directed
+edges. Correspondingly, we denote the set of all directed edges
+of the graph as E.
+The GLiCD algorithm attempts to minimize the quadratic
+function in an iterative, message-passing fashion. At time t,
+each node i keeps track of a message and an estimate of x∗
+i
+from each neighbor u ∈ N (i). We denote the message and the
+(t)
+(t)
+estimate from node u to i as mui (xi ) and xi|u , respectively.
+ˆ
+(t)
+
+=
+
+(t)
+zui xi ,
+
+∀ [u, i] ∈ E,
+
+t = 0, 1, . . .
+
+B. Message-updating expressions
+(t)
+
+In this subsection, we use the estimates {ˆi|u } as feedback
+x
+in computing the new messages and estimates. As is presented
+in [9], the basic procedure is to ﬁrst construct a penalty
+function for each edge in the graph. The node and edge
+functions are then combined with the penalty functions in
+updating the messages and the estimates. In particular, we
+(t)
+deﬁne the penalty function gij (xi , xj ) for (i, j) ∈ E to be
+a quadratic function:
+α
+α
+(t)
+(t)
+(t)
+gij (xi , xj ) = (xi − xi|j )2 + (xj − xj|i )2 ,
+ˆ
+ˆ
+(7)
+2
+2
+where the weighting factor α ≥ 0. The parameter α controls
+the amount of feedback in next iteration. As α increases, the
+penalty function enlarges the impact of the estimates when
+computing new estimates.
+We note that the penalty function (7) is different than that
+(t)
+of [9]. In [9], the function gij (xi , xj ) is constructed by using
+(t)
+(t)
+{ˆi|u , u ∈ N (i)\j} and {ˆj|v , v ∈ N (j)\i}. In this work, the
+x
+x
+particular form of (7) is essential to establish the convergence
+argument for the algorithm in Section IV.
+We are now in a position to compute the new estimates and
+messages. Without loss of generality, we focus on computing
+(t+1) (t+1)
+(t+1)
+(t+1)
+{zij , zji } and {ˆi|j , xj|i } that are associated with
+x
+ˆ
+(t)
+
+the edge (i, j) ∈ E. From [9], a function Lij (xi , xj ) is
+deﬁned to be
+∆
+
+(t)
+
+Lij (xi , xj )
+
+(t)
+
+(t)
+
+(t)
+
+= fi (xi ) + fj (xj ) + fij (xi , xj )
+(t)
+
++gij (xi , xj ).
+
+(8)
+
+(t)
+
+The function Lij (xi , xj ) is in a quadratic form. The new
+(t+1)
+(t+1)
+estimates xi|j
+ˆ
+and xj|i are computed by minimizing the
+ˆ
+(t)
+
+function Lij (·, ·) over xi and xj [9]:
+(t+1)
+
+xi|j
+ˆ
+
+(t+1)
+
+, xj|i
+ˆ
+
+(t)
+
+= arg min Lij (xi , xj ).
+xi ,xj
+
+(4)
+
+With the message form (4), the objective function f (x) at time
+t can be reparameterized as
+
+and xj|i
+ˆ
+Correspondingly, the expressions for xi|j
+ˆ
+given by
+
+
+−(1−s)Jij
+1
+(t+1)
+2
+2
+xi|j
+ˆ
+1−(1−s)2 Jij
+1−(1−s)2 Jij
+
+=  −(1−s)Jij
+(t+1)
+1
+xj|i
+ˆ
+2J2
+2J2
+1−(1−s)
+1−(1−s)
+ij
+
+(t)
+fi (xi )
+
+f (x) =
+i∈V
+
+(t)
+fij (xi , xj ),
+
++
+
+·
+
+(i,j)∈E
+
+where the new node and edge functions are given by
+(t)
+
+fi (xi ) =
+=
+
+(t)
+
+(1 − s)hj − (1 − s)
+
+ij
+
+(t)
+u∈N (i)\j zui
+(t)
+v∈N (j)\i zvj
+
+(t)
+
++ sˆi|j
+x
+
+, (9)
+
+(t)
+
++ sˆj|i
+x
+
+where s = α/(1 + α). By using the fact that α ≥ 0, we have
+1 > s ≥ 0.
+(t+1)
+(t+1)
+Upon obtaining the estimates xi|j and xj|i , the remainˆ
+ˆ
+
+(6)
+
+ing work is to compute zij
+
+u∈N (i)
+(t)
+fij (xi , xj )
+
+(1 − s)hi − (1 − s)
+
+are
+
+(5)
+
+(t)
+
+zui xi ,
+
+fi (xi ) +
+
+(t+1)
+
+(t+1)
+
+Suppose that the message mui (xi ) takes a linear form:
+(t)
+mui (xi )
+
+To brieﬂy summarize, each node i at time t has the parameters
+(t) (t)
+(t)
+{zui , xi|u , u ∈ N (i)}. The estimates {ˆi|u , u ∈ N (i)} provide
+ˆ
+x
+information about the optimal solution x∗ . Thus, the estimates
+i
+can be used as feedback in computing new messages and
+estimates in next iteration.
+
+(t)
+
+fij (xi , xj ) − zji xi − zij xj .
+
+2
+
+(t+1)
+
+(t+1)
+
+and zji
+
+(t+1)
+
+. From [9], zji
+
+is
+
+computed by solving
+(t+1)
+
+xi|j
+ˆ
+
+=arg min fi (xi ) +
+xi
+
+(t)
+
++
+
+α
+(t)
+(xi − xi|j )2
+ˆ
+2
+(t+1)
+
+zui xi + zji
+
+xi .
+
+(10)
+
+v∈N (i)\j
+
+Note that one difference between the expressions on the right(t+1)
+hand side of (10) and (5) is the message zji . Intuitively
+(t+1)
+speaking, the message zji
+is utilized to bring all the
+(t+1)
+information about xi|j that is contained in node j to node i.
+ˆ
+(t+1)
+
+The parameter zij
+can be obtained in a similar manner. By
+(t+1)
+(t+1)
+computation, the messages zij
+and zji
+are expressed as
+(t+1)
+
+(t+1)
+
+zji
+(t+1)
+zij
+
+= Jij
+
+xj|i
+ˆ
+
+(t+1)
+
+xi|j
+ˆ
+
+.
+
+(11)
+
+the relationship between the GLiCD algorithm and the LiCDbased double-loop algorithm in [7]. We show that the updating
+expressions of the two algorithms can be derived from each
+other mathematically. As a consequence, some theoretical
+results obtained for the double-loop algorithm can be used
+to study the performance of the GLiCD algorithm.
+A. Reformulation of the message-updating expressions
+In this subsection, we reformulate the two updating expressions (9) and (11) into a vector form. The vector form provides
+a big picture of the evolution of the algorithm.
+Note that (11) describes the relationship between the estimates and the message at each time step. By using (11), (9)
+can be rewritten as
+
+
+−(1−s)Jij
+1
+(t+1)
+2J 2
+2J2
+xi|j
+ˆ
+1−(1−s)
+1−(1−s) ij
+
+=  −(1−s)Jijij
+(t+1)
+1
+xj|i
+ˆ
+2
+1−(1−s)2 J
+1−(1−s)2 J 2
+ij
+
+With (9) and (11) at hand, one can easily work out the
+updating-expressions of the messages and estimates associated
+with other edges in the graph.
+C. Algorithm implementation
+In this subsection, we consider the algorithm implementation by following the same procedure as in [9]. Speciﬁcally,
+(0)
+we let the initial estimate xv|u to be an arbitrary real number
+ˆ
+(0)
+
+for each [v, u] ∈ E, i.e., xv|u ∈ R. We then compute the
+ˆ
+(0)
+
+parameters {zuv } according to (11). With the initial estimates
+and messages, the algorithm evolves by following (9)-(11).
+If the GLiCD algorithm converges to the optimal solution
+as t → ∞, we have
+(∞)
+
+xi|u = x∗
+ˆ
+i
+
+∀u ∈ N (i) and i ∈ V.
+
+We point out that when α = 0 (or equivalently, s = 0),
+the GLiCD algorithm degenerates to the LiCD algorithm. It
+is known from [7] that the LiCD algorithm converges to the
+optimal solution when J is walk-summable. To make the paper
+complete, we provide the deﬁnition of the walk-summability
+of J below:
+Deﬁnition 2.1: [4], [5] A positive deﬁnite matrix J ∈
+Rn×n , with all ones on its diagonal, is walk-summable if
+¯
+the spectral radius of the matrix R, where R = I − J and
+n
+¯
+¯
+R = [|Rij |]i,j=1 , is less than one (i.e., ρ(R) < 1).
+Compared with the LiCD algorithm, the GLiCD algorithm
+has a free parameter α to choose. Our goal in this paper is to
+study whether the GLiCD algorithm converges for an arbitrary
+positive deﬁnite matrix J by choosing the weighting factor α
+properly.
+OF THE
+
+(t)
+
+(t)
+
+(t)
+
+(t)
+
+ˆ
+x
+u∈N (i)\j Jui xu|i + sˆi|j
+
+(1 − s)hj − (1 − s)
+
+v∈N (j)\i
+
+GL I CD A LGORITHM
+
+In this section, we perform an algebraic analysis on the
+updating expressions (9) and (11). In particular, we study
+
+3
+
+, (12)
+
+Jvj xv|j + sˆj|i
+ˆ
+x
+
+where ∀(i, j) ∈ E, t = 0, 1, . . . The new expression (12)
+only involves the estimates instead of the messages. We use
+(t)
+xedge to denote the vector of all the estimates at time t.
+ˆ
+(t)
+(t+1)
+xedge is of dimension |E|, of which each component xi|j
+ˆ
+ˆ
+(t)
+
+corresponds to an directed edge [i, j] ∈ E. With xedge at
+ˆ
+hand, we denote the corresponding optimal solution as x∗ ,
+edge
+where the component associated with [i, j] ∈ E is set to be
+(t)
+x∗ . The algorithm converges to the optimal solution if xedge
+ˆ
+i
+approaches to x∗
+edge as t → ∞. The expression (12) can be
+rewritten in a vector form as
+(t+1)
+
+(t)
+In this situation, any element in {ˆi|u , u ∈ N (i)} is a good
+x
+estimate of the optimal solution x∗ . In practice, one can
+i
+(t)
+measure the difference of the estimates {ˆi|u , u ∈ N (i)} for
+x
+each variable xi to terminate the iteration procedure.
+
+III. A LGEBRAIC A NALYSIS
+
+·
+
+ij
+
+(1 − s)hi − (1 − s)
+
+(t)
+
+xedge = (1 − s)Dy + D(sI + (1 − s)E)ˆedge ,
+ˆ
+x
+where the matrices D, E
+are given by
+
+1
+ 1−(1−s)2 Jij
+2
+
+−(1−s)Jij
+Dij,uk =
+2
+ 1−(1−s)2 Jij
+
+0
+Eij,uk =
+
+−Jui
+0
+
+yij = hi
+
+(13)
+
+∈ R|E|×|E| , and the vector y ∈ R|E| ,
+u = i, k = j and [i, j], [u, k] ∈ E
+u = j, k = i and [i, j], [u, k] ∈ E
+otherwise
+
+u = j, k = i and [i, j], [u, k] ∈ E
+otherwise
+
+[i, j] ∈ E.
+
+From the expression (13), it is immediate that
+t−1
+(t)
+
+xedge
+ˆ
+
+=
+
+[D(sI + (1 − s)E)]k Dy
+
+(1 − s)
+k=0
+
+(0)
+
++[D(sI + (1 − s)E]t xedge ,
+ˆ
+(0)
+
+(14)
+
+where xedge represents the initial estimation vector. It is seen
+ˆ
+that the matrix D(sI + (1 − s)E) plays an important role
+for the convergence of the GLiCD algorithm. If the spectral
+radius of the matrix D(sI + (1 − s)E) is less than 1 (i.e.,
+ρ(D(sI + (1 − s)E)) < 1), the impact of the initial vector
+
+(0)
+
+(t)
+
+xedge on the estimate xedge decays exponentially over time.
+ˆ
+ˆ
+(t)
+Thus, as t → ∞, the estimate xedge converges to a ﬁxed point.
+ˆ
+We summarize the result in a lemma below.
+(0)
+Lemma 3.1: Given an initialization vector xedge ∈ R|E| , if
+ˆ
+and only if the spectral radius of the matrix D(sI + (1 − s)E)
+(t)
+is less than 1, the estimate vector xedge converges to a ﬁxed
+ˆ
+point. In particular, the ﬁxed point is given by
+(t)
+
+lim xedge = (1 − s)(I − D(sI + (1 − s)E))−1 Dy.
+ˆ
+
+t→∞
+
+(15)
+
+Lemma 3.1 provides a necessary and sufﬁcient convergence
+condition for the GLiCD algorithm. For the situation that the
+algorithm converges, one natural question is if the ﬁxed point
+(∞)
+xedge is identical to the optimal solution x∗ . To clarify,
+ˆ
+edge
+x∗
+is constructed from x∗ , and is of dimension |E|.
+edge
+B. The updating-expressions of the LiCD-based double-loop
+algorithm
+In this subsection, we ﬁrst present the basic idea of the
+LiCD-based double-loop algorithm [7]. After that, we provide
+the updating-expressions of the algorithm as a reference.
+We note that the design of the LiCD-based double-loop
+algorithm in [7] was inspired by the work of [10], where
+the min-sum based double-loop algorithm was proposed. The
+basic idea in designing the double-loop algorithms is to
+perform diagonal loading on J to obtain Jα = J + αI,
+where α ≥ 0. Then instead of solving x∗ = J −1 h directly, a
+sequence of linear equations were considered [10]:
+−1
+x(k+1) = Jα (h + αˆ(k) ) k = 0, 1, . . .
+ˆ
+x
+
+(16)
+
+By letting s = α/(1 + α) as in (9), (16) can be further written
+as
+−1
+x(k+1) = Js ((1 − s)h + sˆ(k) )
+ˆ
+x
+
+k = 0, 1, . . . ,
+
+(17)
+
+where Js = (1 − s)J + sI. Again Js is of unit-diagonal. By
+following the iteration (17), x(k) converges to x∗ = J −1 h
+ˆ
+for any initialization x(0) as long as 1 > s ≥ 0 [10].
+ˆ
+Given x(k) at step k, the new estimate x(k+1) in (17) can be
+ˆ
+ˆ
+computed by exploiting the LiCD algorithm [7]. To guarantee
+the convergence of the LiCD algorithm, s is chosen from
+¯
+the region (⌊1 − 1/ρ(R)⌋+ , 1) to ensure that Js is walksummable, where the operation ⌊z⌋+ = max(0, z) for z ∈ R.
+Thus, the LiCD-based double-loop algorithm involves two
+loops: the outer loop follows the iteration (17), and the inner
+loop implements the LiCD algorithm for each time step in
+(17).
+With the guideline of the LiCD-based double-loop algorithm, one can work out its message updating-expressions as
+in Subsection III-A. We summarize the ﬁnal results in a lemma
+below:
+(0)
+Lemma 3.2: [7] Given an initialization vector xedge ∈ R|E| ,
+ˆ
+¯
+if the parameter s is chosen such that 1 > s > ⌊1−1/ρ(R)⌋+ ,
+the LiCD-based double-loop algorithm converges to the optimal solution x∗ . The ﬁxed point of the algorithm is given
+edge
+
+4
+
+by
+(k)
+
+lim xedge = (1 − s)(I − s(I − (1 − s)DE)−1 D)−1
+ˆ
+
+k→∞
+
+·(I − (1 − s)DE)−1 Dy
+=
+
+(18)
+
+x∗ .
+edge
+
+(19)
+
+From (18), we let Ms = (I − s(I − (1 − s)DE)−1 D)−1 .
+There are two matrix-inversions in Ms . The inner matrixinversion is obtained by implementing the LiCD algorithm for
+each time step in (17). On the other hand, the outer matrixinversion is obtained by following the iteration (17) directly.
+C. Algebraic relation between the GLiCD and the LiCD-based
+double-loop algorithm
+In this subsection, we establish the algebraic relation between the GLiCD and the LiCD-based double-loop algorithm.
+Based on the result, we show that the ﬁxed point in (15) is
+identical to x∗
+edge when the parameter s is chosen properly.
+The two expressions (15) and (18) carry a closed relation¯
+ship. Suppose 1 > s ≥ ⌊1 − 1/ρ(R)⌋+ . From Lemma 3.2, the
+matrix I − (1 − s)DE in (18) is invertible. In this situation,
+the expression (15) can be readily derived from (18):
+(1 − s)(I − s(I − (1 − s)DE)−1 D)−1
+·(I − (1 − s)DE)−1 Dy
+= (1 − s)(I − D(sI + (1 − s)E))−1 Dy.
+
+(20)
+
+Intuitively speaking, the derivation (20) compresses the LiCDbased double-loop algorithm into the GLiCD algorithm which
+has a single loop. Given a particular parameter s ∈ (⌊1 −
+¯
+1/ρ(R)⌋+ , 1), if the GLiCD algorithm converges, it should
+converges faster than the double-loop algorithm.
+Based on the analysis above, we can conclude that the
+ﬁxed point in (15) is identical to x∗
+edge when s ∈ (⌊1 −
+¯
+1/ρ(R)⌋+ , 1). We summarize the result in a theorem below.
+¯
+Theorem 3.3: If there exits s ∈ (⌊1 − 1/ρ(R)⌋+ , 1) such
+that the spectral radius of the matrix D(sI + (1 − s)E) is less
+than 1, then the GLiCD algorithm converges to the optimal
+(∞)
+solution. In other words, the ﬁxed point xedge in (15) is
+ˆ
+∗
+identical to xedge , i.e.,
+−1
+x∗
+Dy.
+edge = (1 − s)(I − D(sI + (1 − s)E))
+
+(21)
+
+¯
+It is now clear that when s ∈ (⌊1 − 1/ρ(R)⌋+ , 1), if
+the GLiCD algorithm converges, it computes the optimal
+solution. The remaining work is to show if there exits s ∈
+¯
+(⌊1−1/ρ(R)⌋+ , 1) such that the GLiCD algorithm converges.
+IV. C ONVERGENCE
+
+OF THE
+
+GL I CD
+
+ALGORITHM
+
+From (7), the parameter α determines the amount of feedback in computing new messages and estimates. We show
+that when α is large enough (or equivalently, the parameter
+s approaches to 1), the GLiCD algorithm converges. We use
+the Taylor expansions in the argument.
+As indicated in Theorem 3.3, the key point in proving the
+algorithm convergence is to study the spectral radius of the
+
+matrix D(sI +(1−s)E). It is seen from (13) that the matrix D
+takes a complicated form while the matrix E is much simple.
+We now study the properties of D in detail. Due to the special
+structure of D, its inverse can be easily computed:
+D−1 = I − (1 − s)B,
+
+(22)
+
+where
+Bij,uk =
+
+−Jij
+0
+
+u = j, k = i and [i, j], [u, k] ∈ E
+.
+otherwise
+
+By using (22), the matrix D can be represented by an inﬁnite
+series in terms of B, which is given by D = ∞ (1 − s)i B i .
+i=0
+By using algebra on the inﬁnite series, we obtain
+D = I + (1 − s)DB.
+
+(23)
+
+¯
+Thus, we can safely say that when 1 > s > ⌊1 − 1/ρ(R)⌋+ ,
+the spectral radius of Qs is less than 1.
+The above analysis shows that if s is sufﬁciently close to
+1, the GLiCD algorithm converges, which we summarize in a
+theorem below.
+Theorem 4.1: If the parameter s is sufﬁciently close to 1
+from below, the spectral radius of the matrix D(sI +(1−s)E)
+is less than 1. Consequently, the GLiCD algorithm converges
+to the optimal solution.
+Remark 4.2: We point out that the matrix Qs can be used
+to construct the message-updating expression of the JOR
+algorithm [1]. In particular, the expression takes the form
+t−1
+(t)
+
+(0)
+
+Qk y + Qt xedge .
+s
+sˆ
+
+xedge =
+ˆ
+k=0
+
+Note that the matrix B takes a much simple form, which
+facilitates the analysis for the matrix D(sI + (1 − s)E).
+Now we are ready to study the the matrix D(sI +(1−s)E).
+By applying (23), the matrix can be rewritten as
+D(sI + (1 − s)E)
+= D − (1 − s)D(I − E)
+=
+=
+
+I + (1 − s)DB − (1 − s)D(I − E)
+I − (1 − s)D(I − (B + E))
+
+=
+
+sI + (1 − s)(B + E)
+1
+− (1 − s)2 (sD)B(I − (B + E)).
+(24)
+s
+Note that the last term in (24) is of second order of (1 − s).
+Also the matrix sD is bounded in the inﬁnite norm sense, i.e.,
+sD ∞ < 1 where 0 ≤ s ≤ 1. Thus, as s → 1, the last term
+in (24) can be ignored, which results in
+D(sI + (1 − s)E) ≈ sI + (1 − s)(B + E),
+
+as s → 1.
+
+To facilitate the analysis in the following, we denote Qs =
+sI + (1 − s)(B + E).
+Next we derive the eigenvalues of the matrix Qs . Denote
+the eigenvalues of J as {λi > 0, i = 1, . . . , |V |}. We ﬁrst note
+that the matrix B + E takes the form
+(B + E)ij,uk =
+
+−Jui
+0
+
+k = i and [i, j], [u, k] ∈ E
+.
+otherwise
+
+By relating the matrix B + E with R = I − J, one can show
+that all the non-zero eigenvalues of B + E are {1 − λi , i =
+1, . . . , |V |}. Finally, the eigenvalues of Qs are give by
+{s + (1 − s)(1 − λi ), i = 1, . . . , |V |}
+
+{s}.
+
+Using the fact that λi > 0 for all i, it can be shown that when
+1 > s > ρ(R)−1
+ρ(R)+1 + (i.e., R = I − J), the spectral radius of
+Qs is less than 1. Further, as s → 1, all the eigenvalues of Qs
+¯
+approach to 1. As ρ(R) ≤ ρ(R) (see Corollary 6.3 in [1]), it
+is immediate that
+ρ(R) − 1
+¯
+≤ ⌊1 − 1/ρ(R)⌋+ .
+ρ(R) + 1 +
+
+5
+
+Compared with JOR algorithm, the GLiCD algorithm updates
+the estimates nonlinearly in terms of the parameter s (see (12)),
+resulting in the last term in (24).
+V. C ONCLUSION
+In this paper, we have studied the convergence of the GLiCD
+algorithm for the quadratic optimization problem. In particular,
+we show that the updating expression of the GLiCD algorithm
+can be alternatively derived from that of the LiCD-based
+double-loop algorithm. We then utilize the theoretical results
+of the double-loop algorithm to investigate the convergence of
+the GLiCD algorithm. Finally, we show that if the feedback
+signal is set to be large enough (i.e., large α), the GLiCD
+algorithm converges to the optimal solution.
+R EFERENCES
+[1] D. P. Bertsekas and J. N. Tsitsikis, Parallel and distributed Computation:
+Numerical Methods. Belmont, MA: Athena Scientiﬁc, 1997.
+[2] J. Pearl, “Probabilistic Reasoning in Intelligent Systems: Networks of
+Plausible Inference,” Morgan Kaufman Publishers, 1988.
+[3] Y. Weiss and W. T. Freeman, “Correctness of Belief Propagation in
+Gaussian Graphical Models of Arbitrary Topology,” Neural Computation, vol. 13, pp. 2173–2200, 2001.
+[4] J. K. Johnson, D. M. Malioutov, and A. S. Willsky, “Walk-sum Interpretation and Analysis of Gaussian Belief Propagation,” in Advances in
+Neural Information Processing Systems, vol. 18, Cambridge, MA: MIT
+Press, 2006.
+[5] D. M. Malioutov, J. K. Johnson, and A. S. Willsky, “Walk-Sums and
+Belief Propagation in Gaussian Graphical Models,” J. Mach. Learn. Res.,
+vol. 7, pp. 2031–2064, 2006.
+[6] N. Ruozzi and S. Tatikonda, “Unconstrained Minimization of Quadratic
+Functions via Min-Sum,” in Proceedings of the Conference on Information Sciences and systems (CISS), March 2010.
+[7] G. Zhang and R. Heusdens, “Linear Coordinate-Descent MessagePassing for Quadratic Optimization,” in Proc. of IEEE International
+Conference on Acoustics, Speech, and Signal Processing (ICASSP),
+March 2012, pp. 2005–2008.
+[8] D. Sontag, A. Globerson, and T. Jaakkola, “Introduction to Dual
+Decomposition for Inference,” in Optimization for Machine Learning.
+MIT Press, 2011.
+[9] G. Zhang and R. Heusdens, “Generalized Linear Coordinate-Descent
+Message-Passing for Convex Optimization,” in Proc. of IEEE International Conference on Acoustics, Speech, and Signal Processing
+(ICASSP), March 2012, pp. 2009–2012.
+[10] J. K. Johnson, D. Bickson, and D. Dolev, “Fixing Convergence of Gaussian Belief Propagation,” in the International Symposium on Information
+Theory, 2009.
+
+

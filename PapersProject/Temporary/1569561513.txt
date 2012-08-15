@@ -1,0 +1,1272 @@
+Creator:        TeX
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Fri Apr 27 11:53:10 2012
+ModDate:        Tue Jun 19 12:54:52 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      516568 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569561513
+
+q -Gaussian based Smoothed Functional
+Algorithms for Stochastic Optimization
+Debarghya Ghoshdastidar, Ambedkar Dukkipati and Shalabh Bhatnagar
+Department of Computer Science and Automation
+Indian Institute of Science, Bangalore – 560012
+Email: {gdebarghya@ee,ambedkar@csa,shalabh@csa}.iisc.ernet.in
+
+is discussed in Section VI. Finally, Section VII provides the
+concluding remarks.
+
+Abstract—The q-Gaussian distribution results from maximizing certain generalizations of Shannon entropy under some
+constraints. The importance of q-Gaussian distributions stems
+from the fact that they exhibit power-law behavior, and also
+generalize Gaussian distributions. In this paper, we propose
+a Smoothed Functional (SF) scheme for gradient estimation
+using q-Gaussian distribution, and also propose an algorithm for
+optimization based on the above scheme. Convergence results
+of the algorithm are presented. Performance of the proposed
+algorithm is shown by simulation results on a queuing model.
+
+II. BACKGROUND AND P RELIMINARIES
+A. q-Gaussian distribution
+Most of the distributions, like normal, uniform, exponential etc., can be obtained by maximizing Shannon entropy
+functional deﬁned as H(p) = p(x)lnp(x)dx, where p is
+X
+
+a pdf deﬁned on the sample space X . Other entropy functions
+have also been proposed as generalized information measures.
+One of the most popular among them is nonextensive entropy,
+ﬁrst introduced in [5], and later studied by Tsallis [6]. Its
+continuous form entropy functional, which is consistent with
+the discrete case [7], is deﬁned as
+
+I. I NTRODUCTION
+Stochastic optimization algorithms play an important role in
+optimization problems involving objective functions that cannot be computed analytically. These schemes are extensively
+used in discrete event systems, such as queuing systems, for
+obtaining optimal or near-optimal performance measures.
+Gradient descent algorithms are used for stochastic optimization by estimating the gradient of average cost in the long
+run. Methods for gradient estimation by random perturbation
+of parameters have been proposed in [1]. The Smoothed Functional (SF) scheme, described in [2], approximates the gradient
+of expected cost by its convolution with a multivariate normal
+distribution. Based on all the above schemes, two-timescale
+stochastic approximation algorithms have been presented in
+[3], which simultaneously perform cost averaging and parameter updation using different step-size schedules. The main
+issue with such algorithms is that, although convergence to
+a local optimum is guaranteed, the global optimum cannot
+achieved in practice. Hence, new methods are sought.
+In this paper, we propose a new SF technique based
+on q-Gaussian distribution, which is a generalization of the
+Gaussian distribution. We show that q-Gaussian satisﬁes all
+the conditions for smoothing kernels proposed by Rubinstein [4]. We illustrate a method for gradient estimation using
+q-Gaussian. We also present a two-timescale algorithm for
+stochastic optimization using q-Gaussian based SF, and show
+the convergence of the proposed algorithm.
+The rest of the paper is organized as follows. The framework
+for the optimization problem and some of the preliminaries are
+presented in Section II. Gradient estimation using q-Gaussian
+SF has been derived in Section III. Section IV presents the
+proposed algorithm. Numerical experiments comparing our
+algorithm with a previous algorithm is presented in Section V. An outline of convergence analysis of our algorithm
+
+[p(x)]q dx
+
+1−
+X
+
+Hq (p) =
+
+q−1
+
+q ∈ R.
+
+,
+
+(1)
+
+This entropy functional produces Shannon entropy as q → 1.
+Corresponding to this generalized measure, q-expectation of a
+function f (.) can be deﬁned as
+f (x)[p(x)]q dx
+f (x)
+
+q
+
+=
+
+R
+
+.
+
+(2)
+
+[p(x)]q dx
+R
+
+Maximizing Tsallis entropy under the following constraints:
+x
+
+q
+
+=µ
+
+and
+
+x2
+
+q
+
+= β2,
+
+(3)
+
+results in q-Gaussian distribution [8], which is of the form
+Gq,β (x) =
+
+1
+βKq
+
+1−
+
+(1 − q)
+(x − µ)2
+(3 − q)β 2
+
+1
+1−q
+
+,
+
+(4)
+
++
+
+where y+ = max(y, 0) is called Tsallis cut-off condition, and
+Kq is the normalizing constant, which depends on the value
+of q. The function deﬁned in (4) is not integrable for q 3,
+and hence, q-Gaussian is a probability density function only
+for q < 3. Multivariate form of the q-Gaussian distribution [9]
+is deﬁned as
+1
+Gq,β (X) = N
+β Kq,N
+
+1
+
+(1 − q)
+1−
+X
+(3 − q)β 2
+
+2
+
+1
+1−q
+
+,
++
+
+(5)
+
+The idea behind using smoothed functionals is that if f (θ)
+is not well-behaved, i.e., it has a ﬂuctuating character, then
+Sβ [f (θ)] has less ﬂuctuations for appropriate values of β.
+This ensures that any optimization algorithm with objective
+function f (θ) does not get stuck at any local minimum, but
+converges to the global minimum. The parameter β controls
+the degree of smoothness. Rubinstein [4] has shown that the
+SF algorithm achieves these properties if the kernel function
+satisﬁes the following sufﬁcient conditions:
+η
+(P1) Gβ (η) = β1 G( β ),
+N
+
+where Kq,N is the normalizing constant. It is easy to verify
+that the multivariate normal distribution is a special case of (5)
+as q → 1. A similar distribution can also be obtained by
+maximizing R´ nyi entropy [10].
+e
+B. Problem Framework
+Let {Yn }n∈N ⊂ Rd be a parameterized Markov process,
+depending on a tunable parameter θ ∈ C, where C is a
+compact and convex subset of RN . Let Pθ (x, dy) denote the
+transition kernel of {Yn } when the operative parameter is
+θ ∈ C. Let h : Rd → R+ {0} be a Lipschitz continuous
+cost function associated with the process.
+
+(1)
+
+Assumption I. The process {Yn } is ergodic for any given θ
+as the operative parameter, i.e.,
+L−1
+
+1
+h(Ym ) → Eνθ [h(Y )] as L → ∞,
+L m=0
+where νθ is the stationary distribution of {Yn }.
+Our objective is to minimize the long-run average cost
+L−1
+
+1
+J(θ) = lim
+h(Ym ) =
+L→∞ L
+m=0
+
+h(x)νθ (dx)
+
+(6)
+
+θ [J(θ)] ≈
+
+Rd
+
+Assumption II. J(θ) is continuously differentiable with respect to any θ ∈ C.
+
+η(n)h(Ym )
+
+(8)
+
+n=0 m=0
+
+Proof:
+1
+η
+Gq
+.
+βN
+β
+> 0, for all η ∈ RN .
+
+(P1) From (5), it is evident that Gq,β (η) =
+(P2) For 1 < q < 3, 1 −
+
+(1−q)
+(3−q)β 2
+
+η
+
+2
+
+1
+
+1−q
+1
+(1 − q)
+η 2
+.
+Hence, Gq,β (η) = N
+1−
+β Kq,N
+(3 − q)β 2
+2η
+Gq,β (η)
+Thus, η Gq,β (η) = −
+.
+(3 − q)β 2 1 − (1−q) 2 η 2
+
+(3−q)β
+
+Assumption II is a technical requirement, whereas Assumption III is used to show the stability of the scheme.
+Assumption III will not be required, for instance, if the singlestage cost function h is bounded in addition.
+
+(9)
+For q < 1, when η
+
+C. Smoothed Functionals
+
+1−
+
+Given any function f : C → R, its smoothed functional is
+deﬁned as
+
+2
+
+<
+
+(3−q)β
+(1−q)
+
+2
+
+(1 − q)
+η
+(3 − q)β 2
+
+, we have
+2
+
+> 0.
+2
+
+(3−q)β
+So, (9) holds. On the other hand, when η 2
+(1−q) ,
+(1 − q)
+we have 1 −
+η 2
+0, which implies
+(3 − q)β 2
+Gq,β (η) = 0 and, η Gq,β (η) = 0.
+Thus, Gq,β (η) is differentiable for q > 1, and piecewise
+differentiable for q < 1.
+
+∞
+
+Gβ (η)f (θ − η)dη =
+
+M −1 L−1
+
+Proposition 3.1. The q-Gaussian distribution satisﬁes the
+kernel properties (P1) – (P5) for all q < 3, q = 1.
+
+Assumption III. Let {θ(n)} be a sequence of random parameters, obtained using an iterative scheme, controlling the
+process {Yn }, and Fn = σ(θ(m), Ym , m n), n 0 denote
+the sequence of associated σ-ﬁelds.
+There exists 0 > 0, K ⊂ Rd compact, and a continuous
+Rd -valued function V , with lim x →∞ V (x) = ∞, such that
+under any non-anticipative {θ(n)},
+(i) supn E[V (Yn )2 ] < ∞ and
+(ii) E[V (Yn+1 )|Fn ] V (Yn ) − 0 , when Yn ∈ K, n 0.
+/
+
+−∞
+
+1
+βM L
+
+III. q-G AUSSIAN FOR S MOOTHED F UNCTIONALS
+
+We also assume the existence of a stochastic Lyapunov
+function through the following assumption.
+
+Sβ [f (θ)] =
+
+(N )
+
+for large M , L and small β. The process {Ym } is governed by
+parameter (θ(n) + βη(n)), where θ(n) ∈ C ⊂ RN is obtained
+through an iterative scheme. η(n) is a N -dimensional vector
+composed of i.i.d. N (0, 1)-distributed random variables.
+
+by choosing an appropriate θ ∈ C. The existence of the above
+limit is given by Assumption I. In addition, we assume that
+the average cost J(θ) satisﬁes the following condition.
+
+∞
+
+(2)
+
+η
+η
+where G( β ) = G1 ( β ) = G1 ( ηβ , ηβ , . . . , η β ).
+(P2) Gβ (η) is piecewise differentiable in η.
+(P3) Gβ (η) is a probability distribution function,
+i.e., Sβ [f (θ)] = EGβ (η) [f (θ − η)].
+(P4) limβ→0 Gβ (η) = δ(η), the Dirac delta function.
+(P5) limβ→0 Sβ [f (θ)] = f (θ).
+The normal distribution satisﬁes the above conditions, and
+has been used as a kernel by Katkovnik [2].
+Based on (7), a form of gradient estimator has been derived
+in [3] which is given by
+
+Gβ (θ − η)f (η)dη,
+−∞
+
+(7)
+where Gβ : RN → R is a kernel function.
+
+2
+
+(P3) Gq,β (η) is a distribution for q < 3 and hence, the
+corresponding SF Sq,β (.), which is parameterized by
+both q and β can be written as
+
+RN
+
+normalizing constant for N-variate q-Gaussian.
+Proof: From (2)
+
+Sq,β [f (θ)] = EGq,β (η) [f (θ − η)].
+
+f (x)[Gq (x)]q dx
+
+1
+→ ∞. But, we have
+(P4) As β → 0, Gq,β (0) = N
+β Kq,N
+
+f (X)
+
+q
+
+=
+
+RN
+
+[Gq (x)]q dx
+
+Gq,β (η)dη = 1 for q < 3. So, lim Gq,β (η) = δ(η).
+
+RN
+
+β→0
+
+(P5) It follows from dominated convergence theorem that
+lim Gq,β (η)f (θ − η)dη
+
+β→0
+−∞
+∞
+
+(1)
+θ J(θ)
+
+(2)
+θ J(θ)
+
+(N )
+θ J(θ)
+
+...
+
+T
+
+.
+
+i.e.,
+
+Gq,β (θ − η)
+
+=
+
+...
+
+Sq,β [
+
+η J(η)dη
+
+(N )
+θ J(θ)]
+
+Dq,β [J(θ)] −
+
+Dq,β [J(θ)] =
+
+T
+
+2Λq
+=
+β(3 − q)
+
+.
+
+RN
+
+It follows from integration by parts and the deﬁnition of Ωq ,
+Dq,β [J(θ)] =
+
+η Gq,β (η)J(θ
+
+=
+
+− η)dη .
+
+Ωq
+
+Substituting η =
+¯
+
+η
+−β,
+
+we have
+
+→ 0 as β → 0.
+
+θ J(θ)
+
+2Λq
+(3 − q)
+
+2Λq
+η J(θ + β η )
+¯
+¯
+β(3 − q)
+T
+
+η
+¯
+
+J(θ) + β η η
+¯¯
+q
+
+q
+
+1 2
+β ηηT
+¯¯
+2
+1
+ηηT
+¯¯
+θ J(θ) + β
+2
+
+q
+θ J(θ)+
+
+2
+η
+θ J(θ)¯
+
++ o(β 2 )
+q
+
+2
+η
+θ J(θ)¯
+
++ o(β)
+q
+
+Using an approximation of (6), for large L, we can write the
+above equation as
+
+We ﬁrst state the following lemma which will be required
+to prove the result in Proposition 3.3.
+
+θ [J(θ)]
+
+N
+
+Lemma 3.2. Let f : R → R be a function deﬁned over a
+standard q-Gaussian distributed random variable X ∈ RN ,
+
+q
+
+2Λq
+(3 − q)
+
+(3−q)
+
+(3−q)
+
+f (X)
+
+ .
+
+2
+
+2Λq
+as β → 0.
+θ J(θ)
+(3 − q)
+As a consequence of the Proposition 3.3, for large M and
+small β, the form of gradient estimate suggested by (10) is
+
+
+M −1
+1
+η (n)J(θ(n) + β η (n)) 
+¯
+¯
+
+. (11)
+θ [J(θ)] ≈
+Λq βM n=0
+1 − (1−q) η (n) 2
+¯
+
+η J(θ + β η )
+¯
+¯
+2
+Gq (¯)d¯
+η η
+(1−q)
+(3 − q)β 1 −
+¯ 2
+(3−q) η
+Ωq
+
+
+2
+η J(θ + β η ) 
+¯
+¯
+. (10)
+=
+EG (¯) 
+η
+(1−q)
+β(3 − q) q
+1−
+η 2
+¯
+
+then,
+
+
+
+Thus, Dq,β [J(θ)] →
+
+Dq,β [J(θ)] =
+
+≈
+
+1
+Λq βM L
+
+M −1 L−1
+
+n=0 m=0
+
+η (n)h(Ym )
+¯
+1−
+
+(1−q)
+(3−q)
+
+η (n)
+¯
+
+, (12)
+2
+
+where {Ym } is governed by parameter (θ(n) + β η (n)).
+¯
+However, since Λq > 0, Λq need not be explicitly determined as estimating [Λq θ J(θ)] instead of θ J(θ) does not
+affect the gradient descent approach. As a special case, for
+q = 1, we have Λq = 1 from deﬁnition. Hence, we obtain the
+same form as in (8).
+
+= 0 and XX T q = IN ×N ,
+
+
+1
+f (X)
+ ,
+=
+EG (X) 
+Λq q
+1 − (1−q) X 2
+
+i.e., X
+
+Gq (x)dx
+
+2
+
+Proof: For small β, using Taylor series expansion,
+1
+J(θ + β η ) = J(θ) + β η T θ J(θ) + β 2 η T 2 J(θ)¯ + o(β 2 )
+¯
+¯
+¯ θ
+η
+2
+By Lemma 3.2,
+
+2
+
+(1)
+θ J(θ)]
+
+x
+
+Proposition 3.3. For a given q < 3, q = 1, as β → 0, SF for
+the gradient converges to a scaled version of the gradient,
+
+for q < 1,
+Let us deﬁne, Ωq = η ∈ RN : η 2 < (3−q)β
+(1−q)
+and Ωq = RN for 1 < q < 3. It is evident that Ωq is the
+support set for the q-Gaussian distribution with q-variance β 2 .
+Deﬁne the SF for gradient of average cost as
+Dq,β [J(θ)] = Sq,β [
+
+dx
+
+(3−q)
+
+Our objective is to estimate θ J(θ) using the SF approach.
+The existence of θ J(θ) is due to Assumption II. Now,
+=
+
+1−
+
+
+1
+f (X)
+=
+EGq (X) 
+(1−q)
+Λq
+1−
+X
+
+−∞
+
+θ J(θ)
+
+(1−q)
+(3−q)
+
+Ωq
+
+δ(η)f (θ − η)dη = f (θ).
+
+=
+
+f (x)
+
+1
+=
+Λq
+
+q
+1−q
+
++
+
+RN
+
+∞
+
+lim Sq,β [f (θ)] =
+
+2
+
+(1 − q) x
+f (X) 1 −
+(3 − q)
+
+1
+=
+Λq Kq,N
+
+RN
+
+β→0
+
+[Gq (x)]q dx , Kq,N being the
+
+(Kq,N )q−1
+
+where Λq =
+
+q
+
+(3−q)
+
+3
+
+where R1 = 10 and R2 = 20 are constants. Here, U1 (n)
+and U2 (n) are independent samples drawn from uniform
+distribution on (0,1). Service time of each node depends on the
+Ni -dimensional tunable parameter vector θi , whose individual
+(j)
+(j)
+components lie in a certain interval [(θi )min , (θi )max ],
+th
+j = 1, . . . , Ni , i = 1, 2. θi (n) represents the n update of
+¯
+parameter vector at Node-i, and θi represents the target vector.
+The cost function is chosen to be the sum of the two queue
+i
+lengths at any instant. For the cost to be minimum, Sn (θi )
+¯
+should be minimum, and hence, we should have θi (n) = θi ,
+(1)
+(N ) (1)
+(N )
+i = 1, 2. We denote θ = (θ1 , .., θ1 1 , θ2 , .., θ2 2 ) ∈ RN ,
+¯
+¯(1)
+¯(N ) ¯
+¯(N )
+and θ = (θ1 , .., θ1 1 , θ2 , .., θ2 2 ) ∈ RN , where N =N1 +N2 .
+For the simulations, we use the following values of parameters:
+(1) N1 = N2 = 2,
+(j)
+(j)
+(2) (θi )min = 0, (θi )max = 5 for all i, j, i.e., C = [0, 5]N .
+¯
+(3) θ(j) (0) = 5, θ(j) = 1 for j = 1, 2, . . . , N ,
+(4) M = 10000, L = 100,
+(5) a(n) = 1/n, b(n) = 1/n2/3 .
+
+IV. P ROPOSED A LGORITHMS
+In this section, we propose a two-timescale algorithm corresponding to the estimate obtained in (12).
+The q-Gaussian distributed parameters (η) have been generated in the algorithm using the method proposed in [11].
+Let {a(n)}, {b(n)} be two step-size sequences satisfying
+∞
+
+Assumption IV. a(n) = o(b(n)),
+∞
+
+n=0
+
+n=0
+
+∞
+
+a(n)2 ,
+
+and
+
+∞
+
+b(n) = ∞,
+
+a(n) =
+n=0
+
+b(n)2 < ∞.
+n=0
+
+(1)
+
+For θ = (θ , . . . , θ(N ) )T ∈ RN , let Γ(θ) = Γ(θ(1) ), . . . ,
+T
+Γ(θ(N ) )
+represent the projection of θ onto the set C.
+(i)
+{Z (n), i = 1, . . . , N }n∈N are quantities used to estimate
+[Λq θ J(θ)] via the recursions below.
+The q-SF Algorithm
+1:
+2:
+3:
+4:
+5:
+
+6:
+7:
+8:
+9:
+
+Fix M , L, q and β.
+Set Z (i) (0) = 0, i = 1, . . . , N .
+Fix parameter vector θ(0) = (θ(1) (0), . . . , θ(N ) (0))T .
+for n = 0 to M − 1 do
+Generate i.i.d. standard q-Gaussian distributed random
+variables η (1) (n), . . . , η (N ) (n) and set
+η(n) = (η (1) (n), . . . , η (N ) (n))T .
+for m = 0 to L − 1 do
+Generate the simulation YnL+m governed with parameter (θ(n) + βη(n)).
+for i = 1 to N do
+Z (i) (nL + m + 1) = (1 − b(n))Z (i) (nL + m)
++b(n)
+
+10:
+11:
+12:
+13:
+14:
+15:
+16:
+17:
+
+η (i) (n)h(YnL+m )
+(1−q)
+β (1− (3−q) η(n) 2 )
+
+B. Simulation Results
+Simulations are performed by varying the parameters q and
+β. We compare the performance of our algorithm with the SF
+algorithm proposed in [3], which uses Gaussian smoothing.
+¯
+The Euclidian distance between θ(n) and θ is chosen as the
+performance measure as this gives the proximity of the updates
+to the global optimum. For each case, the results are averaged
+over 20 independent trials. Figure 1 shows that with same β,
+q-SF converges faster than SF algorithm for some q’s. Table I
+presents a detailed comparison for different values of q and β.
+
+.
+
+end for
+end for
+for i = 1 to N do
+θ(i) (n + 1) = Γ θ(i) (n) − a(n)Z (i) (nL) .
+end for
+Set θ(n + 1) = (θ(1) (n + 1), . . . , θ(N ) (n + 1))T .
+end for
+Output θ(M ) as the ﬁnal parameter vector.
+
+Fig. 1: Convergence behavior of the algorithm for β = 0.25.
+q β
+0
+0.5
+0.6
+0.7
+0.8
+0.9
+1.1
+1.2
+1.3
+1.4
+1.5
+1.6
+2
+2.5
+SF
+
+V. N UMERICAL E XPERIMENT
+A. Numerical Setting
+We consider a two-node network of M/G/1 queues with
+feedback. The setting here is somewhat similar to that considered in [3]. Nodes 1 and 2 are fed with independent Poisson
+external arrival processes with rates λ1 = 0.2 and λ2 = 0.1,
+respectively. After departing from Node-1, customers enter
+Node-2. Once the service at Node-2 is completed, a customer either leaves the system with probability p = 0.4 or
+joins Node-1. The service time processes of the two nodes,
+1
+2
+{Sn (θ1 )}n 1 and {Sn (θ2 )}n 1 , respectively, are deﬁned as
+¯
+1 + θi (n) − θi 2
+i
+i = 1, 2, n 1, (13)
+Sn (θi ) = Ui (n)
+Ri
+
+0.0005
+3.62
+4.05
+3.82
+4.37
+3.97
+2.66
+2.19
+1.85
+2.32
+1.69
+2.34
+1.80
+1.65
+1.97
+2.09
+
+0.005
+2.78
+2.70
+2.91
+2.75
+2.47
+2.06
+1.81
+1.81
+1.77
+1.67
+2.02
+1.76
+2.10
+2.65
+1.85
+
+0.05
+2.86
+2.68
+2.83
+2.57
+2.98
+2.14
+2.19
+2.21
+2.69
+2.42
+2.89
+3.15
+3.47
+3.98
+2.52
+
+0.1
+3.10
+2.90
+3.16
+2.60
+2.42
+2.48
+2.93
+2.75
+3.18
+2.98
+2.94
+3.23
+4.46
+4.66
+2.09
+
+0.25
+3.08
+2.91
+3.03
+2.19
+2.48
+2.43
+2.78
+3.27
+3.55
+3.46
+3.88
+4.09
+4.64
+5.77
+2.77
+
+0.5
+2.82
+3.15
+2.78
+2.97
+2.91
+2.78
+3.07
+3.31
+3.77
+3.96
+4.00
+3.90
+5.10
+6.01
+2.96
+
+1
+3.51
+2.95
+2.90
+2.93
+2.72
+2.07
+2.78
+3.28
+3.46
+3.92
+3.75
+3.74
+4.60
+6.14
+2.65
+
+2.5
+3.20
+3.20
+3.53
+2.93
+2.90
+1.18
+1.59
+1.78
+2.10
+2.45
+2.51
+2.95
+4.23
+5.74
+1.31
+
+TABLE I: Performance (mean distance from optimum).
+
+4
+
+The cases where q-SF outperforms SF are highlighted, and
+for each β, the best result is underlined. It can be observed that
+for smaller β, q-SF with q > 1 performs better than SF, but for
+larger β, better performance can be obtained with q < 1. So, as
+β increases, smaller q’s prove to be better. As per observations,
+q = 0.9 performs better than Gaussian in 63% cases, and also
+gives the least distance in most of the cases (50%).
+The results show that there are some values of q = 1 for
+which we can reach closer proximity of the global minimum
+with the proposed algorithm than the SF case. This can
+be contributed to the power-law tail of q-Gaussian which
+allows better control over the level of smoothing. There is
+an additional improvement provided by Λq , which can be
+expressed as
+Λq = EGq (X)
+
+1−
+
+(1 − q)
+X
+(3 − q)
+
+Lemma 6.3. For a given q < 3, q = 1, with probability 1
+Z(nL) − (3−q) Dq,β [J(θ(n))] → 0 as n → ∞.
+2
+The following corollary follows directly from Proposition 3.3 and Lemma 6.3 by triangle inequality.
+Corollary 6.4. Given a particular q < 3, with probability 1,
+as n → ∞ and β → 0, Z(nL) − Λq θ J(θ) → 0
+Now, ﬁnally considering the ODE corresponding to the
+slowest timescale recursion:
+˙
+˜
+θ(t) = Γ − Λq
+
+.
+
+(14)
+
+VII. C ONCLUSION
+The q-Gaussian exhibits power-law behavior, which gives
+a better control over smoothing of functions as compared to
+normal distribution. We have extended the Gaussian smoothed
+functional gradient estimation approach to q-Gaussians, and
+developed an optimization algorithm based on this. We have
+also presented results illustrating that for some values of q,
+our algorithm performs better than the SF algorithm [3].
+
+VI. S KETCH OF C ONVERGENCE A NALYSIS
+Here, we give a sketch of the proof of convergence of the
+proposed algorithm. We just state the important results. The
+proofs will be given in a longer version of the paper.
+˜
+Let F(l) = σ θ(i) (k), η (i) (k), Yk , k
+˜
+l, i = 1, . . . , N ,
+l
+1 denote the σ-ﬁelds generated by the above mentioned
+˜
+quantities, where θ(i) (k) = θ(i) (n) and η (i) (k) = η (i) (n) for
+˜
+i = 1, . . . N , nL
+k < (n + 1)L. Deﬁne {˜
+b(n)}n 0 such
+n
+that ˜
+b(n) = b( L ), where [x] is the integer part of x. Thus,
+n=0
+
+R EFERENCES
+[1] E. Kiefer and J. Wolfowitz, “Stochastic estimation of a maximum
+regression function,” Annals of Mathematical Statistics, vol. 23, pp.
+462–466, 1952.
+[2] V. Y. A. Katkovnik and Y. U. Kulchitsky, “Convergence of a class of
+random search algorithms,” Automation Remote Control, vol. 8, pp.
+1321–1326, 1972.
+[3] S. Bhatnagar and V. S. Borkar, “Multiscale chaotic SPSA and smoothed
+functional algorithms for simulation optimization,” Simulation, vol. 79,
+no. 9, pp. 568–580, 2003.
+[4] R. Y. Rubinstein, Simulation and Monte-Carlo Method, John Wiley,
+New York, 1981.
+[5] J. Havrda and F. Charv´ t, “Quantiﬁcation method of classiﬁcation
+a
+processes: Concept of structural a-entropy,” Kybernetika, vol. 3, no.
+1, pp. 30–35, 1967.
+[6] C. Tsallis, “Possible generalization of Boltzmann-Gibbs statistics,”
+Journal of Statiscal Physics, vol. 52, no. 1-2, pp. 479–487, 1988.
+[7] A. Dukkipati, S. Bhatnagar, and M. N. Murty, “On measure-theoretic
+aspects of nonextensive entropy functionals and corresponding maximum entropy prescriptions,” Physica A: Statistical Mechanics and its
+Applications, vol. 384, no. 2, pp. 758–774, 2007.
+[8] D. Prato and C. Tsallis, “Nonextensive foundation of L´ vy distributions,”
+e
+Physical Review E., vol. 60, no. 2, pp. 2398–2401, 1999.
+[9] C. Vignat and A. Plastino, “Central limit theorem and deformed
+exponentials,” Journal of Physics A: Mathematical and Theoretical,
+vol. 20, no. 45, 2007.
+[10] J. Costa, A. Hero, and C. Vignat, “On solutions to multivariate maximum
+α-entropy problems,” Energy Minimization Methods in Computer Vision
+and Pattern Recognition, Lecture Notes in Computer Science, vol. 2683,
+pp. 211–226, 2003.
+[11] W. J. Thistleton, J. A. Marsh, K. Nelson, and C. Tsallis, “Generalized
+Box-Muller method for generating q-Gaussian random deviates,” IEEE
+Trans. Information Theory, vol. 53, no. 12, pp. 4805–4810, 2007.
+
+∞
+
+˜
+b(n) = ∞,
+
+(18)
+
+Theorem 6.5. Under Assumptions II – IV, given q < 3, q = 1
+and δ > 0, ∃β0 > 0 such that for all β ∈ (0, β0 ], the sequence
+{θ(n)} obtained using the q-SF algorithm converges to a point
+in S δ with probability 1 as n → ∞.
+
+For q > 1, the term inside bracket is always less than 1, which
+implies Λq < 1, whereas Λq > 1 for q < 1. Thus the gradient
+descent is faster for q < 1, which leads to faster convergence.
+We also note that for high q, the algorithm does not converge
+for larger β. So we may claim that the region of stability of
+q-SF, given by β0 (see Theorem 6.5), decreases as q increases.
+
+∞
+
+,
+
+˜
+where Γ(f (x)) = lim →0 Γ(x+ f (x))−x for any bounded,
+continuous function f : RN → RN . The stable points of (18)
+˜
+lie in the set S = θ ∈ C : Γ − Λq θ J(θ(t)) = 0 . Given
+δ
+δ > 0, we deﬁne S = θ ∈ C : θ − θ0 < δ, θ0 ∈ S .
+
+−1
+2
+
+θ J(θ(t))
+
+˜ 2 < ∞ and ˜
+b(n)
+b(n) = o(b(n)).
+n=0
+
+With the above notation, substituting p = nL + m we can
+˜
+rewrite Step 9 of our algorithm in terms of ˜
+b(p), θ(i) (p) and
+(i)
+(i)
+η (p). We deﬁne the sequences {M (p)}p 1 , i = 1, . . . N ,
+˜
+
+p
+η (i) (k)h(Yk )
+˜
+˜ 
+M (i) (p) =
+b(k)
+β 1 − (1−q) η (n) 2
+k=1
+(3−q) ˜
+
+
+η (i) (k)h(Yk )
+˜
+− EGq 
+F(k − 1) (15)
+(1−q)
+2
+β 1 − (3−q) η (k)
+˜
+
+Lemma 6.1. The sequences {M (i) (p), F(p)}p 1 , i = 1,
+2, . . . N are almost surely convergent martingale sequences.
+Consider the following ordinary differential equations:
+˙
+θ(t) = 0,
+(16)
+(3 − q)
+˙
+Dq,β [J(θ)] − Z(t).
+(17)
+Z(t) =
+2
+Lemma 6.2. The sequence of updates {Z(p)} is uniformly
+bounded with probability 1.
+
+5
+
+

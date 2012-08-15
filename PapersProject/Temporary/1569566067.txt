@@ -1,0 +1,1256 @@
+Creator:        TeX
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Fri May 18 11:34:35 2012
+ModDate:        Tue Jun 19 12:55:47 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      565305 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569566067
+
+A Random Matrix Approach to the Finite
+Blocklength Regime of MIMO Fading Channels
+Jakob Hoydis∗ , Romain Couillet§ , Pablo Piantanida§ , and M´ rouane Debbah‡
+e
+∗ Bells
+
+Labs, Alcatel-Lucent, Stuttgart, Germany
+of Telecommunications and ‡ Alcatel-Lucent Chair on Flexible Radio, SUPELEC, France
+jakob.hoydis@alcatel-lucent.com, {romain.couillet, pablo.piantanida, merouane.debbah}@supelec.fr
+
+§ Department
+
+when the channel inputs are coded within a vanishing set
+of rates around the critical rate. Similar considerations were
+made in [2], specialized in [7] to the AWGN fading channel. Further work on the asymptotic blocklength regime via
+information spectrum methods comprise the general capacity
+formula derived in [8] based on a lower bound on the error
+probability provided in [9]. Alternatively, in [10], Shannon
+derived bounds on the limit of the scaled logarithm of the
+error probability, known as the exponential rate of decrease.
+Simpler formulas for the latter were then provided by Gallager
+[11] which are still difﬁcult to evaluate for practical channel
+models. To circumvent this issue, a Gaussian approximation
+of Gallager’s bound with higher-order correction terms was
+recently obtained in [12] for the Rayleigh fast-fading MIMO
+channel. In [13], an explicit expression of Gallager’s error
+exponent was derived for the block-fading MIMO channel.
+However, the computation of this result is quite involved.
+The objective of this article is to investigate an inputconstrained version of Feinstein’s bound on the error probability [7] as well as Hayashi’s optimal average error probability
+for the Gaussian MIMO Rayleigh fading channel in the nonergodic regime. Although exact expressions of the optimal
+error probability are extremely difﬁcult to obtain in this setting,
+we derive a tight approximation of an upper bound on the error
+probability, which depends on the blocklength n, the number
+of transmit and receive antennas K and N , respectively, and
+the coding rate rn,K . More precisely, using recent results from
+random matrix theory, we show that, given a probability of
+error 0 ≤ < 1, and for n, K, and N sufﬁciently large, rates
+rn,K of the following form
+
+Abstract—This paper provides a novel central limit theorem
+(CLT) for the information density of the MIMO Rayleigh fading
+channel under white Gaussian inputs, when the data blocklength
+n and the number of transmit and receive antennas K and
+N , respectively, are large but of similar order of magnitude.
+This CLT is used to derive closed-form upper bounds on the
+error probability via an input-constrained version of Feinstein’s
+lemma by Polyanskiy et al. and the second-order approximation
+of the coding rate. Numerical evaluations suggest that the normal
+approximation is tight for reasonably small values of n, K, N .
+
+I. I NTRODUCTION
+The conventional notion of capacity focuses on the asymptotic limit of the tradeoff between accuracy and coding rate.
+When one considers the regime of ﬁnite-length codewords,
+only few results on this tradeoff are known whose exact
+evaluation is usually intractable. Thus, practical expressions
+of fundamental communication limits are mostly given by
+asymptotic approximations based on the large blocklength
+regime [1], [2]. Similarly, when multiple-input multiple-output
+(MIMO) systems are considered, one often relies on large
+system approximations where the number of transmit and
+receive antennas are assumed to grow without bounds [3].
+For both scenarios, it is well known that these asymptotic
+approximations mimic closely the system performance in the
+non-asymptotic regimes. Motivated by this observation, we
+provide in this paper an asymptotic approximation of the
+error performance of MIMO channels in the ﬁnite blocklength
+regime, based on large random matrix theory.
+One of the fundamental quantities of interest when exploring the tradeoff between achievable rate and block error
+probability is the information density (or the information
+spectrum). This quantity was used by Feinstein in [4] to derive
+an upper bound on the block error probability for a given
+coding rate in the ﬁnite blocklength regime. Since this bound
+is in general not amenable to simple evaluation, asymptotic
+considerations were made, in particular by Strassen [1] who
+derived a general expression for the discrete memoryless
+channel with unconstrained inputs. In his work, the variance of
+the information density [5] appears as a fundamental quantity.
+Nevertheless, Strassen’s approach could not be generalized to
+channels with input constraints, such as the AWGN channel.
+To tackle this limitation, Hayashi [6] introduced the notion
+of second-order coding rate and provided an exact characterization of the so-called optimal average error probability
+
+θc,β −1
+¯
+rn,K = Cc (σ 2 ) − √
+Q ( )+o
+nK
+
+√
+
+1
+nK
+
+(1)
+
+are achievable,1 where β = n/K, c = N/K, and both
+¯
+Cc (σ 2 ) and θc,β are given by simple closed-form expressions.
+1
+Alternatively, for some desired rate rn,K within O((nK)− 2 )
+of the ergodic channel capacity, the optimal error probability
+(n)
+Pe,N,K (rn,K ) is upper-bounded as
+√
+nK ¯ 2
+(n)
+Pe,N,K (rn,K ) ≤ Q
+Cc (σ ) − rn,K
++ o(1). (2)
+θc,β
+1 We
+
+1
+
+2
+
+denote Q(x) =
+
+t
+∞ 1
+√
+e− 2
+x
+2π
+
+dt.
+
+This bound is useful to assess the backoff from the ergodic
+channel capacity in the ﬁnite blocklength regime and it is
+characterized by only a few important system parameters.
+Applications arise for example in the context of MIMO
+ARQ block-fading channels where one is generally interested
+in minimizing the average data delivery delay, rather than
+maximizing the transmission rate.
+
+•
+
+φ:C
+
+II. D EFINITION AND PROBLEM STATEMENT
+Consider the following MIMO memoryless fading channel:
+t = {1, . . . , n}
+
+(3)
+N ×K
+
+N
+
+where yt ∈ C is the channel output at time t, H ∈ C
+with independent CN (0, 1/K) entries is the channel transfer
+K×1
+matrix, xt ∈ C
+is the channel input at time t assumed
+to be independent of H, and σwt ∼ CN 0, σ 2 IN is an
+additive noise at the receiver at time t. For later use, we
+n
+deﬁne the following matrices: X = [x1 . . . xn ] ∈ XK ,
+N ×n
+N ×n
+W = [w1 . . . wn ] ∈ C
+, and Y = [y1 . . . yn ] ∈ C
+.
+For α > 0, the channel inputs X must belong to the set of
+n
+admissible inputs XK which satisfy the energy constraint
+n
+XK =
+
+X∈C
+
+1
+tr XXH ≤ 1 + α .
+nK
+
+K×n
+
+(n)
+
+n
+Pe,N,K (CK )
+
+1
+log
+nK
+
+dPYH|X (Y, H|X)
+dPYH (Y, H)
+
+(n)
+
+Pe,N,K (r)
+
+(n)
+
+=
+
+1
+nK
+
+n
+
+log
+
+t=1
+CN,K (σ 2 )
+
+(n)
+
+1
+
+Mn,K
+
+Mn,K
+
+EH Pr m = m X = ϕ(m), H .
+ˆ
+m=1
+
+(n)
+
+inf
+n
+
+CK
+n
+n
+supp(CK )⊂XK
+
+n
+Pe,N,K (CK )
+
+1
+log Mn,K ≥ r .
+nK
+
+The exact characterization of the optimal error probability
+(n)
+Pe,N,K (r) for ﬁxed n, K, N and non-trivial channel models
+is generally intractable. An upper-bound for the exact optimal
+error probability was provided in [2, Thm. 24] as follows.
+Theorem 1 ([2, Thm. 24], (see also Feinstein [4])): Let X
+be an arbitrary input to the channel dPYH|X with output
+Y and channel matrix H. Given an arbitrary positive integer
+n
+Mn,K , there exists a CK = n, K, Mn,K , ϕ, φ -code with
+n
+codewords in the set XK satisfying
+
+(5)
+
+(n)
+
+n
+n
+Pe,N,K (CK ) Pr{X ∈ XK }
+
+≤ Pr i (X; YH) ≤
+
+1
+log Mn,K + δn,K
+nK
+
++ e−nKδn,K
+
+for all tuples (K, n, N ) and δn,K > 0.
+There have been recent efforts [6], [2] to establish error
+probability approximations when the coding rate is within
+1
+O((nK)− 2 ) of the ergodic capacity. In this scenario, a
+“second-order” expression is deﬁned as follows.
+
+(6)
+
+where
+
+Deﬁnition 2 (Second-order approximation): We deﬁne the
+optimal average error probability for the second-order coding
+rate r as [6], [2]
+
+1
+1
+log det IN + 2 HHH
+K
+σ
+1
+−1
+(n)
+2
+H
+tr HH + σ 2 IN
+YYH − WWH .
+RN,K (σ ) =
+nK
+The information density will be exploited in this work to
+obtain bounds on two different deﬁnitions of error probability.
+Deﬁnition 1 (Code and average error probability): An
+n, K, Mn,K , ϕ, φ -code for the channel model (3) consists
+of the following mappings:
+• An encoder mapping:
+CN,K (σ 2 ) =
+
+ϕ : M(n,K) −→ C
+
+−→ M(n,K) ∪ {e},
+
+(8)
+
+dPyt |H,xt (yt )
+dPyt |H (yt )
+
++ RN,K (σ 2 )
+
+N ×K
+
+(4)
+
+where dPYH denotes the pdf of (Y, H). For the case of
+independent inputs xt ∼ CN (0, IK ), this reads
+i (X; YH) = IN,K σ 2 =
+
+×C
+
+(7)
+n
+Let supp(CK ) denote the codebook {ϕ(1), . . . , ϕ(Mn,K )}.
+(n)
+The optimal error probability Pe,K,N (r) is the inﬁmum of all
+n
+error probabilities over CK deﬁned as2
+
+Remark 2.1: For the case of independent inputs
+n
+xt ∼ CN (0, IK ), Pr{X ∈ XK } = χ2 (2nK(1 + α))
+2nK
+2
+tends to one, where χk denotes the distribution function of a
+chi-square random variable with k degrees of freedom.
+The information density i (X; YH) of the channel
+dPYH|X (the joint probability density function (pdf) of
+(Y, H) conditioned on X), is deﬁned by [5]
+i (X; YH) =
+
+N ×n
+
+which produces the decoder’s decision m = φ(Y, H) on
+ˆ
+the sent message m, or the error event e.
+n
+Given a code CK
+n, K, Mn,K , ϕ, φ , the average error
+probability is deﬁned as
+
+A. Channel model and its information density
+yt = Hxt + σwt ,
+
+for each (nK)-blocklength where n, K denote the number of channel uses and transmit antennas, respectively.
+The transmitted symbols are X = ϕ(m) for every
+message m uniformly distributed over the set M(n,K) =
+{1, . . . , Mn,K }.
+A decoder mapping:
+
+Pe (r|β, c)
+
+inf
+
+n
+n
+n
+{CK :supp(CK )⊂XK }∞
+n=1
+
+(n)
+
+n
+lim sup Pe,N,K (CK )
+(β,c)
+N− − ∞
+−→
+
+√
+1
+nK
+log Mn,K − E CN,K σ 2
+lim inf
+(β,c)
+nK
+N− − ∞
+−→
+
+≥r
+(9)
+
+2 Although the focus is on the smallest average error probability at a given
+rate, by ﬁxing the error probability and looking at the maximum achievable
+rate, similar results can be derived with essentially the same methods.
+
+K×n
+
+2
+
+(β,c)
+
+n
+N
+where N − − ∞ denotes N, K, n → ∞, K → β, K → c.
+−→
+We now provide closed-form approximations for the error
+probability given in the above deﬁnitions, using new asymptotic statistics on the information density.
+
+N = 8, K = 4, n = 64, σ 2 = 0.1
+0.4
+
+0.3
+Histogram
+
+III. M AIN RESULTS
+The ﬁrst result is a central limit theorem (CLT) for the
+(n)
+information density IN,K (σ 2 ) with Gaussian i.i.d. inputs xt
+(Part (i) is [14, Theorem 1]).
+Theorem 2 (Fluctuations of the information density): Let
+n
+N
+n, K, N → ∞, such that K → c > 0, K → β > 0. Then,
+(n)
+
+E IN,K σ 2
+
+(i)
+
+¯
+= Cc σ 2 + O
+
+Simulation
+N (0, 1)
+
+0.2
+
+0.1
+
+1
+N2
+
+0
+−4
+
+where
+
+−2
+√
+
+¯
+Cc σ 2 = log (1 + cm) −
+
+nK
+θc,β
+
+cm
+1
+1
++ c log 1 + 2
+1 + cm
+σ 1 + cm
+
+0
+
+2
+
+4
+
+(n)
+¯
+IN,K σ 2 − CN,K σ 2
+
+Fig. 1. Histogram of the ﬂuctuations of the information density, for N = 8,
+K = 4, n = 64, and σ 2 = 0.1.
+
+and
+m=
+
+c−1
+1
++
+−
+2cσ 2
+2c
+
+(1 − c + σ 2 )2 + 4cσ 2
+.
+2cσ 2
+
+Corollary 2 (Upper bound on the optimal average error):
+The optimal average error probability (9) with second-order
+coding rate r is upper bounded as
+
+√
+(ii)
+
+nK (n)
+¯
+IN,K σ 2 − Cc σ 2 ⇒ N (0, 1)
+θc,β
+√
+nK (n)
+IN,K σ 2 − E CN,K σ 2
+⇒ N (0, 1)
+θc,β
+
+Pe (r|β, c) ≤ Q −
+
+θc,β
+
+(10)
+
+where θc,β is given in Theorem 2.
+
+2
+where the asymptotic variance θc,β is given as
+2
+θc,β = −β log 1 −
+
+r
+
+Proof: A sketch of proof is provided in the appendix.
+
+cm2
+2
+
+(1 + cm)
+
++ 2c 1 − σ 2 m .
+
+Remark 3.1: It is interesting to observe the transition from Corollary 1 to the second-order approximation when rn,K is close to the ergodic capacity, i.e.,
+r
+rn,K = E[CN,K (σ 2 )] + √nK . In this case, one can show
+√
+∗
+∗
+that nKδn,K → 0 while nKδn,k → ∞. Moreover, as
+2
+n, K → ∞, χ2nK (2nK(1 + α)) → 1. Hence, the upper(n)
+bound on Pe,N,K (rn,K ) can be approximated by (2). Letting
+(n)
+Pe,N,K (rn,K ) = and applying the inverse Q-function to both
+sides of (2) yields the achievable rate (1).
+
+Proof: A sketch of proof is provided in the appendix.
+We now apply the CLT to provide a tight approximation of
+the upper bound in Theorem 1.
+Corollary 1 (Upper bound on the error probability): Let
+xt ∼ CN (0, IK ), independent across t. Then, for α > 0 and
+any coding rate rn,K ,
+(n)
+
+(n)
+
+Pe,N,K (rn,K )χ2 (2nK(1 + α)) ≤ Pe,N,K (rn,K ) + o(1)
+2nK
+
+IV. N UMERICAL RESULTS
+
+where
+(n)
+Pe,N,K (rn,K )
+
+=Q
+
+∗
+with δn,K = u −
+
+√
+
+∗
+¯
+Cc (σ 2 ) − rn,K − δn,K
+1
+
+(nK)− 2 θc,β
+
++e
+
+In order to validate the accuracy of Theorem 2 (ii) for ﬁnite
+n, N , and K, we compare in Fig. 1 the empirical histogram of
+√
+(n)
+¯
+nK/θc,β (IN,K (σ 2 ) − Cc (σ 2 )) against the standard normal
+distribution for N = 8, K = 4, n = 64, and σ 2 = 0.1.
+Even for these small system dimensions, we observe an almost
+perfect match between both results.
+(n)
+In Fig. 2, we then compare the error bound Pe,N,K (rn,K ) of
+Corollary 1 against a numerical evaluation of (25), both seen as
+functions of n for the same parameters as above. We suppose
+a coding rate of rn,K = 0.85×E[CN,K (σ 2 )] = 3.41 bits/s/Hz.
+Under this assumption, the best possible error probability is the
+outage probability Pout = Pr{CN,K (σ 2 ) < rn,K } = 1.4 %.
+(n)
+Surprisingly, the approximation of (25) by Pe,N,K (rn,K ) is
+
+∗
+−nKδn,K
+
+u2 − v,
+
+2
+¯
+u = Cc (σ 2 ) − rn,K + θc,β
+2
+θc,β
+2
+2
+¯
+v = Cc (σ 2 ) − rn,K +
+log 2πnKθc,β .
+nK
+
+Proof: A sketch of proof is provided in the appendix.
+From Theorem 2, we can also obtain in a straightforward
+fashion the following upper bound for (9).
+
+3
+
+A PPENDIX
+
+N = 8, K = 4, σ 2 = 0.1, R = 3.41 bits/s/Hz
+
+Proof sketch of Theorem 2: Part (i) is [14, Theorem 1].
+For notational convenience, we drop dependencies on σ 2 . To
+prove part (ii), we start by deﬁning the following quantities:
+(n)
+(n)
+˜(n)
+˜
+IN,K = IN,K − E[IN,K ], CN,K = CN,K − E[CN,K ], and
+(n)
+(n)
+˜ (n)
+RN,K = RN,K − E[RN,K ].
+1) Asymptotic variance: With the above deﬁnitions, the
+(n)
+variance of IN,K can be expressed as
+
+Eq. (25)
+(n)
+
+0.15
+
+Pe,N,K (rn,K )
+Eq. (2)
+
+0.1
+
+(n)
+
+n
+Upper bound on Pe,N,K (rn,K ) Pr{X ∈ XK }
+
+0.2
+
+0.05
+
+˜(n)
+IN,K
+
+E
+
+2
+
+(n)
+
+˜2
+= E CN,K + E
+2
+
+(n)
+
+− E RN,K
+
+Pout
+0
+
+20
+
+40
+
+60
+
+80
+
+2
+
+RN,K
+˜
+˜ (n)
++ 2E CN,K RN,K . (11)
+
+After straightforward calculations, one can show that
+
+100
+
+Blocklength n
+
+(n)
+
+˜
+˜ (n)
+E CN,K RN,K = 0.
+
+E RN,K = 0 and
+(n)
+
+Fig. 2. Upper bounds on the (discounted) error probability Pe,N,K (rn,K )
+for N = 8, K = 4, σ 2 = 0.1, rn,K = 0.85 × E[CN,K (σ 2 )] =
+3.41 bits/s/Hz, as a function of n, where Pout = Pr{CN,K (σ 2 ) < rn,K } =
+1.4 % denotes the outage probability.
+
+(12)
+
+In a similar manner, one arrives after some calculus at
+2
+
+(n)
+
+RN,K
+
+E
+
+=
+
+2c
+βK 2
+
+σ2
+tr HHH + σ 2 IN
+N
+
+1−E
+
+−1
+
+.
+
+(13)
+From [14, Theorem 3], it follows that
+
+extremely accurate, even for very small values of n. We additionally provide the upper-bound of (2) in the same plot (the
+term o(1) being discarded). For the chosen set of parameters,
+the error approximation (2) is not tight and leads to an overly
+optimistic error bound. Further simulations, not provided here
+for lack of space, conﬁrm that this approximation becomes
+accurate as N, K, n, and rn,K increase.
+
+E
+
+1
+tr HHH + σ 2 IN
+N
+
+−1
+
+1
+N2
+
+=m+O
+
+.
+
+(14)
+
+By [14, Theorem 2], we have
+√
+E
+
+V. S UMMARY AND DISCUSSION
+
+˜
+nK CN,K
+
+cm2
+
+2
+
+→ −β log 1 −
+
+(1 + cm)
+
+2
+
+.
+
+Equations (11)–(15) taken together ﬁnally prove that
+2
+√
+2
+˜(n)
+nK IN,K
+→ θc,β .
+E
+
+We have studied the error probability of quasi-static MIMO
+Rayleigh fading channels in the ﬁnite blocklength regime.
+Under a large system assumption, we have derived a CLT
+for the information density. This result was used to compute
+a tight closed-form approximation of Feinstein’s upper bound
+on the optimal error probability with input constraints and
+an achievable upper bound of the optimal average error
+probability in the second-order coding rate. Numerical results
+demonstrated that the Gaussian approximation is valid for very
+small blocklengths and realistic numbers of antennas. Some
+comments on relevant issues and on-going work are in order:
+• Converse to Corollary 2: Proving a converse to the optimal average error probability would require the derivation
+of a CLT of the information density for general input
+distributions. The proof of such a result is also related to
+the conjecture of Telatar on the outage-minimizing input
+distribution for multi-antenna fading channels, recently
+conﬁrmed for the MISO channel in [15].
+• Extensions to other scenarios of interest: The blockfading regime as well as tradeoffs between channel training and data transmission can also be addressed within
+the framework proposed in this article. Moreover, CLTs
+for the information density with linear receive ﬁlters have
+been derived in an extended version of this article.
+
+(15)
+
+(16)
+
+(n)
+
+2) CLT: Let us rewrite RN,K in the following way:
+(n)
+
+RN,K =
+
+1
+nK
+
+n
+n
+zt
+
+(17)
+
+t=1
+
+−1
+
+n
+H
+H
+where zt = yt HHH + σ 2 IN
+yt − wt wt . Conditionally
+n
+n
+on H, z1 , . . . , zt are i.i.d. with zero mean and variance
+
+ϑ2 =
+n
+
+2nc
+β
+
+1 − σ2
+
+1
+tr (HHH + σ 2 IN )−1 .
+N
+
+(18)
+
+By Cauchy-Schwarz and Markov inequalities, for any ε > 0,
+n
+
+t=1
+
+1
+ϑ2
+n
+1
+=
+ϑn
+≤
+
+≤
+
+4
+
+1
+ϑn
+
+1
+n
+n
+E |zt |2 1|zt |≥ε√nϑn
+nϑ2
+n
+n
+E[|z1 |2 ]
+
+E
+
+n
+1|z1 |≥ε√nθn
+
+√
+n
+Pr |z1 | ≥ ε nϑn
+n
+E [|z1 |2 ]
+1
+√ .
+=
+2 nϑ2
+ε
+εϑn n
+n
+
+(19)
+
+√
+r/ nK, r ∈ R, we obtain by Theorem 1 the following upper
+bound on the optimal average error probability
+
+Now, taking sequence of growing H in a well-chosen space of
+probability one, we know from (14) (by the Markov inequality
+1
+and the Borel-Cantelli lemma) that N tr (HHH + σ 2 IN )−1 →
+m > 0 and, therefore, lim inf n ϑn > 0. This implies that
+√
+(εϑn n)−1 → 0, and, as a consequence
+n
+
+lim sup
+n
+
+i=1
+
+1
+n
+n
+E |zi |2 1|z1 |≥ε√nϑn = 0
+nϑ2
+n
+
+Pe (r|β, c)
+r
+(n)
+≤ lim sup Pr IN,K (σ 2 ) ≤ E CN,K (σ 2 ) ) + √
+nK
+(β,c)
+N− − ∞
+−→
+
+(20)
+
+n
+n
+supp(CK ) ⊂ XK .
+
+which is the Lindeberg condition. By [16, Theorem 27.2], we
+therefore conclude that, almost surely,
+√
+
+n
+
+1
+nϑn
+
+1
+Since nK tr XXH → 1 with probability one, the event
+n
+n
+supp(CK ) ⊂ XK is satisﬁed with probability converging to
+one. Thus, by Theorem 2-(ii),
+
+K√
+(n)
+nKRN,K ⇒ N (0, 1).
+ϑ2
+n
+
+n
+zt =
+t=1
+
+Pe (r|β, c)
+
+Thus, by the continuity of the complex exponential, (14), and
+the dominated convergence theorem, we arrive at
+
+EH EX,W eiu
+
+√
+
+(n)
+
+− e−u
+
+nKRN,K
+
+2
+
+c(1−σ 2 m)
+
+→ 0.
+
+(26)
+
+≤ lim sup Pr
+(β,c)
+N− − ∞
+−→
+−r
+=Q
+.
+θc,β
+
+(21)
+
+√
+
+r
+nK (n)
+IN,K − E [CN,K ] ≤
+θc,β
+θc,β
+(27)
+
+We also know from [14, Theorem 2] that
+
+EH eiu
+
+√
+
+ˇ
+nK CN,K
+
+1
+
+− e2
+
+2
+
+cm
+u2 β log 1+ (1+cm)2
+
+ˇ
+¯
+where CN,K = CN,K − Cc . Deﬁne n =
+˜
+
+E e
+
+(n)
+¯
+iu˜ (IN,K −Cc )
+n
+
+= EH e
+
+iu˜ CN,K
+nˇ
+
+√
+
+→0
+
+R EFERENCES
+
+(22)
+
+[1] V. Strassen, “Asymptotische Absch¨ tzugen in Shannon’s Informationsa
+theorie,” in Proc. 3rd Prague Conf. Inf. Theory, Czechoslovak Academy
+of Sciences, Prague, Czech Repulic, 1962, pp. 689–723.
+[2] Y. Polyanskiy, H. V. Poor, and S. Verd´ , “Channel coding rate in the
+u
+ﬁnite blocklength regime,” IEEE Trans. Inf. Theory, vol. 56, no. 5, pp.
+2307–2359, May 2010.
+[3] P. Kazakopoulos, P. Mertikopoulos, A. L. Moustakas, and G. Caire,
+“Living at the edge: A large deviations approach to the outage MIMO
+capacity,” IEEE Trans. Inf. Theory, vol. 57, no. 4, pp. 1984–2007, Apr.
+2011.
+[4] A. Feinstein, “A new basic theorem of information theory,” IRE Transactions on Information Theory, pp. 2–20, 1954.
+[5] T. S. Han, Information-Spectrum Methods in Information Theory.
+Springer-Verlag, 2003.
+[6] M. Hayashi, “Information spectrum approach to second-order coding
+rate in channel coding,” IEEE Trans. Inf. Theory, vol. 55, no. 11, pp.
+4947–4966, Nov. 2009.
+[7] Y. Polyanskiy and S. Verd´ , “Scalar coherent fading channel: Dispersion
+u
+analysis,” in IEEE Int. Symp. Inf. Theory (ISIT), Aug. 2011, pp. 2959–
+2963.
+[8] S. Verd´ and T. S. Han, “A general formula for channel capacity,” IEEE
+u
+Trans. Inf. Theory, vol. 40, no. 4, pp. 1147–1157, Jul. 1994.
+[9] T. S. Han and S. Verd´ , “Approximation theory of output statistics,”
+u
+IEEE Trans. Inf. Theory, vol. 39, no. 3, pp. 752–772, May 1993.
+[10] C. E. Shannon, “Probability of error for optimal codes in a Gaussian
+channel,” Bell Syst. Tech. J., vol. 38, no. 3, pp. 611–656, 1959.
+[11] R. Gallager, “A simple derivation of the coding theorem and some
+applications,” IEEE Trans. Inf. Theory, vol. 11, no. 1, pp. 3–18, Jan.
+1965.
+[12] Y. Chen and M. R. McKay, “Coulumb ﬂuid, Painlev´ transcendants and
+e
+the information theory of MIMO systems,” IEEE Trans. Inf. Theory,
+submitted.
+[13] H. Shin and M. Z. Win, “Gallager’s exponent for MIMO channels: A
+reliability-rate tradeoff,” vol. 57, no. 4, pp. 972–985, Apr. 2009.
+[14] W. Hachem, O. Khorunzhiy, P. Loubaton, J. Najim, and L. Pastur, “A
+new approach for mutual information analysis of large dimensional
+multi-antenna channels,” IEEE Trans. Inf. Theory, vol. 54, no. 9, pp.
+3987–4004, Sep. 2008.
+[15] E. Abbe, S.-L. Huang, and E. Telatar, “Proof of the outage probability
+conjecture for MISO channels,” IEEE Trans. Inf. Theory, March 2011,
+submitted. [Online]. Available: http://arxiv.org/abs/1103.5478
+[16] P. Billingsley, Probability and Measure, 3rd ed. John Wiley & Sons,
+Inc., 1995.
+[17] A. W. van der Vaart, Asymptotic Statistics. Cambridge University Press,
+New York, 2000.
+
+nK and write
+(n)
+
+n
+EX,W eiu˜ RN,K
+
+.
+(23)
+
+Thus,
+(n)
+
+ˇ
+
+1
+
+2 2
+θc,β
+
+− e− 2 u
+
+n
+n
+EH eiu˜ CN,K EX,W eiu˜ RN,K
+
+(n)
+
+ˇ
+
+2
+
+n
+n
+≤ EH eiu˜ CN,K EX,W eiu˜ RN,K − e−u
+
++
+
+ˇ
+
+n
+EH eiu˜ CN,K − e
+
+≤ EH
+
+u2
+2
+
+2
+
+cm
+β log 1+ (1+cm)2
+
+(n)
+
+2
+
+n
+EX,W eiu˜ RN,K − e−u
+1
+
+ˇ
+
+n
++ EH eiu˜ CN,K − e 2
+
+c(1−σ 2 m)
+2
+
+e−u
+
+c(1−σ 2 m)
+
+c(1−σ 2 m)
+2
+
+cm
+u2 β log 1+ (1+cm)2
+
+.
+
+(24)
+
+By (21) and (22), the right-hand side of (24) tends to zero as
+(n)
+1 2 2
+¯
+n
+N, K, n → ∞. Thus, E eiu˜ (IN,K −Cc ) → e− 2 u θc,β which,
+by L´ vy’s continuity theorem, terminates the proof.
+e
+Proof sketch of Corollary 1: From Theorem 1, Theorem 2 (ii), and [17, Lemma 2.11], we immediately obtain
+(n)
+
+Pe,N,K (rn,K )χ2 (2nK(1 + α))
+2nK
+(n)
+
+≤ inf Pr IN,K (σ 2 ) ≤ rn,K + δn,K + e−nKδn,K
+δn,K
+
+= inf Q
+δn,K
+
+¯
+Cc (σ 2 ) − rn,K − δn,K
+1
+
+(nK)− 2 θc,β
+
+(25)
+
++ e−nKδn,K + o(1).
+
+Ignoring the negligible term, one can easily see that the last
+∗
+equation is minimized by δn,K as given in the theorem.
+Proof sketch of Corollary 2: By restricting us to Gaussian
+1
+inputs and codes of rate nK log Mn,K = E CN,K (σ 2 ) +
+
+5
+
+

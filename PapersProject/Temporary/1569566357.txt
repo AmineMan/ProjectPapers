@@ -1,0 +1,801 @@
+Creator:        TeX
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Wed May 16 16:49:51 2012
+ModDate:        Tue Jun 19 12:56:13 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      532150 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569566357
+
+Delay–Rate Tradeoff in
+Ergodic Interference Alignment
+Oliver Johnson
+
+Matthew Aldridge
+
+Robert Piechocki
+
+School of Mathematics
+University of Bristol, UK
+o.johnson@bristol.ac.uk
+
+Heilbronn Institute of Mathematical Research
+University of Bristol, UK
+m.aldridge@bristol.ac.uk
+
+Centre for Communications Research
+University of Bristol, UK
+r.j.piechocki@bristol.ac.uk
+
+2) Can we ﬁnd schemes that have shorter delays than
+NGJV, even at some cost to the rate achieved?
+3) Speciﬁcally, which schemes from Question 2 perform
+well for situations where we have few users (n small)?
+4) Speciﬁcally, which schemes from Question 2 perform
+well for situations where we have many users (n → ∞)?
+5) What is the shortest delay possible for any scheme
+achieving a given rate for a given number of users?
+
+Abstract—Ergodic interference alignment, as introduced by
+Nazer et al (NGJV), is a technique that allows high-rate communication in n-user interference networks with fast fading. It works
+by splitting communication across a pair of fading matrices.
+However, it comes with the overhead of a long time delay until
+2
+matchable matrices occur: the delay is q n for ﬁeld size q.
+In this paper, we outline two new families of schemes, called
+JAP and JAP-B, that reduce the expected delay, sometimes at the
+cost of a reduction in rate from the NGJV scheme. In particular,
+we give examples of good schemes for networks with few users,
+and show that in large n-user networks, the delay scales like q T ,
+where T is quadratic in n for a constant per-user rate and T
+is constant for a constant sum-rate. We also show that half the
+single-user rate can be achieved while reducing NGJV’s delay
+2
+from q n to q (n−1)(n−2) .
+
+In Section IV, we deﬁne a new family of schemes, called
+JAP (Subsection IV-A), a beamforming extension JAP-B (Subsection IV-B), and child schemes derived from them (Section
+IV-D) that have lower time delays than the NGJV scheme for a
+variety of different rates, answering Question 2. As a special
+case, the JAP-B(n) schemes (Subsection IV-C) achieve half
+the single-user rate, like NGJV, while reducing the delay from
+2
+q n to q (n−1)(n−2) , answering Question 1. In Section V, we
+answer Questions 3 and 4, by ﬁnding and analysing the JAPB schemes that perform the best for small and large n; Table
+1 and Figure 1 illustrate the best schemes for small n, and
+Theorems 6 and 7 give the asymptotic behaviour. Question 5
+remains an open problem, although we do give bounds on the
+delay achievable for the best schemes listed above.
+Koo, Wu and Gill [7] have attempted to answer Questions
+2 and 3. We brieﬂy outline their work in Section III.
+A slightly longer version of this paper is available online
+[8], with more detailed results and complete proofs.
+
+I. I NTRODUCTION
+Interference alignment [1], [2] describes a set of techniques
+that allow communication in multiuser networks at much
+higher rates than standard resource division schemes such as
+TDMA. Interference alignment schemes work by ‘aligning’ all
+interfering signals so they can be cancelled together.
+Given a fast-fading channel – that is a channel with independent and identically distributed (IID) fading coefﬁcients
+in each time slot – Nazer, Gastpar, Jafar and Vishwanath [3]
+proposed a scheme, which we call the NGJV scheme. In brief,
+the NGJV scheme pairs together communications using fading
+matrix H with those using fading matrix I − H, providing a
+situation with no interference between receivers. (We outline
+the NGJV scheme in more detail in Section III.)
+The NGJV scheme can be regarded as optimal for an nuser interference network, since half the single-user rate is
+achievable for each user, no matter how large n is [3], [4],
+[5], [6]. However, this is achieved at the cost of a signiﬁcant
+delay in communications.
+For deﬁniteness, we consider a model of communication
+over a ﬁnite ﬁeld Fq of size q. Since the NGJV scheme requires
+a particular n × n channel matrix with entries in Fq \ {0} to
+2
+occur, the expected delay for a given message is (q − 1)n ,
+2
+which is roughly q n for large q. It is clear that even for n
+and q relatively small, this is not a practical delay. For n = 6
+and q = 3, for example, the delay is 236 ≈ 7 × 1010 .
+There are ﬁve questions we would like to try to answer:
+1) Can we ﬁnd a scheme that, like NGJV, achieves half the
+single-user rate, but has a shorter delay?
+
+II. M ODEL : T HE FINITE FIELD CHANNEL
+Since ergodic interference alignment relies on matrices
+being exactly aligned, Nazer et al [3] give their main results
+in the context of the ﬁnite ﬁeld channel, where there are
+only ﬁnitely-many possible fading matrices. They then use a
+quantisation argument to apply their results to the Gaussian
+case. In order to allow comparison of our results, we use the
+same ﬁnite ﬁeld model.
+Each transmitter i has an independent message wi ∈ Fmi ,
+q
+which it encodes as a codeword (xi [1], . . . , xi [N ]) of block
+length N , giving rate Ri = (log q mi )/N = mi log q.
+N
+At time t, receiver j sees channel output
+n
+
+Yj [t] =
+
+Hji [t]xi [t] + Zj [t],
+i=1
+
+1
+
+(1)
+
+and needs to decode the message wj . We can rewrite (1) in
+matrix form as Y[t] = H[t]x[t] + Z[t]. (Throughout, matrices
+are in sans-serif and vectors in bold.) We call H[t] the channel
+matrix or fading matrix. As in [3], the noise terms Zj [t] are
+IID sequences from a distribution on Fq that is a mixture of
+a uniform distribution and a point mass at zero:
+Zj =
+
+0
+z ∈ {1, . . . , q − 1}
+
+We deﬁne the expected time delay for the NGJV scheme to
+be the average number of time slots we must wait after seeing
+a channel matrix H until we see the corresponding matrix
+I − H. The time delay is geometrically distributed with mean
+1/p, where p is the probability that the random channel matrix
+takes the value I − H. Hence ﬁnding the average time delay
+is reduced to ﬁnding the probability that the desired matrix
+appears in the next time slot. Since a channel matrix has n2
+entries, each of which needs to take the correct one value of
+q − 1 possible values, the average time delay is
+
+with prob. 1 − ρ,
+with prob. ρ/(q − 1),
+
+Like [3], we use an ‘ergodic’ model, where the channel
+coefﬁcients Hji [t] are drawn IID and uniformly from the ﬁeld
+Fq \ {0} and are redrawn for each time slot.
+We assume all transmitters and receivers have full causal
+channel state information for all transmitter–receiver pairs.
+By a simple mutual information maximisation, it is easy to
+show that the capacity of the single-user ﬁnite ﬁeld channel
+Y = Hx + Z for a constant H = 0 is D(Z) := log q − H(Z),
+where H(Z) is the entropy of Z.
+Schemes for the ﬁnite ﬁeld interference channel often allow
+each user pair to achieve a ﬁxed fraction of the single-user rate.
+We refer to the ‘pre-D(Z) term’ as the degrees of freedom.
+Deﬁnition 1: Given an achievable symmetric rate point
+(R, . . . , R), we deﬁne the degrees of freedom to be DOF =
+R/D(Z).
+In particular, a single user can achieve 1 degree of freedom.
+
+D=
+
+n
+
+Hji wi +
+i=1
+
+n
+
+(Hji + δji − Hji )wi = wj .
+
+Hji wi =
+i=1
+
+2
+
+2
+
+= (q − 1)n ∼ q n .
+
+(2)
+
+(Here and elsewhere, we write f (q) ∼ g(q) if f (q)/g(q) → 1
+as q → ∞.)
+Since this expected delay will be quite large even for modest
+values of q and n, we will concentrate on the delay exponent.
+Deﬁnition 2: An interference alignment scheme with expected delay D ∼ Cq T for some C and T has delay exponent
+T and delay constant C. Formally, T := limq→∞ log D/ log q.
+Reduction of the delay exponent is the key aim, with the
+delay coefﬁcient playing a secondary role. Since the ﬁnite ﬁeld
+model is in some sense an a quantisation of the continuous
+case, q should be large enough for accurate quantisation.
+Alternatively, for ﬁxed quantisation quality, SNR scales like
+q 2 , so the high-SNR region corresponds to large q. When q is
+large, the delay exponent T dominates the delay constant C
+in determining size of the expected delay D.
+From (2), we see that the NGJV scheme, which achieves
+DOF = 1/2, has a delay exponent of n2 .
+For comparison, time-division multiple access (TDMA),
+where each transmitter–receiver pair has sole access to the
+channel for an nth of the total time, achieves DOF = 1/n for
+an expected delay D = n = nq 0 , and hence a delay exponent
+of T = 0. To an extent, our new schemes can be seen as
+‘interpolating’ between the extremes of NGJV (high rate, high
+delay) and TDMA (low rate, low delay).
+We also mention some new schemes due to Koo, Wu and
+Gill [7] (KWG). They attempted to answer Questions 2 and
+3, by ﬁnding schemes with lower delay than NGJV. The
+KWG schemes suggest matching a larger class of matrices
+than simply H and I − H. By analysing the hitting probability
+of an associated Markov chain, they were able to reduce the
+expected delay, at the cost of a reduction in rate and hence
+degrees of freedom. However, their schemes only affect the
+delay by a constant multiple, with the most successful scheme
+2
+2
+only reducing the delay to 0.64(q −1)n ∼ 0.64q n for a sumrate of 0.79D(Z). That is, they only reduce the delay constant
+C, leaving the delay exponent as T = n2 . For modest q and
+n, say q = 3, n = 6, again, we regard this delay as still
+impractical. Since the KWG schemes achieve a lower rate than
+the NGJV scheme for the same delay exponent, we need only
+compare our results with the NGJV scheme.
+
+III. T HREE EXISTING SCHEMES :
+NGJV, KWG AND TDMA
+The NGJV scheme [3] is based on an idea from previous
+work of Nazer and Gastpar [9] involving the performance of
+ﬁnite-ﬁeld multiple-access channels.
+Each receiver’s problem takes the form of (1). Rather
+than reconstructing a single message wj (or all messages
+w1 , w2 , . . . , wn ) as receiver j would normally wish to do,
+it can be shown [9, Theorem 1], [3, Lemma 3] that receiver
+n
+j can actually recover the ‘pseudomessage’ i=1 Hji wi at
+rate D(Z). This is done by all transmitters using the same
+linear code, so for all i, (xi [1], . . . , xi [N ]) = Gwi , for an
+appropriate m × N generator matrix G.
+The NGJV scheme works as follows. Each transmitter i
+sends two signals encoding the same message wi ; ﬁrst when
+the channel matrix is H, and second when the channel matrix
+is H := I − H. In the ﬁrst time slot, each receiver j can
+n
+decode the pseudomessage i=1 Hji wi , using the argument
+above. The receiver stores this pseudomessage in its memory.
+In the second time slot it can decode the pseudomessage
+n
+i=1 Hji wi , which it also stores in its memory. The receiver
+then adds together these two estimates of pseudomessages, to
+get its own message
+n
+
+1
+n2
+1
+q−1
+
+i=1
+
+Since both pseudomessages can be communiated at rate D(Z),
+we conclude that each transmitter can send its message to its
+receiver at rate D(Z)/2, since two channel uses are needed
+per message. This corresponds to DOF = 1/2.
+
+2
+
+Theorem 3: Consider the n-user ﬁnite ﬁeld interference
+network. Fix K and a ∈ A(n, K). We use the scheme JAP(a)
+as outlined above. Then
+1) the expected time for the kth round to take place is
+D ∼ q Tk (a) , where Tk (a) = ak (n − k − 1);
+2) the delay exponent for the whole scheme is
+
+IV. N EW ALIGNMENT SCHEMES : JAP AND JAP-B
+A. The basic scheme: JAP
+Write Hint for the interference vector
+j
+Hint := (Hj1 , . . . , Hj j−1 , Hj j+1 , . . . , Hjn ).
+j
+The NGJV scheme has a long delay as after seeing the matrix H[t0 ], we have to wait for a single matrix H[t1 ] = I−H[t0 ]
+to appear to simultaneously complete the linear dependences
+Hjj [t0 ] + Hjj [t0 ] = 1,
+
+T (a) := max Tk (a) = max ak (n − k − 1).
+k
+
+Proof: For 1), we need to analyse the probability the next
+matrix satisﬁes (3) and (4). Since there is only a roughly 1/q
+chance that (3) is 0, the probability is dominated by (4). The
+ﬁrst k interference vectors span a subspace of size about q k ,
+where the entire space is of size about q n−1 , so the probability
+of (4) is about q −(n−k−1) . Since this must occur for ak users
+in step k, the probability is q −ak (n−k−1) to ﬁrst order terms,
+and the result follows. Full details in [8].
+For 2), note that for large q, the delay is dominated by the
+slowest step of the scheme.
+
+Hint [t0 ] + Hint [t1 ] = 0 for all j.
+j
+j
+
+We can widen the range of acceptable matrices – and so
+reduce the expected delay – by
+• Building the dependences with more than two matrices;
+• Forming any linear combination rather than just a sum;
+• Allowing transmitters to complete their dependences at
+different times, rather than simultaneously;
+• Recovering a multiple of the desired message, rather than
+the message itself.
+In other words, if there exist scalars λ, λ1 , . . . , λK such that
+λ0 Hjj [t0 ] + λ1 Hjj [t1 ] + · · · + λK Hjj [tK ] = λ = 0
+
+B. Improving delay with beamforming: JAP-B
+Beamforming slightly improves the performance of JAP(a)
+schemes, combining ideas from the original Cadambe–Jafar
+interference alignment [1] with the JAP scheme.
+In round k we can guarantee that the interference
+matches up for receiver l := Ak−1 + 1. Each transmitter
+i, instead of repeating their message wi , rather encodes
+(Hli [tk ])−1 Hli [t0 ]wi . (Since the coefﬁcient Hli cannot be 0,
+the inverse term certainly exists.) The total received interferences at receiver l at times t0 and tk are both equal to
+i=l Hli [t0 ]wi , so can be cancelled.
+We refer to such schemes that take advantage of beamforming as JAP-B(a) schemes.
+Theorem 4: The delay exponent of a JAP-B(a) scheme with
+parameter sequence a is
+
+(3)
+
+λ0 Hint [t0 ] + λ1 Hint [t1 ] + · · · + λK Hint [tK ] = 0,
+j
+j
+j
+
+(4)
+
+then receiver j can recover its message from H[t0 ], H[t1 ], . . . ,
+H[tK ] by forming the linear combination of pseudomessages
+n
+
+n
+
+Hji [t0 ]wi + · · · + λK
+
+λ0
+i=1
+
+Hji [tK ]wi = λwj .
+i=1
+
+The time delay for user j is tK − t0 , and they have
+communcated at rate D(Z)/(K + 1) for DOF = 1/(K + 1).
+Start by ﬁxing K ≤ n and a sequence a = (a1 , a2 , . . . , aK )
+of length K and weight n, so in the set
+K
+
+A(n, K) :=
+
+a ∈ ZK :
++
+
+k
+
+ak = n ,
+
+TB (a) := max(ak − 1)(n − k − 1).
+k
+
+k=1
+
+Proof: At each round, receiver Ak−1 + 1 will automatically recover its message, leaving the JAP scheme to align
+interference for the other ak − 1 users.
+In particular, the JAP-B scheme will always outperform the
+JAP scheme with the same sequence a.
+
+and write Ak for the partial sums Ak := a1 + · · · + ak . Then
+we deﬁne the scheme JAP(a) as consisting of the following
+K + 1 steps:
+• Step 0: Start with a matrix H[t0 ].
+• Step 1: Set t1 to be the ﬁrst time slot that allows the ﬁrst
+a1 receivers 1, 2, . . . , A1 to recover their message from
+H[t0 ], H[t1 ].
+• Step k: Set tk to be the ﬁrst time slot that allows the
+next ak receivers Ak−1 + 1, Ak−1 + 2, . . . , Ak to recover
+their message from H[t0 ], H[t1 ], . . . , H[tk ].
+• Step K: Set tK to be the ﬁrst time slot that allows the ﬁnal
+aK receivers AK−1 + 1, AK−1 + 2, . . . , AK to recover
+their message from H[t0 ], H[t1 ], . . . , H[tK ].
+By the end of this process, all n = AK receivers have
+recovered their message.
+Since the message was split over K + 1 time slots, the
+common rate of communication is D(Z)/(K + 1), which
+corresponds to DOF = 1/(K + 1).
+We now examine the delay exponent for our new schemes.
+
+C. An interesting special case: JAP-B(n)
+An interesting special case of the JAP-B schemes is the case
+when K = 1 and a1 = n; we call this scheme JAP-B(n).
+In this case, we have 1/(K + 1) = 1/2 degrees of freedom
+for a rate of D(Z)/2. From Theorem 4, we see that the delay
+exponent is
+TB (n) = (a1 − 1)(n − 1 − 1) = (n − 1)(n − 2).
+Effectively, the JAP-B(n) scheme works by using beamforming to automatically cancel user 1’s interference, then for
+users 2, 3, . . . , n requiring the existence of diagonal matrices
+D0 , D1 such that D0 H[t0 ] + D1 H[t1 ] = I.
+Note that this is the same rate as is achieved by the original
+NGJV scheme, but the delay exponent has been reduced from
+
+3
+
+TABLE I
+B EST JAP-B(a) SCHEMES FOR SMALL VALUES OF n AND K: DELAY
+EXPONENTS ( ABOVE ) AND OPTIMAL a ( BELOW ). (∗ = NON - UNIQUE )
+
+NGJV’s n2 to (n − 1)(n − 2) = n2 − (3n − 2). For small n
+in particular this is a worthwhile improvement (see Figure 1).
+For n = 3 users, where experiments have shown the feasibility
+of interference alignment [10], the delay exponent is reduced
+from n2 = 9 to (n − 1)(n − 2) = 2.
+
+n=3
+
+=
+
+min
+
+max
+
+30
+(7)
+
+2
+(1, 3)
+
+4
+(2, 3)
+
+8
+(3, 3)
+
+12
+(3, 4)
+
+0
+2
+TDMA (1, 1, 3)∗
+
+4
+(1, 2, 3)∗
+
+6
+(2, 2, 3)
+
+2
+(1, 1, 1, 3)∗
+
+4
+(1, 1, 2, 3)∗
+
+0
+TDMA
+
+2
+(1, 1, 1, 1, 3)∗
+
+0
+TDMA
+
+K=5
+DOF = 1/6
+
+0
+TDMA
+
+K=6
+DOF = 1/7
+
+B. Few users: Small n
+For small values of n, we can ﬁnd the best parent JAPB schemes by hand. (The task is simpliﬁed by noting that
+the optimal ak will be nonzero and increasing in k.) Table
+I gives the delay exponents of the best JAP-B schemes for
+n = 3, . . . , 7 and K ≤ n − 2.
+We also consider child schemes based on parent JAP-B
+schemes. Figure 1 plots the performance of NGJV and all
+JAP-B schemes, as well as child schemes derived from them,
+for n = 3, . . . , 7. For many values of n and DOF, the scheme
+with the lowest delay exponent is JAP-B(n) or a child scheme
+derived from it, although the JAP-B parent schemes with
+(n, K) = (5, 2) or (8, 2), for example, and their child schemes
+always outperform JAP(n) for some degrees of freedom.
+The table and ﬁgure are extended to n = 8 users in [8].
+C. Many users: n → ∞
+We now consider the performance of schemes in the manyuser limit n → ∞. We consider two limiting regimes,
+depending on how the degrees of freedom DOF(n) should scale
+with the number of users n.
+• Regime I, where we hold DOF(n) = α constant, for
+α ∈ (0, 1/2]. That is, we want to communicate at ﬁxed
+fraction of the single-user rate, as in the NGJV scheme.
+NGJV itself corresponds to α = 1/2.
+• Regime II, where we hold the sum-rate constant, so
+the DOF(n) = β/n, for β ≥ 1. That is, we want to
+communicate at a multiple of the rate allowed by resource
+division schemes like TDMA. TDMA itself corresponds
+to β = 1.
+First, we consider parent JAP-B(a) schemes.
+Theorem 6: Let T (n) be the delay exponent of the best
+parent JAP-B(a) scheme for n-users with at least DOF(n)
+degrees of freedom. Then:
+• Regime I: Fix α ∈ (0, 1/2]. Then the delay exponent for
+DOF(n) = α scales quadratically, in that
+
+TB (a)
+
+a∈A(n,K) k∈{1,2,...,K}
+
+n=7
+
+20
+(6)
+
+K=4
+DOF = 1/6
+
+A. General case
+Given a number of users n and a desired number of degrees
+of freedom DOF = 1/(K + 1), we wish to ﬁnd a scheme with
+the lowest delay exponent.
+For K = n − 1 or n, when DOF = 1/n or 1/(n + 1), the
+best JAP-B schemes have delay exponent 0. This is the same
+delay exponent as TDMA, which has DOF = 1/n also.
+For K ≤ n − 2 the best parent scheme will be a JAPB scheme with parameter sequence a ∈ A(n, K). We write
+T (n, K) for this best delay exponent, that is
+min
+
+n=6
+
+12
+(5)
+
+K=3
+DOF = 1/4
+
+V. B EST SCHEMES
+
+a∈A(n,K)
+
+n=5
+
+6
+(4)
+
+K=2
+0
+DOF = 1/3 TDMA
+
+D. Using time-sharing: child schemes
+Another way to generate new alignment schemes is by timesharing schemes designed for a smaller number of users.
+Call the NGJV, KWG, JAP and JAP-B schemes ‘parent
+schemes’. Given a parent scheme for an m-user network,
+we can modify the scheme for use in an n-user network for
+n > m, giving what we call a ‘child scheme’.
+n
+We use TDMA to split an n-user network into m subnetworks, each of which contains a unique collection of just
+m < n of the users. Within each of these m-user subnetworks,
+an m-user parent scheme is used, while the other n − m
+transmitters remain silent.
+An m-user child scheme has the same delay exponent as
+the n-user parent scheme, with the rate, and thus the degrees
+of freedom, reduced by a factor of m/n. So an m-user JAP-B
+scheme shared between n users gives DOF = m/n(K + 1).
+In particular, a child scheme from parent NGJV schemes
+has a lower delay exponent m2 < n2 than the main NGJV
+scheme, reducing the degrees of freedom from 1/2 to m/2n.
+As even this outperforms the KWG schemes, we regard this
+as the benchmark against which to compare our new JAP-B
+parent and child schemes.
+Child schemes derived from the JAP-B(n) parent scheme
+are particularly effective, and usually perform better than other
+JAP-B schemes, as we discuss in the next section.
+
+T (n, K) :=
+
+n=4
+
+2
+(3)
+
+K=1
+DOF = 1/2
+
+(ak − 1)(n − k − 1).
+
+We can bound T (n, K) as follows.
+Theorem 5: Fix n and K ≤ n − 2. For T (n, K) as deﬁned
+above, we have the following bounds:
+n
+n
+(n − 1) − (2n − K − 1) ≤ T (n, K) ≤ (n − 2).
+K
+K
+The gap between the bounds grows linearly with n.
+Proof: The bounds are straightforward from considering
+the relaxed minimisation problem, where the ak are allowed
+to be any positive real number. Full details in [8].
+
+T (n) =
+
+4
+
+1
+n2 + o(n2 ) = O(n2 ).
+1/α − 1
+
+Delay exponent
+20
+
+Delay exponent
+
+n = 4
+
+10
+
+0
+
+Schemes
+Parent
+TDMA
+NGJV
+
+0
+
+0.1
+0.2
+Degrees of
+
+10
+
+0.3
+freedom0.4
+
+0.5
+
+30
+
+30
+
+n = 6
+
+0
+
+0.2
+0.3
+Degrees of freedom 0.4
+
+0.5
+
+n = 7
+
+10
+
+0
+
+0.1
+
+0.2
+0.3
+Degrees of freedom0.4
+
+0.5
+
+0
+
+0
+
+0.1
+
+0.2
+
+0.3
+
+Degrees of freedom
+
+0.4
+
+0.5
+
+Graphs of delay exponent against degrees of freedom NGJV and best JAP-B parent schemes and child schemes derived from them and TDMA.
+
+Regime II: Fix β > 1. Then the delay exponent for
+DOF(n) = β/n scales linearly, in that T (n) = O(n), or
+more speciﬁcally
+β+
+
+ACKNOWLEDGMENTS
+M. Aldridge and R. Piechocki thank Toshiba Telecommunications Research Laboratory for supporting this work. The
+authors thank Justin Coon and Magnus Sandell for their advice
+and support, and Olivier L´ vˆ que for helpful comments.
+e e
+
+1
+− 2 n − o(n) ≤ T (n) ≤ βn + o(n).
+β
+
+Proof: The result follows taking K = 1/α −1 in regime
+I, or K = n/β − 1 in regime II. Full details in [8].
+In regime I with α = 1/2, we get T (n) ≈ n2 , like NGJV.
+Figure 1 shows that sharing the parent scheme JAP-B(m)
+is particularly effective. The following theorem shows this.
+Theorem 7: Let T (n) be the delay exponent of child
+schemes based on JAP-B(m) parent schemes for n-users with
+at least DOF(n) degrees of freedom Then:
+• Regime I: Fix α ∈ (0, 1/2]. Then the delay exponent for
+DOF(n) = α scales quadratically, in that
+
+R EFERENCES
+[1] V. R. Cadambe and S. A. Jafar, “Interference alignment and degrees
+of freedom of the K-user interference channel,” IEEE Trans. Inform.
+Theory, vol. 54, no. 8, 3425–3441, 2008.
+[2] M. Maddah-Ali, A. Motahari, and A. Khandani, “Communication over
+MIMO X channels: Interference alignment, decomposition, and performance analysis,” IEEE Trans. Inform. Theory, vol. 54, no. 8, 3457–3470,
+2008.
+[3] B. Nazer, M. Gastpar, S. A. Jafar, and S. Vishwanath, “Ergodic interference alignment,” in Proc. IEEE Int. Symp. on Inform. Theory, 1769–
+1773, 2009.
+[4] S. A. Jafar, “The ergodic capacity of phase-fading interference networks,” IEEE Trans. Inform. Theory, vol. 57, no. 12, 7685–7694, 2011.
+[5] O. T. Johnson, M. Aldridge, and R. Piechocki, “Interference alignmentbased sum capacity bounds for random dense Gaussian interference
+networks,” IEEE Trans. Inform. Theory, vol. 57, no. 1, 282–290, 2011.
+[6] M. Aldridge, O. T. Johnson, and R. Piechocki, “Asymptotic sumcapacity of random Gaussian interference networks using interference
+alignment,” in Proc. IEEE Int. Symp. on Inform. Theory, 410–414, 2010
+[7] J. C. Koo, W. Wu, and J. Gill, “Delay-rate tradeoff for ergodic interference alignment in the Gaussian case,” 48th Allerton Conf. on Comm.
+Cont. and Comp., 1069–1075, 2010.
+[8] O. T. Johnson, M. Aldridge, and R. Piechocki, “Delay–rate tradeoff
+in ergodic interference alignment”, extended verion, arXiv:1004.0208
+[cs:IT]. 2012.
+[9] B. Nazer and M. Gastpar, “Computation over multiple-access channels,”
+IEEE Trans. Inform. Theory, vol. 53, no. 10, pp. 3498–3516, Oct. 2007.
+[10] O. El Ayach, S. W. Peters, and R. W. Heath Jr., “The feasibility of
+interference alignment over measured MIMO-OFDM channels,” IEEE
+Trans. Veh. Technol., vol. 59, no. 9, pp. 4309 –4321 , 2010.
+
+T (n) = 4α2 n2 + o(n2 ).
+•
+
+0.1
+
+20
+
+10
+
+•
+
+0
+
+40
+
+Delay exponent
+
+20
+
+Fig. 1.
+
+0
+
+n = 5
+K = 2
+
+Delay exponent
+
+Child
+
+JAP-B([n])
+Other JAP-B
+
+n = 5
+
+Regime II: Fix β > 1. Then the delay exponent for
+DOF(n) = β/n is constant, in that
+T (n) = ( 2β − 1)( 2β − 2).
+
+Proof: The result follows taking m = 2αn in regime
+I, or m = 2β in regime II. Full details in [8].
+Note that asymptotically this means that in both regimes
+child schemes from JAP-B(m) parent schemes are asymptotically more effective than any other parent scheme.
+Note also that by the same argument as above, sharing the
+NGJV parent scheme gives T (n) = 4α2 n2 in regime I – less
+good than sharing JAP-B(m), but the same to ﬁrst-order terms.
+
+5
+
+

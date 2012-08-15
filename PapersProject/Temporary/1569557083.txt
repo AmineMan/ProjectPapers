@@ -1,0 +1,760 @@
+Creator:        TeX
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Wed May  9 10:46:55 2012
+ModDate:        Tue Jun 19 12:55:46 2012
+Tagged:         no
+Pages:          4
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      343625 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569557083
+
+Finding short vectors in a lattice of Voronoi’s ﬁrst
+kind
+Robby McKilliam and Alex Grant
+Institute for Telecommunications Research, The University of South Australia, SA, 5095
+
+Abstract—We show that for those lattices of Voronoi’s ﬁrst
+kind with known obtuse superbasis, a vector of shortest nonzero
+Euclidean length can computed in polynomial time by computing
+a minimum cut in a graph.
+Index Terms—Lattices, short vectors, minimum cut.
+
+a minimum cut in a weighted graph. Some examples are given
+in Section V.
+
+I. I NTRODUCTION
+
+The (open) Voronoi cell, denoted Vor(Λ), of a lattice Λ
+in Rn is the subset of Rn containing all points nearer, with
+respect to a given norm, the lattice point at the origin than
+any other lattice point. The Voronoi cell is an n-dimensional
+convex polytope that is symmetric about the origin. Here
+we will always assume the Euclidean norm (or 2-norm), so
+Vor(Λ) contains those points nearest in Euclidean distance to
+the origin.
+Equivalently the Voronoi cell can be deﬁned as the intersection of the half spaces
+
+II. VORONOI CELLS , RELEVANT VECTORS , AND SHORT
+VECTORS
+
+A n-dimensional lattice, Λ, is a discrete set of vectors from
+Rm , m ≥ n, formed by the integer linear combinations of a set
+of linearly independent basis vectors b1 , . . . , bn from Rm . That
+is, Λ, consists of all those vectors, or lattice points, x ∈ Rm
+satisfying
+x = b1 u1 + b2 u2 + · · · + bn un
+
+u1 , . . . un ∈ Z.
+
+An interesting question about a lattice is: ‘What is the
+shortest distance between any two lattice points?’ Because the
+origin is a lattice point this question can be equivalently stated
+as: ‘What is the length of the shortest lattice point not equal
+to the origin?’ Those points in the lattice with shortest length
+are called short vectors. The problem of discovering a lattice
+point of shortest length is called the shortest vector problem
+and has applications to, for example, cryptography [1]. In
+general, i.e. for arbitrary lattices, the shortest vector problem
+is NP-hard [2, 3]1 . However, for some lattices, the problem is
+easy to solve. For example, short vectors are relatively easy to
+determine in highly regular lattices, such as the root lattices
+∗
+An and Dn , their dual lattices A∗ and Dn , and the integer
+n
+n
+lattice Z [4, Chap. 4].
+In this paper we consider a particular class of lattices, those
+of Voronoi’s ﬁrst kind [5–7]. Each lattice of Voronoi’s ﬁrst
+kind has what is called an obtuse superbasis. We show that
+if the obtuse superbasis is known, then a short vector can be
+computed in polynomial time by computing a minimum cut
+in a graph. If the lattice has dimension n, this requires O(n3 )
+operations to deterministically compute a short vector [8], or
+O(n2 (log n)3 ) operations to compute a short vector with high
+probability [9].
+The paper is structured as follows. Section II deﬁnes the
+short vectors of a lattice along with some related entities,
+the Voronoi cell and the relevant vectors. Section III deﬁnes
+lattices of Voronoi’s ﬁrst kind and shows how their short
+vectors can be found by solving a constrained quadratic
+program in binary {0, 1} variables. Section IV describes how
+this constrained program can be mapped into that of computing
+
+Hv = {x ∈ Rn | x · v < 1 v · v}
+2
+for all v ∈ Λ\{0}, i.e. all lattice points v ∈ Λ not equal to
+the origin 0. Here x · v is the inner product between vectors x
+and v. It is not necessary to consider all v ∈ Λ\{0} to deﬁne
+the Voronoi cell. The minimal set of lattice vectors R such
+that Vor(Λ) = ∩v∈R Hv is called the set of Voronoi relevant
+vectors or simply relevant vectors [7].
+Deﬁnition 1. The relevant vectors v ∈ Λ are those for which
+v·x<x·x
+for all x ∈ Λ with x = v and x = 0.2
+The short (or minimal) vectors in a lattice are all those
+lattice points of minimum nonzero Euclidean length, i.e all
+those of squared length
+min
+
+x 2.
+
+x∈Λ\{0}
+
+Plainly, every short vector is also a relevant vector, because,
+if a lattice point s is not relevant there exists a lattice point
+x not equal to s or 0 such that x · s ≥ x · x or equivalently
+x
+x
+s
+x · s ≥ x after dividing by x . Since both x and s
+are unit vectors and s = x then,
+s =
+
+s
+s
+
+·s>
+
+x
+x
+
+·s≥ x ,
+
+i.e, s > x , so s is not a short vector.
+2 These are the ‘strict’ relevant vectors according to Conway and Sloane [5].
+If the inequality v · x < x · x is replaced by v · x ≤ x · x then this would
+also include the ‘lax’ relevant vectors. The short vectors are always strict so
+we only have use of the strict relevant vectors here.
+
+1 Speciﬁcally, the shortest vector problem is known to be hard for NP under
+what are called reverse unfaithful random reductions [2].
+
+1
+
+¯
+¯
+complement C ⊂ V . That is, a cut is the pair (C, C) such that
+¯ are not empty, C ∩ C = ∅ and C ∪ C = V .
+¯
+¯
+both C and C
+The weight of a cut is
+
+III. L ATTICES OF VORONOI ’ S FIRST KIND
+An n-dimensional lattice Λ is said to be of Voronoi’s ﬁrst
+kind if it has what is called an obtuse superbasis [5]. That
+is, there exists a set of n + 1 vectors b1 , . . . , bn+1 such that
+b1 , . . . , bn are a basis for Λ,
+b1 + b2 · · · + bn+1 = 0
+
+¯
+W (C, C) =
+
+¯
+where I = {i | vi ∈ C} and J = {j | vj ∈ C}. That is,
+¯ is the sum of the weights on the edges crossing from
+W (C, C)
+¯
+the vertices in C to the vertices in C. If the graph is allowed
+to contain loops, i.e. edges from a vertex to itself, then the
+weight of these edges wii have no effect on the weight of any
+cut. We may choose any values for the wii without affecting
+¯
+W (C, C).
+¯
+The minimum cut is the C and C that minimise the weight
+¯ Let |V | = n + 1 and |E| ≤ 1 (n + 1)n denote the
+W (C, C).
+2
+number of vertices and the number of edges in the graph G.
+If all of the edge weights wij for i = j are nonnegative, a
+minimum cut can be computed deterministically in order
+
+(1)
+
+(the superbasis condition), and the inner products satisfy,
+qij = bi · bj ≤ 0,
+
+i, j = 1, . . . , n + 1, i = j
+
+for
+
+wij ,
+i∈I j∈J
+
+(the obtuse condition). The qij are called the Selling parameters. It is known that all lattices in dimensions less than 4 are
+of Voronoi’s ﬁrst kind [5]. An interesting property of lattices
+of Voronoi’s ﬁrst kind is that their relevant vectors have a
+straightforward description.
+Theorem 1. (Conway and Sloane [5, Theorem 3]) The relevant vectors of Λ are of the form,
+
+2
+
+O(|V ||E| + |V | log |V |) ∈ O(n3 )
+
+bi
+
+arithmetic operations using the algorithm of Stoer and Wagner [8] and with high probability in
+
+i∈I
+
+where I is a strict subset of {1, 2, . . . , n+1} that is not empty,
+i.e. I ⊂ {1, 2, . . . , n + 1} and I = ∅.
+
+2
+
+O(|V | (log |V |)3 ) = O(n2 (log(n))3 )
+
+Because each short vector is also a relevant vector we have
+the following corollary.
+Corollary 1. The short vectors in Λ are of the form
+where I ⊂ {1, 2, . . . , n + 1} and I = ∅.
+
+i∈I
+
+operations using the randomised algorithm of Karger and
+Stien [9].
+¯
+We now show how W (C, C) can be represented as a
+quadratic form. Deﬁne the vector u of length n + 1 so that
+
+bi
+
+Given this corollary a na¨ve way to compute a short vector
+ı
+2
+is to compute the squared length
+for all of the
+i∈I bi
+n+1
+2
+− 2 possible I and return a lattice point with minimum
+squared length. This procedure requires a number of operations that grows exponentially with the dimension n. We can
+improve this using a minimum cut algorithm. To facilitate this
+consider the quadratic form
+n+1
+
+Q(u) =
+
+Then
+
+2
+
+=
+
+i∈C
+¯
+i ∈ C.
+
+¯
+1, i ∈ C, j ∈ C
+0, otherwise.
+
+ui (1 − uj ) =
+
+The weight can now be written as
+n+1 n+1
+
+n+1 n+1
+
+bi ui
+i=1
+
+1,
+0,
+
+ui =
+
+qij ui uj .
+
+¯
+W (C, C) =
+
+(2)
+
+¯
+i∈C j∈C
+
+i=1 j=1
+
+wij ui (1 − uj ) = F (u),
+
+wij =
+i=1 j=1
+
+say. Finding a minimum cut is equivalent to ﬁnding the binary
+{0, 1} vector u that minimises F (u) under the constraint that
+at least one element in u is equal to 1 and at least one
+element in u is equal to 0. This constraint corresponds to the
+¯
+requirement that both C and C are nonempty.
+Expanding,
+
+A short vector is a minimiser of this form under the constraint
+that the ui ∈ {0, 1} and at least one element of u is equal
+to 1 and at least one element of u is equal to 0. The next
+section will show how this constrained quadratic minimisation
+problem can be solved by computing a minimum cut in a
+graph. This technique has appeared previously [10–12] but we
+include the derivation here so that this paper is self contained.
+
+n+1 n+1
+
+IV. Q UADRATIC {0, 1} PROGRAMS AND MINIMUM CUTS IN
+
+n+1 n+1
+
+wij ui −
+
+F (u) =
+i=1 j=1
+
+GRAPHS
+
+n+1
+
+n+1 n+1
+
+ki ui −
+
+=
+
+Let G = {V, E} be an undirected graph with n + 1 vertices
+v1 , . . . , vn+1 contained in the set V and edges eij ∈ E
+connecting vertex vi to vertex vj . To each edge we assign a
+weight (or capacity) wij ∈ R. The graph is undirected so the
+weights are symmetric, i.e. wij = wji . A cut in the graph G is
+a nonempty subset C ⊂ V of vertices with its (also nonempty)
+
+wij ui uj
+i=1 j=1
+
+i=1
+
+wij ui uj ,
+i=1 j=1
+
+n+1
+
+where ki = j=1 wij . Observe the equivalence of F (u) and
+Q(u) from (2) when the weights are assigned according to,
+qij = −wij
+
+2
+
+for
+
+i, j = 1, . . . , n + 1.
+
+n+2
+
+Note that with these weights ki = − j=0 qij = 0 due to the
+superbasis condition (1).
+Because the qij are nonpositive for i = j the weights wij are
+nonnegative for all i = j with i, j ∈ {1, n + 1}. As discussed
+the value of the weights wii have no effect on the weight of
+any cut so setting qii = −wii for i ∈ {1, n + 1} is of no
+consequence. A vector u that minimises Q(u) can be found
+by computing a minimum cut in the graph with these weights.
+n+1
+A short vector is then given as i=1 bi ui . This is our main
+result, so we restate it as a theorem.
+
+well known fact [4, pp. 108-117]. Figure 1 displays the graph
+corresponding to the lattice A3 .
+An obtuse superbasis for the dual lattice A∗ is all cyclic
+n
+shifts of the vector
+n
+n+1
+
+1
+− n+1
+
+b1 =
+b2 =
+.
+.
+.
+bn+1 =
+
+n
+n+1
+1
+− n+1
+
+1
+− n+1
+
+1
+− n+1
+
+1
+− n+1
+
+···
+
+1
+− n+1
+
+n
+n+1
+
+1
+− n+1
+
+···
+
+1
+− n+1
+
+···
+
+1
+− n+1
+
+1
+− n+1
+
+qij = bi · bj =
+
+b2 =
+.
+.
+.
+
+0
+
+1
+
+bn+1 =
+
+−1
+
+0
+
+···
+
+0
+
+−1
+
+0
+
+0
+
+0
+
+···
+
+0
+
+0
+
+1
+
+0
+
+···
+
+.
+
+n
+n+1 ,
+−1
+n+1 ,
+
+i=j
+otherwise.
+
+The corresponding graph is the complete graph with n + 1
+1
+vertices and 1 (n + 1)n edges, each edge having weight n+1 .
+2
+As each weight is equal and the graph is complete, a minimum
+cut is given by placing precisely one vertex into C and the
+n
+¯
+remaining vertices into C. The weight of this cut is n+1 .
+All the superbasis vectors b1 , . . . , bn+1 are short vectors of
+n
+squared Euclidean length n+1 , again a well known fact [4,
+pp. 108-117]. Figure 2 shows the graph corresponding to the
+lattice A∗ .
+3
+In both of the previous examples short vectors could be
+obtained by picking one of the vectors b1 , . . . , bn+1 in the
+obtuse superbasis. This is not always the case, as our ﬁnal
+example will show. Consider the 3-dimensional lattice with
+obtuse superbasis
+
+As examples we apply this minimum cut approach to ﬁnding
+a short vector in the root lattice An and its dual lattice A∗ [4,
+n
+pp. 108-117]. An obtuse superbasis for An is all the cyclic
+shifts of the vector 1 −1 0 0 · · · 0 from Rn+1 .
+Set the vectors,
+−1
+
+n
+n+1
+
+The Selling parameters are
+
+V. S OME EXAMPLES
+
+1
+
+∈ Rn+1 .
+
+Set the vectors,
+
+Theorem 2. Let Λ be a n-dimensional lattice of Voronoi’s
+ﬁrst kind with obtuse superbasis b1 , . . . , bn+1 and Selling
+parameters qij = bi · bj . Let G be a graph with n + 1 vertices
+¯
+v1 , . . . , vn+1 and edges eij with weight −qij . Let (C, C) be
+a minimum cut in the graph G. A short vector in the lattice
+Λ is given by i∈I bi where I = {i | vi ∈ C}. The squared
+Euclidean length of the short vector is given by the weight of
+¯
+the minimum cut W (C, C).
+
+b1 =
+
+1
+− n+1
+
+···
+
+.
+
+The Selling parameters are
+
+2,
+i=j
+
+qij = bi · bj = −1, i − j ≡ 1 mod n + 1
+
+
+0,
+otherwise.
+
+b1 =
+b2 =
+
+0
+
+b4 =
+
+−1
+
+−1
+
+−1
+
+b3 =
+
+The corresponding weighted graph is the cycle graph with
+n + 1 vertices, each edge having weight 1. A minimum cut
+in this graph is to choose C to contain c consecutive vertices
+modulo n + 1, where 1 ≤ c ≤ n. That is, choose
+
+2
+
+0
+
+2
+0
+
+0
+
+(3)
+
+2
+−1
+
+−2
+
+.
+
+The Selling parameters are given in matrix form as
+
+ 
+q11 q12 q13 q14
+5 −4
+0 −1
+ q21 q22 q23 q24   −4
+5
+0 −1
+
+ 
+ q31 q32 q33 q34  =  0
+0
+4 −4
+q41 q42 q43 q44
+−1 −1 −4
+6
+
+C = {vi , vi+1 , . . . vi+c }
+for any integer i where the indices are considered modulo
+n + 1. The weight of such a cut is 2. A short vector in An is
+correspondingly of the form
+
+
+
+.
+
+
+Figure 3 displays the corresponding graph. The minimum cut
+¯
+is given by choosing C = {v1 , v2 } and C = {v3 , v4 }. This
+corresponds to the short vector
+
+i+c
+
+bi+c = ei − ei+c
+j=i
+
+where ei ∈ Rn+1 denotes a vector of all zeros except the
+ith element which is equal to one. Again, the indices here
+are considered modulo n + 1. The squared Euclidean length
+of this short vector is 2. It follows that short vectors in An
+are of the form ei − ej for i, j ∈ {1, . . . , n + 1}, i = j, a
+
+b1 + b2 =
+
+1
+
+1
+
+0
+
+of squared Euclidean length 2. Note that each of b1 , b2 , b3
+and b4 have squared Euclidean length greater than 2 and are
+therefore not short vectors.
+
+3
+
+v2
+
+v3
+
+v2
+
+v3
+
+1
+
+1
+
+1
+
+4
+
+1
+v4
+
+v1
+
+Graph corresponding to the lattice A3 .
+
+v2
+
+Fig. 3.
+
+v4
+
+Graph corresponding to the lattice with superbasis given by (3).
+
+v3
+1
+4
+
+1
+4
+
+1
+4
+
+[7] G.F. Voronoi, “Nouvelles applications des param` tres continus
+e
+`
+a la th´ orie des formes quadratiques,” Journal f¨ r die reine und
+e
+u
+angewandte Mathematik, pp. 97–178, 1908.
+[8] M. Stoer and F. Wagner, “A simple min-cut algorithm,” Journal
+of the ACM, vol. 44, no. 4, pp. 585–591, 1997.
+[9] D. R. Karger and C. Stein, “A new approach to the minimum
+cut problem,” Journal of the ACM, vol. 43, no. 4, pp. 601–640,
+1996.
+[10] J. C. Picard and H. D. Ratliff, “Minimum cuts and related
+problems,” Networks, vol. 5, pp. 357–370, 1974.
+[11] C. Sankaran and A. Ephremides, “Solving a class of optimum
+multiuser detection problems with polynomial complexity,”
+IEEE Trans. Inform. Theory, vol. 44, no. 5, pp. 1958 –1961,
+Sep. 1998.
+[12] S. Ulukus and R.D. Yates, “Optimum multiuser detection is
+tractable for synchronous CDMA systems using m-sequences,”
+IEEE Comms. Letters, vol. 2, no. 4, pp. 89 –91, Apr. 1998.
+
+1
+4
+
+1
+4
+
+v1
+
+v4
+1
+4
+
+Fig. 2.
+
+4
+
+1
+
+v1
+Fig. 1.
+
+1
+
+Graph corresponding to the lattice A∗ .
+3
+
+VI. C ONCLUSION
+We have described a method for computing a short vector
+in a lattice of Voronoi’s ﬁrst kind when its obtuse superbasis
+is known. This is achieved by mapping the shortest vector
+problem into that of computing a minimum cut in a weighted
+graph. Existing polynomial time algorithms can then be applied [8, 9].
+R EFERENCES
+[1] D. Micciancio and O. Regev, “Lattice based cryptography,” in
+Post Quantum Cryptography, D .J. Bernstein, J. Buchmann, and
+E. Dahmen, Eds. Springer, 2009.
+[2] D. Micciancio, “The hardness of the closest vector problem
+with preprocessing,” IEEE Trans. Inform. Theory, vol. 47, no.
+3, pp. 1212–1215, 2001.
+[3] M. Ajtai, “The shortest vector problem in L2 is NP-hard for
+randomized reductions,” in Proc. 30th ACM Symposium on
+Theory of Computing, pp. 10–19, May 1998.
+[4] J. H. Conway and N. J. A. Sloane, Sphere packings, lattices
+and groups, Springer, New York, 3rd edition, 1998.
+[5] J. H. Conway and N. J. A. Sloane, “Low-dimensional lattices.
+VI. Voronoi reduction of three-dimensional lattices,” Proceedings: Mathematical and Physical Sciences, vol. 436, no. 1896,
+pp. 55–68, 1992.
+[6] F. Vallentin, Sphere coverings, lattices, and tilings (in low
+dimensions), Ph.D. thesis, Zentrum Mathematik, Technische
+Universit¨ t M¨ nchen, November 2003.
+a
+u
+
+4
+
+

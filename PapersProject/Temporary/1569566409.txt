@@ -1,0 +1,847 @@
+Creator:        TeX
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Fri May 18 20:33:13 2012
+ModDate:        Tue Jun 19 12:54:29 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      496201 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569566409
+
+The Ultimate Limits of Optical Communication
+Efﬁciency with Photon-Counting Receivers
+Sam Dolinar, Baris I. Erkmen, Bruce Moision, Kevin M. Birnbaum, Dariush Divsalar
+Jet Propulsion Laboratory
+California Institute of Technology
+Pasadena, CA, 91109, USA
+Email: sam.dolinar@jpl.nasa.gov
+
+This paper studies the fundamental tradeoff between these
+two information efﬁciencies, with particular emphasis on the
+behavior of cd at high photon efﬁciency ip .
+Since electromagnetic waves are fundamentally governed by
+the laws of quantum mechanics, the maximum possible rate
+of reliable communication at optical wavelengths is ultimately
+limited by the Holevo capacity [1]. On a pure-loss channel
+without background radiation, the Holevo bound on achievable
+pairs (ip , id ) can be written parametrically [2]:
+
+Abstract—Coherent states achieve the Holevo capacity of a
+pure-loss channel when paired with an optimal measurement,
+but a physical realization of this measurement is unknown,
+and likely to be of high complexity. In this paper, we focus
+on the photon-counting measurement and study the photon
+and dimensional efﬁciencies attainable with modulations over
+classical- and nonclassical-state alphabets. We ﬁrst review stateof-the-art coherent on-off-keying (OOK) and pulse-position modulation (PPM) with a photon-counting measurement, illustrating
+its asymptotic inefﬁciency relative to the Holevo limit. Then we
+analyze two architectures that improve upon the dimensional
+versus photon efﬁciency tradeoff achievable with conventional
+OOK or PPM. We show that at high photon efﬁciency these
+architectures achieve an efﬁciency tradeoff that differs from
+the best possible tradeoff by only a constant factor. The ﬁrst
+architecture is a coherent-state transmitter that relies on feedback
+from the receiver to control the transmitted energy. The second
+architecture uses a single-photon number-state source.
+
+ip = iHol = g(¯ )/¯
+n n
+p
+cd = cHol = g(¯ )
+n
+d
+where g(¯ ) = (1 + n) log2 (1 + n) − n log2 (¯ ). At high photon
+n
+¯
+¯ ¯
+n
+efﬁciency (ip
+1), the ultimate achievable information
+efﬁciency tradeoff is:
+
+I. I NTRODUCTION
+We characterize the performance of optical communications
+systems by their efﬁciency in utilizing available resources
+to transmit information. The resources of interest are the
+transmitted power and the bandwidth occupancy, or, more
+generally, the number of dimensions (temporal, spatial, or
+polarization) occupied by the signal. Let n denote the mean
+¯
+photon cost per channel use, D the dimensional cost per
+channel use (the number of dimensions required to span the
+collection of possible transmitted symbols per channel use),
+and C(¯ , D) the channel capacity, the maximum rate of
+n
+information transmission, in bits per channel use, under these
+constraints. We deﬁne the photon information efﬁciency (PIE)
+as
+C(¯ , D)
+n
+ip =
+(bits/photon)
+n
+¯
+and the dimensional information efﬁciency (DIE) as
+C(¯ , D)
+n
+id =
+(bits/dimension)
+D
+and we denote the bound on the achievable pairs (ip , id ) by
+cd = cd (ip ) =
+
+max
+
+(¯ ,D): ip =C(¯ ,D)/¯
+n
+n
+n
+
+cHol = cHol (ip ) ≈ e ip 2−ip
+d
+d
+The Shannon capacities of optical systems using conventional modulation and receiver strategies are bounded away
+from the ultimate Holevo capacity. In other words, conventional systems cannot achieve the best possible tradeoff of cd
+versus ip . In this paper, we show how conventional systems using on-off keying (OOK) or pulse-position modulation (PPM)
+together with a photon-counting receiver can be redesigned (in
+principle) to bridge some of the gap to the Holevo limit. One
+new strategy utilizes a coherent-state transmitter that relies on
+idealized, delayless, cost-free feedback from the receiver to
+the transmitter to shut off the transmitted pulse as soon as
+a single photon is detected. A second strategy uses a singlephoton number state instead of a coherent state to represent
+an “on” pulse in either OOK or PPM modulation. The latter
+architecture is sensitive to losses in the propagation path, and
+approaches the Holevo capacity only in the near ﬁeld when the
+transmitter-to-receiver coupling is high. The ﬁrst architecture
+can be regarded as a method to emulate the statistics of a
+single-photon number state at the receiver, while maintaining
+the propagation efﬁciency of coherent states.
+
+id
+
+II. C ONVENTIONAL S YSTEMS U SING C OHERENT S TATES
+
+This research was supported by the DARPA InPho program under contract
+JPL 97-15402, and the JPL R&TD Program, and was carried out by the Jet
+Propulsion Laboratory, California Institute of Technology, under a contract
+with the National Aeronautics and Space Administration.
+
+We ﬁrst consider coherent-state OOK and PPM modulations
+paired with an ideal photon counting receiver. Implementations
+
+1
+
+of these architectures have achieved the highest photon efﬁciencies demonstrated to date. They also serve as a baseline
+for the systems that follow.
+The on-off photon-counting channel is modeled as follows.
+In one slot of duration T seconds, we receive either a pulse
+with photon ﬂux equal to λ (expressed in units of photons/sec),
+or no pulse, i.e., a photon ﬂux equal to 0. With OOK modulation a given slot contains a nonzero pulse with probability
+p, and with M -ary PPM exactly one slot of each block of M
+slots contains a nonzero pulse. The mean photon cost n per
+¯
+channel use is nOOK = pλT for OOK and nPPM = λT /M
+¯
+¯
+for M -ary PPM. In both cases, the photon ﬂux is incident
+on an ideal inﬁnite-bandwidth photon-counting photodetector,
+and the transmission bandwidth may be taken to be B = 1/T .
+The dimensional cost D of a channel use, the time-bandwidth
+product, is DOOK = DPPM = BT = 1.
+In the absence of background, the output of the photodetector during a given slot time is a Poisson point process with
+rate either λ or 0. Since in this case detection of a single
+photon is sufﬁcient to unambiguously resolve whether a pulse
+was transmitted, the channel output may be classiﬁed into a
+binary outcome: either no detection event occurs or at least
+one detection event occurs. This produces a Z-channel for
+OOK, and an M -ary erasure channel for M -ary PPM. The
+Z-channel’s crossover probability and the erasure channel’s
+erasure probability are both given by e−λT = 1 − , where
+is deﬁned to be the probability that at least one photon is
+detected during time T given that the incident photon ﬂux is λ.
+The photon and dimensional efﬁciencies for the OOK
+channel can be written succinctly as [3]
+
+Comparing this expression to the Holevo-optimal tradeoff, we
+see that at large ip :
+cHol (ip )
+cHol (ip )
+e2 ln 2
+d
+≈ d
+≈
+≈ 2.561 ip
+cOOK (ip )
+cPPM (ip )
+2
+d
+d
+Thus, conventional OOK and PPM both achieve a DIE that
+has suboptimal asymptotic dependence on PIE at large ip ,
+relative to the Holevo-optimal tradeoff. The gap between the
+optimal DIE and that achieved by standard OOK or PPM
+grows linearly with increasing PIE.
+III. P ULSED C OHERENT-S TATE M ODULATIONS WITH
+S INGLE -P HOTON S HUTOFF
+Next we consider a conceptual modiﬁcation to OOK or
+PPM systems that conventionally use coherent-state pulses.
+Since detection of a single photon in any slot is sufﬁcient
+to identify whether a pulse was transmitted in that slot, any
+additional detection events are wasted in the sense that they
+convey no additional information. Hence, if the transmitter
+knew the instant a photon were detected at the receiver, it could
+stop transmitting during the current slot time, thus reducing
+the photon cost with no change in the channel’s capacity.
+An idealized receiver structure that performs this operation
+is illustrated in Fig. 1, in which the receiver provides delayless and noise-free feedback to the transmitter, informing it to
+terminate the transmitted pulse as soon as the ﬁrst photon is
+detected. If no photons are detected, either because the vacuum
+state was transmitted or because an erasure event occurred, the
+receiver waits until the end of the T -second window and then
+restarts anew. We refer to such a system as OOK or PPM with
+single-photon shutoff, and we use the shorthand notation “1S”
+in referring to its variables in the following analysis.
+
+h2 (¯ ∗ ) − h2 ( )
+n
+d( )
+= n∗ [h2 (¯ ∗ ) − h2 ( )] = n∗ d( )iOOK
+¯
+n
+¯
+p
+
+ip = iOOK =
+p
+id = iOOK
+d
+where1
+d( ) =
+
+− ln(1 − )
+
+n∗ = p =
+¯
+
+=
+
+nOOK
+¯
+d( )
+
+h2 (¯ ∗ ) = − log2 (¯ ∗ ) −
+n
+n
+
+ideal
+photodetector
+
+λT
+1 − e−λT
+
+N t
+T
+
+1 − n∗
+¯
+n∗
+¯
+
+instantaneous
+shutoff
+
+log2 (1 − n∗ )
+¯
+
+The efﬁciencies for M -ary PPM are well known:
+ip = iPPM
+p
+id = id
+
+PPM
+
+Fig. 1.
+An ideal single-photon shutoff receiver, with feedback to the
+transmitter.
+
+1 − e−λT
+log2 M
+=
+log2 M =
+λT
+d( )
+1 − e−λT
+log2 M
+=
+log2 M =
+M
+M
+
+For this architecture, the OOK or PPM channel is modeled
+by the same Z channel or erasure channel as that used
+for conventional pulses without early shutoff. The channel’s
+crossover or erasure probability 1 − is unchanged in terms
+of the photon ﬂux λ, and the mutual information between
+input and output does not change as a function of λ. However,
+now the early transmitter shutoff reduces the average photon
+usage needed to communicate the same information. Whereas
+with conventional schemes the mean photon usage in a nonvacuum slot is λT , now it is λ¯, where τ < T is the mean
+τ
+¯
+pulse duration within the slot before shutoff. The overall mean
+
+For large ip , there is an asymptotic expression [4] for the
+bound on achievable pairs (ip , id ) that holds for both OOK
+and PPM:
+2
+2−ip
+cOOK ≈ cPPM ≈
+d
+d
+e ln 2
+1 The function h (x) is the mean derivative of the binary entropy function
+2
+between 0 and x. The signiﬁcance of d( ) and n∗ will become clearer in the
+¯
+next section.
+
+2
+
+photon usage n, taking into account both vacuum and non¯
+vacuum slots, is reduced by the same factor, for both OOK
+and PPM:
+
+The factor in square brackets is a function of but not of
+the photon efﬁciency ip . Hence the optimum is essentially
+independent of the photon efﬁciency when ip
+1:
+
+nPPM/1S
+¯
+τ
+¯
+1 − e−λT
+1
+nOOK/1S
+¯
+= PPM =
+=
+=
+<1
+OOK
+n
+¯
+n
+¯
+T
+λT
+d( )
+
+∗
+
+∈[0,1]
+
+This increase in photon efﬁciency does not come for free.
+First, the feedback channel requires additional resources,
+which are not accounted for here, but ignoring these costs
+might be appropriate for a link with very asymmetric forward
+and backward link capabilities. More fundamentally, there is
+increased bandwidth usage on the forward link, which results
+from the same shortened pulse durations that reduce the mean
+photon usage. Heuristically, the bandwidth usage is roughly
+1/T if λT is small, such that pulses are hardly ever shut off
+before the end of a slot, and is roughly λ if λT is large, such
+that the mean pulse duration is roughly 1/λ. More generally,
+the bandwidth usage may be estimated as the reciprocal of the
+average duration of a pulse, τ = T /d( ). With this deﬁnition2
+¯
+the number of temporal dimensions per channel use, i.e., the
+time-bandwidth product, is given by
+DOOK/1S = DPPM/1S =
+
+cOOK/1S ≈ e ip 2−ip (0.274) ≈ 0.274 cHol
+d
+d
+
+T
+= d( )
+τ
+¯
+
+0
+
+10
+
+iOOK/1S
+iPPM/1S
+iPPM
+p
+p
+d
+= d( ) = PPM/1S = PPM
+iOOK
+ip
+id
+p
+
+The photon and dimensional efﬁciencies for OOK with singlephoton shutoff are computed explicitly in terms of
+and
+n∗ = p = nOOK /d( ) = nOOK/1S . Note that and n∗ are
+¯
+¯
+¯
+¯
+the same quantities used in the previous section’s expressions
+for conventional OOK, but now n∗ coincides with actual mean
+¯
+photon usage nOOK/1S for OOK with single-photon shutoff.
+¯
+
+ultimate
+1S+PC
+1S+PC asymp.
+OOK+PC
+−1
+
+10
+
+−2
+
+10
+
+−3
+
+10
+
+0
+
+10
+
+1
+
+10
+
+PIE, ip [bits/photon]
+
+Fig. 2. The (PIE, DIE) pairs for the Holevo bound, conventional OOK with
+photon counting (OOK+PC), OOK with single-photon shutoff (1S+PC) , and
+its asymptotic approximation (1S+PC asymp.).
+
+ip = ipOOK/1S = h2 (¯ ∗ ) − h2 ( )
+n
+∗
+n
+¯
+n∗ OOK/1S
+¯
+id = iOOK/1S =
+[h2 (¯ ∗ ) − h2 ( )] =
+n
+i
+d
+d( )
+d( ) p
+
+The information efﬁciencies for M -ary PPM with single
+photon shutoff are:
+
+We have an asymptotic expression at large PIE [3]:
+iOOK/1S ≈ e ip 2−ip
+d
+
+(1)
+
+The optimal ∗ at high PIE corresponds to λT ≈ 2.087,
+implying that the optimal photon ﬂux in a pulsed slot would
+cost 2.087 photons if the transmission continued for the
+entire symbol duration T . The single-photon shutoff strategy
+reduces the mean photon cost in a pulsed slot to 0.876 at
+the expense of an increase in spectral occupancy by a factor
+of d( ∗ ) ≈ 2.383, and this trade nets a signiﬁcantly better
+DIE at high PIE. Conversely, at low PIE, the DIE achieved
+by OOK with single-photon shutoff is worse than that of
+conventional OOK. In this regime, the PIE-DIE tradeoff is
+hurt by the increase in bandwidth usage more than it is
+helped by the reduction in mean photon usage. The tradeoff is
+favorable only when the log-domain curve deﬁned by the pair
+of points (log2 ip , log2 id ) has slope less than −1. Numerical
+evaluation of cOOK/1S (ip ) is illustrated in Fig. 2, showing
+d
+that OOK with single-photon shutoff yields better DIE than
+conventional OOK when PIE exceeds 2.22 bits/photon, and
+the improvement becomes signiﬁcant at higher PIE.
+
+DIE, cd [bits/dimension]
+
+iOOK/1S
+d
+
+=
+
+2−h2 ( )
+≈ 0.876
+d( )
+
+yielding, at large ip :
+
+Since the corresponding time-bandwidth product for conventional OOK or PPM is DOOK = DPPM = 1, we see that the
+single-photon shutoff scheme increases bandwidth usage by
+the same factor d( ) by which mean photon usage is reduced.
+Since the channel models for OOK and PPM with singlephoton shutoff are unchanged from their respective models
+with conventional pulses, the corresponding photon and dimensional information efﬁciencies of the single-photon shutoff
+scheme increase or decrease by the same factors relative to the
+corresponding conventional scheme:
+iOOK
+d
+
+= arg max
+
+2−h2 ( )
+d( )
+
+ip = iPPM/1S = log2 M
+p
+log2 M
+id = iPPM/1S =
+d
+M
+
+2 A more detailed spectral analysis [3] shows that this simple formula for
+bandwidth usage agrees closely with a 90% bandwidth deﬁnition, uniformly
+over all values of λT , including the limiting case of λT = 0 corresponding
+to standard OOK or PPM with no early shutoff.
+
+d( )
+
+= e ip 2−ip
+
+/e
+d( )
+
+In this case, the factor in square brackets is maximized for
+∗
+≈ 0.715, corresponding to λT ≈ 1.257, and resulting in a
+
+3
+
+capacity efﬁciency tradeoff given by:
+
+efﬁciencies for number-state modulation are identical to their
+counterparts for coherent-state OOK or PPM with singlephoton shutoff, but with the detection probability replaced
+by the channel transmissivity η.
+The photon and dimensional efﬁciencies for OOKmodulated number states are given by:
+
+cPPM/1S ≈ e ip 2−ip (0.150)
+d
+≈ 0.150 cHol
+d
+
+at high PIE
+
+Unlike conventional OOK or PPM, the asymptotic dimensional efﬁciency of OOK or PPM with single-photon shutoff
+has the same parametric dependence as the optimal Holevo
+bound. The asymptotic DIE is inferior to the ultimate quantum
+limit by a constant multiplicative factor (0.274 for OOK or
+0.150 for PPM), whereas the asymptotic DIE of conventional
+OOK or PPM is inferior to the ultimate quantum limit by a
+factor that increases linearly in ip .
+
+where now n∗ = pη = nOOK/1NS (analogous to our previous
+¯
+¯
+deﬁnition of n∗ , but with η replacing ). At high photon
+¯
+efﬁciency (ip
+1), we have:
+
+IV. P ULSED M ODULATIONS U SING S INGLE -P HOTON
+N UMBER S TATES
+
+cOOK/1NS (ip ; η) ≈ (e ip 2−ip ) 2−h2 (η)
+d
+
+ip = iOOK/1NS = h2 (¯ ∗ ) − h2 (η)
+n
+p
+
+id = iOOK/1NS = n∗ [h2 (¯ ∗ ) − h2 (η)] = n∗ iOOK/1NS
+¯
+n
+¯ p
+d
+
+≈ cHol 2−h2 (η)
+d
+
+A single-mode ideal optical channel can be modeled as a
+beamsplitter of transmissivity η, where η represents the endto-end efﬁciency with which the state is transmitted to the
+photodetector, including transmitter optical losses, diffraction
+loss and absorption, the receiver optical efﬁciency, and the
+photodetector quantum efﬁciency. In the limit η → 1, the
+Holevo capacity can be achieved by transmitting a numberstate alphabet {|n : n = 0, 1, . . . } with a geometric probability distribution, and receiving the signal with an ideal photoncounting receiver [5]. In this paper, we analyze how closely
+this approach to the Holevo capacity can be maintained when
+we use only a binary alphabet {|0 , |1 } and allow η < 1.
+For this scheme, the transmitter sends either the vacuum
+state |0 or the pure single-photon number state |1 . The
+single-photon number state is transmitted with probability p
+for OOK, and in exactly one of M successive channel uses
+for PPM. When the transmitter ﬁeld mode is in the vacuum
+state, then the output of the beamsplitter is also in a vacuum
+state. When the transmitter ﬁeld mode is in the single-photon
+number state, then the output ﬁeld mode is in a mixed state
+η|1 1| + (1 − η)|0 0|. Hence, an ideal photon counting
+photodetector yields the conditional output probabilities:
+
+(2)
+
+Fig. 3(a) illustrates dimensional efﬁciency versus photon efﬁciency for OOK with number states for several values of η.
+Fig. 3(b) shows the variation of the asymptotic penalty factor
+2−h2 (η) , relative to the Holevo limit, as a function of η (solid
+curve). For small η, this is approximately η/e (red dashed
+line). From (1) and (2), we see that at η ≈ 0.534 (for which
+2−h2 (η) ≈ 0.274), OOK with number states achieves the same
+asymptote at high photon efﬁciency as OOK with singlephoton shutoff. OOK with number states is always superior to
+conventional OOK using coherent states (with no early shutoff)
+at high enough PIE, but the crossover point moves to higher
+values of PIE as η degrades. If η = 0.1, this crossover point
+is at approximately 10 bits/photon.
+The information efﬁciencies for number-state PPM are:
+ip = iPPM/1NS = log2 M
+p
+log2 M
+id = iPPM/1NS = η
+d
+M
+
+= η ip 2−ip
+
+and the capacity efﬁciency tradeoff is:
+cPPM/1NS (ip ; η) = (e ip 2−ip ) η/e
+d
+≈ cHol (η/e) at high PIE
+d
+
+Pr count = 1 |1 sent = η
+
+Pr count = 0 |1 sent = 1 − η
+
+Hence, both OOK and PPM with single-photon number
+states achieve the same asymptotic dependence as the ultimate
+efﬁciency, except for constant penalty factors independent
+of ip . The asymptotic penalty factor for number-state PPM,
+η/e, equals that of number-state OOK in the small-η limit
+(red dashed line in Fig. 3(b)). Unlike the penalty factors for
+OOK and PPM with single-photon shutoff, the penalties for
+OOK and PPM with single-photon number states depend on
+another parameter, the channel transmissivity η.
+Since the efﬁciencies of the single-photon number-state
+modulations depend on the channel losses, we brieﬂy discuss
+the typical power coupling that can be achieved in a nearﬁeld link geometry [6]. If soft Gaussian apertures are used
+at the transmitter and receiver, the Fresnel number product is
+2 2
+DF = π 2 rT rR /(4λ2 L2 ), where λ0 is the center wavelength,
+0
+L is the propagation distance, and rT , rR are the e−1 amplitude attenuation radii of the transmitter and receiver apertures.
+
+For OOK the channel reduces to a Z-channel with crossover
+probability 1 − η, and for M -ary PPM it is an erasure channel
+with erasure probability 1 − η. We denote variables pertaining
+to this architecture with the superscript “1NS”.
+The Z-channel and erasure channel capacities are equivalent
+to those derived for their counterparts for coherent-state OOK
+and PPM with single-photon shutoff, with replaced by the
+channel transmissivity η. Furthermore, the average number
+of photons n counted by the receiver is nOOK/1NS = pη for
+¯
+¯
+OOK, or nPPM/1NS = η/M for PPM,3 which are the exact
+¯
+counterparts of the corresponding expressions for n for OOK
+¯
+or PPM with single-photon shutoff, provided that is replaced
+by η. It follows that the photon and dimensional information
+3 Note that we normalize by the mean number of detected photons, to be
+consistent with our prior deﬁnitions of photon efﬁciency.
+
+4
+
+0
+
+DIE, cd [bits/dimension]
+
+10
+
+background, the DIE achievable with this scheme is inferior
+to the Holevo limit by a factor that grows linearly with
+PIE. We investigated two methods to improve the efﬁciencies
+achievable with a photon-counting receiver. Each signiﬁcantly
+improves on conventional OOK or PPM at large PIE and
+achieves the same parametric dependence as the Holevo limit,
+such that the degradation relative to the Holevo limit is a
+constant factor at large PIE. However, each scheme requires
+assumptions that make a practical implementation challenging.
+Our ﬁrst approach, OOK or PPM with single-photon shutoff, is conceptual and not at all practical. As presented, it
+requires a perfect feedback channel with no latency, and,
+moreover, we assess no cost to the feedback channel. However,
+its impracticality should not overshadow a fundamental insight
+offered by this architecture: the asymptotic suboptimality of
+conventional OOK or PPM with photon-counting is essentially
+due to continued energy transmission that does not contribute
+to information transfer after the ﬁrst photon is detected at
+the receiver. If the transmitter could shut itself off (via either
+ideal feedback or an oracle) at the instant when the receiver
+detects the ﬁrst photon in a slot, the energy conserved from
+shutting off the transmitter is sufﬁcient to achieve a DIE which
+is suboptimal relative to the Holevo limit by only a constant
+factor at high PIE (0.274 for OOK or 0.150 for PPM).
+Our second approach requires us to transmit number states,
+{|0 , |1 }, rather than coherent states. This architecture inherently pushes the complexity to the transmitter by requiring ondemand generation of a (nonclassical) single-photon number
+state in a deﬁned spatiotemporal and polarization mode, in
+addition to requiring efﬁcient transfer of this state from the
+transmitter to the receiver. Single-photon number-state generation is an area of active research [7]. If such a source were
+available, the DIE would be suboptimal by only a constant
+factor, in this case 2−h2 (η) for OOK or η/e for PPM. This
+factor now depends on the end-to-end efﬁciency, η, with which
+the number state is transmitted to the photodetector. Achieving
+a reasonable transmission efﬁciency is not trivial, but may
+become feasible with improving device technologies.
+
+ultimate
+η = 0.05
+η = 0.10
+η = 0.35
+η = 0.60
+η = 0.85
+η = 0.99
+OOK+PC
+
+−1
+
+10
+
+−2
+
+10
+
+−3
+
+10
+
+0
+
+1
+
+10
+
+10
+
+PIE, ip [bits/photon]
+
+(a)
+0
+
+Asymp. suboptimality factor
+
+10
+
+−1
+
+10
+
+−2
+
+10
+
+−3
+
+10
+
+−4
+
+10
+
+exact
+η≈1
+η 1
+−4
+
+10
+
+−3
+
+10
+
+−2
+
+10
+
+channel transmissivity, η
+
+−1
+
+10
+
+0
+
+10
+
+(b)
+Fig. 3.
+(a) The numerically-evaluated DIE versus PIE tradeoff curves
+(solid lines) and their asymptotic approximations for large PIE (dashed lines)
+are plotted for OOK with single-photon number states, for several different
+values of η. The Holevo bound (ultimate) and the DIE versus PIE tradeoff
+curve for conventional OOK with ideal photon-counting (OOK+PC) are
+plotted for comparison. (b) The asymptotic suboptimality factor 2−h2 (η) ≈
+cOOK/1NS /cHol for ip
+1 is plotted versus η. Dashed (red) line and dashd
+d
+dotted (green) line denote small-η and large-η analytic approximations.
+
+R EFERENCES
+
+The normal-mode decomposition yields Laguerre-Gaussian or
+Hermite-Gaussian eigenfunctions, and there are m degenerate
+m
+eigenvalues equal to ηm = η0 for m = 1, 2, . . . , where
+√
+1 + 2DF − 1 + 4DF
+η0 =
+2DF
+
+[1] M. A. Nielsen and I. L. Chuang, Quantum Computation and Quantum
+Information. Cambridge: Cambridge Univ., 2000.
+[2] V. Giovannetti, S. Guha, S. Lloyd, L. Maccone, J. H. Shapiro, and
+H. P. Yuen, “Classical capacity of the lossy bosonic channel: The exact
+solution,” Phys. Rev. Lett., vol. 92, p. 027902, 2004.
+[3] B. I. Erkmen, B. E. Moision, S. J. Dolinar, K. M. Birnbaum, and
+D. Divsalar, “On approaching the ultimate limits of communication using
+a photon-counting detector,” in Proceedings of the SPIE, San Francisco,
+CA, January 2012.
+[4] S. Dolinar, K. Birnbaum, B. Erkmen, and B. Moision, “On approaching
+the ultimate limits of photon-efﬁcient and bandwidth-efﬁcient optical
+communication,” in Space Optical Systems and Applications (ICSOS),
+2011 International Conference on, May 2011, pp. 269–278.
+[5] H. P. Yuen and M. Ozawa, “Ultimate information carrying limit of
+quantum systems,” Phys. Rev. Lett., vol. 70, pp. 363–366, 1993.
+[6] J. H. Shapiro, S. Guha, and B. I. Erkmen, “Ultimate channel capacity of
+free-space optical communications [invited],” J. Opt. Netw., vol. 4, pp.
+501–516, 2005.
+[7] M. D. Eiseman, J. Fan, A. Migdall, and S. V. Polyakov, “Invited review
+article: Single-photon sources and detectors,” Rev. Sci. Instrum., vol. 82,
+p. 071101, 2011.
+
+Each eigenvalue represents the transmissivity η of the corresponding eigenfunction. As an example, a near-ﬁeld system
+with λ0 = 1 µm, L = 1 km, and rT = rR = 0.1 m,
+has Fresnel number DF ≈ 247. For this case, the ﬁrst 55
+eigenvalues are greater than 0.5, and the top 200 eigenvalues
+are greater than 0.28.
+V. C ONCLUSION
+State-of-the-art realization of high-PIE optical communication is generalized OOK (implemented as high-order PPM) in
+conjunction with a photon-counting receiver. In the absence of
+
+5
+
+

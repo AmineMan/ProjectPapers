@@ -1,0 +1,904 @@
+Title:          isit_2012.dvi
+Creator:        dvips(k) 5.99 Copyright 2010 Radical Eye Software
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Mon May 14 22:31:59 2012
+ModDate:        Tue Jun 19 12:55:27 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      340892 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569565091
+
+Finite Length LT Codes over Fq for Unequal Error
+Protection with Biased Sampling of Input Nodes
+Birgit Schotsch and Radu Lupoaie ⋆
+Institute of Communication Systems and Data Processing (
+RWTH Aachen University, Aachen, Germany
+schotsch@ind.rwth-aachen.de
+
+)
+
+recently that rateless codes over higher order Galois ﬁelds
+exhibit a better erasure correction performance than their binary counterparts [8], [9]. Additionally, we have demonstrated
+in [10] that this improved erasure correction performance even
+comes with a lower computational complexity if the equivalent
+binary input size is kept constant.
+Using rateless codes, the transmitter can generate
+a potentially inﬁnite number nT of encoded symbols
+y = (y1 , y2 , . . . ynT ) from a ﬁnite amount of k input symbols
+u = (u1 , u2 , . . . uk ). Though in practice the input and output
+symbols ui and yj consist of l Fq -elements each, where
+i ∈ {1, 2, . . . k} and j ∈ {1, 2, . . . nT }, we consider only
+l = 1 in the following as this number l has no inﬂuence on
+the erasure correction performance of the codes [3]. Note that
+Fq -elements have an equivalent binary representation which
+requires m bits per element. In order to allow for a fair
+comparison of codes over Galois ﬁelds of different orders,
+we ﬁx the number k = k2 of input bits and distribute them to
+k
+kq = ⌈ ld2q ⌉ = ⌈ k2 ⌉ input symbols. Thus, the input size of a
+m
+code over Fq with q = 2m is kq .
+In general, rateless codes are designed such that the receiver
+is able to decode the original kq input symbols u from any
+nR = kq (1 + εR ) received code symbols with high probability
+if εR ≥ 0, where εR is the required relative reception overhead.
+
+Abstract—Finite length LT codes over higher order Galois
+ﬁelds Fq for unequal error protection (UEP) are analysed
+under maximum likelihood (ML) decoding. We consider a biased
+sampling method to create the LT code graph. In contrast to a
+previous approach by Rahnavard et al., where a predetermined
+number of edges is created per importance class given a check
+node of degree d, our procedure allows to precisely adjust the
+desired class weights. Moreover, we provide upper and lower
+bounds on the symbol erasure probability for each importance
+class.
+
+I. I NTRODUCTION
+Fountain codes are a class of incremental redundancy
+codes [1] that have been proposed in [2] as an alternative
+approach to retransmission schemes to recover lost packets in
+packet-switched communication networks. Fountain codes are
+rateless erasure correcting codes such as LT (Luby Transform)
+codes [3], Raptor codes [4] and Online codes [5] for which
+simple and efﬁcient encoding and decoding algorithms exist.
+Originally developed for the binary erasure channel (BEC),
+rateless codes do not require any information about the erasure probability. Especially in point-to-multipoint transmission
+scenarios, where the individual and independent channel conditions of the users are not known to the transmitter, this
+characteristic is particularly useful.
+Besides the original studies on rateless codes that target at
+equal error protection (EEP) of data, some proposals for rateless codes for unequal error protection (UEP) have followed.
+EEP is needed, e.g. for the distribution of bulk data [2], while
+UEP is better suited for, e.g. audio or video transmission where
+some parts of the data are more important than others and
+therefore need a stronger protection. Two examples of rateless
+UEP schemes for LT codes are the approach by Rahnavard et
+al. [6] which we will refer to as weighted UEP and the
+expanding window (EW) method by Sejdinovic et al. [7].
+However, in this paper we will only deal with the weighted
+UEP method, in which we use biased sampling of the input
+symbols in order to allow for continuous effective weights of
+the differently important data parts. Furthermore, we provide
+upper and lower bounds on the symbol erasure probability
+under maximum likelihood (ML) decoding.
+In the following, we consider LT codes over Galois ﬁelds
+Fq of order q = 2m , where m ≥ 1, since it has been shown
+
+II. LT C ODES OVER Fq
+n ×k
+
+The generator matrix G ∈ Fq T q of an LT code, with
+q = 2m , deﬁnes a weighted graph that connects the set of
+1×k
+kq input nodes u ∈ Fq q to the set of nT output nodes
+1×nT
+, where nT can be arbitrarily large. A more detailed
+y ∈ Fq
+description of binary LT codes can be found in [3].
+The input symbols are assigned to input nodes and the
+output symbols are assigned to output nodes that are also
+called check nodes. In vector-matrix notation we encode by
+yT = GuT . In contrast to traditional block codes, G is
+generated online and may differ for each data block. G is
+assumed to be known at the decoder. This can be achieved by
+synchronised pseudo-random processes that produce G.
+The erasure correcting performance of an LT code is largely
+deﬁned by its check node degree distribution Ω1 , Ω2 , . . . Ωkq
+on {1, 2, . . . kq }, where a check node has degree d with
+probability Ωd , i.e. it is connected to d distinct input nodes.
+The degree distribution is often described by its generating
+kq
+polynomial Ω(x) = d=1 Ωd xd . For EEP the d connected
+
+⋆ Radu Lupoaie is now with QUALCOMM CDMA Technologies GmbH,
+Nuremberg, Germany
+This work has been supported by the UMIC Research Centre, RWTH
+Aachen University.
+
+1
+
+As an example, two binary UEP LT codes of length k2 =
+100 and k2 = 10000 are considered that consist of two classes
+with relative sizes α1 = 0.1 and α2 = 0.9 and are based on
+the degree distribution
+
+input nodes are chosen uniformly at random, i.e. with proba1
+bility p = kq , from the set of kq input nodes, while for UEP
+the input nodes are ﬁrst assigned to T importance classes. The
+input nodes of different classes have different probabilities of
+being chosen to be connected to a check node. The exact UEP
+construction is explained in the next section.
+The d non-zero entries in a row of the generator matrix G
+correspond to the weights of the d edges between a check node
+and d input nodes. The value of a check node is determined
+by adding up the product of each value of the d input nodes
+with the weight of the corresponding connecting edge. The
+non-zero entries of G are sampled uniformly at random from
+the set of q − 1 non-zero Fq -elements.
+At the encoder, nT output symbols are generated, which
+are then transmitted over a symbol erasure channel (SEC)
+that randomly erases some of the transmitted Galois ﬁeld
+symbols. Finally, the decoder tries to reproduce the original kq
+input symbols from the nR ≤ nT received symbols. Having
+collected nR output symbols, the decoder uses the nR rows of
+G that are associated with the collected, non-erased symbols
+to form a new matrix G′ which is used for decoding. Since
+G′ consists of a set of nR rows sampled at random from the
+original matrix G according to the erasures that occur on the
+SEC, G′ has the same statistical properties as G.
+
+Ω(x) = 0.007969x + 0.49357x2 + 0.16622x3 + 0.072646x4
++ 0.082558x5 + 0.056058x8 + 0.037229x9
++ 0.05559x19 + 0.025023x65 + 0.003135x66
+
+[eff]
+which is taken from [4]. The effective weight ω1 of the
+respective class 1 is plotted in Fig. 1 in blue as a function
+of the target weight ω1 . The dashed black line indicates the
+[eff]
+optimum case ω1 = ω1 . Due to the discontinuities not all
+effective weights can be attained with the given parameters
+input size kq , class sizes kq,τ and degree distribution Ω(x).
+For the short code an additional deviation of the effective
+weight from the target weight becomes apparent in Fig. 1(a),
+i.e. for higher target values the effective weight deviates
+towards lower values. This is due to the min(·) operation,
+which clips the number of edges connected to this class to the
+number of available nodes. Clipping obviously only occurs for
+high degrees that are in the same order of magnitude as the
+sizes of the involved classes. Accordingly, for the long code
+this effect is not visible in the depicted range of target weights
+(see Fig. 1(b)).
+In order to prevent the discontinuous relation between ωτ
+[eff]
+and ωτ , we propose to use biased sampling in order to select
+the input nodes from the different classes to be connected to
+the current check node of degree d. This biased sampling of the
+input nodes is equivalent to drawing d balls one by one without
+T
+replacement from an urn that contains kq = i=1 kq,i balls
+of T different colours, where each ball of colour τ has weight
+ωτ . The probability of picking a ball of a particular colour
+at a particular draw is proportional to its relative weight with
+respect to the total weight of the remaining balls. Biased sampling has been analysed by Wallenius [11] for the univariate
+case (T = 2) and has been generalised to the multivariate case
+by Chesson [12]. The partitioning of the overall degree d into
+T
+class degrees dτ , where τ =1 dτ = d, therefore follows the
+so-called multivariate Wallenius’ noncentral hypergeometric
+distribution mwnchypg d d; kq , ω [11], [12]. This distribution expresses the conditional probability mass function
+(pmf)
+
+III. LT C ODES FOR U NEQUAL E RROR P ROTECTION
+First, we brieﬂy review the original approach [6, Sec. IV]
+using our notation. The kq input nodes are ﬁrst assigned to T
+importance classes, where importance class τ has size kq,τ =
+T
+ατ kq , with 1 ≤ τ ≤ T , 0 ≤ ατ ≤ 1 and
+i=1 αi = 1,
+where ατ is the relative size of class τ . According to the
+importance of the classes, weighting factors ωτ are chosen
+such that the new initial probability of connecting an input
+τ
+node from class τ to the current check node is pτ = ωq =
+k
+T
+
+T
+
+ωτ p. Thus,
+i=1 pi kq,i =
+i=1 ωi αi = 1. In their ﬁnite
+length analysis, the number dτ of input nodes from an arbitrary
+class τ that are connected to a check node of degree d is
+set to min([ατ ωτ d] , kq,τ ), where [x] means rounding to the
+nearest integer. In general, it is desired to be able to set the
+weights to arbitrary non-negative values that comply with the
+side conditions imposed by the code parameters such that the
+class speciﬁc protection reaches the required levels. However,
+due to this rounding operation, only a discrete set of effective
+[eff]
+weights ωτ is obtained, although the target weights ωτ are
+chosen from a continuous set. The effective weights are given
+as a function of ωτ :
+dmax
+[eff]
+ωτ =
+
+¯
+Ωτ
+¯ =
+ατ Ω
+
+P d1 , . . . dT −1 d; kq , ω = mwnchypg d d; kq , ω
+T
+
+=
+Ωd min([ατ ωτ d] , kq,τ )
+
+d=1
+
+¯
+ατ Ω
+
+i=1
+
+,
+
+(2)
+
+(1)
+
+kq,i
+di
+
+1 T
+
+ωi
+
+1 − t ω(kq −d)
+
+di
+
+(3)
+
+dt
+
+0 i=1
+
+with the vectors d = (d1 , d2 , . . . dT ) comprising the class
+degrees, kq = (kq,1 , kq,2 , . . . kq,T ) comprising the class sizes
+and ω = (ω1 , ω2 , . . . ωT ) comprising the class speciﬁc target
+weights. This pmf can be evaluated by numerical integration
+as described in [13] using the BiasedUrn R package [14].
+Without loss of generality, the degree dT is not explicitly
+mentioned in the left-hand side of (3), since it is included
+
+k
+
+q
+¯
+where Ω =
+d=1 d Ωd is the average degree of the given
+degree distribution Ω(x). The numerator in (1) is the effective
+¯
+average degree Ωτ of class τ , while the denominator is the
+average degree of class τ in the EEP case. The discontinuities
+are highly dependent on the underlying degree distribution.
+
+2
+
+[eff]
+ideal case ω1 = ω1
+
+rounded degrees dτ = min([ατ ωτ d] , kq,τ )
+
+3
+[eff]
+effective weight ω1
+
+4
+
+3
+[eff]
+effective weight ω1
+
+4
+
+2
+
+1.35
+1
+
+2
+
+1
+
+0
+
+0
+0
+
+1
+
+1.44
+2
+target weight ω1
+
+3
+
+4
+
+0
+
+(a) Input size k2 = 100 bits.
+Fig. 1.
+
+biased sampling
+
+1
+
+2
+target weight ω1
+
+3
+
+4
+
+(b) Input size k2 = 10000 bits.
+
+[eff]
+ω1
+
+The effective weight
+of class 1 as a function of the target weight ω1 for two UEP LT codes of input size k2 = 100 (a) and k2 = 10000 (b)
+with two classes of relative sizes α1 = 0.1 and α2 = 0.9 and the degree distribution in (2). The round markers are operating points used for Fig. 2.
+T
+
+implicitly according to τ =1 dτ = d. In order to simplify the
+notation, we omit the parametrisation with the class sizes kq
+and weights ω and deﬁne the joint pmf as
+
+weight even equals the target weight. In case of the short code
+the deviation of the effective weight from the target weight is
+due to the fact that the given degree distribution is not well
+suited for the current code and class sizes. As an example
+we consider a given degree d = 66 and weight ω1 = 2. The
+target degree of class 1 is then d1 = α1 dω1 = 13.2. However,
+since class 1 contains only 10 symbols, the effective degree of
+class 1 will be considerably smaller and thus also the effective
+weight. In order to compensate for this saturation effect, it is
+possible to (iteratively) ﬁnd a weight vector that results in
+the original target weights. For two classes this compensation
+is quite simple. In order to obtain, e.g. an effective weight
+[eff]
+ω1 = 1.35, the actually assigned weight has to be 1.44 in
+case of the short example code as marked by the red circle in
+Fig. 1(a).
+
+P (d) = P (d1 , . . . dT ) = P (d1 , . . . dT −1 , d)
+= P (d) · P d1 , . . . dT −1 d; kq , ω ,
+
+(4)
+
+where P (d) = Ωd , i.e. the coefﬁcients Ωd of the check node
+degree distribution Ω(x).
+In the remainder of this paper we will use the following
+simpliﬁed notation: Given an arbitrary function f (d), the
+collated sum
+dmax
+
+f (d)
+d=d1 +...+dT =1
+
+f (d),
+
+...
+
+denotes
+d1
+
+dT
+
+where the sums are calculated for all combinations of the
+values of d = (d1 , d2 , . . . dT ) for which 1 ≤ d ≤ dmax and
+T
+τ =1 dτ = d. Additionally, 0 ≤ dτ ≤ min(d, kq,τ ) with
+1 ≤ τ ≤ T.
+Using the biased sampling method, the effective weight is
+
+IV. B OUNDS ON THE S YMBOL E RASURE P ROBABILITY
+FOR UEP LT C ODES U SING B IASED S AMPLING
+In the following, we will derive a lower and an upper bound1
+[ML,S]
+on the symbol erasure probability Pq,τ
+in importance class
+τ for weighted UEP LT codes over Fq under ML decoding,
+where the codes are constructed using biased sampling.
+Analogously to the binary EEP case [4], a lower bound on
+[ML,S]
+the symbol erasure rate Pq,τ
+is given by the probability that
+
+dmax
+
+P (dτ ) dτ
+P (d) dτ
+¯
+Ωτ
+d=d1 +...+dT =1
+dτ
+=
+,
+=
+¯ =
+¯
+¯
+ατ Ω
+ατ Ω
+ατ Ω
+¯
+where Ωτ is the average degree of class τ and P (dτ ) is
+obtained by marginalising P (d).
+Applied to our example codes of sizes k2 = 100 and k2 =
+[eff]
+10000, the resulting effective weight ω1 of the respective
+class 1 is plotted in Fig. 1 in red and is now a continuous
+function of the target weight ω1 . For the long code the effective
+[eff]
+ωτ
+
+1 For notational convenience, we will implicitly assume that probabilities
+and their bounds are limited from above by one, i.e. the operation min{1, · }
+is omitted.
+
+3
+
+an input node in class τ is not connected to a check node:
+dmax
+[ML,S]
+= 1−
+P q,τ
+
+dτ
+kq,τ
+
+P (d)
+d=d1 +...+dT =1
+
+where vl , rl and ul are the lth elements of the vectors v, r
+and u, respectively, then we obtain Eq. (10) on the next page.
+The ﬁrst term in (11) is
+
+
+ kq
+ 1
+1−s
+Pr
+vj = 0 | v | = s =
+1 − (1 − q)
+. (12)
+
+ q
+j=1
+
+k q γR
+
+.
+
+(5)
+
+The following derivation of the upper bound on the symbol
+[ML,S]
+erasure probability Pq,τ
+in class τ for UEP LT codes over
+Fq with biased sampling is inspired by the one in [6] for binary
+weighted UEP LT codes based on rounded class degrees.
+
+according to [10, Eq. (13)] while the second term in (11) is
+Pr
+
+Lemma 1. Given the generator matrix G of a UEP LT code of
+length kq , with check node degree distribution Ω(x), T importance classes of sizes kq = (kq,1 , kq,2 , . . . kq,T ) and weights
+ω = (ω1 , ω2 , . . . ωT ) that is created using biased sampling,
+[ML,S]
+an upper bound on the symbol erasure probability Pq,τ
+is
+given in Eq. (6) on the following page, where γR = 1 + εR
+is the inverse reception rate. The non-zero elements in G are
+chosen with equal probability from Fq \ {0}.
+
+T
+
+with the probability of occurrence of exactly sj non-zero
+elements in the subvector vj
+Pr | vj | = sj | rj | = dj , | uj | = wj
+
+≤
+
+′ T
+
+=
+
+T
+
+Pr G u = 0
+
+.
+
+(7)
+
+(8)
+
+k q γR
+
+.
+
+kq,j −wj
+dj −sj
+kq,j
+dj
+
+.
+
+In this paper we provide an analysis of ﬁnite length LT
+codes over higher order Galois ﬁelds Fq for unequal error
+protection (UEP) under ML decoding when the UEP property
+is established by assigning appropriate weights to the different
+importance classes. According to the weights, the edges of a
+check node have different probabilities to be connected to the
+input nodes of the different classes. In contrast to the literature,
+the number of input nodes in an importance class that is
+connected to a check node of degree d is not ﬁxed. Instead,
+the connections are determined using biased sampling, which
+can be described by the multivariate Wallenius’ noncentral
+hypergeometric distribution. Our main contribution is the
+derivation of importance class speciﬁc upper and lower bounds
+on the symbol erasure probability under ML decoding for the
+biased sampling code construction method.
+Our biased sampling approach enables continuous effective
+UEP weights as a function of the target weights. For properly
+chosen degree distributions, the effective UEP weights are
+even equal to the target weights, while this is not the case in the
+approach from the literature, in which a rounding operation is
+used. Though this rounding operation signiﬁcantly simpliﬁes
+especially the computation of the upper bound on the symbol
+erasure probability, it introduces discontinuities in the effective
+weights as a function of the target weights, which leads to
+deviations of the protection levels of the respective importance
+classes from the targeted ones.
+
+Due to the random and independent construction of check
+nodes, the kq γR rows of G′ can be viewed as the outcomes
+1×k
+of independent trials of a random variable r ∈ Fq q , where
+1×k
+r = (r1 , r2 , . . . rT ) with rj ∈ Fq q,j and 1 ≤ j ≤ T . Also
+the vector u can be expressed as u = (u1 , u2 , . . . uT ) with
+1×k
+uj ∈ Fq q,j :
+Pr ruT = 0
+
+wj
+sj
+
+V. C ONCLUSION
+
+1×k
+u∈Fq q ,
+ui =a
+
+[ML,S]
+Pq,τ
+=
+
+=
+
+Reassembling all terms yields Eq. (6) on the following page
+which concludes the assertion.
+The resulting bounds are exemplarily illustrated in Fig. 2 for
+three short LT codes with degree distribution Ω(x) as given
+in (2), k2 = 100 and two importance classes. The codes are
+constructed either according to the method in [6] (green and
+blue) or by using biased sampling (red).
+
+with arbitrary but ﬁxed a ∈ Fq \{0}. The right-hand side of (7)
+is the probability of the ith column of the decoding matrix G′
+being linearly dependent on a non-empty set of columns. This
+can be upper bounded by the probability of any possible set
+of columns of G′ being linearly dependent on column i ∈ τ
+[ML,S]
+P q,τ
+
+(13)
+
+j=1
+
+Proof: The probability
+is equal to the probability
+that the ith Fq -symbol cannot be determined by ML decoding
+for an arbitrary i ∈ τ , where τ is the set of input node indices
+in importance class τ
+
+[ML,S]
+Pq,τ
+
+Pr | vj | = sj | rj | = dj , | uj | = wj
+
+=
+
+[ML,S]
+Pq,τ
+
+[ML,S]
+Pq,τ
+= Pr ∃u ∈ F1×kq , ui = a : G′ uT = 0T ,
+q
+
+| v | = s | r | = d, | u | = w
+
+(9)
+
+1×k
+u∈Fq q ,
+ui =a
+
+The weight of a vector over Fq equals the number of
+non-zero elements and is denoted | · |. Now, the probability
+Pr ruT = 0 is determined, conditioned on |rj | = dj and
+|uj | = wj , ∀j. A row r has weights (|r1 | , |r2 | , . . . |rT |) = d
+with probability P (d) as given in (4), and there are
+
+
+T
+kq,j − δτ,j 
+w−1 
+(q − 1)
+wj − δτ,j
+j=1
+
+choices of u
+=
+(u1 , u2 , . . . uT ) of weights
+w = (w1 , w2 , . . . wT ) with ui = a and i ∈ τ ,
+where δτ,j is the Kronecker delta function. Let
+v = (v1 , v2 , . . . vT ) = (v1 , v2 , . . . vkq ) with vl = rl ul ,
+
+4
+
+[ML,S]
+P q,τ
+
+kq
+
+T
+
+=
+
+(q − 1)
+w=w1 +...+wT =1
+wτ ≥1
+
+i=1
+
+dmax
+
+d
+
+·
+
+P (d)
+s=s1 +...sT
+
+d=d1 +...+dT =1
+
+[ML,S]
+P q,τ
+
+kq
+
+(q − 1)
+
+=
+w=w1 +...+wT =1
+wτ ≥1
+
+w−1
+
+
+
+T
+
+
+
+j=1
+
+dmax
+
+kq,i − δτ −i
+wi − δτ −i
+
+w−1
+
+1
+1−s
+1 − (1 − q)
+q
+=0
+
+wi
+si
+
+T
+
+i=1
+
+kq,i −wi
+di −si
+kq,i
+di
+
+k q γR
+
+(6)
+
+
+kq,j − δτ,j 
+wj − δτ,j
+
+k q γR
+
+T
+
+P (d) Pr ru = 0 | r1 | = d1 , . . . | rT | = dT , | u1 | = w1 , . . . | uT | = wT
+
+·
+
+(10)
+
+d=d1 +...+dT =1
+
+with
+Pr ruT = 0 | r1 | = d1 , . . . | rT | = dT , | u1 | = w1 , . . . | uT | = wT
+
+
+d
+ kq
+
+Pr
+=
+vj = 0 | v | = s · Pr | v | = s | r | = d, | u | = w .
+
+
+s=s1 +...sT =0
+
+(11)
+
+j=1
+
+10
+
+R EFERENCES
+
+0
+
+upper bounds
+
+[1] B. Dorsch, “Successive check digits rather than information repetition,”
+in IEEE International Conference on Communications (ICC), 1983, pp.
+323–327.
+[2] J. W. Byers, M. Luby, M. Mitzenmacher, and A. Rege, “A digital
+fountain approach to reliable distribution of bulk data,” ACM SIGCOMM
+Computer Communication Review, vol. 28, pp. 56–67, 1998.
+[3] M. Luby, “LT Codes,” in Proc. 43rd Annual IEEE Symposium on
+Foundations of Computer Science, 2002, pp. 271–280.
+[4] A. Shokrollahi, “Raptor Codes,” IEEE Transactions on Information
+Theory, vol. 52, no. 6, pp. 2551–2567, 2006.
+[5] P. Maymounkov, “Online Codes,” Secure Computer Systems Group,
+New York University, Tech. Rep. TR2002-833, Nov. 2002.
+[6] N. Rahnavard, B. N. Vellambi, and F. Fekri, “Rateless Codes With
+Unequal Error Protection Property,” IEEE Transactions on Information
+Theory, vol. 53, no. 4, pp. 1521–1532, 2007.
+[7] D. Sejdinovic, D. Vukobratovic, A. Doufexi, V. Senk, and R. Piechocki,
+“Expanding Window Fountain Codes for Unequal Error Protection,”
+IEEE Transactions on Communications, vol. 57, no. 9, pp. 2510–2516,
+2009.
+[8] G. Liva, E. Paolini, and M. Chiani, “Performance versus overhead for
+fountain codes over Fq ,” IEEE Communications Letters, vol. 14, no. 2,
+pp. 178–180, 2010.
+[9] A. Shokrollahi and M. Luby, Raptor Codes, ser. Foundations and Trends
+in Communications and Information Theory. Now Publishers, 2011.
+[10] B. Schotsch, R. Lupoaie, and P. Vary, “The Performance of LowDensity Random Linear Fountain Codes over Higher Order Galois Fields
+under Maximum Likelihood Decoding,” in 49th Allerton Conference on
+Communication, Control and Computing, September 2011.
+[11] K. T. Wallenius, “Biased sampling: The noncentral hypergeometric
+probability distribution,” Ph.D. dissertation, Stanford University, 1963.
+[12] J. Chesson, “A non-central multivariate hypergeometric distribution
+arising from biased sampling with application to selective predation,”
+Journal of Applied Probability, vol. 13, no. 4, pp. 795–797, 1976.
+[13] A. Fog, “Calculation Methods for Wallenius’ Noncentral Hypergeometric Distribution,” Communications in Statistics - Simulation and
+Computation, vol. 37, no. 2, pp. 258–273, 2008.
+[14] ——,
+“BiasedUrn:
+Biased
+Urn
+Model
+Distributions,”
+2011,
+Version
+1.04.
+[Online].
+Available:
+http://cran.rproject.org/web/packages/BiasedUrn/index.html
+
+10
+
+Pq,τ
+
+[ML,S]
+
+10
+
+10
+
+10
+
+-2
+
+lower bounds
+
+-4
+
+importance class 2
+-6
+
+-8
+
+importance class 1
+
+10
+
+Fig. 2.
+
+5
+
+-10
+
+1
+
+1.5
+2
+2.5
+inverse reception rate γR
+
+3
+
+Upper and lower bounds for three UEP LT codes with k2 = 100,
+two importance classes and relative class sizes of 0.1 and 0.9.
+[eff]
+An effective weight ω1 = 1.35 shall be obtained. The weights
+[eff]
+ω1 that yield the closest values to ω1 for the different code
+construction methods are highlighted in Fig. 1(a) by round markers
+with corresponding colours. Using the rounded degrees method,
+[eff]
+the envisaged ω1
+= 1.35 cannot be reached. The closest one
+[eff]
+can get is by using either ω1 = 1.66 (ω1
+= 1.187, green
+[eff]
+curves) or ω1 = 1.67 (ω1 = 1.534, blue curves). In one case
+(blue), class 1 is protected too well at the cost of class 2, while
+in the other case (green), class 1 is not protected sufﬁciently. With
+this method, the protection levels between the green and the blue
+curves are not achievable with the given code parameters. Using the
+biased sampling method, however, any effective weight and thus any
+protection level can be obtained, in this case by setting ω1 = 1.44
+(red curves).
+
+

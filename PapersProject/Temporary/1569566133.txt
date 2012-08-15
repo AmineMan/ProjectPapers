@@ -1,0 +1,615 @@
+Creator:        TeX
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Sat Apr 28 14:08:08 2012
+ModDate:        Tue Jun 19 12:55:05 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      536414 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569566133
+
+On Energy/Information Cross-Layer Architectures
+Lav R. Varshney∗†
+∗ IBM
+
+Thomas J. Watson Research Center
+Institute of Technology
+
+† Massachusetts
+
+3) small number of wires.
+
+Abstract—The importance of architectural principles in the
+design of engineering systems is well-recognized. This paper
+argues that the traditional separation between energy delivery and information delivery leads to suboptimal systems. To
+demonstrate this for wireline systems that may use DC powerline
+communication, a capacity-power-wiring cost function is deﬁned.
+Signaling strategies that optimize this function deliver patterned
+energy: a commodity measured in bits and joules such that
+energy and information are intermixed. Cross-layer design leads
+to improved performance.
+
+An informational deﬁnition of the optimal energy-informationwiring cost function is developed herein.
+A prime motivation for this work is direct current (DC) powerline communication. DC powerline communication delivers
+energy and information over a small number of wires and has
+seen recent interest in emerging applications that operate under
+the tightest of constraints. These include in-vehicle networks
+[6], body area networks [7], [8], and data centers [9].
+For provision of energy and information within vehicles,
+it has been noted that due to “large deployment of advanced
+circuits in automobiles. . . interconnecting wires in some situations weigh 100 kilograms” and it is desirable to “ﬁnd an
+efﬁcient way for reducing the total weight” [6]. DC powerline
+communication has been described as a good solution adopted
+in DaimlerChrysler and Ford cars [6].
+In wearable systems for health monitoring, “one of the
+important technical requirements is to eliminate entanglement
+of cable wires around the body” and so “technology must
+be developed to reduce the wires to just a few” [10]. Again,
+DC powerline communication is proposed as a good solution
+implemented in clinical trials of wearable body area networks
+for elderly patients [7].
+In data centers, DC powerlines have been proposed as a
+way to improve energy efﬁciency [9]. Moreover, the complex
+interplay between the energy requirements and information
+requirements within these structures has been duly noted [11].
+For these and other related applications, it is clear that if
+only a single wire is available for provisioning energy and
+information, DC powerline communication techniques should
+be used. But what if there are two wires? Should there
+be separation such that one is used for power and one for
+information? This paper shows that no matter the number of
+wires, it is most efﬁcient to use them all to transmit energy and
+information simultaneously, using patterned energy signals.
+Before closing the introductory section, it should be noted
+that some of the results also have bearing on systems that
+use wireless transmission of energy and information [12].
+Two examples are retinal prostheses that receive power and
+data from light entering the eye [13] and implanted brainmachine interfaces that receive conﬁguration signals and energy through inductive coupling [14].
+
+I. I NTRODUCTION
+The traditional view in designing engineering systems is
+that energy and information should be handled with separate
+subsystems that have very little interaction. This modular
+architecture describes nearly any prominent engineering system. Energy and information, along with matter,1 are perhaps
+the most basic elements of nature and there is no reason
+to believe that they have a common measure. Despite this
+physical principle, is there really no engineering beneﬁt to
+energy/information cross-layer design? Building on previous
+work [3], this paper argues that there is a beneﬁt and that
+separation leads to suboptimal performance.
+To make this argument concrete, focus is placed on simultaneously supplying a system with energy and information.
+Neither processing nor other transformations of energy or
+information [4] are addressed here.
+The central argument of this paper is that the commodity
+that should be transmitted is patterned energy. A patterned
+energy signal carries both energy and information; its content
+is measured in both bits and joules.
+It is assumed that patterned energy signals are carried over
+material wires. Since wires are costly, see [5] and references
+therein, their use should be limited in the design of systems.
+This leads to the development of an energy-informationwiring cost function that operationally describes a system that
+simultaneously meets two goals:
+1) large received energy per unit time (large received
+power), and
+2) large information per unit time (large information rate),
+and satisﬁes one constraint:
+This work is based in part on a thesis submitted in partial fulﬁllment of
+the requirements for the degree of Doctor of Philosophy in the Department of
+Electrical Engineering and Computer Science at the Massachusetts Institute
+of Technology in June 2010 [1].
+Thesis work was supported in part by the National Science Foundation
+Graduate Research Fellowship Program, Grant 0325774, Grant 0836720, and
+Grant 0729069.
+1 Though, matter and energy are apparently equivalent [2].
+
+II. E NERGY-I NFORMATION T RADEOFFS
+This section brieﬂy discusses the fundamental tradeoff between the rates at which energy and reliable information can
+
+1
+
+simultaneously commutate between the information source–
+destination pair and the energy source–destination pair in
+Fig. 1. When in information mode, the energy in the signal
+is not exploited and when in energy mode, the information in
+the signal is ignored.
+If the system is in information mode for τ fraction of
+the time, it follows directly from the noisy channel coding
+theorem [19] that the best a communication scheme could
+do is to achieve information rate of τ C and received power
+(1−τ )Bmax , where Bmax is the most received energy possible
+through the channel. In the case of discrete alphabet channels,
+Bmax is the maximum element of the vector bT QY |X computed from the vector-matrix product of the column vector of
+the b(y) denoted b and the channel transition matrix QY |X .
+When the interleaving schedule cannot be coordinated between the transmitter and receiver, the receiver might randomly
+switch between the information destination and the energy
+destination. This would cause random puncturing of the code.
+Randomly puncturing a capacity-achieving random code just
+yields a shorter capacity-achieving random code. Thus, under
+these conditions, an information rate of τ C and received power
+of (1 − τ )Bp∗ is achievable, where
+Y
+
+Fig. 1. Schematic diagram of a system that transmits energy and information
+over a single noisy wire.
+
+be transmitted over a single noisy line [3]. The basic schematic
+is shown in Fig. 1.
+A. Is the Received Energy Useful?
+Before proceeding, one might wonder if a receiver can
+exploit all of the energy in a patterned energy signal by
+converting it into useful form, while still extracting the information. If this is not possible, then any results presented
+herein would not provide engineering insight.
+Perhaps counterintuitively, all of the energy and all of the
+information in a patterned energy signal can be converted into
+useful form. When performing error control decoding, one
+might think that the energy associated with the noise must
+be dissipated. Results in the thermodynamics of computing
+demonstrate, however, that energy need not be dissipated
+in the decoding process, since energy is not required to
+perform mathematical work [15, Ch. 5]. In particular, decoders
+that are reversible computational devices would not dissipate
+any energy [16], [17] and electronic circuits that are almost
+thermodynamically reversible have been built [18].
+
+B p∗ =
+Y
+
+Consider a noisy wire modeled as a memoryless channel
+with input alphabet X , output alphabet Y, and transition
+probability assignment QY |X (y|x). Further, each output letter
+y ∈ Y has an energy b(y), a nonnegative real number. The
+average received energy for an input of length n is:
+Yn
+
+D. Optimal Approaches: Concavity of the Capacity-Power
+Function
+Rather than time-sharing, the optimal approach is to use
+patterned energy signals where the energy and the information
+are not separated in time, but are intermixed. The capacitypower function C(B) describes the performance of optimal
+schemes.
+It is clear that C(B) is non-increasing, since the feasible
+set in the optimization becomes smaller as B increases.
+Furthermore, it can be shown that C(B) is a concave ∩
+function of B for 0 ≤ B ≤ Bmax [3, Thm. 2 and Thm. 3].
+
+n
+n
+n
+b(y1 )p(y1 )dy1 ,
+
+n
+n
+where p(y1 ) is the output distribution and b(y1 ) is the n-letter
+extension of b(y). The capacity-power function of a wire is
+deﬁned as:
+
+C(B) =
+
+sup
+
+I(X; Y ).
+
+X
+
+is the power under capacity-achieving input distribution p∗ .
+X
+Rather than random puncturing, one might also use controlled puncturing [20, Ch. 2]. This would involve exploiting
+the information in the transmitted signal from the beginning
+of time until the codeword is decoded to the desired error
+probability, and then switching to harvesting energy afterward.
+Analysis of such sequential decoding procedures is beyond the
+scope of this paper.
+
+B. Models and Deﬁnitions
+
+E[b(Y1n )] =
+
+dxp∗ (x)QY |X (y|x)
+X
+
+dyb(y)
+Y
+
+(1)
+
+X:E[b(Y )]≥B
+
+E. A Wire with Gaussian Noise and Rail Voltage Constraints
+
+Notice that the constraint is a minimum power constraint. A
+coding theorem [3, Thm. 1] showed that this is the supremum
+rate of reliable information transmission while meeting power
+delivery requirements.
+
+Consider the following example of optimal tradeoffs. Due
+to space restrictions and the fact that speciﬁc capacity-power
+examples are not the focus of this paper, many details that can
+be found in [1], [3] are omitted here.
+Consider the capacity-power function for a discrete-time,
+memoryless channel with bounded input alphabet X =
+[−A, A] ⊂ R, Y = R, QY |X governed by additive white Gaussian noise (AWGN) N (0, σ 2 ), and energy function b(y) = y 2 .
+In the engineering literature, this noise model and bounded
+
+C. Time-sharing Approaches
+One simple approach to transmitting energy and information simultaneously is to interleave the energy signal and
+the information-bearing signal. The transmitter and receiver
+
+2
+
+Fig. 3. Capacity-power function for a BSC with crossover probability 1/4
+and b(0) = 0, b(1) = 1. Performances of coordinated and uncoordinated
+time-sharing schemes are shown for comparison.
+Fig. 2. Capacity-power function for an AWGN channel with unit noise power,
+amplitude constraint [−5, 5], and b(y) = y 2 . The capacity-power-achieving
+input distribution, supported on a ﬁnite set of points, is also shown. Darker
+markers indicate greater probability mass.
+
+III. C APACITY-P OWER -W IRING C OST
+Having studied a single wire, consider the possibility of
+adding more wires, albeit with some cost. If there are two
+wires, the traditional approach would be to use one wire to
+deliver power and the other to deliver information, but is this
+really the best way to maximize the delivery of energy and
+information over such a parallel channel?
+Consider a large number K of independent memoryless
+channels over whom information rate and received power are
+measured collectively and are to be maximized. Besides the
+usual channel input symbols xk ∈ Xk for the kth subchannel,
+there is a dummy symbol
+that corresponds to not actively
+using the channel.2 A unit wire cost is incurred if a channel
+is ever used actively, and there is a wiring constraint W that
+must be met. Let w(xK ) indicate the number of channels that
+1
+are ever used actively.
+Let us deﬁne a capacity-power-wiring cost function as:
+
+input alphabet have been asserted as valid for the physical
+channels encountered in wearable body area networks [10]
+and within vehicles [6].
+The capacity-power achieving input distribution is supported
+on a ﬁnite set of mass points [1, Thm. 7.9] and so a ﬁnite
+numerical optimization algorithm yields the capacity-power
+function [21], [22]. Since the optimal signaling alphabet is
+discrete, practical signaling constellations may be used without
+shaping loss. A particle-based numerical optimization procedure [22] is used to determine the capacity-power function for
+A = 5 and σ = 1, shown in Fig. 2. As seen, as the power
+delivery requirement becomes more stringent, probability mass
+shifts to the edges of the input alphabet, culminating in
+antipodal signaling for maximum power delivery.
+
+C(B, W ) =
+
+F. Separation is Suboptimal
+
+sup
+K
+X1 :
+
+K
+k=1
+
+K
+I(X1 ; Y1K ).
+
+K
+E[b(Yk )]≥B, w(X1 )≤W
+
+(2)
+Proof of a coding theorem is omitted, but operational interpretation as the supremum rate of reliable information transmission while meeting power delivery requirements and wiring
+cost constraints is clear. Several properties of the optimal input
+distribution follow directly.
+The wiring cost constraint should be met with equality.
+
+The prior developments in this section lead to the ﬁrst
+architectural design principle.
+Theorem 1. In general, the performance of a time-sharing
+approach is not optimal. Unless C(B) is constant for all
+B, 0 ≤ B ≤ Bmax , a time-sharing approach is strictly
+suboptimal.
+Proof: Follows from the non-increasing and concave ∩
+nature of the capacity-power function.
+This suboptimality can be rather signiﬁcant. An example
+for a binary symmetric channel (BSC) is shown in Fig. 3,
+depicting both the coordinated and uncoordinated time-sharing
+approaches from Sec. II-C and the capacity-power function.
+
+Lemma 1. The input distribution that achieves capacitypower-wiring cost C(B, W ) saturates the wiring cost bound,
+K
+so that w(X1 ) = W .
+Proof: Suppose the contrary. Then another wire can be
+brought into active use without violating the wiring constraint.
+
+Design Principle 1. For systems that transmit energy and
+information and have one wire, it is best to use patterned
+energy signals rather than time-division.
+
+2 If a channel is never actively used in an engineering system, it should be
+removed and therefore not cause wiring cost. Mathematically, it is convenient
+to think of a channel never used as just there but incurring no wiring cost.
+
+3
+
+optimal usage in the sense of C(B, W ) is to use identically
+generated random codes that achieve C(B/ min(K, W )) on
+min(K, W ) wires; any remaining wires should be inactive.
+
+Use of this additional wire can only increase the received
+power and information rate.
+The best approach is to choose subchannel inputs that are
+independent of each other.
+
+Proof: That min(K, W ) wires should be actively used
+follows from Lem. 1. That independent codes that achieve
+capacity-power should be used follows from Lem. 2 and 3, so
+all active wires are to achieve C(Bk ) for some values of Bk ,
+k = 1, 2, . . . , min(K, W ): it remains to choose these.
+Due to the non-increasing nature of the capacity-power
+function, the power delivery constraint should be met with
+equality:
+
+Lemma 2. The input distribution that achieves capacitypower-wiring cost C(B, W ) has independent inputs
+(X1 , X2 , . . . , XK ).
+Proof: Follows since noise is independent across subchannels, cf. [19, Sec. 10.4].
+Any active subchannel should be used in a capacity-power
+achieving way.
+
+min(K,W )
+
+B=
+
+Lemma 3. The portion of the input distribution that achieves
+capacity-power-wiring cost C(B, W ) corresponding to an
+active subchannel achieves the capacity-power C(B0 ) of that
+subchannel for some B0 .
+
+Bk .
+k=1
+
+Finally, the power delivery requirement should be partitioned
+equally Bk = B/ min(K, W ) for k = 1, 2, . . . , min(K, W ).
+This is because
+
+Proof: Suppose the contrary for a given active subchannel. By deﬁnition of capacity-power, the input distribution
+can be modiﬁed either to increase the received power while
+maintaining the same information rate or to increase the
+information rate while maintaining the same received power.
+Such a modiﬁcation can only increase the collective received
+power or collective information rate.
+
+2C(Γ) ≥ C(Γ + δ) + C(Γ − δ)
+for admissible Γ and δ due to concavity of capacity-power
+functions.
+This theorem leads to the following design principle.
+Design Principle 2. For systems that transmit energy and
+information and have the possibility of several identical wires,
+as many as feasible should be used to deliver patterned energy
+signals of the same kind. Wires should not be partitioned
+between those for energy and those for information.
+
+A. Identical Wires
+With these lemmas, the optimization problem becomes
+easier. Before proceeding with general statements, an example
+is presented.
+Example 1. Consider several BSC wires with identical
+crossover probabilities ω = 1/10, and energy function b(0) =
+0, b(1) = 1. The wiring cost constraint is W = 2 and the
+power delivery requirement is B = 6/5.
+Due to Lem. 1, two wires are to be used. Due to Lem. 2
+and 3, independent capacity-power achieving random coding
+schemes, described by π1 and π2 , can be used on the wires.
+The total information rate delivered is
+
+B. Different Wires
+
+h2 (π1 ) + h2 (π2 ) − h2 (ω + π1 − 2π1 ω) − h2 (ω + π2 − 2π2 ω),
+
+Theorem 3. For several wires with maximum power delivery
+(k)
+min(K,W ) (k)
+constants Bmax , assuming B ≤
+Bmax , optimal
+k=1
+usage in the sense of C(B, W ) is to use random codes that
+achieve C(Bk ) on min(K, W ) wires; any remaining wires
+should be inactive. Moreover B = active ks Bk .
+
+Suppose there are different kinds of wires—with different
+noise properties—that may be brought into use. What system
+design principles arise in this setting?
+Let C1 (·), C2 (·), . . . , CK (·) denote the capacity-power
+functions of the available wires sorted into order such that
+(K)
+(2)
+(1)
+Bmax ≥ Bmax ≥ · · · ≥ Bmax . The following is clear from
+previous arguments.
+
+where h2 (·) is the binary entropy function. The total power
+delivered is
+(π1 + π2 )(1 − 2ω) + 2ω.
+The total power delivery constraint requires that π1 + π2 ≥
+(B − 2ω)/(1 − 2ω), which in this case is π1 + π2 ≥ 5/4. To
+maximize the information rate, π1 and π2 should be chosen
+to be as small as possible, due to the concavity of the binary
+entropy function. Hence the best choice is to have π1 = 5/8
+and π2 = 5/8.
+The wires should be used to deliver the identical kind of
+patterned energy.
+
+The allocation of how the power delivery requirement is to
+be met is governed by the following optimization problem.
+K
+
+max
+
+B1 ,B2 ,...,BK
+
+s.t.
+
+Ck (Bk )
+
+(3)
+
+k=1
+(k)
+Bk ∈ [0, Bmax ] ∪
+K
+
+K
+
+Bk = B and
+
+The basic idea of the example goes through for any set of
+identical wires.
+
+k=1
+
+1⊕ (Bk ) = W
+k=1
+
+where the choice
+indicates inactivity, contributing zero
+information rate and zero power, and 1⊕ (·) is an indicator
+function of activity.
+
+Theorem 2. For several identical wires with maximum power
+delivery constant Bmax , assuming B ≤ min(K, W )Bmax ,
+
+4
+
+Lemma 4. Suppose there are two wires with capacity-power
+(1)
+(2)
+functions C1 (·) and C2 (·). If Bmax ≥ Bmax and C1 (B) >
+(2)
+C2 (B) for all 0 ≤ B ≤ Bmax , then the ﬁrst wire is active
+whenever the second wire is active.
+
+[3] L. R. Varshney, “Transporting information and energy simultaneously,”
+in Proc. 2008 IEEE Int. Symp. Inf. Theory, Jul. 2008, pp. 1612–1616.
+[4] O. L. de Weck, D. Roos, and C. L. Magee, Engineering Systems:
+Meeting Human Need in a Complex Technological World. Cambridge,
+MA: MIT Press, 2011.
+[5] L. R. Varshney, “Distributed inference networks with costly wires,” in
+Proc. Am. Contr. Conf. (ACC 2010), Jun. 2010, pp. 1053–1058.
+[6] S. A. Mirtaheri and S. Salimpoor, “HEV (hybrid electric vehicles) and
+the wiring reduction methods,” in Proc. IEEE Veh. Power Propuls. Conf.
+(VPPC’06), Sep. 2006.
+[7] E. Wade and H. Asada, “Conductive-fabric garment for a cable-free
+body area network,” IEEE Pervasive Comput., vol. 6, no. 1, pp. 52–58,
+Jan.-Mar. 2007.
+[8] I. Berganza Valmala, G. Bumiller, H. A. Latchman, M. V. Ribeiro,
+A. Sendin Escalona, E. R. Wade, and L. W. Yonge, “Systems and implementations,” in Power Line Communications: Theory and Applications
+for Narrowband and Broadband Communications over Power Lines,
+H. C. Ferreira, L. Lampe, J. Newbury, and T. G. Swart, Eds. Chichester,
+UK: John Wiley & Sons, 2010, pp. 413–495.
+[9] M. Ton, B. Fortenbery, and W. Tschudi, “DC power for improved data
+center efﬁciency,” Lawrence Berkeley National Laboratory, Tech. Rep.,
+Mar. 2008.
+[10] E. Wade and H. H. Asada, “Wearable DC powerline communication
+network using conductive fabrics,” in Proc. 2004 IEEE Int. Conf. Robot.
+Autom. (ICRA ’04), Apr. 2004, pp. 4085–4090.
+[11] P. Bodik, M. P. Armbrust, K. Canini, A. Fox, M. Jordan, and D. A. Patterson, “A case for adaptive datacenters to conserve energy and improve
+reliability,” EECS Department, University of California, Berkeley, Tech.
+Rep. UCB/EECS-2008-127, Sep. 2008.
+[12] P. Grover and A. Sahai, “Shannon meets Tesla: Wireless information
+and power transfer,” in Proc. 2010 IEEE Int. Symp. Inf. Theory, Jun.
+2010, pp. 2363–2367.
+[13] R. Dinyari, J. D. Loudin, P. Huie, D. Palanker, and P. Peumans, “A
+curvable silicon retinal implant,” in Proc. IEEE Int. Electron Devices
+Meeting (IEDM 2009), Dec. 2009, pp. 26.2.1–26.2.4.
+[14] R. R. Harrison, P. T. Watkins, R. J. Kier, R. O. Lovejoy, D. J. Black,
+B. Greger, and F. Solzbacher, “A low-power integrated circuit for a
+wireless 100-electrode neural recording system,” IEEE J. Solid-State
+Circuits, vol. 42, no. 1, pp. 123–133, Jan. 2007.
+[15] R. P. Feynman, Feynman Lectures on Computation. Reading, MA:
+Addison-Wesley Publishing Company, 1996.
+[16] R. Landauer, “Computation, measurement, communication and energy
+dissipation,” in Selected Topics in Signal Processing, S. Haykin, Ed.
+Englewood Cliffs, NJ: Prentice Hall, 1989, pp. 18–47.
+[17] C. H. Bennett, “Notes on Landauer’s principle, reversible computation,
+and Maxwell’s Demon,” Stud. Hist. Philos. Mod. Phys., vol. 34, no. 3,
+pp. 501–510, Sep. 2003.
+[18] M. P. Frank, “Reversibility for efﬁcient computing,” Ph.D. thesis,
+Massachusetts Institute of Technology, Cambridge, MA, Jun. 1999.
+[19] T. M. Cover and J. A. Thomas, Elements of Information Theory. New
+York: John Wiley & Sons, 1991.
+[20] M. Bhardwaj, “Communications in the observation limited regime,”
+Ph.D. thesis, Massachusetts Institute of Technology, Cambridge, MA,
+Jun. 2009.
+[21] J. G. Smith, “The information capacity of amplitude- and varianceconstrained scalar Gaussian channels,” Inf. Control, vol. 18, no. 3, pp.
+203–219, Apr. 1971.
+[22] J. Dauwels, “Numerical computation of the capacity of continuous
+memoryless channels,” in Proc. 26th Symp. Inf. Theory Benelux, May
+2005, pp. 221–228.
+[23] R. Ho, K. W. Mai, and M. A. Horowitz, “The future of wires,” Proc.
+IEEE, vol. 89, no. 4, pp. 490–504, Apr. 2001.
+[24] V. Kawadia and P. R. Kumar, “A cautionary perspective on cross-layer
+design,” IEEE Wireless Commun. Mag., vol. 12, no. 1, pp. 3–11, Feb.
+2005.
+[25] S. Graham, G. Baliga, and P. R. Kumar, “Abstractions, architecture,
+mechanisms, and a middleware for networked control,” IEEE Trans.
+Autom. Control, vol. 54, no. 7, pp. 1490–1503, Jul. 2009.
+[26] C. M. Jansky, Jr., “Collegiate training for the radio engineering ﬁeld,”
+Proc. IRE, vol. 14, no. 4, pp. 431–439, Aug. 1926.
+[27] T. Zhu, Y. Gu, T. He, and Z.-L. Zhang, “eShare: A capacitor-driven
+energy storage and sharing network for long-term operation,” in Proc.
+8th ACM Conf. Embedded Netw. Sensor Syst. (SenSys’10), Nov. 2010,
+pp. 239–252.
+
+Proof: Suppose the contrary that the second wire is active
+when the ﬁrst wire is not. Then by the ordering property,
+the wires can be switched to achieve either greater collective
+power or greater collective information rate.
+There is no closed form solution to (3) for general sets of
+wires, but it can be solved computationally. In certain cases, it
+makes sense to relax the combinatorial sparse wire usage constraint using convex relaxation. In average power-constrained
+AWGN settings, the solution is similar to modiﬁcations of
+waterﬁlling [12]. Nevertheless, the same design principle as
+in the identical wire case holds.
+Design Principle 3. For systems that transmit energy and
+information and have the possibility of several wires, as many
+as feasible should be used to deliver patterned energy signals.
+We have assumed that although different wires may have
+different noise properties, their wiring costs are equal. In fact,
+an inexpensive wire may be noisier [23]. Hence it is of interest
+to consider a more general view of wiring cost in future work.
+IV. C ONCLUSION
+Architectural principles are of utmost importance when engineering optimal systems. Principles of modular architecture
+such as the separation of estimation and control; the separation
+of source coding and channel coding; and the Von Neumann
+architecture have come to the fore for purely informational systems [24], [25]. These principles, however, implicitly assume
+a separation between energy and information. In fact, power
+engineering and communication engineering have developed
+essentially independently as academic ﬁelds [26]. As shown
+in this paper, however, this separation leads to a loss of
+performance and so cross-layer design should be used.
+Energy and information should ﬂow together as patterned
+energy signals, measured in both joules and bits.
+These architectural principles have direct bearing on body
+area networks, data centers, and in-vehicle communication
+systems that use DC powerline communication, but they hold
+much more broadly. In future work, it would be interesting to
+consider more complicated network topologies where information and energy are to be transported together over physical
+wires. This whether considering extant applications in body
+area networks [27] or in general engineering systems [4].
+ACKNOWLEDGMENT
+I thank J. Dauwels for help with Fig. 2, as well as S. K.
+Mitter and V. K. Goyal for wisdom that informed this paper.
+R EFERENCES
+[1] L. R. Varshney, “Unreliable and resource-constrained decoding,”
+Ph.D. thesis, Massachusetts Institute of Technology, Cambridge, MA,
+Jun. 2010.
+[2] A. Einstein, “Ist die tr¨ gheit eines k¨ rpers von seinem energieinhalt
+a
+o
+abh¨ ngig?” Annalen Physik, vol. 323, no. 13, pp. 639–641, 1905.
+a
+
+5
+
+

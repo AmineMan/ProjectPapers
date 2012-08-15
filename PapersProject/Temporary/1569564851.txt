@@ -1,0 +1,894 @@
+Title:          ISIT12_ThaShiQueWin.dvi
+Creator:        dvips(k) 5.99 Copyright 2010 Radical Eye Software
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Thu May 17 11:46:52 2012
+ModDate:        Tue Jun 19 12:55:28 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      444139 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569564851
+
+Optimal Active Sensing in Heterogeneous
+Cognitive Radio Networks
+Thang Van Nguyen and Hyundong Shin
+
+Tony Q.S. Quek
+
+Moe Z. Win
+
+Dept. of Electronics and Radio Engineering Institute for Infocomm Research, A∗ STAR
+LIDS, MIT
+Kyung Hee University, Korea
+#21-01 Connexis, Singapore
+Cambridge, MA 02139, USA
+Email: {nguyenthang, hshin}@khu.ac.kr
+Email: qsquek@i2r.a-star.edu.sg
+Email: moewin@mit.edu
+
+user. This optimal energy balancing between exploration and
+exploitation can be cast as a fundamental decision-making
+problem on how many channels should be chosen to sense and
+probe with dedicated energy—namely, how much pure exploration is required for the active sensing OSA bandit problem.
+Speciﬁcally, taking into account independent and identically
+distributed (i.i.d.) channel fading over both channels and time
+blocks, we put forth a proactive strategy for determining the
+optimal sensing cardinality (the number of channels chosen
+to sense) and probing cardinality (the number of channels
+chosen to probe) that maximize the average throughput of the
+secondary user with limited available frame energy.
+
+Abstract—In this paper, we consider a wideband cognitive
+radio network with limited available frame energy and treat a
+fundamental energy allocation problem: how available energy
+should be optimally allocated for sensing, probing, and data
+transmission to maximize the achievable average opportunistic
+spectrum access (OSA) throughput. By casting this problem
+into the multi-armed bandit framework under probably approximately correct learning, we put forth a proactive strategy for
+determining the optimal sensing cardinality and probing cardinality that maximize the average throughput of the secondary user.
+Numerical results show that our framework gives the the optimal
+diversity–energy tradeoff for the average OSA throughput.
+
+I. I NTRODUCTION
+Since the allocated frequency bands to some licensed spectrum holders experience very low utilization, the opening of
+under-utilized portions of the licensed spectrum for secondary
+reuse is considered by employing the opportunistic spectrum
+access and cognitive radio technology [1]. However, the main
+challenge in dynamic spectrum access is that secondary users
+are required to accurately detect and rapidly access the idle
+spectrum, without causing harmful interference to primary
+radio transmissions [2].
+The secondary users can have more than one frequency band
+(channel) to sense and to decide on which channel is suitable
+for data transmission [3]. However, when a large number
+of channels is open for cognitive users to opportunistically
+access, it is energy-inefﬁcient or even infeasible due to hardware limitations to simultaneously or continuously sense all
+available channels. In contrast, if the secondary user chooses
+one or a subset of possible channels to sense and access
+at a time, it is crucial for efﬁcient opportunistic spectrum
+access (OSA) to design a channel selection strategy for the
+spectrum sensing, leading to ﬁnd an idle channel as quickly as
+possible. Therefore, in a dilemmatic situation such as energylimited applications with a large number of channels, it is
+of great importance for the cognitive user to resourcefully
+utilize available energy for exploration and exploitation. In
+fact, such an exploration–exploitation tradeoff is the essence
+of the bandit problems [4].
+In this paper, applying the probably approximation correct
+(PAC) multi-armed bandit problem (MABP) formulation for
+the active sensing OSA problem, we treat an optimal energy allocation for sensing, probing, and data transmission to
+maximize the achievable average throughput of the secondary
+
+II. S YSTEM M ODEL
+We consider an energy-limited wideband cognitive radio
+network, where Nch frequency bands (channels) are modeled
+by doubly block fading, i.e, block fading in time and in
+frequency.
+A. Channel Model and Spectrum Opportunity
+Each channel has the same bandwidth and experiences
+i.i.d. ﬂat Rayleigh fading. The fading coefﬁcient of each
+channel remains constant within a block of coherence time
+Tc and changes independently from one block to the other.
+Therefore, the Rayleigh-fading coefﬁcients remain constant for
+each block of Tc time interval and mutually independent across
+different blocks and channels. Using a hierarchical access
+structure with spectrum overlay, each channel is licensed to
+the primary users while the secondary users have opportunistic
+access to it. We model the primary spectrum occupancy in
+each channel according to an independent Bernoulli process
+with two states, namely, “0 (idle)” and “1 (busy)” states. The
+spectrum occupancy state is kept ﬁxed in each frame of Tf
+time interval (or L coherence blocks, i.e., Tf = LTc ) and
+changes independently in the next frame, as in [5]–[7]. Let Õi
+be the probability that the ith channel is in the busy state for
+each frame, which is known a priori to the secondary user.
+Then, the spectrum occupancy state of the ith channel obeys
+the Bernoulli process ÖÒ (Õi ) over frames.1 We rearrange the
+statistics Õi ’s in increasing order as Õ[1] ≤ Õ[2] ≤ . . . ≤ Õ[Nsub ] .
+1 We
+
+1
+
+use
+
+ÖÒ (p) to denote a Bernoulli distribution with mean p.
+
+B. Spectrum Access Mechanism and Signal Model
+
+III. P ROACTIVE C ARDINALITY D ESIGNS
+A. Deﬁnitions
+
+In each frame, the secondary user chooses a set of best
+channels in terms of the statistics Õi ’s to sense, which is referred to as the spectrum sensing set S ⊆ C = {1, 2, . . . , Nch }
+and its cardinality |S| as the sensing cardinality. After sensing
+these channels with energy consumption Es , the secondary user
+determines a set of channels sensed as idle in S, denoted by
+Sidle ⊆ S. For active sensing, the secondary user chooses a set
+of best channels (again in terms of the statistics Õi ’s) in Sidle ,
+which is referred to as the spectrum probing set P ⊆ Sidle and
+its cardinality |P| as the probing cardinality. Then, for every
+coherence block of frame, consuming the probing energy Ep ,
+the secondary user probes channels in P to access the best
+channel for data transmission. Note that for a singleton probing
+set (|P| = 1), the secondary user has access to the channel in
+|P| without probing it (Ep = 0).
+To prolong network lifetime without energy depletion and
+limit network interference caused by the secondary users,
+the energy Etot per frame is dedicated for sensing, probing
+and data transmission. Under this energy constraint Etot , the
+secondary user attempts to optimally allocate a part of the
+energy for sensing and probing while using the remaining
+energy for data transmission. If the ith channel is chosen to
+access for data transmission during the sensing and probing
+phases, the secondary user transmits data with power P over
+this chosen channel in the corresponding time block and the
+received signal over the ith channel can be expressed as
+√
+ËÆÊ1 Ài su + Ï , if the channel is idle,
+√
+√
+i =
+ËÆÊ1 Ài su + ËÆÊ2 i pu + Ï , otherwise,
+(1)
+
+Let Ôf and Ôm be the false alarm probability and miss detection probability of the secondary user for detecting the primary
+spectrum occupancy of each channel. Then, the probability
+that the ith channel is sensed to be idle is given by
+
+Ôi (idle) = (1 − Ôf ) (1 − Õi ) + Ôm Õi .
+
+(2)
+
+If the ith channel is chosen to access, the secondary user
+achieves a data rate in nats/s/Hz as
+i
+
+= (1 − ψi ) ln 1 + ËÆÊ1 |Ài |
++ ψi ln 1 +
+
+2
+
+ËÆÊ1 |Ài |2
+2
+1 + ËÆÊ2 | i |
+
+,
+
+(3)
+
+where ψi = Ôm Õi /Ôi (idle) denotes the probability that the ith
+channel is occupied by the primary user, conditioned on the
+event that the secondary user senses this channel to be idle.
+2
+1, we have
+Note that for ËÆÊ2 | i |
+i
+
+≈ ln 1 + ËÆÊ1 |Ài |
+
+2
+
+,
+
+(4)
+
+which is equal to the achievable rate for ideal perfect sensing
+(Ôf = Ôm = 0).
+Deﬁnition 1 (Sensing Energy Figure): Let E0 be the energy
+cost per channel for sensing, called the unit sensing energy.
+Then, the sensing energy ﬁgure (SEF), denoted by ζ ∈ [0, 1],
+is deﬁned as the ratio between the unit sensing energy and
+frame energy, that is, ζ = E0 /Etot .
+Deﬁnition 2 (Transmission Energy Figure): The transmission energy ﬁgure (TEF), denoted by η ∈ [0, 1], is deﬁned
+as the ratio between total data transmission energy and frame
+energy, that is, η = 1 − (Es + LEp ) /Etot .
+Deﬁnition 3 (Average Regularity Throughput): Let R be
+the achievable average rate (nats/s/Hz) of the secondary user
+for data transmission with transmit power P in each frame.
+Then, the average regularity throughput as a function of the
+TEF η is deﬁned as Êrt (η) = ηR nats/s/Hz.
+
+where su is the transmitted signal from the secondary
+2
+user with E | su |
+= 1; pu is the primary signal with
+2
+= 1; Ài ∼ CN (0, 1) and i ∼ CN (0, 1)
+E | pu |
+are Rayleigh-fading channel coefﬁcients from the secondary
+and primary users to the secondary receiver, respectively;
+and Ï ∼ CN (0, 1) is the complex additive white Gaussian
+noise. The quantities ËÆÊ1 and ËÆÊ2 denote the average
+received signal-to-noise ratios at the secondary receiver for
+the secondary and primary signals, respectively. Note that
+the second case in (1) corresponds to the miss detection of
+the primary signal, which is likely to happen at a low level
+of the primary signal at the secondary transmitter in typical
+spectrum sensing. Due to limited available frame energy, we
+ﬁx the secondary transmission power in both probing and
+data transmission phases such that the interference power at
+the primary receiver is controlled to be small for this miss
+detection case. We further consider the following channel state
+information (CSI) model at the secondary transceiver pair: i)
+the transmitter does not know all the channel coefﬁcients Ài ,
+i ∈ C, at all; ii) before identifying an access channel, the
+receiver knows only the phases of channel coefﬁcients Ài ,
+i ∈ P, at least for active sensing; and iii) with channel training
+after access decision making, the receiver has perfect CSI on
+the channel chosen to access.
+
+B. ( , δ, α , β , P)-PAC MEA for Channel Probing
+For channel probing, the secondary user attempts to test
+channels in the probing set P using the ( , δ, α, β, A)-PAC
+MEA [8]. In the probing phase, the secondary user sends
+the sequence of unit-energy testing signals Xtest over each
+channel in P for channel probing, where Xtest ∈ {1, −1}
+is a binary phase-shift keying signal known to the receiver.
+Then, in the presence of phase CSI, the receiver duplicates
+Xtest using the maximum-likelihood detection, i.e., ˆi =
+arg minX∈{1,−1} |Îi − X Ài |2 for the ith channel, i ∈ P,
+and declares error if ˆi = Xtest , where Îi is the received
+signal for the test Xtest over the ith channel and Ài is the
+channel tracking coefﬁcient, which has the unit amplitude and
+the same phase as the channel Ài . By counting errors in each
+channel, the receiver generates a set of channels for the next
+stage in the ( , δ, α , β , P)-PAC MEA and feedbacks it to the
+˘
+secondary. By letting ˘i , Xtest ∈ {0, 1} be the demodulated
+
+2
+
+versions of ˆi and Xtest respectively, conditioned on |Ài |
+and | i |, we can model these test communications over the
+ith channel as a binary symmetric channel with crossover
+√
+probability Ôtest,i = Q 2 |Ài | , if the ith channel is in the
+idle state, and otherwise
+2|Ài |2
+1 + ËÆÊ2 |
+
+Ôtest,i = Q
+
+and
+|P(|Sidle |)|
+|P(|Sidle |)|
+
+i|
+
+,
+
+2
+
+(6)
+
+|P (|Sidle |)|j
+
+where
+
+=
+
+=1
+
+2α
+
+(7)
+
+.
+
+|P (|Sidle |)| ∈ {1, 2, . . . , tmax (|S|, |Sidle |)} ,
+
+tmax (|S|, |Sidle |) = min
+
+⎧
+⎪
+⎨
+⎪
+⎩
+
+|Sidle |,
+
+arg max
+n∈{1,2,...,|Sidle |}
+Σ(n)≤Etot (1−ζ|S|)
+
+⎫
+⎪
+⎬
+Σ (n) .
+⎪
+⎭
+
+0.
+1.
+
+(8)
+2.
+
+Then, the achievable regularity throughput (nats/s/Hz) for
+the secondary user subject to the energy constraint Etot for
+sensing, probing, and data transmission is bounded by
+
+Êrt (η) ≤ E|Sidle | Ξ (ζ, |S|, |P (|Sidle |)|)
+
+3.
+
+P {|Sidle | = n} Ξ (ζ, |S|, |P (n)|)
+n=1
+
+|P(n)|
+
+with
+
+Ôi (idle)
+Sn i∈Sn
+
+Ξ (ζ, |S|, |P (|Sidle |)|)
+
+1 − ζ|S| −
+
+Ôj (busy)
+j∈S\Sn
+
+LΣ (|P (|Sidle |)|)
+Etot
+
+,
+
+(13)
+
+Initialize tmax (|S|, |Sidle |) using (8).
+Set the subsets of feasible probing cardinalities Lj ,
+j = 0, 1, . . . , log2 tmax (|S|, |Sidle |) .
+Find the locally optimal cardinality |P (|Sidle |)|j for
+each subset Lj using Theorem 2.
+Find the optimal cardinality as |P (|Sidle |)| =
+arg max Ξ ζ, |S|, |P (|Sidle |)|j
+|P(|Sidle |)|j .
+
+Using the optimal probing cardinality |P (|Sidle |)| obtained
+by Algorithm 1 for given |Sidle |, we can determine the sensing
+cardinality that maximizes the upper bound (9) on the average
+regularity throughput under the energy constraint Etot for
+sensing, probing, and data transmission as follows:
+
+,
+(9)
+
+P {|Sidle | = n} =
+
+|P(|Sidle |)|
+
+|P(|Sidle |)|j
+
+|P(|Sidle |)|
+
+|S|
+
+=
+
+Ξ (ζ, |S|, |P (|Sidle |)|)
+
+which can be readily determined since Lj is the ﬁnite set of
+integers.
+Proof: See Appendix B.
+Using Theorem 2, the optimal probing cardinality for given
+|Sidle | can be determined by the following procedure.
+Algorithm 1 (Optimal Probing Cardinality): The optimal
+probing cardinality for given |Sidle | can be determined by the
+following procedure:
+
+Theorem 1: Let P (|Sidle |) ⊆ Sidle be the feasible probing
+set for given |Sidle | such that
+where
+
+arg max
+|P(|Sidle |)|∈Lj
+
+, ,δ,α ,β
+2 −1
+
+(12)
+
+,
+
+be the jth subset of feasible probing cardinalities. Then,
+Ξ (ζ, |S|, |P (|Sidle |)|) |P(|Sidle |)| is a concave function in
+|P (|Sidle |)| ∈ Lj and hence, we have the locally optimal cardinality that maximizes Ξ (ζ, |S|, |P (|Sidle |)|) |P(|Sidle |)| in
+the jth subset such that
+
+Since the secondary user tests each channel in P using the
+unit-energy test Xtest and the ( , δ, α , β , P)-PAC MEA, we
+can bound the probing energy Ep as
+
+Θ
+
+i
+ËÆÊ1
+
+Lj = {n ∈ N : log2 n = j, n ≤ tmax (|S|, |Sidle |)} ,
+j = 0, 1, . . . , log2 tmax (|S|, |Sidle |)
+
+> 1 − δ. (5)
+
+Ep > Σ (|P|) |P|,
+
+|P (|Sidle |)|
+i
+
+where Sn ⊆ S with |Sn | = n, Ôi (busy) = 1 − Ôi (idle), and
+En (z) is the nth-order exponential integral function.
+Proof: See Appendix A.
+Theorem 2: Let
+
+C. Sensing and Probing Cardinalities
+
+Σ (|P|)
+
+i=1
+i
+
+= P Ôtest,Á < Ôtest,i +
+
+log2 |P|
+
+i−1
+
+(−1)
+
+× e ËÆÊ1 E1
+
+˘
+for every test, namely, ˘i = Xtest ⊕ ÖÒ Ôtest,i , where
+⊕ denotes Boolean addition and Q (z) is the Gaussian tail
+probability.
+In this ( , δ, α , β , P)-PAC MEA for channel probing, we
+set the (Bernoulli) reward ©i for the ith channel as ©i = 1 if
+˘i = Xtest , and ©i = 0 otherwise. Then, by the algorithm,
+˘
+we choose the -optimal channel such that
+¯
+¯
+P ΨÁ > Ψi −
+
+=
+
+|S| = arg maxE|Sidle | Ξ ζ, |S|, |P (|Sidle |)|
+|S|∈C
+
+(10)
+,
+
+|P(|Sidle |)|
+
+,
+
+(14)
+
+which can be again readily determined since C is the ﬁnite set
+of integers.
+
+(11)
+
+3
+
+4
+
+For passive sensing without any probing mechanism to
+assess the quality of channels in Sidle , the secondary user
+chooses a channel with the smallest Õi in Sidle to access for
+data transmission. This policy can be viewed as a special case
+of active sensing with a singleton probing set (|P| = 1) at
+the TEF η = 1 − ζ|S|. Therefore, using Theorem 1 with
+|P (|Sidle |)| = 1, we get the achievable regularity throughput
+for passive sensing at η = 1 − ζ|S| as follows:
+|S|
+
+k−1
+
+k=1
+
+i=1
+
+Êrt (η) = η
+
+Ô[i] (busy) Ô[k] (idle)
+
+[k]
+
+,
+
+(15)
+
+where i is given by [9, eq. (6)] and the inequality in (9)
+is not necessary since Ep = Σ (1) = 0. Note that (15) agrees
+with [9, Lemma 1] and the optimal sensing cardinality in (14)
+reduces to [9, Theorem 1].
+
+Average regularity throughput (nats/s/Hz)
+
+D. Singleton Probing Set (|P| = 1): Passive Sensing
+
+3
+
+maximal active sensing
+
+optimal passive sensing
+
+2
+0.0
+
+0.2
+
+0.4
+
+0.6
+
+0.8
+
+1.0
+
+Spectrum occupancy heterogeneity θ
+
+IV. S IMULATION AND N UMERICAL R ESULTS
+
+Fig. 1.
+Average regularity throughput Êrt (η) (nats/s/Hz) as a function
+θ
+of spectrum occupancy heterogeneity θ when Õi = 0.5 + 100 (i − 50)
+for ËÆÊ2 = −10 dB and ζ = 10−2 . For maximal active sensing,
+we ﬁx the sensing and probing cardinalities to |S| = 20 and |P| =
+min {|Sidle |, |P (|S| )| }. The lines and marks represent the analytical and
+simulation results, respectively.
+5
+Average regularity throughput (nats/s/Hz)
+
+In this section, we provide some numerical results to
+demonstrate the effect of optimal energy allocation in the
+active sensing OSA. In all examples, we set Nch = 100,
+ËÆÊ1 = 15 dB, ËÆÊ2 = −10 dB , E0 = 50000 energy units,
+L = 10, Ôm = 0.1, and Ôf = 0.1. In the ( , δ, α , β , P)-PAC
+MEA for channel probing, we set = 0.1 and δ = 0.1. For
+this correctness policy, we set the values of α and β to the
+asymptotically optimal pair (α = 0.8038, β = 0.7739).
+Fig. 1 shows the average regularity throughput Êrt (η)
+as a function of spectrum occupancy heterogeneity θ when
+θ
+Õi = 0.5 + 100 (i − 50) for ËÆÊ2 = −10 dB and ζ = 10−2 .
+In this example, we can see that Êrt (η) increases (but not
+signiﬁcantly) as the primary spectrum occupancy becomes
+more heterogeneous among channels (i.e., θ increases). This
+is due to that fact that the secondary user chooses a set
+of channels with low occupancy history Õi for sensing and
+probing. At low ËÆÊ2 , we see again that the upper bound (9)
+is still tight and agrees almost exactly with the simulation
+result for the heterogeneous case. Fig. 2 shows Êrt (η) as
+a function of ζ for ËÆÊ2 = −10 dB and heterogeneous
+occupancy Õi = 0.75 + 0.005 (i − 50). The optimal active
+sensing keeps the throughput advantage for the heterogeneous
+occupancy Õi ’s by optimally balancing the energy for sensing,
+probing, and data transmission.
+
+optimal active sensing
+
+optimal active sensing
+
+4
+
+maximal active sensing
+
+3
+optimal passive sensing
+
+2 -5
+10
+
+10
+
+-4
+
+10
+
+-3
+
+10
+
+-2
+
+Sensing energy figure ζ
+
+Fig. 2. Average regularity throughput Êrt (η) (nats/s/Hz) as a function of the
+SEF ζ for ËÆÊ2 = −10 dB and heterogeneous spectrum occupancy Õi =
+0.75 + 0.005 (i − 50). For maximal active sensing, we ﬁx the sensing and
+probing cardinalities to |S| = 20 and |P| = min {|Sidle |, |P (|S| )| }. The
+lines and marks represent the analytical and simulation results, respectively.
+
+V. C ONCLUSION
+In this paper, we investigated the optimal energy allocation
+for energy-constrained active cognitive radios. Using the PAC
+MABP formulation, we presented the OSA policy with optimal
+active sensing, which enables the cognitive user to optimally
+balance available frame energy between exploration (sensing
+and probing) and exploitation (data transmission). Specifically, reﬁning the ( , δ)-PAC action elimination algorithm
+for channel probing, we put forth the proactive strategy for
+determining the optimal sensing and probing cardinalities that
+maximize the throughput of the secondary user with limited
+available frame energy. This optimal active sensing achieves
+
+a considerable throughput gain over (even optimal) passive
+sensing, by cultivating the diversity yet preserving residual
+energy for data transmission.
+ACKNOWLEGEMENT
+
+This work was supported by the Korea Research Foundation(KRF) grant funded by the Korea government (MEST)
+
+4
+
+t
+
+ξ
+Let h (t, ξ)
+0 ln (1 + z) dF ˘ (z) , ξ > 0. Then, it is
+sufﬁcient to show that h (t, ξ) is a monotonically increasing
+and concave function in ξ for all t > 0. Using integration by
+parts, we get
+
+(No. 2011-0018071 and No. 2011-0001274).
+This research was supported, in part, by the National
+Science Foundation under Grant ECCS-0901034, the Ofﬁce
+of Naval Research under Grant N00014-11-1-0397, and MIT
+Institute for Soldier Nanotechnologies.
+
+dz.
+(22)
+1+z
+By deﬁnition, it is obvious that h (t, ξ) is a monotonically
+increasing function in ξ. Hence, we have ∂h (t, ξ) /∂ξ ≥ 0 and
+only need to show that ∂ 2 h (t, ξ) /∂ξ 2 ≤ 0. For 0 < ξ1 ≤ ξ2 ,
+we have
+∂h (t, ξ)
+= ln (1 + t) F ξ2 (t) ln F ˘ (t)
+˘
+∂ξ
+ξ=ξ2
+
+A PPENDIX
+A. Proof of Theorem 1
+It follows from (6) that the TER η is upper-bounded by
+Ξ (ζ, |S|, |P (|Sidle |)|) for given |Sidle |.Therefore, letting i =
+|Ài |2 , we have
+
+Êrt (η) ≤ E|Sidle | {Ξ (ζ, |S|, |P (|Sidle |)|) E { Á }}
+≤ E|Sidle | {Ξ (ζ, |S|, |P (|Sidle |)|) E { i }}
+
+(16)
+(17)
+
+max
+
+i∈P(|Sidle |)
+
+0
+
+max
+
+(z) = 1 −
+
+ln (1 + ËÆÊ1
+
+i−1
+
+(−1)
+i=1
+
+i)
+
+, (18)
+
+=E
+
+= F ξ2 −ξ1 (t)
+˘
+(b)
+
+≤
+
+=
+0
+
+|P (|Sidle |)| −iz
+. (19)
+e
+i
+
+{ln (1 + ËÆÊ1 max )}
+ËÆÊ1
+[1 − F max (z)] dz.
+1 + ËÆÊ1 z
+
+Since Σ(|P(|Sidle |)|) is constant for every |P (|Sidle |)| ∈ Lj ,
+|P(|Sidle |)|
+it is clear that Ξ (ζ, |S|, |P (|Sidle |)|) is a linearly decreasing
+and nonnegative function in |P (|Sidle |)| ∈ Lj . Therefore,
+it sufﬁces to show that
+is a monotonically
+|P(|Sidle |)|
+increasing and concave function in |P (|Sidle |)| ∈ Lj in order
+to prove that the function Ξ (ζ, |S|, |P (|Sidle |)|) |P(|Sidle |)|
+is concave in |P (|Sidle |)| ∈ Lj . Let F ˘ be the common
+distribution of ËÆÊ1 i , where i is the random variable
+deﬁned in the proof of Theorem 1. Then, we have
+∞
+0
+
+|P(|Sidle |)|
+
+ln (1 + z) dF ˘
+t
+
+= lim
+
+t→∞
+
+0
+
+(z)
+
+|P(|Sidle |)|
+
+ln (1 + z) dF ˘
+
+(z) ,
+
+∂h (t, ξ)
+∂ξ
+
+0
+
+∂h (t, ξ)
+∂ξ
+ξ=ξ1
+
+,
+
+F ξ1 (z) ln F ˘ (z)
+˘
+1+z
+
+dz
+
+ξ=ξ1
+
+(23)
+
+[1] S. Haykin, “Cognitive radio: Brain-empowered wireless communications,” IEEE J. Sel. Areas Commun., vol. 23, no. 2, pp. 201–220, Feb.
+2005.
+[2] A. Ghasemi and E. S. Sousa, “Spectrum sensing in cognitive radio networks: Requirements, challenges and design trade-offs,” IEEE Commun.
+Mag., vol. 46, no. 4, pp. 32–39, Apr. 2008.
+[3] A. E. Leu, B. L. Mark, and M. A. McHenry, “A framework for cognitive
+WiMAX with frequency agility,” Proc. IEEE, vol. 97, no. 4, pp. 755–
+773, Apr. 2009.
+[4] J. C. Gittins, Multi-Armed Bandit Allocation Indices. New York: Wiley,
+1989.
+[5] H. Jiang, L. Lai, R. Fan, and H. V. Poor, “Optimal selection of channel
+sensing order in cognitive radio,” IEEE Trans. Wireless Commun., vol. 8,
+no. 1, pp. 297–307, Jan. 2009.
+[6] R. Fan and H. Jiang, “Channel sensing-order setting in cognitive radio
+networks: A two-user case,” IEEE Trans. Veh. Technol., vol. 58, no. 9,
+pp. 4997–5008, Nov. 2009.
+[7] L. Lai, H. El Gamal, H. Jiang, and H. V. Poor, “Cognitive medium
+access: Exploration, exploitation, and competition,” IEEE Trans. Mobile
+Comput., vol. 10, no. 2, pp. 239–253, Feb. 2011.
+[8] T. V. Nguyen, H. Shin, T. Q. S. Quek, and M. Z. Win, “Optimal energy
+tradeoff for active sensing in cognitive radio networks,” in Proc. the
+22nd IEEE International Symposium on Personal, Indoor and Mobile
+Radio Communications (PIMRC’11), Toronto, Canada, Sep. 2011, pp.
+326–330.
+[9] T. V. Nguyen, H. Shin, and M. Z. Win, “Optimal sensing cardinality
+for cognitive radios,” IEEE Commun. Lett., vol. 15, no. 7, pp. 716–718,
+Jul. 2011.
+[10] I. S. Gradshteyn and I. M. Ryzhik, Table of Integrals, Series, and
+Products, 7th ed. San Diego, CA: Academic, 2007.
+
+(20)
+
+B. Proof of Theorem 2
+
+=
+
+t
+
+R EFERENCES
+
+From (20), we obtain |P(|Sidle |)| as in (12) using the CDF
+(19) and the exponential integral function of order n [10].
+
+|P(|Sidle |)|
+
+dz
+
+where (a) follows from the fact that F ˘ (z) is a monotonically
+increasing function being in the range [0, 1] and (b) follows
+by virtue of the fact that ∂h (t, ξ) /∂ξ ≥ 0. Therefore,
+∂h (t, ξ) /∂ξ is a monotonically decreasing function in ξ and
+hence, we arrive at the fact that ∂ 2 h (t, ξ) /∂ξ 2 ≤ 0, from
+which we complete the proof.
+
+max
+
+∞
+
+1+z
+
+− F ξ2 −ξ1 (t)
+˘
+
+Using integration by parts, we have
+|P(|Sidle |)|
+
+F ξ2 (z) ln F ˘ (z)
+˘
+
+≤ ln (1 + t) F ξ2 (t) ln F ˘ (t)
+˘
+
+where (16) follows from (6); (17) follows from the -optimality
+of the algorithm; and the last inequality (18) is attained by
+perfect sensing. To evaluate
+max =
+|P(|Sidle |)| , we let
+maxi∈P(|Sidle |) i . Then, we can obtain the CDF of Zmax as
+F
+
+0
+
+(a)
+
+|P (|Sidle |)|
+
+|P(|Sidle |)|
+
+t
+
+−
+
+= E|Sidle | Ξ (ζ, |S|, |P (|Sidle |)|)
+×E
+
+F ξ (z)
+˘
+
+t
+
+h (t, ξ) = ln (1 + t) F ξ (t) −
+˘
+
+(21)
+
+where the last equality follows from the fact that ln (1 + z) is
+integrable with respect to probability measures on [0, ∞).
+
+5
+
+

@@ -1,0 +1,924 @@
+Creator:        TeX
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Sat May 19 06:19:28 2012
+ModDate:        Tue Jun 19 12:55:02 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      427492 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569566913
+
+Principal Component Pursuit with
+Reduced Linear Measurements
+Arvind Ganesh∗
+
+Kerui Min∗
+
+John Wright†
+
+∗ Dept.
+
+of Electrical and Computer Engineering † Dept. of Electrical Engineering
+University of Illinois at Urbana-Champaign
+Columbia University
+
+min
+
+L,S,∆τi
+
++λ S
+
+1
+
+s.t.
+
+D = L + S,
+
+L
+
+∗
+
++λ S
+
+s.t.
+
+1
+
+D+
+
+Ji ∆τi = L + S, (2)
+i=1
+
+where the Ji ’s denote the image Jacobians with respect to
+the transformation parameters.4 Although this convex program
+was proposed in the same spirit as PCP, the constraint is now
+different, and hence, the theoretical guarantees for PCP given
+in [4], [5], [6] do not directly apply to this case.
+We can also interpret (2) in the following manner. Let
+Q denote the orthogonal complement to the linear subspace
+spanned by the Jacobian span(J1 , . . . , Jp ). Clearly, we can
+rewrite (2) as follows:
+
+Recently, low-rank matrix recovery and approximation has
+become an increasingly popular area of research, as low-rank
+models have been applied to many real problems in which
+high-dimensional data samples are assumed to lie on a lowerdimensional subspace. For instance, they have been successfully employed in various problems such as face recognition
+[1], system identiﬁcation [2], and information retrieval [3].
+This popularity has been further boosted by the recent
+discovery that convex optimization techniques can efﬁciently
+and correctly recover a low-rank matrix L0 ∈ Rm×n from
+.
+corrupted observations D = L0 + S0 , where S0 ∈ Rm×n is a
+sparse matrix whose entries can have arbitrary magnitude [4],
+[5], [6]. More speciﬁcally, it has been shown that under rather
+broad conditions, the following convex program succeeds in
+recovering L0 and S0 from D:
+∗
+
+Computing Group
+Microsoft Research Asia
+
+p
+
+I. I NTRODUCTION
+
+L,S
+
+‡ Visual
+
+unknown transformation τ (in some parametric group). This
+model arises in computer vision applications such as batch
+image alignment [9] and texture rectiﬁcation [10]. To deal
+with the nonlinearity introduced by the unknown transform,
+[10], [9] proposed to linearize the constraint D ◦ τ = L + S,
+and solve for the transformation τ iteratively via the following
+convex program:
+
+Abstract—In this paper, we study the problem of decomposing
+a superposition of a low-rank matrix and a sparse matrix when
+a relatively few linear measurements are available. This problem
+arises in many data processing tasks such as aligning multiple
+images or rectifying regular texture, where the goal is to recover
+a low-rank matrix with a large fraction of corrupted entries in
+the presence of nonlinear domain transformation. We consider
+a natural convex heuristic to this problem which is a variant to
+the recently proposed Principal Component Pursuit. We prove
+that under suitable conditions, this convex program guarantees
+to recover the correct low-rank and sparse components despite
+reduced measurements. Our analysis covers both random and
+deterministic measurement models. 1
+
+min L
+
+Yi Ma∗‡
+
+and
+
+min L
+L,S
+
+∗
+
++λ S
+
+1
+
+s.t. PQ D = PQ (L + S),
+
+(3)
+
+where PQ is the orthogonal projection operator onto the
+subspace Q. This is a variation to (1) in which instead of
+observing the entire corrupted matrix D, we only observe
+q = mn − p “reduced linear measurements” of D. If Q
+is a linear subspace of special matrices with support in
+Ω ⊂ [m] × [n], then we have the special case of recovering
+L0 from D, when only a subset of entries in D are available.
+This case is akin to the low-rank matrix completion problem
+[11], [12], [13], and has been analyzed in [4], [14]. A more
+general linear measurement model was recently considered in
+[15], where a greedy algorithm was proposed to recover L0
+and S0 . However, to the best of our knowledge, the convex
+program in (3) with a general subspace Q is still an open
+problem.
+The convex program (3) poses a very fundamental theoretical problem: how many general linear measurements of D are
+required to reliably recover the underlying low-rank matrix,
+even when the number of corruptions is quite large? We note
+that in the context of the applications in [10], [9], the number
+of reduced measurements is directly related to the dimension
+
+(1)
+
+where · ∗ denotes the nuclear norm2 , · 1 denotes the
+3
+1 -norm , and λ > 0 is a weighting factor. This program
+has been dubbed Principal Component Pursuit (PCP) in [4].
+Furthermore, follow-up works have shown that PCP is stable
+in the presence of additive Gaussian noise [7], and can recover
+L0 even when the corruption matrix S0 is not sparse [8].
+In practice, however, the PCP framework is limited by the
+measurement model assumed. For instance, in image data, we
+often have to deal with nonlinear transformations as well.
+In other words, we could have D ◦ τ = L + S for some
+1 Arvind
+
+Ganesh is currently with IBM Research India.
+sum of all singular values.
+3 The sum of absolute values of all matrix entries.
+2 The
+
+4 For
+
+1
+
+more details, please refer to [10], [9].
+
+L0 a rank-r, µ-incoherent matrix, and supp(S0 ) ∼ Ber(ρ).
+Then, provided that
+n
+r < Cr
+, p < Cp n, ρ < ρ0 ,
+(5)
+µ log2 m
+
+of the transformation group. Hence, from that viewpoint, we
+would like to know how large the deformation group can be for
+successful recovery. In addition, we believe the results will be
+useful for many other problems in communications and signal
+processing when only such linear measurements are available.
+In this work, we show that the convex program (3) does
+indeed succeed in recovering the low-rank and sparse components of D, under fairly broad conditions similar to those in
+[4]. In addition, we give results for random and deterministic
+measurement models, respectively. Although we follow a similar proof strategy as [4], the new constraint poses signiﬁcant
+difﬁculties and requires some non-trivial modiﬁcations to the
+techniques used in [4]. Due to lack of space, we will only
+provide a sketch of the proof for the main results here. We
+refer the interested reader to [16] for the detailed proof.
+
+with high probability (L0 , S0 ) is the unique optimal solution
+to (3) with λ = m−1/2 . Here, Cr > 0 and ρ0 ∈ (0, 1) are
+numerical constants.
+Thus, the convex program (3) can still recover the low-rank
+matrix L0 under essentially the same conditions as PCP [4],
+while tolerating up to a constant fraction of errors. The scaling
+in this result covers several applications of interest: in [10], p
+is constant, while in [9], p = O(n).
+Remark 1. In Theorem 1, “with high probability” means with
+probability at least 1 − β(Cp )m−c , with c > 0 numerical.
+
+II. A SSUMPTIONS AND M AIN R ESULTS
+
+In a related work [17], we show that the convex program (3)
+also works with highly compressive measurements: dim(Q)
+only needs to be on the order of (mr + k) log2 m, within a
+polylogarithmic factor of the intrinsic degrees of freedom of
+the unknowns (L0 , S0 ). On the other hand, that result does
+not guarantee correct recovery when a constant fraction of the
+entries are corrupted. Theorem 1 shows that this is possible
+when Q is random and p linear in n. In fact, when p = O(1),
+this is possible even with no random assumption on Q:
+
+We begin by outlining our assumptions on L0 , S0 and the
+subspace Q. The ﬁrst two assumptions are designed to avoid
+ambiguous situations, e.g., when the target matrices L0 and
+S0 are simultaneously low-rank and sparse:5
+∗
+• incoherence model for L0 . Let L0 = U ΣV
+be the
+reduced singular value decomposition of L0 . We assume
+
+¯ 2
+ maxi∈[m] U ∗ ei 2 ≤ µr/m,
+maxj∈[n] V ∗ ej 2 ≤ µr/n,
+(4)
+2
+
+µr/mn,
+UV ∗ ∞ ≤
+
+Theorem 2 (Deterministic Reduction). If Q⊥ is a ν-coherent
+p-dimensional subspace of Rm×n (n ≤ m ≤ αn), L0 is a
+rank-r, µ-incoherent matrix, and supp(S0 ) ∼ Ber(ρ), with
+high probability (L0 , S0 ) is the unique optimal solution to (3)
+with λ = m−1/2 , provided that
+
+for some µ ≥ 1. Above, r = rank(L0 ), · ∞ denotes the
+6
+¯
+∞ -norm , and ei and ej denote standard basis vectors
+m
+in R and Rn , respectively.
+• random support model for S0 . Each entry (i, j) is
+included in Ω = supp(S0 ) independently with probability
+ρ > 0. We write Ω ∼ Ber(ρ).
+We say that a subspace S ⊆ Rm×n is ν-coherent if
+there exists an orthonormal basis {Gi } for S satisfying
+maxi Gi 2 ≤ ν/ min{m, n}.
+In this paper, we consider two different assumptions on the
+p-dimensional subspace Q⊥ :
+⊥
+⊥
+• random subspace model for Q . We assume that Q
+m×n
+has an orthonormal basis G1 , G2 , . . . , Gp ∈ R
+that is
+chosen uniformly at random from all possible orthobasis
+sets of size p in Rm×n . It can be shown that each of the
+Gi ’s is identical in distribution to H/ H F , where the
+entries of H ∈ Rm×n are i.i.d. according to a Gaussian
+distribution with mean 0 and variance 1/mn.
+⊥
+• deterministic subspace model for Q . Under this mod⊥
+el, Q is a ﬁxed ν-coherent subspace, for some ν ≥ 1.
+The main results of this work show that under each of these
+assumptions, (3) correctly recovers L0 , S0 :
+
+r < Cr min
+
+n
+ν 2 p2 α
+
+1/2
+
+,
+
+n
+ανµp
+
+1/3
+
+,
+
+n
+µ log m
+
+, (6)
+
+and ρ < ρ0 , where ρ0 and Cr are positive numerical constants.
+Remark 2. Here, “with high probability” means with probability at least 1 − β(p, α, ν)m−c , with c > 0 numerical.
+The deterministic subspace model is a signiﬁcantly weaker
+assumption than the random subspace model. Consequently,
+recovery is guaranteed for matrices of much lower rank under
+the former model. Nevertheless, Theorem 2 could be more
+useful from a practical standpoint since in real applications
+such as [10], [9], random subspaces are seldom encountered,
+and the rank of the matrix to be recovered is often small.
+III. P ROOF S KETCH
+In this section, we sketch the main ideas of the proof
+and refer the readers to [16] for more details. We ﬁrst ﬁx
+some notation. Given the reduced SVD of L0 = U ΣV ∗ , let
+T ⊂ Rn×n denote the linear subspace {U X ∗ + Y V ∗ | X ∈
+Rn×r , Y ∈ Rm×r }. By a slight abuse of notation, we also
+denote by Ω the linear subspace of matrices with support in
+Ω. We let PT and PΩ denote the projection operators onto T
+and Ω, respectively.
+
+Theorem 1 (Random Reduction). Fix any Cp > 0, and let
+Q⊥ be a p-dimensional random subspace of Rm×n (n ≤ m),
+5 Our assumptions on L and S will match those in [4]; we refer the
+0
+0
+interested reader to that work for a more thorough discussion.
+6 The maximum absolute value among all matrix entries
+
+2
+
+i.i.d. symmetrically distributed in the set {+1, −1}. Then, the
+matrix W S obeys, with high probability,
+1) W S < 1/8,
+2) PΩ⊥ W S ∞ < λ/8.
+
+The ﬁrst step in the proof is to establish a sufﬁcient
+condition for (L0 , S0 ) to be the optimal solution to (3).
+Lemma 1 (Dual Certiﬁcate). Suppose that dim(Q⊥ ⊕ T ⊕
+Ω) = dim(Q⊥ ) + dim(T ) + dim(Ω). Let Γ = Q ∩ T ⊥ so
+that Γ⊥ = Q⊥ ⊕ T . Assume that PΩ PΓ⊥ < 1/2 and λ < 1.
+Then, (L0 , S0 ) is the unique optimal solution to (3) if there
+exists a pair (W, F ) ∈ Rm×n × Rm×n satisfying
+U V ∗ + W = λ(sgn(S0 ) + F + PΩ M ) ∈ Q,
+with PT W = 0, W
+PΩ M F ≤ 1/4.
+
+< 1/2, PΩ F = 0, F
+
+∞
+
+Lemma 4. Suppose that the assumptions of either Theorem
+1 or Theorem 2 hold true. Then, the matrix W Q obeys, with
+high probability,
+1) W Q < 1/8,
+2) PΩ⊥ W Q ∞ < λ/8.
+
+(7)
+
+< 1/2, and
+
+The key component of our proof is to show that under the
+given assumptions, the subspaces Q⊥ , T and Ω are pairwise
+incoherent with each other i.e., to bound the operators norms
+of PQ⊥ PT , PT PΩ and PQ⊥ PΩ . Once these pairwise subspace
+incoherences are established, we will also have to bound the
+operator norms of PΩ PΓ⊥ and PQ⊥ PΠ , where Γ⊥ = Q⊥ ⊕ T
+and Π = Ω ⊕ T . To obtain the latter bounds, we will use the
+following simple linear algebraic result.
+
+Thus, in order to prove Theorems 1 and 2, it is sufﬁcient
+to produce a dual certiﬁcate W ∈ Rm×n satisfying
+
+ W ∈ T ⊥,
+
+
+ PQ⊥ W = −PQ⊥ (U V ∗ ),
+
+W < 1/2,
+(8)
+
+ PΩ (U V ∗ − λsgn(S0 ) + W ) F ≤ λ/4,
+
+
+
+PΩ⊥ (U V ∗ + W ) ∞ < λ/2.
+
+Lemma 5. Let S1 , S2 and S3 be any three linear subspaces in
+Rm×n satisfying dim(S1 ⊕ S2 ⊕ S3 ) = dim(S1 ) + dim(S2 ) +
+dim(S3 ), and PS1 PS2 ≤ α1,2 < 1, PS2 PS3 ≤ α2,3 < 1
+and PS3 PS1 ≤ α3,1 < 1. We deﬁne S = S1 ⊕ S2 . Then,
+we have
+
+We construct the dual certiﬁcate W in a similar fashion as
+in [4]. However, the modiﬁed constraint in (3) adds signiﬁcant
+difﬁculty to various technical parts of the proof.
+1) Construction of W L using the golﬁng scheme. We note
+that Ωc ∼ Ber(1 − ρ) by assumption. Suppose that
+Ω1 , Ω2 , . . . , Ωj0 are independent support sets such that
+j0
+Ωj ∼ Ber(q) for all j. Then, Ωc and j=1 Ωj have the
+same probability distribution if ρ = (1 − q)j0 . Starting
+with Y0 = 0, we iteratively deﬁne
+Yj = Yj−1 + q −1 PΩj PΓ⊥ (U V ∗ − Yj−1 ),
+
+PS X
+
+3) Construction of W Q
+
+PS PS3 ≤
+
+(9)
+
+F
+
+F
+
+2
+F
+
++ PS2 X
+
+2
+F ),
+
+(12)
+
+2
+2
+α2,3 + α3,1
+.
+1 − α1,2
+
+(13)
+
+Once we have derived all the aforementioned operator norm
+bounds, the proof methodology is similar to that adopted in
+[4]. We highlight the general strategy below:
+1) Proof of Lemma 2. The construction of W L is almost
+identical to the one used in Section 3.2 in [4], except
+for the fact that in place of the subspace T in [4], we
+now have Γ⊥ . While the proofs for the second and third
+parts of the Lemma 2 are almost identical to those in
+[4], the proof to bound W L differs signiﬁcantly. This
+is because the subspace T ⊥ satisﬁes PT ⊥ X ≤ X
+for any X ∈ Rm×n . Since the subspace Γ does not
+enjoy this property, we employ a novel method to bound
+W L in our work.
+2) Proof of Lemma 3. This proof follows the same outline
+as the one in Section 3.3 in [4]. Once again, the main
+difference is that the T in [4] has been replaced with
+Γ⊥ in our work. Employing the bound that we derived
+on PΩ PΓ⊥ , we use the convergent Neumann series
+to express W S in analytical form and analyze it in the
+same way as was done in [4].
+3) Proof of Lemma 4. This proof is entirely novel from
+[4] and is discussed in more detail in Section IV-B.
+Since the assumptions on L0 and S0 are identical in
+Theorems 1 and 2, we restate a lemma here from [4] that
+proves that the subspaces T and Ω are somewhat incoherent.
+
+s.t. PΩ X = λsgn(S0 ),
+PΓ⊥ X = 0.
+(10)
+by least squares. We set
+
+W Q = arg minX X
+
+≤ (1 − α1,2 )−1 ( PS1 X
+
+and consequently,
+
+and set W L = PΓ Yj0 , where j0 = 2 log m .
+2) Construction of W S by least squares. We set
+W S = arg minX X
+
+2
+F
+
+s.t. PQ⊥ (U V ∗ + X) = 0,
+PΠ X = 0,
+(11)
+
+where Π = Ω ⊕ T .
+It is not difﬁcult to see that W = W L + W S + W Q satisﬁes
+the ﬁrst two conditions in (8). We now present three lemmas
+that together establish that W also satisﬁes the remaining
+inequality conditions in (8).
+Lemma 2. Suppose that the assumptions of either Theorem
+1 or Theorem 2 hold true. Then, the matrix W L obeys, with
+high probability,
+1) W L < 1/4,
+2) PΩ (U V ∗ + W L ) F < λ/4,
+3) PΩ⊥ (U V ∗ + W L ) ∞ < λ/4.
+Lemma 3. In addition to the assumptions of Lemma 2,
+assume that the signs of the non-zero entries of S0 are
+
+3
+
+Lemma 6 (Corollary 2.7 in [4]). Let Ω ∼ Ber(ρ), and L0 a
+rank-r, µ-incoherent matrix. Then, with high probability, we
+have PΩ PT 2 ≤ ρ + , provided that 1 − ρ ≥ C0 −2 µr log m
+n
+for some numerical constant C0 > 0.
+
+B. Proof Sketch: Lemma 4
+We can express W Q using the Neumann series
+
+k≥0
+
+IV. R ANDOM R EDUCTION
+
+where we recall that Π = Ω ⊕ T . It follows that
+
+In this section, we sketch the proofs of Lemmas 2 and 4
+under the assumptions of Theorem 1. First, we present two
+bounds that can be derived under the random subspace model.
+
+WQ
+
+PQ⊥ PT
+
+≤
+
+8
+
+p/mn +
+
+≤
+
+8
+
+p/mn +
+
+5ρ/4 .
+
+(15)
+
+A. Proof Sketch: Lemma 2
+
+PQ⊥ (U V ∗ )
+
+The proof is quite lengthy. We brieﬂy outline the key
+difference from [4], which arises in bounding W L . The
+golﬁng iteration aims to control the residual
+
+Arguments in [4] and the long version of this paper give
+≤ 2−j
+
+µr/mn
+
+W
+
+= PΓ Yj0 =
+
+q
+
+WQ ≤ WQ
+
+PΓ PΩj PΓ⊥ Zj−1
+
+j0
+
+PΓ (q −1 PΩj − I)PΓ⊥ Zj−1 .
+
+p/n ,
+
+≤ (32/3) r/m max 1,
+
+i,j
+
+j=1
+
+PQ⊥ (U V ∗ )
+
+F
+
+p/n . (19)
+
+¯ j
+PQ⊥ PΠ⊥ ei e∗
+
+F.
+
+≤ 8m−1/2 max 1,
+∞
+
+p/n ,
+
+follows.
+
+V. D ETERMINISTIC R EDUCTION
+In this section, we present the bounds corresponding to the
+ones in Section IV. These bounds are crucial to prove Lemmas
+2, 3 and 4 under the assumptions of Theorem 2. Throughout
+this section, we will assume that Q⊥ is ﬁxed subspace that is
+ν-coherent for some ν > 0.
+
+∞.
+
+For the second term, we use the matrix Bernstein inequality
+[18] to show that with high probability
+√
+PR (q −1 PΩj − I)PΓ⊥ Zj−1 ≤ C2 m log(m) Zj−1 ∞ .
+
+Lemma 8. Under the conditions of Theorem 2,
+
+Combine these two bounds with (16)
+≤ (4C1 + 2C2 ) µr log2 m/n,
+
+F
+
+w.h.p. The desired bound on PΩ⊥ W Q
+
+PR (q −1 PΩj − I)PΓ⊥ Zj−1 .
+
+For the ﬁrst term, Theorem 6.3 of [11] gives
+√
+(q −1 PΩj − I)PΓ⊥ Zj−1 ≤ C1 m log(m) Zj−1
+
+WL
+
+F
+
+¯ j
+max PQ⊥ PΠ⊥ ei e∗
+
+2 (q −1 PΩj − I)PΓ⊥ Zj−1
++
+
+r/m max 1,
+
+Using the same procedure that we employed above to bound
+PQ⊥ (U V ∗ ) F and applying a union bound over (i, j), we
+can show that
+
+j0
+
+≤
+
+≤2
+
+k≥0
+
+Recall Γ = T + Q⊥ . Let R = PT ⊥ Q⊥ . Then T ⊥ R and
+Γ = T + R. So PΓ = PT + PR . Using that for any X,
+PT X ≤ 2 X , we have
+W
+
+F
+
+(PQ⊥ PΠ PQ⊥ )k
+
+j=1
+
+L
+
+H ∗ vec(U V ∗ ) 2 .
+
+Under the stated assumptions, this is ≤ 1/8 for large m.
+For any (i, j), | W Q , ei e∗ | is bounded by
+¯ j
+
+j=1
+
+=
+
+.
+
+w.h.p., giving
+
+j0
+−1
+
+H(H ∗ H)−1
+
+≤
+
+F
+
+H ∗ vec(U V ∗ )
+
+(16)
+
+for all j, whp. The certiﬁcate W L depends on the errors (Zj )
+through the expression
+L
+
+F
+
+From Lipschitz concentration ([19] Prop. 2.18) and bounds
+on expected singular values Gaussian matrices [20], we have
+H(H ∗ H)−1 ≤ 4 with high probability. Since U V ∗ F =
+√
+r, H ∗ vec(U V ∗ ) is a p-dimensional i.i.d. N (0, r/mn) vector. Using Jensen’s inequality and [19] Prop. 2.18,
+
+Zj = U V ∗ − PΓ⊥ Yj .
+
+∞
+
+PQ⊥ (U V ∗ )
+
+(PQ⊥ PΠ PQ⊥ )k
+
+≤
+
+k
+≤ 4/3,
+Using Lemmas 5-7, we have
+k≥0 (PQ⊥ PΠ PQ⊥ )
+with high probability.
+We bound PQ⊥ (U V ∗ ) F as follows. If we vectorize all matrices, then PQ⊥ has the same distribution as
+H(H ∗ H)−1 H ∗ , where H ∈ Rmn×p is an i.i.d. N (0, 1/mn)
+matrix. Therefore,
+
+(m + n)r/mn , (14)
+
+PQ⊥ PΩ
+
+F
+
+k≥0
+
+Lemma 7. Assume the conditions of Theorem 1, and that
+p < mn/4. Then, with high probability,
+
+Zj
+
+(PQ⊥ PΠ PQ⊥ )k (PQ⊥ (−U V ∗ )), (18)
+
+W Q = PΠ⊥ PQ⊥
+
+PQ⊥ PT
+
+with C1 , C2 numerical. For small Cr , W L ≤ 1/4. The other
+bounds in Lemma 2 are established as in [4].
+
+≤
+
+PQ⊥ PΩ
+
+(17)
+
+≤ 1/2,
+
+2νpr/n,
+w.h.p.,
+
+(20)
+(21)
+
+where (21) holds provided that ρ < ρ0 and ν 2 p3 log m/n ≤ C,
+for some numerical C > 0 and ρ0 ∈ (0, 1).
+
+4
+
+extent to which Q⊥ arising in real applications are operatorincoherent. It may be possible to tailor the assumptions to
+better ﬁt real imaging applications. For the random subspace
+case, our results are close to the best possible, in terms of the
+rank of the unknown matrix and the number of corruptions
+that can be tolerated. However, it would be interesting to
+know if more reﬁned arguments can show recovery from
+constant fractions of error, even with constant fractions of
+measurements missing (p = O(mn)), as might occur in
+compressed sensing. Finally, while we have focused here on
+noise-free analysis of exact recovery, extensions to the noisy
+and compressible cases are obviously of signiﬁcant practical
+interest.
+
+Proof: The proof of (20) follows from rank(PT X) ≤
+2r ∀X, and H¨ lder’s inequality. The proof of (21) is more
+o
+involved. We present the basic ideas here.
+.
+Consider the linear operator A = PQ⊥ PΩ PQ⊥ − ρPQ⊥ .
+Clearly, E [A] = 0 since Ω ∼ Ber(ρ). Let δij be a sequence
+of independent Bernoulli random variables such that
+δij =
+
+1, if (i, j) ∈ Ω,
+0, otherwise.
+
+Then, we can rewrite A as
+Aij =
+
+e j
+δij PQ⊥ (¯i e∗ )
+
+ij
+
+Aij , where
+
+e j
+⊗ PQ⊥ (¯i e∗ ) −
+
+ρ
+mn PQ⊥ ,
+
+and ⊗ denotes the outer or tensor product between matrices.
+Using the fact A ⊗ B ≤ A F B F , we can show that
+νp
+ρ
+Aij ≤
++
+.
+n
+mn
+Since Q⊥ is ν-incoherent, we can show that
+E A2
+ij
+
+≤ 2ρν
+
+R EFERENCES
+[1] J. Wright, A. Yang, A. Ganesh, Y. Ma, and S. Sastry, “Robust face
+recognition via sparse representation,” IEEE Trans. Pattern Analysis and
+Machine Intelligence, vol. 31, no. 2, Feb 2009.
+[2] M. Fazel, H. Hindi, and S. Boyd, “Rank minimization and applications
+in system theory,” in Proc. of American Control Conference, June 2004.
+[3] C. Papadimitriou, P. Raghavan, H. Tamaki, and S. Vempala, “Latent
+semantic indexing: A probabilistic analysis,” Journal of Computer and
+System Sciences, vol. 61, no. 2, Oct 2000.
+[4] E. Cand` s, X. Li, Y. Ma, and J. Wright, “Robust principal component
+e
+analysis?” Journal of the ACM, vol. 58, no. 7, May 2011.
+[5] V. Chandrasekaran, S. Sanghavi, P. Parrilo, and A. Willsky, “Ranksparsity incoherence for matrix decomposition,” SIAM Journal on Optimization, vol. 21, no. 2, pp. 572–596, 2011.
+[6] D. Hsu, S. M. Kakade, and T. Zhang, “Robust matrix decomposition with
+sparse corruptions,” IEEE Trans. Information Theory, vol. 57, no. 11,
+pp. 7221–7234, 2011.
+[7] Z. Zhou, X. Li, J. Wright, E. Cand` s, and Y. Ma, “Dense error correction
+e
+for low-rank matrices via principal component pursuit,” in Proc. of IEEE
+International Symposium on Information Theory, 2010.
+[8] A. Ganesh, J. Wright, X. Li, E. Cand` s, and Y. Ma, “Dense error
+e
+correction for low-rank matrices via principal component pursuit,” in
+Proc. of IEEE International Symposium on Information Theory, 2010.
+[9] Y. Peng, A. Ganesh, J. Wright, W. Xu, and Y. Ma, “RASL: Robust
+Alignment by Sparse and Low-rank decomposition,” To appear in IEEE
+Trans. Pattern Analysis and Machine Intelligence, 2011.
+[10] Z. Zhang, A. Ganesh, X. Liang, and Y. Ma, “TILT: Transform Invariant
+Low-rank Textures,” International Journal of Computer Vision, 2011.
+[Online]. Available: http://dx.doi.org/10.1007/s11263-012-0515-x
+[11] E. Cand` s and B. Recht, “Exact matrix completion via convex optimzae
+tion,” Found. of Comput. Math., vol. 9, no. 6, pp. 717–772, 2009.
+[12] E. Cand` s and T. Tao, “The power of convex relaxation: Near-optimal
+e
+matrix completion,” IEEE Trans. Information Theory, vol. 56, no. 5, pp.
+2053–2080, 2010.
+[13] D. Gross, “Recovering low-rank matrices from few coefﬁcients in any
+basis,” IEEE Trans. Information Theory, vol. 57, no. 3, pp. 1548–1566,
+2011.
+[14] X. Li, “Compressed sensing and matrix completion with
+constant proportion of corruptions,” 2011. [Online]. Available:
+http://arxiv.org/abs/1104.1041
+[15] A. Waters, A. Sankaranarayanan, and R. Baraniuk, “SpaRCS: Recovering low-rank and sparse matrices from compressive measurements,” in
+Proc. of Neural Information Processing Systems, 2011.
+[16] A. Ganesh, K. Min, J. Wright, and Y. Ma, “Principal component
+pursuit with reduced linear measurements,” 2012. [Online]. Available:
+http://perception.csl.illinois.edu/matrix-rank/Files/pcp-linear.pdf
+[17] J. Wright, A. Ganesh, K. Min, and Y. Ma, “Compressive principal
+component pursuit,” 2012, submitted to ISIT.
+[18] J. Tropp, “User-friendly tail bounds for sums of random matrices,”
+Foundations of Computational Mathematics, 2011. [Online]. Available:
+http://dx.doi.org/10.1007/s10208-011-9099-z
+[19] M. Ledoux, The Concentration of Measure Phenomenon. American
+Mathematical Society, 2001.
+[20] M. Rudelson and R. Vershynin, “Non-asymptotic theory of random
+matrices: extreme singular values,” in Proc. of International Congress
+of Mathematicians, 2010.
+
+p3 /n.
+
+i,j
+
+We then invoke the matrix Bernstein inequality [18] to show
+that A ≤ ρ with high probability. The desired result follows
+by noting that PQ⊥ PΩ PQ⊥ = A + ρPQ⊥ .
+a) Proof Sketch: Lemma 2: We follow the same proof
+technique that we used in Section IV-A. But the proof here is
+simpler. In fact, when p = O(1), we do not need the subspace
+R (deﬁned in Section IV-A) to be ν-coherent.
+b) Proof Sketch: Lemma 4: The basic outline of the proof
+is the same as that described in Section IV-B. We present
+only the relevant bounds here. Using the ν-coherence of Q⊥ ,
+it is easy to show that PQ⊥ (U V ∗ ) F ≤ 2νpr2 /n. Using
+Lemmas 7 and 5, we can show that
+(PQ⊥ PΠ PQ⊥ )k ≤ 2,
+k≥0
+
+with high probability, for ρ sufﬁciently small. Once again,
+using the Neumann series for W Q along with Lemmas 7 and
+5, it is not difﬁcult to show that
+max PQ⊥ PΠ⊥ ei e∗
+¯ j
+i,j
+
+F
+
+≤
+
+νp/n + 4
+
+2µr/n,
+
+with high probability, provided that ρ is sufﬁciently small.
+Employing the above three bounds in the same manner as
+done in Section IV-B, we obtain W Q ≤
+8νpr2 /n, and
+PΩc W Q ∞ ≤ 2
+2ν 2 p2 r2 /n2 + 4 2µνr3 /n2 . Since
+√
+λ = 1/ m, and m ≤ αn, to conclude PΩc W Q ∞ ≤ λ/8,
+we require C
+αν 2 p2 r2 /n + αµνpr3 /n ≤ 1, giving the
+scaling r = O(n1/3 ) in the theorem.
+VI. D ISCUSSION
+In this paper, we have given a ﬁrst theoretical corroboration
+for the success of the convex programming heuristic in two
+cases of practical interest. However, there are still plenty of
+open problems. For the deterministic case, our bounds (and
+rates) can likely be improved using more reﬁned arguments.
+Perhaps more importantly, it is important to investigate the
+
+5
+
+

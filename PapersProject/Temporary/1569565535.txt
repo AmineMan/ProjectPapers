@@ -1,0 +1,917 @@
+Title:          rarnc_final.pdf
+Author:         Dan
+Creator:        TeX
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Wed May 16 18:55:01 2012
+ModDate:        Tue Jun 19 12:55:03 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      285534 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569565535
+
+Network Coding Aware Resource Allocation to
+Improve Throughput
+Dan Zhang, Kai Su and Narayan B. Mandayam
+WINLAB, Rutgers University
+671 Route 1 South, North Brunswick, NJ 08902
+{bacholic, kais, narayan}@winlab.rutgers.edu
+1) increases linearly at a ﬁxed rate and
+2) linearly depends on the link rates, until it reaches full
+rank.
+The implications are, because of property 1, ﬁxed allocation
+corresponds to a ﬁxed throughput, thus memory of the system
+becomes irrelevant. Because of property 2, the system scales in
+time (doubling the rates doubles the throughput), thus we can
+put systems of different rates in a common time frame through
+proper scaling. These implications are so useful that, for the
+above mentioned dynamical system, they enable the effective
+use of the gradient method to construct a state feedback to
+continuously steer the network towards a better allocation of
+resource.
+In what follows we ﬁrst brieﬂy recap the dynamical system
+view of RNC that has been elaborated in [6]. The resource
+allocation problem is then cast in this framework and a
+gradient based resource allocation is proposed. We analyze its
+optimality, convergence and discuss its practical design considerations. In the end we illustrate the use of the methodology by
+designing an optimal power control algorithm for the wireless
+network where nodes perform RNC.
+
+Abstract—In the past decade, remarkable progress has been
+made in the area of network coding in terms of theory, code
+design, and applications. However, from a cross-layer perspective,
+the understanding of resource allocation for random network
+coding (RNC) and its impact on network throughput has been
+limited. In this article we address the problem of resource
+allocation for RNC in a general wireless network, using the recent
+framework that models the dynamics of RNC using a system
+of differential equations. Based on this framework, we design
+a gradient algorithm that can be used to improve a variety of
+throughput objectives.
+Index Terms—Random network coding, resource allocation,
+differential equation, dynamical system, power control
+
+I. I NTRODUCTION
+Resource allocation for random network coding (RNC) aims
+to ﬁnd an optimal allocation of communication resource, such
+as power, bandwidth, time slots and codes, in support of
+RNC based transport of information. The methodologies used
+in the previous studies (e.g., [1], [2]) have a commonality
+that, in one way or another the problem of coding at the
+network level is reduced to the traditional commodity-ﬂow
+[3] problem. For example, in a network where nodes perform
+RNC, imposing a routing strategy may compromise valuable
+beneﬁts of RNC because fundamentally RNC is different from
+routing in exploiting various diversities the network offers.
+Speciﬁcally, a routing strategy ﬁxes a set of routes over which
+information is transported and this inevitably incurs loss on
+the so called multicast advantage [1] of wireless. There are a
+good number of other resource allocation methods tailored
+for particular topologies or particular applications [4], [5].
+These approaches lack generality and most of them only
+superﬁcially make use of the advantages that RNC provides. In
+our earlier work [6], a dynamical system model for RNC has
+been proposed to completely characterize the average behavior
+of rank evolution – a crucial concept of RNC – that contains
+all information of interest regarding RNC, such as throughput
+and decoding delay. While this makes plausible an optimal
+control theoretic strategy, a simpler resource allocation based
+on gradient methods also works well, as will be discussed in
+this article. In general, due to the memory of a dynamical
+system, gradient methods are often not available. The case of
+RNC comes off as an exception because of two remarkable
+properties that have been revealed in previous works [6]–[8].
+Speciﬁcally, we know with ﬁxed MAC and PHY layer, i.e.,
+ﬁxed resource allocation, the rank of any node (or set)
+
+II. P ROBLEM S ETUP
+A. Dynamical System View of Random Network Coding
+Consider a wireless network modeled as a hypergraph [6]
+G = (N , E) where N is the set of transceiver nodes and
+E are a collection of hyperarcs in the form of (i, K) pairs
+where i ∈ N and K ⊂ N . The broadcasting phenomenon
+from node i to an arbitrary set of nodes K is thus modeled
+with the hyperarc K. We assume every node in the network
+performs RNC on the ﬁnite ﬁeld GF(q) where q is the size of
+the underlying ﬁnite ﬁeld. Whenever a node gets to transmit, it
+transmits a coded packet that is a random linear combination of
+all the packets available to it, including the packets it originates
+and the coded packets it has received. Because RNC takes
+packets as the atomic object to process, it represents a transport
+strategy that is decoupled from the underlying MAC or PHY
+technologies, whose operations are considered independent of
+RNC. Take an arbitrary node i for example, typically the MAC
+layer of node i determines the transmission (broadcast) rate
+measured in packets per second. The PHY layer of node i
+determines the error probability that a transmitted packet can
+be correctly decoded at any receiver node j. In fact, according
+
+1
+
+B. Resource Allocation with the Dynamical System Model
+
+to [6], the respective effect of MAC and PHY in a wireless
+network can be shown through two variables:
+• λi : the transmission rate at node i;
+• Pi,K : the probability that a packet sent from node i can
+be correctly decoded by at least one node in K.
+It is possible to summarize the overall effect of MAC and
+PHY by deﬁning zi,K = λi Pi,K , which can be conceived as
+the capacity of the hyperarc (i, K). Given i ∈ Kc , we further
+deﬁne the min cut capacity for (i, K) as
+cmin (i, K) =
+
+min
+
+K⊂T ,i∈T
+
+zj,T .
+
+Since RNC is decoupled from MAC and PHY layers, it is
+particularly easy to discuss resource allocation and its effect
+on RNC at an abstract level. When there is a single resource to
+be allocated to N nodes, the allocation scheme is represented
+by a N -dimensional column vector r, whose i-th component
+represents the allocation to node i. Consequently, the effect of
+resource allocation is captured in the mapping
+λi = λi (r)
+
+(1)
+
+j∈T c
+
+zi,K (1 − q VK −V{i}∪K ),
+
+∀K = ∅, K ⊂ N .
+
+˙
+maximize T (V)
+˙
+subject to V = f (V, z)
+z = z(r)
+
+(2)
+
+˙
+˙
+r = g(V, V)
+
+If we stack VK into a column vector V and stack all zi,K in
+z, we may write (2) in a more compact form
+˙
+V = f (V, z)
+(3)
+
+(11)
+
+III. G RADIENT BASED R ESOURCE A LLOCATION
+
+i.e., the instantaneous throughput is almost a constant if m is
+sufﬁciently large. The fact that when z is ﬁxed and m is large,
+˙
+V is constant can be written in a more compact form
+
+While a problem of the form of (8) falls in the traditional
+category of optimal control and is usually solved using calculus of variations, there are a few reasons that this approach
+may not be appropriate. First, calculus of variations is as
+computationally intensive as expensive, which can be practically prohibitive in wireless networks. Second, the wireless
+communication environment can be dynamic (e.g., due to
+fading or mobility), and may require certain adaptivity in the
+devices. Fortunately, when we restrict our objective T to be a
+function of throughputs, the special problem structure of RNC
+can be utilized to derive a simple gradient based control which
+is adaptive.
+
+(5)
+
+where JV f (V, z) is the Jacobian of f (V, z). Another useful
+˙
+observation from (2) is that VK only linearly depends on zi,K .
+Mathematically, this implies
+(Jz f )(V, z) = (Jz f )(V).
+
+(9)
+(10)
+
+where g is some function of V. The second distinction is that
+(8) is the ﬁrst formulation that takes full multicast advantage
+of a wireless network, while previous formulations inevitably
+break down the wireless transmission into independent links
+to approximately convert the wireless network to a wired
+network. Doing so, they lose a portion of the multicast
+advantage.
+
+where f is the stacking of the right-hand sides of (2). Note
+˙
+the instantaneous throughput of set K is given by VK . Suppose
+node 1 is the only source node. When m → ∞, [6] showed
+that
+˙
+VK (t) = cmin (1, K), when VK (t) < m,
+(4)
+
+(for large m)
+
+(8)
+
+Equation (8) takes a distinct form from previous resource
+allocation problems for RNC. Rather than treating RNC as
+a static transport strategy, (8) looks at it from the dynamical
+system point of view, which means the allocation may also
+be dynamic and changes over time. Moreover, it can take the
+form of state feedback
+
+i∈Kc
+
+JV f (V, z) = 0,
+
+(7)
+
+or more concisely, zi,K = zi,K (r). In vector form, we may
+write z = z(r).
+An allocation scheme is invariably a deliberate design to
+achieve a certain objective. In this article, we assume the
+objective is a function of throughputs, which can be solved
+with the system of differential equations in (2). Speciﬁcally,
+we assume the objective to be maximized can be written as
+˙
+T (V) where T can be any continuous function in the ﬁrst
+quadrant with partial derivatives deﬁned almost everywhere.
+As a result, we wish to solve
+
+As decodability of RNC entirely depends on the number of
+linearly independent coding vectors, i.e., the rank, and as there
+is no explicit routing, it is important to keep track of the rank
+at any node. We use Vi to denote the rank at any node i. It
+turns out to be useful that we also deﬁne the rank at any set K,
+denoted by VK , as the number of linearly independent coding
+vectors that the nodes in K collectively possess. Apparently Vi
+and VK are random processes. Suppose the number of source
+packets is m. Since every coded packet is a random linear
+combination of m source packets, i can start decoding as
+soon as Vi = m. In [6] the authors discussed a concentration
+phenomenon of RNC, that when m is sufﬁciently large, Vi and
+VK behave in a very predictable way, much like deterministic
+functions of time. Such a concentration phenomenon has also
+been observed and discussed even earlier in [8]. Its implication
+triggers the conjecture that Vi and VK may be modeled as a
+system of differential equations. This is indeed true and, when
+MAC and PHY are ﬁxed such that zi,K are known parameters,
+these equations are explicitly written down in [6] as
+˙
+VK =
+
+and Pi,K = Pi,K (r),
+
+(6)
+
+While (6) is precise, (5) is a good approximation with large
+m. Equations (5) and (6) constitute the basis for the resource
+allocation strategy to be discussed.
+
+2
+
+˙
+Consider the objective function T (V) which can be any
+function that has a gradient almost anywhere in the ﬁrst quad˙
+rant. Our choice of feedback (see (11)) is g = ∇r T (V). Note
+˙ because
+without (13), it is not clear how to compute ∇r T (V)
+˙
+V is apparently affected by a number of factors including
+topology, transmission rates and the coding operation. By
+applying (2), the effect of the resource vector r is abstracted in
+(10), the topology information encoded in the partially ordered
+index K ⊂ N and the dynamism represented as the differential
+operator. The system of equations in (2) thus allow us to ﬁnd
+an expression for the feedback as1
+
+Note (16) achieves equality when the feedback is chosen as
+shown in (12).
+Note Theorem 1 is true regardless whether T is concave or
+whether T is monotonic. It is also true regardless whether z =
+z(r) is concave or monotonic. Therefore it can be applied to a
+wide range of problems. Theorem 1 is also true when T is non˙
+differentiable on a null set since what really matters is T dt.
+As a result, when we have multiple interested destinations
+d1 , d2 , . . . ∈ D, an objective of the form
+
+˙
+r = aJr zJz f ∇V T
+˙
+
+can still be maximized with the chosen feedback. With Theorem 1, we immediately have
+Corollary 1: If r is contained in a bounded set (i.e., ﬁnite
+resource allocation), z(r) is continuous and T is continuous,
+with the feedback in (12), T converges.
+Proof: We have
+
+˙
+T (V) = min Vd
+
+(12)
+
+˙
+where ∇V T is the gradient of T (V), Jz f the Jacobian of
+˙
+f (V, z) with respect to z, Jr (z) the Jacobian of z(r). Note we
+have introduced a > 0 as a feedback gain parameter. Combining (9) and (12) we have a closed-loop system that describes
+the rank evolution with a dynamic resource allocation strategy
+
+i∈Kc
+
+(13)
+
+˙
+r = aJr zJz f ∇V T.
+˙
+
+IV. A NALYSIS OF R ESOURCE A LLOCATION
+In this section we will show that choosing the particular
+feedback in the form of (12) most effectively improves the
+objective function T . As we will see, the system of differential
+equations in (2) not only facilitates design, but also analysis.
+The main theorem is the following
+Theorem 1: By introducing the feedback (12) in (13),
+˙
+˙
+T ≥ 0. Among all possible feedback r = g such that
+˙
+g = aJr zJz f ∇V T , T is maximized by (12).
+˙
+˙
+Proof: T ≥ 0 can be seen from the following computation
+˙
+¨
+˙
+T = (∇V T ) V = (∇V T ) f (V; z)
+˙
+˙
+˙
+˙
+JV f V + Jz f z
+
+= (∇V T ) Jz f Jr z˙
+r
+˙
+
+(due to (5))
+
+= (∇V T ) aJz f Jr zJr zJz f ∇V T
+˙
+˙
+
+(14)
+
+= a(∇V T ) Jz f Jr zJr zJz f ∇V T
+˙
+˙
+= a (∇V T ) Jz f Jr z
+˙
+
+2
+
+≥ 0.
+
+Proof: For rank evolution, we have
+
+(15)
+
+˙
+˙
+V(t) = aVa (t/a)/a = f (Va (t/a), za (t/a))
+1
+V(t), z(t) = f 1/a (V(t), z(t)).
+=f
+a
+
+g
+
+= a (∇V T ) Jz f Jr z 2 .
+˙
+
+(19)
+
+˙
+˙
+r(t) = Jr zJz f a ∇V T (V).
+˙
+
+so
+˙
+|T | ≤ a(∇V T ) Jz f Jr z
+˙
+
+(18)
+
+˙
+V(t) = f 1/a (V, r),
+
+Given any g such that g = aJr zJz f ∇V T , repeating
+˙
+the computation as shown in (14), we get
+˙
+T = a(∇V T ) Jz f Jr zg,
+˙
+
+zi,K .
+i∈Kc
+
+Because r is bounded, it is contained in a compact set.
+˙
+Therefore z is contained in a compact set and from (18) V
+is contained in a compact set. Since T is continuous on this
+compact set, T is also bounded. This implies that, if T is
+monotonically increasing, it must converge.
+˙
+From (14) we see that T (the rate of convergence) can be
+calculated if an expression is known for Jr (z). In the absence
+of the exact knowledge of Jr (z), we also see the feedback
+gain a can be used to speed up convergence. However, the
+tradeoff is, with a too large we are at the risk of changing
+z too fast thus invalidating (5). It remains to be answered
+how different the solution and optimality will be if we vary
+a without invalidating (5). The next theorem shows that the
+solutions for V and r are basically the same except for a
+proper scaling and the optimality is insensitive for a range of
+a. This is generally not true when dealing with other dynamical
+systems where different feedback gains lead to very different
+trajectories. Before we proceed to the theorem, it would be
+convenient to deﬁne f a to be the same as f , except that the
+ﬁeld size q is replaced by q a .
+Theorem 2: Let Va , ra , za satisfy (13) with an arbitrary
+a > 0. Let V(t) = aVa (t/a), r(t) = ra (t/a) and z(t) =
+za (t/a). Then V, r and z satisfy
+
+Strictly speaking, the feedback in (12) is not a gradient of the
+objective function T . It is nevertheless capable of continuously
+computing the instantaneous resource vector r in the direction
+that T improves.
+
+= (∇V T )
+˙
+
+zi,K (1 − q VK −VK∪{i} ) ≤
+
+˙
+VK =
+
+˙
+V = f (V, z),
+
+(17)
+
+d∈D
+
+(16)
+
+(20)
+
+The last step follows from the fact
+1
+
+1
+
+1 − q a VK − a VK∪{i} = 1 − q 1/a
+
+1 The superscript
+stands for matrix transpose. Detailed discussion of the
+chosen feedback is presented in Section IV.
+
+3
+
+VK −VK∪{i}
+
+.
+
+(21)
+
+To verify the feedback equation in (19), we assume z, r, V
+are an arbitrary component of z, r, V, respectively. Likewise,
+assume z a , ra , V a are an arbitrary component of za , ra , Va ,
+respectively. Then we have
+
+assumption still holds), Theorem 3 indicates that (13) may still
+work.
+Theorem 3: Assume a is so large that (5) is not valid.
+If T is continuously differentiable in the ﬁrst quadrant
+˙
+and r is constrained in a bounded set, T ≥ 0 until
+a
+˙ < c/a for some constant c independent
+Jr zJz f ∇V T (V)
+˙
+of a.
+Proof: Since we do not have (5) any more, we must write
+
+∂z
+z
+˙
+z˙a
+∂z a
+(t) = (t) = a (t/a) = a (t/a),
+(22)
+∂r
+r
+˙
+∂r
+r˙
+a
+∂f
+∂f
+∂f
+(V, z) =
+(aVa (t/a)) =
+(t/a), (by (6)) (23)
+∂z
+∂z
+∂z a
+˙
+˙
+˙
+∂T (V)
+T (Va (t/a + Δt/a)) − T (Va (t/a))
+= lim
+˙
+˙
+˙
+Δt→0
+V a (t/a + Δt/a) − V a (t/a)
+∂V
+t
+∂T
+=
+.
+(24)
+˙
+∂V a a
+
+¨
+˙
+T = (∇V T ) V
+˙
+= (∇V T )
+˙
+
+we know
+t
+t
+1
+˙
+˙
+r(t) = ra
+= J r a za
+J za f
+a
+a
+a
+˙
+= Jr z(t)Jz f a (t)∇V T (V)(t).
+˙
+
+t
+a
+
+˙
+∇V a T ( V a )
+˙
+
+(30)
+
+˙
+= (∇V T ) JV f V + a (∇V T ) Jz f Jr z 2 .
+˙
+˙
+˙
+From (18) we already know V is contained in a compact
+set. ∇V T is thus bounded as T is continuously differentiable.
+˙
+Moreover, we can bound JV f . To see this, note for arbitrary
+row K of JV f , all entries are zero except for column K and
+column K ∪ {i} (i ∈ Kc ), whose entries are
+
+From (22) – (24) and
+˙
+ra (t) = aJra za Jza f ∇Va T (Va ),
+˙
+
+˙
+˙
+JV f V + Jz f z
+
+(25)
+t
+a
+(26)
+
+∂ V˙K
+= − log q
+∂VK
+
+zi,K q VK −VK∪{i} ≥ − log q
+i∈Kc
+
+zi,K ;
+i∈Kc
+
+(31)
+∂ V˙K
+= log qzi,K q VK −VK∪{i} ≤ log qzi,K .
+∂VK∪{i}
+
+In [6], a concentration result has been obtained regardless of q
+as long as q is sufﬁciently large. In practice, the effect of ﬁnite
+q on the concentration speed is minimal if q ≥ 2, because in
+this case q −x → 0 quickly as x > 0 increases. Rank evolution
+is therefore insensitive to a wide range of q, with which it
+concentrates to the same solution. As a result, as long as q a
+1, different a’s in (13) yield the same system
+1 and q 1/a
+trajectory given by
+˙
+V = f (V, r),
+˙
+˙
+r = Jr zJz f ∇V T (V),
+˙
+
+Therefore, JV f is also bounded. Hence there exists a constant
+c independent of a, such that
+˙
+(∇V T ) JV f V
+˙
+
+2
+
+˙
+≥ c, T ≥ 0.
+
+V. N UMERICAL E XAMPLE
+
+t→∞
+
+In this section, we use the network coding aware power
+control as an example to demonstrate the performance of the
+gradient based algorithm as shown in (13). Consider the 6node network shown in Fig. IV where nodes perform RNC on
+GF(2) as described in Section II. Node 1 attempts to multicast
+to nodes in D = {2, 3, 4, 5, 6} and we wish to maximize
+the worst-case throughput in the network, i.e., maximize the
+minimum throughput given in (17). We assume the MAC has
+been ﬁxed so that node i (i = 1, . . . , 6) transmits at λi = 1
+packet per millisecond. However, the transmit power of each
+node can be ﬂexibly adjusted from 0 to 15dBm. The initial
+transmit powers are set uniformly to 13dBm. Let PiTx denote
+the transmit powers at node i, hji denote the link gains from
+node i to node j, σ 2 = −101dBm denote the thermal noise
+power at every receiver. We also associate with each node i
+
+When choosing a, we want it to be large for fast convergence, but not so large that q 1/a ≈ 1 in (20). On the other
+hand, we want to avoid making a so small that q a ≈ 1 in (23).
+Both extremes would undermine the concentration assumption.
+In general, concentration is essential for RNC to achieve the
+throughput, and it is also the key assumption for what we have
+discussed so far to remain valid. To do this, given the real ﬁeld
+size q used, we may set a threshold q th < q below which the
+concern for concentration will arise. Then pick a such that
+q a , q 1/a ≥ q th ,
+
+(33)
+
+˙
+Note when T < 0, it must be true that a (∇V T ) Jz f Jr z 2 <
+˙
+c, which can be regarded as the ﬁrst order stopping criteria.
+Although Theorem 3 makes the choice of a even more
+liberal, it is nevertheless advisable to choose a reasonably
+small, otherwise additional nonlinearities may start to enter
+the picture. This is especially true when we move from the
+continuous system (13) to a discretized system that adjusts
+resource allocation only at time instants it is triggered.
+
+(27)
+
+˙
+˙
+˙
+lim T (Va (t)) = lim T (Va (t/a)) = lim T (V(t)). (28)
+t→∞
+
+≤ c.
+
+It is clear that, as long as a (∇V T ) Jz f Jr z
+˙
+
+after proper scaling as described in Theorem 2. Hence we have
+Corollary 2: If a is chosen such that f ≈ f a ≈ f 1/a , T
+converges to the same value.
+Proof: This is true because after scaling V, z, r satisfy
+˙
+˙
+(27). But V(t) = Va (t/a), so
+t→∞
+
+(32)
+
+(29)
+
+i.e., from the interval [log q th / log q, log q/ log q th ].
+If we wish to know how badly the algorithm would perform
+with a so large that (5) becomes invalid (but the concentration
+
+4
+
+1.5
+with power control
+w/o power control
+
+1
+˙
+V2
+˙
+V3
+
+0.5
+
+˙
+V4
+˙
+V5
+
+0
+0
+
+˙
+V6
+20
+
+(a)
+
+40
+60
+80
+100
+Time (milliseconds)
+
+1
+˙
+V2
+˙
+V3
+
+0.5
+
+˙
+V4
+˙
+V5
+
+0
+0
+
+˙
+V6
+200
+
+400
+600
+Time (milliseconds)
+
+PiTx hji
+.
+Tx
+2
+k=i,j Pk hjk /gi + σ
+
+PL = 20 log fc + 10n log d + Pf (n) − 28
+
+(c)
+
+VI. C ONCLUSION
+
+(34)
+
+(35)
+
+where fc is the center frequency, n the path loss exponent
+and Pf (n) the ﬂoor penetration factor. Consequently the link
+gain is given by h = 10PL/10 . In the simulation, we choose
+fc = 2.4GHz, n = 3, Pf (n) = 11. We use uncoded BPSK
+modulation with a codeword/packet length of L = 160 bits.
+Assuming a Gaussian distribution for the interference, the bit
+error rate for j decoding i is given by
+SINRji .
+
+ACKNOWLEDGMENT
+This work is supported in part by the NSF under grant no.
+CCF-1016551.
+R EFERENCES
+[1] T. Ho and H. Viswanathan, “Dynamic algorithms for multicast with intrasession network coding,” IEEE Trans. Inform. Theory, vol. 55, no. 2, pp.
+797–815, Feb. 2009.
+[2] D. Zhang and N. Mandayam, “Resource allocation for multicast in
+an OFDMA network with random network coding,” in INFOCOM,
+Shanghai, China, Apr. 2011, pp. 391–395.
+[3] D. P. Bertsekas, Network Optimization: Continuous and Discrete Models.
+Belmont, Massachusetts: Athena Scientiﬁc, 1998.
+[4] T. Tran, D. Nguyen, T. Nguyen, and D. Tran, “Joint network coding
+and power control for cellular radio networks,” in Second International
+Conference on Communications and Electronics, Jun. 2008, pp. 109–114.
+[5] T. Tran, D. Nguyen, and T. Nguyen, “A case for joint network coding and
+power control in wireless linear networks,” in 6th Annual IEEE Communications Society Conference on Sensor, Mesh and Ad Hoc Communications
+and Networks Workshops, Jun. 2009, pp. 1–6.
+[6] D. Zhang and N. Mandayam, “Analyzing random network coding with
+differential equations and differential inclusions,” IEEE Trans. Inform.
+Theory, vol. 57, no. 12, pp. 7932–7949, December 2011.
+[7] T. Ho, M. M´ dard, R. Koetter, D. Karger, M. Effros, J. Shi, and B. Leong,
+e
+“A random linear network coding approach to multicast,” IEEE Trans.
+Inform. Theory, vol. 52, no. 10, pp. 4413 – 4430, October 2006.
+[8] D. S. Lun, M. Medard, R. Koetter, and M. Effros, “On coding for
+reliable communication over packet networks,” in 42nd Annual Allerton
+Conference on Communication, Control, and Computing, Sept. 2004.
+[9] “Propagation data and prediction methods for the planning of indoor radio
+communication systems and the radio local area networks in the frequency
+range 900MHz to 100GHz,” ITU-R Recommendations, 2001.
+
+(36)
+
+bit
+The packet error rate is given by Pji = 1 − (1 − Pji )L .
+Assuming independent reception, we thus have
+
+Pji
+
+1000
+
+In this article we presented a new resource allocation
+algorithm speciﬁcally designed for RNC and throughput based
+objectives. Using the dynamical system model of RNC, the
+algorithm evolves by introducing a gradient based state feedback. We proved that this feedback adaptively computes the
+allocation that continuously improves the objective. We also
+discussed convergence of the algorithm as well as design
+considerations for the feedback gain. We illustrated the use
+of the resource allocation methodology by designing power
+control for maximizing minimum throughput in a multicast.
+
+For the link gains, we use the ITU indoor attenuation model
+[9] based on distance. The path loss PL over distance d is
+given by
+
+bit
+Pji = Q
+
+800
+
+(a)A 6-node wireless network; (b)a = 10; (c)a = 0.1.
+
+a processing gain gi = 8. Consequently, we can model the
+signal-to-interference-noise ratio (SINR) at node j when j
+attempts to decode the transmission from i as
+
+Pi,K = 1 −
+
+140
+
+with power control
+w/o power control
+
+(b)
+Fig. 1.
+
+SINRji =
+
+120
+
+Throughput (packets per ms)
+
+Throughput (packets per ms)
+
+1.5
+
+and zi,K = λi Pi,K .
+
+(37)
+
+j∈K
+
+Using the model speciﬁed by (34) – (37), we execute (13)
+to demonstrate our power control algorithm. Fig. 1b – 1c
+show the throughputs as functions of time with a = 10, and
+a = 0.1, respectively, in addition to throughputs achieved
+without power control. With a = 10, the minimum throughput
+T (the lower envelop of all the curves) increases quickly.
+But as z changes too fast, (5) becomes invalid and leads
+to oscillation of the trajectory of T . Lowering a results in
+a smoother trajectory with slower convergence. However, in
+both settings, T eventually achieves the the same value of 1
+packet per millisecond. Considering the transmit rate of node
+1 (the source) is also 1 packet per millisecond, the gradient
+based resource allocation has achieved the maximum possible
+objective without giving up any multicast advantage and also
+showed signiﬁcant improvement over no power control.
+
+5
+
+

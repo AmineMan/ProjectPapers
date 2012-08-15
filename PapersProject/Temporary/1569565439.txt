@@ -1,0 +1,965 @@
+Creator:        TeX
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Wed May 16 12:04:56 2012
+ModDate:        Tue Jun 19 12:54:22 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      427138 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569565439
+
+Pointwise lossy source coding theorem for sources
+with memory
+Barlas O˘ uz, Venkat Anantharam
+g
+Department of Electrical Engineering and Computer Sciences
+University of California Berkeley
+Email: {barlas, ananth}@eecs.berkeley.edu
+
+Going beyond average behavior, one might be interested in
+the more reﬁned problem of how close the code lengths can get
+to the rate distortion function. This problem is referred to as
+the redundancy problem of lossy source coding. The average
+n
+redundancy of code lengths E[ln (X1 )] − nR(D) has been
+studied in the works of [4], [5]. There, the minimum average
+redundancy has been shown quite generally to be O(log n).
+Here we are concerned with the pointwise redundancy
+n
+ln (X1 ) − nR(D). This problem was considered in the work
+[6], where it was proved that:
+
+Abstract—We investigate the minimum pointwise redundancy
+of variable length lossy source codes operating at ﬁxed distortion for sources with memory. The redundancy is deﬁned by
+n
+n
+ln (X1 ) − nR(D), where ln (X1 ) is the code length at block size
+n and R(D) is the rate distortion function. We restrict ourselves
+to the case where R(D) can be calculated, namely the cases
+where the Shannon lower bound to R(D) holds with equality.
+In this case, for balanced distortion measures, we provide a
+pointwise lower bound to the code length sequence in terms
+of the entropy density process. We show that the minimum
+coding variance with distortion is lower bounded by the minimum
+lossless coding variance, and is non-zero unless the entropy
+density is deterministic. We also examine lossy coding in the
+presence of long range dependence, showing the existence of
+information sources for which long range dependence persists
+under any codec operating at the Shannon lower bound with
+ﬁxed distortion.
+
+Theorem I.4. ([6], theorem 6(ii) ) For any sequence {cn } of
+positive constants with
+2−cn < ∞,
+n
+n
+˜
+ln (X1 ) ≥ − log Qn (B(X1 , D)) − cn
+
+Here
+
+I. I NTRODUCTION
+
+Unfortunately, very little can be said about the
+˜
+measures Qn , except when (Xn ) is i.i.d, in which
+n
+n
+˜
+case − log Qn (B(X1 , D)) = − log Q∗ (B(X1 , D)) −
+n
+∗
+O(log n) a.s. where Q is a product distribution. We aim to
+n
+produce a more workable lower bound to ln (X1 ) − nR(D).
+Our main result will be the following.
+
+We are concerned with the problem of ﬁnding minimum
+n
+n
+length mappings φn with the property dn (X1 ; φn (X1 )) ≤ D
+ˆ n → {0, 1}∗ , which maps φn (X n )
+for each n. Let ψn : K
+1
+n
+to a variable length binary string. Let ln (X1 ) be the length
+n
+of ψn (φn (X1 )) (i.e. the description length at block size n).
+We allow any mapping that constitutes a valid code, i.e. any
+invertible mapping ψn . It is well known that the average
+n
+behavior of ln (X1 ) is bounded by the rate distortion function.
+
+0
+Theorem I.5. Let ν = E[− log P (X1 |X−∞ )] be the entropy
+rate of (Xn ). Then
+n
+n
+0
+ln (X1 ) ≥ − log P (X1 |X−∞ )−n(ν−Rl (D))−O(log n) ev. a.s.
+
+Here Rl (D) is the Shannon lower bound to the ratedistortion function, to be deﬁned in the next section. The
+advantage of this bound over I.4 is that the quantity
+n
+0
+− log P (X1 |X−∞ ) can be written as a running sum of a
+stationary random process as
+
+Deﬁnition I.2. (Rate distortion function)
+min
+
+1
+n
+I(X1 ; Y1n ),
+n
+
+n
+i−1
+− log P (Xi |X−∞ ).
+
+n
+0
+− log P (X1 |X−∞ ) =
+
+R(D) := lim Rn (D).
+n→∞
+
+(1)
+
+i=1
+
+Theorem I.3. (Theorem 2 in [3])
+lim inf
+
+is the distortion ball deﬁned by
+
+˜
+and Qn is a probability measure that minimizes
+n
+E[− log Qn (B(X1 , D))] under all probability measures
+n
+ˆ
+on K .
+
+Deﬁnition I.1. d(x; y) is said to be a balanced distortion
+measure whenever the set of possible values d(·; y) takes is
+ˆ
+identical for each y ∈ K.
+
+n
+n
+n
+n
+P (X1 ,Y1 ):Ed(X1 ;Y1 )≤D
+
+eventually a.s. .
+
+n
+n
+n n
+ˆ
+B(X1 , D) := {y1 ∈ Kn : dn (X1 ; y1 ) ≤ D},
+
+Let (Xn ) be a discrete, stationary, ergodic source taking
+values in a ﬁnite set K. For each n consider a mapping
+ˆ
+ˆ
+φn : Kn → Kn where the output alphabet K is also
+n
+ﬁnite. We consider balanced distortion measures dn (xn ; y1 ) =
+1
+n
+1
+ˆ
+1 d(xi ; yi ) with xi ∈ K, yi ∈ K.
+n
+
+Rn (D) :=
+
+n
+B(X1 , D)
+
+n−1
+The random process ρn = − log P (Xn |X−∞ ) is referred to as
+the entropy density process. Consequently, the asymptotic (secn
+ond order) behavior of ln (X1 ) can generally be inferred from
+
+1
+n
+ln (X1 ) ≥ R(D) a.s. .
+n
+
+1
+
+2
+
+limit theorems on
+ρi , as the stationary ergodic process (ρn )
+typically inherits the mixing properties of the source (Xn ).
+The caveat is that the RHS of I.5 has mean nRl (D)−O(log n),
+meaning that if the Shannon lower bound is not tight, the
+bound is of little interest.
+To put this restriction in context, we point out that in the
+literature of rate-distortion theory for sources with memory,
+complete results are rare even in ﬁrst order discussions (i.e.
+calculation of R(D)). In fact, rate distortion functions can
+be calculated exactly only in a few special cases (ﬁnite state
+Markov chains with strictly positive transition matrices [7],
+Gaussian autoregressive processes [8] ) and even for those,
+only for a small range of low distortion. These examples have
+the property that the Shannon bound to the rate-distortion
+function is tight. For all other processes with memory, one
+needs to work with bounds on the rate-distortion function,
+which is useless for second order discussions.
+The rest of the paper is structured as follows. In the next
+section we deﬁne the Shannon lower bound to the rate distortion function for balanced distortion measures, and discuss the
+conditions under which it is tight. In section III, we present the
+proof of our main theorem I.5. Then we discuss applications
+of this theorem to fast mixing sources in section IV. A one
+sided central limit theorem for such sources is given, as well
+as a discussion of minimum coding variance. In section V, we
+extend the discussion long range dependent sources.
+
+A. Tightness of the SLB
+Let x, y ∈ K where K is an additive group. If the distortion
+can be written as d(x; y) = d(x − y) for some function d :
+K → R, then d is referred to as a difference distortion measure.
+For difference distortion measures, the case in which the SLB
+is tight is characterized by the following theorem.
+Theorem II.3. (Theorem 4.3.1 in [10]) Rl (D) = R(D) iff
+the source r.v. X admits the following characterization.
+Xn = Yn + Zn
+where Zn are i.i.d and independent from Yn with H(Zn ) =
+maxX:Ed(X;0)≤D H(X).
+Although the theorem is stated for difference distortion measures, the proof generalizes to balanced distortion measures
+without alteration (also see [7] for a partial discussion). To
+ˆ
+state the general version, let Φy , y ∈ K, be the permutation
+function with d(x; y) = d(Φy (x); 0), ∀x ∈ K, for a
+balanced distortion d. Then we have
+Theorem II.4. Rl (D) = R(D) iff the source r.v. X admits
+the following characterization.
+Xn = ΦYn (Zn )
+where Zn are i.i.d and independent from Yn with H(Zn ) =
+maxX:Ed(X;0)≤D H(X).
+Immediate examples of sources which admit such a characterization are explicit constructions where an underlying
+process is observed through a memoryless, time invariant
+channel (e.g. hidden Markov models). There also exist more
+surprising examples however, for instance some ﬁnite state
+Markov chains [7] and autoregressive processes [8]. While the
+Shannon lower bound is known to be asymptotically tight for
+small distortions quite generally [11], it is in general a difﬁcult
+question as to when such a decomposition exists.
+
+II. S HANNON LOWER BOUND
+The Shannon lower bound (SLB) to the rate-distortion
+function is deﬁned as follows. (see e.g. [9], problem 10.6.)
+Deﬁnition II.1 (Shannon lower bound).
+Rl (D) := ν −
+
+max
+
+H(X).
+
+X:Ed(X;0)≤D
+
+Lemma II.2.
+
+III. P ROOF OF THE MAIN RESULT
+Rn (D) ≥ Rl (D)
+
+Once the mapping φn has been chosen, the following lemma
+provides a pointwise lower bound on the code length process.
+
+n
+Proof: Let X1 ∼ Pxn .
+1
+
+min
+n
+
+X1 ∼Pxn
+1
+n
+n
+Edn (X1 ;Y1 )≤D
+
+n
+n
+I(X1 ; Y1n ) = H(X1 ) −
+
+maxn
+n
+
+≥ nν −
+
+X1 ∼Pxn ,
+1
+n
+n
+Edn (X1 ;Y1 )≤D
+n
+H(X1 |Y1n )
+
+max
+
+n
+H(X1 |Y1n
+
+max
+
+n n
+Edn (X1 ;y1 )≤D
+
+= nν − n
+
+Lemma III.1 (Barron’s Lemma [12]). For any sequence
+n
+H(X1 |Y1n ) {c(n)} of positive constants with
+2−c(n) < ∞ we have
+
+H(X)
+
+Edn (X1 ;Y1 )≤D
+(a)
+
+= nν −
+
+max
+n
+
+=
+
+n
+n
+ln (X1 ) ≥ − log P (φn (X1 )) − c(n), eventually, a.s. .
+
+(2)
+
+Rewriting the ﬁrst term on the RHS,
+
+n
+y1 )
+
+n
+n
+P (X1 , φn (X1 ))
+n |φ (X n ))
+P (X1 n 1
+n
+n
+n
+= − log P (X1 ) + log P (X1 |φn (X1 )).
+
+n
+− log P (φn (X1 )) = − log
+
+X:Ed(X;0)≤D
+
+Where the min and max are over joint distributions
+n
+P (X1 , Y1n ). (a) follows because the distortion is balanced.
+n
+The last equality follows because H(X1 ) is maximized by a
+n
+product distribution on X1 , and by the concavity of entropy.
+
+(3)
+(4)
+
+Theorem III.2. Let φn be a series of codes operating at ﬁxed
+distortion level Dn ≤ D, ∀n for some balanced distortion
+measure d. Then
+n
+n
+ln (X1 ) ≥ − log P (X1 ) − n(ν − Rl (D)) − O(log n) ev. a.s.
+
+2
+
+3
+
+Proof: Combining lemma III.1 and equation (4), we have
+
+A. Proof of theorem I.5
+
+n
+n
+n
+n
+Having proved theorem III.2, it only remains to show that:
+ln (X1 ) ≥ − log P (X1 )+log P (X1 |φn (X1 ))−O(log n), ev. a.s.
+(5) Lemma III.5.
+n
+n
+Deﬁne S(y1 ) = {xn : dn (xn ; y1 ) ≤ D}. For balanced
+1
+1
+n
+n
+0
+n
+n
+− log P (X1 ) ≥ − log P (X1 |X−∞ ) − O(log n), ev. a.s. .
+distortion measures, |S|n := |S(y1 )| does not depend on y1 .
+We will argue that:
+Proof: We argue as in [14] that
+
+Lemma III.3.
+
+E
+
+n
+n
+log |S|n ≥ − log P (X1 |φn (X1 ))−O(log n) eventually, a.s. .
+
+n
+P (X1 )
+≤ 1,
+n
+0
+P (X1 |X−∞ )
+
+(10)
+
+and thus
+
+Proof:
+n
+n
+P ( − log P (X1 |φn (X1 )) ≥ log |S|n + cn )
+1
+= P(
+≥ 2cn )
+n
+n
+|S|n P (X1 |φn (X1 ))
+1
+≤ 2−cn E
+.
+n
+n
+|S|n P (X1 |φn (X1 ))
+
+n
+0
+n
+P ( − log P (X1 |X−∞ ) ≥ − log P (X1 ) + cn )
+n
+P (X1 )
+cn
+= P(
+n |X 0 ) ) ≥ 2 )
+P (X1 −∞
+n
+P (X1 )
+−cn
+.
+≤ 2−cn E
+n |X 0 ) ≤ 2
+P (X1 −∞
+
+(6)
+(7)
+(8)
+
+n
+y1
+
+n
+xn ∈S(y1 )
+1
+
+n−1
+Deﬁne the function ρn = − log P (Xn |X−∞ ). Theorem I.5
+can be re-written as
+
+n
+P (xn |y1 )
+1
+n |y n )
+P (x1 1
+
+n
+n
+ln (X1 ) ≥
+
+This allows us to bound the limiting behavior of the code
+length sequence by applying well known limit theorems to the
+stationary sequence ρn . For instance, when (Xn ) are i.i.d., it
+follows that (ρn ) are also i.i.d.. It can easily be shown that
+n−1
+the variance of ρn = − log P (Xn |X−∞ ) is bounded:
+
+n
+y1
+
+where the inequality is due to the fact that only those xn with
+1
+n
+P (xn |y1 ) > 0 contribute to the inner sum.
+1
+We conclude that
+n
+n
+P (− log P (X1 |φn (X1 )) ≥ log |S|n + cn ) ≤ 2−cn .
+
+Lemma IV.1. E[ρ2 ] < ∞.
+1
+
+Applying the Borel-Cantelli lemma with e.g. cn = 2 log n, we
+get the desired result.
+1
+1
+∗
+Deﬁne Rn (D) = ν + n log |S|n . Lemma III.3 combined
+with equation (5) gives
+
+Proof:
+N →∞
+
+x1
+−N
+
+P (x0 ) = 2|K|,
+−N
+
+≤ lim 2
+N →∞
+
+x1
+−N
+
+since P log2 P terms are bounded above by 2.
+Therefore (ρn ) satisﬁes a central limit theorem with limiting
+variance var[ρ0 ]. It follows that for memoryless, ﬁnite state
+sources (Xn ):
+
+∗
+n|Rn (D) − Rl (D)| = O(log n).
+n
+Proof: Since d is balanced, notice that dn (xn ; y1 ) only
+1
+n
+n
+depends on the ‘type’ of Φy1 (x1 ). (Recall that Φ is the
+permutation with the property d(x; y) = d(Φy (x); 0).) By well
+known arguments resulting from the combinatorics of types
+(see e.g. chapter 2 of [13]), we know
+
+Corollary IV.2. There exists a sequence of random variables
+(zn ) s.t.
+n
+ln (X1 ) − nRl (D)
+√
+≥ zn
+n
+
+(n + 1)−|K| 2nH(X) ≤ |S|n ≤ (n + 1)|K| 2nH(X) ,
+
+d
+
+with zn → N (0, var[ρ0 ]).
+
+where X has the distribution that maximizes H(X) subject to
+Ed(X; 0) ≤ D. Taking logarithms, we get
+max
+
+P (x0 )P (x1 |x0 ) log2 P (x1 |x0 )
+−N
+−N
+−N
+
+E[ρ2 ] = lim
+1
+
+n
+n
+∗
+ln (X1 ) ≥ − log P (X1 ) + n(Rn (D) − ν) − O(log n), ev. a.s.
+(9)
+Lemma III.4.
+
+| log |S|n −
+
+(ρi − ν) + nRl (D) − O(log n) ev. a.s. .
+i=1
+
+n
+n
+P (y1 )|S(y1 )| = |S|n ,
+
+≤
+
+(13)
+
+IV. M IXING SOURCES
+
+x1 ∈S(y1 )
+
+n
+P (y1 )
+
+=
+
+(12)
+
+Picking cn = 2 log n and invoking the Borel-Cantelli lemma
+completes the proof.
+
+n
+n
+For any pair of random variables X1 , Y1n with X1 ∈ S(Y1n )
+we have
+n
+P (xn , y1 )
+1
+1
+E
+n |Y n ) =
+n |y n )
+P (X1 1
+P (x1 1
+n
+yn n
+1
+
+(11)
+
+When (Xn ) are not i.i.d, but sufﬁciently fast mixing, one
+would expect that the same holds for the sequence (ρn ). In
+general, suppose that the sequence
+
+nH(X)| = O(log n).
+
+Ed(X;0)≤D
+
+∞
+
+∗
+The result follows by the deﬁnitions of Rn (D) and Rl (D).
+Combining lemma III.4 with eq. 9 concludes the proof.
+
+σ 2 = var(ρ0 ) + 2
+
+cov(ρ0 , ρi )
+i=1
+
+3
+
+(14)
+
+4
+
+This shows that the minimum coding variance is 0 when
+D = Dmax + for any , while it is strictly non-zero when
+D = Dmax .
+
+converges. Sufﬁcient conditions for this to hold have been
+studied in [12]. The convergence holds, for instance, when
+(Xn ) is a ﬁnite state, ﬁnite order Markov source, or more
+generally when (Xn ) has the following mixing properties [15]:
+
+V. L ONG RANGE DEPENDENT SOURCES
+
+α(k) = O(k −336 ) and γ(k) = O(k −48 ), with
+
+The results in the previous section imply that for sufﬁciently
+fast mixing information sources, the optimal pointwise redundancy in the code length process is bounded below by an order
+√
+n random process. In this section, we investigate the case
+when the memory in the source decays much more slowly.
+2
+A stationary random process (Xn ) with E[Xn ] < ∞ is said
+to be long range dependent (LRD) if
+
+α(k) := sup{|P (B ∩ A) − P (B)P (A)|;
+0
+∞
+A ∈ F(X−∞ ), B ∈ F(Xk )},
+0
+0
+γ(k) := max E| log P (X1 = x|X−∞ )−log P (X1 = x|X−k )|.
+x∈K
+
+An easy corollary to theorem I.5 for the above cases is the
+following one sided central limit theorem.
+
+n
+
+Corollary IV.3. There exists a sequence of random variables
+(zn ) s.t.
+n
+ln (X1 ) − nRl (D)
+√
+≥ zn
+n
+
+n→∞
+
+d
+
+H := inf
+
+h : lim sup
+n→∞
+
+1
+n
+We refer to lim inf n E[(ln (X1 ) − nRl (D))2 ] as the coding
+2
+variance. Then σ is a lower bound on the minimum coding
+variance. In the memoryless case, this can easily be calculated
+as var(− log P (X0 )). In general, for sources that meet the
+Shannon lower bound, and for which the sum in (14) is
+absolutely summable, we conclude that the minimum coding
+variance is strictly positive unless ρn is equal to a deterministic
+constant. This conﬁrms the conjecture raised in [6] in a more
+general setting.
+What is perhaps more interesting is that minimum coding
+variance for lossy coding that meets the Shannon lower bound
+admits a lower bound that is independent of the distortion level
+D and is equal to the minimum lossless coding variance. 1
+This is surprising, because it implies that the minimum coding
+variance can be discontinuous at distortion level Dmax :=
+inf D {R(D) = 0}. Consider an information source for which
+the Shannon lower bound holds with equality for the entire
+range of distortions 0 ≤ D ≤ Dmax . The i.i.d. Xn ∼
+Bernoulli(p) process with Hamming distortion measure is one
+such source. It is easy to show that:
+
+n
+r=1
+
+cov(X0 , Xr )
+<∞ .
+n2h−1
+
+Equivalently, we can write
+H := inf
+
+h : lim sup
+n→∞
+
+var(
+
+n
+i=1
+n2h
+
+Xi )
+
+<∞ .
+
+Assume that the entropy density (ρn ) is LRD with Hurst
+1
+index 2 ≤ H ≤ 1. From theorem I.5, we conclude that the
+n
+process ln (X1 )−Rl (D) is lower bounded by the partial sums
+of a zero-mean LRD process with Hurst index H and therefore
+the pointwise redundancy in code length is lower bounded by
+a process that is at least of order nH . The result is true for any
+coding algorithm with ﬁxed distortion that has average code
+length equal to the Shannon lower bound. In other words,
+long range dependence is an information theoretic quantity
+that persists under any coding scheme. This result was ﬁrst
+suggested in [16] in the context of lossless coding of an LRD
+renewal process. The extension to the lossy case is important,
+because in practice, long range dependence is observed in
+the context of coding with distortion (e.g. at the output of
+a variable bit-rate video coder [18], [19], [20]).
+Therefore efforts to mitigate long range dependence using
+clever coding might be futile, at least in the constant distortion
+case. To maintain a less bursty rate, one might try to use codes
+with variable quality, in which case we conjecture that the
+distortion function will likely end up being LRD.
+This entire discussion hinges on the fact that there exists
+information sources for which the entropy density (ρn ) is
+LRD, and for which the Shannon lower bound is tight.
+Below we construct an example process with these properties,
+demonstrating that the above discussion is not vacuous.
+
+Lemma IV.4. For D = Dmax + , there exists an achievable
+coding scheme with
+n
+ln (X1 ) ≤ 1 eventually a.s. .
+1
+Proof: Without loss of generality, let p ≤ 2 . Note that
+n
+Dmax = p. We code as follows. If i=1 Xi < n(p + ), we
+map to all zeros. This is within distortion Dmax + . Otherwise,
+n
+we transmit the exact string X1 . We use a 1 bit ﬂag to indicate
+which event happens. Since we know
+n
+
+A. Example
+
+Xi ≥ n(p + )) ≤ e−O(n) ,
+
+An example of a concrete information source which has
+(ρn ) LRD was presented in [16]. There it is proved that
+if (Xn ) is a stationary discrete time LRD renewal process
+n−1
+with Hurst index H, then ρn = − log P (Xn |X−∞ ) is also
+LRD with identical Hurst index H. Here we demonstrate an
+
+i=1
+
+the error event stops happening eventually almost surely by
+Borel-Cantelli, thus proving the lemma.
+1 For
+
+(15)
+
+r=1
+
+The degree of long range dependence is measured by the Hurst
+1
+index H ( 2 ≤ H ≤ 1).
+
+with zn → N (0, σ 2 ).
+
+P(
+
+cov(X0 , Xr ) = ∞.
+
+lim sup
+
+the lossless case see [16],[17].
+
+4
+
+5
+
+information source such that (ρn ) is LRD with Hurst index H
+for which the Shannon lower bound is tight for some strictly
+non-zero distortion D > 0.
+Let X1 (n) ∈ {0, 1} be an LRD renewal process with Hurst
+index H. Let X2 (n) ∈ {0, 1} be an i.i.d. Bernoulli(p) process.
+Let X1 be independent of X2 . Deﬁne
+
+is deterministic. We also examined lossy coding in the presence of long range dependence, and showed the existence
+of information sources for which long range dependence
+persists under any codec operating at the Shannon lower bound
+with ﬁxed distortion. Therefore efforts to mitigate long range
+dependence using clever coding might be futile, at least in the
+constant distortion case.
+
+Xn = (X1 (n), X2 (n)) ∈ {0, 1}2 ,
+
+ACKNOWLEDGEMENTS
+
+with d(x; y) = 1 − δ(x = y) for x, y ∈ {0, 1}2 . Note that we
+are able to write
+
+Research support from the ARO MURI grant W911NF-081-0233, “Tools for the Analysis and Design of Complex MultiScale Networks”, from the NSF grant CNS-0910702, from the
+NSF Science & Technology Center grant CCF-0939370, “Science of Information”, from Marvell Semiconductor Inc., and
+from the U.C. Discovery program is gratefully acknowledged.
+
+Xn = (X1 (n), X2 (n)) = (X1 (n), 0) ⊕ (0, X2 (n))
+for the appropriate addition operation deﬁned on {0, 1}2 . Since
+d is a difference distortion measure, by theorem II.3, we
+conclude that the Shannon lower bound holds for this source
+for a strictly non-zero distortion level D.
+By construction, we also have
+
+R EFERENCES
+[1] C. E. Shannon, “A mathematical theory of communication,” The Bell
+Systems Technical Journal, vol. 27, pp. 379–423, 623–656, 1948.
+[2] ——, “Coding theorems for a discrete source with a ﬁdelity criterion,”
+IRE Nat. Conv. Rec, vol. 4, no. 142-163, 1959.
+[3] J. Kieffer, “Sample converses in source coding theory,” Information
+Theory, IEEE Transactions on, vol. 37, no. 2, pp. 263–268, 1991.
+[4] Z. Zhang, E. Yang, and V. Wei, “The redundancy of source coding
+with a ﬁdelity criterion. 1. Known statistics,” Information Theory, IEEE
+Transactions on, vol. 43, no. 1, pp. 71–91, 1997.
+[5] E. Yang and Z. Zhang, “On the redundancy of lossy source coding with
+abstract alphabets,” Information Theory, IEEE Transactions on, vol. 45,
+no. 4, pp. 1092–1110, 1999.
+[6] I. Kontoyiannis, “Pointwise redundancy in lossy data compression and
+universal lossy data compression,” Information Theory, IEEE Transactions on, vol. 46, no. 1, pp. 136–152, 2000.
+[7] R. Gray, “Rate distortion functions for ﬁnite-state ﬁnite-alphabet Markov
+sources,” Information Theory, IEEE Transactions on, vol. 17, no. 2, pp.
+127–134, 1971.
+[8] ——, “Information rates of autoregressive processes,” Information Theory, IEEE Transactions on, vol. 16, no. 4, pp. 412–421, 1970.
+[9] T. Cover, J. Thomas, J. Wiley et al., Elements of information theory.
+Wiley Online Library, 1991.
+[10] T. Berger, Rate-Distortion Theory. Wiley Online Library, 1971.
+[11] T. Linder and R. Zamir, “On the asymptotic tightness of the Shannon
+lower bound,” Information Theory, IEEE Transactions on, vol. 40, no. 6,
+pp. 2026–2031, 1994.
+[12] I. Kontoyiannis, “Second-order noiseless source coding theorems,” Information Theory, IEEE Transactions on, vol. 43, no. 4, pp. 1339–1341,
+1997.
+[13] I. Csisz´ r and J. K¨ rner, Information theory: Coding theorems for disa
+o
+crete memoryless systems. Academic Press (New York and Budapest),
+1981.
+[14] P. Algoet and T. Cover, “A sandwich proof of the Shannon-McMillanBreiman theorem,” The Annals of Probability, pp. 899–909, 1988.
+[15] W. Philipp and W. Stout, Almost sure invariance principles for partial
+sums of weakly dependent random variables.
+Amer. Mathematical
+Society, 1975.
+[16] B. O˘ uz and V. Anantharam, “Compressing a long range dependent
+g
+renewal process,” in Information Theory Proceedings (ISIT), 2010 IEEE
+International Symposium on. IEEE, 2010, pp. 1443–1447.
+[17] ——, “Hurst index of functions of long range dependent Markov
+chains,” Journal of Applied Probability, vol. 49, no. 2, 2012.
+[18] J. Beran, R. Sherman, M. Taqqu, and W. Willinger, “Long-range
+dependence in variable-bit-rate video trafﬁc,” IEEE Transactions on
+Communications, vol. 43, no. 234, pp. 1566–1579, 1995.
+[19] O. Rose, “Statistical properties of MPEG video trafﬁc and their impact
+on trafﬁc modeling in ATM systems,” Conference on Local Computer
+Networks: Proceedings, p. 397, 1995.
+[20] F. Fitzek and M. Reisslein, “Mpeg4 and h. 263 video traces for network
+performance,” IEEE Network, vol. 15, no. 6, pp. 40–54, 2001.
+
+n−1
+ρn = − log P (Xn |X−∞ )
+
+= − log P (X1 (n)|(X1 )n−1 )P (X2 (n))
+−∞
+= − log P (X1 (n)|(X1 )n−1 ) − log P (X2 (n))
+−∞
+:= ρ1 (n) + ρ2 (n),
+which is LRD with Hurst index H by virtue of (ρ1 ) having
+this property.
+While this is clearly a contrived example, there exist more
+general and practical information sources for which theorem
+I.5 provides a meaningful bound. These include for example
+LRD semi-Markov chains observed through a memoryless
+channel. Such sources can be constructed from LRD Markov
+chains using the tools provided in [17]. We will discuss these
+constructions in a more extensive document.
+VI. C ONCLUSION
+We considered the pointwise minimum redundancy problem
+for lossy coding for codes operating at ﬁxed distortion. In
+contrast to the average redundancy framework, where the
+redundancy is O(log n), the pointwise redundancy is typically
+√
+of order n for sufﬁciently fast mixing sources, and of order
+nH for sources with long range dependent entropy density
+with Hurst index H.
+The results were enabled by a new pointwise lower bound to
+the code length for any code that operates with ﬁxed distortion.
+The lower bound directly relates the code length to the entropy
+n−1
+density process − log P (Xn |X−∞ ). The usefulness of the
+bound is restricted to the case where R(D) can be calculated,
+namely the cases where the Shannon lower bound to R(D)
+holds with equality.
+Although we work in the restricted case of the Shannon
+lower bound, our results are still considerable generalizations
+over previous work that only considered memoryless sources.
+We provide the ﬁrst practical pointwise bound that holds for
+a class of information sources with memory. For this class,
+we were able to show that the minimum coding variance
+with distortion is lower bounded by the minimum lossless
+coding variance, and is non-zero unless the entropy density
+
+5
+
+

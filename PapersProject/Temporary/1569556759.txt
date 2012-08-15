@@ -1,0 +1,985 @@
+Title:          ligong4.dvi
+Creator:        dvips(k) 5.95b Copyright 2005 Radical Eye Software
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Wed May 16 12:39:33 2012
+ModDate:        Tue Jun 19 12:54:31 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      409015 bytes
+Optimized:      no
+PDF version:    1.7
+ISIT'2012 1569556759
+
+The State-Dependent Semideterministic
+Broadcast Channel
+Amos Lapidoth
+
+Ligong Wang
+
+ETH Zurich
+Zurich, Switzerland
+lapidoth@isi.ee.ethz.ch
+
+MIT
+Cambridge, MA, USA
+wlg@mit.edu
+
+The main result of this paper is a single-letter characterization of the capacity region:
+
+Abstract—We derive the capacity region of the state-dependent
+semideterministic broadcast channel with noncausal stateinformation at the transmitter. In this broadcast channel one
+of the outputs is a deterministic function of the channel input
+and the channel state, and the state is assumed to be known
+noncausally to the transmitter but not to the receivers.
+
+Theorem 1. The capacity region of the channel (1) when the
+states are known noncausally to the transmitter is the convex
+closure of the union of rate-pairs (Ry , Rz ) satisfying
+
+I. I NTRODUCTION
+
+Ry < H(Y |S)
+Rz < I(U ; Z) − I(U ; S)
+
+We characterize the capacity region of the discrete, memoryless, state-dependent, semideterministic broadcast channel.
+Such a channel has a single transmitting node, two receiving
+nodes, and an internal state, all of which are assumed to take
+value in ﬁnite sets. One of the receiving nodes observes a
+symbol Y that is a deterministic function of the transmitted
+symbol x and the state S
+Y = f (x, S),
+
+Ry + Rz < H(Y |S) + I(U ; Z) − I(U ; S, Y )
+
+(1a)
+
+PXY ZSU (x, y, z, s, u)
+= PS (s)PXU|S (x, u|s)1 y = f (x, s) W (z|x, s). (3)
+Here 1{·} denotes the indicator function. Moreover, the capacity region remains the same even if the state sequence is
+revealed to the deterministic receiver, i.e., if we replace f (·, ·)
+with the mapping (x, s) → f (x, s), s .
+
+(1b)
+
+The state sequence S is assumed to be independent and
+identically distributed (IID) according to some law PS (·)
+Pr(S = s) = PS (s)
+
+(2c)
+
+over all joint distribution on (X, Y, Z, S, U ) whose marginal
+is the given state distribution PS and under which, conditional
+on X and S, the channel outputs Y and Z are drawn
+according to the channel law (1) independently of U :
+
+and the other receiving node observes a symbol Z which is
+random: conditional on the input being x and the state being s,
+the probability that it is z is W (z|x, s):
+Pr(Z = z|X = x, S = s) = W (z|x, s).
+
+(2a)
+(2b)
+
+We further have the following cardinality bound on the
+auxilliary random variable U :
+
+(1c)
+
+Proposition 1. To exhaust the capacity region of the channel (1), we may restrict the auxilliary random variable U in
+(2) to take value in a set U satisfying
+
+and to be revealed to the encoder in a noncausal way: all
+future values of the state are revealed to the transmitter before
+transmission begins.
+We consider a scenario where the encoder wishes to convey
+two private messages: My ∈ {1, . . . , 2nRy } to the deterministic receiver, and Mz ∈ {1, . . . , 2nRz } to the nondeterministic
+receiver, where Ry and Rz denote the rates (in bits per
+channel use) of data transmission to the deterministic and
+nondeterministic receivers, respectively. The messages My and
+Mz are assumed to be independent and uniformly distributed.
+As for the broadcast channel without a state [1], [2], we deﬁne
+the capacity region of this channel as the closure of all ratepairs that are achievable in the sense that the probability that
+at least one of the receivers decodes its message incorrectly
+can be made arbitrarily close to zero.
+
+|U| ≤ |X | · |S| + 2,
+
+(4)
+
+where X denotes the input alphabet, and where S denotes the
+state alphabet.
+The proof of Proposition 1 is omitted.
+State-dependent broadcast channels were considered before
+[3]–[5]. Steinberg [3] studied the degraded state-dependent
+broadcast channel with causal and with noncausal sideinformation at the transmitter. He derived the capacity region
+for the causal case, but for the noncausal case his outer
+and inner bounds do not coincide. Steinberg and Shamai [4]
+then derived an inner bound for general (not necessarily
+degraded) state-dependent broadcast channels with noncausal
+
+L.W. is supported by the US Air Force Ofﬁce of Scientiﬁc Research under
+Grant No. FA9550-11-1-0183, and by the National Science Foundation under
+Grant No. CCF-1017772.
+
+The value of 1{statement} is 1 if the statement is true and is 0 otherwise.
+
+1
+
+side-information. This inner bound is based on Marton’s
+inner bound for broadcast channels without states [6] and on
+Gel’fand-Pinsker coding [7]. In fact, the direct part of our
+Theorem 1 can be deduced from [4] with a proper choice
+of the auxiliary random variables (see Section II-A). Some
+special cases of Theorem 1 were solved by Khosravi-Farsani
+and Marvasti [5]: the fully deterministic case, the case where
+the states are known to the nondeterministic receiver, and the
+case where the channel is degraded so (X, S) −Y −Z
+−
+−
+forms a Markov chain. However, capacity regions of most
+state-dependent broadcast channels are still unknown.
+Much work has been done on broadcast channels without
+states [8]. Our work can be considered as an extension of
+previous works on deterministic broadcast channels (solved by
+Gel’fand, Marton and Pinsker [9]–[11]) and on semideterministic broadcast channels (solved by Gel’fand and Pinsker [12]).
+These results can be found in [2].
+In the rest of this paper we prove the direct and converse
+parts of Theorem 1 in Sections II and III, respectively.
+
+we restrict U to be such that U −(X, S) −(Y, Z). With
+−
+−
+this choice of U0 , Uy , and Uz , (5) reduces to (2).
+B. Self-Contained Proof
+We next sketch a self-contained proof of the direct part
+of Theorem 1. (See [13] for the complete proof.) Like [4,
+Theorem 1], our proof is based on Marton’s inner bound for
+general broadcast channels [6], [14] and on Gel’fand-Pinsker
+coding [7].
+First note that the joint distribution (3) can also be written
+as
+PXY ZSU (x, y, z, s, u)
+= PS (s)PY U|S (y, u|s)PX|Y SU (x|y, s, u)W (z|x, s) (8)
+with the additional requirement that
+y = f (x, s).
+
+Further note that, when PY SU is ﬁxed, all the terms on the
+RHS of (2) are ﬁxed, except for I(U ; Z), which is convex
+in PX|Y US . Since I(U ; Z) only appears with a positive sign
+on the RHS of (2), it follows that the union over all joint
+distributions of the form (2) can be replaced by a union only
+over those where x is a deterministic function of (y, u, s), i.e.,
+of the form
+
+II. D IRECT PART
+In this section we prove the direct part of Theorem 1. One
+way to do this is to use [4, Theorem 1] with a judicious
+choice of the auxiliary random variables, as we propose in
+Section II-A. For completeness and simplicity, we also sketch
+a self-contained proof in Section II-B. The complete version
+of the self-contained proof can be found in [13].
+
+PXY ZSU (x, y, z, s, u)
+= PS (s)PY U|S (y, u|s)1 x = g(y, u, s) W (z|x, s) (10)
+
+A. Proof based on [4]
+It was shown in [4, Theorem 1] that the capacity region of
+any (not necessarily semideterministic) state-dependent broadcast channel with noncausal side-information at the transmitter
+contains the convex closure of the union of rate-pairs (Ry , Rz )
+satisfying
+Ry ≤ I(U0 , Uy ; Y ) − I(U0 , Uy ; S)
+Ry + Rz ≤ − max{I(U0 ; Y ), I(U0 ; Z)} − I(U0 ; S)
+
+for some g : (y, u, s) → x (and subject to (9)). We shall thus
+only establish the achievability of rate-pairs that satisfy (2) for
+some distribution of the form (10).
+Choose a stochastic kernel PY U|S and a mapping
+g : (y, u, s) → x which, combined with PS and the channel
+law, determines the joint distribution (10) for which (9) is
+satisﬁed. For a given block-length n, we generate a random
+code as follows:
+Codebook:
+˜
+Generate 2nRy y-bins, each containing 2nRy y-tuples
+where the ly -th y-tuple in the my -th bin
+
+(5a)
+
+Rz ≤ I(U0 , Uz ; Z) − I(U0 , Uz ; S)
+
+(5b)
++
+
++ I(U0 , Uy ; Y ) − I(U0 , Uy ; S) + I(U0 , Uz ; Z)
+− I(U0 , Uz ; S) − I(Uy ; Uz |U0 , S),
+
+(5c)
+
+where the union is over all joint distributions of
+(X, Y, Z, S, U0 , Uy , Uz ) whose marginal is PS ; that satisfy
+the Markov condition
+(U0 , Uy , Uz ) −(X, S) −(Y, Z);
+−
+−
+
+y(my , ly ),
+
+and under which the conditional law of (Y, Z) given (X, S)
+is that of the given channel.
+For the semideterministic channel, we choose the auxiliary
+random variables in (5) as follows:
+
+u(mz , lz ),
+
+˜
+
+mz ∈ {1, . . . , 2nRz }, lz ∈ {1, . . . , 2nRz }
+
+is drawn IID according to PU (the U -marginal of (10))
+independently of the other u-tuples and of the y-tuples.
+Encoder:
+To send message my ∈ {1, . . . , 2Ry } to the deterministic
+receiver and message mz ∈ {1, . . . , 2Rz } to the nondeterministic receiver, look for a y-tuple y(my , ly ) in ybin my and a u-tuple u(mz , lz ) in u-bin mz such that
+
+(7a)
+(7b)
+
+Uz = U.
+
+˜
+
+my ∈ {1, . . . , 2nRy }, ly ∈ {1, . . . , 2nRy }
+
+is generated IID according to PY (the Y -marginal of (10))
+independently of the other y-tuples. Additionally, gener˜
+ate 2nRz u-bins, each containing 2nRz u-tuples, where
+the lz -th u-tuple in the mz -th u-bin
+
+(6)
+
+U0 = 0 (deterministic)
+Uy = Y
+
+(9)
+
+(7c)
+
+Note that the Markov condition (6) is satisﬁed because Y is
+a deterministic function of (X, S) and because in Theorem 1
+
+2
+
+y(my , ly ), u(mz , lz ) is jointly typical with the state
+sequence s. If such a pair can be found, send
+x = g y(my , ly ), u(mz , lz ), s ,
+
+III. C ONVERSE PART
+Our proof of the converse part of Theorem 1 employs
+ideas from Nair and El Gamal’s outer bound [15] and of
+Gel’fand and Pinkser’s converse for the state-dependent singleuser channel [7], but it also contains some new elements.
+We shall show that, even if the state sequence S is revealed
+to the deterministic receiver (which observes Y), any achievable rate-pair must be in the convex closure of the union of
+rate-pairs satisfying (2). Given any code of block-length n, we
+ﬁrst derive a bound on Ry :
+
+(11)
+
+where in the above g(y, u, s) denotes the application of
+the function g(y, u, s) componentwise. In this case the
+sequence received by the deterministic receiver will be
+y(my , ly ). Otherwise send an arbitrary codeword.
+Deterministic decoder:
+Try to ﬁnd the unique y-bin, say my , that contains the
+received sequence y and output its number my . If there
+is more than one such bin, declare an error.
+Nondeterministic decoder:
+Try to ﬁnd the unique u-tuple u(mz , lz ) that is jointly
+typical with the received sequence z and output its bin
+number mz . If more than one or no such u can be found,
+declare an error.
+
+nRy = H(My )
+
+(16)
+(17)
+
+n
+
+I(My ; Yi |Y i−1 , S n ) + n
+
+=
+
+n
+
+(18)
+
+i=1
+n
+
+Deterministic decoder errs.
+This happens only if there is more than one bin that
+contains the received y. This probability tends to zero
+as n tends to inﬁnity provided
+
+H(Yi |Y i−1 , S n ) + n
+
+≤
+≤
+
+(19)
+
+n
+
+i=1
+n
+
+H(Yi |Si ) + n n ,
+
+(20)
+
+i=1
+
+where n is a function of n which decays to zero as n
+goes to inﬁnity. Here, (16) follows from Fano’s Inequality;
+(17) because My and S n are independent; (18) from the
+chain rule; (19) by dropping negative terms; and (20) because
+conditioning cannot increase entropy.
+We next bound Rz as in [7]:
+
+(12)
+
+Nondeterministic decoder errs.
+This happens if either the u-tuple u(mz , lz ) is not jointly
+typical with the received z-tuple, or if a different u-tuple
+happens to be jointly typical with the received z-tuple.
+The probability of the former case tends to zero as n tends
+to inﬁnity by the Markov Lemma [2]. The probability of
+the latter case tends to zero as n tends to inﬁnity provided
+˜
+Rz + Rz < I(U ; Z).
+
+n
+
+≤ I(My ; Y , S ) + n n
+= I(My ; Y n |S n ) + n n
+
+We next analyze the error probability of the above coding
+scheme. There are three types of errors:
+
+˜
+Ry + Ry < H(Y ).
+
+(15)
+n
+
+nRz = H(Mz )
+≤ I(Mz ; Z n ) + n
+
+(21)
+(22)
+
+n
+
+n
+
+I(Mz ; Zi |Z i−1 ) + n
+
+=
+
+(23)
+
+n
+
+i=1
+n
+n
+I Mz , Si+1 ; Zi Z i−1
+
+=
+
+(13)
+
+i=1
+n
+
+Encoder errs.
+This happens only if there is no (ly , lz )
+∈
+˜
+˜
+{1, . . . , 2nRy }
+×
+{1, . . . , 2nRz }
+such
+that
+y(my , ly ), u(mz , lz ) is jointly typical with the
+state sequence s. Using the Multivariate Covering
+Lemma [2, Lemma 8.2], we obtain that this error
+probability tends to zero as n tends to inﬁnity provided
+
+n
+I Si+1 ; Zi Mz , Z i−1 + n
+
+−
+
+n
+
+(24)
+
+n
+
+(25)
+
+n
+
+(26)
+
+n
+
+(27)
+
+i=1
+n
+n
+I Mz , Si+1 ; Zi Z i−1
+
+=
+i=1
+
+n
+n
+I Z i−1 ; Si Mz , Si+1 + n
+
+−
+i=1
+
+˜
+Ry > I(Y ; S)
+(14a)
+˜ z > I(U ; S)
+R
+(14b)
+˜ y + Rz > H(Y ) + H(U ) + H(S) − H(Y, U, S). (14c)
+˜
+R
+
+n
+n
+I Mz , Si+1 ; Zi Z i−1
+
+=
+i=1
+
+n
+n
+I Mz , Z i−1 , Si+1 ; Si + n
+
+−
+
+Summarizing (12), (13) and (14) we conclude that the above
+coding scheme has vanishing error probability as n tends to
+inﬁnity for all (Ry , Rz ) satisfying (2). By time-sharing we
+further achieve the convex hull of all rate-pairs satisfying (2)
+for joint distributions of the form (10). This concludes the
+proof of the direct part of Theorem 1.
+
+i=1
+n
+n
+I Mz , Z i−1 , Si+1 ; Zi
+
+≤
+i=1
+
+n
+n
+I Mz , Z i−1 , Si+1 ; Si + n
+
+−
+i=1
+
+3
+
+n
+
+I(Vi ; Zi ) − I(Vi ; Si ) + n n .
+
+=
+
+and the second mutual information on the RHS of (33):
+
+(28)
+
+n
+
+i=1
+
+n
+n
+I Mz , Si+1 , Yi+1 ; Si , Yi + I(My ; Y n , S n |Mz )
+
+Here, (22) follows from Fano’s Inequality; (23) and (24) from
+the chain rule; (25) from Csisz´ r’s Identity [16]
+a
+
+i=1
+n
+
+i=1
+n
+I Di−1 ; Ci Ci+1 ;
+
+n
+I Ci+1 ; Di Di−1 =
+
+n
+
+(29)
+
+n
+n
+I My ; Si , Yi Mz , Si+1 , Yi+1
+
++
+
+i=1
+
+i=1
+
+n
+n
+I Mz , Si+1 , Yi+1 ; Si , Yi
+
+=
+
+n
+
+n
+
+(39)
+
+i=1
+n
+
+(26) because Si and (Mz , S i−1 ) are independent; (27) from
+the chain rule and by dropping negative terms; and (28) by
+deﬁning the auxiliary random variables
+i ∈ {1, . . . , n}.
+
+(40)
+
+i=1
+n
+n
+n
+I My , Mz , Si+1 , Yi+1 ; Si , Yi
+
+=
+
+n
+(Mz , Z i−1 , Si+1 ),
+
+Vi
+
+n
+n
+I My , Mz , Si+1 , Yi+1 ; Si , Yi
+
+=
+
+(30)
+
+i=1
+n
+n
+n
+I S i−1 ; Si , Yi My , Mz , Si+1 , Yi+1
+
++
+
+We next bound the sum rate Ry + Rz :
+
+i=1
+n
+
+n(Ry + Rz ) = H(My , Mz )
+
+(31)
+
+n
+n
+I Si+1 , Yi+1 ; Si My , Mz , S i−1
+
+−
+
+= H(Mz ) + H(My |Mz )
+(32)
+n
+n
+n
+≤ I(Mz ; Z ) + I(My ; Y , S |Mz ) + n n , (33)
+
+(41)
+
+i=1
+n
+n
+n
+I My , Mz , S i−1 , Si+1 , Yi+1 ; Si , Yi
+
+=
+i=1
+
+where the last step follows from Fano’s Inequality. Of the
+two mutual informations on the RHS of (33) we ﬁrst bound
+I(Mz ; Z n ):
+
+n
+n
+n
+I Si+1 , Yi+1 ; Si My , Mz , S i−1
+
+−
+n
+
+n
+n
+I My , Mz , S i−1 , Si+1 , Yi+1 ; Si , Yi
+
+=
+
+n
+n
+
+I(Mz ; Zi |Z
+
+I(Mz ; Z ) =
+
+i−1
+
+)
+
+(34)
+
+i=1
+n
+
+i=1
+n
+
+≤
+
+I(Mz , Z
+
+; Zi )
+
+(35)
+
+n
+
+I Mz , Z
+
+n
+n
+, Si+1 , Yi+1 ; Zi
+
+−
+
+I
+
+Mz , Z
+
+i−1
+
+(36)
+
+Here, (39) and (40) follow from the chain rule; (41) by applying Csisz´ r’s Identity between (S n , Y n ) and S n ; (42) from
+a
+the chain rule; (43) because Si and (My , Mz , S i−1 ) are
+independent; (44) again from the chain rule; and (45) because,
+given (My , Mz , S n ), the channel inputs X n are determined by
+the encoder, and hence Y n are also determined, so
+
+n
+n
+n
+I Mz , Z i−1 , Si+1 , Yi+1 ; Zi
+i=1
+n
+n
+n
+I Z i−1 ; Si , Yi Mz , Si+1 , Yi+1
+
+−
+
+(37)
+
+i=1
+n
+
+n
+H Yi My , Mz , S n , Yi+1 = 0.
+
+n
+n
+I Mz , Z i−1 , Si+1 , Yi+1 ; Zi
+i=1
+
+−
+
+I Mz , Z
+
+n
+n
+, Si+1 , Yi+1 ; Si , Yi
+
+i=1
+n
+
++
+
+n
+Yi+1 ,
+
+Ti
+I
+
+n
+n
+Mz , Si+1 , Yi+1 ; Si , Yi
+
+.
+
+(46)
+
+Combining (33), (38) and (45), using the deﬁnitions (30),
+and further deﬁning
+
+n
+i−1
+
+(45)
+
+i=1
+
+i=1
+
+=
+
+H(Yi |Si ).
+
+=
+
+n
+n
+n
+Si+1 , Yi+1 ; Zi
+
+(44)
+
+i=1
+n
+
+i=1
+
+=
+
+n
+n
+I My , Mz , S i−1 , Si+1 , Yi+1 ; Yi Si
+
+=
+i−1
+
+(43)
+
+i=1
+
+i=1
+n
+
+=
+
+n
+n
+I My , Mz , S i−1 , Si+1 , Yi+1 ; Si
+
+−
+i−1
+
+(42)
+
+i=1
+
+(38)
+
+i ∈ {1, . . . , n},
+
+(47)
+
+we obtain
+
+i=1
+
+n
+
+n
+
+Here, (34), (35) and (36) follow from the chain rule; (37) by
+applying Csisz´ r’s Identity (29) between (S n , Y n ) and Z n ;
+a
+and (38) again from the chain rule.
+We next study the sum of the last term on the RHS of (38)
+
+I(Vi , Ti ; Si , Yi )
+
+I(Vi , Ti ; Zi ) −
+
+n(Ry + Rz ) ≤
+
+i=1
+
+i=1
+n
+
+H(Yi |Si ) + n n .
+
++
+i=1
+
+4
+
+(48)
+
+Summarizing (20), (28) and (48) and letting n go to inﬁnity
+we obtain that any achievable rate-pair (Ry , Rz ) must be
+contained in the convex closure of the union of rate-pairs
+satisfying
+Ry < H(Y |S)
+Rz < I(V ; Z) − I(V ; S)
+Ry + Rz < H(Y |S) + I(V, T ; Z) − I(V, T ; S, Y )
+
+for joint distributions of the form
+PXY ZSU (x, y, z, s, u) = PS (s)PXU|S (x, u|s)W (y, z|x, s).
+(56)
+ACKNOWLEDGMENTS
+
+(49a)
+(49b)
+
+The authors thank the anonymous reviewers for their helpful
+comments.
+
+(49c)
+
+R EFERENCES
+
+where, given (X, S), the outputs (Y, Z) are drawn according
+to the channel law (1) independently of the auxiliary random
+variables (V, T ). To prove the converse part of Theorem 1, it
+remains to replace V and T with a single auxiliary random
+variable. I.e., it remains to ﬁnd an auxiliary random variable
+U such that
+I(V ; Z) − I(V ; S) ≤ I(U ; Z) − I(U ; S),
+H(Y |S) + I(V, T ; Z) − I(V, T ; S, Y )
+
+[1] T. M. Cover and J. A. Thomas, Elements of Information Theory. John
+Wiley & Sons, 1991.
+[2] A. El Gamal and Y.-H. Kim, Network Information Theory. Cambridge
+University Press, 2011.
+[3] Y. Steinberg, “Coding for the degraded broadcast channel with random
+parameters, with causal and noncausal side information,” IEEE Trans.
+Inform. Theory, vol. 51, no. 8, pp. 2867–2877, Aug. 2005.
+[4] Y. Steinberg and S. Shamai (Shitz), “Achievable rates for the broadcast
+channel with states known at the transmitter,” in Proc. IEEE Int. Symp.
+Inform. Theory, Adelaide, Australia, Sept. 4–9, 2005, pp. 2184–2188.
+[5] R. Khosravi-Farsani and F. Marvasti, “Capacity bounds for multiuser
+channels with non-causal channel state information at the transmitters,”
+in Proc. Inform. Theory Workshop (ITW), Paraty, Brazil, Oct. 16–20,
+2011.
+[6] K. Marton, “A coding theorem for the discrete memoryless broadcast
+channel,” IEEE Trans. Inform. Theory, vol. 25, no. 3, pp. 306–311, May
+1979.
+[7] S. I. Gel’fand and M. S. Pinsker, “Coding for channel with random
+parameters,” Prob. Contr. and Inform. Theory, vol. 9, no. 1, pp. 19–31,
+1980.
+[8] T. M. Cover, “Comments on broadcast channels,” IEEE Trans. Inform.
+Theory, vol. 44, no. 6, pp. 2524–2530, Oct. 1998.
+[9] S. I. Gel’fand, “Capacity of one broadcast channel,” Problemy Peredachi
+Informatsii (Problems of Inform. Transm.), vol. 13, no. 3, pp. 106–108,
+July–Sept. 1977.
+[10] K. Marton, “The capacity region of deterministic broadcast channels,”
+Trans. Int. Symp. Inform. Theory, 1977.
+[11] M. S. Pinsker, “Capacity of noiseless broadcast channels,” Problemy
+Peredachi Informatsii (Problems of Inform. Transm.), vol. 14, no. 2, pp.
+28–34, Apr.–June 1978.
+[12] S. I. Gel’fand and M. S. Pinsker, “Capacity of a broadcast channel
+with one deterministic component,” Problemy Peredachi Informatsii
+(Problems of Inform. Transm.), vol. 16, no. 1, pp. 17–25, Jan.–Mar.
+1980.
+[13] A. Lapidoth and L. Wang, “The state-dependent semideterministic
+broadcast channel,” July 2011, subm. to IEEE Trans. Inform. Theory.
+[14] A. El Gamal and E. C. van der Meulen, “A proof of Marton’s coding
+theorem for the discrete memoryless broadcast channel,” IEEE Trans.
+Inform. Theory, vol. 27, no. 1, pp. 120–122, Jan. 1981.
+[15] C. Nair and A. El Gamal, “An outer bound to the capacity region of
+the broadcast channel,” IEEE Trans. Inform. Theory, vol. 53, no. 1, pp.
+50–55, Jan. 2007.
+[16] I. Csisz´ r and J. K¨ rner, Information Theory: Coding Theorems for
+a
+o
+Discrete Memoryless Systems. Academic Press, 1981.
+
+(50a)
+
+≤ H(Y |S) + I(U ; Z) − I(U ; S, Y ).(50b)
+In fact, as we shall see, either choosing U to be V will satisfy
+(50) or else choosing it to be (V, T ) will satisfy (50). If we
+choose U = V , then (50a) is satisﬁed with equality, and the
+requirement (50b) becomes
+I(T ; Z|V ) − I(T ; S, Y |V ) ≤ 0.
+
+(51)
+
+On the other hand, if we choose U = (V, T ), then (50b) is
+satisﬁed with equality, and the requirement (50a) becomes
+I(T ; Z|V ) − I(T ; S|V ) ≥ 0.
+
+(52)
+
+It remains to show that at least one of the requirements (51)
+and (52) must be satisﬁed: if it is (51), then we shall choose
+U as V , and it if is (52), then we shall choose U as (V, T ).
+To this end we note that for all random variables T, Z, V, S, Y
+I(T ; Z|V ) − I(T ; S, Y |V ) ≤ I(T ; Z|V ) − I(T ; S|V ), (53)
+because the RHS minus the left-hand side equals I(T ; Y |S, V )
+which is nonnegative. Therefore, at least one of (51) and (52)
+must be satisﬁed. We have thus shown that there must exist a
+U which satisﬁes both inequalities in (50), hence the bounds
+(49) can be relaxed to (2). This concludes the proof of the
+converse part of Theorem 1.
+Remark. This outer bound can be easily generalized to a
+broadcast channel that is not necessarily semideterministic.
+Such a channel is described by the transition law
+Pr(Y = y, Z = z|X = x, S = s) = W (y, z|x, s).
+
+(54)
+
+The general outer bound states the following: if the state
+sequence S is revealed noncausally to the transmitter, and is
+revealed to the receiver who observes Y but not to the receiver
+which observes Z, then the capacity region of this channel is
+contained in the convex closure of rate-pairs satisfying
+Ry < I(X; Y |S)
+
+(55a)
+
+Rz < I(U ; Z) − I(U ; S)
+(55b)
+Ry + Rz < I(X; Y |S) + I(U ; Z) − I(U ; S, Y ) (55c)
+
+5
+
+

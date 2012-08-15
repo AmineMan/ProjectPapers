@@ -1,0 +1,650 @@
+Title:          ISIT_paperV4.dvi
+Creator:        dvips(k) 5.96dev Copyright 2007 Radical Eye Software
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Sat May 19 09:26:56 2012
+ModDate:        Tue Jun 19 12:56:22 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      335528 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569567029
+
+Information Theory for DNA Sequencing:
+Part I: A Basic model
+Abolfazl Motahari, Guy Bresler, and David Tse
+Department of Electrical Engineering and Computer Sciences
+University of California at Berkeley
+{motahari,gbresler,dtse}@eecs.berkeley.edu
+Abstract—DNA sequencing is the basic workhorse of
+modern day biology and medicine. Shotgun sequencing is the dominant technique used: many randomly
+located short fragments called reads are extracted from
+the DNA sequence, and these reads are assembled
+to reconstruct the original sequence. By drawing an
+analogy between the DNA sequencing problem and
+the classic communication problem, we deﬁne an information theoretic notion of sequencing capacity. This
+is the maximum number of DNA base pairs that can be
+resolved reliably per read, and provides a fundamental
+limit to the performance that can be achieved by
+any assembly algorithm. We compute the sequencing
+capacity explicitly for a simple statistical model of the
+DNA sequence and the read process.
+
+ACGTCCTATGCGTATGCGTAATGCCACATATTGCTATGGTAATCGCTGCATATC
+
+genome length G ≈ 109
+
+read length L ≈ 100
+
+Fig. 1.
+
+N reads
+N ≈ 108
+
+Schematic for shotgun sequencing.
+
+When the human genome was sequenced in 2001, there
+was only one sequencing technology, the Sanger platform.
+Since 2005, there has been a proliferation of “next generation” platforms, including Roche/454, Life Technologies
+SOLiD, Illumina Hi-Seq 2000 and Paciﬁc Biosciences RS.
+Compared to the Sanger platform, these technologies can
+provide massively parallel sequencing, producing far more
+reads per instrument run and at a lower cost. Each of these
+technologies generates reads of diﬀerent lengths and with
+diﬀerent noise proﬁles. At the same time, there has been
+a proliferation of a large number of assembly algorithms,
+many tailored to speciﬁc sequencing technologies. (A recent article [1] surveys no less than 13 such algorithms.)
+The design of these algorithms is based primarily on
+computational considerations. The goal is to design eﬃcient algorithms that can scale well with the large amount
+of sequencing data. Current algorithms are often tailored
+to particular machines and are designed based on heuristics and domain knowledge regarding the speciﬁc DNA
+being sequenced; this makes it diﬃcult even to compare
+diﬀerent algorithms, not to mention to deﬁne what it
+means by an “optimal” assembly algorithm for a given
+sequencing problem.
+An alternative to the computational view is the statistical view. In this view, the genome sequence is regarded
+as a random string to be estimated based on the read
+data. The basic question is: what is the minimum number
+of reads needed to reconstruct the DNA sequence with
+a given reliability? This minimum number can be used
+as a benchmark to compare diﬀerent algorithms, and
+an optimal algorithm is one that achieves this minimum
+number. It can also provide an algorithm-independent
+basis for comparing diﬀerent sequencing technologies and
+for designing new technologies.
+
+I. Introduction
+DNA sequencing is the basic workhorse of modern
+day biology and medicine. Since the sequencing of the
+Human Reference Genome ten years ago, there has been
+an explosive advance in sequencing technology, resulting
+in several orders of magnitude increase in throughput and
+decrease in cost. This advance allows the generation of
+a massive amount of data, enabling the exploration of
+a diverse set of questions in biology and medicine that
+were beyond reach even several years ago. These questions include discovering genetic variations across diﬀerent
+humans (such as single-nucleotide polymorphisms SNPs),
+identifying genes aﬀected by mutation in cancer tissue
+genomes, sequencing an individual’s genome for diagnosis
+(personal genomics), and understanding DNA regulation
+in diﬀerent body tissues.
+Shotgun sequencing is the dominant method currently
+used to sequence long strands of DNA, including entire
+genomes. The basic shotgun DNA sequencing set-up is
+shown in Figure 1. Starting with a DNA molecule, the
+goal is to obtain the sequence of nucleotides (A, G, C or T )
+comprising it. (For humans, the DNA sequence has about
+3×109 nucleotides, or base pairs.) The sequencing machine
+extracts a large number of reads from the DNA; each read
+is a randomly located fragment of the DNA sequence, of
+lengths of the order of 100-1000 base pairs, depending on
+the sequencing technology. The number of reads can be of
+the order of 10’s to 100’s of millions. The DNA assembly
+problem is to reconstruct the DNA sequence from the many
+reads.
+
+1
+
+information
+sequence
+
+genome
+sequence
+
+encoder
+
+decoder
+
+channel
+
+physical
+sequencing
+
+assembly
+
+sources and channels, there is a maximum rate of ﬂow
+of information, measured by the number of information
+source symbols per channel output, which can be conveyed
+reliably through the channel. Third, he showed how this
+maximum reliable rate can be explicitly computed in terms
+of the statistics of the source and the statistics of the
+channel.
+The main goal of the present paper is to initiate a similar
+program for the DNA sequencing problem. Shannon’s
+main result assumes that one can optimize the encoder
+and the decoder. For the DNA sequencing problem, the
+encoder is ﬁxed and only the decoder (the assembly algorithm) can be optimized. Nevertheless, we show in this
+paper that one can also deﬁne a maximum reliable rate of
+ﬂow of information for the DNA sequencing problem. We
+call this quantity the sequencing capacity C. It gives the
+maximum number of DNA base pairs that can be resolved
+per read, by any assembly algorithm, without regard
+to computational limitations. Equivalently, the minimum
+number of reads required to reconstruct a DNA sequence
+of length G base pairs is G/C.
+The sequencing capacity C depends on both the statistics of the DNA sequence as well as the speciﬁc physical
+sequencing process. To make our ideas concrete, we compute C explicitly for a very simple model in this paper:
+1) the DNA sequence is modeled as an i.i.d. random
+process of length G with each symbol taking values
+according to a probability distribution p on the
+alphabet {A, G, C, T }.
+2) each read is of length L symbols and begins at a
+uniformly distributed location on the DNA sequence
+and the locations are independent from one read to
+another.
+3) the read process is noiseless.
+For this model, it turns out that the sequencing capacity
+C depends on the read length L through a normalized
+L
+¯
+parameter L := ln G as follows:
+
+reconstructed
+source sequence
+
+reconstructed
+genome sequence
+
+sequence
+of reads
+
+Fig. 2.
+(a) The general communication problem. (b) The DNA
+sequencing problem viewed as a restricted communication problem.
+
+This statistical view falls in the realm of DNA sequencing theory. A well-known lower bound on the number of
+reads needed can be obtained by a coverage analysis, an
+approach pioneered by Lander and Waterman [2]. This
+lower bound is the number of reads such that with a
+desired probability the randomly located reads cover the
+entire genome sequence. While this is clearly a lower bound
+on the minimum number of reads needed, it is in general
+not tight: only requiring the reads to cover the entire
+genome sequence does not guarantee that consecutive
+reads can actually be stitched back together to recover
+the entire sequence. The ability to do that depends on
+other factors such as the statistical characteristics of the
+DNA sequence and also the noise proﬁle in the read
+process. Thus, characterizing the minimum number of
+reads required for reconstruction is an open question in
+general.
+In this paper, we provide a new formulation and obtain new results to this question by drawing an analogy
+between the DNA sequencing problem and the classical
+communication problem. The basic communication problem is that of encoding an information source at one
+point for transmission through a noisy channel to be
+decoded at another point (Figure 2(a)). The problem is to
+design a ”good” encoder and a ”good” decoder. The DNA
+sequencing problem can be cast as a restricted case of the
+communication problem (Figure 2(b)). The DNA sequence
+of base pairs s1 , s2 , . . . , sG is the sequence of information
+source symbols. The physical sequencing process is the
+channel which generates from the DNA sequence a set
+of reads r1 , r2 , . . . rN . Each read is viewed as a channel
+output. The assembly algorithm is the decoder which tries
+to reconstruct the original genome sequence from the
+sequence of reads. The problem is to design a ”good”
+assembly algorithm. Note that the only diﬀerence with the
+general communication problem is that there is no explicit
+encoder to optimize and the DNA sequence is sent directly
+onto the channel.
+Communication is an age-old ﬁeld and in its early days,
+communication system designs were ad hoc and tailored
+for speciﬁc sources and speciﬁc channels. In 1948, Claude
+Shannon changed all this by introducing information
+theory as a uniﬁed framework to study communication
+problems [3]. He made several key contributions. First, he
+explicitly modeled the source and the channel as random
+processes. Second, he showed that for a wide class of
+
+¯
+Theorem 1. The capacity C(L) is given by
+¯
+C(L) =
+
+0
+¯
+L
+
+if
+if
+
+¯
+L < 2/H2 (p),
+¯
+L > 2/H2 (p).
+
+(1)
+
+The result is summarized in Figure 3. Here H2 (p) is the
+Renyi entropy of order-2, deﬁned to be
+p2 .
+i
+
+H2 (p) := − ln
+
+(2)
+
+i
+
+Since each read reveals L DNA base pairs, a naive
+thought would be that the sequencing capacity C is simply
+L base pairs/read. However, this is not correct since the
+location of each read is unknown to the decoder. The larger
+the length G of the DNA sequence, the more uncertainty
+there is about the location of each read, and the less information each read provides. The result says that L/ ln G
+is the eﬀective amount of information provided by a read,
+provided that this number is larger than a threshold. If
+
+2
+
+R
+
+¯
+¯
+C(L) = L
+
+are denoted by capital boldface, such as S, X, Y. The
+exception to these rules, for the sake of consistency with
+the literature, are the (non-random) parameters G, N, and
+L, and the constants R and C.
+
+¯
+L
+
+II. Problem Formulation and Main Result
+A. Formulation
+A DNA sequence S = S1 S2 . . . SG is a long sequence of
+nucleotides, or bases, with each base Si ∈ {A, C, T, G}.
+For notational convenience we instead denote the bases
+by numerals, i.e. Si ∈ {1, 2, 3, 4}. As discussed in the
+introduction, in this paper each base Si is selected independently and identically according to the probability
+distribution P(Si = j) = pj , with p = (p1 , p2 , p3 , p4 ). We
+assume that the DNA sequence is circular, i.e., Si = Sj if
+i = j mod G; this simpliﬁes the exposition, and all results
+apply with minor modiﬁcation to the non-circular case as
+well.
+The objective of DNA sequencing is to reconstruct
+the whole sequence based on N reads drawn randomly
+from the sequence. A read is a substring of length L
+from the DNA sequence. The set of reads is denoted by
+R = {R1 , R2 , . . . , RN }. The starting location of read i is
+Ti , so Ri = S[Ti , Ti + L − 1]. The set of starting locations
+of the reads is denoted T = {T1 , T2 , . . . , TN }. In this paper
+each read starting location T1 , . . . , TN is selected uniformly
+and independently from the DNA sequence.
+An assembly algorithm is a map taking a set of N
+reads R = {R1 , . . . , RN } and returning an estimated
+ˆ
+ˆ
+sequence S = S(R). We require perfect reconstruction,
+which presumes that the algorithm φ makes an error if
+ˆ
+S = S. We let P denote the probability model for the
+(random) DNA sequence S and the sample locations T ,
+ˆ
+and E := {S = S} the error event. A question of central
+interest is: what is the minimum number of reads N such
+that the reconstruction error probability is less than a
+given target ǫ, and what is the optimal assembly algorithm
+that can achieve such performance? Unfortunately, this is
+in general a diﬃcult question to answer.
+Taking a cue from information theory, we instead ask an
+easier asymptotic question: what is the largest information
+rate R := G/N achievable such that P(E) → 0 as
+N, G → ∞, and which algorithm achieves the optimal rate
+asymptotically? More precisely, a rate R base pair/read is
+said to be achievable if there exists an assembly algorithm
+such that P(E) → 0 as N, G → ∞ with G/N ﬁxed to
+be R. The capacity C is deﬁned as the supremum of all
+achievable rates. Given a probability model for S and the
+sample locations T , we would like to compute C.
+This general deﬁnition of capacity is in the limit of large
+G, the length of the DNA sequence. However, we were not
+explicit about how the read length L scales. For the i.i.d.
+noiseless model it turns out, for reasons that will become
+clear, that the natural scaling is to also let L → ∞ but
+¯
+ﬁxing the ratio L = L/ ln G deﬁned earlier.
+
+2
+H2 (p)
+
+2
+H2 (p)
+
+Fig. 3. The sequencing capacity C as a function of the normalized
+¯
+read length L.
+
+L/ ln G is below the threshold, reconstruction is impossible
+no matter how many reads are provided to the assembly
+algorithm. The threshold value 2/H2 (p) depends on the
+statistics of the source.
+¯
+The condition L > 2/H2 (p) can be interpreted as the
+condition for no duplication of length L subsequences in
+the length G DNA sequence. Arratia et al [4] showed that
+this is a necessary and suﬃcient condition for reconstruction of the i.i.d. DNA sequence if all length L subsequences
+of the DNA sequence are given as reads. This arises in a
+setup called sequencing by hybridization. What our result
+says is that, for shotgun sequencing where the reads are
+randomly sampled, if in addition to this no-duplication
+condition, it also holds that the sequencing rate G/N
+¯
+is less than L, then reconstruction is possible. We will
+see that this second condition is precisely the coverage
+condition of Lander-Waterman. Hence, what our result
+says is that no-duplication and coverage are suﬃcient for
+reconstruction.
+Li [5] has also posed the question of minimum number
+of reads for the i.i.d. equiprobable DNA sequence model.
+He showed that if L > 4 log2 G, then the number of
+reads needed is O(G log2 G/L). Specializing our result to
+this case, our capacity result shows that reconstruction
+is possible if and only if L > log2 G and the number of
+reads is G ln G/L. Not only our result is necessary and
+suﬃcient, we have a much weaker condition on the read
+length L and we get the right pre-constant on the number
+of reads needed, not only how it scales with G and L.
+Due to a lack of space, the proofs of the results can be
+found in the full paper [6]. Also, various extensions of the
+basic result are explored in the full paper, including the
+case when the reads are noisy.
+A brief remark on notation is in order. Sets (and
+probabilistic events) are denoted by calligraphic type, e.g.
+A, B, E, vectors by boldface, e.g. s, x, y, and random variables by capital letters such as S, X, Y . Random vectors
+
+3
+
+Theorem 1 ﬁnds the capacity for the i.i.d. noiseless
+sequencing model. The proof of this Theorem is sketched
+in the next two subsections, with the details relegated
+to [6]. Section II-B explains why the expression (1) is a
+natural upper bound to the capacity, while section II-C
+gives a simple assembly algorithm which can achieve the
+upper bound.
+
+x
+
+y
+
+Fig. 4. Two pairs of interleaved duplications create ambiguity: from
+the reads it is impossible to know whether the sequences x and y are
+as shown, or swapped.
+
+[4] carried out a thorough analysis of randomly occurring
+duplications for the same i.i.d. sequence model as ours,
+and showed that the second pattern of two iterleaved
+duplications is the typical event for reconstruction to fail.
+A consequence of Theorem 7 in [4] is the following lemma,
+see also [8].
+
+B. Upper Bound
+In this section we derive an upper bound on the capacity
+for the i.i.d. sequence model; such a bound holds for any
+algorithm, even one possessing unbounded computational
+power. The bound is made up of two necessary conditions.
+First, reconstruction of the DNA sequence is clearly impossible if it is not covered by the reads. Second, reconstruction is not possible if there are excessively long duplicated
+portions of the genome. Loosely, such duplications (which
+arise due to the random nature of the DNA source) create
+confusion if they are longer than the read length.
+a) Coverage.: In order to reconstruct the DNA sequence it is necessary to observe each of the nucleotides,
+i.e. the reads must cover the sequence. Worse than the
+missing nucleotides, a gap in coverage also creates ambiguity in the order of the contiguous pieces. The paper of
+Lander and Waterman [2] studied the coverage problem in
+the context of DNA sequencing.
+
+¯
+Lemma 3 (Duplication-limited). If L < H22 , then a
+(p)
+random DNA sequence contains two pairs of interleaved
+¯
+duplications with probability 1 − o(1) and hence C(L) = 0.
+Following Arratia et al. [4], the ﬁrst-order back-of-theenvelope calculation to understand this result is how many
+duplications of length L are expected to arise. If there
+are two pairs of interleaved duplications, then there must
+be some duplications in the ﬁrst place; and conversely, if
+there are several pairs of duplications, it is plausible that
+with a reasonably high probability they will be interleaved.
+Denoting by SL the length-L subsequence starting at
+i
+position i, we have
+
+Lemma 2 (Coverage-limited). Suppose the information
+G
+¯
+rate is R = N ≥ L. Then the sequence is not covered by
+the reads with probability 1 − o(1). On the other hand, if
+¯
+R < L, the sequence is covered by the reads with probability
+1 − o(1).
+
+P(SL = SL ) .
+i
+j
+
+E[# of length L duplications] =
+1≤i<j≤G
+
+(3)
+Now, the probability that two speciﬁc physically disjoint
+length-L subsequences are identical is:
+
+¯
+¯
+The ﬁrst statement of the lemma implies that C(L) ≤ L.
+A standard coupon collector-style argument proves this
+lemma. A back-of-the-evelope justiﬁcation, which will be
+useful in the sequel, is as follows. To a very good approximation, the starting locations of the reads are given according to a Poisson process with rate λ = N/G, and thus
+each spacing has an exponential(λ) distribution. Hence,
+the probability that there is a gap between two successive
+reads is approximately e−λL . Hence, the expected number
+of gaps is approximately N e−Lλ . This quantity is bounded
+¯
+away from zero if R ≥ L, and approaches zero otherwise.
+Note that coverage depends on the read locations but is
+independent of the DNA sequence itself; the next condition
+depends only on the sequence.
+b) Duplication: The random nature of the DNA sequence gives rise to a variety of patterns. The key observation in [7] is that there exist two patterns in the DNA
+sequence precluding reconstruction from an arbitrary set
+of reads of length L. In other words, reconstruction is not
+possible even if the L-spectrum, i.e. the set of all substrings
+of length L appearing in the DNA sequence, is given. The
+ﬁrst pattern is the three way duplication of a substring of
+length L − 1. The second pattern is two interleaved pairs
+of duplications of length L − 1, see Figure 4. Arratia et al.
+
+p2
+i
+
+ℓ
+
+= e−ℓH2 (p) ,
+
+i
+2
+where H2 (p) = − log
+is the R´nyi entropy of
+e
+i pi
+order two. Ignoring the GL terms in (3) where SL and
+i
+SL overlap, we get the lower bound:
+j
+
+G2
+G2 −LH2 (p)
+−GL e−LH2 (p) ≈
+e
+.
+2
+2
+(4)
+¯
+This number approaches inﬁnity if L = L/ ln G is less
+than 2/H2 (p), suggesting that under this condition, the
+probability of having two pairs of interleaved duplications
+is very high. Moreover, as is proved in [6] that the contribution of the terms in (3) due to physically overlapping
+subsequences is not large, and so the lower bound in (4)
+¯
+is essentially tight. This suggests that L = 2/H2 (p) is in
+fact the threshold for existence of interleaved duplications.
+Note that for any ﬁxed read length L, the probability
+of such a duplication event will approach 1 as the DNA
+length G → ∞. This means that if we had deﬁned capacity
+for a ﬁxed read length L, then for any value of L, the
+capacity would have been zero. Thus, to get a meaningful
+capacity result, one must scale L with G, and Lemma
+¯
+3 suggests that letting L and G grow while ﬁxing L
+
+E[# of duplications] >
+
+4
+
+This number is largest either when ℓ = L or ℓ = 0.
+This suggests that, typically, errors occurs in stage L
+or stage 0 of the algorithm. Errors occur at stage L if
+there are duplications of length L substrings in the DNA
+sequence. Errors occur at stage 0 if there are still leftover
+unmerged contigs. The no-duplication condition ensures
+that the probability of the former event is small. The
+coverage condition ensures that the probability of the
+latter event is small. Thus, the two necessary conditions
+are also suﬃcient for reconstruction.
+It should be noted that the greedy algorithm has also
+been shown to be optimal for the shortest common superstring problem under certain probabilistic settings [9].
+The shortest common superstring problem is the problem
+of ﬁnding the shortest string containing a set of given
+strings. However, in their model, the given strings are
+all independently distributed and does not from a single
+”mother” sequence. In contrast, in our model, even though
+the original DNA sequence is assumed to be i.i.d., the
+reads will be highly correlated, since many of the reads
+will be physically overlapping. In fact, it follows from [9]
+that, given N reads and the read length L scales like ln N ,
+the length of the shortest common superstring scales like
+N ln N . On the other hand, in our model, the length of
+the reconstructed sequence would be proportional to N .
+Hence, the length of the shortest common superstring is
+much longer, a consequence of the fact that the reads are
+all independent and therefore much harder to merge. So
+the two problems are totally diﬀerent, although coincidentally the greedy algorithm is optimal for both problems.
+Acknowledgements: This work is supported by the
+NSERC of Canada and by the NSF Center for Science
+of Information under grant agreement CCF-0939370.
+
+is the correct scaling. This is further validated by the
+achievability result in the next section.
+C. Optimal Algorithm
+A simple greedy algorithm (perhaps surprisingly) turns
+out to be optimal, achieving the capacity described in
+Theorem 1. Essentially, the greedy algorithm merges the
+reads repeatedly into contigs1 repeatedly and greedily
+based on an overlap score between any two strings. The
+algorithm is given as follows.
+Greedy Algorithm
+Input: R, the set of reads of length L.
+1) Initialize the set of contigs as the given reads.
+2) Find two contigs with largest overlap score, breaking
+ties arbitrarily, and merge them into one contig.
+3) Repeat Step 2 until only one contig remains.
+In this paper the overlap score W (S1 , S2 ) is deﬁned as the
+maximum length suﬃx of S1 identical to a preﬁx of S2 .
+Theorem 4 (Achievable rate). The greedy algorithm with
+¯
+¯
+overlap score W can achieve any rate R < L if L >
+2/H2 (p), thus achieving capacity.
+Basically, this result says that if the reads cover the
+DNA sequence and there are no duplications of length
+L, then the greedy algorithm can reconstruct the DNA
+sequence. Let us give a back-of-the-envelope calculation
+to understand this result. The detailed proof will be given
+in [6].
+Since the greedy algorithm merges reads according to
+overlap score, we may think of the algorithm as working
+in stages, starting with an overlap score of L down to
+an overlap score of 0. At stage ℓ, the merging is between
+contigs with overlap score ℓ. The key is to ﬁnd the typical
+stage at which errors in merging ﬁrst occurs. Assuming no
+errors have occurred in stages L, L − 1, . . . , ℓ + 1. Consider
+the situation in stage ℓ. The algorithm has already merged
+the reads into a number of contigs. The boundary between
+two neighboring contigs is where the overlap between the
+neighboring reads is less than or equal to ℓ; if it were
+larger than ℓ, the two contigs would have been merged
+already. Hence, the expected number of contigs at stage ℓ
+is the expected number of pairs of successive reads with
+spacing greater than L − ℓ. Again invoking the Poisson
+approximation, this is roughly equal to
+
+References
+[1] J. Miller, S. Koren, and G. Sutton, “Assembly algorithms for
+next-generation sequencing data,” Genomics, vol. 95, pp. 315–
+327, 2010.
+[2] E. S. Lander and M. S. Waterman, “Genomic mapping by ﬁngerprinting random clones: A mathematical analysis,” Genomics,
+vol. 2, no. 3, pp. 231–239, 1988.
+[3] C. Shannon, “A mathematical theory of communication,” Bell
+System Technical Journal, vol. 27, pp. 379–423, 1948.
+[4] R. Arratia, D. Martin, G. Reinert, and M. S. Waterman, “Poisson
+process approximation for sequence repeats, and sequencing by
+hybridization,” J. of Comp. Bio., vol. 3, pp. 425–463, 1996.
+[5] M. Li, “Towards a DNA sequencing theory (learning a string),”
+in Foundations of Computer Science, vol. 1, Oct 1990, pp. 125
+–134.
+[6] S. Motahari, G. Bresler, and D. Tse, “Information theory of DNA
+sequencing,” 2012, http://arxiv.org/abs/1203.6233.
+[7] E. Ukkonen, “Approximate string matching with q-grams and
+maximal matches,” Theoretical Computer Science, vol. 92, no. 1,
+pp. 191–211, 1992.
+[8] M. Dyer, A. Frieze, and S. Suen, “The probability of unique solutions of sequencing by hybridization,” Journal of Computational
+Biology, vol. 1, no. 2, pp. 105–110, 1994.
+[9] A. Frieze and W. Szpankowski, “Greedy algorithms for the
+shortest common superstring that are asymptotically optimal,”
+Algorithmica, vol. 21, no. 1, pp. 21–36, 1998.
+
+N e−λ(L−ℓ) ,
+where λ = N/G = 1/R.
+Two contigs will be merged in error in stage ℓ if the
+length ℓ suﬃx of one contig equals the length ℓ preﬁx of
+another contig. Assuming these substrings are physically
+disjoint, the probability of this event is e−ℓH2 (p) . Hence,
+the expected number of pairs of contigs for which this
+confusion event happens is approximately
+N e−λ(L−ℓ)
+1 Here,
+
+2
+
+· e−ℓH2 (p) .
+
+(5)
+
+a contig means a contiguous, overlapping sequenced reads.
+
+5
+
+

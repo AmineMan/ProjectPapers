@@ -1,0 +1,768 @@
+Creator:        TeX
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Mon Apr 23 11:37:24 2012
+ModDate:        Tue Jun 19 12:56:14 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      513055 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569558697
+
+Generalized Distributive Law for ML Decoding of
+STBCs: Further Results
+Lakshmi Prasad Natarajan and B. Sundar Rajan
+Dept. of ECE, IISc, Bangalore 560012, India
+Email: {nlp,bsrajan}@ece.iisc.ernet.in
+
+the multigroup decodability or the conditional multigroup
+decodability of a code. This method is well known and widely
+used in the literature, and we will refer to it as Conditional
+ML (CML) decoding.
+The Generalized Distributive Law [19] and its equivalent,
+factor graph based approach, known as the Sum-Product
+Algorithm [20] are message-passing algorithms that efﬁciently
+solve a class of computation problems called Marginalize
+a Product Function (MPF) problems. The Generalized Distributive Law (GDL) includes as special cases the Viterbi’s
+algorithm, the BCJR algorithm, the Fast-Fourier Transform,
+the Turbo and LDPC decoding algorithms. In [1], we showed
+that the ML decoding of any STBC is an MPF problem, and
+gave a GDL based framework to construct ML decoders for
+STBCs. We also showed that for two families of STBCs,
+the Toepltiz codes [21] and the Overlapped Alamouti Codes
+(OACs) [22], the GDL based ML decoders have strictly less
+complexity order than the CML decoders. The contribution
+and organization of this paper are as follows.
+
+Abstract—The problem of designing good Space-Time Block
+Codes (STBCs) with low maximum-likelihood (ML) decoding
+complexity has gathered much attention in the literature. All
+the known low ML decoding complexity techniques utilize the
+same approach of exploiting either the multigroup decodable or
+the fast-decodable (conditionally multigroup decodable) structure
+of a code. We refer to this well known technique of decoding
+STBCs as Conditional ML (CML) decoding. In [1], we introduced
+a framework to construct ML decoders for STBCs based on the
+Generalized Distributive Law (GDL) and the Factor-graph based
+Sum-Product Algorithm, and showed that for two speciﬁc families
+of STBCs, the Toepltiz codes and the Overlapped Alamouti
+Codes (OACs), the GDL based ML decoders have strictly less
+complexity than the CML decoders. In this paper, we introduce a
+‘traceback’ step to the GDL decoding algorithm of STBCs, which
+enables roughly 4 times reduction in the complexity of the GDL
+decoders proposed in [1]. Utilizing this complexity reduction from
+‘traceback’, we then show that for any STBC (not just the Toeplitz
+and Overlapped Alamouti Codes), the GDL decoding complexity
+is strictly less than the CML decoding complexity. For instance,
+for any STBC obtained from Cyclic Division Algebras that is
+not multigroup or conditionally multigroup decodable, the GDL
+decoder provides approximately 12 times reduction in complexity
+compared to the CML decoder. Similarly, for the Golden code,
+which is conditionally multigroup decodable, the GDL decoder
+is only about half as complex as the CML decoder.
+
+•
+
+I. I NTRODUCTION
+•
+
+The complexity with which a Space-Time Block Code
+(STBC) can be maximum-likelihood (ML) decoded is an
+important parameter from an implementation point of view.
+Consequently, the problem of designing codes with high rate
+and good error performance that admit low complexity ML
+decoding is of much interest in the literature. This problem
+was ﬁrst attacked by constructing multigroup decodable codes
+which have the property that the information symbols of the
+code can be partitioned into several groups, and each group
+of symbols can be ML decoded independent of other symbol
+groups. Examples include the Orthogonal Designs [2] and the
+higher rate multigroup decodable STBCs constructed in [3]–
+[8]. In [9], it was shown that a new class of STBCs called fastdecodable or conditionally multigroup decodable codes allow
+reduced complexity decoding as well. These codes contain
+a lower rate multigroup decodable STBC as a subcode, and
+this property is leveraged to decode such STBCs with low
+complexity. Examples of fast-decodable codes available in the
+literature include [9]–[13], the Silver code [14], [15] and the
+Golden Code [16]–[18], [10]. All known low complexity ML
+decoders have the same uniﬁed approach of exploiting either
+
+•
+
+We introduce a ‘traceback’ step to the GDL decoding
+method of STBCs, which enables roughly 4 times reduction in the complexity of the GDL decoders proposed
+in [1] (Section III-B).
+Using the complexity reduction from the ‘traceback’
+algorithm, we show that the GDL decoding complexity
+of any STBC, not just the Toeplitz codes and the OACs,
+is strictly less than the CML decoding complexity (Theorem 1, Section III-C). As an application of our results, we
+show that for any STBC obtained from Cyclic Division
+Algebras [23] which is not multigroup or conditionally
+multigroup decodable, the GDL decoder is approximately
+12 times less complex than the CML decoder. In case
+of the Golden code, which is conditionally multigroup
+decodable, the GDL decoder is roughly half as complex
+as the CML decoder (Example 3, Section III-D).
+When the information symbols of a code are encoded
+using a PAM signal set, we show that the GDL algorithm
+can exploit the structure of PAM to lead to further
+reduction in decoding complexity (Section III-D).
+
+A brief review of the GDL framework for constructing ML
+decoders for STBCs [1] is given in Section II.
+The proofs for all the theorems, propositions and other
+claims in this paper have been omitted due to space considerations, but are available in [24], along with several illustrative
+
+1
+
+examples.
+Notation: Matrices (vectors) are denoted by bold, uppercase
+(lowercase) letters. The Hermitian and Frobenius norm of a
+matrix X are denoted by XH and ||X|| respectively. For a
+square matrix X, tr(X) denotes the trace of X. Unless used
+√
+as a subscript or to denote indices, j represents −1. The
+m × m sized null matrix is denoted by Om . For any set I,
+its complement in the corresponding universal set is denoted
+by I c .
+
+. . .
+
+x1
+
+x1 x3
+
+x2 x3
+
+x1 x2
+x1, x2, . . . , xN
+
+x2 x4
+
+xN xN−1
+
+. .
+.
+
+xN
+
+II. A B RIEF R EVIEW OF THE GDL D ECODING OF STBC S
+
+K
+i=1 si Ai
+
+Fig. 1.
+
+xn ∈ An , n = 1, . . . , N .
+
+γ(s5 c + s7 s + js6 c + js8 s)
+,
+−s1 s + s3 c − js2 s + js4 c
+
+where γ = −j, c = cos(θ), s = sin(θ) and θ = 1 tan−1 (2).
+2
+The symbols {si } of this design are encoded independently of
+each other using a PAM constellation. The number of encoding
+groups is 8, and each symbol si forms an encoding group by
+itself, i.e., xn = [sn ], n = 1, . . . , 8.
+Consider the real numbers ξi = tr(−HAi YH − YAH HH ),
+i
+ξi,i = tr(HAi AH HH ) and ξi,j = tr(H(Ai AH + Aj AH )HH )
+i
+j
+i
+deﬁned for all i = 1, . . . , K and j > i. For n = 1, . . . , N ,
+let ψ(n) denote the set of indices of those real symbols si
+that are in the nth encoding group xn . Then, let αn (xn ) =
+2
++
+si sj ξi,j , and for all
+j>i
+i∈ψ(n) si ξi + si ξi,i
+
+A junction tree to decode an arbitrary STBC.
+
+µu,v (xIu ∩Iv ) = minxIu \Iv
+
+αu +
+
+w adj u
+w=v
+
+µw,u ,
+
+where
+
+w adj u denotes that the vertices w and u are neighbors,
+and Iu \ Iv is the set of elements in Iu that are not in
+Iv . The state of the vertex u is a table of values of the
+function
+σu (xIu ) = αu (xIu ) + w adj u µw,u (xIw ∩Iu ).
+ˆ
+To obtain the ML solution (ˆ 1 , . . . , xN ), the GDL decoder
+x
+implements the all-vertex GDL schedule: every vertex is
+made to send a message to each of its neighbors exactly
+once, when for the ﬁrst time it receives messages from all
+its other neighbors. At the end of this schedule, the state
+of each vertex v is σv (xIv ) = minxIv β(x1 , . . . , xN ). For
+c
+each n = 1, . . . , N , choose any vertex v with Iv = {n},
+ˆ
+then the ML solution of xn is xn = arg min σv (xn ) [1].
+The single-vertex GDL schedule on the other hand computes
+the ML solution of the variables associated with any one
+vertex v0 ∈ V. Here, v0 is called the root, and every vertex
+except v0 sends exactly one message to its neighbor along
+the unique path to v0 when it has received messages from
+all its other neighbors. The state at v0 at the end of this
+schedule equals σv0 (xIv0 ) = minxIv β(x1 , . . . , xN ). The
+c
+0
+ML solution to xIv0 is then obtained as arg min σv0 . The
+total number of mathematical operations in the case of
+single-vertex schedule for any root vertex v0 is equal to
+C(G) =
+(w,u)∈E |AIw | + |AIu | − |AIw ∩Iu | . The allvertex GDL schedule can be implemented with complexity of
+at the most 4C(G) [19]. The complexity order for both single
+and all-vertex problems is thus maxu∈V |AIu |.
+
+i,j∈ψ(n)
+
+i∈ψ(n) si sj ξi,j .
+j∈ψ(m)
+
+..
+
+For any two neighboring vertices u and v of the
+junction tree G, the directed message from u to v is
+a table of values of a function µu,v : AIu ∩Iv → R,
+
+√
+
+1 ≤ n < m ≤ N , let αn,m (xn , xm ) =
+
+x2 xN
+
+for each n = 1, . . . , N , the subgraph of G consisting of those
+vertices whose local domains contain xn together with the
+edges connecting these vertices is connected. Note that there
+is no unique junction tree for a given STBC. A junction tree
+to decode an arbitrary STBC is shown in Fig. 1. The local
+kernel at the vertex (x1 , x2 , . . . , xN ) at the center is set
+identically equal to zero, the local kernels at the (xn , xm )
+and xn vertices are set to αn,m and αn respectively.
+
+Example 1: Consider the Golden Code [16], [17]
+s1 c + s3 s + js2 c + js4 s
+γ(−s5 s + s7 c − js6 s + js8 c)
+
+x3 x4
+
+.
+
+x3
+
+We consider the nt transmit, nr receive antenna MIMO
+channel Y = HX + N, where X is the nt × T codeword
+matrix and N is the complex white Gaussian noise. We assume
+that H is known at the receiver, but not at the transmitter.
+K
+We consider STBCs obtained from designs S = i=1 si Ai .
+The real symbols s1 , . . . , sK are partitioned into N encoding
+groups, x1 , . . . , xN . The vector xn , consisting of real symbols
+from the nth encoding group, is encoded by the signal set
+An ∈ Rλn , where λn is the number of symbols in xn . The
+STBC is thus C =
+
+x2
+
+x1 xN
+
+The
+
+ML solution is the tuple (x1 , . . . , xN ) that minimizes the
+N
+global kernel β = n=1 αn + m>n αn,m , which is equivalent to minimizing ||Y − HX||2 [1].
+For
+any
+I = {i1 , . . . , i|I| } ⊂ {1, . . . , N }
+with
+i1 < i2 < · · · < i|I| , denote by AI the set Ai1 × · · · × Ai|I| ,
+and denote by xI the variable list (xi1 , . . . , xi|I| ). The
+GDL decoder ﬁnds arg min β(x1 , . . . , xN ) through a
+message passing schedule operating on a simple1 tree
+G = (V, E). Each vertex v ∈ V is associated with a local
+kernel αv : AIv → R, and local domain xIv for some
+Iv ⊂ {1, . . . , N }. The tree G must be a junction tree for the
+STBC C, i.e., it must satisfy: (C.1) for each n = 1, . . . , N ,
+there exists a v ∈ V such that Iv = {n}, (C.2) v∈V αv = β,
+and (C.3) the tree G satisﬁes the junction tree condition, i.e.,
+1 A graph is said to be simple if it is undirected, unweighted with no loops
+or multiple edges.
+
+2
+
+x1
+
+x3
+
+x2
+
+x 1 x3 x 5 x 6 x 7 x
+
+x4
+
+Fig. 3.
+
+x5
+
+x7
+
+Fig. 2.
+
+x6
+
+8
+
+x 5 x6 x 7 x 8
+
+x2 x 4 x 5 x 6 x 7x
+
+8
+
+A junction tree core T to decode the Golden Code.
+
+vertex of tier 1 using a single edge. The set of (xn ) vertices
+thus added form tier 2 of the junction tree.
+The complexity order of the junction tree thus constructed is
+determined by the core vertices. Since every pair of interfering
+symbols must be contained within some ‘larger’ vertex of the
+core, the vertex v of the junction tree with the largest |AIv |
+belongs to the core. Thus, given an STBC/moral graph, the
+problem of ﬁnding an efﬁcient ML decoder is equivalent to
+one of constructing a core with the least complexity. There is
+no unique core for a given STBC/moral graph, and different
+cores can lead to junction trees with different complexities. For
+instance, the graph with the single vertex (x1 , x2 , . . . , xN ) can
+always be used as a core irrespective of the structure of the
+moral graph (see Fig. 1). However this would lead to junction
+trees with complexity order |A{1,...,N } | = |C|, which is equal
+to the order of brute-force ML decoding complexity.
+
+x8
+
+Moral graph of the Golden Code.
+
+Two variables xn and xm are said to interfere with each
+other if there exists a symbol si in the encoding group
+xn and a symbol sj in the encoding group xm such that
+Ai AH + Aj AH = Ont . If no such symbols si , sj exist we
+j
+i
+say that xn and xm are non-interfering. The local kernel
+αn,m (xn , xm ) is identically zero, and hence can be removed
+from the GDL formulation, for all channel realizations H if
+and only if xn and xm are non-interfering [1]. The kernels
+αn , however, are non-zero with probability 1, and can not
+be removed from the GDL formulation. The existence of
+such non-interfering symbols can lead to junction trees whose
+complexity is less than that of the tree in Fig. 1. Thus, all the
+information required to construct a junction tree for a code is
+contained in its moral graph , which is a simple graph with
+vertex set as the variables xn , n = 1, . . . , N , and in which
+an edge exists between two vertices if and only if the two
+corresponding variables are interfering. For example, the moral
+graph of the Golden code is given in Fig. 2.
+
+B. Traceback
+Let G be any junction tree for the STBC C with the
+encoding groups x1 , . . . , xN . We will now show that the ML
+solutions of {x1 , . . . , xN } can be obtained by running the
+single-vertex GDL with any vertex v0 as the root, followed
+by a traceback step, instead of the all-vertex GDL. This is
+similar to the Viterbi’s algorithm for decoding convolutional
+codes, where the actual ML metric of only the last state
+of the trellis is calculated and then the ML path is traced
+back to the ﬁrst state. Consider the single-vertex GDL
+message-passing schedule with v0 as the root. Every vertex
+u = v sends a message to its neighbor p(u) on the unique
+path from u to v0 , when it has received messages from all its
+other neighbors. While doing so it computes its partial state
+λu (xIu ) = αu (xIu ) + w adj u µw,u (xIw ∩Iu ), and sends
+
+III. GDL IS LESS COMPLEX THAN CML D ECODING
+In this section, we introduce the notion of ‘core’ of a
+junction tree, and the ‘traceback’ step in GDL decoding. We
+then show that GDL has strictly less complexity than CML
+decoding for any STBC.
+A. Core of a junction tree
+Let T be a simple tree in which every vertex v is associated
+with a local domain xIv (for some Iv ⊂ {1, . . . , N }) and the
+local kernel αv (xIv ) = 0.
+Deﬁnition 1: The tree T is said to be a core for the STBC
+C if (i) it satisﬁes the junction tree condition (condition C.3
+of Section II), and (ii) for every pair of neighboring vertices
+(xn , xm ) in the moral graph, there exists a vertex v of T such
+that {xn , xm } ⊆ xIv .
+For example, a core for the Golden code is shown in
+Fig. 3. Given a core T , a junction tree for the STBC can be
+constructed as follows. For every pair (xn , xm ) of neighboring
+vertices in the moral graph, choose a vertex v of T such that
+{xn , xm } ⊆ xIv . If Iv = {n, m} then set the local kernel
+at v to αn,m , else attach a vertex (xn , xm ) with local kernel
+αn,m to v using a single edge. The set of (xn , xm ) vertices
+thus added to T form tier 1. Now, for each n = 1, . . . , N ,
+ﬁnd a vertex of tier 1 that contains the variable xn and attach
+the vertex (xn ) with the local kernel αn to that vertex using
+a single edge. If there exists no tier 1 vertex that contains
+xn then connect the (xn ) vertex with local kernel αn to any
+
+w=p(u)
+
+the message µu,p(u) (xIu ∩Ip(u) ) = minxIu \Ip(u) λu (xIu ).
+Note that this partial state λu is different from the state σu
+of u at the end of the all-vertex GDL algorithm. These two
+functions are related as σu = λu + µp(u),u , where µp(u),u is
+the message from p(u) to u during the all-vertex GDL. At
+the end of the single-vertex GDL, v0 calculates its state σv0 ,
+c
+which is equal to min xIv0 β(x1 , . . . , xN ). The ML solution
+ˆ
+to xIv0 is obtained as xIv0 = arg min σv0 (xIv0 ).
+Let u be any vertex such that the ML solution of the
+ˆ
+local domain of p(u), i.e., xIp(u) is known. Partition xIu
+into xA(u) = xIu \Ip(u) and xB(u) = xIu ∩Ip(u) . Since the ML
+ˆ
+solution at p(u) is known, the value xB(u) that minimizes
+σu (xA(u) , xB(u) ) is known. Thus, the ML solution of xA(u)
+ˆ
+ˆ
+is xA(u) = arg minxA(u) σu (xA(u) , xB(u) )
+ˆ
+= arg min λu (xA(u) , xB(u) ) + µp(u),u (ˆ B(u) )
+x
+xA(u)
+
+ˆ
+= arg min λu (xA(u) , xB(u) ).
+xA(u)
+
+3
+
+Hence, the ML solution at u can be obtained merely from λu
+and the ML solution at p(u). This is possible since we are
+only interested in arg min σu rather than σu itself. At the end
+of the single-vertex schedule, the solution at v0 is ﬁrst found,
+followed by all its neighbors, and then the neighbors of these
+vertices, and so on, until the ML solution of all the variables
+xn , n = 1, . . . , N , are obtained. Since the all-vertex GDL is
+about four times as complex as the single-vertex GDL, this
+traceback algorithm provides about 4 times reduction in GDL
+decoding complexity.
+
+obtained from a Cyclic Division Algebra [23], where
+2π
+γ = ej 8 , δ is any complex number which is transcendental
+√
+over the ﬁeld Q( γ), and the complex symbols s2n−1 + js2n ,
+n = 1, . . . , 4, are encoded using the 8-PSK signal √ This
+set.
+code is fully-interfering, has N = 4, t = 2, q = 8, and
+from (1) and (2), its GDL decoder is 19 times less complex
+than the CML decoder.
+The GDL decoder is of strictly less complexity not just for
+full-interfering codes, but for any STBC.
+Theorem 1: Let C be any STBC such that the number of
+real symbols per each encoding group of C is same, and the
+signal set size for each of the encoding groups is equal. Then
+CGDL (C) < CCML (C).
+For multigroup decodable codes, the GDL decoder ML
+decodes each group of symbols using a separate junction
+tree [1]. For conditionally multigroup decodable codes, the
+junction tree/core is designed intelligently to exploit the fact
+that certain functions αn,m are identically zero, and this leads
+to efﬁcient implementations of the ML decoder (see Fig. 3 in
+Section III-A and Example 3 in Section III-D for an illustration
+involving the Golden code, which is conditionally multigroup
+decodable).
+
+C. GDL is faster than Conditional ML decoding
+The GDL algorithm varies with the choice of the weight
+matrices, encoding groups and the junction tree. Deﬁne
+CGDL (C) as the minimum among the complexities (the number
+of mathematical operations: multiplications, additions and
+comparisons) of all possible GDL algorithms that can be
+used to solve the ML decoding problem of C. Similarly for
+the CML algorithm there can be more than one choice of
+subcode of C that is multigroup decodable. The complexity
+of conditional ML decoding then varies with this choice. By
+CCML (C) is meant the minimum among all possible conditional
+ML decoding complexities of code C. Almost all STBCs of
+interest have the property that each encoding group has the
+same number of real symbols, say t, and the signal set size
+of all the groups are equal, i.e., |A1 | = |A2 | = · · · = |AN |. If
+the average number of information bits carried by each real
+symbol is log2 q then the signal set size |An | = q t . For the
+sake of analytical tractability, and considering the widespread
+prevalence STBCs of this type in the literature, we restrict our
+analysis of the exact GDL and CML complexities to this class
+of codes.
+We say that a code is fully-interfering if all its symbols
+{x1 , . . . , xN } are mutually pairwise interfering. For such a
+code, the CML algorithm performs a brute-force minimization
+of the ML metric over all q N t values of (s1 , . . . , sN t ). Its
+complexity is
+
+D. Reduction in complexity with PAM signal sets
+The structure of the PAM constellation can be exploited
+to achieve reductions in the CML decoding complexity [10],
+[12], [15], [18]. In this subsection we show that such a
+reduction in complexity is possible with GDL as well. Let
+xn0 , n0 ∈ {1, . . . , N }, be any q-ary PAM encoded single real
+symbol that we wish to remove from the GDL formulation,
+and N (n0 ) be the set of indices of those variables that are
+neighbors of xn0 in the moral graph. Deﬁne functions
+β (x{n0 }c ) = hn0 (xN (n0 ) ) +
+
+αn (xn ) +
+
+where hn0 (xN (n0 ) ) = ξn0 ,n0
+
+Nt
+CCML (C) = q
+3
++ 5N t − 1.
+(1)
+2
+To GDL decode this STBC, we use the junction tree of
+Fig. 1. We employ a single-vertex GDL schedule with the root
+at any one of the (xn , xm ) vertices followed by traceback.
+The complexity of this GDL decoder is given in (2) at the
+top of the next page. Comparing the leading terms of (1)
+and (2), we see that when t = 1, the GDL is about 3 times
+less complex as the CML. When the symbols are encoded
+pairwise using a complex constellation, i.e., when t = 2, the
+GDL is approximately 12 times less complex than the CML
+decoder. For example, for any STBC obtained from Cyclic
+Division Algebras [23] that is not multigroup or conditionally
+multigroup decodable, the GDL decoder gives roughly a 12
+times reduction in complexity compared to the CML decoder.
+Example 2: Consider the following 2 antenna code
+
+ˇ
+xn0 −
+
+Nt
+
+s1 + js2 + γ(s3 + js4 )
+s5 + js6 + γ(s7 + js8 )
+
+ζ(xN (n0 ) ) = ξn0 +
+
+= min
+
+max rnd
+
+m∈N (n0 )
+
+ζ
+2ξn0 ,n0
+
+i∈ψ(m)
+
+ζ
+q−1
+−
+2
+2ξn0 ,n0
+
+αn,m (xn , xm ),
+
+n<m
+n,m=n0
+
+n=n0
+
+2
+
+−
+
+ζ2
+2
+4ξn0 ,n0
+
+,
+
+ˇ
+ξn0 ,i si , xn0 (xN (n0 ) )
+,0 ,q − 1
+
+−
+
+q−1
+,
+2
+
+where rnd(·) is the nearest integer function. Then, the ML
+solution to all the variables other than xn0 , i.e., that of
+x{n0 }c , is arg min β , and can be obtained by the GDL
+minimization of the function β . The ML solution of xn0
+ˇ
+is the value of xn0 corresponding to the optimal xN (n0 ) .
+Note that the function hn0 can be computed with order of
+complexity |AN (n0 ) |. Thus, if G = (V, E) is a junction tree
+for β, and G (V , E ) is a junction tree for β , such that
+max{maxv ∈G |AIv |, |AN (n0 ) |} < maxv∈G |AIv |, then ML
+decoding the code using the junction tree G provides reduction
+in the complexity order compared to using the junction tree
+G.
+
+δ (s5 + js6 − γ(s7 + js8 ))
+,
+s1 + js2 − γ(s3 + js4 )
+
+4
+
+CGDL (C) = q N t
+
+x 3 x 5 x 6 x 7x
+
+8
+
+N
+2
+
++ q (N −2)t + q 2t
+
+x 5 x6 x 7 x 8
+
+N
+(2t − 1) + N + 1 + q t
+2
+
+x 4 x 5 x 6 x 7x
+
+N
+(2t2 − t) + N (t2 + 3t) − 2.
+2
+
+(2)
+
+[3] C. Yuen, Y. L. Guan, T. T. Tjhung, “Quasi-Orthogonal STBC with
+Minimum Decoding Complexity,” IEEE Trans. Wireless Commun., vol.
+4, no. 5, pp. 2089-2094, Sep. 2005.
+[4] H. Jafarkhani, “A Quasi-Orthogonal Space-Time Block Code,” IEEE
+Trans. Commun., vol. 49, no. 1, pp. 1-4, Jan. 2001.
+[5] W. Su and X.-G. Xia, “Signal Constellations for Quasi-Orthogonal SpaceTime Block Codes with Full-Diversity,” IEEE Trans. Inf. Theory, vol. 50,
+no. 10, pp. 2331-2347, Oct. 2004.
+[6] Md. Z. A. Khan and B. S. Rajan, “Single Symbol Maximum Likelihood
+Decodable Linear STBCs,” IEEE Trans. Inf. Theory, vol. 52, no. 5, pp.
+2062-2091, May 2006.
+[7] D. N. Dao, C. Yuen, C. Tellambura, Y. L. Guan and T. T. Tjhung,
+“Four-Group Decodable Space-Time Block Codes,” IEEE Trans. Signal
+Processing, vol. 56, no. 1, pp. 424-430, Jan. 2008.
+[8] S. Karmakar and B. S. Rajan, “Multigroup-Decodable STBCs from
+Clifford Algebras,” IEEE Trans. Inf. Theory, vol. 55, no. 1, Jan. 2009,
+pp. 223-231.
+[9] E. Biglieri, Y. Hong and E. Viterbo, “On Fast-Decodable Space-Time
+Block Codes,” IEEE Trans. Inf. Theory, vol. 55, no. 2, pp. 524-530, Feb.
+2009.
+[10] K. P. Srinath and B. S. Rajan, “Low ML-Decoding Complexity, Large
+Coding Gain, Full-Rate, Full-Diversity STBCs for 2x2 and 4x2 MIMO
+Systems,” IEEE Journal of Sel. Topics in Sig. Proc., vol. 3, No. 6, pp.
+916 - 927, Dec. 2009.
+[11] M. Sinnokrot, J. R. Barry, and V. Madisetti, “Embedded Alamouti
+Space-Time Codes for High Rate and Low Decoding Complexity,” Proc.
+Asilomar Conf. on Signals, Systems, and Computers, Paciﬁc Grove,
+California, October 26-29, 2008.
+[12] S. Sirianunpiboon, Y. Wu, A. R. Calderbank and S. D. Howard, “Fast
+optimal decoding of multiplexed orthogonal designs,” IEEE Trans. Inf.
+Theory, vol. 56, no. 3, pp. 1106-1113, Mar. 2010.
+[13] F. Oggier, R. Vehkalahti and C. Hollanti, “Fast-decodable MIDO Codes
+from Crossed Product Algebras,” Proc. of IEEE Int. Symp. on Inf. Theory,
+Austin, Texas, USA, 13-18 June, 2010, pp. 1080-1084.
+[14] A. Hottinen, O. Tirkkonen and R. Wichman, “Multi-antenna Transceiver
+Techniques for 3G and Beyond,” Wiley publisher, UK, 2003.
+[15] J. Paredes, A.B. Gershman, M. Gharavi-Alkhansari, “A New Full-Rate
+Full-Diversity Space-Time Block Code With Nonvanishing Determinants
+and Simpliﬁed Maximum-Likelihood Decoding,” IEEE Trans. Sig. Proc.,
+vol. 56, No. 6, pp. 2461 - 2469 , Jun. 2008.
+[16] J. C. Belﬁore, G. Rekaya and E. Viterbo, “The Golden Code: A 2 × 2
+full rate space-time code with non-vanishing determinants,” IEEE Trans.
+Inf. Theory, vol. 51, no. 4, pp. 1432-1436, Apr. 2005
+[17] P. Dayal and M. K. Varanasi, “An Optimal Two transmit antenna SpaceTime Code and its Stacked Extensions,” IEEE Trans. Inf. Theory, vol. 51,
+no. 12, pp. 4348-4355, Dec. 2005.
+[18] M. O. Sinnokrot and J. Barry,“Fast Maximum-Likelihood Decoding of
+the Golden Code,” IEEE Trans. on Wireless Commn., vol .09, no. 1, pp.
+26-31, Jan. 2010.
+[19] S. M. Aji and R. J. McEliece, “The Generalized Distributive Law,” IEEE
+Trans. Inf. Theory, vol. 46, no. 2, pp. 325-343, Mar. 2000.
+[20] F. R. Kschischang, B. J. Frey, and H.-A. Loeliger, “Factor graphs and the
+sum-product algorithm,” IEEE Trans. Inf. Theory, vol. 47, no. 2, pp. 498519, Feb. 2001.
+[21] J.-K. Zhang, J. Liu, and K. M. Wong, “Linear Toeplitz space time
+block codes,” Proc. IEEE Int. Symp. Inf. Theory (ISIT 2005), Adelaide,
+Australia, Sep. 4-9, 2005, pp. 1942-1946.
+[22] Y. Shang and X.-G. Xia, “Space-time block codes achieving full
+diversity with linear receivers,” IEEE Trans. Inf. Theory, vol. 54, no.
+10, pp. 4528-4547, Oct. 2008.
+[23] B. A. Sethuraman, B. S. Rajan and V. Shashidhar, “Full-diversity, Highrate Space-Time Block Codes from Division Algebras,” IEEE Trans. Inf.
+Theory, vol. 49, no. 10, pp. 2596-2616, Oct. 2003.
+[24] L. P. Natarajan and B. S. Rajan, “Generalized Distributive Law
+for ML Decoding of Space-Time Block Codes,” available online at
+arXiv:1108.2861v3 [cs.IT] 25 Jan. 2012.
+
+8
+
+Fig. 4. A junction tree core T for the Golden code that exploits the structure
+of PAM signal set.
+
+Lemma 1: If the core T of G has only one vertex containing
+the variable xn0 , then the tree T obtained by removing xn0
+from this vertex of T is a core for GDL minimization of β .
+This technique of removing a PAM encoded variable can
+be generalized to any set R ⊆ {1, . . . , N } of variables that
+satisﬁes the condition given in Lemma 2 below. In this case,
+the variables xn , n ∈ R, are removed one by one from
+the GDL formulation, in an arbitrary order, using the same
+technique as above.
+Lemma 2: The PAM encoded set of variables xR can be
+removed from the GDL formulation using scaling and hardlimiting if and only if the subgraph of the moral graph
+generated by these variables is edgeless.
+Example 3: Consider the junction tree core T for the
+Golden code shown in Fig. 3. From Lemma 2 and the moral
+graph of the Golden code given in Fig. 2, we see that
+the variables x1 and x2 can be removed using scaling and
+hard-limiting. Using Lemma 1 we get the junction tree core
+T shown in Fig. 4. The removal of the variables x1 and
+x2 has enabled the reduction of the GDL complexity order
+from q 6 to q 5 . The total number of mathematical operations
+involved in the GDL decoding of the Golden code using
+T is 42q 5 + 6q 4 + 21q 2 + 52q − 5. The CML decoder [10],
+[18], on the other hand, involves 76q 5 + 43q 4 − 1 operations.
+Comparing the leading order terms, we see that the GDL
+decoder is about 1.8 times as fast as the CML decoder.
+For instance, when q = 2 or 4 (corresponding to the rates
+4 and 8 bits per channel use), the GDL decoder gives a
+complexity reduction of 1.9 compared to the CML decoding
+algorithm.
+ACKNOWLEDGMENT
+This work was supported partly by the DRDO-IISc program
+on Advanced Research in Mathematical Engineering through
+a research grant, and partly by the INAE Chair Professorship
+grant to B. S. Rajan. The authors thank K. Pavan Srinath for
+useful discussions on this subject.
+R EFERENCES
+[1] L. P. Natarajan, K. P. Srinath and B. S Rajan, “Generalized Distributive
+Law for ML Decoding of STBCs,” Proc. of IEEE Inf. Theory Workshop,
+(ITW 2011), Paraty, Brazil, October 16-20, 2011, pp. 10-14.
+[2] V. Tarokh, H. Jafarkhani and A. R. Calderbank, “Space-Time Block Codes
+from Orthogonal Designs,” IEEE Trans. Inf. Theory, vol. 45, no. 5, pp.
+1456-1467, July 1999.
+
+5
+
+

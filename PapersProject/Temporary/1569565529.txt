@@ -1,0 +1,734 @@
+Creator:        TeX
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Tue May 15 15:40:54 2012
+ModDate:        Tue Jun 19 12:54:58 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      419628 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569565529
+
+Information-Theoretically Optimal Compressed Sensing
+via Spatial Coupling and Approximate Message Passing
+David L. Donoho
+
+Adel Javanmard
+
+Andrea Montanari
+
+Department of Statistics
+Stanford University
+
+Department of Electrical Engineering
+Stanford University
+
+Department of Electrical Engineering and
+Department of Statistics
+Stanford University
+
+with –say– w ∈ Rm a random vector with i.i.d. components
+wi ∼ N(0, σ 2 ). In this context, the notions of ‘robustness’ or
+‘stability’ refers to the existence of universal constants C such
+that the per-coordinate mean square error in reconstructing x
+from noisy observation y is upper bounded by C σ 2 .
+From an information-theoretic point of view it remains
+however unclear why we cannot achieve the same goal with
+far fewer than 2 k log(n/k) measurements. Indeed, we can
+interpret Eq. (1) as describing an analog data compression
+process, with y a compressed version of x. From this point of
+view, we can encode all the information about x in a single
+real number y ∈ R (i.e. use m = 1), because the cardinality
+of R is the same as the one of Rn . Motivated by this puzzling
+remark, Wu and Verd´ [15] introduced a Shannon-theoretic
+u
+analogue of compressed sensing, whereby the vector x has
+i.i.d. components xi ∼ pX . Crucially, the distribution pX is
+available to, and may be used by the reconstruction algorithm.
+Under the mild assumptions that sensing is linear (as per
+Eq. (1)), and that the reconstruction mapping is Lipschitz
+continuous, they proved that compression is asymptotically
+lossless if and only if
+(3)
+m ≥ n d(pX ) + o(n) .
+
+Abstract—We study the compressed sensing reconstruction
+problem for a broad class of random, band-diagonal sensing
+matrices. This construction is inspired by the idea of spatial
+coupling in coding theory. As demonstrated heuristically and
+numerically by Krzakala et al. [11], message passing algorithms
+can effectively solve the reconstruction problem for spatially
+coupled measurements with undersampling rates close to the
+fraction of non-zero coordinates.
+We use an approximate message passing (AMP) algorithm and
+analyze it through the state evolution method. We give a rigorous
+proof that this approach is successful as soon as the undersampling rate δ exceeds the (upper) R´ nyi information dimension
+e
+of the signal, d(pX ). More precisely, for a sequence of signals
+of diverging dimension n whose empirical distribution converges
+to pX , reconstruction is with high probability successful from
+d(pX ) n+o(n) measurements taken according to a band diagonal
+matrix.
+For sparse signals, i.e. sequences of dimension n and k(n)
+non-zero entries, this implies reconstruction from k(n) + o(n)
+measurements. For ‘discrete’ signals, i.e. signals whose coordinates take a ﬁxed ﬁnite set of values, this implies reconstruction
+from o(n) measurements. The result is robust with respect to
+noise, does not apply uniquely to random signals, but requires
+the knowledge of the empirical distribution of the signal pX .
+
+I. I NTRODUCTION
+A. Background and contributions
+
+Here d(pX ) is the (upper) R´ nyi information dimension of the
+e
+distribution pX . We refer to Section II for a deﬁnition of this
+quantity. Sufﬁces to say that, if pX is ε-sparse (i.e. if it puts
+mass at most ε on nonzeros) then d(pX ) ≤ ε. Also, if pX
+is the convex combination of a discrete part (sum of Dirac’s
+delta) and an absolutely continuous part (with a density), then
+d(pX ) is equal to the weight of the absolutely continuous part.
+This result is quite striking. For instance, it implies that,
+for random k-sparse vectors, m ≥ k + o(n) measurements
+are sufﬁcient. Also, if the entries of x are random and take
+values in –say– {−10, −9, . . . , −9, +10}, then a sublinear
+number of measurements m = o(n), is sufﬁcient! At the
+same time, the result of Wu and Verd´ presents two important
+u
+limitations. First, it does not provide robustness guarantees
+of the type described above. It therefore leaves open the
+possibility that reconstruction is highly sensitive to noise when
+m is signiﬁcantly smaller than the number of measurements required in classical compressed sensing, namely Θ(k log(n/k))
+for k-sparse vectors. Second, it does not provide any computationally practical algorithms for reconstructing x from
+measurements y.
+In an independent line of work, Krzakala et al. [11] de-
+
+Assume that m linear measurements are taken of an unknown n-dimensional signal x ∈ Rn , according to the model
+y = Ax .
+
+(1)
+
+The reconstruction problem requires to reconstruct x from the
+measured vector y ∈ Rm , and the sensing matrix A ∈ Rm×n .
+It is an elementary fact of linear algebra that the reconstruction problem will not have a unique solution unless m ≥ n.
+This observation is however challenged within compressed
+sensing. A large corpus of research shows that, under the
+assumption that x is sparse, a dramatically smaller number of
+measurements is sufﬁcient [6], [2]. Namely, if only k entries
+of x are non-vanishing, then roughly m 2k log(n/k) measurements are sufﬁcient for A random, and reconstruction can
+be solved efﬁciently by convex programming. Deterministic
+sensing matrices achieve similar performances, provided they
+satisfy a suitable restricted isometry condition [4]. On top of
+this, reconstruction is robust with respect to the addition of
+noise [3], [5], i.e. under the model
+y = Ax + w ,
+
+(2)
+
+1
+
+by their dimension n. The conditions required are: (1) that
+the empirical distribution of the coordinates of x(n) converges
+(weakly) to pX ; and (2) that x(n) 2 converges to the second
+2
+moment of the asymptotic law pX . Interestingly, the present
+framework changes the notion of ‘structure’ that is relevant for
+reconstructing the signal x. Indeed, the focus is shifted from
+the sparsity of x to the information dimension d(pX ).
+
+veloped an approach that leverages on the idea of spatial
+coupling. This idea was introduced for the compressed sensing literature by Kudekar and Pﬁster [12]. Spatially coupled
+matrices are –roughly speaking– random sensing matrices
+with a band-diagonal structure. The analogy is, this time,
+with channel coding. In this context, spatial coupling, in
+conjunction with message-passing decoding, allows to achieve
+Shannon capacity on memoryless communication channels.
+By analogy, it is reasonable to hope that a similar approach
+might enable to sense random vectors x at an undersampling
+rate m/n close to the R´ nyi information dimension of the
+e
+coordinates of x, d(pX ). Indeed, the authors of [11] evaluate
+this approach numerically on a few classes of random vectors
+and demonstrate that it indeed achieves rates close to the
+fraction of non-zero entries. They also support this claim by
+insightful statistical physics arguments.
+Finally, let us mention that robust sparse recovery of ksparse vectors from m = O(k log log(n/k)) measurement is
+possible, using suitable ‘adaptive’ sensing schemes [10].
+
+C. Organization
+In the next section we state formally our results, and
+discuss their implications as well as the basic intuition behind
+them. Section III provides a precise description of the matrix
+construction and the reconstruction algorithm. Due to space
+limitations, the proofs of the theorems are removed from this
+version of the paper and can be found in [7].
+II. F ORMAL STATEMENT OF THE RESULTS
+We consider the noisy model (2). An instance of the problem is therefore completely speciﬁed by the triple (x, w, A).
+We will be interested in the asymptotic properties of sequence of instances indexed by the problem dimensions
+S = {(x(n), w(n), A(n))}n∈N . We recall a deﬁnition from
+[1]. (More precisely, [1] introduces the B = 1 case of this
+deﬁnition.)
+
+B. Our Contribution
+In this paper, we ﬁll the gap between the above works, and
+present the following contributions:
+• Construction. We describe a construction for spatially
+coupled sensing matrices A that is somewhat broader than the
+one of [11] and give precise prescriptions for the asymptotics
+of various parameters. We also use a somewhat different
+reconstruction algorithm from the one in [11], by building
+on the approximate message passing (AMP) approach of [8],
+[9]. AMP algorithms have the advantage of smaller memory
+complexity with respect to standard message passing, and of
+smaller computational complexity whenever fast multiplication
+procedures are available for A.
+• Rigorous proof of convergence. Our main contribution
+is a rigorous proof that the above approach indeed achieves
+the information-theoretic limits set out by Wu and Verd´
+u
+[15]. Indeed, we prove that, for sequences of spatially coupled sensing matrices {A(n)}n∈N , A(n) ∈ Rm(n)×n with
+asymptotic undersampling rate δ = limn→∞ m(n)/n, AMP
+reconstruction is with high probability successful in recovering
+the signal x, provided δ > d(pX ).
+• Robustness to noise. We prove that the present approach
+is robust1 to noise in the following sense. For any signal distribution pX and undersampling rate δ, there exists a constant
+C such that the output x(y) of the reconstruction algorithm
+achieves a mean square error per coordinate n−1 E{ x(y) −
+x 2 } ≤ C σ 2 . This result holds under the noisy measurement
+2
+model (2) for a broad class of noise models for w, including
+2
+i.i.d. noise coordinates wi with E{wi } = σ 2 < ∞.
+• Non-random signals. Our proof does not apply uniquely to
+random signals x with i.i.d. components, but indeed to more
+general sequences of signals {x(n)}n∈N , x(n) ∈ Rn indexed
+
+Deﬁnition II.1. The sequence of instances S
+=
+{x(n), w(n), A(n)}n∈N indexed by n is said to be a
+B-converging sequence if x(n) ∈ Rn , w(n) ∈ Rm , A(n) ∈
+Rm×n with m = m(n) is such that m/n → δ ∈ (0, ∞), and
+in addition the following conditions hold:
+(a) The empirical distribution of the entries of x(n) converges weakly to a probability measure pX on R with
+n
+bounded second moment. Further n−1 i=1 xi (n)2 →
+EpX {X 2 }.
+(b) The empirical distribution of the entries of w(n) converges weakly to a probability measure pW on R with
+m
+bounded second moment. Further m−1 i=1 wi (n)2 →
+EpW {W 2 } ≡ σ 2 .
+(c) If {ei }1≤i≤n , ei ∈ Rn denotes the canonical basis, then
+lim sup maxi∈[n] A(n)ei 2 ≤ B,
+n→∞
+
+lim inf mini∈[n] A(n)ei
+n→∞
+
+2
+
+≥ 1/B.
+
+We further say that S is a converging sequence if it is Bconverging for some B. We say that {A(n)}n≥0 is a converging sequence of sensing matrices if they satisfy condition (c)
+above for some B.
+Finally, if the sequence {(x(n), w(n), A(n))}n≥0 is random, the above conditions are required to hold almost surely.
+Given a sensing matrix A, and a vector of measurements y,
+a reconstruction algorithm produces an estimate x(A; y) ∈ Rn
+of x. In this paper we assume that the empirical distribution
+pX , and the noise level σ 2 are known to the estimator, and
+hence the mapping x : (A, y) → x(A; y) implicitly depends
+on pX and σ 2 . Since however pX , σ 2 are ﬁxed throughout, we
+avoid the cumbersome notation x(A, y, pX , σ 2 ).
+
+1 This robustness bound holds for all δ > D(p ), where D(p ) = d(p )
+X
+X
+X
+for a broad class of distributions pX (including distributions without singular
+continuous component). When d(pX ) < D(pX ), a somewhat weaker
+robustness bound holds for d(pX ) < δ ≤ D(pX ).
+
+2
+
+Given a converging sequence of instances S
+=
+{x(n), w(n), A(n)}n∈N , and an estimator x, we deﬁne the
+asymptotic per-coordinate reconstruction mean square error as
+1
+x A(n); y(n) − x(n)
+MSE(S; x) = lim sup
+n→∞ n
+
+2
+
+.
+
+measure pX [16], denoted by D(pX ). It is convenient to recall
+the following result in this regard.
+Proposition II.2 ([13], [16]). Consider the Lebesgue’s decomposition of probability pX as pX = (1−α)νd +α1 νac +α2 νsc ,
+where νd is a discrete distribution, νac is an absolutely
+continuos measure with respect to Lebesgue measure, and
+νsc is a singular continuos measure with respect to Lebesgue
+measure. Then, d(pX ) ≤ D(pX ) ≤ α = α1 + α2 , and if
+α2 = 0, then d(pX ) = D(pX ) = α.
+
+(4)
+
+Notice that the quantity on the right hand side depends on the
+matrix A(n), which will be random, and on the signal and
+noise vectors x(n), w(n) which can themselves be random.
+Our results hold almost surely with respect to these random
+variables.
+In this paper we study a speciﬁc low-complexity estimator,
+based on the AMP algorithm ﬁrst proposed in [8]. This proceed by the following iteration (initialized with x1 = EpX X
+i
+for all i ∈ [n]).
+xt+1
+r
+
+t
+
+= ηt (xt + (Qt
+t
+
+= y − Ax + bt
+
+A)∗ rt ) ,
+
+Theorem II.3. Let pX be a probability measure on the real
+line and assume δ > d(pX ). Then there exists a random
+converging sequence of sensing matrices {A(n)}n≥0 , A(n) ∈
+Rm×n , m(n)/n → δ, for which the following holds. For any
+ε > 0, there exists σ0 such that for any converging sequence
+of instances {(x(n), w(n))}n≥0 with parameters (pX , σ 2 , δ)
+and σ ∈ [0, σ0 ], we have, almost surely
+
+(5)
+
+t−1
+
+We are now in position to state our main results.
+
+(6)
+
+r
+
+.
+
+Here, for each t, ηt : Rn → Rn is a differentiable nonlinear function that depends on the input distribution pX .
+Further, ηt is separable, namely, for a vector v ∈ Rn , we have
+ηt (v) = (η1,t (v1 ), . . . , ηn,t (vn )). The matrix Qt ∈ Rm×n
+and the vector bt ∈ Rm can be efﬁciently computed from
+the current state xt of the algorithm,
+indicates Hadamard
+(entrywise) product and X ∗ denotes the transpose of matrix X.
+Further Qt does not depend on the problem instance and hence
+can be precomputed. Both Qt and bt are block-constants.
+This property makes their evaluation, storage and manipulation
+particularly convenient. We refer to the next section for explicit
+deﬁnitions of these quantities. In particular, the speciﬁc choice
+of ηi,t is dictated by the objective of minimizing the mean
+square error at iteration t + 1, and hence takes the form of a
+Bayes optimal estimator for the prior pX . In order to stress
+this point, we will occasionally refer to this as to the Bayes
+optimal AMP algorithm.
+We denote by MSEAMP (S; σ 2 ) the mean square error
+achieved by the Bayes optimal AMP algorithm, where we
+made explicit the dependence on σ 2 . Since the AMP estimate depends on the iteration number t, the deﬁnition of
+MSEAMP (S; σ 2 ) requires some care. The basic point is that
+we need to iterate the algorithm only for a constant number
+of iterations, as n gets large. Formally, we let
+
+MSEAMP (S; σ 2 ) ≤ ε .
+
+(7)
+
+Theorem II.4. Let pX be a probability measure on the
+real line and assume δ > D(pX ). Then there exists a
+random converging sequence of sensing matrices {A(n)}n≥0 ,
+A(n) ∈ Rm×n , m(n)/n → δ and a ﬁnite stability constant
+C = C(pX , δ), such that the following is true. For any
+converging sequence of instances {(x(n), w(n))}n≥0 with
+parameters (pX , σ 2 , δ), we have, almost surely
+MSEAMP (S; σ 2 ) ≤ C σ 2 .
+
+(8)
+
+Notice that, by Proposition II.2, D(pX ) ≥ d(pX ), and
+D(pX ) = d(pX ) for a broad class of probability measures
+pX . Further, the noiseless model (1) is covered as a special
+case of Theorem II.3 by taking σ 2 ↓ 0.
+A. Discussion
+It is instructive to spell out in detail a speciﬁc example.
+Example (Mixture signal with a point mass). Consider a
+mixture distribution of the form
+pX = (1 − α) δ0 + α q ,
+
+(9)
+
+where q is a measure that is absolutely continuous with
+respect to Lebesgue measure, i.e. q(dx) = f (x) dx for some
+measurable function f . Then, by Proposition II.2, we have
+1 t
+2
+x A(n); y(n) − x(n) . d(pX ) = D(pX ) = α. Now let {x(n)}n≥0 be a sequence of
+MSEAMP (S; σ 2 ) ≡ lim lim sup
+t→∞ n→∞ n
+vectors with i.i.d. components x(n)i ∼ pX . Denote by k(n)
+As discussed above, limits will be shown to exist almost surely, the number of nonzero entries in x(n). Then, almost surely as
+when the instances (x(n), w(n), A(n)) are random, and almost n → ∞, Bayes optimal AMP recovers the signal x(n) from
+sure upper bounds on MSEAMP (S; σ 2 ) will be proved. (Indeed m(n) = k(n) + o(n) spatially coupled measurements.
+Under the regularity hypotheses of [15], no scheme can do
+MSEAMP (S; σ 2 ) turns out to be deterministic.)
+We will tie the success of our compressed sensing scheme substantially better, i.e. reconstruct x(n) from m(n) measureto the fundamental information-theoretic limit established in ments if lim sup m(n)/k(n) < 1.
+n→∞
+[15]. The latter is expressed in terms of the (upper) R´ nyi
+e
+One way to think about this result is the following. If
+information dimension of the probability measure pX [13], an oracle gave us the support of x(n), we would still need
+denoted by d(pX ). Further, our ‘stability’ result is expressed m(n) ≥ k(n) − o(n) measurements to reconstruct the signal.
+in terms of the (upper) MMSE dimension of the probability Indeed, the entries in the support have distribution q, and
+
+3
+
+d(q) = 1. Theorem II.3 implies that the measurements
+overhead for estimating the support of x(n) is sublinear, o(n),
+even when the support is of order n.
+In the next section we describe the basic intuition behind
+the surprising phenomenon in Theorems II.3 and II.4, and why
+are spatially-coupled sensing matrices so useful.
+
+1
+δ
+
+1
+
+€
+
+€
+
+Additional measurements
+associated to the first few coordinates
+
+B. How does spatial coupling work?
+Spatially-coupled sensing matrices A are –roughly
+speaking– band diagonal matrices. It is convenient to think
+of the graph structure that they induce on the reconstruction
+problem. Associate one node (a variable node in the language
+of factor graphs) to each coordinate i in the unknown signal
+x. Order these nodes on the real line R, putting the i-th node
+at location i ∈ R. Analogously, associate a node (a factor
+node) to each coordinate a in the measurement vector y, and
+place the node a at position a/δ on the same line. Connect
+this node to all the variable nodes i such that Aai = 0. If A is
+band diagonal, only nodes that are placed close enough will
+be connected by an edge. See Figure 1 for an illustration.
+In a spatially coupled matrix, additional measurements are
+associated to the ﬁrst few coordinates of x, say coordinates
+x1 , . . . , xn0 with n0 much smaller than n. This has a negligible
+impact on the overall undersampling ratio as n/n0 → ∞.
+Although the overall undersampling remains δ < 1, the coordinates x1 , . . . , xn0 are oversampled. This ensures that these ﬁrst
+coordinates are recovered correctly (up to a mean square error
+of order σ 2 ). As the algorithm is iterated, the contribution of
+these ﬁrst few coordinates is correctly subtracted from all the
+measurements, and hence we can effectively eliminate those
+nodes from the graph. In the resulting graph, the ﬁrst few
+variables are effectively oversampled and hence the algorithm
+will reconstruct their values, up to a mean square error of
+order σ 2 . As the process is iterated, variables are progressively
+reconstructed, proceeding from left to right along the node
+layout.
+While the above explains the basic dynamics of AMP
+reconstruction algorithms under spatial coupling, a careful
+consideration reveals that this picture leaves open several
+challenging questions. In particular, why does the overall undersampling factor δ have to exceed d(pX ) for reconstruction
+to be successful? Our proof is based on a potential function
+argument. We will prove that there exists a potential function
+for the AMP algorithm, such that, when δ > d(pX ), this
+function has its global minimum close to exact reconstruction.
+Further, we will prove that, unless this minimum is essentially
+achieved, AMP can always decrease the function.
+
+Fig. 1. Graph structure of a spatially coupled matrix. Variable nodes
+
+are shown as circle and check nodes are represented by square.
+
+on two integers M, N ∈ N, and on a matrix with non-negative
+R×C
+entries W ∈ R+ , whose rows and columns are indexed by
+the ﬁnite sets R, C (respectively ‘rows’ and ‘columns’). The
+matrix is roughly row-stochastic, i.e.
+1
+≤
+2
+
+Wr,c ≤ 2 ,
+
+for all r ∈ R .
+
+(10)
+
+c∈C
+
+We will let |R| ≡ Lr and |C| ≡ Lc denote the matrix dimensions. The ensemble parameters are related to the sensing
+matrix dimensions by n = N Lc and m = M Lr .
+In order to describe a random matrix A ∼ M(W, M, N )
+from this ensemble, partition the columns and rows indices in,
+respectively, Lc and Lr groups of equal size. Explicitly
+[n] = ∪s∈C C(s) ,
+
+|C(s)| = N ,
+
+[m] = ∪r∈R R(r) ,
+
+|R(r)| = M .
+
+Here and below we use [k] to denote the set of ﬁrst k integers
+[k] ≡ {1, 2, . . . , k}. Further, if i ∈ R(r) or j ∈ C(s) we will
+write, respectively, r = g(i) or s = g(j). In other words g( · )
+is the operator determining the group index of a given row or
+column.
+With this notation we have the following concise deﬁnition
+of the ensemble.
+Deﬁnition III.1. A random sensing matrix A is distributed
+according to the ensemble M(W, M, N ) (and we write A ∼
+M(W, M, N )) if the entries {Aij , i ∈ [m], j ∈ [n]} are
+independent Gaussian random variables with
+Aij ∼ N 0,
+
+1
+Wg(i),g(j) .
+M
+
+(11)
+
+B. State evolution
+
+A. General matrix ensemble
+
+State evolution allows an exact asymptotic analysis of AMP
+algorithms in the limit of a large number of dimensions. As indicated by the name, it bears close resemblance to the density
+evolution method in iterative coding theory [14]. Somewhat
+surprisingly, this analysis approach is asymptotically exact
+despite the underlying factor graph being far from locally treelike.
+State evolution recursion is used in deﬁning the parameters
+Qt , bt , ηt and also plays a crucial role in the algorithm
+analysis [7]. In the present case, state evolution takes the
+following form.
+
+The sensing matrix A will be constructed randomly, from
+an ensemble denoted by M(W, M, N ). The ensemble depends
+
+L
+Deﬁnition III.2. Given W ∈ R+r ×Lc roughly row-stochastic,
+the corresponding state evolution sequence is the sequence of
+
+III. M ATRIX AND ALGORITHM CONSTRUCTION
+In this section, we deﬁne an ensemble of random matrices,
+and the corresponding choices of Qt , bt , ηt that achieve the
+reconstruction guarantees in Theorems II.3 and II.4.
+
+4
+
+We let C ∼ {−2ρ−1 , . . . , 0, 1, . . . , L − 1}, so that Lc =
+=
+L + 2ρ−1 . The rows are partitioned as follows:
+
+vectors {φ(t), ψ(t)}t≥0 , φ(t) = (φa (t))a∈R ∈ RR , ψ(t) =
++
+(ψi (t))i∈C ∈ RC , deﬁned recursively by
++
+φa (t) = σ 2 +
+
+1
+δ
+
+R = R0 ∪
+
+Wa,i ψi (t) ,
+i∈C
+
+ψi (t + 1) = mmse
+
+where R0 ∼ {−ρ−1 , . . . , 0, 1, . . . , L−1+ρ−1 }, and |Ri | = L0 .
+=
+Hence Lr = Lc + 2ρ−1 L0 .
+Finally, we take N so that n = N Lc , and let M = N δ
+so that m = M Lr = N (Lc + 2ρ−1 L0 )δ. Notice that m/n =
+δ(Lc + 2ρ−1 L0 )/Lc . Since we will take Lc much larger than
+L0 /ρ, we in fact have m/n arbitrarily close to δ.
+Given these inputs, we construct the corresponding matrix
+W = W (L, L0 , W, ρ) as follows.
+1) For i ∈ {−2ρ−1 , . . . , −1}, and each a ∈ Ri , we let
+Wa,i = 1. Further, Wa,j = 0 for all j ∈ C \ {i}.
+2) For all a ∈ R0 ∼ {−ρ−1 , . . . , 0, . . . , L − 1 + ρ−1 }, we
+=
+let Wa,i = ρ W ρ (a − i) for i ∈ {−2ρ−1 , . . . , L − 1}.
+It is not hard to check that W is roughly row-stochastic.
+
+(12)
+
+Wb,i φ−1 (t)
+b
+
+,
+
+b∈R
+
+for all t ≥ 0, with initial condition ψi (0) = ∞ for all i ∈ C .
+C. General algorithm deﬁnition
+In order to fully deﬁne the AMP algorithm (5), (6), we need
+to provide constructions for the matrix Qt , the nonlinearities
+ηt , and the vector bt . In doing this, we exploit the fact that
+the state evolution sequence {φ(t)}t≥0 can be precomputed.
+We deﬁne the matrix Qt by
+φg(i) (t)−1
+
+Qt ≡
+ij
+
+Lr
+k=1
+
+Wk,g(j) φk (t)−1
+
+.
+
+(13)
+
+ACKNOWLEDGMENT
+
+Notice that Qt is block-constant: for any r ∈ R, s ∈ C, the
+block Qt
+R(r),C(s) has all its entries equal.
+As mentioned in Section I, the function ηt : Rn → Rn is
+chosen to be separable, i.e. for v ∈ RN :
+ηt (v) = ηt,1 (v1 ), ηt,2 (v2 ), . . . , ηt,N (vN ) .
+
+A.J. is supported by a Caroline and Fabian Pease Stanford
+Graduate Fellowship. Partially supported by NSF CAREER
+award CCF- 0743978 and AFOSR grant FA9550-10-1-0360.
+The authors thank the reviewers for their insightful comments.
+
+(14)
+
+R EFERENCES
+
+We take ηt,i to be a conditional expectation estimator for X ∼
+pX in gaussian noise:
+
+[1] M. Bayati and A. Montanari. The LASSO risk for gaussian matrices.
+IEEE Trans. on Inform. Theory, 2011. arXiv:1008.2581.
+[2] E. Candes, J. K. Romberg, and T. Tao. Robust uncertainty principles:
+Exact signal reconstruction from highly incomplete frequency information. IEEE Trans. on Inform. Theory, 52:489 – 509, 2006.
+[3] E. Candes, J. K. Romberg, and T. Tao. Stable signal recovery from
+incomplete and inaccurate measurements. Communications on Pure and
+Applied Mathematics, 59:1207–1223, 2006.
+[4] E. J. Cand´ s and T. Tao. Decoding by linear programming. IEEE Trans.
+e
+on Inform. Theory, 51:4203–4215, 2005.
+[5] D. Donoho, A. Maleki, and A. Montanari. The Noise Sensitivity Phase
+Transition in Compressed Sensing. IEEE Trans. on Inform. Theory,
+57:6920–6941, 2011.
+[6] D. L. Donoho. Compressed sensing. IEEE Trans. on Inform. Theory,
+52:489–509, April 2006.
+[7] D. L. Donoho, A. Javanmard, and A. Montanari.
+Informationtheoretically optimal compressed sensing via spatial coupling and approximate message passing. arXiv:1112.0708, 2011.
+[8] D. L. Donoho, A. Maleki, and A. Montanari. Message Passing
+Algorithms for Compressed Sensing. PNAS, 106:18914–18919, 2009.
+[9] D. L. Donoho, A. Maleki, and A. Montanari. Message Passing
+Algorithms for Compressed Sensing: I. Motivation and Construction.
+In Proc. of ITW, Cairo, 2010.
+[10] P. Indyk, E. Price, and D. Woodruff. On the Power of Adaptivity in
+Sparse Recovery. In FOCS, October 2011.
+[11] F. Krzakala, M. M´ zard, F. Sausset, Y. Sun, and L. Zdeborova. Statistical
+e
+physics-based reconstruction in compressed sensing. arXiv:1109.4424,
+2011.
+[12] S. Kudekar and H. Pﬁster. The effect of spatial coupling on compressive
+sensing. In 48th Annual Allerton Conference, pages 347 –353, 2010.
+[13] A. R´ nyi. On the dimension and entropy of probability distributions.
+e
+Acta Mathematica Hungarica, 10:193–215, 1959.
+[14] T. Richardson and R. Urbanke. Modern Coding Theory. Cambridge
+University Press, Cambridge, 2008.
+[15] Y. Wu and S. Verd´ . R´ nyi Information Dimension: Fundamental Limits
+u e
+of Almost Lossless Analog Compression. IEEE Trans. on Inform.
+Theory, 56:3721–3748, 2010.
+[16] Y. Wu and S. Verd´ . MMSE dimension. IEEE Trans. on Inform. Theory,
+u
+57(8):4857–4879, 2011.
+
+ηt,i (vi ) = E X X + sg(i) (t)−1/2 Z = vi ,
+(15)
+
+Wu,r φu (t)−1 ,
+
+sr (t) ≡
+u∈R
+
+where Z ∼ N(0, 1) and independent of X. Finally, in order to
+deﬁne the vector bt , let us introduce the quantity
+i
+ηt
+
+u
+
+=
+
+1
+N
+
+ηt,i xt + ((Qt
+i
+
+A)∗ rt )i .
+
+(16)
+
+i∈C(u)
+
+The vector bt is then deﬁned by
+bt ≡
+i
+
+1
+δ
+
+Wg(i),u Qt−1 ηt−1
+g(i),u
+
+u
+
+,
+
+∪−1 −1 Ri ,
+i=−2ρ
+
+(17)
+
+u∈C
+
+where we deﬁned Qt = Qt for i ∈ R(r), j ∈ C(u). Again
+r,u
+i,j
+bt is block-constant: the vector bt
+i
+C(u) has all its entries equal.
+This completes our deﬁnition of the AMP algorithm.
+D. Choices of parameters
+In order to prove our main Theorem II.3, we use a sensing
+matrix from the ensemble M(W, M, N ) for a suitable choice
+of the matrix W ∈ RR×C . Our construction depends on
+parameters ρ ∈ R+ , L, L0 ∈ N, and on the ‘shape function’
+W. As explained below, ρ will be taken to be small, and
+hence we will treat 1/ρ as an integer to avoid rounding (which
+introduces in any case a negligible error).
+Deﬁnition III.3. A shape function is a function W : R → R+
+continuously differentiable, with support in [−1, 1] and such
+that R W(u) du = 1, and W(−u) = W(u).
+
+5
+
+

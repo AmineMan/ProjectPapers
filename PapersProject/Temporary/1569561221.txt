@@ -1,0 +1,833 @@
+Title:          D:/work_ docs/Research/latex/Submitted_Conference/State_Amplification/state_amp_camera_ready_v3.dvi
+Creator:        dvips(k) 5.96dev Copyright 2007 Radical Eye Software
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Tue May 15 14:56:36 2012
+ModDate:        Tue Jun 19 12:55:05 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      320036 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569561221
+
+Energy State Ampliﬁcation in an Energy
+Harvesting Communication System
+Omur Ozel
+
+Sennur Ulukus
+
+Department of Electrical and Computer Engineering
+University of Maryland College Park, MD 20742
+omur@umd.edu
+ulukus@umd.edu
+Ei
+
+Abstract—In energy harvesting communication systems, the
+energy required for message transmission is maintained by an
+exogenous energy arrival process independent of the message.
+This links the problem of communication with an energy harvesting transmitter to the problem of communication over statedependent channels. In particular, if the transmitter has no
+battery, the available energy can be viewed as a state and
+the resulting channel is a state-dependent channel with causal
+state information at the transmitter only. In general, information
+transmission blurs the state information that the receiver can get
+from the received signal. In this paper, we explore the trade-off
+between the information rate R and the entropy reduction of
+the energy arrival process ∆ at the receiver side over an AWGN
+channel with an energy harvesting transmitter. If the transmitter
+has no battery, the trade-off points are achieved by Shannon
+strategies and we show that the optimal input distributions are
+discrete. Next, we consider the state ampliﬁcation problem for
+an energy harvesting transmitter with an unlimited battery. We
+show that the optimal trade-off region in this extreme case is
+expressed explicitly in a simple form and its boundary is achieved
+by a combination of best-effort-transmit and random binning
+schemes with an i.i.d. Gaussian codebook of average power equal
+to the average recharge rate. Finally, we propose an uncoded
+state ampliﬁcation scheme that splits the energy between message
+transmission and entropy reduction and study its performance
+in a numerical example.
+
+Ni
+
+W
+
+Encoder
+
+Xi
+
+Yi
+
+Decoder
+
+ˆ
+W
+
+Ei
+Ni
+
+W
+
+Encoder
+
+Xi
+
+Yi
+
+Decoder
+
+ˆ
+W
+
+Fig. 1. The AWGN channel with an energy harvesting transmitter that has
+an unlimited battery (on the top) and no battery (on the bottom).
+
+of energy at the beginning of the ith channel use and upon
+observing the arrived energy, the transmitter sends a code
+symbol whose energy is constrained to the currently available
+energy. The channel input and output are related as
+Yi = Xi + Ni ,
+
+i = 1, . . . , n
+
+(1)
+
+where Xi is the channel input, Yi is the channel output, and
+Ni is the i.i.d. zero-mean unit-variance Gaussian noise, in
+the ith channel use. E1 , . . . , En is the i.i.d. energy arrival
+sequence which is independent of the message. The code
+symbol energy at the ith channel use is constrained according
+to the exogenous energy arrival and the availability of a
+battery (energy buffer) at the transmitter. In particular, if there
+is no battery at the transmitter, the transmitter observes Ei
+2
+and generates a channel input Xi that satisﬁes Xi ≤ Ei ,
+i.e., the code symbol is amplitude constrained to (the square
+root of) the observed energy. In [1], [2], we addressed this
+system and found the capacity achieving scheme by solving
+for the maximum mutual information between the input and
+the output of an extended input channel. More speciﬁcally,
+we proved in [1], [2] that the code symbols need to be chosen
+from a ﬁnite set in the capacity achieving scheme analogous
+to [3]. In the other extreme, if the transmitter has an unlimited
+battery, some portion of the arriving energy can be stored in
+the battery and the code symbol energy at the ith channel use
+is constrained to the energy in the battery at the beginning of
+the ith channel use. We studied this problem in [4], [5] and
+found that the capacity of this system is equal to the capacity
+
+I. I NTRODUCTION
+Energy harvesting is a promising technology for many
+wireless networking applications as it brings self-sustainability
+and practically unlimited lifetime. In applications where transmitter has an energy harvesting capability, energy needed to
+send messages is replenished stochastically throughout the
+communication session. From an information-theoretic point
+of view, the stochasticity of the energy at the transmitter
+side connects this setting to state-dependent channels [1], [2]:
+energy can be viewed as a state of the channel that is perfectly
+known to the transmitter but unknown to the receiver. In many
+applications, e.g., energy harvesting sensors, the receiver may
+aim at extracting energy state information from the received
+signal as well as decoding the message. In this paper, we
+explore the interaction of these two objectives.
+As shown in Fig. 1, we consider an energy harvesting
+transmitter with an unlimited battery or no battery sending
+messages over an additive white Gaussian noise (AWGN)
+channel. An exogenous energy source supplies Ei amount
+This work was supported by NSF Grants CCF 07-29127, CNS 09-64632,
+CCF 09-64645, CCF 10-18185 and CNS 11-47811.
+
+1
+
+W × E n → Rn where Xi = W × E i → R, i = 1, . . . , n
+since only causal information of energy arrivals is available.
+√
+In particular, |Xi (w, Ei )| ≤ Ei for all w ∈ W and Ei ∈ E.
+The receiver performs two decoding operations after receiving
+the sequence Y n : decoding the message w ∈ W and list
+decoding the energy arrival sequence {Ei }n . A rate-entropy
+i=1
+reduction pair (R, ∆) is achievable if there exists a sequence
+of (2nR , 2n∆ , n) codes with probabilities of message and list
+decoding errors converging to zero as the block length is
+increased. The optimal trade-off region R is the closure of
+all achievable (R, ∆) pairs.
+We ﬁrst note that R is a convex region [7]. In view of
+[7, Theorem 2] and replacing the auxiliary variable U with
+Shannon strategy (T1 , T2 ) [11] where Ti is the channel input
+when energy Ei is observed, the region R is characterized as
+
+with average power constrained to the average recharge rate
+and it is achieved by save-and-transmit or best-effort-transmit
+schemes using a Gaussian codebook.
+In [1], [2], [4], [5], the sole purpose of the transmitter is
+to convey the message which is independent of the energy
+arrival process. However, the transmitter may help the receiver
+get some information about the energy arrival process at the
+transmitter. In this paper, we analyze the interaction between
+the message transmission rate and the receiver’s information
+about the energy arrival process at the transmitter. In particular,
+there is a trade-off between these two objectives in view of
+the connection of this setting with state-dependent channels
+with causal state information at the transmitter. This tradeoff has been well studied for state-dependent channels with
+causal or noncausal state information at the transmitter [6]–
+[10] where the information the receiver can learn about the
+state is measured by different metrics.
+In this paper, we use entropy reduction metric used in [7]
+and characterize the fundamental trade-off between the entropy
+reduction ∆ of transmitter’s energy arrivals at the receiver
+and the message transmission rate R in an energy harvesting
+communication system with causal energy state information
+at the transmitter only. When the transmitter has no battery,
+we ﬁnd the optimal (R, ∆) trade-off points using Shannon
+strategies and prove that the optimal input distributions are
+discrete. When the transmitter has an unlimited battery, we
+show that the optimal trade-off region has a simple form.
+Speciﬁcally, no information about the energy arrival process at
+the transmitter can be obtained at the receiver when the system
+is operated at the highest message rate. Finally, we propose
+an uncoded state ampliﬁcation scheme that splits the energy
+between message transmission and entropy reduction.
+
+R ≤ I(T1 , T2 ; Y )
+∆ ≤ H(E)
+
+R + ∆ ≤ I(X, E; Y )
+
+for some (T1 , T2 ) with amplitude constraints |T1 | ≤
+√
+|T2 | ≤ E2 and
+p(y|t1 , t2 ) = pe1 φ(y − t1 ) + pe2 φ(y − t2 )
+
+p(y) =
+T1
+
+E1 ,
+(6)
+
+T2
+
+(pe1 φ(y − t1 ) + pe2 φ(y − t2 )) dFT1 ,T2 (t1 , t2 )
+
+If the goal of the encoder is only to transmit messages and not
+to assist the receiver to list decode the energy arrival sequence,
+the maximum achievable rate C0 is found as [1], [2]
+C0 =
+
+max I(T1 , T2 ; Y )
+
+FT1 ,T2 ∈Ω
+
+(7)
+
+where the set of feasible distributions is
+
+In this section, we consider a batteryless energy harvesting
+transmitter as shown in the bottom ﬁgure of Fig. 1. For brevity,
+we consider a binary energy arrival process with alphabet E =
+{e1 , e2 } and probabilities P (Ei = e1 ) = pe1 and P (Ei =
+e2 ) = pe2 for all i.
+As the energy at each channel use varies as an i.i.d. process
+and is independent of the message w ∈ W, the resulting
+channel is a state-dependent channel with causal state information at the transmitter [1], [2], [11]. The transmitter helps the
+receiver estimate the energy arrived at the transmitter’s side
+while sending a message w ∈ W at the same time where
+|W| = 2nR . The receiver forms a list Ln (Y n ) ⊂ E n of
+possible energy arrival sequences upon receiving the sequence
+Y n . Before receiving Y n , the size of the list is 2nH(E) , the size
+of the typical set of energy arrival sequences. Upon receiving
+Y n , the list size is dropped to |Ln (Y n )|. Hence, the energy
+arrival sequence uncertainty reduction rate is
+1
+(H(E n ) − log2 |Ln (Y n )|)
+n
+
+(5)
+√
+
+y2
+√ √
+where φ(y) = √1 e− 2 . We denote the interval [− ei , ei ]
+2π
+as Ti , i = 1, 2. The received signal has pdf p(y)
+
+II. S TATE A MPLIFICATION WITH A BATTERYLESS E NERGY
+H ARVESTING T RANSMITTER
+
+∆=
+
+(3)
+(4)
+
+Ω=
+
+dF (t1 , t2 ) = 1
+
+F :
+T1
+
+(8)
+
+T2
+
+On the other extreme, if the goal of the encoder is only to
+amplify the arrived energy, optimal reduction in the entropy is
+∆∗ = min{H(E), max I(X, E; Y )}
+FT1 ,T2 ∈Ω
+
+(9)
+
+1
+Note that I(X, E; Y ) = h(Y ) − 2 log2 (2πe), that is,
+h(Y |X, E) is equal to the entropy of the Gaussian noise.
+
+III. D ISCRETENESS OF THE O PTIMAL I NPUT
+D ISTRIBUTIONS
+As R is a convex region and due to its characterization
+in (3)-(5), one can show after algebraic rearrangements that
+the boundary of R is obtained by solving the following
+optimization problems for all µ ≥ 0:
+max µI(T1 , T2 ; Y ) + h(Y )
+
+FT1 ,T2 ∈Ω
+
+(2)
+
+(10)
+
+A main conclusion we draw in this paper is that the optimal
+input distributions for all µ ≥ 0 are discrete:
+
+A (2nR , 2n∆ , n) code is composed of an encoder map X n :
+
+2
+
+Theorem 1 For all µ ≥ 0, the optimal input distribution, i.e.,
+the solution of (10), has a ﬁnite support set.
+
+IV. S TATE A MPLIFICATION WITH AN E NERGY
+H ARVESTING T RANSMITTER OF U NLIMITED BATTERY
+
+The proof of Theorem 1 follows from steps that have been
+followed in [3], [12], [13] and the ﬁniteness claim is proved
+using a contradiction argument. The problem in (10) is a
+functional convex optimization problem. As a ﬁrst step, we
+show that the space of feasible distributions Ω is a convex and
+compact set and the objective function in (10) is concave in
+the input distribution in the weak topology. Next, we obtain
+an optimality condition in terms of the mutual information
+density, the entropy density and the support set of the optimal
+input distribution. Then, we prove that the mutual information
+density and the entropy density have analytic extensions over
+C2 . Finally, by invoking the identity theorem for analytic
+functions, we show that the optimality condition causes a
+contradiction when the support set is assumed inﬁnite. In
+particular, the mutual information density and entropy density
+are given, respectively, as
+
+In this section, we consider the state ampliﬁcation problem
+with an energy harvesting transmitter that has an unlimited
+battery [4], [5] as shown in the top ﬁgure of Fig. 1. At each
+channel use, the energy arrival replenishes, while the code
+symbol energy reduces, the battery energy. Hence, the code
+symbol at the beginning of a channel use is constrained by
+the current energy level in the battery:
+
+∞
+
+i(t1 , t2 ; F ) =
+
+log2
+
+−∞
+∞
+
+h(t1 , t2 ; F ) = −
+
+−∞
+
+f (y|t1 , t2 )
+f (y; F )
+
+f (y|t1 , t2 )dy
+
+log2 (f (y; F )) f (y|t1 , t2 )dy
+
+i=1
+
+(11)
+(12)
+
+∗
+
+µi(t1 , t2 ; F ∗ ) + h(t1 , t2 ; F ∗ ) =µI(F ∗ ) + h(F ∗ ),
+∀(t1 , t2 ) ∈ SF ∗
+
+n(R + ∆) ≤ I(W ; Y n ) + I(E n ; Y n ) + nǫn
+n
+
+n
+
+(18)
+(19)
+(20)
+(21)
+(22)
+
+n
+
+I(Xi , Ei ; Yi ) + ǫn
+i=1
+
+where (19) is due to the independence of the message W
+and the energy arrival E and conditioning reduces entropy,
+(21) is due to the data processing inequality and the fact that
+Xi is a function of W and E1 , . . . , Ei , and (22) is due to
+the memoryless property of the AWGN channel. We note that
+1
+I(Xi , Ei ; Yi ) = h(Yi ) − 2 log2 (2πe). Hence, we get:
+
+∀(z1 , z2 ) ∈ C2
+
+R+∆≤
+
+(15)
+
+1
+n
+
+≤
+
+φ(y − t) log2 (p(y; F ))dy
+µ
+1
+µI(F ∗ ) − log2 (2πe) − h(F ∗ )
+=−
+µ+1
+2
+
+n
+
+≤
+
+(14)
+
+In particular, µi(t1 , t2 ) + h(t1 , t2 ) = µI(F ∗ ) + h(F ∗ ) for all
+(t1 , t2 ) ∈ R2 . For t1 = t2 = t, we obtain for all t ∈ R
+−∞
+
+(16)
+
+≤ I(X n , E n ; Y n ) + nǫn
+
+The proof of the ﬁniteness of SF ∗ is by the following contradiction argument. Assume that SF ∗ is inﬁnite. By compactness
+of T1 × T2 , SF ∗ has an accumulation point and by the identity
+theorem for multi-dimensional complex numbers, we have
+
+∞
+
+n
+
+≤ I(W ; Y |E ) + I(E ; Y ) + nǫn
+≤ I(W, E n ; Y n ) + nǫn
+
+(13)
+
+where SF ∗ is the support set of F ∗ .
+
+µi(z1 , z2 ) + h(z1 , z2 ) = µI(F ∗ ) + h(F ∗ ),
+
+k = 1, . . . , n
+
+1
+log2 (1 + E[Ei ])
+(17)
+2
+In addition, the entropy reduction is bounded by the entropy
+of the energy arrival process as ∆ ≤ H(E). It remains to
+determine the bound on R + ∆. We can bound R + ∆ as
+
+∗
+
+µi(t1 , t2 ; F ) + h(t1 , t2 ; F ) ≤µI(F ) + h(F ),
+∀(t1 , t2 ) ∈ T1 × T2
+
+Ei ,
+i=1
+
+C∞ =
+
+∗
+Theorem 2 For the optimal input distribution FT1 ,T2 , we have
+∗
+
+2
+Xi ≤
+
+We assume that the transmitter has only causal information;
+however, it will be clear that the trade-off region is invariant
+under causal or noncausal information. At the ith channel use,
+the transmitter has the observations E1 , . . . , Ei and determines
+the code symbol accordingly. The state ampliﬁcation problem
+in this setting is to characterize the achievable information rate
+R and entropy reduction ∆ of the energy arrival sequence at
+the receiver side under the code symbol constraints in (16).
+We found in [4], [5] that the maximum rate of information
+achievable under the input constraints in (16) and causal or
+noncausal information of the energy arrival information is
+
+where i(t1 , t2 ; F ) and h(t1 , t2 ; F ) are continuous functions in
+R2 and they both have analytic extensions over C2 . Moreover,
+Ω is convex and compact; I(T1 , T2 ; Y ) and h(Y ) are both
+concave and weakly differentiable functionals of F . Therefore,
+we have the following theorem:
+
+∗
+
+k
+
+k
+
+1
+n
+
+n
+
+i=1
+n
+
+i=1
+
+h(Yi ) −
+
+1
+log2 (2πe)
+2
+
+1
+1
+log2 2πeE[Yi2 ] − log2 (2πe)
+2
+2
+
+(23)
+(24)
+
+1
+log2 (1 + E[Ei ])
+(25)
+2
+where (24) is due to the fact that Gaussian distribution maximizes entropy, and (25) is due to the concavity of log2 (1 + x)
+n
+and since i=1 E[Yi2 ] ≤ nE[Ei ] + n, which follows from the
+constraints in (16).
+≤
+
+For all µ ≥ 0, the right hand side of (15) is a constant and
+in view of [13, Corollary 9], log2 (p(y; F )) is constant for all
+y ∈ R, which is impossible as p(y; F ) is a probability density
+function, yielding a contradiction, and consequently, proving
+the ﬁniteness claim in Theorem 1.
+
+3
+
+V. A S IMPLE U NCODED S TATE A MPLIFICATION S CHEME
+
+On the other hand, the bound in (25) is achievable by a
+combination1 of the best-effort-transmit scheme in [4], [5] with
+the random binning in [7]. In particular, we consider a blockby-block encoding scheme of B blocks; each block is of n
+channel uses. We consider a single i.i.d. Gaussian codebook
+1
+with average power E[Ei ]− ǫ composed of 2n 2 log2 (1+E[Ei ]−ǫ)
+codewords with block length n. In each block, we allocate
+1
+0 ≤ R ≤ 2 log2 (1 + E[Ei ] − ǫ) bits for the message transmission and remaining Γ = 1 log2 (1 + E[Ei ] − ǫ)−R bits for
+2
+state ampliﬁcation. Hence, we have 2nR bins each composed
+of 2nΓ sequences, i.e., we divide the index interval [1 :
+1
+2n 2 log2 (1+E[Ei ]−ǫ) ] into 2nR intervals [w2nΓ : (w + 1)2nΓ ],
+w = 1, . . . , 2nR − 1 where w is a message index. In the
+ﬁrst block, an arbitrary codeword independent of the energy
+arrival sequence is sent. The transmitter observes the energy
+arrival sequence E1 , . . . , En , maps it to one of 2nΓ indices
+independent of the message w. Then, according to the chosen
+message index w, the codeword to be sent is determined. The
+transmitter uses the best-effort-transmit scheme: if the energy
+of the code symbol Xi in the ith channel use is higher than
+2
+the energy in the battery Ebi (i.e., Xi > Ebi ), then a zero
+symbol is put; otherwise, the code symbol Xi is sent as it
+is. The codeword X1 , . . . , Xn is sent with only ﬁnitely many
+2
+mismatches as Xi > Ebi occurs only in ﬁnitely many channel
+uses and this causes no error in the decoding of the sent
+codeword [4], [5]. As X1 , . . . , Xn is decoded at the receiver
+side with vanishing probability of error, the receiver recovers
+the message index w and the bin index for the observed energy
+arrival sequence as the block length n gets larger. If we allow
+B increase and ǫ → 0, we have R + ∆ ≤ 1 log2 (1 + E[Ei ]).
+2
+
+In this section, we propose a suboptimal uncoded state
+ampliﬁcation scheme based on the power splitting scheme in
+[6]. Pure state ampliﬁcation in the energy harvesting communication context is just putting a code symbol of energy equal to
+the observed energy. The transmitter puts the channel symbol
+√
+√
+e1 when e1 is observed and − e2 when e2 is observed. This
+scheme corresponds to the deterministic auxiliary selection at
+√
+√
+(T1 , T2 ) = ( e1 , − e2 ). We denote the entropy reduction in
+the uncoded transmission as ∆uc .
+1
+(29)
+∆uc = h(Y ) − log2 (2πe)
+2
+√
+√
+where p(y) = pe1 φ(y − e1 ) + pe2 φ(y + e2 ). Note that the
+message transmission rate in this uncoded state ampliﬁcation
+scheme is zero. In addition, all energy is utilized immediately
+after it is observed and hence the existence of a battery does
+not affect the performance.
+Next, we propose an energy splitting scheme for simultaneous information transmission and entropy reduction. Upon
+observing energy ei , αei is allocated for state ampliﬁcation
+and (1 − α)ei is allocated for message transmission where
+0 ≤ α ≤ 1. The transmitter puts αe1 when e1 is observed and
+−αe2 when e2 is observed with the goal of entropy reduction.
+The remaining energy is allocated for message transmission.
+When the transmitter has no battery, the channel is
+Yi = Xi + αEi + Ni
+
+(1 − α)e1 if e1 is observed and |Xi | ≤
+where |Xi | ≤
+(1 − α)e2 if e2 is observed. Hence, we ﬁnd the optimal
+input distribution of the following extended input channel:
+√
+√
+¯
+¯ ¯
+¯
+p(y|t1 , t2 ) = pe1 φ(y − t1 − αe1 ) + pe2 φ(y − t2 + αe2 )
+(31)
+
+Theorem 3 In an energy harvesting transmitter with an unlimited battery, the optimal (R, ∆) region is:
+∆ ≤ H(E)
+(26)
+1
+(27)
+R + ∆ ≤ log2 (1 + E[E])
+2
+We observe from Theorem 3 that the optimal trade-off
+region in the unlimited battery case is expressed explicitly in
+a simple form and the maximum entropy reduction ∆∗ is
+∆∗ = min H(E),
+
+1
+log2 (1 + E[E])
+2
+
+(30)
+
+¯
+where |ti | ≤ (1 − α)ei . We note that the capacity achieving scheme for this extended input alphabet channel is also
+discrete which can be proved using similar steps and the
+contradiction argument. For given α, the message transmission rate R is the capacity of the channel in (31) and the
+resulting ∆ is the maximum entropy reduction subject to
+the message transmission rate R. These values are found by
+evaluating the region for the original channel in (3)-(5) at
+√
+√
+¯1i ¯2i
+¯i
+(t1i , t2i ) = (t∗ , t∗ ) + (α e1 , −α e2 ) with probabilities p∗
+∗ ¯
+∗
+¯
+where (t1i , t2i ) are the mass points in which the capacity
+achieving distribution for (31) is located with probabilities p∗ .
+¯i
+When the transmitter has unlimited battery, the energy that
+is allocated for message transmission can be saved in the
+battery and using the best-effort-transmit scheme in [4], [5],
+the following maximum rate is achievable:
+
+(28)
+
+We also observe that in the unlimited battery case the entropy
+reduction is zero when the transmitter operates at the infor1
+mation transmission capacity 2 log2 (1 + E[E]). In this case,
+the received sequence Y n is almost independent of the energy
+arrival proﬁle E n even though the message transmission is
+enabled by the energy E n . Therefore, the unlimited sized
+energy queue acts as an information hider [14] and the receiver
+can get no information about the energy arrival sequence if the
+message transmission is performed at the capacity. Finally,
+the (R, ∆) region in Theorem 3 remains unchanged if the
+transmitter had noncausal information of the energy arrivals.
+
+max I(T1 , T2 ; Y )
+2
+2
+s.t. E[pe1 T1 + pe2 T2 ] ≤ (1 − α)E[E]
+
+(32)
+
+where T1 , T2 and Y are related by the extended input channel
+relation in (31). The capacity achieving distribution for the
+problem in (32) is not easily obtained. Therefore, we resort
+
+1 We
+
+might also achieve it using the save-and-transmit scheme instead of
+the best-effort-transmit scheme in [4], [5].
+
+4
+
+to T1 = T2 with a Gaussian distribution of zero mean and
+variance (1 − α)E[E]. The resulting (R, ∆) pair is
+
+Optimal (R,∆) region with no battery
+Optimal (R,∆) region with unlimited battery
+(R,∆) pairs for uncoded scheme with no battery
+(R,∆) pairs for uncoded scheme with unlimited battery
+
+0.6
+
+(R, ∆) = (I(X; X + αE + N ), I(αE; X + αE + N ))
+0.5
+
+where X ∼ N (0, (1 − α)E[E]).
+
+∆uc
+0.4
+∆ (bits)
+
+VI. A N UMERICAL E XAMPLE
+In this section, we provide a numerical example of the
+optimal trade-off region R as well as the proposed suboptimal
+uncoded state ampliﬁcation scheme under a binary energy
+arrival process with no battery and unlimited battery. In
+particular, e1 = 1, e2 = 2.25 with pe1 = 0.8, so that the energy
+arrival has entropy H(E) = 0.7219 bits. The channel capacity
+with no battery and with unlimited battery are calculated as
+C0 = 0.5369 bits and C∞ = 1 log2 (1 + E[E]) = 0.5850 bits,
+2
+respectively. We observe that in the no battery case, the√
+sym√
+metric binary distribution of (T1 , T2 ) located at ( E1 , E2 )
+√
+√
+and (− E1 , − E2 ) maximizes I(T1 , T2 ; Y ) and h(Y ) simultaneously. Therefore, the trade-off region generated by this
+symmetric binary distribution is the optimal trade-off region.
+We calculate the maximum entropy reduction in this case as
+∆∗ = 0.5652 bits. In the unlimited battery case, the boundary
+of the optimal (R, ∆) region is the line R + ∆ = 0.5850
+and in particular, ∆∗ = 0.5850 bits as H(E) > 0.5850. Note
+that ∆∗ is higher in the unlimited battery case though battery
+blurs the energy arrival information. This is due to the fact
+that higher rates can be achieved with an unlimited battery.
+Moreover, note that lossless recovery of the state sequence at
+the receiver is not possible for no battery and unlimited battery
+cases since ∆∗ is less than H(E) in both cases. We plot the
+resulting trade-off regions and the points achievable by the
+proposed uncoded state ampliﬁcation scheme in Fig. 2. Note
+that in the case of no battery if I(T1 , T2 ; Y ) and h(Y ) are
+maximized at different discrete distributions of (T1 , T2 ), then
+the optimal (R, ∆) region is a union of many regions.
+We calculate the entropy reduction in the uncoded transmission case as ∆uc = 0.4466 bits. As the energy splitting
+variable α is varied, we observe that the achieved (R, ∆)
+points travel from one edge to the other strictly interior to
+the optimal regions under no battery and unlimited battery
+cases. Therefore, in this case, digitizing the state sequence
+by means of channel codewords is optimal and analog state
+ampliﬁcation performs suboptimally. Moreover, we observe
+that when there is no battery at the transmitter, even if the
+message transmission is performed at the capacity, there is a
+non-zero energy arrival information leakage to the receiver. In
+contrast, the receiver gets no information about the energy
+arrival process if transmitter has an unlimited battery and
+message transmission is performed at the capacity.
+
+0.3
+
+0.2
+
+0.1
+
+0
+
+0
+
+Fig. 2.
+
+0.1
+
+0.2
+
+0.3
+0.4
+R (bits / ch. use)
+
+0.5
+
+C0 C∞
+
+(R, ∆) regions with optimal and suboptimal schemes.
+
+case and we proved that the optimal input distributions are
+discrete. In the unlimited battery case, we showed that the
+optimal trade-off region can be expressed explicitly in a simple
+form and its boundary is achieved by a combination of besteffort-transmit and random binning schemes. We proposed
+an uncoded state ampliﬁcation scheme and showed via a
+numerical example that digitizing the energy state performs
+signiﬁcantly better than the uncoded scheme.
+R EFERENCES
+[1] O. Ozel and S. Ulukus, “AWGN channel under time-varying amplitude
+constraints with causal information at the transmitter,” in Asilomar
+Conference on Signals, Systems and Computers, November 2011.
+[2] O. Ozel and S. Ulukus, “Capacity of the AWGN channel with a
+batteryless energy harvesting transmitter,” IEEE Trans. on Information
+Theory, submitted, May 2012.
+[3] J. G. Smith, “The information capacity of amplitude and varianceconstrained scalar Gaussian channels,” Information and Control, vol. 18,
+pp. 203–219, April 1971.
+[4] O. Ozel and S. Ulukus, “Information theoretic analysis of an energy
+harvesting communication system,” in Workshop on Green Wireless (WGREEN) at IEEE PIMRC, September 2010.
+[5] O. Ozel and S. Ulukus, “Achieving AWGN capacity under stochastic
+energy harvesting,” IEEE Trans. on Information Theory, submitted,
+December 2010.
+[6] A. Sutivong, M. Chiang, T. M. Cover, and Y.-H. Kim, “Channel capacity
+and state estimation for stte-dependent gaussian channels,” IEEE Trans.
+on Inform. Theory, vol. 51, pp. 1486–1495, April 2005.
+[7] Y.-H. Kim, A. Sutivong, and T. M. Cover, “State ampliﬁcation,” IEEE
+Trans. on Inform. Theory, vol. 54, pp. 1850–1859, April 2008.
+[8] W. Zhang, S. Vedantam, and U. Mitra, “A constrained channel coding
+approach to joint communication and channel estimation,” in IEEE ISIT,
+July 2008.
+[9] C. Choudhuri, Y.-H. Kim, and U. Mitra, “Capacity-distortion trade-off
+in channels with state,” in Allerton Conference, September 2010.
+[10] C. Choudhuri, Y.-H. Kim, and U. Mitra, “Causal state ampliﬁcation,” in
+IEEE ISIT, August 2011.
+[11] C. Shannon, “Channels with side information at the transmitter,” IBM
+Jour. of Research and Development, vol. 2, October 1958.
+[12] I. Abu-Faycal, M. Trott, and S. Shamai, “The capacity of discretetime memoryless rayleigh fading channels,” IEEE Trans. on Information
+Theory, vol. 47, pp. 1290–1301, May 2001.
+[13] T. H. Chan, S. Hranilovic, and F. Kschischang, “Capacity-achieving
+probability measure for conditionally Gaussian channels with bounded
+inputs,” IEEE Trans. Inform. Theory, vol. 51, pp. 2073–2088, June 2005.
+[14] N. Mehrav and S. Shamai, “Information rates subjected to state masking,” IEEE Trans. on Information Theory, vol. 54, pp. 2254–2261, June
+2007.
+
+VII. C ONCLUSION
+In this paper, we characterized the trade-off region between
+entropy reduction ∆ of the energy arrivals and the message
+transmission rate R in a communication system with an energy
+harvesting transmitter with no or unlimited battery. Shannon
+strategies achieve the boundary of the region in the no battery
+
+5
+
+

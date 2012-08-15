@@ -1,0 +1,835 @@
+Creator:        TeX
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Thu May 17 23:37:23 2012
+ModDate:        Tue Jun 19 12:54:18 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      452417 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569566871
+
+Spherically punctured biorthogonal codes
+Ilya Dumer, Olga Kapralova
+Department of Electrical Engineering, University of California at Riverside, USA
+E-mail: dumer@ee.ucr.edu, okapralova@ee.ucr.edu
+parameters of the resulting codes of length (m ). In our future
+b
+work we will also describe simple decoding algorithms that
+efﬁciently correct high-noise errors in these punctured codes.
+
+Abstract— Consider a binary Reed-Muller code RM(r, m)
+deﬁned on the full set of binary m-tuples and let this code be
+punctured to the spherical layer S(b) that includes only m-tuples
+of a given Hamming weight b. More generally, we can consider
+punctured RM codes RM(r, m, B) restricted to some set B of
+several spherical layers S(b), b ∈ B. In this paper we specify
+this construction for the biorthogonal codes RM(1, m) and the
+Hadamard codes H(m). It is shown that the overall weight of any
+code vector in a punctured code H(m, B) is determined by the
+weight w of its information block. More speciﬁcally, this weight
+depends only on the values of the Krawtchouk polynomials
+m
+Kb (w) for all b ∈ B. We further reﬁne our codes by limiting the
+possible weights w of the input information blocks. As a result,
+we obtain sequences of codes that meet or closely approach the
+Griesmer bound.
+
+II. P UNCTURED CODES
+Let F (r, m) be the set of m-variate Boolean polynomials f
+of degree r or less. Then the binary RM code RM(r, m) is a
+f
+set of truth-tables Fm → F2 . In other words, code RM(r, m)
+2
+contains any vector (. . . , f (x), . . .) obtained on all n = 2m
+positions x = (x1 , . . . , xm ) by evaluating any polynomial f ∈
+F (r, m). Now let S(b) be the Hamming sphere of radius b in
+Fm , which includes all vectors x of the Hamming weight
+2
+wt(x) = b. In this paper we consider the punctured codes
+f
+P (r, m, b) which are formed by the maps S(b) → F2 and
+m
+have length nb = ( b ) .
+Deﬁnition 1: A code P (r, m, b) consists of the vectors
+(. . . , f (x), . . .), where x ∈ Sb , f ∈ F (r, m) and r, m, b
+are integers such that 0 ≤ r, b ≤ m.
+More generally, consider some subset of radii B ⊆ [m],
+where [m] = {0, 1, . . . , m} and deﬁne the union of spheres
+S(B) = ∪b∈B S(b). Then P (r, m, B) is obtained from
+RM(r, m) by restricting its positions to the set S(B). Obviously, P (r, m, B) is a linear code of length
+
+I. I NTRODUCTION
+In this paper we study punctured codes obtained by restricting some binary Reed-Muller (RM) codes to small subsets of
+their positions. Our main goal is to retain simple code structure
+of RM codes and obtain new codes with good parameters.
+Codes RM(r, m) - deﬁned by two integers m ≥ r ≥ 0 - have
+length n, dimension k, and distance d as follows:
+r
+
+n = 2m ,
+
+(m ) ,
+i
+
+k=
+
+d = 2m−r .
+
+i=0
+
+n(B) =
+
+RM codes enjoy some simple and powerful decoding procedures, such as majority decoding [1] that has decoding complexity of order nk or recursive decoding that has complexity
+order of n min(r, m − r). In addition, these simple algorithms
+can perform well beyond half the code distance [12], [13]. In
+particular, long RM codes of any ﬁxed order r have low decoding complexity of order nr and correct most error patterns
+of weight T = n(1 − ε)/2 or less for any ε > 0. Subcodes of
+RM codes substantially improve decoding performance [13],
+while polar codes - similarly related to RM codes - achieve
+channel capacity [14]. However, subcodes of RM codes or
+polar codes, which have been designed to date, achieve good
+performance only on very long blocks. Therefore, we wish
+to substantially reduce the original lengths of RM codes. Our
+goal is to design codes with better performance on short blocks
+while keeping a simple recursive structure of RM codes that
+yields fast decoding procedures.
+In this paper we consider punctured codes derived from
+the simplest RM codes. Namely, we study codes RM(1, m),
+which are also called biorthogonal codes, and the Hadamard
+codes H(m). We restrict code positions to the binary tuples
+(x1 , . . . , xm ) of any given Hamming weight b and deﬁne the
+
+nb .
+b∈B
+
+Let us now deﬁne the incidence matrix Wt,b (m) of t-subsets
+vs. b-subsets, which is an m × m matrix whose rows
+t
+b
+represent the values of the Boolean monomials of degree
+t taken on a sphere S(b). Incidence matrices have been
+extensively studied in combinatorial designs (see [2], [3]). For
+a set of layers B = {b1 , ..., bs } we deﬁne the matrix
+Wt,B (m) = [Wt,b1 (m) . . . Wt,bs (m)] .
+by appending different incidence matrices Wt,bi (m). Then a
+punctured code P (r, m, B) is the linear span of the matrix1
+
+
+W0,B (m)
+ W1,B (m) 
+
+
+G(r,m,B) = 
+.
+.
+.
+
+
+.
+Wr,B (m)
+Finally, note that the set B = [m] gives the full RM code
+RM(r, m) and its generator matrix G(r,m,[m]) .
+1 We show in the sequel that this matrix can have linearly dependent rows
+even for r = 1.
+
+1
+
+Our next goal is to ﬁnd parameters of the spherically
+restricted codes P (r, m, b). For a general order r ≥ 2, this
+study leads to some long-standing problems associated with
+the weight distributions A(w) of code vectors and information blocks in the original codes RM(r, m). Therefore, we
+will address the simplest case r = 1. More speciﬁcally,
+we will consider the Hadamard codes H(m) obtained from
+linear functions of m variables, and then proceed with codes
+RM(1, m) obtained from afﬁne functions. We will also introduce a new precoding technique that drastically increases code
+distance and yields some inﬁnite code families that meet the
+Griesmer bound.
+
+Now we proceed with the punctured biorthogonal code
+P (m, b) = P (1, m, b) obtained by restricting RM(1, m) to
+the spherical layer S(b).
+Lemma 4: Code P (m, b) has dimension k(m, b) = m. Any
+input afﬁne function
+m
+
+g(x) = g0 +
+
+m
+wt(yg ) = nb /2 − (−1)g0 Kb (w)/2
+
+=
+
+(−1)
+
+w
+j
+
+j
+
+j=0
+
+m−w
+.
+b−j
+
+(5)
+
+where w =wt(g1 , . . . , gm ).
+Proof: Let 1 be the all-ones vector of length n = 2m .
+Then RM(1, m) reduces to either H(m) if g0 = 0 or the coset
+H(m) + 1 if g0 = 1. However, the punctured vector 1S(b) on
+the sphere S(b) can still belong to H(m, b). Namely,
+
+Consider the Hadamard code H(m) of dimension m formed
+by linear Boolean functions f (x1 , ..., xm ). We take positions x
+on a sphere S(b) and obtain a spherically restricted Hadamard
+code H(m, b) .
+Let g = (g1 , . . . , gm ) be an information block and let w
+denote its Hamming weight. Also for parameters m, b, w, we
+use the binary Krawtchouk polynomial [1], [5]
+b
+
+(4)
+
+gives the output vector yg of weight
+
+III. S PHERICAL RESTRICTIONS OF H ADAMARD CODES
+H(m) AND BIORTHOGONAL CODES RM(1, m)
+
+m
+Kb (w)
+
+gi xi
+i=1
+
+1S(b) ∈ H(m, b),
+1S(b) ∈ H(m, b),
+/
+
+odd b
+even b.
+
+Indeed, (2) shows that vector y has weight
+w = m and b is odd. Thus,
+P (m, b) =
+
+(1)
+
+H(m, b)
+H(m, b)
+
+m
+b
+
+if and only if
+
+odd b
+H(m, b) + 1, even b.
+
+The following lemma shows that the input weight w deﬁnes
+the weight of the vector y = gW1,b (m) in code H(m, b).
+Lemma 2: A binary input vector g = (g1 , . . . , gm ) of
+weight w gives the code vector y = gW1,b (m) of weight
+
+From (3) we see that P (m, b) always has dimension m.
+Finally, note that afﬁne forms (4) generate vectors y of weight
+m
+nb /2 ± Kb (w)/2, depending on the value of g0 = 0, 1.
+Lemma 4 shows that the matrix G(m, b) = G(1,m,B) has
+rank m. It is easy to verify that its null-space
+
+m
+wt(y) = nb /2 − Kb (w)/2.
+
+G ⊥ (m, b) := {g ∈ Fm+1 : gG(m, b) = 0}
+2
+
+(2)
+
+is generated by the vector
+Proof: Consider a point x ∈ Sb and deﬁne the respective
+supports of g and x as follows
+
+g⊥ =
+
+I = {i : gi = 1, 1 ≤ i ≤ m}
+
+for odd b
+
+01...1
+
+for even b.
+
+(6)
+
+Our next goal is to estimate the minimum distance
+
+X = {i : xi = 1, 1 ≤ i ≤ m}.
+
+m
+d(m, b) = nb /2 − max |Kb (w)| /2.
+w
+
+Then the linear form
+
+First, note that we have two trivial cases
+
+gI (x) =
+
+gi xi =
+i∈I
+
+gi xi
+
+d(m, 1) = d(m, m − 1) = 1 for all m ≥ 2.
+
+i∈I∩X
+
+b
+m
+Sb (w) =
+j=1,odd
+
+w
+j
+
+(8)
+G(m, b) = G(m − 1, b) G(m − 1, b − 1)
+Proof: We ﬁrst re-order the columns of G(m, b) by
+taking all positions x ∈ S(b) with xm = 0 and then all
+positions with xm = 1. This obviously gives the matrix
+
+m−w
+,
+b−j
+
+can be rewritten as (2).
+m
+Note that Sb (w) > 0 for any w > 0, except for the case
+w = m for even b. Thus, we have
+Corollary 3: Code H(m, b) has dimension
+m,
+m − 1,
+
+if b is odd
+if b is even.
+
+(7)
+
+Below we mostly use induction for other cases b ∈ [2, m − 2].
+Lemma 5: Code P (m, b) has generator matrix
+
+takes values gI (x) = 1 if and only if the set I ∩ X has odd
+size j. The number of such points x on sphere Sb ,
+
+k(m, b) =
+
+11...1
+
+G(m − 1, b)
+0
+
+G(m − 1, b − 1)
+11 . . . 1
+
+The last unit row in matrix G(m−1, b−1) is linearly dependent
+of the ﬁrst m rows and can be removed.
+Given an information block g, we consider two cases:
+
+(3)
+
+2
+
+We complete case B with two special cases m = 2b − 2, 2b,
+for which δ(m + 1, b) < d(m + 1, b).Then Lemma 8 gives
+
+2b
+if m = 2b
+ d(2b + 1, b) = b−1 ,
+d(m + 1, b) =
+ d(2b − 1, b) = 2b−2 , if m = 2b − 2
+b
+
+(A) g belongs to one of the two null-spaces:
+g ∈ G ⊥ (m − 1, b) or g ∈ G ⊥ (m − 1, b − 1)
+(B) g belongs to neither of the null-spaces:
+g ∈ G ⊥ (m − 1, b),
+/
+
+g ∈ G ⊥ (m, b − 1)
+/
+
+Thus, case B always gives lower bound (12). Finally, note
+that this bound also includes case A. Indeed, (9) gives (12) in
+its ﬁrst and last lines. The second line of (12) also gives the
+lowest estimate, since for m = 2b
+
+Lemma 6: Case (A) gives minimum weight
+(9)
+wtmin (gG(m, b)) = min m−1 , m−1 .
+b
+b−1
+Proof: Note that case (A) can only include one of the
+two vectors g ⊥ deﬁned in (6). Either vector g ⊥ gives the allzero code vector gG on one of the two submatrices (8) and
+an all-one vector on the other.
+We now proceed with case B, which is much more involved.
+Consider representation (8) and deﬁne the sum of distances
+δ(m, b) = d(m − 1, b) + d(m − 1, b − 1).
+
+2
+
+δ(m, b),
+
+m−1
+b−1
+
+,
+
+m−1
+b
+
+(10)
+
+(11)
+
+Proof: The two latter estimates come directly from
+case A. For case B, (8) shows that vector gG has weight
+wtg (m, b) = wtg (m − 1, b) + wtg (m − 1, b − 1).
+Note that case A gives two tight estimates in (11). By
+contrast, case B gives a tight estimate only if the same input
+block generates both minimum distances, d(m − 1, b) and
+d(m − 1, b − 1). First consider two special cases, for which
+the estimate δ(m, b) is not tight.
+Lemma 8: d(2b + 1, b) = d(2b + 1, b + 1) =
+
+<
+
+m−1
+b−1
+
+=
+
+m−1
+b
+
+.
+
+This completes the proof of the theorem.
+Theorem 9 can also be reformulated for the Krawtchouk
+polynomials. First, note [5], [6], [7] that the Krawtchouk
+m
+polynomial Kb (w) has b simple (non-repeating) roots
+0 < r1 < . . . < rb < m, which are symmetric with respect to
+m/2. These roots are also interlaced with b − 1 roots of the
+m
+m
+derivative of Kb (w). Due to this, Kb (w) decreases in the
+subinterval I1 = [1, r1 ] and oscillates in the second subinterval
+I2 = [r1 , m/2] . Here r1 > 1 for all b < m/2 and r1 = 1 for
+b = m/2. Now we reformulate Theorem 9 as follows.
+Corollary 10: For all integers b ∈ [1, m − 1] and w ∈
+m
+[1, m − 1], polynomial Kb (w) has maximum absolute value
+at w = 1 :
+m
+m
+|Kb (1)| ≥ |Kb (w)|
+(14)
+
+Lemma 7: For any b ∈ [2, m − 2],
+d(m, b) ≥ min
+
+m−2
+b
+
+except for b = m/2, in which case the maximum is achieved
+at w = 2.
+We note that the result similar to Corollary 10 is known in
+the asymptotic setting [10], where it is shown that condition
+(14) holds for all 1 ≤ w ≤ m/2 given parameters η ∈ (0, 1),
+b = (1 + η) m/2, and sufﬁciently large m > m0 (η). Our
+Corollary 10 extends this result for all b and m using recursive
+techniques instead of asymptotic estimates of the Krawtchouk
+polynomials.
+
+2b
+b−1
+
+Proof: See [15]. We use straightforward but lengthy
+calculations related to the Krawtchouk polynomials.
+Theorem 9: Code P (m, b) has minimum distance
+ m−1
+if m > 2b
+ b−1 ,
+
+
+ m−2
+2 b , if m = 2b
+d(m, b) =
+(12)
+
+ m−1
+
+
+,
+if m < 2b
+b
+
+IV. P RECODING
+A. Precoding on the second layer
+
+Proof: We ﬁrst bound d(m, b) from above. Then equalities (12) are immediately satisﬁed if we take
+
+if i ∈ [1, m − 1] and m > 2b
+ xi
+1 + xi + xj if 1 ≤ i < j ≤ m − 1, m = 2b
+g(x) =
+
+1 + xi
+if i ∈ [1, m − 1] and m < 2b − 2
+(13)
+Next we prove the lower bounds for d(m, b) in case B. Our
+base case includes equalities (7). By induction, we assume that
+(12) holds for some m and any b ∈ [2, m − 1]. Then we use
+(12) and recalculate function (10):
+
+From Lemma 2 we see that restriction of an input spectrum
+can improve the weight spectra of the resulting codes H(m, b)
+and P (m, b). We now describe this technique in more detail.
+Consider a code H(m, {1, 2}) of length m(m + 1)/2. By
+Lemma 2, an information word g of weight w generates a
+codeword of weight
+w + w(m − w) = w(m − w + 1).
+Thus, the minimum distance of H(m, {1, 2}) keeps growing
+as long as the entire weight range [w0 , w1 ] of nonzero information blocks gets closer to the midpoint (m+1)/2. Therefore
+we will now restrict the set G of possible information blocks
+and consider this set as a code G[m, k, δ] of dimension
+k and distance δ. Our encoding now becomes a two-step
+procedure. First, the information word u ∈ Fk is encoded
+2
+into a vector g ∈ G of length m, which in turn is encoded
+
+δ(m + 1, b) = d(m, b) + d(m, b − 1)
+ m
+if m > 2b
+ b−1 ,
+
+
+2 m−1 , if m = 2b − 1
+=
+b
+
+ m
+
+,
+if m < 2b − 2
+b
+
+3
+
+into y ∈ H(m, B). This procedure yields the smaller code
+HG (m, B) and can be depicted as follows
+
+B. Precoding in the general case
+We will now consider some general layer b < m/2
+and analyze the minimum distance of code HG (m, b) that
+uses general encoding procedure (15). Recall [5] that the
+m
+Krawtchouk polynomial Kb (w) has b simple (non-repeating)
+roots 0 < r1 < . . . < rb < m, which are symmetric with respect to m/2. Below we use the estimate [5]
+m
+− b(m − b)
+r1 ≥
+2
+Let τ = b/m, and
+
+H(m,B)
+
+Precoding
+
+u ∈ Fk − − − g ∈ G − − −
+− −→
+− − → y ∈ HG (m, B). (15)
+2
+For example, the parity-check code G[m, m − 1, 2] increases
+the distance m of H(m, {1, 2}) to 2m − 2, while reducing its
+dimension m to m − 1. The resulting codes can have good
+parameters. For example, code G[7, 6, 2] generates a [28, 6, 12]
+linear code that meets the Griesmer bound. Similarly, the
+(extended) Hamming code G[m, m− log2 m −1, 4] increases
+the distance of H(m, {1, 2}) almost fourfold.
+As another example, we take odd s and consider the code
+G[m = 2s − 1, 2s, 2s−1 − 2(s−1)/2 ] which is the dual of
+the double-error-correcting BCH code [1]. Then the two-layer
+code HG (m, {1, 2}) has length m(m + 1)/2 and distance
+(m2 − 1)/4, which is very close to half the code length.
+Note also that any linear code G can be replaced with
+a nonlinear code, such as the Kerdock code with an even
+parameter s in the above example. Indeed, it is easy to see
+from Lemma 2 that a non-linear precoding of vectors g and
+g separated by some distance w gives vectors
+
+1
+− τ (1 − τ )
+2
+θ = H(λ) + H(τ ) − 1.
+
+λ=
+
+Thus, r1 /m ≥ λ. Observe also that H(λ) is the ﬁrst linear
+programming bound for a code with a relative distance τ ,
+whereas 1 − H(τ ) is the lower Gilbert-Varshamov bound (see
+17.61 in [1]). Thus, parameter θ represents the (positive) gap
+between the two bounds.
+Now consider a code G[m, k, δmin ], in which all nonzero
+code weights (or pairwise distances) fall into some interval
+[δmin , δmax ] and let
+
+y(g ) = g W1,b (m), y(g ) = g W1,b (m)
+
+δ=
+
+with distance
+d( y(g ), y(g ) ) =
+
+Theorem 12: Code HG (m, b) of length nb =
+minimum distance
+1
+nb
+m
+d≥
+− max Kb (δ)/2, τ −1/4 2−mθ/2 .
+2
+2
+
+m
+Sb (w).
+
+Thus, the parameters of codes HG (m, B) can be improved by
+using the precoded sets G with good distance distributions.
+Finally, let us describe some inﬁnite families of codes that
+achieve the Griesmer bound. Let G(s) = G[2s − 1, s, 2s−1 ]
+denote the shortened code RM(1, s). We then use encoding
+(15) and consider code HG(s) (2s − 1, {1, 2}).
+Lemma 11: Code HG(s) (2s −1, {1, 2}) meets the Griesmer
+bound.
+Proof: G(s) is a constant-weight equidistant code that
+has length m = 2s − 1 and nonzero weight w = 2s−1 . Then
+code HG(s) retains the dimension s of code G(s), has length
+m+
+
+m
+2
+
+s−1
+
+i=0
+
+d
+2i
+
+m
+b
+
+has
+(16)
+
+Proof: Using equality (2), we only need to upper-bound
+m
+the Krawtchouk polynomials Kb (w). We may also consider
+the interval w ∈ [δ, m/2] , due to the symmetry conditions for
+m
+Krawtchouk polynomials. Note that Kb (w) decreases in the
+ﬁrst subinterval I1 = [δ, r1 ] for δ ≤ r1 , and oscillates in the
+m
+m
+second subinterval I2 = [r1 , m/2] . Thus, Kb (w) ≤ Kb (δ)
+m
+for I1 . To estimate Kb (w) in I2 we use the bound [5]
+m
+|Kb (w)| ≤ 2m/2
+
+= 22s−1 − 2s−1
+
+m
+b
+
+m
+w
+
+−1
+
+.
+
+(17)
+
+This bound holds for any w ∈ [0, m] but will be used only in
+the oscillating region I2 , where it is exponentially tight. Then
+w/m ≥ r1 /m ≥ λ. We obtain bound (16) using standard
+estimates 10.16 of [1] for binomial coefﬁcients:
+√
+√
+m
+m
+mH(τ )
+mH(λ)
+2m ,
+πb
+b ≤2
+w ≥2
+
+and distance d = w + w(m − w) = 22s−2 . Thus,
+HG(s) (2s − 1,B) meets the Griesmer bound
+n≥
+
+δmin ,
+odd b
+min{δmin , m − δmax }, even b
+
+= 22s−1 − 2s−1 .
+
+m
+Kb (w) ≤ 2mn2
+b
+
+Note also that HG(s) is a constant-weight equidistant code
+with all weights and pairwise distances equal to 22s−2 . It is
+also easy to verify that the extended set of layers Bext =
+{1, 2, 2s − 2, 2s − 3} and all of its subsets B also give codes
+HG(s) (2s −1, B) that meet the Griesmer bound. Both families
+of codes were previously designed using different techniques
+(see, for example, [4]).
+
+1/4
+
+2m(1−H(λ))/2 ≤ τ −1/4 2−mθ/2 nb
+
+Discussion. The lower bound (16) can be improved for
+δ > r1 . First, the exponent of the bound in the oscillating
+region I2 can be tightened. Indeed, the function (17) decreases
+in w on subinterval I2 , so the larger w > r1 gives the larger
+λ > λ, which in turn increases the resulting positive gap
+θ = H(λ ) + H(τ ) − 1.
+
+4
+
+Also, our estimates can be further improved by replacing
+(17) with some other bounds of [5] and [6] (the latter gives
+the best known estimate). However, (17) still exhibits the
+same exponential behavior in the oscillating region I2 as the
+other known bounds. In the non-oscillating region I1 , all these
+bounds are not tight. It is for this reason that we employ a
+m
+simple tight estimate Kb (δ) in I1 instead of (17). Note also
+√
+that our bound (16) approaches the small order of nb as w
+tends to m/2. This was already demonstrated in Section IV-A,
+in which precoding procedure was used to eliminate the lowest
+input weights w = 1, 2, 3, . . . and their (highest) counterparts
+m − w.
+
+VI. O PEN PROBLEMS
+This paper presents a new code design that combines singlelayer restrictions of biorthogonal codes with a precoding of
+information blocks. This design has produced some highdistance codes that meet or approach the Griesmer bound. One
+possible extension is to consider the multi-layer constructions,
+which bring code distance closer to the Griesmer bound, as
+shown in Section V. Another important direction is to extend
+our spherically-restricted design to general codes RM(r, m) of
+an arbitrary order r. This approach can potentially give many
+good codes with the higher code rates. Finally, our preliminary
+observations indicate that spherically-punctured codes enable
+efﬁcient decoding procedures. Our goal is to design decoding
+algorithms for these codes that can correct high-noise errors
+and operate close to channel capacity.
+
+V. C OMPUTATIONAL PROBLEMS
+Bound (16) gives some tight estimates on code distance.
+However, this bound becomes rather loose if we consider a
+combination of multiple layers B = {b1 , ..., bs }. The most
+notable example is the original code H(m). In this case,
+bound (16) is placed below nb /2 for each layer b. However,
+the overall code distance 2m−1 exceeds the sum of distances
+d(m, b) and equals the sum
+nb /2. Thus, in the multi-layer
+design, one can exceed the sum of one-layer distances. This
+gain mostly stems from the following. Note that the largest
+layers Sb give the largest increase to the code length nB and
+its distance d(m, B). On the other hand, for b < m/2 and for
+b > m/2, different layers yield the lightest codewords on the
+different information blocks as seen in (13). Therefore, multilayer design can improve spherical codes if the set B includes
+several consecutive high-level layers with b ∼ m/2.
+We now brieﬂy describe the algorithm that efﬁciently computes the sets B that can maximize the minimum distance of
+a code HG (m, B). To ﬁnd the optimal sets B for codes of
+length up to N, we formulate the following problem:
+
+VII. ACKNOWLEDGMENT
+The authors thank I. Krasikov for helpful remarks. Research was supported by NSF grant 1102074 and ARO grant
+W911NF-11-1-0027.
+R EFERENCES
+[1] F.J. MacWilliams and N.J.A. Sloane, “ The Theory of Error-Correcting
+Codes,” North-Holland, Amsterdam, 1981.
+[2] D. H. Gottlieb, “A certain class of incidence matrices,” Proc. Amer.
+Math. Soc., Vol. 17, pp. 1233-1237, 1966.
+[3] R. M. Wilson, “A diagonal form for the incidence matrices of t-subsets
+vs k-subsets,” European J. of Combinatorics, Vol. 11, pp. 609-615, 1990.
+[4] T. Helleseth, “Further classiﬁcations of codes meeting the Griesmer
+bound,” IEEE Trans. Inform. Theory, vol. 30:2, pp. 395-403, 1984.
+[5] I. Krasikov and S. Litsyn, “Survey of Krawtchouk Polynomials,” DIMACS: Discrete Math and Theor. Comp. Sci., Vol. 56, pp. 199-2011,
+2001.
+[6] M. Ismail and P. Simeonov, “Strong asymptotics of Krawtchouk Polynomials”, J. Comput. Appl. Math., Vol. 100:2, pp. 121-144, 1998.
+[7] V. Levenshtein, “Krawtchouk polynomials and universal bounds for
+Hamming spaces,” IEEE Trans. Inform. Theory, Vol. 41:5, pp. 13031321, 1995.
+[8] E. Horowitz and S. Sahni, “Computing partitions with applications to
+the knapsack problem,” J. Assoc. Comput. Mach, Vol. 21, pp. 277—292,
+1974.
+[9] M. de Berg, O. Cheong, M. van Kreveld and M. Overmars “Computational Geometry: Algorithms and Applications,” Springer, 2008.
+[10] N. Alon and B. Sudakov, “Bipartite Subgraphs and the Smallest Eigenvalue,” Combinatorics, Probability and Computing, Vol. 9, pp. 1-12,
+2000.
+[11] M. Grassl, “Bounds on the minimum distance of linear codes and
+quantum codes,” Available online at http://www.codetables.de
+[12] R.E. Krichevskiy, “On the Number of Reed-Muller Code Correctable
+Errors,” Dokl. Soviet Acad. Sciences, vol. 191, pp. 541-547, 1970.
+[13] I. Dumer, “Recursive decoding and its performance for low-rate ReedMuller codes”, IEEE Trans. Inform. Theory, vol. 50, pp. 811-823, 2004.
+[14] E. Arıkan, “Channel polarization: A method for constructing capacity
+achieving codes for symmetric binary-input memoryless channels,” IEEE
+Trans. Inform. Theory, vol. 55, pp. 3051–3073, July 2009.
+[15] Available online at http://www.ee.ucr.edu/∼okapralova/codes.html
+
+max d s.t.
+m
+b
+cb wi ≥ d, ∀i
+b=1
+m
+
+cb
+b=1
+
+m
+b
+
+(18)
+≤N
+
+cb ∈ {0, 1}, b = 1, . . . , m.
+b
+Here wi denotes the weight produced by the information
+word of weight i on a given level b, and the binary variable
+cb ∈ {0, 1} takes value 1 if b ∈ B. The integer program (18)
+is an instance of the NP-hard weighted set cover problem.
+To simplify our code search, we assume that the initial
+information-level codes G have k = o(m) different weights
+for large m. Our algorithm has time complexity O(mk 2m/2 )
+and space complexity O(mk−1 2m/2 ). In brief, this algorithm
+generalizes meet-in-the-middle approach [8] developed for the
+0-1 knapsack problem, and uses range trees [9] for a kdimensional range searching. As a result, we found about 50
+codes (see [15]) that coincide with the best known codes listed
+in the table [11]. The algorithm also produces longer codes
+with parameters that approach the Griesmer bound.
+
+5
+
+

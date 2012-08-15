@@ -1,0 +1,901 @@
+Creator:        TeX
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Sun May 13 22:38:12 2012
+ModDate:        Tue Jun 19 12:56:31 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      382788 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569566375
+
+Reﬁnement of the Sphere-Packing Bound
+Y¨ cel Altu˘
+u
+g
+
+Aaron B. Wagner
+
+School of Electrical and Computer Engineering
+Cornell University, Ithaca, NY 14853 USA
+Email: ya68@cornell.edu
+
+School of Electrical and Computer Engineering
+Cornell University, Ithaca, NY 14853 USA
+Email: wagner@ece.cornell.edu
+
+tightest pre-factor for the upper bound on the error probability
+was O(1), due to Fano [3] and Gallager [4]. The best prefactor in the lower bound for constant composition codes was
+O(N −|X ||Y| ), due to Haroutunian [6], [9, Theorem 2.5.3],
+where |X | and |Y| are the cardinalities of the input and output
+alphabets, respectively. (The original sphere-packing bound of
+Shannon-Gallager-Berlekamp [5, Theorem 6] gave a pre-factor
+√
+of O(e− N ).) Evidently there is a sizable gap between the
+orders of the pre-factors in the upper and lower bounds. This
+gap is especially signiﬁcant at rates close to capacity, where
+the exponent itself is small so the pre-factors play a larger role
+for ﬁnite blocklengths.
+Recently, the authors have been working to reduce the
+gap between the pre-factors. The recent paper [16] considers
+symmetric channels and reﬁnes the sphere-packing lower
+1
+bound by proving a pre-factor of O(N − 2 (1+|ESP (R)|) ), where
+ESP (R) is the slope of the sphere-packing exponent at point
+R. The paper [17] considers a broad class of channels, which
+includes all positive channels with positive dispersion, and
+reﬁnes the random coding upper bound by proving a pre-factor
+1
+of O(N − 2 ). These results provide signiﬁcant improvements
+over the existing bounds, and they approximately characterize
+the order of the pre-factor for rates close to the capacity for a
+large set of symmetric channels, because ESP (R) tends to zero
+as R approaches C. It is also worth noting that the optimal pre1
+factor for the binary symmetric channel is O(N − 2 (1+|ESP (R)|) )
+for all rates above the critical rate, while for the binary erasure
+1
+channel it is O(N − 2 ), which is shown by Elias [20].
+In this paper, we generalize [16] to handle asymmetric
+channels. In particular, we prove a lower bound for constant
+∗
+1
+composition codes with a pre-factor of O(N − 2 (1+ρR ) ), where
+ρ∗ is related to the slope of the sphere-packing exponent at
+R
+point R. Although the overall approach is similar to that of
+[16], the lack of symmetry in the channel makes the argument
+signiﬁcantly more involved. While some improved ﬁnite-N
+bounds could be extracted from the proofs in this paper, we
+defer the task of optimizing these bounds and numerically
+comparing them to the existing bounds for future work.
+To place the results of this paper in context, it is instructive
+to consider an analogy with sums of i.i.d. random variables.
+The small, medium, and large error probability regimes of
+channel coding correspond to large deviations, moderate deviations, and central limit theory, respectively, for i.i.d. sums.
+Continuing this analogy, the problem considered in this paper
+corresponds to the “exact asymptotics” problem [18], [19,
+
+Abstract—We provide a reﬁnement of the sphere-packing
+bound for constant composition codes over discrete memoryless
+channels that improves the pre-factor in front of the exponential
+∗
+1
+term. The order of our pre-factor is O(N − 2 (1+ρR ) ), where ρ∗
+R
+is related to the slope of the sphere-packing exponent and N is
+the blocklength.
+
+I. I NTRODUCTION
+Characterizing the interplay between the rate, blocklength,
+and error probability of optimal codes for a discrete memoryless channel (D.M.C.) is arguably one of the most fundamental
+problems in information theory. Although the investigation of
+this interplay dates back to the early days of the ﬁeld [1]–
+[9], it remains to be an active research area [10]–[15]. This
+interplay can be characterized in several regimes. Probably the
+best-known regime is that of “error exponents,” in which a
+rate below the capacity is ﬁxed and the goal is to ﬁnd the
+best possible rate of decay of the error probability. It has
+been shown that this error probability decays exponentially
+in the blocklength for most channels and this exponent is
+characterized for high rates [3]–[6]. Conversely, one could
+ﬁx an error probability in (0, 1/2) and characterize the speed
+with which the rate converges to capacity [2], [13]. This
+is sometimes called the “normal approximation.” Between
+these two regimes is the one in which error probability
+converges to zero and the rate simultaneously converges to
+the capacity. Here the goal is to characterize the speed of one
+convergence as a function of the other [14], [15]. We call
+these three asymptotics the “small error probability,” “large
+error probability,” and “medium error probability,” regimes,
+respectively. It is worth noting that although the ultimate
+goal—characterizing the interplay between rate, blocklength,
+and error probability—is independent of the regime, the proof
+techniques for the three regimes are slightly different and the
+results for one regime cannot be directly obtained from the
+results for another.
+In this paper, we focus on characterizing the error probability in the small error probability regime, especially for
+moderate blocklengths and rates close to capacity. The existing
+bounds in this regime are not particularly close because,
+although the exponential factors in the upper and lower bounds
+match, the pre-factors in front of the exponent differ signiﬁcantly between the bounds. To be speciﬁc, until recently, the
+This research was supported by the U.S. National Science Foundation under
+grants CCF-0830496 and CCF-1117128.
+
+1
+
+The following can be interpreted as the maximum absolute
+value subgradient of the sphere packing exponent at point R
+
+Theorem 3.7.4] in large deviations. The goal of exact asymptotics is to characterize the pre-factor of the exponentially
+vanishing term in the large deviations theorem. Bahadur and
+Rao [18] characterized this pre-factor, including the constant,
+under some regularity conditions. Their result, in the form
+stated by Dembo and Zeitouni [19, Theorem 3.7.4], is the
+following:
+Theorem 1.1: (Bahadur-Rao) Let µn denote the law of
+n
+1
+ˆ
+Sn = n i=1 Zi , where Zi are i.i.d. real valued random variables with logarithmic moment generating function Λ(λ) =
+log E[eλZ1 ]. Consider the set A = [a, ∞), where a = Λ (η)
+for some positive η ∈ {λ : Λ(λ) < ∞}◦ . If the law of X1 is
+non-lattice, then limn→∞ Jn µn (A) = 1, where
+∗
+
+Jn := enΛ
+
+(a)
+
+η
+
+ρ∗ :=
+R
+
+where K ∈ R+
+
+A. Notation
+Boldface letters denote vectors, regular letters with subscripts denote individual elements of vectors. Furthermore,
+capital letters represent random variables and lowercase letters
+denote individual realizations of the corresponding random
+variable. Throughout the paper, all logarithms are base-e. For a
+ﬁnite set X , P(X ) denotes the set of all probability measures
+on X . Similarly, for two ﬁnite sets X and Y, P(Y|X ) denotes
+the set of all stochastic matrices from X to Y. For a set S,
+S c (resp. S ◦ ) denotes the complementary set (resp. interior).
+B. Deﬁnitions and statement of the result
+Throughout the paper, let W be a DMC satisfying1 R∞ <
+C. For any P ∈ P(X ), deﬁne
+
+e(f, ϕ) ≥ αQ,N (R).
+
+(3)
+
+The error exponent of this test can be expressed via the
+following deﬁnition. For any V ∈ P(Y|X ), P ∈ P(X ) and
+Q ∈ P(Y), deﬁne D(V ||Q|P ) := x∈X P (x)D(V (·|x)||Q).
+
+D(V ||W |P ),
+
+and ESP (R) := maxP ∈P(X ) ESP (R, P ).
+1 For
+
+1
+2
+
+III. S KETCH OF THE P ROOF
+A. Overview
+There are at least three proofs of the sphere-packing bound
+in the literature: that of Shannon-Gallager-Berlekamp [5],
+Haroutunian [6] and Blahut [21]. Of these, Blahut’s argument
+seems to be the most natural starting point for obtaining
+improved pre-factors, as it allows one to convert the error
+event of a code into an event involving a sum of i.i.d. random
+variables, to which one can apply the Bahadur-Rao result. The
+Shannon-Gallager-Berlekamp argument is similar to Blahut’s
+in some ways, but it is less amenable to exact asymptotics.
+The Haroutunian argument is combinatorial and even farther
+removed from i.i.d. sums.
+Blahut’s argument proceeds as follows. Assume R∞ < R <
+C and let (f, ϕ) be an (N, R) code. Let {Um }m∈M denote
+the decision regions of ϕ corresponding to each message
+m ∈ M. Let Q ∈ P(Y) be an auxiliary output distribuN
+N
+tion. Let W (yN |xN ) :=
+n=1 W (yn |xn ) and Q(y ) :=
+N
+N
+n=1 Q(yn ). Owing to the fact that
+yN ∈Y N Q(y ) = 1
+and |M| ≥ eN R , there must be a message m ∈ M such that
+Q{Um } ≤ e−N R . Let xN := f (m) be the codeword for this
+c
+message. It is clear that e(f, ϕ) ≥ em (f, ϕ) = W Um |xN .
+N
+Now consider the hypothesis test over the set Y in which
+W (·|xN ) is the null hypothesis (H0 ) and the i.i.d. output
+distribution Q is the alternate hypothesis (H1 ). One feasible
+c
+test is to accept H0 on Um and H1 on Um , resulting in type-I
+c
+and type-II error probabilities of W (Um |xN ) = em (f, ϕ) and
+Q{Um }, respectively. Now let αQ,N (R) denote the minimum
+type-I error probability, optimized over all tests, subject to the
+constraint that the type-II error probability does not exceed
+e−N R . Evidently, we must have
+
+II. N OTATION , D EFINITIONS AND S TATEMENT OF THE
+R ESULTS
+
+min
+
+(1)
+
+e−N ESP (R)
+,
+(2)
+∗
+N (1+(1+ζ)ρR )
+is a constant that depends on R, W and ζ.
+
+e(f, ϕ) ≥ K
+
+Λ (η)2πn
+
+V ∈ P(Y|X ) : I(P ;V )≤R
+
+|ESP (R, P )|,
+
+where ESP (R, P ) denotes the slope2 of ESP (·, P ) at point R.
+Given any (N, R) code (f, ϕ), let e(f, ϕ) (resp. em (f, ϕ))
+denotes its maximal error probability (resp. error probability
+of the m-th message).
+Our main result is the following.
+Theorem 2.1: Consider any R ∈ (R∞ , C) and ζ ∈ R+ .
+Then, for any sufﬁciently large N , depending on R, W and ζ
+and any (N, R) constant composition code (f, ϕ),
+
+and Λ∗ (·) is the Fenchel-Legendre transform of Λ(·).
+For lattice distributions, the order of the pre-factor remains
+the same but the constant is different. Thus the correct order
+1
+of the pre-factor for i.i.d. sums is O(n− 2 ), and the channel
+coding problem will inherit this pre-factor. But we shall see
+that, when one reduces the error event of a code to an
+i.i.d. sum, the threshold a must vary slightly with n. This
+complicates the proof by preventing one from directly applying
+the Bahadur-Rao result (the random variables are also not i.i.d.
+but merely independent). More importantly, the slow variation
+of the threshold changes the order of the pre-factor slightly,
+to include the slope term mentioned above.
+The remainder of the paper is devoted to the statement and
+then the proof of our result. Due to space restrictions, we only
+sketch the proof for positive channels, and the proofs of all
+of the lemmas to follow, but Lemma 3.3, will be omitted.
+Channels with 0’s in the transition matrix can be handled by
+appropriately modifying the arguments.
+
+ESP (R, P ) :=
+
+max
+
+P ∈ P(X ):ESP (R,P )=ESP (R)
+
+2 One can show that E (R, P ) is differentiable with respect to R, for given
+SP
+P , provided that R∞ < R < C and ESP (R, P ) > 0.
+
+the deﬁnition of R∞ , see [9, pg. 170].
+
+2
+
+for all (ρ, Q) ∈ R+ × P(Y). Also, for any R ∈ R+ , deﬁne
+
+Deﬁnition 3.1: For any r ∈ R+ , P ∈ P(X ) and Q ∈ P(Y)
+eSP (Q, P, r) :=
+
+inf
+
+V ∈P(Y|X ) : D(V ||Q|P )≤r
+
+D(V ||W |P ).
+
+(4)
+
+PR (X ) := {P ∈ P(X ) : ESP (R, P ) > 0}.
+Lemma 3.1: Consider any R∞ < R < C and P ∈ PR (X ).
+KR,P (·, ·) has a unique saddle-point, i.e. S(R, P )—the set of
+saddle-points of KR,P (·, ·)—is a singleton, with the saddlevalue ESP (R, P ).
+Deﬁnition 3.2: Fix any R∞ < R < C.
+
+Then the optimal type-I error exponent can be shown to be
+(e.g. [21, Section V]) eSP (Q, P, R), where P is the empirical
+distribution of xN .
+Note that this exponent depends on the output distribution
+Q, which is to be selected. This distribution can be chosen
+to depend on P , since it can depend on the code, although
+allowing such dependence necessitates a restriction to constant
+composition codes. In the original argument [21, Section V],
+this freedom is not used, and Q depends on R (and the
+channel) but not P . Pre-factors aside, it is not clear that this
+choice yields the standard sphere-packing exponent when (4)
+is maximized over P . This is asserted to be the case in [21,
+Theorem 19] and [22, Theorem 10.1.4], but each of these
+proofs has a nontrivial gap3 . Moreover, a numerical study
+indicates that for the Z-channel and for this choice of Q,
+ESP (R) < maxP eSP (Q, P, R), for a broad range of rates. For
+symmetric channels, Q can indeed be chosen independently
+of P [16], and so the code need not be constant composition.
+But in the general case, it appears that some dependence is
+necessary if one hopes to obtain the sphere-packing exponent.
+Our choice of Q will depend on P and give the spherepacking exponent. Thus, one of the ancillary contributions
+of this paper is to give a complete proof that the hypothesis
+testing reduction described can be used to obtain the spherepacking exponent. In fact, using the hypothesis testing reduction, we shall prove a lower bound on the error probability of
+any constant-composition code with composition P that has
+an exponent of ESP (R, P ); previously, the only proof of this
+fact used combinatorial techniques.
+It is worth noting that the Shannon-Gallager-Berlekamp
+proof also involves the choice of an output distribution.
+Their choice of output distribution also depends on P , but
+it is deﬁned differently from ours. Our choice yields the
+ESP (R, P ) exponent, whereas Shannon-Gallager-Berlekamp
+only establish an exponent of ESP (R).
+
+ρ∗ : PR (X ) → R+ , s.t. ρ∗ = S(R, P )|R+ ,
+R,·
+R,P
+Q∗
+R,·
+
+: PR (X ) → P(Y), s.t.
+
+Q∗
+R,P
+
+(5)
+
+= S(R, P )|P(Y) . (6)
+
+Observe that owing to Lemma 3.1, both (5) and (6) are
+well-deﬁned. The distribution Q∗ in (6) will be our output
+R,·
+distribution.
+Lemma 3.2: Consider any R∞ < R < C.
+(i) For any P ∈ PR (X ), both ρ∗ and Q∗ are positive.
+R,P
+R,P
+(ii) Both ρ∗ and Q∗ are continuous on PR (X ).
+R,·
+R,·
+(iii) For any P ∈ PR (X ), ESP (·, P ) is differentiable with
+.
+ρ∗ = − ∂ESP (r,P )
+R,P
+∂r
+r=R
+
+For any R∞ < R < C and P ∈ PR (X ), let eSP (R, P, r) :=
+eSP (Q∗ , P, r) and eSP (R, P ) := eSP (R, P, R).
+P,R
+Lemma 3.3: For any R∞ < R < C and P ∈ PR (X ),
+eSP (R, P ) = ESP (R, P ).
+
+(7)
+
+Proof:
+eSP (R, P ) = max
+
+inf
+
+{D(V ||W |P )+
+
+ρ ∈ R+ V ∈ P(Y|X )
+ρ D(V ||Q∗ |P ) − R
+R,P
+= max KR,P (ρ, Q∗ )
+R,P
+ρ ∈ R+
+
+=ESP (R, P ),
+
+(8)
+(9)
+(10)
+
+where (8) follows from the fact that Slater’s condition holds,
+which can be seen by letting V (·|x) = Q∗ , (9) follows
+R,P
+by solving the convex minimization problem and (10) follows
+from Lemma 3.1.
+C. Analysis of the Hypothesis Test
+
+B. Selecting the Output Distribution
+
+For any ν, R ∈ R+ , deﬁne PR,ν (X ) := {P ∈ P(X ) :
+ESP (R, P ) ≥ ν}. Fix some R ∈ (R∞ , C) and some sufﬁciently small ν > 0 that only depends on W and R. Application of the hypothesis testing reduction of Section III-A
+to an (N, R) constant composition code (f, ϕ) with common
+composition4 P ∈ PR,ν (X ) by using Q∗
+R,P as the auxiliary
+output distribution yields (recall (3))
+
+In order to describe our output distribution, we require the
+following technical results.
+For any Q ∈ P(Y) and λ ∈ [0, 1), deﬁne
+
+λ
+Q(Y )
+E log E
+, λ ∈ (0, 1),
+P
+W (·|x)
+W (Y |x)
+ΛQ,P (λ) :=
+
+0,
+λ = 0.
+
+e(f, ϕ) ≥ αN (R),
+
+Further, given any R > R∞ and P ∈ P(X ),
+KR,P : R+ × P(Y) → R,
+
+(11)
+
+where αN (R) := αQ∗ ,N (R). On account of (11), in order
+R,P
+to lower bound the maximal error probability of our code, it
+sufﬁces to evaluate αN (R).
+
+s.t. KR,P (ρ, Q) = −ρR − (1 + ρ)ΛQ,P (ρ/(1 + ρ)) ,
+3 Speciﬁcally, the argument for [21, Theorem 19] seems to proceed as if
+Lagrange multipliers of maxP ESP (R, P ) and maxP eSP (Q, P, R) are the
+∗
+same, which is not evident. For [22, Theorem 10.1.4], only eSP (Q, PR , R) =
+∗
+maxP ESP (R, P ) is shown, where PR attains maxP ESP (R, P ), which does
+not necessarily imply the claim.
+
+4 If P ∈ P
+c
+R,ν (X ) , then by using the continuity of ESP (·, ·) on
+(R∞ , ∞) × P(X ) (one can prove this claim by using arguments similar
+to [9, Lemma 2.2.2]) and exploiting [9, Theorem 2.5.3], one can verify that
+(2) is true.
+
+3
+
+Fix an arbitrary ∈ R+ and let N := 1 + log N and
+2
+N
+deﬁne RN := R − N . Note that for all sufﬁciently large
+N ∈ Z+ , R∞ < RN < C. Throughout, we consider such an
+N ∈ Z+ . Also,
+
+Deﬁnition 3.4: For any R ∈ (R∞ , C), P ∈ PR,ν (X ),
+Λ∗ (·) := supλ ∈ R {(·)λ − Λi,P (·)}, denotes the Fenchel1,P
+Legendre transform of Λi,P , for i ∈ {0, 1}.
+Using (15) and Lemma 3.4, we have the following lemma.
+Lemma 3.5: Fix any R ∈ (R∞ , C), P ∈ PR,ν (X ). Then,
+for all r ∈ (R∞ , D(W ||Q∗ |P )),
+R,P
+(i) Λ∗ (eSP (R, P, r) − r) = eSP (R, P, r),
+0,P
+(ii) Λ∗ (r − eSP (R, P, r)) = r,
+1,P
+(iii) There exists a unique
+
+1
+W (YN |xN )
+log ∗
+> RN − eSP (R, P, RN ) .
+N
+QR,P (YN )
+(12)
+AN and Ac are the decision regions of the test, i.e. the test
+N
+decides W (·|xN ) if yN ∈ AN and Q∗ if yN ∈ Ac . Let
+R,P
+N
+AN :=
+
+αN := W Ac |xN
+N
+
+and βN := Q∗ {AN }
+R,P
+
+d(ν, W, R) ≤ η(R, P, r) ≤ d(ν, W, R)
+
+(13)
+
+that satisﬁes
+Λ0,P (η(R, P, r)) = eSP (R, P, r) − r, for some 0 <
+d(ν, W, R) < d(ν, W, R) < 1.
+Deﬁnition 3.5: Consider any R ∈ (R∞ , C). For any P ∈
+PR,ν (X ) and λ ∈ [0, 1], mi,3,P (λ) := EP [mi,3,X (λ)], where
+
+denote the error probabilities of the aforementioned test.
+The analysis of the events AN and Ac would be direct
+N
+applications of Bahadur-Rao but for two complications5 . To
+proceed, then, we must generalize the Bahadur-Rao result. To
+this end, we require the following technical results.
+Deﬁnition 3.3: Consider any R∞ < R < C. For any
+P ∈ PR,ν (X ) and λ ∈ R, Λi,P (λ) := x∈X P (x)Λi,P,x (λ),
+i
+
+mi,3,x (λ) :=
+
+Q∗
+R,P (Y )
+
+where Λi,P,x (λ) := log EW (·|x) [e(−1) λ log W (Y |x) ] for all
+x ∈ X , for i ∈ {0, 1}. Moreover, for any λ ∈ [0, 1],
+˜
+Wλ,P (y|x) :=
+
+EW
+˜
+
+i+(−1)i λ (·|x)
+
+W (y|x)1−λ Q∗ (y)λ
+R,P
+, ∀y ∈ Y. (14)
+W (˜|x)1−λ Q∗ (˜)λ
+y
+R,P y
+y ∈Y
+˜
+
+Λ0,P (λ) = EP [Λ0,P,X (λ)], Λ0,P (λ) = EP [Λ0,P,X (λ)], (15)
+Q∗
+
+Q∗ (Y )
+R,P
+W (Y |x)
+
+(−1) log
+
+Q∗ (Y )
+R,P
+W (Y |x)
+
+3
+
+− Λi,x (λ)
+
+,
+
+for all x ∈ X , for i ∈ {0, 1}.
+Note that for all P ∈ PR,ν (X ), m1,3,P (λ) = m0,3,P (1−λ),
+for any λ ∈ [0, 1].
+Using (14) and (15), one can deduce the following:
+Lemma 3.6: Given any R ∈ (R∞ , C), Λ0,· (·), Λ0,· (·) and
+m0,3,· (·) are continuous on PR,ν (X ) × (0, 1].
+Finally, by letting H := [d(ν, W, R), d(ν, W, R)],
+m0,3,P (λ)
+:=
+deﬁne M (ν, W, R)
+max(λ,P )∈H×PR,ν Λ (λ) ,
+
+Note that for any x ∈ X and P ∈ PR,ν (X ), Λi,P,x (·)
+is inﬁnitely differentiable on R, which is clear from the
+deﬁnition. In particular, one can check that for all λ ∈ [0, 1]
+
+where Λ0,P,x (λ) = EWλ,P (·|x) log
+˜
+
+i
+
+0,P
+
+V (ν, W, R) := max(λ,P )∈H×PR,ν Λ0,P (λ), V (ν, W, R) :=
+min(λ,P )∈H×PR,ν Λ0,P (λ). Owing to the item (i) of
+Lemma 3.4 and Lemma 3.6, all of these quantities are
+well-deﬁned, ﬁnite and positive.
+√
+Deﬁne Kmax := 2 2πcM (ν, W, R) with6 c = 30/4. Note
+that Kmax ∈ R+ . Also, let N ∈ Z+ be sufﬁciently large, such
+√
+2
+√
+that N ≥ 1+(1+Kmax ) , and ﬁx such an N from now on.
+
+and Λ0,P,x (λ) =
+
+(Y )
+
+R,P
+VarWλ,P (·|x) log W (Y |x) . Moreover, one can see that for all
+˜
+λ ∈ [0, 1] and P ∈ PR,ν (X ), Λ1,P,x (λ) = Λ0,P,x (1 − λ),
+for any x ∈ X , and hence, Λ1,P (λ) = Λ0,P (1 − λ), for any
+P ∈ PR,ν (X ). Therefore, for any λ ∈ [0, 1], one can compute
+the derivatives of Λ1,P,x and Λ1,P by referring to (15).
+By exploiting Lemmas 3.1, 3.2 and 3.3, one can prove the
+following lemma.
+Lemma 3.4: For any R ∈ (R∞ , C) and P ∈ PR,ν (X ),
+(i) Λ0,P (λ) > 0, ∀ λ ∈ [0, 1],.
+(ii) R < D(W ||Q∗ |P ).
+R,P
+
+V (ν,W,R)
+
+By generalizing the arguments leading to the proof of
+Theorem 1.1 to handle non-identically distributed random
+variables in AN and the varying threshold, one can show that
+K
+αN ≥ √ exp{−N Λ∗ (eSP (R, P, RN ) − RN )},
+0,P
+N
+
+5 First, the random variables in the sum are not i.i.d., only independent. This
+does not present a major difﬁculty, as one can prove a version of the BahadurRao result for independent random variables that is weaker but sufﬁcient for
+our purposes. The second complication is that the threshold in both events
+depends on N . One could deﬁne constant-threshold versions of these events
+by replacing RN with R. Applying exact asymptotics to the resulting events
+1
+would yield a lower bound on αN of the order √ exp(−N ESP (R, P ))
+N
+1
+and show that βN is of the order √ exp(−N R). The problem with this
+N
+approach is that e(f, ϕ) is lower bounded by the type-I error probability of
+the optimal test whose type-II probability does not exceed e−N R . From the
+above expression of βN , we see that our test is not optimal because, although
+it is a likelihood ratio test, it is “undershooting” the type-II constraint due to
+√
+the 1/ N prefactor. By replacing R with RN , we ensure that βN does
+not undershoot the constraint (in fact, it will violate it by a small amount).
+The RN ﬂuctuations will give rise to the slope term in the pre-factor of the
+probability of AN .
+
+where we deﬁne K :=
+
+√
+2
+
+e−Kmax
+.
+2πV (ν,W,R)
+
+(16)
+
+Note that K only
+
+depends on W, R and ν.
+/2
+If we let N ∈ Z+ to be sufﬁciently large, so that KN
+>
+e
+1, then one can prove the following via the arguments similar
+to the ones leading to (16) and by employing the item (ii) of
+/2
+Lemma 3.5: βN ≥ KN e−N R > e−N R . Since our test is
+e
+a log-likelihood ratio test, by violating the constraint we can
+only improve the optimal error performance, and hence (16)
+6 The following constant emerges as a direct consequence of the application
+of the Berry-Esseen theorem in our generalization of the Bahadur-Rao result.
+Indeed, it is the original absolute constant given by Esseen.
+
+4
+
+K
+implies that αN (R) ≥ √N exp{−N Λ∗ (eSP (R, P, RN ) −
+0,P
+RN )}, which, in turn, implies that (cf. (11))
+
+set. By exploiting this fact, one could choose some d( ) ∈ R+ ,
+such that
+∗
+∗
+1
+c
+e−N N (1+ )ρR,P ≥ N −(1+ )( 2 + )(ρR + ) , ∀P ∈ Pd( ) (X ).
+(22)
+Since we have ESP (R) > maxP ∈ Pd( ) (X ) ESP (R, P ), it is
+possible to check that for all sufﬁciently large N , uniformly
+over Pd( ) (X ), we have
+
+K
+e(f, ϕ) ≥ √ exp{−N Λ∗ (eSP (R, P, RN ) − RN )}. (17)
+0,P
+N
+D. Approximation of the Exponent
+In this ﬁnal section, we approximate the exponent in (17)
+to conclude the proof. To this end, we ﬁrst state the following
+result.
+Lemma 3.7: Consider any R ∈ (R∞ , C) and P ∈
+PR,ν (X ),
+(i) eSP (R, P, ·) is differentiable on (R∞ , D(W ||Q∗ |P ))
+R,P
+with ∂eSP (R,P,r) |r=R = ∂ESP (r,P ) |r=R .
+∂r
+∂r
+(ii) For all r ∈ (R∞ , D(W ||Q∗ |P )), Λ∗ (eSP (R, P, r) −
+R,P
+0,P
+r) = η(R, P, r).
+(iii) For all r ∈ (R∞ , D(W ||Q∗ |P )), Λ∗ (eSP (R, P, r) −
+R,P
+0,P
+1
+r) = Λ (η(R,P,r)) .
+
+e−N [ESP (R,P )+
+
+(18)
+
+η(R, P, r)
+, ∀ r ∈ (R∞ , D(W ||Q∗ |P )).
+R,P
+1 − η(R, P, r)
+(19)
+Using Taylor’s theorem, item (i) of Lemma 3.5, Lemma 3.7,
+(18), (19) and the fact that eSP (R, P, ·)−(·) is strictly decreasing, one can check that
+s∗ (R, P, r) =
+
+Λ∗ (eSP (R, P, RN ) − RN ) =
+0,P
+
+2
+N
+
+(1 +
+
+¯
+2Λ0,P (η(R, P, R))
+
+1+
+
+N+
+
+eSP (R, P, RN ) − eSP (R, P )
+
+2
+
+,
+
+N
+
+(20)
+¯
+for some R ∈ (RN , R), for all sufﬁciently large N , uniformly
+over P ∈ PR,ν (X ), such that RN > R∞ .
+Moreover, by using exactly the same arguments as above,
+but this time with a ﬁrst order Taylor series, along with
+Lemma 3.3 and the item (iii) of Lemma 3.5, one can check
+that (20) implies that
+eSP (R, P, RN ) ≤ ESP (R, P ) +
+
+N (1
+
++ )ρ∗ ,
+R,P
+
+e−N ESP (R)
+.
+1
+∗
+N (1+ )( 2 + )ρR
+
+(23)
+
+R EFERENCES
+
+Moreover, one can also show that for any R ∈ (R∞ , C) and
+P ∈ PR,ν (X ),
+
+ρ∗ )
+R,P
+
+≥
+
+[1] C. E. Shannon, “A Mathematical Theory of Communication,” Bell Syst.
+Tech. J., vol. 27, pp. 379–423, 623–656, 1948.
+[2] V. Strassen, “Asymptotische Absch¨ tzungen in Shannons Informaa
+tionstheorie” Trans. Third Prague Conf. Information Theory, 1962,
+Czechoslovak Academy of Sciences, Prague, pp. 689-723.
+[3] R. M. Fano, Transmission of Information, A Statistical Theory of
+Communications. New York: Wiley, 1961.
+[4] R. G. Gallager, “A Simple Derivation of the Coding Theorem and Some
+Applications,” IEEE Trans. Inform. Theory, vol. 11, pp. 3–18, Jan. 1965.
+[5] C. E. Shannon, R. G. Gallager and E. R. Berlekamp, “Lower Bounds to
+Error Probability for Coding on Discrete Memoryless Channels,” Inform.
+Contr., vol. 10, pp. 65–103, Jan. 1967
+[6] E. A. Haroutunian, “Estimates of the Error Exponents for the SemiContinuous Memoryless Channel,” (in Russian) Probl. Per. Inf., vol. 4,
+pp. 37–48, 1968.
+[7] R. G. Gallager, Information Theory and Reliable Communication. New
+York: Wiley, 1968.
+[8] F. Jelinek, Probabilistic Information Theory. New York: McGraw Hill,
+1968.
+[9] I. Csisz´ r and J. K¨ rner, Information Theory: Coding Theorems for
+a
+o
+Discrete Memoryless Systems. New York: Academic Press, 1981.
+[10] A. Valembois and M. Fossorier, “Sphere-Packing Bounds Revisited for
+Moderate Block Length,” IEEE Trans. Inform. Theory, vol. 50, no. 12,
+pp. 2998-3014, Dec. 2004.
+[11] G. Wiechman and I. Sason, “An Improved Sphere-Packing Bound for
+Finite-Length Codes Over Symmetric Memoryless Channels,” IEEE
+Trans. Inform. Theory, vol. 54, no. 5, pp. 1962–1990, May 2008.
+[12] M. Hayashi, “Information Spectrum Approach to Second–Order Coding
+Rate in Channel Coding,” IEEE Trans. on Information Theory, vol. 55,
+no. 11, pp. 4947–4966, November 2009.
+[13] Y. Polyanskiy, H. V. Poor and S. Verd´ , “Channel Coding Rate in the
+u
+Finite Blocklength Regime,” IEEE Trans. Inform. Theory, vol. 56, no. 5,
+pp. 2307–2359, May 2010.
+[14] Y. Altu˘ and A. B. Wagner, “Moderate Deviation Analysis of Channel
+g
+Coding: Discrete Memoryless Case,” in Proc. 2010 IEEE Int. Symp. Inf.
+Theory, June 2010, pp. 265–269.
+[15] Y. Polyanskiy and S. Verd´ , “Channel Dispersion and Moderate Deviu
+ations Limits for Memoryless Channels,” in Proc. 48th Annu. Allerton Conf. Communication, Control, and Computing, Monticello, IL,
+Oct. 2010, pp. 1334–1339.
+[16] Y. Altu˘ and A. B. Wagner, “Reﬁnement of the Sphere Packing
+g
+Bound for Symmetric Channels,” in Proc. 49th Annu. Allerton Conf.
+Communication, Control, and Computing, Monticello, IL, Sep. 2011,
+pp. 30–37.
+[17] Y. Altu˘ and A. B. Wagner, “Reﬁnement of the Random Coding Bound,”
+g
+to appear in Proc. Int. Zurich Semin., Zurich, Switzerland, Feb. 2012.
+[18] R. R. Bahadur and R. Ranga Rao, “On Deviations of the Sample Mean,”
+The Annals of Mathematical Statistics, vol. 31, no. 4, pp. 1015–1027,
+Dec. 1960.
+[19] A. Dembo and O. Zeitouni, Large Deviations Techniques and Applications, 2nd edition. New York: Springer–Verlag, 1998.
+[20] P. Elias, “Coding For Two Noisy Channels,” in Information Theory, 3rd
+London Symp., 1955, pp. 61–76.
+[21] R. E. Blahut, “Hypothesis Testing and Information Theory,” IEEE Trans.
+Inform. Theory, vol. IT–20, pp. 405–417, July 1974.
+[22] R. E. Blahut, Principles and Practice of Information Theory. Reading,
+MA: Addison–Wesley, 1987.
+
+0,P
+
+eSP (R, P, RN ) = eSP (R, P ) + ρ∗
+R,P
+
+)ρ∗ ]
+R,P
+
+Equations (17), (20), (21), (22) and (23) imply (2).
+
+For the sake of notational convenience, for any given
+R ∈ (R∞ , C) and P ∈ PR,ν (X ), we let s∗ (R, P, r) :=
+− ∂eSP (R,P,r) for all r ∈ (R∞ , D(W ||Q∗ |P )). By recalling
+R,P
+∂r
+the item (ii) of Lemma 3.4, the item (iii) of Lemma 3.2 and
+the item (i) of Lemma 3.7 imply that
+∀R ∈ (R∞ , C), P ∈ PR,ν (X ), s∗ (R, P, R) = ρ∗ .
+R,P
+
+N (1+
+
+(21)
+
+for all sufﬁciently large N that only depends on W, R and ν.
+∗
+Deﬁne PR (X ) := {P ∈ P(X ) : ESP (R, P ) = ESP (R)}. For
+∗
+∗
+any P ∈ P(X ), |P − PR | := inf Q∈PR ||Q − P ||1 . For any d ∈
++
+∗
+R , Pd (X ) := {P ∈ PR,ν (X ) : |P − PR (X )| ≥ d}. Finally,
+∗
+∗
+∗
+ρR = maxP ∈PR (X ) ρR,P , as deﬁned in (1).
+One could check that PR,ν (X ) is compact, and hence (cf.
+item (ii) of Lemma 3.2) ρ∗ is uniformly continuous on this
+R,·
+
+5
+
+

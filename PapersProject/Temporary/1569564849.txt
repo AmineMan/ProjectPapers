@@ -1,0 +1,1109 @@
+Creator:        TeX
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Thu May 17 09:46:25 2012
+ModDate:        Tue Jun 19 12:55:59 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      551125 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569564849
+
+Efﬁcient Decoding of Partial Unit Memory Codes
+of Arbitrary Rate
+Antonia Wachter-Zeh1 , Markus Stinner2 and Martin Bossert1
+1
+
+Institute of Communications Engineering, University of Ulm, Ulm, Germany
+Institute for Communications Engineering, Technical University of Munich, Munich, Germany
+antonia.wachter@uni-ulm.de, markus.stinner@tum.de, martin.bossert@uni-ulm.de
+2
+
+II. D EFINITIONS AND N OTATIONS
+Let q be a power of a prime and let F denote the ﬁnite
+ﬁeld of order q. We denote by Fn = F1×n the set of all
+row vectors of length n over F and the elements of a vector
+(j) (j)
+(j)
+aj ∈ Fn by aj = (a0 , a1 , . . . , an−1 ). Let us deﬁne a zeroforced terminated convolutional code C for some integer L by
+the following Lk × (n(L + m)) generator matrix G over the
+ﬁnite ﬁeld F
+
+Abstract—Partial Unit Memory (PUM) codes are a special class
+of convolutional codes, which are often constructed by means
+of block codes. Decoding of PUM codes can take advantage of
+existing block decoders. The Dettmar–Sorger algorithm is an
+efﬁcient decoding algorithm for PUM codes, but allows only low
+code rates. The same restriction holds for several known PUM
+code constructions. In this paper, an arbitrary-rate construction,
+the analysis of its distance parameters and a generalized decoding
+algorithm for these PUM codes of arbitrary rate are provided.
+The correctness of the algorithm is proven and it is shown that
+its complexity is cubic in the code length.
+Index Terms—Convolutional codes, Partial Unit Memory
+Codes, Bounded Minimum Distance Decoding
+
+G
+
+0
+
+
+G=
+
+
+G1
+G0
+
+...
+G1
+..
+.
+
+Gm
+...
+
+Gm
+
+
+,
+
+
+..
+
+G0
+
+I. I NTRODUCTION
+The algebraic description and the distance calculation of
+convolutional codes is often difﬁcult. By means of block
+codes, special convolutional codes of memory m = 1 can
+be constructed, which enable the estimation of the distance
+parameters. Moreover, the existing efﬁcient block decoders
+can be taken into account in order to decode the convolutional
+code. There are constructions of these so-called Partial Unit
+Memory (PUM) codes [1], [2] based on Reed–Solomon (RS)
+[3]–[5], BCH [6], [7] and – in rank metric – Gabidulin [8],
+[9] codes. Decoding of these PUM codes uses the algebraic
+structure of the underlying RS, BCH or Gabidulin codes.
+In [10], Dettmar and Sorger constructed low-rate PUM
+codes and decoded them up to half the extended row distance.
+Such a decoder is called Bounded Minimum Distance (BMD)
+decoder for convolutional codes. Winter [11] gave ﬁrst ideas
+of an arbitrary rate construction.
+In this contribution, we construct PUM codes of arbitrary rate, prove their distance properties and generalize the
+Dettmar–Sorger algorithm to PUM codes of arbitrary rate. We
+prove the correctness of the decoding algorithm and show that
+the complexity is cubic in the length. To our knowledge, no
+other construction and efﬁcient decoding of PUM codes of
+arbitrary rate exist. Due to space limitations, we consider only
+PUM codes, but all results apply also to Unit Memory codes.
+This paper is organized as follows. In Section II, we
+give basic deﬁnitions, Section III provides the arbitrary rate
+construction and calculates its parameters. In Section IV, we
+explain and prove the BMD decoding algorithm and Section V
+concludes this contribution.
+
+
+.
+...
+
+G1
+
+(1)
+
+Gm
+
+where Gi , i = 0, . . . , m are k × n–matrices and m denotes
+def
+the memory of C. In the following, N = L + m.
+Let C r (j) denote the set of all codewords corresponding to
+paths in the minimal code trellis that diverge from the zero
+state at depth 0 and return to the zero state for the ﬁrst time
+at depth j. The extended row distance of order j is deﬁned as
+the minimum Hamming weight of all codewords in C r (j):
+def
+
+dr =
+j
+
+min {wt(c)}.
+
+c∈C r (j)
+
+Similarly, let C c (j) denote the set of all codewords leaving the
+zero state at depth 0 and ending in any state at depth j and let
+C rc (j) denote the set of all codewords starting in any state at
+depth 0 and ending in the zero state in depth j, both without
+zero states in between. The extended column distance and the
+extended reverse column distance are:
+def
+
+dc = min {wt(c)},
+j
+c
+c∈C (j)
+
+def
+
+drc =
+j
+
+min {wt(c)}.
+
+c∈C rc (j)
+
+The free distance is the minimum (Hamming) weight of
+any non-zero codeword of C and can be determined by
+dfree = minj {dr }. The extended row distance dr can be lower
+j
+j
+bounded by a linear function with slope α:
+dr
+j
+α = lim
+.
+j→∞
+j
+PUM codes are convolutional codes of memory m = 1.
+Therefore, the semi-inﬁnite generator matrix consists of two
+k × n sub-matrices G0 and G1 . Both matrices have full rank
+if we construct an (n, k) UM code. For an (n, k | k1 ) PUM
+code, rank(G0 ) = k and rank(G1 ) = k1 < k hold, such that:
+
+This work was supported by the German Research Council ”Deutsche
+Forschungsgemeinschaft” (DFG) under Grant No. Bo 867/21-2.
+
+G0 =
+
+1
+
+G00
+G01
+
+,
+
+G1 =
+
+G10
+0
+
+,
+
+(2)
+
+where G00 and G10 are k1 × n matrices and G01 is a (k −
+k1 ) × n-matrix. The encoding rule for a code block of length
+n is given by cj = ij · G0 + ij−1 · G1 , for ij , ij−1 ∈ Fk .
+The free distance of UM codes is upper bounded by dfree ≤
+2n − k + 1 and of PUM codes by dfree ≤ n − k + k1 + 1. For
+both the slope is upper bounded by α ≤ n − k [4], [12]. For
+ﬁxed k1 , let R = k/n denote the code rate. As notation, let
+the generator matrices
+
+
+G00
+G01
+G0 ,
+, G01 and Gα = G01 
+G10
+G10
+
+B. Calculation of Distances
+
+deﬁne the block codes C0 , C1 , C01 and Cα with the minimum
+Hamming distances d0 , d1 , d01 and dα and the BMD block
+decoders BMD(C0 ), BMD(C1 ), BMD(C01 ) and BMD(Cα ),
+which correct errors up to half their minimum distance.
+
+Lemma 1 (Consecutive Zero Code Blocks) The maximum
+number of zero code blocks cj , cj+1 , . . . , cj+ −1 , which have
+no edge in common with the zero state, is
+
+We calculate the extended row distance of the construction
+from Deﬁnition 1 by cutting the semi-inﬁnite generator matrix
+into parts. Each code block of length n can be seen as a
+codeword of Cα with minimum distance
+dα = d(Gα ) = d(Gtot ) = n − k − k1 + ϕ + 1.
+However, due to the linear dependencies between the
+sub-generator matrices, a non-zero information block can
+result in a zero code block. The following lemma bounds the
+maximum number of such consecutive zero code blocks.
+
+ϕ
+.
+k1 − ϕ
+
+=
+
+III. C ONSTRUCTING PUM C ODES OF A RBITRARY R ATE
+
+Proof: If ϕ = 0, there is no zero code block obtained
+from a non-zero information block and = 0.
+For 0 < ϕ < k1 , let
+
+A. Construction
+Since each code block of length n of the PUM code can
+be seen as a codeword of the block code Cα , dα directly
+inﬂuences the distance parameters of the convolutional code
+and the decoding capability. One approach is to deﬁne by
+Gα a Maximum Distance Separable (MDS) code, i.e., dα =
+n − k − k1 + 1. This is basically the construction from [6],
+[10] which designs low-rate PUM codes. The rate is restricted
+since the (k + k1 ) × n matrix Gα can deﬁne an MDS code
+only if k + k1 ≤ n. Otherwise (as observed by [11]), there are
+linear dependencies between the rows of Gα , what we have
+to consider when constructing PUM codes of arbitrary rate. In
+the following, we provide a construction of arbitrary k1 < k
+and calculate its distance parameters.
+Let k + k1 − ϕ ≤ n, for some ϕ < k1 , and let the (k + k1 −
+ϕ) × n matrix
+
+
+A
+A : (k1 − ϕ) × n
+ Φ 
+Φ:ϕ×n
+
+Gtot = 
+G01  with the sub-sizes G01 : (k − k1 ) × n (3)
+B
+B : (k1 − ϕ) × n
+
+ij−1 = (i0 , . . . , ik1 −ϕ−1 , 0, . . . , 0 | ik1 , . . . , ik−1 )
+ϕ
+
+k1 −ϕ
+
+k−k1
+
+ij = (0, . . . , 0, i0 , . . . , ik1 −ϕ−1 , 0, . . . , 0 | 0, . . . , 0)
+ij+
+
+.
+.
+.
+−2
+
+k1 −ϕ
+
+−1
+
+k−k1
+
+= ( 0, . . . , 0 , i0 , . . . , ik1 −ϕ−1 , 0, . . . , 0 | 0, . . . , 0)
+( −1)(k1 −ϕ)
+
+ij+
+
+ϕ−(k1 −ϕ)
+
+k1 −ϕ
+
+k1 −ϕ
+
+= (0, . . . , 0, i0 , . . . , iϕ−
+(k1 −ϕ)
+
+ϕ−( −1)(k1 −ϕ) k−k1
+(k1 −ϕ)−1
+
+ϕ−( −1)(k1 −ϕ)
+
+| 0, . . . , 0).
+k−k1
+
+In the non-binary case, each second block ij , ij+2 , . . . has to
+be multiplied by −1. Then,
+cj+h = ij+h−1 · G1 + ij+h · G0 = 0,
+
+∀h = 0, . . . , − 1.
+
+In each step, we shift the information vector to the right by
+k1 − ϕ positions, where this shift size is determined by the
+size of A. Since Φ has ϕ rows, this right-shifting can be done
+ϕ/(k1 − ϕ) times. We ceil the fraction since the last block
+ij+ −1 can contain less than k1 − ϕ information symbols.
+Therefore, after zero code blocks there is at least one block
+of weight dα and the slope can be lower bounded by:
+
+deﬁne an MDS (e.g. RS) code. We deﬁne the sub-matrices of
+the semi-inﬁnite generator matrix of the PUM code as follows
+in order to enable arbitrary code rates.
+Deﬁnition 1 (PUM Code of Arbitrary Rate) Let k1 < k <
+n and let Gtot be deﬁned as in (3). Then, we deﬁne the PUM
+code by the following submatrices (2):
+
+
+ 
+A
+Φ
+G00
+G10
+G0 =
+=  Φ  , G1 =
+= B . (4)
+G01
+0
+G01
+0
+
+dα
+=
++1
+
+α≥
+
+dα
+ϕ
+k1 −ϕ
+
++1
+
+=
+
+n − k − k1 + ϕ + 1
+k1
+k1 −ϕ
+
+.
+
+(5)
+
+The extended distances can be estimated as follows.
+Theorem 1 (Extended Distances) The extended distances of
+order j for the PUM code of Deﬁnition 1 are:
+r
+
+r
+
+dr ≥ d1 = d01 , dr ≥ dj = d0 + (j − 2) · α + d1 , j > 1,
+1
+j
+
+Since Gtot deﬁnes an MDS code, C0 , C1 and C10 (compare
+Section II for the notations) are also MDS codes. We restrict
+ϕ < k1 since otherwise all rows in G1 are rows of G0 . Note
+that any rate k/n in combination with any k1 is feasible with
+this restriction since k + 1 ≤ k + k1 − ϕ ≤ n and hence, we
+have only the trivial restriction k < n.
+
+c
+
+dc ≥ dj = d0 + (j − 1) · α, j > 0,
+j
+rc
+
+drc ≥ dj = (j − 1) · α + d1 , j > 0,
+j
+with d01 = n−k +k1 +1, d0 = d1 = n−k +1 and α as in (5)
+r
+c
+rc
+and dj , dj and dj denote the designed extended distances.
+
+2
+
+Proof: For the calculation of the extended row distance,
+we start in the zero state, hence, the previous information
+is i0 = 0. We obtain dr for an information block i1 =
+1
+(1)
+(1)
+(0, . . . , 0, ik1 , . . . , ik−1 ), then c1 ∈ C01 . The extended row
+distance of order j follows from (5) and a last information
+(j)
+(j)
+block ij = (0, . . . , 0, ik1 , . . . , ik−1 ). The second-last block
+ij−1 is arbitrary and thus cj = ij · G0 + ij−1 · G1 is in C1 .
+The calculation of the extended column distance starts in
+the zero state, hence, i0 = 0, but we end in any state, thus,
+dc ≥ d0 . For higher orders, each other block is in Cα .
+1
+The reverse extended column distances considers all code
+blocks starting in any state, hence there is no restriction on
+i0 , i1 and c1 ∈ Cα . In order to end in the zero state, ij =
+(j)
+(j)
+(0, . . . , 0, ik1 , . . . , ik−1 ) and as for the extended row distance
+cj ∈ C1 .
+The free distance is then the minimum, i.e.,
+
+Fig. 1. Example of the decoding algorithm for = 1, where the three ﬁrst
+steps of Algorithm 1 for the received sequence r are illustrated.
+
+dfree ≥ min {dr } = min{n − k + k1 + 1, 2 · (n − k + 1)}.
+i
+
+Example 1 (Reconstructing the Information) Let
+ϕ = 2/3k1 , where
+= 2 and Φ has twice as much
+rows as A. Assume, we have decoded c0 , c1 and c2
+and we want to reconstruct i1 . Decompose i0 , i1 , i2 into:
+[1]
+[2]
+[3]
+[4]
+ij = (ij | ij | ij | ij ) for j = 0, 1, 2, where the ﬁrst three
+sub-blocks have length k1 − ϕ and the last k − k1 . Then,
+
+
+A
+ Φ1 
+ def
+[1]
+[2]
+[1]
+[3]
+[2]
+[4]
+[3] 
+c1 = (i1 | i1 +i0 | i1 +i0 | i1 | i0 )  Φ2  = i1 ·Gtot ,
+
+
+G01 
+B
+
+i=1,2,...
+
+Note that if dfree = n − k + k1 + 1, then the free distance is
+optimal since the upper bound is achieved [4].
+IV. BMD D ECODING A LGORITHM
+A. BMD Condition and Idea
+Let the received sequence r = c + e = (r0 , r1 , . . . , rN −1 )
+be given, where rh = ch + eh , h = 0, . . . , N − 1 is in Fn ,
+c = (c0 , c1 , . . . , cN −1 ) is a codeword of the (terminated)
+PUM code as in Deﬁnition 1 and eh is an error block of
+Hamming weight wt(eh ). A BMD decoder for convolutional
+codes is deﬁned as follows.
+Deﬁnition 2 (BMD Decoder for Convolutional Codes [10])
+A BMD decoder for convolutional codes guarantees to ﬁnd
+the Maximum Likelihood (ML) path as long as
+j+i−1
+
+h=j
+
+where Φ = Φ1 and Φ1 , Φ2 have k1 − ϕ rows. Since we
+Φ2
+know c1 and Gtot deﬁnes an MDS code, we can reconstruct
+[1]
+[4]
+the vector i1 . This directly gives us i1 and i1 . This can
+be done in the same way for c0 and we also directly obtain
+[1]
+[2]
+[1]
+(among others) i0 . To obtain i1 , we substract i0 from the
+[2]
+[1]
+[3]
+known sum i1 + i0 . For c2 , this reconstruction provides i1
+[k1 ]
+and we have the whole i1 . This principle also gives us i0 =
+[1]
+[2]
+[3]
+(i0 | i0 | i0 ). This is why + 1 consecutive decoded blocks
+are necessary to reconstruct an information block. Note that it
+does not matter if the other decoded blocks precede or succeed
+the wanted information, this principle works the same way.
+
+r
+
+d
+wt(eh ) < i
+2
+
+(6)
+
+holds for all j = 0, . . . , N − 1 and i = 1, . . . , N − j.
+The main idea of our algorithm is to take advantage of the
+efﬁcient BMD block decoders for Cα , C0 , C1 and C01 . With
+the results of the block decoders, we build a reduced trellis
+and ﬁnally use the Viterbi algorithm to ﬁnd the ML path.
+Since this trellis has only very few edges, the overall decoding
+complexity is only cubic in the length. Figure 1 illustrates the
+decoding principle for = 1.
+Since each code block of the PUM code of length n is a
+codeword of the block code Cα , the ﬁrst step of the algorithm
+is decoding with BMD(Cα ). Due to the termination, the
+ﬁrst and the last block can be decoded with BMD(C0 ),
+respectively BMD(C1 ). The decoding result of BMD(Cα ) is
+[k1 ]
+cj . Assume it is correct, then cj = cj = ij G0 + ij−1 G10 ,
+[k1 ]
+(j−1)
+(j−1)
+where ij−1 = (i0
+, . . . , ik1 −1 ) is a part of the previous
+information block. Now, we want to reconstruct the
+(j)
+(j)
+[k1 ]
+information ij = (i0 , . . . , ik−1 ) and ij−1 . For this, we
+need + 1 consecutive decoded code blocks since the linear
+dependencies “spread” to the next blocks (see Example 1).
+
+After this decoding and reconstruction, we build an edge in
+a reduced trellis for each block with the metric:
+wt(rj − cj )
+if Step 1 ﬁnds cj and ij ,
+(7)
+(dα + 1)/2 else.
+Assume, in Step 1, we decoded cj and reconstructed ij and
+[k1 ]
+a part of the previous information ij−1 , then we calculate:
+mj =
+
+(j)
+
+(j)
+
+rj+1 − (i0 , . . . , ik1 −1 ) · G10 = ij+1 · G0 + ej+1
+(j−1)
+
+rj−1 − (i0
+
+(j−1)
+
+= (ik1
+
+(j−1)
+
+, . . . , ik1 −1 ) · G00
+(j−1) (j−2)
+
+, . . . , ik−1 |i0
+
+(8)
+(j−2)
+
+, . . . , ik1 −1 ) ·
+(j)
+
+G01
+G10
+
++ ej−1 .
+
+Hence, as a second step, we decode F blocks forward with
+(j)
+BMD(C0 ) respectively B blocks backward in BMD(C1 ),
+
+3
+
+where
+(j)
+F
+
+(j)
+B
+
+= min
+
+i=1,2,...
+
+= min
+
+i=1,2,...
+
+c
+ i−
+d
+dα − mj+h
+
+≥ i ,
+i
++1
+2
+h=1
+ i
+
+
+i
+
+h=1
+
+assigned metric has to be adapted appropriately (7), (11) since
+the smallest error causing a non-reconstructable sequence is
+explained in the following remark.
+Remark 1 The error of minimum weight causing a sequence
+of non-reconstructed information blocks in Step 1 is as follows:
+
+(9)
+
+rc
+
+d
+dα − mj−h
+≥ i
++1
+2
+
+.
+
+(10)
+
+(0, . . . , 0, × | 0, . . . , 0, × | . . . | 0, . . . , 0, × | 0, . . . , 0),
+
+These codes have higher minimum distances than dα and
+close (most of) the gaps between two sequences of correctly
+decoded blocks in Cα . Lemma 3 in Section IV-B proves
+that after Step 2, the size of the gap between two correctly
+reconstructed blocks is at most one block.
+[k1 ]
+(j−1)
+(j−1)
+For Step 3, assume we know ij−1 = (i0
+, . . . , ik1 −1 )
+from Step 1 and ij−2 from Step 1 or 2, then similar to (8):
+(j−1)
+
+rj−1 − (i0
+
+(j−1)
+
+= (ik1
+
+(j−1)
+
+(j−2)
+
+, . . . , ik1 −1 ) · G00 − (i0
+
++1 blocks
+
++1 blocks
+
++1 blocks
+
+blocks
+
+where the × marks blocks with at least dα /2 errors. Also the
+information of the error-free blocks cannot be reconstructed,
+since we need + 1 consecutive decoded blocks. The last
+error-free blocks are the reason why we substract in the
+(j)
+(j)
+deﬁnitions of F and LF . This corresponds to additional
+decoding steps in forward direction. The (minimum) average
+weight in a sequence of non-reconstructed information blocks
+(without the last blocks) is therefore dα /(2( + 1)).
+
+(j−2)
+
+, . . . , ik1 −1 ) · G10
+
+(j−1)
+
+, . . . , ik−1 ) · G01 + ej−1 ,
+
+which shows that we can use BMD(C01 ) to close the remaining
+gap at j − 1. After Step 3, assign as metric to each edge
+
+ wt(rj − cj )
+if BMD(C0 ), BMD(C1 ) or BMD(C01 )
+
+is successful and ij is reconstructed,
+mj =
+
+ (d + 1)/2
+else,
+01
+(11)
+where again cj denotes the result of a successful decoding.
+Note that there can be more than one edge in the reduced
+trellis at depth j.
+Finally, we use the Viterbi algorithm to search the ML path
+in this reduced trellis. As in [10], we use mj as edge metric
+and the sum over different edges as path metric. Algorithm 1
+shows the basic principle of our generalization of the Dettmar–
+Sorger algorithm to arbitrary rate.
+
+B. Proof of Correctness
+In this subsection, we prove that Algorithm 1 ﬁnds the
+ML path if (6) is fulﬁlled. For this purpose, Lemma 2 shows
+that the size of the gaps after Step 1 is not too big and in
+Lemma 3 we prove that after Step 2, the gap size is at most
+one block. Finally, Theorem 2 shows that we can close this
+gap and that the ML path is in the reduced trellis. Then, the
+Viterbi algorithm will ﬁnd it. The complexity of the decoding
+algorithm is stated in Theorem 4.
+Lemma 2 The length of any gap between two correct
+reconstructions in Step 1, ij , ij+i , is less than
+(j)
+(j+i)
+min(LF , LB ) if (6) holds, with
+(j)
+
+LF = min
+
+i=1,2,...
+
+Algorithm 1: Arbitrary-Rate Decoder for PUM codes
+
+(j)
+
+LB = min
+
+i=1,2,...
+
+Input: Received sequence r of length N · n
+
+r
+ i−
+d
+dα − mj+h
+
+i
+≥ i ,
++1
+2
+
+
+
+i
+
+h=1
+i
+
+h=1
+
+r
+
+dα − mj−h
+d
+≥ i .
++1
+2
+
+Proof: Step 1 fails if there occur at least dα /2 errors in
+every ( + 1)-th block, followed by correct ones (compare
+(j)
+Remark 1). Assume there is a gap of at least LF blocks after
+Step 1. Then,
+
+1
+
+Decode block r0 with BMD(C0 ),
+decode blocks rj for j = 1, . . . , N − 2 with BMD(Cα ),
+decode block rN −1 with BMD(C1 ),
+calculate ij if + 1 consecutive blocks were decoded
+successfully and assign metric as in (7)
+
+2
+
+From all found blocks ij , decode F steps forwards with
+(j)
+BMD(C0 ) and B steps backwards with BMD(C1 )
+
+LF
+
+3
+
+From all found blocks ij , decode next block with
+BMD(C01 ) and assign metric as in (11)
+
+h=1
+
+4
+
+Search the complete path of smallest weight with the
+Viterbi algorithm
+
+(j)
+
+(j)
+
+(j)
+
+LF −
+
+wt (eh ) ≥
+h=1
+
+(j)
+
+LF −
+
+dα
+≥
+2( + 1)
+
+h=1
+
+r
+
+(j)
+(dα − mj+h ) dLF
+≥
+,
++1
+2
+
+(j)
+
+contradicting (6). We prove this similarly for LB without
+substracting in the limit of the sum, since we directly start
+left of the correct blocks on the right. Therefore, the gap
+(i)
+(i)
+size is less than min(LF , LB ).
+
+Output: Information sequence i of length (N − 1) · k
+
+Section IV-B proves that if (6) is fulﬁlled, after Steps 1–3,
+all gaps are closed and Algorithm 1 ﬁnds the ML path.
+It is a generalization of the Dettmar–Sorger algorithm to
+arbitrary rates, which results in linear dependencies between
+the submatrices of the PUM code (see Deﬁnition 1). This
+requires several non-trivial modiﬁcations of the algorithm.
+Namely these are: the reconstruction of the information
+requires + 1 consecutive code blocks (see Example 1),
+the path extensions (9), (10) have to be prolonged and the
+
+Lemma 3 Let ij and ij+i be reconstructed in Step 1. Let
+(j)
+(j+i)
+Step 2 decode F blocks in forward and B
+blocks in
+backward direction (see (9), (10)). Then, except for at most
+one block, the ML path is in the reduced trellis if (6) holds.
+Proof: First, we prove that the ML path is in the reduced
+trellis if (6) holds and in each block less than min{d0 /2, d1 /2}
+errors occurred. In this case, BMD(C0 ) and BMD(C1 ) will
+always yield the correct decision. The ML path is in the
+
+4
+
+(j)
+
+(j+i)
+
+reduced trellis if F + B
+≥ i − 1, since the gap is then
+(j)
+(j+i)
+closed. Assume that F + B
+< i − 1 and at least dα /2
+errors occur in every ( + 1)-th block in the gap, since Step 1
+was not successful (compare Remark 1). Then,
+i−1
+
+d
+wt (ej+h ) ≥
+
+h=1
+
+c
+(j)
+F
+
+2
+
+rc
+
+d
++
+
+(j+i)
+B
+
+2
+
+(t)
+
++
+
+(j+i)
+
+(i − 1 − F − B
+2( + 1)
+
+)dα
+
+Theorem 3 If (12) holds for rj , the Viterbi algorithm for the
+reduced trellis with erasure nodes ﬁnds the correct block cj .
+Proof: The metric of the erasure nodes is always at least
+r
+di /2. All nodes of a state are connected with the erasure nodes
+of the previous and the next state. As soon as (12) is fulﬁlled,
+the metric of a correct edge is better than all other edges and
+the ML path will be chosen.
+
+=
+
+r
+
+=
+
+d
+dα
+d1
+d0
++ (i − 3) ·
++
+= i−1 ,
+2
+2( + 1)
+2
+2
+
+D. Complexity Analysis
+The complexity is determined by the complexity of the
+BMD block decoders, which are all in the order O(n2 ), if
+the construction is based on RS codes of length n.
+Similar as Dettmar and Sorger [10], we can give the
+following bound on the complexity. Due to space restrictions,
+the proof is omitted here.
+Theorem 4 Let C be a PUM code as in Deﬁnition 1, where
+Gtot is the generator matrix of an RS code. Then, the decoding
+complexity of Algorithm 1 of one block is upper bounded by
+
+which is a contradiction to (6).
+Second, we prove that at most one error block eh , j < h <
+j + i has weight at least d0 /2 or d1 /2. To fail in Step 1, there
+are at least dα /2 errors in every ( + 1)-th block. If two error
+blocks have weight at least d0 /2 = d1 /2, then
+r
+
+i−1
+
+wt (ej+i ) ≥ 2 ·
+h=1
+
+d
+i − 3 dα
+d0
++
+·
+≥ i−1 ,
+2
++1 2
+2
+
+in contradiction to (6). Thus, the ML path is in the reduced
+trellis except for a gap of one block.
+
+O ( + 1)dα n2 ∼ O ( + 1)n3 .
+V. C ONCLUSION
+We presented a construction of PUM codes of arbitrary rate
+and provided and proved an efﬁcient decoding algorithm. The
+algorithm corrects all error patterns up to half the designed
+extended row distance, where the complexity is cubic in the
+length of a block. For = 0, the Dettmar–Sorger algorithm
+[10] is a special case of Algorithm 1.
+ACKNOWLEDGMENT
+The authors thank Alexander Zeh and Vladimir Sidorenko
+for the valuable discussions.
+R EFERENCES
+
+Theorem 2 If (6) holds, the ML path is in the reduced trellis.
+Proof: Lemma 3 guarantees that after Step 2, the gap
+length is at most one block. This gap can be closed in Step 3
+with C01 , which is always able to ﬁnd the correct solution
+r
+since d01 ≥ d1 = dfree .
+C. Decoding of a Single Block
+Similar to [10], we give a weaker BMD condition to
+guarantee ML decoding of a single block. This condition
+shows how fast the algorithm returns to the ML path after
+a sequence where (6) is not fulﬁlled. A BMD decoder for
+convolutional codes guarantees the correct decoding of a block
+rj of a received sequence r = c + e if the error e satisﬁes
+k+i−1
+
+h=k
+
+[1] L.-N. Lee, “Short Unit-Memory Byte-Oriented Binary Convolutional
+Codes Having Maximal Free Distance,” IEEE Transactions on Information Theory, pp. 349–352, May 1976.
+[2] G. S. Lauer, “Some Optimal Partial-Unit Memory Codes,” IEEE Transactions on Information Theory, vol. 23, no. 2, pp. 240–243, Mar. 1979.
+[3] V. Zyablov and V. Sidorenko, “On Periodic (Partial) Unit Memory Codes
+with Maximum Free Distance,” Error Control, Cryptoplogy, and Speech
+Compression, vol. 829, pp. 74–79, 1994.
+[4] F. Pollara, R. J. McEliece, and K. A. S. Abdel-Ghaffar, “Finite-state
+codes,” IEEE Transactions on Information Theory, vol. 34, no. 5, pp.
+1083–1089, 1988.
+[5] J. Justesen, “Bounded distance decoding of unit memory codes,” IEEE
+Transactions on Information Theory, vol. 39, no. 5, pp. 1616–1627,
+1993.
+[6] U. Dettmar and S. Shavgulidze, “New Optimal Partial Unit Memory
+Codes,” Electronic Letters, vol. 28, pp. 1748–1749, Aug. 1992.
+[7] U. Dettmar and U. Sorger, “New optimal partial unit memory codes
+based on extended BCH codes,” Electronic Letters, vol. 29, no. 23, pp.
+2024–2025, 1993.
+[8] A. Wachter, V. Sidorenko, M. Bossert, and V. Zyablov, “Partial Unit
+Memory Codes Based on Gabidulin Codes,” in IEEE International
+Symposium on Information Theory 2011 (ISIT 2011), Aug. 2011.
+[9] ——, “On (Partial) Unit Memory Codes Based on Gabidulin Codes,”
+Problems of Information Transmission, vol. 47, no. 2, pp. 38–51, 2011.
+[10] U. Dettmar and U. K. Sorger, “Bounded minimum distance decoding of
+unit memory codes,” IEEE Transactions on Information Theory, vol. 41,
+no. 2, pp. 591–596, 1995.
+[11] J. Winter, “Blockcodedarstellung von Faltungscodes,” Ph.D. dissertation,
+University of Darmstadt, July 1998.
+[12] C. Thommesen and J. Justesen, “Bounds on distances and error exponents of unit memory codes,” IEEE Transactions on Information Theory,
+vol. 29, no. 5, pp. 637–649, 1983.
+
+r
+
+d
+wt (eh ) < i , ∀i, k with k ≤ j ≤ j + i − 1.
+2
+
+(12)
+
+To guarantee (12) for a certain block if (6) is not fulﬁlled for
+the whole sequence, we introduce an erasure node in each step
+j as in [7], representing all nodes which are not in the reduced
+trellis. Let j , j−1 denote erasure nodes at time j, j−1 and let
+sj , sj−1 be nodes found by BMD decoding in Steps 1 and 2.
+Let tF , tB denote the minimum number of errors of any edge
+starting from sj−1 and sj in forward, respectively backward
+direction. tα denotes the minimum number errors of any edge
+between nodes at time j − 1 and j. We set the metric of the
+connections with the erasure nodes as follows.
+Connect
+
+Metric
+
+sj−1 ,
+
+j
+
+m ( j ) = m(sj−1 ) +
+
+max ( (d0 +1)/2 , d0 −tF )
++1
+
+j−1 ,
+
+sj
+
+m(sj ) = m(
+
+max ( (d1 +1)/2 , d1 −tB )
++1
+
+j−1 ,
+
+j
+
+j−1 )
+
++
+
+m ( j ) = m( j−1 )+
+
+
+
+(dα − tα ) if ∃ an edge between sj−1 , sj
+1
++ +1 ·
+
+ (d + 1)/2 , else.
+α
+
+5
+
+

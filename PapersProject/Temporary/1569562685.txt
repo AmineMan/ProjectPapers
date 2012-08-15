@@ -1,0 +1,981 @@
+Title:          BICM_IPC_paper.dvi
+Creator:        dvips(k) 5.99 Copyright 2010 Radical Eye Software
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Thu Apr 26 17:15:20 2012
+ModDate:        Tue Jun 19 12:56:01 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      595 x 842 pts (A4)
+File size:      351088 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569562685
+
+Performance Estimation of
+Bit-Interleaved Coded Modulation Based On
+Information Processing Characteristics
+Andreas Schenka, Robert F.H. Fischerb, and Johannes B. Hubera
+a
+
+Lehrstuhl f¨ r Informations¨ bertragung, Friedrich-Alexander-Universit¨ t Erlangen-N¨ rnberg, Erlangen, Germany,
+u
+u
+a
+u
+b
+Institut f¨ r Nachrichtentechnik, Universit¨ t Ulm, Ulm, Germany,
+u
+a
+email: andreas.schenk@lnt.de, robert.ﬁscher@uni-ulm.de, johannes.huber@lnt.de
+symmetric memoryless channel (BSC) and a binary erasure
+channel (BEC) [10].
+The method is applicable for any BICM setup with soft- or
+hard-decision demapping. As opposed to [1]–[6], it does not
+require deep insight into the channel code properties, such as,
+e.g., its weight distribution spectrum, as it is based only on the
+IPC of the coding scheme, which in turn can be derived from
+its BER performance over the binary-input AWGN channel.
+Exemplarily, we consider BICM of amplitude-shift keying
+(ASK) transmitted over the AWGN and a log-normal fading
+channel using convolutional codes in combination with softinput Viterbi decoding [11], and LDPC codes with belief
+propagation decoding [12].
+Following a brief review of the principle of IPCs in Sec. II,
+the BICM-ASK setup and the proposed method of IPCbased performance estimation are presented in Sec. III. The
+effectiveness of our approach is compared to simulation results
+in Sec. IV; a discussion of the method concludes the paper.
+
+Abstract—Information processing characteristics (IPC) provide a general framework for the analysis of a coding scheme. In
+this paper, we utilize IPCs to obtain performance estimates for the
+end-to-end coded channel for bit-interleaved coded modulation
+(BICM) using a given modulation format and coding scheme, i.e.,
+its bit error rate and capacity. The proposed method enables to
+fully decouple the analysis of the coding scheme from the analysis
+of the higher-order modulation scheme and delivers very good
+performance estimates. Exemplarily, this is validated by means of
+numerical simulations for BICM using convolutional- and LDPCcoded amplitude-shift keying.
+
+I. I NTRODUCTION
+Bit-interleaved coded modulation (BICM) is a pragmatic
+approach to coded modulation and, due to its ﬂexibility, robustness, and simplicity, is the de-facto standard for modern coded
+digital transmission systems [1], [2]. It is thus of particular
+interest to estimate the performance of BICM in combination
+with a given modulation format and coding scheme, i.e.,
+channel code, encoder, and corresponding decoder.
+In case of hard-input channel decoding, typically bit error
+rate (BER) processing characteristics of the coding scheme are
+sufﬁcient, i.e., based on the uncoded BER of the communication channel the BER of the coded channel can be estimated.
+However, coding schemes signiﬁcantly beneﬁt from reliability information on the decoder input symbols; soft-decisions
+should be fed to the channel decoder. In this case, more elaborate methods to predict the BER of the end-to-end (coded)
+channel are required, typically based on (reﬁnements of) the
+union bound [1]–[6]. In this paper, we present a method,
+which is based on the principle of information processing
+characteristics (IPC) [7]–[9]. It exploits the mutual information
+of the communication channel and the characteristics how
+the channel decoder processes the available information at
+its input. Based on the BICM capacity of the communication
+channel between encoder and decoder, we derive an estimate
+for the capacity of the end-to-end channel from encoder input
+to decoder output. This capacity estimate is then translated
+into an estimate for the coded BER using two well-known
+bounds based on modeling the end-to-end channel as a binary
+
+II. I NFORMATION P ROCESSING C HARACTERISTICS
+We consider the generic transmission system depicted in
+the top part of Fig. 1, consisting of a channel encoder, a
+binary-input soft-output communication channel, and a channel decoder. Without restriction of generality, we assume the
+information symbols1 u at the encoder input as independent
+equiprobable binary symbols. The encoder of rate Rc = k/n
+encodes k information symbols into a codeword of n binary
+code symbols x, which is transmitted over the communication
+channel to be detailed later. Given the received symbols v,
+which represent estimates of the code symbols (reliability
+information or hard decisions), the decoder estimates the transmitted information. Here, we restrict to hard-output decoders,
+i.e., u are from the same (binary) alphabet as u.
+ˆ
+The concept of IPCs provides a general framework for
+the analysis of the performance of this coding scheme [7],
+[9], [14]. As opposed to the commonly used end-to-end
+performance measure average bit error rate (i.e., BERcode =
+1 Bold letters denote vectors, upper-case letters random variables, and lowercase letters the particular realization. I(·; ·): mutual information, E{·}: expectation operator, Pr{·}: probability, H(·): entropy, e2 (p) = −p log2 (p) −
+(1 − p) log2 (1 − p): binary entropy function [13]. For compact notation, we
+omit explicit symbol/time indices, where it does not impair clarity.
+
+This work was supported by the Deutsche Forschungsgemeinschaft (DFG)
+within the framework UKoLoS under grant FI 982/3.
+
+1
+
+Ccode
+
+Π
+
+b
+
+v
+
+Communication
+Channel
+
+M
+
+Cch
+h n
+a
+y
+
+Decoder
+
+u
+ˆ
+
+0.75
+0.5
+0.25
+
+0.75
+0.5
+0.25
+
+0
+
+V
+
+0.5
+
+0.75
+
+1
+
+0
+
+0.25
+
+0.5
+
+0.75
+
+1
+
+Cch →
+
+Fig. 2. IPCs of rate-1/2 coding schemes. Left: convolutional code (nonsystematic encoding, constraint length ν = 4) with soft-input Viterbi decoding.
+Right: LDPC code (from WLAN-802.11n std., systematic encoding, codeword
+length 648) with BP decoding. Red: ideal coding scheme. Gray: uncoded.
+
+ˆ
+E{Pr{U = U }}) as a function of the signal-to-noise ratio
+(SNR), IPCs characterize the coding scheme with respect
+to mutual information as a function of the capacity of the
+underlying channel. More precisely for a given hard-output
+coding scheme code, we deﬁne
+k
+1
+ˆ
+IPCcode (Cch ) = Ccode =
+I(Uκ ; Uκ )
+(1)
+k κ=1
+
+belief-propagation (BP) decoding [12] (right). The IPCs of an
+ideal coding scheme (red) and of uncoded transmission (BPSK
+over AWGN channel with hard decisions, gray) are also given.
+The systematically encoded LDPC code is always superior to
+uncoded transmission.
+III. P ERFORMANCE E STIMATION
+
+OF
+
+BICM
+
+In this section, we show how accurate estimates for the
+performance of the end-to-end coded transmission chain are
+obtained using IPCs. Exemplarily we consider the case that
+the communication channel represents BICM of ASK [1], [2],
+but note that the proposed method can be transferred to any
+modulation format.
+
+where Cch denotes the capacity of the binary-input communication channel between encoder and decoder, i.e.,
+n
+
+(2)
+
+An ideal encoder/decoder pair achieves Ccode = 1, as long
+as the entropy of X, H(X) = Rc , does not exceed the capacity
+Cch of the communication channel, and otherwise degrades
+linear [7], i.e.,
+IPCideal = min(Cch /Rc , 1) .
+
+0.25
+
+Cch →
+
+Fig. 1. System model of coded transmission. Top: generic model, bottom:
+BICM-ASK for the communication channel.
+
+1
+I(Xν ; Vν ) .
+n ν=1
+
+0
+0
+
+Π−1
+
+PAM Channel
+
+Cch =
+
+1
+
+IPC(Cch ) →
+
+x
+
+Encoder
+
+IPC(Cch ) →
+
+u
+
+1
+
+A. BICM for ASK-Transmission
+In a BICM setup, as depicted in the bottom part of Fig. 1,
+the code symbols x are interleaved and partitioned into touples
+b of log2 (M ) code symbols, which are mapped to amplitude
+coefﬁcients a taken from an M -ary bipolar ASK signal con2
+stellation A with variance σa . The mapping is speciﬁed by a
+bijective binary labeling rule M : b ∈ {0; 1}log2 (M) → a ∈ A
+(e.g., Gray or set-partition labeling); the overall rate of the
+BICM setup is denoted as R = Rc log2 (M ). After transmission using conventional digital pulse-amplitude modulation
+(PAM) [11], the receive symbols are given as the amplitude
+coefﬁcient scaled by a fading coefﬁcient h and corrupted by
+2
+additive Gaussian noise n with variance σn , i.e.,
+
+(3)
+
+Since for most non-ideal coding schemes an analytical
+expression for the IPC does not exist, IPCs have to be
+obtained by simulation [7]. As IPCs depend only on the
+capacity of the underlying channel, this can be done by
+simulation of BPSK transmission over an AWGN channel.
+Depending on the investigated coding scheme, two options for
+the communication channel have to be considered. For softinput channel decoding, v represent reliability information, and
+the capacity of the communication channel is given as the
+constellation-constraint capacity of BPSK transmitted over an
+AWGN channel. For hard-input channel decoding, v represent
+hard-decisions on the code symbols, and Cch is given as the
+capacity of a BSC with equivalent BER = E{Pr{X = V }}.
+In both cases, assuming the errors introduced by the decoder
+follow a memoryless process2 , the mutual information of the
+overall channel can be estimated from the simulated BERcode
+via Ccode = 1 − e2 (BERcode ).
+Fig. 2 shows the IPCs of rate-1/2 coding schemes over the
+binary-input AWGN channel for a maximum-free distance
+convolutional code (constraint length ν = 4, nonsystematic
+encoding) with soft-input Viterbi decoding [11] (left) and an
+LDPC code from the WLAN-802.11n standard [15] (systematic encoding, codeword length n = 648) with soft-input
+
+y = ha + n .
+
+(4)
+
+As a measure for the quality of the communication channel, we
+consider the ratio of the transmitted energy per ASK symbol
+Es over the one-sided noise power-spectral density N0 ; thus,
+2
+2
+we have Es /N0 = σa /(2σn ). The receiver performs a demapping operation V, which computes reliability information for
+the code symbols based on the received symbol, e.g., the
+probability Pr{B = 0|Y } (= 1−Pr{B = 1|Y }), or equivalent
+metrics, which are deinterleaved and fed to the decoder.
+The capacity of the BICM-ASK transmission is given as the
+sum of the bit level capacities I(Bµ ; Y ) [1], [16], [17], i.e.,
+in bit per PAM channel use we have
+log2 (M)
+
+CBICM (Es /N0 ) =
+
+2 This
+
+may be forced by ideal interleavers at the encoder input and a
+corresponding deinterleaver at the decoder output.
+
+I(Bµ ; Y ) .
+µ=1
+
+2
+
+(5)
+
+For brevity, the dependence on the applied binary labeling rule
+and Es /N0 is omitted where possible.
+For comparison, we also consider the case when the communication channel represents BICM-ASK with a hard-decision
+demapper, i.e., V decides for the most likely transmitted
+ˆ
+symbol a and hence the corresponding bit label b. The capacity
+ˆ
+per use of the PAM channel calculates to [13]
+
+decoder output are a memoryless process, such that the overall
+channel represents a BSC. The second bound is an upper
+bound and is based on the contrary assumption, i.e., the errors
+are concentrated in a single burst [10]. In summary, the BER
+of the overall channel of the BICM setup is bounded by
+
+Chard = log2 (M ) · (1 − e2 (BERunc ))
+
+However, it has to be emphasized that the bounds are tight
+only in case of ideal interleaving. The performance can be
+better than the lower bound, if the interleaver size is ﬁnite,
+and thus the errors follow a process with arbitrary-structured
+memory. This argument is conﬁrmed by the fact that memory
+increases capacity [13], [18].
+Finally, we note that in case of hard-input decoding, i.e.,
+using (6) in (7), the lower bound is equivalent to directly using
+BER processing characteristics.
+
+IPC
+IPC
+e−1 1 − Ccode ≤ BERIPC ≤ 1 − Ccode /2 .
+code
+2
+
+(6)
+
+where BERunc = E{Pr{X = V |Y }} denotes the average
+bit error rate of the communication channel (which is easily
+calculated for M -ASK with given labeling rule).
+B. Estimating the Capacity of the End-to-End Channel
+Due to the interleaver in the BICM setup, the ideal BICM
+communication channel can be seen as a binary memoryless
+channel with average capacity Cch = CBICM / log2 (M ) per
+communication channel use [7]. Thus, the capacity per use of
+the coding channel from the input of the encoder to the output
+of the (hard-output) decoder can be expressed as
+IPC
+Ccode (Es /N0 ) = IPCcode (Cch (Es /N0 ))
+
+IV. N UMERICAL R ESULTS
+Fig. 4 depicts the estimated capacities of the coded channel
+IPC
+in bit per PAM channel use, i.e., Ccode ·R, for different coding
+schemes with 4-, 8-, and 16-ASK for an AWGN channel
+(h = 1). We spend one bit redundancy per ASK symbol
+(Rc = 1/2 for 4-, 2/3 for 8-, and 3/4 for 16-ASK) and
+consider the following coding schemes: 1) on the left hand side
+of Fig. 4: maximum-free-distance convolutional codes with
+constraint length ν = 4 (interleaver size 10.000 symbols)
+in combination with soft-input Viterbi decoding (blue), 2) on
+the right hand side of Fig. 4: the LDPC code from WLAN802.11n (codeword length and interleaver size n = 648) in
+combination with soft-input BP decoding (blue), and 3) in
+both plots the ideal coding scheme (red). For Rc = 1/2,
+the IPCs of the coding schemes are shown in Fig. 2. These
+results are compared to the capacity of uncoded transmission
+(gray) obtained from (6), scaled by a factor of Rc to enable
+comparison. It can be observed, that the capacity of an ideal
+coding scheme follows the BICM capacity up to the point
+where Ccode R < R and then delivers the maximum possible
+mutual information of R bit per ASK symbol. The capacity of
+the convolutional coding schemes with soft-input decoding is
+superior to uncoded transmission at about 1 dB (10 dB, 17 dB)
+for 4-(8-, 16-)ASK; note that using this method with hardinput decoding estimates a loss of approx. 2 dB (not shown).
+The systematically encoded LDPC coding scheme always
+achieves better performance than uncoded transmission.
+The BERcode -estimates obtained from the bounds given
+in (8) are shown in Fig. 5 for the setting considered above
+(solid/dashed: lower/upper bound, left/right hand side of (8)).
+For the ideal coding scheme, only the lower bound is given,
+which coincides with the rate-distortion-capacity bound. For
+comparison simulation results of BICM-ASK transmission are
+also shown (markers). Especially the lower bound agrees well
+with the simulation results and thus delivers quite accurate
+estimates for the BER performance of the BICM system
+Noteworthy, the results are accurate in the entire SNR regime,
+different from approaches based on the union bound, which
+are often useless at low SNR [5], [6]. Of course, relative
+
+(7)
+
+where IPCcode is the IPC of the applied encoder/decoder-pair,
+as deﬁned in (1). Multiplying the estimated capacity with the
+overall rate of the modulation R translates it into units of bit
+per use of the PAM channel and enables comparison to the
+BICM capacity of ASK, cf. (5).
+Exemplarily, Fig. 3 demonstrates this procedure for Graylabeled 4-ASK and the rate-1/2 convolutional code shown in
+Fig. 2. For each ratio Es /N0 (here 3 dB) the average BICM
+capacity is processed through the IPC of the convolutional
+code; the output is the estimated capacity of the coded channel
+per binary information symbol. For comparison, the IPC and
+the resulting capacity of an ideal coding scheme are shown.
+C. Estimating the Bit Error Rate of the End-to-End Channel
+Based on the estimated capacity of the coding channel,
+IPC
+Ccode , we employ two well-known bounds [10] to obtain an
+estimate for the bit error rate of the coding channel, BERcode .
+A lower bound is given by assuming that the errors at the
+1
+IPC
+Cideal →
+
+IPC
+←Ccode
+
+capacity →
+
+0.69
+
+← Cch
+1
+
+0.55
+
+0
+
+IPC(Cch )
+
+0.69
+
+0
+0
+
+0.55
+
+Cch →
+
+(8)
+
+1
+
+3
+
+10 log10 (Es /N0 ) →
+Fig. 3. Illustration of IPC-based estimation of the capacity of the end-to-end
+coded channel for BICM using Gray-labeled 4-ASK with the convolutional
+code and soft-input Viterbi decoding shown in Fig. 2 (left).
+
+3
+
+4-ASK, Rc = 1/2
+8-ASK, Rc = 2/3
+16-ASK, Rc = 3/4
+
+3.5
+3
+2.5
+2
+
+S
+
+1.5
+
+it
+lim
+non
+han
+
+1
+0.5
+0
+−2
+
+0
+
+2
+
+4
+
+6
+
+8
+
+10
+
+12
+
+14
+
+16
+
+18
+
+20
+
+22
+
+24
+
+capacity [bit/PAM ch. use] →
+
+capacity [bit/PAM ch. use] →
+
+4
+
+4
+
+4-ASK, Rc = 1/2
+8-ASK, Rc = 2/3
+16-ASK, Rc = 3/4
+
+3.5
+3
+2.5
+2
+
+S
+
+1.5
+
+it
+lim
+non
+han
+
+1
+0.5
+0
+−2
+
+0
+
+2
+
+4
+
+10 log10 (Es /N0 ) →
+
+6
+
+8
+
+10
+
+12
+
+14
+
+16
+
+18
+
+20
+
+22
+
+24
+
+10 log10 (Es /N0 ) →
+
+Fig. 4. Capacity estimates for Gray-labeled BICM-ASK (blue) using convolutional codes (ν = 4) with soft-input Viterbi decoding (left) and LDPC codes
+with soft-input belief-propagation decoding (right). For comparison: Ideal coding scheme (red), uncoded transmission (gray, scaled by Rc ).
+−1
+
+−1
+
+10
+
+10
+
+−2
+
+−2
+
+10
+
+BER →
+
+BER →
+
+10
+
+−3
+
+10
+
+−4
+
+10
+
+−5
+
+−4
+
+10
+
+−5
+
+10
+
+10
+
+−6
+
+−6
+
+10
+
+−2
+
+−3
+
+10
+
+10
+0
+
+2
+
+4
+
+6
+
+8
+
+10
+
+12
+
+14
+
+16
+
+18
+
+20
+
+22
+
+24
+
+−2
+
+0
+
+2
+
+4
+
+10 log10 (Es /N0 ) →
+
+6
+
+8
+
+10
+
+12
+
+14
+
+16
+
+18
+
+20
+
+22
+
+24
+
+10 log10 (Es /N0 ) →
+
+Fig. 5. BER estimates (solid/dashed: lower/upper bound) for Gray-labeled BICM-ASK (blue, left-to-right: 4- (+), 8- (♦), 16-ASK (x)) using convolutional
+codes (ν = 4) with soft-input Viterbi decoding (left) and LDPC codes with soft-input belief-propagation decoding (right). For comparison: Simulation results
+of BICM-ASK with corresponding coding scheme (markers), ideal coding scheme/rate-distortion capacity bound (red), uncoded transmission (gray).
+
+statements valid for the capacity translate into the same
+statements on the BER performance, since both bounds are
+monotonic functions. E.g., the use of convolutional codes is
+favorable over uncoded transmission for Es /N0 larger than
+1 dB, 10 dB, and 17 dB for 4-, 8-, and 16-ASK, respectively.
+
+the concatenated coding scheme operates with highest powerefﬁciency (basically, this is an explanation for the excellent
+performance of the concatenation of an inner rate-1/2 convolutional code and an outer high-rate Reed-Solomon code,
+e.g., in the NASA standard [21]). If set-partition labeling is
+applied, the optimum outer rate is slightly larger compared
+to Gray-labeling. For the systematically encoded LDPC codes
+this optimum is attained at zero rate. However, for 4-ASK,
+
+For sake of completeness, results for 4-ASK subject to lognormal fading (parameterized such that 20 log10 (|H|) is independent, identical Gaussian distributed with variance 6 dB)
+are provided in Fig. 6. The BICM capacity has been averaged
+over the fading distribution prior to using IPCs.
+
+−1
+
+10
+
+Translating the capacity of the coding channel as a function
+of Es /N0 into a capacity-curve plotted vs. Eb /N0 , where
+IPC
+Eb = Es /Ccode is the energy per information bit, one obtains
+estimates for the power efﬁciency of the coded system. Fig. 7
+depicts these curves for ASK transmission with Gray (left) and
+set-partition labeling (right) for the coding schemes considered
+above. Note that BICM-ASK with an ideal coding scheme
+is not wideband optimal with Gray-labeling, whereas it is
+ﬁrst-order-optimal with set-partition labeling [19], [20]; for
+the non-ideal coding schemes, neither Gray, nor set-partition
+labeling are wideband optimal. In case of nonsystematically
+encoded convolutional codes, the minimum ratio Eb /N0 is
+attained at non-zero rate (indicated with a marker). These
+points indicate an optimum operating point for an additional
+outer coding scheme.Selecting the outer code rate accordingly,
+
+−2
+
+BER →
+
+10
+
+−3
+
+10
+
+−4
+
+10
+
+−5
+
+10
+
+−6
+
+10
+
+0
+
+2
+
+4
+
+6
+
+8
+
+10
+
+12
+
+14
+
+10 log10 (Es /N0 ) →
+Fig. 6. BER estimates compared to simulation results for 4-ASK using
+a convolutional code (Rc = 1/2, ν = 4) with soft-input Viterbi-decoding
+(blue), an LDPC code (Rc = 1/2, codeword length n = 648) with BP
+decoding (green), and uncoded transmission (gray) subject to log-normal
+fading.
+
+4
+
+3.5
+
+4-ASK, Rc = 1/2
+8-ASK, Rc = 2/3
+16-ASK, Rc = 3/4
+
+3
+2.5
+2
+1.5
+
+n
+no
+an
+Sh
+
+it
+lim
+
+1
+0.5
+0
+−1.59 0
+
+2
+
+4
+
+6
+
+8
+
+10
+
+12
+
+14
+
+16
+
+18
+
+20
+
+22
+
+24
+
+capacity [bit/PAM ch. use] →
+
+capacity [bit/PAM ch. use] →
+
+4
+
+10 log10 (Eb /N0 ) →
+
+4
+3.5
+
+4-ASK, Rc = 1/2
+8-ASK, Rc = 2/3
+16-ASK, Rc = 3/4
+
+3
+2.5
+2
+1.5
+
+n
+no
+an
+Sh
+
+it
+lim
+
+1
+0.5
+0
+−1.59 0
+
+2
+
+4
+
+6
+
+8
+
+10
+
+12
+
+14
+
+16
+
+18
+
+20
+
+22
+
+24
+
+10 log10 (Eb /N0 ) →
+
+Fig. 7. Capacity estimates for BICM-ASK (left: Gray-labeling, right: set-partition labeling) using convolutional codes (ν = 4) with soft-input Viterbi
+decoding (blue) and LDPC codes with soft-input BP decoding (green) plotted vs. Eb /N0 . For comparison: Ideal coding scheme (red).
+
+rates close to one are favorable, in particular compared to
+medium rates, where the minimum achievable Eb /N0 is larger.
+
+[2] A. Guill´ n i F` bregas, A. Martinez, and G. Caire, “Bit-Interleaved
+e
+a
+Coded Modulation,” Found. Trends in Commun. Inf. Theory, vol. 5, no.
+1-2, pp. 1–153, 2008.
+[3] A. Martinez, A. Guill´ n i F` bregas, and G. Caire, “Error Probability
+e
+a
+Analysis of Bit-Interleaved Coded Modulation,” IEEE Trans. Inf. Theory,
+vol. 52, no. 1, pp. 262–271, 2006.
+[4] P-C. Yeh, S. Zummo, and W. Stark, “Error Probability of Bit-Interleaved
+Coded Modulation in Wireless Environments,” IEEE Trans. Veh. Technol., vol. 55, no. 2, pp. 722–728, 2006.
+[5] A. Kenarsari-Anhari and L. Lampe, “An Analytical Approach for Performance Evaluation of BICM Transmission over Nakagami-m Fading
+Channels,” IEEE Trans. Commun., vol. 58, no. 4, pp. 1090–1101, 2010.
+[6] A. Alvarado, L. Szczecinski, R. Feick, and L. Ahumada, “Distribution of
+L-values in Gray-Mapped M 2 -QAM: Closed-Form Approximations and
+Applications,” IEEE Trans. Commun., vol. 57, no. 7, pp. 2071–2079, 2009.
+[7] I. Land and J.B. Huber, “Information Combining,” Found. Trends
+Commun. Inf. Theory, vol. 3, pp. 227–330, 2006.
+[8] S. Huettinger, J.B. Huber, R. Johannesson, and R.F.H. Fischer, “Information Processing in Soft-Output Decoding,” in Allerton Conference on
+Commun., Control, and Computing, Allerton, Oct. 2001.
+[9] J.B. Huber and S. Huettinger, “Information Processing and Combining
+in Channel Coding,” in Int. Symp. on Turbo Codes & Related Topics,
+pp. 95–102, Brest, Sep. 2003.
+[10] S. Huettinger and J.B. Huber, “Performance Estimation for Concatenated
+Coding Schemes,” in IEEE Information Theory Workshop (ITW), pp.
+123–126, Paris, Mar./Apr. 2003.
+[11] J.G. Proakis and M. Salehi, Digital Communications, 5th ed. New
+York: McGraw-Hill, 2008.
+[12] T. Richardson and R. Urbanke, Modern Coding Theory. Cambridge
+University Press, 2008.
+[13] T. Cover and J. Thomas, Elements of Information Theory, 2nd ed. New
+York: Wiley, 2006.
+[14] S. Huettinger, J.B. Huber, R.F.H. Fischer, and R. Johannesson, “SoftOutput-Decoding: Some Aspects from Information Theory,” in Int. Conf.
+on Source and Channel Coding, pp. 81–90, Berlin, Jan. 2002.
+[15] IEEE Standard for PART 11: Wireless LAN Medium Access Control and
+Phy. Layer Spec. Amendment 5: Enh. for Higher Throughput, 2009.
+[16] U. Wachsmann, R.F.H. Fischer, and J.B. Huber, “Multilevel Codes:
+Theoretical Concepts and Practical Design Rules,” IEEE Trans. Inf.
+Theory, vol. 45, no. 5, pp. 1361–1391, 1999.
+[17] A. Martinez, A. Guill´ n i F` bregas, G. Caire, and F. Willems, “Bite
+a
+Interleaved Coded Modulation Revisited: A Mismatched Decoding Perspective,” IEEE Trans. Inf. Theory, vol. 55, no. 6, pp. 2756 –2765, 2009.
+[18] J. Wolfowitz, “Memory Increases Capacity,” Information and Control,
+vol. 11, no. 4, pp. 423–428, 1967.
+[19] A. Martinez, A. Guill´ n i F` bregas, G. Caire, and F. Willems, “Bite
+a
+Interleaved Coded Modulation in the Wideband Regime,” IEEE Trans.
+Inf. Theory, vol. 54, no. 12, pp. 5447–5455, 2008.
+[20] C. Stierstorfer and R.F.H. Fischer, “Asymptotically Optimal Mappings
+for BICM with M -PAM and M 2 -QAM,” Electronics Letters, vol. 45,
+no. 3, pp. 173–174, 2009.
+[21] J. Morakis and W. Miller, “Coding Techniques under Study at NASA,”
+in IEEE Aerospace Conf., 1997., vol. 3, pp. 559 –565, Feb. 1997.
+[22] C. Stierstorfer, R.F.H. Fischer, and J.B. Huber, “Optimizing BICM with
+Convolutional Codes for Transmission over the AWGN Channel,” in Int.
+Zurich Seminar (IZS), Zurich, Mar. 2010.
+
+V. D ISCUSSION AND C ONCLUSIONS
+The intention of the proposed method is to provide goodmatching estimates for the end-to-end performance of BICM
+transmission using a given modulation format (i.e., constellation, labeling rule, and channel model), and coding scheme
+(i.e., channel code, encoder, and corresponding decoder).
+To this end, we consider IPCs as a powerful tool for the
+analysis. The main beneﬁt of the proposed method is the
+fact, that the analysis of the channel coding scheme and
+the analysis of BICM for higher-order modulation schemes
+can be fully decoupled. It is thus sufﬁcient to evaluate two
+independent building blocks of BICM, the BICM capacity of
+the modulation scheme Cch and the IPC of the coding scheme
+IPCcode . Modeling the end-to-end channel from encoder input
+to decoder output as a BSC, a very good BER estimate is given
+by combining these two modules according to
+BERcode (Es /N0 ) = e−1 (1 − IPCcode (Cch (Es /N0 ))) . (9)
+2
+Consequently, the vast amount of research on channel coding
+for the binary-input AWGN channel can directly be translated
+to analyze BICM of higher-order modulation. Especially for
+complex BICM setups, which may include fading scenarios, as
+well as different kinds of detectors, the proposed method leads
+to signiﬁcant reduction in computational complexity, since
+assessing the coded system performance can be decoupled
+from simulation of the uncoded transmission chain.
+The drawbacks of the proposed method are its non-closedform results, the required accuracy for computing the IPC
+of the coding scheme and the BICM capacity (both directly
+related to the region of interest for the BER), as well as the
+fact that it relies on an ideal interleaver in the BICM setup.
+Optimizing of BICM using different kinds of interleavers
+(optimized or none at all), as, e.g., performed in [22], can not
+be covered. However, if BICM is applied in fading scenarios,
+as commonly envisioned, this drawback becomes irrelevant.
+R EFERENCES
+[1] G. Caire, G. Taricco, and E. Biglieri, “Bit-Interleaved Coded Modulation,” IEEE Trans. Inf. Theory, vol. 44, no. 3, pp. 927–946, 1998.
+
+5
+
+

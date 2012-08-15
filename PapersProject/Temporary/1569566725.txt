@@ -1,0 +1,1022 @@
+Title:          isit12_full.pdf
+Author:         Administrator
+Creator:        TeX
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Sun May 13 21:45:43 2012
+ModDate:        Tue Jun 19 12:54:24 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      305794 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569566725
+
+On Private Broadcasting over Independent Parallel
+Channels
+Ashish Khisti
+
+Tie Liu
+
+Electrical and Computer Engineering
+University of Toronto
+Toronto, ON
+Email: akhisti@comm.utoronto.ca
+
+Electrical and Computer Engineering
+Texas A & M
+College Station, TX
+Email: tieliu@tamu.edu
+
+Abstract—We study private broadcasting of two messages to
+two groups of users over reversely degraded parallel channels.
+Group 1 has two users, both interested in a common message
+whereas group 2 has only one user. The message for each group
+of users needs to be kept conﬁdential from the other group.
+We characterize the capacity region for a special degradation
+structure of the channels and establish the optimality of a
+superposition codebook where codewords of a secure productcodebook form the cloud centers and codewords of a secure
+multicast codebook form the satellite codewords. An extension to
+Gaussian channels with a sum-power constraint is also obtained,
+where the optimality of Gaussian codebooks is established using
+an extremal inequality.
+
+with a natural pairwise upper bound which is known to be not
+tight in general [6].
+In this paper we propose a superposition coding technique
+that combines the secure multicast and secure product codebook construction discussed above. In our setup of interest,
+there are two groups of users. Group 1 consists of K users
+and group 2 consists of one user. There are two messages, one
+for each group and each message needs to be communicated to
+all users in the respective group and secured from the users in
+the other group. We refer to this setup as private broadcasting.
+It has been studied previously in [10]–[12] when there is a
+single user in each group (i.e., K = 1) and in reference [6]
+for a special compound channel. We establish the optimality
+of the superposition technique for the case when K = 2 and
+when a particular degradation structure is assumed across the
+parallel channels.
+
+I. I NTRODUCTION
+The wiretap channel problem [1], [2] is an information theoretic model for secure communication at the physical layer.
+The compound-wiretap channel [3] model is an extension
+of the standard wiretap channel model where the channels
+of both the legitimate receiver and the eavesdropper belong
+to a set of possible channels. This setup also models the
+possibility of having multiple receivers in each of the two
+groups. The secrecy capacity of the compound wiretap channel
+remains open in general and only some special cases have
+been resolved [3]–[9]. In particular, the secrecy capacity has
+been resolved for the case of parallel independent channels
+when either there are multiple legitimate receivers and one
+eavesdropper [6] and when there are multiple eavesdroppers
+and one legitimate receiver [5], [8]. In the former setup, the
+capacity is achieved using a secure-multicast codebook, which
+consists of independent wiretap codebooks on each of the links
+that individually secure the message from an eavesdropper
+on that link. An alternate construction that involves indirect
+decoding is proposed for the case of two channels in [7]. In
+the other extreme, i.e., when there are multiple eavesdroppers
+and one legitimate receiver, a secure-product codebook construction is proposed in [5], [8] and shown to be optimal. A
+key property of this construction is that the output codeword
+on any given link is independent of the output codewords on
+other links. In both these cases the secrecy capacity coincides
+
+II. P ROBLEM S TATEMENT AND M AIN R ESULTS
+Our setup involves two independent parallel channels, two
+groups and three receivers. Receiver 1 and 2 belong to group
+1 and observe output y1 = (y11 , y12 ) and y2 = (y21 , y22 ) respectively whereas receiver 3 belongs to group 2 and observes
+the output symbol z = (z1 , z2 ). The channel input symbols are
+x1 and x2 . Throughout this paper we additionally assume the
+following degradation order
+x1 → y11 → z1 → y21
+x2 → y22 → z2 → y12
+
+(1)
+(2)
+
+We intend to transmit message m1 to receiver 1 and 2 in group
+1, while the message m2 must be transmitted to receiver 3 in
+group 2. A length n private broadcast code also satisﬁes
+1
+I(m1 ; zn ) ≤ εn ,
+n
+
+1
+n
+I(m2 ; yj ) ≤ εn ,
+n
+
+j = 1, 2 (3)
+
+for some sequence εn that approaches zero as n → ∞.
+Theorem 1: Let auxiliary variables u1 and u2 satisfy the
+following Markov conditions:
+
+A. Khisti’s work was supported by an NSERC (Natural Sciences Engineering Research Council) Discovery Grant and an Ontario Early Researcher
+Award. T. Liu was supported by the National Science Foundation under Grants
+CCF-08-45848 and CCF-09-16867.
+
+u1 → x1 → y11 → z1 → y21
+
+1
+
+(4)
+
+u2 → x2 → y22 → z2 → y12
+
+(5)
+
+The capacity region is the union of all rate pairs (R1 , R2 ) that
+satisfy the following constraints:
+m1=1
+
+R1 ≤ min I(x1 ; y11 |u1 ) − I(x1 ; z1 |u1 ),
+
+m1=2
+
+2 nI ( x1 ; z1|u1 )
+
+code-words
+
+I(x2 ; y22 |u2 ) − I(x2 ; z2 |u2 )
+
+(6)
+
+R2 ≤ min {I(u1 ; z1 ) − I(u1 ; y21 ), I(u2 ; z2 ) − I(u2 ; y12 )} 2
+(7)
+
+Super-position
+Codebook – Channel 1
+
+m2
+
+n
+u1n u2
+
+The proposed coding scheme is illustrated in Fig. 1. The
+message for group 2 is encoded using a product codebook and
+n
+n
+the corresponding codewords (u1 , u2 ) constitute the cloudcenters of a superposition codebook as shown. The codewords
+of the secure multicast codebook on each of the channels
+constitute the satellite codewords. For each message m1 , a
+total of 2nI(xi ;zi |ui ) satellite codewords are sampled conditionn
+ally given ui . Our secrecy analysis reveals that despite this
+structure in the codebook, it sufﬁces for each user in group
+1 to treat the satellite codeword on the weaker channel as a
+n
+noisy version of the cloud center ui .
+The result in Theorem 1 can be extended to the case
+of Gaussian parallel channels. Consider a Gaussian Channel
+model described by
+y11 = x1 + w1 ,
+y22 = x2 + w2 ,
+
+z1 = y11 + n1 ,
+
+y21 = z1 + s1
+
+z2 = y22 + n2 ,
+
+y12 = z2 + s2
+
+Product-Codebook
+
+1
+log 1 +
+2
+1
+= log 1 +
+2
+1
+= log 1 +
+2
+1
+− log
+2
+1
+= log 1 +
+2
+1
+− log
+2
+
+R12
+R21
+
+R22
+
+P11
+2
+σ1
+P12
+2
+σ2
+
+P11
+1
+log 1 + 2
+2
+2
+σ1 + δ1
+P12
+1
+− log 1 + 2
+2
+2
+σ2 + δ2
+P21
+2
+2
+P11 + σ1 + δ1
+P21
+1+
+2 + δ2 + γ 2
+P11 + σ1
+1
+1
+P22
+2
+2
+P12 + σ2 + δ2
+P22
+1+
+2
+2
+2
+P12 + σ2 + δ2 + γ2
+−
+
+2 nI ( x2 ; z2 |u2 )
+
+Super-position
+Codebook – Channel 2
+
+Fig. 1: Proposed Superposition Coding Scheme. The coden
+n
+words of the product code (u1 , u2 ) constitute cloud-centers
+whereas the codewords of the multicast code constitute the
+sattelite codewords.
+
+III. T HEOREM 1: C ODING S CHEME
+The coding scheme uses a product codebook for message
+m2 in order to guarantee that it is decodable by the user in
+group 2 and kept secure from all users in group 1. A multicast
+code is used for message m1 in order to guarantee that it
+is decodable by the users in group 1 and kept secure from
+the single user in group 2. On each channel, a superposition
+codebook is applied where the codeword of the product
+codebook is a cloud center and the codeword of the multicast
+codebook is the satellite codeword.
+The construction of the product codebook C2 is as follows.
+Consider the set M21 of all binary sequences of length
+N21 = n(I(u1 ; z1 ) − ε) and the set M22 of all binary
+sequences of length N22 = n(I(u2 ; z2 ) − ε). We partition
+the cartesian product M21 × M22 into 2nR2 bins so that each
+bin contains 2n(I(u1 ;z1 )+I(u2 ;z2 )−R2 ) elements of the productset. Each element m21 ∈ M21 is encoded using a codebook
+C21 whose codewords are sampled i.i.d. from the distribution
+pu1 (u1 ). The elements m22 ∈ M22 are encoded using a
+codebook C22 whose elements are sampled i.i.d. from the
+distribution pu2 (u2 ). Each message m2 ∈ [1, 2nR2 ] constitutes
+the bin-index of our product codebook. An element (m21 , m22 )
+is selected uniformly at random from the bin associated
+n
+n
+with m2 . The corresponding codewords (u1 (m21 ), u2 (m22 ))
+constitute the cloud center of the superposition codebooks on
+each link. We note that by construction we have that each
+element (m21 , m22 ) is equally likely and,
+
+(8)
+
+(9)
+(10)
+
+where
+R11 =
+
+m1=2
+
+code-words
+
+2
+2
+2
+where wj ∼ N (0, σj ) and nk ∼ N (0, δk ) and sk ∼ N (0, γk )
+2
+2
+for j, k = 1, 2. A sum-power constraint E[x1 + x2 ] ≤ P is
+imposed on the input symbols.
+Theorem 2: The capacity region for private broadcasting
+over two-parallel Gaussian channels in (8) is the union of all
+rate tuple (R1 , R2 ) that satisfy
+
+R1 ≤ min(R11 , R12 )
+R2 ≤ min(R21 , R22 )
+
+m1=1
+
+(11)
+(12)
+
+(13)
+
+Pr(m21 = m21 , m22 = m22 ) =
+
+1
+.
+|M21 | × |M22 |
+
+(15)
+
+n
+For each codeword sequence u1 ∈ C21 , we generate coden
+book C11 (u1 ) consisting of a total of 2nR1 bins and
+2n(I(x1 ;z1 |u1 )+ε) codewords in each bin. Each codeword is
+sampled i.i.d. from the conditional distribution px1 |u1 (x1i |u1i ).
+
+(14)
+
+where Pij ≥ 0 satisfy P11 + P21 + P12 + P22 ≤ P .
+
+2
+
+n
+In an analogous manner, for each u2 ∈ C22 , we generate
+n
+a codebook C12 (u2 ) consisting of a total of 2nR1 bins and
+2n(I(x2 ;z2 |u2 )+ε) codewords. Each codeword is sampled i.i.d.
+from the conditional distribution px2 |u2 (x2i |u2i ).
+n
+n
+Given a message m1 and a sequence pair (u1 , u2 ) we
+n n
+select a codeword pair (x1 , x2 ) uniformly at random from the
+n
+n
+bins corresponding to m1 in codebooks C11 (u1 ) and C12 (u2 )
+respectively. Receiver 1 in group 1 searches for a codeword
+n
+n
+n
+pair (x1 , u1 , y11 ) that are jointly typical. This succeeds with
+high probability since our choice of R1 guarantees that the
+total number of codewords in the satellite codebook is no
+greater than 2nI(x1 ;y11 ) . In turn the receiver decodes m1 with
+high probability. Likewise user 2 in group 1 can decode
+n
+m1 with high probability using the output y22 . Similarly by
+construction of C21 and C22 , user 2 can decode sub-messages
+m21 and m22 with high probability and in turn ﬁnd the
+corresponding message m2 .
+
+mutually independent (c.f. (15)) and hence the knowledge of
+n
+(m21 , y11 ) do not help user 1 in group 1 to decode m22 .
+To lower bound the ﬁrst term observe that from the symmetry of code construction
+1
+1
+n
+n
+H(m22 |m1 , y12 , C) = H(m22 |m1 = 1, y12 , C)
+(24)
+n
+n
+n
+and since m22 ∈ [1, 2n(I(u2 ;z2 )−ε) ], and for each u2 (m22 ) a
+nI(x2 ;z2 |u2 )
+sequences are sampled in C12 in the bin
+total of 2
+m1 = 1 it follows from the analysis of a random wiretap
+code [13, Remark 22.2, pp. 555] that
+1
+n
+H(m22 |m1 = 1, y12 , C) ≥ I(u2 ; z2 ) − I(u2 ; y12 )
+(25)
+n
+To bound the second term we note that from symmetry
+1
+n
+H(m22 |m2 , m21 , m1 , y1 , C)
+n
+1
+n
+= H(m22 |m2 = 1, m21 , m1 = 1, y1 , C). (26)
+n
+Furthermore in the product code construction, for each m21 ∈
+M21 there are a total of |M22 | = 2n(I(u2 ;z2 )−ε) possible
+values for m22 . Due to random partitioning, which high probability the number of sequences in the bin with m2 = 1 is atmost |M22 |·2−n(R2 −ε) . Since R2 < I(u2 ; z2 )−I(u2 ; y22 )−2ε
+it can be shown along the lines of [13, Lemma 22.1, pp. 554]
+that
+
+A. Secrecy-Analysis
+For message m1 we need to show that
+1
+n n
+I(m1 ; z1 , z2 |C) ≤ εn
+(16)
+n
+where C denotes the particular codebook selected in the
+ensemble. Note that from (15) the messages (m21 , m22 ) are
+mutually independent. From this it can be shown that outputs
+n n
+(z1 , z2 ) are conditionally independent given m1 . Thus we
+have,
+
+1
+n
+H(m22 |m2 = 1, m21 , m1 = 1, y1 , C)
+n
+≤ I(u2 ; z2 ) − R2 − I(u2 ; y12 ) − 2ε.
+
+1
+1
+1
+n n
+n n
+n n
+I(m1 ; z1 , z2 |C) = H(z1 , z2 |C) − H(z1 , z2 |m1 , C)
+n
+n
+n
+(17)
+1
+1
+1
+n n
+n
+n
+= H(z1 , z2 |C) − H(z1 |m1 , C) − H(z2 |m1 , C) (18)
+n
+n
+n
+1
+1
+n
+n
+≤ I(z1 ; m1 |C) + I(z2 ; m1 |C)
+(19)
+n
+n
+By construction of each super-position codebook, there are
+2nI(xi ;zi |ui ) codewords in each bin and hence through standard
+1
+n
+analysis we can show that n I(m1 ; zj ) ≤ εn /2. Thus (16)
+follows.
+To establish the secrecy of message m2 with respect to the
+users in group 1 we show that provided R2 satisﬁes (7) we
+have that
+1
+n
+n
+H(m2 |yj1 , yj2 , C) ≥ R2 − εn , j = 1, 2.
+(20)
+n
+Consider the case when j = 1.
+
+(27)
+
+Substituting (27) and (25) into (23) we recover (20) for j = 1.
+The result for j = 2 can be established in a similar fashion.
+IV. T HEOREM 1: C ONVERSE
+The intuition behind the converse is the following. Suppose
+we are not required to transmit any information to receiver 2
+in group 1. Furthermore suppose that we are also not required
+to secure message m2 from user 1 in group 1. We only need to
+send message m1 to receiver 1 while securing it from receiver
+3 in group 2 and transmit m2 while only securing it against
+user 2 in group 1. Looking at the degradation order on channel
+2, it is apparent that no information must be transmitted on
+channel 2. Once we restrict our attention to channel 1 we have
+a degraded broadcast channel x1 → y11 → z1 → y21 where
+the message m1 needs to be protected from the two weaker
+receivers whereas the message m2 needs to be only protected
+from the weakest receiver. For this simpliﬁed problem we
+show that
+
+1
+1
+n
+n
+H(m2 |y1 , C) ≥ H(m2 |y1 , m1 , m21 , C)
+(21)
+n
+n
+1
+1
+n
+n
+= H(m22 |y1 , m1 , m21 , C) − H(m22 |m2 , m21 , m1 , y1 , C)
+n
+n
+(22)
+1
+1
+n
+n
+= H(m22 |m1 , y12 , C) − H(m22 |m2 , m21 , m1 , y1 , C)
+n
+n
+(23)
+
+R1 ≤ I(x1 ; y11 |u1 , z1 ),
+
+R2 ≤ I(u1 ; z1 |y21 ).
+
+(28)
+
+Similarly by relaxing symmetric constraints on message transmission and secrecy we obtain the the remaining two constraints. A formal proof is discussed next.
+Consider a sequence of codes indexed by the length n that
+satisfy (3), as well as the Fano Inequality
+1
+1
+n
+H(m1 |yj ) ≤ εn ,
+H(m2 |zn ) ≤ εn ,
+j = 1, 2. (29)
+n
+n
+
+n
+where (23) follows from the fact that m22 → (m1 , y12 ) →
+n
+(m21 , y11 ) holds, since the two sub-messages (m21 , m22 ) are
+
+3
+
+where we introduce yj = (yj1 , yj2 ) and z = (z1 , z2 ). By
+weakening user 2 on link 2 from y22 to z2 it follows from (3)
+that
+1
+n
+n
+I(m2 ; y21 , z2 ) ≤ εn
+(30)
+n
+
+Using the Markov relation
+i−1
+n
+n
+n
+(y11i , z1 , z1i , z2 m2 ) → z1,i+1 → y21,i+1
+
+it can be shown that
+
+Now consider:
+n
+n
+nR2 ≤ I(m2 ; zn ) − I(m2 ; y21 , z2 ) + 2nεn
+n n n
+≤ I(m2 ; z1 |y21 z2 ) + 2nεn
+n
+
+≤
+i=1
+n
+
+=
+i=1
+n
+
+≤
+
+i−1 n
+n
+I(m2 ; z1i |z1 y21 , z2 ) + 2nεn
+
+(32)
+
+R1 ≤
+
+(35)
+(36)
+
+(41)
+
+(52)
+
+(50)
+(51)
+
+R11 = I(x1 ; y11 |u1 ) − I(x1 ; z1 |u1 )
+= h(y11 |u1 ) − h(z1 |u1 ) − h(y11 |x1 ) + h(z1 |x1 )
+
+(53)
+
+= h(y11 |u1 ) − h(z1 |u1 ) − h(w1 ) + h(n1 )
+
+(42)
+
+(54)
+
+where we use u1 → x1 → (y11 , z1 ) in (53) and use the channel
+model (8) in (54). Similarly,
+R21 = I(u1 ; z1 ) − I(u1 ; y21 )
+= h(z1 ) − h(y21 ) + [h(y21 |u1 ) − h(z1 |u1 )]
+
+(43)
+
+n
+
+H(y11i |x1i z1i )
+
+(49)
+
+with the above choice of input distribution results in (11)- (14).
+To establish that a Gaussian distribution in indeed optimal,
+consider,
+
+where
+(41)
+follows
+from
+the
+fact
+that
+n
+n
+n
+n
+y21 → z2 → (m1 , m2 , z1 , y11 ) holds from the structure
+of the channel.
+We next bound each of the terms in (42). The second term
+can be lower bounded by:
+
+=
+
+(48)
+
+R22 = I(u2 ; z2 ) − I(u2 ; y12 )
+
+(40)
+
+n
+n
+n
+H(y11 |m1 , m2 , zn ) ≥ H(y11 |m1 , m2 , zn , x1 )
+
+R2 ≤ I(u2 ; z2 |y12 )
+
+R11 = I(x1 ; y11 |u1 ) − I(x1 ; z1 |u1 )
+R12 = I(x2 ; y22 |u2 ) − I(x2 ; z2 |u2 )
+R21 = I(u1 ; z1 ) − I(u1 ; y21 )
+
+(39)
+
++ 3nεn
+
+(47)
+
+The achievability follows by selecting a Gaussian input
+distribution in Theorem 1. In particular let x1 ∼ N (0, P1 )
+and x2 ∼ N (0, P2 ). Furthermore let u1 ∼ N (0, P21 ) and
+u2 ∼ N (0, P22 ). Let x1 = x11 + u1 , where x11 ∼ N (0, P11 )
+is independent of u1 and similarly let x2 = x12 + u2 where
+x12 ∼ N (0, P12 ) is independent of u2 . Evaluating
+
+which follows by substituting (3) and (29).
+We use the following upper bound on the rate R1 ,
+
+=
+
+(46)
+
+V. P ROOF OF THE G AUSSIAN C ASE : T HEOREM 2
+
+1
+1
+1
+I(m1 ; zn , m2 ) ≤ I(m1 ; zn ) + H(m2 |zn ) = 2εn , (38)
+n
+n
+n
+
+=
+
+I(x1i ; y11i |z1i , u1i ) + 3εn
+i=1
+
+are satisﬁed. This completes the converse.
+
+i−1
+i−1
+→ z1
+→
+where we use the Markov relation y21
+n
+n
+(m2 , z1i , y21,i , z2 ) in (34) which follows from the structure of
+i−1
+n
+n
+the channel and in (35) we deﬁne u1i = (m2 , z1 , y21,i+1 , z2 )
+that satisﬁes u1i → xi → y11i → z1i → y21i and where (36)
+follows by deﬁning a time-sharing random variable q to be
+uniformly distributed over {1, . . . , n} and independent of all
+other variables and letting u1 = (q, u1q ), x = xq , y21 = y21q
+and z1 = z1q respectively and ﬁnally (37) follows from the
+fact that q → u1 → (z1 , y21 ).
+The secrecy condition with respect to m1 is
+
+n
+I(m1 ; y11 |zn , m2 ) + 3nεn
+n
+n
+H(y11 |zn , m2 ) − H(y11 |m1 , m2 , zn )
+
+n
+
+R1 ≤ I(x2 ; y22 |u2 , z2 ),
+
+(37)
+
+n
+nR1 ≤ I(m1 ; y1 ) − I(m1 ; zn , m2 ) + 3nεn
+n
+≤ I(m1 ; y1 |zn , m2 ) + 3nεn
+
+(45)
+
+where the last step follows by since q is uniformly distributed
+over {1, . . . , n} and independent of all other variables and
+u1 = (q, u1,q ), x1 = x1q , y21 = y21q and z1 = z1q
+respectively.
+In an analogous manner we can deﬁne a random variable v
+for this problem such that
+
+i=1
+
+= nI(u1 ; z1 |y21 , q) + 2nεn
+≤ nI(u1 ; z1 |y21 ) + 2nεn
+
+1
+n
+
+= I(x1 ; y11 |z1 , u1 ) + 3εn .
+
+(34)
+
++ 2nεn
+
+I(u1i ; z1i |y21i ) + 2nεn ,
+
+H(y11i |u1i , z1i ).,
+
+Substituting (44) and (45) into (42) we get
+
+i=1
+n
+
+≤
+
+n
+i=1
+
+(31)
+
+(33)
+
+i−1 n
+n
+I(m2 ; z1i |z1 y21,i , z2 ) + 2nεn
+i−1 n
+n
+I(m2 , z1 y21,i+1 , z2 ; z1i |y2i )
+
+n
+H(y11 |zn , m2 ) ≤
+
+(55)
+(56)
+
+= h(z1 ) − h(z1 + s1 ) + [h(y21 |u1 ) − h(z1 |u1 )]. (57)
+2
+2
+1
+P1 + σ 1 + δ 1
+≤ log
+2
+2
+2 + [h(y21 |u1 ) − h(z1 |u1 )]
+2
+P1 + σ 1 + δ 1 + γ 1
+(58)
+
+(44)
+
+i=1
+
+where the last step follows from the memoryless property of
+the channel.
+
+4
+
+Δ
+
+2
+where P1 = E[x1 ] and the last step follows from the worstcase additive noise lemma [14]. Using this, it can also be
+shown that:
+
+Gaussian channels we use an extremal inequality to establish
+the optimality of Gaussian codebooks. While the results are
+derived for a special channel model, we expect the coding
+techniques to naturally generalize for multiple channels with
+arbitrary number of users in group 1 and a single user in group
+2. Such an extension will be reported elsewhere.
+
+2
+1
+σ2
+P1 + σ 1
+1
+log 2 1 2 ≤ h(y11 |u1 ) − h(z1 |u1 ) ≤ log
+2 + δ2
+2
+σ1 + δ1
+2
+P1 + σ 1
+1
+(59)
+
+R EFERENCES
+
+To establish (59) note that h(y11 |u) − h(z1 |u) = −I(z1 ; n1 |u)
+2
+where the noise n1 ∼ N (0, δ1 ) is independent u. For the upper
+bound note that
+I(z1 ; n1 |u1 ) = I(z1 , u1 ; n1 ) ≥ I(z1 ; n) ≥
+
+[1] A. D. Wyner, “The common information of two dependent random
+variables,” IEEE Trans. Inform. Theory, vol. 21, pp. 163–179, Mar. 1975.
+[2] I. Csisz´ r and J. K¨ rner, “Broadcast channels with conﬁdential mesa
+o
+sages,” IEEE Trans. Inform. Theory, vol. 24, pp. 339–348, 1978.
+[3] Y. Liang, G. Kramer, H. V. Poor, and S. Shamai, “Compound wiretap
+channels,” EURASIP Journal on Wireless Communications and Networking - Special issue on wireless physical layer security, Mar. 2009.
+[4] A. Khisti, A. Tchamkerten, and G. Wornell, “Secure broadcasting over
+fading channels,” IEEE Trans. Inform. Theory, vol. 54, no. 6, pp. 2453—
+2469, 2008.
+[5] T. Liu, V. Prabhakaran, and S. Vishwanath, “The secrecy capacity of
+a class of parallel gaussian compound wiretap channels,” in Proc. Int.
+Symp. Inform. Theory, 2008, pp. 116—120.
+[6] A. Khisti, “Interference alignment for the multi-antenna compound
+wiretap channel,” IEEE Trans. Inform. Theory, vol. 57, no. 5, pp. 2967—
+2993, 2011.
+[7] Y. Chia and A. E. Gamal, “3-receiver broadcast channels with
+common and conﬁdential messages,” IEEE Trans. Inform. Theory, 2009
+(submitted). [Online]. Available: http://arxiv.org/abs/0910.1407
+[8] P. Gopala, L. Lai, and H. El Gamal, “On the secrecy capacity of fading
+channels,” IEEE Trans. Inform. Theory, vol. 54, no. 10, pp. 4687–4698,
+Oct. 2008.
+[9] E. Perron, S. N. Diggavi, and I. E. Telatar, “A multiple access approach
+for the compound wiretap channel,” in IEEE Information Theory Workshop (ITW), Taormina, Italy, 2009.
+[10] N. Cai and K. Y. Lam, “How to broadcast privacy: Secret coding for
+deterministic broadcast channels,” Numbers, Information, and Complexity (Festschrift for Rudolf Ahlswede), eds: I. Althofer, N. Cai, G. Dueck,
+L. Khachatrian, M. Pinsker, A. Sarkozy, I. Wegener, and Z. Zhang, pp.
+353–368, 2000.
+[11] R. Liu, T. Liu, H. Poor, and S. Shamai, “Multiple-input multiple-output
+gaussian broadcast channels with conﬁdential messages,” IEEE Trans.
+Inform. Theory, no. 9, pp. 4215 – 4227, 2010.
+[12] R. Liu, I. Maric, P. Spasojevic, and R. D. Yates, “Discrete memoryless
+interference and broadcast channels with conﬁdential messages: Secrecy
+capacity regions,” IEEE Trans. Inform. Theory, June 2008.
+[13] A. E. Gamal and Y. H. Kim, Network Information Theory. Cambridge,
+UK: Cambridge University Press, 2011.
+[14] S. N. Diggavi and T. M. Cover, “The worst additive noise under a
+covariance constraint,” IEEE Trans. Inform. Theory, vol. IT-47, no. 7,
+pp. 3072–3081, 2001.
+
+2
+2
+P1 + σ 1 + δ 1
+1
+log
+.
+2
+2
+P1 + σ 1
+
+The last step follows from the worst-case additive noise
+lemma. For the lower bound, note that since u1 → x → z1
+holds and n1 is independent of these random variables we have
+I(z1 ; n1 |u1 ) ≤ I(z1 ; n1 |x) = I(n1 + w1 ; n1 ) =
+
+σ2 + δ2
+1
+log 1 2 1 .
+2
+σ1
+
+Hence for some 0 ≤ P11 ≤ P1 we have that
+h(y11 |u1 ) − h(z1 |u1 ) =
+
+2
+P11 + σ1
+1
+log
+2 + δ2 .
+2
+P11 + σ1
+1
+
+(60)
+
+Upon substituting (60) into (54) we establish (11). To establish
+the bound for R21 we use the following extremal inequality:
+max
+
+2
+px (·):E[x1 ]=P1
+
+=
+
+1
+max
+2 0≤t≤P1
+
+{h(y11 |u1 ) + μh(y21 |u1 ) − (1 + μ)h(z1 |u1 )}
+2
+2
+2
+2
+log(t + σ1 ) + μ log(t + σ1 + δ1 + γ1 )
+
+2
+2
+− (1 + μ) log(t + σ1 + δ1 )
+δ2
+
+(61)
+
+δ 2 +γ 2
+
+1
+1
+By selecting μ = γ1 P11 +σ2 + 1 it can be shown that
+2
+1
+1
+the optimal t = P11 and through some straightforward
+computation it follows from (61) and (60) that
+
+h(y21 |u) − h(z1 |u) ≤
+
+2
+2
+2
+P11 + σ1 + δ1 + γ1
+1
+log
+.
+2
+2
+2
+P11 + σ1 + δ1
+
+(62)
+
+Substituting into (58) we have that
+R21 ≤
+
+2
+2
+2
+2
+2
+P1 + σ 1 + δ 1
+P11 + σ1 + δ1 + γ1
+1
+1
+log
++ log
+,
+2
+2
+2
+2
+2
+2
+P1 + σ 1 + δ 1 + γ 1
+2
+P11 + σ1 + δ1
+(63)
+
+from which we recover (13) by deﬁning P21 = P1 − P11 . The
+upper bounds on R12 and R22 can be established in a similar
+fashion and will be skipped.
+VI. C ONCLUSION
+We study the problem of secure broadcasting of two messages to two groups of users over two independent and parallel
+channels. Group 1 has two receivers, both interested in a
+common message, whereas group 2 has only one receivers.
+Each message must be kept secure from user(s) in the other
+group. For a particular degradation structure we establish the
+optimality of a technique that combines a product code and a
+multicast code using a superposition codebook. For the case of
+
+5
+
+

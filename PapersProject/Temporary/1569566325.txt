@@ -1,0 +1,1021 @@
+Creator:        TeX
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Tue Jun 19 15:58:02 2012
+ModDate:        Tue Jun 19 12:54:08 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      3463625 bytes
+Optimized:      no
+PDF version:    1.7
+ISIT'2012 1569566325
+
+On Two Unicast Wireless Networks with
+Destination-to-Source Feedback
+I-Hsiang Wang
+EPFL, Lausanne, Switzerland
+i-hsiang.wang@epﬂ.ch
+capacity region if and only if the non-feedback capacity region
+of the network is T12 or T21 . Moreover, the capacity region is
+always enlarged to the pentagon region P. Therefore, the category of networks with feedback capacity region being P is the
+union of those with non-feedback capacity regions T12 , T21 ,
+and P. In a word, the class of two unicast linear deterministic
+network can be classiﬁed into only three categories according
+to their feedback capacity regions: {T, P, S}. Since bounds on
+2R1 + R2 and R1 + 2R2 are no longer active in characterizing
+the capacity region, in principle the role of feedback is similar
+to that in the two-user interference channel.
+For the achievability, we provide a coding scheme that
+exploits feedback for utilizing side information at destinations
+for the category of networks with non-feedback capacity
+region T12 (or T21 ), so that the rate pair (1, 1/2) (or (1/2, 1))
+is achievable. For the outer bounds, we modify the proof of
+the non-feedback outer bounds by introducing new Markov
+relations taking the feedback into account, and show that the
+sum rate outer bounds still hold with the presence of feedback.
+An important scenario of multiple unicast wireless networks
+is the Gaussian network. Recently, the degrees of freedom
+(DoF) region is completely characterized for layered two
+unicast Gaussian networks without feedback [8]. The result resembles that in the linear deterministic case [7] with a change
+of performance measure from rate to DoF. We conjecture
+that the conclusion of the current paper regarding the role
+of feedback can be extended to the Gaussian network. This
+direction is left as future work.
+The rest of the paper is organized as follows. In Sec. II,
+we formulate the problem and deﬁne the network model.
+In Sec. III, we ﬁrst review the non-feedback result adapted
+from [7] and provide the minimal necessary deﬁnitions for
+presenting the main theorem. Then in Sec. IV we present our
+feedback capacity result. A motivating example is given in
+Sec. V. The achievability proof is in Section VI, while the
+converse proofs are left in an extended version [9].
+
+Abstract—In this paper we study the role of feedback in
+layered two unicast wireless networks with arbitrary number of
+nodes and connectivity. The feedback model allows destinations to
+feedback their received signals to their respective sources. In the
+case of linear deterministic networks, we fully characterize the
+capacity region when the two individual minimum cut values are
+equal to 1 and show that feedback only helps increase capacity
+whenever the capacity region without feedback has (1, 1/2) or
+(1/2, 1) as its corner point but not both. Therefore, feedback
+helps balance the resource utilization of the two users, similar to
+the role of feedback in the two-user interference channel [1].
+
+I. I NTRODUCTION
+In multi-user wireless networks, feedback helps balance the
+resource utilization among different users [1] by treating part
+of the interference received at destinations as useful side information. Through the feedback from destinations to sources,
+the side information can be exploited efﬁciently, and the
+system resource utilization is balanced across different users.
+In the context of the two-user interference channel, in the
+approximate characterization of the feedback capacity region,
+only the sum rate upper bound and the two individual rate
+bounds are active. In contrast, when feedback is not available
+[2], additionally bounds on 2R1 + R2 and R1 + 2R2 will be
+active, which implies that resource utilization is not balanced
+in certain regimes. The resource utilization interpretation [1]
+is best visualized using the linear deterministic model [3].
+Channel output feedback in interference channels with constant channel gains has been well studied [4] [1] [5] [6]. With
+a good understanding on the role of feedback in single-hop
+multi-user networks, one of the natural follow-up questions is
+whether or not it extends to networks with arbitrary number of
+nodes and connectivity. In this paper we make a step towards
+answering this question by studying a class of layered two
+unicast linear deterministic networks [3] where the channel
+strengths are either unity or zero and the individual minimum
+cut values are equal to 1. This class of networks was studied
+in the previous work [7] when feedback is not available. The
+non-feedback capacity region is completely characterized in
+[7], and similar to the two-user interference chanel [2], there
+are networks where in the characterization of the capacity
+region, bounds on 2R1 +R2 or R1 +2R2 are active. Moreover,
+the class of two unicast linear deterministic networks can
+be partitioned into ﬁve different categories according to their
+capacity regions: {T, T12 , T21 , P, S}, as shown in Fig. 1.
+Our main result is that, when feedback is available from the
+destinations to their respective sources, it helps increase the
+
+II. P ROBLEM F ORMULATION
+A two-source-two-destination layered network is a directed,
+acyclic, layered graph G = (V, E), i.e. where the collection of
+nodes V can be partitioned into L + 2 layers (L 0):
+SL+1
+V = k=0 Lk , Lk \ Lj 6= ;, 8k 6= j,
+
+such that for any edge (u, v) 2 E, 9 k, 0  k  L s.t. u 2
+Lk , v 2 Lk+1 . The ﬁrst layer L0 = {s1 , s2 } consists of the
+
+1
+
+R2
+
+R2
+
+R2
+
+(1/2, 1)
+
+R2
+
+(0, 1)
+
+S
+
+(1, 1)
+
+P
+
+T21
+
+T12
+
+R2
+
+(1/2, 1)
+
+T
+
+(1, 1/2)
+
+(1, 1/2)
+
+(1, 0)
+R1
+
+Fig. 1.
+
+R1
+
+R1
+
+(t 1)
+
+Xu [t] is a function of Yu
+
+let Ksi (v) := {u : P si (u) = P si (v)} , i = 1, 2, the set of
+nodes that have the same si -reachable parents as v. We
+called these nodes the si -clones of v.
+Deﬁnition 3.2 (Vertex Cut): For two sets of nodes U1 and
+U2 , we say a collection of nodes T is a (U1 ; U2 )-vertex-cut
+if in the graph obtained from the deletion of T , there are no
+paths from any node in U1 \ T to any node in U2 \ T . Note
+that this deﬁnition allows T to have nodes from U1 or U2 .
+Deﬁnition 3.3 (Omniscient Nodes): We say a node v 2 V
+is omniscient if it satisﬁes either of (A) or (B) below:
+(A) K(v) is a (s1 , s2 ; d1 )-vertex-cut and Ks2 (v) is a (s2 ; d2 )vertex-cut.
+(B) K(v) is a (s1 , s2 ; d2 )-vertex-cut and Ks1 (v) is a (s1 ; d1 )vertex-cut.
+Deﬁnition 3.4 (Critical Nodes): For each i = 1, 2, we de⇤
+ﬁne the critical node vi as any node with the smallest possible
+⇤
+layer index such that K(vi ) is a (s1 , s2 ; di )-vertex-cut. We use
+⇤
+⇤ to denote the layer where critical nodes v
+L ki
+i lies.
+⇤
+A key property of the critical node vi is that, its reception
+completely determines the reception of destination di .
+Deﬁnition 3.5 (Cut Value and Min-Cut): Fix a set of nodes
+in layer k, U ✓ Lk . Consider a partition of V into (T , T c )
+with s1 , s2 2 T and U ✓ T c . Construct the transfer matrix
+G with rows indexed by elements of T and columns indexed
+by elements of T c where the (u, w) entry of G is 1 if there
+is a directed edge from u to w and 0 otherwise. The rankmincut [3] from {s1 , s2 } to U is deﬁned as the minimum rank
+of the transfer matrix G over all such partitions (T , T c ), and
+is denoted by C (s1 .s2 ; U ).
+Once we deﬁne the cut value, we can deﬁne primary mincut nodes for any set of nodes U with C (s1 , s2 ; U ) = 1, due
+to the following lemma. What these primary min-cut nodes
+receive determines what U receive.
+Lemma 3.1 (Primary Min-Cut): By Ul , 0  l < k, denote
+the set of nodes in layer Ll that can reach some node in U .
+Let l⇤ be the minimum index such that C(s1 , s2 ; Ul⇤ ) = 1.
+Then, Ul⇤ ✓ K(u) for any u 2 Ul⇤ , i.e. nodes in Ul⇤ are all
+clones of each other. We then deﬁne any of the nodes in K(u)
+as the primary min-cut node of U , denoted by Pmc (U ). It is
+unique up to clones.
+Note that the reception of any node in U is a function of the
+reception of Pmc (U ).
+Next, we deﬁne induced graph G12 (w) for a node w 2
+⇤
+P s2 (v1 ) as follows. The purpose of these induced graphs is
+two-fold: 1) to capture the effect on the rest of the network
+•
+
+, for u 2 V \ {s1 , s2 }.
+
+The notation X := {X[1], . . . , X[t]} for t 1 and X 0 := ;.
+Note that in the above formulation, we do not include the
+feedback links from the destinations to their respective sources
+into the graph G. Hence, throughout this paper, any graph
+theoretic properties and conditions are associated to the graph
+G itself, not including the feedback links.
+The channel model we consider is a special case of the linear
+deterministic network from [3]. The simpliﬁcation is that if
+there is a link from one node to another, then the channel
+strength is unity. The reception of a node L the binary XOR
+is
+of the transmission of its parents: Yv [t] = u2P(v) Xu [t].
+t
+
+III. BACKGROUND [7]
+
+For completeness, below we ﬁrst summarize the deﬁnitions
+in [7] for the case without feedback. These deﬁnitions play
+equally important roles in the feedback result. For a better
+exposition and illustraion please check [7]. Then we review
+the known result in the case without feedback, which lays the
+foundation for deriving the feedback result.
+Deﬁnition 3.1 (Parents, Clones): For each v 2 V \ {s1 , s2 },
+•
+•
+•
+
+R1
+
+Capacity Regions for Linear Deterministic Network. Without Feedback: {T, T12 , T21 , P, S}. With Feedback:{T, P, S}
+
+two source nodes, and the last layer LL+1 = {d1 , d2 } consists
+of the two destination nodes. Without loss of generality we
+assume each node in the network can be reached by at least
+one of the source nodes and can reach at least one of the
+destination nodes. For each node v 2 V \ {s1 , s2 }, we deﬁne
+nodes that can reach v as its predecessors. Let P(v) denote the
+set of predecessors that can reach v in one step. We will call
+the nodes in P(v) as the parents of v. A node is si -reachable
+if it can be reached by si . It is si -only-reachable if it can be
+reached by si but not sj , j 6= i. It is s1 s2 -reachable if it can
+be reached by both s1 and s2 .
+Each source si , i = 1, 2, has its own message Wi to be
+transmitted to its own destination di at rate Ri , and {W1 , W2 }
+are independent. Let Xu [t] and Yu [t] denote the transmitted and
+received signals of node u at time t respectively. Due to the
+causal processing at each node, for any t 1,
+⇣
+⌘
+(t 1)
+• Xsi [t] is a function of Wi , Yd
+, for i = 1, 2
+i
+•
+
+R1
+
+let P(v) denote the set of parents of v,
+let P si (v) ✓ P(v) denote the parents of v reachable by
+source si , i = 1, 2,
+let K(v) := {u : P(u) = P(v)} denote the clones of v,
+the set of nodes that receive the same signal as v,
+
+2
+
+T(12) \ O
+
+()
+
+T12
+
+()
+
+P
+
+(21)
+
+T
+
+\O
+
+Q\O
+
+()
+
+T21
+
+()
+
+S
+
+IV. M AIN R ESULT
+The following theorem summarizes the main result for the
+two unicast linear deterministic networks with feedback.
+Theorem 4.1 (Capacity Region with Feedback): The
+capacity region of two unicast ﬂows over the linear
+deterministic networks with destination-to-source feedback is
+characterized as follows:
+
+where
+denotes symmetric set difference: A B := (A \
+B) [ (B \ A). We then drop nodes in G12 (w) that cannot be
+reached by either of the two sources. In the rest of this paper, a
+graph theoretic object with a graph (say, G12 ) in its subscript,
+like PG12 (w) (u) above, denote the graph theoretic object in the
+induced graph G12 .
+Similarly we can deﬁne G21 (w) with indices 1 and 2 swapped.
+⇤
+⇤
+⇤
+We will use G12 (w) when k1  k2 and G21 (w) when k2 
+⇤
+k1 . We will only use these graphs in relation to whether or
+not there is an omniscient node in G12 (w). Lemma 3.2 below
+allows us to drop the w and refer to any of the G12 (w) as G12
+and talk about whether there is an omniscient node in G12 .
+Lemma 3.2: Suppose, in a network with no omniscient
+⇤
+⇤
+⇤
+node, and with k1  k2 , there exists a node w0 2 P s2 (v1 )
+such that there is an omniscient node in G12 (w0 ). Then for any
+⇤
+node w 2 P s2 (v1 ), there is an omniscient node in G12 (w).
+(12)
+We deﬁne T
+as the conjunction of the following:
+(12)
+⇤
+⇤
+• T1
+: 0 < k1  k 2 .
+(12)
+s2
+⇤
+⇤
+• T2
+: C (s1 , s2 ; P (v1 )) = 1. w12 := Pmc (P s2 (v1 )).
+(12)
+⇤
+• T3
+: Let u21 := PmcG12 (v2 ). u21 is omniscient in G12 .
+(12)
+s2
+⇤
+• T4
+: w12 = s2 , i.e., P (v1 ) cannot be reached by s1 .
+Symmetrically, we can deﬁne condition T(21) simply by swapping the indices 1 and 2 in the superscript.
+Similarly, deﬁne P(12) as the conjunction of the following:
+(12)
+(12)
+(12)
+(12)
+(12)
+(12)
+• P1
+⌘ T1 , P2 ⌘ T2 , P3 ⌘ T3
+(12)
+• P4
+: w12 6= s2 and Ks2 (w12 ) forms an (s2 ; d2 )-vertexcut in G.
+Finally, deﬁne Q(12) := T(12) _ P(12) and it is the conjunction of the following:
+(12)
+(12)
+(12)
+(12)
+(12)
+(12)
+• Q1
+⌘ T1 , Q2 ⌘ T2 , Q3 ⌘ T3
+(12)
+• Q4
+: Ks2 (w12 ) forms an (s2 ; d2 )-vertex-cut in G.
+We use the following shorthand notations: O :=
+{9 an omniscient node}, T := T(12) _T(21) , P := P(12) _P(21) ,
+and Q := Q(12) _ Q(21) = T _ P. Also, in the context that no
+confusion will be caused, we use the same notation to denote
+the set of networks that satisfy the condition.
+Theorem 3.1 (Capacity Region without Feedback [7]):
+The capacity region of two unicast ﬂows over the linear
+deterministic networks without feedback is characterized as
+follows: the left-hand side denotes the collection of networks
+satisfying the condition, and the right-hand side denotes the
+capacity region of that collection of networks.
+O
+
+()
+
+P \ (T [ O)
+
+caused by interference neutralization for (1, 1)-achievability,
+and 2) to capture the Markov relations that are useful in the
+derivation of outer bounds.
+Deﬁnition 3.6 (Induced Graph G12 ): If the min-cut value
+⇤
+C (s1 , s2 ; P s2 (v1 )) = 2 then deﬁne G12 (w) := G. If the min⇤
+cut value C (s1 , s2 ; P s2 (v1 )) = 1, then we deﬁne G12 (w) as
+the graph obtained by modifying only the parents of nodes in
+⇤
+⇤
+Lk1 as follows. For u 2 Lk1 ,
+(
+P(u)
+if w 2 P(u)
+/
+PG12 (w) (u) =
+⇤
+P(u) P s2 (v1 ) if w 2 P(u),
+
+O
+
+()
+
+T
+
+()
+
+Q\O
+
+S
+
+()
+
+Q\O
+
+P
+
+Remark 4.1: Note that compared to the case without feedback as shown in Theorem 3.1, the only difference is that,
+in any network belonging to the class T(12) \ O or the class
+T(21) \ O, one can make use of feedback to enlarge the
+capacity region to the pentagon region P. Therefore, to prove
+Theorem 4.1, we only need to prove the following:
+1) Achievability: By symmetry, it sufﬁces to show that for a
+network that belongs to T(12) \ O, when destination-to-source
+feedback is available, the rate pair (1, 1/2) is achievable.
+2) Converse: Show that for a network that belongs to the class
+O, its achievable sum rate R1 + R2  1, and for a network
+that belongs to the class Q \ O, 2R1 + 2R2  3.
+Due to space constraint, proof of the converse part is left
+in [9]. Below we summarize the two key lemmas that prove
+the converse part, and the details can be found in [9].
+Lemma 4.1: If there exists an omniscient node as deﬁned in
+Deﬁnition 3.3 in the two-unicast linear deterministic network,
+then for any achievable rate pair (R1 , R2 ), R1 + R2  1.
+Lemma 4.2: If the two-unicast linear deterministic network satisﬁes condition Q, then for any achievable rate pair
+(R1 , R2 ), 2R1 + 2R2  3.
+V. A M OTIVATING E XAMPLE
+Before we go into the details of the proof, let us investigate
+an example network that belongs to the class T(12) \ O, and
+show that indeed (R1 , R2 ) = (1, 1/2) is achievable if sourceto-destination feedback is available. Moreover the sum rate
+R1 + R2 is still upper bounded by 3/2.
+
+s2
+
+u1
+
+u4
+
+u2
+
+s1
+
+u5
+
+u3
+
+u6
+
+(a) Original Network
+Fig. 2.
+
+T
+
+3
+
+d 2 s2
+
+u1
+
+u4
+
+u2
+
+d 1 s1
+
+u5
+
+u3
+
+u6
+
+(b) Induced Graph G12
+An Example Network
+
+d1
+
+d2
+
+Consider the example illustrated in Fig. 2(a). First of all, let
+us check its properties and show that it satisﬁes the condition
+T(12) . In this example, the critical node for user 1 is the node
+u4 , while that for user 2 is the destination d2 . Moreover, it is
+easy to check that there is no omniscient node by checking
+the two critical nodes [7]. In particular, for the node u4 ,
+its s2 -reachable parents P s2 (u4 ) = {u2 } and hence its s2 clones Ks2 (u4 ) = {u4 , u5 }. But the removal of {u4 , u5 } cannot
+separate d2 from s2 , and hence the node u4 does not satisfy
+the deﬁnition of an omniscient node.
+Next, let us check that condition T(12) is satisﬁed.
+(12)
+• T1
+: Here the critical node for user 1 lies in a layer with
+⇤
+⇤
+index smaller than that for user 2. Hence k1 < k2 .
+(12)
+• T2
+: The critical node for user 1, u4 , has only one s2 reachable parent, which is the node u2 . Hence we have
+C (s1 , s2 ; P s2 (u4 )) = 1. Moreover, since u2 can only be
+reached by s2 , the primary min-cut node of it, w12 =
+Pmc (u2 ) = s2 .
+(12)
+• T3
+: The induced graph G12 (u2 ) is depicted in Fig. 2(b).
+Hence we see that indeed u21 := PmcG12 (d2 ) = u6 is
+omniscient in G12 .
+(12)
+• T4
+: Indeed w12 = s2 as shown above.
+Therefore, if destination-to-source feedback is not available,
+the capacity region of this network is the region T12 [7],
+and (R1 , R2 ) = (1, 1/2) cannot be achieved. With feedback,
+however, this rate pair is achievable. Below we describe a
+simple scheme over two time slots to achieve it. See Fig. 3 for
+an illustration. We aim to deliver two binary symbols {a1 , a2 }
+from s1 to d1 and one binary symbol {b} from s2 to d2 over
+two time slots. At the ﬁrst time slot, each node transmits what
+it receives except the node u2 , with s1 transmitting a1 and s2
+transmitting b. The node u2 keeps silent at the ﬁrst time slot.
+Hence d1 receives a1 , while d2 receives a1 b. At the second
+time slot, using the feedback from d2 , the source s2 obtains
+a1 . At this time slot, each node transmits what it receives
+except the node u6 , with s1 transmitting a2 and s2 transmitting
+a1 . The node u6 keeps silent at the second time slot. Hence
+d1 receives a1 a2 , while d2 receives a1 . Therefore, both
+user’s symbols are delivered to their respective destinations
+successfully, and the rate pair (R1 , R2 ) = (1, 1/2) is achieved.
+
+s1
+
+a1
+
+a1
+
+u1
+
+a1
+
+u4
+
+d1
+
+s1
+
+a2
+
+a
+u1 2
+
+a1
+
+u4
+
+a2
+
+s2
+
+u3
+
+b
+
+u6
+
+a1
+
+a1
+
+b
+d2
+
+u6
+
+f
+
+N
+N
+of channels. Third, since YdN = Xs2 , Xs1 for i = 1, 2,
+i
+⇣
+⌘
+f
+f
+(N 1)
+N
+N
+N
+YdN = Xs2 , Xs1 = Xs2 , W1 , Yd1
+2
+⇣
+⌘
+f
+N
+(N
+= Xs2 , W1 , Xs1 1)
+f
+
+N
+and hence inductively we have YdN = Xs2 , W1 . Finally,
+2
+⇣
+⌘
+f
+f
+(N 1)
+N f
+N
+N
+Xu2 = Xu1 , YuN = Xs1 , YuN = W1 , Yd1
+, YuN
+4
+4
+4
+f
+
+= W1 , YuN .
+4
+
+N
+From the last functional relation, H Xu2 |W1 , YuN = 0 and
+4
+hence
+N
+N
+H Xu2 |W1  H Xu2 , YuN |W1
+4
+
+N
+= H Xu2 |W1 , YuN + H YuN |W1 = H YuN |W1 .
+4
+4
+4
+
+If (R1 , R2 ) is achievable, from data processing inequality
+and Fano’s inequality, we have
+N (2R1 + R2
+I
+
+Fig. 3.
+
+✏1,N )
+
+W1 ; YdN
+1
+
++ I W1 ; YdN + I W2 ; YdN
+1
+2
+
+(a)
+
+N
+N
+ I W1 ; YuN , Xu2 , W2 + I W1 ; YuN + I W2 ; YuN , Xu2
+6
+4
+6
+
+(b)
+
+N
+N
+= I W1 ; YuN , Xu2 |W2 + I W1 ; YuN + I W2 ; YuN , Xu2
+6
+4
+6
+
+N
+= H YuN , Xu2 |W2 + H YuN
+6
+4
+N
++ H YuN , Xu2
+6
+
+(c)
+
+ H YuN
+4
+
+H YuN |W1
+4
+
+N
+H YuN , Xu2 |W2
+6
+
+N
+N
+N
+H Xu2 |W1 + H Xu2 + H YuN |Xu2
+6
+
+N
+N
+= H YuN + H YuN |Xu2 + I W1 ; Xu2
+4
+6
+(d)
+
+N
+ 2N + I W1 ; Xs2 ,
+
+where ✏1,N ! 0 as N ! 1. (a) is due to the above
+functional relations. (b) is due to the fact that W1 and W2
+are independent. (c) is due to cancellation of terms and the
+N
+fact that H Xu2 |W1  H YuN |W1 . (d) is due to the fact
+4
+N
+N
+that Xu2 is a function of Xs2 .
+On the other hand,
+
+a2
+
+N (R2
+
+d2
+
+b
+
+(a)
+
+(a) Time Slot 1
+
+f
+
+f
+
+a1
+u3
+
+f
+
+N
+N
+where the key is that Xu1 = (Xu3 , YuN ) due to the deﬁnition
+6
+
+a1
+
+a1
+s2
+
+f
+
+N
+N
+N
+N
+N
+N
+YdN = Xu1 , Xu2 = Xu3 , YuN , Xu2 = Xs2 , YuN , Xu2
+1
+6
+6
+⇣
+⌘
+f
+f
+(N 1)
+N
+N
+= W 2 , Yd 2
+, YuN , Xu2 = W2 , YuN , Xu2 ,
+6
+6
+
+u5
+
+u2
+
+a1
+a1
+
+b
+
+b
+
+f
+
+N
+for the received signal at d2 , YdN = YuN , Xu2 . Second,
+6
+2
+
+d1
+
+a1
+u5
+
+u2
+
+function of B”. Let us observe several functional relations.
+f
+First, for the received signal at d1 , we have YdN = YuN , and
+4
+1
+
+✏2,N )  I W2 ; YdN
+2
+
+N
+N
+N
+ I W2 ; Xs2 , W1 = I W2 ; Xs2 |W1 = H Xs2 |W1 ,
+
+(b) Time Slot 2
+
+where ✏2,N ! 0 as N ! 1. (a) is due to the above functional
+relations. Combining the above two, we have
+
+A Simple Scheme Achieving (1, 1/2)
+
+It remains to show that for any achievable (R1 , R2 ), 2R1 +
+f
+2R2  3. We use the notation A = B to denote “A is a
+
+N (2R1 + 2R2
+
+N
+N
+✏N )  2N + I W1 ; Xs2 + H Xs2 |W1
+
+N
+= 2N + H Xs2  3N,
+
+4
+
+where ✏N = ✏1,N + ✏2,N ! 0 as N ! 1. Proof complete.
+It turns out that both the above scheme and the converse
+proof can be generalized. The next section is devoted to the
+achievability proof of Theorem 4.1.
+
+⇤
+⇤
+B. Case: 0 < k1 < k2
+Again we aim to deliver two symbols {a1 , a2 } from s1 to
+d1 and one symbol b from s2 to d2 over two time slots. At
+time t = 1, every node performs RLC with s1 sending a1
+⇤
+and s2 sending b except for one node, say w, in P s2 (v1 ).
+s2 ⇤
+This node w 2 P (v1 ) has to choose its scaling coefﬁcient
+⇤
+⇤
+carefully so that the aggregate of P s2 (v1 )’s transmission at v1
+becomes 0 (interference neutralization). This is because under
+⇤
+condition T(12) , P s2 (v1 ) are s2 -only-reachable. Therefore,
+under the interference neutralization, in effect the network
+becomes G12 (w). In G12 (w) the destination d1 becomes s1 ⇤
+only-reachable. Hence d1 can decode a1 , while v2 receives a
+linear combination of a1 and b. The coefﬁcient of b is non-zero
+⇤
+with high probability since v1 is not omniscient and therefore
+⇤
+in G12 (w), s2 can reach v2 [7]. This linear combination is then
+fed back to s2 , and it now knows a1 before the transmission
+of time t = 2.
+At time t = 2, every node performs RLC with s1 sending
+⇤
+a2 and s2 sending a1 , except the nodes in P (v2 ). Since by
+⇤
+the deﬁnition of critical nodes, C (s1 , s2 ; P (v2 )) = 2, we can
+⇤
+arrange their transmission carefully so that v2 can decode a1 .
+⇤
+Hence, v2 can decode b by combining it with the previous
+received linear combination of {a1 , b}. Such arrangement in
+⇤
+⇤
+P (v2 ), as v2 is not omniscient, guarantees that d1 can still
+receive a linear combination of a1 and a2 with non-zero a2 coefﬁcient [7]. Hence, d1 can decode a2 as well.
+
+VI. ACHIEVABILITY P ROOF
+As mentioned in Remark 4.1, for the achievability part we
+only need to show that, for a network that belongs to the class
+T(12) \ O, when feedback from destinations to their respective
+sources is available, the rate pair (1, 1/2) is achievable.
+Following the same line as the achievability proof in the
+non-feedback case [7], we without loss of generality assume
+⇤
+⇤
+that k1  k2 and distinguish into two different cases:1 1)
+⇤
+⇤
+⇤
+⇤
+0 < k1 = k2 = k ⇤ , and 2) 0 < k1 < k2 .
+⇤
+⇤
+A. Case: 0 < k1 = k2 = k ⇤
+
+In this case, we recall a lemma from [7] which captures
+the pattern of networks belonging to T(12) \ O when the two
+⇤
+⇤
+critical nodes are in the same layer. Let P1 := P (v1 ) \P (v2 ),
+⇤
+⇤
+⇤
+⇤
+P2 := P (v2 ) \ P (v1 ), P12 := P (v1 ) \ P (v2 ).
+⇤
+⇤
+Lemma 6.1 ([7]): When k1 = k2 = k ⇤ and there is no
+omniscient node, we have the following equivalence relation2 :
+T(12) \ O ()
+8
+> P1 is s1 -only-reachable
+>
+<
+C (s1 , s2 ; P2 ) = 1, u21 := Pmc (P2 ) 6= si , i = 1, 2
+> P12 is s2 -only-reachable
+> s
+:
+K 1 (u21 ) forms (s1 ; d1 ) -vertex-cut.
+
+ACKNOWLEDGEMENT
+The author would like to thank Dr. Changho Suh for the
+fruitful discussion that sparked his interest in investigating the
+role of feedback in two unicast wireless networks. The work
+of I-Hsiang Wang was supported by EU project CONECT
+FP7-ICT-2009-257616.
+
+Using this lemma, below we prove that (1, 1/2) can be
+achieved using linear schemes over extension ﬁeld F2q (where
+q is the effective block length), as deﬁned in [7].
+We aim to deliver two F2q -symbols {a1 , a2 } from s1 to
+⇤
+⇤
+v1 and one symbol b from s2 to v2 over two time slots,
+respectively. At time t = 1, every node performs random
+linear coding (RLC, where each node transmits a uniformly
+randomly chosen linear transformation in F2q of its received
+symbol, as deﬁned in [7]) with s1 sending a1 and s2 sending
+b, except that the nodes in P12 have to keep silent. As a result,
+⇤
+since P1 are s1 -only-reachable and P12 are silent, v1 can
+⇤
+decode a1 with high probability and so can d1 . v2 (and hence
+d2 ), however, will receive a scaled version of the reception of
+u21 . Since u21 6= si , i = 1, 2, it is s1 s2 -reachable, and hence
+d2 ’s reception is a linear combination of a1 and b. This linear
+combination is then fed back to s2 , and it now knows a1 before
+the transmission of time t = 2.
+At time t = 2, every node performs RLC with s1 sending
+a2 and s2 sending a1 , except that the nodes in P2 have to
+⇤
+keep silent. Consequently, v1 (and hence d1 ) receives a linear
+⇤
+combination of a1 and a2 and hence can decode a2 . v2 (and
+hence d2 ) receives a scaled version of a1 , and can decode b by
+combining it with the previously received linear combination
+of {a1 , b}.
+
+R EFERENCES
+[1] C. Suh and D. N. C. Tse, “Feedback capacity of the Gaussian interference
+channel to within 2 bits,” IEEE Transactions on Information Theory,
+vol. 57, pp. 2667–2685, May 2011.
+[2] R. Etkin, D. N. C. Tse, and H. Wang, “Gaussian interference channel
+capacity to within one bit,” IEEE Transactions on Information Theory,
+vol. 54, pp. 5534–5562, December 2008.
+[3] A. S. Avestimehr, S. N. Diggavi, and D. N. C. Tse, “Wireless network
+information ﬂow: A deterministic approach,” IEEE Transactions on
+Information Theory, vol. 57, pp. 1872–1905, April 2011.
+[4] G. Kramer, “Feedback strategies for white Gaussian interference networks,” IEEE Transactions on Information Theory, vol. 48, pp. 1423–
+1438, June 2002.
+[5] C. S. Vaze and M. K. Varanasi, “The degrees of freedom region of
+the MIMO interference channel with Shannon feedback,” Arxiv Preprint,
+October 2011, http://arxiv.org/abs/1109.5779.
+[6] S. Mohajer, R. Tandon, and H. V. Poor, “On the feedback capacity of the
+fully connected K-user interference channel,” Arxiv Preprint, October
+2011, http://arxiv.org/abs/1110.6487.
+[7] I.-H. Wang, S. U. Kamath, and D. N. C. Tse, “Two unicast information
+ﬂows over linear deterministic networks,” Proceedings of IEEE International Symposium on Information Theory, pp. 2464–2468, August 2011.
+Extended version: http://arxiv.org/abs/1105.6326.
+[8] I. Shomorony and A. S. Avestimehr, “Two-unicast wireless networks:
+Characterizing the degrees-of-freedom,” Submitted to IEEE Transactions
+on Information Theory, March 2011, http://arxiv.org/abs/1102.2498.
+[9] I.-H. Wang, “On two unicast wireless networks with destination-to-source
+feedback,” Preprint, February 2012.
+Link available at http://sites.google.com/site/ihsiangw/publication.
+
+1 Note that as pointed out in Lemma 3.1 in [7], if k ⇤ = 0 and there is no
+1
+omniscient node, then (1, 1) is achievable.
+2 In [7], the left-hand side is originally written as T(12) rather than T(12) \O,
+⇤
+⇤
+which is equivalent as under k1 = k2 = k⇤ , T(12) \ O = ;.
+
+5
+
+

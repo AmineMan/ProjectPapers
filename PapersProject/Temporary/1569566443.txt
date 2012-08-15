@@ -1,0 +1,748 @@
+Title:          optimal.pt.isit12 (1).pdf
+Author:         Yihong Wu
+Creator:        TeX
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Mon May 14 02:25:40 2012
+ModDate:        Tue Jun 19 12:55:18 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      595.22 x 842 pts (A4)
+File size:      294197 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569566443
+
+Optimal Phase Transitions in Compressed Sensing
+with Noisy Measurements
+Yihong Wu and Sergio Verd´
+u
+Abstract—Compressed sensing deals with efﬁcient recovery
+of analog signals from linear encodings. This paper presents a
+statistical study of compressed sensing by modeling the input
+signal as an i.i.d. random process. Three classes of encoders
+are considered, namely, optimal nonlinear, optimal linear and
+random linear encoders. Focusing on optimal decoders, we
+investigate the fundamental tradeoff between measurement rate
+and reconstruction ﬁdelity gauged by the noise sensitivity. The
+optimal phase-transition threshold is determined as a functional
+of the input distribution and compared to suboptimal thresholds
+achieved by popular reconstruction algorithms. In particular,
+we show that Gaussian sensing matrices incur no penalty on
+the phase-transition threshold with respect to optimal nonlinear
+encoding. Our results also provide a rigorous justiﬁcation of
+previous results based on replica heuristics in the weak-noise
+regime.
+
+a) the input vector is random with a known distribution and
+performance is measured on an average basis. Similar
+Bayesian modeling is followed in some of the compressed
+sensing literature, for example, [6], [7], [8], [9].
+b) three different encoder classes are considered: optimal
+nonlinear, optimal linear and random linear encoders.
+c) the decoder is the optimal Bayes procedure.
+The overarching goal is to investigate the fundamental
+tradeoff between reconstruction ﬁdelity and measurement rate
+k
+n as n → ∞, as a functional of the signal and noise statistics.
+When the measurements are noiseless, the goal is to reconstruct the original signal in the sense of driving the error
+probability to zero as the ambient dimension, n, grows. For
+many input processes (e.g., i.i.d. ones), it turns out that there
+exists a threshold for the measurement rate, above which
+it is possible to achieve a vanishing error probability and
+below which the error probability will eventually approach
+one for any sequence of encoder-decoder pairs. Such a phenomenon is known as phase transition in statistical physics. In
+information-theoretic parlance, we say that the strong converse
+holds.
+We introduced the framework of almost-lossless analog
+compression in [7] as a Shannon-theoretic formulation of
+noiseless compressed sensing. Under regularity conditions
+such as linearity of the encoder and Lipschitz continuity of the
+decoder, [7] derives various coding theorems for the minimal
+measurement rate involving the R´ nyi information dimension
+e
+of the input distribution [10]. See also [11, Section III] for a
+non-asymptotic exposition.
+The focus of this paper is the case where the measurements
+are corrupted by additive noise. Exact analog signal recovery
+is obviously impossible and we gauge reconstruction ﬁdelity
+by the noise sensitivity, deﬁned as the ratio between the meansquare reconstruction error and the noise variance. Similar to
+the behavior of error probability in the noiseless case, there
+exists a phase-transition threshold of measurement rate, which
+only depends on the input statistics, above which the noise
+sensitivity is bounded for all noise variances, and below which
+the noise sensitivity blows up as the noise variance tends to
+zero.
+In Section II we consider three formulations of noise sensitivity: optimal nonlinear, optimal linear and random linear
+(with i.i.d. entries) encoder and the associated optimal decoder.
+For memoryless sources, we show that for any input distribution, the phase-transition threshold for optimal encoding
+is given by the input information dimension. Moreover, this
+result also holds for discrete-continuous mixtures with optimal
+
+I. I NTRODUCTION
+Compressed sensing [1], [2] is a signal processing technique that compresses analog vectors by means of a linear
+transformation. By leveraging prior knowledge of the signal
+structure (e.g., sparsity) and by designing efﬁcient nonlinear
+reconstruction algorithms, effective compression is achieved
+by taking a much smaller number of measurements than the
+dimension of the original signal.
+Most of the compressed sensing literature focuses on the
+setup where
+a) performance is measured on a worst-case basis with respect
+to the n-dimensional input vector.
+b) the encoder is constrained to be a linear mapping characterized by a k × n matrix, called the sensing or measurement
+matrix, which is usually assumed to be random, and known
+at the decoder.
+c) the decoder is a low-complexity algorithm which is robust
+with respect to observation noise, for example, decoders
+based on convex optimizations such as 1 -minimization
+[3] and 1 -penalized least-squares (i.e. LASSO) [4], greedy
+algorithms such as matching pursuit [5], graph-based iterative decoders such as approximate message passing (AMP)
+[6].
+In contrast, in this paper we formulate an informationtheoretic fundamental limit in the following setup:
+Y. Wu is with the Department of Statistics, The Wharton School,
+University of Pennsylvania, Philadelphia, PA 19104, USA. Email:
+yihongwu@wharton.upenn.edu. S. Verd´ is with Department of Electriu
+cal Engineering, Princeton University, Princeton, NJ 08544, USA. Email:
+verdu@princeton.edu
+This work was supported in part by the National Science Foundation (NSF)
+under Grant CCF-1016625 and by the Center for Science of Information
+(CSoI), an NSF Science and Technology Center, under Grant CCF-0939370.
+
+1
+
+statistical models. A stochastic model that captures sparsity is
+the following mixture distribution [7], [6], [9]:
+
+linear encoders and Gaussian random measurement matrices.
+The fact that randomly chosen sensing matrices turn out to
+incur no penalty in phase-transition threshold with respect
+to optimal nonlinear encoders lends further importance to
+the conventional compressed sensing setup. In addition, we
+compare the optimal phase-transition threshold to the suboptimal threshold of several practical reconstruction algorithms
+under various input distributions. In particular, in Section III
+we demonstrate that the thresholds achieved by the LASSO
+decoder and the AMP decoder [8] lie far from the optimal
+boundary, especially in the highly sparse regime, which is most
+relevant to compressed sensing applications.
+Invoking the results in [12], in Section II-F we show
+that the calculation of the reconstruction error with random
+measurement matrices based on heuristic replica methods
+in [9] predicts the correct phase-transition threshold. These
+results also serve as a rigorous veriﬁcation of the replica
+calculations in [9] in the high-SNR regime (up to o(σ 2 ) as
+the noise variance σ 2 vanishes).
+Omitted proofs can be found in [11].
+
+PX = (1 − γ)δ0 + γ Pc ,
+
+where δ0 denotes a unit mass at 0, Pc is an absolutely
+continuous (with respect to Lebesgue measure) distribution
+from which the non-zero entries are drawn, and 0 ≤ γ ≤ 1
+parametrizes the signal sparsity. This model corresponds to the
+regime of proportional (or linear) sparsity, because X n drawn
+independently from (1) has approximately γn non-zeros.
+Generalizing (1), we henceforth consider discretecontinuous mixed distributions:
+PX = (1 − γ)Pd + γPc ,
+
+A. Setup
+The basic setup of noisy compressed sensing is the joint
+source-channel coding problem shown in Fig. 1, where we
+
+σN k
+Encoder
+fn : Rn →Rk
+
+Yk
+
++
+
+ˆ
+Yk
+
+Decoder
+gn : Rk →Rn
+
+(2)
+
+where Pd is a discrete probability measure and Pc is an absolutely continuous probability measure. In addition to sparsity,
+there are other signal structures that have been previously
+explored in the compressed sensing literature, which ﬁt the
+model in (2). For example, the so-called simple signal in
+infrared absorption spectroscopy [13, Example 3, p. 914] is
+such that each entry of of the signal vector is constrained to
+lie in the unit interval, with most of the entries saturated at
+the boundaries (0 or 1) (see Section III for its probabilistic
+model). Although most of the results in the present paper
+hold for arbitrary input distributions, with no practical loss of
+generality, we focus on discrete-continuous mixtures because
+of their relevance to compressed sensing applications.
+
+II. N OISY COMPRESSED SENSING
+
+Xn
+
+(1)
+
+ˆ
+Xn
+
+C. Distortion-rate tradeoff
+For a ﬁxed noise variance, we deﬁne three distortion-rate
+functions that correspond to optimal encoding, optimal linear
+encoding and random linear encoding respectively.
+1) Optimal encoder: The minimal distortion achieved by
+the optimal encoding scheme is given by:
+
+Fig. 1: Noisy compressed sensing setup.
+assume that
+n
+• The source X consists of i.i.d. copies of a real-valued
+random variable X with unit variance.
+• The channel is memoryless with additive Gaussian noise
+σN k where N k ∼ N (0, Ik ).
+• The measurement rate, i.e., the dimensionality compresk
+sion ratio, is given by R = n .
+• Unit average power constraint of on the encoded signal:
+1
+n 2
+k E[ fn (X ) 2 ] ≤ 1.
+• The reconstruction error is gauged by the per-symbol
+1
+ˆ
+ˆ
+MSE distortion: d(xn , xn ) = n xn − xn 2 .
+2
+In this setup, the fundamental question is: For a given noise
+variance and measurement rate, what is the lowest reconstruction error? For a given encoder f , the corresponding optimal
+decoder g is the MMSE estimator of the input X n given the
+ˆ
+channel output Y k = f (X n ) + σN k . Therefore the optimal
+distortion achieved by encoder f is mmse(X n |f (X n )+σN k ),
+where mmse(U |V ) E U − E [U |V ] 2 .
+2
+
+D∗ (X, R, σ 2 )
+
+lim sup
+n→∞
+
+1
+inf mmse(X n |f (X n ) + σN k ) :
+n f
+2
+E[ f (X n ) 2 ] ≤ Rn . (3)
+
+The asymptotic optimization problem in (3) can be solved
+by applying Shannon’s joint source-channel coding separation
+theorem for memoryless channels and sources [14, Section
+XI], which states that the lowest rate, R, that achieves distortion D is given by
+RX (D)
+,
+(4)
+R=
+C(σ 2 )
+where RX (·) is the rate-distortion function of X under the
+mean-square error distortion and C(σ 2 ) = 1 log(1 + σ −2 )
+2
+is the AWGN channel capacity. By the monotonicity of the
+rate-distortion function, we have
+−1
+D∗ (X, R, σ 2 ) = RX
+
+B. Signal model
+Sparse vectors, supported on a subspace with dimension
+smaller than n, play an important role in signal processing and
+
+R
+log(1 + σ −2 ) .
+2
+
+(5)
+
+In general, optimal joint source-channel encoders are nonlinear.
+2
+
+2
+
+2) Optimal linear encoder: To analyze the fundamental
+limit of conventional noisy compressed sensing, we restrict
+the encoder f in (3) to be a linear mapping represented by
+a matrix H ∈ Rk×n , and denote the left-hand side of (3)
+∗
+by DL (X, R, σ 2 ). Since X n are i.i.d. with zero mean and
+unit variance, the input power constraint in (3) simpliﬁes to
+2
+H F ≤ Rn, where · F denotes the Frobenius norm.
+3) Random linear encoder: We consider the ensemble performance of a sequence of k×n random measurement matrices
+1
+An with i.i.d. entries of zero mean and variance n and deﬁne
+2
+DL (X, R, σ ) as in (3) with f replaced by An . Note that
+2
+the power constraint holds on average: E[ An F ] = k. By
+∗
+deﬁnition, we have 0 ≤ D∗ ≤ DL ≤ DL ≤ 1.
+
+The equality of the three phase-transition thresholds turns
+out to hold well beyond the Gaussian signal model. In the
+next subsection, we formulate and prove the existence of the
+phase thresholds for all three distortion-rate functions and
+discrete-continuous mixtures, which turn out to be equal to
+the information dimension of the input distribution.
+E. Main results
+In this subsection, we give bounds and exact characterizations of the three phase-transition thresholds introduced in
+Deﬁnition 2 in terms of the input information [10] and MMSE
+dimension [12], deﬁned as follows.
+Deﬁnition 3. Let X be a real-valued random variable. Let
+m ∈ N. The information dimension of X is deﬁned as
+
+D. Phase transition of noise sensitivity
+A key objective of compressed sensing with noisy observations is to achieve robust reconstruction, obtaining a
+reconstruction error proportional to the noise variance. To
+quantify robustness, we analyze the noise sensitivity, namely,
+the ratio between the mean-square error and the noise variance,
+as a function of R and σ 2 . As a succinct characterization
+of robustness, we focus particular attention on the worst-case
+noise sensitivity:
+
+d(X) = lim
+
+m→∞
+
+D∗ (X, R, σ 2 )
+.
+σ2
+σ 2 >0
+
+D(X) = lim snr · mmse(X, snr),
+snr→∞
+
+It is shown in [12, Theorem 8] that the information dimensions are sandwiched between the MMSE dimensions:
+
+(6)
+
+0 ≤ D(X) ≤ d(X) ≤ d(X) ≤ D(X) ≤ 1.
+
+D(X) = d(X) = γ.
+
+Deﬁnition 2. For optimal encoding, deﬁne
+R (X)
+
+inf {R > 0 : ζ (X, R) < ∞} .
+
+(11)
+
+For discrete-continuous mixtures (2), the MMSE dimension
+coincides with the information dimension [12, Theorem 15]:
+
+The phase-transition threshold of the noise sensitivity is
+deﬁned as the minimal measurement rate R such that the noise
+sensitivity is bounded for all σ 2 :
+∗
+
+(10)
+
+√
+where mmse(X, snr) mmse(X| snrX + N ).
+The lim inf and lim sup in (9) (resp. (10)) are called
+lower and upper information (resp. MMSE) dimensions of X,
+denoted by d(X) and d(X) (resp. D(X) and D(X)).
+
+∗
+For linear encoding, ζL and ζL are analogously deﬁned with
+∗
+∗
+D replaced by DL and DL , respectively.
+
+∗
+
+(9)
+
+The MMSE dimension of X is deﬁned as
+
+Deﬁnition 1. The worst-case noise sensitivity of optimal
+encoding is deﬁned as
+ζ ∗ (X, R) = sup
+
+H ( mX )
+.
+log m
+
+(12)
+
+It is possible that the MMSE dimension does not exist and the
+inequalities in (11) are strict (e.g., Cantor distributed X [12,
+Theorem 16]).
+The phase-transition threshold for optimal encoding is given
+by the upper information dimension of the input:
+
+(7)
+
+For linear encoding, R∗ (X) and RL (X) are analogously
+L
+∗
+deﬁned with ζ ∗ in (7) replaced by ζL and ζL , respectively.
+
+Theorem 1. For any X, R∗ (X) = d(X).
+Alternatively, we can consider the asymptotic noise sensitivity by replacing the supremum in (6) with the limit as σ 2 → 0,
+∗
+denoted by ξ ∗ , ξL and ξL respectively, which are ﬁnite if and
+only if the corresponding suprema are ﬁnite. Therefore, the
+phase-transition thresholds can also be deﬁned as the minimum
+measurement rate for which the reconstruction error vanishes
+according to O(σ 2 ) as σ 2 → 0.
+By deﬁnition, the phase-transition thresholds are ordered
+naturally as 0 ≤ R∗ (X) ≤ R∗ (X) ≤ RL (X) ≤ 1. It
+L
+can be shown that Gaussian input XG ∼ N (0, 1) maximizes
+∗
+D∗ , DL and DL simultaneously under the variance constraint
+with explicit formulae given in [11], which yield the following
+phase-transition threshold:
+R∗ (XG ) = R∗ (XG ) = RL (XG ) = 1.
+L
+
+The next result shows that random linear encoders with i.i.d.
+Gaussian coefﬁcients also achieve information dimension for
+any discrete-continuous mixtures, which, in view of Theorem
+1, implies that, at least asymptotically, (random) linear encoding sufﬁces for robust reconstruction as long as the input
+distribution contains no singular component.
+Theorem 2. Assume that X has a discrete-continuous mixed
+distribution as in (2) with H(Pd ) < ∞. Then
+R∗ (X) = R∗ (X) = RL (X) = d(X) = D(X) = γ.
+L
+
+(13)
+
+Moreover, (13) holds for any noise distribution with ﬁnite nonGaussianness (deﬁned as its relative entropy with respect to a
+Gaussian distribution with the same mean and variance).
+
+(8)
+3
+
+3
+
+±
++
+
+F. Results relying on replica heuristics
+Based on the statistical-physics approach in [15], [16], the
+decoupling principle results in [16] were imported into the
+compressed sensing setting in [9] to postulate the following
+formula for DL (X, R, σ 2 ). Note that this result is based on
+replica heuristics currently lacking a rigorous justiﬁcation.
+
+sparse signals (1);
+sparse non-negative signals (1) with the continuous
+component Pc supported on R+ .
+simple signals (see Section II-B): PX = (1 −
+γ) 1 δ0 + 1 δ1 + γ Pc , where Pc is some absolutely
+2
+2
+continuous distribution supported on the unit interval.
+We consider the AMP decoder [8] and the LASSO decoder:
+1
+2
+(17)
+y − Ax 2 + λ x 1 ,
+gλ (y) = argmin
+˜
+n
+2
+x∈R
+
+Replica Symmetry Postulate ([9, Corollary 1, p.5]).
+DL (X, R, σ 2 ) = mmse(X, ηR σ −2 ),
+
+(14)
+
+where 0 < η < 1 satisﬁes η −1 = 1 + σ −2 mmse(X, ηR σ −2 ).
+In the case of multiple solutions, η is chosen to minimize the
+free energy I(X; ηRσ −2 X + N ) + R (η − 1 − log η).
+2
+
+where λ > 0 is a regularization parameter. For Gaussian sensing matrices and Gaussian observation noise, the asymptotic
+mean-square error achieved by LASSO can be determined as
+a function of (PX , λ, σ 2 ) by applying [17, Corollary 1.6]. For
+sparse X distributed according to (1), the following minimax
+expression for the worst-case (or asymptotic) noise sensitivity
+of LASSO under the least favorable prior with optimized λ is
+proposed in [8, Proposition 3.1(1.a)] and proved by [17]:
+
+Assuming the validity of the replica symmetry postulate, it
+can be shown that the phase-transition threshold for random
+linear encoding is always sandwiched between the lower and
+the upper MMSE dimensions of the input. The relationship
+between the MMSE dimension and the information dimension
+in (11) plays a key role in analyzing the minimizer of the free
+energy.
+
+˜
+˜
+ζ(X, R) = ξ(X, R) =
+
+Theorem 3. Assume that the replica symmetry postulate holds
+for X. Then for any i.i.d. random measurement matrix whose
+1
+entries have zero mean and variance n ,
+D(X) ≤ RL (X) ≤ D(X).
+
+and in addition, DL (X, R, σ ) =
+
+d(X)
+2
+R−d(X) σ (1
+
+R > R± (γ)
+R ≤ R± (γ)
+
+(18)
+
+R± (γ) = min γ(1 + τ 2 ) + c(1 − γ)((1 + τ 2 )Φ(−τ ) − τ ϕ(τ ))
+τ ≥0
+
+(19)
+and c = 2. Analogously, the LASSO decoder (17) can be
+adapted to other signal structures (see for example [8, Sec.
+VI-A]), resulting in the phase-transition threshold R+ (γ) for
+sparse positive signals given by (19) with c = 1 and R (γ) =
+γ+1
+2 for simple signals. Furthermore, (18) also applies to the
+AMP algorithm [8]. The suboptimal thresholds are plotted
+in Fig. 2 along with the optimal threshold obtained from
+Theorem 2 which is γ. In the gray area below the diagonal
+in the (γ, R)-phase diagram, the noise sensitivity blows up
+for any sequence of sensing matrices and decoders. Moreover,
+we observe that the LASSO and AMP decoders are severely
+suboptimal unless γ is close to one. In the highly sparse regime
+which is most relevant to compressed sensing problems, it
+follows from [13, Theorem 3] that for sparse signals (χ = ±
+1
+or +), Rχ (γ) = 2γ loge γ (1+o(1)), as γ → 0, which implies
+1, the
+that Rχ has inﬁnite slope at γ = 0. Therefore when γ
+LASSO and AMP decoders require on the order of 2s loge n
+s
+measurements to successfully recover the unknown vector with
+s nonzero components. In contrast, s measurements sufﬁce
+when using an optimal decoder (or 0 -minimization decoder).
+The LASSO or AMP decoders are also highly suboptimal for
+simple signals, since R (γ) converges to 1 instead of zero as
+2
+γ → 0. Interestingly, the phase-transition thresholds of block
+error probability in the noiseless case are identical to Fig. 2,
+as observed in [11, Sec. 5.1].
+For sparse signals of the form (1) with γ = 0.1, Fig. 3
+compares the asymptotic noise sensitivity of the LASSO (and
+AMP) decoder to the optimal noise sensitivity predicted by
+Theorem 3 based on replica heuristics. Note that the phasetransition threshold of LASSO is approximately 3.3 times the
+optimal.
+
+Therefore if D(X) exists, we have
+2
+
+∞
+
+with
+
+(15)
+
+RL (X) = D(X) = d(X),
+
+R± (γ)
+R−R± (γ)
+
+(16)
++ o(1)).
+
+The general result in Theorem 3 holds for any input distribution but relies on the conjectured validity of the replica symmetry postulate. For the special case of discrete-continuous
+mixtures in (2), in view of (12), Theorem 3 predicts (with the
+caveat of the validity of the replica symmetry postulate) that
+the phase-transition threshold for random linear encoding is
+γ, which agrees with the rigorously proven result in Theorem
+2. Therefore, the only added beneﬁt of Theorem 3 is to allow
+singular components in the input distribution.
+The achievability proof of RL (X) in Theorem 3 is a direct
+application of the noiseless result in [11], where it is shown
+that there exists a sequence of Lipschitz decompressors with
+bounded Lipschitz constants and vanishing block error probability. The noiseless Lipschitz decompressor as a suboptimal
+estimator achieves ﬁnite noise sensitivity. This achievability
+strategy applies to any noise with ﬁnite variance, without
+requiring that the noise be additive, memoryless or that it have
+a density. In contrast, replica-based results rely crucially on the
+fact that the additive noise is memoryless Gaussian.
+III. C OMPARISONS TO LASSO AND AMP ALGORITHMS
+In this section, we compare the phase transition thresholds
+of LASSO and AMP achieved in the Bayesian setting to
+the optimal thresholds for the following families of input
+distributions considered in [6, p. 18915], indexed by χ = ±, +
+and respectively, which all belong to the mixture form (2):
+4
+
+4
+
+1.0
+
+[7].
+One of our main ﬁndings is Theorem 2 which shows that
+Gaussian sensing matrices achieve the same phase-transition
+threshold as optimal nonlinear encoding, for any discretecontinuous mixture. This result is universal in the sense
+that it holds for arbitrary noise distributions with ﬁnite nonGaussianness. Moreover, the fundamental limit depends on
+the input statistics only through the weight of the analog
+component, regardless of the speciﬁc discrete and continuous components. The universal optimality of random sensing
+matrices with non-Gaussian i.i.d. entries in terms of phasetransition thresholds remains open.
+
+sh
+ol
+d
+
+0.8
+
+th
+re
+
+R0.6
++
+
+O
+
+pt
+im
+
+al
+
+±
+0.4
+
+0.2
+
+0.2
+0.4
+0.8
+1.0
+γ 0.6
+Fig. 2: Suboptimal thresholds obtained with LASSO and AMP
+v.s. optimal threshold for the three signal models in Section III.
+
+R EFERENCES
+[1] E. Cand´ s, J. Romberg, and T. Tao, “Robust uncertainty principles: Exact
+e
+signal reconstruction from highly incomplete frequency information,”
+IEEE Trans. Inf. Theory, vol. 52, no. 2, pp. 489 – 509, Feb. 2006.
+[2] D. L. Donoho, “Compressed sensing,” IEEE Trans. Inf. Theory, vol. 52,
+no. 4, pp. 1289 – 1306, Apr. 2006.
+[3] S. S. Chen, D. L. Donoho, and M. A. Saunders, “Atomic decomposition
+by basis pursuit,” SIAM Journal on Scientiﬁc Computing, vol. 20, no. 1,
+pp. 33–61, 1999.
+[4] R. Tibshirani, “Regression shrinkage and selection via the LASSO,”
+Journal of the Royal Statistical Society. Series B (Methodological),
+vol. 58, no. 1, pp. 267–288, 1996.
+[5] S. G. Mallat and Z. Zhang, “Matching pursuits with time-frequency
+dictionaries,” IEEE Trans. Signal Process., vol. 41, no. 12, pp. 3397–
+3415, 1993.
+[6] D. L. Donoho, A. Maleki, and A. Montanari, “Message-passing algorithms for compressed sensing,” Proceedings of the National Academy
+of Sciences, vol. 106, no. 45, pp. 18 914 – 18 919, Nov. 2009.
+[7] Y. Wu and S. Verd´ , “R´ nyi information dimension: Fundamental limits
+u
+e
+of almost lossless analog compression,” IEEE Trans. Inf. Theory, vol. 56,
+no. 8, pp. 3721 – 3748, Aug. 2010.
+[8] D. L. Donoho, A. Maleki, and A. Montanari, “The noise-sensitivity
+phase transition in compressed sensing,” IEEE Trans. Inf. Theory,
+vol. 57, no. 10, pp. 6920–6941, Oct. 2011.
+[9] D. Guo, D. Baron, and S. Shamai (Shitz), “A single-letter characterization of optimal noisy compressed sensing,” in Proceedings of the
+Forty-seventh Annual Allerton Conference on Communication, Control,
+and Computing, Monticello, IL, Oct. 2009.
+[10] A. R´ nyi, “On the dimension and entropy of probability distributions,”
+e
+Acta Mathematica Hungarica, vol. 10, no. 1 – 2, Mar. 1959.
+[11] Y. Wu and S. Verd´ , “Optimal phase transitions in compressed sensing,”
+u
+to appear in IEEE Trans. Inf. Theory, Jul. 2011. [Online]. Available:
+http://arxiv.org/abs/1111.6822
+[12] ——, “MMSE dimension,” IEEE Trans. Inf. Theory, vol. 57, no. 8, pp.
+4857 – 4879, Aug. 2011.
+[13] D. L. Donoho and J. Tanner, “Precise undersampling theorems,” Proceedings of the IEEE, vol. 98, no. 6, pp. 913–924, 2010.
+[14] C. E. Shannon, “Communication in the presence of noise,” in Proceedings of the IRE, vol. 37, no. 1, Jan. 1949, pp. 10–21.
+[15] T. Tanaka, “A statistical-mechanics approach to large-system analysis
+of CDMA multiuser detectors,” IEEE Trans. Inf. Theory, vol. 48, pp.
+2888–2910, Nov. 2002.
+[16] D. Guo and S. Verd´ , “Randomly spread CDMA: Asymptotics via
+u
+statistical physics,” IEEE Trans. Inf. Theory, vol. 51, no. 6, pp. 1983–
+2010, Jun. 2005.
+[17] M. Bayati and A. Montanari, “The LASSO risk for Gaussian matrices,”
+IEEE Trans. Inf. Theory, vol. 58, no. 4, pp. 1997–2017, Apr. 2012.
+[18] D. L. Donoho, A. Javanmard, and A. Montanari, “Informationtheoretically optimal compressed sensing via spatial coupling and
+approximate message passing,” submitted to IEEE Trans. Inf. Theory,
+Dec. 2011. [Online]. Available: http://arxiv.org/abs/1112.0708
+
+Sensitivity
+4
+
+3
+
+2
+
+LASSO decoder
+
+¡
+
+¡
+
+1
+
+0
+0.
+
+0.1
+
+0.33
+
+0.5
+
+1.
+
+¡
+
+¡
+
+optimal decoder
+
+1.5
+
+2.
+
+R
+
+Fig. 3: Asymptotic noise sensitivity of the optimal decoder
+and the LASSO decoder exhibiting phase transitions: sparse
+signal model (1) with γ = 0.1.
+
+IV. C ONCLUDING REMARKS
+As opposed to a worst-case (Hamming) approach, in this
+paper we adopt a statistical (Shannon) framework for compressed sensing by modeling input signals as random processes
+rather than individual sequences. As customary in information
+theory, it is advisable to initiate the study of fundamental
+limits assuming independent identically distributed information sources with known distributions. Naturally, this entails
+substantial loss of practical relevance, so generalization to
+sources with memory is left for future work. We have obtained
+the phase-transition thresholds (minimum measurement rate)
+of normalized MMSE with noisy observations achievable
+by optimal nonlinear, optimal linear, and random linear encoders combined with the corresponding optimal decoders.
+For discrete-continuous mixtures, the optimal phase-transition
+threshold is shown to be the information dimension of the
+input. The phase-transition thresholds of popular decoding
+algorithms (e.g., LASSO or AMP decoders) turn out to be
+far from the optimal boundary. In a recent preprint [18], it is
+shown that using sensing matrices constructed from spatially
+coupled error-correcting codes and the corresponding AMP
+decoder, information dimension and MMSE dimension are
+respectively achievable in both noiseless and noisy cases under
+mild conditions, which are optimal in view of the results in
+5
+
+5
+
+

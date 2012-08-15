@@ -1,0 +1,680 @@
+Creator:        TeX
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Fri May 18 21:24:54 2012
+ModDate:        Tue Jun 19 12:54:38 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      452625 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569566415
+
+On Cooperation in Multi-Terminal
+Computation and Rate Distortion
+Milad Seﬁdgaran and Aslan Tchamkerten
+
+Abstract—A receiver wants to compute a function of two correlated sources separately observed by two transmitters. One of the
+transmitters is allowed to cooperate with the other transmitter by
+sending it some data before both transmitters convey information
+to the receiver. Assuming noiseless communication, what is the
+minimum number of bits that needs to be communicated by each
+transmitter to the receiver for a given number of cooperation
+bits?
+In this paper, ﬁrst a general inner bound to the above three
+dimensional rate region is provided and shown to be tight in a
+number of interesting settings: the function is partially invertible,
+full cooperation, one-round point-to-point communication, tworound point-to-point communication, and cascade.
+Second, the related Kaspi-Berger rate distortion problem is
+investigated where the receiver now wants to recover the sources
+within some distortion. By using ideas developed for establishing
+the above inner bound, a new rate distortion inner bound is
+proposed. This bound always includes the time sharing of KaspiBerger’s inner bounds and inclusion is strict in certain cases.
+
+Fig. 1.
+
+Function computation for cooperative transmitters.
+
+we recover the results of [7], [1], [10], and [8] (assuming no
+side information at the receiver).
+If instead of recovering f (X, Y ) exactly, the receiver wants
+to recover X and Y within some prescribed distortions, we
+obtain the rate distortion problem considered by Kaspi and
+Berger [3].
+Building on ideas used to establish the above inner bound,
+we derive a new inner bound for the Kaspi-Berger rate
+distortion problem which always includes, and sometimes
+strictly, the time sharing of Kaspi-Berger’s two inner bounds
+[3, Theorem 5.1] and [3, Theorem 5.4].
+The paper is organized as follows. In Section II we formally
+state the problem and provide some background material and
+deﬁnitions. In Section III, we present our results, and in
+Section IV we provide proof sketches for certain results.
+
+I. I NTRODUCTION
+There has been a growing interest in communication problems where instead of recovering sources of information, the
+receiver wants to compute a function of them. Related information theoretic works addressed a number of speciﬁc settings
+including one and two-round point-to-point communication
+[7], cascade network [1], [10], and multiple-access network
+[5], [6], [8].
+In this paper, we investigate the role of cooperation in
+computation and consider the noiseless network conﬁguration
+depicted in Fig. 1 which includes all the above settings as
+special cases. Two sources, X and Y , are separately observed
+by two transmitters, and a receiver wants to compute a
+function f (X, Y ) of the sources. Transmitter-X ﬁrst sends
+some information to transmitter-Y (cooperation phase), then
+both transmitters send information to the receiver. The problem
+is to ﬁnd the minimum number of transmitted bits so that the
+receiver can compute f (X, Y ) reliably.
+We ﬁrst provide a general inner bound for the above
+function computation problem. This bound is tight for the case
+of unlimited cooperation, i.e., when transmitter-Y knows X,
+and for the class of functions that are partially invertible, i.e.,
+when X or Y is a function of f (X, Y ). In addition, the bound
+is also tight for the above mentioned speciﬁc settings for which
+
+II. P ROBLEM S TATEMENT AND P RELIMINARIES
+Let X , Y, and F be ﬁnite sets, and f : X × Y → F. Let
+{(xi , yi )}∞ be independent instances of random variables
+i=1
+(X, Y ) taking values over X × Y and distributed according to
+p(x, y).
+Deﬁnition 1 (Code). An (n, R0 , RX , RY ) code consists of
+three encoding functions
+ϕ0 : X n → {1, 2, .., 2nR0 }
+ϕX : X n → {1, 2, .., 2nRX }
+ϕY : Y n × {1, 2, .., 2nR0 } → {1, 2, .., 2nRY }
+and a decoding function
+
+This work was supported in part by a “Future et Rupture” grant from the
+Institut Telecom, and by an Excellence Chair Grant from the French National
+Research Agency (ACE project).
+M. Seﬁdgaran and A. Tchamkerten are with the Department of Communications and Electronics, Telecom ParisTech, 46 Rue Barrault, 75634 Paris Cedex
+13, France. Emails: {seﬁdgaran,aslan.tchamkerten}@telecom-paristech.fr.
+
+ψ : {1, 2, .., 2nRX } × {1, 2, .., 2nRY } → F n .
+The error probability of a code is deﬁned as
+P (ψ(ϕX (X), ϕY (ϕ0 (X), Y)) = f (X, Y)),
+
+1
+
+def
+
+Given a ﬁnite set S, we use M(S) to denote the collection
+of all multisets of S.2
+
+where X = X1 , . . . , Xn and
+def
+
+f (X, Y) = {f (X1 , Y1 ), ..., f (Xn , Yn )} .
+
+III. R ESULTS
+
+Deﬁnition 2 (Rate Region). A rate pair (R0 , RX , RY ) is
+achievable if, for any > 0 and all n large enough, there exists
+an (n, R0 , RX , RY ) code whose error probability is no larger
+than ε. The rate region is the closure of the set of achievable
+(R0 , RX , RY ).
+
+We ﬁrst provide a general inner bound to the rate region
+(see Deﬁnition 2).
+Theorem 1 (Inner bound-Computation). (R0 , RX , RY ) is
+achievable whenever
+
+The problem we consider in this paper is to characterize the
+rate region for given f and p(x, y).
+Conditional characteristic graphs play a key role in coding
+for computing [11], [4], [8]. Below we introduce a deﬁnition
+of conditional characteristic graph tailored for the problem at
+hand.
+
+R0 ≥ I(X; U |Y ),
+RX ≥ I(V ; X|T, W ),
+RY ≥ I(U, Y ; W |V, T ),
+RX + RY ≥ I(X, Y ; V, T, W ) + I(U ; W |V, X, T, Y ),
+for some T , U , V and W that satisfy
+
+Notation. Given two random variables X and W , where X
+ranges over X and W over subsets of X ,1 we write X ∈ W
+whenever P (X ∈ W ) = 1.
+
+T − U − X − Y,
+V − (X, T ) − (U, Y ) − W,
+
+Recall that an independent set of a graph G is a subset of
+vertices no two of which are connected. The set of independent
+sets of G is denoted by Γ(G).
+
+and
+X ∈ V ∈ M(Γ(GT
+X|U,Y )),
+(U, Y ) ∈ W ∈ M(Γ(GT |V )).
+U,Y
+
+Deﬁnition 3 (Conditional Characteristic Graph). Let T be an
+arbitrary discrete random variable taking on values in some set
+T . Given (X, T, Y ) ∼ p(x, t, y) and f (X, Y ), Gt , t ∈ T ,
+X|Y
+is deﬁned as the conditional characteristic graph of X given
+Y for T = t. Speciﬁcally, Gt
+X|Y is the graph whose vertex
+set is X and such that xi and xj are connected if for some
+y∈Y
+
+The rate region of Theorem 1 turns out to be tight in a
+number of interesting cases which we now list.
+The ﬁrst case holds when the function is partially invertible
+with respect to X, i.e., when X is a function of f (X, Y ).
+Theorem 2 (Partially invertible function). The inner bound is
+tight when f (X, Y ) is partially invertible with respect to X.
+In this case, the rate region reduces to
+
+i. p(xi , t, y) · p(xj , t, y) > 0,
+ii. f (xi , y) = f (xj , y).
+
+R0 ≥ I(X; U |Y ),
+
+Let V be such that X ∈ V ∈ Γ(GT ) and such that
+X|Y
+(V, X, T, Y ) ∼ p(v, x, t, y). Gt |V , t ∈ T is deﬁned as the
+Y
+conditional characteristic graph of Y given V for T = t.
+Speciﬁcally, Gt |V is the graph whose vertex set is Y and such
+Y
+that yi and yj are connected if for some (v, xi , xj ), v ∈ V,
+xi , xj ∈ X
+
+RX ≥ H(X|U, W ),
+RY ≥ I(Y ; W |X, U ),
+RX + RY ≥ I(X; U ) + H(X|U, W ) + I(Y ; W |U ),
+for some U and W that satisfy
+
+i. p(v, xi , t, yi ) · p(v, xj , t, yj ) > 0,
+ii. f (xi , yi ) = f (xj , yj ).
+
+U − X − Y,
+X − (U, Y ) − W,
+
+When T is constant, we write the above conditional characteristic graphs as GX|Y and GY |V , respectively.
+
+and
+Y ∈ W ∈ M(Γ(GU |X )).
+Y
+
+Note that, given (X, T, U, Y ) ∼ p(x, t, u, y) and f (X, Y ),
+T
+GT
+X|U,Y and GU,Y |V , for some V such that X ∈ V ∈
+T
+Γ(GX|U,Y ), can be deﬁned in the same way as above by
+˜
+deﬁning the function f (x, u, y) = f (x, y).
+
+In each of the following three cases, one of the links is rate
+unlimited.
+When there is full cooperation between transmitters, i.e.,
+when transmitter-Y has full access to source X, the setting is
+captured by the condition R0 ≥ H(X|Y ) and is depicted in
+Fig. 2(a).
+
+Deﬁnition 4 (Conditional Graph Entropy [7]). Given
+(X, Y ) ∼ p(x, y), the conditional graph entropy is deﬁned
+as
+def
+
+HGX|Y (X|Y ) =
+
+1 I.e.,
+
+min
+
+V −X−Y
+X∈V ∈Γ(GX|Y )
+
+Theorem 3 (Full cooperation). The inner bound is tight when
+
+I(V ; X|Y ).
+
+R0 ≥ H(X|Y ).
+2 Recall that a multiset of a set S is a collection of elements from S possibly
+with repetitions, e.g., if S = {0, 1}, then {0, 1, 1} is a multiset.
+
+a sample of W is a subset of X .
+
+2
+
+observing X and the receiver observing Y . The rate region
+for this case was established in [7, Theorem 1].
+Theorem 5 (One-round point-to-point communication). The
+inner bound is tight when
+RY ≥ R0 + H(Y ) .
+(a)
+
+In this case, the rate region reduces to
+
+(b)
+
+R0 + RX ≥ HGX|Y (X|Y ) .
+(c)
+
+Finally, when RX = 0 there is no direct link between
+transmitter-X and the receiver, and the situation reduces to
+the cascade setting depicted in Fig. 2(d). The rate region for
+this case was established in [1, Theorem 3.1] (see also [10,
+Theorem 2]).
+
+(d)
+
+Fig. 2. (a) Full cooperation, (b) Two-round point-to-point communication,
+(c) One-round point-to-point communication, (d) Cascade.
+
+Theorem 6 (Cascade). The inner bound is tight when
+
+In this case, the rate region reduces to
+
+RX = 0.
+
+R0 ≥ H(X|Y ),
+
+In this case, the rate region reduces to
+
+RY ≥ H(f (X, Y )|T ),
+RX + RY ≥ H(f (X, Y )) + I(X; T |f (X, Y )),
+
+R0 ≥ HGX|Y (X|Y ),
+RY ≥ H(f (X, Y )) .
+
+for some T that satisﬁes
+T − X − Y.
+Rate Distortion
+
+When condition RX ≥ H(X) holds, the situation reduces
+to the two-round communication setting depicted in Fig. 2(b).
+The receiver, having access to X, ﬁrst conveys information to
+transmitter-Y , which then replies.
+
+Theorem 1, gives an inner bound to the rate-distortion
+problem with zero distortion. It turns out that this inner bound
+is in general larger than the rate region obtained by Kaspi and
+Berger in [3, Theorem 5.1] for zero distortion. The reason
+for this lies in Kaspi and Berger achievable scheme upon
+which their inner bound relies. In fact, for any distortion
+their scheme implicitly allows the receiver to perfectly decode
+whatever is transmitted from transmitter-X to transmitterY . By contrast, we do not impose this constraint in the
+achievability scheme that yields Theorem 1. More generally,
+by relaxing this constraint it is possible to achieve a rate region
+that is in general larger than the rate region derived by time
+sharing of Kaspi-Berger’s two inner bounds, [3, Theorems 5.1,
+5.4].
+
+Theorem 4 (Two-round point-to-point communication). The
+inner bound is tight when
+RX ≥ H(X) .
+In this case, the rate region reduces to
+R0 ≥ I(X; U |Y ),
+RX ≥ H(X),
+RY ≥ I(Y ; W |X, U ),
+for some U and W that satisfy
+
+Theorem 7 (Inner bound-rate distortion). (R0 , RX , RY ) is
+achievable whenever
+
+U − X − Y,
+X − (U, Y ) − W,
+
+R0 ≥ I(X; U |Y )
+
+and
+
+RX ≥ I(V ; X|T, W )
+
+Y ∈ W ∈ M(Γ(GU |X )).
+Y
+
+RY ≥ I(U, Y ; W |V, T )
+
+The rate region in the above case RX ≥ H(X) was previously established in [7, Theorem 3]. However, the range of
+the auxiliary random variable W was left unspeciﬁed, except
+for the condition that U, W, X should determine f (X, Y ). By
+contrast, Theorem 4 speciﬁes W to range over independent
+sets of a suitable graph.
+When RY is unlimited, i.e., when the receiver looks over
+the shoulder of transmitter-Y , the setting is captured by
+condition RY ≥ R0 + H(Y ) and reduces to point-to-point
+communication as depicted in Fig. 2(c) with the transmitter
+
+RX + RY ≥ I(X, Y ; V, T, W ) + I(U ; W |V, X, T, Y )
+if there exist some T , U , V and W that satisfy
+T − U − X − Y,
+V − (X, T ) − (U, Y ) − W,
+and if there exist functions g1 (V, T, W ) and g2 (V, T, W ) such
+that
+Ed(XY, gi (V, T, W )) ≤ Di , i ∈ {1, 2}
+
+3
+
+R0
+for some 0 ≤ α ≤ H(X|Y ) , where the right hand side of above
+R0
+equation becomes minimized by choosing α = H(X|Y ) .
+On the other hand, by letting U = X1 , T = Constant,
+p−d
+V = Bern( 1−2×d ),3 and W = f (X1 , Y ), Theorem 7 gives
+that for R0 = H(X1 |Y ) the sum rate
+
+To show that the the Kaspi-Berger general inner bound
+[3, Theorem 5.1] is included into the rate region deﬁned by
+Theorem 7, it sufﬁces to set T = U in Theorem 7.
+In the speciﬁc case of full cooperation, [3, Theorem 5.4]
+provides an inner bound which, in this case, corresponds to
+Theorem 7. To see this it sufﬁces to set U = X and V to be
+a constant in Theorem 7.
+So, from the above statements, it can be concluded that
+Theorem 7 includes the rate region derived by time sharing
+of two schemes of Kaspi-Berger, [3, Theorems 5.1, 5.4].
+Within the following example we show that in some cases,
+this inclusion is strict.
+Let X = (X1 , X2 ), with X1 independent of X2 , be
+independent of Y , where X1 and Y are distributed uniformly
+over {1, 2, 3} and X2 = Bern(p), p ≤ 1 . Deﬁne the binary
+2
+function f (X1 , Y ) to be 1 whenever X1 = Y and 0 otherwise.
+Let the distortion function to be hamming distance and the
+distortion criteria to be as
+
+RX + RY = H(f (X1 , Y )) + Hb (p) − Hb (d),
+
+is achievable. Comparing (5) and (6) for R0 = H(X1 |Y ) and
+noting that
+1
+Hb ( ) = H(f (X1 , Y )) < H(X1 ) = log2 (3)
+3
+H(X1 |Y ) < H(X|Y ) = H(X1 |Y ) + Hb (p)
+concludes that for this example Theorem 7 strictly includes
+the time sharing of two schemes [3, Theorem 5.1] and [3,
+Theorem 5.4].
+IV. A NALYSIS
+Due to space constraint we shall only prove Theorem 1.
+Proof of Theorem 1: Our coding procedure consists
+of two phases. In the ﬁrst phase transmitter-X sends
+(T (X), U (T (X))) using Slepian-Wolf coding [9] to
+transmitter-Y and in the second phase, transmitterX and transmitter-Y send (T (X), V (X, T (X))) and
+(T (X), W (Y, T (X), U (T (X)))), respectively using SlepianWolf coding to the receiver where U (T (X)), V (X, T (X))
+and W (Y, T (X), U (T (X))) are chosen conditioned on
+T (X).
+Pick T , U , V and W as in the theorem. These random
+variables together with X, Y are distributed according to some
+p(v, x, t, u, y, w).
+T
+For t ∈ T , v ∈ Γ(GT
+X|U,Y ) and w ∈ Γ(GU,Y |V ), deﬁne
+˜
+f (v, t, w) to be equal to f (x, y) for all x ∈ v and (u, y) ∈ w
+such that p(x, t, u, y) > 0. Further, for t = (t1 , . . . , tn ), v =
+(v1 , . . . , vn ) and w = (w1 , . . . , wn ) let
+
+ˆ
+Ed(f (X1 , Y ), f ) = 0,
+ˆ
+Ed(X2 , X2 ) ≤ d, d ≤ p.
+First, we claim that for any value of R0 , in the achievable
+scheme [3, Theorem 5.1], we have
+RX + RY ≥ H(X1 ) + Hb (p) − Hb (d).
+
+(1)
+
+This is true because in their scheme, whatever X-transmitter
+sends to Y -transmitter will be retransmitted to the receiver;
+so, the sum rate constraint is at least as big as the point-topoint problem where a transmitter has X, and a receiver who
+has Y wants to recover f (X1 , Y ) and X2 with distortions
+0 and d, respectively. For the point-to-point case, due to the
+independence of X1 and X2 , as well as (X1 , X2 ) and Y , the
+minimum number of bits is
+R0 (f (X1 , Y )) + Rd (X2 ),
+
+def ˜
+˜
+˜
+f (v, t, w) = {f (v1 , t1 , w1 ), . . . , f (vn , tn , wn )} .
+
+where R0 (f (X1 , Y )) is minimum number of bits for recovering f (X1 , Y ) with zero distortion, which due to [7, Theorem
+2] equals to
+HGX1 |Y (X1 |Y ) = H(X1 ),
+
+(6)
+
+Generate 2nI(X;T ) sequences
+(i)
+
+(i)
+
+t(i) = (t1 , t2 , . . . , t(i) ) ,
+n
+
+(2)
+
+and Rd (X2 ) is minimum number of bits for recovering X2
+with distortion d, which is equal to
+
+i ∈ {1, 2, . . . , 2nI(X;T ) }, i.i.d. according to the marginal
+distribution p(t).
+For each codeword t(i) , generate 2nI(X;U |T ) sequences
+
+Hb (p) − Hb (d).
+
+u(j) (t(i) ) = (u1 (t1 ), u2 (t2 ), . . . , u(j) (t(i) )) ,
+n
+n
+
+(j)
+
+(3)
+
+Equations (2) and (3) concludes (1).
+Second, in the scheme [3, Theorem 5.4] for R0 = H(X|Y )
+the minimum sum rate is
+RX + RY = H(f (X1 , Y )) + Hb (p) − Hb (d).
+
+(i)
+
+(j)
+
+(i)
+
+j ∈ {1, 2, . . . , 2nI(X;U |T ) }, i.i.d. according to the marginal
+distribution p(u|t), and randomly bin each sequence
+(t(i) , u(j) (t(i) )) uniformly into 2nR0 bins. Similarly, generate
+2nI(V ;X|T ) and 2nI(U,Y ;W |T ) sequences
+
+(4)
+
+(k)
+
+(k)
+
+(i)
+
+(l)
+
+(i)
+
+(l)
+
+(i)
+
+and
+(l)
+w(l) (t(i) ) = (w1 (t1 ), w2 (t2 ), . . . , wn (t(i) )),
+n
+
+RX + RY ≥ α × H(f (X1 , Y )) + (1 − α) × H(X1 )
++ Hb (p) − Hb (d).
+
+(i)
+
+(k)
+v (k) (t(i) ) = (v1 (t1 ), v2 (t2 ), . . . , vn (t(i) )),
+n
+
+So, (1) and (4) concludes that for any time sharing of two
+achievable schemes [3, Theorems 5.1, 5.4] we have
+(5)
+
+3 Note
+
+4
+
+that X2 = V + Z, where Z = Bern(d) is independent of V .
+
+ˆ ˆ ˆ ˆ ˆ
+(T , V (T ), W (T )) = (T (1) , V (1) (T (1) ), W (1) (T (1) )),
+
+respectively, i.i.d. according to p(v|t) and p(w|t), and randomly bin each sequence (t(i) , v (k) (t(i) )) and (t(i) , w(l) (t(i) ))
+uniformly into 2nRX and 2nRY bins, respectively. Reveal
+the bin assignment φ0 to the both encoders and the bin
+assignments φX and φY to the encoders and decoder.
+Encoding: First phase: Transmitter-X ﬁnds a sequence
+(t, u(t)) that is jointly robust typical with x, and sends the
+index of the bin that contains this sequence, i.e., φ0 (t, u(t))
+to transmitter-Y .
+Second phase: Transmitter-X ﬁnds a unique v(t) that is
+jointly robust typical with (x, t), and sends the index of the
+bin that contains (t, v(t)), i.e., φX (t, v(t)) to the receiver.
+The transmitter upon receiving the index q0 , ﬁrst ﬁnds a
+ˇ ˇ ˇ
+ˇ ˇ ˇ
+unique (t, u(t)) such that (t, u(t), y) becomes jointly robust
+ˇ ˇ ˇ
+typical and φ0 (t, u(t)) = q0 , otherwise it declares an errors.
+ˇ
+Then, it ﬁnds a unique w(t) that is jointly robust typical
+ˇ ˇ
+with (u(t), y), and sends the index of the bin that contains
+ˇ
+ˇ
+ˇ
+ˇ
+(t, w(t)), i.e., φY (t, w(t)) to the receiver.
+If a transmitter doesn’t ﬁnd such an index it declares an
+errors, and if there are more than one indices, the transmitter
+selects one of them randomly and uniformly.
+Decoding: Given the index pair (qX , qY ), declare
+˜ˆˆ ˆ ˆ ˆ
+f (t, v (t), w(t)) if there exists a unique jointly robust typical
+ˆˆ ˆ
+ˆˆ ˆ
+ˆ ˆ ˆ
+(t, v , w) such that φX (t, v (t)) = qX and φY (t, w(t)) = qY ,
+˜(t, v (t), w(t)) is deﬁned. Otherwise declare
+ˆˆ ˆ ˆ ˆ
+and such that f
+an error.
+Probability of Error: In each of two phases there are two types
+of error.
+In ﬁrst phase, the ﬁrst type of error occurs when no (t, u(t))
+is jointly robust typical with x. The probability of this errors
+is shown to be negligible in [7] due to the number of generated
+codewords t and u(t).
+ˇ ˇ ˇ
+The second type of error occurs if (t, u(t)) = (t, u(t)).
+Due to the Markov chain
+
+˜
+there is no error, i.e., f (V (1) , T (1) , W (1) ) = f (X, Y ) by
+deﬁnition of robust typicality and by the deﬁnitions of T , V
+and W . Similarly to [3], one can show this probability of error
+goes to zero when other inequalities of the Theorem hold. Due
+to the lack of space, we just compute the probability that
+ˆ ˆ ˆ ˆ ˆ
+(T , V (T ), W (T )) = (T (1) , V (1) (T (1) ), W (1) (T (1) )), (8)
+in all three coordinates. The number of triples that satisfy (8)
+is roughly
+2nI(X;T ) × 2nI(V ;X|T ) × 2nI(U,Y ;W |T ) .
+
+The probability that each triple that satisfy (8) has the same
+bin numbers (qX , qY ) is roughly
+2−nRX × 2−nRY ,
+
+(10)
+
+and the probability that the triple become jointly robust typical
+is roughly
+2−nI(V ;W |T ) .
+
+(11)
+
+So, from (9), (10) and (11), the probability of event (8) goes
+to zero, when n is large enough and RX + RY is larger than
+I(X; T ) + I(V ; X|T ) + I(U, Y ; W |T ) − I(V ; W |T )
+= I(X, Y ; V, T, W ) + I(U ; W |V, X, T, Y )
+
+R EFERENCES
+[1] P. Cuff, Han-I Su, and A. El Gamal. Cascade multiterminal source
+coding. In Information Theory, 2009. ISIT 2009. IEEE International
+Symposium on, pages 1199 –1203, 2009.
+[2] A. Giridhar and P.R. Kumar. Toward a theory of in-network computation
+in wireless sensor networks. Communications Magazine, IEEE, 44(4):98
+– 107, april 2006.
+[3] A. Kaspi and T. Berger. Rate-distortion for correlated sources with
+partially separated encoders. Information Theory, IEEE Transactions
+on, 28(6):828 – 840, nov 1982.
+[4] J. K¨ rner. Coding of an information source having ambiguous alphabet
+o
+and the entropy of graphs. In Transactions, 6th Prague Conference on
+Information Theory, 1973.
+[5] J. K¨ rner and K. Marton. How to encode the modulo-two sum of binary
+o
+sources (corresp.). Information Theory, IEEE Transactions on, 25(2):219
+– 221, mar 1979.
+[6] B. Nazer and M. Gastpar. Computation over multiple-access channels.
+Information Theory, IEEE Transactions on, 53(10):3498–3516, October
+2007.
+[7] A. Orlitsky and J. R. Roche. Coding for computing. 36th IEEE
+Symposium on Foundations of Computer Science, pages 502 –511, 1995.
+[8] M. Seﬁdgaran and A. Tchamkerten. Computing a function of correlated
+sources. http://arxiv.org/abs/1107.5806, 2011.
+[9] D. Slepian and J. Wolf. Noiseless coding of correlated information
+sources. Information Theory, IEEE Transactions on, 19(4):471 – 480,
+jul 1973.
+[10] K. Viswanathan. Information-theoretic analysis of function computation
+on streams. In Communication, Control, and Computing (Allerton), 2010
+48th Annual Allerton Conference on, pages 1147 –1152, 29 2010-oct. 1
+2010.
+[11] H. Witsenhausen. The zero-error side information problem and chromatic numbers (corresp.). Information Theory, IEEE Transactions on,
+22(5):592 – 593, sep 1976.
+[12] H. Yamamoto. Correction to ‘wyner-ziv theory for a general function
+of the correlated sources’. Information Theory, IEEE Transactions on,
+29(2):803 – 807, March 1982.
+
+T −U −X −Y
+it can be shown that the probability of this error goes to zero
+when
+R0 ≥ I(X; U |Y ).
+
+(9)
+
+(7)
+
+In second phase, the ﬁrst type of error occurs when no
+ˇ
+v(t), respectively w(t), is jointly robust typical with (x, t),
+ˇ y). The probability of each of these
+ˇ
+respectively with (u(t),
+two errors is shown to be negligible in [7] due to the number
+of generated codewords v(t) and w(t). Hence, the probability
+of the ﬁrst type of error is negligible.
+The second type of error refers to the Slepian-Wolf coding
+procedure. By symmetry of the encoding and decoding procedures, the probability of error of the Slepian-Wolf coding
+procedure, averaged over sources outcomes, over t’s, v(t)’s
+and w(t)’s, and over the binning assignments, is the same
+as the average error probability conditioned on the transmitters selecting T (1) , U (1) (T (1) ) ,V (1) (T (1) ) and W (1) (T (1) ).
+Note that whenever
+ˇ ˇ ˇ
+(T , U (T )) = (T (1) , U (1) (T (1) )),
+
+5
+
+

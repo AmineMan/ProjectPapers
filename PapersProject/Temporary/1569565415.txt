@@ -1,0 +1,863 @@
+Creator:         TeX output 2012.05.18:1845
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Fri May 18 18:45:19 2012
+ModDate:        Tue Jun 19 12:56:30 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      265135 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569565415
+
+A sequential transmission scheme for uniﬁlar
+ﬁnite-state channels with feedback based on
+posterior matching
+Achilleas Anastasopoulos
+Electrical Engineering and Computer Science Department
+University of Michigan
+Ann Arbor, MI, 48109-2122
+email: anastas@umich.edu
+
+proposed a simple sequential transmission scheme for the
+binary symmetric channel (BSC) which is capacity-achieving
+and provides a larger error exponent than traditional ﬁxedlength block-coding. Similarly, Schalkwijk and Kailath [11]
+showed that capacity and a double exponentially decreasing
+error probability can be achieved by a simple sequential
+transmission scheme for the additive white Gaussian noise
+channel (AWGNC) with average power constraint. Recently,
+Shayevitz and Feder [12]–[14] identiﬁed an underlying principle shared by the aforementioned Horstein and SchalkwijkKailath schemes and introduced a simple encoding scheme,
+namely the posterior matching scheme (PMS) for general
+memoryless channels. Furthermore, they showed that the PMS
+achieves the capacity of general discrete memoryless channels
+(DMCs). Subsequently, Coleman [15] revisited the PMS and
+reformulated the problem in a stochastic control framework.
+In [16], [17] the authors proposed a PMS scheme for channels
+with memory and state and output feedback.
+In this paper, we investigate potentially capacity-achieving
+transmission schemes for a special class of ﬁnite-state channels
+(FSC), namely uniﬁlar FSCs, where the channel state at
+time t + 1 is a deterministic function of the current state
+input and output. Based on the derived capacity expression,
+and the structure of the capacity-achieving input distribution
+derived in [5], we propose a PMS-like sequential transmission
+scheme. Intuitively, the transmitter and receiver both update
+a “state” which includes the a-posteriori distribution of the
+transmitted message conditioned on the observation output for
+all current states. At the same time, the transmitter is sending
+the most informative input symbol in such a way that the
+state-conditioned input distribution is the one implied by the
+capacity expression. Due to the presence of ISI, the proposed
+scheme has a number of unique characteristics that were
+not present in the PMS proposed for memoryless channels.
+Regarding the methodology followed for proving zero rate
+achievability, we generalize the tools utilized in [14], [16],
+[17].
+The remainder of the paper is organized as follows. In
+Section II, the channel model and some preliminaries are introduced. The generalized PMS is presented in Section III and
+
+Abstract—The capacity of uniﬁlar ﬁnite-state channels with
+feedback has been recently derived in the form of a single-letter
+expression and it has been evaluated analytically for a number of
+channels of interest, such as the trapdoor channel and the Ising
+channel with feedback. In this paper, we investigate transmission
+schemes for this class of channels. These schemes are inspired by
+the posterior matching scheme (PMS) introduced for memoryless
+channels with feedback. The transmission scheme is proven to
+achieve zero rate and is conjectured to achieve channel capacity.
+
+I. I NTRODUCTION
+Communication in the presence of feedback has been a
+long studied problem which dates back to Shannon’s early
+work [1], showing that feedback cannot increase the capacity
+of memoryless channels. For channels with memory, however,
+feedback may increase the capacity.
+One of the ﬁrst results on the capacity of channels with
+memory and feedback was by Viswanathan [2], who studied
+the capacity of a ﬁnite-state channel (FSC) with receiver
+channel-state information (CSI) and delayed feedback in the
+absence of inter-symbol interference (ISI). Later, Chen and
+Berger [3] derived the capacity of a FSC with ISI where
+current (i.e., not delayed) CSI is available at the transmitter
+and the receiver. Yang et. al. [4] used a stochastic control
+methodology to ﬁnd the capacity of the ISI channel (where
+the evolution of the state is deterministic). In a related line
+of work, the authors of [5], [6] derived a single-letter expression for the class of uniﬁlar channels and used dynamic
+programming to evaluate analytically the channel capacity for
+the trapdoor and the Ising channels with feedback. Recently,
+Tatikonda and Mitter [7] provided a general stochastic control framework for evaluating the capacity of the FSC with
+feedback. In that work, the capacity was characterized as the
+solution of a dynamic programming average reward optimality
+equation (AROE). Como et. al. [8] used an approach similar
+to that in [7] to ﬁnd the capacity of the FSC when current
+CSI is available at the transmitter and the receiver. An upper
+bound on the capacity of the FSC without ISI and CSI was
+found using dynamic programming by Huang et. al. [9].
+A signiﬁcant amount of research has also been done in the
+area of code design for channels with memory. Horstein [10]
+
+1
+
+some important properties are developed in IV. In Section V,
+the proof of zero-rate achievability is presented. Section VI
+concludes the paper.
+
+III. T HE POSTERIOR MATCHING TRANSMISSION SCHEME
+In this section we describe a sequential transmission
+scheme for the uniﬁlar FSC with unit-delay output feedback. We assume that the capacity achieving distributions
+(P (Xt |St , Bt−1 ))St ,Bt−1 have been found for all values of
+(St , Bt−1 ) ∈ S × P(S). We consider transmission of a
+message W ∈ [0, 1). Let F be the set of all valid cdfs over
+[0, 1) and deﬁne the random variable Ft′ ∈ S → F as
+
+II. C HANNEL MODEL AND PRELIMINARIES
+We consider channels with input, output and state random
+processes denoted by (Xt )∞ , (Yt )∞ , (St )∞ , respectively.
+t=1
+t=1
+t=1
+The corresponding input, output and state alphabets are ﬁnite
+and denoted by X , Y, and S, respectively. For reasons that
+will become clear in the following we also assume that
+X = {0, 1, . . . , |X | − 1}. At time t the receiver has access
+to the current channel output Yt , which is also fed back to
+the transmitter with unit delay. The state transition and the
+channel output are deﬁned as
+P (Yt |S t , X t , Y t−1 ) = Q(Yt |Xt , St )
+
+def
+
+With the above deﬁnition, Ft′ (·|s) is the a-posteriori cdf of W
+conditioned on St+1 = s, Y t , and Ft′ is the collection of all
+these conditional cdfs for all s ∈ S. In the following we will
+def
+also use the notation Ft′ (w) = (Ft′ (w|s))s∈S , as well as the
+def
+′
+′
+notation Ft (s) = Ft (·|s); the distinction should be obvious
+from the context.
+The channel input Xt for t = 1, 2, 3, . . . is generated as
+
+(1a)
+
+St+1 = g(St , Xt , Yt )
+
+Ft′ (w|s) = P (W ≤ w|St+1 = s, Y t ), w ∈ [0, 1), s ∈ S. (7)
+
+(1b)
+
+−1
+′
+Xt = FP (·|St ,Bt−1 ) (Ft−1 (W |St ))
+
+def
+
+Bt (s) = P (St+1 = s|Y t )
+
+∀s ∈ S.
+
+sup
+P (Xt |St ,Bt−1 )
+
+I(Xt , St ∧ Yt |Bt−1 )
+
+−1
+where the inverse cdf is deﬁned as FP (y) = inf{x : FP (x) ≥
+y} and FP denotes the cdf corresponding to a random variable
+with distribution P . The initial posterior cdfs are set to be
+′
+uniform, i.e., F0 (w|s) = w for w ∈ [0, 1). This transmission scheme is similar to the PMS scheme proposed for
+DMCs in [14] with the following differences. First, the input
+signal Xt is matched to the capacity achieving distribution
+P (Xt |St , Bt−1 ) which is not constant, but changes depending
+on the current values of the quantities St , Bt−1 . Second, the
+encoding scheme is a function of the message W through the
+value Ft′ (W |St ) and thus an appropriate “state” for the transmitter involves the entire vector Ft′ (W ) = (Ft′ (W |s))s∈S .
+Third, the additional “state” variable Bt can be recursively
+updated through the update equation Bt = θ(Bt−1 , Yt )
+as shown in (6), and the current state St is available at
+the transmitter at time t due to the uniﬁlar property, i.e.,
+St = g(St−1 , Xt−1 , Yt−1 ) = g (X t−1 , Y t−1 )1 . The proposed
+˜
+transmission scheme is also similar to the one in [16] and [17,
+ch. 5] for ISI FSCs with the difference being that in the above
+references the channel is not necessarily uniﬁlar, and CSI is
+available at the receiver and with unit delay at the transmitter.
+We now show that the quantity Ft′ can also be evaluated
+recursively at the transmitter. Indeed, the corresponding pdf
+can be updated as shown in (9) with P (Yt |Bt−1 ) derived from
+the joint distribution in (4). Integrating out (9) results in an
+explicit recursion for the cdfs Ft′ . We will use the shorthand
+notation
+′
+Ft′ = ϕ(Ft−1 , Bt−1 , Yt )
+(10)
+def
+
+(2)
+
+(3)
+
+where the mutual information in (3) is evaluated with the joint
+distribution
+P (Xt , Yt , St , Bt−1 ) =
+Q(Yt |Xt , St )P (Xt |St , Bt−1 )Bt−1 (St )P (Bt−1 ),
+
+(4)
+
+where P (Bt−1 ) is the steady-state distribution of the induced
+Markov process (Bt )t deﬁned by the conditional distribution
+∑
+P (Bt |Bt−1 ) =
+δθ(Bt−1 ,yt ) (Bt )
+yt
+
+∑
+
+(8b)
+
+def
+
+Their results (although not presented in this form) imply that
+under mild conditions the capacity of uniﬁlar FSCs can be put
+in a single-letter expression of the form
+C=
+
+(8a)
+
+′
+= e(Ft−1 (W ), St , Bt−1 ).
+
+for a given stochastic kernel Q ∈ X × S → P(Y) and a
+deterministic function g ∈ S × X × Y → S, where we denote
+by P(A) the set of distributions on A. These channels are
+referred to as uniﬁlar ﬁnite-state channels (FSCs) [5], [6].
+In [5] the authors formulated the problem of ﬁnding the
+capacity of uniﬁlar FSCs with unit-delayed output feedback
+as a stochastic control problem. The basic idea was to deﬁne
+a controlled Markov process with state Bt ∈ P(S) deﬁned as
+
+Q(yt |xt , st )P (xt |st , Bt−1 )Bt−1 (st ), (5)
+
+xt ,st
+
+and θ is given by the recursive updating of Bt = θ(Bt−1 , Yt )
+as shown in (6). We note that the above expressions can also
+be derived from the general framework developed in [7] as
+a special case. It was further shown in [5] that the capacity
+expression can, be evaluated as the solution of an appropriate
+average reward optimality equation (AROE) [18]. For the special case of the trapdoor and the Ising channels with feedback
+the authors provided analytical solutions to the AROE in [5],
+[6].
+
+for the above update. It can be shown from (9) that Ft′ (w)
+′
+′
+is a function of Ft−1 only through Ft−1 (w). This has important implications for the analysis of the PMS scheme.
+1 Throughout the paper we suppress the dependency on the initial state S
+1
+which is assumed known to transmitter and receiver.
+
+2
+
+∑
+Bt (st+1 ) = ∑
+
+xt ,st
+
+δg(st ,xt ,Yt ) (st+1 )Q(Yt |xt , st )P (xt |st , Bt−1 )Bt−1 (st )
+
+xt ,st ,st+1
+
+∑
+dFt′ (w|s)
+
+=
+
+st
+
+(6)
+
+δg(st ,xt ,Yt ) (st+1 )Q(Yt |xt , st )P (xt |st , Bt−1 )Bt−1 (st )
+
+′
+′
+′
+δg(st ,e(Ft−1 (w),st ,Bt−1 ),Yt ) (s)Q(Yt |e(Ft−1 (w), st , Bt−1 ), st )Bt−1 (st )dFt−1 (w|st )
+
+Bt (s)P (Yt |Bt−1 )
+
+In the following we will also use the notation Ft′ (w) =
+′
+′
+ϕ(Ft−1 , Bt−1 , Yt )(w) = ϕ(Ft−1 (w), Bt−1 , Yt ).
+
+P (Ft′ (W |St+1 ) ≤ a)
+∑
+=
+P (Ft′ (W |St+1 ) ≤ a|st+1 , y t )P (st+1 , y t )
+=
+
+(16b)
+
+=
+
+P (ft′ (W |st+1 ) ≤ a|st+1 , y t )P (st+1 , y t )
+
+(16c)
+
+,y t
+
+st+1
+
+=
+
+,y t
+
+∑
+
+∑
+
+P (W ≤ ft′−1 (a|st+1 )|st+1 , y t )P (st+1 , y t ) (16d)
+ft′ (ft′−1 (a|st+1 )|st+1 )P (st+1 , y t )
+
+(16e)
+
+aP (st+1 , y t )
+
+(16f)
+
+st+1 ,y t
+
+=
+
+∑
+
+st+1 ,y t
+
+= a,
+
+(16g)
+ft′
+
+where
+is the cdf corresponding to the realization y t .
+Similarly for Ft (W ).
+
+(12)
+
+where the message estimate function d(F, ϵ) is deﬁned as
+w
+
+∑
+
+st+1
+
+′
+which together with ϕ and θ results in Ft = ψ(Ft−1 , Bt−1 , Yt )
+′
+and moreover in Ft (w) = ψ(Ft−1 (w), Bt−1 , Yt ). In view of
+the above recursions, as well as the recursions (6) and (9) for
+Bt and Ft′ , respectively, it is clear that the receiver can also
+evaluate the posterior cdf Ft recursively. Finally, the message
+estimate is obtained as
+
+d(F, ϵ) = arg max{F (w + ϵ) − F (w − ϵ)},
+
+(16a)
+
+st+1 ,y t
+
+st+1
+
+def
+
+(9)
+
+For the ﬁrst property we have for any a ∈ [0, 1)
+
+At the receiver, maximum likelihood (ML) estimation is
+performed based on the posterior distribution of the message
+W conditioned on the observations Y t . Let the corresponding
+posterior cdf be Ft ∈ F with Ft (w) = P (W ≤ w|Y t ). It is
+straightforward to show that
+∑
+Ft′ (w|st+1 )Bt (st+1 ),
+(11)
+Ft (w) =
+
+ˆ
+Wt = d(Ft , 2−Rt /2),
+
+,
+
+For the second property we can write
+
+(13)
+
+P (Xt |St , Y t−1 )
+′
+= P (Xt |St , Y t−1 , Bt−1 , Ft−1 )
+∫
+′
+=
+P (Xt |St , Y t−1 , Bt−1 , Ft−1 , W = w)
+
+and R is the transmission rate.
+
+(17a)
+
+w
+
+∫
+
+IV. P ROPERTIES OF THE TRANSMISSION SCHEME
+
+P (dw|St , Y t−1 )
+
+(17b)
+
+′
+′
+δe(Ft−1 (w),St ,Bt−1 ) (Xt )dFt−1 (w|St )
+(17c)
+∫
+∑
+′
+=
+δx (Xt )
+dFt−1 (w|St ) (17d)
+
+=
+
+w
+
+The following properties are now established for the described transmission scheme.
+
+x∈X
+
+=
+
+Lemma 1. For the transmission scheme described above and
+for every t ≥ 1 we have
+
+δx (Xt )P (x|St , Bt−1 )
+
+= P (Xt |St , Bt−1 ),
+
+(17e)
+(17f)
+
+′
+where (17a) is due to the fact that Bt−1 and Ft−1 can be
+t−1
+ˆ and ϕ; (17c) is due to the
+ˆ
+recovered from Y
+using θ
+transmission scheme in (8) and the deﬁnition of Ft′ in (7);
+and (17e) is due to the posterior matching in (8). Similarly
+for the third property.
+
+2)
+(14)
+
+P (Yt |Y t−1 ) = P (Yt |Bt−1 ).
+
+′
+w:e(Ft−1 (w),St ,Bt−1 )=x
+
+x∈X
+
+1) The random variables Ft′ (W |St+1 ) and Ft (W ) are uniformly distributed in [0, 1).
+P (Xt |St , Y t−1 ) = P (Xt |St , Bt−1 )
+
+∑
+
+(15)
+
+3)
+
+We now show that the proposed transmission scheme satisﬁes a necessary condition for capacity achievability. For
+transmission at rate R over a period of n channel uses we
+have
+
+Proof: First note that repeated application of the recursions g, θ, and ϕ imply that St+1 = g (X t , Y t ) = g (W, Y t ),
+˜
+ˆ
+ˆ
+ˆ
+Bt = θ(Y t ) and Ft′ = ϕ(Y t ).
+
+nR = H(W ) = H(W |Y n ) + I(W ∧ Y n ),
+
+3
+
+(18)
+
+A. Achieving R = 0
+
+and for the proposed scheme, the second term becomes
+I(W ∧ Y n )
+n
+∑
+=
+I(W ∧ Yt |Y t−1 )
+=
+
+t=1
+n
+∑
+
+For a cdf F ∈ F deﬁne a Lyapunov function Vλ as follows.
+∫ 1
+Vλ (F ) =
+λ(F (w))dw,
+(23)
+
+(19a)
+
+0
+
+H(Yt |Y t−1 ) − H(Yt |W, Y t−1 )
+
+where λ : [0, 1] → [0, 1] is onto, strictly concave and
+symmetric about 0.5. This deﬁnition implies that λ(x) equals
+0 at x = 0, 1 and equals 1 at x = 1/2. Furthermore, Vλ (F ) is
+small if F resembles a step function (it is exactly 0 for a step
+function). A function ξ : [0, 1] → [0, 1] is called a contraction
+if it is nonnegative, concave, and ξ(x) < x for x ∈ (0, 1). The
+following lemma shows that the probability of having an Ft
+that does not resemble a step function is zero at the limit of
+large t.
+
+(19b)
+
+t=1
+
+=
+
+n
+∑
+
+H(Yt |Bt−1 ) − H(Yt |W, Y t−1 , X t , S t , Bt−1 ) (19c)
+
+t=1
+
+=
+=
+
+n
+∑
+t=1
+n
+∑
+
+H(Yt |Bt−1 ) − H(Yt |Xt , St , Bt−1 )
+
+(19d)
+
+I(Xt , St ∧ Yt |Bt−1 )
+
+(19e)
+
+Lemma 2. If the channel is ﬁxed-point free, then for ϵ > 0
+and for all f ′ ∈ F |S| ,
+
+t=1
+
+= nC,
+
+(19f)
+
+′
+lim P (Vλ (Ft ) > ϵ|F0 = f ′ ) = 0.
+
+where (19c) is due to (15) and the fact that X t is implicitly
+only a function of W and Y t−1 , S t can be derived from X t−1
+and Y t−1 through g and Bt−1 is a function of Y t−1 through
+ˆ
+ˆ
+θ; and (19d) is due to the channel statistics and the fact that
+Bt−1 is independent of Yt conditioned on Xt and St .
+
+t→∞
+
+Proof: We would like to ﬁnd a contraction mapping ξ
+′
+such that for every w, bt−1 , ft−1 we have
+′
+E[λ(Ft (w))|bt−1 , ft−1 ] ≤ ξ(λ(ft−1 (w))),
+(25)
+∑ ′
+where ft−1 = s ft−1 (s)bt−1 (s). Let us assume for now that
+such a contraction mapping exists. Then, for any f ′ ∈ F |S|
+
+V. ACHIEVABILITY
+
+′
+P (Vλ (Ft ) > ϵ|F0 = f ′ )
+′
+≤ E[Vλ (Ft )|F0 = f ′ ]/ϵ
+
+ˆ
+Let Wt be the message point estimate at the receiver at time
+t. Then, a transmission scheme achieves rate R if
+ˆ
+lim P (|W − Wt | > 2−tR ) = 0.
+
+t→∞
+
+t−1
+
+ˆ
+lim P (|W − Wt | > ϵ) = 0.
+
+t→∞
+
+(20)
+
+(21)
+
+The subsequent analysis is valid for a (broad) class of nonpathological channels, namely ﬁxed-point free channels, that
+are deﬁned in a way similar to [14], [17].
+
+(26a)
+′
+
+′
+]|F0
+
+′
+
+0
+
+′
+≤ ξ(E[Vλ (Ft−1 )|F0 = f ′ ])/ϵ
+···
+
+Deﬁnition 1. A channel is called ﬁxed-point free if for any
+a = (a(s))s∈S ∈ (0, 1)|S| , b ∈ P(S)
+∑
+∑
+P(
+ϕ(a, b, Yt )(s)θ(b, Yt )(s) =
+a(s)b(s)) < 1. (22)
+s
+
+′
+, F0
+
+= E[E[Vλ (Ft )|Y
+=f
+= f ]/ϵ
+(26b)
+′
+′
+′
+′
+= E[E[Vλ (ψ(Ft−1 , Bt−1 , Yt ))|Bt−1 , Ft−1 ]|F0 = f ]/ϵ
+(26c)
+′
+′
+= E[E[Vλ (Ft )|Bt−1 , Ft−1 ]|F0 = f ′ ]/ϵ
+(26d)
+[∫ 1
+]
+′
+′
+= E[E
+λ(Ft (w))dw|Bt−1 , Ft−1 |F0 = f ′ ]/ϵ (26e)
+0
+∫ 1
+′
+≤ E[
+ξ(λ(Ft−1 (w)))dw|F0 = f ′ ]/ϵ
+(26f)
+
+In particular, we say that a transmission schemes achieves zero
+rate if
+∀ϵ > 0
+
+(24)
+
+≤ ξ t (Vλ (f ))/ϵ → 0,
+
+(26g)
+(26h)
+
+where the ﬁrst inequality is the Markov inequality, the second
+inequality is due to the assumption for the property of ξ, the
+third inequality is due to the concavity of ξ, the fourth inequality is due to repeated application of the above inequalities, and
+the (uniform) convergence to 0 is due to the property of the
+contraction [14, Lemma 8].
+It remains to ﬁnd the contraction ξ with the aforementioned
+property. To this end let λ′ : [0, 0.5] → [0, 1] be a restriction
+of λ on [0, 0.5]. Then, λ′ becomes one-to-one and onto, hence
+˜
+it has inverse. Let ξ : [0, 1] → [0, 1] be deﬁned as
+
+s
+
+The above deﬁnition essentially implies that the recursions
+θ, ϕ do not have a ﬁxed point with respect to the posterior cdf
+Ft that they imply. Finally, assuming that the probabilities
+Q(y|x, s) and the capacity achieving distribution P (x|s, b)
+are non-zero for all x, y, s, b, the recursions in (9) and (6)
+guarantee that for every realization of the random variables of
+interest, Ft′ will always have a pdf; in addition the pdf will be
+non-zero everywhere in (0, 1]2 .
+
+′
+˜
+ξ(x) = sup E[λ(ψ(x′ , b, Yt ))|bt−1 = b, ft−1 (w) = x′ ], (27)
+
+where the supremum is over b, x′ = (x′ (s))s∈S with x′ (s) ≥
+∑
+0, s x′ (s)b(s) = x. The above expression is a supremum
+
+2 Channels
+
+that do not satisfy this assumption can be treated as limiting
+cases of this analysis.
+
+4
+
+of a continuous function over a compact space and thus it is
+achieved. Consider now the following function
+{
+}
+∗
+˜ ′−1 (x)), ξ(1 − λ′−1 (x)) .
+˜
+(28)
+ξ (x) = max ξ(λ
+
+on the ideas of stochastic nonlinear ﬁlter stability described
+in [19].
+R EFERENCES
+[1] C. Shannon, “The zero error capacity of a noisy channel,” Information
+Theory, IRE Transactions on, vol. 2, no. 3, pp. 8–19, September 1956.
+[2] H. Viswanathan, “Capacity of Markov channels with receriver CSI and
+delayed feedback,” IEEE Trans. Information Theory, vol. 45, no. 2, pp.
+761–771, Mar. 1999.
+[3] J. Chen and T. Berger, “The capacity of ﬁnite-state Markov channels
+with feedback,” Information Theory, IEEE Transactions on, vol. 51,
+no. 3, pp. 780–798, March 2005.
+[4] S. Yang, A. Kavcic, and S. Tatikonda, “Feedback capacity of ﬁnitestate machine channels,” IEEE Trans. Inform. Theory, vol. 51, no. 3,
+pp. 799–810, March 2005.
+[5] H. Permuter, P. Cuff, B. V. Roy, and T. Weissman, “Capacity of the
+trapdoor channel with feedback,” Information Theory, IEEE Transactions on, vol. 54, no. 7, pp. 3150 –3165, July 2008.
+[6] O. Elishco and H. H. Permuter, “Capacity of the ising channel with
+feedback,” in Proc. International Symposium on Information Theory,
+Aug. 2011, pp. 3004 –3008.
+[7] S. Tatikonda and S. Mitter, “The capacity of channels with feedback,”
+IEEE Trans. Information Theory, vol. 55, no. 1, pp. 323–349, Jan. 2009.
+[8] G. Como, S. Yuksel, and S. Tatikonda, “The error exponent of variablelength codes over markov channels with feedback,” IEEE Trans. Inform.
+Theory, vol. 55, no. 5, pp. 2139–2160, May 2009.
+[9] X. Huang, A. Kavcic, X. Ma, and D. Mandic, “Upper bounds on the
+capacities of non-controllable ﬁnite-state channles using dynamic programming methods,” in Proc. International Symposium on Information
+Theory, Seoul, South Korea, June 2009, pp. 2346 – 2350.
+[10] M. Horstein, “Sequential transmission using noiseless feedback,” IEEE
+Trans. Inform. Theory, vol. 9, no. 3, pp. 136–143, Jul 1963.
+[11] J. Schalkwijk and T. Kailath, “A coding scheme for additive noise channels with feedback–I: No bandwidth constraint,” IEEE Trans. Inform.
+Theory, vol. 12, no. 2, pp. 172–182, Apr 1966.
+[12] O. Shayevitz and M. Feder, “Communication with feedback via posterior
+matching,” in Proc. International Symposium on Information Theory,
+24–29 June 2007, pp. 391–395.
+[13] ——, “The posterior matching feedback scheme: Capacity achieving
+and error analysis,” in Proc. International Symposium on Information
+Theory, 6–11 July 2008, pp. 900–904.
+[14] ——, “Optimal feedback communication via posterior matching,” IEEE
+Trans. Information Theory, vol. 57, no. 3, pp. 1186–1222, Mar. 2011.
+[15] T. Coleman, “A stochastic control viewpoint to Posterior Matching-style
+feedback communication schemes,” in Proc. International Symposium
+on Information Theory, Seoul, Korea, June 2009, pp. 1520 – 1524.
+[16] J. H. Bae and A. Anastasopoulos, “A posterior matching scheme for
+ﬁnite-state channels with feedback,” in Proc. International Symposium
+on Information Theory, Austin, TX, June 2010, pp. 2338–2342.
+[17] J. Bae, “Capacity-achieving schemes for ﬁnite state channels,” Ph.D.
+dissertation, University of Michigan, Ann Arbor, MI, May 2011, can be
+downloaded from http://eecs.umich.edu/∼anastas/docs/junghyun thesis.
+pdf.
+[18] A. Araposthathis, V. Borkar, E. Fernandez-Gaucherand, M. Ghost, and
+S. Marcels, “Discrete-time controlled Markov processes with average
+cost criterion: A survey,” Siam Journal on Control and Optimization,
+vol. 31, no. 2, pp. 282–344, Mar. 1993.
+[19] S. Gorantla and T. P. Coleman, “Equivalence between reliable feedback
+communication and nonlinear ﬁlter stability,” in Information Theory
+Proceedings (ISIT), 2011 IEEE International Symposium on, 31 2011aug. 5 2011, pp. 164 –168.
+
+Clearly, ξ ∗ (x) ≥ 0. We will now show that ξ ∗ satisﬁes
+def
+the aforementioned property. Indeed, let a = ft−1 (w). If
+′−1
+a ∈ [0, 1/2] then λ (λ(a)) = a and the ﬁrst term in
+the maximization on the r.h.s. of (28) (for x = λ(a))
+˜
+equals ξ(a). If a ∈ [1/2, 1] then 1 − λ′−1 (λ(a)) = a and
+the second term in the maximization of the r.h.s. of (28)
+˜
+˜
+(for x = λ(a)) equals ξ(a). Thus, ξ ∗ (λ(a)) ≥ ξ(a) ≥
+′
+′
+E[λ(ψ(ft−1 (w), bt−1 , Yt ))|bt−1 , ft−1 ].
+The remaining of the proof is similar to the one developed
+for DMC’s in [14] and will not be repeated here.
+The above result can be used to show that rate R = 0 is
+achievable.
+Proposition 1. If the channel is ﬁxed-point free, then for ϵ, δ >
+0
+lim P (Ft (W − δ) > ϵ) = 0,
+
+(29a)
+
+lim P (Ft (W + δ) < 1 − ϵ) = 0.
+
+(29b)
+
+t→∞
+t→∞
+
+Proof: The proof is exactly the same as in the DMC case
+and can be found in [17, Appendix A].
+B. Achieving R < C
+Following similar steps as the ones followed [17] to show
+capacity achievability for the PMS scheme for ﬁnite state
+channels with both output and state feedback, one may now
+prove achievability for any rate up to capacity. An alternative
+proof of achievability may be pursued based on the ideas of
+stochastic nonlinear ﬁlter stability described in [19]. In the
+following we state the achievability of R < C as a conjecture.
+Conjecture 1. For any δ, α > 0
+lim P (F(1+α)t (W − 2−tR ) > δ) = 0,
+
+(30a)
+
+lim P (F(1+α)t (W + 2−tR ) < 1 − δ) = 0.
+
+(30b)
+
+t→∞
+t→∞
+
+VI. C ONCLUSIONS
+Starting from a single-letter capacity expression for uniﬁlar
+FSC with output feedback, we propose a sequential transmission scheme that is inspired by the PMS developed for
+memoryless channels and FSC with output and state feedback.
+The proposed scheme is shown to be have a recursive structure
+and it possesses the properties that every PMS scheme should
+possess. The proposed scheme is shown to achieve zero rate
+for the aforementioned channels by extending the achievability
+proof developed for memoryless channels. An interesting
+future research direction is the analysis of the error probability
+of this (and other) PMS schemes and in particular the error
+exponent analysis. In addition, an alternative uniﬁed proof of
+the achievability of PMS-like schemes may be pursued based
+
+5
+
+

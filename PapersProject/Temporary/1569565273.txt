@@ -1,0 +1,853 @@
+Title:          fig_def.eps
+Subject:        gnuplot plot
+Author:         fra
+Creator:        gnuplot 4.2 patchlevel 6 
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Thu May 17 22:52:47 2012
+ModDate:        Tue Jun 19 12:56:12 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      595 x 842 pts (A4)
+File size:      342937 bytes
+Optimized:      no
+PDF version:    1.7
+ISIT'2012 1569565273
+
+Large scale correlation detection
+Francesca Bassi1,2
+1
+
+Alfred O. Hero III2
+2
+
+LSS – CNRS – SUPELEC – Univ Paris Sud
+Gif-sur-Yvette, France
+
+Abstract—This work addresses the problem of correlation
+detection in a group of elliptically-contoured variables, when the
+number p of variates greatly exceeds the number n of observed
+samples. We exploit the properties inherent to the Z-score
+representation of the data set to devise two different decision
+tests, whose performances are assessed by upper bounding the
+Type I and Type II error probabilities. The results speciﬁcally
+apply to the asymptotic regime where the number of variates p
+is large, and the number of samples n is ﬁnite and ﬁxed.
+
+I. I NTRODUCTION
+An increasing number of practical applications require the
+solution of inference problems on high dimensional data sets,
+where the amount of considered features is large (some examples are sensor networks, gene expressions arrays, multimedia
+databases, multivariate ﬁnancial time series, and trafﬁc in
+communication networks). Their unifying trait is the small
+number n of available samples, in comparison to the feature
+dimension p. In this context, especially challenging tasks are
+the correlation screening problem [1], i.e. the identiﬁcation
+of signiﬁcant levels of linear dependence, and the covariance
+structure testing problem [2]. In gene expression analysis, for
+example, a biologist might be interested to test for structure
+of the gene regulatory network, but only has a handful (n)
+of samples to construct the sample correlation matrix between
+tens of thousands (p) of gene probes. In this situation classical
+large n asymptotic techniques cannot be reliably applied.
+This work addresses the simpler problem of deciding
+whether the high dimensional data set is completely uncorrelated. Building upon the U -score representation introduced in
+[1] we test properties of the empirical distribution to decide
+the diagonality of the covariance matrix. This work extends
+previous results that hold only in the limiting asymptotic
+regime p → ∞, n → ∞. For normal multivariate samples,
+for instance, [3] provides the asymptotic distribution of the
+maximum eigenvalue of the sample correlation matrix. This
+statistic, however, is only meaningful for p < n. In [4] a
+quadratic form of the sample covariance matrix is shown to
+be a consistent statistic even for p > n, if n and p have equal
+growth rate. Under the same conditions, [5] and [6] derive the
+asymptotic distribution of the maximum sample correlation
+coefﬁcient, test statistic ﬁrst considered in [7], [8].
+Differently from this approach, the results presented here
+speciﬁcally apply to the asymptotic regime p → ∞ with
+n ﬁxed and ﬁnite, also considered in [1], [9]. Unlike in
+correlation screening for sparse correlation matrices [1], we
+are interested in global tests for diagonal covariance, here
+
+1
+
+University of Michigan, EECS Department
+Ann Arbor, MI
+
+derived applying the theory of exchangeability and the method
+of types.
+The paper is organized as follows. Section II reviews the
+U -score representation of the data set introduced in [1].
+The decision problem is formally deﬁned in Section III.
+In Section III-A and Section III-B two different tests are
+proposed, whose performances are characterized by means of
+the respective Type I and Type II error exponents. Section IV
+provides experimental results.
+II. T HE GEOMETRY OF CORRELATION
+Let the size p random vector X be distributed according to
+an elliptically-contoured density fX (x) (e.g. the multivariate
+normal, or the multivariate t-distribution, see [10, Sec. 2.7]
+and references therein). The elliptically-contoured density is
+speciﬁed by the parameters µ, Σ, and g(·), where g(·) is a
+non-negative monotonic function:
+fX (x) = |Σ|−1/2 g (x − µ)T Σ−1 (x − µ) .
+The elements of X are assumed to have ﬁnite ﬁrst and second
+moments. This section introduces different possible representations of the data set collected by making n independent
+drawings from the a priori distribution fX (x).
+A. Z-score and U -score representations of the data
+Raw data set: The matrix X[n×p] is formed by (vertically)
+stacking n independent drawings from fX (x).
+Z-scores: The matrix Z[n×p] is obtained centering and normalizing the columns of X with respect to their sample mean
+and standard deviation. Let mi = (n)−1 1T x(i) denote the i-th
+sample mean, and s2 = (n − 1)−1 (x(i) − mi 1)T (x(i) − mi 1)
+i
+the i-th sample variance. The columns of Z are obtained from
+the columns of X as
+x(i) − mi 1
+,
+∀i ∈ {1, 2, · · · , p}.
+(1)
+z (i) =
+(n − 1) si
+Geometrically, the columns of Z are points living in the Rn
+space. Each z (i) belongs to the intersection of the hyperplane
+Mn−1 = {z ∈ Rn : 1T z = 0} with the unit hypersphere
+Sn−1 = {z ∈ Rn : z = 1}.
+U -scores [1]: The matrix U[(n−1)×p] is obtained from
+Z as a result of the rotation by H∗ of its columns, and
+of their subsequent projection over Mn−1 . Deﬁne H∗ as
+an orthonormal matrix1 whose ﬁrst row is parallel to 1T ,
+1 As explained in [1], the matrix H∗ can be easily obtained via GramSchmidt orthogonalization of the matrix composed by 1T and any other
+arbitrarily chosen n − 1 linearly independent row vectors.
+
+the vector orthogonal to Mn−1 . The ﬁrst row in H∗ Z is
+identically null, and is removed by the projection onto Mn−1 .
+The U -score matrix is given by U = HZ, where H is H∗
+deprived of its ﬁrst row. Geometrically, the columns of U are
+points in the Rn−1 space. The transformation Hz (i) is norm
+preserving, so that the columns of U belong to Sn−2 .
+The geometry of correlation [1]: In [1, Sec. 2] the analysis
+of the properties of the U -scores for elliptically-contoured
+fX (x) is presented. When the elements of X are uncorrelated,
+and Σ is diagonal, the distribution of the columns of U is
+uniform on Sn−2 . For non-diagonal Σ the distribution is,
+in general, far from uniform. This property is the key to
+establishing the correlation detection procedure proposed here.
+
+labeling) of the random variables is redundant, and can be
+discarded. This conceptual operation is formalized as the
+resampling (without replacement) of the data set U. The
+resampled data set V is deﬁned by V = UP , where the matrix
+P is random and uniformly distributed over the set P ⊂ Bp×p
+of permutation matrices. Therefore, for p = 2 the density of
+V for the arguments (v, w) is equal to
+
+B. Statistical properties
+
+Proposition 3. The probability density function of the resampled data set fV (v (1) , · · · , v (p) ) has form
+
+In this subsection some relevant statistical properties of the
+matrices X, Z and U are derived. The matrix X, composed
+of independent drawings from fX (x), is row–exchangeable
+[11], i.e. its probability law is unchanged upon row permutation. The conversion in Z-scores, detailed in (1), preserves
+exchangeability (though not independence) of the rows of Z.
+These considerations justify the following proposition.
+Proposition 1. The matrix Γ(ij) = cov Z (i),Z (j) has the form
+Γ(ij) = β (ij) 11T + (α(ij) − β (ij) ) I.
+If Xi and Xj are uncorrelated, then α
+
+(ij)
+
+=β
+
+(ij)
+
+(2)
+= 0.
+
+fV (1) V (2) (v, w) =
+
+1
+1
+f (1) (2) (v, w) + fU (2) U (1) (v, w),
+2 U U
+2
+
+where 1/2 is the probability of choosing any of the two
+permutation matrices. Extending this argument to general
+values of p yields the following proposition.
+
+p!
+
+(1)
+
+fV (v , · · · , v
+
+(p)
+
+1
+)=
+fUP |P =P a v (1) , · · · , v (p) .
+p! a=1
+
+As it is evident from (5), the distribution fV (v (1) , · · · , v (p) )
+is invariant upon permutation of the arguments. The resampled
+data set V is hence an exchangeable sequence [11] of random
+points in the Rn−1 space. This implies, in particular, that each
+column in V is distributed according to the same marginal
+fV (v). The covariance between any pair of columns of V is
+given by
+
+Proposition 2. The matrix Υ(ij)= cov U (i),U (j) has the form
+Υ(ij) = (α(ij) − β (ij) ) I.
+If Xi and Xj are uncorrelated, then Υ
+
+(ij)
+
+(3)
+
+Proof: The U -scores covariance matrix can be represented
+as Υ(ij) = HΓ(ij) HT . Combining this representation with (2)
+yields Υ(ij) = β (ij) H11T HT + (α(ij) − β (ij) )HHT . Recall
+that the rows of the matrix H belong, by construction, to the
+hyperplane Mn−1 . This implies H1 = 0, and hence (3).
+III. C ORRELATION DETECTION
+Making use of the representation of the data set exposed
+in Section II we formulate the hypothesis test in the R(n−1)
+space associated with the U -scores. From now on we denote
+U = U (1) , · · · , U (p) the vector of random points belonging
+to Sn−2 . The proposed hypotheses to be tested are
+H1 : fU (u(1) , · · · , u(p) ) = U (Sn−2 )
+
+cov (V , W ) =
+(ij)∈Q
+
+Υ(ij)
+=I
+p(p − 1)
+
+(ij)∈Q
+
+α(ij) − β (ij)
+. (6)
+p(p − 1)
+
+T
+
+= 0 11 .
+
+H0 : fU (u(1) , · · · , u(p) ) = U (Sn−2 )
+
+(5)
+
+,
+
+(4)
+
+where U (Sn−2 ) is the uniform distribution on Sn−2 . As a
+consequence of the properties of the elliptically-contoured
+density fX (x), H0 is veriﬁed only if Σ is diagonal. The
+testing of the hypotheses (4) is difﬁcult, since the observed
+matrix U represents a single drawing from fU (u(1) , · · · , u(p) ).
+We propose a simple testing strategy, based on the following
+observation: since the test aims to detect the presence of
+correlated variables in the vector X, but not to identify the
+correlated pairs, the information about the identities (i.e. the
+
+2
+
+The testing procedure will be performed on V. It
+is straightforward to verify that, when H0 is in force,
+fV (v (1) , · · · , v (p) ) = fU (v (1) , · · · , v (p) ). The hypotesis testing
+problem on fV (v (1) , · · · , v (p) ) can now be solved easily, as
+shown below. Since exchangeability allows to consider each
+column of V as a drawing from fV (v), the high dimensionality
+p of the problem can be exploited to test, without requiring
+large sample size n.
+A. The empirical squared distance test
+Let Q∗ = {(i, j) : i, j ∈ {1, · · · , p}, i < j}. The vector
+D(V) = (D1 , · · · , Dp(p−1)/2 ) is constructed by stacking
+in sequence, ∀(i, j) ∈ Q∗ , the pairwise squared Euclidean
+distances Dk = V (i) − V (j) 2 . As consequence of the
+exchangeability of V, the distribution fD (d1 , · · · , dp(p−1)/2 )
+is invariant with respect to the permutation of the arguments,
+and D is exchangeable as well. The explicit expression of
+E[D], i.e. the expectation of the marginal distribution of D, is
+given in the following proposition.
+Proposition 4. The expectation of the random variable D is
+given by
+E[D] = 2 1 − tr cov (V , W ) − E [V ]
+where γ = tr cov (V , W ) + E[V ] 2 .
+
+2
+
+= 2(1 − γ), (7)
+
+Proof: Because of the exchangeability of the elements in
+V, E [D] = E V − W 2 . Consider the following relation
+tr cov (V , W ) = E V T W − E[V ] 2
+(8)
+1
+= 1 − E V −W 2 − E[V ] 2 , (9)
+2
+where (8) is a consequence of the linearity of the trace and of
+the expectation, and (9) is due to the fact that V 2 = W 2 =
+1. Rearranging (9) yields (7).
+The value E [D] belongs to the interval [0, 2]. When H0 is
+true, E[V ] 2 = 0, and Υ(ij) = 0 I, ∀(i, j) ∈ Q, so that, after
+(6), tr cov (V , W ) = 0. As a consequence E D H0 = 2,
+i.e. the expectation E [D] is maximized when H0 is true. This
+motivates using the average of the vector D(V) as the test
+statistic T
+p(p−1)/2
+2
+Dk .
+(10)
+T =
+p(p − 1)
+k=1
+
+By thresholding T we obtain the hypothesis test
+T −2 ≤τ
+
+:
+
+H0
+
+T −2 >τ
+
+:
+
+H1
+
+.
+
+(11)
+
+The threshold value τ will satisfy τ ≥ 2/(p − 1).
+The performance of the test is characterized evaluating the
+Type I and Type II error probabilities.
+Proposition 5. The Type I error probability relative to the
+threshold test (11) is bounded by
+
+where (16) is deduced using the relation 2 = E [D] + 2γ
+introduced in (7). Lemma 7 in Appendix A allows to establish
+the relation 2γ ≥ −2/(p − 1). As a consequence of the
+threshold choice τ ≥ 2/(p − 1) it is concluded 2γ + τ ≥ 0.
+This justiﬁes (17), derived making use of the upper tail bound
+(30) in Lemma 9 in Appendix A.
+For 2γ < τ , the last term in (17) is evaluated using the
+lower tail bound (31) derived in Lemma 9, and this yields the
+second part of (13). For 2γ ≥ τ , (17) can be developed as
+1
+
+2
+
+PII = 1 − e− 4 p(p−1)(2γ+τ ) − 1 + P(T − E [D] > 2γ − τ ),
+from which the ﬁrst part of (13) is ﬁnally obtained by
+substitution of (31).
+As it is clear from (12) and (13), for 2γ ≥ τ the test is
+characterized by a fast decrease of the error probability as
+the dimension p increases, forcing it to zero for p → ∞.
+The constant γ is null when H0 is in force, and, for high
+dimensional problems (i.e. when the modelization p → ∞
+is allowed), is always positive (Lemma 7 in Appendix A). It
+increases whenever there is correlation among the elements
+of V, and/or the marginal fV (v (1) , · · · , v (p) ) over Sn−2 deviates from symmetry about the origin of Rn−1 . Thus γ can
+be understood as a measure of divergence of the empirical
+fV (v (1) , · · · , v (p) ) from the uniform distribution on Sn−2 , as
+a function of its ﬁrst and second order statistics. If 2γ < τ ,
+this will almost surely induce a Type II error, for p → ∞.
+B. The empirical entropy test
+
+As discussed above, testing the average of the squared distance between the columns of V allows to detect the deviation,
+expressed by γ, of the empirical distribution from the uniform
+The Type II error probability is bounded by
+distribution on the sphere. For some a priori densities fX (x),
+however, the covariance term tr cov (V , W ) contributing to
+− 1 p(p−1)(γ+τ )2
+− 1 p(p−1)(γ−τ )2
+−e 4
+,
+2γ ≥ τ
+e 4
+. γ may be small. This happens, for example, when the random
+PII ≤
+1
+1
+− 4 p(p−1)(γ+τ )2
+− 4 p(p−1)(γ−τ )2
+1−e
+−e
+,
+2γ < τ
+vector X is composed of elements that are both positively
+(13) and negatively correlated2 , or for the sparse correlation regime,
+Proof: The proof relies on Lemma 8 and Lemma 9 when only κ ≪ p elements are correlated. Under these circumin Appendix A. Lemma 8 proves that the variables in D stances the test on the empirical squared distances will have
+have negative association [12]. This property is intuitively reduced power of rejecting the null hypothesis for symmetric,
+clear: since the surface Sn−2 is bounded, the increase of but not uniform, marginal distributions. This section outlines
+the distance of one point on Sn−2 with another induces an alternative test, based on the method of types [13]. As it
+a decrease in distance with respect to a third point. The will be shown, the Type I error exponent increases less rapidly
+important consequence of negative association of the variables in p, but allows a Type II error exponent that is better behaved
+in D is that it permits the application of Chernoff-type large for symmetric marginals under the alternative hypothesis.
+Deﬁne the quantizer Q : Rn−1 → {1, · · · , m}, given
+deviation bounds, proven in Lemma 9.
+by a tessellation of Sn−2 in m Voronoi cells of equal voThe Type I error probability PI is, by deﬁnition,
+lume. The (column by column) quantization Q(V) produces
+PI = P T − 2 > τ H0 = P T − E [D] > τ , (14) a p-dimensional vector ν of quantization indexes. Counting
+how many instances of each quantization index appear in
+where the last equality follows from E [D|H0 ] = 2. Using
+ν, and normalizing for 1/p, gives the m-dimensional vector
+(10) and (26) with (14) yields (12). The Type II probability
+µ, describing a probability mass function on the support
+of error PII is given by
+{1, · · · , m}. Under the high dimensionality assumption p →
+PII = 1 − P |T − 2| ≥ τ | H1
+(15) ∞, by effect of the law of large numbers, the empirical
+1
+
+PI ≤ 2 e− 4
+
+p(p−1) τ 2
+
+.
+
+(12)
+
+= 1−P(T −E [D] ≥ 2γ +τ )−P(T −E [D] ≤ 2γ −τ ) (16)
+= 1−e
+
+− 1 p(p−1)(2γ+τ )2
+4
+
+− P(T − E [D] ≤ 2γ − τ ),
+
+(17)
+
+3
+
+2 In (6) cov (V , W ) is deﬁned as the average of the covariances between
+the U -scores, which may cancel each other out. It can in fact be proven that
+the sign of the term (α(ij) −β (ij) ) in (3) is equal to the sign of cov (Xi , Xj ).
+
+H(µ) ≥ τ :
+H(µ) < τ :
+
+H0
+.
+H1
+
+(18)
+
+1
+
+0.8
+
+TP rate
+
+distribution µ (the type) almost surely converges to the a priori
+distribution µ of Q(V), where µk = Vk fV (v) dv, ∀k ∈
+{1, · · · , m}. The statistic chosen to perform the hypothesis
+test is the entropy of the empirical distribution H(µ). Observe
+a.s.
+that, when hypothesis H0 is true, H(µ | H0 ) −→ H(µ0 ) =
+log(m). Here µ0 is the uniform probability mass function over
+the index set {1, · · · , m}. The thresholding test takes the form
+
+0.6
+
+0.4
+
+The performance of the test is determined by the Type I and
+Type II probabilities of error.
+
+0.2
+
+Proposition 6. The Type I probability of error for the threshold test (18) is bounded by
+
+SqDist, p=50, n=12
+SqDist, p=50, n=6
+SqDist, p=100, n=3
+SqDist, p=50, n=3
+MaxCorS, p=50, n=12
+MaxCor, p=50, n=12
+MaxRCor, p=50, n=12
+
+0
+
+PI ≤ e
+
+−p (log m−τ )
+
+,
+
+(19)
+
+∗
+
+||µ)
+
+,
+
+(20)
+
+where µ∗ is deﬁned as µ∗ = arg minµ∈F D(µ||µ), given
+F = {µ : H(µ) ≥ τ } = {µ : D(µ||µ0 ) ≤ log m − τ }.
+Proof: Consider the set of probability mass functions
+deﬁned on the support {1, · · · , m}, and deﬁne its partition
+(F, F c ). We establish convexity of F and F c . By convexity of the Kullback-Lieber divergence [14, Thm. 2.7.2], for
+µ3 = αµ1 + (1 − α)µ2 , with µ1 , µ2 ∈ F and α ∈ [0, 1]
+D(µ3 ||µ0 ) ≤ αD(µ1 ||µ0 ) + (1 − α)D(µ2 ||µ0 ) ≤ log m − τ
+so that µ3 ∈ F . Similarly, by concavity of the entropy [14,
+Thm. 2.7.3], for µ1 , µ2 ∈ F c
+H(µ3 ) ≥ αH(µ1 ) + (1 − α)H(µ2 ) ≥ τ,
+c
+
+so that µ3 ∈ F is established.
+Finally the Type I probability of error (19) can be evaluated
+using Sanov’s theorem [14, Thm. 12.4.1] as
+PI = P(F c | H0 ) ≤ e−p minµ∈F c D(µ||µ0 ) = e−p
+
+0.2
+
+0.4
+0.6
+FP rate
+
+0.8
+
+1
+
+Figure 1. ROC curves for the proposed empirical squared distance(SqDist)
+test, compared to the maximum correlation (MaxCor), maximum ranked
+correlation (MaxRCor), and S-biggest correlation (MaxCorS) tests.
+
+while the Type II probability of error is bounded by
+PII ≤ e−pD(µ
+
+0
+
+(log m−τ )
+
+.
+
+Similarly, the Type II probability of error (20) is given by
+∗
+
+PII = P(F | H1 ) ≤ e−p minµ∈F D(µ||µ) = e−pD(µ
+
+||µ)
+
+,
+
+with µ∗ as deﬁned above.
+As pointed out above, the test will almost surely induce a
+Type II error whenever the empirical distribution µ falls in F .
+The Type II probability of error can be decreased by increasing
+the cardinality m of the quantizer.
+IV. E XPERIMENTAL RESULTS
+This section presents an experimental assessment of the
+performance of the empirical squared distance test for ﬁnite
+dimension. The ROC curves are obtained generating 104 data
+matrices, each given by n i.i.d. drawings from a Gaussian pvariate distribution with random covariance matrix and mean
+vector. In Figure 1 the performance of the empirical squared
+distance (SqDist) test proposed in Section III-A is compared
+
+4
+
+with the ROC curves for the maximum Pearson’s correlation
+coefﬁcient (MaxCor) and maximum Spearman’s rank correlation coefﬁcient (MaxRCor) tests [7], and for the S biggest
+correlation coefﬁcients test (MaxCorS) [8], where S = 5. All
+the tests have comparable complexity.
+For p = 50 and n = 12 the SqDist test outperforms the
+alternatives. Figure 1 presents also the SqDist ROC curves for
+n = 6 and n = 3: it can be observed that the SqDist test
+(n = 3) achieves a performance comparable to the MaxCor
+and MaxCorS tests (n = 12), but requiring only 1/4 the
+number of samples. For comparison, the SqDist curve for
+p = 100 and n = 3 is depicted as well, showing that, as
+expected, increasing p for ﬁxed n improves the performance.
+V. C ONCLUSION
+In this work two tests for correlation detection in large data
+sets of elliptically-contoured variables are presented. Their
+performance is characterized for ﬁnite values of n, using
+Chernoff and Sanov bounds. The properties of the U -scores
+allow to take advantage of the high dimension of the problem
+without requiring n to go to inﬁnity. Using vector quantization
+to discretize the empirical distribution of the U -scores leads to
+a simple test statistic whose Type I and Type II error exponents
+can be computed using the method of types.
+R EFERENCES
+[1] A. O. Hero and B. Rajaratnam, “Large scale correlation screening,” J.
+Amer. Statistical Assoc., vol. 106, no. 496, pp. 1540–1552, Dec 2011.
+[2] T. T. Cai and T. Jiang, “Limiting laws of coherence of random matrices
+with applications to testing covariance structure and construction of
+compressed sensing matrices,” Ann. Stat., vol. 39, pp. 1496–1525, 2011.
+[3] I. M. Johnstone, “On the distribution of the largest eigenvalue in
+principal component analysis,” Ann. Stat., vol. 29, pp. 295–327, 2001.
+[4] O. Ledoit and M. Wolf, “Some hypothesis tests for the covariance matrix
+when the dimension is large compared to the sample size,” Ann. Stat.,
+vol. 30, no. 4, pp. 1081–1102, 2002.
+[5] T. Jiang, “The asymptotic distributions of the entries of sample correlation matrices,” Ann. Appl. Prob., vol. 14, no. 2, pp. 865–880, 2004.
+[6] W. Zhou, “Asymptotic distribution of the largest off-diagonal entry of
+correlation matrices,” Trans. Am. Math. Soc., vol. 359, no. 11, pp. 5345–
+5363, 2007.
+
+[7] G. K. Eagleson, “A robust test for multiple comparisons of correlation
+coefﬁcients,” Aust. J. Stat., vol. 25, no. 2, pp. 256–263, 1983.
+[8] M. A. Cameron and G. K. Eagleson, “A new procedure for assessing
+large sets of correlations,” Aust. J. Stat., vol. 27, no. 1, pp. 84–95, 1985.
+[9] A. O. Hero and B. Rajaratnam, “Hub discovery in partial correlation
+graphs,” IEEE Trans. Inf. Th., 2012, to appear.
+[10] T. W. Anderson, An introduction to multivariate statistical analysis.
+Wiley, 2007.
+[11] J. F. C. Kingman, “Uses of exchangeability,” Ann. Prob., vol. 6, no. 2,
+pp. 183–197, 1978.
+[12] K. Joag-Dev and F. Proschan, “Negative association of random variables,
+with applications,” Ann. Stat., vol. 11, no. 1, pp. 286–295, 1983.
+[13] I. Csiszar, “The method of types,” IEEE Trans. Inf. Th., vol. 44, no. 6,
+pp. 2505–2523, 1998.
+[14] T. Cover and J. Thomas, Elements of information theory. Wiley, 2006.
+[15] A. Panconesi and A. Srinivasan, “Randomized distributed edge coloring
+via an extension of the Chernoff–Hoeffding bounds,” SIAM J. on
+Computing, vol. 26, no. 2, pp. 350–368, 1997.
+
+A PPENDIX
+Lemma 7. The trace of the covariance cov (V , W ) is lower
+bounded by −1/(p − 1) ≤ tr cov (V , W ) .
+Proof: In order to derive the lower bound, some prelimip
+nary results are needed. Deﬁne U = i=1 U (i) . Positiveness
+is established by
+of the quantity tr cov U , U
+T
+
+tr cov U , U
+
+= E tr U U
+=E
+
+U
+
+2
+
+− tr E[U ]T E[U ]
+
+(21)
+
+2
+
+(22)
+
+−
+
+E[U ]
+
+≥ 0,
+
+where (21) is obtained by linearity of the trace and of the
+expectation. The inequality in (22) follows applying Jensen’s
+inequality to the convex function · 2 . Now consider the
+following expression:
+tr cov U , U
+=
+
+i (1−
+
+p
+(ii)
+i=1 Υ
+
+= tr
+E[U (i) ]
+
+2
+
++
+
+(ij)∈Q Υ
+
+(ij)
+
+) + p(p − 1)tr cov (V , W ) . (23)
+
+The ﬁrst term in (23) is obtained by linearity of the trace and
+of the expectation, and using the relation E U (i) 2 = 1;
+the second term is obtained applying (6). Rearranging (23)
+yields
+tr cov U , U
+
++
+p
+
+(i)
+
+E[U ]
+
+where I is a random variable identifying the minimum valued
+component in the vector D. The distribution fD|U,I is a
+permutation distribution in the sense deﬁned in [12, Def.
+2.10], and hence is negatively associated [12, Thm. 2.11].
+This implies that the ﬁrst term in the right hand of (25) is
+negative. The negativity of the second term follows by the
+same argument in the proof to [12, Thm. 2.11].
+Lemma 9. The average of the random vector D obeys
+Chernoff-type large deviation bounds. In particular, for ǫ > 0
+2
+
+P
+
+Di
+
+p(p − 1)
+
+1
+
+− E [D] > ǫ ≤ 2 e− 4
+
+p(p−1)/2
+
+p(p−1)/2
+
+f (Di ) ≤
+
+E
+
+i=1
+
+(24)
+
+Proof: The proof is obtained via a slight modiﬁcation of
+the proof of [12, Thm. 2.11]. Let D 1 , D 2 denote an arbitrary
+partition of the vector D, and let f1 (·), f2 (·) denote a pair
+of non-decreasing, permutation invariant functions. Using [12,
+(1.1)] it is possible to write
+cov (f1 (D 1 ), f2 (D 2 )) = E [cov (f1 (D 1 ), f2 (D 2 )|U, I)]
+(25)
++ cov (E [f1 (D 1 )|U, I] , E [f2 (D 2 )|U, I]) ,
+
+5
+
+E f (Xi ) , (27)
+i=1
+
+where the last equality is obtained because E [Di ] = E [Xi ].
+Inspection of (27) conﬁrms that condition (ii) in [15, Def. 3.1]
+is veriﬁed as well for λ = 1.
+Now that the elements of D have been established to be
+λ-correlated, [15, Thm. 3.2] can be used to evaluate the upper
+tail bound as follows:
+1
+
+E [D] ≤ e− p(p−1) (
+
+Di > (1 + ε)
+
+P
+i
+
+i
+
+E[D])2 ε2
+
+(28)
+
+i
+
+P
+
+2 i Di
+− E [D] > ε E [D]
+p(p − 1)
+
+P
+
+Lemma 8. The elements of the random vector D are negatively associated, i.e. for every pair A1 , A2 of disjoint subsets
+of {1, 2, · · · , p(p − 1)/2}, and for any pair of non-decreasing
+functions f1 (·), f2 (·), the following holds:
+
+. (26)
+
+p(p−1)/2
+
+E f (Di ) =
+
+i=1
+
+2 i Di
+− E [D] > ǫ
+p(p − 1)
+
+= 1+(p−1)tr cov (V , W ) .
+
+Noticing that the ﬁrst term is positive, because of (22), yields
+the lower bound.
+
+p(p−1) ǫ2
+
+Proof: The proof relies on [15, Thm. 3.2]. Recall that the
+elements of D are positive, bounded in the interval [0, 2]. In order to apply [15, Thm. 3.2] we need to prove that the elements
+in D are λ-correlated, as deﬁned in [15, Def. 3.1]. Deﬁne a
+vector X of p(p − 1)/2 independent random variables on the
+support [0, 2], and such that E [Xi ] = E [D] , ∀i. This implies
+p(p−1)/2
+p(p−1)/2
+E Di = i=1
+E Xi . Using linearity of the
+i=1
+expectation it is easy to see that condition (i) in [15, Def.
+3.1] is satisﬁed. Now consider a non-negative function f (·).
+Since the variables in D are negatively associated, invoking
+[12, Property 2] gives
+
+2
+
+cov (f1 (Di , i ∈ A1 ), f2 (Dj , j ∈ A2 )) ≤ 0.
+
+p(p−1)/2
+i=1
+
+1
+
+≤ e− 4
+1
+
+≤ e− 4
+
+p(p−1) E[D]2 ε2
+
+p(p−1) ǫ2
+
+,
+
+(29)
+(30)
+
+where (28) follows directly from [15, Thm. 3.2], obtained for
+E [Xi ] = E [Di ] = E [D], λ = 1, Di ∈ [0, 2]. Algebraic
+manipulation yields (29), and the substitution ǫ = ε E [D]
+yields (30).
+The lower tail bound is obtained as follows. Deﬁne the
+random variables Ci = E [D]+1−Di and Yi = E [X]+1−Xi .
+It is straightforward to verify that the elements of the vector
+C are λ-correlated for λ = 1. Hence, apply [15, Thm. 3.2] to
+obtain, in a similar manner to (29),
+P
+
+2 i Ci
+−E [C] > ǫ E [C]
+p(p − 1)
+
+1
+
+≤ e− 4
+
+p(p−1) E[C]2 ǫ2
+
+. (31)
+
+Substitution of the expression Ci in (31) shows that the
+lower tail bound is equal to the upper tail bound (30). This
+establishes (26).
+
+

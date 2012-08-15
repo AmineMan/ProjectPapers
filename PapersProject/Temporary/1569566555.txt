@@ -1,0 +1,959 @@
+Creator:        TeX
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Thu May 17 00:04:05 2012
+ModDate:        Tue Jun 19 12:54:55 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      446920 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569566555
+
+Distributed Computing With Privacy
+Himanshu Tyagi†
+
+In this paper, we give necessary and sufﬁcient conditions for
+secure computation of given functions. We extend the results
+of [10] and identify appropriate quantities R∗ to establish
+necessary and sufﬁcient conditions of the same form as (1)
+and (2), respectively, for a broad class of settings involving
+the secure computation of multiple functions. The simpler
+case when the computed functions g1 , ..., gm correspond to
+the observations of subsets of terminals is studied separately
+as a problem of secure multiterminal source coding.
+Under the sufﬁcient condition (2), the secure computing
+scheme in [10] recovered the entire data at the (function seeking) terminals in A using communication that is independent
+of G0 . Similarly, when one of the terminals computes the
+private function g0 , i.e., gi = g0 for some i ∈ M, our secure
+computing scheme enables the recovery of entire data at the
+terminal i.
+Unlike [10], we do not provide a single-letter formula for the
+quantity R∗ , in general; nevertheless, conditions (1) and (2)
+provide a structural characterization of securely computable
+functions. Moreover, for special cases the conditions do take
+a single-letter form (see Example 1 and Corollary 4 below).
+The problem of secure computing for multiple functions is
+formulated in the next section, followed by our main results
+in section III. Partial proof of our main result is sketched in
+the last section.
+
+Abstract—A set of terminals that observe correlated data
+seek to compute functions of the data using interactive public
+communication. At the same time it is required that this
+communication, observed by an eavesdropper, does not reveal
+the value of a private function of the data. In general, the
+private function and the functions computed by the terminals
+can be all different. We show that a class of functions are
+securely computable if and only if the conditional entropy of
+data given the value of private function is greater than the least
+rate of interactive communication required for an appropriately
+chosen multiterminal source coding task. A single-letter formula
+is provided for this rate in special cases.
+
+I. I NTRODUCTION
+We consider the following problem of distributed function
+computation under privacy constraints. The terminals in a
+set M = {1, ..., m} observe correlated data, and wish to
+compute functions g1 , ..., gm , respectively, of their collective
+data. To this end, they communicate interactively over a
+noiseless channel of unlimited capacity. It is required that this
+communication must not reveal the value of a speciﬁed private
+function g0 of the data. If such a communication protocol
+exists, the functions are said to be securely computable. We
+formulate a Shannon theoretic multiterminal source model that
+addresses the basic question: When are the functions g0 , ..., gm
+securely computable?
+The answer to the general question above is not known.
+The case when the terminals in subset A of M compute
+only the private function g0 and those not in A perform
+no computation was dealt with in [10]. Loosely speaking,
+denoting the collective data of the terminals by the random
+variable (rv) XM and the random value of the function g0 by
+the rv G0 , the maximum rate of randomness (in the data) that
+is independent of G0 is H (XM |G0 ). It was shown in [10]
+that if g0 is securely computable (by the terminals in A), then
+H (XM |G0 ) = H (XM ) − H (G0 ) ≥ R∗ ,
+
+Notation. The set {1, ..., m} is denoted by M. For i < j,
+denote by [i, j] the set {i, ..., j}. Let X1 , ..., Xm , m ≥ 2, be
+rvs taking values in ﬁnite sets X1 , ..., Xm , respectively, and
+with a known probability mass function. Denote by XM the
+n
+n
+n
+collection of rvs (X1 , ..., Xm ), and by XM = (X1 , ..., Xm )
+the n independent and identically distributed (i.i.d). repetitions
+of rvs XM . For a subset A of M, denote by XA the rvs
+(Xi , i ∈ A). Given Ri ≥ 0, 1 ≤ i ≤ m, let RA denote the
+sum i∈A Ri .
+Finally, for 0 ≤ < 1, we say an rv U is -recoverable
+from an rv V if there exists a function g of V such that
+Pr (U = g(V )) ≥ 1 − .
+
+(1)
+
+and g0 is securely computable if
+H (XM |G0 ) > R∗ ,
+
+(2)
+
+where R∗ has the operational signiﬁcance of being the minimum overall rate of communication needed for a speciﬁc
+multiterminal source-coding task; this task does not involve
+any security constraint.
+
+II. P ROBLEM FORMULATION
+We consider a multiterminal source model for function
+computation using public communication, under privacy constraints. This basic model was introduced in [4] in a separate
+context of SK generation with public transaction. Terminals
+n
+n
+1, . . . , m observe, respectively, the sequences X1 , . . . , Xm of
+length n. For 0 ≤ i ≤ m, let gi : XM → Yi be given
+mappings, where the sets Yi are ﬁnite. Further, for 0 ≤ i ≤ m
+n
+n
+n
+and n ≥ 1, the (single-letter) mapping gi : XM → Yi is
+
+This work was supported by the U.S. National Science Foundation under
+Grants CCF0830697 and CCF1117546.
+† Department of Electrical and Computer Engineering, and Institute for
+Systems Research, University of Maryland, College Park, MD 20742, USA.
+Email: tyagi@umd.edu.
+
+1
+
+1
+Interactive Communication F, n I (F ∧ Gn ) ≈ 0
+0
+
+deﬁned by
+n
+gi (xn ) = (gi (x11 , . . . , xm1 ), . . . , gi (x1n , . . . , xmn )),
+M
+n
+xn = (xn , . . . , xn ) ∈ XM .
+M
+1
+m
+
+F1
+n
+gi
+
+n
+(XM )
+
+Gn , n
+i
+
+For convenience, we shall denote the rv
+by
+≥
+1, and, in particular, G1 = gi (XM ) simply by Gi .
+i
+Each terminal i ∈ M wishes to compute the function
+n
+n
+n
+gi (xn ), without revealing g0 (xn ), xn ∈ XM . To this end,
+M
+M
+M
+the terminals are allowed to communicate over a noiseless
+public channel, possibly interactively in several rounds.
+
+Fig. 1.
+
+F = F11 , ..., F1m , ...., Fr1 , ..., Frm ,
+
+ˆ (n)
+Gm
+
+Secure computation of g1 , ..., gm with private function g0
+
+gi =
+log F .
+
+g0 ,
+constant,
+
+i ∈ A,
+otherwise.
+
+(3)
+
+It was shown in [10] that (1) and (2) constitute, respectively,
+necessary and sufﬁcient conditions for the functions above to
+be securely computable, with R∗ being the minimum rate of
+interactive communication F that enables all the terminals
+in M to attain omniscience (see [4]), i.e., recover all the
+n
+data XM , using F and the decoder side information Gn
+0
+given to the terminals in M \ A. In fact, it was shown that
+n
+when condition (2) holds, it is possible to recover XM using
+communication that is independent of Gn .
+0
+The last class of problems we study is a generalization of
+the previous instance of secure multiterminal source coding.
+Speciﬁcally, we consider the situation where each terminal
+n
+wishes to recover some subset XMi of the sources where
+Mi ⊆ M \ {i}, i.e.,
+
+Deﬁnition 2. For n > 0, n ≥ 1, we say that functions2
+gM = (g0 , g1 , ..., gm ), with private function g0 , are n securely computable ( n - SC) from observations of length n,
+and public communication F = F(n) , if
+n
+(i) Gn is n - recoverable from (Xi , F) for every i ∈ M, and
+i
+(ii) F satisﬁes the secrecy condition
+1
+I (Gn ∧ F) ≤ n .
+0
+n
+Remark. The deﬁnition of secrecy here corresponds to “weak
+secrecy” [1], [7]. When our results have a single-letter form,
+our achievability schemes for secure computing attain “strong
+secrecy” in the sense of [8], [2], [4]. In fact, when we have a
+single-letter form, our proof can be modiﬁed to yield “strong
+secrecy.”
+
+gi (XM ) = XMi ,
+
+i ∈ M.
+
+(4)
+
+While a characterization of securely computable functions
+in the general sense of Deﬁnition 3 is unresolved, for the
+speciﬁc classes above we provide matching necessary and
+sufﬁcient conditions for the secure computability of gM . The
+guiding heuristic in this work is the following generalized
+interpretation of the results of [10]: Conditions (1) and (2)
+constitute, respectively, the necessary and sufﬁcient conditions
+for functions gM = (g0 , g1 , ..., gm ) to be securely computable,
+where R∗ is the inﬁmum of the rates of interactive communication F in a multiterminal source coding problem described
+below:
+For each 1 ≤ i ≤ m, the following must hold simultaneously:
+n
+(P1) Gn is n -recoverable from (Xi , F ), and
+i
+n
+n
+(P2) XM is n -recoverable from (Xi , Gn , F ), i.e., the ter0
+minals attain omniscience, with Gn as side information
+0
+that is used only for decoding (but is not used for the
+communication F ),
+
+By deﬁnition, for n -SC functions gM , the private function
+G0 is effectively concealed from an eavesdropper with access
+to the public communication F.
+Deﬁnition 3. For private function g0 , we say that functions
+gM are securely computable if gM are n - SC from observations of length n and public communication F = F(n) , such
+that lim n = 0.
+n
+
+Figure 1 shows the setup for secure computing.
+In this paper, we give necessary and sufﬁcient conditions
+for the secure computability of certain classes of functions
+gM = (g0 , g1 , ..., gm ). There are three classes of problems
+studied. In the ﬁrst two classes, we require at least one of the
+1 All
+
+ˆ (n)
+G2
+
+n
+Xm
+
+terminals to compute the private function g0 , i.e. gi = g0 for
+some 1 ≤ i ≤ m. The subclass with the additional restriction
+gi = gi (g0 ) for all 1 ≤ i ≤ m (along with gi = g0 for some i)
+allows for a more structured secure computing protocol, and is
+studied ﬁrst. We note that the formulation in [10], in which the
+terminals in a given subset A of M are required to compute
+(only) g0 securely, is a further particularization with
+
+where fij denotes the communication sent by the jth node in
+the ith round of the protocol; speciﬁcally, fij is a function
+n
+of Xj and the communication sent in the previous rounds
+{fkl : 1 ≤ k ≤ i − 1, l ∈ M}. Denote the rv corresponding to
+the communication by
+
+2 The
+
+n
+X2
+
+ˆ (n)
+G1
+
+f11 , ..., f1m , ...., fr1 , ..., frm ,
+
+1
+n
+
+Fm
+
+n
+X1
+
+Deﬁnition 1. An r-rounds interactive communication protocol
+consists of mappings
+
+n
+noting that F = F(n) (XM ). The rate1 of F is
+
+F2
+
+logarithms are with respect to the base 2.
+abuse of notation gM = (g0 , g1 , ..., gm ) simpliﬁes our presentation.
+
+2
+
+where n → 0 as n → ∞3 . For the speciﬁc case in (3), R∗
+above has a single-letter formula. In general, a single-letter
+expression for R∗ is not known.
+Our results, described in section III, are obtained by simple
+adaptations of this principle. Unlike [10], our conditions, in
+general, are not of a single-letter form. Nevertheless, they
+provide a structural characterization of secure computability.
+As an application, our results provide simple conditions for
+secure computability in the following illustrative example.
+
+entail the comparison of H (XM |G0 ) with a rate R∗ ; the
+speciﬁc choice of R∗ depends on the functions gM .
+(1) For 0 < m0 < m, and for private function g0 , let
+g0 ,
+gi (g0 ) ,
+
+gi =
+
+i ∈ [1, m0 ] ,
+i ∈ [m0 + 1, m] .
+
+(5)
+
+Denote by R∗ (gM ) the closure of the (nonempty) set of
+1
+pairs
+(1) 1
+RF , I (Gn ∧ F) ,
+0
+n
+
+Example 1. We consider the case of m = 2 terminals that
+observe binary symmetric sources (BSS) with underlying rvs
+X1 , X2 with joint pmf given by
+
+for all n ≥ 1 and interactive communication F, where
+m
+
+1−δ
+,
+Pr (X1 = 0, X2 = 0) = Pr (X1 = 1, X2 = 1) =
+2
+δ
+Pr (X1 = 0, X2 = 1) = Pr (X1 = 1, X2 = 0) = ,
+2
+
+(1)
+
+RF =
+
+1
+1
+H(F) +
+n
+n i=m
+
+0 +1
+
+n
+H (Gn |Xi , F) + inf RM , (6)
+i
+
+with the inﬁmum taken over rates R1 , ..., Rm satisfying the
+following constraints:
+where 0 < δ < 1/2. The results of this paper will allow us
+(1a) ∀L M, [1, m0 ] L,
+to provide conditions for the secure computability of the four
+1
+n
+n
+choices of g0 , g1 , g2 below; it will follow by Theorem 1 that
+RL ≥ H XL |XM\L , F ;
+n
+functions g0 , g1 , g2 are securely computable if
+(1b) ∀L M, [1, m0 ] ⊆ L,
+h(δ) < τ,
+1
+n
+n
+RL ≥ H XL |XM\L , Gn , F .
+0
+and conversely, if the functions above are securely computable,
+n
+(1)
+then
+The quantity inf n,F RF corresponds to the solution of a
+h(δ) ≤ τ,
+multiterminal source coding problem. Speciﬁcally, it is the
+
+inﬁmum of the rates of interactive communication that satisfy
+(P1) and (P2) above (see [3, Theorem 13.5], [4]).
+Note that the SK-based scheme for secure computing given
+in section IV relies critically on the functional relation gi =
+gi (g0 ).
+
+where h(τ ) = −τ log τ − (1 − τ ) log(1 − τ ), and the constant
+τ = τ (δ) depends on the choice of the function. These
+characterizations are summarized in the next table.
+
+g0
+X1 ⊕ X2
+X1 ⊕ X2
+X1 ⊕ X2 , X1 .X2
+X1 ⊕ X2
+
+g1
+X1 ⊕ X2
+X1 ⊕ X2
+X1 ⊕ X2 , X1 .X2
+X1 ⊕ X2
+
+g2
+X1 ⊕ X2
+φ
+X1 .X2
+X1 .X2
+
+τ
+1/2
+1
+2δ/3
+2/3
+
+(2) The next case is a relaxation of the previous model in that
+the restriction gi = gi (g0 ) for i ∈ [m0 + 1, m] is dropped.
+Let R∗ (gM ) denote the closure of the set of pairs
+2
+(2)
+
+RF ,
+
+1
+I (Gn ∧ F) ,
+0
+n
+
+for all n ≥ 1 and interactive communication F, where
+The results for the ﬁrst two settings follow from [10]. The
+1
+(2)
+third and fourth results are new. In these settings, terminal 1
+RF = H(F) + inf R[m0 +1,m] + RM ,
+(7)
+n
+is required to recover the private function; our results below
+show that the conditions for the secure computability in these with the inﬁmum taken over rates R1 , ..., Rm and
+cases remain unchanged even if this terminal is required to Rm0 +1 , ..., Rm satisfying the following constraints:
+attain omniscience. Note that since h(δ) < 1 for all 0 < (2a) ∀L M, [1, m0 ] L,
+δ < 1/2, there exists a communication protocol for securely
+1
+n
+n
+RL ≥ H XL |XM\L , F ;
+computing the functions in the second setting. By contrast, a
+n
+secure computing protocol for the functions in the third setting
+(2b) for m0 < j ≤ m,
+does not exist for any 0 < δ < 1/2, since h(δ) > 2δ/3.
+1
+n
+Rj ≥ H Gn |Xj , F ;
+j
+III. C HARACTERIZATION OF SECURELY COMPUTABLE
+n
+FUNCTIONS
+(2c) ∀L ⊆ M, [1, m0 ] ⊆ L, and L ⊆ [m0 + 1, m] with either
+L = M or L = [m0 + 1, m],
+In this section, we characterize securely computable functions for three settings. Our necessary and sufﬁcient conditions
+R +R
+L
+
+L
+
+1
+n
+n
+≥ H Gn , XL |Gn 0 +1,m]\L , XM\L , Gn , F .
+L
+0
+[m
+n
+
+3 Thus,
+
+(P1) and (P2) require any terminal computing g0 to become
+omniscient.
+
+3
+
+(2)
+
+∗
+other hand, Ri (gM ) is an appropriate rate of communication
+for the computation of gM ; we show that latter being less than
+H (XM |G0 ) guarantees the secure computability of gM .
+Although the conditions for secure computability above are
+not of a single-letter form in general, they do reduce to such
+a form for speciﬁc instances. The following result provides a
+sufﬁcient condition for obtaining single-letter conditions for
+characterizing securely computable functions.
+
+The quantity inf n,F RF corresponds to the solution of a
+multiterminal source coding problem, and is the inﬁmum of
+the rates of interactive communication F that satisfy (P1) and
+(P2) above, and additionally satisﬁes:
+n
+(P3) XM is
+
+n -recoverable
+
+from Gn , Gn , F , m0 < j ≤ m.
+0
+j
+
+This modiﬁcation corresponds to the introduction of m − m0
+dummy terminals, with the jth dummy terminal observing Gn ,
+j
+m0 < j ≤ m; the dummy terminals can be realized by a
+n
+n
+terminal i in [1, ..., m0 ] that recovers XM from (Xi , F). As
+remarked before, the SK-based secure computing scheme in
+section IV does not work for this case, and a secure computing
+scheme based on the dummy terminals above is used instead.
+The conditions (P2) and (P3) above correspond to omniscience
+at the terminals in the extended model, with Gn provided as
+0
+side information only for decoding.
+
+Lemma 2. For case (i), i = 1, 2, 3, if for all n ≥ 1 and
+interactive communication F
+(i)
+
+∗
+then Ri (gM ) =
+
+(3)
+
+(i)
+
+(i)
+Rconstant
+
+=
+
+(12)
+
+(i)
+inf n,F RF .
+
+The proof is a simple consequence of the deﬁnition of
+(i)
+∗
+Ri (gM ) in (11). Note that Rconstant has a single-letter form.
+(i)
+
+(3) The last case concerns multiterminal source coding without
+revealing the private data (see (4)). Denote by R∗ (gM ) the
+3
+closure of the set of pairs
+RF ,
+
+(i)
+
+RF ≥ RF |F=constant =: Rconstant ,
+
+Remark. As mentioned before, the quantity inf n,F RF is the
+inﬁmum of the rates of interactive communication that satisﬁes
+(P1),(P2) for i = 1, 3, and satisﬁes (P1)-(P3) for i = 2. Thus,
+when the conditions of Lemma 2 hold, we have from Theorem
+1 that gM are securely computable if
+
+1
+I (Gn ∧ F) ,
+0
+n
+
+(i)
+
+H (XM |G0 ) > Rconstant ,
+
+for all interactive communication F, where
+1
+(3)
+RF = H(F) + inf RM ,
+(8)
+n
+with rates R1 , ..., Rm satisfying the following constraints:
+(3a) For 1 ≤ i ≤ m, ∀ L ⊆ Mi ⊆ M \ {i},
+RL ≥
+
+(i)
+
+(i)
+
+1
+n
+n
+H XL |XM\L , Gn , F .
+0
+n
+
+M,
+
+H (XM |G0 ) ≥ Rconstant ,
+
+where Rconstant is the minimum rate of communication that
+satisﬁes (P1), (P2) for i = 1, 3, and satisﬁes (P1)-(P3) for
+i = 2.
+As a consequence of Lemma 2, we obtain below a singleletter characterization of securely computable functions, with
+m = 2, in a special case; the following lemma, which is a
+special case of [5, Lemma B.1] (see also [6, Theorem 1]), is
+instrumental to our proof.
+
+1
+n
+n
+n
+H XL |XMi \L , Xi , F ;
+n
+
+RL ≥
+
+(3b) ∀L
+
+and if gM are securely computable then
+
+(3)
+
+As before, the quantity inf n,F RF corresponds to the inﬁmum
+of the rates of interactive communication that satisfy (P1) and
+(P2) above.
+Our main result below characterizes securely computable
+functions for the three settings above.
+
+Lemma 3. Let m = 2. For an interactive communication F,
+we have
+n
+n
+H(F) ≥ H (F|X1 ) + H (F|X2 ) .
+We next consider case (1) for two terminals.
+
+Theorem 1. For i = 1, 2, 3, with functions g0 , g1 , ..., gm as in
+the case (i) above, the functions gM are securely computable
+if the following condition holds:
+
+Corollary 4. For m = 2, for functions g0 , g1 , g2 with g1 = g0
+and g2 = g2 (g0 ), we have
+
+(9)
+
+∗
+R1 (gM ) = H (X2 |X1 ) + H (G2 |X2 ) + H (X1 |X2 , G0 ) .
+(13)
+
+Conversely, if the functions above are securely computable,
+then
+
+Proof: The constraints (1a) and (1b) satisﬁed by rates
+(1)
+R1 , R2 in the deﬁnition of RF are
+
+H (XM |G0 ) >
+
+∗
+Ri
+
+(gM ) .
+
+∗
+H (XM |G0 ) ≥ Ri (gM ) ,
+
+1
+n
+n
+H (X2 |X1 , F) ,
+n
+1
+n
+n
+R1 ≥ H (X1 |X2 , Gn , F) ,
+0
+n
+which further yields
+1
+(1)
+n
+RF = [H (F) + H (Gn |X2 , F)
+2
+n
+n
+n
+n
+n
++H (X2 |X1 , F) + H (X1 |X2 , Gn , F)] .
+0
+
+(10)
+
+R2 ≥
+
+where
+∗
+Ri (gM ) =
+
+inf
+
+(x,0)∈R∗ (gM )
+i
+
+x,
+
+i = 1, 2, 3.
+
+(11)
+
+Theorem 1 affords the following heuristic interpretation.
+The quantity H (XM |G0 ) represents the maximum rate of
+n
+randomness in XM that is (nearly) independent of Gn . On the
+0
+
+4
+
+(14)
+
+(1)
+
+Thus, Rconstant equals the term on the right side of (13). From
+(1)
+H (G2 |G0 ) = 0, and the expression for RF above, we have
+(1)
+
+RF ≥
+
+and
+m
+1
+1
+n
+n
+H (XM |Gn , F) >
+H Gn |Xj , F + RM , (18)
+0
+j
+n
+n j=m +1
+
+1
+(1)
+n
+n
+H(F) − H (F|X1 ) − H (F|X2 ) + Rconstant
+n
+
+0
+
+where R1 , ..., Rm satisfy the constraints (1a), (1b). From (18),
+using the approach of the proof of sufﬁciency in [10, Theorem
+5], we ﬁrst show the existence of an interactive communication
+N
+F = F XM that is almost independent of GN , and attains
+0
+omniscience at the terminals in M, with side information
+GN given for decoding to the terminals in [m0 + 1, m], for
+0
+N = nk sufﬁciently large; the interactive communication F
+ˆ
+includes F. Next, for m0 < j ≤ m, denoting by Fj the
+N
+N
+Slepian-Wolf codeword for Gj given Xj and F , we show
+N
+the existence of rvs Kj = Kj Xj of approximate rate
+
+(1)
+
+≥ Rconstant ,
+where the last inequality follows from Lemma 3. The result
+then follows from Lemma 2.
+We next derive simple conditions for secure computability
+for the BSS in Example 1
+Example 2. Consider the setup of Example 1, with g0 =
+g1 = X1 ⊕ X2 , X1 .X2 and g2 = X1 .X2 . By Corollary 4
+∗
+and the observation H (G2 |X2 ) = h(δ)/2, we get R1 (gM ) =
+3h(δ)/2. Since H (X1 , X2 | G0 ) = H (X1 , X2 | X1 ⊕ X2 ) −
+H (X1 .X2 | X1 ⊕ X2 ) = δ, the characterization of secure
+computability claimed in Example 1 follows from Theorem
+1.
+Example 3. In the setup of Example 1, consider g0 = g1 =
+X1 ⊕ X2 and g2 = X1 .X2 . This choice of g0 , g1 , g2 is an instance of case (2) above. For an interactive communication F,
+a manipulation of constraints (2a), (2b), (2c) in the deﬁnition
+(2)
+of RF , yields
+(2)
+
+RF =
+
+1
+N
+H GN |Xj , F ,
+j
+N
+that are almost independent of
+ˆ
+GN , F , Kl ⊕ Fl , 1 ≤ l ≤ j − 1 ;
+0
+ˆ
+hence, the communication F , Kl ⊕ Fl , m0 < l ≤ m is alN
+most independent of G0 .
+ˆ
+For m0 < l ≤ m, Kl ⊕ Fl is used as a one-time-pad to
+ˆl , and so GN , to terminal l observing X N , F . The
+send F
+j
+l
+existence of Km0 +1 , ..., Km follows by extending the proof
+of [9, Theorem 4], using (18), and the observation
+1
+1
+N
+N
+H Xj |GN , F ≈ H XM |GN , F .
+0
+0
+N
+N
+Therefore, gM is -SC for all sufﬁciently small.
+
+1
+n
+n
+[H(F) + H (X1 |X2 , Gn , Gn , F)
+0
+2
+n
+n
+n
+n
+n
+n
++ max {H (X2 |G0 , G2 , F) , H (X2 |X1 , F)}
+n
++H (Gn |X2 , F)] .
+2
+
+(15)
+
+n
+n
+It follows from H (X1 |X2 , Gn , Gn , F) = 0 that
+0
+2
+(2)
+
+Rconstant = H (G2 |X2 ) + max {H (X2 |G0 , G2 ) , H (X2 |X1 )}
+h(δ)
+3
+=
++ max {δ, h(δ)} = h(δ),
+(16)
+2
+2
+as h(δ) > δ for 0 < δ < 1/2.
+Next, note from (15) that for any interactive communication
+F,
+1
+(2)
+n
+n
+RF ≥ [H(F) − H (F|X1 ) − H (F|X2 )]
+n
++ H (G2 |X2 ) + H (X2 |X1 )
+3
+≥ H (G2 |X2 ) + H (X2 |X1 ) = h(δ),
+(17)
+2
+where the last inequality above follows from Lemma 3. The
+characterization in Example 1 follows from (16), (17), and
+H (X1 , X2 |G0 ) = 1, using Lemma 2 and Theorem 1.
+IV. O UTLINE OF PROOF OF T HEOREM 1
+In this section we present the key ideas in the proof of
+sufﬁciency part of Theorem 1 for case (1). The sufﬁciency
+proof for other cases, and the proof of necessity, are omitted
+due to space constraints.
+∗
+If H (XM |G0 ) > R1 (gM ) holds, then from the deﬁnition
+∗
+of R1 (gM ), for all sufﬁciently small > 0 there exist n ≥ 1
+n
+and interactive communication F = F (XM ) such that
+1
+I (Gn ∧ F) < ,
+0
+n
+
+5
+
+ACKNOWLEDGEMENT
+This work beneﬁted greatly from the discussions with Prof.
+Prakash Narayan. Further, his comments on the manuscript
+helped to improve the presentation.
+R EFERENCES
+[1] R. Ahlswede and I. Csisz´ r, “Common randomness in information theory
+a
+and cryptography–part i: Secret sharing,” IEEE Trans. Inform. Theory,
+vol. 39, pp. 1121–1132, 1993.
+[2] I. Csisz´ r, “Almost independence and secrecy capacity,” Prob. Pered.
+a
+Inform., vol. 32, no. 1, pp. 48–57, 1996.
+[3] I. Csisz´ r and J. K¨ rner, Information theory: Coding Theorems for
+a
+o
+Discrete Memoryless Channels.
+2nd Edition. Cambridge University
+Press, 2011.
+[4] I. Csisz´ r and P. Narayan, “Secrecy capacities for multiple terminals,”
+a
+IEEE Trans. Inform. Theory, vol. 50, no. 12, pp. 3047–3061, 2004.
+[5] I. Csisz´ r and P. Narayan, “Secrecy capacities for multiterminal channel
+a
+models,” IEEE Trans. Inform. Theory, vol. 54, no. 6, pp. 2437–2452,
+2008.
+[6] M. Madiman and P. Tetali, “Information inequalities for joint distributions, with interpretations and applications,” IEEE Trans. Inform. Theory,
+vol. 56, pp. 2699–2713, 2010.
+[7] U. M. Maurer, “Secret key agreement by public discussion from common
+information,” IEEE Trans. Inform. Theory, vol. 39, pp. 733–742, May
+1993.
+[8] ——, Communications and Cryptography: Two sides of One Tapestry,
+R.E. Blahut et al., Eds. ed. Norwell, MA: Kluwer, 1994, ch. 26, pp.
+271–285.
+[9] H. Tyagi, P. Narayan, and P. Gupta, “Secure computing,” Proc. Int. Symp.
+Inform. Theory, pp. 2612 – 2616, June 2010.
+[10] H. Tyagi, P. Narayan, and P. Gupta, “When is a function securely
+computable?” IEEE Trans. Inform. Theory, vol. 57, no. 10, pp. 6337–
+6350, Oct 2011.
+
+

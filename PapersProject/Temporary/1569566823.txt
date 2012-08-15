@@ -1,0 +1,1001 @@
+Creator:        TeX
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Fri May 18 09:27:22 2012
+ModDate:        Tue Jun 19 12:55:04 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      442194 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569566823
+
+Selective Coding Strategy for Unicast
+Composite Networks
+Arash Behboodi
+
+Pablo Piantanida
+
+Dept. of Telecommunications, SUPELEC
+91192 Gif-sur-Yvette, France
+Email: {arash.behboodi}@supelec.fr
+
+Dept. of Telecommunications, SUPELEC
+91192 Gif-sur-Yvette, France
+Email: {pablo.piantanida}@supelec.fr
+
+introduced by Wolfowitz [5] is one of the most important
+models that deals with channel uncertainty, and continues to
+attract much attention from researchers (see [6] and references
+therein). Composite models are more appropriate to deal with
+wireless scenarios since unlike compound models they deal
+with channel uncertainty by introducing a PD Pθ on the
+channel selection. These models consist of a set of conditional
+PDs from which the current channel index θ, which can be a
+vector of parameters, is drawn according to Pθ and remains
+ﬁxed during the communication. An example of this model can
+be slowly fading channels. Capacity for this class of channels
+has been widely studied beforehand (see [7] and references
+therein), for wireless scenarios via the well-known notion of
+outage capacity (see [8] and references therein) and oblivious
+cooperation over fading Gaussian channels in [9]–[11].
+In this paper, we study the composite multiple relay network
+where the channel index θ ∈ Θ is randomly drawn according
+to Pθ . The index θ = (θr , θd ) remains ﬁxed during the
+communication but is unknown at the source, fully known at
+the destination and partly known θr at the relays end. Although
+a compound approach can guarantee asymptotically zero-error
+probability regardless of θ, it would be not an adequate choice
+for most of wireless models. As a different approach, the
+coding rate r is selected regardless of the current index.
+Hence the encoder cannot necessarily guarantee arbitrary small
+error probability. In this case the asymptotic error probability
+becomes the measure of interest, characterizing the reliability
+function. Moreover, it turns out that depending on the channel
+draw, there may not be a unique set of relay functions that
+minimizes the error probability. In other words, the relay
+function should be chosen based on the channel parameters.
+However, since full CSI is not available to all nodes, the
+relay functions are usually chosen regardless of their channel
+measurements which becomes the bottleneck of the coding.
+We present a novel coding strategy from which the relays
+can select, based on their measurements, an adequate coding
+strategy. To this purpose an achievable region that generalizes
+NNC to the case of mixed coding strategy, where DF relays
+exploit the help of CF relays, is derived.
+Section II presents deﬁnitions and Section III introduces
+main results, and the sketch of proofs is relegated to Section
+IV. Finally, numerical evaluation over the slow-fading Gaussian two relay channel is presented in Section V.
+
+Abstract—Consider a composite unicast relay network where
+the channel statistic is randomly drawn from a set of conditional
+distributions indexed by θ ∈ Θ, which is assumed to be unknown
+at the source, fully known at the destination and only partly
+known at the relays. Commonly, the coding strategy at each
+relay is ﬁxed regardless of its channel measurement. A novel
+coding for unicast composite networks with multiple relays is
+introduced. This enables the relays to select dynamically –based
+on its channel measurement– the best coding scheme between
+compress-and-forward (CF) and decode-and-forward (DF). As a
+part of the main result, a generalization of Noisy Network Coding
+is shown for the case of unicast general networks where the relays
+are divided between those using DF and CF coding. Furthermore,
+the relays using DF scheme can exploit the help of those based on
+CF scheme via offset coding. It is demonstrated via numerical
+results that this novel coding, referred to as Selective Coding
+Strategy (SCS), outperforms conventional coding schemes.
+
+I. I NTRODUCTION
+Multiterminal networks are the essential part of modern
+telecommunication systems. Recently, these were studied from
+various aspects. The cutset bound for the general multicast
+network was established in [1]. Network coding theorem for
+the graphical multicast network was investigated in [2] where
+the max-ﬂow min-cut theorem for network information ﬂow
+was presented for the point-to-point communication network.
+Whereas Lim et al. proposed the Noisy Network Coding
+(NNC) scheme for the general multicast network, which includes most of the existing bounds on multiterminal networks
+[3]. Kramer et al. developed an inner bound for a point-topoint general network using decode-and-forward (DF) which
+achieves the capacity of the degraded multicast network [4].
+For the above mentioned scenarios, the probability distribution (PD) of the network is supposed to be ﬁxed during the
+communication and hence available to all nodes beforehand.
+However, wireless channels are essentially time-varying due
+to fading and user mobility, and hence the terminals do not
+have full knowledge of all channel parameters involved in
+the communication. In particular, without feedback channel
+state information (CSI) cannot be available to the encoders
+end. During years, an ensemble of research activities has
+been dedicated to both theoretical and practical aspects of
+communication in presence of channel uncertainty. From an
+information-theoretic viewpoint, the compound channel, ﬁrst
+The work of P. Piantanida is partially supported by the ANR grant
+(FIREFLIES) INTB 0302 01.
+
+1
+
+(1)
+
+(1)
+
+(2)
+
+Xk1 , Xk1
+
+, (θr ∈ DDF )
+/ k1
+
+(2)
+
+Xki , Xki
+
+(1)
+
+Xki
+
+(2)
+
+Xk1
+
+Wθ
+
+X
+
+Y1θ
+
+(1)
+
+(2)
+
+Xk2
+(1)
+
+(2)
+
+Xk2 , Xk2
+
+We emphasize that for channels satisfying the strong converse
+property and with unique best code word, e.g., Gaussian slowfading single user channel, (3) coincides with the deﬁnition of
+the outage probability for the unique best codeword.
+In the present setting, we assume that the source is not aware
+of the speciﬁc draw θ ∼ Pθ and hence, the coding rate r
+and the coding strategy –DF or CF scheme– must be chosen
+independent of the channel draw. Furthermore, both remain
+ﬁxed during the communication regardless of the channel
+measurement at the relays end. We aim to characterize the
+smallest possible average error probability as deﬁned by (2),
+as a function of the coding rate r.
+It can be shown that ¯(r) can be bounded as follows
+
+ki
+, (θr ∈ DDF )
+
+k2
+, (θr ∈ DDF )
+
+Xkj
+(1)
+
+(2)
+
+Xkj , Xkj
+
+k
+
+j
+, (θr ∈ DDF )
+/
+
+Pθ (r ∈ Sθ ) ≤ ¯(r) ≤ inf Pθ (r ∈ Rθ (C)),
+/
+C
+
+Fig. 1.
+
+Composite Multiple Relay Network.
+
+where Rθ is any achievable rate for the unicast network with
+a given θ, and Sθ is the inﬁmum of all rates such that every
+code with such rate yields error probability tending to one,
+and C as all codes. It can be shown that Sθ can be replaced
+with max-ﬂow min-cut bound. A special case of this result
+has been proved in recent work [11] for the relay channel.
+
+II. P ROBLEM D EFINITION
+The composite multiple relay channel consists of a set of
+multiple relay channels, as depicted in Fig. 1 and denoted by
+n
+n
+Wn = PY1,θ Z1θ
+θ
+
+r
+
+n
+n
+n
+n
+n
+Z2θr ...ZN θr |X n X1θr X2θr ...XN θr
+
+∞
+n=1
+
+III. C OMPOSITE M ULTIPLE R ELAY N ETWORKS
+Consider the composite unicast network with multiple relays
+and parameters θ. The rate is ﬁxed to r and so is the source
+code. The goal is to minimize the expected error probability.
+The common option is that each relay ﬁxes its coding strategy,
+namely DF or Compress-and-Forward (CF), regardless of θ.
+In other words, the relays with index in V ⊆ N will use CF
+scheme. For instance, to evaluate the expected error probability
+we ﬁrst present an achievable rate for the multiple relay
+network where NNC is generalized to networks with mixed
+cooperative strategy. Part of relays are using DF coding while
+the reminding relays use CF scheme. Moreover, DF relays
+exploit the help of CF relays to decode the source message.
+Using this theorem, an achievable rate can be obtained for
+every set V of relay nodes.
+Theorem 1 (Cooperative Mixed NNC): For the multiple relay channel, the following rate is achievable
+
+where X denotes the channel input, Xkθr and Zkθr the relay
+inputs and outputs and Y1θ the channel output. We assume a
+memoryless multiple relay channel with N relays but single
+source and destination. The channels are indexed by vector
+of parameters θ = (θd , θr ) with θd ∈ Θd , θr ∈ Θr , where
+θr denotes all parameters affecting the relays’ output and θd
+are the remaining parameters involved in the communication.
+Let Pθ be a joint probability measure on Θ. The channel
+parameters affecting relay and destination outputs θ = (θr , θd )
+are drawn according to the joint PD Pθ and remain ﬁxed
+during the communication. However, the speciﬁc draw of θ
+is assumed to be unknown at the source, fully known at the
+destination and partly known θr at the relays end. Assume that
+N = {1, . . . , N } and for any S ⊆ N , XS = {Xi : i ∈ S}.
+
+Deﬁnition 1 (code and achievability): A code-C(n, Mn , r)
+for the composite multiple relay channel consists of:
+n
+• An encoder mapping {ϕ : Mn −→ X },
+n
+• A decoder mapping {φθ : Y1 −→ Mn },
+n
+(k)
+i−1
+• A set of relay functions
+fiθr : Zk −→ Xk
+for
+i=1
+k ∈ N . Only partial CSI at the relay is assumed which
+is mainly related to the k-th source-to-relay channel.
+An error probability 0 ≤ < 1 is said to be r-achievable, if
+there exists a code-C(n, Mn , r) with rate satisfying
+1
+log Mn ≥ r
+n→∞ n
+and average error probability
+n
+lim sup Eθ Pr φθ (Y1θ ) = W θ
+n→∞
+
+R ≤ max max min
+P ∈P V⊆N
+
+min
+
+(k)
+
+max
+
+min RTk (S)
+
+(5)
+
+with
+ˆ
+RT (S) = I(XXV c XS ; ZS c Y1 |XS c Q)
+ˆS |XXT ∪V c ZS c Y1 Q)
+ˆ
+− I(ZS ; Z
+
+(S c = T − S),
+
+(k)
+ˆ
+RTk (S) = I(X; ZTk Zk |XV c XTk Q) + I(XS ; Zk |XV c ∪S c Q)
+ˆ
+ˆ
+− I(ZS ; ZS |XV c ∪T ZS c Zk Q)
+(S c = Tk − S),
+k
+
+for T , Tk ⊆ V ⊆ N and V = N − V. Moreover Υ (V) and
+Υk (V) are deﬁned by
+c
+
+≤ .
+
+(2)
+
+Υ (V) = {T ⊆ V : for all S ⊆ T , QT (S) ≥ 0},
+
+The inﬁmum of all r-achievable EPs ¯(r) is deﬁned as
+¯(r) = inf {0 ≤ < 1 :
+
+max min RT (S),
+
+T ∈Υ (V) S⊆T
+
+k∈V c Tk ∈Υk (V) S⊆Tk
+
+(1)
+
+lim inf
+
+(4)
+
+is r-achievable} .
+
+Υk (V) = {T ⊆ V : for all S ⊆ T
+
+(3)
+
+2
+
+(k)
+, QT (S)
+
+≥ 0},
+
+(6)
+(7)
+
+(k)
+
+(k)
+
+while QT (S) and QT (S) are given by
+
+Υk (V) = {T ⊆ V : for all S ⊆ T , QT (S, θr ) ≥ 0} (11)
+
+ˆ
+QT (S) = I(XS ; ZS c Y1 |XXS c ∪V c Q)
+ˆ
+ˆ
+−I(ZS ; ZS |XXT ∪V c ZS c Y1 Q),
+
+(k)
+QT (S)
+
+(k)
+
+where QT (S, θr ) is deﬁned as follows:
+
+(8)
+
+= I(XS ; Zk |XV c ∪S c Q)
+ˆ
+ˆ
+−I(ZS ; ZS |XXV c ∪T ZS c Zk Q).
+
+(k)
+
+QT (S, θr ) =I(XS ; Zkθr |XV c ∪S c Q)
+ˆ
+ˆ
+− I(ZS ; ZSθr |XXV c ∪T ZS c Zkθr Q).
+
+(9)
+
+In the preceding scheme all relays ﬁx coding regardless of the
+available CSI. However, it is possible that the relays select
+and change their coding based on its CSI. To this purpose
+each relay generates many codebooks and sends one of them
+which ﬁts the best to the channel with the parameter θr . More
+(k)
+precisely, each relay k has a decision region DDF such that
+(k)
+for all θr ∈ DDF , the relay k uses DF scheme and otherwise
+it uses CF scheme. For each V ⊆ N , deﬁne DV as follows:
+
+And P is the set of all admissible distributions:
+P = PQXXN ZN ZN Y1 = PQ PXXV c |Q PY1 ZN |XXN ×
+ˆ
+PXj |Q PZj |Xj Zj Q .
+ˆ
+j∈V
+
+Notice that RT (S) (condition of correct decoding at the
+(k)
+destination) is in general better than RTk (S) (condition of
+correct decoding at the relay k). This is because the destination
+uses backward decoding. Moreover using the same technique
+as [12], it can be shown that the optimization in (5) can be
+done over T ⊆ V instead of T ∈ Υ (V). In other words the
+relays in T ⊆ V c can increase the rate only if they satisfy (7).
+It can be seen that for each T , if there is A ⊆ T such that
+QT (A) < 0, then we can remove the relays in A from T and
+the rate is improved by not using their compression, which
+is easier to manipulate in composite setting. By choosing
+V = N , the region of Theorem 1 is reduced to the same region,
+as in [12], [13], which is equivalent to NNC region [3]. So
+Theorem 1 generalizes and includes the previous NNC scheme
+and it provides a potentially larger region. Indeed, for the
+degraded single relay channel, it is capacity achieving while
+NNC is strictly suboptimal. In fact, relay nodes are divided
+into two groups. The ﬁrst group is V c which are using DF
+coding and the second group V which are using CF scheme.
+Now consider the composite setting again. Before starting
+the communication, the source knows that the relays with
+index in V use CF while the others use DF scheme. For each
+θ and V, the rate r is achievable if it belongs to the region in
+the previous theorem and otherwise an error is declared. All
+that CF relays can do in this case is to choose their distribution
+based on θr such that it minimizes the error probability. Thus
+the expected error probability for the composite multiple relay
+channel with partial CSI θr at the relays is bounded by
+¯(r)≤ inf
+
+DV =
+
+min
+
+p(xj |q)p(ˆj |xj zj q)
+z
+
+T ⊆V S⊆T
+
+max
+
+(1)
+
+k
+
+r
+
+(1)
+
+superimpose its code over X(k) . If the k-th relay sends X(k)
+then this will become DF relaying. The source, oblivious to the
+relays decision, generates its own code by using superposition
+(1)
+coding and X is superimposed over XN , i.e., all possible DF
+relay inputs. This does not affect RT (S, θ) by applying the
+(k)
+proper Markov chain, but changes RTk (S, θ), as we will see.
+(k)
+On the other hand, if θr ∈ DDF then CF scheme is used.
+/
+(2)
+Note that unlike DF, the code which is used for CF X(k) , is
+independent of the source code and so its PD can be chosen
+adaptively based on θr . The optimum choice for DV will
+potentially give a better outage probability than the case that
+each relay is using a ﬁxed coding for all θr . This provides a
+non-formal proof of the next theorem.
+
+(k)
+
+min RTk , (S, θ) ,
+
+Theorem 2 (SCS with partial CSI-cooperative relays):
+The average error probability of the composite multiple
+relay channel with partial CSI θr at the relays can be upper
+bounded by ¯(r) ≤ minp(x,x(1) ,q) inf {DV ,V⊆N }∈Π(Θr ,N )
+
+(10)
+
+ˆ
+RT (S, θ) = I(XXV c XS ; ZS c Y1θ |XS c Q)
+ˆ
+ˆ
+− I(ZSθr ; ZS |XXT ∪V c ZS c Y1θ Q)(S c = T − S),
+(k)
+ˆ
+R (S, θ) = I(X; ZT Zkθ |XV c XT Q)
+Tk
+
+(k)
+
+(k)
+
+Pθ|θr r > ICMNNC (V) θr
+
+k∈V Tk ∈Υk (V) S⊆Tk
+
+.
+
+θr ∈ DDF . This code is based on DF strategy so the kth relay decodes the source message and transmits it to the
+destination. However the source, not knowing whether the k(1)
+th relay is sending X(k) or not, uses superposition coding and
+
+where for all θ = (θr , θd ), IMNNC (V) =
+min max min RT (S, θ), min
+c
+
+k∈V
+
+(k)
+
+min
+
+j∈V
+
+k∈V c
+
+DDF
+
+If θr ∈ DV , then θr ∈ DDF for all k ∈ V, and θr ∈ DDF for
+/
+all k ∈ V. So the k-th relay, for each k ∈ V uses CF and the
+/
+relay k for k ∈ V c uses DF. The ensemble of decision regions
+of relays will thus provide the regions DV which are mutually
+disjoint and all together form a partitioning over the set Θr .
+Now if θr ∈ DV , we have a multiple relay network where the
+relays in V are using CF. The achievable rate corresponding
+to this case is known from Theorem 1.
+As shown in Fig. 1, each relay has two set of codewords:
+(1)
+(2)
+(1)
+X(k) and X(k) . The ﬁrst code X(k) is transmitted when
+
+V⊆N p(x,xV c ,q)
+
+Eθr
+
+(k) c
+
+(k)
+
+DDF
+
+N
+
+Eθr
+
+k
+
+ˆ
+ˆ
++I(XS ;Zkθr |XV c ∪S c Q) − I(ZS ; ZSθr |XV c ∪Tk ZS c Zkθr Q)
+
+for T , Tk ⊆ V ⊆ N and V c = N − V. Similarly Υk (V) is
+
+3
+
+V⊆N
+
+min
+
+(2)
+
+j∈V
+
+(2)
+
+p(xj |q)p(ˆj |xj zj q)
+z
+
+Pθ|θr r > ICMNNC (V), θr ∈ DV θr
+
+,
+
+(12)
+
+Π (Θr , N ) is the set of all partitioning over Θr into at most 2N
+(1)
+(2)
+disjoint sets. The relay inputs Xk is chosen from (Xk , Xk )
+(1)
+(2)
+k
+such that Xk is equal to Xk if θr ∈ DDF and equal to Xk if
+k
+θr ∈ DDF . Indeed, for θr ∈ DV the next Markov chain holds:
+/
+(1)
+
+(2)
+
+(XV , XV c )
+
+(1)
+
+(2)
+
+(X, XV c , XV )
+
+Encoding part:
+(i) In every block i = [1 : B], the source sends wi using
+x w(i−2) , wi (w0 = w−1 = 1). Moreover, for blocks
+i = [B+1 : B+L], the source sends the dummy message
+wi = 1 known to all users.
+(ii) For every block i = [1 : B + L], and each k ∈ V c , the
+relay k knows w(i−2) by assumption and w0 = w−1 = 1,
+so it sends xk w(i−2) .
+(iii) For each i = [1 : B + 2], each k ∈ V, the relay k after
+receiving z k (i), searches for at least one index lki with
+lk0 = 1 such that
+ˆ
+x (lk(i−1) ), z (i), z (lk(i−1) , lki ) ∈ An [Xk Zk Zk ].
+ˆ
+
+(Y1θ , ZN θr ),
+
+where IMNNC (V) and Υk (V) are deﬁned by expressions
+(k)
+(10) and (11) with the difference that in RTk (S, θ) and
+(k)
+(1)
+QT (S, θr ), XV c is replaced with XN .
+IV. S KETCH OF THE P ROOF OF T HEOREM 1
+Consider ﬁrst the two relay network. Relay 1 uses DF
+scheme to help the source so it has to decode the source
+messages successively and not backwardly, and Relay 2 uses
+CF scheme. However, relay 1 wants to exploit the help of
+relay 2 to decode the source message. So it does not start
+decoding until it retrieves the compression index. To this end,
+relay 1 uses offset decoding which means that it waits two
+blocks instead of one to decode the source message and the
+compression index. In block b = 2, the relay 1 decodes the
+compression index l1 and the message w1 . Equally, the source
+code at block b + 2 is correlated with relay 1 code from the
+block b and not block b + 1. This comes at the expense of one
+block of delay. The source has to wait until b = B + L to start
+backward-decoding. The compression index lB+2 is repeated
+until the block B + L. Fix P , V, T and Tk ’s such that they
+maximize the right hand side of (5). Assume a set Mn of
+size 2nR of message indices W to be transmitted, again in
+B + L blocks, each of them of length n. At the last L − 2
+blocks, the last compression index is ﬁrst decoded and then
+all compression indices and transmitted messages are jointly
+decoded. Relays in V c start to decode after block 2.
+
+k
+
+Decoding part:
+(i) After the transmission of the block i = [1 : B + 1] and
+for each k ∈ V c , with the assumption that all messages
+and compression indices up to block i − 1 have been
+correctly decoded, the k-th relay searches for the unique
+index (wb , ˆTk b ) by looking at two consecutive blocks b
+ˆ l
+and b + 1 such that:
+ˆ
+x(w(b−2) , wb ), xV c (w(b−2) ), z k (b), xk (lk(b−1) ),
+z k (lk(b−1) , ˆkb )
+ˆ
+l
+
+n
+PX|XV c (x|xV c (r)) =
+
+j=1
+
+j=1
+
+ˆ
+R ≤I(X; ZT Zk |XV c XTk ) + I(XS ; Zk |XV c XS c )
+ˆ
+ˆ
+− I(ZS ; ZS |XV c ∪Tk ZS c Zk ).
+(13)
+ˆ
+ˆ
+c ∪S c ) − I(ZS ; ZS |XXV c ∪T ZS c Zk ).
+0 ≤I(Zk ; XS |XV
+k
+(14)
+
+n
+
+PXV c (xV c j ).
+j=1
+nR
+
+Given the fact that Tk ∈ Υk (V), the last inequality holds
+for each S ⊆ Tk .
+(ii) The destination jointly searches for the unique indices
+(ˆk(B+2) )k∈T such that for all b ∈ [B + 3 : B +
+l
+l
+L], (x (ˆk(B+1) ))k∈T , x(1, 1), x c (1), y (b) belongs
+
+PX|XV c (xj |xV c j ). Index them
+
+k
+
+PXk (xkj ). Index them as xk (rk ), where rk ∈
+
+ˆ
+ˆ
+[1, 2
+] for Rk = I(Zk ; Zk |Xk ) + .
+(iv) For each k ∈ V and each xk (rk ), randomly
+and
+conditionally
+independently
+generate
+ˆ
+2nRk
+sequences
+zk
+ˆ
+each
+with
+probability
+k |Xk
+
+k∈S
+
+=
+j=1
+
+PZk |Xk (ˆkj |xkj (rk )).
+z
+ˆ
+ˆ
+nR k
+
+Index them as z k (rk , sk ), where sk ∈ [1, 2
+ˆ
+ˆ
+ˆ
+
+1
+
+ˆ
+I(Zk ; Zk |Xk ) ≤ (L − 2)I(XS ; XXS c ∪V c Y1 ).
+
+(iii) With the assumption that (wb+2 , lT (b+2) ) have been
+correctly decoded, the destination ﬁnds backwardly the
+unique pair of indices (wb , ˆT (b+1) ) such that:
+ˆ l
+
+n
+
+(ˆk |xk (rk ))
+z
+
+V
+
+to An [XXT XV c Y1 ]. The probability of error goes to
+zero as n → ∞ provided for all subsets S ⊆ T :
+
+ˆ
+nR k
+
+n
+PZ
+ˆ
+
+ˆ
+∈ An [XXTk ∪V c ZTk Zk ] and
+
+Probability of error goes to zero as n → ∞ if
+
+as x(r, w), where w ∈ 1, 2nR .
+(iii) For each k ∈ V, randomly and independently generˆ
+n
+ate 2nRk sequences xk drawn i.i.d. from PXk (xk ) =
+n
+
+k∈Tk
+
+xV c (w(b−1) ), z k (b + 1), (xk (ˆkb ))k∈Tk ∈ An [XTk ∪V c Zk ].
+l
+
+.
+Index them as xV c (r) with index r ∈ 1, 2
+(ii) For each xV c (r), randomly and conditionally independently generate 2nR sequences x drawn i.i.d. from
+n
+
+k
+
+The probability of ﬁnding such lki goes to one as n goes
+ˆ
+to inﬁnity due to the choice of Rk .
+(iv) For i = [1 : B + 2] and k ∈ V, relay k knows
+from the previous block lk(i−1) and it sends xk (lk(i−1) ).
+Moreover, relay k repeats lk(B+2) for i = [B+3 : B+L],
+which means for L − 2 blocks.
+
+Code generation:
+(i) Randomly and independently generate 2nR sequences
+n
+xV c drawn i.i.d. from PXV c (xV c ) =
+
+k
+
+x(wb , w(b+2) ), xV c (wb ), y 1 (b + 2), xk (ˆk(b+1) ),
+ˆ
+ˆ
+l
+
+].
+
+z k (ˆk(b+1) , lk(b+2) )
+ˆ l
+
+4
+
+k∈T
+
+ˆ
+∈ An [XXT ∪V c ZT Y1 ].
+
+0.18
+
+Z1 : X1 (h12 , h21 ) Z2 : X2
+ε(r) (average error probability)
+
+h01
+
+h23
+h02
+
+X
+
+h13
+h03
+
+Fig. 2.
+
+full DF
+
+0.16
+
+Y1
+
+Fading Gaussian two-relay channel.
+
+full CF
+0.14
+
+Mixed Coding
+SCS
+
+0.12
+
+CB (Cutset Bound)
+
+0.1
+0.08
+0.06
+0.04
+0.02
+0
+0.2
+
+The probability of error goes to zero as n → ∞ if:
+
+0.4
+
+0.6
+
+0.8
+
+1
+
+1.2
+
+1.4
+
+1.6
+
+1.8
+
+2
+
+r (coding rate) [bits/symbol]
+
+ˆ
+0 < I(ZS c Y1 ; XS |XXV c ∪S c )
+ˆ
+ˆ
+− I(ZS ; ZS |XXV c ∪T ZS c Y1 ),
+
+Fig. 3.
+
+ˆ
+R ≤ I(XXV c XS ; Y1 ZS c |XS c )
+ˆ
+ˆ
+− I(ZS ; ZS |XXV c ∪T ZS c Y1 ).
+
+Asymptotic error probability ¯(r) vs. coding rate r.
+
+source and relay powers are respectively 1 and 10. It can be
+seen that none of the non-selective strategies like full DF, full
+CF and Mixed Coding is not in general the best regardless of
+fading coefﬁcients. However, if one lets the relay select their
+strategy given its channel measurement, this SCS will lead to
+signiﬁcant improvement compared to the other strategies and
+becomes close to the cutset bound.
+
+Using the previous inequalities, and by choosing ﬁnite L
+but large enough, by letting (B, n) → ∞ and adding the
+time-sharing random variable Q the proof is ﬁnished.
+V. G AUSSIAN S LOW-FADING N ETWORKS
+Consider the Gaussian fading two-relay network, depicted
+in Fig. 2, which is deﬁned by the following relations:
+
+R EFERENCES
+[1] P. Elias, A. Feinstein, and C. Shannon, “A note on the maximum ﬂow
+through a network,” Information Theory, IRE Transactions on, vol. 2,
+no. 4, pp. 117 –119, 1956.
+[2] R. Ahlswede, N. Cai, S.-Y. Li, and R. Yeung, “Network information
+ﬂow,” Information Theory, IEEE Transactions on, vol. 46, no. 4, pp.
+1204 –1216, jul 2000.
+[3] S. H. Lim, Y.-H. Kim, A. El Gamal, and S.-Y. Chung, “Noisy network
+coding,” Information Theory, IEEE Transactions on, vol. 57, no. 5, pp.
+3132 –3152, may 2011.
+[4] G. Kramer, M. Gastpar, and P. Gupta, “Cooperative strategies and capacity theorems for relay networks,” Information Theory, IEEE Transactions
+on, vol. 51, no. 9, pp. 3037–3063, Sept. 2005.
+[5] J. Wolfowitz, “Simultaneous channels,” Arch. Rat. Mech. Anal., vol. 4,
+pp. 371–386, 1960.
+[6] A. Lapidoth and P. Narayan, “Reliable communication under channel
+uncertainty,” IEEE Trans. Information Theory, vol. 44, pp. 2148–2177,
+October 1998.
+[7] M. Effros, A. Goldsmith, and Y. Liang, “Generalizing capacity: New
+deﬁnitions and capacity theorems for composite channels,” Information
+Theory, IEEE Transactions on, vol. 56, no. 7, pp. 3069 –3087, 2010.
+[8] E. Biglieri, J. Proakis, and S. Shamai, “Fading channels: informationtheoretic and communications aspects,” Information Theory, IEEE
+Transactions on, vol. 44, no. 6, pp. 2619 –2692, oct 1998.
+[9] M. Katz and S. Shamai, “Cooperative schemes for a source and an
+occasional nearby relay in wireless networks,” Information Theory, IEEE
+Transactions on, vol. 55, no. 11, pp. 5138 –5160, nov. 2009.
+[10] A. Behboodi and P. Piantanida, “Broadcasting over the relay channel
+with oblivious cooperative strategy,” in Communication, Control, and
+Computing (Allerton), 2010 48th Annual Allerton Conference on, 29
+2010-oct. 1, pp. 1098 –1103.
+[11] ——, “On the asymptotic error probability of composite relay channels,”
+in Information Theory Proceedings (ISIT), 2011 IEEE International
+Symposium on, 2011.
+[12] G. Kramer and J. Hou, “On message lengths for noisy network coding,”
+in IEEE Information Theory Workshop, October 2011, pp. 430 –431.
+[13] X. Wu and L.-L. Xie, “On the optimal compressions in the
+compress-and-forward relay schemes,” Feb. 2011. [Online]. Available:
+http://arxiv.org/abs/1009.5959
+
+h01
+X + h21 X2 + N1 ,
+dα
+Z2 = h02 X + h12 X1 + N2 ,
+
+Z1 =
+
+Y1 = h03 X + h13 X1 + h23 X2 + N3 .
+
+Deﬁne Ni ’s to be additive noises, i.i.d. circularly symmetric
+complex Gaussian RVs with zero-mean; let hij ’s be independent zero-mean circularly symmetric complex Gaussian RVs.
+d is the random path-loss. The average power of the source and
+relay inputs X, X1 and X2 must not exceed powers P , P1 and
+P2 , respectively. Compression is obtained by adding additive
+ˆ
+ˆ ˆ
+ˆ
+noises Z1 = Z1 + N1 , Z2 = Z2 + N2 . It is assumed that
+the source is not aware of the fading coefﬁcients, the relays
+know all fading coefﬁcients except hi3 ’s and the destination
+is fully aware of everything. The possibilities to choose the
+proper cooperative strategy are as follows: (i) both relays use
+DF scheme to transmit the information (full DF case), (ii)
+both relays use CF scheme to transmit the information (full
+CF case), where the destination can consider one or both
+relays as noise to prevent the performance degradation, and
+(iii) one relay uses DF scheme and the other uses CF scheme
+(Mixed Coding case). Finally, the relays can select their coding
+strategy based on the channel parameters (SCS case).
+Fig. 3 presents numerical analysis of these strategies. We
+assume all fading coefﬁcients are of unit variance and so are
+the noises. d is chosen with uniform distribution between 0 and
+0.1, which means the ﬁrst relay is always around the source.
+Given this assumption, we suppose that the ﬁrst relay uses DF
+in case of mixed coding while the other uses CF scheme. The
+
+5
+
+

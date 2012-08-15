@@ -1,0 +1,914 @@
+Creator:        TeX
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Wed May 16 14:03:24 2012
+ModDate:        Tue Jun 19 12:56:12 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      587349 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569561623
+
+An Innovative Approach for Analysing Rank
+Deﬁcient Covariance Matrices
+Gabriel H. Tucci
+
+Ke Wang
+
+Bell Labs, Alcatel–Lucent
+600 Mountain Ave, Murray Hill, NJ 07974
+Email: gabriel.tucci@alcatel-lucent.com
+
+Math Department, Rutgers University
+Busch Campus, Piscataway, NJ
+E-mail: wkelucky@math.rutgers.edu
+
+is an unbiased and efﬁcient estimator of the true covariance
+matrix. However, in many practical situations we would like
+to estimate the covariance matrix of a set of variables from an
+insufﬁcient amount of data. In this case the sample covariance
+matrix is singular (non-invertible) and therefore a fundamentally bad estimate. More speciﬁcally, let X be a random vector
+X = (X1 , . . . , Xm )T ∈ Cm×1 and assume for simplicity that
+X is centered. Then the true covariance matrix is given by
+
+Abstract—The estimation of a covariance matrix from an insufﬁcient amount of data is one of the most common problems in ﬁelds
+as diverse as multivariate statistics, wireless communications,
+signal processing, biology, learning theory and ﬁnance. In [13], a
+new approach to handle rank deﬁcient covariance matrices was
+suggested. The main idea was to use dimensionality reduction
+in conjunction with an average over the Stiefel manifold. In
+this paper we further continue in this direction and consider
+a few innovative methods that show considerable improvements
+with respect to more traditional ones such as diagonal loading.
+One of the methods is called the Ewens estimator and uses
+a randomization of the sample covariance matrix over all the
+permutation matrices with respect to the Ewens measure. The
+techniques used to attack this problem are broad and run from
+random matrix theory to combinatorics.
+
+Σ = E(XX ∗ ) = (cov(Xi , Xj ))1≤i,j≤m .
+
+(1)
+
+Consider n independent samples or realizations x1 , . . . , xn ∈
+Cm×1 and form the m × n data matrix M = (x1 , . . . , xn ).
+Then the sample covariance matrix is an m × m non-negative
+deﬁnite matrix deﬁned as
+1
+K = M M ∗.
+(2)
+n
+If n → +∞ and m is ﬁxed, then the sample covariance matrix
+K converges (entry–wise) to Σ almost surely. Whereas, as we
+mentioned before, in many empirical problems, the number of
+measurements is less than the dimension (n < m), and thus
+the sample covariance matrix is almost surely rank deﬁcient
+(singular). Our target in this paper is to recover the true
+covariance matrix Σ from K under the condition n < m. The
+conventional treatment of covariance singularity artiﬁcially
+converts the rank deﬁcient sample covariance matrix into an
+invertible (positive deﬁnite) covariance by the simple expedient of adding a positive diagonal matrix, or more generally,
+by taking a linear combination of the sample covariance
+and the identity matrix. This procedure is variously called
+“diagonal loading” or “ridge regression” [5], [17]. Consider
+αK + βIm as an estimate of Σ, where α, β are called loading
+parameters. The resulting matrix is positive deﬁnite (invertible)
+and preserves the eigenvectors of the sample covariance. The
+eigenvalues of αK + βIm are uniformly rescaled and shifted
+versions of the eigenvalues of K. There are many methods of
+choosing the optimum loading parameters, see [11], [14] and
+[15].
+
+I. I NTRODUCTION
+The estimation of a covariance matrix from an insufﬁcient
+amount of data is one of the most common problems in ﬁelds
+as diverse as multivariate statistics, wireless communications,
+signal processing, biology, learning theory and ﬁnance. For
+instance, the covariation between asset returns plays a crucial role in modern ﬁnance. The covariance matrix and its
+inverse are the key statistics in portfolio optimization and
+risk management. Many recent ﬁnancial innovations involve
+complex derivatives, like exotic options written on the minimum, maximum or difference of two assets, or some structured
+ﬁnancial products, such as CDOs. All of these innovations are
+built upon, or in order to exploit, the correlation structure of
+two or more assets. In the ﬁeld of wireless communications,
+covariance estimates allow us to compute the direction of
+arrival (DOA), which is a critical task in smart antenna systems
+since it enables accurate mobile location. Another application
+is in the ﬁeld of biology and involves the interactions between
+proteins or genes in an organism and the joint time evolution
+of their interactions.
+Typically the covariance matrix of a multivariate random
+variable is not known but has to be estimated from the data.
+Estimation of covariance matrices then deals with the question
+of how to approximate the actual covariance matrix on the
+basis of samples from the multivariate distribution. Simple
+cases, where the number of observations is much greater than
+the number of variables, can be dealt by using the sample
+covariance matrix. In this case, the sample covariance matrix
+
+In Marzetta, Tucci and Simon’s paper [13], a new approach to
+handle singular covariance matrices was suggested. Let p ≤ n
+be a parameter, to be estimated later, and consider the set of
+all p × m one–sided unitary matrices
+Ωp,m = {Φ ∈ Cp×m : ΦΦ∗ = Ip }.
+
+1
+
+(3)
+
+The topology on Ωp,m is the subspace topology inherited from
+Cp×m . With this topology Ωp,m is a compact manifold, called
+the Stiefel manifold, whose dimension is dim(Ωp,m ) = 2mp−
+p2 . Endow Ωp,m with the Haar measure, that is, the uniform
+distribution on the set Ωp,m . Then deﬁne the operators
+
+where θ > 0 and K(σ) is the number of cycles in σ. The case
+θ = 1 corresponds to the uniform measure. This measure has
+recently appeared in mathematical physics models (see e.g. [2]
+and [6]) and has recently started to gain insight into the cycle
+structures of random permutations.
+
+covp (K) = E(Φ∗ (ΦKΦ∗ )Φ),
+
+(4)
+
+invcovp (K) = E(Φ∗ (ΦKΦ∗ )−1 Φ),
+
+(5)
+
+Let σ be a permutation in Sm , the corresponding permutation
+matrix Mσ is an m×m matrix deﬁned as Mσ (i, j) = 1σ(i) (j).
+If we denote ei to be the 1 × m vector with the i–th entry
+equal to 1 and all others entries equal to 0, then
+
+
+eσ(1)
+ . 
+Mσ =  .  ,
+.
+
+and
+where the expectation is taken with respect to the Haar
+measure. Surprisingly, it was found that
+p
+(mp − 1)K + (m − p)Tr(K)Im ,
+covp (K) =
+(m2 − 1)m
+
+eσ(m)
+which is, of course, a unitary matrix. Given the sample
+covariance matrix K we deﬁne the new estimator for Σ as
+
+which is the same as diagonal loading. Moreover, the properties of invcovp (K) were investigated. In particular, it was
+shown that if K is decomposed as K = U DU ∗ , with
+D = diag(d1 , . . . , dn , 0, . . . , 0), then
+
+∗
+Kθ := E(Mσ KMσ ),
+
+where the expectation is taken with respect to the Ewens
+measure of parameter θ.
+
+invcovp (K) = U invcovp (D)U ∗ ,
+
+Theorem 1. Let K = (aij ) be an m × m complex matrix.
+∗
+Then Kθ = E(Mσ KMσ ) is an m × m matrix such that the
+diagonal terms satisfy
+θ−1
+1
+(Kθ )ii =
+aii +
+Tr(K),
+(7)
+θ+m−1
+θ+m−1
+and the non–diagonal terms (i = j) satisfy
+
+and
+invcovp (D) = diag(λ1 , . . . , λn , µ, . . . , µ).
+In other words, invcovp (K) preserves the eigenvectors of K,
+and transforms all the zero eigenvalues to a non–zero constant.
+Formulas to compute the values of λi and µ were provided
+and the asymptotic behavior of invcovp (D) was studied using
+techniques from free probability.
+
+=
+
+1
+(θ2 − 1)aij
+(θ + m − 2)(θ + m − 1)
+
++
+
+(Kθ )ij
+
+In this paper, we investigate new methods to estimate rank
+deﬁcient covariance matrices. In Section II, we consider a
+new approach, called the Ewens estimator, to estimate Σ. In
+this one, the average is taken over the set of all m × m
+permutation matrices with respect to the Ewens measure.
+The explicit formula for the Ewens estimator is computed
+by a combinatorial argument. In Section III, we combine
+the ideas of the ﬁrst two methods, extend the deﬁnition of
+permutation matrices to get p×m unitary matrices, and deﬁne
+˜
+two new operators Kθ,m,p and Kθ,m,p to estimate Σ and Σ−1
+respectively. We provide an explicit formula for Kθ,m,p and
+˜
+an inductive formula to compute Kθ,m,p . In Section IV, it is
+assumed that Σ has some special form, i.e. tridiagonal Toeplitz
+matrix or power Toeplitz matrix and we study its asymptotic
+behavior under the Ewens estimator. In this Section we also
+present some simulations under the different methods to test
+the effect of the parameters.
+
+(θ − 1)aji + (θ − 1)
+
+(aik + akj ) +
+k=i,j
+T
+
+Remark 1. If θ = 1 then K1 = α ee + β(Im −
+m
+aij
+
+T
+
+alk .
+l=k
+
+eeT
+m
+
+) where
+
+α = eKe = i,j , β = Tr(K)−α and e = (1, 1, . . . , 1).
+m
+m
+m−1
+This has already been computed in [20], Prop. 2.2. If K =
+D = diag(d1 , . . . , dm ), then
+θ−1
+Tr(D)
+D+
+Im ,
+θ+m−1
+θ+m−1
+which corresponds to a diagonal loading.
+Kθ =
+
+III. H YBRID M ETHOD
+In this Section we combine the ideas of the ﬁrst two methods
+to create a third hybrid method. First, we extend the deﬁnition
+of a permutation. For an integer p ≤ m, let
+
+II. T HE E WENS E STIMATOR
+
+Sp,m := σ an injection from {1, 2, . . . , p} to {1, 2, . . . m} .
+
+Let Sm be the set of permutations of the set [m] :=
+{1, . . . , m}. The Ewens measure is a probability measure on
+the set of permutations that depends on a parameter θ > 0. In
+this measure, each permutation has a weight proportional to its
+total number of cycles. More speciﬁcally, for each permutation
+σ in Sm its probability is equal to
+pθ,m (σ) =
+
+(6)
+
+m!
+The size of the set Sp,m is (m−p)! and in the case p = m,
+Sm,m is the set of all permutations on [m]. For σ ∈ Sp,m , the
+associated p × m matrix takes the form
+
+
+eσ(1)
+eσ(2) 
+
+
+Vσ :=  .  ,
+ . 
+.
+
+θK(σ)
+,
+θ(θ + 1) . . . (θ + m − 1)
+
+eσ(p)
+
+2
+
+where eσ(i) = (e1 , e2 , . . . , em ) is a 1 × m row vector
+σ(i) σ(i)
+σ(i)
+with the σ(i)–th entry 1 and all others equal to 0. Notice that
+T
+Vσ Vσ = Ip and
+T
+Pσ := Vσ Vσ = diag(p1 , . . . , pm ),
+
+Remark 3. In the general case with p = 2 and
+
+(θ + 1)a11
+θa12
+1 
+θa21
+(θ + 1)a22
+Kθ,3,2 =
+θ+2
+a31
+a32
+
+(8)
+
+˜
+Now we consider the estimate Kθ,m,p as in Equation (11).
+First we analyze the case when K is diagonal.
+
+where
+p
+
+(ei )2 =
+σ(l)
+
+pi =
+l=1
+
+m = 3 then
+
+a13
+a23  .
+2a33
+
+1 if i ∈ {σ(1), . . . , σ(p)},
+0 otherwise.
+
+Theorem 3. Let D = diag(d1 , . . . , dp , 0, . . . , 0), then
+
+Next, we use the Ewens measure on Sm to deﬁne a probability
+on the set Sp,m . For each σ ∈ Sp,m , consider the set
+
+θ+p−1 +
+T
+T
+˜
+D .
+Kθ,m,p = E Vσ (Vσ DVσ )+ Vσ =
+θ+m−1
+
+Ωσ := σ ∈ Sm : σ |{1,...,p} = σ .
+˜
+˜
+
+Obtaining a close form expression for Equation (11) in the
+general case seems to be much more challenging. However,
+we are able to give an inductive formula with the help of a
+result of Kurmayya and Sivakumar’s [10]. Unfortunately, we
+omit these results for space limitations.
+
+In other words, Ωσ is the set of all permutations in Sm whose
+restriction to the set {1, 2, . . . , p} is equal to σ. Recall that
+pθ,m is the Ewens measure on Sm with parameter θ. Now we
+deﬁne the probability of σ ∈ Sp,m as
+pθ,m (˜ ).
+σ
+
+µθ,m,p (σ) := pθ,m (Ωσ ) =
+
+IV. P ERFORMANCE AND S IMULATIONS
+
+(9)
+In this Section we study the performance of our estimators and
+compare them with traditional methods. We focus on the case
+where the true covariance matrix has a Toeplitz structure. More
+speciﬁcally, we focus on the following two types of Toeplitz
+matrices.
+
+σ ∈Ωσ
+˜
+
+Now we are ready to introduce two new operators
+T
+T
+Kθ,m,p := E Vσ (Vσ KVσ )Vσ ,
+
+(10)
+
+T
+T
+˜
+Kθ,m,p := E Vσ (Vσ KVσ )+ Vσ ,
+
+(11)
+
+and
+
+A. Tridiagonal Toeplitz Matrix
+Consider an m × m symmetric tridiagonal Toeplitz matrix of
+the form
+
+
+1 b
+
+b 1
+b
+
+
+
+
+.. .. ..
+B=
+.
+.
+.
+.
+
+
+
+b
+1 b
+b 1
+
+T
+where (Vσ KVσ )+ is the Moore−Penrose pseudoinverse of
+T
+the matrix Vσ KVσ . We use Kθ,m,p as an estimate for Σ and
+˜ θ,m,p for Σ−1 . Now we show a few results on these new
+K
+estimators.
+
+Theorem 2. Let A = (aij ) be an m × m complex matrix.
+Then Kθ,m,p is an m × m matrix with diagonal entries equal
+to
+ θ+p−1
+ θ+m−1 aii , if 1 ≤ i ≤ p,
+(Kθ,m,p )ii =
+
+p
+θ+m−1 aii , if p + 1 ≤ i ≤ m.
+
+B. Power Toeplitz matrix
+An m × m power Toeplitz matrix is given by
+
+
+1
+α
+α . . . αm−1
+ α
+1
+α · · · αm−2 
+
+
+ .
+. .
+..
+..
+..
+. 
+Aα =  .
+.
+.
+.
+. 
+ .
+αm−2 αm−3 · · · 1
+α 
+αm−1 αm−2 · · · α
+1
+
+and non–diagonal entries, assuming i < j (if j < i exchange
+i and j in the following expression), equal to
+ (θ+p−1)(θ+p−2)
+ (θ+m−1)(θ+m−2) aij , if 1 ≤ i < j ≤ p,
+
+
+
+
+
+(p−1)(θ+p−1)
+aij , if 1 ≤ i ≤ p < j ≤ m,
+(Kθ,m,p )ij =
+C. Preliminaries on the asymptotic behavior of large Toeplitz
+ (θ+m−1)(θ+m−2)
+
+
+
+matrices
+
+
+p(p−1)
+(θ+m−1)(θ+m−2) aij , if p < i < j ≤ m.
+We ﬁrst collect some basic deﬁnitions and theorems regarding
+Remark 2. If A is a diagonal matrix A = diag(d1 , . . . , dm ), large Toeplitz matrices from Albrecht B¨ ttcher and Bernd
+o
+then
+Silbermann’s book [4]. For an inﬁnite Toeplitz matrix of the
+p
+θ−1
+Kθ,m,p =
+A+
+diag(d1 , . . . , dp , 0, . . . , 0). form
+
+
+θ+m−1
+θ+m−1
+a0 a−1 a−2 . . .
+a1 a0 a−1 . . .
+For instance, if p = 1 and m = 3 then
+
+
+A = (aj−k )∞
+= a2 a1
+j,k=0
+a0 . . . ,
+1
+
+
+Kθ,3,1 =
+diag(θa11 , a22 , a33 ).
+.
+.
+.
+..
+.
+.
+.
+θ+2
+.
+.
+.
+.
+
+3
+
+If θ is a ﬁxed constant greater than 1 then as m → ∞,
+
+deﬁne the symbol of the matrix A as
+
+4m
+b(θ − 1)
+||Tm ||∞ ≤ 2 → 0,
+(θ + m − 2)(θ + m − 1)
+m
+
+∞
+
+a = a(eiϕ ) =
+
+an eiϕn ,
+n=−∞
+
+and
+
+for 0 ∈ [0, 2π]. Let Am be the m × m principal minor of the
+matrix A. Given a Borel subset E ⊂ C we deﬁne the measures
+1
+µm (E) =
+m
+
+µ(E) =
+
+1
+2π
+
+(12)
+
+χE (a(eiϕ ))dϕ,
+
+and
+
+(16)
+
+2
+2
+Therefore, Bθ and (1 − m )Im + m eeT are asymptotically
+equivalent matrices (see Chapter 2, [9]) and by Theorem 2.6
+in [9],
+(1− 2 )I + 2 eeT
+lim µBθ = lim µm m m m ,
+m
+
+m
+(m)
+χE (λj ),
+
+θ2 + θ − 1
+||Lm ||∞ → 0.
+(θ + m − 2)(θ + m − 1)
+
+(15)
+
+(13)
+
+j=1
+
+m→∞
+
+2π
+
+m→∞
+
+which is a rank one perturbation of identity matrix. Therefore,
+
+0
+
+lim µBθ = δ1 ,
+m
+
+where χE is the characteristic function of the set E and
+(m)
+{λj }m are the eigenvalues of Am . The following classical
+j=1
+result holds.
+
+m→∞
+
+where δt is the Dirac measure at the point t. A more interesting
+situation happens when θ = βm for a ﬁxed constant β. In this
+case,
+Im +( β )2 Lm
+.
+lim µBθ = lim µm β+1
+m
+
+Theorem 4 (Corollary 5.12 in [4]). If a ∈ L∞ is real-valued,
+then the measures µm given by (12) converge weakly to the
+measure µ deﬁned by (13).
+
+m→∞
+
+D. Asymptotic Behavior of Toeplitz Matrices under Ewens
+Estimator
+
+Im +
+
+β2
+β2
+Lm =
+B+
+(β + 1)2
+(β + 1)2
+
+1−
+
+β2
+Im ,
+(β + 1)2
+
+which is still a tridiagonal Toeplitz matrix with symbol
+
+For the symmetric tridiagonal Toeplitz matrix B its symbol is
+a(eiϕ ) = 1 + beiϕ + be−iϕ = 1 + 2b cos ϕ,
+
+a(eiϕ ) = 1 + 2b
+
+where ϕ ∈ [0, 2π]. By Theorem 1.2 in [4], the spectrum of B
+as m tends to inﬁnity is supported on the interval [1 − 2b, 1 +
+2b]. On the other hand, by Theorem 1, we have that
+∗
+Bθ := E(Mσ BMσ )
+θ2 + θ − 2
+Lm
+= Im +
+(θ + m − 2)(θ + m − 1)
+b(θ − 1)
++
+Tm
+(θ + m − 2)(θ + m − 1)
+2b(m − 1)
++
+eeT − Im ,
+(θ + m − 2)(θ + m − 1)
+
+m→∞
+
+Hence,
+
+β2
+cos ϕ.
+(β + 1)2
+
+Therefore, the limit eigenvalue distribution is supported on the
+β2
+β2
+interval 1−2b (β+1)2 , 1+2b (β+1)2 . The Figure below shows
+the estimated density function for the spectrum as θ changes.
+
+(14)
+
+where
+
+Tm
+
+
+0 1
+1 0
+
+3 2
+
+.
+:=  .
+.
+3 4
+
+3 4
+2 3
+
+3
+2
+0
+..
+.
+
+3
+4
+2
+..
+.
+
+···
+···
+···
+..
+.
+
+3
+4
+4
+
+4
+4
+3
+
+···
+···
+···
+
+0
+2
+3
+
+2
+0
+1
+
+
+2
+3
+
+3
+
+. ,
+.
+.
+3
+
+1
+0
+
+Fig. 1. This Figure shows the density functions of the empirical spectral
+distribution of 300 × 300 tridiagonal Toeplitz matrix B with b = 0.3 and
+∗
+those of E(Mσ BMσ ) for different values of θ.
+
+Similar results where obtained for the power Toeplitz matrix
+Aα .
+E. Simulations
+
+and
+
+Lm
+
+
+0
+b
+
+
+:= 
+
+
+
+b
+0
+..
+.
+
+
+b
+..
+.
+b
+
+..
+
+.
+0
+b
+
+In this Section we present some simulations to test the performance of our estimators. Let Aα be an m × m Toeplitz matrix
+with entries ai,j = α|i−j| . Given n observations we want to
+recover the matrix Aα . We construct the sample covariance
+matrix K and proceed to recover Aα in terms of the operators
+
+
+
+
+.
+
+b
+0
+
+4
+
+Fig. 4.
+
+Fig. 2. The functions f and g for m = 200, n = 150 and α = 0.5 as
+functions of p.
+
+∗
+F (m, n, α, θ) = Aα − E(Mσ KMσ )
+
+2
+
+[6] N. Ercolani and D. Ueltschi. Cycle structure of random permutations
+with cycle weights, 2011.
+[7] H. Fulton. Representation Theory, Springer, 1991.
+[8] J. Galambos. Advanced Probability Theory. CRC, vol. 10, 1995.
+[9] R. M. Gray. Toeplitz and circulant matrices: A review. Information
+Systems Laboratory, Stanford University, 1971.
+[10] T. Kurmayya and K.C. Sivakumar. Moore–Penrose inverse of a gram
+matrix and its non–negativity. Journal of Optimization Theory and
+Applications, vol. 139, no. 1, pp. 201–207, 2008.
+[11] O. Ledoit and M. Wolf. Some hypothesis tests for the covariance matrix
+when the dimension is large compared to the sample size. Annals of
+Statistics, pp. 1081–1102, 2002.
+[12] I. Macdonald. Symmetric functions and Hall Polynomials. Clarendon
+Press, Oxford University Press, New York, 1995.
+[13] T. Marzetta, G. Tucci, and S. Simon. A random matrix–theoretic
+approach to handling singular covariance estimates. IEEE Transactions
+on Information Theory, vol. 57, no. 9, pp. 6256–6271, 2011.
+[14] X. Mestre. Improved estimation of eigenvalues and eigenvectors of
+covariance matrices using their sample estimates. IEEE Transactions on
+Information Theory, vol. 54, no. 11, pp. 5113–5129, 2008.
+[15] X. Mestre and M. A. Lagunas. Diagonal loading for ﬁnite sample size
+beamforming: an asymptotic approach. Robust adaptive beamforming,
+pp. 201–257, 2006.
+[16] R. Muirhead. Aspects of Multivariate Statistical Theory. John Wiley &
+Sons, New York, 1982.
+[17] C. D. Richmond, R. Rao Nadakuditi and A. Edelman. Asymptotic mean
+squared error performance of diagonally loaded capon-mvdr processor. In
+Signals, Systems and Computers, 2005. Conference Record of the ThirtyNinth Asilomar Conference on, pp. 1711 – 1716, 2005.
+[18] B. Sagan. The Symmetric Group: Representations. Combinatorial
+Algorithms, and Symmetric Functions, Springer, 2nd edition, 2010.
+[19] R. P. Stanley et al. Enumerative Combinatorics: Volume 2. Cambridge
+university press Cambridge, 1999.
+[20] M. A. G. Viana. The covariance structure of random permutation
+matrices. Algebraic methods in statistics and probability: AMS Special
+Session on Algebraic Methods and Statistics, April 8-9, 2000, University
+of Notre Dame, Notre Dame, Indiana, pp. 287–303, 2001.
+
+Fig. 3. The functions f and g for m = 200, n = 150 and α = 0.5 as
+functions of θ.
+
+∗
+invcovp (K) and E(Mσ KMσ ). Let Aα , m, p, n, K and θ as
+before and deﬁne the following performance functions
+
+f (m, n, α, p) = Aα − (p/m)invcovp (K)−1 2 ,
+g(m, n, α, p) = A−1 − (m/p)invcovp (K) 2 ,
+α
+∗
+F (m, n, α, θ) = Aα − E(Mσ KMσ ) 2 .
+
+In Figures 2 and 3, we show the performance of the estimators
+for different values of p and θ. It was observed in [13] that the
+estimator invcovp outperforms the more standard and classical
+estimator of diagonal loading for optimal loading parameters
+as in Ledoit and Wolf [11] by computing f (m, n, α, p), for the
+different values of p, and comparing them with ||Aα −KLW ||2 .
+The same type of experiments were performed on a variety of
+different scenarios as well. We can observe how the Ewens
+estimator outperforms the invcovp estimator for the optimum
+values of p and θ. The next Figures show the behavior of the
+previous functions for the different parameter values.
+R EFERENCES
+[1] Z. D. Bai. Methodologies in spectral analysis of large-dimensional
+random matrices, a review. Statist. Sinica, vol. 9, no. 3, pp. 611–677,
+1999.
+[2] V. Betz, D, Ueltschi and Y. Velenik. Random permutations with cycle
+weights Ann. Appl. Probab., vol. 21, no. 1, pp. 312-331, 2011.
+[3] A. B¨ ttcher and S. M. Grudsky. Spectral properties of banded Toeplitz
+o
+matrices. Society for Industrial Mathematics, 2005.
+[4] A. B¨ ttcher and B. Silbermann. Introduction to large truncated Toeplitz
+o
+matrices. Springer, 1999.
+[5] N. R. Draper and H. Smith. Applied Regression Analysis (Wiley Series
+in Probability and Statistics. Wiley–Interscience, 1998.
+
+5
+
+

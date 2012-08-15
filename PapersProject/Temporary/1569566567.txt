@@ -1,0 +1,1449 @@
+Creator:         TeX output 2012.05.16:0214
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Fri May 18 22:03:48 2012
+ModDate:        Tue Jun 19 12:55:27 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      449533 bytes
+Optimized:      no
+PDF version:    1.7
+ISIT'2012 1569566567
+
+Rateless Feedback Codes
+∗ Aalborg
+
+Jesper H. Sørensen∗† , Toshiaki Koike-Akino† , and Philip Orlik†
+
+University, Department of Electronic Systems, Fredrik Bajers Vej 7, 9220 Aalborg, Denmark
+Electric Research Laboratories (MERL), 201 Broadway, Cambridge, MA 02139, USA
+E-mail: jhs@es.aau.dk, {koike, porlik}@merl.com
+
+† Mitsubishi
+
+Abstract—This paper proposes a concept called rateless feedback coding. We redesign the existing LT and Raptor codes,
+by introducing new degree distributions for the case when a few
+feedback opportunities are available. We show that incorporating
+feedback to LT codes can signiﬁcantly decrease both the coding
+overhead and the encoding/decoding complexity. Moreover, we
+show that, at the price of a slight increase in the coding overhead,
+linear complexity is achieved with Raptor feedback coding.
+
+information is used to modify the degree distribution in the
+encoder. The goal is to decrease the coding overhead especially
+for short k, in which the conventional rateless codes are
+inefﬁcient. We will show that the proposed feedback scheme
+can decrease both the coding overhead and the complexity.
+
+I. I NTRODUCTION
+
+An overview of standard LT codes is ﬁrst described here.
+Assume we wish to transmit data, which is divided into k input
+symbols. From the input symbols, a potentially inﬁnite amount
+of encoded symbols, called output symbols, are generated.
+Output symbols are XOR combinations of input symbols. The
+number of input symbols used in the XOR is referred to as the
+degree of the output symbol, and all input symbols contained
+in an output symbol are called neighbors of the output symbol.
+The output symbols follow a certain degree distribution Ω.
+The encoding process can be broken down into three steps:
+1) Randomly choose a degree d by sampling Ω(d). 2) Choose
+uniformly at random d of the k input symbols. 3) Perform
+XOR of the d chosen input symbols. The resulting symbol is
+the output symbol. This process can be iterated as many times
+as needed, which results in a rateless code.
+A widely used decoder for LT codes is a belief propagation
+(BP) decoder whose complexity is low [2]. First, all degree1 output symbols are identiﬁed, which makes it possible to
+recover their corresponding neighboring input symbols. These
+are moved to a storage referred to as the ripple. Symbols
+in the ripple are processed one by one, which means they
+are XOR’ed with all output symbols, who have them as
+neighbors. Once a symbol has been processed, it is removed
+from the ripple and considered decoded. The processing of
+symbols in the ripple will potentially reduce the buffered
+symbols to degree one, in which case the neighboring input
+symbol is recovered and moved to the ripple. This is called
+a symbol release. Such an iterative decoding process can be
+explained in two steps: 1) Identify all degree-1 symbols and
+add the corresponding input symbols to the ripple. 2) Process
+a symbol from the ripple, remove it afterwards and go to step
+1. Decoding succeeds when all input symbols are recovered. If
+at any point, the ripple size equals zero, decoding has failed.
+
+II. BACKGROUND OF R ATELESS C ODES
+
+Achieving reliable communications over erasure channels
+has been an active research topic for many years, especially
+when packet-based communications emerged with the rise of
+the Internet. When a strong feedback channel is available, the
+capacity of the erasure channels is easily achieved with wellknown automatic repeat-request (ARQ) schemes. The receiver
+simply feeds back an acknowledgment on each individual
+symbol, and any unacknowledged symbols are retransmitted.
+The fact that ARQ makes extensive use of feedback channels
+makes it difﬁcult to employ this scheme in many practical
+systems. A rateless coding can achieve reliable communications on erasure channels with no frequent feedback. The socalled LT codes [1] and Raptor codes [2] are such examples.
+These codes generate a potentially inﬁnite amount of encoded
+symbols from k information symbols, with an encoding and
+decoding complexity order of O(k log k). A successful decoding is possible when (1 + )k encoded symbols have been
+received, where is a coding overhead.
+Now the question is; assuming we have a communication
+system, where the receiver has m feedback opportunities
+(0 < m < k), what scheme should be applied? While
+the existing schemes are designed for the extreme cases,
+m = k and m = 0, the more practical assumptions pose an
+interesting problem. An approach called doped fountain coding
+is proposed in [3], where the receiver feeds back information
+on undecoded symbols. This makes the transmitter able to
+transmit input symbols, which accelerate the decoding process.
+In [4], another approach called real-time oblivious erasure
+correcting is proposed. This approach utilizes feedback telling
+how many of the k input symbols have been decoded. With
+this information the transmitter chooses a ﬁxed degree for
+future encoded symbols, which maximizes the probability of
+decoding new symbols. The same type of feedback is applied
+in [5], but with the purpose of minimizing the redundancy.
+We propose in this paper redesigned versions of LT and
+Raptor codes, called LT feedback codes and Raptor feedback
+codes, where any amount of feedback opportunities are taken
+into account. We focus on more informative feedback than
+simple acknowledgments to tell the transmitter which information symbols have been recovered, not just how many. This
+
+III. R ATELESS F EEDBACK C ODES
+The ripple size is an important parameter in the design of
+LT codes. This design contains two steps; 1) ﬁnd a suitable
+ripple evolution to aim for, and 2) ﬁnd a degree distribution
+which achieves that ripple evolution. This section describes
+such a design for the case where feedback opportunities exist.
+We ﬁrst focus on the case of a single feedback located when
+
+1
+
+0.1
+0.08
+
+L − (1 − f1 )k
+
+d = 10
+
+0.06
+
+(1 − f1 )k
+d=2
+
+d = 10
+
+0.04
+
+d=3
+d=2
+
+0.02
+0
+
+Fig. 1.
+
+0
+
+d=3
+
+10
+
+20
+
+30
+
+40
+50
+60
+Decoding Step (k−L)
+
+70
+
+80
+
+90
+
+Decoding Progress (k−L)
+
+100
+
+Fig. 2.
+
+The release probability as a function of the decoding step.
+
+A. LT Feedback Codes
+The feedback informs the transmitter which input symbols
+have been decoded. With the information, the encoder excludes
+all decoded symbols from future encoding. An important implication of this is that the processing of the ﬁrst f1 k symbols
+has no inﬂuence on the release of the symbols received after
+the feedback because no symbol encoded after the feedback
+has those ﬁrst f1 k processed symbols as neighbors. In order to
+fully understand the beneﬁt from this, we look at a proposition
+presented in [1]. It expresses the probability, q(d, L, k), that a
+symbol of degree d is released when L input symbols remain
+unprocessed, i.e. in the (k − L)-th decoding step:
+d(d − 1)L
+
+d−3
+j=0 (k
+d−1
+j=0 (k
+
+− (L + 1) − j)
+− j)
+
+,
+
+f1 k
+
+L
+
+k
+
+The proposed ripple evolution for LT feedback codes.
+
+walk, i.e. every time a symbol is processed, the ripple size is
+either increased or decreased by one with equal probabilities.
+In such a random walk, the expected distance from the origin
+√
+after z steps is z. Hence, if L steps remain in the decoding
+√
+process, the ripple size should be of the order of L in order to
+avoid decoding failure. The choice of ripple evolution for the
+LT feedback code is based on the same reasoning. However,
+due to the feedback, the ripple evolution can be viewed as two
+random walks. The ﬁrst random walk represents decoding until
+the feedback, i.e. when (1 − f1 )k remain undecoded. Hence,
+we argue that until this point, the ripple size should be equal
+to c1 L − (1 − f1 )k, for a positive constant c1 . The second
+random walk represents decoding after the feedback, where all
+remaining symbols must be recovered. Hence, the ripple size
+√
+should be c2 L, for a positive constant c2 . Fig. 2 illustrates
+the proposed ripple evolution for c1 = c2 = 1. The proposed
+ripple evolution, R(L), is summarized as below:
+
+f1 k symbols have been decoded. It will be later scaled to any
+amount of feedback opportunities.
+
+q(d, L, k) =
+
+√
+
+Ripple Size
+
+Release Probability
+
+f1 k
+
+Before feedback
+After feedback
+
+(1)
+
+R(L) =
+
+for d = 2, . . . , k, and L = k − d + 1, . . . , 1,
+q(1, k, k) = 1, q(d, L, k) = 0, for all other d and L.
+
+c1 L − (1 − f1 )k,
+√
+c2 L,
+
+for L > (1 − f1 )k,
+for L ≤ (1 − f1 )k,
+
+(2)
+
+for suitable constants c1 and c2 .
+The next step in the design is to ﬁnd a degree distribution
+which achieves the proposed ripple evolution (2). Two degree
+distributions must be found, for the case of a single feedback,
+one for before the feedback and the other for after. First,
+the vector R(L) is mapped into another vector, Q(L), which
+denotes the expected number of releases in the (k − L)-th
+decoding step. We derive this mapping assuming all releases
+in a single step are unique, i.e. the same input symbol will
+not be recovered twice within a single step. This is a valid
+assumption, since the number of releases in a single step is
+low compared to L. The mapping can be expressed as
+
+ L R(L) − R(L + 1) + 1
+
+, for k > L ≥ 0,
+Q(L) =
+(3)
+L − R(L + 1) − 1
+
+R(L),
+for L = k.
+
+It holds for the traditional LT code without feedback. With
+feedback, we can divide encoded symbols into two groups;
+one for symbols received prior to the feedback and one for
+symbols received after. Symbols received before the feedback
+follow the release probabilities in (1). Symbols received after
+the feedback are based on the reduced set of input symbols of
+size (1 − f1 )k. Moreover, their releases are independent of the
+processing of the ﬁrst f1 k input symbols. We can therefore ﬁnd
+their release probabilities as q(d, L, (1 − f1 )k), for L > f1 k.
+Fig. 1 shows a plot of q(d, L, k) (before feedback) and
+q(d, L, (1 − f1 )k) (after feedback), with parameters k = 100
+and f1 = 0.5. It illustrates how releases of symbols received
+after the feedback are conﬁned to the end of the decoding process. This is useful when designing degree distributions, since
+it gives more freedom to distribute the releases throughout the
+decoding process. For example, see the release distributions of
+low degree symbols after the feedback; they are released with
+high probability immediately after the feedback. This means
+that we have the opportunity to give the ripple a boost at an
+intermediate point in the decoding process. This should be
+exploited in the design of the LT feedback code.
+In [2], it √ argued that the ripple size should be kept
+was
+larger than c L, for some positive constant c. The justiﬁcation
+is based on viewing the ripple evolution as a simple random
+
+Plugging (2) into (3), the desired Q(L) is obtained as
+ √
+c1 f1 k,
+for L = k,
+
+
+ L(c1 √L−(1−f1 )k−c1 √L−(1−f1 )k+1+1)
+
+
+√
+, for k > L > k1 ,
+Q(L) =
+√ L−(c1 L−(1−f1 )k+1−1)
+c2 L,
+
+for L = k1 ,
+
+ L(c √L−c √L+1+1)
+ 2
+2
+
+√
+,
+for k1 > L ≥ 0,
+L−(c2 L+1−1)
+(4)
+
+2
+
+FOR
+
+FEEDBACK CODE .
+
+10
+
+LT
+
+Proposed Ripple
+Achieved Ripple
+
+One Feedback
+8
+
+d
+
+Ω1 (d)
+
+1
+2
+3
+4
+5
+6
+7
+8
+10
+13
+15
+17
+19
+22
+25
+27
+30
+31
+32
+
+0.0841
+0.5670
+0.1294
+0.1902
+0.0293
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+
+TABLE II
+D EGREE DISTRIBUTION FOR
+R APTOR FEEDBACK CODE .
+
+Ω2 (d)
+0.1948
+0.2143
+0.1730
+0.1132
+0.0711
+0.0485
+0.0310
+0.0354
+0.0408
+0.0296
+0.0041
+0.0163
+0.0055
+0.0107
+0.0030
+0.0049
+0.0025
+0.0004
+0.0008
+
+d
+
+Ω1 (d)
+
+Ω2 (d)
+
+1
+2
+3
+4
+5
+6
+8
+9
+13
+14
+21
+22
+
+0.0854
+0.5618
+0.2224
+0.1304
+0
+0
+0
+0
+0
+0
+0
+0
+
+Ripple Size
+
+TABLE I
+D EGREE DISTRIBUTION
+
+0.1926
+0.2458
+0.1834
+0.1100
+0.0669
+0.0560
+0.0524
+0.0271
+0.0239
+0.0240
+0.0025
+0.0154
+
+Two Feedbacks
+0
+
+Fig. 3.
+
+20
+
+40
+
+60
+
+80
+
+100
+
+120
+
+140
+
+The achieved ripple evolution compared to the proposed.
+
+decoding can be viewed as m + 1 random walks, for which
+the proposed ripple evolution is written as
+
+c1 L − k1 , for L > k1 ,
+
+R(L) = ci L − ki , for ki−1 > L > ki ,
+(8)
+√
+
+c
+for L ≤ km+1 ,
+m+1 L,
+
+where ki = (1 − fi )k, with suitable constants ci for i =
+1, 2, . . . , m + 1.
+An example of two feedback opportunities for k = 128,
+m = 2, f1 = 0.25, f2 = 0.75 and c1 = c2 = c3 = 1 is
+shown in Fig. 3. It also compares what is achieved with the
+least-squares solution to a generalized version of (7):
+
+
+
+ 
+H1,1
+0
+0
+0
+0
+Q(k)
+n1 Ω1
+
+
+ .
+
+..
+  . 
+.
+ .
+
+.
+.
+0
+0
+0
+  . 
+ . 
+.
+ .
+
+
+ 
+
+
+ .
+
+ .
+  ni Ωi = . ,
+.
+Hi,j
+Hi,i
+0
+0
+  . 
+. 
+
+
+
+ 
+.
+
+ .
+
+.
+.
+.
+..
+  . 
+.
+.
+.
+ .
+
+ . 
+.
+.
+.
+.
+0
+ . 
+nm+1 Ωm+1
+Hm+1,1
+· · · · · · · · · Hm+1,m+1
+Q(1)
+(9)
+
+(5)
+
+d=1
+
+where n denotes the number of received symbols in decoding.
+For the case with feedback, we have contributions from
+two different degree distributions, Ω1 (d) and Ω2 (d), when
+L < (1 − f1 )k. Correspondingly, n1 and n2 symbols have
+been received prior to decoding. When Ω2 (d) is applied, the
+encoder only includes the remaining (1 − f1 )k input symbols.
+Therefore, we have
+
+k−L+1
+
+
+n1 Ω1 (d)q(d, L, k),
+for L > k1 ,
+
+
+
+ d=1
+
+f1 k
+Q(L) = k1 −L+1
+
+
+n2 Ω2 (d)q(d, L, k1 )+
+n1 Ω1 (d)q(d, L, k),
+
+
+ d=1
+
+d=1
+
+
+for L ≤ k1 .
+
+0
+
+Symbols Processed (k−L)
+
+k−L+1
+
+nΩ(d)q(d, L, k),
+
+4
+2
+
+where k1 = (1 − f1 )k. The achieved Q(L) can be expressed
+as a function of the applied degree distribution, Ω(d), through
+(1). This is done for the general case without feedback as
+Q(L) =
+
+6
+
+where, with notations k0 = k and km+1 = 0,
+
+
+q(1, ki−1 , ki−1 )
+0
+0
+
+
+.
+..
+.
+Hi,i = 
+,
+.
+.
+0
+q(1, ki + 1, ki−1 ) · · · q(ki−1 − ki , ki + 1, ki−1 )
+
+
+q(1, ki−1 , kj−1 ) · · · q(ki−1 − ki , ki−1 , kj−1 )
+
+
+.
+.
+.
+.
+.
+.
+Hi,j = 
+.
+.
+.
+.
+
+(6)
+
+Equations (4) and (6) yield (7) shown at the top of the
+next page. Here, n1 and n2 are the free parameters. Hence,
+a solution tells us how many symbols we must collect of the
+different degrees before and after the feedback in order to
+achieve the desired ripple evolution. Normalizing the solution
+vectors with n1 and n2 provides the degree distributions. Since
+the matrix in (7) becomes singular for high k, we propose to
+use the least-squares nonnegative solution for (7) to achieve
+close to the desired ripple evolution. Table I exempliﬁes the
+solution for k = 128, f1 = 0.75 and c1 = c2 = 1. The
+actual expected ripple evolution achieved with these degree
+distributions is easily found through the use of (7) and (3).
+Fig. 3 demonstrates that the least-squares solution closely
+approaches the proposed evolution.
+The design procedure explained above is easily extended to
+multiple feedback opportunities. Consider m feedback opportunities whose locations are at fi , for i = 1, 2, . . . , m. The
+
+q(1, ki + 1, kj−1 )
+
+···
+
+q(ki−1 − ki , ki + 1, kj−1 )
+
+An important performance metric is the average degree,
+¯
+d. When no feedback is considered, it is calculated as
+k
+d=1 d Ω(d). For the proposed LT feedback code, it is calculated using the following equations:
+m+1
+
+¯
+d=
+i=1
+
+ni
+n
+
+ki−1 −ki
+
+m+1
+
+d Ωi (d),
+d=1
+
+n=
+
+ni .
+
+(10)
+
+i=1
+
+Fig. 4 shows a comparison of LT feedback codes with increasing number of feedback opportunities and the Robust
+Soliton distribution (RSD). The RSD proposed in [1] is the
+de facto standard for traditional LT codes. The legend shows
+the number of feedbacks in parenthesis. The LT feedback
+code with zero feedbacks, refers to√ code using a degree
+a
+distribution which achieves R(L) = L.
+
+3
+
+
+
+q(1, k, k)
+
+.
+
+.
+.
+
+
+q(1, k + 1, k)
+
+ q(1, k , k)
+
+.
+
+.
+
+.
+q(1, 1, k)
+
+0
+..
+.
+···
+···
+.
+.
+.
+···
+
+0
+
+0
+
+0
+
+0
+q(f1 k, k + 1, k)
+q(f1 k, k , k)
+.
+.
+.
+q(f1 k, 1, k)
+
+0
+0
+q(1, k , k )
+.
+.
+.
+q(1, 1, k )
+
+0
+0
+0
+..
+.
+···
+
+0
+q(k , 1, k )
+
+n2 Ω2 (k )
+
+(7)
+
+Q(1)
+
+10
+RSD
+LTF (0)
+LTF (1)
+LTF (2)
+LTF (3)
+
+10
+8
+
+Proposed Ripple
+Achieved Ripple
+
+8
+
+Ripple Size
+
+12
+
+Avg. Degree
+
+
+
+
+n1 Ω1 (1)
+Q(k)
+
+
+ . 
+.
+
+
+ . 
+.
+
+
+ . 
+.
+
+
+
+
+ n1 Ω1 (f1 k)
+ · 
+  n Ω (1)  =  · 
+ 2 2
+
+
+
+
+
+
+
+.
+
+
+ . 
+.
+
+
+ . 
+.
+.
+
+0
+0
+0
+
+14
+
+6
+4
+
+6
+4
+2
+
+2
+0
+
+
+
+0
+
+5
+
+6
+
+7
+
+8
+
+9
+
+10
+
+11
+
+0
+
+12
+
+log (k)
+
+0
+
+20
+
+40
+
+60
+
+80
+
+100
+
+120
+
+140
+
+Symbols Processed (k−L)
+
+2
+
+Fig. 4. Average degree of LT feedback codes and traditional LT codes (RSD).
+
+Fig. 5. The ripple evolution achieved in the Raptor feedback code compared
+to the one proposed for LT feedback codes.
+
+Fig. 4 shows that LT feedback codes decrease the average
+degree, and thereby computational complexity. It should be
+¯
+noted that as the number of feedbacks increases, d as a
+function of k approaches a constant, which suggests linear
+complexity. Superlinear complexity is one of the drawbacks of
+traditional LT codes and we can now conclude that feedback
+is a way to solve it. However, at small m the average degree
+still increases with k in the order of log(k). It is therefore
+relevant to consider the concept of Raptor coding, which is
+another approach to ensuring linear complexity [2].
+
+corresponding ripple evolution is seen in Fig. 5 compared to
+the evolution proposed for the LT feedback code. There is
+still a slight lack of robustness near the feedback point. Q(L)
+was found assuming that a ripple size equal to the desired is
+achieved. This is valid even when a slight deviation exists, as
+in Fig. 3. However, in this case the deviation has an impact and
+it can be compensated by transmitting the feedback slightly
+earlier. There is also a lack of robustness near the end of
+decoding. However, as in traditional Raptor codes, this is dealt
+with by an outer block code.
+
+B. Raptor Feedback Codes
+
+IV. N UMERICAL R ESULTS
+
+Raptor coding is a concatenation of an LT code and a highrate block code, e.g. low-density parity-check (LDPC) code.
+During encoding, the block encoder is ﬁrst applied on the k
+input symbols. These block-encoded symbols are fed to an LT
+encoder, which creates a rateless code. Successful decoding
+is possible whenever the LT decoder has recovered enough
+symbols for the block decoder to succeed. It was shown in
+[2] that there exist degree distributions of the LT code to
+ensure successful decoding after receiving (1 + )k symbols
+and has a constant average degree for increasing k. We will
+now show how our design approach of LT feedback coding
+can be extended to a Raptor feedback code.
+¯
+For a given desired d in (10), a constraint is easily added
+to the equation in (7), as shown in the second row from the
+bottom in (11), which is shown at the top of the next page.
+Since we can ﬁnd the least-squares solutions to this system of
+equations, a weight, w
+1, has been multiplied in this row,
+in order to make it more strict. Moreover, in order to avoid
+the case that the ripple lacks robustness around the feedback
+point, a constraint is added to ensure that the correct amount
+of releases is achieved prior to the feedback. This is also a
+strict constraint and is therefore also multiplied by w. It has
+been added as the last row in (11).
+The least-squares solution for k = 128, f1 = 0.75,
+¯
+c1 = c2 = 1 and d = 2.7 is shown in Table II. The
+
+The performance metrics we are concerned with are average
+coding overhead, i.e. (1 + )k, and the average degree which
+determines the complexity. First, the performance of LT feedback codes is evaluated in the low range of k. This is due to
+the fact that traditional LT codes are inefﬁcient for low k.
+The ﬁrst simulation serves the purpose of optimizing the
+feedback point for a single feedback opportunity. Fig. 6 shows
+the results over averages of 5000 runs for c1 = c2 = 1. The
+best performance was achieved with f1 = 23 for k = 32, 64
+32
+and 96. For higher k values, the best performance was achieved
+with f1 = 24 . A similar optimization has been performed for
+32
+two and three feedback opportunities. For two feedbacks, best
+performing values were f1 = 18 and f2 = 28 for k = 32, 64,
+32
+32
+96 and 128. For k = 160, f1 = 18 and f2 = 29 performed
+32
+32
+best. For the case of three feedbacks, f1 = 13 , f2 = 24 , and
+32
+32
+f3 = 30 were either optimal or near optimal for all short k.
+32
+An average coding overhead is shown in Fig. 7. LT feedback
+codes with increasing number of feedbacks are compared to a
+traditional LT code with no feedback using the RSD. We can
+observe a signiﬁcant gain of the feedback in average coding
+overhead. Even the LT feedback code with zero feedbacks
+provides a slight decrease in coding overhead due to the inefﬁciency of RSD. It is also evident that there is a diminishing
+return from adding feedback to the system.
+
+4
+
+
+
+q(1, k, k)
+
+.
+
+.
+
+.
+
+ q(1, k + 1, k)
+
+q(1, k , k)
+
+
+
+.
+
+.
+
+.
+
+q(1, 1, k)
+
+
+w·1
+
+
+k
+
+w
+q(1, L, k)
+
+0
+..
+.
+···
+···
+.
+.
+.
+···
+···
+···
+
+L=k +1
+
+0
+
+0
+
+0
+
+0
+q(f1 k, k + 1, k)
+q(f1 k, k , k)
+.
+.
+.
+q(f1 k, 1, k)
+w · f1 k
+
+0
+0
+q(1, k , k )
+.
+.
+.
+q(1, 1, k )
+w·1
+0
+
+0
+
+k=32
+k=64
+k=96
+k=128
+k=160
+
+1.3
+1.25
+1.2
+1.15
+
+k
+
+L=k +1
+
+
+
+
+
+
+
+
+
+
+
+
+.
+
+
+
+
+
+
+
+Q(L)
+
+(11)
+
+RapF (0)
+RapF (1)
+RapF (2)
+LTF (0)
+LTF (1)
+LTF (2)
+RSD
+
+1.2
+1.15
+1.1
+1.05
+
+0.1
+
+0.2
+
+0.3
+
+0.4
+
+0.5
+
+0.6
+
+0.7
+
+0.8
+
+0.9
+
+1
+
+1
+
+200
+
+400
+
+600
+
+800
+
+1000
+
+1200
+
+1400
+
+1600
+
+1800
+
+2000
+
+k
+
+1
+
+Optimization of f1 for the case of a single feedback opportunity.
+
+Fig. 8.
+
+Coding overhead of Raptor feedback codes and LT feedback codes.
+1.25
+
+RSD
+LTF (0)
+LTF (1)
+LTF (2)
+LTF (3)
+
+1.3
+
+Overhead (1+ ε)
+
+Overhead (1+ ε)
+
+1.35
+
+1.2
+
+1.25
+1.2
+1.15
+1.1
+
+1.15
+
+4
+
+1.1
+
+3
+
+2
+
+1
+
+40
+
+60
+
+80
+
+100
+
+120
+
+140
+
+160
+
+k
+
+Fig. 7.
+
+5
+
+1.05
+
+1.4
+
+1.05
+
+6
+Coding Overhead
+Average Degree
+
+0
+
+20
+
+40
+
+60
+80
+Feedback Opportunities (m)
+
+100
+
+120
+
+Average Degree
+
+0
+
+f
+
+Fig. 6.
+
+Q(k)
+.
+.
+.
+·
+·
+.
+.
+.
+Q(1)
+¯
+wnd
+
+1.25
+
+Overhead (1+ ε)
+
+Overhead (1+ ε)
+
+
+
+1.3
+
+1.4
+1.35
+
+1.1
+
+
+
+
+
+
+
+
+n1 Φ1 (1)
+
+
+0
+
+
+
+
+
+0
+.
+
+
+
+.
+0
+
+
+
+.
+
+
+
+ n1 Φ1 (f1 k)
+
+  n Φ (1)  = 
+ 2 2
+
+
+0
+
+
+
+.
+q(k , 1, k ) 
+
+
+.
+
+
+
+.
+w·k
+
+
+ n Φ (k )
+
+2 2
+
+
+
+w
+0
+
+0
+0
+0
+..
+.
+···
+···
+
+wq(f1 k, k + 1, k)
+
+0
+
+1
+140
+
+Fig. 9. Coding overhead and complexity of LT feedback code for increasing
+number of feedback opportunities.
+
+Coding overhead of LT feedback codes and a traditional LT code.
+
+V. C ONCLUSIONS
+We have introduced LT feedback codes and Raptor feedback codes, those of which differ from traditional rateless
+codes through their ability to take any amount of feedback
+opportunities into account. The key component is the design
+of well-performing degree distributions for feedback-aided
+transmissions. We have shown signiﬁcant improvements in
+coding overhead and complexity. Moreover, it was shown that
+LT feedback codes approach linear complexity for increasing
+number of feedback opportunities, which eliminates the major
+drawback of traditional LT codes. For a small number of
+feedback opportunities, complexity is still superlinear. For this
+case, Raptor feedback codes have been introduced in order to
+achieve linear complexity.
+
+In Fig. 8, Raptor feedback codes are compared to LT
+feedback codes at higher k values, where complexity becomes
+relevant to consider. For zero, one and two feedback oppor¯
+tunities in the Raptor feedback codes, d of 5, 3 and 2.5 have
+been chosen respectively. For all cases, a random LDPC code
+with variable nodes of degree 3 and a rate of 0.9688 has been
+applied as an outer code. Feedback points for all schemes have
+been optimized as described earlier. The results show that,
+except for the case of no feedback, the Raptor feedback code
+performs slightly worse than the LT feedback code. Hence,
+linear complexity comes at the price of an overhead loss, as
+is the case for traditional rateless codes.
+Finally, Fig. 9 shows the average overhead and complexity
+of LT feedback codes for k = 128 as a function of the
+number of feedback opportunities. For this simulation, the
+feedback locations have not been optimized but are uniformly
+distributed over the decoding process. This ﬁgure shows that
+any amount of feedback opportunities can be utilized for
+decreasing overhead and complexity all the way towards the
+¯
+extreme case of ARQ, where d = 1 and = 0. Note that
+there is a room of improving the performance by optimizing
+the feedback points.
+
+R EFERENCES
+[1] M. Luby, “LT codes,” in The 43rd Annual IEEE Symposium on Foundations of Computer Science., pp. 271–280, November 2002.
+[2] A. Shokrollahi, “Raptor codes,” IEEE Trans. IT, pp. 2551–2567, 2006.
+[3] S. Kokalj-Filipovi´ , P. Spasojevi´ , E. Soljanin and R. Yates, “ARQ with
+c
+c
+doped fountain decoding,” in IEEE ISSSTA ’08, pp. 780–784, 2008.
+[4] A. Beimel, S. Dolev and N. Singer, “RT oblivious erasure correcting,”
+IEEE/ACM Transactions on Networking., pp. 1321–1332, 2007.
+[5] A. Hagedorn, S. Agarwal, D. Starobinski, and A. Trachtenberg, “Rateless
+coding with feedback,” in IEEE INFOCOM, pp. 1791–1799, April 2009.
+
+5
+
+

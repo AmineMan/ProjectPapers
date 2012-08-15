@@ -1,0 +1,1147 @@
+Creator:        TeX
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Tue Jun 12 08:51:31 2012
+ModDate:        Tue Jun 19 12:54:22 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      494356 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569564969
+
+Broadcast Capacity Regions with Three Receivers
+and Message Cognition
+Tobias J. Oechtering
+
+Mich` le Wigger
+e
+
+Roy Timo
+
+KTH Royal Institute of Technology
+ACCESS Linnaeus Center
+Stockholm, Sweden
+
+Telecom ParisTech
+Paris, France
+michele.wigger@telecom-paristech.fr
+
+Institute for Telecommunications Research
+University of South Australia
+roy.timo@unisa.edu.au
+
+M0 , M1 , M2
+
+Abstract—We consider the capacity region of a three receiver
+broadcast channel with some message cognition at two receivers.
+The problem generalizes the bi-directional broadcast channel to
+include a third receiver, a common message, and (partial) message
+cognition. We characterize the capacity region for several classes
+of less noisy, more capable, and deterministic broadcast channels.
+
+Transmitter, f
+Xn
+PY1 ,Y2 ,Y3 |X
+
+Y1n
+
+I. I NTRODUCTION
+
+Y3n
+
+Y2n
+
+A canonical cooperative-communications problem is the bidirectional broadcast channel (BC) [1], which is a special case
+of the almost lossless joint source-channel coding problem
+in [2]. In this paper we generalize the bi-directional BC to
+the problem in Fig. 1, i.e., to include a third receiver and a
+common message. Unlike the bi-directional BC [1], our setup
+of Fig. 1 is not a special case of [2], but rather closely related
+to the lossy joint source-channel coding problem in [3].
+We will also extend the setup in Fig. 1 to a setup where
+Receivers 1 and 2 have only partial cognition of each other’s
+messages. The capacity region for the two-user BC with
+degraded message sets and partial message cognition was ﬁrst
+studied in [4].
+Our goal is to determine the capacity region of the setup
+in Fig. 1 as well as the capacity region of the extended setup
+with partial message cognition.
+In Fig. 1, the Transmitter wishes to send three messages,
+M0 , M1 , and M2 , to the receivers. Receiver 1 requires the
+private message M1 and the common message M0 ; Receiver 2
+requires the private message M2 and M0 ; and Receiver 3
+requires only M0 . The messages are modelled as independent
+random variables, where each Mk is uniformly distributed over
+the set Mk {1, 2, . . . , 2nRk }, for k ∈ {0, 1, 2}. Here Rk
+denotes the transmission rate of message Mk , and n denotes
+the blocklength.
+The BC is discrete and memoryless. Denoting by X the
+channel input alphabet and by Yk the channel output alphabet
+at Receiver k, the channel input X n
+(X1 , . . . , Xn ) takes
+n
+value in X n and Receiver k’s outputs Yk
+(Yk,1 , . . . , Yk,n )
+n
+take value in Yk , for k ∈ {1, 2, 3}. We consider a memoryless
+BC so that the conditional distribution of (Y1n , Y2n , Y3n ) given
+X n is deﬁned by PY1 ,Y2 ,Y3 |X (y1 , y2 , y3 |x).
+Paper Outline: In Section II, we consider the setup in Fig. 1,
+where Receiver 1 (resp. 2) is fully cognizant of Message M2
+(resp. M1 ). In Section III, we consider the extended setup with
+
+Receiver 1, g1
+
+M2
+Fig. 1.
+
+ˆ
+ˆ
+M0,1 , M1
+
+Receiver 2, g2
+
+M1
+
+Receiver 3, g3
+
+ˆ
+ˆ
+M0,2 , M2
+
+ˆ
+M0,3
+
+Broadcast channel with three receivers and message cognition.
+
+partial message cognition; i.e., Receiver 1 (resp. 2) knows only
+part of the message M2 (resp. M1 ).
+II. F ULL C OGNITION AT R ECEIVERS 1 AND 2
+Throughout this section we assume full cognition at Receivers 1 and 2, i.e., that Receiver 1 is cognizant of the entire
+message M2 and Receiver 2 of the entire message M1 .
+A code consists of four maps: An encoder at the Transmitter,
+f : M0 × M1 × M2 → X n
+and a decoder at each receiver,
+n
+g1 : Y1 × M2 → M0 × M1
+n
+g2 : Y2 × M1 → M0 × M2
+n
+g3 : Y3 → M0 .
+
+The Transmitter sends X n = f (M0 , M1 , M2 ); Receiver 1 deˆ
+ˆ
+ˆ
+codes (M0,1 , M1 ) = g1 (Y1n , M2 ); Receiver 2 decodes (M0,2 ,
+n
+ˆ
+ˆ
+M2 ) = g2 (Y2 , M1 ); and Receiver 3 decodes M0,3 = g3 (Y3n ).
+The average joint probability of error is
+Pe
+
+ˆ
+ˆ
+ˆ
+P M0,3 = M0 or (M0,1 , M1 ) = (M0 , M1 )
+ˆ
+ˆ
+or (M0,2 , M2 ) = (M0 , M2 ) .
+
+The rates (R0 , R1 , R2 ) are said to be achievable if for each
+> 0 there exists a code (f, g1 , g2 , g3 ) with Pe ≤ for some
+sufﬁciently large blocklength n. The capacity region C is the
+closure of the set of all achievable rates.
+
+1
+
+We ﬁrst give an inner bound for C. This bound is achieved
+using a combination of superposition coding, rate-splitting,
+and bi-directional coding. Roughly, the superposition cloudcenters carry the common message M0 and the satellites
+simultaneously carry the bi-directional messages (M1 , M2 ).
+Rate-splitting is used to transfer rate from the satellites to the
+cloud-centers.
+Let R∗ denote the set of rate tuples (R0 , R1 , R2 ) satisfying
+in
+R0 ≤ I(U ; Y3 )
+
+R0 + R1 ≤ I(U ; Y3 ) + I(X; Y1 |U )
+R0 + R2 ≤ I(U ; Y3 ) + I(X; Y2 |U )
+R0 ≤ I(U ; Y3 )
+for some (U, X) with U −X −(Y1 , Y2 , Y3 ).
+−
+−
+(v) If Y3 is a deterministic function of X, then C is equal to
+the set of all rate tuples (R0 , R1 , R2 ) satisfying
+R0 ≤ H(Y3 )
+
+(1a)
+
+R0 + R1 ≤ min I(X; Y1 ), I(U ; Y3 ) + I(X; Y1 |U )
+
+R0 + R1 ≤ I(X; Y1 )
+
+(1b)
+
+R0 + R2 ≤ I(X; Y2 )
+
+R0 + R2 ≤ min I(X; Y2 ), I(U ; Y3 ) + I(X; Y2 |U ) , (1c)
+
+for some X.
+Proof: The proof for (i), (iii), and (iv) are omitted due
+to space constraints. A sketch of the proof for case (v) can
+be found in Section IV. The direct part for (ii) follows by
+setting U = X in (1) and using the more capable condition.
+The converse to (ii) is trivial.
+
+for some (U, X) with U − X −(Y1 , Y2 , Y3 ).
+−
+−
+∗
+∗
+Proposition 1: C ⊇ Rin , and Rin is convex.
+Proof: The proposition is a corollary of Theorem 2, which
+is given later in Section III. See Remark 3.
+Remark 1: The capacity region in [1, Thm. 2.5] can be
+recovered from Proposition 1 by setting U to be constant.
+The next theorem gives ﬁve non-trivial settings for which
+the inclusion in Proposition 1 is an equality. We ﬁrst need
+two deﬁnitions from [5, p. 121]. A channel output Yi is said
+to be less noisy than another output Yj (abbreviated Yi
+Yj ) if I(U ; Yi ) ≥ I(U ; Yj ) holds for every auxiliary random
+variable U with U − X − (Yi , Yj ). A channel output Yi is
+−
+−
+said to be more capable than another output Yj if I(X; Yi ) ≥
+I(X; Yj ) holds for every X.
+Theorem 1: R∗ = C in each of the following settings.
+in
+
+III. PARTIAL C OGNITION AT R ECEIVERS 1 AND 2
+A natural generalization of the setup in Fig. 1 is to vary
+the quantity of side information at Receivers 1 and 2, as it
+was done for the two-receiver BC setup in [4]. Speciﬁcally,
+suppose that the bi-directional messages take the form
+Mk = (Mk,c , Mk,p ),
+
+k = 1, 2,
+
+where Mk,c and Mk,p are independent and uniformly distributed on {1, 2, . . . , 2nRk,c } and {1, 2, . . . , 2nRk,p }, respectively. Receiver 1 is now cognizant of message M2,c –
+instead of M2 – and is ignorant of M2,p . Similarly, Receiver 2 is cognizant of M1,c and ignorant of M1,p . The
+capacity region for the setup with partial cognition is deﬁned
+analogously to C; i.e., it is the set of all achievable rates
+(R0 , R1,c , R1,p , R2,c , R2,p ). We let Cpart denote this region. For
+brevity, we retain R1 = R1,c + R1,p and R2 = R2,c + R2,p .
+Remark 2: The partial-cognition setup includes the general
+two-receiver BC [5, Sect. 8] as a special case. Hence, we do
+not expect to completely characterise Cpart .
+The next theorem is proved using a combination of superposition coding, rate-splitting, and bi-directional coding. Let
+R(1) denote the set of all rates (R0 , R1,c , R1,p , R2,c , R2,p )
+in,part
+satisfying
+
+(i) If Y1
+Y3 and Y2
+Y3 , then C is equal to the set of
+rate tuples (R0 , R1 , R2 ) satisfying
+R1 ≤ I(X; Y1 |U )
+R2 ≤ I(X; Y2 |U )
+R0 ≤ I(U ; Y3 )
+for some (U, X) with U −X −(Y1 , Y2 , Y3 ).
+−
+−
+(ii) If Y3 is more capable than Y1 and Y2 , then C is equal to
+the set of all rate tuples (R0 , R1 , R2 ) satisfying
+R0 + R1 ≤ I(X; Y1 )
+R0 + R2 ≤ I(X; Y2 )
+for some X.
+(iii) If Y3
+Y1 , then C is equal to the set of rate tuples
+(R0 , R1 , R2 ) satisfying
+
+R0 ≤ I(U ; Y3 )
+
+(7a)
+
+R1,p ≤ I(X; Y1 |V )
+
+(7b)
+
+R0 + R1 ≤ I(X; Y1 )
+
+R0 + R2 ≤ min{I(V ; Y2 ), I(U ; Y3 ) + I(V ; Y2 |U )}
+
+R0 + R2 ≤ I(X; Y2 )
+
+R0 + R1 + R2,p ≤ min{I(X; Y1 ),
+
+R0 + R2 ≤ I(U ; Y3 ) + I(X; Y2 |U )
+
+(7c)
+
+I(U ; Y3 ) + I(X; Y1 |U )} (7d)
+
+R0 ≤ I(U ; Y3 )
+
+for some (U, V, X) with U −V −X −(Y1 , Y2 , Y3 ). Let
+−
+−
+−
+R(2) denote the set of all rates (R0 , R1,c , R1,p , R2,c , R2,p )
+in,part
+satisfying (7) with indices 1 and 2 interchanged. Let
+
+for some (U, X) with U −X −(Y1 , Y2 , Y3 ).
+−
+−
+(iv) If the marginal conditional distributions pY1 |X and pY2 |X
+are the same, then C is equal to the set of rate tuples
+(R0 , R1 , R2 ) satisfying
+
+Rin,part
+
+convex hull R(1) ∪ R(2)
+in,part
+in,part .
+
+(8)
+
+Theorem 2: Cpart ⊇ Rin,part .
+Remark 3: The inner bound of Proposition 1 follows directly from Theorem 2 by setting V = X.
+
+R0 + R1 ≤ I(X; Y1 )
+R0 + R2 ≤ I(X; Y2 )
+
+2
+
+(iii) If Y3
+Y1
+Y2 , then Cpart is the set of rates
+(R0 , R1,c , R1,p , R2,c , R2,p ) satisfying
+
+Proof of Theorem 2: We now sketch the coding theorem.
+Code Construction: Split the messages M1,c , M2,c , M2,p as
+
+R1,p ≤ I(X; Y1 |U )
+
+(1)
+(2)
+(1)
+(2)
+M1,c = (M1,c , M1,c ), M2,c = (M2,c , M2,c ),
+
+R0 + R2 ≤ I(U ; Y2 )
+
+with rates R(k) , R(k) , and R(k) , k ∈ {1, 2}. Construct two new
+1,c
+2,c
+2,p
+(2)
+(1)
+messages M⊕ and M⊕ as follows
+(k)
+(k)
+(k)
+M⊕ = M1,c + M2,c modulo 2
+
+(1)
+
+R0 + R2,c + R2,p ≤ I(U ; Y3 )
+
+(9b)
+
+R0 + R2 ≤ I(V ; Y2 )
+
+(9c)
+
+(2)
+
+(2)
+
+(9d)
+
+R0 + R1 + R2,p ≤ I(X; Y1 )
+
+(9e)
+
+R2,c + R2,p ≤ I(V ; Y2 |U )
+(2)
+
+(2)
+
+R1,c + R1,p + R2,p ≤ I(X; Y1 |U )
+
+(9f)
+
+R1,p ≤ I(X; Y1 |V ).
+
+(9g)
+
+Applying the Fourier-Motzkin elimination algorithm results in
+the rate constraints in (7).
+Remark 4: For the region deﬁned in (7), it can be shown
+following [5, Appendix C] that it sufﬁces to consider auxiliary
+random variables (U, V ) ∈ U ×V with cardinality |U| ≤ |X |+
+4 and |V| ≤ (|X | + 4)(|X | + 1). Tighter constraints can be
+obtained for some special cases.
+Theorem 3: Cpart = Rin,part in each of the following settings.
+(i) If Y1
+Y2
+Y3 , then Cpart is the set of rates
+(R0 , R1,c , R1,p , R2,c , R2,p ) satisfying
+R0 ≤ I(U ; Y3 )
+
+(10b)
+
+R2 ≤ I(V ; Y2 |U )
+
+(10c)
+
+R1 + R2,p ≤ I(X; Y1 |U )
+
+(10d)
+
+1
+log
+2
+1
+R1 ≤ log
+2
+1
+R2 ≤ log
+2
+1
+R1 + R2 ≤ log
+2
+R0 ≤
+
+for some (U, V, X) with U −V −X −(Y1 , Y2 , Y3 ).
+−
+−
+−
+(ii) If Y1
+Y3
+Y2 , then Cpart is the set of rates
+(R0 , R1,c , R1,p , R2,c , R2,p ) satisfying
+R0 ≤ I(U ; Y2 )
+
+(11a)
+
+R1,p ≤ I(X; Y1 |V )
+
+(11b)
+
+R2 ≤ I(V ; Y2 |U )
+
+(11c)
+
+R1 + R2,p ≤ I(X; Y1 |U )
+
+(11d)
+
+for some (U, V, X) with U
+
+−V
+−
+
+−X
+−
+
+−(Y1 , Y2 , Y3 ).
+−
+
+2
+2
+2
+(i) If σ3 ≥ σ2 ≥ σ1 , then Cpart is the set of all rates
+(R0 , R1,c , R1,p , R2,c , R2,p ) satisfying
+
+(10a)
+
+R1,p ≤ I(X; Y1 |V )
+
+−X
+−
+
+Proof: See Section IV.
+When Y1
+Y3
+Y2 or Y3
+Y1
+Y2 , the capacity region
+depends on the channel law PY3 |X to Receiver 3 only through
+the fact that it must satisfy the less-noisy conditions.
+We observe that when Y3 Y1 Y2 , a two-layer superposition coding scheme sufﬁces to achieve capacity. Moreover,
+in this case, the result remains valid also when Y3 is more
+capable than Y1 , but not less noisy.
+Proposition 2: If Y3 is more capable than Y1 and Y3 , Y1
+Y2 , then Cpart is the set of rates (R0 , R1,c , R1,p , R2,c , R2,p )
+satisfying (12) for some (U, X) with U −X −(Y1 , Y2 , Y3 ).
+−
+−
+Proof: The converse follows by noting that our converse
+in Section IV-B for case (iii) only requires that Y1
+Y2 ,
+and thus remains valid in this slightly weaker setup. The
+achievability follows by modifying our scheme achieving
+(1)
+Rin,part so that Receiver 3 also decodes the two satellites, in
+addition to the cloud center.
+Corollary 3.1: The capacity regions for the cases Y2
+Y1
+Y3 , Y2
+Y3
+Y1 , and Y3
+Y2
+Y1 directly follow
+from the previous theorem. The regions are given by (10),
+(11), and (12) where we have to exchange the indices 1 and
+2. Similarly, the capacity region for the case Y3 more capable
+than Y2 and Y1 , Y3
+Y2 is given by (12) where again the
+indices 1 and 2 have to be exchanged.
+In the usual way, Theorem 3 can be adapted to the Gaussian
+2
+BC, where Yk = X + Zk with Zk ∼ N 0, σk . For Gaussian
+BCs the capacity region takes on a particularly simple form.
+This can be proved with the entropy-power inequality and the
+maximal entropy property for a ﬁxed second moment.
+2
+2
+2
+Corollary 3.2: Depending on the variances σ1 , σ2 , σ3 > 0,
+the capacity Cpart for Gaussian channels is given as follows.
+
+.
+
+(9a)
+
+(1)
+
+(12c)
+
+for some (U, X) with U
+
+We use a three-layer superposition coding scheme. The
+(1)
+(1)
+cloud-center encodes M0 , M⊕ , M2,p , the ﬁrst satellite encodes
+(2)
+(2)
+M⊕ , M2,p , and the top-most satellite encodes M1,p . For the
+random code construction we use the law PU to generate the
+cloud centers, the conditional law PV |U for the ﬁrst satellites,
+and the conditional law PX|V for the top-most satellites.
+Decoding: Receiver 3 decodes the cloud center, Receiver 2
+decodes the cloud center and the ﬁrst satellite, and Receiver 1
+decodes the cloud center and both satellites. Arbitrary small
+probability of error is achieved if
+R0 + R(1) + R(1) ≤ I(U ; Y3 )
+1,c
+2,p
+
+(12b)
+
+R0 + R1 + R2,p ≤ I(X; Y1 )
+
+(2)
+(1)
+and M2,p = (M2,p , M2,p )
+
+(k)
+(k)
+n max{R1,c ,R2,c }
+
+(12a)
+
+αP
+2
+(1 − α)P + σ3
+(1 − α − β)P
+1+
++ R1,c
+2
+σ1
+βP
+1+
+2
+(1 − α − β)P + σ2
+(1 − α)P
+1+
++ R2,c
+2
+σ1
+1+
+
+(13a)
+(13b)
+(13c)
+(13d)
+
+for some α, β ∈ [0, 1] such that α + β ≤ 1.
+2
+2
+2
+(ii) If σ2 ≥ σ3 ≥ σ1 , then Cpart is the set of rates
+(R0 , R1,c , R1,p , R2,c , R2,p ) satisfying
+
+−(Y1 , Y2 , Y3 ).
+−
+
+R0 ≤
+
+3
+
+1
+αP
+log 1 +
+2
+2
+(1 − α)P + σ2
+
+(14a)
+
+n
+
+1
+(1 − α − β)P
++ R1,c (14b)
+log 1 +
+2
+2
+σ1
+1
+βP
+R2 ≤ log 1 +
+(14c)
+2
+2
+(1 − α − β)P + σ2
+1
+(1 − α)P
+R1 + R2 ≤ log 1 +
++ R2,c
+(14d)
+2
+2
+σ1
+R1 ≤
+
+i=1
+
+We also have
+nR2 − n
+
+(a)
+
+n≤
+
+I(M2 ; Y2n |M0 , M1c )
+n
+
+I(M0 , M1,c , M2 , Y2i−1 ; Y2,i |M0 , Y2i−1 )
+
+≤
+
+1
+(1 − α)P
+R1 ≤ log 1 +
++ R1,c (15a)
+2
+2
+σ1
+1
+αP
+R0 + R2 ≤ log 1 +
+(15b)
+2
+2
+(1 − α)P + σ2
+1
+P
+(15c)
+R0 + R1 + R2 ≤ log 1 + 2 + R2,c .
+2
+σ1
+
+i=1
+n
+
+=
+
+I(Vi ; Y2,i |Ui )
+
+with Vi = (M0 , M1,c , M2 , Y2i−1 ) ≡ (Ui , M1,c , M2 ) which
+satisﬁes Ui −Vi −Xi −(Y1,i , Y2,i , Y3,i ).
+−
+−
+−
+Next,
+nR1,p − n
+
+(a)
+
+I(M1,p ; Y1n |M0 , M1,c , M2 )
+
+n≤
+
+n
+
+I(Xi ; Y1,i |M0 , M1,c , M2 , Y1i−1 )
+
+=
+i=1
+n
+
+I(Xi ; Y1,i |M0 , M1,c , M2 )
+
+=
+i=1
+
+−I(Y1i−1 ; Y1,i |M0 , M1,c , M2 )
+
+IV. P ROOFS
+
+n
+
+(c)
+
+≤
+
+A. Proof of Deterministic Part of Theorem 1
+
+I(Xi ; Y1,i |M0 , M1,c , M2 )
+i=1
+
+We have Y3 = φ(X) for some deterministic φ : X → U.
+Recall Proposition 1 and (1). Choose U = Y3 = φ(X), so that
+
+−I(Y2i−1 ; Y1,i |M0 , M1,c , M2 )
+n
+
+R0 + R1 ≤ min{I(X; Y1 ), H(Y3 ) + I(X; Y1 |Y3 )}
+
+where in (c) we can apply [6, Lemma 1] because Y1
+and (Y1n , Y2n ) −X n −(M0 , M1,c , M2 ). Finally,
+−
+−
+
+The ﬁrst term in each min is larger because
+Y3 −X −(Y1 , Y2 ), and so we have R0 ≤ H(Y3 ),
+−
+−
+R0 + R1 ≤ I(X; Y1 ) and R0 + R2 ≤ I(X; Y2 ). The converse
+is obvious.
+
+n(R1 +R2,p ) − n
+
+n
+
+≤ I(M1 ; Y1n |M0 , M2,c ) + I(M2,p ; Y2n |M0 , M1 , M2,c )
+n
+
+B. Proof of Theorem 3
+
+n
+I(M1 , Y2,i+1 ; Y1,i |M0 , M2,c , Y1i−1 )
+i=1
+n
+−I(Y2,i+1 ; Y1,i |M0 , M1 , M2,c , Y1i−1 )
+
+We only present the essential parts of the proof. Standard
+arguments ﬁnalize the converses. In what follows, inequalities (a) are justiﬁed by Fano’s inequality, equalities (b) by
+Csisz´ r’s sum identity, and inequalities (c) by [6, Lemma 1].
+a
+(i) Y1 Y2 Y3 .
+Converse: For any achievable rate tuple we have
+
+n
++I(M2,p ; Y2,i |M0 , M1 , M2,c , Y2,i+1 , Y1i−1 )
+n
++I(Y1i−1 ; Y2,i |M0 , M1 , M2,c , Y2,i+1 )
+(b)
+
+n
+n
+I(M1 , M2,c , Y2,i+1 ; Y1,i |M0 , Y1i−1 )
+
+=
+
+i=1
+
+n
+
+n
++I(Xi ; Y2,i |M0 , M1 , M2,c , Y2,i+1 , Y1i−1 )
+
+I(M0 , Y3i−1 ; Y3,i )
+
+I(M0 ; Y3n ) ≤
+
+(d)
+
+i=1
+
+n
+n
+I(M1 , M2,c , Y2,i+1 ; Y1,i |M0 , Y1i−1 )
+
+≤
+
+n
+
+I(M0 ; Y3,i ) + I(Y3i−1 ; Y3,i |M0 )
+
+≤
+
+Y2
+
+(a)
+
+≤
+
+i=1
+(c) n
+
+(17)
+
+i=1
+
+R0 + R2 ≤ min{I(X; Y2 ), H(Y3 ) + I(X; Y2 |Y3 )}.
+
+=
+
+I(Xi ; Y1,i |Vi )
+
+=
+
+R0 ≤ H(Y3 )
+
+n≤
+
+(16)
+
+i=1
+
+for some α ∈ [0, 1].
+Remark 5: From the above capacity expressions we notice
+the following. In the above setups, when R1,c = 0, i.e., Receiver 2 does not have any knowledge about Message M1 , then
+providing M2,c (even when M2,c = M2 ) to Receiver 1 does
+not increase capacity. In fact, providing M2,c to Receiver 1
+only increases the capacity when R1,c is above a certain
+threshold that depends on the channel parameters. In contrast,
+providing M1,c to Receiver 2 is always beneﬁcial.
+
+nR0 − n
+
+I(Ui ; Y3,i )
+i=1
+
+with Ui = (M0 , Y2i−1 ). In (c) we can apply [6, Lemma 1]
+because Y2 Y3 and (Y2n , Y3n ) −X n −M0 .
+−
+−
+
+for some α, β ∈ [0, 1] such that α + β ≤ 1.
+2
+2
+2
+(iii) If σ2 ≥ σ1 ≥ σ3 , then Cpart is the set of rates
+(R0 , R1,c , R1,p , R2,c , R2,p ) satisfying
+
+(a)
+
+n
+
+I(M0 , Y2i−1 ; Y3,i ) =
+
+=
+
+i=1
+n
++I(Xi ; Y1,i |M0 , M1 , M2,c , Y2,i+1 , Y1i−1 )
+n
+
+I(M0 ; Y3,i ) + I(Y2i−1 ; Y3,i |M0 )
+
+I(Xi ; Y1,i |M0 , Y1i−1 )
+
+=
+
+i=1
+
+i=1
+
+4
+
+n
+
+(c)
+
+and (Y1n , Y2n ) −X n −(M0 , M1,c , M2 ). Moreover,
+−
+−
+
+I(Xi ; Y1,i |M0 ) − I(Y1,i ; Y1i−1 |M0 )
+
+=
+i=1
+n
+
+nR1,p − n
+
+≤
+
+I(Xi ; Y1,i |M0 ) −
+
+I(Y1,i ; Y2i−1 |M0 )
+
+i=1
+n
+i=1
+
+n
+
+=
+and
+
+n(R0 +R1 + R2,p ) − n
+
+≤ I(M0 , M1 , M2,c ; Y1n ) + I(M2,p ; Y2n |M0 , M1 , M2,c )
+n
+
+I(X; Y1 )≥ I(U ; Y3 ) + I(X; Y1 |U ),
+
+I(M0 , Y2i−1 ; Y2,i )
+
+≤
+
+i=1
+n
+−I(Y2,i+1 ; Y1,i |M0 , M1 , M2,c , Y1i−1 )
+n
++I(M2,p ; Y2,i |M0 , M1 , M2c , Y2,i+1 , Y1i−1 )
+n
++I(Y1i−1 ; Y2,i |M0 , M1 , M2,c , Y2,i+1 )
+(b)
+
+i=1
+n
++I(Xi ; Y2,i |M0 , M1 , M2,c , Y1i−1 , Y2,i+1 )
+
+I(Ui ; Y2,i )
+
+=
+
+(f )
+
+i=1
+
+n
++I(Xi ; Y1,i |M0 , M1 , M2,c , Y1i−1 , Y2,i+1 )
+n
+i=1
+
+where in (f ) we used Y1
+Y2 and the Markov chain
+n
+(Y1,i , Y2,i ) −Xi −(M0 , M1 , M2,c , Y1i−1 , Y2,i+1 ).
+−
+−
+Direct part: Follows from (7) by setting V = U and from
+I(U ; Y2 )≤ I(U ; Y3 ) + I(U ; Y2 |U ) = I(U ; Y3 )
+I(X; Y1 )≤ I(U ; Y3 ) + I(X; Y1 |U ),
+which hold because Y3
+Y1
+Y2 implies I(U ; Y3 ) ≥
+max{I(U ; Y1 ), I(U ; Y2 )} for any U −X −(Y1 , Y2 , Y3 ).
+−
+−
+
+n
+
+(a)
+
+≤ I(M0 , M2 ; Y2n |M1,c )
+
+R EFERENCES
+
+n
+
+I(M0 , M1,c , M2 , Y2i−1 ; Y2,i )
+
+[1] T. J. Oechtering, C. Schnurr, I. Bjelakovi´ , and H. Boche, “Broadcast
+c
+capacity region of two-phase bidirectional relaying,” IEEE Transactions
+on Information Theory, vol. 54, no. 1, pp. 454–458, 2008.
+[2] E. Tuncel, “Slepian-Wolf coding over broadcast channels,” IEEE Transactions on Information Theory, vol. 52, no. 4, pp. 1469–1482, 2006.
+[3] J. Nayak, E. Tuncel, and D. G¨ nd¨ z, “Wyner-Ziv coding over broadcast
+u u
+channels: Digital schemes,” IEEE Transactions on Information Theory,
+vol. 56, no. 4, pp. 1782–1799, 2010.
+[4] G. Kramer and S. Shamai, “Capacity for classes of broadcast channels
+with receiver side information,” in Proceedings IEEE Information Theory
+Workshop, Lake Tahoe, California, 2007.
+[5] A. El Gamal and Y.-H. Kim, Network information theory. Cambridge
+University Press, 2011.
+[6] C. Nair and Z. V. Wang, “The capacity region of the three receiver
+less noisy broadcast channel,” IEEE Transactions on Information Theory,
+vol. 57, no. 7, pp. 4058–4062, 2011.
+
+i=1
+n
+
+I(M0 , M1,c , M2 , Y2i−1 ; Y1,i )
+i=1
+n
+
+I(M0 , M1,c , M2 ; Y1,i )
+i=1
+
++I(Y2i−1 ; Y1,i |M0 , M1,c , M2 ; )
+(c)
+
+n
+
+n
+
+I(M0 , M1,c , M2 , Y1i−1 ; Y1,i )
+
+≤
+
+i=1
+
+I(Xi , Y1,i )
+
+=
+
+which hold because Y1
+Y3
+Y2 implies I(U ; Y1 ) ≥
+I(U ; Y3 ) ≥ I(U ; Y2 ) for any U −V −X −(Y1 , Y2 , Y3 ).
+−
+−
+−
+(iii) Y3 Y1 Y2 .
+Converse: For any achievable rate tuple we have
+
+=
+
+n
+I(M0 , M1 , M2,c , Y1i−1 , Y2,i+1 ; Y1,i )
+i=1
+
+I(X; Y1 )≥ I(U ; Y3 ) + I(X; Y1 |U ),
+
+≤
+
+n
+
+≤
+
+I(V ; Y2 )≤ I(U ; Y3 ) + I(V ; Y2 |U )
+
+(e)
+
+n
+I(M0 , M1 , M2,c , Y1i−1 , Y2,i+1 ; Y1,i )
+
+n
+
+with Ui = (M0 , Y2i−1 ). In the same way as before, we can
+prove bounds (16), (17), and (18) with Vi = (Ui , M1,c , M2 ),
+which satisﬁes Ui −Vi −Xi −(Y1,i , Y2,i , Y3,i ).
+−
+−
+−
+Direct part: Follows from (7) and from
+
+≤
+
+n
+
+=
+
+i=1
+
+n(R0 +R2 ) − n
+
+n
+I(M0 , M1 , M2,c , Y1i−1 , Y2,i+1 ; Y1,i )
+
+≤
+
+where the latter inequalities hold because Y1
+Y2
+Y3 implies I(U ; Y3 ) ≤ min{I(U ; Y1 ), I(U ; Y2 )} for any
+U −V −X −(Y1 , Y2 , Y3 ).
+−
+−
+−
+(ii) Y1 Y3 Y2 .
+Converse: For any achievable rate tuple we have
+n≤
+
+n
+
+(a)
+
+I(V ; Y2 )≥ I(U ; Y3 ) + I(V ; Y2 |U )
+
+nR0 − n
+
+I(Xi ; Y1,i |Ui ),
+i=1
+
+where in (c) and (d) we used that Y1
+Y2 and the Markov
+n
+chains (Y1,i , Y2,i ) −Xi −(M0 , M1 , M2 , Y1i−1 , Y2,i+1 ) and
+−
+−
+(Y1n , Y2n ) −X n −M0 .
+−
+−
+Direct part: Follows from (7) and from
+
+I(M0 ; Y2n )
+n
+
+I(M1,p ; Y1,i |M0 , M1,c , M2 , Y1i−1 )
+i=1
+n
+
+I(Xi ; Y1,i |Ui ) (18)
+i=1
+
+(a)
+
+I(M1,p ; Y1n |M0 , M1,c , M2 )
+
+=
+
+n
+
+I(Xi ; Y1,i |Y2i−1 , M0 ) =
+
+=
+
+(a)
+
+n≤
+
+=
+
+I(Ui ; Y1,i )
+i=1
+
+with Ui = (M0 , M1,c , M2 , Y1i−1 ). Here, (e) and (c) use that
+Y1 Y2 and that (Y1,i , Y2,i ) −Xi −(M0 , M1,c , M2 , Y2i−1 )
+−
+−
+
+5
+
+

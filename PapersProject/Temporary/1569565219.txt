@@ -1,0 +1,853 @@
+Creator:        TeX
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Thu May 10 06:08:03 2012
+ModDate:        Tue Jun 19 12:54:21 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      479286 bytes
+Optimized:      no
+PDF version:    1.7
+ISIT'2012 1569565219
+
+On Real–Time and Causal Secure Source Coding
+Yonatan Kaspi and Neri Merhav†
+
+Department of Electrical Engineering
+Technion - Israel Institute of Technology
+Technion City, Haifa 32000, Israel
+Email: {kaspi@tx, merhav@ee}.technion.ac.il
+in [4] and showed that it is possible to send information at a
+positive rate with perfect secrecy as long as Eve’s channel is a
+degraded version of the channel to Bob. When the channels are
+clean, two approaches can be found in the literature of secure
+communication. The ﬁrst assumes that both Alice and Bob
+agree on a secret key prior to the transmission of the source
+(through a separate secure channel for example). The second
+approach assumes that Bob and Eve (and possibly Alice) have
+different versions of side information and secrecy is achieved
+through this difference.
+For the case of shared secret key, Shannon showed that in
+order for the transmission of a DMS to be fully secure, the rate
+of the key must be at least as large as the entropy of the source.
+Yamamoto ([5] and references therein) studied various secure
+source coding scenarios that include extension of Shannon’s
+result to combine secrecy with rate–distortion theory. In both
+[3],[5], when no SI is available, it was shown that separation is
+optimal. Namely, using a source code followed by encryption
+with the shared key is optimal. The other approach was
+treated more recently by Prabhakaran and Ramchandran [6]
+who considered lossless source coding with SI at both Bob
+and Eve when there is no rate constraint between Alice and
+Bob. It was shown that the Slepian-Wolf [7] scheme is not
+necessarily optimal when the SI structure is not degraded.
+Coded SI at Bob and SI at Alice where considered in [8].
+These works were extended by Villard and Piantanida [9] to
+the case where distortion is allowed and coded SI is available
+to Bob. Merhav combined the two approaches with the wire–
+tap channel [10]. Note that we mentioned only a small sample
+of the vast literature on this subject.
+In the works mentioned above, there were no constraints
+on the delay and/or causality of the system. As a result, the
+coding theorems of the above works introduced arbitrary long
+delay and exponential complexity.
+The practical need for fast and efﬁcient encryption algorithms for military and commercial applications along with
+theoretical advances of the cryptology community, led to the
+development of efﬁcient encryption algorithms and standards
+which rely on relatively short keys. However, the security of
+these algorithms depend on computational complexity and the
+intractability assumption of some hard problems. To the best
+of our knowledge, there was no attempt so far to analyze the
+performance of a real–time or causal secrecy system from an
+information theoretic point of view.
+The extension of Neuhoff and Gilbert’s result [1] to the
+
+Abstract—We investigate two source coding problems with
+secrecy constraints. In the ﬁrst problem we consider real–time
+fully secure transmission of a memoryless source. We show that
+although classical variable–rate coding is not an option since the
+lengths of the codewords leak information on the source, the key
+rate can be as low as the average Huffman codeword length of the
+source. In the second problem we consider causal source coding
+with a ﬁdelity criterion and side information at the decoder
+and the eavesdropper. We show that when the eavesdropper has
+degraded side information, it is optimal to ﬁrst use a causal rate
+distortion code and then encrypt its output with a key.
+
+I. I NTRODUCTION
+We consider two source coding scenarios in which an
+encoder, referred to as Alice, transmits outcomes of a memoryless source to a decoder, referred to as Bob. The comunnication
+between Alice and Bob is intercepted by an eavesdropper,
+referred to as Eve.
+In the ﬁrst scenario, we consider real–time communication
+between Alice and Bob and require full secrecy, meaning that
+the intercepted transmission does not leak any information
+about the source. In the second scenario, we consider lossy
+causal source coding when both Bob and Eve have access to
+side information (SI). We require that Eve’s uncertainty about
+the source given the intercepted signal and SI will be higher
+than a certain threshold.
+Real–time codes are a subclass of causal codes, as deﬁned
+by Neuhoff and Gilbert [1]. In [1], entropy coding is used
+on the whole sequence of reproduction symbols, introducing
+arbitrarily long delays. In the real–time case, entropy coding
+has to be instantaneous, symbol–by–symbol (possibly taking
+into account past transmitted symbols). It was shown in [1],
+that for a discrete memoryless source (DMS), the optimal
+causal encoder consists of time–sharing between no more than
+two memoryless encoders. Weissman and Merhav [2] extended
+[1] by including SI at the decoder, encoder or both.
+Shannon [3] introduced the information-theoretic notion
+of secrecy, where security is measured through the remaining uncertainty about the message at the eavesdropper. This
+information-theoretic approach of secrecy allows to consider
+security issues at the physical layer, and ensures unconditionally (regardless of the eavesdroppers computing power and
+time) secure schemes, since it only relies on the statistical
+properties of the system. Wyner introduced the wiretap channel
+† This research was supported by the Israeli Science Foundation (ISF) grant
+no. 208/08.
+
+1
+
+real–time case is straightforward and is done by replacing
+the block entropy coding by instantaneous Huffman coding.
+The resulting bitstream between the encoder and decoder is
+composed of the Huffman codewords. However, this cannot
+be done when secrecy is involved, even if only lossless
+compression is considered. To see why, consider the case
+where Eve intercepts a Huffman codeword and further assume
+the bits of the codeword are encrypted with a one–time pad.
+While the intercepted bits give no information on the encoded
+symbol (since they are independent of it after the encryption),
+the number of intercepted bits leaks information on the source
+symbol. For example, if the codeword is short, Eve knows that
+the encrypted symbol is one with a high probability (remember
+that Eve knows the source statistics). This suggests that in
+order to achieve full security, the lengths of the codewords
+emitted by the encoder should be independent of the source.
+In the last example, we assumed that Eve is informed on
+how to parse the bitstream into separate codewords. This will
+be the case, for example, when each codeword is transmitted
+as a packet over a network and the packets are intercepted by
+Eve. Even if the bits are meaningless to Eve, she still knows
+the number of bits in each packet. We show in the sequel that,
+albeit the above example, the key rate can be as low as the
+average Huffman codeword length (referred hereafter as the
+Huffman length) of the source. Full secrecy, in this case, will
+be achieved by randomization at the encoder, which can be
+removed by Bob. In contrast to the works mentioned above,
+our results here are not asymptotic.
+We also investigate the scenario where Eve doesn’t have
+parsing information and cannot parse the bitstream into the
+separate codewords. This will be the case, for example if Eve
+acquires only the whole bitstream, not necessarily in real–time,
+without the log of the network trafﬁc. Alternatively, it acquires
+an encrypted ﬁle after it was saved to the disk. In this case,
+when we assume that the length of transmission is inﬁnite, we
+show that that the best achievable rates of both the key and the
+transmission are given by the Huffman length of the source.
+In contrast to the results described in the previous paragraph,
+the results in this scenario are asymptotic in the sense that
+the probability that the system is not secure is zero when
+the transmission length is inﬁnite. Note that the length of the
+transmission was not an issue in the mentioned previous works
+since block coding was used. Therefore, the block length was
+known a-priori to Eve and leaked no information.
+In the following two sections we deal with the real–time and
+causal setting, receptively. Each section begins with a formal
+deﬁnition of the relevant problem.
+
+probability distribution {p(x, y)}, the average instantaneous
+codeword length of X conditioned on Y = y will ) given by
+be
+(
+X
+4
+L(X|Y = y) = min
+P (x|y)l(x) .
+(1)
+l(·)2AX
+
+x2X
+
+where AX is the set of all possible length functions l :
+X ! Z+ that satisfy Kraft’s inequality for alphabet of size
+|X |. L(X|Y = y) is obtained by designing a Huffman code
+for the probability distribution P (x|y). With the same abuse
+of notation common for entropy, we let L(X|Y ) denote the
+expectation of L(X|Y = y) with respect to the randomness
+of Y . The Huffman length of X is given by L(X).
+In this section, the following real-time source coding problem is considered: Alice, wishes to losslessly transmit the
+output of a DMS X with probability mass function PX (x)
+to Bob. The communication between Alice and Bob is intercepted by Eve. Alice and Bob operate without delay. When
+Alice observes Xt she encodes it by an instantaneous code
+and transmits the codeword to Bob through a clean digital
+channel. Bob decodes the codeword and reproduces Xt . A
+communication stage is deﬁned to start when the source emits
+Xt and ends when Bob reproduces Xt , i.e., Bob cannot use
+future transmissions to calculate Xt . We will assume that both
+Alice and Bob have access to a completely random binary
+sequence, u = (u1 , u2 , . . .), which is independent of the
+data and will be referred to as the key. Let m1 , m2 , . . . , mn ,
+mi 2 be a non decreasing sequence of positive integers. At
+4
+stage t, Alice uses lKt = mt mt 1 bits that were not used
+4
+so far from the key sequence. Let Kt = (umt 1 +1 , . . . , umt )
+denote the stage t key. The parsing of the key sequence up
+to stage t should be the same at Alice and Bob. This can be
+done “on the ﬂy” through the data already known to both Alice
+and Bob from the previous stages. We deﬁne the key rate to
+Pn
+1
+be RK = lim supn!1 n t=1 ElKt . We will also assume
+that Alice has access, at each stage, to a private source of
+randomness {Vt }, which is i.i.d and independent of the source
+and the key. Neither Bob nor Eve have access to {Vt }.
+Let Z be the set of all ﬁnite length binary strings. Denote
+Alice’s output at stage t by Zt 2 Z and let Bt denote the
+unparsed sequence, containing lBt bits, that were transmitted
+so far up to the end of stage t. The rate of the encoder is
+4
+1
+deﬁned by R = lim supn!1 n ElBn .
+Given the keys up to stage t, K t , Bob can parse Bk into
+Z1 , . . . , Zt for any k
+t. The legitimate decoder is thus a
+sequence functions Xt = gt (K t , Z t ).
+As discussed in the Introduction, we will treat two security
+models. In the ﬁrst model we will assume that Eve can detect
+when each stage starts, i.e., it can parse Bt into Z1 , . . . , Zt .
+In the second model, we will assume that Eve intercepts the
+whole bitstream Bn (assuming a total of n stages) but has no
+information on actual parsing of Bn into Z1 , . . . , Zn . These
+models are treated in the following two subsections.
+
+II. R EAL –T IME F ULL S ECRECY
+We begin with notation conventions. Capital letters represent scalar random variables (RV’s), speciﬁc realizations of
+them are denoted by the corresponding lower case letters
+and their alphabets – by calligraphic letters. For i < j (i,
+j - positive integers), xj will denote the vector (xi , . . . , xj ),
+i
+where for i = 1 the subscript will be omitted. For two random
+variables X, Y , with alphabets X , Y, respectively and joint
+
+A. Eve Has Parsing Information
+In this subsection we assume that Eve can parse Bn
+into Z1 , Z2 , . . . , Zn . In order for the system to be fully
+
+2
+
+secure, following [3], we will require that for any k, m, n,
+n
+P (X k |Zm ) = P (X k ), i.e., acquiring any portion of the
+transmission leaks no information on the source, which was
+not known to Eve in advance.
+The most general real–time encoder is a sequence of functions Zt = ft (K t , Vt , X t ). In this paper, we will treat only a
+subclass of encoders that satisfy the Markov chain
+Xt $ Z t $ K t
+
+1
+
+=
+
+t=1
+n
+X
+
+=
+
+(2)
+
+.
+
+=
+
+Namely, given the past and current encoder outputs, the current
+source symbol, Xt , does not reduce the uncertainty regarding
+the past keys. We claim that this constraint, in the framework
+of complete security is relatively benign and, in fact, any
+encoder that calculates a codeword (possibly using the whole
+history of the source and keys, i.e., with the most general
+ˆ
+ˆ
+encoder structure), say Zt , and then outputs Zt = Zt Kt
+will satisfy this constraint. Such a structure seems natural for
+one–time pad encryption. Another example of encoders that
+will satisfy such a constraint are encoders with the structure
+Zt = ft (Kt , Vt , Xt , Z t 1 ) (we omit the proof this structure
+will induce the Markov chain due to space limitations). The
+main result of this subsection is the following theorem:
+
+t=1
+
+ElKt =
+
+t=1
+n
+X
+t=1
+
+1
+
+, Z t)
+
+1
+
+, Z t)
+
+, Z t)
+
+(4)
+(5)
+
+L(Xt |Z t )
+
+(6)
+
+L(Xt )
+
+(7)
+(8)
+
+The ﬁrst equality is true since the key bits are incompressible
+and therefore the Huffman length is the same as the number
+of key bits. (3) is true since conditioning reduces the Huffman
+length (the simple proof of this is omitted). (4) follows since
+Xt is a function of (K t , Z t ) (the decoder’s function) and
+therefore, given (K t 1 , Z t ), the code for Kt also reveals Xt .
+(5) is true since with the same conditioning on (K t 1 , Z t ),
+the instantaneous code of (Kt , Xt ) cannot be shorter then
+the instantaneous code of Xt . (6) is due to (2) and ﬁnally,
+(7) is true by the security model. We therefore showed that
+RK L(X).
+2) Direct: We construct an encoder–decoder pair that are
+fully secure with RK = L(X). Let lmax denote the longest
+Huffman codeword of X. We know that lmax  |X| 1. The
+encoder output will always be lmax bits long and will be built
+from two ﬁelds. The ﬁrst ﬁeld will be the Huffman codeword
+for the observed source symbol Xt . Denote its length by l(Xt ).
+This codeword is then XORed with l(Xt ) key bits. The second
+ﬁeld will be composed of lmax l(Xt ) random bits (taken from
+the private source of randomness) that will pad the encrypted
+Huffman codeword to be of length lmax . Regardless of the
+speciﬁc source output, Eve sees constant length codewords
+composed of random uniform bits. Therefore no information
+about the source is leaked by the encoder outputs. When Bob
+receives such a block, it starts XORing it with key bits until
+it detects a valid Huffman codeword. The rest of the bits are
+ignored. Obviously, the key rate which is needed is L(X).
+B. Eve Has No Parsing Information
+In this subsection, we relax our security assumptions and
+assume that Eve observes the whole transmission from Alice
+to Bob, but has no information on how to parse the bitstream
+Bn into Z1 , . . . , Zn . Although it is not customary to limit
+the eavesdropper in any way in information–theoretic security,
+this limitation has a practical motivation, as discussed in the
+Introduction.
+We will require that the following holds for every t and
+every x 2 X :
+P (Xt = x|Bn )
+
+L(Kt )
+L(Kt |K t
+
+t=1
+n
+X
+
+L(Xt |K t
+
+1
+
+= nL(X).
+
+This theorem is in the spirit of the result of [3], where
+the entropy is replaced by the Huffman length due to the realtime constraint. As discussed in the introduction, variable–rate
+coding is not an option when we want the communication to
+be fully secure. This means that the encoder should either
+output constant length (short) blocks or have the transmission
+length independent of the source symbol in some other way.
+Clearly, with constant length blocks, the rate of a lossless
+encoder cannot be as low as L(X) for all possible memoryless
+sources. The rate of the key, however, can be as low as L(X).
+In the proof of the direct part of Theorem I, we show that a
+constant rate encoder with block length corresponding to the
+longest Huffman codeword achieves this key rate. The padding
+is done by random bits from the encoder’s private source
+of randomness. Note, however, that if both the key rate and
+encoder rate are log |X|, lossless fully secure communication
+is trivially possible. Although Theorem I does not give a lower
+bound on the rate of the encoder, the above discussion suggests
+that there is a trade-off between the key rate and the possible
+encoder rate that will allow secure lossless communication.
+Namely, there is a set of optimal rate pairs, (R, RK ), which
+are possible. We prove Theorem I in the following subsections.
+1) Converse: For every lossless encoder–decoder pair that
+satisﬁes the security constraint and (2), we lower bound the
+key rate as follows:
+n
+X
+
+t=1
+n
+X
+
+L(Kt , Xt |K t
+
+t=1
+
+Theorem I. There exists a pair of fully secure real–time
+encoder and decoder if and only if RK L(X).
+
+n
+X
+
+n
+X
+
+! PX (Xt = x) a.s.
+
+n!1
+
+(9)
+
+This means that when the bitstream is long enough, the
+eavesdropper does not learn from it anything about the source
+symbols. Note that the encoder from Section (II-A2) trivially
+satisﬁes this constraint since it was a constant block length
+
+(3)
+
+3
+
+encoder and the bits within the block where encrypted by
+a one–time pad. We will see that with the relaxed secrecy
+requirement we can reduce the rate of the encoder to be the
+same as the rate of the key. In this section we deal with
+encoders that satisfy Xt $ Bn $ K t 1 . The discussion that
+followed the constraint (2) is valid here as well. We have the
+following theorem:
+
+Alice and Bob have access to a shared secret key denoted by
+K, K 2 {0, 1, 2 . . . , Mk } which is independent of the source.
+ˆ
+Let X be Bob’s reproduction alphabet and let d : X ⇥
+ˆ!
+X P [0, 1), dmin = minx,ˆ d(x, x). Finally, let d(xn , xn ) =
+ˆ
+ˆ
+x
+n
+1
+d(xt , xt ). Alice encodes X n , using the key, K, and
+ˆ
+t=1
+n
+creates a bit sequence Z = Z1 , Z2 . . . which is transmitted
+through a clean channel to Bob. Bob uses (K, Y n , Z) to create
+ˆ
+ˆ
+an estimate sequence, X n , such that Ed(X n , X n )  D. We
+allow the decoder to fail and declare an error with a vanishing
+probability of error. Namely, for every > 0 there exists n
+large enough such that the probability of error is less than .
+We assume that Eve intercepts the transmitted bits, Z.
+The security of the system is measured by the uncertainty
+of Eve with regard to the source sequence, measured by
+1
+n
+n
+n H(X |W , Z). As in [1], we call the cascade of encoder
+and decoder a reproduction coder. We say that a reproduction
+function is causal relative to the source if
+
+Theorem II. There exists a lossless encoder–decoder pair
+that satisﬁes the secrecy constraints (9) if and only if R
+L(X), RK L(X).
+The fact that R L(X) is trivial since we deal with a real
+time lossless encoder. However, unlike the case of Theorem
+I, here it can be achieved along with RK
+L(X). The
+proof of the bound on RK follows the proof of the previous
+section up to (6) by replacing Z t by Bn . We have: RK
+Pn
+1
+t=1 L(Xt |Bn ). Now, since P (Xt |Bn ) ! P (Xt ) a.s.
+n
+we have that L(Xt |Bn ) ! L(Xt ) a.s.. The direct part
+of the proof is achieved by separation. We ﬁrst encode Xt
+using a Huffman code and then XOR the resulting bits with
+a one time pad. Therefore, both the encoder and key rate
+of this scheme are equal to L(X). We need to show that
+(9) holds. We outline the idea here. The bits of Bn are
+independent of Xt since we encrypted them with a one-time
+pad. Let lBn represent the number of bits in Bn . Since Bn is
+encrypted we have Xt ! lBn ! Bn . Therefore, we have that
+P (Xt |Bn ) = P (Xt |Bn , lBn ) = P (Xt |lBn ). From the law of
+large numbers, lBn ! nL(X) a.s. But if lBn = nL(X) then
+lBn leaks no information about Xt (since this nL(X) is known
+a-priori to Eve). The full proof resembles the martingale proof
+of the strong law of large numbers and can be found in [11].
+Discussion: Unlike Theorem I, Theorem II addresses the rate
+of the encoder as well as the rate of the key. The result here
+is asymptotic since only when the bitsream is long enough we
+have the independence of Xt from Bn . It can be shown that
+the probability that Bn reveals information on Xt vanishes
+exponentially fast with n. Note that if instead of deﬁning the
+security constraint as in (9), we would have required that for
+every n, t, P (Xt |Bn ) = P (Xt ) then a counterpart of Theorem
+1 will hold here. However, the encoder will, as in the direct
+part of Theorem I proof, work in constant rate.
+
+ˆ
+˜ 1
+˜
+Xt = ft (X 1 , K) = ft (X 1 , K) if X t 1 = X t 1 (10)
+1
+Note that we did not restrict the use of the key to be causal in
+any sense. Moreover, this deﬁnition does not rule out arbitrary
+delays and real–time is not considered here. We will only
+treat the SI model covered in [2] where Y n in not used in
+ˆ
+the reproduction of X n but can be used for the compression
+ˆ n . More complicated models will be treated in [11].
+of X
+A causal reproduction coder is characterized by a family of
+ˆ
+reproduction functions {fk }1 , such that the reproduction Xk
+k=1
+ˆ k = fk (K, X k ). If
+of the kth source output Xk is given by X
+ˆ
+the decoder declares an error, we will have Xk 6= fk (K, X k ).
+The probability of this event is the probability of decoder
+error. The average distortion of an encoder-decoder pair with
+an induced reproduction coder {fk } is deﬁned by
+h
+i
+ˆ
+d({fk }) = lim sup E d(X n , X n ) .
+(11)
+n!1
+
+1
+The encoder’s rate is deﬁned by R = n lim supn!1 H(Z).
+Let R denote the set of positive quadruples (R, RK , D, h)
+such that for every ✏ > 0, > 0 and sufﬁciently large n, there
+exists an encoder and a decoder whose probability of error is
+less than , inducing a causal reproduction coder satisfying:
+
+III. C AUSAL R ATE D ISTORTION WITH S ECURITY
+C ONSTRAINTS AND SI
+In this section, we extend the work of [1],[2] to include
+secrecy constraints. We consider the following source model:
+Alice, Bob, and Eve observe sequences of random variables X n , Y n , and W n respectively which take values over
+discrete alphabets X , Y, W, respectively. (X n , Y n , W n ) are
+distributed according to a joint distribution p(xn , y n , wn ) =
+Qn
+t=1 P (xt )P (yt |xt )P (wt |yt ), i.e., the triplets (Xt , Yt , Wt )
+are created by a DMS with the structure X $ Y $ W .
+(Y n , W n ) are the SI sequences seen by Bob and Eve respectively. Unlike [6], [9], we will treat in this paper only the case
+of degraded SI. This model covers the scenarios where no SI
+is available or is available only to Bob as special cases. Both
+
+1
+n
+
+n
+X
+t=1
+
+1
+H(Z)  R + ✏
+n
+1
+H(K)  RK + ✏
+n
+ˆ
+E⇢(Xt , Xt )  D + ✏
+
+(12)
+(13)
+(14)
+
+1
+H(X n |W n , Z) h ✏
+(15)
+n
+Let rx|y (D) be the optimum performance theoretically attainable function (OPTA) from [2] for the case where the SI is
+available only at the decoder. Namely,
+rx|y (D) =
+
+min
+
+f :Ed(X,f (X))D
+
+H(f (X)|Y )
+
+(16)
+
+and let rx|y (·) denote the lower convex envelope of rx|y (·).
+
+4
+
+We have the following theorem.
+
+We continue by focusing on H(X n |K, W n , Z):
+H(X n |K, W n , Z)
+
+Theorem III. (R, Rk , D, h) 2 R if and only if
+h  H(X|W ), D
+
+Rk
+If h
+
+h
+
+Dmin , R
+
+= I(X n , Y n |K, W n , Z) + H(X n |K, Y n , W n , Z)
+
+rx|y (D),
+
+ H(Y n |W n )
+
+H(X|W ) + rx|y (D)  0, no encryption is needed.
+
+It is seen from the theorem, that separation holds in this
+case. The direct part of this proof is therefore straightforward:
+First, quantize the source within distortion D by the scheme
+given in [2]. As was shown in [2], this step requires timesharing no more than two memoryless quantizers. Now use
+Slepian–Wolf encoding to encode the resulting quantized
+symbols given the SI at Bob. Finally, use a one–time pad of
+n(h H(X|W ) + rx|y (D)) bits on the block describing the
+bin number.
+We now proceed to prove the converse part, starting with
+˜
+lower bounding the encoding rate. For any k, let Xk =
+k
+˜ k are equal to Xk when there is no decoding
+ˆ
+fk (K, X ). X
+error. Since the probability of decoder failure vanishes, we
+have from Fano’s inequality ([12]) that for every ✏ > 0, there
+˜
+exists n large enough such that H(X n |K, Y n , Z)  n✏.
+For n large enough and every encoder and decoder pair that
+induce a causal reproduction coder and satisfy (12)-(15) the
+following chain of inequalities hold:
+nR
+
+˜
+= I(X ; Y |W ) + H(X |K, Y , X n , Z)
+˜
++ I(X n ; X n |K, Y n , Z)
+
+n
+X
+t=1
+n
+X
+
+=
+=
+
+t=1
+n
+X
+t=1
+n
+X
+
+, Y n)
+
+˜
+˜
+H(Xt |K, X t
+
+1
+
+, Xt
+
+˜
+H(Xt |K, X t
+
+1
+
+, Y n)
+
+H(ft (X t
+
+1
+
+, Y n)
+
+= nH(X|Y )
+ nH(X|Y )
+ nH(X|Y )
+
+, Y n)
+
+n✏
+
+(19)
+
+t=1
+
+where (18) follows from Fano’s inequality. From here, using
+the independent of the key and the source and following the
+steps used in [2, Appendix, eq. A.11] we can show that R
+rx|y (D). The key rate can be lower bounded as follows:
+nRK = H(K)
+H(K|Z, W n )
+= I(X n ; K|W n , Z) + H(K|X n , W n , Z)
+= H(X n |W n , Z)
+nh
+nh
+
+(24)
+
+˜
+I(X n ; X n |K, Y n )
+
+˜
+˜
+H(X n |K, Y n ) + H(X n |K, X n , Y n )
+˜
+H(X n |K, Y n ) + n✏
+(25)
+
+rx|y (D) + ✏
+
+(26)
+
+R EFERENCES
+
+n✏
+
+1
+
+(23)
+
+[1] D. Neuhoff and R. K. Gilbert, “Causal source codes,” IEEE Transactions
+on Information Theory, vol. 28, no. 5, pp. 701–713, September 1982.
+[2] T. Weissman and N. Merhav, “On causal source codes with side
+information,” IEEE Transactions on Information Theory, vol. 51, no. 11,
+pp. 4003–4013, November 2005.
+[3] C. E. Shannon, “Communication theory of secrecy systems,” Bell
+Systems Technical Jouranl, vol. 28, no. 4, pp. 656–715, 1949.
+[4] A. D. Wyner, “The wire–tap channel,” BSTJ, vol. 54, no. 8, pp. 1355–
+1387, 1975.
+[5] H. Yamamoto, “Rate-distortion theory for the shannon cipher system,”
+IEEE Transactions on Information Theory, vol. 43, no. 3, pp. 827–835,
+May 1997.
+[6] V. Prabhakaran and K. Ramchandran, “On secure distributed source
+coding,” in Information Theory Workshop, 2007. ITW ’07. IEEE, sept.
+2007, pp. 442 –447.
+[7] D. Slepian and J. Wolf, “Noiseless coding for correlated information
+sources,” IEEE Transactions on Information Theory, vol. 19, pp. 471–
+480, 1973.
+[8] D. Gunduz, E. Erkip, and H. Poor, “Secure lossless compression with
+side information,” in Information Theory Workshop, 2008. ITW ’08.
+IEEE, may 2008, pp. 169 –173.
+[9] J. Villard and P. Piantanida, “Secure multiterminal source coding with
+side information at the eavesdropper,” CoRR, vol. abs/1105.1658, 2011.
+[10] N. Merhav, “Shannon’s secrecy system with informed receivers and
+its application to systematic coding for wiretapped channels,” IEEE
+Transactions on Information Theory, vol. 54, no. 6, pp. 2723 –2734,
+june 2008.
+[11] Y. Kaspi and N. Merhav, “On secure real–time and causal source
+coding,” In Preparation, 2012.
+[12] T. M. Cover and J. A. Thomas, Elements of Information Theory, 2nd ed.
+Wiley, 2006.
+
+n✏
+
+, K, Xt )|K, X t
+
+(22)
+
+n
+
+˜
+H(X n |K, Y n , X n ) = H(X n |K, Y n )
+˜
+= nH(X|Y ) I(X n ; X n |K, Y n )
+
+n✏
+1
+
+n
+
+where in (21) we used the degraded structure of the source.
+(22) is true since Z is a function of (K, X n ) and K is
+independent of the souce. (23) is true by Fano’s inequality
+˜
+and the fact that X n is a function of (K, X n ). Focusing on
+the last term of (24) we have
+
+(18)
+
+n✏
+1
+
+n
+
+ˆ
+where (25) is true since X n is a function of K, X n through
+the reproduction coders and Fano’s inequality. Finally the last
+line follows from (18). Combining (26) with (24) into (20) we
+showed that RK h H(X|W ) + rx|y (D).
+
+˜
+H(X n |K, Y n , Z)
+
+˜
+˜
+H(Xt |K, X t
+
+n
+
+˜
+ nI(X; Y |W ) + H(X n |K, Y n , X n , Z) + n✏
+˜
+ n(H(X|W ) H(X|Y )) + H(X n |K, Y n , X n )
+
+˜
+H(Z|K, Y n ) H(Z|K, X n , Y n )
+˜
+= I(X n ; Z|K, Y n )
+
+=
+
+H(Y n |X n , W n ) + H(X n |K, Y n , Z)
+
+n
+
+H(Z)
+
+˜
+= H(X n |K, Y n )
+˜
+H(X n |K, Y n )
+
+H(Y n |K, X n , W n , Z) + H(X n |K, Y n , Z)
+(21)
+
+= H(Y n |W n )
+
+(17)
+
+H(X|W ) + rx|y (D).
+
+H(X n |K, W n , Z) + H(K|X n , W n , Z)
+
+H(X n |K, W n , Z) + H(K|X n , W n , Z)
+H(X n |K, W n , Z)
+
+(20)
+
+5
+
+

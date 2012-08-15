@@ -1,0 +1,1219 @@
+Title:          ISIT2012_5p.dvi
+Creator:        dvips(k) 5.98 Copyright 2009 Radical Eye Software
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Wed May 16 20:42:47 2012
+ModDate:        Tue Jun 19 12:55:26 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      338406 bytes
+Optimized:      no
+PDF version:    1.7
+ISIT'2012 1569566413
+
+Optimality of Linear Codes over PAM for the
+Modulo-Additive Gaussian Channel
+Ayal Hitron
+
+Uri Erez∗
+
+Dept. of EE-Systems, TAU
+Tel Aviv, Israel
+Email: ayal@eng.tau.ac.il
+
+Dept. of EE-Systems, TAU
+Tel Aviv, Israel
+Email: uri@eng.tau.ac.il
+
+a modulo-additive Gaussian channel,
+
+Abstract—It has long been known that linear codes achieve
+the capacity of additive channels over ﬁnite ﬁelds. Much less has
+been known about the performance of linear codes over ZM ,
+when used for communication over channels that are additive
+with respect to this group. Further, linear codes over ZM play
+an important role in construction of lattices in Euclidean space.
+When a construction-A lattice is used for communication over
+an additive white Gaussian noise channel, a modulo-M Z additive
+channel with unimodal noise is induced at the receiver. In this
+paper it is shown that linear codes over ZM achieve the capacity
+of such channels when the cardinality of the alphabet is a power
+of a prime.
+
+Y =X ⊕Z
+
+(1)
+
+Z ∼ N(0, σ 2 )
+
+where by ⊕ we denote addition modulo M , namely, the output
+lies in the quotient group R/(M Z), which is identiﬁed with the
+interval [0, M ) with addition modulo M . The input is assumed
+to belong to an M -PAM constellation, i.e., the input alphabet
+is discrete and equally-spaced,
+X ∈ {0, 1, . . . , M − 1} .
+
+(2)
+
+We deﬁne the input power to be
+
+I. I NTRODUCTION
+
+P
+
+It is well known that binary linear codes allow to reach
+the capacity of binary-input output-symmetric channels. Moreover, the average error probability over an ensemble of random
+linear codes tends to 0 as the block length goes to inﬁnity, for
+every rate 0 < R < C, where C is the channel’s capacity.
+See, e.g., [1]. As an extension to this result, it was shown by
+Dobrushin [2] that linear codes over any ﬁnite ﬁeld GF (pm )
+achieve the capacity of any symmetric channel with input and
+output alphabets X = Y = GF (pm ). More results on the
+performance of algebraic codes were derived by Ahlswede
+and Gemma [3], [4].
+In recent works, Como and Fagnani [5], [6] studied the
+capacity of Abelian group codes over symmetric channels. In
+their work they obtained an expression for the capacity of such
+codes, which involves some optimization problem, and derived
+an explicit expression for the capacity in the case where the
+group is ZM , M being a power of a prime. As a special
+case, they showed that the ensemble of linear codes over ZM ,
+M being a power of a prime, achieves the capacity of any
+additive isotropic decreasing noise (AIDN) channel (see [5],
+[6] for details), where the input symbols are restricted to a PSK
+constellation, i.e., the M input symbols are equally-spaced
+along a circle around the origin. As an important example, they
+show that the family of AIDN channels includes the (complex)
+Additive White Gaussian Noise (AWGN) channel.
+In this work, we consider linear codes over ZM , used over
+
+E
+
+X−
+
+M −1
+2
+
+2
+
+.
+
+This reﬂects the fact that the input to the physical channel
+should be centered around the origin. The signal-to-noise ratio
+P
+(SNR) is deﬁned as SNR σ2 .
+It is well known that in the high SNR regime, the effect
+of the modulo operation becomes negligible, and the modM AWGN channel has approximately the same mutual information as the uniform-input AWGN channel (without the
+modulo). For large enough alphabet size, the gap between this
+mutual information and the capacity of the AWGN is upper1
+bounded by 2 log 2πe . Thus, a uniform distribution over a
+12
+PAM constellation achieves, for a large enough alphabet size
+M , the full degrees of freedom of the channel, i.e.,
+lim
+
+SNR→∞
+
+CPAM (SNR)
+= 1,
+CAWGN (SNR)
+
+where
+
+1
+log(1 + SNR)
+2
+is the capacity of the AWGN channel with only a power constraint imposed on the input (i.e., the input is not constrained
+to belong to any constellation, but only its power is limited),
+and CPAM (SNR) is the capacity of a dense PAM constellation,
+namely,
+CAWGN (SNR)
+
+CPAM (SNR)
+
+lim CPAM,M (SNR),
+
+M→∞
+
+with CPAM,M (SNR) being the capacity of an M -PAM constellation. In other words, CPAM is the mutual information
+
+∗ This work was supported in part by the Israel Science Foundation under
+Grant No. 1557/12.
+
+1
+
+between X √ X + Z when X is distributed uniformly on
+and
+√
+[− 3SNR, 3SNR] and Z ∼ N(0, 1).
+The PSK constellation on the other hand, while achieving
+rates close to capacity for low SNR, is essentially a onedimensional constellation embedded in two-dimensional signal
+space, and therefore it can only achieve half of the degrees of
+freedom of the channel,
+lim
+
+SNR→∞
+
+likelihood decoding can be performed in two steps: ﬁrst,
+decoding the codeword c ∈ C obtained by reducing the
+output modulo M Zn , and then applying a symbol-by-symbol
+slicer of step size M . Thus, the performance of the resulting
+communication scheme will depend on the performance of
+the linear code C over an effective modulo-additive noise
+channel, as given in (1). Furthermore, if a low error ﬂoor
+(due to the uncoded slicer operation) is desired, the cardinality
+of the linear code M must be increased. However, unless
+M is a prime, it has not been known whether capacity can
+be achieved using linear codes over ZM for modulo-additive
+noise channels.
+In the present work, we derive an explicit upper bound on
+the error probability of linear codes over ZM for moduloadditive noise channels,
+
+1
+CPSK (SNR)
+= ,
+CAWGN (SNR)
+2
+
+where, CPSK (SNR) is the capacity of a dense PSK constellation, i.e., the input signal is restricted to lie on a circle around
+the origin. For details see, e.g., [7], [8].
+The above observations are demonstrated in Figure 1, which
+depicts the capacities of QAM and modulo-additive QAM
+versus PSK constellations as a function of the SNR. It can be
+seen that PSK is nearly optimal at low rates (which correspond
+to low SNR), but as the SNR grows it becomes inferior to
+QAM and to modulo-additive QAM.1
+
+Y =X ⊕Z.
+The channel input X is taken from an M -PAM constellation
+(2), and Z is some random variable with probability density
+function fZ , statistically independent of X.
+It is important to note that even for such channels, whose
+capacity is achieved by a uniform input distribution, it is
+not guaranteed that the capacity can be achieved using linear
+codes over ZM . As an example, consider the following noise
+distribution with M = 4,
+
+10
+9
+
+Rate [bits/sec/Hz]
+
+8
+7
+
+log(1 + SNR)
+QAM
+QAM*
+PSK
+
+
+0
+
+
+1
+Z=
+2
+
+
+3
+
+6
+5
+
+64−QAM*
+
+64−PSK
+
+4
+3
+
+16−QAM*
+
+16−PSK
+
+4−PSK
+4−QAM*
+
+0
+0
+
+5
+
+10
+
+15
+
+20
+
+probability
+probability
+probability
+probability
+
+1/2
+1/8
+1/4
+1/8 .
+
+The capacity of this channel is 0.25 [bits/chan. use]. However,
+[6, Example 9] shows that a sequence of linear codes that
+achieves vanishing error probability over this channel must
+satisfy
+
+2
+1
+
+with
+with
+with
+with
+
+25
+
+30
+
+1
+4
+
+1
+R ≤ 2 − log2
+4
+
+35
+
+SNR [dB]
+
+−
+
+3
+log2
+4
+
+3
+4
+
+−
+
+3
+4
+
+≈ 0.123 .
+
+In this paper we show that if M is a power or prime, then
+there exist linear codes over ZM that achieve the capacity
+of any unimodal modulo-additive channel, where Z is either
+discrete or continuous.
+Deﬁnition 1: A continuous probability density function
+fZ (z), 0 ≤ z < M , is said to be unimodal if there exists
+0 ≤ m < M such that fZ (z) is non-decreasing between 0
+and m, and non-increasing between m and M .
+A discrete unimodal distribution
+
+Fig. 1.
+Mutual information of various constellations for additive white
+Gaussian noise channel, as a function of the signal-to-noise ratio. The marked
+lines represent dense constellations, whereas the unmarked lines represent
+constellations which contain a ﬁnite number of points. QAM∗ represents the
+modulo-additive AWGN channel.
+
+Further motivation to study the channel (1) is its connection
+to lattice codes. Recently there has been a growing interest
+in the use of lattices for various multi-user Gaussian network
+communication problems. See, e.g., [9] and references therein.
+Various methods have been proposed for constructing lattices
+suitable for such applications. Since much is known about
+linear codes over ﬁnite ﬁelds, work has been done in order to
+leverage such codes for building lattices; see, e.g., [10].
+A practical and simple method to obtain lattices for communication is via Construction A. In this method, an ndimensional lattice is deﬁned by Λ = C + M Zn , where C
+is a linear code over ZM .
+When an (unrestricted) lattice obtained by Construction A is
+used for communication over an AWGN channel, maximum-
+
+pZ (z),
+
+z = 0, 1, . . . , M − 1
+
+is deﬁned in an analogous manner.
+It is readily veriﬁed that the family of unimodal moduloadditive channels includes the mod-M AWGN channel for
+any noise variance (1) (i.e., that the folding of the Gaussian
+distribution does not violate unimodality).
+II. M AIN R ESULT
+Consider a modulo-additive and memoryless channel:
+
+1 Note
+
+that modulo-additive M -PSK is equivalent to modulo-additive
+M 2 -QAM, due to the component-wise modulo operation.
+
+Y =X ⊕Z,
+
+2
+
+where the input alphabet is X ∈ {0, 1, . . . , M − 1}, and Z
+is some random variable independent of X. It is well known
+that the capacity of this channel is achieved by a uniform input
+distribution. Therefore, the channel’s capacity is given by:
+C = H(X ⊕ Z) − H(Z) ,
+
+Corollary 1: For every ǫ > 0 there exists a linear code (4),
+such that using this code over the modulo-additive AWGN
+channel:
+Y =X ⊕Z
+
+(3)
+
+(M being a power of a prime) with Z ∼ N(0, σ 2 ) achieves
+Pe < ǫ, provided that the code rate R is lower than the
+capacity of the channel.
+
+where X is a random variable distributed uniformly on
+{0, 1, . . . , M − 1}, independent of Z, and H denotes either
+entropy (in the discrete case) or differential entropy (in the
+continuous case).
+The standard ensemble of (N, K) linear codes, N, K ∈ N,
+is deﬁned as follows,
+x(u) = Gu ⊕ v0
+
+III. P ROOF
+
+T HEOREM 1
+
+Throughout the proof, we assume that Z is a continuous
+random variable, having a unimodal probability density function fZ (z) , 0 ≤ z < M (see Deﬁnition 1). The proof
+for the discrete case is analogous, replacing the probability
+density function fZ (z) with a discrete probability function
+pZ (z) , z = 0, 1, . . . , M − 1.
+Without loss of generality, all the logarithms in this section
+are taken to base p.
+In the case M = pr , taking g = pr−q , (5) is equivalent to
+
+(4)
+
+where both the matrix G ∈ ZK×N and the vector v0 ∈ ZN
+M
+M
+are drawn uniformly and independently from ZM . Denote the
+code’s rate by R = K log M .
+N
+Standard bounding techniques (cf., e.g., [1]) yield the
+following lemma, which gives a sufﬁcient condition for the
+existence of capacity-achieving linear codes over ZM .
+Lemma 1: If the following condition holds,
+1
+1
+Hg (Z) ≤
+H1 (Z)
+log (M/g)
+log M
+
+OF
+
+1
+1
+Hpr−q (Z) ≤ H1 (Z)
+q
+r
+
+∀q = 1, 2, . . . , r .
+
+In fact, we will prove a stronger result, namely,
+
+∀g|M , g = M , (5)
+
+1
+1
+1
+H r−1 (Z) ≤ Hpr−2 (Z) ≤ · · · ≤ H1 (Z) ,
+1 p
+2
+r
+or equivalently,
+
+where Hg (Z)
+H (Z | Zg ) with Zg
+Z mod g, then for
+every R < C (where C is given by (3)) and for every ǫ > 0,
+there exist N ∈ N and a linear code (4) over ZM , with
+NR
+K = log(M) , that achieves a probability error lower than ǫ.
+
+(q + 1)H(Z | Z mod pr−q )
+≤ qH(Z | Z mod pr−q−1 )
+
+Proof: See Appendix A.
+
+∀q = 1, 2, . . . , r − 1 .
+
+(6)
+
+Using the chain rule, we have
+Remark 1: For an alphabet size that is a power of a prime
+M = pr , Lemma 1 coincides with [6, Example 9].
+Our main result states that (5) holds for any unimodal
+modulo-additive channel, given that the alphabet size is a
+power of a prime, M = pr . Namely, for every 1 < g < M
+such that M is divisible by g, the condition (5) is satisﬁed.
+We thus have the following theorem.
+Theorem 1: Let M > 1 be a power of a prime, and let Z be
+any unimodal (either discrete or continuous) random variable,
+taking values in [0, M ). Let C be the capacity of the channel
+
+H(Z | Z mod pm−q )
+
+= H(Z | Z mod pm−q , Z mod pm−q−1 )
+
+= H(Z | Z mod pm−q−1 )
+
+− H(Z mod pm−q | Z mod pm−q−1 ) ,
+
+so that (6) can be rewritten as
+H(Z | Z mod pm−q−1 )
+
+≤ (q + 1)H(Z mod pm−q | Z mod pm−q−1 ) .
+
+We prove a stronger result: for every y we show that
+
+Y =X ⊕Z,
+
+H(Z | Z = y mod pm−q−1 )
+
+where the input alphabet is X ∈ {0, 1, . . . , M − 1}, and let
+R < C. Then for every ǫ > 0 there exist N ∈ N and a linear
+NR
+code (4) over Zm , with K = log(M) , such that Pe < ǫ, where
+Pe is the error probability obtained by using the code over the
+channel combined with maximum-likelihood decoding.
+
+≤ (q + 1)H(Z mod pm−q | Z = y mod pm−q−1 ) .
+
+(7)
+
+Before we prove (7), we need to introduce some notations.
+Let q and let y ∈ [0, M ). Deﬁne a normalized probability
+vector W = (W (0), . . . , W (pq+1 − 1)), where
+
+The proof, which is presented in the next section, is based on
+the proof of [6, Theorem 25], with some modiﬁcations needed
+to replace the PSK constellation with PAM, and replacing the
+AIDN condition with a unimodality condition.
+Since the modulo-additive Gaussian channel is unimodal,
+we have the following corollary,
+
+W (i)
+
+fZ (y ⊕ ipm−q−1 )
+
+pq+1 −1
+j=0
+
+fZ (y ⊕
+
+jpm−q−1 )
+
+,
+
+i = 0, 1, . . . , pq+1 −1 .
+
+Note that
+H(W ) = H(Z | Z = y mod pm−q−1 )
+
+3
+
+Let δ α (j) be the distribution of Yα (j) on (0, 1, . . . , p − 1). As
+in [6, Lemma 21], we have q
+
+Also deﬁne the following vector for every j = 0, 1, . . . , p − 1:
+Wq,j
+
+q
+
+p −1
+{W (j + ip)}i=0 .
+
+H(µi ) ≤
+
+Note that
+pq+1 −1
+
+W
+
+{W (i)}i=0
+
+p−1
+
+p−1
+
+i=0
+
+W (i + pj) .
+
+p−1
+
+i=0
+
+Finally, deﬁne p probability vectors µ1 . . . , µp−1 as
+
+(∗)
+
+(8)
+
+We can again use the chain rule to obtain
+p−1
+
+νi H(µi ).
+i=0
+
+Thus, (9) becomes
+p−1
+
+(10)
+
+The following lemma plays a similar role in our proof as
+does [6, Lemma 20], only that it is adapted to the case of
+a unimodal modulo-additive channel with PAM constellation.
+Lemma 2: If fZ (z) is unimodal, then there exists a partition
+k
+Wq ,
+
+k
+k
+k
+k
+Wq = w0 , w1 , . . . , wp−1 ,
+
+k=0
+
+such that
+k
+• wj ∈ Wq,j
+′
+k
+k′
+• k < k ⇒ wi ≥ wj ,
+
+νi δ α (i)
+
+H
+
+≤
+
+∀i, j .
+
+AND
+
+E XAMPLES
+
+1 − (M − 1)ǫ
+ǫ
+
+z=0
+otherwise,
+
+1
+where ǫ < M , and the alphabet M ≥ 2 is arbitrary (not
+necessarily a power of a prime). In this case the calculation is
+more involved, and is also presented in [11].
+
+A constructive proof is given in [11].
+Lemma 2 essentially means that we can perform permutations on the vectors Wq,j in (8) (i.e., re-order the elements
+within each vector without changing their values), such that
+∀k1 , k2 .
+
+H (ν) = qH (ν) ,
+α=1
+
+i=0
+
+P (Z = z) =
+
+i < j ⇒ Wq (k1 )(i) > Wq (k2 )(j) ,
+
+α=1 i=0
+q
+
+where the alphabet M ≥ 2 is arbitrary (not necessarily a power
+of a prime). See the full paper [11] for details.
+b) M -ary symmetric channel: It can be shown that linear
+codes over ZM achieve the capacity of the following channel
+
+pq −1
+
+W =
+
+α=1
+p−1
+
+We conjecture that the condition (5) holds for any moduloadditive unimodal channel over any input alphabet size M .
+For general alphabet sizes, numerical evidence suggests that
+(5) holds for any unimodal noise distribution. However, this
+has not yet been proved, except of some special cases that
+we present in the following two examples. An example of the
+numerical evidence is given in [11].
+a) Noisy Typewriter: A straightforward calculation
+shows that linear codes over ZM achieve the capacity of the
+
+following channel
+1 − ǫ z = 0
+
+P (Z = z) = ǫ
+z=1
+
+
+0
+otherwise,
+
+(9)
+
+νi H(µi ) ≤ qH(ν) .
+
+p−1
+
+νi H(δ α (i))
+
+IV. G ENERAL A LPHABET S IZE
+
+H(W ) ≤ (q + 1)H(ν) .
+
+(13)
+
+where (∗) follows from the concavity of the entropy function.
+Therefore, equation (10) holds, which completes the proof
+of the theorem.
+
+In terms of the new vectors, (7) becomes:
+
+i=0
+
+i=0
+q
+
+q
+
+H(δ α (i)) =
+
+α=1
+
+where
+j = 0, 1, . . . , pq − 1 .
+
+∀α = 1, . . . , q .
+
+q
+
+νi
+
+≤
+
+µi = (µi (0), . . . , µi (pq − 1)) ,
+
+H(W ) = H(ν) +
+
+p−1
+
+νi H(µi ) ≤
+
+j=0
+
+Wq.i (j)
+,
+ν(i)
+
+≤ H(ν)
+
+Combining (12) and (13) yields
+
+pq −1
+
+µi (j)
+
+νi δ α (i)
+
+H
+
+j=0
+
+Deﬁne a probability vector ν = (ν(0), . . . , ν(p − 1)), where
+ν(i)
+
+(12)
+
+α=1
+
+and also, assuming (11) we have, as in [6, Equation 3.80],
+
+Wq (j) .
+
+=
+
+H(δ α (i)) ,
+
+A PPENDIX A
+P ROOF OF L EMMA 1
+
+(11)
+
+We now derive the sufﬁcient condition (5) for achieving the
+channel’s capacity. We start with the following simple lemma:
+Lemma 3: The capacity (3) can be written as
+
+Note that this reordering affects neither the left nor the right
+hand side of (10). Therefore, from now on we assume without
+loss of generality that (11) holds.
+We proceed as in [6]: Let Z(j) be a random variable
+on {0, . . . , pq − 1} with distribution µj , and let the p-adic
+expansion of Z(j) be denoted by
+
+C = log(M ) − H (Z | Z mod 1) .
+
+(14)
+
+Proof: For the case of discrete noise, Z = Z mod 1, and
+(14) is reduced to the well-known C = log(M ) − H(Z) . If Z
+is continuous, the proof follows by straightforward calculation,
+
+Y (j) = (Y1 (j), . . . , Yq (j)) .
+
+4
+
+H(X + Z) − H(Z)
+M −1
+i=0
+
+M
+
+M −1
+i=0
+
+fZ (z)
+log
+M
+
+=−
+0
+
+1
+
+fZ (z)
+M
+
+= log M −
+
+g|M
+g=M
+
+dz − h(Z)
+
+
+
+M −1
+
+M −1
+
+
++ log 
+
+fZ (z) dz − h(Z)
+
+fZ (z) log
+0
+
+i=0
+
+i=0
+1
+
+= log M − h(Z) −
+
+= log M − [h(Z) − h(Z mod 1)] = log M − h(Z | Z mod 1) .
+
+1−
+
+From now on we assume that Z is continuous, with probability
+density function fZ (z). The results for discrete noise are
+similar, replacing integrals with sums.
+Assume without loss of generality that the zero codeword
+was transmitted. The average error probability of the ensemble
+is bounded by [1],
+
+
+
+≥
+
+dzfZ (z)
+
+M −KN
+
+
+
+fZ (z − Gu)
+
+1
+ρ+1
+
+G
+
+u=0
+
+Next, for every vector u = 0 we deﬁne,
+g(u)
+
+
+1
+dzfZ (z) ρ+1 
+
+
+Pe ≤
+
+G
+
+dzfZ (z)
+
+1
+ρ+1
+
+g|M
+g=M
+
+
+
+M −KN
+
+
+
+fZ (z − Gu)
+G
+
+g(u)=g
+
+
+
+
+1
+dzfZ (z) ρ+1 
+
+
+Pe ≤
+
+1
+
+dzfZ (z) ρ+1
+
+≤
+g|M
+g=M
+
+M
+g
+
+=
+g|M
+g=M
+
+G
+
+M
+g
+
+ρ
+
+ .
+
+K
+
+. Thus,
+
+1 
+fZ (z − Gu) ρ+1 
+
+
+ρ
+
+K
+
+1
+
+M −KN
+
+fZ (z − Gu) ρ+1
+G
+1+ρ
+
+ρK
+
+1
+
+dz M −KN
+
+.
+
+fZ (z − Gu) ρ+1
+G
+
+We can also write this as a single-letter expression,
+
+
+Pe ≤
+g|M
+g=M
+
+
+
+=
+g|M
+g=M
+
+ M
+
+g
+
+ M
+
+g
+
+R
+ρ log M
+
+M
+0
+
+R
+ρ log M +1
+
+g
+0
+
+
+
+1
+dz 
+r
+
+
+ g
+dz 
+M
+
+M −1
+g
+
+fZ (z + ig)
+i=0
+
+M −1
+g
+
+i=0
+
+1
+ρ+1
+
+(1+ρ) N
+
+
+
+
+
+
+(1+ρ) N
+
+1 
+fZ (z + ig) ρ+1 
+
+(1+ρ) N
+
+
+
+ 
+
+  .
+
+
+
+1
+
+log 
+ρ
+
+0
+
+log (M/g)
+g
+
+M
+g
+
+
+dz 
+
+−1
+
+fZ (z + ig)
+
+i=0
+
+1
+ρ+1
+
+(1+ρ) 
+
+
+
+C
+log M
+
+
+.
+
+log (M/g) ≥ Hg (Z)) ,
+
+∀g|M , g = M .
+
+Finally, if the average error probability of the ensemble tends
+to 0, then there must exist a speciﬁc code in the ensemble that
+achieves Pe < ǫ (for a large enough value of N ).
+
+ρ
+
+M −KN
+g|M g(u)=g
+g=M
+
+M
+g
+
+i=0
+
+1
+1
+Hg (Z) ≤
+H1 (Z)
+log (M/g)
+log M
+
+For a given value of g(u), the inner sum over G does not
+depend on the vector u itself, and the number of vectors u
+that satisfy g(u) = g is upper bounded by
+
+fZ (z + ig)
+
+1
+ρ+1
+
+where Hg (Z)
+H (Z | Zg ) with Zg = Z mod g. Using
+Lemma 3, we have C
+log M − H1 (Z) . Thus, a sufﬁcient
+condition for achieving limN →∞ Pe = 0 is
+
+1 
+fZ (z − Gu) ρ+1 
+
+1
+ρ+1
+
+
+dz 
+
+R
+log M
+
+
+1−
+
+ρ
+
+M −KN
+
+g|M g(u)=g
+g=M
+
+≤
+
+ .
+
+gcd (u1 , u2 , . . . , uN , M ) .
+
+Thus, we may writethe sum as
+
+0
+
+−1
+
+g
+
+Taking ρ inﬁnitely small, we obtain the condition
+
+ρ
+
+1
+ρ+1
+
+M
+
+g
+
+R
+) log (M/g)
+log M
+
+Thus, a sufﬁcient condition for achieving limN →∞ Pe = 0,
+is that for every R < C and for every g|M such that g = M
+there will exist ρ > 0, such that
+
+fZ mod 1 (z) log (fZ mod 1 (z)) dz
+0
+
+Pe ≤
+
+exp −ρ(1 −
+
+=
+
+
+
+
+5
+
+R EFERENCES
+[1] R. G. Gallager, Information Theory and Reliable Communication. New
+York, NY, USA: John Wiley & Sons, Inc., 1968.
+[2] R. L. Dobrushin, “Asymptotic optimality of group and systematic codes
+for some channels,” Theory of Probability and its Applications, 1963.
+[3] R. Ahlswede, “Group codes do not achieve Shannon’s channel capacity
+for general discrete channels,” The Annals of Mathematical Statistics,
+vol. 42, no. 1, pp. 224–240, 1971.
+[4] R. Ahlswede and J. Gemma, “Bounds on algebraic code capacities for
+noisy channels. i,” Information and Control, vol. 19, no. 2, 1971.
+[5] G. Como and F. Fagnani, “The capacity of ﬁnite Abelian group codes
+over symmetric memoryless channels,” Information Theory, IEEE Transactions on, vol. 55, no. 5, pp. 2037–2054, may 2009.
+[6] G. Como, “Ensembles of Codes over Abelian Groups,” Ph.D
+Dissertation, Politecnico di Torino, 2008. [Online]. Available:
+http://mit.edu/giacomo/www/material/ComoThesis.pdf
+[7] J. Geist, “Capacity and cutoff rate for dense M-ary PSK constellations,”
+in Military Communications Conference, 1990. MILCOM ’90, Conference Record, A New Era. 1990 IEEE, 1990, pp. 768–770 vol.2.
+[8] M. Franceschini, G. Ferrari, and R. Raheli, “High-SNR mutual information of dense constellations,” in Global Telecommunications Conference,
+2005. GLOBECOM ’05. IEEE, vol. 1, nov.-2 dec. 2005.
+[9] M.
+Gastpar
+and
+B.
+Nazer,
+“Algebraic
+structure
+in
+network
+information
+theory.”
+[Online].
+Available:
+http://isit2011.org/slides/Gastpar Nazer ISIT2011 Tutorial.pdf
+[10] C. Feng, D. Silva, and F. Kschischang, “An algebraic approach to
+physical-layer network coding,” in Info. Theory Proceedings (ISIT), 2010
+IEEE International Symposium on, june 2010, pp. 1017–1021.
+[11] A. Hitron and U. Erez, “Optimality of linear codes over PAM
+for the modulo-additive Gaussian channel.” [Online]. Available:
+http://www.eng.tau.ac.il/∼uri/linear PAM.pdf
+
+

@@ -1,0 +1,985 @@
+Title:          LDLC_Max_Product.dvi
+Creator:        dvips(k) 5.96 Copyright 2007 Radical Eye Software
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Mon Apr 30 09:05:52 2012
+ModDate:        Tue Jun 19 12:55:25 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      328606 bytes
+Optimized:      no
+PDF version:    1.7
+ISIT'2012 1569562867
+
+Max-Product Algorithm for Low Density Lattice
+Codes
+Yair Yona
+
+Meir Feder
+
+Dept. of EE-Systems
+Tel-Aviv University
+Tel-Aviv 69978, Israel
+Email: yairyo@eng.tau.ac.il
+
+Dept. of EE-Systems
+Tel-Aviv University
+Tel-Aviv 69978, Israel
+Email: meir@eng.tau.ac.il
+
+and max-product algorithms of LDLC’s. For both algorithms,
+in each iteration, the passed messages consist of Gaussians.
+Interestingly, the messages Gaussians in both algorithms are
+identical. However, the messages are different. While in
+the sum-product algorithm we sum those Gaussians to get
+a Gaussian-mixture, in the max-product algorithm for each
+message we take the maximal value between those Gaussians
+in each point, i.e. the passed message is the maximal envelope
+of those Gaussians.
+The parametric approach provides an efﬁcient way to implement the sum-product algorithm [2], while maintaining the
+same performance as the decoder presented in [1]. In this
+case each Gaussian is represented by three parameters: mean
+value, variance and amplitude. Each message is represented
+by a list of its Gaussians parameters. As there is an inﬁnite
+number of Gaussians in each message, one of the cornerstones
+in the parametric algorithm is consolidating those Gaussians
+into a ﬁnite parametric list of Gaussians in an efﬁcient way,
+while retaining good performance. In this work we also adapt
+the parametric algorithm to approximate the max-product
+algorithm. We show that extending the parametric approach to
+the max-product algorithm does not increase the computational
+complexity compared to the parametric sum-product.
+Finally, we provide numerical results and show that for
+small dimensional LDLC’s the max-product algorithm improves the WER compared to the sum-product algorithm.
+Improving the WER for small dimensional LDLC’s is desired
+since in practical systems it may reduce the number of packet
+retransmissions. As expected, we show that for either large dimensions or very small noise variance values, the performance
+of both algorithms is similar.
+The outline of the paper is as follows. In section II basic
+deﬁnitions are given. In Section III we derive the max-product
+algorithm for continuous channels. Section IV presents the
+max-product algorithm for the AWGN channel and its relation
+to the sum-product algorithm. Extension of the parametric
+decoder to the max-product algorithm is presented in section
+V, followed by numerical results in Section VI.
+II. BASIC D EFINITIONS
+A lattice Λ is a discrete set in the Euclidean space Rn ,
+closed under addition. n-dimensional lattice can be represented
+by a squared generating matrix G. In this case we can write
+
+Abstract—A max-product algorithm for approximating
+maximum-likelihood lattice decoding of low density lattice codes
+is derived, operating directly in the Euclidean space. First we
+derive the max-product algorithm for continuous channels by
+taking a factor graph based approach. Then, for the additive
+white Gaussian noise channel we show the relation between
+the sum-product and max-product algorithms for low density
+lattice codes. In both algorithms the messages consist of the
+same Gaussians. While in the sum-product algorithm we sum
+the Gaussians in each message, for the max-product we take
+the maximal envelope of these Gaussians. Finally, we extend the
+parametric approach to efﬁciently implement the max-product
+algorithm, and show decrease in the word error rate (WER).
+
+I. I NTRODUCTION
+Low density lattice codes (LDLC’s) [1] are lattices characterized by the sparseness of the inverse of their generator
+matrix. Under the tree assumption a sum-product algorithm
+was derived [1] directly in the Euclidean space. For LDLC’s
+of dimension n = 100, 000, this message passing decoding algorithm attains up to 0.6 dB from channel capacity.
+In addition to its good performance, the iterative decoding
+algorithm has linear complexity as a function of the block
+length. However, the decoder presented in [1] samples and
+quantizes the passed messages, which result in a large storage
+requirement and relatively large (although linear in the block
+length) computational complexity. Efﬁcient implementations
+of the sum-product algorithm, that signiﬁcantly reduce both the
+computational complexity and the storage requirement were
+presented in [2], [3]. These works take parametric approach
+in the representation of the passed messages.
+The max-product algorithm, presented in [4] for algebraic
+codes, is a message passing decoding algorithm aimed at
+minimizing the WER. Under the tree assumption this decoding
+algorithm yields blockwise maximum-likelihood (ML) decoding. For lattices, ML lattice decoding gives the most likely
+lattice point in the inﬁnite lattice for a ceratin observation,
+i.e. decoding without taking into consideration any shaping
+region boundaries. In this work we take factor graph approach
+to derive a max-product algorithm for LDLC’s directly in the
+Euclidean space. For lattices that hold the tree assumption we
+get the exact ML lattice decoding, and for general LDLC’s we
+get approximation of the blokwise ML lattice decoding.
+For the additive white Gaussian noise (AWGN) channel
+we reveal an interesting connection between the sum-product
+
+1
+
+x = G · b, where x ∈ Λ and b ∈ Zn . The Voronoi region of a
+lattice point x ∈ Λ is the set of points in Rn that are closer
+to x than to any other lattice point. The Voronoi regions are
+identical up to a translate. The Voronoi region volume equals
+| det(G)|, i.e. the absolute value of the determinant.
+Similarly to low-density parity-check codes (LDPC),
+LDLC’s are lattices that have a sparse “parity-check matrix”
+H = G−1 , i.e. the inverse of the lattice generator matrix.
+In this case we get for x ∈ Λ that H · x ∈ Zn . A Latin
+square LDLC has the same non-zero values in each row
+and each column of its parity check matrix, H, up to a
+permutation and sign. In this case we denote the absolute
+values of the non-zero entries of the rows and columns of
+H by h = {|h1 |, · · · , |hd |}, where d is the LDLC degree, and
+we assume |h1 | ≥ · · · ≥ |hd | > 0. Note that we can represent
+each LDLC by a bipartite graph, where the variable nodes
+represent the lattice symbols and the check nodes represent
+the parity check equations.
+For the AWGN channel we can write y = x + z, where
+x ∈ Λ and z ∼ N (0, σ 2 · I) is the n-dimensional AWGN with
+variance σ 2 . In this paper we consider lattice decoding, i.e. we
+consider AWGN channel with no power constraint, for which
+the classic channel capacity is meaningless. This channel was
+analyzed in [5]. For lattices, this channel generalized capacity
+
+broken into similar independent marginalization subproblems
+corresponding to the subtrees. Without loss of generality let
+us observe the marginalization of x1 . In this case under the
+tree assumption we get that ψ1 (x1 ) equals
+l
+
+max
+
+x(1) ,...,x(l)
+
+as presented in [5] gives σ <
+
+| det(G)| n
+2πe
+
+l
+
+ψ1 (x1 ) = f (y1 |x1 )
+
+ψj (xj ) =
+
+max
+
+x∈Rn ,∼xj
+
+k=1
+
+n
+
+fYk |Xk (yk |xk )
+
+i=1
+
+x(i)
+
+x(i)
+
+Assuming hi has m + 1 non-zero values, we would like
+to break the calculation of c(i) (x1 ) into m maximization
+(i)
+m
+operations. Hence, let us assume that hi ·x = k=1 hk ·xk +
+i
+m+1
+hi
+·x1 , where hk , k = 1, . . . , m+1 are the non-zero entries
+i
+(i)
+of hi and xk , x1 , k = 1, . . . , m are their corresponding
+(i)
+(i)
+variable nodes. By assuming t1 = h1 · x1 , t2 = h2 x2 + t1
+i
+i
+k (i)
+and in general tk = hi xk + tk−1 , k = 2, . . . , m, we write
+
+(1)
+
+where {x ∈ Λ, ∼ xj } means the set of lattice points in
+which the j’th component equals xj , and fY |X (y|x) =
+n
+k=1 fYk |Xk (yk |xk ) is the probability of receiving the observation y given that x was transmitted. Note that if we take
+for each function in (1) the argument xj , j = 1, . . . , n that
+maximizes it, we get exactly the ML lattice decoding decision.
+We can factorize the problem and rewrite it as
+n
+
+i=1
+
+max ci (x1 , x(i) ) · ½(hi · x ∈ Z). (4)
+
+c(i) (x1 ) = max ci (x1 , x(i) ) · ½(hi · x ∈ Z).
+
+III. T HE M AX -P RODUCT A LGORITHM
+We would like to calculate the following marginal
+x∈Λ,∼xj
+
+(3)
+
+In order to calculate the marginalization in (4) we can divide
+the operation into two phases. The ﬁrst phase takes place in
+the check nodes connected to x1 , and the second phase takes
+place in the variable node of x1 . For the i’th check equation
+let us denote the check node message by
+
+.
+
+ψj (xj ) = max fY |X (y|x) j = 1, . . . , n
+
+i=1
+
+ci (x1 , x(i) ) · ½(hi · x ∈ Z)
+
+where we assumed that x1 takes place in the ﬁrst l check
+equations in H, and x(i) are the variables that take place in
+the i’th check equation with x1 . ci (x1 , x(i) ) · ½(hi · x ∈ Z) is
+related to the subtree of the i’th check equation that x1 takes
+place in. Note that due to the tree assumption the elements in
+x(i) i = 1, . . . , l are different. Hence we can rewrite (3) as
+
+2
+
+2
+
+f (y1 |x1 )
+
+P (tm ) =
+
+max
+
+t1 ,...,tm−1
+
+vx(i) (
+1
+
+t1
+)·
+h1
+i
+
+m
+
+vx(i) (
+k
+
+k=2
+
+tk − tk−1
+)
+hk
+i
+
+(5)
+
+(i)
+
+where vx(i) (·) is the message sent from variable xk , k =
+k
+1, . . . , m. Note that due to the tree assumption vx(i) (·) is the
+k
+
+(i)
+
+marginalization of xk over its subtree excluding its edge with
+(i)
+x1 i’th check equation, i.e. to calculate xk message we need
+to take the same marginalization operation over its subtree.
+We can break the maximization in (5) as follows
+t1
+t2 − t1
+v1 (t2 ) = max vx(i) ( 1 ) · vx(i) (
+)
+(6)
+t1
+1
+2
+hi
+h2
+i
+
+½(hi · x ∈ Z) (2)
+
+where hi is the i’th row of H, and the indication function
+½(hi · x ∈ Z) equals 1 if hi · x equals an integer and zero
+else. The multiplication n ½(hi · x ∈ Z) in (2) takes into
+i=1
+account all of the lattice check equations, hence this product
+equals 1 if and only if x ∈ Λ. We can translate the factorized
+function in (2) to a factor graph, for which the variable nodes
+represent the symbols xj , j = 1, . . . , n, and the check nodes
+represent the check equations indication functions ½(hi · x ∈
+Z), i = 1, . . . , n. Edges in the factor graph are stretched from
+each check equation indication function to the variable nodes
+that take place in it, i.e. the variables corresponding to the
+non-zero entries in the relevant row in H. In addition, each
+variable node xk is connected to the function that represents
+its channel observation fYk |Xk (yx |xk ), k = 1, . . . , n.
+Under the tree assumption, the marginalization in (2) can be
+
+tk − tk−1
+)
+hk
+i
+
+(7)
+
+tm − tm−1
+).
+hm
+i
+
+(8)
+
+vk−1 (tk ) = max vk−2 (tk−1 ) · vx(i) (
+tk−1
+
+k
+
+where k = 3, . . . , m − 1.
+P (tm ) = max vm−2 (tm−1 ) · vx(i) (
+tm−1
+
+m
+
+Hence, by assigning tm = b − hm+1 x1 , where b ∈ Z, we get
+i
+that the check node message equals
+c(i) (x1 ) = max P (b − hm+1 · x1 ).
+i
+b∈Z
+
+2
+
+(9)
+
+In the second phase, that takes place in the variable node, we
+simply multiply the messages related to variable node x1
+
+Next we prove several properties of Gaussians combined
+with multiplication and maximization operations. This properties enable us to prove that the passed messages can be
+represented via Gaussians, and also to prove the relation to
+the sum-product algorithm. The following lemma relates to
+the operations presented in (6)-(8).
+
+l
+
+ψ1 (x1 ) = fY1 |X1 (y1 |x1 ) ·
+
+c(i) (x1 ).
+
+(10)
+
+i=1
+
+In general the tree assumption does not necessarily hold. In
+this case we take the following steps to get the max-product
+message passing algorithm.
+•
+
+Lemma 1. Assume v1 > 0, v2 > 0.
+′
+
+x
+
+′
+
+=
+
+Each iteration is divided into two phases.
+•
+
+•
+
+•
+
+Check node: Consider a certain message sent to variable
+node xj from a certain check equation. First we calculate
+the maximization over the messages sent from the other
+variable nodes that take place in this check equation,
+after expanding these messages. This maximization was
+described in (6)-(8). Then we calculate the maximization
+on the replications of P (tm ), after contracting it. This
+operation was described in (9).
+Variable Node: In the variable node we multiply the
+incoming check node messages with the variable node
+channel observation in a similar manner to (10). However,
+this time we exclude in the multiplication the message
+from the check node for which we send the message.
+Final Decision: We multiply all the variable node incoming messages with its channel observation to get
+ψj (xj ). Then we ﬁnd xj = argmaxxj ψj (xj ) and take
+ˆ
+ˆ = ⌊H · x⌉
+b
+ˆ
+
+Proof: We need to minimize the exponent absolute value
+′
+2
++ (x−x −µ2 ) . Taking the ﬁrst derivative according
+2v2
+′
+′
+′
+v ·v
+to x and ﬁnding x that zeros it gives us x = v11+v22 ·
+µ1
+x−µ2
+( v1 + v2 ). Assigning this value in the exponent gives us
+′
+
+(x−µ1 −µ2 )2
+2(v1 +v2 )
+
+that corresponds to N (x; µ1 + µ2 , v1 + v2 ).
+Interestingly, the expression received in Lemma 1 is identical to the convolution result between this Gaussians up to
+a coefﬁcient that depends on the variance values. Now let us
+deﬁne an inﬁnite set of Gaussians {ak · N (x; µk , vk )}, k ≥ 1
+(for a ﬁnite set we can zero the irrelevant amplitudes). The
+maximal envelope of these Gaussians is deﬁned as follows
+GEnv (x)
+
+sup ak · N (x; µk , vk )
+
+(12)
+
+k≥1
+
+i.e., for each point x we take the maximal value between the
+Gaussians. Next we prove a property of Gaussian-envelopes
+that relates to the multiplication in the variable node (10).
+(1)
+
+Proposition 1. Consider two Gaussian-envelopes supk≥1 ak ·
+(1) (1)
+(2)
+(2) (2)
+N (x; µk , vk ) and supk′ ≥1 ak′ ·N (x; µk′ , vk′ ). In this case
+their multiplication yields
+(1)
+
+(1)
+
+(1)
+
+(2)
+
+(2)
+
+(2)
+
+sup ak · N (x; µk , vk ) · sup ak′ · N (x; µk′ , vk′ )
+k≥1
+
+IV. T HE AWGN C HANNEL
+=
+
+In this section we analyze the max-product algorithm for the
+AWGN channel. We prove that the maximization of the passed
+messages (5) still enables us to represent the passed messages
+with Gaussians, just like in the sum-product algorithm where
+the passed messages are Gaussian-mixtures. Moreover, we
+show that the Gaussians representing the passed messages
+in both algorithms are identical in each iteration. The only
+difference between the algorithms passed messages is how we
+process these Gaussians. In the sum-product algorithm we sum
+these Gaussians. In the max-product algorithm we take the
+maximal value in each point between these Gaussians.
+We characterize each Gaussian by three parameters: amplitude a ≥ 0, mean value µ, and variance v. We deﬁne the
+Gaussian function N (x; µ, v) as follows
+
+For the AWGN channel we get that fYj |Xj (yj |xj )
+N (xj ; yj , σ 2 ), j = 1, . . . , n.
+
+v1 + v2
+N (x; µ1 + µ2 , v1 + v2 ).
+2πv1 · v2
+
+(x −µ1 )2
+2v1
+
+Note that in order to get the sum-product algorithm derived
+in [1], we only need to replace the maximization in (5) by
+an integral, i.e. we get convolution between the expanded
+messages (6)-(8), and we replace the maximization operation
+in (9) by summation.
+
+(x−µ)2
+a
+a · N (x; µ, v) = √
+· e− 2v .
+2πv
+
+′
+
+sup N (x ; µ1 , v1 ) · N (x − x ; µ2 , v2 )
+
+Initialization: Variable node xj ﬁrst message is initialized
+to its channel observation fYj |Xj (yj |xj ), j = 1, . . . , n.
+
+′
+
+sup
+′
+
+k≥1,k ≥1
+
+(1)
+
+(2)
+
+k ≥1
+(1) (1)
+
+(2)
+
+(2)
+
+ak · ak′ · N (x; µk , vk ) · N (x; µk′ , vk′ ).
+
+which is also a Gaussian-envelope.
+Proof: This proposition states that multiplying the
+Gaussians-envelopes is equivalent to ﬁrst multiplying the
+Gaussians constituting these Gaussian-envelopes, and then
+taking the maximization over this multiplication. The proof
+is straight forward. The Gaussians and their coefﬁcients are
+positive. Hence the maximal value must be the multiplication
+of the maximal values of each envelope. Considering the
+other multiplications does not effect the result. The result is a
+Gaussian-envelope since the multiplication of Gaussians yields
+a Gaussian [1]. Hence the maximization over the Gaussians
+multiplication yields a Gaussian-envelope.
+Now we prove another proposition relating to (6)-(8).
+
+(11)
+
+Proposition 2. Consider two Gaussian-envelopes consist(1)
+ing of Gaussians with the same variance: GEnv (x) =
+(1)
+(1) (1)
+(2)
+(2)
+supk≥1 ak · N (x; µk , v ) and GEnv (x) = supk′ ≥1 ak′ ·
+
+=
+
+3
+
+(2)
+
+N (x; µk′ , v (2) ). Assume v (1) , v (2) > 0, and that these
+functions are bounded. We get
+(1)
+
+(2)
+
+′
+
+′
+
+sup GEnv (x ) · GEnv (x − x ) =
+x′
+
+sup
+′
+
+k≥1,k ≥1
+
+(1)
+
+(2)
+
+(1)
+
+(2)
+
+ﬁrst iteration in the variable node. In this case we calculate ψ1 (x1 ) according to (10) by multiplying the incoming
+Gaussian-envelopes messages, with the channel observation.
+The incoming messages are Gaussian-envelopes consisting of
+Gaussians with the same variance. Based on Proposition 1, the
+multiplication is equivalent to ﬁrst multiplying the Gaussians
+from the different messages, and then taking a Gaussianenvelope on the multiplication. Multiplying two Gaussians
+with variance values va and vb gives a Gaussian with variance
+1
+( v1 + vb )−1 [1]. Hence, since the Gaussians in each message
+a
+have the same variance, the Gaussians product also yields
+Gaussians that have the same variance. Since the incoming
+messages are bounded, their multiplication ψ1 (x1 ) is also
+bounded. For the sum-product algorithm this multiplication
+is performed between Gaussian-mixtures and yields the same
+Gaussians as in the max-product, only this time those Gaussians are summed.
+
+v (1) + v (2)
+·
+2πv (1) · v (2)
+(1)
+
+(2)
+
+ak · ak′ · N (x; µk + µk′ , vk + vk′ ).
+
+Proof: From Proposition 1 we can write the Gaussian(1)
+(2)
+envelopes multiplication as supx′ supk≥1,k′ ≥1 ak · ak′ ·
+′
+′
+(1) (1)
+(2) (2)
+N (x ; µk , v ) · N (x − x ; µk′ , v ). Since both functions
+are bounded we can reverse the maximization order, and then
+in the inner maximization we need to ﬁnd for each k ≥ 1
+′
+′
+(1)
+(2)
+(1)
+and k ≥ 1, the supx′ ak · ak′ · N (x ; µk , v (1) ) · N (x −
+′
+(2)
+x ; µk′ , v (2) ). From Lemma 1 we know that this maximization
+gives
+
+v (1) +v (2)
+2πv (1) ·v (2)
+
+(1)
+
+(2)
+
+(1)
+
+(2)
+
+· ak · ak′ · N (x; µk + µk′ , v (1) + v (2) ).
+′
+
+The variance values do not depend on k, k , and so they can
+be taken out of the maximization.
+
+20
+10
+
+Theorem 1. For each message in each iteration there exists
+a set of Gaussians (set of mean values, variance values and
+amplitudes) for which the maximal envelope of these Gaussians gives the max-product algorithm message, and the sum
+of these Gaussians gives the sum-product algorithm message.
+Proof: We prove this theorem by induction. We begin
+with the initialization step. In this case the variable node
+messages consist of a Gaussian that equals to the channel
+observation, i.e. variable node xj sends N (x; yj , σ 2 ). This
+messages are bounded functions. In the check node we begin
+by analyzing the calculation of P (tm ) presented in (6)-(8).
+We keep the notations used in these equations, and without
+loss of generality consider a check node message sent to x1 .
+In this case if we denote the mean values of the incoming
+messages to the check node by µk , k = 1, . . . , m + 1,
+and the variance values by σ 2 , based on Lemma 1 we
+m
+get that in the ﬁrst iteration P (tm ) ∝ N tm ; k=1 hk ·
+i
+m
+µk , σ 2 k=1 (hk )2 . Note that since the incoming messages
+i
+are bounded, P (tm ) is also a bounded function. For the
+calculation of c(i) (x1 ) in (9), ﬁrst we take the set of Gaussians
+b− m hk ·µk σ2 m (hk )2
+k=1 i
+k=1
+P (b − hm+1 · x1 ) ∝ N x1 ;
+, (hm+1 )2i ,
+i
+hm+1
+i
+i
+where b ∈ Z. These Gaussians are all replications of the
+Gaussian P (−hm+1 x1 ), and so they all have the same
+i
+variance and the same coefﬁcient. Hence we get that
+b− m hk ·µk σ2 m (hk )2
+k=1 i
+k=1
+c(i) (x1 ) ∝ supb∈Z N x1 ;
+, (hm+1 )2i
+which
+hm+1
+i
+i
+is a Gaussian-envelope consisting of Gaussians with the same
+variance. Based on this operation we can see that c(i) (x1 ) is
+also a bounded function. In the sum-product algorithm [1] the
+initialization is the same. This time in the ﬁrst iteration in each
+check node we perform convolution between the incoming
+Gaussians, which gives the same result as P (tm ) up to a
+factor. We perform the same replication of the Gaussian as
+in the max-product algorithm, only this time we sum the
+replications. Hence, the check node messages in the ﬁrst
+iteration consist of the same Gaussians in both algorithms.
+Now we turn to analyze the max-product operations in the
+
+0
+−0.5
+
+0
+
+0.5
+
+1
+
+1.5
+
+1
+
+1.5
+
+1
+
+1.5
+
+(a)
+20
+10
+0
+−0.5
+
+0
+
+0.5
+
+(b)
+
+20
+10
+0
+−0.5
+
+0
+
+0.5
+
+(c)
+
+Fig. 1. (a) This ﬁgure presents three Gaussians. The strongest Gaussian
+(dotted) mean value is 0. The other two Gaussians have mean value 1. (b)
+The sum-product algorithm message. This is a Gaussian mixture consisting of
+the three Gaussians sum. For this case the message maximal value is at 1. (c)
+The max-product algorithm message. This is the maximal Gaussian-envelope
+of the three Gaussians. In this case the message maximal value is at 0.
+
+Next, assume that in iterations 1, . . . , L the check and
+variable nodes messages are Gaussian-envelopes, where the
+Gaussians in each message have the same variance. Also
+assume that these Gaussians are identical to the Gaussians in
+the sum-product messages, and that the messages are bounded.
+In the check node, since the incoming messages are bounded
+we can use Proposition 2. We get that P (tm ) is a Gaussianenvelope consisting of Gaussians that equal to the convolution
+between the Gaussians of the incoming messages. Calculating
+P (tm ) requires multiplications and maximization of bounded
+functions, hence P (tm ) is bounded. In the sum-product algorithm, these Gaussians undergo convolution. Hence the
+Gaussians are identical in both algorithms. The calculation
+of c(i) (x1 ) (9) is equivalent to replicating each Gaussian
+in P (−hm+1 x1 ) and taking the Gaussian-envelope on these
+i
+Gaussians. This operation keeps c(i) (x1 ) bounded, and also
+the replicated Gaussians variance values are identical. For the
+sum-product algorithm we take the same replications as in
+the max-product algorithm. Hence the Gaussians are identical
+between both algorithms. In the variable node the arguments
+are identical to the arguments given for the ﬁrst iteration.
+In [1] the authors formulated necessary conditions for
+convergence of the mean and variance values of the Gaussians
+
+4
+
+in the passed messages. A partial convergence analysis of the
+amplitudes was also given. As the Gaussians in each iteration
+are identical to the sum-product Gaussians, the conditions and
+analysis also hold for the max-product algorithm.
+The Gaussians in the passed messages are identical in both
+algorithms. Hence, the difference in each iteration comes from
+the processing each algorithm performs on these Gaussians to
+obtain the messages. In some cases, the different processing
+leads to different ﬁnal decisions made by the algorithms. For
+instance it may occur when there is rather “tall” Gaussian
+concentrated around a certain point, and also several smaller
+Gaussians concentrated around another point, whose sum
+yields larger value than the tall Gaussian. In this case the
+decisions may be different. For illustration see Figure 1.
+
+VI. N UMERICAL R ESULTS
+We compare the performance of both algorithms. In all
+cases we took Gaussian lists of length M = 10. Also,
+we normalize the Voronoi region volume to one. We begin
+by comparing the performance for Latin square LDLC of
+dimension n = 8, degree d = 3, and generating sequence
+1
+1
+1
+|h| = { 2.31 , 3.17 , 5.11 }. We normalize the WER by a factor of
+2
+−5
+the max-product
+n . For normalized WER (NWER) of 2 · 10
+algorithm improves the performance by 0.2 dB compared to
+the sum-product algorithm. Next, we compared the algorithms
+performance for Latin square LDLC of dimension n = 16,
+d = 3, and the same generating sequence as for n = 8. In
+this case for NWER of 2 · 10−5 we can see that the maxproduct algorithm is 0.15 dB closer to the channel capacity
+than the sum-product algorithm. In [6], the smallest gap from
+channel capacity for a certain dimension and a certain error
+probability was presented. For dimensions n = 8, 16, we also
+compared the performance at NWER 2 · 10−5 to the smallest
+gap from channel capacity. In accordance with [6] we choose
+2
+ǫ1 = 10−5 which gives NWER n (1 − ǫ1 )n ≈ 2 · 10−5 for
+n = 8, 16. We can see that for n = 8 the max-product
+algorithm is 1.5 dB from the smallest gap from channel
+capacity. For n = 16 the max-product algorithm has gap of
+1.35 dB from the smallest gap from channel capacity. Finally,
+we take Latin square LDLC of dimension n = 100, d = 5
+1
+1
+1
+1
+1
+and |h| = { 2.31 , 3.17 , 5.11 , 7.33 , 11.71 }. In this case the performance of both algorithms is essentially the same. Indeed we
+can see that for rather small dimensions, and at moderate gap
+from channel capacity, the max-product algorithm improves
+the performance. As the gap from channel capacity increases
+the improvement decreases. Also, for large dimensions both
+algorithms attain essentially the same performance.
+
+V. E XTENSION OF THE PARAMETRIC A LGORITHM
+In [2] a parametric algorithm for the sum-product case was
+presented. In this section we adapt this algorithm to the maxproduct case. We will brieﬂy go over the parametric algorithm
+[2] and highlight the required changes to adapt it to the maxproduct case. The parametric approach uses the fact that the
+passed messages consist of Gaussians. In this approach the
+Gaussians in the passed messages are represented by lists of
+their means, variance values and amplitudes. The operations in
+the check nodes and variable nodes can be done by calculating
+the Gaussians parameters. However, the number of Gaussians
+in each message is inﬁnite. Hence, a key component of the
+parametric algorithm is to efﬁciently approximate the inﬁnite
+parametric Gaussians list of each message, by a ﬁnite list of
+M Gaussians. The Gaussians in each message are consolidated
+in each iteration by ﬁrst choosing the Gaussian with largest
+coefﬁcient in the list, and consolidating it with Gaussians that
+fall within a certain range around its mean value. Assume
+{ak , µk , vk , 1 ≤ k ≤ L} are the Gaussians to be consolidated. In this case we approximate these Gaussians by a
+′
+L
+single Gaussian with mean µk =
+ˆ
+k=1 ak µk and variance
+′
+′
+L
+vk = k=1 ak vk , where ak = Lak a . In [2] the amplitude
+ˆ
+
+Normalized Word Error Rate
+
+k=1
+
+L
+
+−1
+
+10
+
+k
+
+of this Gaussian equals a =
+ˆ
+k=1 ak . In the max-product
+case we take a = max1≤k≤L ak . This is the ﬁrst difference
+ˆ
+between the algorithms. After consolidating these Gaussians,
+we erase them from the message, and ﬁnd the message next
+Gaussian with largest coefﬁcient. We repeat this process M
+times at most. The second difference between the algorithms
+is the amplitudes calculation in the check nodes. Lemma 1
+proves that in the check node, both algorithms operations
+yield the same Gaussians up to a coefﬁcient that depends on
+the variance. In the theoretical algorithm the variance values
+of the Gaussians in each message are identical. However
+the parametric approximation gives Gaussians with different
+variance values. Hence, when calculating the convolution
+between Gaussians pairs in the sum-product algorithm [2], the
+result Gaussian amplitude is a1 · a2 , where a1 and a2 are the
+Gaussians amplitudes, and for the max-product algorithm we
+v1 +v2
+take
+v1 ·v2 · a1 · a2 , where v1 and v2 are the Gaussians
+variance values. Besides that both algorithms are identical.
+The parametric algorithms complexity is the same.
+
+Max−product, n=8
+Sum−Product, n=8
+Max−Product, n=16
+Sum−Product, n=16
+Sum−Product, n=100
+Max−Product, n=100
+Smallest dist. Cha. Cap. n=8
+Smallest dist. Cha. Cap. n=16
+
+−2
+
+10
+
+−3
+
+10
+
+−4
+
+10
+
+−5
+
+10
+
+1.5
+
+Fig. 2.
+
+2
+
+2.5
+
+3
+
+3.5
+
+4
+
+4.5
+
+Gap from channel capacity [dB]
+
+5
+
+5.5
+
+Normalized word error rate for different block lengths
+R EFERENCES
+
+[1] N. Sommer, M. Feder, and O. Shalvi, “Low-density lattice codes,” IEEE
+Trans. Inf. Th., vol. 54, no. 4, pp. 1561 –1585, april 2008.
+[2] Y. Yona and M. Feder, “Efﬁcient parametric decoder of low density lattice
+codes,” in IEEE Int. Symp. Inf. Th., july 2009, pp. 744 –748.
+[3] B. Kurkoski and J. Dauwels, “Message-passing decoding of lattices using
+gaussian mixtures,” in IEEE Int. Symp. Inf. Th., july 2008, pp. 2489 –
+2493.
+[4] T. Richardson and R. Urbanke, Modern Coding Theory. Cambridge
+University Press, 2008.
+[5] G. Poltyrev, “On Coding Without Restrictions for the AWGN Channel,”
+IEEE Trans. on Inf. Theory, vol. 40, no. 2, pp. 409–417, 1994.
+[6] A. Ingber, R. Zamir, and M. Feder, “Finite dimensional inﬁnite constellations,” Submitted to IEEE Tran. Inf. Th. Available on arxiv.org.
+
+5
+
+6
+
+

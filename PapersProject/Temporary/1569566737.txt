@@ -1,0 +1,902 @@
+Creator:        TeX
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Fri May 18 17:17:59 2012
+ModDate:        Tue Jun 19 12:55:34 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      455503 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569566737
+
+Universal Bounds on the Scaling Behavior of Polar
+Codes
+Ali Goli
+
+S. Hamed Hassani and R¨ diger Urbanke
+u
+
+Department of Electrical Engineering
+Sharif University of Technology, Iran
+Email: agoli@ee.sharif.edu
+
+School of Computer and Communication Sciences
+EPFL, Switzerland
+Email: {seyedhamed.hassani, rudiger.urbanke}@epﬂ.ch
+
+(in the sense that the sum of the Bhattacharyya parameters is
+1
+small) requires rates at least N − µ below capacity. We begin
+by giving the notation and the general problem set-up.
+
+Abstract—We consider the problem of determining the tradeoff between the rate and the block-length of polar codes for
+a given block error probability when we use the successive
+cancellation decoder. We take the sum of the Bhattacharyya
+parameters as a proxy for the block error probability, and show
+that there exists a universal parameter µ such that for any binary
+memoryless symmetric channel W with capacity I(W ), reliable
+−1
+communication requires rates that satisfy R < I(W ) − αN µ ,
+where α is a positive constant and N is the block-length. We
+provide lower bounds on µ, namely µ ≥ 3.553, and we conjecture
+that indeed µ = 3.627, the parameter for the binary erasure
+channel.
+
+A. Periminilaries
+Let W : X → Y be a BMS channel, with input alphabet
+X = {0, 1}, output alphabet Y, and the transition probabilities
+{W (y | x) : x ∈ X , y ∈ Y}. We consider the following three
+parameters for the channel W ,
+W (y | 1) log
+
+H(W ) =
+I. I NTRODUCTION
+
+y∈Y
+
+W (y | 0)W (y | 1),
+
+Z(W ) =
+
+Polar coding schemes provably achieve the capacity of a
+wide array of channels including binary memoryless symmetric (BMS) channels. Let W be a BMS channel with capacity
+I(W ). In [1], Arıkan showed that for any rate R < I(W )
+the block error probability of the successive cancellation (SC)
+decoder is upper bounded by N −1/4 for block-length N large
+enough. In [2], Arıkan and Telatar signiﬁcantly tightened this
+result. They showed that for any rate R < I(W ) and any
+β
+1
+β < 2 , the block error probability is upper bounded by 2−N
+for N large enough. Later in [3], these bounds were reﬁned to
+be dependent on R and it was shown that similar asymptotic
+lower bounds are valid when we perform MAP decoding.
+Hence, SC and MAP decoders share the same asymptotic
+performance in this sense. Such an exponential decay suggests
+that error ﬂoors should not be a problem for polar codes even
+at moderate block lengths (e.g. N > 104 ).
+Another problem of interest in the area of polar codes is
+to determine the trade-off between the rate and the blocklength for a given error probability when we use the successive
+cancellation (SC) decoder. In other words, in order to have
+reliable transmission with block error probability at most ,
+how does the maximum possible rate R scale in terms of the
+block-length N ? This problem has been previously considered
+in [4] and [5] mainly for the family of Binary Erasure Channels
+(BEC). In both [4] and [5], the authors provide strong evidence
+(both numerically and analytically) that for polar codes with
+the SC decoder, reliable communication over the BEC requires
+1
+rates N − µ below capacity, where µ ≈ 3.627.
+In this paper, we provide rigorous lower bounds on the value
+of µ, such that for any BMS channel W , reliable transmission
+
+W (y | 1) + W (y | 0)
+,
+W (y | 1)
+
+(1)
+(2)
+
+y∈Y
+
+E(W ) =
+
+1
+2
+
+W (y | 1)
+
+1
+
+W (y | 1)
+
+W (y | 1)e− 2 (ln W (y | 0) + | ln W (y | 0) | ) .
+
+(3)
+
+y∈Y
+
+The parameter H(W ) is equal to the entropy of the output
+of W given its input when we assume uniform distribution
+on the inputs, i.e., H(W ) = H(X | Y ). Hence, we call the
+parameter H(W ) the entropy of the channel W . Also note
+that the capacity of W , which we denote by I(W ), is given
+by I(W ) = 1 − H(W ). The parameter Z(W ) is called the
+Bhattacharyya parameter of W and E(W ) is called the error
+probability of W . It can be shown that E(W ) is equal to
+the error probability in estimating the channel input x on the
+basis of the channel output y via the maximum-likelihood
+decoding of W (y|x) (with the further assumption that the input
+has uniform distribution). It can be shown that the following
+relations hold between these parameters (see for e.g., [1] and
+[6, Chapter 4]):
+0 ≤ 2E(W ) ≤ H(W ) ≤ Z(W ) ≤ 1,
+
+(4)
+
+H(W ) ≤ h2 (E(W )),
+
+(5)
+
+Z(W ) ≤
+
+1 − (1 −
+
+H(W ))2 ,
+
+(6)
+
+where h2 (·) denotes the binary entropy function.
+B. Channel transform
+Let W denote the set of all the BMS channels and consider
+a transform W → (W − , W + ) that maps W to W 2 in the
+following manner. Having the channel W : {0, 1} → Y, the
+
+1
+
+channels W − : {0, 1} → Y 2 and W + : {0, 1} → {0, 1} × Y 2
+are deﬁned as
+1
+W − (y1 , y2 |x1 ) =
+W (y1 |x1 ⊕ x2 )W (y2 |x2 ) (7)
+2
+
+follows: Choose a subset of size N R from the set of channels
+(i)
+{WN }1≤i≤N that have the least possible error probability
+(given in (3)) and choose the rows Gn with the same indices
+(j)
+as these channels. E.g., if the channel WN is chosen, then
+the j-th row of Gn is selected. In the following, given N , we
+call the set of indices of N R channels with the least error
+probability, the set of good indices and denote it by IN,R .
+It is proved in [1] that the block error probability of
+such polar coding scheme under SC decoding, denoted by
+Pe (N, R), is bounded from both sides by2
+
+x2 ∈{0,1}
+
+1
+W (y1 |x1 ⊕ x2 )W (y2 |x2 ),
+(8)
+2
+A direct consequence of the chain rule of entropy yields
+W + (y1 , y2 , x1 |x2 ) =
+
+H(W + ) + H(W − )
+= H(W )
+2
+One can also show that,
+H(W ) ≤ H(W − ) ≤ 1 − (1 − H(W ))2 ,
+2
+
++
+
+H(W ) ≤ H(W ) ≤ H(W ).
+
+(9)
+
+If Bn = 1,
+If Bn = 0,
+
+(13)
+
+E. Main results
+
+(11)
+
+Consider a BMS channel W and let us assume that a polar
+code with block-error probability at most a given value >
+0, is required. One way to accomplish this is to ensure that
+the right side of (13) is less than . However, this is only a
+sufﬁcient condition that might not be necessary. Hence, we call
+the right side of (13) the strong reliability condition. Based on
+this measure of the block-error probability, we provide bounds
+on how the rate R scales in terms of the block-length N .
+Theorem 1: For any BMS channel W with capacity
+I(W ) ∈ (0, 1), there exist constants , α > 0, which depend
+only on I(W ), such that
+
+Let {Bn , n ≥ 1} be a sequence of iid Bernoulli( 1 ) random
+2
+variables. Denote by (F, Ω, P) the probability space generated
+by this sequence and let (Fn , Ωn , Pn ) be the probability space
+generated by (B1 , · · · , Bn ). For a BMS channel W , deﬁne a
+random sequence of channels Wn , n ∈ N {0, 1, 2, · · · }, as
+W0 = W and
++
+Wn−1
+−
+Wn−1
+
+E(WN ).
+i∈IN,R
+
+(10)
+
+C. Polarization process
+
+Wn =
+
+(i)
+
+(i)
+
+max E(WN ) ≤ Pe (N, R) ≤
+
+i∈IN,R
+
+(12)
+
+where the channels on the right side are given by the transform
+−
++
+Wn−1 → (Wn−1 , Wn−1 ). Let us also deﬁne the random processes {Hn }n∈N , {In }n∈N and {Zn }n∈N as Hn = H(Wn ),
+In = I(Wn ) = 1 − H(Wn ) and Zn = Z(Wn ). From (9)
+one can easily observe that Hn (and In ) is a martingale
+with E[Hn ] = H(W ). It is further known from [1] that
+the processes Hn and Zn converge almost surely to limit
+random variables H∞ and Z∞ and furthermore, these limit
+random variables take their values in the set {0, 1} with
+Pr(H∞ = 0) = Pr(Z∞ = 0) = H(W ).
+
+(i)
+
+E(WN ) ≤ ,
+
+(14)
+
+i∈IN,R
+
+implies
+R < I(W ) −
+
+α
+
+(15)
+1 ,
+Nµ
+where µ is a universal parameter lower bounded by 3.553.
+A few comments are in order:
+1) As we will see in the sequel, we can obtain an increasing
+sequence of lower bounds, call this sequence {µm }m∈N , for
+the universal parameter µ. For each m, in order to show the
+validity of the lower bound we need to verify the concavity
+of a certain polynomial (deﬁned in (20)) in [0, 1]. For small
+values of m concavity can be proved directly using pen and
+paper. For larger values of m we can automate this process:
+each polynomial has rational coefﬁcients. Hence also its
+second derivative has rational coefﬁcients. To show concavity
+it sufﬁces to show that there are no roots of this second
+derivative in [0, 1]. This task can be accomplished exactly
+by computing so-called Sturm chains (see Sturm’s Theorem
+[8]). Computing Sturm chains is equivalent to running Euclid’s
+algorithm starting with the second and third derivative of
+the original polynomial. The lower bound for µ stated in
+Theorem 1 is the one corresponding to m = 8, an arbitrary
+choice. If we increase m we get e.g., µ16 = 3.614. We
+conjecture that the sequence µm converges to µ = 3.627, the
+parameter for the BEC.
+
+D. Polar codes
+Given the rate R < I(W ), polar coding is based on
+⊗n
+choosing a set of 2n R rows of the matrix Gn = 1 0
+11
+n
+n
+to form a 2 R × 2 matrix which is used as the generator
+matrix in the encoding procedure1 . The way this set is chosen
+is dependent on the channel W and is brieﬂy explained as
+follows: At time n ∈ N, consider a speciﬁc realization of the
+sequence (B1 , · · · , Bn ), and denote it by (b1 , · · · , bn ). The
+random variable Wn outputs a BMS channel, according to the
+procedure (12), which we can naturally denote by W (b1 ,··· ,bn ) .
+Let us now identify a sequence (b1 , · · · , bn ) by an integer
+i in the set {1, · · · , N } such that the binary expansion of
+i − 1 is equal to the sequence (b1 , · · · , bn ), with b1 as the
+least signiﬁcant bit. As an example for n = 3, we identify
+(b1 , b2 , b3 ) = (0, 0, 1) with 5 and (b1 , b2 , b3 ) = (1, 0, 0) with
+(i)
+2. To simplify notation, we use Wn to denote W (b1 ,··· ,bn ) .
+Given the rate R, the indices of the matrix Gn are chosen as
+
+2 Note here that by (3) the error probability of a BMS channel is less that
+its Bhattacharyya value. Hence, the right side of (13) is a better upper bound
+for the block error probability than the sum of the Bhattacharyya values.
+
+1 There
+
+are extensions of polar codes given in [7] which use different kinds
+of matrices.
+
+2
+
+m
+am
+µm
+
+2) Let , α, µ be as in Theorem 1. If we require the blockerror probability to be less than
+(in the sense that the
+condition (14) is fulﬁlled), then the block-length N should
+be at least
+α
+)µ .
+(16)
+N >(
+I(W ) − R
+
+fm+1 (h)
+.
+h∈[0,1] fm (h)
+
+am = inf
+
+A. Binary erasure channel
+Consider a binary erasure channel with erasure probability
+h ∈ [0, 1] which we denote by BEC(h). One can show that
+(see [6, Chapter 4] ) for such a channel we have
+
+(21)
+
+(17)
+Furthermore, the sequence am is an increasing sequence.
+Proof: The proof goes by induction on n−m. For n−m =
+0 the result is trivial. Now, assume that the relation (22) holds
+for a n − m = k, i.e., for h ∈ [0, 1] we have
+
+Furthermore, we have
+(BEC(h))+ = BEC(h2 ),
+(BEC(h))− = BEC(1 − (1 − h)2 ),
+
+(am )k fm (h) ≤ fm+k (h)
+
+both proved in [1]. Hence, the processes Hn and Zn for
+BEC(h) are equal and have a simple closed form expression
+as the following: Let H0 = h and3
+
+(23)
+
+We show that (22) is indeed true for k + 1 and h ∈ [0, 1]. We
+have
+fm+k (h2 ) + fm+k (1 − (1 − h)2 )
+2
+(b) (a )k f (h2 ) + (a )k f (1 − (1 − h)2 )
+m
+m
+m
+m
+≥
+2
+= (am )k fm+1 (h)
+fm+1 (h)
+= (am )k
+fm (h)
+fm (h)
+fm+1 (h)
+≥ (am )k inf
+fm (h)
+h∈[0,1] fm (h)
+= (am )k+1 fm (h).
+(a)
+
+(18)
+
+fm+k+1 (h) =
+
+Let us now deﬁne the sequence of functions {fn (h)}n∈N as
+fn : [0, 1] → [0, 1] and for h ∈ [0, 1],
+(19)
+
+Here, note that for h ∈ [0, 1] the value of fn (h) is a
+deterministic value that is dependent on the process Hn with
+the starting value H0 = h. By using the recursive relation
+(18), one can easily deduce that
+f0 (h) = h(1 − h),
+
+8
+0.8228
+3.553
+
+Remark 2: One can compute the value of am by ﬁnding
+the extreme points of the function fm+1 (i.e., ﬁnding the
+fm
+roots of the polynomial gm = f m+1 fm − fm+1 f m ) and
+checking which one gives the global minimum. Again, for
+small values e.g., m = 0, 1, pen and paper sufﬁce. For
+higher values of m we can again automatize the process: all
+these polynomials have rational coefﬁcients and therefore it is
+possible to determine the number of real roots exactly and to
+determine their value to any desired precision (by computing
+Sturm chains as mentioned earlier). Hence, we can ﬁnd the
+value of am to any desired precision. Table I contains the
+numerical value of am up to precision 10−4 for m ≤ 8. As
+the table shows, the values am are increasing (see Lemma 3),
+1
+and we conjecture that they converge to 2− 3.62713 = 0.8260,
+the corresponding value for the channel BEC.
+♦
+We now show that each of the values am is a lower bound on
+the speed of decay of the sequence fn .
+Lemma 3: Fix m ∈ N. For all n ≥ m and h ∈ [0, 1], we
+have
+(am )n−m fm (h) ≤ fn (h).
+(22)
+
+Consider a channel W with its entropy process Hn =
+H(Wn ). Since the bounded process Hn converges almost surely to a 0 − 1 valued random variable, we have
+limn→∞ E[Hn (1 − Hn )] = 0. In this section, we provide
+universal lower bounds on the speed with which the quantity
+E[Hn (1−Hn )] decays to 0. We ﬁrst derive such lower bounds
+for the family of Binary Erasure Channels (BEC) and then
+extend them to other BMS channels.
+
+fn (h) = E[Hn (1 − Hn )].
+
+6
+0.8190
+3.471
+
+fn−1 (h2 ) + fn−1 (1 − (1 − h)2 )
+.
+2
+Let us also deﬁne a sequence of numbers {am }m∈N as
+
+POLARIZATION
+
+2
+If Bn = 1,
+Hn−1 ,
+1 − (1 − Hn−1 )2 , If Bn = 0.
+
+4
+0.8075
+3.241
+
+fn (h) =
+
+II. U NIVERSAL L OWER BOUNDS ON THE SPEED OF
+
+Hn =
+
+2
+0.7897
+2.935
+
+TABLE I
+
+3) It is well known that the value of µ for the random
+linear ensemble is µ = 2, which is the optimal value since the
+variations of the channel itself require µ ≥ 2. Thus, given a
+block-length N , reliable transmission by polar codes requires
+a larger gap to the channel capacity than the optimal value.
+The rest of the paper is devoted to proving Theorem 1. In
+Section II, we provide universal lower bounds on how fast
+the process Hn converges to its limit H∞ . We then use these
+bounds to prove Theorem 1 in Section III. Finally, Section IV
+concludes the paper with stating the related open questions.
+
+H(BEC(h)) = Z(BEC(h)) = 2E(BEC(h)) = h.
+
+0
+0.75
+2.409
+
+(20)
+
+Here, (a) follows from (20) and (b) follows from the left
+side inequality in (23), and hence the lemma is proved via
+induction.
+
+3 Note
+
+that to simplify notation we have dropped the dependency of Hn to
+its starting value H0 = h.
+
+3
+
+(e)
+
+= (am )m+1 fm (H(W )).
+
+B. BMS Channels
+For a BMS channel W , there is no simple 1-dimensional
+recursion for process Hn as for BEC. However, by using
+(10) and (11), one can give bounds on how Hn evolves. In
+this section, we use the functions {fn }n∈N deﬁned in (20) to
+provide universal lower bounds on the quantity E[Hn (1−Hn )].
+We start by introducing one further technical condition given
+as follows.
+Deﬁnition 4: We call an integer m ∈ N suitable if the
+function fm (h), deﬁned in (20), is concave on [0, 1].
+Remark 5: For small values of m, i.e., m ≤ 2, it is easy to
+verify by hand that the function fm is concave. As discussed
+previously, for larger values of m we can use Sturm’s theorem
+[8] and a computer algebra system to verify this claim.
+Note that the polynomials 2m fm have integer coefﬁcients.
+Hence, all the required computations can be done exactly.
+Unfortunately, the degree of fm is 2m+1 . We have checked
+up to m = 8 that fm is concave and we conjecture that in fact
+this is true for all m ∈ N.
+♦
+In the rest of this section, we show that for any BMS channel
+W , the value of am is a lower bound on the speed of decay
+of Hn provided that m is a suitable integer.
+Lemma 6: Let m ∈ N be a suitable integer and W a BMS
+channel. We have for n ≥ m
+n−m
+
+E[Hn (1 − Hn )] ≥ (am )
+
+fm (H(W )),
+
+In the above chain of inequalities, relation (a) follows from
+the fact that Wm has 2m possible outputs among which
+half of them are branched out from W + and the other half
+are branched out from W − . Relation (b) follows from the
+induction hypothesis given in (25). Relation (c) follows from
+(10), (11) and the fact that the function fm is concave. More
+precisely, since fm is concave on [0, 1], we have the following
+inequality for any sequence of numbers 0 ≤ x ≤ x ≤ y ≤
+y ≤ 1 that satisfy x+y = x +y :
+2
+2
+fm (x ) + fm (y )
+fm (x) + fm (y)
+≤
+.
+(26)
+2
+2
+In particular, we set x = H(W )2 , x = H(W + ), y =
+H(W − ), y = 1 − (1 − H(W ))2 and we know from (10) and
+(11) that 0 ≤ x ≤ x ≤ y ≤ y ≤ 1. Hence, by (26) we obtain
+(c). Relation (d) follows from the recursive deﬁnition of fm
+given in (20). Finally, relation (e) follows from the deﬁnition
+of am given in (21).
+III. P ROOF OF T HEOREM 1
+To ﬁt the bounds of Section II into the framework of
+Theorem 1, let us ﬁrst introduce the sequence {µm }m∈N as
+µm = −
+
+(24)
+
+(25)
+
+We now prove the lemma for m − n = k + 1. For the
+BMS channel W , let us recall that the the transform (W →
+(W − , W + )) yields two channels W − and W + such that
+the relation (9) holds. Deﬁne the process {(W − )n , n ∈ N}
+as the channel process that starts with (W − )0 = W − and
+evolves as in (12) similarly deﬁne {(W + )n , n ∈ N} similar
+with (W + )0 = W + . Let us also deﬁne the two processes
+−
++
+Hn = H((W − )n ) and Hn = H((W + )n ). We have,
+
+Pr(Hn ≤ α2−nθ ) ≤ I(W ) − β2−nθ .
+
+Pr(Hn ≤ α2−nθ ) > I(W ) − β2−nθ .
+
++
+E[Hm+k (1
+
+(d)
+
+(29)
+
+In the following, we show that with such an assumption we
+reach to a contradiction. We have
+
++
+Hm+k )]
+
++
+−
+2
+−
++
+(b)
+k fm (H(W )) + fm (H(W ))
+≥ (am )
+2
+2
+2
+(c)
+k fm (1 − (1 − H(W )) ) + fm (H(W ) )
+≥ (am )
+2
+=
+
+−
+
+−
+Hm+k )]
+
+(28)
+
+Proof: The proof is by contradiction. Let us assume the
+contrary, i.e., we assume there exists n ≥ m s.t.,
+
+E[Hm+k+1 (1 − Hm+k+1 )]
+−
+(a) E[Hm+k (1
+
+(27)
+
+where am is deﬁned in (21). In the last section, we proved that
+for a suitable m, the speed with which the quantity E[Hn (1 −
+1
+Hn )] decays is lower bounded by am = 2− µm , i.e. for n ≥ m
+(n−m)
+we have E[Hn (1 − Hn )] ≥ 2− µm fm (H(W )). To relate the
+strong reliability condition in (14) to the rate bound in (15),
+we need the following lemma.
+Lemma 7: Consider a BMS channel W and assume that
+there exist positive real numbers γ, θ and m ∈ N such that
+E[Hn (1 − Hn )] ≥ γ2−nθ for n ≥ m. Let α, β ≥ 0 be such
+that 2α + β = γ, we have for n ≥ m
+
+where am is given in (21).
+Proof: We use induction on n − m: For n − m = 0 there
+is nothing to prove. Now, assume that the result of the lemma
+is correct for n − m = k. Hence, for any BMS channel W
+with Hn = H(Wn ) we have
+E[Hm+k (1 − Hm+k )] ≥ (am )k fm (H(W )).
+
+1
+,
+log am
+
+E[Hn (1 − Hn )]
+= E[Hn (1 − Hn ) | Hn ≤ α2−nθ ]Pr(Hn ≤ α2−nθ )
++ E[Hn (1 − Hn ) | Hn > α2−nθ ]Pr(Hn > α2−nθ ). (30)
+It is now easy to see that
+
+k
+
+= (am ) fm+1 (H(W ))
+fm+1 (H(W ))
+= (am )k
+fm (H(W ))
+fm (H(W ))
+fm+1 (h)
+≥ (am )k inf
+fm (H(W ))
+h∈[0,1] fm (h)
+
+E[Hn (1 − Hn ) | Hn ≤ α2−nθ ] ≤ α2−nθ ,
+and since E[Hn (1 − Hn )] ≥ γ2−nθ , by using (30) we get
+E[Hn (1−Hn ) | Hn > α2−nθ ]Pr(Hn > α2−nθ ) ≥ 2−nθ (γ−α).
+(31)
+
+4
+
+We can further write
+
+IV. O PEN PROBLEMS
+
+E[(1 − Hn )] = E[1 − Hn | Hn ≤ α2
+
+−nθ
+
++ E[1 − Hn | Hn > α2
+
+−nθ
+
+]Pr(Hn ≤ α2
+
+−nθ
+
+The results of this paper can be extended in the following
+ways.
+1) In this paper, we take the right side of (13) as a proxy
+for the block error probability and hence our results are with
+respect to the strong reliability condition (14). A signiﬁcant
+step in this regard would be to prove equivalent bounds for
+the block error probability.
+2) An other way to improve the results of this paper is
+to provide better values of the universal parameter µ. Based
+on numerical experiments, we conjecture that the value of µ
+can be increased up to the scaling parameter of the channel
+BEC. That is, the right value of µ to plug in (15) is equal to
+µ = 3.62713. Thus, the ultimate goal would be to show that
+for the channel BEC, the polarization phenomenon takes place
+faster than all the other BMS channels. One way to do this,
+is to prove that the functions fn deﬁned in (20) are concave
+on the interval [0, 1].
+3) The result of Theorem 1 suggests that in terms of ﬁnitelength performance, polar codes are far from optimal. However, we might get different results if we consider extended
+polar codes with × kernels ([7]). It is not very hard to
+prove that at least for the BEC, as grows large, for almost all
+the × kernels the ﬁnite-length performance of polar codes
+improves towards the optimal one (i.e., µ → 2). However,
+this is at the cost of an increase in complexity proportional
+to 2 . This suggests that there might still exist kernels with
+reasonable size with superior ﬁnite-length properties than the
+original 2 × 2 kernel. Hence, an interesting open problem is
+the ﬁnite-length analysis of polar codes that are constructed
+from × kernels and how relate such analysis to ﬁnding
+kernels with better ﬁnite-length properties.
+
+)
+
+−nθ
+
+]Pr(Hn > α2
+
+),
+(32)
+
+and by noting the fact that Hn ≥ Hn (1 − Hn ) we can plug
+(31) in (32) to obtain
+E[(1 − Hn )] ≥ E[1 − Hn | Hn ≤ α2−nθ ]Pr(Hn ≤ α2−nθ )
++ 2−nθ (γ − α).
+
+(33)
+
+We now continue by using (29) in (33) to obtain
+E[(1 − Hn )] > (I(W ) − β2−nθ )(1 − α2−nθ ) + 2−nθ (γ − α)
+≥ I(W ) + 2−nθ (γ − α(1 + I(W )) − β),
+and since 2α + β = γ, we get E[1 − Hn ] > I(W ). This is a
+contradiction since Hn is a martingale and E[1−Hn ] = I(W ).
+Let us now use the result of Lemma 7 to conclude the proof
+of Theorem 1. By Lemma 6, we have for n ≥ m
+E[Hn (1 − Hn )] ≥ 2−
+
+(n−m)
+µm
+
+fm (H(W )).
+
+m
+µm
+
+Thus, if we now let γ = 2 fm (H(W )) and 2α = β = γ ,
+2
+then by using Lemma 7 we obtain
+n
+n
+γ
+γ
+Pr(Hn ≤ 2− µm ) ≤ I(W ) − 2− µm .
+(34)
+4
+2
+Now, assume we desire to achieve a rate R equal to
+n
+γ
+R = I(W ) − 2− µm .
+(35)
+4
+Let IN,R be the set of indices chosen for such a rate R, i.e.,
+IN,R includes the 2n R indices of the sub-channels with the
+least value of error probability. Deﬁne the set A as
+n
+γ
+(i)
+(36)
+A = {i ∈ In,R : H(WN ) ≥ 2− µm }.
+4
+In this regard, note that (34) and (35) imply that | A | ≥
+γ n(1− µ1 )
+m . As a result, by using (4) and (5) we obtain
+42
+(i)
+
+(i)
+
+E(WN ) ≥
+i∈IN,R
+
+E(WN ) ≥
+i∈A
+
+ACKNOWLEDGMENT
+The authors wish to thank anonymous reviewers for their
+valuable comments on an earlier version of this manuscript.
+The work of Hamed Hassani was supported by Swiss National
+Science Foundation Grant no 200021-121903.
+
+γ 2 n(1− µ1 ) −1 − µn
+m h
+m )
+2
+2 (2
+16
+
+R EFERENCES
+
+1
+
+γ 2 2n(1−2 µm )
+≥
+,
+16 8n µ1
+m
+
+[1] E. Arıkan, “Channel polarization: A method for constructing capacityachieving codes for symmetric binary-input memoryless channels,” IEEE
+Trans. on Info. Theory, vol. 55, no. 7, pp. 3051–3073, 2009.
+[2] E. Arıkan and E. Telatar, “On the rate of channel polarization,” in Proc.
+ISIT 2009, pp. 1493–1495.
+[3] S. H. Hassani, R. Mori, T. Tanaka and R. Urbanke, “Rate dependent
+analysis of the asymptotic behavior of channel polarization”, Submitted
+to IEEE Trans. on Info. Theory.
+[4] S. B. Korada, A. Montanari, E. Telatar and R. Urbanke , “An emprical
+scaling law for polar codes”, in Proc. ISIT (2010), pp.884-888.
+[5] S. H. Hassani, K. Alishahi and R. Urbanke, “On the scaling of Polar
+codes: II. The behavior of un-polarized channels”, in Proc. ISIT (2010),
+pp.879-883 .
+[6] T. Richardson and R. Urbanke, Modern Coding Theory. Cambridge
+University Press, 2008.
+[7] S. B. Korada and E. Saso˘ lu and R. Urbanke,“Polar Codes: Characteri¸ ¸ g
+zation of Exponent, Bounds, and Constructions”, in IEEE Trans. inform.
+Theory, vol 56, no. 12 pp.6253 - 6264 (2010).
+[8] See http://en.wikipedia.org/wiki/Sturms theorem
+
+1
+where the last step follows from the fact that for x ∈ [0, √2 ],
+−1
+x
+we have h2 (x) ≥ 8 log( 1 ) . Thus, having a block-length N =
+x
+2n , in order to have error probability (measured by (13)) less
+2
+
+n(1−2
+
+1 )
+µ
+
+n
+
+than γ 2 8n 1 m , the rate can be at most I(W ) − γ 2− µm .
+16
+4
+µm
+Finally, if we let m = 8 (by the discussion in Remark 5,
+1
+we know that m = 8 is suitable), then µ8 = − log(a8 ) = 3.553
+and choosing
+(i)
+
+= inf
+
+n∈N
+
+E(WN ) ,
+
+(37)
+
+i∈IN,R
+
+where R is given in (35), then it is easy to see that > 0 (since
+1
+1
+µ8 < 2 ) and furthermore, to have block-error probability less
+that the rate should be less than R given in (35).
+
+5
+
+

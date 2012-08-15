@@ -1,0 +1,1079 @@
+Title:          NearOpt_mseq_isit-final2.dvi
+Creator:        dvips(k) 5.96dev Copyright 2007 Radical Eye Software
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Wed May  9 14:29:50 2012
+ModDate:        Tue Jun 19 12:56:02 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      387702 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569557715
+
+New Construction of a Near-optimal Partial Fourier
+Codebook Using the Structure of Binary
+m-sequences
+Nam Yul Yu
+Department of Electrical and Computer Engineering, Lakehead University
+Thunder Bay, Ontario, Canada
+Email: nam.yu@lakeheadu.ca
+
+the Welch bound, then C is called a maximum-Welch-boundequality (MWBE) codebook [2].
+The MWBE codebook, also known as an equiangular
+tight frame [3], has been of interest in many research areas,
+e.g., synchronous code-division multiple access (CDMA) systems [4], Grassmanian packings [5], compressed sensing [6],
+and quantum computing [7]. Unfortunately, constructing an
+MWBE codebook in an analytic way is known to be extremely
+difﬁcult [2]. Therefore, numerous attempts have been made to
+present a near-optimal codebook C, where Imax (C) asymptotically achieves the Welch bound equality for sufﬁciently large
+N . A number of construction examples based on codes and
+signal sets can be found in [2]. Ding and Feng [8][9] also presented several near-optimal codebooks from almost difference
+sets. Generalizing this idea, Zhang and Feng [10][11] further
+constructed near-optimal codebooks with almost difference
+sets and cyclotomic classes. Recently, the author of this paper
+constructed near-optimal partial Fourier and Hadamard codebooks [12] associated with binary Sidelnikov sequences [13].
+This paper presents a new class of near-optimal (N, K)
+partial Fourier codebooks, where N = K 2 − 1 and K = 2k
+for a positive integer k. We create a K × N partial Fourier
+matrix by selecting K rows from the N × N inverse discrete
+Fourier transform (IDFT) matrix, where each code vector of
+a codebook C is equivalent to a column of the partial matrix.
+Exploiting the array structure of binary m-sequences of period
+N , we determine a set of the selected row indices for C.
+Moreover, it is found that the row index set for C is a union
+of several cyclotomic cosets modulo N . A theoretical study
+of the codebook C shows that the magnitude of inner products
+between distinct code vectors is two-valued, and its maximum
+nearly achieves the Welch bound equality for sufﬁciently large
+N . Therefore, C is a new near-optimal codebook or nearly
+equiangular tight frame with N = K 2 − 1, which may ﬁnd its
+potential applications in many research ﬁelds.
+
+Abstract—A codebook, or equivalently a frame, has many
+applications in communications, signal processing, and quantum
+computing. In the applications, it is required that the maximum
+magnitude of inner products between a pair of distinct code
+vectors should meet the Welch bound equality strictly or asymptotically. In this paper, a new (N, K) codebook is constructed
+from a K × N partial Fourier matrix with N = K 2 − 1 and
+K = 2k for a positive integer k, where each code vector is
+equivalent to a column of the matrix. To obtain the K ×N partial
+Fourier matrix, K rows are selected from the N × N inverse
+discrete Fourier transform matrix, where a set of the selected row
+indices is determined from the structure of binary m-sequences
+of period N . Through a theoretical study, it is found that the
+magnitude of inner products between distinct code vectors is
+two-valued, and its maximum nearly achieves the Welch bound
+equality. The new near-optimal codebook, equivalent to a nearly
+equiangular tight frame, can ﬁnd its potential applications in
+deterministic compressed sensing.
+Index Terms—Codebooks, Compressed sensing, Fourier matrices, m-sequences, Welch bound.
+
+I. I NTRODUCTION
+An (N, K) codebook C = {c0 , · · · , cN −1 } is a set of N
+distinct code vectors in a K-dimensional vector space. Each
+code vector cl = (cl,0 , · · · , cl,K−1 )T , 0 ≤ l ≤ N − 1, has
+K−1
+
+2
+unit-norm, i.e., ||cl || =
+i=0 |cl,i | = 1, where T denotes
+the transpose. For the applications, we need a codebook C
+minimizing Imax (C) or the maximum magnitude of inner
+products between a pair of distinct code vectors. To evaluate
+an (N, K) codebook C, it is therefore important to ﬁnd the
+minimum achievable Imax (C) or its lower bound. The Welch
+bound [1] provides
+
+Imax (C) =
+
+max
+
+0≤l=m≤N −1
+
+cH cm ≥
+l
+
+N −K
+K(N − 1)
+
+with equality if and only if for all pairs of (l, m) with
+N −K
+H
+l = m, cH cm =
+l
+K(N −1) , where cl is the conjugate
+transpose of cl . In particular, if Imax (C) meets the equality of
+
+II. P RELIMINARIES
+
+This work was supported by the National Sciences and Engineering
+Research Council (NSERC) of Canada.
+
+The following notations will be used throughout this paper.
+
+1
+
+− ZN = {0, 1, · · · , N − 1} is a ring of integers modulo
+N , and Z+ = ZN \ {0}.
+N
+− Fq = GF(q) is a ﬁnite ﬁeld with q elements and F∗ =
+q
+Fq \ {0}.
+− Let p be prime, and m and k be positive integers with
+k | m. A trace function is a linearmmapping from Fpm
+ki
+k −1
+onto Fpk deﬁned by Trm (x) = i=0 xp , x ∈ Fpm .
+k
+
+2) Array structure of binary m-sequences: For m = 2k, let
+α be a primitive element in F2m . Let a = (a0 , · · · , a2m −2 ) be
+a binary m-sequence of period 2m − 1, where at = Trm (αt )
+1
+for 0 ≤ t ≤ 2m − 2. For d = 2k + 1, note that β = αd is a
+primitive element in F2k . Letting t = di + v,
+at = Trk Trm (αdi+v )
+1
+k
+= Trk Trm (β i αv )
+1
+k
+
+A. Characteristic sequence and its support
+
+=
+
+Let D = {d0 , · · · , dK−1 } be a set of K distinct integers,
+where dk ∈ ZN , 0 ≤ k ≤ K − 1, and K ≤ N . The
+characteristic sequence of D is then deﬁned as a binary
+sequence a = (a0 , · · · , aN −1 ) where
+at =
+
+1,
+0,
+
+N −1
+
+(−1)at ej
+
+al =
+
+where ns is the smallest positive integer such that spns ≡ s
+(mod N ). We assume that s is the smallest integer in Cs ,
+where s is called the coset leader of Cs . Let Γp (N ) be a
+set of nonzero coset leaders in Z+ . Then, Cs1 ∩ Cs2 = φ
+N
+for s1 , s2 ∈ Γp (N ) with s1 = s2 , and Z+ is partitioned into
+N
+cyclotomic cosets [14], i.e., Z+ = s∈Γp (N ) Cs . Throughout
+N
+this paper, we assume cyclotomic cosets modulo N over F2 ,
+where N is odd.
+
+2πtl
+N
+
+,
+
+l = 0, · · · , N − 1
+
+t=0
+
+√
+N −1
+where j = −1. If l = 0, note that a0 = t=0 (−1)at =
+N − 2wt(a).
+The N -point IDFT of a binary sequence with ideal two-level
+autocorrelation is determined as follows.
+Proposition 1: Let a be a binary sequence of period N ≡ 3
+(mod 4) with ideal two-level autocorrelation, where its sup−1
+−3
++1
++1
+port is an (N, N 2 , N4 ) (or equivalently (N, N2 , N4 ))
+cyclic difference set. The N -point IDFT of a is then given by
+
+C. Binary m-sequences
+1) Deﬁnition: A binary m-sequence is a class of binary sequences with ideal two-level autocorrelation [15]−[17], which
+is a characteristic sequence of a cyclic difference set [18].
+Let a = (a0 , · · · , a2m −2 ) be a binary m-sequence of period
+2m − 1, where at ∈ Z2 , 0 ≤ t ≤ 2m − 2. Then, its (periodic)
+autocorrelation function is given by
+
+|al | =
+
+1,
+√
+
+N + 1,
+
+if l = 0,
+if l = 0.
+
+We believe that Proposition 1 has been implicitly known
+to many researchers in this ﬁeld, where its proof is straightforward from Corollary 1 in [12]. Proposition 1 implies that
+a binary m-sequence of period N = 2m − 1 has the ﬂat
+spectrum of the N -point IDFT at its nonzero indices, where
+√
+the magnitude is 2m .
+
+2m −2
+
+(−1)at +at+τ
+t=0
+
+if τ ≡ 0 mod 2m − 1,
+if τ ≡ 0 mod 2m − 1.
+
+III. A N EAR - OPTIMAL C ODEBOOK FROM THE A RRAY
+S TRUCTURE OF B INARY m- SEQUENCES
+The following notations are used throughout this paper.
+− k is a positive integer and m = 2k.
+− N = 2m − 1, M = 2k − 1, d = N/M = 2k + 1, and
+K = 2k .
+− α is a primitive element in F2m and β = αd is a
+primitive element in F2k .
+− ev is an integer determined by (3), where 0 ≤ ev ≤
+2k − 2.
+
+Algebraically, a binary m-sequence of period 2m − 1 is
+represented by a single-term trace function [16][17], i.e.,
+t = 0, 1, · · · , 2m − 2
+
+(3)
+
+where 0 ≤ ev ≤ 2k − 2. From (2) and (3), it is easily checked
+that the binary m-sequence a has a (2k − 1) × (2k + 1) array
+structure with row index i and column index v [17]. In the
+array, the ﬁrst column sequence of v = 0 is all zero sequence
+of length 2k −1, while the vth column sequence for 1 ≤ v ≤ 2k
+is a cyclic ev -shift of a binary m-sequence of period 2k − 1,
+represented by Trk β i+ev for 0 ≤ i ≤ 2k − 2.
+1
+3) Fourier transforms of binary m-sequences: Let a =
+(a0 , · · · , aN −1 ) be a binary sequence of length N , where at ∈
+Z2 , 0 ≤ t ≤ N −1. Then, the N -point inverse discrete Fourier
+transform (IDFT) of a is deﬁned as a = (a0 , · · · , aN −1 ) with
+
+if t ∈ D,
+if t ∈ D
+
+Cs = {s, sp, sp2 , · · · , spns −1 }
+
+at = Trm (γαt ),
+1
+
+if v = 0,
+if 1 ≤ v ≤ 2k
+
+0,
+β ev ,
+
+Trm (αv ) =
+k
+
+Assume that N and p are relatively prime. A cyclotomic
+coset modulo N over Fp containing s is deﬁned as [14]
+
+2m − 1,
+−1,
+
+(2)
+
+Trm (αv )
+k
+
+where 0 ≤ i ≤ 2 − 2 and 0 ≤ v ≤ 2k . In (2),
+
+B. Cyclotomic cosets
+
+=
+
+β ·
+i
+
+k
+
+for 0 ≤ t ≤ N − 1. The set D is called the support of a.
+The Hamming weight or the number of nonzero entries of a
+is denoted as wt(a) = |D| = K.
+
+Ca (τ ) =
+
+Trk
+1
+
+(1)
+
+where α is a primitive element in F2m and γ ∈ F∗m . In (1),
+2
+we call Trm (γx) the trace representation of the binary m1
+sequence a [17], where Trm (γx) generates a while x runs
+1
+through F∗m .
+2
+
+2
+
+Corollary 1: From Lemma 1, if l ≡ 0 (mod M ),
+
+A. Spectral decomposition of binary m-sequences
+The Fourier spectrum of a binary m-sequence of period
+N = 2m − 1 has an interesting decomposition property if the
+sequence has the array structure for m = 2k.
+
+2k
+
+ej
+
+al = b l ·
+
+2π(v−dev )l
+N
+
+ej
+
+2k
+
+e
+
+where l ≡ l (mod M ).
+
+(4)
+
+To construct a new partial Fourier codebook, we deﬁne an
+index set R = {rv ≡ dev − v mod N | 1 ≤ v ≤ 2k }, in
+order to select the corresponding rows from the N -point IDFT
+matrix. In what follows, we study its structure.
+Lemma 2: Let Cui be a cyclotomic coset modulo 2k + 1
+with a coset leader ui . Assume that Z+ is partitioned into δ
+d
+cyclotomic cosets modulo 2k + 1, i.e., Z+ = {1, · · · , 2k } =
+d
++
+1≤i≤δ Cui . For given ui , 1 ≤ i ≤ δ, let zi ∈ Z2m −1 be an
+integer such that
+
+at j 2πtl
+N
+
+(−1) e
+ej
+
+=
+
+M−1
+
+2πdil
+N
+
+(1)
+
+(−1)bi ej
+
++
+
+i=0
+
+2π(di+1)l
+N
+
+(5)
+
+i=0
+M−1
+
++ ··· +
+
+k
+
+(d−1)
+
+bi
+
+(−1)
+
+e
+
+j 2π(di+d−1)l
+N
+
+αzi = 1 + α(2
+
+.
+
+M−1 j 2πil
+M
+i=0 e
+
+=
+Clearly,
+(mod M ). Thus, (5) becomes
+d−1 M−1
+
+(v)
+
+(−1)bi ej
+
+al =
+
+v=1 i=0
+d−1 M−1
+
+=
+
+(−1)
+v=1
+
+Using
+
+= 0 for l ≡ 0
+
+2π(di+v)l
+N
+
+(6)
+(v)
+bi
+
+2πil
+M
+
+ej
+
+ej
+
+2πvl
+N
+
+d−1
+
+(−1)bi+ev ej
+v=1
+d−1
+
+i=0
+M−1
+
+(−1)bi ej
+
+=
+v=1
+d−1
+
+i=0
+M−1
+
+(−1)bi ej
+
+=
+v=1
+
+2πil
+M
+
+ej
+
+2π(i−ev )l
+M
+
+2πil
+M
+
+· e−j
+
+Proof: For given ui ∈ Z+ , it is obvious that zi meeting (7)
+d
+is unique from the structure of the ﬁnite ﬁeld F2m . From the
+uniqueness, zi = zj if and only if ui = uj for 1 ≤ i, j ≤ δ.
+Let |Cui | = nui and |Csi | = nsi , where ui ≡ ui 2nui
+(mod 2k + 1) and si ≡ si 2nsi (mod 2m − 1). Then, 1 +
+n
+
+2πvl
+N
+
+ej
+
+2πvl
+N
+
+2πev l
+M
+
+k
+
+α(2
+
+d−1
+
+ej
+
+2π(v−dev )l
+N
+
+,
+
+k
+
+1 + α(2
+
+l ≡ 0 mod M
+
+−1)·ui
+
+−1)·ui
+
+(2k −1)·ui
+
+2
+
+ui
+
+nu
+i
+
+. Since
+
+= αzi 2
+
+2
+
+si
+
+ns
+
+= αzi 2
+
+i
+
+zi
+
+zi 2nui
+
+k
+
+= αzi = 1 + α(2
+
+−1)·ui
+
+.
+
+Then, ui 2
+≡ ui (mod 2k + 1), which implies nui | nsi .
+With nsi | nui and nui | nsi , we have nui = nsi , or
+equivalently |Cui | = |Csi | for each i, 1 ≤ i ≤ δ.
+nsi
+
+v=1
+
+which completes the proof.
+
+k
+
+1 + α(2
+
+=
+
+= 1+α
+= α , we have α
+=
+1+α
+αzi , which implies zi 2nui ≡ zi (mod 2m −1). With zi ∈ Csi ,
+ns
+k
+it is clear that nsn | nui . Similarly, 1 + α(2 −1)·ui 2 i =
+i
+
+2πvl
+N
+
+i=0
+
+= bl mod M ·
+
+−1)·ui 2nui
+
+(2k −1)·ui 2nui
+
+ej
+
+Csi .
+1≤i≤δ
+
+i=0
+
+M−1
+
+(7)
+
+.
+
+R = {rv ≡ dev − v mod N | 1 ≤ v ≤ 2k } =
+
+.
+
+= bi+ev , (6) becomes
+
+al =
+
+−1)ui
+
+Assume zi ∈ Csi , where Csi is a cyclotomic coset modulo
+2m − 1 with a coset leader si . Clearly, zi = zj if and only if
+ui = uj for 1 ≤ i, j ≤ δ. Moreover, |Csi | = |Cui | for each
+i, 1 ≤ i ≤ δ. Then we say that Csi is associated with Cui .
+Finally, the index set R is partitioned into δ cyclotomic cosets
+modulo 2m − 1, i.e.,
+
+i=0
+M−1 j 2πdil
+N
+i=0 e
+
+(v)
+bi
+
+2
+
+B. Construction of a near-optimal partial Fourier codebook
+
+Proof: Let t = di + v be the element index of a, where 0 ≤
+i ≤ M − 1 and 0 ≤ v ≤ d − 1. Then, we can arrange the
+addition of its N -point IDFT columnwise, i.e.,
+
+t=0
+M−1
+
+√
+√
+N +1
+2k
+√
+=
+= √ = 2k
+=
+M +1
+2k
+|bl |
+|al |
+
+j 2π(dev −v)l
+N
+
+v=1
+
+√
+where l ≡ l (mod M ) and j = −1.
+
+al =
+
+√
+2k .
+
+Proof: Recall from Proposition 1 that the binary m-sequences
+a and b have the ﬂat spectrums of the N -point and the M point IDFTs, respectively, at their nonzero indices. Therefore,
+if l ≡ 0 (mod M ), (4) yields
+
+v=1
+
+N −1
+
+=
+
+v=1
+
+Lemma 1: Let a = (a0 , · · · , aN −1 ) be a binary msequence of period N , where at = Trm (αt ) for 0 ≤ t ≤ N −1.
+1
+In its (2k − 1) × (2k + 1) array structure, the vth column se(v)
+(v)
+quence b(v) = (b0 , · · · , bM−1 ) is also a binary m-sequence
+of period M for 1 ≤ v ≤ 2k . Let b = (b0 , · · · , bM−1 ) be
+a binary m-sequence of period M , where bi = Trk (β i ) for
+1
+0 ≤ i ≤ M − 1. Recall that b(v) is a cyclic ev -shift of b, i.e.,
+(v)
+bi = bi+ev for 0 ≤ i ≤ M − 1. Let a = (a0 , · · · , aN −1 ) and
+b = (b0 , · · · , bM−1 ) be the N -point and the M -point IDFTs
+of a and b, respectively. Then, if l ≡ 0 (mod M ),
+2k
+
+2π(dev −v)l
+N
+
+2
+
+3
+
+Meanwhile, for each index of R, (3) yields
+
+If l ≡ 0 (mod M ), then Corollary 1 yields
+
+αrv = αdev −v
+
+1
+cH cl2 = √ .
+l1
+K
+
+= α−v · β ev
+= α−v · Trm (αv )
+k
+
+On the other hand, if l ≡ 0 (mod M ), let l = yM , where
+y ≡ 0 (mod d) for 1 ≤ l ≤ N − 1. Then,
+
+(8)
+
+= α−v · (αv + αv·2 )
+k
+
+k
+
+= 1 + α(2
+
+−1)v
+
+.
+
+cH cl2 =
+l1
+
+Thus, if v = ui , then rv = zi from (7) and (8). Moreover,
+k
+from 1 + α(2 −1)·2v = α2rv , it is easy to see that rv takes
+on every value of Csi while v runs through Cui . Finally, if v
+runs through Z+ = 1≤i≤δ Cui , it is clear that rv generated
+d
+by (8) constitutes δ cyclotomic cosets of Cs1 , · · · , Csδ each
+of which is associated with Cu1 , · · · , Cuδ , respectively.
+2
+
+, · · · , exp j
+
+2πrK l
+N
+
+k
+
+N −K
+K(N −1)
+
+T
+
+(9)
+
+max
+
+1
+=
+K
+
+2k
+
+e
+v=1
+
+j
+
+2πrv (l2 −l1 )
+N
+
+1
+cH cl2 = √ .
+l1
+K
+
+1
+=
+K
+
+2k
+
+ej
+
+2πvy
+d
+
+(11)
+
+v=1
+
+2πvy
+
+=
+
+√ 1
+.
+K+1
+
+We can check that changing a primitive polynomial or
+primitive element α in F2m yields different index sets in
+Lemma 2. Note that the m
+number of primitive polynomials over
+F2 of degree m is φ(2 m−1) [17], where φ(x) is the Eulertotient function denoting the number of integers from 1 to x
+which are relatively prime to x. Therefore,m
+employing different
+primitive polynomials, we obtain total φ(2 m−1) different index
+sets for given m = 2k. Moreover, each index set R has its
+cyclic equivalence class of R + τ = {rv + τ | rv ∈ R} for
+0 ≤ τ ≤ 2m − 2, which does not change the corresponding Imax (C). m
+Consequently, Construction 1 presents at most
+(2m − 1) · φ(2 m−1) partial Fourier codebooks nearly achieving
+the Welch bound equality.
+
+Proof: From (9), the inner product of a pair of distinct code
+vectors is given by
+cH cl2
+l1
+
+e−j
+
+which is used to construct a (63, 8) partial Fourier codebook
+1
+C in Construction 1, where Imax (C) = √1 = √8 .
+K
+
+if l2 − l1 ≡ 0 mod M,
+if l2 − l1 ≡ 0 mod M
+
+0≤l1 =l2 ≤N −1
+
+2k
+
+R = C13 ∪ C21 = {13, 26, 52, 41, 19, 38, 21, 42},
+
+which yields
+Imax (C) =
+
+v=1
+
+Example 1: Let k = 3 and m = 6. Let α be a primitive
+element in F26 , which is a root of primitive polynomial x6 +
+x + 1. Then, cyclotomic cosets modulo 9 partitioning Z+ are
+9
+C1 = {1, 2, 4, 8, 7, 5} and C3 = {3, 6} from which the set
+of nonzero coset leaders is Γ2 (9) = {1, 3}. With u1 = 1,
+(7) becomes αz1 = 1 + α7 = α26 from which z1 = 26.
+Therefore, a cyclotomic coset modulo 63 associated with C1
+is C13 = {13, 26, 52, 41, 19, 38}, where s1 = 13. Similarly,
+with u2 = 3, we have αz2 = 1 + α21 = α42 , so z2 = 42.
+Thus, associated with C3 , C21 = {21, 42}, where s2 = 21.
+Finally, the index set is given by
+
+Theorem 1: In the (N, K) codebook C from Construction 1,
+the magnitude of inner products between cl1 and cl2 , 0 ≤ l1 =
+l2 ≤ N − 1, is two-valued, i.e.,
+cH cl2 =
+l1
+
+2π(dev −v)yM
+N
+
+K 2 − 1, the Welch bound equality is
+≈
+Thus, Imax (C) = √1 of Theorem 1
+K
+nearly achieves the Welch bound equality for large N .
+Lemma 2 shows that one may generate the index set R
+using cyclotomic cosets over F2 . In the following, we show
+an example of how to construct a new partial Fourier codebook
+in Construction 1 through the technique of cyclotomic cosets.
+With N
+
+where 0 ≤ l ≤ N − 1. Then, C = (c0 , c1 , · · · , cN −1 ) is an
+(N, K) partial Fourier codebook with N = K 2 − 1, which is
+also equivalent to a tight frame [3].
+
+1
+K,
+1
+√ ,
+K
+
+ej
+
+2
+−j d
+= 1 with d = 2k + 1. From
+where we used
+v=1 e
+(10) and (11), the proof is completed.
+2
+
+Construction 1: Let R = {rv ≡ dev − v mod N | 1 ≤
+v ≤ 2k } be an index set, where |R| = 2k . Consider a K ×
+N partial Fourier matrix selecting K rows from the N -point
+IDFT matrix, where the selected row indices are from R. With
+the scaling factor √1 , the lth column vector of the partial
+K
+Fourier matrix is given as
+2πr1 l
+N
+
+2k
+
+1
+=
+K
+
+Corollaries 1 and 2 lead us to the main contribution of this
+paper, that is, the construction of a new (N, K) partial Fourier
+codebook with N = K 2 − 1 that nearly achieves the Welch
+bound equality.
+
+exp j
+
+1
+K
+
+1
+=
+K
+
+δ
+=
+Corollary 2: In Lemma 2, |R| =
+i=1 |Csi |
+δ
++
+k
+|Cui | = |Zd | = 2 , which conﬁrms that all the elements
+i=1
+of R are distinct.
+
+1
+cl = √
+K
+
+(10)
+
+2π(dev −v)l
+N
+
+v=1
+
+where l = l2 − l1 = 0. Without loss of generality, we assume
+l1 < l2 and 1 ≤ l ≤ N − 1.
+
+4
+
+Remark 1: In theory and practice, an (N, K) MWBE codebook C (or equiangular tight frame) with N = K 2 is of
+1
+particular interest, where Imax (C) = √K+1 . Xia et al. [19]
+showed that an (N, K) partial Fourier codebook is MWBE if
+and only if cyclic difference sets [18] are used for selecting the
+K rows from the N -point IDFT matrix. In this case, however,
+the parameter N is at most N = K 2 − K + 1 for given K. To
+obtain a codebook with N = K 2 , one may employ a K × K 2
+discrete-chirp matrix [20], or equivalently the Alltop-Garbor
+frame [5][21], which turns out to be a near-optimal codebook
+C achieving Imax (C) = √1 for a prime integer K.
+K
+In addition to the well known codebooks, Construction 1
+presents a new near-optimal (N, K) partial Fourier codebook
+C achieving Imax (C) = √1 , where the parameters are N =
+K
+K 2 − 1 and K = 2k for a positive integer k. We believe
+that the new partial Fourier codebook, equivalent to a nearly
+equiangular tight frame, may be of interest in many research
+ﬁelds, by meeting the Welch bound equality asymptotically
+and providing composite parameters of N and K.
+
+[3] J. Kovaˇ evi´ and A. Chebira, An Introduction to Frames, Foundations
+c c
+and Trends in Signal Processing, vol. 2, no. 1, 2008.
+[4] J. L. Massey and T. Mittelholzer, “Welch’s bound and sequence sets
+for code-division multiple-access systems,” Sequences II: Methods in
+Communication, Security, and Computer Science, R. Capocelli, A. De
+Santis, and U. Vaccaro Eds., pp. 63-78, New York: Springer-Verlag, 1993.
+[5] T. Strohmer and R. Heath, “Grassmannian frames with applications to
+coding and communication,” Appl. Comput. Harmon. Anal., vol. 14, no. 3,
+pp. 257-275, May 2003.
+[6] E. J. Candes and M. B. Wakin, “An introduction to compressive sampling,” IEEE Sig. Proc. Mag., pp. 21-30, Mar. 2008.
+[7] J. M. Renes, R. Blume-Kohout, A. Scot, and C. Caves, “Symmetric informationally complete quantum measurements,” Journal on Mathematical
+Physics, vol. 45, no. 6, pp. 2171-2180, 2004.
+[8] C. Ding, “Complex codebooks from combinatorial designs,” IEEE Trans.
+Inf. Theory, vol. 52, no. 9, pp. 4229-4235, Sep. 2006.
+[9] C. Ding and T. Feng, “Codebooks from almost difference sets,” Des.
+Codes Cryptogr.. vol. 46, pp. 113-126, 2008.
+[10] A. Zhang and K. Feng, “Construction of cyclotomic codebooks nearly
+meeting the Welch bound,” Des. Codes Cryptogr., vol. 63, pp. 209-224,
+2012.
+[11] A. Zhang and K. Feng, “Two classes of codebooks nearly meeting the
+Welch bound,” IEEE Trans. Inf. Theory, vol. 58, no. 4, pp. 2507-2511,
+Apr. 2012.
+[12] N. Y. Yu, “A construction of codebooks associated with binary sequences,” IEEE Trans. Inf. Theory, To appear.
+[13] V. M. Sidelnikov, “Some k-valued pseudo-random sequences and nearly
+equidistant codes,” Probl. Inf. Transm., vol. 5, pp. 12-16, 1969.
+[14] F. J. MacWillams and N. J. A. Sloane, The Theory of Error Correcting
+Codes, Amsterdam, The Netherlands: North Holland, 1986.
+[15] J. F. Dillon and H. Dobbertin, “New cyclic difference sets with Singer
+parameters,” Finite Fields and Their Applications, no. 10, pp. 342-389,
+2004.
+[16] T. Helleseth and P. V. Kumar, “Sequences with low correlation,” A chapter in Handbook of Coding Theory. Edited by V. Pless and C. Huffman.
+Elsevier Science Publishers, 1998.
+[17] S. W. Golomb and G. Gong, Signal Design for Good Correlation
+- for Wireless Communication, Cryptography and Radar. Cambridge
+University Press, 2005.
+[18] L. D. Baumert, Cyclic Difference Sets, Berlin, Springer-Verlag, 1971.
+[19] P. Xia, S. Zhou, and G. B. Giannakis, “Achieving the Welch bound with
+difference sets,” IEEE Trans. Inf. Theory, vol. 51, no. 5, pp. 1900-1907,
+May 2005.
+[20] L. Applebaum, S. D. Howard, S. Searle, and R. Calderbank, “Chirp
+sensing codes: deterministic compressed sensing measurements for fast
+recovery,” Appl. Comput. Harmon. Anal., pp. 283-290, 2009.
+[21] W. Alltop, “Complex sequences with low periodic correlations,” IEEE
+Trans. Inf. Theory, vol. 26, no. 3, pp. 350-354, May 1980.
+[22] N. Y. Yu, K. Feng, and A. Zhang, “A new class of near-optimal partial
+Fourier codebooks from an almost difference set,” submitted to Des.
+Codes Cryptogr., Apr. 2012.
+[23] K. T. Arasu, C. Ding, T. Helleseth, P. V. Kumar, and H. Martinsen,
+“Almost difference sets and their sequences with optimal autocorrelation,”
+IEEE Trans. Inf. Theory, vol. 47, no. 7, pp. 2934-2943, Nov. 2001.
+[24] D. L. Donoho and M. Elad, “Optimally sprse represenation in general
+(nonorthogonal) dictinaries via l1 minimization,” Proc. Natl. Acad. Sci.,
+vol. 100, pp. 2197-2202, Mar. 2003.
+
+Remark 2: The near-optimal partial Fourier codebook in
+Construction 1 has been generalized in [22] for K = pk and
+N = K 2 − 1 for any prime p and a positive integer k. In
+the generalized codebook, the magnitude of inner products
+between distinct code vectors is also two-valued, and its maximum nearly achieves the Welch bound equality. Therefore,
+a larger number of near-optimal codebooks with various K
+and N can be presented by the generalization. In [22], it
+is also shown that the row index set forms a new almost
+difference set [23] for any prime p, and the near-optimality
+of the codebook is established through the almost difference
+set. Moreover, it turns out that each element of the index set is
+obtained by a decimation of an N -ary Sidelnikov sequence [13]
+of length N with decimation factor K − 1. For more details
+on the generalization, see [22].
+IV. C ONCLUSION
+This paper has presented a new near-optimal (N, K) partial
+Fourier codebook C, where N = K 2 − 1 and K = 2k
+for a positive integer k. To determine a set of the selected
+row indices for C, we exploited the spectral decomposition
+of binary m-sequences with the array structure. A theoretical
+study of Fourier transforms showed that the magnitude of inner
+products between distinct code vectors in C is two-valued and
+Imax (C) = √1 nearly achieves the Welch bound equality.
+K
+With the near-optimal Imax (C) and the composite parameters
+of N and K, the new partial Fourier codebook C may ﬁnd
+its potential applications in many research areas, particularly
+in deterministic compressed sensing where a tight frame with
+nearly optimal coherence [24] is required for a sensing matrix.
+R EFERENCES
+[1] L. R. Welch, “Lower bounds on the maximum cross correlation of
+signals,” IEEE Trans. Inf. Theory, vol. IT-20, no. 3, pp. 397-399, May
+1974.
+[2] D. V. Sarwate, “Meeting the Welch bound with equality,” Sequences
+and Their Applications, C. Ding, T. Helleseth, and H. Niederreiter Eds.,
+DMTCS Series, pp. 79-102, Springer-Verlag, 1999.
+
+5
+
+

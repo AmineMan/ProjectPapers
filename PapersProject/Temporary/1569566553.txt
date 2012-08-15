@@ -1,0 +1,1196 @@
+Creator:        TeX
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Wed May 16 15:28:38 2012
+ModDate:        Tue Jun 19 12:55:42 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      1145244 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569566553
+
+On the Capacity of Multi-user Two-way Linear
+Deterministic Channels
+Zhiyu Cheng, Natasha Devroye
+University of Illinois at Chicago
+Email: zcheng3, devroye@uic.edu
+
+said to take place when the next channel input of a node is a
+non-trivial function of that node’s past received signals.
+Contributions. In this paper, we are interested in determining whether similar statements can be made in multi-user
+channels rather than point-to-point channels. One expects this
+not to be true in general. For example, in multi-user Gaussian
+channels one may intuitively expect adaptation to allow for
+correlation between channel inputs which may translate to
+coherent gains. However, as we will see, there exist multiuser channels for which adaptation is useless.
+We introduce three two-way multi-user linear deterministic
+channels useful for approximating Gaussian channels at high
+SNR [3]. Speciﬁcally, we consider the linear deterministic
+two-way a) Multiple Access / Broadcast channel (MAC/BC
+with 4 messages), b) Z channel (6 messages), and c) interference channel (IC, 4 messages). We ask whether adaptation
+may increase the capacity regions beyond that of two parallel
+one-way multi-user channels in the → and ← directions. We
+will show that it does not for the ﬁrst two channel models. For
+the two-way interference channel, we will show that partial
+adaptation where only 2 of the four nodes may adapt, can
+“block” the two-way information ﬂow and destroy the ability
+to relay / cooperate. Under this constraint, we obtain the capacity region which is equal to two non-adaptive interference
+channels. In deriving outer bounds for these channel models,
+we use carefully chosen genies and Markov chain structures.
+Related Work. The ﬁrst of our three channel models is a
+linear deterministic MAC/BC channel. The capacity regions of
+the linear-deterministic one-way MAC and BC channels were
+obtained in [4]. An achievable rate region and an outer bound
+of a similar multi-user (multiple-access and broadcast with
+a common message) half-duplex two-way channel is derived
+in [5], [6] for Gaussian and discrete memoryless channels,
+respectively. The second channel model we consider is the
+two-way linear deterministic Z channel. The capacity region
+of the one-way deterministic Z channel is found in [7].
+The last channel model considered is the two-way linear
+deterministic IC. The capacity region of the one-way modulo
+2 adder IC is known [8] and is a special example of a more
+general class of deterministic IC for which capacity is known
+[9], including the one-way linear deterministic IC [4]. The
+work here is also related to one-way ICs with perfect output
+feedback [10], [11], with rate-limited feedback [12] and with
+noisy, interfering feedback [13]. In all these channel models
+only two messages are present and the backwards feedback
+
+Abstract—In multi-user two-way channels nodes are both
+sources and destinations of messages. This allows for “adaptation” at or “interaction” between the nodes – the next channel
+inputs may be a function of the past received signals at a particular node. How to best adapt is key to two-way communication
+problems, rendering them complex and challenging. However,
+examples exist of channels where adaptation is not beneﬁcial from
+a capacity perspective; it is known that for the point-to-point
+two-way modulo 2 adder and Gaussian channels, adaptation
+does not increase capacity. Recently, it was shown that the twoway modulo-2 additive versions of the multiple-access / broadcast
+(MAC/BC respectively, in the two directions), the Z channel and
+the interference channel also have capacity regions equal to two
+parallel one-way versions of the channels. In this work we show
+that the same is true for the linear deterministic multi-user twoway channels which approximate their Gaussian counterparts at
+high SNR, which include the two-way MAC/BC channel, the twoway Z channel, and the two-way interference channel under some
+adaptation constraints. For all three channel models we obtain
+the capacity region, which is that of two one-way channels in each
+direction, which may be achieved without the use of adaptation.
+
+I. I NTRODUCTION
+In two-way communication, in which two users exchange
+messages over the same shared channel, nodes may be sources
+and destinations of messages. This permits them to adapt their
+channel inputs to their past received signals (which we loosely
+term “interaction” or “adaptation”), as ﬁrst considered in the
+point-to-point two-way channel by Shannon [1]. Shannon’s
+inner and outer bounds [1] are not tight in general, and have
+since been tightened, but a general computable formula for the
+capacity of the two-way channel remains open.
+For point-to-point two-way channels, capacity is known for
+several channel models where the interaction between ones
+own signal and that of the other may be resolved. For example,
+in the two-way modulo 2 binary adder channel where Y1 =
+Y2 = X1 + X2 for binary X1 , X2 and modulo 2 addition, the
+capacity region is one bit per user per channel use, as each
+user is able to “undo” the effect of the other, something that
+is not possible (at least not in one channel use) for the elusive
+binary multiplier channel with Y1 = Y2 = X1 X2 . In the binary
+modulo 2 adder channel, information independently ﬂows in
+the → and the ← “directions” and nodes need not interact to
+achieve capacity. In a similar fashion, the capacity of a twoway Gaussian point-to-point channel is equal to two parallel
+Gaussian channels, which may be achieved without the use of
+adaptation at the nodes [2]. “Adaptation” or “interaction” is
+
+1
+
+links, whether perfect, noisy, or interfering still serve only to
+further rates in the forward direction. The tradeoff between
+sending new information versus feedback on each of the links
+is not addressed; the only other example of such a 4-message
+two-way interference channel besides our prior work [14],
+[15] is in Section VI of [13], where an example of a linear
+deterministic scheme in a speciﬁc regime is provided.
+The two-way versions of the binary modulo 2 MAC/BC,
+Z and IC were ﬁrst considered in [14], where adaptation was
+shown to be useless – time-sharing achieved capacity. Here we
+extend the limited results on multi-user two-way channels to
+the more general class of linear deterministic channel models.
+
+channel). The channel inputs and outputs are binary vectors,
+and all addition will be bit-wise and modulo 2. We furthermore
+let S denote an N × N lower shift matrix, where N will
+be deﬁned for each channel model. In addition, we deﬁne
+njk = log h2 Pj to indicate the number of signal bit levels
+jk
+from transmitter j to receiver k, where hjk is the channel gains
+and Pj denotes the power of the transmitter j. Note that nii
+(the interference caused at a node due to its own transmission)
+exists in our model, though we may just as well have left it
+out given the additive nature of the model; including/leaving it
+out is not WLOG for other channel models such as the binary
+multiplier channel. Note that Receiver k uses a decoding
+n
+function gk : Yk → Mjk to obtain an estimate Mjk of
+the transmitted message Mjk . The capacity region is the
+supremum over all rate tuples which simultaneously drive the
+probability that any of the estimated messages is not equal
+to the true message, to zero as n → ∞. We now proceed to
+deﬁne the channel model for each different channel and obtain
+its capacity region.
+
+II. M ODELS , D EFINITIONS AND N OTATIONS
+We introduce three multi-user two-way linear deterministic
+channels (we drop the “linear deterministic” from now on)
+which are shown in Fig. 1, where we see that all nodes act as
+both transmitters (encoders) and receivers (decoders), and let
+Mjk denote the message from node j to node k:
+• the two-way MAC/BC channel: transmitter 1 and 3 send independent messages M12 and M32 to receiver 2, respectively,
+forming a Multiple Access Channel (MAC) in the → direction.
+Meanwhile, transmitter 2 sends two independent messages
+M21 and M23 to receiver 1 and 3, respectively, forming a
+Broadcast Channel (BC) in the ← direction.
+
+III. T HE C APACITY R EGION OF THE T WO - WAY L INEAR
+D ETERMINISTIC MAC/BC
+The two-way linear deterministic MAC/BC channel is deﬁned by the following input/output equations as in Fig. 1(a).
+All nodes are permitted to adapt, so that at channel use i,
+X1,i = f1 (M12 , Y1i−1 ), X2,i = f2 (M21 , M23 , Y2i−1 ), and
+X3,i = f3 (M32 , Y3i−1 ). In this case, the capacity region maybe
+stated as follows:
+Theorem 1: The capacity region of the two-way linear
+deterministic MAC/BC is the set of non-negative rate tuples
+(R12 , R32 , R21 , R23 ) such that
+
+• the two-way Z channel: transmitter 1 and 4 send messages
+M12 and M43 to receiver 2 and 3 respectively. Transmitter 2
+and 3 send messages (M21 , M23 ) and (M32 , M34 ) to receivers
+1,3 and 2,4 respectively. We thus have two Z channels in
+opposite directions.
+
+• the two-way interference channel: transmitter 1 and 3 send
+messages M12 and M34 to receiver 2 and 4, respectively,
+forming an IC in the → direction. Similarly, transmitter 2 and
+4 send messages M21 and M43 to receiver 1 and 3 respectively,
+forming another IC in the ← direction.
+The channel inputs and outputs of user j ∈ {1, 2, 3, 4}
+at discrete time i are Xj,i and Yj,i . Let Ai
+=
+j
+(Aj,1 , Aj,2 , ..., Aj,i ), for any given time i. A node is said
+to employ adaptation (rather than “feedback” to emphasize
+two-way communications rather than one-way communication
+with “feedback” links. One may equivalently use the term
+“cooperation”, though we feel “adaptation” emphasizes the
+fact that a node can adapt current inputs to past outputs.) if the
+channel input at time i is a function of the previously received
+outputs, Xj,i = fj (Mjk , Yji−1 ), where fj (j ∈ {1, 2, 3, 4}) are
+deterministic functions. If a node behaves in a non-adaptive or
+restricted fashion then its inputs are functions of its messages
+only, i.e. Xj,i = fj (Mjk ). If some nodes adapt while the
+others do not, we refer this as partial adaptation, and will
+specify which nodes adapt.
+The messages Mjk of rate Rjk are uniformly distributed in
+{1, 2, · · · 2nRjk } for j, k in the appropriate sets depending on
+the channel model. At each time step 0 ≤ i ≤ n, for n the
+blocklength, encoder j selects the next input Xj,i (Mjk , Yji−1 )
+(which may also be a function of 2 messages in the Z
+
+MAC →
+BC ←
+
+R12 ≤ n12 , R32 ≤ n32 ,
+R12 + R32 ≤ max(n12 , n32 )
+R21 ≤ n21 , R23 ≤ n23
+R21 + R23 ≤ max(n21 , n23 ).
+
+(1)
+(2)
+
+Proof: Achievability may be argued via [3] by mimicking
+a one-way MAC and one-way BC channel in opposite directions and noting that in this channel model, each user may
+subtract off its own transmitted signal from its received signal.
+We note that for this channel, the bounds may be obtained by
+the cut-set outer bound, but that we derive it in an alternative
+way nonetheless as the technique illustrates how adaptation
+may be taken into account and leads to more general outer
+bounds (for two-way MAC/BC channels), which are omitted.
+n(R12 − ) ≤ I(M12 ; Y2n |M21 , M23 , M32 )
+n
+
+≤
+(a)
+
+≤
+
+≤
+
+2
+
+i=1
+n
+
+i
+[H(Y2,i |Y2i−1 , M21 , M23 , M32 , X2 )]
+
+i=1
+n
+i=1
+
+i
+i
+[H(Y2,i |Y2i−1 , M21 , M23 , M32 , X2 , X3 )]
+
+[H(S N −n12 X1,i )] ≤ n(n12 ),
+
+Node 1
+
+Node 1
+n12
+
+n11
+
+Node 3
+
+n21
+
+Node 2
+
+n32
+
+n11
+
+n22
+
+n23
+
+Node 3
+
+N = max(n11 , n22 , n33 , n12 , n21 , n32 , n23 )
+
+Y2 = S
+
+X1 + S
+
+N−n22
+
+X2 + S
+
+N−n32
+
+n23
+n41
+
+n22
+
+Node 4
+n34
+
+Y3 = S N−n23 X2 + S N−n33 X3 + S N−n43 X4
+
+(b) Two-way linear deterministic Z channel
+
+n43
+n44
+n33
+N = max(n11 , n22 , n33 , n44 , n12 , n21 , n32 , n23 , n14 , n41 , n34 , n43 )
+
+Y1 = S N−n11 X1 + S N−n21 X2 + S N−n41 X4
+Y2 = S N−n12 X1 + S N−n22 X2 + S N−n32 X3
+Y3 = S N−n23 X2 + S N−n33 X3 + S N−n43 X4
+Y4 = S N−n14 X1 + S N−n34 X3 + S N−n44 X4
+(c) Two-way linear deterministic interference channel
+
+Three two-way linear deterministic channel models under consideration.
+
+achievability of the above, we use the achievability scheme
+of [7, Th. 3.1] in each → and ← direction with non-adaptive
+nodes (adaptive may mimic non-adaptive). By making the appropriate correspondences, we see that the above is achievable
+and equivalent to two one-way Z channels.
+Now, we prove the converse. We note that again, all but
+the triple-rate bounds may be obtained by the two-way cutset bound, but that they are left as they illustrate the impact
+of adaptation and how these bounds made be generalized. By
+symmetry, we only show two sum-rate bounds.
+
+i
+where (a) follows from a Markov chain that given M32 , X2 ,
+i
+we have X3 . The other single rate bounds follow similarly.
+
+n(R12 + R32 − ) ≤ I(M12 , M32 ; Y2n |M21 , M23 )
+n
+
+i=1
+
+n14
+n32
+
+Node 3
+
+n34
+
+Y4 = S N−n34 X3 + S N−n44 X4
+
+Fig. 1.
+
+≤
+
+Node 4
+
+Y2 = S N−n12 X1 + S N−n22 X2 + S N−n32 X3
+
+X3
+
+(a) Two-way linear deterministic MAC/BC
+
+i=1
+n
+
+n11
+
+Y1 = S N−n11 X1 + S N−n21 X2
+
+Y3 = S N−n23 X2 + S N−n33 X3 ,
+
+≤
+
+n22
+
+n44
+n33
+N = max(n11 , n22 , n33 , n44 , n12 , n21 , n32 , n23 , n34 , n43 )
+
+Y1 = S N−n11 X1 + S N−n21 X2
+
+Node 2
+n12
+n21
+
+n21
+n23
+n32
+
+Node 1
+
+Node 2
+
+n43
+
+n33
+
+N−n12
+
+n12
+
+i
+[H(Y2,i |Y2i−1 , M21 , M23 , X2 )]
+
+[H(S N −n12 X1,i + S N −n32 X3,i )] ≤ n(max(n12 , n32 )).
+
+We can obtain the other sum-rate bound in a similar way.
+Remark 2: Without adaptation, the channel would correspond to a MAC channel simultaneously transmitting with a
+BC channel with restricted nodes. Since we are able to achieve
+the desired rates in one channel use, adaptation is useless,
+and the capacity region is a four dimensional region that is
+equivalent to the capacity region of the linear deterministic
+MAC and the linear deterministic BC in opposite directions.
+
+n(R32 + R34 − ) ≤ I(M32 , M34 ; Y2n , Y4n |M21 , M23 , M43 , M12 )
+n
+X
+i
+i
+≤
+[H(Y2,i , Y4,i |M21 , M23 , M43 , M12 , Y2i−1 , Y4i−1 , X2 , X4 )]
+(a)
+
+≤
+
+≤
+
+IV. T HE C APACITY R EGION OF THE T WO - WAY L INEAR
+D ETERMINISTIC Z C HANNEL
+
+i=1
+n
+X
+
+i=1
+n
+X
+i=1
+
+i
+i
+i
+[H(Y2,i , Y4,i |M21 , M23 , M43 , M12 , Y2i−1 , Y4i−1 , X2 , X4 , X1 )]
+
+[H(S N −n32 X3,i , S N −n34 X3,i )] ≤ n(max(n32 , n34 )),
+
+i
+where (a) follows from a Markov chain that given M12 , X2 ,
+i
+we have X1 . We also have,
+
+The linear deterministic two-way Z channel is deﬁned by
+the input / output equations in Fig. 1(b). If all nodes employ
+adaptation, then at channel use i, X1,i = f1 (M12 , Y1i−1 ),
+X2,i = f2 (M21 , M23 , Y2i−1 ), X3,i = f3 (M32 , M34 , Y3i−1 ),
+X4,i = f4 (M43 , Y4i−1 ).
+Theorem 3: The capacity region of the two-way linear deterministic Z channel is the set of all rate-tuples
+(R12 , R21 , R23 , R32 , R34 , R43 ) which satisfy the following:
+
+n(R12 + R32 + R34 − ) ≤ I(M12 ; Y2n |M21 , M23 , M43 )
++ I(M32 , M34 ; Y2n |M43 , M12 , M21 , M23 )
++ I(M32 , M34 ; Y4n |M43 , M12 , M21 , M23 , Y2n )
+≤ H(Y2n |M21 , M23 , M43 ) − H(Y2n |M12 , M21 , M23 , M43 )
++ H(Y2n |M12 , M21 , M23 , M43 ) + H(Y4n |M43 , M12 , M21 , M23 , Y2n )
+n
+X
+i
+≤
+[H(Y2,i |Y2i−1 , M21 , M23 , X2 )
+i=1
+
++ H(Y4,i |M12 , M21 , M23 , M43 , Y4i−1 , Y2n )]
+n
+(b) X
+≤
+[H(S N −n12 X1,i + S N −n32 X3,i )
+
+
+ R12 ≤ n12 , R32 ≤ n32 , R34 ≤ n34
+
+
+R12 + R32 ≤ max(n12 , n32 )
+Z →
+
+ R32 + R34 ≤ max(n32 , n34 )
+
+R12 + R32 + R34 ≤ max(n12 , n32 ) + [n34 − n32 ]+
+
+ R43 ≤ n43 , R23 ≤ n23 , R21 ≤ n21
+
+
+R43 + R23 ≤ max(n43 , n23 )
+Z ←
+ R23 + R21 ≤ max(n23 , n21 )
+
+
+R43 + R23 + R21 ≤ max(n43 , n23 ) + [n21 − n23 ]+ .
+
+i=1
+
++ H(S N −n34 X3,i |M12 , M21 , M23 , M43 , Y4i−1 ,
+
+i
+n
+n
+X4 , S N −n12 X1,i + S N −n22 X2,i + S N −n32 X3,i , X2 , X1 )]
+n
+X
+≤
+[H(S N −n12 X1,i + S N −n32 X3,i ) + H(S N −n34 X3,i |
+i=1
+
+S N −n32 X3,i )] ≤ n(max(n12 , n32 ) + [n34 − n32 ]+ ).
+
+Proof: We ﬁrst note that the capacity of a class of
+deterministic Z channels is shown in [7, Th. 3.1]. To show
+
+n
+n
+In (b), given M12 and X2 , we may construct X1 .
+
+3
+
+Remark 4: Again, we are always able to achieve the desired rates in Theorem 3 in only one channel use, therefore
+adaptation is useless. The capacity region of this channel, a
+six dimensional region, is exactly equivalent to the capacity
+region of the two one-way linear deterministic Z channels.
+
+≤
+
+We introduce the genie Y2n in the second mutual information
+term in (a), i.e. we provide asymmetric side information to
+i
+only one receiver. In (b), we add X1 in the entropy term
+n
+i
+because of the iterated argument that, given M12 , X2 , X4 , we
+i
+can construct X1 . For (c), we consider the symmetric case with
+p = n12 = n21 = n34 = n43 , q = n14 = n41 = n23 = n32 .
+Remark 7: We do not need partial adaptation in this bound,
+and so these conclusions actually hold for full adaptation. It
+may further be shown that, assuming symmetry, adaptation is
+useless when two-way interference is strong (α ≥ 1, α = q/p)
+and weak in some interval (2/3 ≤ α ≤ 1, α = q/p).
+Interestingly, when 2/3 ≤ α ≤ 2, the “V” curve is also
+the capacity for the linear deterministic symmetric IC with
+feedback [11]. Adding an asymmetric genie Y4n in the ﬁrst
+term in (a), yields the second sum-rate bound in Fig. 2 (A).
+
+(4)
+
+X3,i = f3 (M34 ), X4,i =
+
+We ﬁrst prove a Lemma regarding partial adaptation, which
+is key in showing that partial adaptation is useless, and that
+the inability of certain nodes to adapt essentially “blocks” the
+ability of adaptation to help at all.
+Lemma 5: Under the partial adaptation conditions in (3) –
+(4), for some deterministic functions f5 and f6 ,
+X2,i = f5 (M12 , M21 , M34 ) ⊥ M43 , ∀i
+
+X4,i = f6 (M43 , M34 , M12 ) ⊥ M21 , ∀i
+
+(5)
+(6)
+
+n
+n(R12 + R34 − ) ≤ I(M12 ; Y2n , S N −n14 X1 , M21 , M43 )
+
+where ⊥ denotes independence.
+Proof: Note that X2,i = f2 (M21 , Y2i−1 ) and Y2i−1 =
+i−1
+i−1
+i−1
+N −n12 i−1
+S
+X1 + S N −n22 X2 + S N −n32 X3 . Since X1
+i−1
+and X3 are functions only of M12 and M34 respectively, we
+may conclude that there exists a function f ∗ such that X2,i =
+i−1
+f ∗ (M21 , M12 , M34 , X2 ). Iterating this argument, and noting
+that X2,1 is only a function of M21 , we obtain the theorem.
+The result for X4,i follows by a similar argument.
+
+n
++ I(M34 ; Y4n , S N −n32 X3 , M21 , M43 )
+
+(d)
+
+n
+n
+= H(Y2n |S N −n14 X1 , M43 , M21 ) + H(S N −n14 X1 |M43 , M21 )
+
+n
+− H(Y2n , S N −n14 X1 |M12 , M21 , M43 )
+
+n
+n
++ H(Y4n |S N −n32 X3 , M43 , M21 ) + H(S N −n32 X3 |M43 , M21 )
+
+n
+− H(Y4n , S N −n32 X3 |M34 , M21 , M43 )
+(e)
+
+n
+= H(Y2n |S N −n14 X1 , M43 , M21 )
+
+Theorem 6: The capacity region of the two-way linear deterministic IC is the set of (R12 , R21 , R34 , R43 ) which satisfy
+the equations in (A) and (B) in Fig. 2.
+Proof: For achievability, we consider the two-way interference channel as two one-way interference channels and
+apply the well-known Han-Kobayashi scheme [16] to achieve
+the inner bound (ignore the ability to adapt). Now we prove
+the converse. Due to space constraints we only focus on the
+sum-rates; single-rates follow as in (1), and using Lemma 5.
+
+n
+n
++ H(S N −n14 X1 |M43 , M21 , M34 ) − H(S N −n32 X3 |M12 , M43 , M21 )
+n
++ H(Y4n |S N −n32 X3 , M43 , M21 )
+
+n
+n
++ H(S N −n32 X3 |M43 , M21 , M12 ) − H(S N −n14 X1 |M43 , M21 , M34 )
+n
+n
+= H(Y2n |S N −n14 X1 , M43 , M21 ) + H(Y4n |S N −n32 X3 , M43 , M21 )
+n
+X
+≤
+[H(S N −n12 X1,i + S N −n32 X3,i |S N −n14 X1,i )
+i=1
+
++ H(S N −n14 X1,i + S N −n34 X4,i |S N −n32 X3,i )]
+
+≤ n(max([n12 − n14 ]+ , n32 ) + max([n34 − n32 ]+ , n14 )),
+
+where (d) follows from the independence of the messages.
+For (e), the 2nd and 5th terms follow since X1 and X3 are
+functions only of M12 and M34 . The 3rd and 6th terms follow
+for the same reason, together with Lemma 5.
+
+n(R12 + R34 − )
+(a)
+
+≤ I(M12 ; Y2n |M21 , M43 ) + I(M34 ; Y4n , Y2n |M12 , M21 , M43 )
+≤ I(M12 ; Y2n |M21 , M43 ) + I(M34 ; Y2n |M21 , M12 , M43 )
++ H(Y4n |M21 , M12 , M43 , Y2n )
+
+n
+n(R21 + R43 − ) ≤ I(M21 ; Y1n , S N −n23 X2 , M12 , M34 )
+
+(b)
+
+= I(M12 ; Y2n |M21 , M43 ) + I(M34 ; Y2n |M21 , M12 , M43 )
+n
+X
+i
+n
+i
++
+[H(S N −n34 X3,i |M21 , M12 , M43 , Y4i−1 , X4 , Y2n , X2 , X1 )]
+≤
+
+n
++ I(M43 ; Y3n , S N −n41 X4 , M12 , M34 )
+(f )
+
+n
+n
+= H(Y1n |S N −n23 X2 , M12 , M34 ) + H(S N −n23 X2 |M12 , M34 )
+
+i=1
+n
+X
+i−1
+
+n
+− H(Y1n , S N −n23 X2 |M12 , M34 , M21 )
+
+i
+[H(Y2,i |Y2i−1 , M21 , X2 ) − H(Y2,i |Y2i−1 , M12 , M21 , M43 )
+
+n
+n
++ H(Y3n |S N −n41 X4 , M12 , M34 ) + H(S N −n41 X4 |M12 , M34 )
+
+n
+− H(Y3n , S N −n41 X4 |M12 , M34 , M43 )
+
++ H(Y2,i |Y2i−1 , M12 , M21 , M43 )
+i
++ H(S N −n34 X3,i |M21 , M12 , M43 , Y4i−1 , X4 ,
+S
+
+N −n12
+
+n
+X1
+
++S
+
+N −n22
+
+n
+X2
+
++S
+
+N −n32
+
+(c)
+
+≤ n(max(n12 , n32 ) + [n34 − n32 ]+ ) = n(max(p, q) + [p − q]+ )
+
+(3)
+
+f4 (M43 , Y4i−1 )
+
+i=1
+
++ H(S N −n34 X3,i |S N −n32 X3,i )]
+
+V. T HE C APACITY R EGION OF THE T WO - WAY L INEAR
+D ETERMINISTIC I NTERFERENCE C HANNEL
+The two-way linear deterministic IC is deﬁned by the input /
+output equations in Fig. 1(c). Now we deﬁne partial adaptation
+(ﬁxed nodes 1 and 3: “restricted nodes”) as:
+X1,i = f1 (M12 ), X2,i = f2 (M21 , Y2i−1 )
+
+n
+X
+[H(S N −n12 X1,i + S N −n32 X3,i )
+
+(g)
+
+n
+n
+= H(Y1n |S N −n23 X2 , M12 , M34 ) + H(S N −n23 X2 |M12 , M34 , M43 )
+
+n
+n
+i
+X3 , X2 , X1 )]
+
+n
+− H(S N −n41 X4 |M12 , M34 , M21 )
+
+4
+
+R12 + R34 ≤ max(n12 , n32 ) + [n34 − n32 ]
+
+R12 + R34 ≤ max(n34 , n14 ) + [n12 − n14 ]+
+
+R12 + R34 ≤ max([n12 − n14 ]+ , n32 ) + max([n34 − n32 ]+ , n14 )
+
+2R12 + R34 ≤ max(n12 , n32 ) + [n12 − n14 ]+ + max([n34 − n32 ]+ , n14 )
+R12 + 2R34 ≤ max(n34 , n14 ) + [n34 − n32 ]+ + max([n12 − n14 ]+ , n32 )
+R12 ≤ n12 , R34 ≤ n34 ,
+
+R12 + R34 ≤ max(n12 , n32 ) + [n34 − n32 ]
+
+R21 ≤ n21 , R43 ≤ n43
+(16)
+
+R21 + R43 ≤ max(n21 , n41 ) + [n43 − n41 ]+
+
++
+
+R21 + R43 ≤ max(n43 , n23 ) + [n21 − n23 ]+
+
+R12 + R34 ≤ max(n34 , n14 ) + [n12 − n14 ]+
+
+R12 + R34 ≤ max([n12 − n14 ]+ , n32 ) + max([n34 − n32 ]+ , n14 )
++
+
++
+
++
+
++
+
+2R12 + R34 ≤ max(n12 , n32 ) + [n12 − n14 ] + max([n34 − n32 ] , n14 )
+R12 + 2R34 ≤ max(n34 , n14 ) + [n34 − n32 ] + max([n12 − n14 ] , n32 )
+
+(A) IC in → direction
+
+R21 + R43 ≤ max([n21 − n23 ]+ , n41 ) + max([n43 − n41 ]+ , n23 )
+
+2R21 + R43 ≤ max(n21 , n41 ) + [n21 − n23 ]+ + max([n43 − n41 ]+ , n23 )
+R21 + 2R43 ≤ max(n43 , n23 ) + [n43 − n41 ]+ + max([n21 − n23 ]+ , n41 )
+(17)
+
+(B) IC in ← direction
+(18)
+
+R21 ≤ n21 , R43 ≤ n43
+
+R21 + R43 ≤ max(n21 ,Fig. ) + [n43 − n41 ]+
+n41 2. Capacity region of two-way linear deterministic interference channel with partial adaptation.
+(19)
+M12
+Proof of bound (??):
+R21 + R43 ≤ max(n43 , n23 ) + [n21 − n23 ]+
+(20)
++
+
+R21 + R43 ≤ max([n21 − n23 ] , n41 ) + max([n43 − n+ ]+34 − )
+(21)
+n(R12 41 R , n23 ￿)
+n
+N −n41
+n
+N −n41
+n
++
++
+(a) 4
+34
+12
+34
+21
+2R21 3 R43 ≤ max(n21 ,1241 ) + [n21 − n23 ] + max([n43 − n41 ] , n23 )
++
+n
+(22)
+4
+≤ I(M12 ; Y2n |M21 , M43 ) + I(M34 ; Y4n , Y2n |M12 , M21 , M43 )
+n
+N −n23
+R21 + 2R43 ≤ 2
+max(n43 , n23 ) + 43 43 − n41 ]+ + max([n21 −n 23 ]+ , n41 )
+[n
+n
+(23)
+n 12
+12
+34
+= I(M12 ; Y2 |M21 , M43 ) + I(M34 ; Y2 |M21 , M12 , M43 )
+n
+n
+n
++
+N −n21
+N −n41
+N −n23 I(M34 ; Y4 |M21 , M12 , M43 , Y2 )
+2,i
+4,i
+2,i
+≤ I(M12 ; Y2n |M21 , M43 ) + I(M34 ; Y2n |M21 , M12 , M43 )
+i=1
+ONCLUSION
++ H(Y4n |M21 , M12 , M43 ,X2n )
+Y
+N −n43
+N −n23
+N −n41
+Y1,2 ...... X1,i
+X1,1
+Y1,1
+M124,i
+1,2
+4,i
+2,i
+= I(M12 ; Y2n |M21 , M43 ) + I(M34 ; Y2n |M21 , M12 , M43 )
++
++
+21
+23
+41
+43
+41X 23
+nX
+X2,2
+M12
+M12 ......
+2,1
+4 − ￿)
++
+[H(S N −n12 X1,i + S N −n34 X3,i + S N −n44 X4,i |
+i=1 4,1
+......
+X
+X4,2
+Y2n |M21 , M43 ) + I(M34 ; Y4n , Y2n |M12 , M21 , M43 )
+i
+n
+n
+n
+M21 , M12 , M43 , Y4i−1 , X4 , Y2n , X2 )]
+2 |M21 , M43 ) + I(M34 ; Y2 |M21 , M12 , M43 )
+
++ H(Y |S
+
+Y1,1
+
+X1,2
+
+Y
+
+X2,1
+
+M12
+
+X2,2
+
+M
+
+X |M , M , M ) the partial adaptation assumption, as node 3 could not adapt
+
+X , M , M ) + H(S
+
+X |M , M , M )
+− H(S
+X
+≤
+[H(S
+X +S
+X
+
+X1,1
+
+|S
+
+X
+
+X
+
+)
+
+VI. C
+We obtained the capacity regions of the two-way linear
+≤ n(max([n − n ] , n ) + max([n − n ] , n )),
+deterministic MAC/BC channel, the two-way linear deterministic Z channel, both with full adaptation, and the two-way
+where (f) follows from the independence of the messages. linear deterministic IC, with partial adaptation. Interestingly,
+n
+n
+(b)
+1. The
+chain
+Equation (g) follows from partial adaptation and 12 ; Fig. |M21 , MMarkovI(M34 ; Y2nis 21 , Mneeded) to attain the capacity regions even
+4 |M21 , M12 , M43 , Y2 )
+= I(M Lemma 5. 43 ) adaptation |M not 12 , M43
+Y2n
++
+n
+n
+Remark 8: , M the 43 )
+were restricted though it is permitted, demonstrating multi-user examples of
+|M21 , M43 ) + I(M34 ; Y2n |M21In 12 , Mabove, nodes 1 and 3X
+2
+i−1
+i
+n
+n
+i
+n
++
+[H(S N −n34 X3,i
+two-way channels , Y2 , X , X1 )]
+(needed for Lemma 5). By symmetry, we may obtain the same|M21 , M12 , M43 , Y4 , X4where 2adaptation or interaction is useless.
+21 , M12 , M43 , Y2 )
+i=1
+n
+n
+result if 2 |M21 M12 , M43 were restricted. Finally,
+2 |M21 , M43 ) + I(M34 ; Ynodes , 2 and 4 )
+n
+R EFERENCES
+X
+
+nd (??):
+
++ H(S
+
+X
+
++S
+
+X
+
+|S
+
+X
+
+X
+
+4,2
+to carry M . However, it should be pointed out4,1
+that this is
+not necessary in general: adaptation in the two-way modulo 2 Markov chain
+Fig. 1. The
+adder IC is useless [14], but the path is not blocked.
+
+)]
+
+i
+[H(Y2,i |Y2i−1 , M21 , X2 ) − H(Y2,i |Y2i−1 , M12 , M21 , M43 )
+[1] C. E. Shannon, “Two-way communications channels,” in 4th Berkeley
+Symp. Math. Stat. Prob., Chicago, IL,n23 = n32 .pp. 611–644.
+Jun. 1961,
+n(2R12 + R34 − )
++ H(Y2,i |Y2i−1 , M12 , M21 , M43 )Han, “A general coding scheme for the two-way channel,” IEEE
+i
+n
+[2] T.
+M43 , Y4i−1 , X4 ,≤2n , X212 ; Y n |M21 , M43 ) + I(M12 ; Y n , Y n |M21 , M43−n3434 )
+Y I(M )]
+i
+2
+2
+4
+Trans. Inf. Theory, vol. IT-30, pp. 35–44, Jan. 1984.
++ H(S N , M X3,i |M21 , M12 , M43 , Y4i−1 , X4 ,
+n
+Y2n |M21 , M43 ) + I(M3434 ;2n |M,21 ,N −n, M43 ), M21 , M43 )
+N −n12
+n
+N −n22
+n[3] A.−n32
+N Avestimehr, S. Diggavi, and D. Tse, “Wireless network information
+n
+n
+i
++ I(M ; Y Y4n S M12 32 X3
+S
+X1 + S
+X2 + S
+X3 , X2 , X1 )]
+ﬂow: a deterministic approach,” Information Theory, IEEE Transactions
+n
+(h)
+n
+n
+N −n34
+i−1
+i
+n
+n
+i
+X
+on, vol. 57, no. 4, pp. 1872–1905, 2011.
+X3,i |M21 ,= 12 , M2 , Y421 ,,M4 , Y2− X2 , X1|M21 , M43 , M12 )
+M H(Y43 |M
+X 43 ) , H(Y2 )]
+32
+≤
+[H(S N −n12 X1,i + S N −nG.X3,i )
+[4]
+Bresler and D. Tse, “The two-user Remark 8: This bound is tight for the tw
+gaussian interference channel:
+n
+n
+n
+i=1
++ H(Y4 |M21 , M43 , M34 ) + H(Y2 |M21 , M43 , M34 , Y4 )
+A deterministic view,” European Transactions in symmetric interference channel
+terministic Telecommunications,
+N −n34
+N −n32
+i−1
+i
+i−1
+n
+n
++ H(S
+X3,i |S
+X3,i )] 19, pp. 333–354, Apr. 2008.
+vol.
+, M21 , X2 )H(Y4 ,2,iN −n32 M12|M21 , M43 ))
+2,i |Y2
++ − H(Y S |Y2 , X3 , M21 , M43
+2, α = m/n. In other words, adaptation is
+[5] ]D. Dash and A. Sabharwal, “An outer bound for a multiuser two-way
+≤ max(n12 , n32 ) + [n34 − n32 +
+n
+N −n32
+n
+two-way interference is strong (1 ≤ α ≤
+n)
+− H(Y4 , S
+X3 |M34 , M21 , M43 23 = n32 .
+i−1
+channel,” in Proc. Allerton, Monticello, Sep. 2010.
+Y2 , M12 , M21 , M43 )
+(c)
+some “An achievable rate ≤ 1).
+= max(n, m) + [n − m]+ [6] D. Dash, A. Khoshnevis, and A. Sabharwal, interval (2/3 ≤ αregion We do not
+(i)
+n
+i
+34
+= H(Y2n |M X, M
+X3,i |M21 , M12 , M43 , Y4i−1 , 21 4 , 43 ) − H(Y2 |M21 , M43 , M12 )
+of partial Proc. Asilomar Conf.
+for a multiuser half-duplex two-way channel,” inadaptation in this bound, instead,
+n
+n
+n
+n
+Signals, Systems and Computers, Paciﬁc Grove, Oct. 2006, by symmetry, we can pro
+adaptation. Thus, pp. 707–711.
++ S N −n22 X2 + H(S N −n32,X3 |M1 )], M21 , M12 )
++ S N −n32 X3 Xn , X i
+2
+43
+[7] the second S. A. Jafar, and S. Vishwanath, another asymmetric a
+We introduce a genie Y2n in V. Cadambe, mutual information we add“The capacity region of genie Y4n in the
+n
+N −n32
+n
+n
+N −n12
++ H(Y4 |S
+X3 , M43 , M21 ) + H(Y4 |M21 , M43 , M34 )
+class of deterministic Z channels,” in Proc. of ISIT, Seoul, 2009.
+X1,i + S N −n32 X3,i )
+term This bound tight we provide asymmetricde- infor- then we have bound (??). Again, bound (
+Remark n in (a), whichismeans for the El Gamal and Y.-H. Kim, “Lecture notes on network information
+8:
+two-way linear side
+n
+N −n32
+n
+n [8] A.
+− H(Y4 , S
+X3 |M34 , M21 , M43 ) + H(Y2symmetric interference channel whenarXiv:1001.3404v4, 2010. symmetry. Intuitively, full adaptation is use
+mation to M43 M receiver. (b), we 2/3 i α ≤
+terministic |M21 , only ,one34 , Y4 ) Intheory,” inadd X1 in the entropy
+≤
+n34
+N −n32
+X3,i |S
+XX
+n
+3,i )]
+term due to a words, chain in A. El useless and M.H.M. given is capacity region an class of
+[9] Fig. Gamal shows that
+2, α = m/n.−n14other Markov adaptation is 1, whichwhen the Costa, “The because we addof a asymmetric genie to
+N −n12
+N −n32
+N Inn
++
+i
+i
+≤
+X1,i + S
+X3,i ) + H(S12 , X2 ,X1,i, is strong (1 1≤ We ≤ 2) and weak in channels,” IEEE Trans. Inf.in the nodes 28, not full coo
+, n32 ) + [n34 − n32 ] [H(S
+X4
+two-wayM
+interference we know X . deterministic interference case in which results Theory, vol. can
+α consider symmetric
+i=1
++
+(c), where n = n12 1). n21 = n34 2,use 43 , m = n14 = n41 = other.
+= We do no. =pp. the deﬁnition 1982.
+some interval N −n ≤ α ≤
+(2/3
+not n 343–346, Mar.
+m) + [n − m]
+N
+[10] A. Sahai, V. Aggarwal, M. Yuksel, and A. Sabharwal, “On channel
+14
++ S N −n34 X3,i |S N −n32 X3,i ) + H(Sof −n12 X1,i |S
+partial adaptation X1,i )] bound, instead, we consider full
+in this
+output feedback in deterministic interference channels,” 2009. [Online].
+adaptation. Thus, − symmetry,
+Available: http://arxiv.org/abs/0905.2392
+= n(max(n12 , n32 ) + max([n34 − n32 ]+ , n14 ) + [n12by n14 ]+ ), we can prove bound (19). If
+Y4n C. Suh and D. Tse, “Feedback capacity of the gaussian interference
+uce a genie Y2n in the second mutual information we add another asymmetric genie [11] in the ﬁrst term in (a),
+channel to within bits,”
+where (h) follows from infor- then we have the messages,
+which means we provide asymmetric side the independence of bound (??). Again, bound (20) follows2from IEEE Trans. Inf. Theory, vol. 57, no. 5, pp.
+2667–2685,
+i
+ly one receiver. In (i) fromadd X1 in the entropy symmetry. Intuitively, full adaptation is useless inMay 2011.
+and (b), we the deﬁnition of partial adaptation and Lemma 5. [12] A. Vahid and this bound
+A. S. Avestimehr, “The two-user deterministic interference
+a Markov chain in may 1, which shows that given is because we add an asymmetric genie to only one receiver, feedback,” arXiv:1004.5132v1, 2010.
+We Fig. similarly prove the other bounds of this form.
+channel with rate-limited
+i
+i
+We consider symmetric case in which results in the nodes can [13] C. Suh, I. with and
+4 , we know X1 . Remark 9: We again see that, under partial adaptation con- not full cooperate Wang, each D. Tse, “Two-way interference channels,”
+arXiv:1202.5014v1, 2012.
+= n12 = n21 = n34 = n43 , m = n14 = n41 = other.
+straints, adaptation is useless and we obtain the capacity of [14] Z. Cheng and N. Devroye, “Multi-user two-way deterministic modulo 2
+two one-way ICs. Essentially, this partial adaptation prevented
+adder channels: When adaptation is useless,” in Proc. Allerton, 2011.
+messages being relayed by other messages (which was also [15] ——, “An outer bound region for the parallel two-way channel with
+interference,” in Proc. CISS, Mar. 2011.
+impossible in the MAC/BC and Z channels). For example, [16] T. Han and K. Kobayashi, “A new achievable rate region for the
+under full adaptation, message M12 may be relayed from Tx1
+interference channel,” IEEE Trans. Inf. Theory, vol. IT-27, no. 1, pp.
+49–60, 1981.
+to Rx 2 through nodes 3 and 4. This path is “blocked” by
+
+N −n12
+
+X1,i + S N −n34 X3,i + S N −n44 X4,i |
+
+≤
+
+i−1
+
+5
+
+

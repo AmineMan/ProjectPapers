@@ -1,0 +1,671 @@
+Creator:         TeX output 2012.05.15:1710
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Tue May 15 17:10:58 2012
+ModDate:        Tue Jun 19 12:54:07 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      253449 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569566875
+
+A Compression Algorithm Using Mis-aligned
+Side-information
+1
+
+Nan Ma, Kannan Ramchandran and David Tse
+Wireless Foundations, Dept. of Electrical Engineering and Computer Sciences
+University of California at Berkeley
+
+Abstract—We study the problem of compressing a source
+sequence in the presence of side-information that is related to the
+source via insertions, deletions and substitutions. We propose a
+simple algorithm to compress the source sequence when the sideinformation is present at both the encoder and decoder. A key
+attribute of the algorithm is that it encodes the edits contained
+in runs of diﬀerent extents separately. For small insertion and
+deletion probabilities, the compression rate of the algorithm is
+shown to be asymptotically optimal.
+
+X
+
+- Insertions, deletions
+substitutions
+
+-Y
+r
+
+?
+?
+Encoder
+
+Rop
+Fig. 1.
+
+I. Introduction
+In [1], we have studied the problem of compressing a source
+sequence with the help of mis-aligned decoder-only sideinformation, where the source and side-information are the
+input and output of a deletion channel, respectively. The minimum rate is shown to correspond to the amount of information
+in the deleted content plus the locations of the deletions, minus
+the uncertainty in the locations given the source and sideinformation. We refer to the latter as “nature’s secret”. This
+is the information that the encoder and decoder can never
+ﬁnd out. It represents the over-counting of information in the
+locations of the deletions. For example, if the input and output
+of a deletion channel and are (0, 0) and (0), the encoder and
+decoder will never know and never need to know whether the
+ﬁrst or the second bit is deleted. An interesting question is:
+how to construct a practical compression algorithm with the
+optimal compression rate, where the encoded bits do not reveal
+“nature’s secret”? In this paper we provide such a construction
+for a simpler problem where the side-information is available
+at both the encoder and decoder. Although the availability of
+the side-information is changed, the minimum rate remains the
+same.
+In this paper, we study the problem of compressing a source
+sequence, X, with the help of side-information, Y, which
+is available at both the encoder and the decoder. The sideinformation is related to the source via insertions, deletions
+and substitutions. See Figure 1 for an illustration of the
+system. The objective of this work is to construct an encoding/decoding algorithm to achieve the optimal compression
+rate deﬁned as the minimum number of encoded bits per
+source bit.
+
+?
+- Decoder
+
+- X
+
+Structure of the system
+
+Here is an example of the source and side-information:
+X
+Y
+
+= (0, 0, 1, 1, 0, 1)
+= (0, 1, 0, 0, 1, 1)
+
+In order to compare these two sequences, we can insert
+some gaps, which are denoted by ‘−’, to align them as follows.
+X∗
+
+=
+
+(0, 0, 1, 1, 0, 1, −)
+
+∗
+
+=
+
+(0, −, 1, 0, 0, 1, 1)
+
+Y
+
+This alignment explains the X with respect to Y with an
+insertion, a substitution and a deletion: X2 is inserted between
+Y1 and Y2 ; X4 substitutes Y3 ; Y6 is deleted. The encoder needs
+to describe the above editing information using the minimum
+number of bits.
+The problem of synchronizing edited sequences has been
+studied by [2]–[4] assuming the number of edits is a constant
+that does not increase with the length of the sequence. Upper
+and lower bounds on the minimum number of encoded bits
+were provided as functions of the number of edits and the
+length of the sequence. In [5], an interactive, low-complexity
+and asymptotically optimal scheme was proposed. In comparison, in this paper, we consider the case that a fraction of source
+bits, rather than a constant number of bits, is edited, which
+makes the problem more general. There are also practical
+synchronization algorithms. such as RSYNC [6] for generic
+ﬁles and VSYNC [7], which targets video applications. In the
+special case when the source and the side-information diﬀer
+only by substitutions (side-information is aligned), a universal
+compression algorithm has been proposed by [8].
+In this paper, we propose a simple compression algorithm,
+for which the compression rate is asymptotically optimal
+when the editing probability is small. The key ideas are:
+(1) describing the locations of insertions and deletions by
+
+1 This material is based upon work supported by the US National Science
+Foundation (NSF) under grants 23287 and 30149 and by a gift from
+Qualcomm Inc.. Any opinions, ﬁndings, and conclusions or recommendations
+expressed in this material are those of the authors and do not necessarily reﬂect
+the views of the NSF.
+
+1
+
+specifying the runs2 of side-information in which they appear,
+and (2) separately encoding the edits that appears in runs of
+diﬀerent extents. To explain idea (1), consider the example
+where the side-information is Y = (0, 0, 1, 0) and the source
+is X = (0, 1, 0). Neither the encoder nor the decoder knows
+whether the ﬁrst bit or the second bit is deleted. Therefore the
+encoder needs to describe the location of the deletion only up
+to a run, which consists of the ﬁrst two bits in this example, but
+not further. To explain idea (2), consider the example where the
+side-information Y = (0, 0, 1, 0) and the source is X = (0, 1).
+These sequences can be explained by two deletions, in the ﬁrst
+run and the third run of Y, respectively. If the deletion process
+is memoryless and stationary, the longer ﬁrst run is more likely
+to contain a deletion than the shorter third run. Therefore
+the two deletion events should be encoded separately, using
+entropy coders with diﬀerent target distributions, or using a
+universal entropy coder.
+Our compression algorithm can ﬁnd applications in a number of settings, for example, to compress genomic sequences,
+as in [9].3 The diﬀerence between the genomic sequences from
+two individuals of the same species is a small fraction of a
+whole sequence, and is in the form of insertions, deletions and
+substitutions. If one of the genomic sequences can be used as
+side-information, the algorithm can be used to compress the
+other sequence. The algorithm can also be used in distributed
+ﬁle backup or ﬁle sharing systems, where diﬀerent source
+nodes have diﬀerent versions of the same ﬁle diﬀering by
+a small number of edits including insertions, deletions and
+substitutions. Here, an old version can be used as sideinformation that is mis-aligned to the new version of the same
+ﬁle.
+The rest of this paper is organized as follows. In Section II
+we formally setup the problem. In Section III we consider
+a simple case where the source sequence is obtained from
+side-information by pure deletion. We present the algorithm
+and analyze the performance. In Section IV we present the
+algorithm in the general setup. All the proofs are provided in
+[10] due to the page limit.
+Notation: Symbols in boldface represent sequences or matrices, and the symbols in non-boldface represent scalars. The
+binary entropy function is denoted by h2 (·). The notation
+{0, 1}n denotes the n-fold Cartesian product of {0, 1}, and {0, 1}∗
+(∪
+)
+k ∪
+denotes
+{∅}.
+k∈Z+ {0, 1}
+
+We will then make deletions in ZX and ZY to construct X
+and Y, respectively. Let the deletion pattern DX be a lengthn sequence ∼ iid Bernoulli(dX ), which is independent of ZX
+and ZY . The deleted sequence X ∈ {0, 1}∗ is a subsequence of
+ZX , which is derived from ZX by deleting all those ZX,i ’s with
+DX,i = 1. Similarly, the deletion pattern DY ∼ iid Bernoulli(dY )
+describes the deletion process from ZY to Y.
+Since the editing process from ZX to X is a deletion process,
+the inverse process from X to ZX can be regarded as an
+insertion process. Therefore from X to Y there are insertions
+(from X to ZX ), substitutions (from ZY to ZY ) and deletions
+(from ZY to Y).
+Both sequences X and Y are available to the encoder and
+Y is available only to the decoder as side-information. All the
+other sequences, ZX , ZY , DX , and DY are available to neither
+the encoder nor the decoder. The encoder encodes X in the
+presence of Y and sends a bit string of variable length to the
+decoder so that the decoder can reproduce X without any error.
+The sequences X and Y are called the source sequence and
+the side-information, respectively. Please see Fig. 2 for the
+structure of the system together with the source model.
+Source model
+- BSC(q)
+
+ZX
+?
+Deletion(dX )
+
+?
+Deletion(dY )
+
+?
+X
+?
+?
+Encoder
+Fig. 2.
+
+- ZY
+
+?
+Y
+Rop
+
+r
+?
+- Decoder
+
+- X
+
+Structure of the system with the source model
+
+The performance of the encoder and the decoder is measured by the expected operational rate, which is deﬁned as
+Rop := limn→∞ E[L M /LY ], where L M is the length of encoded
+bit string, and LY is the length of Y.
+If there is no computational constraint, the generally optimal
+approach for this conditional compression problem is to enumerate all possible source sequences x’s for each realization
+of the side-information sequence y and compute pX|Y (x|y), and
+then construct a Huﬀman code to encode the x’s. However, the
+complexity is exponential in n and hence impractical in most
+applications. The objective of this work is to ﬁnd a practical
+encoder and decoder which minimize the expected operational
+rate.
+
+II. Problem Setup
+We will deﬁne two sequences X and Y, which diﬀer by
+insertions, deletions, and substitutions.
+First, consider an auxiliary length-n sequence ZX =
+(ZX,1 , . . . , ZX,n ) ∈ {0, 1}n ∼ iid Bernoulli(p), where p ∈ (0, 1).
+Pass ZX through a binary symmetric channel with crossover
+probability q to get ZY .
+
+III. Algorithm for the Pure Deletion Case
+In order to provide a clear presentation of our algorithm,
+we start by considering a special case of the general problem, where the source sequence X is derived from the sideinformation Y only by deletion, but not substitution or in-
+
+2A
+
+run is the maximal length sequence of a repeated symbol. The extent,
+or length, of a run is the number of times the symbol repeats.
+3 We would like to thank Dr. Tsachy Weissman for introducing us to this
+application.
+
+2
+
+sertion. Formally speaking, q = 0 and dY = 0, which imply
+ZX = ZY = Y. For the sake of simplicity, in this section, we
+drop the subscript X in dX and DX and denote them as d and
+D, respectively.
+
+Stage 1): The greedy alignment algorithm aligns X and Y
+and generates D as follows.
+Y =
+∗
+
+X =
+D =
+
+A. Algorithm for pure deletion
+The encoder has the following three stages.
+1) Alignment: In this stage we insert some gaps in X
+to get X∗ , which has the same length as Y. The following greedy alignment algorithm described in [11,
+Section 3.1] is used.
+Read X and Y from left to right. Take the ﬁrst bit of
+X, and match it with the leftmost appearance of this
+bit in Y; then take the second bit of X, and match it
+with the subsequent leftmost appearance of this bit in
+Y; and so on. All the bits in Y that are not matched
+with bits from X are matched with gaps denoted by ‘−’.
+Let X∗ be the aligned version of X with gaps inserted.
+The alignment implies a reconstructed deletion pattern
+D, which can explain the deletion process from Y to X,
+but is in general diﬀerent from D.
+2) Describing the deletions with respect to runs:
+Let the maximum extent of the runs in Y be Lmax . For
+IID sequence Y, E[Lmax ] = Θ(log n) [12].
+The encoder performs the following:
+• For l = 1, . . . , Lmax , do:
+– Compute Ul , the number of runs of extent l in Y.
+– For i = 1, . . . , Ul , compute Vl,i , the number of
+deletions in the i-th run of extent l in Y according
+to D.
+3) Entropy coding: For each l = 1, . . . , Lmax , compress the
+sequence {Vl,i }Ul using an entropy coder. Note that Vl,i
+i=1
+with l = 1, . . . , Lmax have diﬀerent distributions.
+The encoded string generated by the encoder is the output
+of the entropy coder in stage 3).
+The decoder has the following two stages.
+1) Entropy decoder: Reconstruct {Vi,l }Ul for each l.
+i=1
+2) Locate deletions up to runs: For each l and each i, ﬁnd
+the i-th run of extent l in Y, and delete Vi,l bits in that
+run. The outcome is the reconstruction of X.
+Since the total number of entries in {Vi,l } is the total number
+of runs in Y, which is no larger than n, the size of memory
+the algorithm takes is O(n). Since the greedy alignment,
+the generation and coding of {Vi,l } take O(n) operations, the
+algorithm takes O(n) operations.
+
+(1, 0, 1, 1, 0, 0, 0, 1, 0, 1, 1)
+(−, 0, 1, −, 0, 0, −, 1, 0, 1, −)
+(1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1).
+
+Stage 2): The maximum extent of the runs in Y is Lmax = 3.
+There are U1 = 4 runs of extent 1, U2 = 2 runs of extent 2,
+and U3 = 1 run of extent 3. For the four extent-1 runs, ‘1’,
+‘0’, ‘1’ and ‘0’, only the ﬁrst one is deleted according to D,
+therefore we have
+(V1,1 , V1,2 , V1,3 , V1,4 ) = (1, 0, 0, 0).
+For the two extent-2 runs, ‘1, 1’ and ‘1, 1’, there is a deletion
+in each of them. Therefore we have
+(V2,1 , V2,2 ) = (1, 1).
+For the only extent-3 run, ‘0, 0, 0’, there is a deletion in it.
+Therefore we have
+(V3,1 ) = (1).
+Stage
+3):
+The
+entropy
+encoder
+compresses
+((V1,1 , V1,2 , V1,3 , V1,4 ), (V2,1 , V2,2 ), (V3,1 ))
+=
+((1, 0, 0, 0), (1, 1), (1)).
+Note
+that
+each
+entry
+in
+(V1,1 , V1,2 , V1,3 , V1,4 ) is more likely to be 0 than (V2,1 , V2,2 ) and
+(V3,1 ). Therefore we should use entropy encoder with diﬀerent
+target distributions to encode them, when the sequences are
+long.
+On the decoder side:
+Stage
+1):
+The
+entropy
+decoder
+reconstructs
+((V1,1 , V1,2 , V1,3 , V1,4 ), (V2,1 , V2,2 ), (V3,1 ))
+=
+((1, 0, 0, 0), (1, 1), (1)).
+Stage 2): Since (V1,1 , V1,2 , V1,3 , V1,4 ) = (1, 0, 0, 0), the decoder deletes the ﬁrst run of extent-1, i.e., the ﬁrst bit. Since
+(V2,1 , V2,2 ) = (1, 1), the decoder deletes a bit from each of the
+two runs of extent-2. It does not matter which bit to delete in
+each run. Since (V3,1 ) = (1), the decoder deletes a bit in the
+only extent-3 run. The deletions are represented by D and the
+reconstruction of the source sequence is denoted by X.
+Y =
+D =
+
+(1, 0, 1, 1, 0, 0, 0, 1, 0, 1, 1)
+(1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+
+X =
+
+(0, 1, 0, 0, 1, 0, 1).
+
+Since X = X, the reconstruction is correct.
+C. Performance of the algorithm
+
+B. Example
+
+Lmax
+Lmax ,U
+Let U := {Ul }l=1 and V := {Vl,i }l=1,i=1l . In the limit as
+the lengths of the sequences tends to inﬁnity, the operational
+rate of this algorithm is Rop = limn→∞ H(V)/n. The optimal
+rate is limn→∞ H(X|Y)/n. When the probability of deletion d
+is small, the following theorem shows that the algorithm is
+asymptotically optimal.
+Theorem 1: The gap between the operational rate of the
+algorithm described in Section III-A and the optimal rate
+
+Let the side-information, the hidden deletion pattern, and
+the source sequence be as follows for example:
+Y
+
+=
+
+(1, 0, 1, 1, 0, 0, 0, 1, 0, 1, 1)
+
+D
+X
+
+=
+=
+
+(1, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0)
+(0, 1, 0, 0, 1, 0, 1).
+
+On the encoder side:
+
+3
+
+TABLE I
+
+satisﬁes: limn→∞ [H(V)/n − H(X|Y)/n] = O(d2−ϵ ), for any
+ϵ > 0.
+The proof is provided in [10, Appendix 1], which can
+be intuitively explained as follows. When d is small, the
+deletions are typically far away from each other. Therefore
+the intervals between the deletions are so long that can be
+used to synchronize segments of X to segments of Y. As a
+result, the deletions can be located within the correct runs with
+high probability. The exact positions of the deletions within the
+runs are impossible to ﬁnd based on only X and Y. Since the
+goal is to reconstruct X, describing the positions within runs
+is unnecessary. Moreover, the description of the locations of
+the deletions, V, is almost independent of the decoder sideinformation Y. Therefore sending V is approximately optimal
+in terms of rate. See Section III-D-2 for more discussions
+about the independence between V and Y. The deletions
+cannot be located within the correct runs only if two or more
+deletions are in the same run or adjacent runs, which occurs
+with the probability in the order of O(d2 ). This event aﬀects the
+performance of the algorithm when d is not small. Therefore
+the gap between the operational rate and the optimum is in
+the order of O(d2−ϵ ).
+Remark 1: In [1], we have shown that when p = 1/2, for
+any ϵ > 0, limn→∞ H(X|Y)/n = h2 (d)−cd+O(d2−ϵ ), where c :=
+∑∞ −l−1
+l log2 l ≈ 1.29.4 It captures the asymptotic expansion
+l=1 2
+of the optimal rate to the precision of Θ(d) with a remainder
+term O(d2−ϵ ). Due to Theorem 1, Rop = h2 (d) − cd + O(d2−ϵ ),
+which also matches the optimal rate to the precision of Θ(d).
+Remark 2: In [1], we have shown that limn→∞ H(X|Y)/n is
+also the minimum rate when the side-information is only available available at the decoder but not the encoder. Although the
+minimum rate is the same, constructing an explicit algorithm
+to implement the distributed compression at the asymptotically
+optimal rate remains an open problem.
+
+Performance of compression algorithms for n = 1000kb, d = 0.01.
+p
+0.5
+0.1
+
+No SI
+990kb
+469kb
+
+Sec. III-D-1
+81kb
+81kb
+
+Sec. III-D-2
+71kb
+63kb
+
+Sec. III-A
+68kb
+46kb
+
+in the same order of magnitude. Therefore the gap may not
+be negligible in practice.
+The above strategy is suboptimal because D speciﬁes the
+exact positions of the deletions. Note that after specifying the
+runs that contain the deletions and specifying the number of
+deletions in each run, X can already be deduced from Y. However, this strategy goes further and speciﬁes the exact positions
+within the runs, which are redundant in terms of reconstructing
+X. Therefore this strategy over-describes the positions of the
+deletions beyond what is necessary to represent X. The amount
+of over-description, H(D|X, Y), is called “nature’s secret” in
+[1], because only the hypothetical party “nature” has access
+to D, but the encoder and decoder do not.
+2) Locating deletions up to runs: The analysis of the
+previous strategy suggests that the encoder should specify the
+location of the deletions with respect to runs. Therefore a
+better algorithm than the one described in Section III-D-1 is
+ﬁrst deﬁning a sequence W such that Wi is the number of
+deletions in the i-th run of Y according to D, then compressing
+W at the entropy rate.
+Since the average extent of a run in an iid Bernoulli(1/2)
+sequence is 2, the length of W is approximately half of that of
+D. It can be shown6 that the operational rate can be approximated by (h2 (d) − d). There is still a linear d gap between this
+rate and the optimal one, given by (c − 1)d ≈ 0.29d. That is,
+this algorithm wastes 0.29 bit per deletion bit.
+Why is this algorithm suboptimal? The reason is because
+W is signiﬁcantly correlated with Y. If the deletion process is
+iid, then the longer runs of Y tend to contain more deletions
+and the shorter runs tend to contain less deletions. Therefore Y
+reveals a certain amount of information about W, that is about
+0.29 bit per deletion bit. The algorithm described above does
+not use this amount of information and thus is suboptimal.
+The algorithm described in Section III-A, however, treats
+the deletions contained in runs of diﬀerent extents diﬀerently.
+As a result the operational rate matches the optimal rate for
+the Θ(d) term.
+Table I provides a comparison among the performance of the
+two algorithms in Section III-D and the one in Section III-A
+for n = 1000kb and d = 0.01. Note that when Y has biased
+bits (p = 0.1), the beneﬁt of the proposed algorithm in
+Section III-A is more signiﬁcant than when p = 0.5. The
+reason is that when p = 0.1, the runs of Y are longer and it
+pays to exploit the information from the run-lengths.
+
+D. Comparison to other compression algorithms
+Let us compare the algorithm described in Section III-A
+with two simpler but suboptimal algorithms in the simple case
+Y ∼ iid Bernoulli(1/2) (p = 1/2). The comparison reveals
+more intuition on why the algorithm is asymptotically optimal.
+1) Sending D directly: A simple and the most natural
+algorithm to compress X given Y is ﬁrst running a greedy
+alignment to obtain D (as in stage 1)) and then compressing
+D using an entropy coder (similar to stage 3)). As the lengths
+of the sequences tend to inﬁnity, the operational rate is
+limn→∞ H(D)/n. If we approximate H(D) by H(D)5 , the operational rate is approximately h2 (d) = −d log2 d+d log2 e+O(d2 ).
+Therefore for small d, the operational rate of this simple
+algorithm matches the optimal expression up to the −d log2 d
+term. But for the Θ(d) term, there is a gap cd ≈ 1.29d. That
+is, this compression algorithm wastes 1.29 bits per deletion bit
+on average. When d is not very small, −d log2 d and d can be
+
+IV. Algorithm for the General Case
+The algorithm described in Section III-A can be extended
+to the general problem where Y is related to X by insertions,
+
+4 In [1], Y is deﬁned as the deleted version of X. Therefore the expression
+H(X|Y) in this paper corresponds to H(Y|X) in [1].
+5 It can be made rigorous using the techniques that are similar to those used
+to prove argument (iii) in [10, Appendix 1].
+
+6 Using the techniques that are similar to those used to prove argument (iii)
+in [10, Appendix 1].
+
+4
+
+5) Entropy coding: Use an entropy coder to compress Vins ,
+V
+, V sub and Vdel .
+The decoder decodes Vins , Vburst , V sub and Vdel by an
+entropy decoder, and then follow the stages 2) to 4) to
+construct X from Y.
+
+deletions and substitutions.
+
+burst
+
+A. Algorithm for insertions, deletions and substitutions
+The encoder has the following stages.
+1) Alignment: align X and Y using the minimum total
+number of insertions, deletions and substitutions. If there
+are multiple such alignments, pick any one of them. This
+can be done by the Needleman-Wunsch algorithm [13] with
+the gap penalty and the substitution penalty equal to 1,
+with computation complexity of order O(n2 ). The algorithm
+generates two sequences X∗ and Y∗ , which are X and Y with
+gaps, respectively. Then construct ZX and ZY by replacing the
+gaps in X∗ and Y∗ by the corresponding bits in Y∗ and X∗ ,
+respectively.
+2) Describing the insertions (from Y to ZY ): The edits from
+Y to ZY can be viewed as insertions. The locations of the
+insertions are speciﬁed by the gaps in Y∗ . The content of the
+insertions is speciﬁed by the corresponding bits in ZY .
+All the insertions can be categorized into isolated insertions
+with only one bit per insertion event, and bursts of insertions
+with two or more consecutive bits per insertion event. For each
+insolated insertion, if the inserted bit is equal to the bit on the
+left (or right) side, the insertion is extending the run to the left
+(or right). If the inserted bit is not equal to the bits on either
+side, it is breaking an existing run and creating a new run. We
+will describe the isolated insertions that extend runs, then the
+insertions that break runs, then the bursts of insertions.
+• In order to describe the insertions that extend runs, the
+encoder does the following.
+– For l = 1, . . . , Lmax (Lmax is the the maximum extent
+of the runs in Y), for i = 1, . . . , Ul (Ul is the number
+ins
+of runs of extent l in Y), let Vl,i := 1 if the i-th run
+ins
+of extent l in Y is extended by one bit, and Vl,i := 0
+otherwise.
+Having made such insertions, Y becomes Y′ .
+• In order to describe the insertions that break runs, the
+encoder does the following.
+In the sequence Y′ , a slot between two bits is a potential
+location to break a run only if the two bits are the same.
+The slots before the ﬁrst bit and after the last bit are
+also potential locations to create new runs. Let U0 denote
+the total number of such potential locations in Y′ . For
+ins
+i = 1, . . . , U0 , let V0,i := 1 if a bit is inserted in the i-th
+ins
+potential location, and V0,i := 0 otherwise.
+Having made such insertions, Y′ becomes Y′′ . Let Vins
+ins
+denote all the descriptions up to this step: {Vl,i }l≥0 .
+• In order to describe the bursts of insertions, the encoder
+creates a sequence Vburst from ZY by keeping the bursts
+of inserted bits and replacing the other bits by ‘∗’. Vburst
+describes the insertions needed to construct ZY from Y′′ .
+3) Describe the substitutions (from ZY to ZX ):
+The edits from ZY to ZX can be viewed as substitutions,
+which can be described by V sub := ZY ⊕ ZX .
+4) Describe the deletions (from ZX to X) as in stage 2) of
+Section III-A. Denote the description by Vdel .
+
+B. Performance analysis
+The operational rate of the above algorithm can be analyzed
+for small probability of insertion, deletion and substitution as
+follows.
+Theorem 2: The gap between the operational rate of the
+algorithm described in Section IV-A and the optimal rate
+satisﬁes: limn→∞ [H(Vins , Vburst , V sub , Vdel )/n − H(X|Y)/n] =
+O(d2−ϵ ), for any ϵ > 0, where d = max{dX , dY , q}.
+The proof is similar to that of Theorem 1 and is provided
+in [10, Appendix 2].
+V. Concluding Remarks
+We have proposed an algorithm to compress the source
+sequence given the mis-aligned side-information at both the
+encoder and decoder. For small editing probability, the compression rate of the algorithm is asymptotically optimal. Directions for future work include (1) developing algorithms
+for bursty edits, and (2) developing distributed algorithms to
+compress a source sequence when the reference sequence is
+only available at the decoder side.
+References
+[1] N. Ma and K. Ramchandran and D. Tse, “Eﬃcient ﬁle synchronization:
+A distributed source coding approach,” in Proc. IEEE Int. Symp. Information Theory, St. Petersburg, Russia, Jul. 31–Aug. 5 2011, pp. 583–
+587.
+[2] V. L. Levenshtein, “Binary codes capable of correcting deletions, insertions and reversals,” Doklady Akademii Nauk SSSR, vol. 163, no. 4, pp.
+845–848, 1965.
+[3] A. Orlitsky and K. Viswanathan, “One-way communication and errorcorrecting codes,” IEEE Trans. Inf. Theory, vol. 49, no. 7, pp. 1781–
+1788, 2003.
+[4] S. Agarwal, V. Chauhan, and A. Trachtenberg, “Bandwidth eﬃcient
+string reconciliation using puzzles,” Parallel and Distributed Systems,
+IEEE Transactions on, vol. 17, no. 11, pp. 1217 –1225, nov. 2006.
+[5] R. Venkataramanan, H. Zhang, and K. Ramchandran, “Interactive lowcomplexity codes for synchronization from deletions and insertions,” in
+Proc. of 48th Annual Allerton Conference onCommunication, Control,
+and Computing, 2010, pp. 1412 –1419.
+[6] A. Tridgell and P. Mackerras, “The rsync algorithm,” aNU Technical
+report, TR-CS-96-05, Jun 1996.
+[7] H. Zhang, C. Yeo, and K. Ramchandran, “VSYNC: a novel video ﬁle
+synchronization protocol,” ACM Multimedia, pp. 757–760, 2008.
+[8] H. Cai, S. Kulkarni, and S. Verdu, “An algorithm for universal lossless
+compression with side information,” Information Theory, IEEE Transactions on, vol. 52, no. 9, pp. 4008 –4016, sept. 2006.
+[9] M. C. Brandon, D. C. Wallace, and P. Baldi, “Data structures and
+compression algorithms for genomic sequence data,” Bioinformatics,
+vol. 25, no. 14, pp. 1731–1738, 2009.
+[10] N. Ma, K. Ramchandran, and D. Tse, “A compression algorithm using
+mis-aligned side-information,” http://arxiv.org/abs/1202.0865.
+[11] M. Mitzenmacher, “A survey of results for deletion channels and related
+synchronization channels,” Probability Surveys, vol. 6, pp. 1–33, 2009.
+[12] M. F. Schilling, “The longest run of heads,” The College Mathematics
+Journal, vol. 21, no. 3, pp. 196–207, 1990.
+[13] S. B. Needleman and C. D. Wunsch, “A general method applicable to
+the search for similarities in the amino acid sequence of two proteins,”
+Journal of Molecular Biology, vol. 48, no. 3, pp. 443–453, 1970.
+
+5
+
+

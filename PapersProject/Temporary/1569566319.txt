@@ -1,0 +1,930 @@
+Creator:         TeX output 2012.05.07:0816
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Mon May  7 08:16:41 2012
+ModDate:        Tue Jun 19 12:55:13 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      264830 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569566319
+
+Guiding Blind Transmitters: Relay-aided
+Interference Alignment for the X channel
+Ye Tian and Aylin Yener
+Wireless Communications and Networking Laboratory
+Electrical Engineering Department
+The Pennsylvania State University, University Park, PA 16802
+yetian@psu.edu
+yener@ee.psu.edu
+
+is only shown to be useful to facilitate interference alignment
+for some speciﬁc scenarios. For quasi-static channels, references [12]–[14] have proposed strategies to utilize the relay
+to randomize the channel coefﬁcients at the receivers, and the
+optimal DoF can be achieved although the channel is not time
+varying within the transmission blocks. Reference [15] has
+proposed relay-aided interference alignment schemes that can
+achieve the optimal DoF of the K-user interference channel
+with ﬁnite time extensions. For networks that are not fully
+connected, the study on DoF for multi-hop relay networks can
+be found in reference [16]. For networks that have limited CSI,
+it is shown in reference [17] that using a relay, the maximum
+DoF for the K-user interference channel can be achieved when
+all the nodes only have local CSI, provided that the relay
+has more antennas than the total number of single-antenna
+transmitters.
+Given all these efforts, it is interesting to ask whether
+relaying can help to achieve the maximum DoF, when no
+CSIT is available in the channel. Our recent work [18] has
+considered the 2-user X channel without CSIT, and has shown
+that a half-duplex relay can facilitate interference alignment to
+achieve the optimal DoF 4 . This can be accomplished using
+3
+either (i) a relay with two antennas and delayed CSI, or (ii) a
+relay with one antenna and full CSI. In this work, we consider
+the general K-user X channel with half-duplex relays, and
+we show that when relays have full CSI, the optimal DoF
+K2
+2K−1 can be achieved using one relay with K − 1 antennas,
+or (K − 1)2 single-antenna relays. For the case when the
+relay has K − 1 antennas, we develop a transmission scheme
+using partial interference alignment at the relay and joint
+beamforming between the relay and the transmitters to achieve
+the optimal DoF. For the case when relays only have one
+antenna, we use joint beamforming between the transmitters
+and the relays to align the interference at the receivers. We
+further show that when the relays only have delayed CSI, the
+K2
+maximum DoF is strictly less than 2K−1 in general except for
+the case when K = 2.
+
+Abstract—This paper investigates the impact of half-duplex
+relays on the degrees of freedom (DoF) of the K-user X channel
+when the transmitters are blind in the sense that no channel
+state information (CSI) at the transmitter (CSIT) is available. It
+is shown that adding relay nodes with CSI to the communication
+model is sufﬁcient to recover the optimal DoF with CSIT.
+In particular, the relay nodes help steer the directions of the
+transmitted signals to facilitate interference alignment to achieve
+optimal DoF. It is shown that one relay node with K −1 antennas
+is sufﬁcient to achieve the optimal DoF. When relays do not have
+multiple antennas, it is sufﬁcient to have (K − 1)2 relays to
+achieve the optimal DoF. The achievability is established using
+partial interference alignment and joint beamforming. DoF for
+the case when relays only have delayed CSI is also investigated.
+
+I. I NTRODUCTION
+Interference alignment has been shown to be a useful
+technique to achieve the optimal degrees of freedom (DoF)
+for various wireless network models [1]–[3]. To effectively
+implement interference alignment, it is crucial to have global
+instant channel state information (CSI) at the transmitters
+(CSIT), denoted as full CSI/CSIT here onward, and is usually
+hard to obtain for practical systems.
+When there is no CSIT in the system, loss of DoF is
+observed for many scenarios of interest in references [4], [5].
+Recognizing the difﬁculty of obtaining full CSIT, references
+[6], [7] have studied the cases when only the channel correlation structure is known at the transmitters and have proposed
+interference alignment schemes using the channel correlation
+to achieve the optimal DoF. On the other hand, considering
+the time varying nature of wireless channels and the delay in
+the feedback of CSI, reference [8] has investigated the K-user
+broadcast channel, where CSIT is known at the transmitters
+with one slot delay. Under this assumption, it is shown that
+delayed CSIT can provide DoF gain compared to the case
+when no CSIT is available. However, it cannot achieve the
+same optimal DoF as when full CSIT is available. This delayed
+CSIT assumption is also applied to other channel models, and
+the study on its impact to the DoF can be found in [9], [10]
+and the references therein.
+Relaying, although useful to improve the achievable rates
+for many wireless networks, is shown to be unable to provide
+DoF gain for fully connected interference channel and X
+channel with full CSI at all nodes [11]. In this context, relaying
+
+II. S YSTEM M ODEL
+For the K-user X channel, we have K transmitter-receiver
+pairs, and each transmitter has a message to be communicated
+with each receiver. It is assumed that the transmitters and
+
+1
+
+receivers are equipped with a single antenna. There are J
+half-duplex relays with L antennas available to help the
+transmission. We denote wnm as the message from transmitter
+m = 1, · · · , K to receiver n = 1, · · · , K. The transmitted
+signal from transmitter m is denoted as Xm (t) ∈ C and the
+transmitted signal from relay Rj is denoted as XRj (t) ∈ CL ,
+where j = 1, · · · , J and t is the time index denoting the slot
+in which the signal is transmitted.
+When the relays listen to the channel, the received signals
+at the receivers are
+Yn (t) =
+
+K
+∑
+
+hnm (t)Xm (t) + Zn (t)
+
+Proposition 1: For the 3-user X channel, when there is no
+9
+CSIT, maximum DoF 5 is achievable using a relay with 2
+antennas and full CSI.
+Proof: We assume that the data stream from transmitter
+i to receiver j is denoted as dji , i, j = 1, 2, 3. To achieve the
+9
+DoF 5 , we use a transmission scheme that spans 5 slots, in
+which a total of 9 independent data streams can be transmitted
+to the receivers, and each receiver can distinguish 3 of the
+data streams in an interference-free fashion. We also assume
+that the channel is time varying, i.e., each slot has a different
+channel realization, and the channel coefﬁcients are drawn
+from a continuous distribution.
+In the ﬁrst 3 slots, the transmitters send messages to the
+receivers, and the relay keeps silent. Speciﬁcally, in slot t, all
+the 3 transmitters send the messages intended for receiver t:
+Xk (t) = dtk , where t, k = 1, 2, 3. The received signals at the
+receivers and the relay for slot t are
+
+(1)
+
+m=1
+
+and the received signals at the relays are
+YRj (t) =
+
+K
+∑
+
+hRj m (t)Xm (t) + ZRj (t).
+
+(2)
+
+m=1
+
+Ym (t) = hm1 (t)dt1 + hm2 (t)dt2 + hm3 (t)dt3 ,
+YR (t) = hR1 (t)dt1 + hR2 (d)t2 + hR3 (t)dt3
+
+When the relays transmit, the received signals at the receivers are
+Yn (t) =
+
+K
+∑
+m=1
+
+hnm (t)Xm (t) +
+
+J
+∑
+
+(4)
+(5)
+
+where m = 1, 2, 3, and the noise is omitted since we are
+considering the DoF.
+In the remaining 2 slots, we need to provide each receiver
+with another two equations such that the intended messages,
+which are unknown variables dtk , can be recovered. In the
+meantime, all the interference data streams must be kept in a
+2-dimensional space at each receiver to achieve the maximum
+DoF. Since the relay only has 2 antennas, it cannot separate
+the 3 messages from the transmitters at each slot. However,
+as we show next, the spatial dimensions available at the relay
+can still be used to align the interference.
+The relay ﬁrst performs linear transformation to the received
+signals. For the signal received in slot 1, we choose vectors
+u2 (1), u3 (1) ∈ C2 such that
+
+hnRj (t)T XRj (t) + Zn (t).
+
+j=1
+
+In the above expressions, the transmitted signals are subject to average power constraint E(||XRj (t)||2 ) ≤ P ,
+E(|Xm (t)|2 ) ≤ P . hnm ∈ C is the channel coefﬁcient from
+transmitter m to the receiver n. hRj m (t) ∈ CL is the channel
+vector between transmitter m and relay Rj , and hnRj (t) ∈ CL
+is the channel vector between relay Rj and receiver n. It is
+assumed that the channel coefﬁcients are independently drawn
+from a continuous distribution for each time index, and the
+channel is time varying. Zn (t) and ZRj (t) are Gaussian random variable with zero mean and unit variance, and Gaussian
+random vector with zero mean and identity covariance matrix,
+respectively.
+We assume the rate of message wij is Rij (P ) for power
+constraint P . We deﬁne C(P ) as the set of all achievable
+rate tuples {Rnm (P )} for power constraint P . The degree
+of freedom is deﬁned as
+R∑ (P )
+DoF = lim
+,
+(3)
+P →∞ log(P )
+)
+(∑
+where R∑ (P ) = maxC(P )
+m,n Rnm (P ) .
+
+u2 (1)T hR2 (1) = h22 (1)
+
+u2 (1)T hR3 (1) = h23 (1)
+
+u3 (1)T hR2 (1) = h32 (1)
+
+u3 (1)T hR3 (1) = h33 (1).
+
+Since we have two variables with two equations and the
+channel coefﬁcients are drawn from a continuous distribution,
+we can guarantee the existence of u2 (1) and u3 (1) almost
+surely. We can then obtain the following signals by taking
+the inner products between the vector u2 (1) (u3 (1)) and the
+received signal vector from slot 1 at the relay:
+
+III. K- USER X C HANNEL WITH ONE M ULTI - ANTENNA
+R ELAY
+
+u2 (1)T YR (1) = u2 (1)T hR1 (1)d11 + h22 (1)d12 + h23 (1)d13
+u3 (1)T YR (1) = u3 (1)T hR1 (1)d11 + h32 (1)d12 + h33 (1)d13 .
+
+For the K-user X channel without CSIT, it is shown in
+reference [5] that there is loss of DoF compared to the case
+with full CSIT. We show that, with one relay having K − 1
+antennas, we are able to align the interference at the receivers
+K2
+to achieve the DoF 2K−1 , which is the maximum DoF when
+CSIT is available in the system [3], [11].
+To better illustrate the transmission strategy, we ﬁrst provide
+an example for the 3-user X channel with a relay having 2
+antennas, and then generalize the result to the K-user case.
+
+These two signals are useful for receiver 1, since they
+contain the messages that are intended for it. However, the
+messages d1i , i = 1, 2, 3 are interference for receiver 2 and
+3. Using the linear transformation provided by vector u2 (1)
+and u3 (1), part of the interference is aligned at receiver 2
+and receiver 3. Note that we need to keep u2 (1)T YR (1)
+away from receiver 3, and keep u3 (1)T YR (1) away from
+receiver 2, in order to not introducing additional interference
+
+2
+
+
+
+to the receivers. This can be done by sending u2 (1)T YR (1)
+and u3 (1)T YR (1) in the direction orthogonal to h3R (t′ ) and
+h2R (t′ ), respectively, where t′ = 4, 5. We can obtain the
+vectors u1 (2), u3 (2), u1 (3), u2 (3) in the same fashion, which
+result in the following inner products:
+∑
+i
+XR (t) = ui (t)T YR (t) = ui (t)T hRt (t)dtt +
+hik (t). (6)
+
+g22
+
+k̸=t
+
+In order to transmit the signals along their intended directions, we now deﬁne the following beamforming vectors
+vij (t′ ) such that:
+′
+
+′
+
+vij (t ) ⊥ hkR (t ),
+
+(7)
+
+α21 (t′ ) =
+
+Using the linear transformation and beamforming vectors
+provided above, interference is only partially aligned. To align
+the rest of the interference, we let the relay choose a scaling
+factor αij (t) for each signal it wishes to send to the receivers,
+which results in the following signal XR (t) to be transmitted
+for slot t′ :
+3
+∑∑
+
+⊥
+αti (t′ )vj (t′ )ui (t)T YR (t).
+
+(8)
+
+where j ̸= t, j ̸= i, and αti (t′ ) are to be determined later.
+For these two slots, the transmitters also send the following
+signals to the receivers:
+(9)
+
+where k = 1, 2, 3.
+The received signals at the receivers are
+Ym (t′ ) =
+hm1 (t′ )d11 + hm2 (t′ )d22 + hm3 (t′ )d33 + hmR (t′ )T XR (t′ )
+We now focus on all the signals received at receiver 1. If
+we combine all the received signals from 5 slots into a vector
+Y1 ∈ C5 , we have
+
+
+3
+3
+∑ ∑
+
+Y1 =
+gij dij 
+(10)
+i=1
+
+
+
+
+
+
+
+(12)
+
+(13)
+
+h12 (t′ )
+.
+(h12 (2) − µR2 (2))h⊥3 (t′ )
+1
+1R
+
+(14)
+
+The signals d31 , d32 , and d33 can be aligned in a similar
+fashion. The rest parameters can be determined using the same
+method for the other receivers. It is easy to verify that the data
+streams d11 , d12 and d13 occupy the rest 3 dimensional space.
+Similar argument holds for receiver 2 and receiver 3 as well.
+Therefore using the proposed scheme, we can transmit a total
+of 9 messages using 5 slots, which proves the achievability of
+DoF 9 .
+5
+In the transmission scheme, we can see from equation (14)
+that if the transmitters remain silent for slots 4 and 5, the
+parameters αij (t) will be all zero to keep the interference
+aligned. This reduces the total number of dimensions of the
+signal space at the receivers to 3. The reason is that, using the
+transmission scheme provided above, each set of data streams
+intended for one receiver is already aligned in the ﬁrst 3 slots.
+To keep all the interference signals aligned in a space of
+dimension 2, the relay may choose to do not send anything, if
+the transmitters remain silent for the last 2 slots. This will also
+keep the intended data streams in a one dimensional space.
+However, we need additional signal dimensions to decode the
+intended data streams.
+To address this issue, we let the transmitters also send data
+streams to the receivers for slots 4 and 5. With the additional
+data streams, the relay cannot keep the interference aligned
+by remaining silent. We call the transmission scheme joint
+beamforming.
+The essence of the above transmission strategy is to use the
+limited spatial dimensions available at the relay to ﬁrst partially align the interference, and then align the rest interference
+through joint beamforming with the transmitters.
+Using the ideas from the example for the 3-user X channel
+with a 2-antenna relay, we can now generalize the result to
+the K-user case.
+Theorem 1: For K-user X channel, when there is no CSI
+available at the transmitters while full CSI is available at the
+K2
+receivers, maximum DoF 2K−1 is achievable using a relay
+with K − 1 antennas and full CSI.
+
+t=1 i̸=t
+
+Xk (t′ ) = dkk
+
+
+
+⊥
+where we denote h⊥i (t) = hkR (t)T vi (t), µRi (t) =
+kR
+k
+uk (t)T hRi (t).
+From the above expressions, we can see that the data
+streams d21 and d23 are already aligned together. To align
+the data stream d22 with d21 and d23 , we choose
+
+where i, j, k = 1, 2, 3 and i, j ̸= k. If we choose the vectors
+such that they have unit power, then we have v31 (t′ ) =
+⊥
+⊥
+v13 (t′ ) = v2 (t′ ), v12 (t′ ) = v21 (t′ ) = v3 (t′ ), v23 (t′ ) =
+′
+⊥ ′
+v32 (t ) = v1 (t ).
+
+XR (t′ ) =
+
+0
+
+h12 (2)
+
+0
+=
+
+ h12 (4) + α21 (4)h⊥3 (4)µR2 (2)
+1
+1R
+h12 (5) + α21 (5)h⊥3 (5)µR2 (2)
+1
+1R
+
+
+0
+
+
+h13 (2)
+
+
+
+
+0
+g23 = 
+
+ α21 (4)h⊥3 (4)h13 (2) 
+1R
+α21 (5)h⊥3 (5)h13 (2)
+1R
+
+j=1
+
+Due to limited space, we do not list all the vectors gij here.
+The details can be found in [19]. We only inspect the vectors
+g2j , j = 1, 2, 3 for interference data streams d2j :
+
+
+0
+
+
+h11 (2)
+
+
+
+0
+g21= 
+(11)
+
+
+ α21 (4)h⊥3 (4)h11 (2) 
+1R
+α21 (5)h⊥3 (5)h11 (2)
+1R
+
+3
+
+and transmitter k also transmits
+
+Proof: The proof follows from similar idea as in Proposition 1 and is thus omitted here. Details can be found in [19].
+
+Xk (t′ ) = dkk .
+The received signals at receiver m for slot t′ is thus
+
+Remark 1: For the K-user X channel without CSIT and
+relays, reference [5] has shown that the DoF is upperbounded
+by 1 under Rayleigh fading. Our result shows that relaying is
+useful to increase the DoF of X channel without the presence
+of CSIT.
+Remark 2: Reference [3] has shown that with full CSI at
+all nodes, the maximum DoF of the K-user X channel is
+K2
+2K−1 . Reference [11] has further shown that relaying does not
+increase the DoF of X channels, when all nodes are equipped
+with full CSI. This means that the K-user X channel with
+K2
+relays has maximum DoF 2K−1 . Our scheme has shown that
+without CSIT, we are still able to achieve the maximum DoF
+with the help of a relay.
+
+Ym (t′ ) =
+
+Ym (t′ ) =
+
+hmk (t)dtk ,
+
++
+
+K
+∑
+
+K
+∑
+
+hmk (t′ )dkk
+
+J
+K K
+∑∑∑
+
+hmRi (t′ )αit (t′ )hRi k (t)dtk .
+
+K
+∑
+
+Ym = gmm dmm +
+K
+∑
+
++
+
+(21)
+
+where
+1
+.
+.
+.
+
+gγγ
+
+(15)
+
+gmk dmk
+
+k=1,k̸=m
+
+
+
+gγγ dγγ +
+
+γ=1,γ̸=m
+
+
+
+K
+∑
+
+gγk dγk  ,
+
+(22)
+
+k=1,k̸=γ
+
+
+
+0
+.
+.
+.
+
+
+
+
+
+
+γ−1 
+0
+
+ hmγ (γ)
+γ
+
+=
+γ+1 
+0
+
+
+.
+.
+.
+.
+
+.
+.
+
+
+K
+0
+t′
+{gγγ (t′ )}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+gγk
+
+0
+.
+.
+.
+
+
+
+
+
+0
+
+ hmk (γ)
+=
+
+0
+
+
+.
+.
+
+.
+
+
+0
+{gγk (t′ )}
+
+
+
+
+
+
+
+
+,
+
+
+
+
+
+
+
+and
+gγγ (t′ ) = hmγ (t′ ) +
+
+J
+∑
+
+hmRi (t′ )αiγ (t′ )hRi γ (γ),
+
+(23)
+
+i=1
+
+(16)
+
+gγk (t′ ) =
+
+J
+∑
+
+hmRi (t′ )αiγ (t′ )hRi k (γ),
+
+(24)
+
+i=1
+
+hRi k (t)dtk .
+
+and gmm and gmk are deﬁned in a similar fashion.
+In order to separate the intended data streams from the
+interference, we need to align the data streams dγk , k =
+1, 2, · · · , K into a one dimensional space for each γ ̸= m.
+For this end, we choose the scaling factors αit (t′ ) such that
+∑J
+′
+′
+i=1 hmRi (t )αiγ (t )hRi k (γ)
+=
+hmk (γ)
+∑J
+hmγ (t′ ) + i=1 hmRi (t′ )αiγ (t′ )hRi γ (γ)
+, ∀k ̸= γ. (25)
+hmγ (γ)
+
+(17)
+
+We can see that the data streams dtk , k = 1, · · · , K are
+aligned in a one dimensional space for each t. For slots t′ =
+K + 1, · · · , 2K − 1, we need to provide the destinations with
+another K − 1 dimensions in the signal space to decode the
+desired K messages and in the meantime keep the interference
+signals aligned. Using the idea of joint beamforming, each
+relay transmits a scaled version of the signals it received from
+previous time slots, i.e., for slot t′ , relay Ri transmits
+XRi (t′ ) =
+
+(20)
+
+i=1
+
+After combining the received signals at receiver m from all
+the time slots into one vector, we have a signal in the form
+
+k=1
+
+K
+∑
+
+hmRi (t′ )XRi (t′ ).
+
+i=1 t=1 k=1
+
+k=1
+
+YRi (t) =
+
+J
+∑
+
+k=1
+
+The received signals at receiver m = 1, 2, · · · , K and relay
+Ri , i = 1, 2, · · · , J are
+K
+∑
+
+hmk (t′ )dkk +
+
+The equation (20) can be written as
+
+In the previous section, we have shown that for the K-user
+X channel without CSIT, it is sufﬁcient to have one relay with
+K − 1 antennas to achieve the maximum DoF of the channel.
+In this section, we investigate the case when relays only have
+a single antenna, and we study how many relays are needed
+to achieve the maximum DoF.
+Theorem 2: For the K-user X channel with single antenna
+relays, when there is no CSIT but full CSI is available at the
+relays and the receivers, a sufﬁcient condition to achieve the
+K2
+maximum DoF 2K−1 is to have J = (K − 1)2 relays.
+Proof: For slots t = 1, 2, · · · , K, the transmitters send
+the messages intended for receiver t, and the relays remain
+silent. The signal sent from transmitter k = 1, 2, · · · , K for
+slot t can be expressed as
+
+Ym (t) =
+
+K
+∑
+k=1
+
+IV. K- USER X CHANNEL WITH J S INGLE A NTENNA
+R ELAYS
+
+Xk (t) = dtk .
+
+(19)
+
+αit (t′ )YRi (t),
+
+Fixing γ, t′ and m, we have K −1 equations for each k ̸= γ.
+We also have K − 1 possible values for m ̸= γ. Therefore, we
+have (K −1)2 equations in total for each combination of t′ and
+
+(18)
+
+t=1
+
+4
+
+γ, and we need J = (K − 1)2 variables in order to guarantee
+the existence of a solution to the set of linear equations. Since
+all the relays have full CSI, they can solve the equations
+to obtain the scaling factors individually. Using the scaling
+factors, it is now easy to verify that all the interfering signals
+are aligned into a K − 1 dimensional space, and the intended
+data streams occupy the rest K dimensional space, due to the
+fact that the channel is time varying and channel coefﬁcients
+are drawn from a continuous distribution. We can then decode
+the intended messages using a zero-forcing decoder, and the
+K2
+DoF 2K−1 can be achieved.
+V. T HE D O F
+
+WITH
+
+D ELAYED CSI
+
+AT THE
+
+transmission scheme based on partial interference alignment
+and joint beamforming, and have shown that using one relay
+with K − 1 antennas, the optimal DoF can be achieved. We
+have also designed joint beamforming based relaying schemes
+for the case when relays only have a single antenna, and have
+shown that the optimal DoF can be achieved with (K − 1)2
+relays. Degradation on the DoF when relays only have delayed
+CSI is also observed.
+R EFERENCES
+[1] V. R. Cadambe and S. A. Jafar, “Interference alignment and the degrees
+of freedom for the K-user interference channel,” IEEE Transactions on
+Information Theory, vol. 54, no. 8, pp. 3425–3441, Aug 2008.
+[2] S. A. Jafar and S. Shamai, “Degrees of freedom region for the MIMO
+X channel,” IEEE Transactions on Information Theory, vol. 54, no. 1,
+pp. 151–170, January 2008.
+[3] V. R. Cadambe and S. A. Jafar, “Interference alignment and the degrees
+of freedom of wireless X networks,” IEEE Transactions on Information
+Theory, vol. 55, no. 9, pp. 3893–3908, September 2009.
+[4] C. Huang, S. A. Jafar, S. Shamai, and S. Vshwanath, “On degrees of
+freedom region of MIMO networks without CSIT,” IEEE Transactions
+on Information Theory, accepted.
+[5] C. S. Vaze and M. Varanasi, “The degrees of freedom regions of MIMO
+broadcast, interference, and cognitive radio channels with no CSIT,”
+submitted to IEEE Transactions on Information Theory, October 2009,
+available: http://arxiv.org/abs/0909.5424.
+[6] S. A. Jafar, “Exploiting channel correlations - simple interference
+alignment schemes with no CSIT,” available at arXiv:0910.0555.
+[7] C. Wang, T. Gou, and S. A. Jafar, “Aiming perfectly in the dark blind interference alignment through staggered antenna switching,” IEEE
+Transactions on Signal Processing, vol. 59, no. 6, pp. 2734–2744, June
+2011.
+[8] M. A. Maddah-Ali and D. Tse, “Completely stale transmitter channel
+state information is still very useful,” in Proceedings of Forty-eighth Annual Allerton Conference On Communication, Control, and Computing,
+September 2010.
+[9] C. S. Vaze and M. K. Varanasi, “The degrees of freedom region of the
+two-user MIMO broadcast channel with delayed CSIT,” in Proceedings
+of IEEE International Symposium on Information Theory, July 2011.
+[10] A. Ghasemi, A. S. Motahari, and A. K. Khandani, “On the degrees
+of freedom of X channel with delayed CSIT,” in Proceedings of IEEE
+International Symposium on Information Theory, July 2011.
+[11] V. R. Cadambe and S. A. Jafar, “Degrees of freedom of wireless
+networks with relays, feedback, cooperation and full duplex operation,”
+IEEE Transactions on Information Theory, vol. 55, no. 5, pp. 2334–
+2344, May 2009.
+[12] B. Nourani, S. A. Motahari, and A. K. Khandani, “Relay-aided interference alignment for the quasi-static X channel,” in Proceedings of IEEE
+International Symposium on Information Theory, June 2009.
+[13] ——, “Relay-aided interference alignment for the quasi-static interference channel,” in Proceedings of IEEE International Symposium on
+Information Theory, June 2010.
+[14] D. Jin, J. No, and D. Shin, “Interference alignment aided by relays
+for the quasi-static X channel,” in Proceedings of IEEE International
+Symposium on Information Theory, July 2011.
+[15] H. Ning, C. Ling, and K. K. Leung, “Relay-aided interference alignment: Feasibility conditions and algorithm,” in Proceedings of IEEE
+International Symposium on Information Theory, June 2010.
+[16] T. Gou, S. A. Jafar, S.-W. Jeon, and S.-Y. Chung, “Aligned interference
+neutralization and the degrees of freedom of the 2x2x2 interference
+channel,” available at arXiv:1102.3833.
+[17] R. Tannious and A. Nosratinia, “Relay-assisted interference network:
+Degrees of freedom,” IEEE Transactions on Information Theory, accepted.
+[18] Y. Tian and A. Yener, “Relay-aided interference alignment for the X
+channel with limited CSI,” in Proceedings of IEEE Wireless Communications and Networking Conference, WCNC’12, Paris, France, April
+2012.
+[19] ——, “Guiding the blind transmitters: Degrees of freedom optimal
+interference alignment using relays,” submitted to IEEE Transactions
+on Information Theory, Febuary 2012.
+
+R ELAY
+
+In this section, we investigate the impact of relays on DoF
+when the relays only have delayed CSI. We consider the Kuser X channel with one (K − 1)-antenna relay, and compare
+the DoF of the model with full CSI and the one with delayed
+CSI. For the case with delayed CSI, we ﬁrst consider the Kuser X channel with a K-antenna relay, which clearly provides
+a DoF upperbound to the case with a (K − 1)-antenna relay.
+Theorem 3: For the K-user X channel with a K-antenna
+relay, when there is no CSIT and only delayed CSI is available
+at the relay, the maximum DoF is
+1+
+
+1
+2
+
+K
++ ··· +
+
+1
+K
+
+(26)
+
+Proof: The achievability of this DoF can be obtained
+using a similar strategy as in [8]. The scheme in [8] is designed
+for the K-user broadcast channel and consists of K phases,
+where in phase 1, the transmitter sends the messages to the
+receivers. In slot t = 1, · · · , K for phase 1, the transmitter
+T
+sends X(t) = (dt1 , dt2 , · · · , dtK ) , where dti is the ith
+message intended for receiver t. The transmission scheme used
+for this phase can be implemented for the K-user X channel.
+Since the relay has K antennas and delayed CSI, it can decode
+all the messages, and then it can act as the transmitter in the
+broadcast channel to implement the transmission scheme for
+the rest of the phases to achieve the DoF speciﬁed by (26).
+To upper bound the DoF of the channel, we combine all the
+transmitters and the relay, which yields a broadcast channel
+with 2K antennas at the transmitter with delayed CSIT. The
+outerbounds in references [8] [9] can then be used to obtain
+equation (26).
+Recall that for the K-user X channel without CSIT, when
+K2
+the relay has full CSI, we can achieve the full DoF 2K−1 with
+only K − 1 antennas at the relay. For the case with delayed
+CSI at the relay, when the relay has K − 1 antennas, the DoF
+at most equals equation (26). It is clear that for the K-user X
+channel without CSIT, full CSI at the relay can provide a DoF
+gain, compared to the case with delayed CSI at the relay.
+VI. C ONCLUSION
+In this paper, we have investigated relay-aided interference
+alignment schemes for K-user X channel, when no channel
+state information (CSI) at the transmitter (CSIT) is available.
+For the case when relays have full CSI, we have developed a
+
+5
+
+

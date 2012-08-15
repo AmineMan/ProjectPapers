@@ -1,0 +1,1338 @@
+Creator:        TeX
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Fri May 18 12:43:51 2012
+ModDate:        Tue Jun 19 12:55:41 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      595.276 x 841.89 pts (A4)
+File size:      778280 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569566611
+
+Sparse Signal Separation in Redundant Dictionaries
+Céline Aubel∗ , Christoph Studer† , Graeme Pope∗ , and Helmut Bölcskei∗
+∗ Dept.
+
+of IT & EE, ETH Zurich, 8092 Zurich, Switzerland
+of ECE, Rice University, Houston, TX, USA
+Email: {aubelc, gpope, boelcskei}@nari.ee.ethz.ch, studer@rice.edu
+† Dept.
+
+Ψ x is sparse (or approximately sparse). The problem
+of recovering x1 and x2 from y is formalized as [5]:
+
+Abstract—We formulate a uniﬁed framework for the separation of signals that are sparse in “morphologically” different
+redundant dictionaries. This formulation incorporates the socalled “analysis” and “synthesis” approaches as special cases and
+contains novel hybrid setups. We ﬁnd corresponding coherencebased recovery guarantees for an 1 -norm based separation
+algorithm. Our results recover those reported in Studer and
+Baraniuk, ACHA, submitted, for the synthesis setting, provide
+new recovery guarantees for the analysis setting, and form a
+basis for comparing performance in the analysis and synthesis
+settings. As an aside our ﬁndings complement the D-RIP recovery
+results reported in Candès et al., ACHA, 2011, for the “analysis”
+signal recovery problem
+minimize Ψx
+x
+
+1
+
+subject to y − Ax
+
+2
+
+minimize
+(PA)
+
+≤ε
+
+I. I NTRODUCTION
+We consider the problem of splitting the signal x = x1 +x2
+into its constituents x1 ∈ Cd and x2 ∈ Cd —assumed
+to be sparse in “morphologically” different (redundant) dictionaries [1]—based on m linear, nonadaptive, and noisy
+measurements y = Ax + e. Here, A ∈ Cm×d , m ≤ d, is the
+measurement matrix, assumed to be known, and e ∈ Cm is a
+noise vector, assumed to be unknown and to satisfy e 2 ≤ ε,
+with ε known.
+Redundant dictionaries [2], [3] often lead to sparser representations than nonredundant ones, such as, e.g., orthonormal
+bases, and have therefore become pervasive in the sparse signal
+recovery literature [3]. In the context of signal separation,
+redundant dictionaries lead to an interesting dichotomy [1],
+[4], [5]:
+• In the so-called “synthesis” setting, it is assumed that,
+for = 1, 2, x = D s , where D ∈ Cd×n (d < n) is
+a redundant dictionary (of full rank) and the coefﬁcient
+vector s ∈ Cn is sparse (or approximately sparse in the
+sense of [6]). Given the vector y ∈ Cm , the problem of
+ﬁnding the constituents x1 and x2 is formalized as [7]:
+
+•
+
+minimize
+
+˜1
+s
+
+subject to
+
+y − A(D1˜1 + D2˜2 )
+s
+s
+
+˜1 ,˜2
+s s
+
+1
+
++ ˜2
+s
+
+subject to
+
++ Ψ2 x2
+
+y − A(x1 + x2 )
+
+Ψ1 x1
+
+minimize
+(P)
+
+1
+
+2
+
+≤ ε.
+
+x1 ,x2
+
+1
+
++ Ψ2 x 2
+
+y − A1 x 1 − A2 x 2
+
+subject to
+
+1
+2
+
+≤ ε,
+
+which encompasses (PS) and (PA). To recover (PS) from (P),
+one sets A = AD and Ψ = [Id 0d,n−d ]T , for = 1, 2.
+(PA) is obtained by choosing A = A, for = 1, 2. Our
+main contribution is a coherence-based recovery guarantee
+for the general problem (P). This result recovers [7, Th. 4],
+which deals with (PS), provides new recovery guarantees
+for (PA), and constitutes a basis for comparing performance
+in the analysis and synthesis settings. As an aside, it also
+complements the D-RIP recovery guarantee in [5, Th. 1.2]
+for the problem
+(P∗ ) minimize Ψx
+x
+
+subject to y − Ax
+
+1
+
+2
+
+≤ε
+
+by delivering a corresponding coherence-based recovery guarantee. Moreover, the general formulation (P) encompasses
+novel hybrid problems of the form
+minimize
+
+1
+
+˜1 ,x2
+s
+2
+
+1
+
+Throughout the paper, we exclusively consider redundant dictionaries as for D , = 1, 2, square, the synthesis setting can
+be recovered from the analysis setting by taking Ψ = D−1 .
+The problems (PS) and (PA) arise in numerous applications
+including denoising [8], super-resolution [8], inpainting [9]–
+[11], deblurring [11], and recovery of sparsely corrupted
+signals [12]. Coherence-based recovery guarantees for (PS)
+were reported in [7]. The problem (PA) was mentioned in [5].
+In the noiseless case, recovery guarantees for (PA), expressed
+in terms of a concentration inequality, are given in [13] for
+A = Id and Ψ1 and Ψ2 both Parseval frames [2].
+Contributions: We consider the general problem
+
+by delivering corresponding coherence-based recovery results.
+
+(PS)
+
+Ψ1 x1
+
+x1 ,x2
+
+subject to
+
+≤ ε.
+
+˜1
+s
+
+1
+
++ Ψ2 x 2
+
+1
+
+y − A(D1˜1 − x2 )
+s
+
+2
+
+≤ ε.
+
+Notation: Lowercase boldface letters stand for column
+vectors and uppercase boldface letters denote matrices. The
+transpose, conjugate transpose, and Moore-Penrose inverse
+of the matrix M are designated as MT , MH , and M† ,
+respectively. The jth column of M is written [M]j , and
+
+In the so-called “analysis” setting, it is assumed that, for
+= 1, 2, there exists a matrix Ψ ∈ Cn×d such that
+
+The work of C. Studer was supported by the Swiss National Science
+Foundation (SNSF) under Grant PA00P2-134155.
+
+1
+
+(a) Original cartoon image
+
+(b) Corrupted image
+
+(c) Restored cartoon image
+
+Fig. 1: Image separation in the presence of Gaussian noise (SNR = 20 dB).
+
+the entry in the ith row and jth column of M is [M]i,j .
+We let σmin (M) denote the smallest singular value of M,
+use In for the n × n identity matrix, and let 0k×m be
+the k × m all zeros matrix. For matrices M and N, we
+let ωmin (M)
+minj [M]j 2 , ωmax (M)
+maxj [M]j 2 ,
+ωmin (M, N) min{ωmin (M), ωmin (N)}, and ωmax (M, N)
+max{ωmax (M), ωmax (N)}. The kth entry of the vector x is
+written [x]k , and x 1
+k |[x]k | stands for its 1 -norm.
+We take suppk (x) to be the set of indices corresponding
+to the k largest (in magnitude) coefﬁcients of x. Sets are
+designated by uppercase calligraphic letters; the cardinality
+of the set S is |S| and the complement of S (in some given
+set) is denoted by S c . For a set S of integers and n ∈ Z, we
+let n + S {n + p : p ∈ S}. The n × n diagonal projection
+matrix PS for the set S ⊂ {1, . . . , n} is deﬁned as follows:
+[PS ]i,j =
+
+The main contribution of this paper is the following recovery guarantee for (P).
+Theorem 1: Let y = A1 x1 + A2 x2 + e with e 2 ≤ ε and
+let Ψ1 ∈ Cn1 ×p1 and Ψ2 ∈ Cn2 ×p2 be full-rank matrices.
+Let x = [xT xT ]T , µ1 = µ(A1 Ψ† ), µ2 = µ(A2 Ψ† ), µm =
+ˆ
+ˆ
+ˆ
+ˆ
+ˆ
+1
+2
+1
+2
+µm (A1 Ψ† , A2 Ψ† ), and µmax = max{ˆ1 , µ2 , µm }. Without
+ˆ
+ˆ
+µ ˆ ˆ
+1
+2
+loss of generality, we assume that µ1 ≤ µ2 . Let k1 and k2 be
+ˆ
+ˆ
+nonnegative integers such that
+k1 + k2 < max
+
+x∗ − x
+
+II. R ECOVERY G UARANTEES
+Coherence deﬁnitions in the sparse signal recovery literature [3] usually apply to dictionaries with normalized columns.
+Here, we will need coherence notions valid for general (unnormalized) dictionaries M and N, assumed, for simplicity of
+exposition, to consist of nonzero columns only.
+Deﬁnition 1 (Coherence): The coherence of the dictionary M is deﬁned as
+i,j,i=j
+
++
+
+µ2
+ˆm
+
+,
+
+1 + µmax
+ˆ
+2ˆmax
+µ
+
+.
+
+2
+
+≤ C0 ε + C1 (σk1 (Ψ1 x1 ) + σk2 (Ψ2 x2 )) ,
+
+(4)
+
+where C0 , C1 ≥ 0 are constants that do not depend on x1
+and x2 and where x∗ = [x∗ T x∗ T ]T .
+1
+2
+Note that the quantities µ1 , µ2 , and µm characterize the inˆ ˆ
+ˆ
+terplay between the measurement matrix A and the sparsifying
+transforms Ψ1 and Ψ2 .
+As a corollary to our main result, we get the following
+statement for the problem (P∗ ) considered in [5].
+Corollary 2: Let y = Ax + e with e 2 ≤ ε and let Ψ ∈
+Cn×p be a full-rank matrix. Let k be a nonnegative integer
+such that
+1
+1
+1+
+.
+(5)
+k<
+2
+µ(AΨ† )
+ˆ
+
+and we set MS PS M. We deﬁne σk (x) to be the 1 -norm
+approximation error of the best k-sparse approximation of x,
+i.e., σk (x)
+x−xS 1 where S = suppk (x) and xS PS x.
+
+|[MH M]i,j |
+.
+2
+ωmin (M)
+
+µ2 + 2ˆmax +
+ˆ
+µ
+
+µ2
+ˆ2
+
+(3)
+Then, the solution (x∗ , x∗ ) to the convex program (P) satisﬁes
+1
+2
+
+1, i = j and i ∈ S
+0, otherwise,
+
+µ(M) = max
+ˆ
+
+2(1 + µ2 )
+ˆ
+
+Then, the solution x∗ to the convex program (P∗ ) satisﬁes
+x∗ − x
+
+2
+
+≤ C0 ε + C1 σk (Ψx),
+
+(6)
+
+1
+
+where C0 , C1 ≥ 0 are constants that do not depend on x.
+The proofs of Theorem 1 and Corollary 2 can be found in
+the Appendix.
+We conclude by noting that D-RIP recovery guarantees
+for (P∗ ) were provided in [5]. As is common in RIP-based
+
+(1)
+
+Deﬁnition 2 (Mutual coherence): The mutual coherence of
+the dictionaries M and N is deﬁned as
+|[MH N]i,j |
+µm (M, N) = max 2
+ˆ
+.
+(2)
+i,j ωmin (M, N)
+
+1 Note that the constants C and C may take on different values at each
+0
+1
+occurrence.
+
+2
+
+Proof: Since both x∗ and x are feasible (we recall that
+y = Ax + e with e 2 ≤ ε), we have the following
+
+recovery guarantees the restricted isometry constants are,
+in general, hard to compute. Moreover, the results in [5]
+hinge on the assumption that Ψ forms a Parseval frame, i.e.,
+ΨH Ψ = Id ; a corresponding extension to general Ψ was
+provided in [14]. We ﬁnally note that it does not seem possible
+to infer the coherence-based threshold (5) from the D-RIP
+recovery guarantees in [5], [14].
+
+Ah
+
+∗
+
+≤ Ax − y
+
+We analyze an image-separation problem where we remove
+a ﬁngerprint from a cartoon image. We corrupt the 512 × 512
+greyscale cartoon image depicted in Fig. 1(a) by adding a
+ﬁngerprint2 and i.i.d. zero-mean Gaussian noise.
+Cartoon images are constant apart from (a small number of)
+discontinuities and are thus sparse under the ﬁnite difference
+operator ∆ deﬁned in [15]. Fingerprints are sparse under the
+application of a wave atom transform, W, such as the redundancy 2 transform available in the WaveAtom toolbox3 [16].
+It is therefore sensible to perform separation by solving the
+problem (PA) with Ψ1 = ∆, Ψ2 = W, and A = Id . For our
+simulation, we use a regularized version of ∆ and we employ
+the TFOCS solver4 from [17].
+Fig. 1(c) shows the corresponding recovered image. We can
+see that the restoration procedure gives visually satisfactory
+results.
+
+h
+
+Ψ Qc h
+
+(9)
+
+2
+2
+
+|[Ψh]i |2 ≤
+
+=
+
+ΨQ h
+k
+
+|[Ψh]i |
+i∈Qc
+
+1
+
+ΨQ h 1
+.
+(10)
+k
+Since Q is the set of indices of the k largest (in magnitude)
+coefﬁcients of Ψh and since Q and S both contain k elements,
+we have ΨS h 1 ≤ ΨQ h 1 and ΨQc h 1 ≤ ΨS c h 1 ,
+which, combined with the cone constraint in Lemma 3, yields
+= Ψ Qc h
+
+Ψ Qc h
+
+1
+
+≤ ΨQ h
+
+1
+
+1
+
++ 2 ΨS c x 1 .
+
+(11)
+
+The inequality in (10) then becomes
+
+≤ ΨS h
+
+1
+
++ 2 ΨS c x 1 ,
+
+= Ψx
+
+1
+
+= ΨS x + ΨS h
+
+≥ ΨS x
+
+1
+
+− ΨS h
+
+1
+
+1
+
++ ΨS c x + ΨS c h
+
++ ΨS c h
+
+1
+
+2
+1
+
+2
+2
+
+≤
+
++ 2 ΨS c x
++ 2 ΨS c x
+
+1
+
+1
+
+ΨQ h 1
+k
+ΨQ h 2
+√
+k
+
+(12a)
+
+ΨS c x 2
+1
+,
+(12b)
+k
+√
+where (12a) follows from u 1 ≤ k u 2 for k-sparse5 u
+and (12b) is a consequence of 2xy ≤ x2 + y 2 , for x, y ∈ R.
+It now follows that
+≤ 2 ΨQ h
+
+(7)
+
+Ψh
+
+2
+
+=
+
+2
+2
+
++
+
+ΨQ h
+
+2
+2
+
++ Ψ Qc h
+
+2
+2
+
+ΨS c x 2
+1
+k
+√
+ΨS c x 1
+√
+≤ 3 ΨQ h 2 +
+,
+k
+
+≤
+
+1
+
+≥ Ψx∗
+
+2
+2
+
+ΨQ h
+k
+
+≤ ΨQ h
+
+Ψ Qc h
+
+where S = suppk (Ψx).
+Proof: Since x∗ is the minimizer of (P∗ ), the inequality
+Ψx 1 ≥ Ψx∗ 1 holds. Using Ψ = ΨS + ΨS c and x∗ =
+x + h, we obtain
+1
+
+1
+Ψh 2 .
+σmin (Ψ)
+
+≤
+
+i∈Qc
+
+We deﬁne the vector h = x∗ − x, where x∗ is the solution
+to (P∗ ) and x is the vector to be recovered. We furthermore
+set S = suppk (Ψx).
+1) Prerequisites: Our proof relies partly on two important
+results developed earlier in [5], [6] and summarized, for
+completeness, next.
+Lemma 3 (Cone constraint [5], [6]): The vector Ψh obeys
+
++ ΨS c x
+
+2
+
+ΨQ h 1
+.
+k
+Using the same argument as in [19, Th. 3.1], we obtain
+
+A. Proof of Corollary 2
+
+1
+
+≤ 2ε,
+
+2
+
+|[Ψh]i | ≤
+
+For simplicity of exposition, we ﬁrst present the proof of
+Corollary 2 and then describe the proof of Theorem 1.
+
+ΨS x
+
++ y − Ax
+
+We now set Q = suppk (Ψh). Clearly, we have for i ∈ Qc ,
+
+A PPENDIX A
+P ROOFS
+
+1
+
+2
+
+2
+
+thus establishing the lemma.
+2) Bounding the recovery error: We want to bound h 2
+from above. Since σmin (Ψ) > 0 by assumption (Ψ is assumed
+to be full-rank), it follows from the Rayleigh-Ritz theorem [18,
+Th. 4.2.2] that
+
+III. N UMERICAL R ESULTS
+
+ΨS c h
+
+= A(x∗ − x)
+
+2
+
+1
+
+− ΨS c x 1 .
+
+3 ΨQ h
+
+2
+2
+
++
+
+(13a)
+(13b)
+
+where (13a) is a consequence of (12b) and (13b) results from
+x2 + y 2 ≤ x + y, for x, y ≥ 0.
+Combining (9) and (13b) leads to
+
+We retrieve (7) by simple rearrangement of terms.
+Lemma 4 (Tube constraint [5], [6]): The vector Ah satisﬁes Ah 2 ≤ 2ε.
+
+h
+2 The
+
+ﬁngerprint image is taken from http://commons.wikimedia.org/
+3 We used the WaveAtom toolbox from http://www.waveatom.org/
+4 We used TFOCS from http://tfocs.stanford.edu/
+
+5A
+
+3
+
+2
+
+≤
+
+√
+1
+3 ΨQ h
+σmin (Ψ)
+
+2
+
++
+
+ΨS c x
+√
+k
+
+vector is k-sparse if it has at most k nonzero entries.
+
+1
+
+.
+
+(14)
+
+3) Bounding the term ΨQ h 2 in (14): In the last step of
+the proof, we bound the term ΨQ h 2 in (14). To this end, we
+ﬁrst bound AΨ† ΨQ h 2 , with Ψ† = (ΨH Ψ)−1 ΨH , using
+2
+Geršgorin’s disc theorem [18, Th. 6.2.2]:
+θmin ΨQ h
+
+2
+2
+
+≤ AΨ† ΨQ h
+
+2
+2
+
+≤ θmax ΨQ h
+
+2
+ωmin − µ(k − 1) and θmax
+
+where θmin
+with
+
+2
+2
+
+with
+√
+2 3
+C0 =
+σmin (Ψ)ωmin
+
+(15)
+
+C1 =
+
+2
+ωmax + µ(k − 1)
+
+µ = max |[(AΨ† )H AΨ† ]i,j |
+
+θmin ΨQ h
+
+†
+
+2
+2
+
+≤ AΨ ΨQ h
+†
+
+†
+
+†
+
+2
+
+AΨ† ΨQ h
+
+(17a)
+
+2
+
+i∈Qc ,j∈Q
+
+≤ 2ε θmax ΨQ h
+
+2
+
++ µ ΨQ h
+
+1
+
+Ψ Qc h
+
+1
+
+≤ 2ε θmax ΨQ h
+
+2
+
++ µ ΨQ h
+
+1
+
+( ΨQ h
+
+1
+
+(17c)
++ 2 ΨS c x 1 )
+(17d)
+
+≤ 2ε θmax ΨQ h 2 + µk ΨQ h 2
+2
+√
++ 2µ k ΨS c x 1 ΨQ h 2 ,
+
+(17e)
+
+where (17a) follows from ΨQ h = Ψh − ΨQc h and Ψ† Ψ =
+Id , (17b) is a consequence of the Cauchy-Schwarz inequality,
+(17c) is obtained from (15), Lemma 4, and the deﬁnition of µ
+in (16), (17d) results from (11), and (17e) comes from u 1 ≤
+√
+k u 2 , for k-sparse u.
+If h = 0, then ΨQ h 2 = 0, since Ψ is assumed to
+be full-rank and Q is the set of indices of the k largest (in
+magnitude) coefﬁcients of Ψh, and therefore, the inequality
+between θmin ΨQ h 2 and (17e) simpliﬁes to
+2
+√
+2
+(ωmin − µ(2k − 1)) ΨQ h 2 ≤ 2ε θmax + 2µ k ΨS c x 1 .
+
+ΨQ h
+
+2
+
+i,j
+
+AΨ† ΨQ h
+
+≤ C0 ε + C1 ΨS c x
+
+= AΨ† ΨQ1 h
+
+2
+2
+
++ AΨ† ΨQ2 h
+
+2
+2
+
+(22)
+
+The application of Geršgorin’s disc theorem [18] gives
+θmin,1 ΨQ1 h
+
+2
+2
+2
+2
+
+≤ AΨ† ΨQ1 h
+†
+
+≤ AΨ ΨQ2 h
+
+2
+2
+2
+2
+
+≤ θmax,1 ΨQ1 h
+≤ θmax,2 ΨQ2 h
+
+2
+2
+2
+2
+
+(23)
+(24)
+
+2
+with θmin,
+ωmin (A Ψ† ) − µ (k − 1) and θmax,
+†
+2
+ωmax (A Ψ ) + µ (k − 1), for = 1, 2.
+In addition, the last term in (22) can be bounded as
+
+(18)
+
+|(AΨ† ΨQ1 h)H AΨ† ΨQ2 h|
+|[(AΨ† )H AΨ† ]i,j ||[Ψh]i ||[Ψh]j |
+
+≤
+i∈Q1 ,j∈Q2
+
+≤ µm ΨQ1 h
+
+1
+
+Ψ Q2 h
+
+1
+
+4
+
+(25a)
+
+1
+
+≤ µm k1 k2 ΨQ1 h 2 ΨQ2 h 2
+µm
+≤
+k 1 k 2 Ψ Q1 h 2 + Ψ Q2 h
+2
+2
+µm
+≤
+k1 k2 ΨQ h 2 ,
+2
+2
+
+we have
+2
+
+2
+2
+
++ 2(AΨ† ΨQ1 h)H AΨ† ΨQ2 h.
+
+4) Recovery guarantee: Using Deﬁnition 1, we get µ =
+ˆ
+2
+µ(AΨ† ) = µ/ωmin . Combining (14) and (18), we therefore
+ˆ
+conclude that for
+1
+1
+k<
+1+
+(19)
+2
+µ
+ˆ
+
+= h
+
+(21)
+
+With the deﬁnitions of Q1 and Q2 , we have from (15)
+
+2
+ωmin − µ(2k − 1) > 0.
+
+2
+
+(20)
+
+0n×d
+∈ C2n×2d ,
+Ψ2
+
+µm = max |[(A1 Ψ† )H A2 Ψ† ]i,j |.
+1
+2
+
+provided that
+
+x∗ − x
+
+≤ε
+
+i,j,i=j
+
+θmin,2 ΨQ2 h
+1
+
+2
+
+µ = max |[(A Ψ† )H A Ψ† ]i,j |
+
+This ﬁnally yields
+√
+√
+2ε θmax + 2µ k ΨS c x
+≤
+2
+ωmin − µ(2k − 1)
+
+y − Ax
+
+where p = 2d in the analysis setting, p = 2n in the
+synthesis setting, and p = d + n in hybrid settings. The
+corresponding measurement vector is y = Ax + e, where
+we set x = [xT xT ]T .
+1
+2
+A recovery condition for (P) could now be obtained by
+simply inserting A and Ψ in (20), (21) above into (5).
+In certain cases, we can, however, get a better (i.e., less
+restrictive) threshold following ideas similar to those reported
+in [7] and detailed next.
+We deﬁne the vectors h1 = x∗ − x1 , h2 = x∗ − x2 , the
+1
+2
+n + suppk2 (Ψ2 h2 ), and
+sets Q1
+suppk1 (Ψ1 h1 ), Q2
+h = [hT hT ]T , Q = Q1 ∪ Q2 , and set k = k1 + k2 .
+1
+2
+We furthermore let, for = 1, 2,
+
+|[(AΨ† )H AΨ† ]i,j ||[Ψh]i ||[Ψh]j | (17b)
+
++
+
+subject to
+
+A2 ∈ Cm×p
+
+Ψ1
+Ψ=
+0n×d
+
+≤ |(Ah)H AΨ† ΨQ h| + |(ΨQc h)H (AΨ† )H AΨ† (ΨQ h)|
+≤ Ah
+
+1
+
+A = A1
+
+= (AΨ ΨQ h) AΨ ΨQ h
+
+= (Ah) AΨ ΨQ h − (AΨ ΨQc h)H AΨ† ΨQ h
+H
+
+.
+
+by amalgamating Ψ1 , Ψ2 and A1 , A2 into the matrices Ψ and
+A as follows:
+
+†
+
+H
+
+Ψx
+
+x
+
+†
+
+and ωmin ωmin (AΨ ) and ωmax ωmax (AΨ ).
+Using Lemma 4 and (15) and following the same steps as
+in [20, Th. 2.1] and [7, Th. 1], we arrive at the following chain
+of inequalities:
+2
+2
+
+1 − µ(2k − 1)
+ˆ
+√
+2ˆ 3k
+µ
+1
++√
+1 − µ(2k − 1)
+ˆ
+k
+
+1
+σmin (Ψ)
+
+(P∗ ) minimize
+
+†
+
++ µ(k − 1))
+ˆ
+
+B. Proof of Theorem 1
+We start by transforming (P) into the equivalent problem
+
+(16)
+
+i,j,i=j
+
+2
+ωmax
+2 (1
+ωmin
+
+(25b)
+2
+2
+
+(25c)
+(25d)
+
+• Case 2: µ2 (k2 − 1) ≤ µ1 (k1 − 1)
+Similarly to Case 1, we get
+1
+2
+g (k) = ωmin −
+ˆ
+µ1 (k − 2) + k µ2 + µ2 − µk.
+m
+1
+2
+If g (k) > 0, we must have
+ˆ
+2 (1 + µ1 )
+ˆ
+.
+(30)
+k<
+µ1 + 2ˆmax + µ2 + µ2
+ˆ
+µ
+ˆ1 ˆm
+Since µ1 ≤ µ2 , by assumption, the inequality in (30)
+ˆ
+ˆ
+is tighter than the one in (29). We complete the proof by
+combining the thresholds in (19) and (29) to get (3).
+
+where (25a) follows from the deﬁnition of µm , (25b) results
+√
+from u 1 ≤ k u 2 , for k-sparse u, and (25c) is a consequence of the arithmetic-mean geometric-mean inequality.
+Combining (23), (24), and (25d) gives
+θmin ΨQ h
+
+≤ AΨ† ΨQ h
+
+2
+2
+
+2
+2
+
+≤ θmax ΨQ h 2 ,
+2
+
+2
+2
+where θmin ωmin −f (k1 , k2 ), θmax ωmax +f (k1 , k2 ), ωmin
+†
+†
+ωmin (A1 Ψ1 , A2 Ψ2 ), ωmax ωmax (A1 Ψ† , A2 Ψ† ), and
+2
+1
+
+f (k1 , k2 )
+
+max{µ1 (k1 − 1), µ2 (k2 − 1)} + µm
+
+k1 k2 .
+
+Using the same steps as in (17a)-(17e), we get
+√
+g(k1 , k2 ) ΨQ h 2 ≤ 2ε θmax + 2µ k ΨS c x 1 ,
+
+R EFERENCES
+[1] R. Rubinstein, A. M. Bruckstein, and M. Elad, “Dictionaries for sparse
+representation modeling,” Proc. IEEE, vol. 98, no. 6, pp. 1045–1057,
+Apr. 2010.
+[2] O. Christensen, An Introduction to Frames and Riesz Bases, ser. Applied
+and Numerical Harmonic Analysis, J. J. Benedetto, Ed. Boston, MA,
+USA: Birkhäuser, 2002.
+[3] M. Elad, Sparse and Redundant Representations – From Theory to
+Applications in Signal and Image Processing. New York, NY, USA:
+Springer, 2010.
+[4] P. Milanfar and R. Rubinstein, “Analysis versus synthesis in signal
+priors,” Inverse Problems, vol. 23, pp. 947–968, Jan. 2007.
+[5] E. J. Candès, Y. C. Eldar, D. Needell, and P. Randall, “Compressed sensing with coherent and redundant dictionaries,” Appl. Comput. Harmon.
+Anal., vol. 31, no. 1, pp. 59–73, Sep. 2011.
+[6] E. J. Candès, J. Romberg, and T. Tao, “Stable signal recovery from
+incomplete and inaccurate measurements,” Comm. Pure Appl. Math.,
+vol. 59, no. 2, pp. 1207–1223, Mar. 2005.
+[7] C. Studer and R. Baraniuk, “Stable restoration and separation of
+approximately sparse signals,” Appl. Comput. Harmon. Anal., submitted.
+[Online]. Available: http://arxiv.org/pdf/1107.0420v1.pdf
+[8] S. G. Mallat, A Wavelet Tour of Signal Processing: The Sparse Way.
+Burlington, MA, USA: Academic Press, 2009.
+[9] M. Elad, J.-L. Starck, P. Querre, and D. L. Donoho, “Simultaneous
+cartoon and texture image inpainting using morphological component
+analysis (MCA),” Appl. Comput. Harmon. Anal., vol. 19, no. 3, pp.
+340–358, Jan. 2005.
+[10] J. Fadili, J.-L. Starck, M. Elad, and D. L. Donoho, “MCALab: Reproducible research in signal and image decomposition and inpainting,”
+Computing in Science & Engineering, vol. 12, no. 1, pp. 44–63,
+Feb. 2010.
+[11] J.-F. Cai, S. Osher, and Z. Shen, “Split Bregman methods and frame
+based image restoration,” Multiscale Modeling & Simulation, vol. 8,
+no. 2, pp. 337–369, Jan. 2010.
+[12] C. Studer, P. Kuppinger, G. Pope, and H. Bölcskei, “Recovery of sparsely
+corrupted signals,” IEEE Trans. Inf. Theory, vol. 58, no. 5, pp. 3115–
+3130, May 2012.
+[13] G. Kutyniok, “Data separation by sparse representations,” in Compressed
+Sensing: Theory and Applications, Y. C. Eldar and G. Kutyniok, Eds.,
+New York, NY, USA: Cambridge University Press, 2012.
+[14] Y. Liu, T. Mi, and S. Li, “Compressed sensing with general frames via
+optimal-dual-based 1 -analysis,” IEEE Trans. Inf. Theory, submitted.
+[Online]. Available: http://arxiv.org/pdf/1111.4345.pdf
+[15] S. Nam, M. Davies, M. Elad, and R. Gribonval, “The cosparse analysis
+model and algorithms,” INRIA, Tech. Rep., Jun. 2011. [Online].
+Available: http://arxiv.org/pdf/1106.4987v1.pdf
+[16] L. Demanet and L. Ying, “Wave atoms and sparsity of oscillatory
+patterns,” Appl. Comput. Harmon. Anal., vol. 23, no. 3, pp. 368–387,
+Jan. 2007.
+[17] S. Becker, E. J. Candès, and M. Grant, “Templates for convex cone
+problems with applications to sparse signal recovery,” in Mathematical
+Programming Computation, W. J. Cook, Ed., 2012, vol. 3, no. 3, pp.
+165–218.
+[18] R. A. Horn and C. R. Johnson, Matrix Analysis. New York, NY, USA:
+Cambridge University Press, 1991.
+[19] T. T. Cai, L. Wang, and G. Xu, “New bounds for restricted isometry
+constants,” IEEE Trans. Inf. Theory, vol. 56, no. 9, pp. 1–7, Aug. 2010.
+[20] ——, “Stable recovery of sparse signals and an oracle inequality,” IEEE
+Trans. Inf. Theory, vol. 56, no. 7, pp. 3516–3522, Jul. 2010.
+
+2
+where g(k1 , k2 ) ωmin − f (k1 , k2 ) − µk.
+Next, we bound g(k1 , k2 ) from below by a function of k =
+k1 +k2 . This can be done, e.g., by looking for the minimum [7]
+
+min
+
+g(k1 , k − k1 )
+
+(26)
+
+min
+
+g (k)
+ˆ
+
+g(k − k2 , k2 ).
+
+(27)
+
+k1 : 0≤k1 ≤k
+
+or equivalently
+g (k)
+ˆ
+
+k2 : 0≤k2 ≤k
+
+To ﬁnd g (k) in (26) or in (27), we need to distinguish between
+ˆ
+two cases:
+• Case 1: µ1 (k1 − 1) ≤ µ2 (k2 − 1)
+In this case, we get
+2
+g(k − k2 , k2 ) = ωmin − µ2 (k2 − 1) − µm
+
+k2 (k − k2 ) − µk.
+
+A straightforward calculation reveals that the minimum of g
+is achieved at
+k2 =
+
+k
+1+
+2
+
+µ2
+µ2
+2
+
++ µ2
+m
+
+,
+
+resulting in
+2
+g (k) = ωmin −
+ˆ
+
+1
+µ2 (k − 2) + k
+2
+
+µ2 + µ2
+m
+2
+
+− µk.
+
+If g (k) > 0, then we have
+ˆ
+x∗ − x
+where
+
+2
+
+= h
+
+2
+
+≤ C0 ε + C1 ΨS c x
+
+1
+
+(28)
+
+√
+2 3
+C0 =
+σmin (Ψ)ˆ(k)
+g
+
+and
+1
+C1 =
+σmin (Ψ)
+
+√
+2µ 3k
+1
++√
+g (k)
+ˆ
+k
+
+.
+
+Setting g (k) > 0 amounts to imposing
+ˆ
+k<
+
+2 (1 + µ2 )
+ˆ
+µ2 + 2ˆmax +
+ˆ
+µ
+
+µ2 + µ2
+ˆ2 ˆm
+
+,
+
+(29)
+
+where we used Deﬁnitions 1 and 2 to get a threshold depending
+on the coherence parameters only.
+
+5
+
+

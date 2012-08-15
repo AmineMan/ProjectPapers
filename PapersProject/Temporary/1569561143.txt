@@ -1,0 +1,1185 @@
+Creator:         TeX output 2012.04.21:1505
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Sat Apr 21 15:05:41 2012
+ModDate:        Tue Jun 19 12:54:44 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      320289 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569561143
+
+A Simple Technique for Bounding the Redundancy
+of Source Coding with Side Information
+Shigeaki Kuzuoka
+Department of Computer and Communication Sciences
+Wakayama University
+Wakayama, JAPAN 640–8510
+Email: kuzuoka@ieee.org
+
+SW code. To bound the probability of the event such that
+− log PX n |Y n (X n |Y n ) exceeds a threshold, we use the large
+deviations result due to Bernstein (known as Bernstein’s inequality). This simple argument allows us to extend the result
+to the case where the source (X n , Y n ) has an n-fold product
+distribution PX n Y n = PX1 Y1 × PX2 Y2 × · · · × PXn Yn (i.e.,
+(X1 , Y1 ), . . . , (Xn , Yn ) are independent but not necessarily
+identically distributed)1 . While a similar idea is used in the
+proof of Theorem 1 of [4], our proof derives the bound established by He et al, which was proved to be tight. Moreover,
+our proof indicates that the optimal redundancy is achieved by
+linear codes.
+Our technique can be also applied to the case where the side
+information Y n is encoded by the helper (Fig. 2; the problem
+is known as the Wyner-Ahlswede-K¨ rner (WAK) coding probo
+lem [5], [6]). It gives novel bounds on the redundancies of the
+coding rates of the encoder and helper of WAK coding.
+
+Abstract—A simple technique for bounding the redundancy
+of Slepian-Wolf coding is given. We demonstrate that our simple
+technique gives the tight bound established by He et al. Our proof
+is so simple that it can be easily extended to the case where
+the source (X n , Y n ) has an n-fold product distribution (i.e.,
+(X1 , Y1 ), . . . , (Xn , Yn ) are independent but not necessarily identically distributed). It can be also applied to Wyner-AhlswedeK¨ rner coding and gives novel bounds of the redundancies of
+o
+the coding rates of the encoder and the helper.
+
+I. I NTRODUCTION
+Let {(Xi , Yi )}∞ be a discrete memoryless multiple
+i=1
+source (DMMS) with two components X and Y . That is,
+{(Xi , Yi )}∞ is a sequence of independent replicas of a pair
+i=1
+of correlated random variables (X, Y ) taking values in ﬁnite
+alphabets X and Y, respectively. We consider the following
+multiterminal source coding problem (Fig. 1). The encoder
+compresses X n = (X1 , . . . , Xn ) and sends the compressed
+data to the decoder so that the decoder, given the side information Y n = (Y1 , . . . , Yn ), can recover X n with asymptotically
+zero error probability. This problem was ﬁrst introduced and
+studied by Slepian and Wolf [1], and is known as the SlepianWolf (SW) coding problem (with the full side information at
+the decoder).
+
+Fig. 1.
+
+Fig. 2.
+
+Wyner-Ahlswede-K¨ rner coding
+o
+
+This paper is organized as follows. In Sect. II, we introduce
+some notations used in this paper. A new proof of the bound
+of the redundancy of SW coding is given in Sect. III, and then,
+it is applied to WAK coding in Sect. IV. Sect.V concludes the
+paper.
+
+Slepian-Wolf coding
+
+II. N OTATIONS
+
+Recently, He et al. [2] investigated the redundancy of
+SW coding. They proved that under mild assumptions about
+the error probability εn , the redundancy of ﬁxed-rate coding
+√
+√
+is dSW − log εn /n + o( − log εn /n), where dSW is the
+constant completely determined by the joint distribution of
+the DMMS.
+In this paper, we give a conceptually simple proof for the
+direct part of He et al [2, Theorem 4]. The key of our proof
+is the fact that the behavior of the conditional-log-likelihood
+− log PX n |Y n (X n |Y n ) determines the error probability of
+
+Throughout this paper, log means the natural logarithm. For
+any ﬁnite set S, |S| and S n denote the cardinality and the n-th
+Cartesian product of S, respectively. For a random variable Z,
+E[Z] and Var(Z) denote the expectation and the variance of
+Z, respectively.
+Let us be given a pair of correlated random variables
+(X, Y ) taking values in ﬁnite alphabets X and Y, respectively.
+Let {(Xi , Yi )}∞ be a sequence of independent replicas of
+i=1
+(X, Y ). {(Xi , Yi )}∞ is called a discrete memoryless multiple
+i=1
+
+This study was supported in part by Grant-in-Aid for Young Scientists (B)
+KAKENHI 22760278.
+
+1 It seems that it is hard to extend the proof given in [2] for that case, since
+the analysis in [2] heavily depends on the method of types [3].
+
+1
+
+Then for any δ > 0,
+{ n
+}
+(
+∑
+Pr
+Zi ≥ nδ ≤ exp −
+
+source (DMMS) with two components. Considered separately,
+the sequences {Xi }∞ and {Yi }∞ are two discrete memi=1
+i=1
+oryless sources ith output of which, Xi and Yi , are not
+necessarily independent. For brevity, {Xi }∞ and {Yi }∞ are
+i=1
+i=1
+referred to as the sources X and Y , respectively. The ﬁrst n
+variables (X1 , X2 , . . . , Xn ) of the source X is denoted by
+X n . Y n = (Y1 , . . . , Yn ) is deﬁned similarly.
+Let PXY denote the joint distribution of (X, Y ). Let PX
+and PY be the marginals of PXY over X and Y, respectively.
+The conditional distribution of Y given X (resp. X given
+Y ) is denoted by PY |X (resp. PX|Y )2 . We will use standard
+notations H(X) denoting the entropy, H(X|Y ) denoting
+the conditional entropy, and I(X; Y ) denoting the mutual
+information, etc., as in [7].
+
+i=1
+
+nδ 2
+2σ 2 + (2/3)cδ
+
+)
+.
+
+Lemma 2: For any n = 1, 2, . . . and γn > 0, there exists
+an (n, Mn , ϵn )-code such that
+{
+}
+ϵn ≤ Pr − log PX n |Y n (X n |Y n ) ≥ log Mn − nγn + e−nγn .
+(2)
+It should be noted here that Lemma 2 holds for general
+correlated sources {(X n , Y n )}∞ , i.e. the sources which are
+n=1
+not stationary nor ergodic [9]. Since our proof below depends
+only on Lemmas 1 and 2, it can be easily extended to the
+case where (X1 , Y1 ), · · · , (Xn , Yn ) are independent but not
+necessarily identically distributed. In ∑ case, the right hand
+that
+side of (1) becomes (1/n)[log Mn − i H(Xi |Yi )] and dSW
+in the left hand side is replaced with
+{
+}
+n
+2∑ ∑
+2
+PXi Yi (x, y) log PXi |Yi (x|y)−H(Xi |Yi )2 .
+n i=1 x,y
+
+III. R EDUNDANCY OF S LEPIAN -W OLF C ODING
+Let a DMMS {(Xi , Yi )}∞ be given. A ﬁxed-rate Slepiani=1
+Wolf (SW) code of order n is a pair of an encoder
+φn : X n → {1, 2, . . . , Mn }
+and a decoder
+ψn : {1, 2, . . . , Mn } × Y n → X n
+
+Moreover, it should also be noted that we can show there
+exists a linear code satisfying (2)4 . This implies that the
+optimal redundancy (1) of SW coding is achieved by linear
+codes.
+Proof of Theorem 1: For each i = 1, 2, . . . , let Zi be a
+random variable such that
+
+where the integer Mn denotes the size of the code. The error
+probability of the code is deﬁned by
+εn = Pr {X n ̸= ψn (φn (X n ), Y n )} .
+We call a pair (φn , ψn ) with a code of size Mn and the error
+probability εn the (n, Mn , εn )-code.
+Theorem 1: Let {εn }∞ be a sequence of positive real
+n=1
+numbers such that − log εn = o(n) and limn→∞ εn = 0.
+Then there exists (n, Mn , εn )-code such that
+(√
+)
+√
+1
+− log εn
+− log εn
+log Mn − H(X|Y ) ≤ dSW
++o
+n
+n
+n
+(1)
+where
+{
+}
+∑
+2
+dSW
+2
+PXY (x, y) log PX|Y (x|y) − H(X|Y )2
+
+Zi = − log PX|Y (Xi |Yi ) − H(X|Y ).
+Note that Z1 , Z2 , . . . , Zn are independent and satisfy that
+[
+]
+E[Zi ] = E − log PX|Y (Xi |Yi ) − H(X|Y ) = 0
+and that
+|Zi | ≤ c
+
+{
+}
+max − log pmin − H(X|Y ), H(X|Y ) + log pmax .
+
+where pmin = min{PX|Y (x|y) : PX|Y (x|y) > 0, x ∈ X , y ∈
+Y} and pmax = max{PX|Y (x|y) : x ∈ X , y ∈ Y}.
+Let
+
+x,y
+
+Remark 1: The bound (1) is given by He et al. [2] (Note
+that log is to the base 2 in [2], while log means the natural
+logarithm in this paper).
+
+1∑
+Var(Zi )
+n i=1
+∑
+=
+PXY (x, y) log2 PX|Y (x|y) − H(X|Y )2 (3)
+n
+
+σ2
+
+Our main contribution is to show that the tight bound (1) is
+easily deviled by just combining the following two lemmas 3 .
+Lemma 1 (Bernstein’s inequality): Let Z1 , Z2 , . . . , Zn be
+independent (not necessarily identically distributed) realvalued random variables such that E[Zi ] = 0 and |Zi | ≤ c
+with probability one. Let
+n
+1∑
+Var(Zi ).
+σ2 =
+n i=1
+
+x∈X ,y∈Y
+
+and
+γn
+
+log(2/εn )
+.
+n
+
+Moreover, ﬁx δn > 0 so that
+)
+(
+2
+nδn
+= εn /2.
+exp − 2
+2σ + (2/3)cδn
+
+2 Without loss of generality, we assume that P (x) > 0 for all x ∈ X
+X
+(resp. PY (y) > 0 for all y ∈ Y) and thus PY |X (y|x) = PXY (x, y)/PX (x)
+(resp. PX|Y (x|y) = PXY (x, y)/PY (y)) can be deﬁned.
+3 For Lemma 1, see e.g. [8]. Lemma 2 is a simpler version of Lemma 7.2.1
+of [9] and can be proved in a similar way as Lemma 7.2.1 of [9].
+
+4 We can prove this by evaluating the average error probability with respect
+to the random choice of a linear code in a similar way as the derivation of
+(20) in the proof of [10, Corollary 1].
+
+2
+
+In other words, let δn be
+δn =
+
+2c
+3
+
+log
+
+2
+εn
+
++
+
+√
+
+4c2
+9
+
+log2
+
+2
+εn
+
++ 8nσ 2 log
+
+2
+εn
+
+2n
+
+set, and then, ﬁx an conditional distribution5 PU |Y of U on U
+given Y . Then, {Ui }∞ is deﬁned by PU |Y so that
+i=1
+.
+
+(4)
+
+n
+
+log Mn = nH(X|Y ) + nδn + nγn .
+
+∀(y n , un ) ∈ Y n × U n
+
+Note that (X , Y , U n ) satisﬁes the Markov condition:
+
+(5)
+
+∀(xn , y n , un ) ∈ X n × Y n × U n .
+Now, we give the bounds on the redundancies of the coding
+˜
+rates (1/n) log Mn of the encoder and (1/n) log Mn of the
+helper.
+Theorem 2: Fix PU |Y and let {εn }∞ be a sequence
+n=1
+of positive real numbers such that − log εn = o(n) and
+˜
+limn→∞ εn = 0. Then there exists an (n, Mn , Mn , εn )-code
+such that
+(√
+)
+√
+1
+− log εn
+− log εn
+log Mn −H(X|U ) ≤ dW AK
++o
+n
+n
+n
+(7)
+
+i=1
+(
+)
+2
+nδn
+≤ exp − 2
++ e−nγn
+2σ + (2/3)cδn
+= εn .
+
+Hence, by Lemma 2, there exists an (n, Mn , ε)-code for which
+Mn satisﬁes (5). To prove the theorem, it is sufﬁcient to give
+an upper-bound on the difference between (1/n) log Mn and
+H(X|Y ).
+The deﬁnition (4) of δn indicates that
+(√
+)
+√
+2σ 2 log(1/εn )
+log(1/εn )
+.
++o
+δn ≤
+n
+n
+
+and
+
+(√
+)
+√
+1
+− log εn
+˜
+˜ n −I(Y ; U ) ≤ dW AK − log εn +o
+log M
+n
+n
+n
+(8)
+
+where
+
+{
+
+Thus, by (5), we have
+1
+log Mn − H(X|Y )
+n
+= δn + γn
+log(2/εn )
+= δn +
+n
+(√
+)
+√
+2σ 2 log(1/εn )
+log(1/εn )
+.
+≤
++o
+n
+n
+
+dW AK
+
+4
+
+∑
+
+}
+2
+
+PXU (x, u) log PX|U
+
+(x|u)−H(X|U )2
+
+x,u
+
+and
+˜
+dW AK
+
+2
+
+{
+∑
+y,u
+
+}
+PU |Y (u|y)
+2 .
+PY U (y, u) log
+−I(Y ; U )
+PU (u)
+2
+
+(6)
+To show the theorem, we use the following Lemma
+3. It gives a bridge between the error probability εn of
+WAK coding and the behavior of the conditional loglikelihood − log PX n |U n (xn |un ) and the self-mutual information log PU n |Y n (un |y n )/PU n (un ). To bound the probabilities
+πn of the event − log PX n |U n (xn |un ) ≥ log Mn − nγn and
+˜
+πn of log PU n |Y n (un |y n )/PU n (un ) ≥ log Mn − nγn , we can
+˜
+use the Bernstein’s inequality. The proof of the lemma shall
+be given in the appendix.
+Lemma 3: Fix PU |Y and deﬁne πn and πn as
+˜
+
+Substituting (3) into (6), we have (1).
+¨
+IV. R EDUNDANCY OF W YNER -A HLSWEDE -K ORNER
+C ODING
+In this section, we apply the technique developed in Sect. III
+to Wyner-Ahlswede-K¨ rner coding (Fig. 2).
+o
+Let us deﬁne a code (φn , φn , ψn ) by three mappings:
+˜
+encoder φn : X n → {1, 2, . . . , Mn },
+˜
+helper φn : Y n → {1, 2, . . . , Mn },
+˜
+
+πn
+
+˜
+decoder ψn : {1, 2, . . . , Mn } × {1, 2, . . . , Mn } → X n .
+
+πn
+˜
+
+The error probability of the code (φn , φn , ψn ) is deﬁned by
+˜
+
+where
+
+Pr {X ̸= ψn (φn (X ), φn (Y ))} .
+˜
+n
+
+n
+
+PX n Y n U n (xn , y n , un ) = PX n Y n (xn , y n )PU n |Y n (un |y n ),
+
+Then, by Bernstein’s inequality (Lemma 1), we have
+}
+{
+Pr − log PX n |Y n (X n |Y n ) ≥ log Mn − nγn + e−nγn
+{
+}
+= Pr − log PX n |Y n (X n |Y n ) ≥ nH(X|Y ) + nδn + e−nγn
+{ n
+}
+∑
+= Pr
+Zi ≥ nδn + e−nγn
+
+εn
+
+PU |Y (ui |yi ),
+
+i=1
+
+Further, ﬁx Mn so that
+
+n
+
+n
+∏
+
+PU n |Y n (un |y n ) =
+
+n
+
+Tn (γn )
+
+We call a code (φn , φn , ψn ) with the error probability εn the
+˜
+˜
+(n, Mn , Mn , εn )-code.
+Before stating the result, we introduce a sequence {Ui }∞
+i=1
+of auxiliary random variables. Let U be an arbitrarily ﬁnite
+
+Pr{(X n , U n ) ∈ Tn (γn )}
+/
+n
+n
+Pr{(Y , U ) ∈ Tn (γn )}
+/ ˜
+
+{
+(xn , un ) ∈ X n × U n :
+− log PX n |U n (xn |un ) < log Mn − nγn
+
+}
+
+5
+∑ Without loss of generality, we can assume that PU |Y satisﬁes PU (u)
+y∈Y PU |Y (u|y)PY (y) > 0 for all u ∈ U .
+
+3
+
+and
+
+FU : Y n → U as in the following manner: Let ˜ be the smallest
+i
+i such that (y n , un (i)) ∈ An (If there exists no such un (i) ∈ U
+then let ˜ = 1). Then, let us deﬁne FU (y n ) = un (˜
+i
+i).
+We have
+
+{
+˜
+Tn (γn )
+
+(y n , un ) ∈ Y n × U n :
+}
+PU n |Y n (un |y n )
+˜
+log
+< log Mn − nγn .
+PU n (un )
+
+Pr {(X n , FU (Y n )) ∈ Tn (γn )}
+/
+∑
+=
+PX n Y n (xn , y n )
+
+˜
+Then, there exists an (n, Mn , Mn , ϵn )-code satisfying
+1/2
+ϵn ≤ 2πn + πn + 2e−nγn
+˜
+
+(xn ,y n ):
+(xn ,FU (y n ))∈Tn (γn )
+/
+
+(9)
+
+∑
+
+=
+
+n
+
+(x ,y ):
+(y n ,FU (y n ))∈An
+n
+(x ,FU (y n ))∈Tn (γn )
+/
+
+Proof of Theorem 2: For i = 1, 2, . . . , let us consider
+random variables
+Zi
+
+PU |Y (Ui |Yi )
+− I(Y ; U ).
+PU (Ui )
+
+n
+
+∑
+
+=
+
+n
+
+PX n Y n (xn , y n )
+
+n
+
+(x ,y ):
+(y n ,FU (y n ))∈An
+n
+(x ,FU (y n ))∈Tn (γn )
+/
+
+∑
+
++
+
+PY n (y n )
+
+(10)
+
+n
+
+y :
+(y n ,FU (y n ))∈An
+/
+
+The ﬁrst term of the right hand side of (10) is rewritten as
+∑
+PX n Y n (xn , y n )
+(xn ,y n ):
+(y n ,FU (y n ))∈An
+(xn ,FU (y n ))∈Tn (γn )
+/
+
+∑
+
+=
+
+At ﬁrst, we introduce a key lemma. The main idea of the
+lemma is quite similar to Wyner’s lemma [5, Lemma 4.3].
+˜
+˜
+Lemma 4: There are Mn sequences {un (i)}Mn (un (i) ∈
+i=1
+n
+˜
+U , i = 1, 2 . . . , Mn ) and a function
+
+∑
+
+PY n (y n )
+
+n
+
+∑
+
+=
+
+PX n |Y n (xn |y n )
+
+xn :
+n
+
+y :
+(y n ,FU (y n ))∈An
+
+(xn ,FU (y ))∈Tn (γn )
+/
+
+PY n (y n )η(y n , FU (y n ))
+
+n
+
+y :
+(y n ,FU (y n ))∈An
+
+˜
+
+fn : Y n → {un (i)}Mn
+i=1
+
+1/2
+≤ πn
+
+such that
+
+(11)
+
+where the last inequality is due to the deﬁnition of An .
+To evaluate the second term of the right hand side of (10),
+let us consider the expectation of the value with respect to the
+distribution of the random set U.
+
+
+
+1/2
+Pr {(X n , fn (Y n )) ∈ Tn (γn )} ≤ 2πn + πn + e−nγn .
+/
+˜
+
+PX n |Y n (xn |y n )
+
+xn :
+(xn ,un )∈Tn (γn )
+/
+
+An
+
+PX n Y n (xn , y n )
+
+n
+
+(x ,y ):
+(y n ,FU (y n ))∈An
+/
+
+A PPENDIX
+
+and
+
+∑
+
++
+
+In this paper, it is demonstrated that the Bernstein’s inequality gives the tight bound on the redundancy of the coding
+rate of Slepian-Wolf codes. While only ﬁxed-rate coding is
+considered in this paper, our simple proof can also derive the
+tight bound of the redundancy of variable-rate Slepian-Wolf
+coding given in Theorem 3 of [2] (see [11]). An important
+future work is to give a lower bound on the redundancies
+of the coding rates of the encoder and the helper of WynerAhlswede-K¨ rner coding.
+o
+
+∑
+
+PX n Y n (xn , y n )
+
+(xn ,y n ):
+(y n ,FU (y n ))∈An
+(xn ,FU (y n ))∈Tn (γn )
+/
+
+V. C ONCLUDING R EMARKS
+
+η(y n , un )
+
+∑
+
+≤
+
+By applying the Bernstein’s inequality to Z1 , . . . , Zn and
+˜
+˜
+Z1 , . . . , Zn , we can evaluate the upper bound (9) of the
+error probability, and then, guarantee the existence of an
+˜
+(n, Mn , Mn , εn ) code satisfying (7) and (8). The details are
+omitted, since it is quite similar to the proof of (1).
+
+Proof: Let
+
+PX n Y n (xn , y n )
+
+(xn ,y n ):
+(y n ,FU (y n ))∈An
+/
+(xn ,FU (y n ))∈Tn (γn )
+/
+
+and
+log
+
+∑
+
++
+
+− log PX|U (Xi |Ui ) − H(X|U ).
+
+˜
+Zi
+
+PX n Y n (xn , y n )
+
+n
+
+
+EU 
+
+
+{
+}
+1/2
+(y n , un ) ∈ Y n × U n : η(y n , un ) ≤ πn
+.
+˜
+
+Then, randomly generate a set U = {un (i)}Mn , where un (i)
+i=1
+˜
+(i = 1, . . . , Mn ) is generated according to the probability distribution PU n independently. Given U, we deﬁne the function
+
+=
+
+∑
+yn :
+(y n ,FU (y n ))∈An
+/
+
+∑
+yn
+
+4
+
+PY n (y n )
+
+
+
+
+
+
+
+
+
+
+PY n (y n )
+
+
+∑
+
+un :
+(y n ,un )∈An
+/
+
+Mn
+˜
+
+
+
+PU n (un )
+
+
+
+
+≤
+
+∑
+
+{
+PY n (y ) 1 −
+n
+
+∑
+
+}Mn
+˜
+n
+
+n
+
+where the inequality (a) follows from the Markov inequality.
+The inequalities (10), (11), (12), and (13) imply that there
+exists at least one set U such that
+
+n
+
+PU n (u )J(y , u )
+
+un
+
+yn
+
+where EU denotes the expectation with respect to the distribution of U and
+{
+˜
+1 if (y n , un ) ∈ An ∩ Tn (γn ),
+n
+n
+J(y , u )
+0 otherwise.
+
+Since e
+
+˜
+Note that for (y n , un ) ∈ An ∩ Tn (γn ),
+
+This completes the proof.
+
+PU n (un ) ≥ e
+
+˜
+− log Mn +nγn
+
+1/2
+Pr {(X n , FU (Y n )) ∈ Tn (γn )} ≤ 2πn + πn + e−e
+/
+˜
+
+nγn
+
+∑
+
+yn :
+(y n ,FU (y n ))∈An
+/
+
+≤
+
+∑
+
+PU n |Y n (un |y n )
+
+{
+
+n
+
+PY n (y ) 1
+
+−e
+
+˜
+− log Mn +nγn
+
+∑
+
+}Mn
+˜
+PU n |Y n (u |y )J(y , u )
+n
+
+n
+
+n
+
+n
+
+.
+
+un
+
+By using the inequality (1−xy)n ≤ 1−x+e−yn (see, e.g. [7]),
+we have
+
+
+∑
+
+
+EU 
+
+
+yn :
+(y ,FU (y n ))∈An
+/
+n
+
+≤
+
+∑
+
+
+PY n (y n )
+
+
+{
+
+PY n (y ) 1 −
+n
+
+yn
+
+∑
+
+PY n (y ) 1 −
+
+yn
+
+}
+
++e
+
+∑
+
+R EFERENCES
+[1] D. Slepian and J. K. Wolf, “Noiseless coding of correlated information
+sources,” IEEE Trans. Inf. Theory, vol. IT-19, no. 4, pp. 471–480, Jul.
+1973.
+[2] D.-K. He, L. A. Lastras-Monta˜ o, E.-H. Yang, A. Jagmohan, and
+n
+J. Chen, “On the redundancy of Slepian-Wolf coding,” IEEE Trans.
+Inf. Theory, vol. 55, no. 12, pp. 5607–5627, Dec. 2009.
+[3] I. Csisz´ r and J. K¨ rner, Information Theory: Coding Theorems for
+a
+o
+Discrete Memoryless Systems. New York: Academic, 1981.
+[4] T. Holenstein and R. Renner, “On the randomness of independent
+experiments,” IEEE Trans. Inf. Theory, vol. 57, no. 4, pp. 1865–1871,
+Apr. 2011.
+[5] A. D. Wyner, “On source coding with side information at the decoder,”
+IEEE Trans. Inf. Theory, vol. IT-21, no. 3, pp. 294–300, May 1975.
+[6] R. F. Ahlswede and J. K¨ rner, “Source coding with side information and
+o
+a converse for degraded broadcast channels,” IEEE Trans. Inf. Theory,
+vol. IT-21, no. 6, pp. 629–637, Nov. 1975.
+[7] T. M. Cover and J. A. Thomas, Elements of Information Theory, 2nd ed.
+John Wiley & Sons, Inc., 2006.
+[8] P. Massart, Concentration Inequalities and Model Selection. Springer,
+2007.
+[9] T. S. Han, Information-spectrum methods in information theory. New
+York: Springer-Verlag, 2002.
+[10] H. Koga, “Source coding using families of universal hash functions,”
+IEEE Trans. Inf. Theory, vol. 53, no. 9, pp. 3226–3233, Sep. 2007.
+[11] S. Kuzuoka, “On the redundancy of variable-rate Slepain-Wolf coding,”
+submitted to ISITA2012.
+
+}
+
+˜
+− log Mn +nγn
+
+{
+n
+
+By Lemma 4, this implies the existence of at least one code
+satisfying (9).
+
+PU n |Y n (un |y n )J(y n , un )
+
+un
+
+˜
++ exp[−Mn e
+=
+
+∑
+
+]
+
+PU n |Y n (un |y n )J(y n , un )
+
+un
+
+−enγn
+
+{
+}
+nγn
+˜
+= 1 − Pr (Y n , U n ) ∈ An ∩ Tn (γn ) + e−e
+≤ Pr {(Y n , U n ) ∈ An } + πn + e−e
+/
+˜
+
+nγn
+
+.
+
+(12)
+
+Further, the ﬁrst term of the right hand side of (12) satisﬁes
+Pr {(Y n , U n ) ∈ An }
+/
+{
+}
+n
+1/2
+= Pr η(Y , U n ) > πn
+∑
+(a)
+−1/2
+≤ πn
+PY n U n (y n , un )η(y n , un )
+y n ,un
+
+=
+
+−1/2
+πn
+
+∑
+
+y n ,un
+1/2
+≤ πn
+
+PY n U n (y n , un )
+
+≥ nγn , we have
+
+Proof of Lemma 3:
+At ﬁrst, we specify the encoder and the helper. We consider
+the random bin encoding. In other words, the encoder φn
+assigns to each xn ∈ X n a codeword from Mn at random.
+˜
+On the other hand, let {un (i)}Mn and fn be the sequences
+i=1
+and the function whose existence is guaranteed by Lemma
+˜
+4. The helper φn is deﬁned so that φn (y n ) = m ∈ Mn if
+˜
+˜
+˜
+fn (y n ) = un (m).
+˜
+Next, we specify decoding process. Assume that the decoder
+˜
+ψn receives m ∈ Mn and m ∈ Mn . Then, the decoder
+˜
+provides output ψn (m, m) = xn if and only if there exists
+˜
+only one xn ∈ X n satisfying (i) φn (xn ) = m and (ii)
+(xn , un (m)) ∈ Tn (γn ).
+˜
+A standard random coding argument shows that the average
+error probability ϵ with respect to random encoding is bounded
+¯
+by
+ϵ ≤ Pr {(X n , fn (Y n )) ∈ Tn (γn )} + e−nγn .
+¯
+/
+
+
+PY n (y n )
+
+
+yn
+
+.
+
+1/2
+Pr {(X n , FU (Y n )) ∈ Tn (γn )} ≤ 2πn + πn + e−nγn .
+/
+˜
+
+˜
+from the deﬁnition of Tn (γn ). Thus, we have
+
+
+
+EU 
+
+
+nγn
+
+∑
+
+PX n |Y n (xn |y n )
+
+n
+
+x :
+(xn ,un )∈Tn (γn )
+/
+
+(13)
+
+5
+
+

@@ -1,0 +1,757 @@
+Creator:         TeX output 2012.05.09:1101
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Wed May  9 11:01:40 2012
+ModDate:        Tue Jun 19 12:55:59 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      501757 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569559233
+
+SISO MAP Decoding of Rate-1 Recursive
+Convolutional Codes: A Revisit
+Yonghui Li, Md. Shahriar Rahman, and Branka Vucetic
+School of Electrical and Information Engineering
+University of Sydney, Sydney, NSW, 2006, Australia
+trellis, the received signals, and the a priori probabilities of the
+transmitted signals. The complexity of forward and backward
+recursion exponentially increases with the constraint length of
+convolutional codes.
+In this paper, we revisit the forward, backward and bidirectional BCJR decoding of rate-1 recursive convolutional (RC)
+codes. We observe some duality properties between a SISO
+forward/backward MAP decoder of a RC code and its encoder.
+The forward and backward decoder of a rate-1 RC code can actually be represented by its corresponding dual encoder using
+shift registers in the complex ﬁeld. This signiﬁcantly reduces
+the the original exponential computational complexity of MAP
+forward and backward recursion to the linear complexity. Similarly the bidirectional BCJR decoding can be implemented by
+linearly combining the outputs of the dual SISO encoders of
+the respective forward and backward decoders. With logarithm
+of the soft coded symbol estimate, obtained from the received
+signals, as the input to the dual encoder, the dual encoder
+output produces the logarithm of the soft symbol estimates of
+the binary information symbols. All the theorems presented
+in the paper have been rigorously proved and validated by
+simulations. Due to the space limitation, we will focus on
+the rate-1 RC codes and only present the key ﬁndings about
+their encoding and decoding duality and omit their proofs.
+The detailed proof and extensions to other classes of rate-1
+convolutional codes can be found in [8].
+The remainder of the paper is organized as follows. In
+Section II, we ﬁrst brieﬂy review the BCJR forward decoding
+algorithm and derive the dual encoder structures of forward
+MAP decoder. The duality for backward decoding is presented
+in Section III. The representation of bidirectional MAP decoding by using the derived dual encoder structures of forward and
+backward decoding is described in Section IV. Conclusions are
+drawn in Section V.
+
+Abstract— In this paper, we revisit the BCJR soft-input softoutput (SISO) maximum a posteriori probability (MAP) decoding
+process of rate-1 recursive convolutional (RC) codes. From
+this we establish some interesting duality properties between
+encoding and decoding of RC codes. We observe that the forward
+and backward BCJR decoders can be simply represented by
+their dual SISO channel encoders using shift registers in the
+complex ﬁeld. Similarly, the bidirectional MAP decoding can be
+implemented by linearly combining the outputs of the dual SISO
+encoders of the respective forward and backward decoders.
+
+I. I NTRODUCTION
+Convolutional codes have been widely used in various
+modern communications systems. Its popularity stems from
+its simple encoder structure. The main complexity associated
+with systems using convolutional coding is situated in the
+decoder. Various decoding algorithms have been developed
+to achieve the optimal decoding performance in the most
+efﬁcient manner. There are two commonly used decoding
+algorithms, the Viterbi algorithm (VA) [1-4] and the maximum
+a posteriori probability (MAP) algorithm, originally proposed
+by Bahl, Cocke, Jelinek and Raviv (BCJR) in 1974 [6]. The
+VA algorithm essentially consists of ﬁnding an optimal path
+in a trellis based graph and produces the minimum sequence
+error probability. In the standard VA, the decoder delivers
+hard-decision outputs, which are the estimates of transmitted
+binary information symbols. In contrast to the VA, the MAP
+algorithm performs symbol-by-symbol decoding and achieves
+the optimal symbol error probability.
+The BCJR algorithm has been forgotten for almost a decade
+due to its increased complexity compared to the VA algorithm,
+and was re-discovered in early 90’s as an optimal decoding
+algorithm for a class of capacity-approaching concatenated
+codes with random interleaving, such as turbo codes and
+serially concatenated codes. Though the VA algorithm can
+be modiﬁed to deliver not only the most-likely binary signal
+sequence, but also the soft output containing the a posteriori
+probabilities (APPs) of transmitted binary symbols [5, 7], only
+the MAP algorithm achieves the optimal BER performance.
+The MAP algorithm has now become a widely used decoding
+algorithm in communication systems.
+The BCJR decoding algorithm is a bidirectional decoding
+process, consisting of a forward and a backward recursion
+process, which dominates the main complexity of the MAP
+decoder. In each direction, the decoder infers the probabilities
+of current states and information symbols based on the probabilities of previous and next states in the forward and backward
+
+II. D UALITY OF E NCODING AND F ORWARD D ECODING OF
+R ATE -1 R ECURSIVE C ONVOLUTIONAL C ODES
+In this section, we ﬁrst revisit the forward BCJR decoding
+algorithm. We will focus on the decoding of a class of rate-1
+RC codes. Let a(x) = xn + an−1 xn−1 + · · · + a1 x1 + 1 and
+q(x) = xn + qn−1 xn−1 + · · · + q1 x1 + 1, where n is called
+the degree of monic polynomials a(x) and q(x). We deﬁne
+a convolutional code, generated by gRC (x) = a(x)/q(x) as
+a recursive convolutional (RC) code. For a given polynomial
+a(x), we deﬁne its minimum complementary polynomial as the
+
+1
+
+Fig. 1.
+
+The relationship of a SISO decoder and its Log-domain SISO decoder
+
+c
+
+…
+…
+
+a1
+
+b
+
+…
+
+S1
+
+The encoder for the code generated by
+ܽሺ‫ݔ‬ሻ ‫ ݔ‬௡ ൅ ‫ ڮ‬൅ ܽଵ ‫ ݔ‬൅ ͳ
+ൌ
+݃ோ஼ ሺ‫ݔ‬ሻ ൌ
+‫ݍ‬ሺ‫ݔ‬ሻ ‫ ݔ‬௡ ൅ ‫ ڮ‬൅ ‫ݍ‬ଵ ‫ ݔ‬൅ ͳ
+
+an-1
+Sn
+
+Sn-1
+qn-1
+
+q1
+
+ሬሬሬሬሬሬሬԦ
+ො
+݈݊‫ݔ‬௕ǡ௞
+
+…
+h1
+
+h2
+
+ො
+݈݊‫ݔ‬௖ǡ௞
+S1
+
+Fig. 2.
+
+…
+hn+l-1
+
+…
+
+S2
+
+Sn+l
+
+The dual encoder of the log-domain
+SISO forward decoder for the code
+݃ோ஼ ሺ‫ݔ‬ሻ, given by
+‫ݍ‬ሺ‫ݔ‬ሻ‫ݖ‬ሺ‫ݔ‬ሻ
+‫ݍ‬ோ஼ ሺ‫ݔ‬ሻ ൌ ௡ା௟
+‫ݔ‬
+൅ͳ
+݄௡ା௟ିଵ ‫ ݔ‬௡ା௟ିଵ ൅ ‫ ڮ‬൅ ݄ଵ ‫ݔ‬
+ൌͳ൅
+‫ ݔ‬௡ା௟ ൅ ͳ
+
+The encoder and its dual encoder of forward decoding of a recursive convolutional (RC) code
+
+polynomial of the smallest degree,
+z(x) = xl + zl−1 xl−1 + · · · + z1 x + 1
+
+calculated in the following recursive way
+∑
+− (w|y
+p→
+αk−1 (m′ )pck (ck (m′ , m)) (3)
+bk
+1∼k ) =
+
+(1)
+
+(m′ ,m)∈U (b(k)=w)
+
+such that
+a(x)z(x) = xn+l + 1
+
+αk (m) =
+
+(2)
+
+∑
+
+αk−1 (m′ )pck (ck (m′ , m))
+
+(4)
+
+m′
+
+Since a(x) = xn +· · ·+a1 x+1 always divides x2 −1 +1, the
+minimum complementary polynomial of a(x) always exists.
+Let b = (b1 , b2 , . . . , bK ) be a binary information symbol
+sequence to be transmitted, where K is the frame length.
+Let c = (c1 , c2 , . . . , cK ) be the binary codeword of b,
+generated by the code generator polynomial gRC (x), and
+x = (x1 , x2 , . . . , xK ) be the modulated symbol sequence
+of c. For simplicity, we consider a BPSK modulation. Let
+y = (y1 , y2 , . . . , yK ) represent the received signal sequence
+at the output of channel.
+Let pck (l) = p(ck = l|yk ), l = 0, 1, denote the
+a posteriori probabilities (APP) of the encoded symbol
+ck = l, given the received signal yk , where ck is the
+transmitted binary coded symbol at time k. Let us further denote Pc = {(pc1 (0), pc1 (1)), · · · , (pck (0), pck (1)), · · · ,
+(pcK (0), pcK (1))}. Now let us follow the BCJR MAP forward
+decoding algorithm to use Pc to calculate the APPs of binary
+information symbols bk . Let − k (w) = p(bk = w|y1∼k )
+p→
+b
+represent the probability of information symbol bk = w, w=0,
+1, given the received signals y1∼k = {y1 , · · · , yk }. It can be
+n
+
+where U (b(k) = w) is the set of trellis branches from the state
+m′ at time k-1 to the state m at time k, that are caused by
+the input binary symbol b(k) = w, and ck (m′ , m) represents
+the encoder output of the corresponding trellis branch.
+−
+→
+−
+→
+−→
+−
+Let xc = (ˆc1 , · · · , xcK ) and xb = (xb1 , · · · , xbK ) denote
+ˆ
+x
+ˆ
+ˆ
+ˆ
+ˆ
+the soft symbol estimate (SSE) sequence of codeword c and
+SSE of information sequence b in the forward decoding,
+respectively. We assume that 0 and 1 are modulated into the
+symbol 1 and -1. Then the soft symbol estimates xck and
+ˆ
+−
+→
+xbk , which represent the probabilistic average of estimates of
+ˆ
+symbols xck and xbk given y, can be calculated as
+xck = E(xck |yk ) = pck (0) − pck (1)
+ˆ
+−
+→
+xbk = E(xbk |y1∼k ) = − k (0) − − k (1).
+ˆ
+p→
+p→
+b
+b
+
+(5)
+(6)
+
+We deﬁne the decoder with the input and output being the
+logarithm of the soft symbol estimates (SSE) of the coded
+symbols and SSEs of the information symbols, as the Logdomain soft-input-soft-output (SISO) decoder. As shown in
+Fig. 1, the SISO decoder can be implemented by adding a
+
+2
+
+(a) The encoder of g(x) = a(x)/q(x)
+
+(b) The encoder of g(x) = a(x)/q(x) with reverse memory labeling
+Fig. 3.
+
+An encoder with reverse memory labeling
+
+logarithm module and an exponential module at the front and
+rear end of the log-domain SISO decoder, respectively. We
+should note that in the logarithm operation, for a real number
+x, if x < 0, lnx = ln|x| + jπ. Hence the logarithm of a SSE
+is real number when it is positive, and otherwise is a complex
+number.
+Then for a rate-1 recursive convolutional code, its encoding
+and the log-domain SISO forward decoding have the following
+duality property.
+Theorem 1 - Encoding and forward decoding duality
+of a rate-1 recursive convolutional (RC) code: For a
+RC code, generated by a generator polynomial gRC (x) =
+a(x)
+xn +···+a1 x+1
+q(x) = xn +···+q1 x+1 , let z(x) be the degree-l minimum
+complementary polynomial of a(x). The log-domain SISO
+forward decoding of the RC code can be simply implemented
+by its dual encoder with the generator polynomial of
+qRC (x) =
+=
+=
+
+III. D UALITY OF E NCODING AND BACKWARD D ECODING
+OF R ATE -1 R ECURSIVE C ONVOLUTIONAL C ODES
+In this section, we investigate the MAP backward decoding
+of rate-1 convolutional codes and derive its dual encoder structure. Before discussing the backward decoding, we ﬁrst deﬁne
+a reverse memory-labeling encoder of a recursive convolutional (RC) code. Given the encoder of a RC n
+code with rational
+1 x+1
+generator polynomial gRC (x) = a(x) = x n+···+a1 x+1 , if we
+q(x)
+x +···+q
+change the labeling of the k-th shift register in the encoder
+from Sk to Sn+1−k , and change their respective feed-forward
+coefﬁcient from ak to an−k , k=1, 2, . . . , n, and feedback
+coefﬁcients from bk to bn−k , k=1, 2, . . . , n, we will derive an
+encoder with a new trellis. The resulting encoder is referred to
+as the reverse memory-labeling encoder of gRC (x). Figs. 3(a)
+and 3(b) show the encoder and the reverse memory-labeling
+encoder of gRC (x).
+In the BCJR backward decoding, the decoder calculates
+the APP of information symbol bk based on received signals
+yk∼K = {yk , · · · , yK } as follows
+∑
+← (w) =
+−
+pbk
+βk+1 (m′ )pck (ck (m′ , m))
+(8)
+
+1
+z(x)
+q(x)z(x)
+q(x)z(x)
+=
+= n+l
+(7)
+gRC (x) z(x)
+a(x)z(x)
+x
++1
+xn+l + · · · + h1 x + 1
+xn+l + 1
+hn+l−1 xn+l−1 + · · · + h1 x
+1+
+xn+l + 1
+
+ˆ
+(m′ ,m)∈U (b(k)=w)
+
+βk (m) =
+
+where q(x)z(x) = x
++ hn+l−1 x
++ · · · + h1 x + 1. The
+relationship of a binary encoder and its dual encoder is shown
+in Fig. 1.
+From Theorem 1 and Fig. 1, we can see that the forward
+decoding of a RC code can be easily implemented by its dual
+encoder using shift-registers.
+n+l
+
+n+l−1
+
+∑
+
+βk+1 (m′ )pck (ck (m′ , m))
+
+(9)
+
+m′
+
+ˆ
+where U (b(k) = w) is the set of trellis branches from the state
+m at time k to the state m′ at time k + 1, that are caused by
+the input binary symbol b(k) = w, and ck (m′ , m) represents
+the encoder output of the corresponding trellis branch.
+
+3
+
+c
+
+…
+
+b
+
+…
+
+a2
+
+a1
+
+…
+
+S2
+
+S1
+
+Sn
+
+݃ோ஼ ሺ‫ݔ‬ሻ ൌ
+
+…
+
+q2
+
+q1
+
+The encoder for the code generated by
+
+ܽሺ‫ݔ‬ሻ ‫ ݔ‬௡ ൅ ‫ ڮ‬൅ ܽଵ ‫ ݔ‬൅ ͳ
+ൌ
+‫ݍ‬ሺ‫ݔ‬ሻ ‫ ݔ‬௡ ൅ ‫ ڮ‬൅ ‫ݍ‬ଵ ‫ ݔ‬൅ ͳ
+
+…
+
+ො
+݈݊‫ݔ‬௖ǡ௞
+
+…
+hn+l-1
+
+Sn+l
+
+Fig. 4.
+
+…
+…
+
+h2
+
+h1
+S1
+
+S2
+
+Dual encoder with reverse
+memory-labeling of a log-domain
+SISO backward decoder for the
+code ݃ோ஼ ሺ‫ݔ‬ሻ, given by
+‫ݍ‬ሺ‫ݔ‬ሻ‫ݖ‬ሺ‫ݔ‬ሻ
+ሺ‫ݔ‬ሻ ൌ ௡ା௟
+ശሬሬሬሬሬሬሬ
+ො
+݈݊‫ݔ‬௕ǡ௞ ‫ݍ‬ோ஼
+‫ݔ‬
+൅ͳ
+݄௡ା௟ିଵ ‫ ݔ‬௡ା௟ିଵ ൅ ‫ ڮ‬൅ ݄ଵ ‫ݔ‬
+ൌͳ൅
+‫ ݔ‬௡ା௟ ൅ ͳ
+
+The encoder and its dual encoder for backward decoding of a general convolutional code
+
+volutional encoder with a generator polynomial of gRC (x) =
+a(x)
+xn +···+a1 x+1
+q(x) = xn +···+q1 x+1 . Let z(x) be the degree-l minimum
+complementary polynomial of a(x). Its log-domain SISO
+backward decoding can be implemented by its dual encoder
+with reverse memory-labeling and the generator polynomial of
+
+In backward decoding, the received signals are decoded
+backward in a time-reverse order. Thus given the received
+signal sequence y = (y1 , y2 , . . . , yK ), the order of signals
+to be decoded is from yK , yK−1 , till y1 . In order to decode
+the received signals backward, the decoder has to follow the
+trellis in a reverse direction. For the decoder with the backward
+trellis, the input to the decoder is at the right hand side of
+the decoder and its output is at the left hand side, which
+operates in a reverse direction of the conventional decoder. If
+we describe the backward trellis using corresponding forward
+representation, where the decoder input and output are changed
+to the conventional order, we will derive a new trellis. Then the
+relationship of the encoders for backward trellis and its corresponding forward trellis representation can be summarized in
+the following theorem.
+Theorem 2: Given an encoder with a generator polynomial
+n
+1 x+1
+gRC (x) = a(x) = x n+···+a1 x+1 , the forward representation of
+q(x)
+x +···+q
+its backward trellis can be implemented by its reverse memorylabeling encoder of the same generator polynomial gRC (x).
+Proof is omitted due to the space limitation. From Theorem
+2, we know that the log-domain SISO forward decoding of a
+given recursive convolutional encoder with a generator polynomial gRC (x) = a(x) can be implemented by its dual encoder
+q(x)
+
+qRC (x) =
+=
+
+q(x)z(x)
+q(x)z(x)
+= n+l
+a(x)z(x)
+x
++1
+hn+l−1 xn+l−1 + · · · + h1 x
+1+
+xn+l + 1
+
+(10)
+
+This duality is shown in Fig. 4.
+From Theorem 1 and 3, we can note that the dual encoders
+for the forward and backward decoding are generated by the
+same polynomial. The only difference is that the dual encoder
+for the forward decoding uses the conventional convolutional
+encoder structure, but that for the backward decoding uses the
+reverse memory labelling encoder.
+IV. T HE R EPRESENTATION OF B IDIRECTIONAL MAP
+D ECODING BASED ON E NCODING AND
+F ORWARD /BACKWARD D ECODING D UALITY
+In the previous two sections, we have introduced the duality
+of channel encoding and SISO MAP forward/backward decoding. Based on the derived encoding-decoding duality properties, in this section, we represent the bidirectional BCJR MAP
+decoder by linearly combining outputs of the dual encoders
+for the forward and backward decoders. By comparing the
+bidirectional BCJR MAP decoding outputs with the forward
+and backward dual encoder outputs, combining coefﬁcients are
+identiﬁed in a way such that the resulting combined forward
+and backward dual encoder outputs are exactly the same as
+the bidirectional MAP decoding outputs. In this paper, we
+
+q(x)z(x)
+with the generator polynomial qRC (x) = a(x)z(x) , where z(x)
+is the degree-l minimum complementary polynomial of a(x).
+Then according to Theorem 2, the log-domain SISO backward
+decoding of the RC code can be implemented by the reverse
+memory-labeling encoder of qRC (x). By combining Theorems
+1 and 2, we can obtain the backward decoding duality, which
+is summarized in the following Theorem.
+Theorem 3 - Backward decoding duality of a recursive
+convolutional (RC) code: We consider a rate-1 recursive con-
+
+4
+
+where Nd,l = 1, if the subscript of xc is less than one and
+ˆ
+greater than K.
+The BER performance of these 4-state and 8-state rate-1 RC
+codes have been veriﬁed through simulations and they have
+shown that the proposed bidirectional dual encoder structures
+have exactly the same performance as the optimal MAP
+decoding.
+
+found the expressions of these combining coefﬁcients for some
+commonly used 4-state and 8-state RC codes. The expressions
+for higher-states codes can be obtained in the same way.
+Let us ﬁrst call the dual encoder of the forward and
+backward decoding as the forward dual encoder and backward
+−
+→
+←
+−
+dual encoder, respectively. Let xbk and xbk represent the soft
+outputs of the forward and backward dual encoders. They can
+be calculated based on Theorems 1-3 in Sections II and III,
+respectively. Then the SISO MAP decoder output, xbk , can
+be represented as the following linear combination of forward
+and backward dual encoder outputs,
+→
+−
+→−
+−←
+x = − x + ←x ,
+ω ˆ
+ω ˆ
+(11)
+bk
+
+k bk
+
+V. C ONCLUSIONS
+In this paper, we revisited the BCJR forward and backward
+decoding process for the rate-1 recursive convolutional codes.
+Dual encoder structures of forward and backward decoding for
+rate-1 GC codes are derived. The input to the dual encoder is
+the logarithm of soft symbol estimates of the coded symbols
+obtained from the received signals, and the dual encoder output
+produces the logarithm of the soft symbol estimates of the
+information symbols. For a RC code, generated by a generator polynomial gRC (x) = a(x) , the forward and backward
+g(x)
+decoding can be implemented by their corresponding dual
+1
+encoders, which are generated by the polynomial, gRC (x) z(x) ,
+z(x)
+where z(x) is the minimum complementary polynomial of
+a(x). The derived duality property signiﬁcantly reduced the
+the exponential computational complexity of MAP forward
+and backward recursion to a linear one with respect to the code
+constraint length. Similarly, the bidirectional MAP decoder of
+a rate-1 RC code can be implemented by linearly combining
+the outputs of dual encoders for the forward and backward
+decoding. The proposed decoding algorithm achieves exactly
+the same performance as the optimal BCJR decoding algorithm with less complexity.
+In this paper, we have only focused on a class of rate1 RC codes. Its signiﬁcance is mainly as component codes
+in concatenated coding schemes, such as turbo coding. The
+duality properties derived in this paper can also be applied to
+other rate-1 codes and applications.
+
+k bk
+
+→
+−
+where −k and ← are the combining coefﬁcients in real domain
+ω
+ωk
+applied to the forward and backward dual encoder outputs,
+respectively. The combining coefﬁcients for some 4-state and
+8-state codes are shown below.
+The combining coefﬁcients for the 4 states RC code [5/7]8
+can be calculated as
+{
+(1 + O/ˆ2k )/4,
+xc
+for k = 1, 3, 5...
+− =← =
+→ ω
+−
+ωk
+k
+2
+(1 + E/ˆck )/4,
+x
+for k = 2, 4, 6... .
+where xck is the soft symbol estimate of the received encoded
+ˆ
+symbol ck , where k = 1, 2, ..., K, K is the frame of codeword,
+and
+⌈K/2⌉
+∏
+xc2l−1 ,
+ˆ
+(13)
+O=
+l=1
+⌈K/2⌉
+
+E=
+
+∏
+
+xc2l .
+ˆ
+
+(14)
+
+l=1
+
+where ⌈x⌉ is the ceiling operation, representing the smallest
+integer not less than x.
+Similarly, for the 8-state code [15/13]8 , their forward and
+backward combining coefﬁcients can be calculated as
+− =(1 + G G
+→
+ω
+W W
++G G
+W W
+/ˆ
+x
+k
+
+k
+
+⟨k⟩7 +1
+
+k
+
+k+2
+
+k
+
+⟨k⟩7 +3
+
+k
+
+k+5
+
++G⟨k⟩7 +1 G⟨k⟩7 +3 Wk+2 Wk+5 /ˆck )/8,
+x
+← =(1 + G G
+−
+ωk
+k ⟨k⟩7 +1 /(Wk Wk+2 )
++Gk G⟨k⟩7 +3 /(Wk Wk+5 xck )
+ˆ
++G⟨k⟩7 +1 G⟨k⟩7 +3 /(Wk+2 Wk+5 xck ))/8.
+ˆ
+
+R EFERENCES
+
+ck
+
+[1] S. Lin and D. J. Costello, Error Control Coding, 2nd ed., Prentice Hall,
+2004.
+[2] A. Viterbi, ”Error bounds for convolutional codes and an asymptotically
+optimum decoding algorithm,” IEEE Trans. Inform. Theory, vol. 15, pp.
+260-269, Apr. 1967.
+[3] G. D. Forney, ”The Viterbi algorithm”, Proc. of IEEE, vol. 61, pp.268
+- 278 , 1973.
+[4] G. D. Forney, ”Convolutional codes II: Maximum-likelihood decoding,”
+Inform. Control, vol. 25, pp.222 - 250 , 1974.
+[5] J. Hagenauer and P. Hoeher, ”A Viterbi algorithm with soft-decision
+outputs and its applications,” Proc. IEEE GLOBECOM, pp. 47.11-47.17,
+Dallas, TX, Nov 1989.
+[6] L. Bahl, J. Cocke, F. Jelinek, and J. Raviv, ”Optimal decoding of
+linear codes for minimizing symbol error rate,” IEEE Transactions on
+Information Theory, vol. 20, no. 2, pp. 284 - 287, Mar 1974.
+[7] J. Hagenauer, E. Offer, and L. Papke, ”Iterative decoding of binary block
+and convolutional codes,” IEEE Trans. Inf. Theory, vol. 42, no. 2, pp.
+429-445, Mar. 1996.
+[8] Y. Li, M. Rahman and B. Vucetic, ”Duality of channel encoding and
+cecoding - Part I: rate-1 convolutional codes,” submitted, available online
+http://arxiv.org/abs/1201.2483.
+
+(15)
+
+(16)
+
+where
+⌈K/7⌉+1
+
+Gk =
+
+Wk =
+
+∏
+
+N⟨k−3⟩7 ,l ,
+l=0
+∏⌈K/7⌉+1
+i=⌈(k−⟨k+1⟩7 )/7⌉+1 N⟨k+1⟩7 ,i
+,
+∏⌈(k−⟨k+1⟩7 )/7⌉
+N⟨k+1⟩7 ,u
+u=0
+
+(17)
+
+(18)
+(19)
+
+and
+Nd,l = xc7(l−1)+d , d = 0, 1, 2, 3, 4, 5, 6,
+ˆ
+l = 0, 1, 2, 3, ..., ⌈K/7⌉ + 1
+
+(20)
+(21)
+
+5
+
+

@@ -1,0 +1,977 @@
+Title:          bare_conf.dvi
+Creator:        www.freepdfconvert.com         
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Thu May 17 00:49:48 2012
+ModDate:        Tue Jun 19 12:56:01 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      405121 bytes
+Optimized:      no
+PDF version:    1.7
+ISIT'2012 1569564353
+
+Efﬁcient Algorithms for Calculating
+Euclidean Distance Spectra of
+Muliti-User Continuous Phase Modulation Systems
+Li Bing
+
+Tor Aulin
+
+Baoming Bai
+
+State Key Lab of ISN
+Xidian University
+Xi’an, Shaanxi, 710071, P.R.China
+Email: libingprc@gmail.com
+
+Computer Science and Engineering
+Chalmers University of Technology
+SE-412 96 G¨ teborg, Sweden.
+o
+Email: aulin@chalmers.se
+
+State Key Lab of ISN
+Xidian University
+Xi’an, Shaanxi, 710071, P.R.China
+Email: bmbai@mail.xidian.edu.cn
+
+algorithms. Moreover, the concept of trellis minimization [11]
+is generalized to the MUCPM systems and employed by the
+proposed algorithms to reduce the search effort.
+This paper is organized as follows. Section II presents
+the systems model. Section III describes the algorithms and
+the technique of trellis minimization. Numerical results and
+performance comparison are given in Section IV. Sections V
+concludes the paper.
+
+Abstract—The performance of maximum likelihood detection
+of a coded modulation scheme over an additive white Gaussian
+noise channel can be predicted precisely by its Euclidean distance
+spectrum. In this paper, three algorithms are developed to
+generate the Euclidean distance spectra. The ﬁrst algorithm
+is an exhaustive tree-search algorithm which is simpliﬁed by
+exploiting the correspondence between a code tree and the
+trellis. This algorithm is then modiﬁed to incorporate the A*
+algorithm and results in two heuristic algorithms. Moreover,
+the technique of trellis minimization is further developed for
+the multi user case and employed to reduce the complexity
+and memory requirements. Numerical results conﬁrm that the
+proposed algorithms can generate the distance spectra of all
+systems with lower complexity relative to previous methods and
+are particularly suited for multi user CPM systems.
+
+II. S YSTEM M ODEL
+Shown in Figure 1 is an MSK-based multiple-access type
+MUCPM system proposed in [9], which consists of K users
+f1 ,
+
+1
+
+f2 ,
+
+2
+
+user 1
+
+I. I NTRODUCTION
+
+s1 (t )
+
+a1
+
+Continuous Phase Modulation (CPM) is a class of modulation schemes, which is widely used in wireless communication
+systems due to its good power-efﬁciency and bandwidthefﬁciency [1].
+It is generally recognized that the performance of maximum likelihood (ML) detection of a modulation scheme
+over the additive white Gaussian noise (AWGN) channel can
+be predicted by its Euclidean distance spectrum (EDS) [6].
+Existing algorithms mainly focus on deriving closed-form
+expression [5], [6], [7] of EDS using transfer matrix or transfer
+diagram. However, as the number of encoder states becomes
+high, the calculations quickly become cumbersome even using
+some newly developed techniques [10], [11]. On the other
+hand, instead of generating closed-form expression, numerical
+algorithms are designed to calculate the EDS using exhaustive
+search for a given length of observation. Unfortunately, a
+considerable amount of memory is required to enumerate and
+identify the error events being examined [8].
+In this paper, three algorithms are proposed to calculate
+the EDS for multi-user CPM (MUCPM) systems. The ﬁrst
+algorithm is an exhaustive tree-search algorithm which is simpliﬁed by exploiting the correspondence between a code tree
+and the trellis. This algorithm is then modiﬁed to incorporate
+the A* algorithm [12] and results in two simpliﬁed heuristic
+
+CPM
+Modulator
+
+AWGN
+
+user 2
+a2
+
+s(t )
+
+s2 (t )
+CPM
+Modulator
+
+ML
+Receiver
+
+Multiple Access Channel
+fK ,
+aK
+
+user K
+
+K
+
+sK (t )
+
+CPM
+Modulator
+
+Figure 1.
+
+System Model
+
+sharing a common channel. The kth user maps independently
+its information sequence ak to a CPM signal waveform sk (t),
+which reads
++∞
+
+sk (t) =
+
+2Ek
+exp j 2πh ai qk (t − nT )
+k
+Tk
+i=0
+
+(1)
+
+where Tk = T , Ek , qk (t) and h are the symbol duration,
+average signal energy, phase response and modulation index
+
+1
+
+of the CPM employed by the kth user, respectively. Different
+users are distinguished by the frequency difference fk and
+phase difference ϕk deﬁned as [9]
+
+B. Tree Trellis Search Algorithm (TTSA)
+TTSA is a simpliﬁed tree search algorithm using forward
+and backward processes to enumerate and identify the ﬁrst
+error events [6]. The forward process traverses the code
+tree and ﬁnds the forward partial error path/event originating
+from a correct state and ending with a node corresponding
+to an incorrect state, while the backward process ﬁnds the
+backward partial error paths/events connecting incorrect states
+and correct states. The multiplicity, input weight and distance
+of forward and backward partial error event are denoted
+Af , I f , d2 and Ab , I b , d2 , respectively. Since each node
+f
+b
+in the code tree corresponds uniquely to a state, a complete
+error event of distance d2 + d2 is identiﬁed and formed by
+f
+b
+merging the forward and backward partial events.
+
+K +1
+)
+(2)
+2
+K +1
+ϕk = ϕ · (k −
+)
+(3)
+2
+where f and ϕ are the predetermined frequency spacing
+and phase spacing, respectively. The resulting superimposed
+signal is
+fk =
+
+f · (k −
+
+K
+
+sk (t) exp{j[2πfk t+ϕk ]} (0 ≤ t ≤ nT )
+
+s(t) =
+
+(4)
+
+k=1
+
+with the deﬁnitions presented above, the normalized Euclidean
+distance (NED) [1], [2] reads
+1
+d2 =
+2Eb
+
+NT
+
+2
+
+|s(t) − s(t)| dt
+ˆ
+
+Tree-Trellis-Search-Algorithm
+1) Initialization
+C: the number of correct states;
+σi : the corresponding state of ith entry on the list;
+NS: the set of incorrect states;
+CS: the set of correct states;
+Create a list of ti ,i ∈ {1, 2, . . . , C}.
+for all ti such that σi ∈ CS do
+assign ti with initialized Af , I f , d2
+f
+i
+end for
+2) Backward Process
+for all σj such that σj ∈ NS do
+ﬁnd the merging path(s) of σj and calculate
+Ab , I b , d2 j
+b
+end for
+3) Forward Process
+for all ti on the list do
+for all transitions σi → σj such that σj ∈ NS do
+create a entry tij and calculate Af , I f , d2
+f
+
+(5)
+
+0
+
+where Eb is the average energy possessed by a transmitted bit,
+and N is the length of observation. All deﬁnitions presented
+above degenerate to single-user CPM (SUCPM) when K = 1.
+III. A LGORITHMS F OR C ALCULATING D ISTANCE
+S PECTRA OF M ULTIUSER CPM S YSTEMS
+Proposed algorithms and the technique of generalized trellis
+minimization are presented in this section.
+A. Trellis Representation
+Due to the nonlinearity of CPM, the reduced-pair trellis [9]
+is adopted in this paper. Assuming that all users employ the
+same CPM scheme of memory length LM , the state σ n during
+interval [nT, (n + 1)T ] is a [(2K − 1) + 2K(LM − 1)]−tuple
+vector deﬁned as
+(6)
+σ n = [U n , V n ]
+
+4)
+5)
+
+where
+U n = θ12 , θ13 , . . . , θ1K , θ1ˆ , θ1ˆ , . . . , θ1K
+ˆ
+1
+2
+
+(7)
+
+V n = [v 1 , v 1 , v 2 , v 2 , . . . , v K , v K ]
+ˆ
+ˆ
+ˆ
+
+(8)
+
+6)
+
+and
+v k = an−L+1 , an−L+2 , . . . , an , k ∈ {1, 2, . . . , K}
+k
+2
+k
+
+7)
+
+(9)
+
+where θ1k is the difference phase state [3] between user 1 and
+user k. U n and V n are deﬁned as phase state and correlative
+state, respectively. The branch connecting a pair of states
+(σ n , σ n ) is labeled by the branch gain
+i
+j
+r · I · Ll · D d
+
+2
+
+(10)
+M−
+
+end for
+end for
+Update Of The Distance Spectrum
+Update the multiplicity of d2 = d2 + d2
+Σ
+f
+b
+Node Elimination
+for all tij are equivalent nodes do
+2
+create a entry ti assigned with
+ij Af , I f , df
+end for
+Update Of The List
+Delete the previous list and create a new one of ti
+Termination
+if Finish searching all error events then
+EXIT
+else if then
+Go to Step 2
+end if
+
+ij
+
+i
+
+We emphasize that TTSA is not a bi-directional algorithm [8] in the sense that the backward process is terminated
+as soon as it ﬁnds the merging path(s) for each incorrect
+state. The merging path of an incorrect state is deﬁned as the
+path connecting the incorrect state and a correct state when
+backward traverse visits the incorrect state the ﬁrst time. Since
+the branch gain depends on time index n due to the nonzero
+
+an −ˆ n
+k ak
+2
+
+where r = [r1 , r2 , . . . , rK ] and rk =
+[3]. I =
+M
+[I1 , I2 , . . . , IK ] is a dummy vector indicating the occurrence
+of symbol errors, L indicates the length of the error event and
+D carries incremental distance d2 in exponent.
+
+2
+
+LD1.5
+
+Equivalent states
+
+frequency spacing (see (4)), TTSA restarts an iteration from
+step 2. Otherwise, the labels are constant and the backward
+process is performed only once and the algorithm restarts from
+step 3. TTSA is designed to deal with the ﬁrst error events, but
+can be modiﬁed to handle multiple error events if required.
+On the other hand, we noticed that in most cases, including
+uncoded and coded systems [2], [3], [4], the truncated distance
+spectrum (TDS) are proven to be sufﬁcient to evaluate the error
+performance. This implies that instead of an exhaustive search,
+it is sufﬁcient to enumerate those error events which contribute
+to the pre-required TDS. Based on this idea the following two
+algorithms are proposed.
+
+06
+1.2
+
+Equivalent branches
+
+1
+LID
+2
+
+1
+LID
+2
+0
+
+0
+
+1
+LID
+2
+
+1
+LID
+2
+
+7
+
+4
+3
+
+1 LID
+2
+
+LD 2
+
+0
+
+1
+LID 0.5865
+2
+
+1
+2 LID 1.20
+
+1
+2 LID 1.20
+6
+
+7
+
+1
+LID 0.5865
+2
+
+2
+3
+
+67
+
+0
+067
+1.2
+
+1 LID
+2
+
+LD1.5
+
+(a) Equivalent Branches
+Figure 2.
+
+(b) Equivalent States
+
+Generalized Trellis Minimization
+
+The deﬁnitions of equivalent branches and equivalent states
+are illustrated by (a) MSK and (b) binary CPFSK with h=
+2/3, respectively. Apparently, the technique of trellis and
+tree minimization is actually another description of Mason’s
+rule [5]. By using this technique, an equivalent trellis/tree is
+formed in the sense that it generates the same DS as the
+original one, but the number of transitions is reduced to a great
+extent. Trellis and tree minimization are incorporated into
+the proposed algorithms and performed iteratively each step
+forward such that the complexity and memory requirements
+are reduced as much as possible.
+
+C. Parallel-updated TTSA and serially-updated TTSA
+Parallel updated TTSA (PTTSA) and serially updated TTSA
+(STTSA) are two simpliﬁed algorithms combing TTSA and
+the well known A* algorithm [12]. Similar to TTSA, both
+PTTSA and STTSA utilize forward and backward processes
+to complete the error events. The backward distance d2 is used
+b
+as the admissible heuristic [12] to ﬁnd the eligible error events.
+A list is used to enumerate the candidate paths and updated
+each time the forward process is ﬁnished. The main difference
+lies in the method upon which the list is updated. PTTSA
+ﬁrst extends all paths on the list, then replaces the list by a
+new one with newly generated eligible paths. Thus the paths
+on this list have the same length. While STTSA ﬁrst extends
+the ﬁrst path on the list whose distance is the smallest, then
+inserts all the newly generated paths to the list and removes
+the ﬁrst path from the list. Consequently, STTSA needs to
+compare paths of different lengths. This trivial difference
+incurs two consequences. First, STTSA performs the sorting
+more frequently than PTTSA does. Second, STTSA needs
+to store and identify the paths being examined to prevent
+recalculations of the same error event. It should be noted that
+the algorithms impose no constraint on the size of the list such
+that all eligible error events are enumerated.
+Obviously, PTTSA is a preferable option provided they generate the same results. The details of these two algorithms are
+presented in the Appendix. We will compare their performance
+in Section IV.
+
+E. Complexity and Efﬁciency
+The operations of the proposed algorithms include add,
+multiply and sort. The complexity and memory requirements
+of the proposed algorithm are mainly determined by the sorting
+algorithm. Assuming the maximum size of the list is Nmax
+and the sorting is performed m times, then the complexity
+and memory requirements of the sorting algorithm, i.e. quick
+2
+sort, are approximately O(m · Nmax log Nmax ) and O(Nmax )
+[13], respectively. Obviously, the computational complexity
+and memory requirements of the proposed algorithms are
+lower than the algorithm in [8]. Unfortunately, it is impossible to make analytical comparison with existing simpliﬁed
+algorithms [8], [10], [11] due to the unpredictable size of the
+list. For a trellis whose labels are independent of the time
+index n, PTTSA, STTSA and existing algorithms are able to
+generate the required DS. However, if the labels are dependent
+on n, which is usually the case for MUCPM, the algorithms
+based on state reduction [10], [11] may not be applicable.
+
+D. Trellis and Tree Minimization
+The concept of trellis minimization based on equivalent
+states was thoroughly explained in [11]. In this paper, this
+idea is further developed to handle the parallel transitions by
+deﬁning the equivalent branches and equivalent nodes.
+
+IV. N UMERICAL R ESULTS
+In this section we calculate the DS of some CPM systems,
+including SUCPMs and MUCPMs, shown in Table I. The
+resolution of the numerical results produced by these algorithms is restricted to 10−3 . The analytical results are given by
+transfer functions. The maximum used Euclidean distance is
+d2 = 40 in SUCPM systems, and the maximum number of
+min
+spectral lines for MUCPM is NT = 50. For MUCPM systems,
+it is assumed that the average signal energy is the same for
+different users.
+It can be observed that for both SUCPMs, all three algorithms generate the same result as the transfer function does.
+However, PTTSA has the lowest complexity among them as
+we pointed out before. We use PTTSA and TTSA to generate
+
+Deﬁnition 1. Two states connecting a pair of equivalent states
+are considered equivalent if the ingoing and outgoing branches
+are labeled with the same parameter {r, I, D}
+Deﬁnition 2. Two branches connecting a pair of states are
+considered equivalent if they are labeled with the same parameter {r, I, D}
+Deﬁnition 3. Two nodes in a code tree are equivalent if they
+labeled with the same parameter and correspond to the same
+state.
+
+3
+
+Table I
+CPM S YSTEMS
+CPM systems
+
+K
+
+Distance Spectrum
+250
+TTSA
+PTTSA
+
+fT
+
+d2
+min
+
+ϕ
+
+1
+
+0
+
+0
+
+2
+
+1
+
+0
+
+0
+
+2
+
+MSK
+
+2
+
+0
+
+π
+4
+
+1.756
+
+MSK
+
+2
+
+1
+3
+
+0
+
+2
+
+Multiplicity
+
+MSK
+4CPM1REC, h = 0.5
+
+200
+
+150
+
+100
+
+50
+Distance Spectrum
+3
+
+Analytical Reuslt Using Transfer Function
+TTSA
+PTTSA
+STTSA
+
+2.8
+2.6
+
+0
+1.5
+
+2.5
+
+Figure 6.
+
+2.4
+
+Multiplicity
+
+2
+
+3
+
+3.5
+
+4
+4.5
+Distance
+
+5
+
+5.5
+
+6
+
+6.5
+
+DS of a 2-user MSK system,NT = 50
+
+2.2
+2
+
+observed that the size of the list for TTSA approaches inﬁnity
+with increasing N , while the size of the list for PTTSA and
+STTSA is a fraction of TTSA.
+
+1.8
+1.6
+1.4
+1.2
+1
+
+0
+
+5
+
+10
+
+Figure 3.
+4
+
+18
+
+15
+
+20
+Distance
+
+25
+
+30
+
+35
+
+V. C ONCLUSIONS
+
+40
+
+This paper has presented three algorithms and a technique of
+generalized trellis minimization to facilitate the calculation of
+the distance spectra of CPM systems. Analysis and numerical
+results conﬁrm that all algorithms can generate the prerequired spectrum as the transfer function does, while the
+computational effort is reduced signiﬁcantly.
+
+DS of MSK , d2
+max = 40
+Distance Spectrum
+
+x 10
+
+Analytical Reuslt Using Transfer Function
+TTSA
+PTTSA
+STTSA
+
+16
+14
+
+VI. ACKNOWLEDGMENTS
+
+Multiplicity
+
+12
+
+This work was supported in part by the 973 Program of
+China under Grant 2012CB316100, the NSFC under Grant
+60972046, and the National S&T Major Special Projects
+(No.2010ZX03003-003-03).
+
+10
+8
+6
+4
+
+R EFERENCES
+
+2
+0
+
+0
+
+5
+
+Figure 4.
+
+10
+
+15
+
+20
+Distance
+
+25
+
+DS of 4CPM1REC, h =
+
+30
+
+1
+,
+2
+
+35
+
+[1] T. Aulin, N. Rydbeck and C. E. Sundberg,“Continuous Phase Modulation I, II,” IEEE Trans. Commun., vol. 29, pp. 196-225, Mar. 1981
+[2] P. Moqvist and T. M. Aulin, “Serially concatenated continuous phase
+modulation with iterative decoding,” IEEE Trans. Commun., vol. 49,
+pp. 1901-1915, Nov. 2001.
+[3] Tor Aulin “Symbol error probability bounds for coherently Viterbi
+detected continuous phase modulation,” IEEE Trans. Commun. vol.29
+no. 11, pp. 1707-1715. Nov. 1981
+[4] M. Xiao and T. M. Aulin, “Serially concatenated continuous phase
+modulation with convolutional codes over rings,” IEEE Trans. Commun.,
+vol. 54, pp. 1385-1396, Nov. 2006.
+[5] S. Lin and D. J. Costello Jr., Error Control Coding: Fundamentals and
+Applications. Englewood Cliffs, NJ: Prentice-Hall, 1983.
+[6] A. J. Viterbi and J. K. Omura, Principles of Digital Communication and
+Coding. New York: McGraw-Hill, 1979.
+[7] R. McEliece, “How to Compute Weight Enumerators for Convolutional
+Codes,” pp. 121-141 in Communications and Coding (P. G. Farrell 60th
+birthday celebration), M. Darnell and B. Honary, eds. New York: John
+Wiley and Sons, 1998.
+[8] M. Rouanne and D. J. Costello, Jr., “An algorithm for computing the
+distance spectrum of trellis codes,” J. Select Areas Commun., vol. 7, pp.
+929-940, Aug. 1989.
+[9] P. Moqvist, “Multiuser serially concatenated continuous phase modulation,” Ph.D. thesis, Chalmers University of Technology, Goteborg,
+Sweden, 2002.[Online].Available:
+http://www.ce.chalmers.se/research/group/tct/
+[10] C. Pimentel, “On the computation of weight enumerators for convolutional codes,” IEEE Trans. Commun.,vol. 51, pp. 313-317, Mar. 2003
+
+40
+
+d2
+max = 40
+
+Distance Spectrum
+18000
+16000
+
+TTSA
+PTTSA
+
+14000
+
+Multiplicity
+
+12000
+10000
+8000
+6000
+4000
+2000
+0
+
+2
+
+3
+
+Figure 5.
+
+4
+
+5
+
+6
+Distance
+
+7
+
+8
+
+9
+
+10
+
+DS of a 2-user MSK system,NT = 50
+
+the required TDS and the results are exactly the same. We also
+
+4
+
+[11] Jun Shi and Richard D. Wesel “Efﬁcient Computation of Trellis Code
+Generating Functions,” IEEE Trans. Commun., vol. 52, no. 2, pp. 219227, Feb 2004
+[12] Nilsson, N. J. Principles of Artiﬁcial Intelligence. Palo Alto, California:
+Tioga Publishing Company.1980
+[13] T. H. Cormen, C. E. Leiserson, R. L. Rivest and C. Stein: Introduction
+to Algorithms. 2nd Edition, The MIT Press. 2001
+
+Serially Updated TTSA
+
+A PPENDIX
+
+1) Initialization
+NT : the number of spectral lines needed;
+C: the number of correct states;
+σi : the corresponding sate of ith entry on the list;
+d2 : the maximum distance needed;
+max
+NS: the set of incorrect states;
+CS: the set of correct states;
+Create a list of ti ,i ∈ {1, 2, . . . , C}.
+for all ti such that σi ∈ CS do
+assign ti with initialized Af , I f , d2
+f i
+end for
+2) Backward Process
+for all σj such that σj ∈ NS do
+ﬁnd the merging path(s) of σj and calculate
+{Ab , I b , db }j
+end for
+3) Forward Process
+for all transitions σ1 → σj such that σj ∈ NS do
+if The resulting complete error event was not visited
+then
+create a entry t1j and calculate Af , I f , df
+
+Parallel Updated TTSA
+1) Initialization
+NT : the number of spectral lines needed;
+C: the number of correct states;
+σi : the corresponding sate of ith entry on the list;
+d2 : the maximum distance needed;
+max
+NS: the set of incorrect states;
+CS: the set of correct states;
+Create a list of ti ,i ∈ {1, 2, . . . , C}.
+for all ti such that σi ∈ CS do
+assign ti with initialized Af , I f , d2
+f i
+end for
+2) Backward Process
+for all σj such that σj ∈ NS do
+ﬁnd the merging path(s) of σj and calculate
+Ab , I b , d2 j
+b
+end for
+3) Forward Process
+for all ti on the list do
+for all transitions σi → σj such that σj ∈ NS do
+create a entry tij and calculate Af , I f , d2
+f
+end for
+end for
+4) Node Elimination
+for all tij that are equivalent nodes do
+2
+create a entry ti assigned with
+ij Af , I f , df
+end for
+5) Update Of Distance Spectrum
+Update the multiplicity of d2 = d2 + d2 .
+f
+b
+
+1j
+
+end if
+end for
+4) Node Elimination
+for all t1j that are equivalent nodes do
+2
+create a entry ti assigned with
+1j Af , I f , df
+end for
+5) Update Of The Distance Spectrum
+Update the multiplicity of d2 = d2 + d2
+f
+b
+
+ij
+
+i
+
+i
+
+6) Update Of The List
+Delete the ﬁrst entry and insert ti into the list;
+Resorting the list with increasing d2 ;
+
+6) Update Of List
+Replace the list with a new one with all ti on it;
+Resorting the list with increaing d2 ;
+
+Find the NT th smallest distance d2 T
+N
+for all ti on the list do
+2 > d2
+2 > d2
+if d
+max then
+NT or d
+delete ti
+end if
+end for
+7) Termination
+if Finish searching all error events then
+EXIT
+else if The multiplicity Amax of d2
+max stops changing
+then
+EXIT
+else if ifAi (i ≤ NT ) stops changing then
+EXIT
+else
+Go to Step 2
+end if
+
+Find the NT th smallest distance d2 T
+N
+for all ti on the list do
+if d2 > d2 T or d2 > d2
+max then
+N
+delete ti
+end if
+end for
+7) Termination
+if Finish searching all error events then
+EXIT
+else if The multiplicity Amax of d2
+max stops changing
+then
+EXIT
+else if ifAi (i ≤ NT ) stops changing then
+EXIT
+else
+Go to Step 2
+end if
+
+5
+
+

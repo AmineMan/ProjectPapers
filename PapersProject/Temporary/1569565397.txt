@@ -1,0 +1,1090 @@
+Title:          AF_Camera_Ready_2.dvi
+Creator:        dvips(k) 5.96.1 Copyright 2007 Radical Eye Software
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Wed May  9 13:38:23 2012
+ModDate:        Tue Jun 19 12:54:23 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      308566 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569565397
+
+Joint Optimization of the Transmit Covariance and
+the Relay Precoder in General Gaussian
+Amplify-and-Forward Relay Channels
+Ramy H. Gohary and Halim Yanikomeroglu
+Motivated by the potential gains and computational efﬁciency of AF relaying, in this paper we consider the joint
+design of the input transmit covariance and the relay precoder
+of an AF relay-assisted communication system with a direct
+link between the source and the destination. Similar to [5],
+we assume that the relay operates in a full-duplex mode.
+As mentioned in [5], this joint optimization for a block
+size greater than two is a “daunting” task. Indeed, it is a
+non-convex problem with potentially high dimensionality. To
+address this difﬁculty, we propose a technique for performing
+the joint optimization of the input transmit covariance and the
+relay precoder. First, we note that when the relay precoder
+matrix is given, the design problem of the input covariance
+can be cast in a convex form for which the Karush-KuhnTucker (KKT) conditions are necessary and sufﬁcient for
+optimality. By analyzing these conditions, we obtain closed
+form expressions of the optimal input covariance corresponding to an arbitrary relay precoder. Using these expressions,
+it is shown that the maximum rate of the AF scheme is
+achieved by subdiagonal precoders. This observation reduces
+the number of optimization variables from being quadratic
+to linear in the block length. In addition, it enables us to
+identify precoders that satisfy necessary optimality conditions
+at low and high transmit powers. These precoders possess an
+interlacing structure, which implies that the relay transmits
+during every other symbol interval, as in half-duplex operation.
+Optimal precoders with this structure are obtained using an
+efﬁcient algorithm that requires searching over two variables.
+
+Abstract—The capacity of the amplify-and-forward (AF)
+scheme in general full-duplex Gaussian relay channels is achieved
+by Gaussian codebooks and can be cast as the solution of an
+optimization problem of the input transmit covariance and the
+relay precoder. This problem is non-convex. To circumvent this
+difﬁculty, the Karush-Kuhn-Tucker (KKT) conditions are used
+to obtain closed form expressions of the optimal input covariance
+that corresponds to an arbitrary relay precoder. Using these
+expressions, it is shown the maximum rate of the AF scheme
+is achieved by subdiagonal precoders. This observation is used
+to facilitate the search for the optimal relay precoder, and to
+show that at high transmit powers, it is optimal for the relay
+to remain silent and, at low transmit powers, it is optimal to
+operate in a mode that resembles half-duplex operation.
+
+I. I NTRODUCTION
+The use of relays in wireless communications enables
+signiﬁcantly higher data rates to be reliably communicated
+between transmitter-receiver pairs [1]. Relay operation modes
+can be classiﬁed into full-duplex in which the relays can
+transmit and receive information on the same physical channel,
+and half-duplex in which the relays transmit and receive
+information on orthogonal channels. To ensure effective collaboration between the transmitter and the relay, both the
+transmission scheme and the relaying mechanism have to be
+designed jointly for the given channel conditions [2]. For
+instance, when the transmitted signal, the signal observed
+by the relay and the signal observed by the receiver form
+a Markov chain, the relay channel is said to be physically
+degraded, and the optimal full-duplex relaying strategy is the
+decode-and-forward (DF) scheme [3]. On the other hand, when
+the signal received by the relay is a physically degraded
+version of the direct component of the signal observed by
+the receiver, the channel is said to be reversely degraded and
+the optimal strategy is for the relay to remain silent [3].
+The capacity of a broad class of half-duplex relay channels
+was obtained in [4]. In contrast, the capacity of general fullduplex relay channels that are neither degraded nor reversely
+degraded, remains an open problem, and relaying techniques
+other than DF are able to achieve higher data rates [5].
+For instance, under certain channel conditions, the compressand-forward (CF) relaying scheme developed in [3] and the
+amplify-and-forward (AF) scheme considered in [5] attain
+higher rates than DF. In comparison with DF and CF, AF relaying is less computationally demanding and is hence suitable
+for relaying terminals with low processing capabilities.
+
+II. S YSTEM MODEL AND DESIGN PROBLEM
+We consider the full-duplex AF relaying scheme for the
+scalar quasi-static frequency-ﬂat Gaussian relay channel considered in [5] and shown in Figure 1. In this scheme, the signal
+vector transmitted by the source is denoted by X ∈ Rk×1
+and that received by the relay is denoted by Y1 ∈ Rk×1 .
+The relay processes Y1 and generates a signal X1 ∈ Rk×1 .
+To allow for symbol synchronization and signal processing,
+the relay transmissions depends on the signal received in the
+previous symbol intervals, but not the current one [5]. Hence,
+the ﬁrst entry of X1 is zero. The signal vector received at
+the destination is denoted by Y ∈ Rk×1 . The channel gain
+between the source and the destination is normalized to unity,
+that between the source and the relay is denoted by a, and
+that between the relay and the destination is denoted by b.
+Hence, the received signal of the relay can be expressed as
+
+1
+
+Z1 ∼ N (0, N I)
+
+Y1
+
++
+
+Relay
+
+X
+
+T
+
+b
+
++
+
+Y
+
+Y1 = aX +Z1 , where Z1 ∼ N (0, N I) is the additive Gaussian
+noise at the relay, N is the noise variance and I is the k × k
+identity matrix. The relay performs linear processing on Y1 ,
+which is equivalent to left multiplying Y1 by a strictly lower
+triangular precoder matrix D. The relay output is X1 = DY1 ,
+and thus the received signal at the destination is
+Y = X + bX1 + Z = (I + abD)X + bDZ1 + Z,
+
+Tr(Σ) ≤ c1 ,
+
+0,
+
+j ≥ i,
+
+Dij = 0,
+
+(4)
+
+(5)
+−1
+
+The matrix (µ1 I + µ2 DT D − Φ) = Σ + (H T H)−1
+is
+positive deﬁnite (cf. (4)) and Φ 0. Hence, we have µ1 I +
+µ2 DT D ≻ 0 but since DT D is rank deﬁcient because D is
+strictly lower triangular, it follows that µ1 > 0, which, together
+with the second equality in (3d), yields Tr(Σ) = c1 .
+From the ﬁrst condition in (3d), we have
+Tr Φ (µ1 I + µ2 DT D − Φ)−1 − (H T H)−1
+
+= 0.
+
+(6)
+
+Since both Φ and Σ are positive semideﬁnite, it follows that
+either Φ = 0 or the columns of Φ span the null-space spanned
+by the columns of Σ = (µ1 I + µ2 DT D − Φ)−1 − (H T H)−1 ;
+that is, the condition in (6) is equivalent to
+
+,
+
+ΦΣ = ΣΦ = 0.
+
+(2a)
+
+Tr(a2 DΣDT + N DDT ) ≤ c2 ,
+
+det(H T H)
+> 0.
+det(I + ΣH T H)
+
+Σ = (µ1 I + µ2 DT D − Φ)−1 − (H T H)−1 .
+
+det (I + abD)Σ(I + abDT ) + N (I + b2 DDT )
+
+subject to Σ
+
+(3e)
+
+Using this observation and solving (3a) for Σ, we have
+
+(1)
+
+det N (I + b2 DDT )
+
+(3d)
+
+= 0.
+
+det(µ1 I + µ2 DT D − Φ) =
+
+where Z ∼ N (0, N I) is the additive white Gaussian noise at
+the destination; Z1 and Z are statistically independent. The
+source and relay transmit power budgets for a block of k
+channel uses are denoted by c1 and c2 , respectively.
+From (1), it can be readily seen that the maximum rate
+for this channel is achieved when the distribution of X is
+Gaussian [6]; i.e., X ∼ N (0, Σ), where Σ = E{XX T } ∈
+Rk×k is the input covariance matrix. In this case, the jointly
+rate-optimal Σ and relay precoder D can be expressed as the
+solution of the following optimization problem:
+
+Σ,D
+
+c′
+2
+
+1
+1
+√ (I + b2 DD T )−1/2 (I + abD), c′
+where H
+2
+a2 c2 −
+N
+T
+N Tr(DD ) , Φ is the dual variable matrix corresponding
+to the ﬁrst constraint in (2a), and µ1 and µ2 are the dual
+variables corresponding to the second constraint in (2a) and
+the constraint in (2b), respectively.
+From the deﬁnition of the matrix H, it can be seen that
+H T H ≻ 0. Hence, from (3a), we have
+
+Receiver
+
+An AF full-duplex Gaussian relay channel [5].
+
+max log
+
+µ1 Tr(Σ) − c1 = 0,
+
+µ2 Tr(DΣD ) −
+
+X1
+
+1
+
+Fig. 1.
+
+Tr(ΦΣ) = 0,
+
+Z ∼ N (0, N I)
+
+a
+
+Input covariance, Σ
+
+Transmitter
+
+Precoder D
+
+(7)
+
+Using (7), the condition in (6) can be expressed as
+
+(2b)
+(2c)
+
+(µ1 I + µ2 DT D − Φ)−1 − (H T H)−1 Φ = 0.
+
+(8)
+
+where the second constraint in (2a) and the constraint in (2b)
+ensure that the average powers transmitted from the source
+and that transmitted by the relay during a block of k channel
+uses do not exceed prescribed values c1 and c2 , respectively.
+The optimization problem in (2) is non-convex in Σ and D
+and hence is difﬁcult to solve. To tackle this problem, we begin
+by assuming that a strictly lower triangular relay precoder D
+is given. We then seek closed form expressions for the optimal
+covariance matrix, Σ. We will later use these expressions to
+guide the optimization of the precoder matrix, D.
+
+We now consider µ1 , µ2 and Φ that solve (3). Note from (5)
+that choosing µ1 , µ2 and Φ such that (µ1 I + µ2 DT D − Φ) =
+H T H yields Σ = 0, which contradicts the condition that
+Tr(Σ) = c1 . Three distinct cases can be considered; viz,
+Case I: µ2 ≥ 0, Φ = 0, Case II-A: µ2 = 0, Φ = 0, and
+Case II-B: µ2 > 0, Φ = 0. The last case is more general and
+more involved than the ﬁrst two. Hence, we will focus herein
+on this case. The other cases are considered in [10].
+
+III. O PTIMIZING THE TRANSMIT COVARIANCE MATRIX
+
+Using (7), the equality in (5) is cast in forms that are more
+convenient to derive expressions for Σ and Φ. In particular,
+multiplying both sides of (5) by (µ1 I + µ2 DT D − Φ) yields
+
+Optimal Σ: The case of Φ = 0, µ2 > 0
+
+FOR A GIVEN LINEAR RELAY PRECODER
+
+With D ﬁxed, the problem in (2) is convex, and with c1 and
+c2 strictly positive, it is strictly feasible. Hence, Slater’s condition holds and the Karush-Kuhn-Tucker (KKT) conditions
+are necessary and sufﬁcient for optimality [7]. Using results
+from [8] and [9], the KKT conditions can be written as:
+T
+
+T
+
+−1
+
+H H(I + ΣH H)
+Σ
+
+0,
+
+Φ
+
+0,
+
+Tr(Σ) ≤ c1 ,
+µ1 ≥ 0,
+
+T
+
+− µ1 I − µ2 D D + Φ = 0,
+T
+
+Tr(DΣD ) ≤
+
+µ2 ≥ 0,
+
+c′ ,
+2
+
+(µ1 I +µ2 DT D)Σ = I −(µ1 I +µ2 DT D−Φ)(H T H)−1 . (9)
+Left multiplying (9) by Σ yields
+
+(3b)
+
+Σ(µ1 I + µ2 DT D)Σ = Σ − (H T H)−1 (µ1 I + µ2 DT D)Σ.
+(10)
+Let ν1 = 1/µ1 , ν2 = µ2 /µ1 , kΣ = rank(Σ) and deﬁne
+
+(3c)
+
+˜
+A
+
+(3a)
+
+2
+
+I +ν2 DT D,
+
+˜
+C = (H T H)−1 ,
+
+and
+
+˜
+B
+
+˜˜
+C A. (11)
+
+where Q1 ∈ RkΣ ×kΣ and Q2 ∈ RkΦ ×kΦ are orthonormal and
+˜
+˜
+U1 ∈ Rk×kΣ and U2 ∈ Rk×kΦ are complementary partitions
+˜ . Using (16) in the ﬁrst equality in (15) yields
+of U
+
+From (8), the vectors of Φ must span the null space of the
+matrix (µ1 I + µ2 DT D − Φ)−1 − (H T H)−1 ; that is, if
+T
+T
+UΦ ΛΦ UΦ and UΣ ΛΣ UΣ denote the eigendecompositions of Φ
+⊥
+⊥
+and Σ, respectively, then UΣ = UΦ , where UΦ denotes the orthonormal matrix that spans the null space of Φ. Hence, the full
+Λ
+0 T
+eigendecomposition of Σ can be denoted by U Σ
+U ,
+0 0
+where U = UΣ UΦ . The equality in (10) can be written as
+ΛΣ
+0
+
+0
+0
+
+A11
+A21
+
+A12
+B
++ 11
+A22
+B21
+
+B12
+−ν1 I
+B22
+
+A11 A12
+B11 B12
+˜
+= U T AU ,
+A21 A22
+B21 B22
+A11 , B11 ∈ RkΣ ×kΣ . Manipulating (12) yields
+where
+
+ΛΣ A11 = ν1 I − B11 ,
+
+and
+
+Q2 ΛΦ QT =
+2
+
+Using (17), the matrix Φ can be written as
+1 ˜ T ˜ ˜ −1 ˜ T ˜ ˜
+˜T ˜ ˜
+˜T
+(U C U2 ) (U2 B U2 ) − (U2 C U2 )−1 U2 .
+ν1 2
+(18)
+Since the matrix Φ is symmetric, the matrix
+˜T ˜ ˜
+˜T ˜ ˜
+(U2 C U2 )−1 (U2 B U2 ) must be symmetric, which is what we
+show next using the following lemma.
+Lemma 2: Let W1 , W2 ∈ Rn×n be two nonsingular symmetric matrices. Let Ψ = Ψ1 Ψ2 be a Schur orthonormal
+basis of the matrix W1 W2 , where Ψ1 and Ψ2 are arbitrary
+complementary partitions of this basis. Then
+˜
+Φ = U2
+
+ΛΣ
+0
+
+0
+= 0,
+0
+(12)
+˜
+= U T BU ,
+
+B21 = 0.
+
+(13)
+
+We now derive similar equations for the dual matrix, Φ.
+Right multiplying (9) by Φ and using (7) yields
+1 ˜
+Φ = ΦB − Φ(H T H)−1 Φ.
+ν1
+
+−1
+(ΨT W1 W2 Ψ1 )(ΨT W2 Ψ1 )−1 = (ΨT W1 Ψ1 )−1 ,
+1
+1
+1
+
+(ΨT W1 Ψ2 )−1 (ΨT W1 W2 Ψ2 )
+2
+2
+(14)
+
+0 0
+U T to denote the full eigendecomposition
+0 ΛΦ
+of Φ and manipulating (14) yields
+1
+B22 − I,
+ν1
+
+and
+
+B21 = 0,
+
+˜
+˜T
+˜
+Σ = U1 ν1 I + ν2 U1 DT DU1
+
+C11 C12
+˜
+= U T CU ∈ Rk×k and C11 ∈ RkΣ ×kΣ .
+C21 C22
+From (13) and (15) it is seen that A11 , C22 , ΛΣ and ΛΦ
+are full rank and positive deﬁnite. Since, for any two square
+matrices W1 and W2 , the eigenvalues of W1 W2 are the same
+as the eigenvalues of W2 W1 , it follows that kΣ and kΦ =
+k − kΣ must be such that the kΣ eigenvalues of B11 are less
+than ν1 and the kΦ eigenvalues of B22 are greater than ν1 .
+We now proceed to determine the orthogonal bases of Σ and
+T ˜
+Φ. From (13) and (15) it is seen that B21 = UΦ BUΦ = 0. To
+determine UΦ and UΣ , we invoke the Schur decomposition of
+an arbitrary asymmetric matrix W .
+Lemma 1 (The Schur decomposition [11]): Let
+W ∈ Rn×n be an asymmetric matrix with real eigenvalues.
+For each such matrix there exists an orthonormal matrix Ψ
+such that the matrix ΨW ΨT is upper triangular. The diagonal
+entries of ΨW ΨT are the eigenvalues of W and their order
+can be arbitrarily chosen depending on Ψ.
+˜
+˜
+We now apply Lemma 1 to the matrix B. Let U be the Schur
+˜ that arranges its eigenvalues in a non-decreasing
+basis of B
+˜ ˜˜
+order, i.e., U T B U is upper triangular with non-decreasing
+diagonal entries. From (13) and (15) we have that B21 = 0.
+However, these equations do not require B11 and B22 to be
+upper triangular. Hence, it can be seen that to satisfy these
+equations, we can choose U = UΣ UΦ to be in the form
+0
+˜
+= U1
+Q2
+
+˜
+U2
+
+Q1
+0
+
+0
+,
+Q2
+
+−1
+
+˜T
+˜
+˜T
+− (U1 H T H U1 )−1 U1 .
+(19)
+Using (19) in Tr(Σ) = c1 and Tr(DT DΣ) = c′ yields
+2
+
+(15)
+
+where
+
+˜ Q1
+U =U
+0
+
+=
+
+and
+
+−1
+(ΨT W2 Ψ2 )−1 .
+2
+
+Proof: See Appendix B in [10].
+˜
+˜
+˜
+Letting W1 = C and W2 = A implies that W1 W2 = B,
+which using Lemma 2 implies that Φ in (18) is symmetric.
+Using (13) and Lemma 2 yields
+
+Using U
+
+C22 ΛΦ =
+
+1 ˜ T ˜ ˜ −1 ˜ T ˜ ˜
+˜T ˜ ˜
+(U C U2 ) (U2 B U2 ) − (U2 C U2 )−1 . (17)
+ν1 2
+
+˜T
+˜
+˜T
+˜
+Tr U1 DT DU1 I + ν2 U1 DT DU1
+˜T
+˜
+I + ν2 U1 DT DU1
+
+Tr
+=
+
+−1
+
+−1
+
+˜
+˜T
+˜ ˜T
+c′ + Tr U1 DT DU1 U1 H T H U1
+2
+c1 + Tr
+
+˜T
+˜
+U1 H T H U1
+
+−1
+
+−1
+
+.
+
+(20)
+
+˜T
+˜
+Since U1 DT DU1 is positive semideﬁnite, Lemma 1 in [10]
+asserts that the left hand side of (20) is monotonically decreasing in ν2 . This observation is used in the following algorithm
+to facilitate the search for the optimal ν2 and Σ.
+Algorithm 1 (The optimal Σ when Φ = 0 and µ2 > 0):
+•
+•
+
+•
+
+(16)
+
+3
+
+Let δ be a small step size. Start from ν2 = 0 and kΣ = 1.
+˜
+˜ (0) U (0) ∈ Rk×k to be the Schur
+˜
+Compute U (0) = U1
+2
+˜
+basis that orders the eigenvalues of B in (11) in a non(0)
+k×kΣ ˜ (0)
+˜
+decreasing order, where U1 ∈ R
+, U2 ∈ Rk×kΦ .
+Since Φ = 0, the rank of Σ must satisfy kΣ ≤ k − 1.
+˜ (0)
+– With U1 ﬁxed, update ν2 using a bisection search
+on the left hand side of (20); cf. [10, Lemma 1].
+˜
+– Use updated ν2 to obtain B and update the Schur
+˜ (1)
+basis. Denote the updated Schur basis by U1 .
+(0)
+(1)
+˜
+˜
+– If U1 − U1
+> ǫ, kΣ ← kΣ + 1 and repeat, else
+proceed to the next step.
+– Use Tr(Σ) = c1 to determine ν1 .
+
+k−1
+where {σi }i=1 are the singular values of D.
+Proof: See Appendix C in [10].
+From this proposition, and noting that the dual variable
+ν1 can be readily eliminated from (21), it can be seen that
+the optimal (Σ, D) pair can be determined by searching
+over ν2 and the k − 1 degrees of freedom of precoders
+of the form in (22). In other words, using Proposition 1,
+ﬁnding the jointly optimal (Σ, D) pair reduces the search from
+k(k − 1)/2 + 1 variables to k variables. Despite the reduction
+in the search space, solving (21) for large k can be quite
+difﬁcult. To circumvent this difﬁculty, in the next section we
+will show how restricting D to be subdiagonal will enable us
+to obtain solutions of the optimization problem in (21) that are
+asymptotically optimal at low and high SNRs. The key to the
+asymptotic analysis is to invoke Lemma 2 in the optimization
+problem in (21) to show that this problem is equivalent to a
+problem with the following objective:
+
+– If the value of ν1 lies between the kΣ -th and kΣ + 1˜
+th diagonal entries of B, determine Σ using (19).
+Otherwise, kΣ ← kΣ + 1, and repeat.
+• If no kΣ < k can be found, ν2 ← ν2 + δ, and repeat. 2
+Note that this algorithm simpliﬁes signiﬁcantly in the cases of
+ν2 = 0 and Φ = 0; cf. [10] for details.
+In the next section, we will use the expression obtained for
+the optimal Σ to gain insight into the optimal relay precoders.
+IV. O PTIMIZING THE R ELAY P RECODER
+In Section III, it was shown that the optimal Σ is
+parametrized by D, ν1 and ν2 . Hence, ﬁnding a jointly
+optimal input covariance-relay precoder pair can be cast as an
+optimization problem in these variables. The cases in which
+ν2 = 0 and Φ = 0 can be inferred from the case in which
+ν2 > 0 and Φ = 0. Hence, we will focus on the latter case.
+When ν2 > 0 and Φ = 0, the optimal Σ is given by
+the expression in (19). We recall that in that expression
+˜
+U1 ∈ Rk×kΣ is the matrix containing the Schur vectors corresponding to the smallest kΣ eigenvalues of the (asymmetric)
+˜
+matrix B = (H T H)−1 I + ν2 DT D . Using (19), the relay
+precoder optimization problem can be expressed as
+
+min
+
+D,ν1 ,ν2
+
+and with the constraint in (21d) replaced with the constraint
+˜
+˜T
+Tr U1 (H T H)−1 IkΣ + ν2 DT D U1 ≥
+ν2
+ν1 kΣ − c1 + 2 N Tr(DT D) − c2 .
+a
+
+˜T
+˜
+˜T
+˜
+max det ν1 U1 H T H U1 (I + ν2 U1 DT DU1 )−1 , (21a)
+
+D,ν1 ,ν2
+
+˜T
+˜
+subject to ν1 (I + ν2 U1 DT DU1 )−1
+
+˜T
+˜
+(U1 H T H U1 )−1 ,
+(21b)
+
+˜T
+˜
+ν1 Tr (I + ν2 U1 DT DU1 )−1
+˜T
+˜
+− Tr (U1 H T H U1 )−1 ≤ c1 ,
+2
+
+Tr a
+
+˜T
+˜
+U1 DT DU1
+
+ν1 (I +
+
+Dij = 0,
+1
+N (I
+
+j ≥ i,
+
+(21c)
+
+(21d)
+(21e)
+
++ abDT )(I + b2 DDT )−1 (I + abD).
+where H T H =
+The problem in (21) is non-convex. However, in the next
+section we will show how this optimization problem can be
+simpliﬁed without loss of optimality. We will then use this
+simpliﬁcation to obtain input covariance-relay precoder pairs
+that become asymptotically optimal at low and high SNRs.
+
+where τi
+
+A. Optimality of Subdiagonal Precoders
+
+1
+2
+N (1+ν2 σi )
+
+0
+
+···
+
+±σk−1
+
+=
+
+1
+2
+N (1+ν2 σi )
+
+abσi
+2
+1+b2 σi
+
+1
+2
+1+b2 σi−1
+
++
+
+1
+2
+N (1+ν2 σi+1 )
+
+2
+a2 b2 σi
+2
+1+b2 σi
+
+abσi
+2
+1+b2 σi
+
+, ζi
+
+=
+
+, ηi =
+, i =
+1, . . . , k, and σ0 = σk = 0.
+Evaluating the constraints and the objective of the formulation equivalent to (21) requires analytical expressions for the
+˜
+eigenvalues of B −1 . Unfortunately, such expressions are not
+known and only bounds and results pertaining to special forms
+are available; see e.g., [12]. A classical result related to these
+eigenvalues is stated in the following lemma [13, p. 312].
+Lemma 3: If an eigenvalue of a matrix in the form in (25)
+has multiplicity r, then at least r −1 of the subdiagonal entries
+are zero, i.e., ζi1 = ζi2 = · · · = ζir−1 = 0 for ij ∈ {1, · · · , k−
+1}, j = 1, . . . , r − 1.
+2
+In the next section, this result will be used to identify a class
+of relay precoders that satisfy necessary optimality conditions
+at low and high transmit powers.
+
+The algorithm developed in Section III for optimizing Σ for
+any given precoder D ∈ Rk×k required the search over the
+dual variable ν2 . Using these algorithms, the jointly optimal
+(Σ, D) pair can be determined by searching over the k(k −
+1)/2 degrees of freedom in D, in addition to ν2 . The main
+result of this section is given in the following proposition:
+Proposition 1: For the problem in (21) to yield the maximum rate, it sufﬁces to restrict D to be subdiagonal, i.e.,
+
+
+0
+0
+···
+0
+0
+±σ1
+0
+···
+0
+0
+
+
+ 0
+±σ2 · · ·
+0
+0 ,
+(22)
+D=
+
+ .
+.
+.
+.
+..
+.
+.
+.
+ .
+.
+.
+.
+.
+.
+0
+
+(24)
+
+To draw insight from the resulting formulation, we invoke
+Proposition 1 to restrict attention to precoders of the sub˜
+diagonal form in (22). These precoder yield B −1 = I +
+−1
+T
+T
+ν2 D D
+(H H) with the following tridiagonal form:
+
+
+τ1 ζ1
+
+η1 τ2 ζ2
+
+
+
+
+η2 τ3
+ζ3
+
+
+−1
+˜
+(25)
+B =
+,
+..
+..
+..
+
+
+.
+.
+.
+
+
+
+ηk−2 τk−1 ζk−1 
+ηk−1
+τk
+
+˜T
+˜
+ν2 U1 DT DU1 )−1
+
+˜T
+˜
+− (U1 H T H U1 )−1 + N DT D ≤ c2 ,
+
+−k
+˜
+˜T
+ν1 Σ det U1 (H T H)−1 IkΣ +ν2 DT D U1 , (23)
+
+0
+
+4
+
+by the asymptotically optimal relay matrices coincides with
+that achieved by the optimal relay matrices. For intermediate
+powers, the gap between the rates achieved by the optimal and
+the asymptotically optimal precoders appears to be small.
+
+5
+4.5
+
+R, Bits per channel use
+
+4
+3.5
+
+c2 = 10 dB
+a = 1.25
+b = 0.7
+k=4
+
+3
+2.5
+
+VI. C ONCLUSION
+The capacity of the amplify-and-forward scheme in fullduplex Gaussian relay channels is cast as the solution of a joint
+optimization problem of the input covariance and the relay
+precoder. The joint problem is not convex, but the problem
+of ﬁnding the optimal input covariance for a given relay
+precoder is convex. This observation enables us to use the
+KKT conditions to obtain closed form expressions for the
+optimal input covariance as a function of the given relay
+precoder. Using these expressions, it was shown that restricting
+the relay precoders to be subdiagonal, thereby reducing the
+number of optimization variables from quadratic to linear
+in the block length, does not incur loss of optimality. The
+subdiagonal structure enables us to identify a class of relay
+precoders that are asymptotically optimal at low and high
+transmit powers. Precoders in this class transmit during every
+other symbol interval, as in half duplex operation.
+
+2
+1.5
+1
+
+Asymptotically optimal (Σ, D)
+D Fixed, Σ Opt
+D Fixed, Σ = γ0 I
+Optimal (Σ, D)
+
+0.5
+0
+0
+
+2
+
+4
+
+6
+
+8
+
+10
+
+12
+
+14
+
+16
+
+18
+
+20
+
+c1 [dB]
+
+Fig. 2.
+
+Joint optimization of Σ and D.
+
+B. Asymptotically optimal D
+We consider the case of c1 → 0. The case of c1 → ∞
+follows similarly.
+When c1 → 0, ν2 → 0 the constraint in (21d) becomes
+redundant and can be dropped without loss of optimality.
+Next, we assume that ν1 is given. Using Lemma 3, it can be
+shown that the KKT conditions corresponding to the resulting
+problem are satisﬁed only when the matrix D possesses an
+k−1
+interlacing subdiagonal structure; that is {σi }i=1 in (22) has
+the following structure: σ2i = 0 for i = 1, . . . , k − 1, and
+2
+let σ2i−1 = 0 for i = 1, . . . , r, and σ2i−1 = σD > 0 for
+i = r + 1, . . . , k , for some r ∈ {0, . . . , k − 1}.
+2
+2
+We make two remarks regarding the interlacing subdiagonal
+structure of D. First, in this case the joint optimization of D
+and Σ reduces to a search over two variables ν1 and σD for
+any k. Second, the interlacing structure implies that the relay
+transmits during every other symbol interval, which resembles
+operating in a half-duplex mode. The asymptotic optimality of
+such precoders are illustrated in the next section.
+
+ACKNOWLEDGMENT
+The authors would like to thank C. (Sekhar) Bontu, C. Royer
+and J. Womack of Research-In-Motion for their support.
+This work is supported in part by Research In Motion and in
+part by the CRD grant of the Natural Sciences and Engineering
+Research Council (NSERC) of Canada.
+R EFERENCES
+[1] R. Pabst, B. H. Walke, D. C. Schultz, P. Herold, H. Yanikomeroglu,
+S. Mukherjee, H. Viswanath, M. Lott, W. Zirwas, M. Dohler, H. Aghvami, D. D. Falconer, and G. P. Fettweis, “Relay-based deployment
+concepts for wireless and mobile broadband radio,” IEEE Commun.
+Mag., pp. 80–89, Sept. 2004.
+[2] G. Kramer, I. Mari´ , and R. D. Yates, “Cooperative communications,”
+c
+Found. Trend. Commun. Inf. Theory, vol. 1, no. 3–4, pp. 271–425, 2006.
+[3] T. M. Cover and A. A. El Gamal, “Capacity theorems for the relay
+channel,” IEEE Trans. Inf. Theory, vol. IT-25, pp. 572–584, Sept. 1979.
+[4] A. A. El Gamal and S. Zahedi, “Capacity of a class of relay channels with orthogonal components,” IEEE Trans. Inf. Theory, vol. 51,
+pp. 1815–1817, May 2005.
+[5] A. A. El Gamal, M. Mohseni, and S. Zahedi, “Bounds on capacity and
+minimum energy-per-bit for AWGN relay channels,” IEEE Trans. Inf.
+Theory, vol. 52, pp. 1545–1561, Apr. 2006.
+[6] T. M. Cover and J. A. Thomas, Elements of Information Theory. New
+York: Wiley, 1991.
+[7] S. Boyd and L. Vandenberghe, Convex Optimization. Cambridge, UK:
+Cambridge University Press, 2004.
+[8] D. P. Palomar and S. Verd´ , “Gradient of mutual information in linear
+u
+vector Gaussian channels,” IEEE Trans. Inf. Theory, vol. 52, pp. 141–
+154, Jan. 2006.
+[9] A. Graham, Kronecker Products and Matrix Calculus: with Applications.
+New York: Elis Horwood Ltd., 1981.
+[10] R. H. Gohary and H. Yanikomeroglu, “Joint optimization of the transmit
+covariance and the relay precoder in general Gaussian amplify-andforward relay channels,” IEEE Trans. Inf. Theory, Dec. 2011. Submitted.
+Available at: http://www.sce.carleton.ca/∼gohary/.
+[11] R. A. Horn and C. R. Johnson, Matrix Analysis. Cambridge, UK:
+Cambridge University Press, 1999.
+[12] J. Cheng and T. Berger, “On minimal eigenvalues of a class of tridiagonal
+matrices,” IEEE Trans. Inf. Theory, vol. 55, pp. 5024–5031, Nov. 2009.
+[13] G. H. Golub and C. F. van Loan, Matrix Computations. Baltimore, MD:
+The Johns Hopkins University Press, ﬁrst ed., 1983.
+
+V. N UMERICAL E XAMPLES
+In this section, we provide a numerical example when the
+block length, k = 4, the noise variance, N = 1, the sourcerelay channel gain, a = 1.25, and the relay-destination channel
+gain, b = 0.7. The relay power budget c2 = 10 dB and the
+transmitter power is varied between 0 and 20 dB.
+In Figure 2, we plot the rates yielded the optimal input
+covariance-relay precoder pair. This pair was obtained by
+exhaustive search over subdiagonal precoders of the form
+in (22) and applying Algorithm 1 to obtain the corresponding
+optimal covariance matrix. In Figure 2, we plot the rates
+corresponding to the asymptotically optimal relay precoders
+obtained using an efﬁcient algorithm for optimizing Σ and
+subdiagonal D with interlacing structure. For comparison, in
+this ﬁgure we also plot the rates yielded by scaled identity
+input covariance and the optimal covariance corresponding to a
+√
+subdiagonal precoder matrix with Di+1,i = 1/ 3, i = 1, 2, 3.
+This ﬁgure shows that when the transmit power, c1 , is low
+(less than 6 dB) or high (greater than 16 dB), the rate achieved
+
+5
+
+

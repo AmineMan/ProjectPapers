@@ -1,0 +1,918 @@
+Creator:        TeX
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Fri May 18 23:05:29 2012
+ModDate:        Tue Jun 19 12:54:54 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      436098 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569564333
+
+Wireless MIMO Switching with MMSE Relaying
+Fanggang Wang∗† , Soung Chang Liew∗ , Dongning Guo‡
+∗
+
+Institute of Network Coding, The Chinese Univ. of Hong Kong, Hong Kong, China
+State Key Lab of Rail Trafﬁc Control and Safety, EIE, Beijing Jiaotong Univ., Beijing, China
+‡
+Department of Electrical Engineering & Computer Science, Northwestern Univ., Evanston, IL, USA
+Email: fgwang@inc.cuhk.edu.hk, soung@ie.cuhk.edu.hk, dGuo@northwestern.edu
+†
+
+Speciﬁcally, we propose and study a precode-and-forward
+scheme which improves on our previous work [1], [12].
+An ordinary zero-forcing relaying with and without network
+coding was proposed in [12] to maximize the sum rate under
+a fairness requirement. The ZF scheme eliminates interference
+at the expense of elevated noise, which degrades the throughput performance, especially for ill-conditioned channels or
+low SNR communication. The MMSE precode-and-forward
+scheme strikes a balance between noise and interference. The
+MMSE precoder and receive ﬁlter are studied for singlehop transmission in [13]. MMSE relaying schemes were
+investigated in [8], [11], in which MMSE precoders at the
+relay are used to minimize the sum MSE of all the users.
+In contrast, in this paper we introduce receive ﬁlters at the
+users and show that joint optimization of the relay precoder
+and the receive ﬁlters can yield signiﬁcantly better MSE
+results. In addition, we show how network coding can be
+introduced into the MMSE system to further improve the MSE
+and throughput performances. Simulation results show that
+the network-coded MMSE relaying improves the throughput
+performance over the existing ZF/MMSE relaying schemes
+noticeably with moderate complexity increase.
+The remainder of the paper is organized as follows: Section
+II introduces the background of wireless MIMO switching. In
+Section III, the ordinary and network-coded MMSE relaying
+schemes are proposed. Section IV presents the simulation
+results. The paper is concluded by Section V.
+
+Abstract— A wireless relay which forms a one-to-one mapping
+from the inputs (uplinks) to the outputs (downlinks) is called
+a multiple-input-multiple-output (MIMO) switch. The MIMO
+switch carries out precode-and-forward, where all users send
+their signals in the uplink and then the MIMO switch precodes
+the received vector signal for broadcasting in the downlink.
+Ideally, each user employs a receive ﬁlter to recover its desired
+signal from one other user with no or little interference from
+other users. We propose a joint design of the precoder and
+the receive ﬁlters to achieve the minimum-mean-square-error
+(MMSE), assuming full channel state information is available at
+the relay. Our results indicate that the proposed MMSE relaying
+scheme outperforms the existing ZF/MMSE schemes.
+Index Terms—Beamforming, MIMO switching, MMSE, multiway relaying, network coding, relay.
+
+I. I NTRODUCTION
+This paper investigates the throughput performance of a
+wireless MIMO switching network [1], in which a multiantenna relay helps multiple single-antenna users communicate with one another. We explore two minimum mean
+square error (MMSE) relaying schemes: MMSE relaying with
+and without network coding. We show that compared with
+the existing zero-forcing (ZF)/MMSE relaying schemes, both
+of our proposed MMSE schemes achieve better MSE and
+throughput performances.
+Two-way relaying has been extensively investigated in recent years (see, e.g., [2]–[4]). By applying physical-layer network coding (PNC) [5], two half-duplex nodes can accomplish
+bidirectional information exchange in two phases with the
+help of a half-duplex relay. Much of the current interest is
+on general multi-way relay serving multiple users. Capacity
+bounds for the multi-relay channel where the relay has a
+single antenna has been developed in [6]. So far, the trafﬁc
+patterns studied include pairwise data exchange [6]–[8], where
+the users form pairs to exchange data within each pair, and full
+data exchange, where each user broadcasts to all other users
+[6], [9]–[11]. In contrast, the trafﬁc pattern studied in this
+paper is arbitrary unicast, where the mapping from senders
+to receivers can be an arbitrary permutation, which is more
+general than pairwise exchanges.
+
+II. S YSTEM D ESCRIPTION
+Consider K users, numbered 1, . . . , K, each with one
+antenna, as shown in Fig. 1. The users communicate via a
+relay with N antennas and there is no direct link between
+any two users. In this paper, we focus on the pure unicast
+case, in which each user transmits to one other user only.
+The collection of unicast patterns can be used to realize any
+general trafﬁc ﬂow pattern (unicast, multicast, broadcast, or
+a mixture of them) among the users by scheduling a set of
+different unicast trafﬁc ﬂows.1
+Each transmission consists of one uplink symbol interval
+and one downlink symbol interval. In particular, the two
+symbol intervals are two slots in a time-division system.
+
+This work was partially supported by grants from the Univ. Grants Committee of the Hong Kong, China (AoE/E-02/08; 414911); the State Key Lab of
+Rail Trafﬁc Control and Safety (RCS2011ZT011); the Fundamental Research
+Funds for the Central Universities (2010RC007,2011JBM203); Program for
+Changjiang Scholars and Innovative Research Team in Univ. (IRT0949); the
+Joint Funds of State Key Program of NSFC (60830001).
+
+1 Similarly, in order to accomplish full data exchange, multiple slots are
+required in [9]–[11].
+
+1
+
+2
+
+order depending on P . For example, if
+
+
+0 0 1
+P = 1 0 0 ,
+0 1 0
+
+1
+
+then P x = [x3 , x1 , x2 ]T . In the case where all diagonal
+elements of P are zero it is also called a derangement. The
+precoder G realizes a particular permutation represented by
+the permutation matrix P . Note that a symmetric permutation, i.e., P = P T , realizes a pairwise data exchange. By
+ˆ
+manipulating G and C, our purpose is to make r close to
+P x in some sense. The sum rate is written as (4).
+
+N
+Relay
+
+K
+
+C=
+
+K
+
+3
+
+i=1
+
+1+
+
+Uplink symbol interval
+Downlink symbol interval
+
+1
+log2
+2
+
+|pT H T Ghi |2
+i
+.
+|pT H TGH|2 − |pT H TGhi |2 + γ 2 |pT H TG|2 + σ 2
+i
+i
+i
+(4)
+III. MMSE R ELAYING
+
+Fig. 1.
+
+Wireless MIMO switching.
+
+The objective of the MMSE relaying scheme is to minimize
+the sum MSE between the received signals after detection and
+the transmit signals. In the following, we introduce the design
+of the detector C and the precoder G.
+
+The uplink symbol interval is for simultaneous uplink transmissions from the users to the relay; the downlink symbol
+interval is for downlink transmissions from the relay to the
+users. We assume the two intervals are of equal duration.
+Each round of uplink and downlink transmission realizes a
+switching permutation, as described below.
+Consider one transmission. Let x = [x1 , · · · , xK ]T be
+the vector representing the signals transmitted by the users.
+Let y = [y1 , · · · , yN ]T be the received signals at the relay,
+and u = [u1 , · · · , uN ]T be the noise vector with independent identically distributed (i.i.d.) noise samples following
+circularly-symmetric complex Gaussian (CSCG) distribution,
+i.e., un ∼ Nc (0, γ 2 ). Then
+y = Hx + u,
+
+A. Non-PNC MMSE Relaying
+For brevity in the context, we let
+
+E P x − Cr
+
+minimize
+G,C
+subject to
+
+2
+
+(6a)
+
+Tr[GM GH ] ≤ q
+
+(6b)
+
+C is diagonal,
+
+(6c)
+
+where (6b) is the constraint of relaying power consumption.
+Unfortunately, the problem is nonconvex, making it difﬁcult
+to solve both G and C directly. However, we notice that we
+can solve the two variables in an iterative manner. That is, we
+can iteratively optimize one variable by somehow ﬁxing the
+other one until convergence to a local optimum.
+The iterative formulas can be determined using the Lagrangian function, which is written as
+
+(1)
+
+(2)
+
+J = E P x − Cr
+
+where w is the noise vector at the receiver, with the i.i.d. noise
+samples following CSCG distribution, i.e., wk ∼ Nc (0, σ 2 ).
+We assume the detector at the users is C, where C is diagonal
+since the users are distributed.
+ˆ
+r = Cr.
+
+(5)
+
+Given a desired permutation P , the optimization problem for
+determining the optimal precoder and ﬁlter is formulated as
+
+where H is the uplink channel gain matrix. The relay multiplies y by a precoding matrix G before relaying the signals.
+In this paper, we assume that the uplink channel and downlink
+channel are reciprocal, i.e., the downlink channel is H T . Thus,
+the received signals at the users in vector form are
+r = H T Gy + w = H T GHx + H T Gu + w,
+
+HH H + γ 2 I.
+
+M
+
+2
+
++ λ Tr[GM GH ] − q ,
+
+(7)
+
+where λ ≥ 0 is the Lagrangian multiplier. Suppose all uplink
+transmissions are independent and use unit average power, i.e.,
+E{x2 } = 1, i = 1, · · · , K. We deﬁne
+i
+˜
+G
+
+(3)
+
+α−1 G,
+
+˜
+C
+
+αC,
+
+(8)
+
+where α is a scaling factor to meet the power constraint at the
+relay. Plugging (2) and (8) into (7), and setting the derivative
+˜∗
+˜
+w.r.t. G to be zero when C is ﬁxed, we have
+
+We refer to an K × K matrix P that has one and only one
+nonzero element on each row and each column equal to 1
+as a permutation matrix. Evidently, P x is a column vector
+consisting of the same elements as x but permuted in a certain
+
+˜ opt
+˜H ˜
+˜H
+G = (λα2 I + H ∗ C CH T )−1 H ∗ C P H H M −1 . (9)
+
+2
+
+Next, we set the derivative w.r.t. λ to be 0, then
+αopt =
+
+q
+.
+˜ opt M (Gopt )H
+˜
+Tr G
+
+performance outperforms that of ordinary MMSE relaying in
+which B = 0.
+With network coding, we could cancel the self information
+from Cr (i.e., Cr − Bx) at the receivers. The square error
+is then P x − (Cr − Bx) 2 . The optimization problem can
+be written as
+
+(10)
+
+Differentiating the Lagrangian function w.r.t. α, we have
+H
+
+(αopt )4 =
+Plugging (α
+
+˜˜
+σ 2 Tr[C C ]
+.
+opt
+˜
+˜ opt
+λopt Tr G M (G )H
+
+σ
+˜ ˜H
+Tr[C C ].
+q
+
+(18b)
+(18c)
+
+The problem is nonconvex. However, we can solve G and
+(B, C) iteratively similarly to the algorithm for solving (6).
+The Lagrangian function is written as
+
+(12)
+
+Thus, the optimal MMSE precoder is written as
+σ2
+Tr[CC H ]I + H ∗ C HCH T
+q
+
+(18a)
+
+B and C are diagonal.
+
+) by (10) into (11), we have
+
+λopt (αopt )2 =
+
+2
+
+Tr[GM GH ] ≤ q
+
+opt 2
+
+2
+
+GN =
+
+E (P + B)x − Cr
+
+minimize
+G,B ,C
+subject to
+
+(11)
+
+−1
+
+J = E (P + B)x − Cr
+
+H ∗ C HP H HM −1 .
+
+2
+
++ λ Tr[GM GH ] − q .
+
+(19)
+
+Similarly, we deﬁne
+
+(13)
+
+¯
+G
+
+Then we consider the solution of C given G. Let the column
+vector c = diag{C} ∈ CK×1 . The cost function can be
+rewritten as
+
+¯
+C
+
+β −1 G,
+
+βC,
+
+(20)
+
+where β is a scaling factor to meet the relay power constraint.
+¯
+¯∗
+For ﬁxed (B, C), setting the derivative w.r.t. G to be zero,
+we have
+
+J = N − cH s − sH c + cHDc + λ Tr[GM GH ] − q , (14)
+
+¯ opt
+¯H ¯
+¯H
+G = (λβ 2 I + H ∗ C CH T )−1 H ∗ C (P + B)H H M −1 .
+
+where
+s = diag{P H H GH H ∗ } ∈ CK×1 ,
+D=I
+
+(H T GM GH H ∗ + σ 2 I) ∈ CK×K ,
+
+The optimal λβ 2 can be calculated similarly to (12), i.e.,
+
+(15)
+
+where
+denotes element-by-element multiplication, i.e., the
+Hadamard product. We calculate the gradient w.r.t. c, and the
+optimal solution is then
+C = diag{D −1 s} ∈ CK×K .
+
+σ2
+¯ ¯H
+Tr[C C ].
+q
+
+λopt (β opt )2 =
+
+(16)
+
+(21)
+
+Thus, the optimal MMSE-PNC precoder is written as
+−1
+
+GP =
+
+(17)
+
+The details are as outlined by the following pseudo-code.
+1: init: C = C 0 ;
+2: while the MSE can be improved by more than do
+3:
+Calculate G according to (13);
+4:
+Calculate C according to (17);
+5: end while
+Remark 1: Since the iterative algorithm can not guarantee
+the global optimum, the trick is using the ZF result [1], [12] as
+the initial condition of this problem. Thus, the MMSE scheme
+could achieve better MSE and throughput performances than
+the ZF scheme.2
+
+σ2
+Tr[CC H ]I + H ∗ C H CH T
+×
+q
+(22)
+× H ∗ C H (P + B)H H M −1 .
+
+For ﬁxed G, denote the column vectors b = diag{B} ∈
+CK×1 , c = diag{C} ∈ CK×1 . The cost function can be
+rewritten as
+J =N + bH b − cH s − cH D 1 b − sH c − bH D H c
+1
++ cH D 2 c + λ Tr[GM GH ] − q
+=(D 3 c − D −1 s)H (D 3 c − D −1 s) − sH D −2 s + N
+3
+3
+3
+
+(23)
+
++ (b − D Hc)H (b − D Hc) + λ Tr[GM GH ] − q ,
+1
+1
+where
+s = diag{P H H GH H ∗ } ∈ CK×1 ,
+
+B. Network-coded MMSE Relaying
+
+D1 = I
+
+For the network-coded MMSE relaying, we permit the selfinterference to exist at the side of receivers. Then the selfinterference can be canceled from the denominator of the SNR
+in the sum rate (4). As we proposed earlier in [12], we deﬁne a
+diagonal matrix B to denote the weights of self-interference.
+We will show that by proper design of B, the throughput
+
+D2 = I
+
+H
+
+H
+
+∗
+
+(H G H ) ∈ C
+T
+
+H
+
+∗
+
+K×K
+2
+
+,
+
+(H GM G H + σ I) ∈ C
+
+D 3 = (D 2 −
+
+1
+D1 DH ) 2
+1
+
+∈C
+
+K×K
+
+(24)
+(25)
+K×K
+
+,
+
+.
+
+(26)
+(27)
+
+According to (23), given G the MSE is minimized by
+C = diag{D −2s}, B = diag{D Hc} = diag{D HD −2s}. (28)
+1
+1
+3
+3
+
+2 As mentioned in [1], [12], our earlier proposed ZF scheme also outperforms the traditional ZF scheme since we optimize the power allocation over
+the relay antennas instead of using equal power at each antenna [11].
+
+The details are as outlined by the following pseudo-code.
+Init: C = C 0 , B = B 0 ;
+
+1:
+
+3
+
+1
+
+1
+
+10
+
+10
+
+0
+
+0
+
+10
+
+10
+
+−1
+
+−1
+
+10
+MSE
+
+MSE
+
+10
+
+−2
+
+10
+
+−2
+
+10
+
+−3
+
+−3
+
+10
+
+10
+[ref]
+non−PNC
+PNC
+
+−4
+
+10
+
+0
+
+10
+
+[ref]
+non−PNC
+PNC
+
+−4
+
+10
+20
+
+30
+
+40
+
+50
+
+0
+
+10
+
+20
+
+SNR(dB)
+
+Fig. 2.
+
+MSE of different MMSE relaying schemes when K = N = 2.
+
+Fig. 4.
+
+40
+
+50
+
+MSE of different MMSE relaying schemes when K = N = 4.
+
+10
+
+6
+
+Sum rate (bits per symbol period)
+
+[ref] ZF
+non−PNC ZF
+PNC ZF
+[ref] MMSE
+non−PNC MMSE
+PNC MMSE
+
+5
+Sum rate (bits per symbol period)
+
+30
+SNR(dB)
+
+4
+
+3
+
+2
+
+[ref] ZF
+non−PNC ZF
+PNC ZF
+[ref] PNC
+[ref] MMSE
+non−PNC MMSE
+PNC MMSE
+
+8
+
+6
+
+4
+
+2
+
+1
+
+0
+
+0
+
+0
+
+5
+
+10
+SNR(dB)
+
+15
+
+20
+
+0
+
+5
+
+10
+SNR(dB)
+
+15
+
+20
+
+Fig. 5. Throughput comparison of different ZF and MMSE relaying schemes
+when K = N = 4.
+
+Fig. 3. Throughput comparison of different ZF and MMSE relaying schemes
+when K = N = 2.
+
+general results for different symmetric (resp. asymmetric)
+permutations, i.e., pairwise (resp. non-pairwise) information
+exchange. Thus, we just pick one symmetric permutation
+P = [e2 , e1 , e4 , e3 ] and present three results here:
+
+while the MSE can be reduced by more than do
+Calculate G according to (22);
+Calculate C and B according to (28);
+end while
+Lemma 1: The MSE of both the non-PNC and the PNC
+schemes converge as the number of iterations increases.
+Proof: For both the non-PNC and PNC scheme, the MSE
+decreases monotonically as the number of iteration increases.
+Together with the MSE being non-negative, we conclude that
+the MSE converges toward a local optimum.
+2:
+3:
+4:
+5:
+
+Observation 1: The proposed MMSE relaying schemes have
+better MSE performance than the MMSE schemes in [8], [11].
+The MSE performance is evaluated in Fig. 2 and Fig. 4.
+The sum MSE of the MMSE scheme [8], [11] saturates at
+high SNR, since they optimize the precoders at the relay only.
+In contrast, we jointly optimize both the precoder at the relay
+and the detectors at the users, thus our MSE keeps decreasing.
+Importantly, the MSE can be further decreased by network
+coding. Comparing the MSE of different number of users, we
+see that the sum MSE increases as the number of users grows.
+
+IV. N UMERICAL R ESULTS
+In this section, we evaluate the MSE and the throughputs
+of the proposed MMSE relaying schemes. We assume the
+maximum transmit power of the relay is the same as that of
+each user, i.e., q = 1, and the noise levels at the relay and the
+users are the same. Our simulations yield essentially the same
+
+Observation 2: The proposed network-coded MMSE relaying
+scheme generally has better throughput performance than the
+relaying schemes in [1], [8], [11], [12].
+
+4
+
+We compare our proposed relaying schemes with the ZF
+schemes in [1], [8], [11], [12], the MMSE scheme in [8], [11]
+and the network-coded schemes in [11], [12]. The throughput
+performance is evaluated in Fig. 3 and Fig. 5. For non-PNC
+schemes, the proposed non-PNC MMSE scheme has similar
+throughput performance as the MMSE scheme in [8], [11], and
+they both outperform the non-PNC ZF schemes in [1], [11].
+The effect of the receive ﬁlter C in throughput performance
+is not obvious. By joint optimization with C, the optimal B
+and G are different from that in the case without C. The gain
+is shown in Fig. 3 and Fig. 5.
+The throughput performance can be further improved by
+network coding. In particular, our proposed network-coded
+MMSE scheme outperforms our prior network-coded ZF relaying scheme as well as the network-coded scheme in [11].
+Summing up the gains induced by MMSE and network coding, the network-coded MMSE relaying scheme can achieve
+around 5 dB gain over the traditional ZF/MMSE schemes.
+In addition, when the number of users grows, the sum rate
+increases; however, the average rate decreases. Note that the
+gap between network-coded ZF and MMSE schemes is trivial
+when N = 2. The reason is that the loss due to zero-forcing
+disappears after adding B when N = 2, i.e., there is no zero
+element in P + B. However, when N > 2 the MMSE scheme
+achieves larger gain over the ZF scheme since the latter forces
+some elements in P + B to be zero.
+
+4
+
+10
+
+10
+
+9
+8
+3
+
+# of multiplications
+
+Number of iterations
+
+7
+6
+5
+4
+3
+2
+
+non−PNC 2 users
+PNC 2 users
+non−PNC 4 users
+PNC 4 users
+
+1
+0
+
+Fig. 6.
+users.
+
+0
+
+5
+
+10
+15
+SNR(dB)
+
+10
+
+2
+
+10
+
+non−PNC ZF
+PNC ZF
+non−PNC MMSE
+PNC MMSE
+[ref] ZF
+[ref] MMSE
+
+1
+
+20
+
+10
+
+2
+
+3
+# of users
+
+4
+
+Computational complexity comparison with different numbers of
+
+R EFERENCES
+[1] F. Wang, S. C. Liew, and D. Guo, “Wireless MIMO switching with zeroforcing relaying,” in 49th Annual Allerton Conf. on Commun., Control,
+and Computing (Allerton), Sept. 2011, pp. 551 –558.
+[2] B. Rankov and A. Wittneben, “Spectral efﬁcient protocols for halfduplex fading relay channels,” IEEE J. Sel. Area Comm., vol. 25, no. 2,
+pp. 379 – 389, 2007.
+[3] R. Wang and M. Tao, “Joint source and relay precoding designs for
+MIMO two-way relay systems,” in Proc. IEEE Int’l Conf. on Commun.
+(ICC), Jun. 2011, pp. 1 –5.
+[4] T. Yang, X. Yuan, L. Ping, I. B. Collings, and J. Yuan, “A new eigendirection alignment algorithm for physical layer network coding in
+MIMO two-way relay channels,” in Proc. IEEE Int’l Symp. Inform.
+Theory, Jul. 2011.
+[5] S. Zhang, S. C. Liew, and P. P. Lam, “Hot topic: physical-layer network
+coding,” in in Proc. of ACM Mobicom, 2006.
+[6] D. Gunduz, A. Yener, A. Goldsmith, and H. V. Poor, “The multi-way
+relay channel,” in Proc. IEEE Int’l Symp. Inform. Theory, 2009, pp.
+339–343.
+[7] Y. Mohasseb, H. Ghozlan, G. Kramer, and H. El Gamal, “The MIMO
+wireless switch: Relaying can increase the multiplexing gain,” in Proc.
+IEEE Int’l Symp. Inform. Theory, 2009, pp. 1448–1552.
+[8] J. Joung and A. Sayed, “Multiuser two-way amplify-and-forward relay
+processing and power control methods for beamforming systems,” IEEE
+Trans. Sig. Proc, vol. 58, no. 3, pp. 1833 –1846, march 2010.
+[9] Y. E. Sagduyu, D. Guo, and R. A. Berry, “Throughput optimal control
+for relay-assisted wireless broadcast with network coding,” in IEEE
+International Workshop on Wireless Network Coding (WiNC), San
+Francisco, CA, USA, Jun. 2008.
+[10] T. Cui, T. Ho, and J. Kliewer, “Space-time communication protocols for
+N-way relay networks,” in IEEE Global Telecommun. Conf., 2008, pp.
+1–5.
+[11] A. U. T. Amah and A. Klein, “Beamforming-based physical layer
+network coding for non-regenerative multi-way relaying,” EURASIP J.
+Wireless Commun. and Netw., vol. 2010, p. 12, 2010.
+[12] F. Wang, S. C. Liew, and D. Guo, “Wireless MIMO Switching
+with Zero-forcing Relaying and Network-coded Relaying,” submitted
+to IEEE J. Sel. Area Comm., Aug. 2011. [Online]. Available:
+http://arxiv.org/abs/1108.1522
+[13] M. Joham, W. Utschick, and J. Nossek, “Linear transmit processing in
+mimo communications systems,” Signal Processing, IEEE Transactions
+on, vol. 53, no. 8, pp. 2700 – 2712, aug. 2005.
+
+Observation 3: The complexities of the network-coded
+schemes are close to the non-PNC schemes. The MMSE
+schemes have higher complexity than the ZF schemes.
+As mentioned in Remark 1, we initialize the precoders with
+the ZF results proposed in [1], [12]. The iteration stops when
+the throughput improvement is smaller than 10−3 . To evaluate
+the complexity of our proposed schemes, we ﬁrst evaluate
+the numbers of iterations required for our proposed MMSE
+schemes to achieve convergence. Fig. 6 indicates that with
+the ZF result initialization, the number of iterations decreases
+as SNR increases, or as the number of users decreases. The
+network-coded schemes have faster convergence, but little additional complexity in terms of the number of multiplications
+needed, as shown in Fig. 6. The comparison results of the
+numbers of multiplications and additions are similar, thus we
+show the ﬁgure of multiplication only.
+We remark that for implementation, the optimization computation itself can be performed solely at the relay, with the
+computed detectors’ gains C and the self-interference weights
+B conveyed to the users. Since both C and B are diagonal,
+the amounts of data to be conveyed are not large.
+V. C ONCLUSION
+In this paper, we have proposed two MMSE relaying
+schemes in the wireless MIMO switching, i.e., a general
+multi-way relay channel. The schemes, especially the networkcoded scheme has substantially better MSE and throughput
+performances than the existing ZF/MMSE relaying schemes.
+
+5
+
+

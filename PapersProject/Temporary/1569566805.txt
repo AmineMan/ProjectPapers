@@ -1,0 +1,843 @@
+Creator:         TeX output 2012.05.18:1840
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Fri May 18 09:41:33 2012
+ModDate:        Tue Jun 19 12:55:57 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      419600 bytes
+Optimized:      no
+PDF version:    1.7
+ISIT'2012 1569566805
+
+Analysis of Error Floors of Generalized Non-binary
+LDPC Codes over q -ary Memoryless Symmetric
+Channels
+Takayuki Nozaki, Kenta Kasai, and Kohichi Sakaniwa
+Dept. of Communications and Integrated Systems
+Tokyo Institute of Technology
+152-8550 Tokyo, JAPAN
+{nozaki, kenta, sakaniwa}@comm.ss.titech.ac.jp
+codes over ﬁnite ﬁeld. In this paper, we deﬁne non-binary
+LDPC codes over general linear group GL(m3 , F2m4 ) and
+give BP decoding algorithm for non-binary LDPC codes over
+GL(m3 , F2m4 ) to analyze the non-binary LDPC codes over
+both ﬁnite ﬁeld F2m and general linear group GL(m, F2 ). We
+assume the q-ary memoryless symmetric (q-MS) channels [6]
+for the generality of the channels, where q = 2m1 . We extend
+the optimization and analysis method in [5] to the non-binary
+LDPC codes over general linear group transmitted over the qMS channel. More precisely, ﬁrst, we derive the condition for
+successful decoding of zigzag cycle codes. Next, we propose a
+method to lower the decoding error rates in the error ﬂoors for
+non-binary LDPC codes over GL(m3 , F2m4 ). Moreover, we
+show lower bounds on the symbol error rates in the error ﬂoors
+for non-binary LDPC codes over GL(m3 , F2m4 ). Furthermore,
+some simulation results show that the lower bounds on symbol
+error rates in the error ﬂoors are tight for the optimized nonbinary LDPC codes.
+This paper is organized as follows: Section II deﬁnes nonbinary LDPC codes and introduces the q-MS channel. Section
+III proposes a method to lower the error ﬂoors by analyzing
+the zigzag cycles. Section IV derives lower bounds for symbol
+error rates in the error ﬂoors for non-binary LDPC codes. We
+omit several proofs in this paper due to space limitation.
+
+Abstract—In this paper, we compare the decoding error rates
+in the error ﬂoors for non-binary low-density parity-check
+(LDPC) codes over the general linear group with those for
+non-binary LDPC codes over ﬁnite ﬁeld transmitted over the
+q-ary memoryless symmetric channel under belief propagation
+decoding. To analyze non-binary LDPC codes deﬁned over
+both general linear group GL(m, F2 ) and ﬁnite ﬁeld F2m , we
+investigate non-binary LDPC codes deﬁned over GL(m3 , F2m4 ).
+We propose a method to lower the error ﬂoors for non-binary
+LDPC codes. In this analysis, we see that the optimized nonbinary LDPC codes deﬁned over general linear group have the
+same decoding performance in the error ﬂoors as those deﬁned
+over ﬁnite ﬁeld. The non-binary LDPC codes deﬁned over general
+linear group have more choices of the labels in the edges which
+satisfy the condition for the optimization.
+
+I. I NTRODUCTION
+Gallager invented low-density parity-check (LDPC) codes
+[1]. Due to the sparseness of the parity check matrices, LDPC
+codes are efﬁciently decoded by the belief propagation (BP)
+decoder. Optimized LDPC codes can exhibit performance very
+close to the Shannon limit [2]. Davey and MacKay [3] have
+found that non-binary LDPC codes can outperform binary
+ones.
+Finite ﬁeld of the order 2m is denoted by F2m . For a nonnegative integer m3 and ﬁnite ﬁeld F2m4 , the set of m3 × m3
+×m
+invertible matrices over F2m4 , i.e., Fm34 3 , is called general
+2m
+linear group and denoted by GL(m3 , F2m4 ). It is known
+that the decoding complexity of non-binary LDPC codes over
+general linear group GL(m, F2 ) is larger than that of nonbinary LDPC codes over ﬁnite ﬁeld F2m for m ≥ 2. On the
+other hand, the decoding error rates in the waterfall region
+for optimized non-binary LDPC codes over general linear
+group is lower than those for optimized non-binary LDPC
+codes over ﬁnite ﬁeld [4]. However, no methods to lower the
+decoding error rates in error ﬂoors for non-binary LDPC codes
+over general linear group have been proposed. Moreover, the
+decoding error rates in the error ﬂoor region for optimized
+non-binary LDPC codes over general linear group have not
+been compared with those for optimized non-binary LDPC
+codes over ﬁnite ﬁeld.
+In [5], we analyzed the error ﬂoors for non-binary LDPC
+
+II. P RELIMINARIES
+In this section, we recall the 2m1 -MS channel [6] and deﬁne
+the non-binary LDPC codes over GL(m3 , F2m4 ).
+A. Non-binary LDPC code over GL(m3 , F2m4 )
+For the non-binary LDPC codes, the Tanner graphs are
+represented by sparse bipartite graphs with variable nodes,
+check nodes and labeled edges. Each labels for the nonbinary LDPC codes over GL(m3 , F2m4 ) is an element in
+GL(m3 , F2m4 ). Let N and M be the number of variable nodes
+and check nodes, respectively. We denote the label in the edges
+adjacent to the v-th variable node and the c-th check node, by
+hc,v ∈ GL(m3 , F2m4 ). To simplify the notation, hc,v = 0
+if the v-th variable node and the c-th check node are not
+connected. Deﬁne [a, b] := {n ∈ N | a ≤ n ≤ b} for the
+
+1
+
+Fm34 , the element of initial message Cv (γ) is given from the
+2m
+channel output as follows:
+
+integers a, b. Note that [a, b] = ∅ if a > b. For a given Tanner
+graph, the code represented by the Tanner graph is given by
+N
+m3
+{(xi )i∈[1,N ] ∈ (Fm34 )N |
+2m
+i=1 hj,i xi = 0 ∈ F2m4 , j ∈
+[1, M ]}, where (xi )i∈[1,N ] represents the vector (x1 , . . . , xN ).
+Since the non-binary LDPC codes over Fm = GL(1, F2m )
+and over GL(m, F2 ) are special case for the non-binary LDPC
+codes over GL(m3 , F2m4 ), we refer the non-binary LDPC
+codes over GL(m3 , F2m4 ) as generalized non-binary LDPC
+codes.
+In this paper, we consider the q-MS channel, where q =
+2m1 . For the 2m1 -ary channel, the number of input alphabet X
+is 2m1 . We assume X = Fm1 . Let Y be a given continuous (or
+2
+discrete) alphabet. We denote the channel transition probability
+by p(y | x), where x ∈ X and y ∈ Y. The q-ary memoryless
+channel is symmetric if there exists a function T : Y ×X → Y
+satisﬁed the following properties:
+1) For all x ∈ X , the function T (·, x) : Y → Y is bijective.
+2) For all x1 , x2 ∈ X and y ∈ Y, p(y | x1 ) = p(T (y, x2 −
+x1 ) | x2 ) holds.
+3) For channels whose output alphabet Y is continuous, the
+mapping T is that its Jacobian is equal to 1.
+In the case for m1 = 1, 2m1 -MS channel represents memoryless binary input output symmetric channel.
+Let α be a primitive element F2m4 . Once a primitive
+element of α is ﬁxed, each element in F2m4 is given by
+an m4 -bit representation [7, p. 110]. Hence, γ ∈ Fm34 is
+2m
+represented by m3 m4 bits as (γi )i∈[1,m3 m4 ] . Let (xi )i∈[1,N ] ∈
+(Fm34 )N denote a codeword of a non-binary LDPC code.
+2m
+The codeword (xi )i∈[1,N ] is represented as a binary codeword
+(xi,j )i∈[1,N ],j∈[1,m3 m4 ] . We assume m1 | m3 m4 and denote
+m2 = m3 m4 /m1 . Then, a symbol xi ∈ GL(m3 , F2m4 )
+is represented as m2 channel inputs to 2m1 -MS channel.
+For a given codeword, we denote the channel outputs by
+(yi,j )i∈[1,N ],j∈[1,m2 ] ∈ Y N m2 .
+Example 1: The 2m1 -ary symmetric channel (2m1 -SC) is an
+example of the 2m1 -MS channel. For the 2m1 -SC, the output
+alphabet is Y = 2m1 and transition probability function is
+
+where
+
+p yv,i | (γj )j∈[m1 (i−1)+1,m1 i] .
+
+Let Nc (c) (resp. Nv (v)) be the set of the positions of
+the variable nodes (resp. check nodes) connecting to the
+(0)
+c-th check node (resp. v-th variable node). Set Φc,v =
+−m −m
+−m
+2 ,2 ,...,2
+for all c ∈ [1, M ] and v ∈ Nc (c).
+2) Iteration:
+( )
+a) Variable node action: The message Ψv,c is given by
+the component-wise multiplication of the initial message Cv
+( )
+and the incoming messages Φc ,v from check nodes whose
+positions c are in Nv (v), i.e., for x ∈ Fm34
+2m
+
+B. 2m1 -ary Memory Symmetric Channel [6]
+
+p(y | x) =
+
+m2
+i=1
+
+Cv (γ) =
+
+Ψ( ) (x) = ξ −1 Cv (x)
+v,c
+
+( )
+c ∈Nv (v)\{c} Φc ,v (x),
+
+where ξ is the normalization factor such that 1 =
+( )
+m3
+x∈F2m4 Ψv,c (x).
+b) Check node action: The convolution of two vectors
+Ψ1 and Ψ2 is given by
+[Ψ1 ⊕ Ψ2 ](x) =
+
+m
+
+3
+y,z∈F2m4 :x=y+z
+
+Ψ1 (y)Ψ2 (z),
+
+m3
+where
+is the sum of
+y,z∈F2m4 :x=y+z Ψ1 (y)Ψ2 (z)
+m3
+Ψ1 (y)Ψ2 (z) over all y, z ∈ F2m4 such that x = y + z.
+Deﬁne i∈[1,k] Ψi := Ψ1 ⊕ Ψ2 ⊕ · · · ⊕ Ψk .
+Recall hc,v is the label of the edge adjacent to the c-th check
+( +1)
+node and the v-th variable node. The message Φc,v is given
+m3
+as, for x ∈ F2m4
+
+ˇ v,c
+Ψ( ) (x) = Ψ( ) h−1 x ,
+v,c
+c,v
+ˇ ( +1) =
+ˇ( )
+Φc,v
+v ∈Nc (c)\{v} Ψv ,c ,
+ˇ
+Φ( +1) (x) = Φ( +1) (hc,v x).
+c,v
+
+c,v
+
+3) Decision: Deﬁne
+arg max Ψ := x | ∀y ∈ Fm34 : Ψ(x) ≥ Ψ(y) ,
+2m
+m
+
+3
+x∈F2m4
+
+and for x ∈ Fm34
+2m
+
+(
+Dv ) (x) := ξ −1 Cv (x)
+
+( )
+c∈Nv (v) Φc,v (x),
+
+where ξ is the normalization factor such that 1 =
+( )
+( )
+m3
+ˆ
+be the dex∈F m Dv (x). For v ∈ [1, N ], let xv
+
+1− ,
+x = y,
+/(2m1 − 1), x = y,
+
+2
+
+4
+
+( )
+
+coding output of the v-th variable node. Deﬁne Dv :=
+( )
+( )
+( )
+arg max Dv (x). If |Dv | = 1, the decoding output xv is the
+ˆ
+
+is referred as channel error probability.
+
+m
+
+3
+x∈F2m4
+
+C. BP decoder
+
+( )
+
+( )
+
+( )
+
+( )
+
+element of Dv . If |Dv | > 1, the decoder chooses xv ∈ Dv
+ˆ
+( )
+with probability 1/|Dv |.
+
+BP decoding proceeds by sending messages along the edges
+in the Tanner graph. The messages arising in the BP decoder
+for LDPC codes over GL(m3 , F2m4 ) are vectors of length 2m ,
+( )
+( )
+where m = m3 m4 . Let Ψv,c (resp. Φc,v ) be the message from
+the v-th variable node (resp. c-th check node) to the c-th check
+node (resp. v-th variable node) at the -th iteration.
+1) Initialization: Set = 0. Recall that N and M denote
+the number of variable nodes and check nodes in a Tanner
+graph, respectively. For v ∈ [1, N ], let Cv = (Cv (x))x∈Fm3
+2m4
+denote the initial message of the v-th variable node. For γ ∈
+
+D. Decoding Failure and All-zero Codeword Assumption
+
+The v-th symbol is eventually correct [8] if there exists Lv
+( )
+such that for all > Lv , xv = 0. The symbol error rate is
+ˆ
+deﬁned by the fraction of the symbol which is not eventually
+correct.
+The following lemma shows that all-zero codeword assumption holds for non-binary LDPC code over GL(m3 , F2m4 )
+transmitted over the 2m1 -MS channel under BP decoding.
+
+2
+
+Moreover, in the limit of large , no symbols in the zigzag
+cycle code are eventually correct under BP decoding if and
+˜
+only if there exists x ∈ Sχ such that
+| χ x|−1 w
+t=0
+
+Fig. 1.
+
+III. Z IGZAG C YCLE C ODE A NALYSIS
+A zigzag cycle is a circuit [9] such that the degrees of all
+the variable nodes in the circuit are two. A zigzag cycle of
+weight w consists of w variable nodes of degree two. The
+zigzag cycle code is deﬁned by a Tanner graph which forms
+a single zigzag cycle. Figure 1 shows a zigzag cycle code of
+symbol code length w. In this section, we give a condition
+for successful decoding of the zigzag cycle codes over the
+2m1 -MS channels under BP decoding.
+We consider the zigzag cycle code of symbol code length
+w with labels h1,1 , h1,2 , . . . , hw,w , hw,1 ∈ GL(m3 , F2m4 ) as
+shown in Fig. 1. We deﬁne χ := h−1 h1,2 · · · h−1 hw,1 .
+w,w
+1,1
+Deﬁnition 1: Let χ be the cyclic subgroup generated by
+χ, i.e., χ := {χj | j = 0, 1, 2, . . . }. The relation ∼ on
+Fm34 deﬁned by x ∼ y is an equivalence relation on Fm34 ,
+2m
+2m
+if and only if there exists g ∈ χ such that gx = y. The
+equivalence class of x ∈ Fm34 under this relation is χ x =
+2m
+{gx | g ∈ χ }, and is called the orbit of x under χ . The
+set of orbits of x ∈ Fm34 \ {0} under χ forms a partition of
+2m
+Fm34 \ {0}, i.e., every element in Fm34 \ {0} belongs exactly
+m
+2
+2m
+˜
+one of equivalence classes. A set of class representatives Sχ
+m3
+is a subset of F2m4 \ {0} which contains exactly one elements
+from each equivalent class.
+For any m3 × m3 matrices A1 , A2 , . . . , Ak , we deﬁne
+k
+i=1 Ak := A1 A2 · · · Ak . The following theorem shows that
+the decoding error rates depend on a set of class representatives
+˜
+Sχ , i.e., the matrix χ ∈ GL(m3 , F2m4 ), for a ﬁxed channel
+and weight of zigzag cycle code.
+Theorem 1: We consider a zigzag cycle code of symbol code length w labeled by h1,1 , h1,2 , . . . , hw,w , hw,1 ∈
+GL(m3 , F2m4 ) transmitted over the 2m1 -MS channel. Let
+ιi := h−1 hi,i+1 for i ∈ [1, w], where hw+1,w := h1,w . The
+i,i
+w
+˜
+matrix χ is given by χ = i=1 ιi ∈ GL(m3 , F2m4 ). Deﬁne Sχ
+as in Deﬁnition 1. In the limit of large , all the symbols in the
+zigzag cycle code are eventually correct under BP decoding if
+˜
+and only if for all x ∈ Sχ ,
+
+t=0
+
+s=1
+
+Cs (0) >
+
+| χ x|−1 w
+t=0
+
+Cs
+
+w
+j=s ιj
+
+| χ x|−1 w
+t=0
+
+Cs
+
+w
+j=s ιj
+
+χt x .
+
+s=1
+
+By Using Theorem 1, we have the following corollary.
+Corollary 1: Deﬁne Sχ as in Deﬁnition 1. For a given
+channel output, if the zigzag cycle with the matrix χ such
+that |Sχ | > 1 is successfully decoded, the zigzag cycle with
+the matrix χ such that |Sχ | = 1 is also successfully decoded.
+Corollary 1 shows a condition for lowering the error ﬂoor.
+The following lemma asserts that the condition for successful
+˜
+decoding in the case for |Sχ | = 1 is simpliﬁed by the order
+of the matrix χ.
+Lemma 2: The order of the matrix χ is 2m3 m4 − 1 if and
+˜
+only if |Sχ | = 1.
+We use the following lemma in order to prove Lemma 2.
+Lemma 3: The characteristic polynomial fχ (x) of the matrix χ ∈ GL(m3 , F2m4 ) is deﬁned by det(xI − χ) with I
+being m3 × m3 identity matrix over F2m4 . For polynomials
+f (x) over F2m4 such that f (0) = 0, the least positive integer e
+for which f (x) divides xe −1 is called the order of polynomial
+f (x) and is denoted by ord(f ). If the order σχ of the matrix
+χ is 2m3 m4 −1 , then the order ord(fχ ) of the characteristic
+polynomial fχ (x) is also 2m3 m4 −1 .
+Proof: Since χ is m3 ×m3 nonsingular matrix, fχ (0) = 0.
+By the Cayley-Hamilton theorem, fχ (χ) = 0. The deﬁnition of the order ord(fχ ) of polynomial fχ gives fχ (x) |
+xord(fχ ) − 1. Since fχ (χ) | χord(fχ ) − 1 and fχ (χ) = 0, we
+have χord(fχ ) − 1 = 0. Hence, we get σχ | ord(fχ ). Since
+ord(fχ ) ≤ 2m3 m4 − 1 by [10, Corollary 3.4], ord(fχ ) =
+2m3 m4 − 1 if σχ = 2m3 m4 − 1.
+This lemma gives the proof of Lemma 2 as follows.
+˜
+Proof: Denote m = m3 m4 . Firstly, we assume |Sχ | = 1.
+j
+j
+˜
+We denote the ﬁrst column of χ , by χ1 . Since |Sχ | = 1,
+
+A zigzag cycle code of symbol code length w.
+
+Lemma 1: For non-binary LDPC codes over GL(m3 , F2m4 )
+transmitted over 2m1 -MS channel under BP decoding, the
+symbol error probability is independent of the transmitted
+codeword.
+
+| χ x|−1 w
+
+s=1
+
+Cs (0) ≤
+
+Fm34 \ {0} = {χj (1, 0, 0, . . . , 0)T | j ∈ [0, 2m − 2]}
+2m
+= {χj | j ∈ [0, 2m − 2]}.
+1
+
+This equation asserts that χi = χj for all i, j ∈ [0, 2m − 2]
+1
+1
+with i = j. Hence, χi = χj for all i, j ∈ [0, 2m − 2] with
+i = j. Thus, the order of χ is equal to or greater than 2m − 1.
+For all χ ∈ GL(m3 , F2m4 ), the order of χ is equal to or lower
+than 2m − 1, i.e., σχ ≤ 2m − 1 [11, Corollary 2]. Therefore,
+˜
+σχ = 2m − 1 if |Sχ | = 1.
+Secondly, we assume σχ = 2m−1 . By Lemma 3, the
+order of characteristic polynomial fχ (x) is 2m − 1. Since
+ord(fχ ) = 2m − 1, f (0) = 0 and f (x) is monic polynomial
+[10, Deﬁnition 1.49], the characteristic polynomial fχ (x) is
+a primitive polynomial [10, Theorem 3.16]. Hence, the ﬁeld
+F2m is represented in {0} ∪ {χi | i ∈ [0, 2m − 2]}. Thus, for
+all i, j ∈ [0, 2m − 2] with i = j, there exists a k ∈ [0, 2m − 2]
+such that χi + χj = χk . This implies that χi = χj for all
+1
+1
+˜
+i, j ∈ [0, 2m − 2] with i = j. Therefore, |Sχ | = 1 since
+Fm34 \ {0} = χ (1, 0, . . . , 0)T .
+2m
+
+χt x .
+
+s=1
+
+3
+
+such that σχ = 2m − 1, over the 2m1 -MS channel with
+L-density a under BP decoding. Let Z1 , Z2 , . . . , Zk denote
+independent and identically distributed random variables with
+k
+L-density a. Deﬁne Z (k) :=
+v=1 Zv . The Bhattacharyya
+functional is deﬁned in Deﬁnition 2. The symbol error rates
+of the zigzag cycle codes is given by
+
+Discussion 1: By combining Corollary 1 and Lemma 2, we
+see that the zigzag cycles with the matrix χ such that the
+order of χ is 2m3 m4 − 1 have the best decoding performance.
+By using this condition, we propose a method to lower the
+error ﬂoors for generalized non-binary LDPC codes as follows:
+Designing the labels in the zigzag cycles of small weight as
+the order of χ satisfy 2m3 m4 − 1.
+The log-likelihood ratio for 2m1 -ary channels are deﬁned in
+[12]. For γ ∈ Fm1 , let Zv,i (Yv,i , γ) denote the log-likelihood
+2
+ratio corresponding to the i-th channel output yv,i in the v-th
+variable node, i.e.,
+Zv,i (yv,i , γ) := log
+
+p(yv,i | 0)
+.
+p(yv,i | γ)
+
+Pzz (w, m, a) = Pr Z (wm2 ) ≤ 0 ≤ Bwm2 (a).
+Corollary 3 shows that for a ﬁxed weight w and m =
+m3 m4 , the decoding error rate of the zigzag cycle code does
+not depend on m3 or m4 . In other words, the decoding error
+rate of the zigzag cycle over general linear group is equal to
+that of the zigzag cycle over ﬁnite ﬁeld for a ﬁxed weight w
+and m = m3 m4 .
+
+(1)
+
+By using the log-likelihood ratio, the following corollary
+gives the condition for successful decoding of the zigzag cycle
+codes with the matrix χ of the order 2m3 m4 − 1 over the 2m1 ary input memoryless symmetric channel.
+Corollary 2: We consider the zigzag cycle codes of symbol
+code length w with the matrix χ of the order 2m3 m4 − 1
+over the 2m1 -ary input memoryless symmetric channel. For
+γ ∈ Fm1 , let Zv,i (Yv,i , γ) deﬁne as in (1). In the limit of
+2
+large , all the symbols in the zigzag cycle code are eventually
+correct if and only if
+w
+v=1
+
+m2
+i=1
+
+m1
+\{0}
+
+γ∈F2
+
+IV. A NALYSIS OF E RROR F LOORS
+In the previous section, we give a condition for the decoding
+error to the zigzag cycle code. By using this result, in this
+section, we give lower bounds of the symbol error rates in
+the error ﬂoors of non-binary LDPC code ensembles over the
+2m1 -MS channel under BP decoding.
+Deﬁnition 3: Let LDPC(N, GL(m3 , F2m4 ), λ, ρ) denote
+LDPC code ensemble of symbol code length N over
+GL(m3 , F2m4 ) deﬁned by Tanner graphs with a degree distribution pair (λ, ρ) [13] and labels of edges chosen elements from GL(m3 , F2m4 ) with equal probability. Let wg ∈
+N be an expurgation parameter. The expurgated ensemble
+ELDPC(N, GL(m3 , F2m4 ), λ, ρ, wg ) consists of the subset
+of codes in LDPC(N, GL(m3 , F2m4 ), λ, ρ) which contain
+no stopping sets of weight in [1, wg − 1]. Let wc ∈
+N be an expurgation parameter for labeling in the Tanner graph, where wg ≤ wc . Deﬁne expurgated ensemble
+ELDPC(N, GL(m3 , F2m4 ), λ, ρ, wg , wc , H) as the subset of
+codes in ELDPC(N, GL(m3 , F2m4 ), λ, ρ, wg ) which contain
+no zigzag cycles of weight in [wg , wc − 1] with β ∈ H.
+Deﬁne
+
+Zv,i (Yv,i , γ) > 0.
+
+Moreover, in the limit of large , no symbols in the zigzag
+cycle code are eventually correct if and only if
+w
+v=1
+
+m2
+i=1
+
+m1
+
+γ∈F2
+
+\{0} Zv,i (Yv,i , γ)
+
+≤ 0.
+
+We deﬁne distributions of log-likelihood ratios associated
+with the 2m1 -ary channels as follows:
+L(Y ) :=
+
+m1
+
+γ∈F2
+
+\{0}
+
+log
+
+p(Y |0)
+p(Y |γ) .
+
+Let a denote the conditional probability density function of the
+random variable L(Y ) given that the corresponding channel
+input is zero. We refer the function a as L-density. Note that
+in the case for the memoryless binary-input output-symmetric
+channels, i.e., m1 = 1, L-density deﬁned in the above gives
+the deﬁnition of the L-density in [13, p. 178].
+Deﬁnition 2: For a L-density a, the Bhattacharyya func∞
+tional B(a) is deﬁned as B(a) := −∞ a(x) exp[−x/2]dx.
+In this deﬁnition, we assume not only symmetric L-density
+[13] but also asymmetric L-density. The following facts show
+the properties of the Bhattacharyya functional.
+Fact 1: For L-density a1 and a2 , B(a1 ∗ a2 ) =
+B(a1 )B(a2 ) holds, where ∗ denotes the convolution, i.e.,
+∞
+(a1 ∗ a2 )(x) := −∞ a1 (x − y)a2 (y)dy.
+Fact 2: Let Z denote the random variable with L-density
+a. Then, Pr(Z ≤ 0) ≤ B(a).
+Fact 1, 2 and Corollary 2 give the decoding error probability
+of zigzag cycle with the matrix χ of the order σχ as the
+following corollary.
+Corollary 3: Denote m = m3 m4 . Let Pzz (w, m, a) be the
+symbol error rate for the zigzag cycle codes deﬁned over
+GL(m3 , F2m4 ) of symbol code length w with the matrix χ
+
+∗
+Hm3 ,m4 := {χ ∈ GL(m3 , F2m4 ) | σχ < 2m3 m4 − 1}.
+
+From Discussion 1, to lower the error ﬂoors, we need to avoid
+∗
+the zigzag cycle with the matrix χ ∈ Hm3 ,m4 .
+A. Analysis of Error Floors
+In this section, we analyze the symbol error rates in the error
+ﬂoors for the expurgated ensembles deﬁned in Deﬁnition 3.
+The following theorem gives a lower bound on the symbol
+error rate under BP decoding for the expurgated ensemble
+∗
+ELDPC(N, GL(m3 , F2m4 ), λ, ρ, wg , wc , Hm3 ,m4 ).
+Theorem 2: Let Ps (ELDPC, a) be the symbol error rate
+of the expurgated ensemble ELDPC(N, GL(m3 , F2m4 ), λ, ρ,
+∗
+wg , wc , Hm3 ,m4 ) over the 2m1 -MS channel characterized by
+its L-density a under BP decoding. Denote m = m3 m4 .
+Deﬁne Z (km) as in Corollary 3. For sufﬁciently large N and
+B(a) < 1/µ−1/m the symbol error rate is bounded by
+Ps (ELDPC, a) ≥ (2N )−1
+
+4
+
+∞
+w
+w=wg µ Pr
+
+Z (wm) ≤ 0 . (2)
+
+Symbol error rate
+
+100
+10
+
+-1
+
+10
+
+∗
+Random), for m3 = 1, m4 = 4, H = H1,4 (F24 Proposed),
+for m3 = 4, m4 = 1, H = ∅ (GL(4, F2 ) Random) and for
+∗
+m3 = 4, m4 = 1, H = H4,1 (GL(4, F2 ) Proposed). The lower
+bound is given by (2).
+From Figure 2 and 3, we see that the proposed codes exhibit
+better decoding performance than non-optimized code. The
+lower bound (2) gives tight lower bounds for the symbol
+error rates to the proposed codes. Moreover, we see that the
+decoding performance in the error ﬂoors for optimized codes
+depend only on the size of m3 m4 .
+
+F24 Proposed
+GL(4, F2 ) Random
+GL(4, F2 ) Proposed
+Lower bound
+
+-2
+
+10-3
+10
+
+-4
+
+10
+
+-5
+
+10-6
+
+-1
+
+0
+
+1
+
+2
+3
+4
+Eb/N0 [dB]
+
+5
+
+6
+
+7
+
+V. C ONCLUSION
+
+Fig. 2. The symbol error rates for the expurgated ensemble ELDPC(315,
+GL(m3 , F2m4 ), x, x2 , 1, 8, H) transmitted over the binary additive white
+Gaussian noise channel for m3 = 4, m4 = 1, H = ∅ (GL(4, F2 ) Random),
+∗
+for m3 = 4, m4 = 1, H = H4,1 (GL(4, F2 ) Proposed) and for m3 = 1,
+∗
+m4 = 4, H = H1,4 (F24 Proposed). The lower bound is given by (2).
+
+We prove the relation between the orbit and the order of
+general linear group. In this paper, we propose a method to
+lower the error ﬂoors for non-binary LDPC codes. In this
+analysis, we see that the optimized non-binary LDPC codes
+deﬁned over general linear group exhibits have the same
+decoding performance in the error ﬂoors as those deﬁned over
+ﬁnite ﬁeld. The non-binary LDPC codes deﬁned over general
+linear group have more choices of the labels in the edges which
+satisfy the condition for the optimization.
+
+0
+
+10
+
+-1
+
+Symbol error rate
+
+10
+
+-2
+
+10
+
+F24 Random
+F24 Proposed
+GL(4, F2) Random
+GL(4, F2) Proposed
+Lower bound
+
+ACKNOWLEDGMENT
+
+-3
+
+10
+
+The work of T. Nozaki was supported by Grant-in-Aid for
+JSPS Fellows. The work of K. Kasai was supported by the
+grant from the Storage Research Consortium.
+
+-4
+
+10
+
+-5
+
+10
+
+R EFERENCES
+
+-6
+
+10
+
+0.02
+
+0.05
+0.1
+0.2
+Channel error probability
+
+[1] R. G. Gallager, Low Density Parity Check Codes.
+in Research
+Monograph series, MIT Press, Cambridge, 1963.
+[2] T. Richardson, M. A. Shokrollahi, and R. Urbanke, “Design of capacityapproaching irregular low-density parity-check codes,” IEEE Trans. Inf.
+Theory, vol. 47, pp. 619–637, Feb. 2001.
+[3] M. Davey and D. MacKay, “Low-density parity check codes over
+GF(q),” IEEE Commun. Lett., vol. 2, no. 6, pp. 165–167, Jun. 1998.
+[4] W. Chen, C. Poulliat, D. Declercq, L. Conde-Canencia, A. AlGhouwayel, and E. Boutillon, “Non-binary LDPC codes deﬁned over the
+general linear group: Finite length design and practical implementation
+issues,” in Proc. IEEE 69th Vehicular Technology Conference, Apr. 2009,
+pp. 1–5.
+[5] T. Nozaki, K. Kasai, and K. Sakaniwa, “Analysis of error ﬂoors of nonbinary LDPC codes over MBIOS channel,” IEICE Transactions, vol.
+94-A, no. 11, pp. 2144–2152, Nov. 2011.
+[6] E. Hof, I. Sason, and S. Shamai, “Performance bounds for nonbinary
+linear block codes over memoryless symmetric channels,” IEEE Transactions on Information Theory, vol. 55, no. 3, pp. 977–996, Mar. 2009.
+[7] F. J. MacWilliams and N. J. A. Sloane, The Theory of Error-Correcting
+Codes. Amsterdam: Elsevier, 1977.
+[8] T. J. Richardson, “Error ﬂoors of LDPC codes,” in Proc. 41th Annual
+Allerton Conf. on Commun., Control and Computing, Oct. 2003, pp.
+1426–1435.
+[9] W. Mayeda, Graph Theory. Wiley-Interscience, 1972.
+[10] R. Lidl and H. Niederreiter, Introduction to ﬁnite ﬁelds and their
+applications. New York, NY, USA: Cambridge University Press, 1986.
+[11] M. Darafsheh, “Order of elements in the groups related to the general
+linear group,” Finite Fields and Their Applications, vol. 11, no. 4, pp.
+738–747, 2005.
+[12] G. Li, I. Fair, and W. Krzymien, “Density evolution for nonbinary
+LDPC codes under Gaussian approximation,” IEEE Transactions on
+Information Theory, vol. 55, no. 3, pp. 997–1015, Mar. 2009.
+[13] T. Richardson and R. Urbanke, Modern Coding Theory. Cambridge
+University Press, Mar. 2008.
+
+Fig. 3. The symbol error rates for the expurgated ensemble ELDPC(315,
+GL(m3 , F2m4 ), x, x2 , 1, 8, H) transmitted over the 24 -SC for m3 = 1,
+∗
+m4 = 4, H = ∅ (F24 Random), for m3 = 1, m4 = 4, H = H1,4 (F24
+Proposed), for m3 = 4, m4 = 1, H = ∅ (GL(4, F2 ) Random) and for
+∗
+m3 = 4, m4 = 1, H = H4,1 (GL(4, F2 ) Proposed). The lower bound is
+given by (2).
+
+This theorem derived from Corollary 3. For a given channel
+and a ﬁxed µ, m, the decoding error rate for the non-binary
+LDPC code over ﬁnite ﬁeld F2m is same as that for the nonbinary LDPC code over GL(m3 , F2m4 ) such that m = m3 m4 .
+B. Simulation Results
+In this section, we compare the symbol error rate in the error
+ﬂoor for the expurgated ensemble constructed by our proposed
+method with that for non-optimized ensemble.
+Figure 2 shows the symbol error rates for the expurgated
+ensemble transmitted over the binary additive white Gaussian
+noise channel ELDPC(315, GL(m3 , F2m4 ), x, x2 , 1, 8, H) for
+m3 = 4, m4 = 1, H = ∅ (GL(4, F2 ) Random), for m3 = 4,
+∗
+m4 = 1, H = H4,1 (GL(4, F2 ) Proposed) and for m3 = 1,
+∗
+m4 = 4, H = H1,4 (F24 Proposed). The lower bound is
+derived from (2).
+Figure 3 shows the symbol error rates for the expurgated
+ensemble ELDPC(315, GL(m3 , F2m4 ), x, x2 , 1, 8, H) transmitted over the 24 -SC for m3 = 1, m4 = 4, H = ∅ (F24
+
+5
+
+
