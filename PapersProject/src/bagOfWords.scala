@@ -6,91 +6,96 @@ import net.sf.classifier4J._
 import math._
 import java.util.ArrayList
 import java.io.{Closeable, File, FileWriter, PrintWriter}
-
 import collection.mutable.ArrayBuffer
-import scala.swing.model.Matrix
 import scala.io.BufferedSource
 import scala.collection.immutable.List
+import scalala.ScalalaConsole
+import scalala.tensor.dense.DenseMatrix
+
 
 
 trait bagOfWords {
-   
-  
-  //return list of papers linked?
-  //def compare(papers : List[Paper], limit : Int) : List[Paper] = {
-  //papers.map(p => {
-    //if (p.meta.get("linked") == None) {
-      
-    //}
-  //}
-  
-  //}
 
+
+	//return list of papers linked?
+	//def compare(papers : List[Paper], limit : Int) : List[Paper] = {
+	//papers.map(p => {
+	//if (p.meta.get("linked") == None) {
+
+	//}
+	//}
   
   
-  //compare based on scores and return List[Paper]
-  def compare(){
-    
-  }
-  
-  def getScores(directory: java.io.File): Array[Array[Double]] ={
-    
-    val filesList = new java.io.File(directory.toString).listFiles.filter(_.getName.endsWith(".txt"))
 
-			val datasetSize = filesList.length
-
-			//Initialisation of arrays
-			//Array storing the different sources and the different texts
-			val source = new Array[scala.io.BufferedSource](filesList.length)
-			val text = new Array[java.lang.String](filesList.length)
-
-			val occurences = new Array[Map[java.lang.String,Array[java.lang.String]]](filesList.length)
-			//now we want to have a map between words and the number of occurences
-			//create an array for easier manipulation
-			val counts = new Array[Map[java.lang.String,Int]](filesList.length)
-			//Create an array of lists to store all different lists of keys:
-			val countsList = new Array[List[java.lang.String]](filesList.length)
-
-			//List holding all the list of strings of all the texts
-			var textsList = List[java.lang.String]()
-			//reading from every entry of the list:
-			for (k <- 0 to filesList.length){
-				source(k) = scala.io.Source.fromFile(filesList(k))
-						text(k) = source(k).mkString
-						//leave out unecessary characters from the analysis
-						text(k) = clean(text(k))
-						source(k).close ()
-
-						occurences(k) = text(k).split("\\s+").groupBy(x=>x)
-
-						// create a map of the keys of the text with their occurences
-						counts(k) = occurences(k).mapValues(x=>x.length)
-
-						//only working with keys for now, creating a list of keys for every text:
-						countsList(k) = counts(k).keys.toList
-
-						if(k == 0){
-							textsList = countsList(k)
-						}else{
-							textsList = textsList ::: countsList(k)
-						}
-			}
+	//}
 
 
-//building dictionary:
-//find unique words in texts:
 
-//val texts = textsList.flatten
-val textsLength = textsList.length
+	//compare based on scores and return List[Paper]
+	def compare(){
 
-val dictionary = textsList.removeDuplicates.sort(_<_)
-    // we compute the array of scores for the vectors of words for every document
-			val tfidfArray = new Array[Array[Double]](dictionary.length,datasetSize)
+	}
+
+	def getScores(directory: java.io.File): Array[Array[Double]] ={
+
+			val filesList = new java.io.File(directory.toString).listFiles.filter(_.getName.endsWith(".txt"))
+
+					val datasetSize = filesList.length
+
+					//Initialisation of arrays
+					//Array storing the different sources and the different texts
+					val source = new Array[scala.io.BufferedSource](filesList.length)
+					val text = new Array[java.lang.String](filesList.length)
+
+					val occurences = new Array[Map[java.lang.String,Array[java.lang.String]]](filesList.length)
+					//now we want to have a map between words and the number of occurences
+					//create an array for easier manipulation
+					val counts = new Array[Map[java.lang.String,Int]](filesList.length)
+					//Create an array of lists to store all different lists of keys:
+					val countsList = new Array[List[java.lang.String]](filesList.length)
+
+					//List holding all the list of strings of all the texts
+					var textsList = List[java.lang.String]()
+					//reading from every entry of the list:
+					for (k <- 0 to filesList.length){
+						source(k) = scala.io.Source.fromFile(filesList(k))
+								text(k) = source(k).mkString
+								//leave out unecessary characters from the analysis
+								text(k) = clean(text(k))
+								source(k).close ()
+
+								occurences(k) = text(k).split("\\s+").groupBy(x=>x)
+
+								// create a map of the keys of the text with their occurences
+								counts(k) = occurences(k).mapValues(x=>x.length)
+
+								//only working with keys for now, creating a list of keys for every text:
+								countsList(k) = counts(k).keys.toList
+
+								if(k == 0){
+									textsList = countsList(k)
+								}else{
+									textsList = textsList ::: countsList(k)
+								}
+					}
+
+
+			//building dictionary:
+			//find unique words in texts:
+
+			//val texts = textsList.flatten
+			val textsLength = textsList.length
+
+					val dictionary = textsList.removeDuplicates.sort(_<_)
+					
+					// we compute the array of scores for the vectors of words for every document
+					val tfidfArray = new Array[Array[Double]](dictionary.length,datasetSize)
+					
 
 					for (i <- 0 to dictionary.length -1){
 						println(i)
 						for (j <- 0 to datasetSize -1){
-						  //compute tfidf value for word i and document j
+							//compute tfidf value for word i and document j
 							tfidfArray(i)(j) = tfidf(dictionary(i),j,datasetSize,counts)
 									println(tfidfArray(i)(j))
 						}
@@ -115,21 +120,32 @@ val dictionary = textsList.removeDuplicates.sort(_<_)
 							}
 						}
 					}
+			
+			// map every score with the paper ID
+			//for every paper sort according to scores
+			val a = 0 until datasetSize
+			var positions = new Array[List[(Double,Int)]](datasetSize)
+			for(k <- 0 to datasetSize){
+			  positions(k) = (scalarProduct(k).zip(a)).toList.sort(_._1 < _._1 )
+			}
+			
+			
+			
 			//return array of scores
-return scalarProduct
-			//(i,j) of scalarProduct represents the scalar product of document i and document j. Now we have
-			// to sort it in order in a list to return the closest documents to a given document
-			//we have weights (higher weight/score) means being closer document-to-document wise
-  }
-  
+			return scalarProduct
+					//(i,j) of scalarProduct represents the scalar product of document i and document j. Now we have
+					// to sort it in order in a list to return the closest documents to a given document
+					//we have weights (higher weight/score) means being closer document-to-document wise
+	}
+
 
 	// Code has to be made generic for any text file parsed and for the whole dataset to be accurate
 
 	//reading text from given file
 	//Loading the List of all available text files in directory
-	
 
-/*
+
+	/*
 val source2 = scala.io.Source.fromFile("PapersDataset/1569551347.txt")
 val source3 = scala.io.Source.fromFile("PapersDataset/1569551535.txt")
 val source4 = scala.io.Source.fromFile("PapersDataset/1569551539.txt")
@@ -191,7 +207,7 @@ for (k <- counts1.keys){
 	}
 	}
 }
- */
+	 */
 
 // working with lists:
 
@@ -213,67 +229,67 @@ println("the number of distinct words in text 4 is: " + countsList(3).length)
 println("the number of distinct words in text 5 is: " + countsList(4).length)
 println("the number of distinct words in text 6 is: " + countsList(5).length)
 
- */
+	 */
 
 
-//building dictionnary:
-//find unique words in texts:
+	//building dictionnary:
+	//find unique words in texts:
 
 
-//println("The total length of the dictionnary is given by: " + dictionary.length)
+	//println("The total length of the dictionnary is given by: " + dictionary.length)
 
-//println("the total length of the list is: " + textsLength)
+	//println("the total length of the list is: " + textsLength)
 
-//Computing TF value:
+	//Computing TF value:
 
-def tf(term: String, document: Int, counts: Array[Map[java.lang.String,Int]]): Double = {
-	val freq = 0
-			if (counts(document).contains(term)){
-				val freq = counts(document)(term)
-			}else{
-				val freq = 0
-			}
+	def tf(term: String, document: Int, counts: Array[Map[java.lang.String,Int]]): Double = {
+			val freq = 0
+					if (counts(document).contains(term)){
+						val freq = counts(document)(term)
+					}else{
+						val freq = 0
+					}
 
-	//normalization with respect to the documents length to prevent any bias:
-	val keyValue = counts(document).values
-			val sum = keyValue.reduceLeft(_+_)
-			val normalizedFreq = freq/sum
+			//normalization with respect to the documents length to prevent any bias:
+			val keyValue = counts(document).values
+					val sum = keyValue.reduceLeft(_+_)
+					val normalizedFreq = freq/sum
 
-			return normalizedFreq
-}
+					return normalizedFreq
+	}
 
-//Computing IDF value
+	//Computing IDF value
 
-def idf(term: String, datasetSize : Int, counts: Array[Map[java.lang.String,Int]]): Double = {
-	//math.log(size / index.getDocCount(term))
-	// take the logarithm of the quotient of the number of documents by the documents where term t appears
-	var appearances = 1
-			for(i <- 0 to datasetSize-1){
-				var termFreq = tf(term,i,counts)
-						if (termFreq != 0){
-							appearances += 1
-						}
-			}
-	return math.log(datasetSize/appearances)
-}
+	def idf(term: String, datasetSize : Int, counts: Array[Map[java.lang.String,Int]]): Double = {
+			//math.log(size / index.getDocCount(term))
+			// take the logarithm of the quotient of the number of documents by the documents where term t appears
+			var appearances = 1
+					for(i <- 0 to datasetSize-1){
+						var termFreq = tf(term,i,counts)
+								if (termFreq > 0){
+									appearances += 1
+								}
+					}
+			return math.log(datasetSize/appearances)
+	}
 
-def tfidf(term:String, document: Int, datasetSize : Int, counts: Array[Map[java.lang.String,Int]]) : Double = {
-	//create tfidf matrix
-	//tfidf = tf*idf
+	def tfidf(term:String, document: Int, datasetSize : Int, counts: Array[Map[java.lang.String,Int]]) : Double = {
+			//create tfidf matrix
+			//tfidf = tf*idf
 
-	val tfidf = tf(term,document,counts)*idf(term,datasetSize,counts)
-			return tfidf
+			val tfidf = tf(term,document,counts)*idf(term,datasetSize,counts)
+					return tfidf
 
-}
+	}
 
-//defining scala product for array vector operations
-def dotProduct[T <% Double](as: Iterable[T], bs: Iterable[T]) = {
-	require(as.size == bs.size)
-	(for ((a, b) <- as zip bs) yield a * b) sum
-}
+	//defining scala product for array vector operations
+	def dotProduct[T <% Double](as: Iterable[T], bs: Iterable[T]) = {
+		require(as.size == bs.size)
+		(for ((a, b) <- as zip bs) yield a * b) sum
+	}
 
-//replace all characters of a string except for a-z or A-Z and 0-9 and finally _: 
-def clean(in : String) =  if (in == null) "" else in.replaceAll("[^a-zA-Z0-9_]", " ")
+	//replace all characters of a string except for a-z or A-Z and 0-9 and finally _: 
+	def clean(in : String) =  if (in == null) "" else in.replaceAll("[^a-zA-Z0-9_]", " ")
 
 }
 
