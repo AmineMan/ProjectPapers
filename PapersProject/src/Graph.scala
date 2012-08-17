@@ -92,8 +92,8 @@ case class Node(id : Int, title : String, authors : String, pdf : String, date :
     return ret
   }
 }
-
-case class Edge(from : Int, to : Int, weight : Int) {
+//changed weight from Int to Double
+case class Edge(from : Int, to : Int, weight : Double) {
   override def toString : String = "{\"source\":" + from + ",\"target\":" + to + ",\"value\":" + weight + "}"
   
   def exportToGephi : String = from + " ; " + to + " ; Undirected ; ; " + weight + "\n"

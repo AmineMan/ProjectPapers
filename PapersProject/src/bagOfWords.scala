@@ -24,16 +24,49 @@ trait bagOfWords {
 
 	//}
 	//}
-  
-  
+	def main(args: Array[String]): Unit = {
+
+			val directory : java.io.File = new java.io.File("PapersDataset/")
+	val papersSorted = getScores(directory)
+	for(i<- 0 to 27){
+		for(j<- 0 to 27){
+			println(papersSorted(i)(j))
+		}
+	}
+
+	}
+
 
 	//}
 
 
 
 	//compare based on scores and return List[Paper]
-	def compare(){
+	def compareBoW(papers : List[Paper], limit : Int) : List[Paper] = {
+ papers.map(p => {
+      // Check that paper isn't already linked
+      if (p.meta.get("linked") == None) {
+        // Get list of papers that aren't current paper
+        val otherPapers = papers.filter(p != _)
 
+        // Compare to every other paper
+        // Test
+        val weights : List[Double] = for (other <- otherPapers) yield getScores(new java.io.File("PapersDataset/"))(p.index)(other.index)
+
+        // Make links
+        //val links = for ((p,w) <- otherPapers.zip(weights) if w >= limit) yield Link(p.id,w)
+        val links = for ((p,w) <- otherPapers.zip(weights) if w >= 0.0) yield Link(p.index,w)
+
+        // Add links to paper, and set it as linked
+        val result = p.setLinks(links).setMeta("linked", "yes")
+
+        // Save result
+        Cache.save(result, Cache.linked)
+
+        result
+      }
+      else p
+    })
 	}
 
 	def getScores(directory: java.io.File): Array[Array[Double]] ={
@@ -57,26 +90,27 @@ trait bagOfWords {
 					//List holding all the list of strings of all the texts
 					var textsList = List[java.lang.String]()
 					//reading from every entry of the list:
-					for (k <- 0 to filesList.length){
+					for (k <- 0 to filesList.length-1){
+						
 						source(k) = scala.io.Source.fromFile(filesList(k))
-								text(k) = source(k).mkString
-								//leave out unecessary characters from the analysis
-								text(k) = clean(text(k))
-								source(k).close ()
+						text(k) = source(k).mkString
+						//leave out unecessary characters from the analysis
+						text(k) = clean(text(k))
+						source(k).close ()
 
-								occurences(k) = text(k).split("\\s+").groupBy(x=>x)
+						occurences(k) = text(k).split("\\s+").groupBy(x=>x)
 
-								// create a map of the keys of the text with their occurences
-								counts(k) = occurences(k).mapValues(x=>x.length)
+						// create a map of the keys of the text with their occurences
+						counts(k) = occurences(k).mapValues(x=>x.length)
 
-								//only working with keys for now, creating a list of keys for every text:
-								countsList(k) = counts(k).keys.toList
+						//only working with keys for now, creating a list of keys for every text:
+						countsList(k) = counts(k).keys.toList
 
-								if(k == 0){
-									textsList = countsList(k)
-								}else{
-									textsList = textsList ::: countsList(k)
-								}
+						if(k == 0){
+							textsList = countsList(k)
+						}else{
+							textsList = textsList ::: countsList(k)
+						}
 					}
 
 
@@ -87,51 +121,54 @@ trait bagOfWords {
 			val textsLength = textsList.length
 
 					val dictionary = textsList.removeDuplicates.sort(_<_)
-					
+
 					// we compute the array of scores for the vectors of words for every document
 					val tfidfArray = new Array[Array[Double]](dictionary.length,datasetSize)
-					
 
+					println("Computing tfidf array... " + dictionary.length)
 					for (i <- 0 to dictionary.length -1){
 						println(i)
 						for (j <- 0 to datasetSize -1){
 							//compute tfidf value for word i and document j
 							tfidfArray(i)(j) = tfidf(dictionary(i),j,datasetSize,counts)
-									println(tfidfArray(i)(j))
+									//println(tfidfArray(i)(j))
 						}
 					}
-
+			println("Computing tfidf array: Complete...")
 			//once we have the scores we can compute the absolute distance between papers and classify them
 			//This is performed computing a scalar product on the score vectors for every document
 			//Computation might take some time
 			//temporary while getting "scalala" to work:
 			val scalarProduct = new Array[Array[Double]](datasetSize,datasetSize)
-					//transpose array to perform row Array operations instead of column based operations
-					val tfidfTranspose = tfidfArray.transpose
-					for (i <- 0 to datasetSize -1){
-						println(i)
-						for (j <- 0 to datasetSize -1){
-							if(i!=j){
-								//Here operations take cost of length O(dictionary length)       
-								scalarProduct(i)(j) = dotProduct(tfidfTranspose(i), tfidfTranspose(j))
-							}else{
-								//does not mean anything
-								scalarProduct(i)(j) = 0
-							}
-						}
+			//transpose array to perform row Array operations instead of column based operations
+			val tfidfTranspose = tfidfArray.transpose
+			println("Computing scalar product array")
+			for (i <- 0 to datasetSize -1){
+				//println(i)
+				for (j <- 0 to datasetSize -1){
+					if(i!=j){
+						//Here operations take cost of length O(dictionary length)       
+						scalarProduct(i)(j) = dotProduct(tfidfTranspose(i), tfidfTranspose(j))
+					}else{
+						//does not mean anything
+						scalarProduct(i)(j) = 0
 					}
-			
+				}
+			}
+			//return array of scores
+			println("Computing scalar product array: Done...")			
 			// map every score with the paper ID
 			//for every paper sort according to scores
+			println("Sorting accordingly...")
 			val a = 0 until datasetSize
 			var positions = new Array[List[(Double,Int)]](datasetSize)
-			for(k <- 0 to datasetSize){
-			  positions(k) = (scalarProduct(k).zip(a)).toList.sort(_._1 < _._1 )
+			for(k <- 0 to datasetSize-1){
+				positions(k) = (scalarProduct(k).zip(a)).toList.sort(_._1 < _._1 )
 			}
-			
-			
-			
-			//return array of scores
+
+
+			//return sorted scores with according paper
+
 			return scalarProduct
 					//(i,j) of scalarProduct represents the scalar product of document i and document j. Now we have
 					// to sort it in order in a list to return the closest documents to a given document
