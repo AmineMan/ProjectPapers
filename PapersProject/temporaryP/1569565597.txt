@@ -1,0 +1,874 @@
+Creator:         TeX output 2012.05.19:1325
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Sat May 19 13:26:13 2012
+ModDate:        Tue Jun 19 12:55:10 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      435453 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569565597
+
+Generalized Faster-Than-Nyquist Signaling
+Jing Zhou, Daoben Li
+
+Xuesong Wang
+
+School of Information and Communication Engineering
+Beijing University of Posts and Telecommunications
+Beijing, China
+Email: zjairforce@gmail.com
+
+Huawei Technologies Co., Ltd
+Beijing, China
+Email: cedar.wang@hisilicon.com
+
+is achieved. But in this case the symbol rate 1/Ts is upper
+bounded by the so-called Nyquist rate, which is equal to B
+(note that we consider complex symbol here). Moreover, the
+Nyquist rate can only be achieved when the unpractical sinc
+pulse is employed. This means for NS the only way to improve
+the spectral efﬁciency is to use larger symbol alphabets.
+An alternative way for bandwidth efﬁcient modulation is
+faster-than-Nyquist (FTN) signaling, which was introduced in
+1970’s [1]. The original idea of FTN is to reduce Ts from
+TN to τ TN , τ < 1, i.e. increasing the symbol rate to get a
+higher information rate, and keep the performance degradation
+acceptable. Although ISI is unavoidable in FTN, symbols can
+be detected via sequence detection [2] or equalization. It has
+been shown that for typical T-orthogonal pulses the minimum
+Euclidean distance dmin of FTN signals is not reduced until
+τ is less than a threshold τM < 1, e.g. τM = 0.802 for
+sinc pulse [1]. τM is called Mazo Limit, which is a classic
+parameter in FTN research since the probability of error of
+uncoded transmission is dominated by dmin in high-SNR
+regime. However, for a long time FTN didn’t attract much
+attention, even some negative opinion was reported [3]. This
+is partially because its detection complexity, but a perhaps
+more important reason is that there was a lack of motivation to
+replace NS by this more complex technique, especially when
+we can approach AWGN channel capacity within a few tenths
+of a decibel by capacity-achieving codes. In recent years,
+Rusek and Anderson [4] showed that FTN often has capacity
+gains relative to NS because it can utilize the excess bandwidth
+from any practical pulse shaping but NS can not. So NS is in
+fact suboptimal. The capacity of FTN, however, is the same
+as the waveform channel capacity if it “fast” enough. Their
+researches give FTN an undoubted value.
+In FTN researches, however, the design of the modulation
+pulse was rarely considered. Moreover, only T-orthogonal
+pulses were employed. When ISI is unavoidable, the pulse
+can be seen as a channel code. A carefully designed pulse
+is beneﬁcial to performance and detection complexity. The Torthogonal assumption, whose original motivation is only to
+avoid ISI in NS, is a completely unnecessary constraint for
+pulse design and is irrelevant to the capacity gain of FTN. So
+a generalized version of FTN with pulse design as its important
+research topic is needed, and this is the motivation of our work.
+In this paper we discard the T-orthogonal assumption and
+consider the problem of faster-than-Nyquist signaling with ar-
+
+Abstract—We extend the concept of faster-than-Nyquist (FTN)
+signaling to linear digital modulation using arbitrary modulation
+pulses, called generalized faster-than-Nyquist signaling (GFTN).
+A universal deﬁnition of nominal bandwidth is given so that
+“how fast” can be measured for GFTN like FTN using Torthogonal pulses. The capacities and their asymptotic behaviors
+are compared between GFTN and Nyquist signaling. We show
+that the gain of GFTN increases unboundedly with SNR. In high
+SNR regime the power gain is considerable. Our extension from
+FTN to GFTN gives more freedom on the design of pulses to
+achieve good performance and acceptable detection complexity.
+
+I. I NTRODUCTION
+This paper considers the problem of transmitting a linear
+digital modulation signal s(t) over additive white Gaussian
+noise (AWGN) channel. The baseband equivalent model is
+r(t) = s(t) + w(t)
+∑
+=
+x[n]g(t − nTs ) + w(t)
+
+(1)
+
+n
+
+where w(t) is the white Gaussian noise, x[n] is a sequence
+of independent and uniformly distributed symbols drawn from
+a complex-valued alphabet X with size |X |, g(t) is a ﬁniteenergy modulation pulse, typically real and continuous. Moreover, g(t) is assumed to be time-limited and approximately
+band-limited. Time-limited means g(t) vanishes outside a
+ﬁnite number of symbol intervals, say [0, LTs ]. Approximately
+band-limited means the energy outside a ﬁnite frequency
+interval is lower than a predeﬁned threshold ε, which is
+negligibly small. We consider only baseband equivalent model,
+so assume that the frequency interval is B = [−B/2, B/2], i.e.
+the bandwidth of g(t) is B. Then the power spectrum density
+(PSD) of s(t) is
+2
+
+2
+
+|S(f )| = (Es /Ts ) |G(f )|
+
+(2)
+
+2
+
+where Es is the symbol energy, |G(f )| is the PSD of g(t)
+∫
+2
+normalized as B |G(f )| df = Ts . So the PSD of s(t) is
+determined by g(t) and the bandwidth of s(t) is also B.
+In most cases Nyquist signaling (NS) is used in (1), i.e.
+choose g(t) to be a “T-orthogonal” pulse gN (t) such as sinc
+pulse and root raise cosine (RRC) pulses whose Ts -sampled
+autocorrelation function
+∫ ∞
+h[k] =
+g(t)g(t − kTs )dt, k ∈ Z
+(3)
+−∞
+
+satisﬁes h[k] = δ[k]. Then if we set Ts = TN and use a match
+ﬁlter receiver, intersymbol interference (ISI) free transmission
+
+1
+
+where PN is the power of the noise component that projected
+onto the signal vector s(t) in Euclidean signal space, i.e. the
+part of noise that really affect the performance. This is another
+property of our nominal bandwidth deﬁnition.
+Since the model of GFTN is available, now the problem
+of dmin computation can also be considered like traditional
+FTN research, but the difference is the Mazo limit phenomena
+may not exist in some cases. More study is not involved here
+as the computation method has been well established in the
+literature, e.g. [5]. Even if dmin holds, the distance distribution
+will always change when τ is reduced. So GFTN can be seen
+as a channel code with a coding gain (although it is in fact
+negative according to match ﬁlter bound [1]) or inner code for
+coded input sequences. We deﬁne its code rate as rG = 1/τ . If
+we have a bit rate R over B the spectral efﬁciency is thus η =
+R/B. Typically R = r/Ts = rbin · log2 |X |/Ts , where r is the
+average number of information bits carried by a symbol, rbin is
+the rate of binary-coding. For a GFTN system, the overall code
+rate is r · rG , we call it nominal spectral efﬁciency, denoted as
+ηnom . Thus ηnom = r/W Ts = R/W . We deﬁne bandwidth
+excess as β = (B − W )/W . For T-orthogonal pulses the roll
+off α equals to β , but for arbitrary pulses their relationship is
+uncertain. Then η = ηnom /(1+β) . So η is proportional to rG ,
+i.e. inversely proportional to τ , and β introduces some spectral
+efﬁciency penalty. When β → 0, η → ηnom . In summary,
+
+bitrary pulses, called generalized faster-than-Nyquist (GFTN)
+signaling whose model is given in Section II-A based on a
+universal deﬁnition of nominal bandwidth. Then we focus on
+the detection complexity and capacity gain of GFTN given in
+section II-B and III respectively. Section III also gives results
+of the capacity asymptotic behaviors of some GFTN examples
+with comparison to NS. In Section IV we discuss the design
+of GFTN with emphasis on pulse design. The conclusion is
+given in the last section.
+II. F UNDAMENTALS OF G ENERALIZED
+FASTER -T HAN -N YQUIST S IGNALING
+A. System Model
+A traditional FTN signal has the form [1]
+∑
+s(t) =
+x[n]gN (t − nτ TN ), τ < 1
+n
+
+(4)
+
+When we consider a generalized version of FTN which
+employs arbitrary pulses, a benchmark is needed to measure
+the relative signaling rate to NS, like the function of TN for
+FTN. But we can hardly ﬁnd it for non-T-orthogonal pulses
+in time domain. We know that for NS the nominal bandwidth
+is deﬁned to be the complex symbol rate W = 1/TN . So the
+function of W is the same as TN for FTN. We generally deﬁne
+the nominal bandwidth for linear digital modulation signals
+with modulation pulse g(t) as
+∫ B/2
+2
+|G(f )| df
+−B/2
+W =
+(5)
+2
+max |G(f )|
+
+η=
+
+(9)
+
+For given X , any η can be obtained by the adjustment of τ .
+
+f
+
+The nominal bandwidth deﬁnition of NS is a special case of
+ours, which can be veriﬁed according to the PSD band-edge
+symmetry of T-orthogonal pulses with roll off 0 < α ≤ 1, i.e.
+|GN (f )|2 + |GN (f − W )|2 = TN
+
+rbin log2 |X |rG
+1+β
+
+B. The Optimal Detection of GFTN and Its Complexity
+The optimal sequence detector of linear digital modulation
+signals with ISI (includes GFTN as a special case) is given in
+[2]. Here we introduce it brieﬂy to analyze the factors affect
+detection complexity.
+First, from the Ts -spaced sampling of the output of a match
+ﬁlter g(LTs − t) for r(t), a set of sufﬁcient statistics to detect
+x[n] is obtained which denoted as a sequence y[n] called
+Ungerboeck observation, given by
+∫ ∞
+y[n] =
+r(t)g(t − nTs )dt
+−∞
+(10)
+∑∞
+=
+x[m]h[n − m] + v[n]
+m=0
+∫∞
+where v[n] = −∞ w(t)g(t − nTs )dt, h[k] has been deﬁned
+in section I. Then a information-lossless whiten ﬁlter can be
+used to y[n] to get the Forney observation model
+∑∞
+u[n] =
+x[m]b[n − m] + w[n]
+(11)
+
+(6)
+
+(6) is a basic corollary of Nyquist criterion. Note that practical
+Nyquist systems usually use pulses with α < 0.3 .
+Now we can give the model of generalized faster-thanNyquist signaling as
+(
+∑
+τ )
+s(t) =
+x[n]g t − n
+, τ <1
+(7)
+n
+W
+where the symbol interval Ts equals τ /W . GFTN includes
+any linear digital modulation signals with a symbol rate larger
+than its nominal bandwidth. Evidently, FTN is a special case.
+Moreover, partial response signaling (PRS) which maybe the
+only well-known non-Nyquist systems are also special cases.
+In the model (7) g(t) can be arbitrary pulses as we described
+at the beginning of this section. But in the rest of the paper
+only roll off pulses will be considered which satisfy |G(f )| =
+|G(0)| = max |G(f )|, f ∈ [−(1 − α)B/2, (1 − α)B/2]. The
+
+m=0
+
+where b[n] is a causal ISI tap sequence satisﬁes that its
+autocorrelation is h[k].
+(11) is evidently a convolution model. It’s well known that it
+can be solved by maximal likelihood sequence detection with
+Viterbi algorithm. Recall that the time duration of g(t) is LTs ,
+we have h[k] = 0, |k| ≥ L. Moreover, h[k] ̸= 0, |k| < L is
+always true for pulses not carefully designed. So the number
+
+f
+
+reason will be given in section III. Thus our deﬁnition of
+nominal bandwidth is the same as the deﬁnition of equivalent
+noise bandwidth of ﬁlters:
+∫ B/2
+2
+|G(f )| df
+PN
+−B/2
+(8)
+WENB =
+=
+2
+N0
+|G(0)|
+
+2
+
+of the non-zero ISI taps is L − 1, which is deﬁned as the ISI
+memory length denoted by ν. Thus the trellis diagram of the
+ν
+ISI convolution model has |X | states with |X | branches each.
+So the trellis complexity of the optimal detection of GFTN is
+ψ(ν, |X |) = |X |
+
+ν+log2 |X |
+
+An important corollary of (18) is that when rG ≥ 1 + β
+we have CG = Cw > CN with the same PSD and power
+constraints [4]. Thus all possible capacity gain is obtained.
+Note that rG ≥ 1 + β implies Ts ≤ 1/B, so this corollary
+tells us when the sampling rate of receiver (i.e. the symbol
+rate of GFTN) exceed the Nyquist sampling rate of g(t) the
+capacity of the waveform channel can be fully utilized. But
+higher rG doesn’t increase capacity.
+In fact, even rG is lower than 1 + β, in most cases CG
+is still larger than CN , and CG often increases monotonically
+with rG [6]. However, since 1+β is typically at most only 1.3,
+it’s reasonable to set rG ≥ 1 + β. We assume this condition
+holds in the rest of the paper.
+
+(12)
+
+III. O N T HE C APACITY OF GFTN
+A. Capacity Results
+Rusek and Anderson analyze the capacity of FTN and the
+effects of input constraints as well as signaling rate [4,6]. Their
+methods hold for GFTN. So in this subsection we only cover
+the main results brieﬂy.
+For an ideal band-limited AWGN channel, i.e. the frequency
+domain channel response is a rectangular (or brick-wall)
+spectrum, the ultimate channel capacity is
+C = B log(1 + P/N0 B)
+
+B. The Capacity Gains of GFTN and Its Limits
+In this subsection the capacity gains of GFTN are analyzed.
+All proofs are omitted because of the limited space.
+Lemma 1: For two arbitrary waveform channels i = 1, 2
+deﬁned on frequency intervals Bi with normalized PSDs
+|Gi (f )|2 and equal transmit powers
+
+(13)
+
+But ∫ a non-ideal signal with normalized PSD |Gnorm (f )|2 ,
+for
+i.e. B |Gnorm (f )|2 df = 1, its maximum signaling rate is
+upper bounded by the capacity of waveform channel
+(
+)
+∫
+P |Gnorm (f )|2
+norm
+Cw (G
+(f )) =
+log 1 +
+df (14)
+N0
+B
+
++
+Cw (B1 , G1 (f ), P )
+µ(B1 )
+=
++
+P →∞ Cw (B2 , G2 (f ), P )
+µ(B2 )
+
+Cw (B1 , G1 (f ), P )
+=1
+P →0 Cw (B2 , G2 (f ), P )
+
++
++
+where Bi = {f : |Gi (f )|2 > 0} and µ(Bi ) is its Lebesgue
+measure.
+Theorem 1: Deﬁne the capacity gain of GFTN as (CG −
+CN )/CN , Then the asymptotic capacity gain of GFTN relative
+to NS with the same bandwidth and power constraints is β
+when P → ∞ or 0 when P → 0.
+Corollary 1: For the same bandwidth and power constraints,
+the capacity of GFTN can approach the capacity of an ideal
+band-limited AWGN channel asymptotically, i.e. GFTN is
+asymptotic optimal.
+We point that [4] had given a theorem which is essentially
+the same as corollary 1.
+Theorem 2 (the limit of the capacity gain of GFTN): The
+asymptotic relative capacity gain of GFTN relative to NS with
+the same PSD and power constraints satisﬁes 0 < µ < β for
+any SNR.
+All above results can be interpreted as the view of capacity
+spectrum density (CSD) C(f ) = log(1+P |G(f )|2 /N0 ). Since
+log(1 + x) → x, when x → 0, in low SNR regime the
+channel is power-limited, the shape of CSD approaches the
+shape of PSD. Since log(1 + ax)/ log(1 + bx) → 1 when
+x → ∞, in high SNR regime the channel is bandwidth limited,
+the shape of CSD approaches shape of rectangular, and thus
+the capacity differences from different pulses asymptotically
+disappear. Now we can interpret why we consider only roll off
+pulses in GFTN research: a PSD near rectangular spectrum is
+better, and a small α is preferred.
+Theorem 3 (the absolute asymptotic capacity loss of GFTN):
+When P → ∞ the capacity loss∫ of GFTN to ideal AWGN
+channel approaches a constant − B log B|G(f )|2 df .
+Corollary 1 can also be derived from this theorem.
+
+(15)
+
+It’s independent of gN (t) used. CN (β) < Cw (GN (f )) is
+always true except when gN (t) is sinc pulse. So Cw (GN (f ))
+can be seen as the “practical” capacity and NS is always
+suboptimal.
+Now we consider the capacity of a linear digital modulation
+system, denoted as CLM , where GFTN is a special case. CLM
+can be obtained from the capacity of its equivalent discrete
+time model (e.g. its Forney observation model) denoted as
+CDT by CLM = CDT /Ts . CDT is [7]
+[
+]
+∫ π
+1
+σ2
+CDT =
+log 1 + x |B(λ)|2 dλ
+(16)
+2π −π
+σ2
+for a discrete time complex Gaussian channel, where B(λ) =
+∑L−1
+−jλk
+is the discrete time Fourier transform of b[k].
+k=0 b[k]e
+So for given Ts , the relationship between B(λ) and G(f ) is
+)
+(
+2
+k
+1 ∑∞
+λ
+2
++
+|B(λ)| =
+(17)
+G
+k=−∞
+Ts
+2πTs
+Ts
+2
+Set σx = Es , after some derivation CLM can be obtained as
+[
+) 2]
+(
+1
+∫ 2T
+s
+P ∑
+k
+CLM =
+log 1 +
+df (18)
+G f+
+1
+N0
+Ts
+− 2T
+s
+
+(20)
+
+lim
+
+Next we omit the superscript and denote Gnorm (f ) brieﬂy as
+G(f ). The G(f ) that maximize Cw (G(f )) and makes it equal
+to C in (13) is just the non-practical rectangular spectrum (sinc
+pulse in time domain) according to water-ﬁlling theorem. The
+capacity of NS with bandwidth excess β is
+CN (β) = W log(1 + P/N0 W )
+
+(19)
+
+lim
+
+k
+
+Then the capacity of GFTN denote as CG can be obtained
+easily for given τ .
+
+3
+
+14
+
+cos,n=2
+12
+
+C
+1.5
+
+cos, n=1
+
+10
+
+RC
+alpha=0.3
+
+bit/s/Hz
+
+Normalized Power Spectrum Density
+
+2
+
+1
+
+RC
+alpha=0.1
+
+GFTN
+cos,n=1
+8
+
+Nyquist
+alpha=0.1
+
+6
+
+rectangular
+Nyquist
+alpha=0.3
+
+0.5
+4
+
+0
+
+−0.4
+
+−0.2
+
+0
+
+0.2
+
+0.4
+
+GFTN
+cos,n=2
+
+2
+10
+
+0.6
+
+15
+
+20
+
+Normalized Bandwidth
+
+Fig. 1.
+
+25
+
+30
+
+35
+
+40
+
+SNR(dB)
+
+The Normalized PSDs of examples
+
+Fig. 3.
+
+The capacity asymptotic behaviors in high SNR regime
+
+3.5
+
+1.05
+
+C
+1
+3
+
+C
+0.95
+2.5
+
+2
+
+bit/s/Hz
+
+bit/s/Hz
+
+0.9
+
+Nyquist
+alpha=0.1
+
+Nyquist
+alpha=0.3
+GFTN
+cos,n=2
+
+1.5
+
+Nyquist
+alpha=0.1
+
+0.85
+
+GFTN
+cos,n=1
+0.8
+
+GFTN
+cos,n=1
+
+0.75
+
+Nyquist
+alpha=0.3
+
+1
+0.7
+
+0.5
+
+0
+
+1
+
+2
+
+3
+
+4
+
+5
+
+6
+
+7
+
+8
+
+9
+
+0.65
+−20
+
+10
+
+SNR(dB)
+
+Fig. 2.
+
+GFTN
+cos,n=2
+
+−10
+
+0
+
+10
+
+20
+
+30
+
+40
+
+50
+
+60
+
+70
+
+80
+
+SNR(dB)
+
+The capacity asymptotic behaviors in relatively low SNR regime
+
+Fig. 4.
+
+C. Examples about the capacity asymptotic behaviors
+
+The normalized capacity asymptotic behaviors
+
+obtained in high SNR regime, especially power gains. For
+example, at η = 8 bit/s/Hz, the power gain of the ﬁrst GFTN
+example to NS example with α = 0.3 is as large as 10 dB! In
+fact, the power gains as well as capacity gains are unbounded.
+Fig. 4 shows the interesting asymptotic behaviors of normalized capacities, where all capacities are normalized to the
+capacity of ideal band-limited AWGN channel. Many results
+mentioned above are clearer in this style. Moreover, we found
+that for each GFTN example there exists a certain SNR in low
+SNR regime correspond to a lowest normalized capacity.
+
+Now we give some examples about the asymptotic behaviors
+of GFTN and NS with given PSDs, since a general analysis
+on arbitrary PSDs is difﬁcult and unnecessary. For NS we use
+classic RC PSDs with α = 0.1 and α = 0.3. For GFTN the
+PSDs comes from cosn (f ) windows. When n = 1
+{
+(π/2) cos(πf /B) |f | ≤ B/2
+Pcos 1 (f ) =
+(21)
+0
+|f | > B/2
+Its nominal bandwidth is roughly 0.637B. When n = 2
+{
+2 cos2 (πf /B) |f | ≤ B/2
+Pcos 2 (f ) =
+(22)
+0
+|f | > B/2
+
+IV. O N T HE D ESIGN OF GFTN
+Unlike traditional FTN researches, this paper emphasizes
+the idea that to optimize GFTN system via pulse design. It’s
+not only very important to reduce the detection complexity,
+but also helpful to achieve the waveform channel capacity.
+From (12), the detection complexity ψ of GFTN is determined by |X | and ν. For a certain η as a design target
+we can adjust |X | and rG (to adjust ν) to minimize ψ. The
+logarithm of |X | is proportional to η. ν is determined by the
+actual length of g(t), say Tg , and the symbol interval Ts , i.e.
+ν = L − 1 = ⌈Tg /Ts ⌉ − 1 where ⌈a⌉ is the minimum integer
+larger than a. Recall that Ts = 1/W rG and η ∝ rG , so ν
+is roughly proportional to η for given Tg or proportional to
+Tg for given η. A linear increase of either Tg or η will cause
+ν
+an exponentially increase of ψ. So |X | is roughly ﬁxed for
+
+Its nominal bandwidth is 0.5B. It’s often called Hann. window,
+which is in fact a RC pulse with α = 1. At last the ideal bandlimited AWGN channel with rectangular PSD is included as
+a benchmark. All PSD examples are shown in Fig. 1. We see
+that the PSDs of GFTN examples are not only far from ideal
+rectangular PSD, but even worse than NS examples.
+The capacity computation results are given in Fig. 2 and Fig.
+3 for relatively low and high SNR regime respectively. We note
+that the SNR in the ﬁgures mean P/N0 B, not P/N0 WENB .
+It is shown that in relatively low SNR regime, the capacities
+of GFTN increase faster than NS’s. Although the PSDs of
+GFTN are worse than NS’s, moderate to high gains are
+
+4
+
+given η and Tg . Then from (12), a smaller |X | (which causes
+larger ν or rG for given η) may leads to smaller complexity.
+For further complexity reduction, a natural idea is to design
+pulses with smaller Tg for ﬁxed B. We deﬁne the actual
+time bandwidth product (TBP) of pulse as γ = Tg B. The
+lowest complexity can be obtained by ﬁnd a pulse with
+smallest γ subject to a energy leakage ε in frequency domain,
+since γ cannot be arbitrary small according to the uncertainty
+principle. Slepian, Landau and Pollak introduced the method
+to generate such pulses from prolate spheroidal wave functions
+(PSWF) [8,9]. Note that the classic TBP deﬁnition is based
+on root mean square bandwidth and duration but not the
+same as ours, so the smallest classic TBP pulse, Gaussian
+waveform, is not the best solution of our problem. From [9],
+a pulse generated by PSWF with γ from 2 to 3 is sufﬁcient
+to make ε small enough. For example, set β = 1, rG = 2, i.e.
+1/Ts = B, then ν = 2 can be obtained. This can hardly be
+obtained in FTN systems employing RRC pulses. A larger η
+may cause larger ν, but it’s still the smallest possible value.
+Moreover, in practice some suboptimal algorithms such as
+the truncated Viterbi algorithm can be used for the tradeoff
+between performance and complexity.
+Another idea for complexity reduction is to ﬁnd g(t) satisﬁes
+h[k] = 0, ν + 1 ≥ |k| ≥ νe + 1
+(23)
+
+algorithm is used to reduce the detection complexity of FTN.
+But this example is still not very practical (encode block
+length 10000 symbols, 35 iterations, some error ﬂoor). Using
+techniques introduced in this section, more practical schemes
+based on GFTN are expected to achieve.
+At last we point that for all above pulse design guidelines
+the shape of its PSD should be considered as a constraint.
+It affects the capacity penalty relative to ideal band-limited
+AWGN channel. Thanks to the capacity asymptotic behavior,
+higher SNR leads to smaller penalty and gives pulse design
+more freedom. So the PSD is in fact a “soft constraint”.
+
+via carefully pulse design, where νe can be called effective
+ISI memory length. The actual complexity is then
+
+[1] J. E. Mazo, “Faster-than-Nyquist signaling,” Bell Syst. Tech. J., vol. 54,
+pp. 1451-1462, Oct. 1975.
+[2] G. D. Forney, Jr, “Maximum-likelihood sequence estimation of digital
+sequences in the presence of intersymbol interference,” IEEE Trans.
+Inform. Theory, vol. IT-18, no.3, pp. 363-378, May 1972.
+[3] G. J. Foschini, “Contrasting performance of faster binary signaling with
+QAM,” AT&T Bell Lab. Tech. J., vol. 63, pp. 1419-1445, Oct. 1984.
+[4] F. Rusek and J. B. Anderson, “Constrained capacities for faster thanNyquist signaling,” IEEE Trans. Inform. Theory, vol. 55, no. 2, pp. 764775, Feb. 2009.
+[5] D. Hajela, “On computing the minimum distance for faster than Nyquist
+signaling,” IEEE Trans. Inform. Theory, vol. 36, no. 2, pp. 289-195, Mar.
+1990.
+[6] F. Rusek, D. Kapetanovic, and J.B. Anderson, “The Effect of Symbol
+Rate on Constrained Capacity for Linear Modulation,” Proc. 2008 IEEE
+Int. Symp. Information Theory , pp. 1093-1097, Toronto, Canada, July
+2008.
+[7] W. Hirt and J. L. Massey, “Capacity of the discrete-time Gaussian channel
+with intersymbol interference,” IEEE Trans. Inform. Theory, vol. 34, no.
+3, pp. 380-388, May 1988.
+[8] D. Slepian and H. O. Pollak, “Prolate spheroidal wave functions, Fourier
+analysis and uncertainty, I”, Bell Syst. Tech. J., vol.40, pp. 43-64, Jan.
+1961.
+[9] H. J. Landau and H. O. Pollak, “Prolate spheroidal wave functions,
+Fourier analysis and uncertainty, II”, Bell Syst. Tech. J., vol.40, pp. 65-84,
+Jan. 1961.
+[10] K. Wu and K. Feher, “Multilevel PRS/QPRS above the Nyquist rate”,
+IEEE Trans. Commun., vol. COM-33, no.7, pp. 735-739, July 1985.
+[11] M. Tuchler and A. C. Singer, “Turbo equalization: an overview”, IEEE
+Trans. Inform. Theory, vol. 57, no.25, pp. 920-952, Feb. 2011.
+[12] F.Rusek and J. B. Anderson, “Serial and parallel concatenations based on
+faster than Nyquist Signaling”, Proc. 2006 IEEE Int. Symp. Information
+Theory , pp. 1993-1997, Seattle, USA, July 2006.
+
+ψ(ν, |X |) = |X |
+
+νe +log2 |X |
+
+V. C ONCLUSIONS
+In this paper, we introduce generalized faster-than-Nyquist
+signaling to utilize the capacity of excess bandwidth, which
+maybe the ﬁnal potential of typical point-to-point channels.
+Our extension from FTN to GFTN gives more freedom to
+the design of pulses for good performance and acceptable
+detection complexity. GFTN is especially valuable in high
+SNR regime where we can do more freely pulse design with
+little capacity cost and considerable power gains can still be
+obtained. GFTN with carefully designed concatenation coding
+and iterative decoding can be a valuable bandwidth efﬁcient
+transmission technique in future.
+R EFERENCES
+
+(24)
+
+a νe strictly less than ν reduces complexity. For example, we
+can choose the so-called duobinary pulse used in traditional
+PRS systems as g(t), which satisﬁes
+
+1
+k=0
+
+h[k] = 1/2 |k| = 1
+(25)
+
+
+0
+|k| > 1
+for 1/Ts = B, i.e. rG = 1 + β. Although γ is not considered,
+νe = 1 is obtained. This may better than when PSWF-style
+pulse is used. This kind of GFTN can be seen as a PRS
+system but with different design philosophy. However, PRSstyle pulses achieve νe < ν only for rG = 1 + β. A slightly
+larger rG can be achieved with some approximations, e.g. [10].
+A more complete and accurate view of GFTN pulse design
+is to treat the pulse as a rate-1 convolutional inner code
+and design turbo-like concatenated coding schemes. The code
+design is a more complex topic and we don’t discuss it
+in depth here. Typically, when a carefully designed rate-1
+precoder without spectrum broadening is introduced in the
+turbo-like coding scheme, the waveform channel capacity can
+be approached, usually with acceptable detection complexity
+[11]. Then the target of the pulse design is no longer only
+complexity reduction, and techniques from modern coding
+theory are emphasized. A design example based on FTN with
+ηnorm = 2bit/s/Hz operates below the Shannon limit of NS
+with the same PSD had been given in [12]. Truncated Viterbi
+
+5
+
+

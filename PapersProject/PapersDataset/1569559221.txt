@@ -1,0 +1,710 @@
+Creator:        TeX
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Mon May 14 02:01:03 2012
+ModDate:        Tue Jun 19 12:56:00 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      2808592 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569559221
+Delay-Doppler Channel Estimation with Almost Linear Complexity
+To Solomon Golomb for the occasion of his 80 birthday mazel tov
+
+Alexander Fish
+
+Shamgar Gurevich
+
+Ronny Hadani
+
+Department of Mathematics
+University of Wisconsin
+Madison, WI 53706, USA
+Email: aﬁsh@math.wisc.edu
+
+Department of Mathematics
+University of Wisconsin
+Madison, WI 53706, USA
+Email: shamgar@math.wisc.edu
+
+Department of Mathematics
+University of Texas
+Austin, TX 78712, USA
+Email: hadani@math.utexas.edu
+
+Akbar Sayeed
+
+Oded Schwartz
+
+Department of Electrical Engineering
+University of Wisconsin
+Madison, WI 53706, USA
+Email: akbar@engr.wisc.edu
+
+Department of Computer Science
+University of California
+Berkeley, CA 94720, USA
+Email: odedsc@eecs.berkeley.edu
+
+Abstract—A fundamental task in wireless communication is channel
+estimation: Compute the channel parameters a signal undergoes while
+traveling from a transmitter to a receiver. In the case of delay-Doppler
+channel, a widely used method is the matched ﬁlter algorithm. It uses a
+pseudo-random waveform of length N, and, in case of non-trivial relative
+velocity between transmitter and receiver, its computational complexity
+is O(N 2 log(N )). In this paper we introduce a novel approach of
+designing waveforms that allow faster channel estimation. Using group
+representation techniques we construct waveforms, which enable us to
+introduce a new algorithm, called the ﬂag method, that signiﬁcantly
+improves the matched ﬁlter algorithm. The ﬂag method ﬁnds the channel
+parameters in O(m · N log(N )) operations, for channel of sparsity of
+order m. We discuss applications of the ﬂag method to GPS, and radar
+system as well.
+
+I. I NTRODUCTION
+A basic step in many wireless communication protocols [12]
+is channel estimation: learning the channel parameters a signal
+undergoes while traveling from a transmitter to a receiver. In this
+paper we develop an efﬁcient algorithm for delay-Doppler (also called
+time-frequency) channel estimation. Our algorithm provides a striking
+improvement over current methods in the presence of high relative
+velocity between a transmitter and a receiver. The latter scenario
+occurs in GPS, radar systems, and mobile communication of fast
+moving users, or very high frequency (GHz) communication. We start
+by describing the channel estimation problem that we are going to
+solve.
+
+Fig. 1.
+
+Three paths scenario
+
+receives R ∈ H of the form1
+R[n] =
+
+m
+X
+
+αk · e
+
+2πi ω ·n
+k
+N
+
+· S[n + τ k ] + W[n], n ∈ ZN ,
+
+(I.1)
+
+k=1
+
+where m denotes the number of paths the transmitted signal traveled,
+αk ∈ C is the complex multipath amplitude along path k, with
+Pm
+2
+k=1 |αk | ≤ 1, ω k ∈ ZN depends on the relative velocity along
+path k of the base station with respect to the transmitter, τ k ∈ ZN
+encodes the delay along path k, and W ∈ H denotes a random white
+noise of mean zero. The parameter m will be called the sparsity of
+the channel.
+The objective is:
+
+A. Channel Estimation Problem
+Denote by H = C(ZN ) the vector space of complex valued
+functions on the set of integers ZN = {0, 1, ..., N − 1} equipped
+with addition and multiplication modulo N. We assume that N is an
+odd prime number. The vector space H is endowed with the inner
+P
+product f1 , f2 =
+f1 [n]f2 [n], for f1 , f2 ∈ H, and referred to
+
+Problem I.1 (Channel estimatiom): Design S ∈ H, and an effective method of extracting the channel parameters (αk , τ k , ω k ),
+k = 1, ..., m, from S and R satisfying (I.1).
+
+n∈ZN
+
+Let us start with a simpler variant.
+
+as the Hilbert space of digital signals.
+We consider the following mathematical model of time-frequency
+channel estimation [12]. There exists a collection of users, each one
+holds a waveform from H known to a base station (receiver). The
+users transmit their waveforms to the base station. Due to multipath
+effects, the waveforms undergo [11], [12] several time-frequency
+shifts as a result of reﬂections from various obstacles. We make the
+standard assumption of almost-orthogonality between waveforms of
+different users. Hence, if a user transmits S ∈ H, then the base station
+
+B. The Time-Frequency Shift (TFS) Problem
+Suppose the transmitter and the receiver waveforms S, R ∈ H are
+related by
+R[n] = e
+1 We
+
+1
+
+denote i =
+
+2πi ω ·n
+0
+N
+
+√
+
+−1.
+
+· S[n + τ 0 ] + W[n],
+
+n ∈ ZN ,
+
+(I.2)
+
+where W ∈ H denotes a random white noise of mean zero, and
+(τ 0 , ω 0 ) ∈ ZN × ZN . The pair (τ 0 , ω 0 ) is called the time-frequency
+shift, and the vector space V = ZN ×ZN is called the time-frequency
+plane. We would like to solve the following:
+
+is a convolution that can be computed, using the fast Fourier transform
+(FFT), in O(N log(N )) operations.
+As a consequence of Remark I.3, one can solve TFS problem in
+O(N 2 log(N )) operations. To the best of our knowledge, the “lineby-line” computation is also the fastest known method [10]. If N is
+large this may not sufﬁce. For example [1] in applications to GPS
+N ≥ 1000. This leads to the following:
+
+Problem I.2 (Time-frequency (TFS)): Design S ∈ H, and an
+effective method of extracting the time-frequency shift (τ 0 , ω 0 ) from
+S and R satisfying (I.2).
+
+Problem I.4 (Fast matched ﬁlter (FMF)): Solve TFS problem in
+almost linear complexity.
+
+C. The Matched Filter (MF) Algorithm
+A classical solution [4], [5], [6], [8], [12], [13], [14] to Problem
+I.2, is the matched ﬁlter algorithm. We deﬁne the following matched
+ﬁlter (MF) matrix of S and R:
+D
+E
+2πi
+M(R, S)[τ , ω] = R[n], e N ω·n · S[n + τ ] , (τ , ω) ∈ V.
+
+Note that computing one entry in M(R, S) already takes O(N )
+operations.
+D. The Flag Method
+
+A direct veriﬁcation shows that for ζ 0 = e
+probability one, we have
+M(R, S)[τ , ω]
+
+=
+
+2πi (τ ω −ωτ )
+0
+0
+N
+
+, with
+
+We introduce the ﬂag method to propose a solution to FMF problem. The idea is, ﬁrst, to ﬁnd a line on which the time-frequency shift
+is located, and, then, to search on the line to ﬁnd the time-frequency
+shift. We associate with the N +1 lines Lj , j = 1, ..., N +1, through
+the origin in V, a system of “almost orthogonal” waveforms SLj ∈ H,
+that we call ﬂags. They satisfy the following “ﬂag property”: For a
+receiver waveform R given by (I.2) with S = SLj , we have
+
+ζ 0 · M(S, S)[τ − τ 0 , ω − ω 0 ]
+N SR
++O( √ ),
+N
+
+1
+where N SR ≈ SN R is essentially (up to logarithmic factor) the
+inverse of the signal-to-noise ratio between the waveforms S and W.
+For simplicity, we assume that the N SR is of size O(1).
+In order to extract the time-frequency shift (τ 0 , ω 0 ), it is “standard”2 (see [4], [5], [6], [8], [12], [13], [14]) to use pseudo-random
+signal S ∈ H of norm one. In this case M(S, S)[τ −τ 0 , ω −ω 0 ] = 1
+for (τ , ω) = (τ 0 , ω 0 ), and of order O( √1 ) if (τ , ω) = (τ 0 , ω 0 ).
+N
+Hence,
+
+1 + εN , if (τ , ω) = (τ 0 , ω 0 );
+(I.3)
+|M(R, S)[τ , ω]| =
+εN ,
+if (τ , ω) = (τ 0 , ω 0 ),
+
+8
+˛
+˛ < 2 + εN , if (τ , ω) = (τ 0 , ω 0 );
+˛M(R, SL )[τ , ω]˛ =
+1 + εN , if (τ , ω) ∈ Lj (τ 0 , ω 0 );
+j
+:
+εN , if (τ , ω) ∈ V Lj ,
+(I.4)
+where εN = O( √1 ), and Lj is the shifted line Lj + (τ 0 , ω 0 ). The
+N
+˛
+˛
+“almost orthogonality” of waveforms means ˛M(SLi , SLj )[τ , ω]˛ =
+O( √1 ), for every (τ , ω), i = j.
+N
+
+where εN = O( √1 ).
+N
+
+Fig. 3. |M (R, SL )| for a ﬂag SL , L = {(τ , 0)}, and (τ 0 , ω 0 ) = (50, 50)
+Fig. 2.
+
+|M(R, S)| with pseudo-random S, and (τ 0 , ω 0 ) = (50, 50)
+
+Finally, for SL and R satisfying (I.4), we have the following search
+method to solve FMF problem:
+
+Identity (I.3) suggests the following “entry-by-entry” solution to
+TFS problem: Compute the matrix M(R, S), and choose (τ 0 , ω 0 )
+for which |M(R, S)[τ 0 , ω 0 ]| ≈ 1. However, this solution of TFS
+problem is signiﬁcantly expensive in terms of arithmetic complexity,
+i.e., the number of multiplication and addition operations is O(N 3 ).
+One can do better using a ”line-by-line” computation. This is due to
+the next observation.
+
+Flag Algorithm
+•
+•
+
+•
+
+Remark I.3 (FFT): The restriction of the matrix M(R, S) to any
+line (not necessarily through the origin) in the time-frequency plane V,
+2 For
+
+Choose a line L⊥ transversal to L.
+Compute M(R, SL ) on L⊥ . Find (τ , ω) such that
+|M(R, SL )[τ , ω]| ≈ 1, i.e., (τ , ω) on the shifted line
+L + (τ 0 , ω 0 ).
+Compute M(R, SL ) on L + (τ 0 , ω 0 ) and ﬁnd (τ , ω) such that
+|M(R, SL )[τ , ω]| ≈ 2.
+
+The complexity of the ﬂag algorithm is O(N log(N )), using the
+FFT.
+
+example in spread-spectrum communication systems.
+
+2
+
+II. T HE H EISENBERG –W EIL F LAG S YSTEM
+The ﬂag waveforms, that play the main role in the ﬂag method,
+are of a special type. Each of them is a sum of a pseudorandom
+signal and a structural signal. The ﬁrst has the MF matrix which is
+almost delta function at the origin, and the MF matrix of the second
+is supported on a line. The design of these waveforms is done using
+group representation theory. The pseudorandom signals are designed
+[5], [6], [14] using the Weil representation, and will be called Weil
+(peak) signals3 . The structural signals are designed [7], [8] using
+the Heisenberg representation, and will be called Heisenberg (lines)
+signals. We call the collection of all ﬂag waveforms, the Heisenberg–
+Weil ﬂag system. In this section we brieﬂy recall constructions, and
+properties of these waveforms. A more comprehensive treatment,
+including proofs, will appear in [3].
+A. The Heisenberg (Lines) System
+
+Fig. 4.
+
+Consider the following collection of unitary operators, called
+Heisenberg operators, that act on the Hilbert space of digital signals
+by:
+
+π(τ , ω) : H → H, τ , ω ∈ ZN ;
+(II.1)
+2πi
+[π(τ , ω)f ][n] = e N ω·n · f [n + τ ],
+
+Diagram of the ﬂag algorithm
+
+E. The Cross Method
+Another solution to TFS problem, is the cross method. The idea is
++1
+similar to the ﬂag method. We associate with the N2 distinct pairs
+of lines L, M ⊂ V a system of almost-orthogonal waveforms SL ,M ,
+that we call crosses. The system satisﬁes
+8
+< 2+εN , if (τ ,ω)=(τ 0 ,ω0 );
+|M(R, SL ,M )[τ , ω]| =
+: 1+εN , if (τ ,ω)∈(L ∪M ) (τ 0 ,ω0 );
+εN , if (τ ,ω)∈V (L ∪M ) ,
+
+for every f ∈ H, n ∈ ZN .
+The operators (II.1) do not commute in general, but rather
+obey the Heisenberg commutation relations π(τ , ω) ◦ π(τ , ω ) =
+2πi
+e N (τ ω −ωτ ) · π(τ , ω ) ◦ π(τ , ω), where ◦ denotes composition
+of operators. The expression τ ω − ωτ vanishes if (τ , ω), (τ , ω )
+are on the same line through the origin. Hence, for a given line
+L ⊂ V = ZN × ZN we have a commutative collection of unitary
+operators
+π( ) : H → H, ∈ L.
+(II.2)
+
+where εN = O( √1 ), R is the receiver waveform (I.2), with S =
+N
+SL ,M , and L = L + (τ 0 , ω 0 ), M = M + (τ 0 , ω 0 ).
+The complexity of the cross method is O(N log(N )). First, we
+ﬁnd a line on which the time-frequency shift is located, and then
+searching for the spike on the line. However, applications of the cross
+method for channel estimation problem (I.1) is more involved, due to
+fake intersections, and will not be discussed in this paper.
+
+We use the theorem from linear algebra about simultaneous diagonalization of commuting unitary operators, and obtain [7], [8] a natural
+orthonormal basis BL ⊂ H consisting of common eigenfunctions for
+all the operators (II.2). The system of all such bases BL , where L runs
+over all lines through the origin in V, will be called the Heisenberg
+(lines) system. We use the following result [7], [8]:
+
+F. Solution to the Channel Estimation Problem
+
+Theorem II.1: The Heisenberg system satisﬁes the properties
+
+Looking back to Problem I.1, we see that the ﬂag method provides
+a fast solution, in O(m·N log(N )) operations, for channel estimation
+of channel with sparsity m. Indeed, identity (I.4), and almost orthogonality property, imply that αk ≈ M(R, SL )[τ k , ω k ]/2, k = 1, ..., m,
+where R is the waveform (I.1), with S = SL (see Fig. 5).
+
+1) Line. For every line L ⊂ V , and every fL ∈ BL , we have
+
+1, if (τ , ω) ∈ L;
+|M(fL , fL )[τ , ω]| =
+0, if (τ , ω) ∈ L.
+/
+2) Almost-orthogonality. For every two lines L1 = L2 ⊂ V , and
+every fL1 ∈ BL1 , fL2 ∈ BL2 , we have
+1
+|M(fL1 , fL2 )[τ , ω]| = √ ,
+N
+for every (τ , ω) ∈ V.
+B. The Weil (Peaks) System
+Consider the following collection of matrices
+„
+«
+ﬀ
+a b
+G = SL2 (ZN ) =
+; a, b, c, d ∈ ZN , and ad − bc = 1 .
+c d
+Note that G is a group [2] with respect to the operation of matrix
+multiplication. It is called the special linear group of order two over
+ZN . Each element g ∈ G acts on the time-frequency plane V via
+the change of coordinates v → g · v. For g ∈ G, let ρ(g) be a linear
+
+1
+Fig. 5. |M(R, SL )|, L = {(τ , 0)}, (αk , τ k , ω k ) = ( √ , 50k, 50k),
+3
+k = 1, 2, 3.
+
+3 For
+
+3
+
+the purpose of the Flag method, other pseudorandom signals may work.
+
+Fig. 6.
+
+|M(fL , fL )| for L = {(τ , τ ))}
+
+Fig. 7.
+
+operator on H which is a solution of the following system of N 2
+linear equations:
+Σg : ρ(g) ◦ π(τ , ω) = π(g · (τ , ω)) ◦ ρ(g), τ , ω ∈ ZN ,
+
+0
+
+«
+
+a−1
+
+; 0 = a ∈ ZN }
+
+1) Flag. For every line L ⊂ V , torus T ⊂ G, and every ﬂag
+SL = fL + ϕT , with fL ∈ BL , ϕT ∈ BT , we have
+8
+< 2 + N , if (τ , ω) = (0, 0);
+1 + εN , if (τ , ω) ∈ L (0, 0);
+|M(SL , SL )[τ , ω]| =
+:
+εN , if (τ , ω) ∈ V L,
+
+(II.3)
+
+where π is deﬁned by (II.1). Denote by Sol(Σg ) the space of all
+solutions to System (II.3). The following is a basic result [15]:
+Theorem II.2 (Stone–von Neumann–Schur-Weil): There exist a
+unique collection of solutions {ρ(g) ∈ Sol(Σg ); g ∈ G}, which are
+unitary operators, and satisfy the homomorphism condition ρ(g ·h) =
+ρ(g) ◦ ρ(h).
+
+where | N | ≤ √4 , and |εN | ≤ √6 .
+N
+N
+2) Almost-orthogonality. For every two lines L1 = L2 ⊂ V , tori
+T1 , T2 ⊂ G, and every two ﬂags SLj = fLj + ϕTj , with
+fLj ∈ BLj , ϕTj ∈ BTj , j = 1, 2, ϕT1 = ϕT2 , we have
+(
+9
+√ , if T1 = T2 ;
+N
+|M(SL1 , SL2 )[τ , ω]| ≤
+7
+√ , if T1 = T2 ,
+N
+
+Denote by U (H) the collection of all unitary operators on the
+Hilbert space of digital signals H. Theorem II.2 establishes the map
+ρ : G → U (H), which is called the Weil representation [15]. The
+group G is not commutative, but contains a special class of maximal
+commutative subgroups called tori4 [5], [6]. Each torus T ⊂ G acts
+via the Weil operators
+ρ(g) : H → H, g ∈ T.
+
+„
+a
+M(ϕT , ϕT ) for T = {
+0
+
+for every (τ , ω) ∈ V.
+A proof of Theorem II.4 will appear in [3].
+
+(II.4)
+
+This is a commutative collection of diagonalizable operators, and it
+admits [5], [6] a natural orthonormal basis BT for H, consisting of
+common eigenfunctions. The system of all such bases BT , where T
+runs over all tori in G, will be called the Weil (peaks) system. We
+use the following result [5], [6]:
+Theorem II.3: The Weil system satisﬁes the properties
+1) Peak. For every torus T ⊂ G, and every ϕT ∈ BT , we have
+
+1, if (τ , ω) = (0, 0);
+|M(ϕT , ϕT )[τ , ω]| =
+≤ √2 , if (τ , ω) = (0, 0).
+N
+2) Almost-orthogonality. For every two tori T1 , T2 ⊂ G, and every
+ϕT1 ∈ BT1 , ϕT2 ∈ BT2 , with ϕT1 = ϕT2 , we have
+(
+4
+√ , if T1 = T2 ;
+˛
+˛
+N
+˛M(ϕT , ϕT )[τ , ω]˛ ≤
+2
+1
+2
+√ , if T1 = T2 ,
+N
+
+Fig. 8.
+
+for every (τ , ω) ∈ V.
+
+Remark II.5: As a consequence of Theorem II.4 we obtain families of N + 1 almost-orthogonal ﬂag waveforms which can be used
+for solving the TFS problem in O(N log(N )) operations, and channel
+estimation problem in O(m · N log(N )) for channel of sparsity m.
+
+C. The Heisenberg–Weil System
+We deﬁne the Heisenberg–Weil system of waveforms. This is the
+collection of signals in H, which are of the form SL = fL + ϕT ,
+where fL and ϕT are Heisenberg and Weil waveforms, respectively.
+The main technical result of this paper is
+
+III. T HE H EISENBERG C ROSS S YSTEM
+We deﬁne the Heisenberg cross system of waveforms. This is the
+collection of signals in H, which are of the form SL ,M = fL + fM ,
+where fL , fM , L = M, are Heisenberg waveforms deﬁned in Section
+II-A. The following is an immediate consequence of Theorem II.1:
+
+Theorem II.4: The Heisenberg–Weil system satisﬁes the properties
+4 There
+
+|M(SL , SL )| for Heisenberg–Weil ﬂag with L = {(τ , τ )}
+
+are order of N 2 tori in SL2 (ZN ).
+
+4
+
+In practice, ﬁrst, S is sent and the channel estimation is done. In
+the second step, the bit b is communicated by sending b · S. Then the
+bit is extracted using the formula6
+
+Theorem III.1: The Heisenberg cross system satisﬁes the properties
+1) Cross. For every pair of distinct lines L, M ⊂ V , and every
+cross SL ,M = fL + fM , with fL ∈ BL , fM ∈ BM , we have
+8
+< 2+εN , if (τ ,ω)=(0,0);
+|M(SL ,M , SL ,M )[τ , ω]| =
+: 1+εN , if (τ ,ω)∈(L∪M ) (0,0);
+εN , if (τ ,ω)∈V
+
+b·
+
+m
+X
+k=1
+
+|αk |2 ≈ R,
+
+m
+X
+
+αk · e
+
+2πi ω ·n
+k
+N
+
+· S[n + τ k ] .
+
+k=1
+
+A client can compute his/her location by knowing the locations of
+at least three satellites and distances to them.
+The main computational step is the channel estimation which is
+done by ﬂag method in O(m · N log (N )) operations.
+
+(L∪M ),
+
+where |εN | ≤ √2 .
+N
+2) Almost-orthogonality. For every four distinct lines
+L1 , M1 , L2 , M2
+⊂
+V , and every two crosses
+SLj ,Mj = fLj + fMj , j = 1, 2, we have
+˛
+˛
+4
+˛
+˛
+˛M(SL1 ,M1 , SL2 ,M2 )[τ , ω]˛ ≤ √ .
+N
+
+Acknowledgement. Warm thanks to J. Bernstein for his support
+and encouragement in interdisciplinary research. We are grateful to
+A. Sahai, for sharing with us his thoughts, and ideas on many
+aspects of signal processing and wireless communication. The project
+described in this paper was initiated by a question of M. Goresky and
+A. Klapper during the conference SETA2008, we thank them very
+much. We appreciate the support and encouragement of N. Boston,
+R. Calderbank, S. Golomb, G. Gong, O. Holtz, R. Howe, P. Sarnak,
+N. Sochen, D. Tse, and A. Weinstein.
+
+for every (τ , ω) ∈ V.
+Remark III.2: As a consequence of Theorem III.1 we obtain
++1
+families of N2 almost-orthogonal cross waveforms which can be
+used for solving the TFS problem in O(N log(N )) operations.
+IV. A PPLICATIONS TO R ADAR AND GPS
+
+R EFERENCES
+
+The ﬂag method provides a signiﬁcant improvement over the current channel estimation algorithms in the presence of high velocities.
+The latter occurs in radar and GPS systems. We discuss applications
+to these ﬁelds.
+
+[1] Agarwal N. et. al., Algorithms for GPS Operation Indoors and Downtown. GPS Solutions 6, 149-160, 2002.
+[2] Artin M., Algebra. Prentice Hall, Inc., Englewood Cliffs, NJ (1991).
+[3] Fish A., Gurevich S., Hadani R., Sayeed A., Schwartz O., Delay-Doppler
+Channel Estimation in Almost Linear Complexity. In preparation (2012).
+[4] Golomb, S.W. and Gong G., Signal design for good correlation. For
+wireless communication, cryptography, and radar. Cambridge University
+Press, Cambridge (2005).
+[5] Gurevich S., Hadani R., Sochen N., The ﬁnite harmonic oscillator and its
+associated sequences. PNAS, July 22, 2008 vol. 105 no. 29 9869–9873.
+[6] Gurevich S., Hadani R., Sochen N., The ﬁnite harmonic oscillator and its
+applications to sequences, communication and radar . IEEE Transactions
+on Information Theory, vol. 54, no. 9, September 2008.
+[7] Howe R., Nice error bases, mutually unbiased bases, induced representations, the Heisenberg group and ﬁnite geometries. Indag. Math. (N.S.)
+16 (2005), no. 3–4, 553–583.
+[8] Howard S. D., Calderbank, R., and Moran W., The ﬁnite Heisenberg–
+Weyl groups in radar and communications. EURASIP J. Appl. Signal
+Process (2006).
+[9] Kaplan E., Understanding GPS Principles and Applications. Artech
+house, INC (1996).
+[10] O’Toole J.M., Mesbah M., and Boashash B., Accurate and efﬁcient implementation of the time–frequency matched ﬁlter. IET Signal Process.,
+2010, Vol. 4, Iss. 4, pp. 428–437.
+[11] Sayeed, A.M., Aazhang B., Joint Multipath-Doppler Diversity in Mobile
+Wireless Communications. IEEE Transactions on Communications, pp.
+123-132, January 1999.
+[12] Tse D., and Viswanath P., Fundamentals of Wireless Communication.
+Cambridge University Press (2005).
+[13] Verdu S., Multiuser Detection, Cambridge University Press (1998).
+[14] Wang Z., and Gong G., New Sequences Design From Weil Representation With Low Two-Dimensional Correlation in Both Time and Phase
+Shifts. IEEE Transactions on Information Theory, vol. 57, no. 7, July
+2011.
+[15] Weil A., Sur certains groupes d’operateurs unitaires. Acta Math. 111,
+143-211 (1964).
+
+A. Application to Radar
+The model of digital radar works as follows [8]. A radar transmits a
+waveform S ∈ H which bounces back from m targets. The waveform
+R ∈ H which is received as an echo has the form
+R[n] =
+
+m
+X
+
+αk · e
+
+2πi ω ·n
+k
+N
+
+· S[n + τ k ] + W[n], n ∈ ZN
+
+k=1
+
+where αk ∈ C is the complex multipath amplitude along path k, with
+Pm
+2
+k=1 |αk | ≤ 1, ω k ∈ ZN encodes the radial velocity of target k
+with respect to the radar, τ k ∈ ZN encodes the distance between
+target k and the radar, and W is a random white noise.
+Problem IV.1 (Digital radar): Find (τ k , ω k ), k = 1, ..., m.
+This is essentially a channel estimation problem, so the ﬂag
+method solves it in O(m · N log(N )) operations.
+B. Application to Global Positioning System (GPS)
+The model of GPS works as follows [9]. A client on the earth
+surface wants to know his/her geographical location. Satellites send
+to earth their location. For simplicity, the location of a satellite is a
+bit b ∈ {±1}. The satellite transmits to the earth its signal S ∈ H
+multiplied by its location b. The client receives the signal
+R[n] = b ·
+
+m
+X
+
+αk · e
+
+2πi ω ·n
+k
+N
+
+· S[n + τ k ] + W[n],
+
+k=1
+
+where ω k encodes the radial velocity of the satellite with respect
+to the client along the path k, τ k encode the distance between the
+satellite and the client5 , αk ’s are complex multipath amplitudes, and
+W is a random white noise.
+Problem IV.2 (GPS problem): Find b given that S and R are
+known.
+6 It is analogous to data modulation using a delay-Doppler rake receiver in
+spread-spectrum systems [12].
+
+5 Using the τ ’s we can compute [9] the distance from the satellite to the
+k
+client, assuming that there is a line of sight between them.
+
+5
+
+

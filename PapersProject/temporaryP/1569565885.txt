@@ -1,0 +1,787 @@
+Creator:        TeX
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Tue May 15 13:18:32 2012
+ModDate:        Tue Jun 19 12:55:22 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      576579 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569565885
+
+Unitary Isotropically Distributed Inputs
+Are Not Capacity-Achieving for
+Large-MIMO Fading Channels
+Wei Yang and Giuseppe Durisi
+
+Erwin Riegler
+
+Department of Signals and Systems
+Chalmers University of Technology
+41296 Gothenburg, Sweden
+E-mail: {ywei, durisi}@chalmers.se
+
+Institute for Telecommunications
+Vienna University of Technology
+1040 Vienna, Austria
+E-mail: {erwin.riegler@nt.tuwien.ac.at}
+
+block. The parameter T can be thought of as the channel’s
+coherence time. Even if the capacity of the Rayleigh blockfading multiple-input multiple-output (MIMO) channel has been
+studied extensively in the literature [2], [6], [3], [7], no closedform capacity expression is available to date. Zheng and Tse [3]
+showed that the capacity C grows as
+
+Abstract—We analyze the capacity of Rayleigh block-fading
+multiple-input multiple-output (MIMO) channels in the noncoherent setting and prove that unitary space-time modulation (USTM) is
+not capacity-achieving when the total number of antennas exceeds
+the coherence time of the fading channel. This situation is relevant
+for MIMO systems with large antenna arrays (large-MIMO systems). Our result settles a conjecture by Zheng & Tse (2002) in the
+afﬁrmative. The capacity-achieving input signal, which we refer
+to as Beta-variate space-time modulation (BSTM), turns out to be
+the product of a unitary isotropically distributed random matrix,
+and a diagonal matrix whose nonzero entries are distributed as
+the square-root of the eigenvalues of a Beta-distributed random
+matrix of appropriate size. Numerical results illustrate that using
+BSTM instead of USTM in large-MIMO systems yields a rate gain
+as large as 13% for SNR values of practical interest.
+
+C(ρ) = M ∗ (1 − M ∗ /T ) log(ρ) + O(1),
+
+ρ → ∞.
+
+(1)
+
+Here, ρ denotes the SNR, M ∗ = min{M, N, T /2 }, with M
+and N standing for the number of transmit and receive antennas,
+respectively, and O(1) indicates a bounded function of ρ (for
+sufﬁciently large ρ). The capacity expression (1) implies that,
+at high SNR, the capacity loss due to lack of a priori channel
+knowledge is large when the channel’s coherence time T is small.
+It also implies that at high SNR, the capacity-maximizing number
+of transmit antennas M (for ﬁxed T and a ﬁxed number of receive
+antennas N ) is min{N, T /2 }.
+When T ≥ M + N (channel’s coherence time larger or equal
+to the total number of antennas), the high-SNR expression (1)
+can be tightened as follows [3, Sec. IV.B]
+
+I. I NTRODUCTION
+
+The use of multiple antennas increases tremendously the
+throughput of wireless systems operating over fading channels.
+Speciﬁcally, when a genie provides the receiver with perfect
+channel state information (the so called coherent setting), the
+capacity of a multiple-antenna fading channel grows linearly
+in the minimum between the number of transmit and receive
+antennas [1]. In practice, however, the fading channel is not
+C(ρ) = M ∗ (1 − M ∗ /T ) log(ρ) + c + o(1), ρ → ∞. (2)
+known a priori at the receiver and must be estimated. Lack of a
+priori channel knowledge at the receiver determines a capacity Here, o(1) → 0 as ρ → ∞, and c, which is given in [3, Eq. (24)],
+loss compared to the coherent case. This loss, which depends depends on T , M , and N but not on ρ. Differently from (1), the
+on the rate at which the fading channel varies in time, frequency, high-SNR expression (2) describes capacity accurately already
+and space [2]–[5], can be characterized in a fundamental way at moderate SNR values [7], [8] because it captures the ﬁrst two
+by studying capacity in the noncoherent setting where neither terms in the asymptotic expansion of capacity for ρ → ∞. The
+the transmitter nor the receiver are assumed to have a priori key element exploited in [3] to establish (2) is the optimality
+knowledge of the realizations of the fading channel (but both of isotropically distributed unitary input signals [2, Sec. A.2]
+are assumed to know its statistics perfectly). In the remainder at high SNR; the isotropic unitary input distribution is often
+of the paper, we will refer to capacity in the noncoherent setting referred to as unitary space-time modulation (USTM) [9], [7].
+simply as capacity.
+In this paper, we shall focus on the case T < M +N (channel’s
+For frequency-ﬂat fading channels, a simple model to capture coherence time smaller than the total number of antennas), which
+channel variations in time is the Rayleigh block-fading model is of interest for communication systems using large antenna
+according to which the channel remains constant over a block arrays. The use of large antenna arrays in MIMO systems (largeof T ≥ 1 symbols and changes independently from block to MIMO systems) has been recently advocated to reduce energy
+The work of Erwin Riegler was supported by the WWTF under grant ICT10- consumption in wireless networks, to combat the effect of small066 (NOWIRE).
+scale fading, and to release multi-user MIMO gains with limited
+
+1
+
+co-operation among base stations and low complexity channel Since the variance of the entries of H and W is normalized to
+estimation algorithms [10]–[12].
+one, (5) implies that ρ in (3) can be interpreted as the SNR at
+Contributions: We prove that in the large-MIMO setting each receive antenna. Throughout the paper, we will often use
+where T < M + N , USTM is not capacity-achieving at high the following additional quantities: Q = min{N, T − M }, R =
+SNR. We show that the capacity-achieving input signal is the max{N, T − M }, P = min{N, T }, and L = max{N, T }.
+product of a unitary isotropically distributed random matrix,
+III. C APACITY IN THE H IGH -SNR R EGIME
+and a diagonal matrix whose nonzero entries are distributed as
+the square-root of the eigenvalues of a Beta-distributed random A. A Complete Asymptotic Characterization of Capacity
+The main result of this paper is Theorem 1 below, which promatrix of appropriate size. Utilizing this input distribution, which
+we refer to as Beta-variate space-time modulation (BSTM), we vides a high-SNR characterization of C(ρ) that generalizes (2),
+extend (2) to the case T < M + N . The use of BSTM instead in that it holds also in the large-MIMO setting T < M + N .
+Theorem 1: The capacity C(ρ) of the MIMO Rayleigh blockof USTM when N
+T turns out to yield a rate gain larger than
+fading channel (3) with N receive antennas, coherence time T ,
+10% at moderate SNR values.
+Notation: Uppercase boldface letters denote matrices and and M ≤ min{N, T /2 } transmit antennas is given by
+lowercase boldface letters designate vectors. The superscripts T
+C(ρ) = M (1 − M/T ) log(ρ) + c + o(1), ρ → ∞ (6)
+and H stand for transposition and Hermitian transposition, respectively. We denote the identity matrix of dimension M × M where
+1
+ΓM (M )ΓM (Q)
+M
+T
+by IM , and diag{a} is the diagonal square matrix whose main
+c = log
++M 1−
+log
+T
+ΓM (N )ΓM (T )
+T
+M
+diagonal contains the entries of the vector a. The distribution of
+a circularly-symmetric complex Gaussian random vector with
+MQ
+N
+R
++
+log
++
+E log det HHH − M . (7)
+covariance matrix Σ is denoted by CN (0, Σ); Gamma(·, ·) is
+T
+Q
+T
+the Gamma distribution, and Beta(·, ·) denotes the Beta distrim
+m(m−1)/2
+k=1 Γ(a − k + 1) is the complex
+bution [13]. Finally, log(·) indicates the natural logarithm, and Here, Γm (a) = π
+multivariate Gamma function.
+Γ(·) denotes the Gamma function.
+Proof: The proof, which is omitted for space limitations and
+can be found in [14, Sec. IV], exploits the geometric structure
+II. S YSTEM M ODEL
+in the input-output relation (3) ﬁrst observed in [3]. The tools
+We consider a Rayleigh block-fading MIMO channel with M used to establish (6) are, however, different from the ones used
+transmit antennas, N receive antennas, and channel’s coherence in [3]. In particular, differently from [3], our proof is based on the
+time T . The channel input-output relation within a coherence in- duality approach [4], and a novel closed-form characterization
+terval can be compactly written in matrix notation as follows [6], of the probability density function (pdf) of the channel output
+[7], [3]:
+Y in (3), which generalizes a previous result obtained in [7].
+These two tools allow us not only to generalize (2) to the
+Y = ρ/M XH + W.
+(3)
+large-MIMO setting T < M + N , but also to simplify the
+T ×M
+Here, X ∈ C
+contains the signal transmitted from the corresponding derivation, compared to the one provided in [3]
+M antennas within the coherence interval, H ∈ CM ×N is the for the case T ≥ M + N . An outline of the proof for the singlechannel’s propagation matrix, W ∈ CT ×N is the additive noise, input multiple-output (SIMO) case, which sheds light on the
+and Y ∈ CT ×N contains the signal received at the N antennas structure of the capacity-achieving input distribution, is provided
+within the coherence interval. We will assume throughout the in Section III-C.
+paper that M ≤ min{N, T /2 }. The random matrices H and
+W are independent of each other and have independent and
+identically distributed (i.i.d.) CN (0, 1) entries. We consider the
+noncoherent setting where neither the transmitter nor the receiver
+have a priori knowledge of the realizations of H and W, but
+both know their statistics perfectly.
+We assume that H and W take on independent realizations over successive coherence intervals. Under this blockmemoryless assumption, the ergodic capacity of the channel
+in (3) is given by
+C(ρ) =
+
+1
+sup I(X; Y).
+T QX
+
+B. Rate Achievable with USTM
+For the case T ≥ M + N , the high-SNR capacity expression (6) coincides with the one reported in [3, Sec. IV.B].1 In
+√
+this case, USTM, i.e., setting X = T Φ, with Φ unitary and
+isotropically distributed, achieves (6). When T < M + N , the
+novel high-SNR capacity characterization provided in Theorem 1
+implies that USTM is not capacity-achieving at high SNR, as
+formalized in the following corollary.
+Corollary 2: The rate achievable using USTM over the
+MIMO Rayleigh block-fading channel (3) with N receive antennas, coherence time T , and M ≤ min{N, T /2 } transmit
+antennas is given by
+
+(4)
+
+L(ρ) = M (1 − M/T ) log(ρ) + l + o(1), ρ → ∞
+
+The supremum is over all probability distributions QX on X that
+satisfy the average-power constraint
+E tr{XXH } ≤ T M.
+
+(8)
+
+1 The expression for c given in [3, Eq. (24)] contains a typo: the argument of
+the logarithm in the second addend should be divided by M as one can verify by
+comparing [3, Eq. (24)] with the result given in [3, Thm. 9] for the case M = N .
+
+(5)
+
+2
+
+contains the singular values of Y arranged in decreasing order;
+u1 and v1 stand for the ﬁrst column of U and V, respecΓM (M )
+M
+T
+1
++M 1−
+log
+l = log
+tively; U ∈ CT ×(P −1) and V ∈ CN ×(P −1) contain the
+T
+ΓM (T )
+T
+eM
+remaining columns of U and V, respectively; ﬁnally, Σ =
+M
+diag [σ2 · · · σP ]T . To make the SVD unique, we shall assume
++ 1−
+E log det(HHH ) .
+T
+that the ﬁrst entry of u1 and the diagonal entries of U are real
+Note that l = c when T ≥ M + N ; however, l < c when and nonnegative [15, Sec. IV.5]. Let now Pu = [u1 Pu ] where
+T < M + N.
+Pu ∈ CT ×(T −1) is a deterministic function of u1 chosen so
+that Pu is a T × T unitary matrix. Similarly, let Pv = [v1 Pv ]
+C. Why Is USTM Not Capacity Achieving?
+where Pv ∈ CN ×(N −1) is a deterministic function of v1 chosen
+We next present a sketch of the proof of Theorem 1. Our aim is so that Pv is a N × N unitary matrix. By construction, we have
+to provide an intuitive explanation on why USTM is not capacity- that
+achieving at high SNR when T < M + N , and to explain why
+H
+Y = Pu PH σ1 u1 v1 + UΣVH Pv PH
+u
+v
+the matrix-variate Beta distribution arises in this case. We recall
+that a complete proof of Theorem 1 can be found in [14, Sec. IV].
+σ1
+01×(N −1)
+= Pu
+PH
+v
+For simplicity, we shall focus in this section on the SIMO case
+0(T −1)×1
+Y
+(M = 1), for which the input-output relation (3) reduces to
+√
+Y = ρ xhT + W. Here, h ∼ CN (0, IN ), and x ∈ CT is where Y = PH UΣVH Pv ∈ C(T −1)×(N −1) . The transformau
+subject to the average-power constraint E x 2 ≤ T . We need tion Y → (σ1 , u1 , v1 , Y) is one-to-one by construction, and its
+to show that (see Theorem 1)
+Jacobian J(·) can be easily obtained from the Jacobian of the
+SVD given in [3, App. A]:
+1
+Γ(Q)
+1
+log(ρ) + log
+C(ρ) = 1 −
+P
+T
+T
+Γ(N )Γ(T )
+2(L−P )+1
+2
+2
+J(σ1 , . . . , σP ) = σ1
+·
+(σ1 − σi )2
+1
+Q
+N
++ 1−
+log(T ) + log
+i=2
+T
+T
+Q
+with L = max{T, N }. We next compute h(Y) in the coordinate
+R
++
+E log h 2 − 1 + o(1), ρ → ∞. (9) system induced by the transformation2 Y → (σ1 , u1 , v1 , Y)
+T
+h(Y) = h(σ1 ) + h(u1 ) + h(v1 )
+As the capacity-achieving distribution is isotropic [2, Thm. 2],
+we shall assume, without loss of optimality, that x is isotropically
++ h(Y | σ1 ) + E log J(σ1 , . . . , σP ) . (12)
+distributed. To establish (9), we analyze separately the two
+differential entropy terms in the deﬁnition of mutual information Here, the equality follows from the isotropic nature of the
+distribution of x, which implies that u1 is independent of v1 , and
+I(x; Y) = h(Y) − h(Y | x).
+(10) (u1 , v1 ) is independent of (σ1 , Y). Furthermore [14, Sec. IV.B]
+where
+
+h(u1 ) = log π T −1 /Γ(T ) ; h(v1 ) = log 2π N /Γ(N ) . (13)
+
+Note that Y is conditionally Gaussian given x. Hence, the second
+term on the right-hand side (RHS) of (10) is given by
+h(Y | x) = N E log ρ x
+
+2
+
++1
+
+= N log(ρ) + N E log x
++ N T log(πe) + o(1),
+
+We now exploit the escape-to-inﬁnity property of the capacityachieving distribution [14, Lem. 2], which implies that (see [14,
+Lem. 12 and Lem. 13])
+√
+h(σ1 ) = log( ρ) + h( h · x ) + o(1), ρ → ∞
+
++ N T log(πe)
+2
+
+ρ → ∞.
+
+(11)
+
+h(Y | σ1 ) = (N − 1)(T − 1) log(πe) + o(1), ρ → ∞
+
+To compute h(Y), we observe that, in the absence of additive
+noise W, the columns of Y are collinear with x and, hence,
+Y has rank 1. Once Gaussian noise is added, Y becomes full
+rank. However, because a rank-1 matrix of dimension T × N is
+characterized by T + N − 1 parameters, the remaining T N −
+(T + N − 1) = (T − 1)(N − 1) parameters describing Y must
+contain information about the additive noise only in the ρ → ∞
+limit. Hence, we expect that—for an appropriate choice of the
+input distribution—h(Y) should grow as (T + N − 1) log(ρ).
+To establish this result, it is convenient to express Y in terms
+of its singular value decomposition (SVD). Speciﬁcally, we write
+Y as
+
+E log J(σ1 , . . . , σP )
+
+= (2N + 2T − 3) E[log( h · x )]
+
++ (N + T − 3/2) log(ρ) + o(1), ρ → ∞.
+
+Substituting (13) and (14) into (12), and then (11) and (12)
+into (10), we get
+I(x; Y) = (T − 1) log(ρ) + h( h · x )
+
++ (2T − 3) E[log( x )] + k1 + o(1), ρ → ∞ (15)
+
+where
+k1 = log(2) − log Γ(T ) · Γ(N )
+
+H
+Y = UΣVH = σ1 u1 v1 + UΣVH .
+T ×P
+
+(14)
+
+− (T + N − 1) + (2T + 2N − 3) E[log( h )] .
+
+N ×P
+
+Here, U ∈ C
+and V ∈ C
+(recall that P = min{N, T })
+are (truncated) unitary matrices and Σ = diag [σ1 · · · σP ]T
+
+2 The differential entropy terms on the RHS of (12) are computed with respect
+to the appropriate area measure.
+
+3
+
+To conclude the proof, we need to determine the distribution on
+x that maximizes (15). To solve this problem, it is convenient
+ˆ
+to operate one more transformation. Let g = h · x · g, where
+ˆ
+g is taken uniformly distributed on the unit sphere in CQ (recall
+that Q = min{N, T − M }) and independent of x and h. By
+using polar coordinates, we can relate h( h · x ) and h(g) as
+follows [4, Lem. 6.17]
+2π Q
+Γ(Q)
+− (2Q − 1) E log h · x
+
+D. The Capacity-Achieving Input Distribution
+Matrix-variate distributions: We are now ready to describe the
+input distribution that achieves (6) for the general MIMO case.
+The following preliminary results from multivariate statistics
+will be needed.
+Deﬁnition 4: An m × m random matrix A is said to have the
+complex Wishart distribution with n > 0 degrees of freedom
+and covariance matrix Σ if A = BBH , where the columns of
+the m × n matrix B are independent and CN (0, Σ)-distributed.
+In this case, we shall write A ∼ Wm (n, Σ).
+Note that when m > n, the matrix A is singular and, hence,
+does not admit a pdf. In this case, the probability distribution
+on A is sometimes referred to as pseudo-Wishart or singular
+Wishart. When m = 1, the Wishart distribution reduces to the
+Gamma distribution.
+Deﬁnition 5: An m × m random matrix C is said to have a
+complex matrix-variate Beta distribution of parameters p > 0
+−1
+and n > 0 if C can be written as C = TH
+AT−1 , where
+A ∼ Wm (p, Σ) and B ∼ Wm (n, Σ) are independent, and
+A + B = TH T, with T upper-triangular with positive diagonal
+elements (Cholesky factorization). In this case, we shall write
+C ∼ Betam (p, n).
+Let C ∼ Betam (p, n) with p ≥ m > 0 and n > 0. The pdf
+of the ordered eigenvalues λ1 > · · · > λm of C takes on two
+different forms according to the value of n. If n ≥ m, then
+
+h( h · x ) = h(g) − log
+
+.
+
+(16)
+
+Substituting (16) into (15) yields
+I(x; Y)
+= (T − 1) log(ρ) + h(g)
+
++ (T − Q − 1) E log x
+
+2
+
++ k2 + o(1), ρ → ∞ (17)
+
+where
+Γ(Q)
+− (T + N − 1)
+Γ(T )Γ(N )
++ (T + N − Q − 1 ) E log h 2 − Q log(π).
+
+k2 = log
+
+=max{N,T −1}=R
+
+Note that maximizing the RHS of (15) amounts to maximizing
+the second and the third term on the RHS of (17). We next analyze
+these two terms separately.
+For the second term on the RHS of (17), we note that, as
+E g 2 = E h 2 · x 2 ≤ T N , then
+h(g) ≤ Q log(πeT N /Q)
+
+π m(m−1) Γm (p + n)
+·
+Γm (m) Γm (p)Γm (n)
+
+f(λ1 , . . . , λm ) =
+
+·
+
+N
+ˆ
+with equality achieved if g = ( h · x · g) ∼ CN 0, TQ IQ ,
+or, equivalently, if
+
+h
+
+2
+
+· x
+
+2
+
+∼ Gamma(Q, T N /Q) .
+
+m
+
+m
+
+(18)
+
+i=1
+
+λp−m (1 − λi )n−m ·
+i
+
+i<j
+
+(λi − λj )2 ,
+
+1 > λ1 > · · · > λm > 0.
+
+(21)
+
+If 0 < n < m, the eigenvalues of C are distributed as follows
+
+(19)
+
+Now note that h 2 ∼ Gamma(N, 1). Hence, for the case Q =
+N , we can attain (19) by setting x 2 = T with probability
+one (w.p.1). When Q = T − 1, however, we need to choose
+˜
+˜
+x 2 = T N d2 /(T − 1) with d2 ∼ Beta(T − 1, N + 1 − T )
+to fulﬁll (19). This follows from Lemma 3 below, which is a
+special case of Lemma 6 in Section III-D.
+Lemma 3: Let u ∼ Beta(p, n) with p, n ≥ 0; let also
+r ∼ Gamma(p + n, 1) independent of u. Then (u · r) ∼
+Gamma(p, 1).
+For the third term on the RHS of (17), we note that, as T −
+Q − 1 ≥ 0, Jensen’s inequality yields
+
+λ1 = . . . = λm−n = 1 w.p.1, and
+π n(n−1)
+Γn (p + n)
+f(λm−n+1 , . . . , λm ) =
+·
+Γn (n) Γn (m)Γn (p + n − m)
+m
+
+m
+
+·
+
+p−m
+
+(λi )
+i=m−n+1
+
+(1 − λi )
+
+m−n
+
+·
+
+m−n<i<j
+
+(λi − λj )2 ,
+
+1 > λm−n+1 > · · · > λm > 0. (22)
+
+The following lemma generalizes Lemma 3 to matrix-variate
+distributions
+Lemma 6: Let S ∼ Wm (p + n, Σ) with m > 0, n > 0, and
+p ≥ m. Furthermore, let C ∼ Betam (p, n) be independent of
+(T − Q − 1) E log x 2 ≤ (T − Q − 1) log(T ). (20)
+S. Finally, put S = TH T, where T is upper-triangular with
+Equality in (20) is achieved if x 2 = T w.p.1, or if Q = T − 1, positive diagonal elements. Then, A = TH CT ∼ Wm (p, Σ).
+Proof: The theorem follows from a generalization to the
+in which case both sides of (20) vanish.
+Summarizing, when T ≥ N + 1, it is sufﬁcient to take complex case of [16, Thm. 3.3.1] for the nonsingular case n ≥ m,
+x 2 = T w.p.1 to achieve equality in (18) and (20). As x was and of [17, Thm. 1] for the singular case 0 < n < m.
+taken isotropically distributed, the resulting input distribution
+The Optimal Input Distribution: Similarly to the SIMO case
+is USTM. However, when T < N + 1, USTM is no longer (see Section III-C), the capacity-achieving distribution for the
+optimal: achieving equality in (18) and (20) requires taking general MIMO case takes on two different forms according to
+[(T − 1) x 2 /(T N )] ∼ Beta(T − 1, N + 1 − T ). Substitut- the relation between T, M , and N . Speciﬁcally, one should take
+ing (18) and (20) in (17) and dividing by T yields (9).
+X = ΦD where Φ is unitary and isotropically distributed, and
+
+4
+
+0.14
+
+D =
+T N /Q · D with D being a diagonal matrix whose
+˜
+˜
+ordered positive entries {d1 , . . . , dM } are distributed as follows:
+a) Case T < M + N : The squared nonzero entries
+˜
+˜
+{d2 , . . . , d2 } of D have the same joint pdf as the ordered
+1
+M
+eigenvalues of a positive-deﬁnite M × M random matrix G ∼
+˜
+˜
+BetaM (T −M, M +N −T ). The resulting pdf of {d2 , . . . , d2 }
+1
+M
+is obtained by setting p = T − M and n = M + N − T in (21)
+if T ≤ N , and in (22) if N < T < M + N .
+˜
+˜
+b) Case T ≥ M + N : The nonzero entries {d1 , . . . , dM }
+˜
+˜
+of D should be taken so that d1 = · · · = dM = 1 w.p.1. This
+results in the USTM distribution used in [3].
+We shall denote by Qopt the probability distribution of D we
+D
+have just introduced, and refer to the probability distribution
+on X = ΦD resulting by choosing Φ unitary and isotropically
+distributed, and D ∼ Qopt as BSTM. Note that BSTM reduces
+D
+to USTM when T ≥ M + N .
+
+0.12
+
+T = 50
+
+0.04
+
+0
+
+M
+log(N )
+2T
+
+20
+
+30
+
+40
+
+50
+
+60
+
+70
+
+80
+
+90
+
+100
+
+Fig. 1. Rate gain resulting from the use of BSTM instead of USTM as a function
+of the number of receive antennas N and the channel’s coherence time T ; in the
+ﬁgure, ρ = 30 dB, and M = min{ T /2 , N }.
+
+R EFERENCES
+[1]
+[2]
+[3]
+[4]
+[5]
+[6]
+
+= cM,T
+
+[7]
+
+where C(ρ) and L(ρ) are given in (6) and (8), respectively, and
+cM,T
+
+10
+
+N
+
+2
+
+C(ρ) − L(ρ) −
+
+T = 100
+
+0.02
+
+The use of USTM is motivated by several practical considerations [6], [7], [18]. Is it then worth to replace USTM by the
+capacity-achieving BSTM in the large-MIMO setting? In this
+section, we shall investigate the rate gain that results from the
+use of BSTM instead of USTM when T < M + N .
+Asymptotic Analysis: In Corollary 7 below we show that
+the rate gain resulting from using BSTM instead of USTM grows
+logarithmically in the number of receive antennas.
+Corollary 7: Let T and M ≤ T /2 be ﬁxed. Then
+lim lim
+
+T = 20
+
+0.06
+
+E. Gain of BSTM over USTM
+
+N →∞ ρ→∞
+
+T = 10
+
+0.1
+￿
+￿
+C(ρ) − L(ρ)
+0.08
+￿
+L(ρ)
+
+[8]
+
+M (T − M )
+e
+1
+log
+= log ΓM (T − M ) +
+T
+T
+T −M
+M
+−
+M log(πe) + log(2) .
+2T
+
+[9]
+[10]
+
+Proof: The proof is omitted for space limitations and can
+be found in [14, Sec. III.C].
+Numerical Results: Let C(ρ) be the high-SNR approximation of C(ρ) obtained by neglecting the o(1) term in (6).
+Similarly, let L(ρ) be the high-SNR approximation of L(ρ)
+obtained by neglecting o(1) in (8). As can be inferred from
+the results reported in [3], [7], [8], L(ρ) is a good approximation for L(ρ) when ρ
+20 dB. Numerical evidence suggests
+that the same holds for C(ρ) and C(ρ). To illustrate the gain
+resulting from the use of BSTM instead of USTM for a ﬁnite
+(but large) number of receive antennas, we plot in Fig. 1 the
+ratio [C(ρ) − L(ρ)]/L(ρ) for different values of T and N , when
+ρ = 30 dB and M = min{ T /2 , N }. We observe from Fig. 1
+that the rate gain resulting from the use of BSTM instead of
+USTM becomes signiﬁcant when the number of receive antennas
+N is much larger than the channel’s coherence time T . For
+example, when N = 100 and T = 10, the rate gain amounts to
+13%. However, when T = N = 100 the rate gain is below 3%.
+
+[11]
+[12]
+[13]
+[14]
+[15]
+[16]
+[17]
+[18]
+
+5
+
+˙
+I. E. Telatar, “Capacity of multi-antenna Gaussian channels,” Eur. Trans.
+Telecommun., vol. 10, pp. 585–595, Nov. 1999.
+T. L. Marzetta and B. M. Hochwald, “Capacity of a mobile multipleantenna communication link in Rayleigh ﬂat fading,” IEEE Trans. Inf.
+Theory, vol. 45, no. 1, pp. 139–157, Jan. 1999.
+L. Zheng and D. N. C. Tse, “Communication on the Grassmann manifold:
+A geometric approach to the noncoherent multiple-antenna channel,” IEEE
+Trans. Inf. Theory, vol. 48, no. 2, pp. 359–383, Feb. 2002.
+A. Lapidoth and S. M. Moser, “Capacity bounds via duality with applications to multiple-antenna systems on ﬂat-fading channels,” IEEE Trans.
+Inf. Theory, vol. 49, no. 10, pp. 2426–2467, Oct. 2003.
+U. G. Schuster, G. Durisi, H. B¨ lcskei, and H. V. Poor, “Capacity bounds
+o
+for peak-constrained multiantenna wideband channels,” IEEE Trans. Commun., vol. 57, no. 9, pp. 2686–2696, Sep. 2009.
+B. M. Hochwald and T. L. Marzetta, “Unitary space–time modulation for
+multiple-antenna communications in Rayleigh ﬂat fading,” IEEE Trans.
+Inf. Theory, vol. 46, no. 2, pp. 543–564, Mar. 2000.
+B. Hassibi and T. L. Marzetta, “Multiple-antennas and isotropically random
+unitary inputs: the received signal density in closed form,” IEEE Trans.
+Inf. Theory, vol. 48, no. 6, pp. 1473 –1484, Jun. 2002.
+K. Takeuchi, R. R. M¨ ller, M. Vehkaper¨ , and T. Tanaka, “On an
+u
+a
+achievable rate of large Rayleigh block-fading MIMO channels with no
+CSI,” Nov. 2011. [Online]. Available: http://arxiv.org/abs/1111.4626v1
+B. M. Hochwald, T. L. Marzetta, T. J. Richardson, W. Sweldens, and
+R. Urbanke, “Systematic design of unitary space-time constellations,” IEEE
+Trans. Inf. Theory, vol. 46, no. 6, pp. 1962–1973, Sep. 2000.
+T. L. Marzetta, “Noncooperative cellular wireless with unlimited numbers
+of base station antennas,” IEEE Trans. Wireless Commun., vol. 9, no. 11,
+pp. 3590–3600, Nov. 2010.
+H. Q. Ngo, E. G. Larsson, and T. L. Marzetta, “Energy and spectral
+efﬁciency of very large multiuser MIMO systems,” Dec. 2011. [Online].
+Available: http://arxiv.org/abs/1112.3810
+F. Rusek, D. Persson, B. K. Lau, E. G. Larsson, T. L. Marzetta, O. Edfors,
+and F. Tufvesson, “Scaling up MIMO: Opportunities and challenges with
+very large arrays,” IEEE Signal Process. Mag., 2011, to appear.
+N. Johnson, S. Kotz, and N. Balakrishnan, Continuous Univariate Distributions, 2nd ed. New York, NY, U.S.A.: Wiley, 1995, vol. 2.
+W. Yang, G. Durisi, and E. Riegler, “On the capacity of large-MIMO
+block-fading channels,” IEEE J. Sel. Areas Commun., Feb. 2012, submitted.
+[Online]. Available: http://arxiv.org/abs/1202.0168
+P. Marques and S. Abrantes, “On the derivation of the exact, closed-form
+capacity formulas for receiver-sided correlated MIMO channels,” IEEE
+Trans. Inf. Theory, vol. 54, no. 3, pp. 1139–1161, Mar. 2008.
+R. I. Muirhead, Aspects of multivariate statistical theory. Hoboken, NJ,
+U.S.A.: Wiley, 2005.
+H. Uhlig, “On singular Wishart and singular multivariate Beta distribution,”
+Ann. Statist., vol. 22, no. 1, pp. 395–405, 1994.
+A. Ashikhmin and R. Calderbank, “Grassmannian packings from operator
+Reed–Muller codes,” IEEE Trans. Inf. Theory, vol. 56, no. 11, pp. 5689–
+5714, Nov. 2010.
+
+

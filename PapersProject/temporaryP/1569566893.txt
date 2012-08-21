@@ -1,0 +1,926 @@
+Creator:        TeX
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Fri May 18 22:32:26 2012
+ModDate:        Tue Jun 19 12:55:55 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      427269 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569566893
+
+An Achievable Rate Region for Three-Pair
+Interference Channels with Noise
+Bernd Bandemer
+Information Theory and Applications Center
+University of California, San Diego
+La Jolla, CA 92093, USA
+Email: bandemer@ucsd.edu
+g13
+
+Abstract—An achievable rate region for certain noisy threeuser-pair interference channels is proposed. The channel class
+under consideration generalizes the three-pair deterministic interference channel (3-DIC) in the same way as the Telatar–Tse
+noisy two-pair interference channel generalizes the El Gamal–
+Costa injective channel. Speciﬁcally, arbitrary noise is introduced
+that acts on the combined interference signal before it affects the
+desired signal. This class of channels includes the Gaussian case.
+The rate region includes the best-known inner bound on the
+3-DIC capacity region, dominates treating interference as noise,
+and subsumes the Han–Kobayashi region for the two-pair case.
+
+g11
+
+X1
+
+X11
+
+Y1
+
+X21
+
+g12
+
+X31
+g21
+g22
+
+Y2
+
+g33
+
+X2
+
+Y3
+
+g23
+g32
+
+I. I NTRODUCTION
+
+X3
+g31
+
+The interference channel is one of the canonical models in
+network information theory, and has withstood all attempts to
+Figure 1. Three-pair interference channel under consideration.
+solve it in general. In recent years, signiﬁcant progress has been
+made for the case with two sender–receiver pairs. The best
+known achievable rate region is achieved by the Han–Kobayashi X1
+g11 X11
+f1
+Y1
+coding scheme [1], for which a compact formulation was given
+in [2]. Much less is known in the case with more than two user X
+g21 X21
+2
+S
+pairs. Major lines of work exist in the areas of interference
+h1 1 p(s1 |s1 )
+S1
+g31 X31
+X3
+alignment [3, 4], and deterministic models as pioneered in [5,
+6]. The key idea in the latter is to ﬁrst investigate a simpliﬁed
+interference channel that does not contain noise, and then Figure 2. Channel under consideration, as seen by the ﬁrst receiver.
+proceed to transfer the insight to more practically relevant
+channels with noise.
+In this paper, we apply this idea to the three-user-pair to H(X11 ) = H(Y1 | S1 ) and H(S1 ) = H(Y1 | X11 ) for every
+deterministic interference channel (3-DIC) ﬁrst introduced pmf p(x11 , s1 ). An example of a function that is injective in
+in [7]. We consider the noisy version of the 3-DIC depicted each argument (but not injective) is regular addition. Deviating
+in Figures 1 and 2. The channel consists of three sender– from the deterministic nature of the 3-DIC, we introduce noise
+receiver alphabet pairs (Xl , Yl ), loss functions glk that model between the two combining stages. It acts on the combined
+the links between each sender and receiver, and a conditional interference signal Sl and is characterized by the discrete
+probability mass function (pmf) at each receiver that maps memoryless channel p(sl |sl ). (Note that setting Sl = Sl for
+the three impinging signals into the receiver observation Yl , all l recovers the 3-DIC setting.)
+for indices k, l ∈ {1:3}. The pmfs have the special structure
+Each sender l wishes to convey an independent message
+depicted in Figure 2 for the ﬁrst receiver. They consist of two Ml at rate Rl to its corresponding receiver. We deﬁne a
+deterministic stages, namely an interference combining function (2nR1 , 2nR2 , 2nR3 , n) code, probability of error, achievability
+hl and a receiver function fl . We assume that the functions of a rate triple (R1 , R2 , R3 ), and the capacity region in the
+hl and fl are injective in each argument, that is, they become standard way (see [8]). The capacity region is not known, but
+one-to-one when either one of their arguments is ﬁxed. For in this paper, we make progress towards characterizing it.
+example, for Y1 = f1 (X11 , S1 ), this assumption is equivalent
+The channel model under consideration is interesting since
+it contains the Gaussian interference channel as a special
+This research was supported in part by the Korea Communications Commission case. Characterizing its capacity region thus has immediate
+under the R&D program KCA-2012-11-921-04-001 (ETRI).
+consequences for practical wireless communications systems
+
+1
+
+where simultaneous transmissions use the same radio spectrum. In (7), symbols like r1i , c1i , and t1i are placeholders for the
+Moreover, we follow along the footsteps of previous work terms speciﬁed in Tables 1, 2, and 3, respectively. For example,
+in the case with two user pairs. The capacity region of the for i = 3, j = 3, and k = 2, condition (7) becomes
+two-pair version of 3-DIC was found in [9]. A modiﬁcation of
+˜
+R13 + R11 + min I(S1 ; S1 | U3 , Q),
+this channel in which noise affects the interfering signal was
+R20 + I(S1 ; S1 | U2 , U3 , Q),
+studied in [10]. The authors establish inner and outer bounds
+to the capacity region which differ only by a constant gap,
+˜
+R20 + R21 + I(S1 ; S1 | X2 , U3 , Q),
+akin to the Gaussian case studied in [11].
+˜
+R31 + I(S1 ; S1 | X3 , Q),
+Thus we are motivated to generalize the results for the
+˜
+R20 + R31 + I(S1 ; S1 | U2 , X3 , Q),
+3-DIC to its own noisy cousin. Let us brieﬂy review the 3˜
+˜
+DIC results. The best known achievable rate region is given
+R20 + R21 + R31
+in [12]. The underlying scheme combines insights from the
+≤ I(X1 , X2 , X3 ; Y1 | U1 , X12 , U3 , Q)
+transmitter-centric view of communication with disturbance
++ I(X12 ; X13 | U1 , Q).
+(8)
+constraints [13] and the receiver-centric view of interference
+decoding [14]. All results of [12]–[14] are also contained and
+Similarly, deﬁne the regions R2 (p) and R3 (p) by making the
+discussed in detail in [15].
+subscript replacements 1 → 2 → 3 → 1 and 1 → 3 → 2 → 1
+We extend the achievable rate region in [12] to the channel
+in the deﬁnition of R1 (p), respectively.
+under consideration. It turns out that the key properties of
+Deﬁne a Fourier–Motzkin elimination operator FM that maps
+3-DIC are preserved and allow us to apply the same coding
+a convex 18-dimensional set of rate vectors of the form (1) to a
+scheme, which consists of rate splitting, Marton coding, and
+3
+3-dimensional region by letting Rl = ν=0 Rlν , for l ∈ {1:3},
+superposition coding. The analysis of the probability of error is
+and projecting on the coordinates (R1 , R2 , R3 ). Let S denote
+more involved than in the deterministic case due to the noise.
+the convex hull of S .
+The resulting inner bound to the capacity region includes
+We are now ready to state the main result as follows.
+all previous results for the 3-DIC. It simpliﬁes to the Han–
+Kobayashi inner bound when one of the three user pairs is not Theorem 1 (Achievable rate region). The region
+present. Finally, unlike the interference decoding inner bound
+for the 3-DIC with noisy observations [14], the present bound
+R = FM
+R1 (p) ∩ R2 (p) ∩ R3 (p) ,
+is larger than the one that results from using point-to-point
+p
+random codes and treating interference as noise.
+where p = p(q) p(u1 , x1 |q) p(u2 , x2 |q) p(u3 , x3 |q), is achievable in the interference channel under consideration.
+II. ACHIEVABLE RATE REGION
+The regions R1 (p), R2 (p), and R3 (p) in the theorem
+represent decodability conditions at the ﬁrst, second, and third
+
+In order to state the inner bound to the capacity region of the
+channel under consideration, we need the following deﬁnitions.
+Fix a joint pmf for (Q, U1 , X1 , U2 , X2 , U3 , X3 ) of the form
+p = p(q) p(u1 , x1 |q) p(u2 , x2 |q) p(u3 , x3 |q).
+
+i
+
+˜
+˜
+R20 , R22 , R23 , R21 , R23 , R21 ,
+˜
+˜
+R30 , R33 , R31 , R32 , R31 , R32 )
+that satisfy
+˜
+˜
+R12 − R12 + R13 − R13 ≥ I(X12 ; X13 | U1 , Q),
+˜
+˜
+R12 − R12 + (R13 − R13 )/2 ≤ I(X12 ; X13 | U1 , Q),
+
+(1)
+
+r1i
+
+c1i
+
+t1i
+
+1
+2
+3
+4
+5
+
+Deﬁne the rate region R1 (p) ⊂ R18 to consist of the rate
++
+tuples
+˜
+˜
+(R10 , R11 , R12 , R13 , R12 , R13 ,
+
+R11
+˜
+R12 + R11
+˜
+R13 + R11
+˜
+˜
+R12 + R13 + R11
+˜ 12 + R13 + R11
+˜
+R10 + R
+
+{U1 , X12 , X13 }
+{U1 , X13 }
+{U1 , X12 }
+{U1 }
+∅
+
+0
+I1
+I1
+I1
+I1
+
+Table 1. Shorthand notation for terms related to transmitter 1. The
+term I1 stands for I(X12 ; X13 | U1 , Q).
+
+(2)
+(3)
+
+j
+
+(6)
+
+and
+∀i ∈ {1:5}, j ∈ {1:3}, k ∈ {1:3} : ∃j , k :
+r1i + r21j + r31k + I(S1 ; S1 | c21j , c31k , Q)
+≤ I(X1 , X2 , X3 ; Y1 | c1i , c21j , c31k , Q) + t1i . (7)
+
+Table 2.
+
+2
+
+r21j
+
+c21j
+
+{X2 }
+
+1
+
+0
+
+{X2 }
+
+2
+
+(5)
+
+j
+
+1
+
+(4)
+
+c21j
+{U2 }
+
+1
+2
+
+0
+˜
+R21
+
+{U2 }
+{X2 }
+
+3
+
+˜
+˜
+(R12 − R12 )/2 + R13 − R13 ≤ I(X12 ; X13 | U1 , Q),
+˜
+R12 ≥ R12 ,
+˜
+R13 ≥ R13 ,
+
+∅
+
+1
+2
+3
+
+0
+R20
+˜
+R20 + R21
+
+∅
+{U2 }
+{X2 }
+
+Shorthand notation for terms related to transmitter 2.
+
+k
+
+k
+
+r31k
+
+{X3 }
+
+1
+
+0
+
+{X3 }
+
+2
+
+{U3 }
+
+1
+2
+
+0
+˜
+R31
+
+{U3 }
+{X3 }
+
+3
+
+∅
+
+1
+2
+3
+
+0
+R30
+˜
+R30 + R31
+
+(l12 , l13 ) ∈ S(m10 , m12 , m13 ). Otherwise, generate it
+n
+according to Unif(X1 ).
+5) Draw a random pair uniformly from S(m10 , m12 , m13 )
+(m ,m ,m )
+(m ,m ,m )
+and denote it as (l12 10 12 13 , l13 10 12 13 ). If
+S(m10 , m12 , m13 ) is empty, use (1, 1) instead.
+Codebooks for the second and third transmitter are generated
+analogously by applying the subscript replacements 1 → 2 →
+3 → 1 and 1 → 3 → 2 → 1 in each step of the procedure.
+
+c31k
+
+1
+
+Table 3.
+
+c31k
+
+∅
+{U3 }
+{X3 }
+
+Encoding: To send message m1 = (m10 , m12 , m13 , m11 ),
+(m ,m ,m ) (m ,m ,m )
+transmit xn (m10 , l12 10 12 13 , l13 10 12 13 , m11 ).
+1
+
+Shorthand notation for terms related to transmitter 3.
+
+Decoding: The receivers use simultaneous non-unique decodn
+ing [8]. The ﬁrst receiver observes y1 . Deﬁne the tuple
+
+receiver, correspondingly. The regions and their intersection
+are generally nonconvex. By the time-sharing argument, we
+are allowed to convexify, as shown in the theorem. This convex
+hull operation is nontrivial even for a ﬁxed pmf p, and therefore,
+it is not automatically achieved by including Q. Due to the
+explicit convex hull operation, the Fourier–Motzkin reduction
+FM cannot be evaluated symbolically.
+
+T (m10 , m12 , m13 , m11 , m20 , l21 , m30 , l31 )
+(m
+
+= un (m10 ), xn (m10 , l12 10
+1
+12
+(m
+
+xn (m10 , l13 10
+13
+
+,m12 ,m13 )
+
+,m12 ,m13 )
+
+),
+
+),
+
+(m ,m ,m ) (m ,m ,m )
+xn (m10 , l12 10 12 13 , l13 10 12 13 , m11 ),
+1
+un (m20 ), xn (m20 , l21 ), un (m30 ), xn (m30 , l31 ),
+2
+21
+3
+31
+
+A. Coding scheme
+
+n
+sn (m20 , l21 , m30 , l31 ), y1 .
+1
+
+We outline the coding scheme that attains the inner bound of
+Theorem 1. To simplify the notation, we omit the time-sharing
+auxiliary random variable Q throughout this section.
+
+Declare that m1 = (m10 , m12 , m13 , m11 ) has been sent if it
+ˆ
+ˆ
+ˆ
+ˆ
+ˆ
+is the unique message such that
+
+Codebook generation and encoding: The transmitter codebooks
+T (m10 , m12 , m13 , m11 , m20 , ˚ , m30 , ˚ )
+ˆ
+ˆ
+ˆ
+ˆ
+˚ l21 ˚ l31
+are generated as in [12], inspired by communication with
+(n)
+∈ Tε (U1 , X12 , X13 , X1 , U2 , X21 , U3 , X31 , S1 , Y1 )
+disturbance constraints [13]. The intuition is that the interference channel under consideration is sufﬁciently deterministic
+for some m20 , ˚ , m30 , ˚ .
+˚ l21 ˚ l31
+in nature such that the results from the deterministic case
+of communication with disturbance constraints still apply. Analysis of error probability: Each triple (i, j, k) in (7)
+In particular, disturbance is measured before the combining corresponds to a certain error event, the probability of which
+must asymptotically vanish. This can be ensured by any one
+functions hl , and thus before the noise appears.
+Fix a pmf p(u1 , x1 ) p(u2 , x2 ) p(u3 , x3 ). Consider the ﬁrst of several conditions, indexed by j and k . The details are
+transmitter. Split the rate as R1 = R10 + R11 + R12 + R13 , deferred to the appendix.
+˜
+˜
+and deﬁne the auxiliary rates R12 ≥ R12 and R13 ≥ R13 . Let B. Discussion
+ε > 0, and deﬁne the set partitions
+Different (j , k ) in (7) correspond to various ways of inter˜
+ference signal saturation, as ﬁrst discussed in [14]. Saturation
+{1:2nR12 } = L12 (1) ∪ · · · ∪ L12 (2nR12 ),
+takes place when the total number of interfering codewords
+˜
+{1:2nR13 } = L13 (1) ∪ · · · ∪ L13 (2nR13 ),
+exceeds the number of distinguishable sequences, and thus
+˜
+it is not possible to decode the interfering messages. This is
+n(R12 −R12 )
+where L12 (·) and L13 (·) are indexed sets of size 2
+˜
+illustrated by the example in (8). Let us compare the ﬁrst and
+n(R13 −R13 )
+and 2
+, respectively.
+the last terms in the min expression, i.e.,
+1) For each m10 ∈ {1:2nR10 }, generate un (m10 ) according
+1
+n
+˜
+˜
+I(S1 ; S1 | U3 , Q)
+and
+R20 + R21 + R31 .
+to
+p(u ).
+i=1
+
+1i
+
+˜
+
+2) For each l12 ∈ {1 : 2nR12 }, generate xn (m10 , l12 )
+12
+n
+according to i=1 p(x12i | u1i (m10 )). Likewise, for each
+˜
+l13 ∈ {1 : 2nR13 }, generate a sequence xn (m10 , l13 )
+13
+n
+according to i=1 p(x13i | u1i (m10 )).
+3) For each triple (m10 , m12 , m13 ), let S(m10 , m12 , m13 )
+be the set of all pairs (l12 , l13 ) from the product
+set L12 (m12 ) × L13 (m13 ) such that (xn (m10 , l12 ),
+12
+(n)
+xn (m10 , l13 )) ∈ Tε (X12 , Z13 | un (m10 )).
+13
+1
+4) For each (m10 , l12 , l13 ) and m11 ∈ {1 : 2nR11 },
+generate a sequence xn (m10 , l12 , l13 , m11 ) accord1
+n
+ing to
+i=1 p(x1i | u1i (m10 ), x12i (l12 ), x13i (l13 )), if
+
+In the noiseless case, S1 equals S1 , and the ﬁrst term becomes
+H(S1 | U3 , Q). In logarithmic scale, this is the size of the set
+of typical interfering sequences that can appear under the error
+event in question (i = 3, j = 3, k = 2). Saturation occurs
+˜
+˜
+if the interfering rate R20 + R21 + R31 exceeds this quantity,
+and thus increasing the rates does not further increase the set
+of observed interference sequences. On the other hand, when
+noise is present, we have
+I(S1 ; S1 | U3 , Q) = H(S1 | U3 , Q) − H(S1 | U3 , S1 , Q)
+≤ H(S1 | U3 , Q),
+
+3
+
+Among these, j = k = 3 is most stringent, leading to
+
+which implies that saturation starts to occur at lower rates
+than in the noiseless case. Loosely speaking, each interfering
+sequence takes up more of the observed signal space due
+to channel noise. Along similar lines, the remaining terms
+in the min expression in (8) correspond to other modes of
+(partial) saturation. Thus, we can interpret the choice of (j , k )
+in condition (7) as switching between different regimes of
+saturation, and treating the saturated sequences as i.i.d. noise as
+appropriate. Keep in mind, however, that the entire inner bound
+is achieved by the same simultaneous non-unique typicality
+decoder. The distinction of saturation regimes appears only
+through different ways of analyzing the error probability of
+the same decoding rule.
+It is interesting to note that Theorem 1 contains the following
+three special cases.
+
+R1 ≤ I(X1 ; Y1 | Q),
+which is the rate achievable by using point-to-point (nonlayered) random codes and treating interference as noise. The
+same inclusion does not hold in the case of the interference
+decoding inner bound for the 3-DIC with noisy observations
+studied in [14], where the noise in the channel acts on Yl
+instead of Sl . In that case, the saturation effects are exploited
+without taking the noise into account, which leads to an
+artiﬁcial separation between the channel noise and the combined
+interference even if the latter is to be treated as noise. In
+the present case, however, since the noise directly affects the
+combined interference signal Sl , saturation and noise can be
+treated jointly as discussed above, and the inefﬁciency of
+artiﬁcially separating them is avoided.
+
+1) 3-DIC inner bound: It is not hard to see that Theorem 1
+subsumes previously known results for the 3-DIC case where
+Sl = Sl for all l. The inequalities in (7) for a given triple
+(i, j, k) are implied by the conditions in [12, Corollary 1].
+In fact, Theorem 1 slightly improves upon the results in the
+deterministic case: For example, comparing the min terms
+in [12, equation (19)] with those in (8) reveals that terms
+such as H(X21 | U2 , Q) + H(X31 | U3 , Q) can be replaced by
+H(S1 | U2 , U3 , Q). The improvement comes from the reﬁned
+proof technique in the appendix.
+
+3) Han–Kobayashi inner bound: Finally, when one of the
+three user pairs is not present, say, the third one (X13 =
+X23 = X3 = ∅), Theorem 1 recovers the Han–Kobayashi inner
+bound for the interference channel that consists of the ﬁrst and
+˜
+˜
+second user pair. To see this, let R12 = R12 , R13 = R13 = 0,
+and R11 = 0. The encoding scheme then degenerates to a
+superposition code with coarse layer according to U1 and
+ﬁne layer according to X1 , and component rates R10 and
+R12 , respectively, and likewise at the second transmitter. The
+receivers in the general scheme perform simultaneous nonunique decoding and will thus act correctly even when the
+codebook structure simpliﬁes to superposition codes.
+
+2) Point-to-point codes with treating interference as noise:
+Inspecting (7), note that
+I(X1 , X2 , X3 ; Y1 | c1i , c21j , c31k , Q)
+
+III. ACKNOWLEDGMENT
+
+− I(S1 ; S1 | c21j , c31k , Q)
+
+The author is grateful to Professors Abbas El Gamal and
+Young-Han Kim for helpful discussions about the material
+presented in this paper.
+
+= H(Y1 | c1i , c21j , c31k , Q)
+− H(Y1 | X1 , X2 , X3 , c1i , c21j , c31k , Q)
+H(S1 | S1 ,Q)
+
+− H(S1 | c21j , c31k , Q) + H(S1 | S1 , c21j , c31k , Q)
+H(Y1 | X1 ,c1i ,c21j ,c31k ,Q)
+
+R EFERENCES
+[1] T. S. Han and K. Kobayashi, “A new achievable rate region
+for the interference channel,” IEEE Trans. Inf. Theory, vol. 27,
+no. 1, pp. 49–60, Jan. 1981.
+[2] H.-F. Chong, M. Motani, H. K. Garg, and H. El Gamal, “On
+the Han-Kobayashi region for the interference channel,” IEEE
+Trans. Inf. Theory, vol. 54, no. 7, pp. 3188–3195, Jul. 2008.
+[3] M. A. Maddah-Ali, A. S. Motahari, and A. K. Khandani,
+“Communication over MIMO X channels: Interference alignment,
+decomposition, and performance analysis,” IEEE Trans. Inf.
+Theory, vol. 54, no. 8, pp. 3457–3470, Aug. 2008.
+[4] V. R. Cadambe and S. A. Jafar, “Interference alignment and
+degrees of freedom of the K-user interference channel,” IEEE
+Trans. Inf. Theory, vol. 54, no. 8, pp. 3425–3441, Aug. 2008.
+[5] A. S. Avestimehr, S. N. Diggavi, and D. N. C. Tse, “A deterministic approach to wireless relay networks,” Sep. 2007, presented
+at the 45th Annual Allerton Conference on Communication,
+Control, and Computing (Monticello, IL), arXiv:0710.3777.
+[6] ——, “Wireless network information ﬂow: A deterministic
+approach,” IEEE Trans. Inf. Theory, vol. 57, no. 4, pp. 1872–
+1905, Apr. 2011.
+[7] B. Bandemer and A. El Gamal, “Interference decoding for
+deterministic channels,” in Proceedings of ISIT 2010, Austin,
+TX, Jun. 2010.
+
+H(S1 | S1 ,Q)
+
+= I(X1 , c21j , c31k ; Y1 | c1i , c21j , c31k , Q),
+where the last step relies on the Markov chains c21j −c21j −Y1
+and c31k − c31k − Y1 . Therefore, an equivalent way to write
+condition (7) is
+∀i ∈ {1:5}, j ∈ {1:3}, k ∈ {1:3} : ∃j , k :
+r1i + r21j + r31k
+≤ I(X1 , c21j , c31k ; Y1 | c1i , c21j , c31k , Q) + t1i . (9)
+This implies that Theorem 1 includes the achievable rate
+region attained by point-to-point random codes and treating
+interference as noise. To see this, set Ul = Xl , let R12 =
+˜
+˜
+R12 = R13 = R13 = R11 = 0 and R10 = R1 , and likewise
+for the other transmitters. Only the cases with i = 5 remain,
+and we choose j = k = 1. Then condition (9) is implied by
+∀j ∈ {1:3}, k ∈ {1:3} :
+
+R1 ≤ I(X1 ; Y1 , c21j , c31k | Q).
+
+4
+
+(n)
+
+n
+where (un , xn , un , un , y1 ) ∈ Tε
+1
+12
+2
+3
+
+[8] A. El Gamal and Y.-H. Kim, Network Information Theory.
+Cambridge University Press, 2011.
+[9] A. A. El Gamal and M. H. M. Costa, “The capacity region of a
+class of deterministic interference channels,” IEEE Trans. Inf.
+Theory, vol. 28, no. 2, pp. 343–346, Mar. 1982.
+[10] E. Telatar and D. Tse, “Bounds on the capacity region of a class
+of interference channels,” in Proceedings of ISIT 2007, Nice,
+France, Jun. 2007.
+[11] R. H. Etkin, D. N. C. Tse, and H. Wang, “Gaussian interference
+channel capacity to within one bit,” IEEE Trans. Inf. Theory,
+vol. 54, no. 12, pp. 5534–5562, Dec. 2008.
+[12] B. Bandemer and A. El Gamal, “An achievable rate region for the
+3-user-pair deterministic interference channel,” in Proceedings of
+the 49th Annual Allerton Conference on Communication, Control,
+and Computing, Monticello, IL, Sep. 2011, invited paper.
+[13] ——, “Communication with disturbance constraints,” IEEE
+Trans. Inf. Theory, Nov. 2011, submitted for publication,
+arXiv:1103.0996.
+[14] ——, “Interference decoding for deterministic channels,” IEEE
+Trans. Inf. Theory, vol. 57, no. 5, pp. 2966–2975, May 2011,
+arXiv:1001.4588.
+[15] B. Bandemer, “Coding schemes for deterministic interference
+channels,” Ph.D. dissertation, Stanford University, 2011.
+[Online]. Available: http://purl.stanford.edu/sy560th1179
+
+P2 ≤ P
+
+. We bound P2 as follows.
+
+(1,1,1)
+n
+n
+(un , xn , X13 (1, l13 ), X1 (1, L12
+, l13 , m11 ),
+1
+12
+n
+n n
+(n)
+c
+n
+n
+n
+n
+u2 , u3 , y1 ) ∈ Tε
+Ee , u1 , x12 , u2 , un , y1 ,
+3
+
+where the probability is increased by omitting parts of the
+typicality requirement. This step replaces the application of
+Corollary A.2 in [15] and simpliﬁes the proof. It also leads to
+the slight improvement in the deterministic case as discussed
+above. The following steps are fairly conventional.
+P2 ≤
+
+n
+P X13 (1, l13 ) = xn ,
+13
+
+(n)
+(xn ,xn )∈Tε (X13 ,
+13 1
+n
+X1 | un ,xn ,un ,un ,y1 )
+1
+12
+2
+3
+
+≤
+
+(1,1,1)
+
+n
+X1 (1, L12
+
+, l13 , m11 ) = xn
+1
+
+c
+n
+Ee , un , xn , un , un , y1
+1
+12
+2
+3
+
+n
+n
+P{X13 (1, l13 ) = xn | U1 (1) = un }
+13
+1
+
+(n)
+(xn ,xn )∈Tε (X13 ,
+13 1
+n
+X1 | un ,xn ,un ,un ,y1 )
+1
+12
+2
+3
+
+(1,1,1)
+
+n
+P{X1 (1, L12
+
+, l13 , m11 ) = xn |
+1
+
+un , xn , xn }
+1
+12
+13
+
+≤ 2n(H(X13 ,X1 | U1 ,X12 ,U2 ,U3 ,Y1 )
+· 2n(−H(X13 | U1 )−H(X1 | U1 ,X12 ,X13 )) .
+Substituting back into (11), we have
+˜
+
+c
+P(E ∩ Eeq | Ee ) ≤ 2n(R13 +R11 +R20 )
+
+A PPENDIX
+
+· 2n(H(U2 |U1 ,X12 ,U3 ,Y1 )−H(U2 ))
+
+E RROR PROBABILITY ANALYSIS
+
+· 2n(H(X13 ,X1 | U1 ,X12 ,U2 ,U3 ,Y1 )
+
+The analysis proceeds analogously to [12] (and more
+completely, [15]). In particular, conditions (2) to (6) arise from
+analyzing the error events related to codebook generation. As
+an example for an error event arising at the decoder, consider
+E=
+
+· 2n(−H(X13 | U1 )−H(X1 | U1 ,X12 ,X13 ))
+˜
+
+= 2n(R13 +R11 +R20 )
+· 2n(−I(X12 ;X13 | U1 )−H(Y1 | U1 ,X12 ,U3 ))
+
+(1,1,m )
+n
+n
+n
+U1 (1), X12 (1, L12 13 ), X13 (1, l13 ),
+(1,1,m )
+n
+X1 (1, L12 13 , l13 , m11 ),
+n
+n
+n
+n
+U2 (m20 ), X21 (m20 , l21 ), U3 (1), X31 (1, l31 ),
+n
+S1 (m20 , l21 , 1, l31 ), Y1n ∈ Tε(n)
+
+· 2nH(S1 | U2 ,U3 ) ,
+which tends to zero as n → ∞ if
+˜
+R13 + R11 + R20 + H(S1 | U2 , U3 )
+< H(Y1 | U1 , X12 , U3 ) + I(X12 ; X13 | U1 ).
+
+for some m13 = 1, l13 ∈ L13 (1), m11 ,
+/
+(1,1,1)
+
+m20 = 1, l21 , l31 = L31
+
+.
+
+Noting that
+(10)
+
+H(S1 | U2 , U3 , S1 ) = H(S1 | S1 ),
+
+As a representative special case, we show that the condition
+indexed by i = 3, j = 3, and k = 2 in Theorem 1 as
+detailed in (8) implies that the probability of this event vanishes
+asymptotically. In particular, we are going to show the case
+j = 2, k = 1, i.e., we prove that convergence is a consequence
+of the second min term in (8). Using the union bound as in [15,
+Section 5.2.2], the relevant probability satisﬁes
+
+H(Y1 | U1 , X12 , U3 , X1 , X2 , X3 ) = H(S1 | S1 ),
+
+P(E
+
+c
+∩ Eeq | Ee )
+˜
+n(R13 +R11 +R20 +H(U2 |U1 ,X12 ,U3 ,Y1 )−H(U2 ))
+
+≤2
+
+and subtracting this term from both sides of the last inequality
+leads to
+˜
+R13 + R11 + R20 + I(S1 ; S1 | U2 , U3 )
+< I(X1 , X2 , X3 ; Y1 | U1 , X12 , U3 ) + I(X12 ; X13 | U1 ),
+which is the second line in (8).
+When transitioning from (10) to (11), the union bound was
+applied to the indices m11 , l13 and m20 , while the indices
+l21 and l31 where handled later by omitting terms from the
+typicality requirement. The latter omission is the technical
+reason for the saturation effects. By varying which subset of
+indices {m20 , l21 , l31 } is treated by the union bound, we can
+obtain the remaining lines in (8), corresponding to other modes
+of saturation. In all cases, the indices m11 and l13 are treated
+by the union bound, since they correspond to the intended
+message and thus saturation is not desirable.
+
+P2 , (11)
+
+c
+where Ee denotes that no encoding error has occurred (ensured
+by conditions (2) to (6)), Eeq is deﬁned as in [15], and
+(1,1,1)
+
+n
+n
+P2 = P (un , xn , X13 (1, l13 ), X1 (1, L12
+1
+12
+
+, l13 , m11 ),
+n
+n
+n
+n
+n
+u2 , X21 (m20 , l21 ), u3 , X31 (1, l31 ), y1 ) ∈ Tε(n)
+(1,1,1)
+c
+n
+for some l21 , l31 = L31
+Ee , un , xn , un , un , y1
+1
+12
+2
+3
+
+,
+
+5
+
+

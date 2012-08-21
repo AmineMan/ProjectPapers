@@ -1,0 +1,764 @@
+Creator:        TeX
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Sat May 19 10:21:41 2012
+ModDate:        Tue Jun 19 12:54:56 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      381954 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569564861
+
+Access vs. Bandwidth in Codes for Storage
+Itzhak Tamo∗ † , Zhiying Wang∗ and Jehoshua Bruck∗
+∗ Electrical Engineering Department, California Institute of Technology, Pasadena, CA 91125, USA
+† Electrical
+
+and Computer Engineering, Ben-Gurion University of the Negev, Beer Sheva 84105, Israel
+{tamo, zhiying, bruck}@caltech.edu
+N1
+a
+w
+
+Abstract—Maximum distance separable (MDS) codes are
+widely used in storage systems to protect against disks (nodes)
+failures. An (n, k, l ) MDS code uses n nodes of capacity l to
+store k information nodes. The MDS property guarantees the
+resiliency to any n − k node failures. An optimal bandwidth
+(resp. optimal access) MDS code communicates (resp. accesses)
+the minimum amount of data during the recovery process of
+a single failed node. It was shown that this amount equals a
+fraction of 1/(n − k) of data stored in each node. In previous
+optimal bandwidth constructions, l scaled polynomially with k
+in codes with asymptotic rate < 1. Moreover, in constructions
+with constant number of parities, i.e. rate approaches 1, l scaled
+exponentially w.r.t. k. In this paper we focus on the practical case
+of n − k = 2, and ask the following question: Given the capacity
+of a node l what is the largest (w.r.t. k) optimal bandwidth (resp.
+access) (k + 2, k, l ) MDS code. We give an upper bound for the
+general case, and two tight bounds in the special cases of two
+important families of codes.
+
+N2
+b
+x
+
+N3
+c
+y
+
+N4
+d
+z
+
+Parity 1
+a+b+c+d
+w+x+y+z
+
+Parity 2
+a+5w+b+2c+5d
+3w+2b+3x+4y+5z
+
+Figure 1. (6, 4, 2) MDS code with optimal bandwidth over the ﬁeld F7 .
+Nodes N1, N2, N3, N4 are systematic and the last 2 nodes are parity nodes.
+For recovering node N1, (resp. N2) transmit the ﬁrst (second) row from each
+surviving node. For recovering node N3 transmit from each surviving node
+the sum of its two elements . For recovering node N4 transmit the sum of
+the ﬁrst row and twice the second row from Parity 2, and the sum of the ﬁrst
+row and four times the second row from the rest.
+
+where n is the number of nodes, each of capacity l = M .
+k
+The ﬁrst k nodes referred as the systematic nodes, store the
+raw information. The later r = n − k nodes are the parity
+nodes who store a function of the raw information. Since the
+code is MDS it can tolerate any loss of up to r nodes. However,
+the more common scenario is the failure (erasure) of only one
+node. [4] proved that
+n−1
+l·
+,
+(1)
+n−k
+
+I. I NTRODUCTION
+Erasure-correcting codes are the basis for widely used
+storage systems, where disks (nodes) correspond to symbols
+in the code. An important family of codes is the Maximum
+distance separable (MDS) codes, which provide an optimal
+resiliency to erasures for a given amount of redundancy.
+Namely, an MDS code with r redundancy (parity) symbols can
+recover the information from any r symbol erasures. Because
+of this storage efﬁciency, MDS codes are highly favorable,
+and a lot research has been done to construct them. Examples
+of MDS codes are the well known Reed Solomon codes and
+EVENODD. It is evident that in the case of r erasures, one
+needs to communicate the entire surviving information during
+the recovery process. However, although the MDS codes
+used in practice, are resilient to more than a single erasure,
+i.e. number of parity nodes r > 1, the practical and more
+interesting question is; what is the minimum repair bandwidth
+in a single node erasure. The repair bandwidth is deﬁned as
+the amount of information communicated during the recovery
+process. This question has received much interest recently
+due to both its practical and theoretical importance. From a
+practical point of view, decreasing the repair bandwidth makes
+both the recovery process, and the inaccessibility time of the
+erased information, shorter. Moreover, from the theoretical
+perspective this question has deep connections to the widely
+used interference alignment technique and network coding.
+
+is a lower bound on the repair bandwidth for an (n, k, l )
+MDS code. In particular, for a code with r = 2 parities,
+l
+the repair bandwidth for each surviving node is 2 , i.e. at
+least one half of its information needs to be communicated.
+Note that recovery is possible since the code is resilient to
+more than one erasure, and a repair strategy of communicating
+the entire remaining information sufﬁces. An MDS code is
+termed optimal bandwidth if it achieves the lower bound
+in (1) during the recovery process of all of its systematic
+nodes1 . Figure 1 shows an optimal bandwidth (6, 4, 2) MDS
+code. For recovering an erased node, one bit of information
+is transmitted to the repair center from each surviving node.
+In some applications such as data centers, reading (accessing)
+the information is more costly than transmitting it. Therefore
+during a recovery process, the need to transmit data that is a
+function of a large portion of the information stored within a
+node, can cause a bottleneck. E.g., node N1 needs to access
+its entire stored information, for it to calculate a + w, during
+the recovery process of node N3. Therefore, in a large scale
+storage systems, one might need to minimize not only the
+amount of information transmitted, but also the number of
+accessed information elements. An optimal access MDS code
+
+A. The Problem
+
+1 The relaxed requirement of optimal recovery only for the systematic nodes
+is reasonable, because in most storage systems the number of parity nodes
+is negligible compared to systematic nodes. Moreover, in an erasure of a
+systematic node, the raw information is not accessible, as opposed to a parity
+node erasure.
+
+The problem of efﬁcient recovery was deﬁned by Dimakis
+et. al. in [4]. It considers a ﬁle of size M divided into k
+equally sized chunks stored using an (n, k, l ) MDS code,
+
+1
+
+is an optimal bandwidth code that transmits only the elements
+it accesses. By deﬁnition, any optimal access code is also
+an optimal bandwidth code. The shortened code restricted to
+nodes { N1 , N2 , Parity 1, Parity 2} in Figure 1 is an example
+of an optimal access (4, 2, 2) MDS code.
+In a value’s update of a stored element, one needs to
+update each parity node at least once. To avoid an overload
+on the system during a frequent operation such as updating,
+one needs to design an optimal update code, that updates
+exactly once in each parity node, when an element changes its
+value. E.g. in Figure 1 the shortened code restricted to nodes
+{ N3 , N4 , Parity 1, Parity 2} is an optimal update and optimal
+bandwidth (4, 2, 2) MDS code, because, updating any of the
+elements c, d, y, z will require updating exactly one element in
+each of the parity nodes.
+Various codes [4], [7]–[9], [11], [15]–[17] were constructed
+with the goal to have optimal bandwidth, however these
+constructions all have low rate, i.e., k/n ≤ 1/2. In [9],
+[11], [17] the key idea was using vector coding. Namely,
+each symbol in a codeword is a vector and not scalar as in
+“standard” codes. Speciﬁcally [9], [11] constructed optimal
+bandwidth (2k, k, k) MDS codes. Using interference alignment
+it was shown in [3] that the bound in (1) is asymptotically
+achievable also for high rate codes (k/n ≥ 1/2) . The question
+of existence of optimal bandwidth codes with high rate, was
+resolved in several constructions [1], [2], [5], [6], [12], [13],
+[18]. The constructions have an arbitrary number of parity
+nodes r, however when r is constant, i.e. rate approaching 1
+in all of the constructions k = O(logr l ), i.e., the capacity l
+scales exponentially with the number of systematic nodes k.
+Optimal update
+Non-Optimal update
+
+Optimal Bandwidth
+k = 1 + log l, ∗2 [12]
+l
+3 log l ≤ k ≤ l (l/2) + 1,∗
+
+codes are a part of an important family of codes with an
+optimal update property. The last result provides a tight bound
+on optimal access MDS codes. Table I summarizes the known
+results together with our new results. Due to space limitation
+we only consider the more practical case of r = 2 parities,
+although the results can be extended to an arbitrary r. Some
+of the proofs are also omitted and can be found in [14].
+C. Settings and Notation
+Consider a ﬁle of size M = kl, divided into k nodes of
+capacity l. Each systematic node 1 ≤ i ≤ k is represented
+by an l × 1 vector ai ∈ Flp over the ﬁeld F p . We construct
+an (k + 2, k, l ) MDS code by adding parity nodes k + 1 and
+k + 2, which will give the resiliency to node erasures. Parity
+node k + i for i ∈ {1, 2} stores the information vector ak+i
+of length l over F p , and is deﬁned as
+k
+
+k
+
+i =1
+
+a k +1 =
+
+i =1
+
+∑ Ai ai , and ak+2 = ∑ Bi ai .
+
+Where Ai , Bi are square matrices of order l, which are called
+the encoding matrices. Note that the code has a systematic
+structure, i.e., the ﬁrst k nodes store the information itself, and
+not a function of it. Therefore, the code is deﬁned uniquely
+by the matrix
+A1 A2 ... Ak
+.
+(2)
+B1 B2 ... Bk
+The code is called an MDS if it can recover from any 2 node
+erasures, which is equivalent to any 1 × 1 and 2 × 2 block
+sub matrix in (2) is invertible. In a scenario of an erasure
+of a systematic node i, 1 ≤ i ≤ k, a linear combination
+of the information stored in the parity nodes is transmitted
+in order to recover the lost data. Namely, the parity nodes
+k + 1, and k + 2, project their data on the recovering subspaces
+Si , Ti of dimension l/2, respectively. In other words, the
+transmitted information from parity nodes k + 1, k + 2 during
+the recovery process of systematic node i ∈ [k] is the
+projection Si ak+1 , Ti ak+2 respectively. where each subspace
+Si , Ti is represented by an l/2 × l matrix whose rows form
+a basis of the subspace. In general, each subspace will be
+represented by a matrix whose rows form a basis of the
+subspace. Recovering the lost information is possible if
+
+Optimal Access
+k = 1 + log l, [12]
+k = 2 log l, ∗ [1]
+
+TABLE I
+Summary of known results on maximum number of information nodes k
+in an (k + 2, k, l ) MDS code. indicates a tight bound, ∗ indicates a new
+upper bound. The references refer to previously known lower bounds.
+
+B. Our Contribution
+Our main goal in this paper is to understand the relation
+between l the capacity of each node, and the number of
+systematic nodes k. More precisely, given the capacity of the
+node l, what is the largest integer k, such that there exists an
+optimal bandwidth or optimal access (k + 2, k, l ) MDS code.
+We will derive three upper bounds on k as a function of only l,
+for different families of codes. To derive the bounds we use 3
+different combinatorial techniques. The ﬁrst bound considers
+the general problem, where no requirements on the MDS
+code are imposed except the optimal bandwidth property. The
+bound is derived by deﬁning an appropriate set of multivariate
+polynomials. We proceed by deriving a tight bound for optimal
+bandwidth MDS codes with diagonal encoding matrices. These
+
+rank
+
+Si A i
+Ti Bi
+
+= l.
+
+(3)
+
+Moreover, the recovery process is optimal bandwidth if for
+each j = i,
+l
+Si A j
+(4)
+rank
+= .
+Ti Bj
+2
+Similar conditions were derived in [9]. Therefore an optimal
+bandwidth algorithm for the systematic nodes is deﬁned by
+the pairs of recovering subspaces (Si , Ti ) that satisfy (3), (4)
+for 1 ≤ i ≤ k. For any integer k denote by [k] = {1, ..., k}.
+For simplicity we will assume that the capacity of each node
+l, is a power of 2, and all the logarithms are of base 2.
+
+2 The result we present considers a special case of optimal update code,
+where the encoding matrices are diagonal.
+
+2
+
+The remainder of the paper is organized as follows. Section
+II deﬁnes the subspace property for a set of matrices, and
+shows the equivalency of this property to optimal bandwidth
+codes. Section III provides an upper bound for the most general case, i.e., an MDS code with optimal bandwidth property.
+We proceed in Section IV where a tight bound is derived for
+codes with diagonal encoding matrices. In SectionV a tight
+bound for codes with optimal access property is derived. We
+conclude with a summary in Section VI .
+
+III. U PPER BOUND ON THE NUMBER OF NODES IN AN
+OPTIMAL BANDWIDTH MDS CODE
+We start with the most general problem which seems to
+be the hardest of them all. We impose no constraints on the
+encoding matrices and the recovering subspaces. We derive
+an upper bound on the number of information nodes k in an
+optimal bandwidth (k + 2, k, l ) MDS code. The bound is a
+function of only the capacity of the node l, regardless the
+ﬁeld size being used.
+Before we prove the upper bound, for a set of indexes of
+equal size I, J deﬁne det( B) I,J to be the determinant of the
+matrix of B restricted to rows I and columns J.
+
+II. T HE S UBSPACE P ROPERTY
+In this section we deﬁne the Subspace Property for a set
+of invertible matrices, and show its connection to optimal
+bandwidth MDS codes.
+Subspace Property: A set of invertible matrices C1 , ..., Ck
+of order l, is said to satisfy the subspace property, if there
+l
+exists a set of subspaces S1 , ..., Sk each of dimension 2 , such
+that for any 1 ≤ i, j ≤ k,
+Si C j ∩ Si =
+
+{0} i = j
+Si
+else,
+
+Theorem 3 Let C1 , ..., Ck be a set of matrices of order l over a
+ﬁeld F, together with a set of subspaces S1 , ..., Sk of dimension
+l
+2 each, such that the subspace property is satisﬁed, then
+k≤l
+
+Proof: Assume that each subspace i is represented by a
+l
+matrix Si of dimension 2 × l. For any 1 ≤ i ≤ k the matrix
+
+(5)
+
+where {0} is the zero subspace, and Si Cj is image of the action
+of the invertible matrix Cj on the l/2-dimensional subspace
+Si . We start with a theorem that shows we can assume w.l.o.g,
+that an optimal bandwidth MDS code, has a certain structure.
+Where a subset of the encoding matrices satisfy the subspace
+property.
+
+Si
+Si Ci
+
+...
+...
+
+I
+Ck−1
+
+I
+I
+
+,
+
+is of full rank, hence there exists a set of indexes I ⊂ [l ] of
+l
+l
+l
+size 2 + 1 such that the 2 + 1 × 2 + 1 sub matrix restricted
+l
+to the set of rows and columns, [ 2 + 1] and I respectively, is
+invertible. Namely,
+
+Theorem 1 There exists an optimal bandwidth (k + 2, k, l )
+MDS code iff there exists an optimal bandwidth MDS code with
+the same parameters and encoding matrices
+I
+C1
+
+l
+.
+l/2
+
+det
+
+Si
+Si Ci
+
+l
+[ 2 +1],I
+
+= 0.
+
+Moreover, since for any j = i,
+,
+
+(6)
+rank
+
+such that the matrices C1 , ..., Ck−1 , satisfy the subspace property. Moreover, from any set C1 , ..., Ck−1 of invertible matrices
+of order l that satisfy the subspace property, we can construct
+over a ﬁeld large enough, an optimal bandwidth, (m + 2, m, l )
+MDS code, where k − 1 ≤ m ≤ k.
+
+l
+= ,
+2
+
+Sj
+S j Ci
+
+the sub matrix restricted to the same set of rows and columns
+is not of full rank (note that for distinct i’s the set of indexes
+l
+I might be different). Hence, the polynomial f i : F 2 ×l → F,
+deﬁned by,
+S
+f i (S) = det
+,
+SCi [ l +1],I
+
+Proof: Proof is omitted.
+By the previous Theorem, we assume that any optimal
+bandwidth MDS code is of the form (6), with a set of matrices
+{Ci } that satisfy the subspace properties. Therefore, we recast
+the recovering problem into a problem on a set of matrices
+which satisfy this property.
+From the last Theorem we have the following Corollary.
+
+2
+
+satisﬁes,
+f i (S j ) =
+
+=0
+0
+
+i=j
+otherwise.
+
+Deﬁne two sets of polynomials
+
+
+x1,1 · · · x1,l
+. 
+ .
+..
+. 
+T1 = {det  .
+.
+.
+.
+x l ,1 · · · x l ,l
+
+Corollary 2 Let k be the largest integer such that there exists
+an optimal bandwidth, (k + 2, k, l ) MDS code. Let s be the size
+of the largest set of invertible matrices of order l that satisfy the
+subspace property, then s ≤ k ≤ s + 1.
+
+2
+
+2
+
+:J∈
+
+(7)
+
+[l ]
+l
+2
+
+},
+
+l
+[ 2 ],J
+
+[l ]
+and T2 = { x1,i : 1 ≤ i ≤ l }, where (l/2) is the set of l/2subsets of [l ]. Using (7) check that the polynomials { f i } are
+linearly independent, and they are spanned by the set
+
+Proof: Proof is omitted.
+Theorem 1 shows that constructing an optimal bandwidth
+MDS code with 2 parities is equivalent to ﬁnding a set of
+invertible matrices that satisfy the subspace property.
+
+T1 · T2 = {h · g : h ∈ T1 , g ∈ T2 },
+
+3
+
+l
+which is of size at most | T1 | · | T2 | = l (l/2). Therefore, k =
+l
+|{ f i }| ≤ l (l/2).
+
+It is clear that a vector v = 0 is an eigenvector for all
+the matrices Ci , i = j iff v ∈ span(ex ), for some set x in
+the partition X. Assume S is represented in its reduced row
+echelon form. Since S is an invariant subspace for Ci , i = j,
+it is clear that each row vector in S is an eigenvector for each
+of the matrices Ci , i = j. Hence for each row of S, the set of
+indices of the nonzero entries is contained in some set of the
+partition X. Therefore,
+
+Corollary 4 Let k be the largest integer, such that there exists
+an optimal bandwidth (k + 2, k, l ) MDS code, then
+3 log l ≤ k ≤ 1 + l
+
+l
+l
+2
+
+.
+
+Proof: The upper bound is a consequence of Corollary
+2 and Theorem 3, the lower bound is given by the code
+constructed in [19].
+As one can notice, there exists a big gap between the upper
+and the lower bound. We conjecture that the lower bound is
+more accurate, and in fact k = θ (log l ).
+We proceed by giving a tight bound for the number of
+systematic nodes k in the case where all the encoding matrices
+are diagonal.
+
+S = ⊕ x∈X Sx ,
+where Sx = S ∩ span(ex ). Let x ∈ X, and note that
+dim(Sx ) = | x |/2. Since, if Sx > | x |/2 and the fact
+that span(ex ) is also an invariant subspace of Cj we get
+Sx Cj , Sx ⊂ span(ex ). Hence Sx Cj ∩ Sx = {0}, which
+contradicts the subspace property. Moreover, since
+l
+= dim(S) =
+2
+
+IV. U PPER BOUND FOR D IAGONAL E NCODING M ATRICES
+
+∑ dim(Sx ) ≤ ∑
+
+x∈X
+
+x∈X
+
+|x|
+l
+= ,
+2
+2
+
+we get that dim(Sx ) = | x |/2. Denote the partition of x by
+X j as x = { x ∩ y : y ∈ X j }. We claim that
+
+One of the most common operations in the maintenance
+of storage systems is updating. Namely, a certain element
+changed its value, and that needs to be updated in the system.
+Since the code is an MDS, each parity node is a function
+of the entire systematic nodes. Therefore in a single update,
+each parity node needs to be updated at least in one of the
+elements it stores. An optimal update code is one that needs
+to update each parity node exactly once in an update of any
+information element. We derive a tight bound in a special case
+of an optimal update code, where all the encoding matrices
+are diagonal. We begin with a simple Lemma on an entropy.
+
+|x|
+.
+(8)
+2
+Assume to the contrary, that z ∈ x, |z| > | x |/2. Note that
+each v ∈ span(ez ) is an eigenvector also for Cj , and
+• S x , span( ez ) ⊆ span( e x ),
+|x|
+x
+• dim( S x ) = 2 , dim(span( ez )) > 2 .
+Hence, Sx ∩ span(ez ) = 0, i.e., Sx contains an eigenvector of
+Cj which contradicts the subspace property, because
+maxz∈ x |z| ≤
+
+Lemma 5 Let X be a random variable such that for any pos1
+sible outcome x, P( X = x ) ≤ 2 , then its entropy satisﬁes
+H ( X ) ≥ 1.
+
+SCj ∩ S ⊇ (Sx ∩ span(ez ))Cj ∩ (Sx ∩ span(ez ))
+
+= (Sx ∩ span(ez )) ∩ (Sx ∩ span(ez ))
+= (Sx ∩ span(ez )) = {0}.
+
+Proof: Proof is omitted.
+Before we proceed to prove the upper bound, recall that the
+meet of two partitions X, Y of some set, is deﬁned as,
+
+Pick randomly and with equal probability a vector v from the
+standard basis, and deﬁne for i ∈ [k ] the random variable Yi
+to be the eigenvalue corresponding to the eigenvector v in Ci .
+From (8) and by Lemma 5 we conclude that the entropy of
+Yj satisﬁes
+H (Yj |Yi , i = j) ≥ 1.
+(9)
+
+X ∧ Y = { x ∩ y : x ∈ X, y ∈ Y }.
+Moreover, for a set of indices x denote by span(ex ) =
+span(ei : i ∈ x ), where ei is the i-th vector in the standard
+basis.
+
+Therefore,
+
+k
+Theorem 6 Let {Ci }i=1 be a set of invertible and simultaneously diagonalizable matrices of order l, that satisfy the
+subspace property, then k ≤ log l.
+
+log l = H (v) = H (v, Y1 , ..., Yk )
+
+= H (Y1 , ..., Yk ) + H (v|Y1 , ..., Yk )
+k
+
+≥ H (Y1 , ..., Yk ) =
+
+k
+
+j =1
+
+Proof: Since the subspace property is preserved under
+similarity transformation we can assume that all the matrices
+C1 , ..., Ck are diagonal and the standard basis {e1 , ..., el } is a
+set of eigenvectors for all the matrices. Each matrix Ci deﬁnes
+a partition Xi of [l ], by m, n ∈ [l ] are in the same set of the
+partition, iff the corresponding vectors em , and en , have the
+same eigenvalue in Ci . Let j ∈ [k], set S = S j and denote the
+meet of the partitions
+
+j =1
+
+∑ H (Yj |Y1 , ..., Yj−1 ) ≥ ∑ 1 = k,
+
+where the last inequality follows from (9).
+Corollary 7 Let k be the largest integer such that there exists
+an optimal bandwidth (k + 2, k, l ) MDS code with diagonal
+encoding matrices, then k = 1 + log l.
+Proof: The lower bound is given by the code constructed
+in [12].
+
+X = ∧ i = j Xi .
+
+4
+
+Note that when restricting to diagonal encoding matrices, there
+is no difference if the code is an optimal access or optimal
+bandwidth (see Table I). In the next section we show that these
+two properties are not equivalent in the general case.
+
+the general case of optimal bandwidth code. The last two
+bounds are tight, and they consider optimal access and optimal
+update codes. Moreover, we showed that in the general case,
+the properties of optimal bandwidth and optimal access are
+not equivalent. Although in some certain codes such as codes
+with diagonal encoding matrices, they are indeed equivalent.
+It is an open problem what is the longest optimal bandwidth
+code with capacity l .
+
+V. U PPER B OUND ON THE NUMBER OF NODES FOR
+O PTIMAL ACCESS
+Recall that in an optimal bandwidth MDS codes the transmitted information can be a function of the entire information
+in the node. Namely, in order to generate the transmitted data,
+one has to access all the information stored in the node, which
+of course can be an expensive task. An optimal access code
+is an optimal bandwidth code that transmits only the elements
+it accesses. The property of Optimal Access is equivalent to
+that each recovering subspace Si is spanned by an l/2-subset
+of the standard basis e1 , ..., el , i.e., Si = span(em : m ∈ I ) for
+some I an l/2-subset of [l ].
+We start with an useful lemma that shows that the set of
+subspaces S1 , ..., Sk do not have large intersections.
+
+VII. ACKNOWLEDEMENT
+This work was partially supported by an NSF grant ECCS0801795 and a BSF grant 2010075.
+R EFERENCES
+[1] Viveck R. Cadambe, Cheng Huang, Jin Li, Sanjeev Mehrotra, “Polynomial Length MDS Codes with Optimal Repair in Distributed Storage
+Systems,” Proceedings of 45th Asilomar Conference on Signals Systems
+and Computing, Nov 2011
+[2] V. R. Cadambe, C. Huang, and J. Li,“Permutation code: optimal exactrepair of a single failed node in MDS code based distributed storage
+systems,” in ISIT, 2011.
+[3] Viveck R. Cadambe, Syed A. Jafar, Hamed Maleki, Kannan Ramchandran and Changho Suh, “Asymptotic Interference Alignment for Optimal
+Repair of MDS codes in Distributed Data Storage”.
+[4] A. Dimakis, P. Godfrey, Y. Wu, M. Wainwright, and K. Ramchandran,
+“Network coding for distributed storage systems,” IEEE Trans. on
+Information Theory, vol. 56, no. 9, pp. 4539–4551, 2010.
+[5] Dimitris S. Papailiopoulos, Alexandros G. Dimakis, “Distributed Storage
+Codes through Hadamard Designs,” http://arxiv.org/abs/1106.1652.
+[6] Dimitris S. Papailiopoulos, Alexandros G. Dimakis, Viveck R. Cadambe,
+“Repair Optimal Erasure Codes through Hadamard Designs,” 2011
+Allerton Conference on Communication, Control and Computing, Illinois, U.S.A., September 2011. http://arxiv.org/abs/1106.1634.
+[7] K. V. Rashmi, N. B. Shah, P. V. Kumar, and K. Ramchandran, “
+Explicit construction of optimal exact regenerating codes for distributed
+storage,” in AllertonAllerton Conference on Control, Computing, and
+Communication, Urbana-Champaign, IL, 2009.
+[8] K. V. Rashmi, N. B. Shah, and P. V. Kumar, “Enabling node repair in
+any erasure code for distributed storage,” in ISIT, 2011.
+[9] N. B. Shah, K. V. Rashmi, P. V. Kumar, and K. Ramchandran, “Interference alignment in regenerating codes for distributed storage: necessity
+and code constructions,” IEEE Trans. on Information Theory, vol 56,
+no. 4, pp. 2134–2158, 2012.
+[10] N. B. Shah, K. V. Rashmi, P. V. Kumar, K. Ramchandran, “Distributed storage codes with repair-by-transfer and non-achievability
+of interior points on the storage-bandwidth tradeoff,” Tech. Rep.
+arXiv:1011.2361v2, 2010.
+[11] C. Suh and K. Ramchandran, “Exact-repair MDS codes for distributed
+storage using interference alignment,” in ISIT, 2010.
+[12] I. Tamo, Z. Wang, J. Bruck, “MDS array codes with optimal rebuilding,”
+IEEE International Symposium on Information Theory Proceedings
+(ISIT), 2011.
+[13] I. Tamo, Z. Wang, J. Bruck, “Zigzag Codes: MDS Array Codes with
+Optimal Rebuilding,” http://arxiv.org/abs/1112.0371.
+[14] I. Tamo, Z. Wang, J. Bruck, “Access Vs. Bandwidth in Codes for
+Storage,” Available at http://paradise.caltech.edu/etr.html
+[15] Y. Wu, R. Dimakis, and K. Ramchandran, “Deterministic regenerating
+codes for distributed storage,” in Allerton Conference on Control,
+Computing, and Communication, Urbana-Champaign, IL, 2007.
+[16] Y. Wu, “Existence and construction of capacity-achieving network codes
+for distributed storage,” in ISIT, 2009.
+[17] Y. Wu and A. Dimakis, “Reducing repair trafﬁc for erasure coding-based
+storage via interference alignment,” in ISIT, 2009.
+[18] Z. Wang, I. Tamo, J. Bruck, “On Codes for Optimal Rebuilding Access,”
+2011 Allerton Conference on Communication, Control and Computing,
+Illinois, U.S.A., September 2011. http://arxiv.org/abs/1106.1250.
+[19] Z. Wang, I. Tamo, J. Bruck, “Long MDS Codes for Optimal Repair Bandwidth,” submitted to ISIT 2012. Available at
+http://paradise.caltech.edu/etr.html
+
+Lemma 8 Let C1 , ..., Ck be a set of matrices of order l, that
+satisfy the subspace property with the subspaces S1 , ..., Sk , then
+for any subset of indices J ⊆ [k]
+dim(∩t∈ J St ) ≤
+
+l
+.
+2| J |
+
+k
+Moreover, The number of subspaces {Si }i=1 that contain an
+arbitrary vector v = 0 is at most log l.
+
+Proof: Proof is omitted.
+The previous Lemma shows that an arbitrary vector v = 0
+can not belong to “too many” subspaces Si . This observation
+gives a tight bound on the number of nodes k in an optimal
+access code, as the following theorem shows.
+Theorem 9 Let C1 , ..., Ck be a set of invertible matrices of
+order l that satisfy the subspace property with subspaces
+S1 , ..., Sk . If each subspace Si is spanned by an l/2-subset of
+the standard basis e1 , ..., el , then k ≤ 2 log l.
+Proof: Prove by Lemma 8 and a counting argument.
+Corollary 10 Let k be the largest integer such that there exists
+an optimal access (k + 2, k, l ) MDS code, then k = 2 log l.
+Proof: The lower bound is derived by the code constructed in [1], [19].
+Note that [19] constructed also an optimal bandwidth code
+with k = 3 log l. Therefore, in the general case where we
+do not require an optimal update code, there is a difference
+between optimal access and optimal bandwidth code. Namely,
+these two properties are not equivalent (see Table I).
+VI. SUMMARY
+In this paper we considered optimal bandwidth (resp. access) MDS codes with two parities. Speciﬁcally we asked,
+given the capacity of each node l what is the largest possible
+integer k such that there exists an optimal bandwidth (resp.
+access) (k + 2, k, l ) MDS code. We used distinct combinatorial
+tools to derive 3 upper bounds on k. The ﬁrst bound considers
+
+5
+
+

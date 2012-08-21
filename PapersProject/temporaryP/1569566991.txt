@@ -1,0 +1,1104 @@
+Creator:        TeX
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Mon May 21 07:52:32 2012
+ModDate:        Tue Jun 19 12:55:40 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      531334 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569566991
+
+THE
+
+1
+
+ANALYSIS APPROACH BY SPARSE DUAL FRAMES FOR SPARSE SIGNAL
+RECOVERY REPRESENTED BY FRAMES
+Tiebin Mi†
+
+Shidong Li
+
+,†
+
+Yulong Liu†
+
+†
+
+School of Information
+Renmin University of China
+Beijing, 100872, China
+Department of Mathematics
+San Francisco State University
+San Francisco, CA 94132, USA
+ABSTRACT
+A sparse-dual-frame based 1 -analysis approach for compressed
+sensing (CS) is proposed. The sparse dual frame is a notion of optimal dual frames of a non-exact frame. It is motivated in the study of
+compressed sensing problems where signals are sparse with respect
+to redundant dictionaries (frames). An alternating iterative algorithm
+is proposed. An error bound ensuring the correct signal recovery
+is obtained. Empirical studies over generally difﬁcult CS problems
+demonstrate that the new sparse-dual-based approach provides satisfactory solutions, whereas other existing means may not.
+
+The 1 -synthesis approach is still by far the most popular method
+for signal recovery in related compressed sensing applications. Empirical studies also show that 1 -synthesis sometimes do achieve good
+recovery results for mild problems [2, 3]. However, since D is a
+highly coherent frame, all previously known sparse recovery conditions and error estimates no longer apply satisfactorily to the composite matrix AD [1], [3]. Recovery guarantee is hampered.
+1 -analysis approach is an alternative that tries to ﬁnd the signal
+f directly by solving the problem
+min D∗ f
+
+f ∈Hn
+
+1. INTRODUCTION
+Standard compressed sensing studies often assume signals possess
+sparse (or nearly sparse) representations with respect to orthonormal
+bases.
+As compressed sensing takes more stage in practical applications, a growing number of problems point to scenarios where signals
+are sparse with respect to redundant frames rather than orthonormal
+bases. Obviously, the ﬂexibility of frames is the key characteristic
+that empowers frames to become a natural and concise signal representation tool. As a result, studies on compressed sensing problems
+where signals are sparse with respect to frames are becoming more
+and more appealing and critical.
+Let D be a dictionary/frame whose columns are the frame vectors. By f being sparse with respect to D, we mean f = Dx, and
+x is the sparse coefﬁcient vector. In general compressed sensing formulation, f is often measured by a under-determined sensing matrix
+A, namely,
+y = Af + z = ADx + z,
+(1.1)
+where A ∈ Rm×n is typically known as “fat” sensing matrix with
+m
+n, and z ∈ Rm is a noise term. The goal of the compressed
+sensing problem is to derive means to faithfully recover f , from the
+compressed measurement y.
+Since x is sparse, a straightforward approach is to view (1.1) as
+y = (AD)x + z, and to recover the sparse coefﬁcient x by solving
+the 1 -minimization problem
+min x
+
+x∈HN
+
+1
+
+s.t.
+
+(AD)x − y
+
+2
+
+≤ ,
+
+(1.2)
+
+where is an upper bound of the noise. f is then derived via synthesis
+operation, i.e., f = Dx . This is known as 1 -synthesis [1].
+S. Li is partially supported by the US NSF grant DMS-1010058, and US
+AFOSR grant FA9550-11-1-0245
+Y. Liu is a visitor at Renmin University of China from the Institute of
+Electronics, Chinese Academy of Sciences.
+
+1
+
+1
+
+s.t.
+
+Af − y
+
+2
+
+≤ .
+
+(1.3)
+
+Here D is assumed a Parseval frame (i.e., DD∗ = I), and the analysis
+operator D∗ is the canonical dual frame.
+The 1 -analysis approach has a remarkable development [2] recently that (1.3) recovers an approximation f of the original f with
+an error bound
+f −f
+
+2
+
+≤ C0 + C1
+
+D∗ f − (D∗ f )s
+√
+s
+
+1
+
+(1.4)
+
+provided that A obeys a “D-RIP” condition [2] with a “D-RIP” constant δ2s < 0.08.
+RIP (Restricted Isometry Property) and D-RIP (RIP applied to
+the union of column subspaces of the dictionary/frame D) are both
+popular notions in compressed sensing studies. We refer to , e.g., [2],
+[4], [5], for details and further discussions.
+Indeed, 1 -analysis demonstrates a promising performance in applications where both the columns of the Gram matrix D∗ D and the
+coefﬁcient vector x are reasonably sparse. In other words, as long as
+the frame coefﬁcient vector D∗ f is sensibly sparse, 1 -analysis is a
+good approach with a nice error bound guarantee (1.4).
+However, there is a unforgiven reality to the use of D∗ as the
+analysis operator. In general, f is sparse in terms of D does not imply D∗ f is necessarily sparse. Indeed, when D is a Parseval frames,
+D∗ f = D∗ Dx is the canonical expansion coefﬁcients of f . Canonical expansion has the minimum 2 -norm and is usually fully populated and is not sparse. This is also pointed out speciﬁcally in compressed sensing studies with frames, e.g., [3].
+We propose a sparse-dual-frame based analysis approach that
+takes advantage of both the sparsity of the analysis coefﬁcients, and
+a similar error bound estimate as that of (1.4). Sparse dual frames
+is a notion of optimal dual frames of a given (non-exact) frame that
+produces sparse coefﬁcients for a given f [6]. It is speciﬁcally introduced to cope with the lack of sparsity in D∗ f in typical analysis
+schemes. To provide a solution to this sparse-dual-based formulation,
+an alternating iterative algorithm is developed. Some examples are
+also reported.
+
+that f (k0 ) = 0. Then, among many other possibilities, Wf,x can be
+chosen/determined as follows. For i = 1, . . . , N and j = 1, . . . , n,
+
+2. SPARSE-DUAL-FRAME BASED ANALYSIS APPROACH
+Let us begin with a brief discussion of the relevance between sparse
+representations and a notion of sparse dual frames.
+Let D be a dictionary with which a signal f has a sparse representation. D could be a basis or a redundant frame. In sparse representations, the main purpose is to ﬁnd the sparse coefﬁcient for a
+given signal f , which is commonly formulated as
+(P0 )
+
+min x
+
+x∈Hn
+
+s.t. Dx = f,
+
+0
+
+where · 0 stands for the number of nonzero entries. Lead by
+Donoho, Cand´ s, Tao and their associates, the renowned advances
+e
+in the area of sparse representations lie fundamentally in the replacement of (P0 ) with its convex relaxation
+(P1 )
+
+min x
+
+x∈Hn
+
+s.t. Dx = f.
+
+1
+
+They show that with appropriate conditions over the matrix D, the solution to (P1 ) is the same as the solution to (P0 ). There have been an
+abundant articles exploring the equivalence between (P0 ) and (P1 ),
+e.g., [4, 5, 7, 8, 9, 10, 11, 12].
+In this report, D shall always stand for a (frame) matrix consisting in its columns of all vectors of a frame. D is used for a dual frame
+matrix such that DD∗ = DD∗ = I, [13]. How is sparse representation related to sparse dual frames? Let us proceed with the sparse
+dual discussion.
+2.1. Sparse dual frames
+From a frame theoretical point of view, when a signal f is sparse with
+respect to a frame D, there is a sparse coefﬁcient vector x such that
+f = Dx. It is not hard to imagine that there ought be an optimal
+dual frame, say DS that produces the very sparse coefﬁcient x, i.e.,
+x = D∗ f . After all, all coefﬁcients of a frame expansion of f ought
+S
+to correspond to some dual frame, which really is the spirit of frame
+expansions.
+We see that knowing the solution to (P0 ) or (P1 ) is equivalent to
+knowing an optimal dual frame DS which is capable of producing
+the very sparse coefﬁcient x by x = D∗ f .
+S
+We call such an optimal dual frame sparse dual frame.
+Deﬁnition 2.1. Let D be a frame with columns of frame elements
+{xk }N of Hn . Let 0 = f ∈ Hn be sparse with respect to D such
+k=1
+that f = Dx, where x is a sparse vector. We say DS is a sparse dual
+frame of D, if DD∗ = I and x = D∗ f .
+S
+S
+It turns out that sparse duals DS do always exist. We have the
+following theorem conﬁrming the existence of sparse duals [6].
+n
+
+n
+
+Theorem 2.2. Let D be a frame of H . Given 0 = f ∈ H , and let
+x be any coefﬁcient vector such that f = Dx. Then there must be a
+dual frame Df,x such that x = D∗ f and DD∗ = I.
+f,x
+f,x
+Proof. All dual frames for
+∗
+
+∗
+
+{xk }N
+k=1
+
+∗ −1
+
+V = D (DD )
+
+∗ −1
+
++ (I − D (DD )
+
+∗ −1
+
+x = D (DD )
+
+Remark. a. Not only sparse dual frames always exist, sparse dual
+frames are not unique even for one given f . Because of the redundancy and massive freedom in the choice of W , there are common
+sparse dual frames to a class of signals f .
+b. Let us emphasize that the canonical dual frame is not a sparse
+dual frame in general. This is because that the canonical dual frame
+produces generally coefﬁcients of the least 2 -norm among all possible coefﬁcients representing a signal. And we know that 2 -norm
+tends to spread the coefﬁcients into a large number of small coefﬁcients.
+c. We also comment that the notion of sparse dual frames for
+approximately sparse or compressible signals is an active on-going
+work that we are pursuing.
+There is no restriction on x in Theorem 2.2. Therefore, if x is the
+sparse coefﬁcient of f , we reach the following corollary directly.
+Corollary 2.3. Let D be a frame of Hn . Suppose 0 = f ∈ Hn
+has a sparse frame representation f = Dx, where x is the sparse
+coefﬁcient. There must be a sparse dual frame DS such that x =
+D∗ f .
+S
+The following result indicates that though sparse duals are signal
+dependent, they are nevertheless locally stable. Numerically, and in
+practical applications, such a local continuity and stability of sparse
+dual frames play an important role.
+Theorem 2.4. Let D be a frame of Hn . Given f ∈ Hn . Suppose
+D∗ f − (D∗ f )s 1 ≤ and f − g 2 ≤ δ, then
+S
+S
+D∗ g − (D∗ g)s
+S
+S
+
+∗
+
+f + (I − D (DD )
+
+D)Wf,x f.
+
+√
+N −s
+
+≤ +
+
+D∗ f = { f, xk } and D∗ g = { g, xk }
+Given a subset S ⊂ {1, 2, . . . , N } with |S| = s, we have
+D∗ g − (D∗ g)s
+
+1
+
+| g, xi |
+
+=
+i∈S c
+
+≤
+
+| f, xi | +
+
+| f − g, xi |
+i∈S c
+
+| f, xi | +
+
+√
+N −s
+
+Since f = Dx = DD∗ (DD∗ )−1 f , x = D∗ (DD∗ )−1 f + νf,x
+for some νf,x ∈ ker D. Now that P ≡ I − D∗ (DD∗ )−1 D is the
+orthogonal projection onto ker D, there must be a vector µf,x ∈ Hn
+such that νf,x = Pµf,x . Since f = 0, there is at least one k0 such
+
+2
+
+| f − g, xi |2
+i∈sc
+
+i∈S c
+
+(2.1)
+
+˜
+Bδ.
+
+˜
+Proof. Let B be the Bessel bound of {xi }N and let D∗ be such that
+i=1
+
+≤
+∗ −1
+
+1
+
+˜
+Here B is the upper frame bound of the sparse dual frame DS , and
+(D∗ g)s is the thresholded vector of D∗ g whose entries are set to
+S
+S
+zeros except for its largest s entries in magnitude.
+
+≤
+
+D)W.
+
+j = k0 ;
+j = k0 .
+
+Consequently, there is indeed a Wf,x such that x = D∗ (DD∗ )−1 f +
+(I − D∗ (DD∗ )−1 D)Wf,x f . The claim is then followed.
+
+are precisely given by [13]
+∗
+
+µf,x (i)/f (k0 ),
+0,
+
+i∈S c
+
+We require to construct Wf,x such that
+∗
+
+Wf,x (i, j) =
+
+| f, xi | +
+
+√
+N −s
+
+˜
+B f −g
+
+2.
+
+i∈S c
+
+Hence, if S is the set where f has its largest entries, one has
+D∗ g − (D∗ g)s
+
+1
+
+≤ +
+
+√
+N −s
+
+˜
+Bδ.
+
+Example 2.5. Let {xk }3 be an equiangular tight frames in R2 ,
+k=1
+which is demonstrated in Figure 1(a). The associated matrix D is
+given by
+√
+√
+3
+0
+− 23
+2
+D=
+1
+−2
+1 −1
+2
+and the frame operator is
+3
+S = DD∗ = 2 I.
+
+Therefore, the canonical dual frame is { 2 xk }3 , which is demonk=1
+3
+strated in Figure 1(b) with dashed arrows.
+Suppose f = αx1 . Then the sparse coefﬁcient with respect to
+the frame D is x0 = [α 0 0]T . Note that the coefﬁcients of f corresponding to the canonical dual frame is given by
+2
+xLS = D∗ (DD∗ )−1 f = 3 D∗ f = α
+
+2
+3
+
+−1
+3
+
+−1
+3
+
+T
+
+,
+
+which is of course no where sparse at all.
+On the other hand, one sparse dual frame DS is demonstrated in
+Figure 1(b) with solid/red arrows,
+√
+
+3
+3
+
+DS = 0
+1
+
+−
+
+0
+
+√
+3
+3
+
+0
+
+.
+
+More importantly, D∗ f = [α 0 0]T is exactly the sparse coefﬁcient.
+S
+2
+Moreover, the lower frame bound of DS is 3 , and the upper frame
+bound of DS is 1, indicating that the sparse dual frame is very well
+behaved.
+1
+
+1
+
+0.8
+
+0.8
+
+0.6
+
+0.6
+
+0.4
+
+0.4
+
+0.2
+
+0.2
+
+0
+
+0
+
+−0.2
+
+−0.2
+
+−0.4
+
+−0.4
+
+−0.6
+
+−0.6
+
+−0.8
+
+−0.8
+
+−1
+−1
+
+−0.5
+
+0
+
+0.5
+
+1
+
+(a) Original frame
+
+−1
+−1
+
+Sparse dual
+Canonical dual
+−0.5
+
+0
+
+0.5
+
+1
+
+(b) Dual frames
+
+Fig. 1. The equiangular tight frame for R2 .
+
+In view of the second term of the right hand side of the error bound
+(1.4), an ultimate 1 -analysis problem should be formulated by the
+sparse dual frame as follows.
+f ∈H
+
+1
+
+s.t.
+
+Af − y
+
+2
+
+≤ ,
+
+min
+
+D,f ;DD∗ =I
+
+D∗ f
+
+1
+
+s.t.
+
+Af − y ≤
+
+(2.3)
+
+On the surface, it seems that (2.2) and (2.3) are equivalent. It is important that we outline a fundamental difference between the sparse-dual
+approach (2.2) and the optimal-dual approach (2.3).
+We have shown in Theorem 2 of [14], that the optimal-dual-based
+analysis problem (2.3) is equivalent to the 1 synthesis approach (1.2).
+Because it minimizes the 1 norm of D∗ f simultaneously over the
+dual frame D and the signal f . It is important to emphasize that the
+optimization in the optimal-dual approach (2.3) is entirely to minimize the 1 norm.
+The sparse-dual-frame based approach is not a simultaneous 1
+minimization over dual frames D and the signal f . Instead, the sparse
+dual DS is theoretically optimal from the 0 point of view. Namely,
+theoretically, DS is given a priori for a given (class of) f , and DS
+is capable to minimize D∗ f 0 among all dual frames D. As a result, DS is different from the optimal dual Do as in (2.3), where 1
+minimization is the sole concern in deriving Do .
+It is true, of course, capable of minimizing the 0 measurement is
+one matter, having a mean to minimize D∗ f 0 is another, which is
+S
+clearly combinatorial. Just as in all other sparse recovery problems,
+in the end, after a sparse dual DS is given, the 1 -min is the corresponding convex relaxation, which gives rise to the sparse-dual-based
+1 analysis approach (2.2).
+It is also important to mention that having a sparse dual is not all
+free or easy. Nevertheless, a sparse dual to a class of signals exists. It
+is entirely possible to derive a sparse dual for a class of signals, and
+using such a sparse dual in related signal recovery. This is an active
+subsequent work we are pursuing.
+Meantime, we also outlined Algorithm 1, an alternating iterative
+algorithm as given in Section 2.4. At the kth iteration, an approximation fk of f is found ﬁrst, which in turn allows for an approximation
+of a sparse dual Dk . This is followed by ﬁnding the next approximation fk+1 of f by the sparse-dual-based analysis problem (2.2) using
+Dk . The process then iterates. As an initial effort of implementing
+the sparse dual analysis approach, it is seen as effective. We refer
+readers to Algorithm 1 and examples in Section 3.
+2.3. Error bound result
+
+2.2. A sparse dual frame approach to compressed sensing with
+frames
+
+min D∗ f
+S
+n
+
+Remark. In a related article also presented at ISIT 2012 [14], a notion of optimal-dual-based analysis approach is also outlined,
+
+(2.2)
+
+where D∗ is the analysis operator associated with sparse dual frames.
+S
+Since D∗ f , by deﬁnition, is much sparser than D∗ f , such an extenS
+sion is clearly very natural. (2.2) is termed the sparse-dual-based
+1 -analysis for compressed sensing.
+There are two immediate objectives facing us. One is to establish
+a similar error bound as in (1.4) for the new sparse-dual-based 1 analysis problem (2.2).
+The other is to derive an algorithm for the solution of the new
+sparse-dual-based approach.
+Before diving into solutions to these two objectives, an important
+remark is in the order.
+
+3
+
+Indeed, a similar error bound does hold for sparse dual frame analysis
+operator DS . In fact, we have shown in [15] that sufﬁcient conditions
+exist by taking any dual frame of D as the analysis operator. Error
+bound is similarly derived.
+Consequently, the ﬁrst objective has been achieved. One of the
+main results is the following theorem. For more discussions, please
+refer to [15].
+Theorem 2.6. Let D = {xk }N be a frame for Hn with frame
+k=1
+bounds 0 < A ≤ B < ∞. Let DS be a sparse dual frame for the
+˜
+˜
+given f with frame bounds 0 < A ≤ B < ∞. Suppose
+2
+
+1−
+
+˜
+ρB B
+
+˜
+· δs+a + ρB B · δb < 1 − 2
+
+˜
+ρB B
+
+(2.4)
+
+holds for some positive integers a and b satisfying 0 < b − a ≤ 3a,
+and ρ = s/b. Then the solution f to (2.2) satisﬁes
+f −f
+
+2
+
+≤ C0 + C1
+
+D∗ f − (D∗ f )s
+S
+√ S
+s
+
+where C0 and C1 are some constants. Here ρ = s/b.
+
+1
+
+,
+
+(2.5)
+
+Remark. Note that condition (2.4) is about the D-RIP constant. For
+appropriately chosen a and b, (2.4) will give rise to a condition on,
+say δ2s . We have shown in [15] that (2.4) provides an improvement
+over the D-RIP constant in [2] for the error bound (1.4) to hold.
+More importantly, the key point in Theorem 2.6 is that a similar
+error bounds holds with any dual frame D (including the sparse dual
+DS , of course) as the analysis operator.
+The remaining issue is certainly about the determination of the
+sparse dual frame DS . There are two observations to make. First
+of all, suppose f = Dx is known, and x is sparse. Then x can be
+determined by various algorithms. Sparse dual can then be explicitly
+determined as well by the dual frame theory [13]. For details, and for
+a new null space tuning algorithm we developed for the same purpose,
+we refer to [16].
+Secondly, in order to solve (2.2), an explicit form of the sparse
+dual is not necessary as we explain next. By the dual frame theory,
+see, e.g., [13],
+D∗ f = D∗ (DD∗ )−1 f + (I − D∗ (DD∗ )−1 D)W ∗ f,
+S
+∗
+
+where W is the free parameter matrix. Deﬁne νf := P(W f ), where
+P = I − D∗ (DD∗ )−1 D is the orthogonal projection onto ker D.
+Then, the sparse-dual-based 1 -analysis problem (2.2) can be rewritten as
+min D∗ (DD∗ )−1 f + νf
+
+f ∈Hn
+
+1
+
+s.t.
+
+Af − y
+
+2
+
+≤ .
+
+(2.6)
+
+If we simply set νf = 0, (2.6) would fundamentally reduce to the
+original 1 -analysis problem (1.3) where the analysis operator is the
+canonical dual frame.
+The point here, of course, is that νf = 0 in order to have the
+sparse coefﬁcient D∗ f . The determination/adjustment of νf is the
+S
+most critical part.
+We comment that by adjusting on the value of νf , the determination of the sparse dual frame need not be explicit while trying to solve
+the new 1 -analysis problem.
+We now come to the point of introducing an alternating iterative
+algorithm for the solution of the sparse-dual-based 1 -analysis formulation for compressed sensing.
+
+Algorithm 1: Alternating iteration: sparse-dual-based approach
+Input: A, D, y, s, 1 , 2 ;
+Output: f , x ;
+fo := 0 ;
+xu := arg minx x 1 s.t.
+ADx − y 2 ≤ 1 ;
+fu := Dxu ;
+while fu − fo 2 > 2 do
+fo := fu ;
+xs := arg minx x 1 s.t. Dx = fo ;
+νf := xs − D∗ (DD∗ )−1 fo ;
+fu :=
+arg minf D∗ (DD∗ )−1 f + νf 1 s.t. Af − y 2 ≤ 1 ;
+f := fu ;
+x := D∗ (DD∗ )−1 fu + νf ;
+
+The result of our new alternating iterative algorithm is demonstrated in Figure 2. The relative error of the recovered signal is
+f −f 2
+= 0.0083.
+f 2
+Figure 2(b) (and part (b) of all ﬁgures that follows) is a scatter
+plot of the recovered coefﬁcients (vertical axis) vs. the exact coefﬁcients (horizontal axis). Consequently, if the recovered coefﬁcients
+are exact, the scatter circles should all be on the line of y = x.
+Figures 4 and 6 show the results by the standard 1 -analysis and
+the 1 -synthesis approaches, respectively. The relative errors of the
+1 -analysis and the 1 -synthesis methods are quite unfavorably large
+at 0.6760 and 0.3792, respectively.
+Real part
+2
+1
+0
+−1
+−2
+−3
+
+Original
+Recovered
+20
+
+40
+
+60
+
+80
+
+100
+
+120
+
+80
+
+100
+
+120
+
+Imaginary part
+2
+
+2.4. Alternating iterative algorithm for sparse-dual-based
+analysis solutions
+
+1-
+
+1
+0
+−1
+
+If f is known, there are a number of algorithms to determine the
+sparse coefﬁcients x, and thereby determine the optimal adjustment
+νf (as well as sparse dual frames). We mentioned earlier that we also
+developed a fast Null Space Tuning algorithm as well for this purpose
+[16].
+In practice, f is to be recovered. Introduced below is a practical
+alternating iterative algorithm that solves compressed sensing problems (2.6) where signals are sparse with respect to redundant frames,
+which also has an analytical error bound (2.5).
+3. NUMERICAL EXAMPLE
+
+−3
+
+Original
+Recovered
+20
+
+40
+
+60
+
+Fig. 2. Results of the sparse-dual-based approach.
+0.0083.
+
+f −f 2
+f 2
+
+=
+
+4. REFERENCES
+[1] M. Elad, P. Milanfar, and R. Rubinstein, “Analysis versus synthesis in signal priors,” Inv. Prob., vol. 23, pp. 947 – 968, 2007.
+
+Applications in Pulse Doppler Radar and Sonar. By the underlying mechanism of the Pulse Doppler Radar and Sonar applications,
+the receiving echo signal f is often sparse with respect the Gabor
+frames within allowable discrete approximations
+
+[2] E. J. Cand` s, Y. C. Eldar, D. Needell, and P. Randall, “Come
+pressed sensing with coherent and redundant dictionaries,”
+Appl. Comput. Harmon. Anal., vol. 31, pp. 59–73, 2011.
+[3] H. Rauhut, K. Schnass, and P. Vandergheynst, “Compressed
+sensing and redundant dictionaries,” IEEE Trans. Inf. Theory,
+vol. 54, pp. 2210–2219, 2008.
+
+s
+
+αk g(t − tk )ejωk t .
+
+f (t) =
+
+−2
+
+k=1
+
+The example we show has the parameter setting m = 32, n = 128
+and N = 256. The number of targets is s = 12 and {αk } is i.i.d.
+Gaussian random variable with mean zero.
+
+4
+
+[4] E. J. Cand` s, “Compressive sampling,” in International
+e
+Congress of Mathematicians, Z¨ rich, 2006, European Matheu
+matical Society, vol. 3, pp. 1433–1452.
+
+Coefficients by L1−analysis with sparse dual frames
+
+2
+
+Real part
+2
+
+1.5
+
+1
+
+1
+
+−1
+
+0
+
+Original
+Recovered
+
+−2
+0.5
+
+−3
+
+20
+
+40
+
+60
+
+80
+
+100
+
+120
+
+80
+
+100
+
+120
+
+Imaginary part
+
+0
+
+2
+1
+
+−0.5
+
+0
+−1
+
+−1
+−1
+
+−0.5
+
+0
+
+0.5
+Real coefficients
+
+1
+
+1.5
+
+2
+
+Original
+Recovered
+
+−2
+−3
+
+Fig. 3. The coefﬁcient recovery results by the sparse-dual-based approach. Horizontal axis is the original coefﬁcients, and the vertical
+axis is the recovered coefﬁcients.
+
+20
+
+40
+
+Fig. 6. Results of
+
+60
+
+1 -synthesis.
+
+f −f 2
+f 2
+
+= 0.3792.
+
+2
+
+Real part
+2
+
+1.5
+Coefficients by L1−synthesis
+
+1
+0
+−1
+
+Original
+Recovered
+
+−2
+−3
+
+20
+
+40
+
+60
+
+80
+
+100
+
+120
+
+Imaginary part
+
+1
+
+0.5
+
+0
+
+2
+−0.5
+
+1
+0
+
+−1
+−1
+
+−1
+
+Original
+Recovered
+
+−2
+−3
+
+20
+
+40
+
+60
+
+Fig. 4. Results of the standard
+
+80
+
+100
+
+1 -analysis.
+
+120
+
+f −f 2
+f 2
+
+−0.5
+
+0
+
+0.5
+Real coefficients
+
+1
+
+1.5
+
+2
+
+Fig. 7. The coefﬁcient recovery results by the 1 -synthesis. Horizontal axis is the original coefﬁcients, and the vertical axis is the
+recovered coefﬁcients.
+
+= 0.6760.
+
+2
+
+in general (nonorthogonal) dictionaries via 1 minimization,”
+Proc. Natl. Acad. Sci. USA, vol. 100, no. 5, pp. 2197–2202,
+2003.
+
+Coefficients by L1−analysis
+
+1.5
+
+1
+
+[9] D. L. Donoho and X. Huo, “Uncertainty principles and ideal
+atomic decomposition,” IEEE Trans. Inf. Theory, vol. 47, no. 7,
+pp. 2845–2862, 2001.
+
+0.5
+
+0
+
+[10] M. Elad and A. M. Bruckstein, “A generalized uncertainty principle and sparse representation in pairs of bases,” IEEE Trans.
+Inf. Theory, vol. 48, no. 9, pp. 2558–2567, 2002.
+
+−0.5
+
+−1
+−1
+
+−0.5
+
+0
+
+0.5
+Real coefficients
+
+1
+
+1.5
+
+2
+
+Fig. 5. The coefﬁcient recovery results by the standard 1 -analysis.
+Horizontal axis is the original coefﬁcients, and the vertical axis is the
+recovered coefﬁcients.
+[5] E. J. Cand` s, J. Romberg, and T. Tao, “Robust uncertainty prine
+ciples: exact signal reconstruction from highly incomplete frequency information,” IEEE Trans. Inf. Theory, vol. 52, no. 2,
+pp. 489–509, 2006.
+[6] S. Li, Y. Liu, and T. Mi, “A sparse dual frame approach to compressed sensing with respect to general frames,” in preparation,
+2012.
+[7] S. S. Chen, D. L. Donoho, and M. A. Saunders, “Atomic decomposition by basis pursuit,” SIAM Rev., vol. 43, no. 1, pp.
+129–159, 2001.
+[8] D. L. Donoho and M. Elad, “Optimally sparse representation
+
+5
+
+[11] J-J. Fuchs, “On sparse representations in arbitrary redundant
+bases,” IEEE Trans. Inf. Theory, vol. 50, no. 6, pp. 1341–1344,
+2004.
+[12] R. Gribonval and M. Nielsen, “Sparse representations in unions
+of bases,” IEEE Trans. Inf. Theory, vol. 49, no. 12, pp. 3320–
+3325, 2003.
+[13] S. Li, “On general frame decompositions,” Numer. Funct. Anal.
+Optimizat., vol. 16(9 & 10), pp. 1181–1191, 1995.
+[14] Y. Liu, S. Li, and T. Mi, “Performance analysis of 1 -synthesis
+with coherent frames,” to appear in Proceedings, Intern. Symp.
+Info. Theory, MIT, July 1-6, 2012.
+[15] Y. Liu, T. Mi, and S. Li, “Compressed sensing with general
+frames via optimal-dual-based 1 -analysis,” to appear in IEEE
+Trans. Inf. Theory, http://arxiv.org/abs/1111.4345, 2012.
+[16] T. Mi, S. Li, and Y. Liu, “Fast thresholding algorithms with
+feedbacks for sparse signal recovery,” Preprint submitted for
+publication, http://arxiv.org/abs/1204.3700, 2011.
+
+

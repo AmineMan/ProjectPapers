@@ -1,0 +1,1333 @@
+Creator:         XeTeX output 2012.05.17:1900
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Thu May 17 17:01:26 2012
+ModDate:        Tue Jun 19 12:54:25 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      330311 bytes
+Optimized:      no
+PDF version:    1.7
+ISIT'2012 1569564973
+
+Distance Spectrum Estimation of LDPC
+Convolutional Codes
+Hua Zhou∗ , David G. M. Mitchell† , Norbert Goertz∗ , and Daniel J. Costello, Jr.†
+of Telecommunications, Vienna University of Technology, Vienna, Austria,
+{hua.zhou, norbert.goertz}@nt.tuwien.ac.at
+† Dept. of Electrical Engineering, University of Notre Dame, Notre Dame, Indiana, USA,
+{david.mitchell, costello.2}@nd.edu
+∗ Institute
+
+the different super codes. This technique provides an estimate
+of the distance spectrum of the original LDPC-CC, and in
+particular we obtain an upper bound on the minimum free
+distance and a lower bound on the number of codewords Aw
+with Hamming weight w. In order to reduce the complexity of
+estimating the distance spectrum, the technique is applied to
+the ﬁnite, compact, polynomial syndrome former matrix rather
+than the semi-inﬁnite time-domain syndrome former matrix.
+We also show that, for some example codes, the estimation
+technique is highly accurate, resulting in an exact calculation
+of the free distance df .
+The rest of the paper is organized as follows: in Section
+II, we deﬁne LDPC-CCs in both the time and polynomial
+domains. In Section III, we present some properties of the
+Hamming weights of codewords in LDPC-CCs deﬁned with
+respect to the (polynomial) syndrome former matrix. The
+algorithm to estimate the distance spectrum of polynomialbased LDPC-CCs is presented in Section IV. This is followed
+by some illustrative examples in Section V.
+
+Abstract—Time-invariant low-density parity-check convolutional codes (LDPC-CCs) derived from corresponding quasicyclic (QC) LDPC block codes (LDPC-BCs) can be described
+by a polynomial syndrome former matrix (polynomial-domain
+transposed parity-check matrix). In this paper, an estimation of
+the distance spectrum of time-invariant LDPC-CCs is obtained
+by splitting the polynomial syndrome former matrix into submatrices representing “super codes” and then evaluating the linear
+dependence between codewords of the corresponding super codes.
+This estimation results in an upper bound on the minimum free
+distance of the original code and, additionally, a lower bound on
+the number of codewords Aw with Hamming weight w.
+
+I. I NTRODUCTION
+Low-density parity-check convolutional codes (LDPC-CCs)
+were ﬁrst proposed in [1]. Using pipeline decoding [2], it has
+been shown that they are suitable for practical implementation
+with continuous transmission as well as, via encoder termination, block transmission in frames of arbitrary size [3] without
+an increase in computational complexity compared to their
+block code counterparts.
+For any convolutional code C with minimum free distance
+df , the weight spectrum is described by a set {Aw |w ≥
+df , w ∈ Z+ }, where Aw , the codeword weight enumerator, is
+the number of codewords with Hamming weight w. Together
+with the minimum free distance, the distance spectrum is
+an important property of convolutional codes for estimating
+their performance under a variety of decoding algorithms.
+Bahl et al. [4] presented an algorithm to compute the free
+distance based on a state-transition diagram. In [5], Rouanne
+and Costello introduced a bidirectional tree search algorithm
+to calculate the distance spectrum of convolutionally encoded
+trellis codes. Subsequently, Bocharova et al. [6] presented
+a more efﬁcient bidirectional tree search algorithm called
+BEAST. In this paper, we present an algorithm to estimate the
+distance spectrum of time-invariant LDPC-CCs derived from
+corresponding quasi-cyclic (QC) LDPC block codes (QCLDPC-BCs). Time-invariant LDPC-CCs can be considered as
+conventional convolutional codes with large memory order
+that are characterized by the sparsity of the syndrome former
+matrix.
+To estimate the distance spectrum of a time-invariant
+LDPC-CC, we ﬁrst split the columns of the polynomial
+syndrome former matrix into submatrices and compute the
+distance spectrum for each of the “super codes” deﬁned
+by the submatrices, where each super code contains all the
+codewords in the original code. Following this, we apply a
+so-called linear dependence evaluation method to investigate
+the linear dependence between the low weight codewords of
+
+II. LDPC CONVOLUTIONAL CODES
+A rate R = b/c LDPC-CC can be described as the set of
+sequences v satisfying v · HT = 0, where
+v = (. . . ,v0 ,v1 ,. . . ,vt ,. . .)
+(1) (2)
+
+(c)
+
+(1) (2)
+
+(c)
+
+= (. . .,(v0 ,v0 ,. . .,v0 ),. . .,(vt ,vt ,. . .,vt ),. . .),
+
+
+..
+
+ T.
+H0 (0)
+
+T
+H =
+
+
+
+
+..
+
+···
+..
+.
+
+.
+HT s (ms )
+m
+.
+.
+.
+HT (t)
+0
+..
+.
+
+HT (t) =
+i
+
+
+
+hi,t
+1,1
+ .
+ ..
+hi,t
+c,1
+
+..
+
+.
+···
+···
+..
+.
+···
+
+
+
+
+,
+
+HT s (ms + t)
+m
+
+
+
+i,t
+
+h1,p
+. 
+. ,
+.
+i,t
+hc,p
+
+..
+
+(1)
+
+(2)
+
+.
+
+(3)
+
+and p
+c − b, where blank spaces correspond to zeros.
+The transposed parity check matrix HT , called the syndrome
+former matrix, is made up of a set of binary submatrices
+HT (t), t∈Z, i = 0, 1, . . . , ms , each of size c×p, given by (3).
+i
+ms is called the syndrome former memory, and the associated
+constraint length, deﬁned as vs = (ms + 1) · c, is proportional
+to the decoding complexity of pipeline decoding [1]. If HT
+contains exactly J ones in each row and K ones in each
+column, then the code is called an (ms , J, K)-regular LDPCCC. Note that a row in the syndrome former matrix refers to a
+variable node while a column corresponds to a constraint node
+
+This work was partly supported by NSF Grants CCF-0830650 and CCF1161754.
+
+1
+
+in the Tanner graph representation of HT . For time-invariant
+LDPC-CCs, the binary submatrices in HT are constant, i.e.,
+HT (t) = HT , ∀i, t, while for periodically time-varying LDPCi
+i
+CCs with period T the submatrices repeat periodically, so that
+HT (t) = HT (t + T ). In this paper, we focus on time-invariant
+i
+i
+LDPC-CCs.
+Given the time-domain syndrome former matrix HT of a
+time-invariant LDPC-CC in (2) with rate R = b/c and syndrome former memory ms , the polynomial-domain syndrome
+former matrix is given by [7]:
+HT (D) =
+
+ms
+n=0
+
+h
+
+HT · D n
+n
+
+1,1 (D)
+h2,1 (D)
+= .
+.
+.
+hc,1 (D)
+
+h1,2 (D)
+h2,2 (D)
+.
+.
+.
+hc,2 (D)
+
+···
+···
+..
+.
+···
+
+h1,p (D)1
+h2,p (D)
+.
+ .
+.
+.
+hc,p (D)
+
+For example, given the R = 1/3 QC-LDPC-BC given by
+Tanner et al. in [9], we can form an associated R = 1/3
+time-invariant LDPC-CC with polynomial-domain syndrome
+former matrix
+
+[v(0) (D), v(1) (D), . . . , v(c−1) (D)],
+
+(5)
+
+0
+0
+0
+0
+1
+
+0
+0
+0
+1
+0
+1
+0
+0
+
+1
+0
+0
+0
+0
+0
+0
+1
+
+0
+1
+0
+0
+0
+0
+1
+0
+1
+0
+0
+
+0
+0
+0
+1
+0
+0
+0
+0
+0
+0
+1
+
+}t =0
+
+
+
+
+}t =1
+
+
+
+}t =t =2  .
+
+
+
+}t =3 
+
+
+
+}t =4
+
+0
+0
+1
+0
+0
+0
+0
+1
+0
+1
+0
+0
+
+1
+0
+0
+0
+1
+0
+0
+0
+0
+0
+0
+1
+
+1
+
+0
+0
+1
+0
+0
+0
+0
+1
+0
+.
+.
+.
+
+1
+0
+0
+0
+1
+0
+0
+0
+0
+.
+.
+.
+
+2
+
+0
+0
+1
+0
+0
+0
+.
+.
+.
+
+1
+0
+0
+0
+1
+0
+.
+.
+.
+
+1
+1
+0
+0
+0
+
+0
+1
+0
+1
+
+3
+
+0
+0
+1
+.
+.
+.
+
+4
+
+1
+0
+0
+.
+.
+.
+
+(10)
+
+5
+
+6
+
+..
+
+.
+
+..
+
+.
+
+Consider the six emboldened rows of (10) that correspond
+to the time indices t1 = 0, t2 = 1, t3 = t4 = 2 , t5 = 3, and
+t6 = 4 and the row indices c1 = 2, c2 = 1, c3 = 2, c4 = 3,
+c5 = 1, and c6 = 2, respectively. These six row vectors can
+be used to construct the submatrix HT as
+v
+
+
+
+which is a member of the multiplexed codeword set v(D).
+Due to the repeating syndrome former matrix structure of
+time-invariant LDPC-CCs, a periodically shifted codeword
+Dn V(D), or Dc·n v(D), n∈Z, is also a codeword, and consequently it satisﬁes the constraint imposed by the polynomial
+syndrome former matrix, i.e.,
+
+
+HT = 
+v
+
+
+0 0 1 0 0
+1 0 0
+0
+0
+
+1
+0
+0
+1
+
+0
+0
+1
+0
+1
+
+0
+0
+0
+0
+0
+
+0
+0
+0
+0
+0
+
+
+0
+.
+0
+
+0 0 1
+0 0 1 0 0
+
+(11)
+
+Note that summing the rows of (11) modulo 2 results in the
+zero vector. The corresponding polynomial form is
+
+(7)
+
+6
+i=1
+
+III. H AMMING WEIGHTS OF CODEWORDS IN LDPC-CC S
+In this section we present some properties of the Hamming
+weights of codewords in time-invariant LDPC-CCs deﬁned
+with respect to the (polynomial) syndrome former matrix,
+which form the basis for estimating the distance spectrum in
+Section IV. In order to introduce some useful notation and
+terminology, we begin by stating a well-known property of
+convolutional codes.
+
+hci (D)×Dti = h2 (D) · D0 + h1 (D) · D1 + h2 (D) · D2 +
+h3 (D) · D2 + h1 (D) · D3 + h2 (D) · D4
+1
+= D1 D2 + D1 D4 + D3 D4 +
+5
+2 1
+D
+D + D3 D6 + D5 D6
+= [0 0]1 = 0(D).
+
+Therefore, the sequence v(D) = D2 + D4 + D8 + D9 + D10 +
+D14 is a codeword with Hamming weight 6 in this LDPC-CC.
+IV. E STIMATING THE D ISTANCE S PECTRUM OF
+LDPC-CC S USING L INEAR D EPENDENCE E VALUATION
+The distance spectrum is an important property of a convolutional code needed to estimate its performance under a
+variety of decoding algorithms. However, compared to conventional convolutional codes, it is much more complex to
+calculate the distance spectrum of LDPC-CCs. This is because
+the low density requirement of the syndrome former matrix of
+LDPC-CCs results in a comparatively large memory. In this
+section, we will introduce a strategy to estimate the ﬁrst several
+nonzero codeword enumerators Aw in the distance spectrum
+of time-invariant LDPC-CCs.
+Based on Property 1, a straightforward way to calculate
+the initial portion of the distance spectrum of an LDPC-CC
+is to ﬁnd the smallest sets of variable nodes that satisfy the
+constraint that their corresponding rows in HT , or extended
+rows in HT (D), sum up to the zero vector, or the vector
+of all-zero sequences, respectively. However, searching for all
+possible combinations is very time consuming. To improve the
+efﬁciency, we introduce a novel two-step solution.
+
+Property 1. Let C be a convolutional code with syndrome
+former matrix HT . For a codeword v of Hamming weight l,
+there exist l corresponding rows in HT such that the sum of
+these l rows is the zero vector. Conversely, if there exist l rows
+in HT whose sum is the zero vector, there exists a codeword
+v of Hamming weight l.
+Property 1 also applies to time-invariant convolutional codes
+deﬁned with respect to the (polynomial) syndrome former
+matrix. Assuming that codeword v has l nonzero components,
+(c )
+(c )
+(c )
+let vt1 1 = vt2 2 = · · · = vtl l = 1 be the l nonzero
+components, where ti ∈Z, ci ∈Z+ , and ci ≤c, 1≤i≤l. Then
+v can be described in the polynomial domain as v(D) =
+D(c·t1 +c1 ) + D(c·t2 +c2 ) + · · · + D(c·tl +cl ) , and to satisfy the
+constraint in (7), we have
+hci (D) · Dti = 0(D),
+
+
+
+
+
+
+HT = 
+
+
+
+
+
+
+
+
+
+(4)
+
+v(0) (Dc )+D·v(1) (Dc )+· · ·+Dc−1 ·v(c−1) (Dc ), (6)
+
+l
+i=1
+
+D3 1
+
+0 0 1
+0 1 0
+
+1
+
+0
+
+
+0
+
+i.e., V(D)H (D) = 0(D). After multiplexing, the codeword
+can also be expressed as [8]
+
+Dn V(D)HT (D) = 0(D).
+
+h3,1 (D) h3,2 (D)
+
+and time-domain syndrome former matrix
+1 0 0 0 0 0 0 1
+
+T
+
+v(D)
+
+h1,1 (D) h1,2 (D)
+
+h3 (D)
+
+The c-tuple of a codeword in the polynomial-domain codeword
+set V(D) is given by
+V(D)
+
+1 D3
+
+h1 (D)
+
+HT (D) = h2 (D) = h2,1 (D) h2,2 (D) = D D2 , (9)
+
+(8)
+
+where hci (D) is the ci th row in (4). Throughout the paper, we
+refer to hci (D) · Dti as an extended row of HT (D).
+
+2
+
+First, if a row vector r1 is involved in a row vector set r
+of HT that sums to the zero vector, then, for each ‘1’ in r1 ,
+there must exist a row vector r2 ∈ r that has a ‘1’ in the
+same column in order to cancel the ‘1’ in r1 (as shown in the
+previous example). Recall that a row vector in HT corresponds
+to a variable node, and consequently, instead of searching the
+entire set of rows in HT , only neighboring variable nodes are
+considered in the search to cancel ‘1’s, where two variable
+nodes are called neighbors if and only if they have at least
+one constraint node in common. Due to the semi-inﬁnite size
+of the time-domain syndrome former matrix, it is inconvenient
+to analyze such connections among variable nodes. However,
+as described in Section II, we can convert HT to a ﬁnite,
+compact, polynomial syndrome former matrix that facilitates
+analysis.
+Second, rather than computing the distance spectrum in
+the original code (with a relatively large free distance), we
+split the columns of the polynomial syndrome former matrix
+into several submatrices and calculate the distance spectrum
+of each of the resulting convolutional “super codes”. Given
+the distance spectra of the super codes, we can then form
+an estimate of the distance spectrum for the original code by
+evaluating the linear dependence between the codewords of the
+super codes. The linear dependence evaluation method will be
+described later in this section.
+The splitting concept is explained as follows. Given a
+polynomial syndrome former matrix HT (D), we partition it
+into a sequence of I polynomial syndrome former submatrices
+HTi (D) of size c×q, q≤p, q∈Z+ , pi ∈Z+ , 1≤i≤I, i∈Z, where
+p
+each HTi (D) deﬁnes a super code and each column of HT (D)
+p
+appears in at least one of the submatrices HTi (D).1 If, among
+p
+the super codes, there is a common codeword W(D), we
+obtain from Property 1 
+W(D) · HT1 (D) = 0(D) 
+p
+.
+.
+⇒ W(D) · HT (D) = 0(D), (12)
+.
+
+T
+
+mjs ∈Z, 1≤s≤Lj , and a set of codewords
+l
+
+lL
+
+{(vl11 (D), . . . , vpL1 (D)), . . . , (vl1I (D), . . . ,vpII (D))} (14)
+1
+p
+p
+
+that satisfy 
+
+
+
+
+
+L1
+s=1
+LI
+s=1
+
+Dc·m1s vls1 (D) = v(D)
+p
+.
+.
+.
+.
+
+(15)
+
+Dc·mIs vlsI (D) = v(D)
+p
+Then it follows from (12) that the common codeword v(D)
+is also a codeword in the original LDPC-CC, and thus this
+codeword contributes to the codeword weight enumerator Aw .
+In searching for these sets of shift parameter vectors, we
+set a maximum value for mjlj to ensure termination of the
+search. We call this process of ﬁnding common codewords
+a linear dependence evaluation of codewords in the distance
+spectra of the super codes. Since linear dependence evaluation
+does not guarantee that the obtained common codeword has
+minimum weight, the value that we obtain for the minimum
+weight codeword is an upper bound on the free distance of the
+original LDPC-CC, and the number of codewords obtained for
+any given Hamming weight is a lower bound on the number
+of codewords of this weight. Note that the linear dependence
+evaluation method is more likely to give an accurate estimate
+of the number of codewords with low Hamming weight. This
+is because, as we increase the Hamming weight, the number
+of codewords to consider also increases which, in turn, greatly
+increases the search complexity.
+In estimating the distance spectrum, only multiplexed codewords v(D) whose minimum degree2 is smaller than or equal
+to c are included. Thus periodically shifted codewords are not
+included in the estimate of the distance spectrum. In addition,
+if there are n + 1 codewords {v0 (D), v1 (D), . . . , vn (D)|n >
+1, n ∈ Z+ } in the codeword set v(D) that satisfy
+n
+(16)
+v0 (D) = k=1 vk (D)
+and
+n−1
+(17)
+w(v0 (D)) = w( k=1 vk (D)) + w(vn (D)),
+
+W(D) · HpI (D) = 0(D)
+
+i.e., W(D) is also a codeword of the original LDPC-CC
+with syndrome former matrix HT (D). In other words, linear
+dependence among the codewords of super codes always gives
+a codeword of the original code. Some examples of this
+splitting procedure are given in Section V.
+Finding common codewords in the super codes is still a
+time consuming task if we try to search through all possible
+codewords, since the super codes are also LDPC-CCs, and
+thus they contain codewords of inﬁnite length. However, we
+conduct the search for common codewords by evaluating the
+linear dependence between codewords of the super codes
+in conjunction with information from their corresponding
+distance spectra.
+Let vlsj (D), 1≤j≤I, j∈Z, and ls ∈Z+ , be a codeword in the
+p
+codeword set vpj (D) that satisﬁes vlsj (D)HTj (D) = 0(D).
+p
+p
+Now suppose that there exists a common codeword v(D)
+among all the super codes that can be formed as the modulo
+2 sum of some number of periodically shifted codewords in
+each super code with polynomial syndrome former matrix
+HTj (D), 1≤j≤I, i.e., there is a set of shift parameter vectors
+p
+{mp1 , mp2 , . . . , mpI }, where
+
+where w(vk (D)) indicates the Hamming weight of codeword vk (D), then the codeword v0 (D) is not counted
+in the codeword weight enumerator Aw(v0 (D)) , i.e., linear combinations of codewords with nonoverlapping ones
+are not counted as separate codewords. (Note: notationally,
+v0 (D),v1 (D),. . .,vn (D) are multiplexed codewords, while
+v(i) (D) in (5) is the ith element in the c-tuple of the codeword
+V(D), 0≤i≤c−1.)
+Even though the linear dependence evaluation method only
+gives an estimate of the distance spectrum, it is shown in
+Section V that this technique yields the exact free distance
+for a well-known class of LDPC-CCs and, moreover, all
+codewords of low Hamming weight are accounted for in the
+evaluation.
+
+(13)
+
+V. A PPLICATION OF L INEAR D EPENDENCE E VALUATION
+TO SOME E XAMPLE C ODES
+A. The Tanner (21, 3, 5) LDPC convolutional code
+To illustrate the application of the linear dependence evaluation method to ﬁnding common codewords among super
+codes, the Tanner (21, 3, 5), R = (c − p)/c = 2/5 LDPC
+
+that I × q may be greater than p, so some columns of HT (D) may
+appear in more than one submatrix HTi (D).
+p
+
+2 The minimum degree of a polynomial is deﬁned as the lowest exponent
+of a term with non-zero coefﬁcient. For example, the minimum degree of
+D + D3 + D6 is one.
+
+mpj = (mj1 , mj2 , . . . , mjLj ),
+
+1 Note
+
+3
+
+TABLE I: Distance spectra of super codes
+
+TABLE II: Estimated distance spectrum of the original
+LDPC-CC
+
+Codeword weight enumerator Aw
+A6
+A8
+A10
+HT (D)
+6
+22
+158000
+1817
+1
+HT (D)
+6
+12
+68
+924
+2
+Codewords with minimum free weight
+HT (D) : vl (D) ∈ v1 (D)
+HT (D) : vl (D) ∈ v2 (D)
+1
+2
+1
+2
+v1 (D) → v12 (D)
+v13 (D) → v22 (D)
+v1 (D) → v12 (D)
+1
+1
+1
+1
+2
+2
+[3, 12, 32, 36, 52, 56] [5, 15, 33, 42, 76, 82] [2, 26, 57, 63, 81, 112]
+[3, 12, 19, 38, 59, 87] [5, 35, 53, 66, 72, 102] [2, 26, 29, 46, 77, 84]
+[3, 12, 15, 19, 47, 54] [5, 29, 42, 44, 46, 61] [2, 9, 43, 63, 92, 119]
+[3, 12, 23, 36, 72, 76] [5, 49, 64, 72, 81, 96] [2, 26, 63, 118, 136, 167]
+[4, 17, 21, 24, 32, 56] [5, 49, 63, 77, 84, 112] [4, 21, 38, 111, 113, 169]
+[4, 8, 21, 23, 64, 96]
+[5, 20, 49, 59, 76, 81] [5, 30, 55, 66, 74, 99]
+[5, 33, 35, 42, 72, 106] [5, 25, 62, 66, 72, 96] [5, 25, 42, 67, 69, 74]
+[5, 28, 37, 44, 49, 77] [5, 33, 42, 45, 63, 112] [5, 47, 60, 66, 71, 97]
+[5, 10, 15, 49, 54, 76] [5, 53, 63, 65, 66, 136] [5, 66, 74, 80, 91, 124]
+[5, 40, 49, 72, 77, 79] [5, 49, 63, 68, 80, 119] [5, 49, 83, 95, 108, 164]
+[5, 15, 62, 66, 76, 86]
+−
+[5, 42, 103, 108, 115, 157]
+[5, 44, 49, 57, 61, 81]
+−
+[5, 66, 108, 158, 170, 181]
+Super codes
+
+df
+
+(ms , J, K)
+(21, 3, 5)
+
+00
+
+D 70
+D 15
+
+D 50
+D 15
+D 40
+D 13
+
+D 12 
+1 .
+D 70
+D 21
+
+00
+
+D 70
+D 15
+
+D 50
+
+D 15  , HT (D)
+2
+D 40
+D 13
+
+50
+
+D
+= D15
+D40
+D13
+
+A32
+53
+
+TABLE III: Estimated distance spectra of some Tanner
+(ms ,3,5) LDPC-CCs
+(ms , J, K)
+
+(57, 3, 5)
+ 00 0 35 
+ 08 43 45 
+019 3 13 
+HT (D)
+
+
+057 9 30
+033 020 000
+df
+24
+A24
+5
+Codeword
+A36
+21
+weight
+A40
+1
+enumerator
+A42
+37
+Aw
+A44
+171
+A46
+286
+Note: ‘D’ is ignored for simplicity,
+
+(18)
+
+D12 
+1 ,
+D70
+D21
+
+Codeword weight enumerator Aw
+A26
+A28
+A30
+5
+8
+34
+
+Codewords with minimum free weight: vl (D) ∈ v(D)
+= [4, 17, 21, 24, 32, 38, 47, 56, 58, 71, 74, 78, 91, 93, 107,
+111, 113, 122, 129, 134, 148, 166, 169, 197]
+2 (D) = [5, 30, 49, 60, 65, 72, 74, 77, 83, 96, 101, 102, 104, 119,
+v
+127, 132, 134, 136, 147, 153, 167, 171, 174, 202]
+v3 (D) = [5, 20, 35, 49, 59, 76, 81, 83, 93, 95, 96, 104, 108, 110,
+121, 123, 154, 164, 166, 168, 173, 185, 196, 224]
+v4 (D) = [5, 25, 45, 60, 62, 66, 72, 74, 80, 87, 89, 91, 94, 96, 99,
+102, 115, 116, 121, 124, 126, 147, 152, 154]
+v5 (D) = [5, 40, 49, 55, 72, 75, 77, 79, 83, 92, 95, 108, 113, 117,
+119, 124, 133, 138, 143, 150, 162, 164, 189, 192]
+v6 (D) = [5, 25, 62, 66, 72, 75, 96, 108, 117, 123, 128, 130, 133,
+135, 136, 141, 158, 167, 170, 177, 181, 188, 206, 237]
+
+(Note that the common factors of D have been removed from
+the code in [9] for simplicity).
+First, we split the polynomial syndrome former matrix of
+the original code into two submatrices HT (D) and HT (D) as
+1
+2
+follows:
+ 1
+
+ 1
+
+1
+D18
+D
+HT (D) = D30
+1
+
+24
+
+A24
+6
+
+v1 (D)
+
+convolutional code [9] is chosen as an example. This timeinvariant code has polynomial syndrome former matrix
+ 1
+
+1
+D 18
+D
+HT (D) = D30
+
+df
+
+(126, 3, 5)
+(204, 3, 5)
+ 0 28 116  0
+0 171
+7 101 36   86 85 0 
+
+63 81 0   97 9 106
+
+ 
+
+58 72 14
+90 145 177
+18 0 126
+204 168 40
+24
+24
+A24
+5
+A24
+5
+A28
+1
+A36
+17
+A34
+2
+A40
+4
+A36
+19
+A44
+187
+A40
+1
+A46
+390
+A42
+9
+A52
+339
+and ‘0’ means the polynomial D 0 or 1.
+
+codewords from HT (D) and the 22 codewords from HT (D)
+2
+1
+as given in Table I, we obtain an estimate of the distance
+spectrum of the original code, which is given in Table II.5
+We estimate that the code with polynomial syndrome former
+matrix given by (18) has free distance 24, which is consistent
+with the free distance given in [9], and the estimated numbers
+of codewords with Hamming weight 24, 26, 28, 30, and 32
+are 6, 5, 8, 34, and 53, respectively. Moreover, we ﬁnd all six
+codewords with minimum weight. For example, the codeword
+v1 (D) is a common codeword of both super codes, since there
+is a set of shift parameter vectors
+m1 = (m11 , m12 , m13 , m14 ) = (22, 7, 0, 14),
+m2 = (m21 , m22 , m23 , m24 ) = (9, 3, 6, 0)
+and a set of codewords (for simplicity, the notation ’D’ is
+ignored)
+(vl1 , vl2 , vl3 , vl4 ) = (v2 , v4 , v5 , v6 ),
+1 1 1 1
+1
+1
+1
+1
+(vl1 , vl2 , vl3 , vl4 ) = (v2 , v3 , v4 , v5 )
+2 2 2 2
+2
+2
+2
+2
+in the super codes HT (D) and HT (D), respectively, that give
+1
+2
+
+(19)
+
+where each of the super codes is of rate 3/5.3 Note that we
+could also split (18) into three submatrices, each representing a
+super code of rate 4/5. In this example we choose the former,
+since the low weight codewords of each of the two super codes
+can already be efﬁciently calculated.
+Next, we compute the distance spectrum of each super code
+based on the concept introduced in Section IV.4 The ﬁrst three
+nonzero codeword weight enumerators are given in Table I.
+We observe that each super code has minimum free distance
+6 and that, additionally, no codewords with odd Hamming
+weight exist in the spectrum. Given these two distance spectra,
+if there is a common codeword that is a sum of periodically
+shifted codewords in each super code, then this codeword is
+also a codeword in the original code. In this example, only
+codewords with minimum free weight from each super code
+are used to evaluate linear dependence. Nevertheless, we see
+that this already gives a good estimate of the distance spectrum
+of the original code. Due to space limitations, only the power
+indices are listed in Tables I and II; for example, if a codeword
+in the polynomial domain is D1 + D3 + D6 , it is represented
+as [1, 3, 6].
+By applying the linear dependence evaluation method to the
+codewords with free weight 6 in the super codes, i.e., the 12
+
+D5·22 v2 (D)+D5·7 v4 (D)+D5·0 v5 (D)+D5·14 v6 (D) = v1 (D)
+1
+1
+1
+1
+,
+D5·9 v2 (D)+D5·3 v3 (D)+D5·6 v4 (D)+D5·0 v5 (D) = v1 (D)
+2
+2
+2
+2
+
+i.e., condition (15) is satisﬁed. Similar linear dependence
+evaluations can be formulated for codewords v2 (D), . . .,
+v6 (D).
+B. Other examples
+The distance spectra of some other Tanner (ms ,3,5) LDPC
+convolutional codes can be obtained in the same way. Using
+
+3 Note
+
+that, as described in Section IV, this is an example where there is a
+repeated column in HT (D) and HT (D), since I × q = 2 × 2 > p = 3.
+1
+2
+4 Note that HT (D) and HT (D) have constant row weight 2. The distance
+1
+2
+spectrum of such super codes can be easily calculated based on the fact that
+a cycle of length g corresponds to a codeword of weight g/2.
+
+5 The distance spectrum of this code has also been computed recently in
+[10].
+
+4
+
+the QC-LDPC block codes presented in [9], we construct
+the polynomial domain syndrome former matrix for each of
+the corresponding time-invariant LDPC-CCs and apply the
+linear dependence evaluation method to the associated super
+codes to estimate the distance spectrum of the original LDPCCC. Results for three such codes are shown in Table III.
+Interestingly, we ﬁnd that all of these (ms ,3,5) LDPC-CCs
+have exactly ﬁve codewords with free distance 24. We note
+that, together with the code discussed in Section V-A, each
+of the (ms ,3,5)-regular LDPC-CCs without empty entries6
+in the polynomial syndrome former matrix HT (D) of size
+5 × 3 has minimum free distance upper bounded by 24
+and has at least ﬁve codewords with this weight. We also
+note that, using the bound of Mackay and Davey [11], any
+corresponding (J, K)-regular QC-LDPC block code has its
+minimum distance bounded above by (J +1)! = (3+1)! = 24.
+Even though all of these (ms , 3, 5)-regular LDPC-CCs have
+the same estimated free distance, the weight distributions turn
+out to be different. The ﬁrst six nonzero codeword weight
+enumerators of these codes are listed in Table III. The distance
+spectra of all three codes have codewords with even Hamming
+weights ranging from 24 to 52. Compared to the (57, 3, 5)
+code, the (126, 3, 5) code contains fewer codewords in this
+range. However, compared to the (57, 3, 5) and (126, 3, 5)
+codes, and despite increasing the syndrome former memory
+up to 204, the distance spectrum of the (204, 3, 5) code does
+not show any improvement.
+Finally, we present some examples that demonstrate the accuracy of the method for codes with larger free distance. QCLDPC-BCs based on pre-lifted protographs were introduced in
+[12] to improve the girth and the minimum Hamming distance.
+A family of regular (3,4) QC-LDPC-BCs pre-lifted from a 3×4
+base matrix is given by
+
+
+H=
+
+I
+0
+I
+0
+I
+0
+
+0
+I
+0
+I
+0
+I
+
+I
+0
+P1
+0
+0
+S2
+
+0
+I
+0
+P2
+S1
+0
+
+I
+0
+0
+Q2
+T1
+0
+
+0
+I
+Q1
+0
+0
+T2
+
+I
+0
+0
+R2
+U1
+0
+
+0
+I
+R1 
+
+0 ,
+0
+U2
+
+upper bound on the minimum distance of the corresponding
+QC-LDPC-BC [9].
+Even though the polynomial syndrome former matrices of
+all the example codes in this paper consist of only monomials,
+this technique can also be applied to more general polynomial
+matrices, i.e., the entries of HT (D) can have weight greater
+than one. This generalization does not increase the complexity
+of the algorithm.
+VI. C ONCLUSION
+In this paper, a novel approach has been introduced to
+estimate the distance spectrum of time-invariant LDPC-CCs
+that are deﬁned by polynomial syndrome former matrices. The
+concept is to split the polynomial syndrome former matrix into
+submatrices, each of which deﬁnes a super code. By applying
+the linear dependence evaluation method introduced in this
+paper to the codewords of the super codes, we obtain an
+estimate of the distance spectrum of the original code, i.e.,
+we obtain an upper bound on the minimum free distance and
+a lower bound on the number of codewords Aw with Hamming
+weight w. The free distance bound was shown to be exact for
+the Tanner (21,3,5)-regular time-invariant LDPC-CC.
+In contrast to the BEAST algorithm [6], which can be
+used to obtain exact Aw values for convolutional codes with
+relatively short memories, the complexity of the proposed
+algorithm does not depend on the constraint length vs or
+the syndrome former memory ms ; instead, the complexity
+depends on the free distance and the density (row and column
+weight J and K) of HT . As a result, unlike BEAST, the linear
+dependence evaluation method is well suited for application
+to practical time-invariant LDPC-CCs that have low-density
+syndrome former matrices and large memories.
+R EFERENCES
+[1] A. J. Felstr¨ m and K. Sh. Zigangirov, “Time-varying periodic convoluo
+tional codes with low-density parity-check matrices,” IEEE Trans. Inf.
+Theory, vol. 45, no. 6, pp. 2181-2191, Sept. 1999.
+[2] D. J. Costello, Jr., A. E. Pusane, S. Bates, and K. Sh. Zigangirov, “A
+comparison between LDPC block and convolutional codes,” in Proc.
+Inf. Theory and Applications Workshop, San Diego, USA, Jan. 2006.
+[3] S. Bates, D. G. Elliot, and R. Swamy, “Termination sequence generation
+circuits for low-density parity-check convolutional codes,” IEEE Trans.
+Circuits and Systems, vol. 53, no. 9, pp. 1909-1917, Sept. 2006.
+[4] L. R. Bahl, C. D. Cullum, W. D. Frazer, and F. Jelinek, “An efﬁcient
+algorithm for computing free distance,” IEEE Trans. Inf. Theory, vol.
+IT-18, pp. 437-439, May 1972.
+[5] M. Rouanne and D. J. Costello, Jr., “An algorithm for computing the distance spectrum of trellis codes,” IEEE J. Select. Areas Communications,
+vol. 7, pp. 929-940, Aug. 1989.
+[6] I. E. Bocharova, M. Handlery and R. Johannesson, “A BEAST for
+Prowling in Trees,” IEEE Trans. Inf. Theory, vol. 50, no. 6, pp. 12951302, June 2004.
+[7] H. Zhou and N. Goertz, “Cycle analysis of time-variant LDPC
+convolutional codes,” in Proc. 6th International Symposium on Turbo
+Codes and Iterative Information Processing, Brest, France, Sept. 2010.
+[8] S. Lin and D. J. Costello, Jr., “Error control coding,” 2nd Ed., Pearson
+Prentice Hall, 2004.
+[9] R. M. Tanner, D. Sridhara, A. Sridharan, T. E. Fuja, and D. J. Costello
+Jr., “LDPC block and convolutional codes based on circulant matrices,”
+IEEE Trans. Inf. Theory, vol. 50, no. 12, pp. 2966-2984, Dec. 2004.
+[10] M. Hirotomo and M. Morii “Improvement of the method for computing
+the weight spectrum of LDPC convolutional codes,” IEICE Technical
+Report, vol. 111, no. 220, pp. 15-20, Sept. 2011 (in Japanese).
+[11] D. J. C. MacKay and M. C. Davey, Evaluation of Gallager codes
+for short block length and high rate applications, IMA volumes in
+Mathematics and its Applications, vol. 123, ch. 5, pp. 113-130, 2001.
+[12] D. G. M. Mitchell, R. Smarandache, and D. J. Costello Jr., “QuasiCyclic LDPC Codes Based on Pre-Lifted Protographs,” Information
+Theory Workshop, Paraty, Brazil, Oct, 2011.
+[13] W. Bosma, J. Cannon, and C. Playoust, “The Magma algebra system.
+I. The user language, J. Symbolic Comput., vol. 24, pp. 235265, 1997.
+
+(20)
+
+where Pi , Qi , Ri , Si , Ti , and Ui , i = 1, 2, are permutation
+matrices, I is the identity matrix, 0 is the all-zero matrix, and
+each matrix is of size r × r. By choosing the permutation
+matrices P1 , P2 , Q1 , Q2 , R1 , R2 , S1 , S2 , T1 , T2 , U1 , and
+U2 as the circulant matrices I1 , I5 , I2 , I10 , I4 , I20 , I7 , I3 ,
+I14 , I6 , I28 , and I9 ,7 respectively, and setting the circulant
+size to r = 41, we obtain a QC-LDPC-BC with minimum
+distance bounded by 38 ≤ dmin ≤ 48 (found using MAGMA
+[13]). Similarly, choosing the twelve permutation matrices as
+the circulant matrices I1 , I5 , I10 , I10 , I13 , I13 , I7 , I7 , I11 ,
+I11 , I2 , and I4 , respectively, and setting the circulant size to
+r = 49, results in a QC-LDPC-BC with minimum distance
+bounded by 32 ≤ dmin ≤ 56.
+Two time-invariant LDPC-CCs with polynomial syndrome
+former matrices HT (D) and HT (D) can be obtained from H
+3
+4
+by replacing ‘I’ with ‘1’ and ‘In ’ with the delay operator ‘Dn ’.
+Applying the linear dependence evaluation method to these
+two LDPC-CCs, we ﬁnd that the minimum free distances of
+the LDPC-CCs represented by HT (D) and HT (D) are upper
+3
+4
+bounded by 48 and 56, respectively. This result is consistent
+with the fact that minimum free distance of an LDPC-CC is an
+6 An empty entry in HT (D) refers to a polynomial entry that is the all-zero
+sequence 0(D).
+7 The notation I is used to denote the r × r identity matrix with each row
+a
+cyclically shifted to the left by a positions.
+
+5
+
+

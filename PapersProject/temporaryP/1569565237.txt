@@ -1,0 +1,764 @@
+Title:          HE12-Hierarchies-ISIT.dvi
+Creator:        www.freepdfconvert.com         
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Thu May 10 10:51:17 2012
+ModDate:        Tue Jun 19 12:56:16 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      320187 bytes
+Optimized:      no
+PDF version:    1.7
+ISIT'2012 1569565237
+
+Hierarchies of Local-Optimality Characterizations in
+Decoding Tanner Codes
+Nissim Halabi and Guy Even
+School of Electrical Engineering, Tel-Aviv University, Tel-Aviv 69978, Israel
+Email: {nissimh,guy}@eng.tau.ac.il
+
+local codes. The error-correcting guarantees in these analyses
+improve as the relative minimum distance increases.
+A new local-optimality characterization for a codeword in a
+Tanner code w.r.t. any MBIOS channel was presented in [3]. A
+locally-optimal codeword is guaranteed to be both the unique
+maximum-likelihood (ML) codeword as well as the unique LPdecoding codeword. The characterization of local-optimality
+for Tanner codes has three parameters: (i) a height h ∈ N,
+(ii) level weights w ∈ Rh , and (iii) a degree 2
+d
+d∗ ,
++
+∗
+where d is the minimum local distance.
+A new message-passing decoding algorithm, called normalized weighted min-sum (NWMS), was presented for Tanner
+codes with single parity-check (SPC) local codes [3]. The
+NWMS decoder is guaranteed to compute the ML-codeword
+in h iterations provided that a locally-optimal codeword with
+height h exists. The number of iterations h may exceed the
+girth of the Tanner graph.
+Contribution: We present a variation of local-optimality
+called strong local-optimality. We prove that if a codeword is
+strongly locally-optimal, then it is also locally-optimal. Hence,
+previous results proved for local-optimality [3] hold also for
+strong local-optimality.
+We present two hierarchies: (1) A hierarchy of localoptimality based on degrees. The degree hierarchy states that
+a locally-optimal codeword x with degree parameter d is also
+locally-optimal with respect to any degree parameter d > d.
+The degree hierarchy implies that the occurrence of localoptimality does not decrease as the degree parameter increases.
+(2) A hierarchy of strong local-optimality based on height. The
+height hierarchy states that if a codeword x is strongly locallyoptimal with respect to height parameter h, then it is also
+strongly locally-optimal with respect to every height parameter
+that is an integer multiple of h. The height hierarchy proves,
+for example, that the performance of iterative decoding with an
+ML-certiﬁcate (e.g., NWMS) of ﬁnite-length Tanner codes with
+SPC local codes does not degrade as the number of iterations
+grows, even beyond the girth of the Tanner graph.
+
+Abstract—Recent developments in decoding Tanner codes with
+maximum-likelihood certiﬁcates are based on a sufﬁcient condition called local optimality. We deﬁne hierarchies of locally
+optimal codewords with respect to two parameters. One parameter is related to the minimum distance of the local codes
+in Tanner codes. The second parameter is related to the ﬁnite
+number of iterations used in iterative decoding. We show that
+these hierarchies satisfy inclusion properties as these parameters
+are increased. In particular, this implies that a codeword that
+is decoded with a certiﬁcate using an iterative decoder after h
+iterations is decoded with a certiﬁcate after k · h iterations, for
+every integer k.
+
+I. I NTRODUCTION
+Local optimality is often used as a sufﬁcient condition
+for successful decoding of ﬁnite length codes (see e.g., [1],
+[2]). In this work we focus on two parameters of the localoptimality characterization for Tanner codes [3]. The ﬁrst
+parameter is related to the minimum distance of the local
+codes in (expander) Tanner codes. The second parameter is
+related to the ﬁnite number of iterations used in iterative
+decoding, even when number of iterations exceeds the girth.
+We deﬁne hierarchies of local optimality with respect to these
+parameters. These hierarchies provide a partial explanation of
+two questions about successful decoding with ML-certiﬁcates:
+(1) What is the effect of increasing the minimum distance of
+the local codes in Tanner codes? (2) What is the effect of
+increasing the number of iterations beyond the girth in iterative
+decoding?
+Previous Work: Density Evolution (DE) is used to study
+the asymptotic performance of decoding algorithms based
+on Belief-Propagation (BP) (see e.g., [4], [5]). Convergence
+of BP-based decoding algorithms was studied in [1], [6]–
+[8]. Note that convergence guarantees do not imply successful decoding after a ﬁnite number of iterations. Korada
+and Urbanke [9] provide an asymptotic analysis of iterative
+decoding “beyond” the girth. Speciﬁcally, they prove that one
+may exchange the order of the limits in DE-analysis of BPdecoding under certain conditions (i.e., variable node degree
+at least 5 and bounded LLRs). On the other hand, our work
+focuses on iterative decoding of ﬁnite length codes using a
+ﬁnite number of iterations.
+Suboptimal decoding of expander Tanner codes was analyzed in many works (see [10]–[12]). The results in these
+analyses rely on: (i) the expansion properties of the Tanner
+graph, and (ii) constant relative minimum distances of the
+
+II. P RELIMINARIES
+Graph Terminology: Let G = (V, E) denote an undirected
+graph. Let NG (v) denote the set of neighbors of node v ∈ V ,
+and let degG (v)
+|NG (v)| denote the degree of node v in
+graph G. A path p = (v, . . . , u) in G is a sequence of vertices
+such that there exists an edge between every two consecutive
+nodes in the sequence p. A path p is backtrackless if every two
+
+1
+
+consecutive edges along p do not close a cycle. Let |p| denote
+the number of edges in p. Let girth(G) denote the length of
+the shortest cycle in G.
+Tanner-codes and ML-decoding: Let G = (V∪J , E) denote
+an edge-labeled bipartite-graph, where V = {v1 , . . . , vN }
+is a set of N vertices called variable nodes, and J =
+{C1 , . . . , CJ } is a set of J vertices called local-code nodes.
+j
+We associate with each local-code node Cj a linear code C
+J
+j
+of length degG (Cj ). Let C
+C : 1
+j
+J denote
+the set of local codes, one for each local code node. We say
+j
+that vi participates in C if (vi , Cj ) is an edge in E.
+A word x = (x1 , . . . , xN ) ∈ {0, 1}N is an assignment to
+variable nodes in V where xi is assigned to vi . The Tanner
+J
+code C(G, C ) based on the labeled Tanner graph G is the
+set of vectors x ∈ {0, 1}N such that the projection of x onto
+j
+entries associated with NG (Cj ) is a codeword in C for every
+j ∈ {1, . . . , J}. Let dj denote the minimum distance of the
+j
+local code C . The minimum local distance d∗ of a Tanner
+J
+code C(G, C ) is deﬁned by d∗ minj dj .
+If the bipartite graph is (dL , dR )-regular, then the graph
+deﬁnes a (dL , dR )-regular Tanner code. If the Tanner graph is
+sparse, i.e., |E| = O(N ), then it deﬁnes a low-density Tanner
+code. Tanner codes with single parity-check (SPC) local codes
+that are based on sparse Tanner graphs are called low-density
+parity-check (LDPC) codes.
+Let ci ∈ {0, 1} denote an input to a memoryless channel
+deﬁned by a conditional probability density function f (yi |ci =
+a) for a ∈ {0, 1}. For memoryless binary-input outputsymmetric (MBIOS) channels, let λ ∈ RN denote the loglikelihood ratio (LLR) deﬁned by λi (yi ) ln f (yi |ci =0) for
+f (yi |ci =1)
+every input bit i. For a code C, Maximum-Likelihood (ML)
+decoding is equivalent to xML (y) = arg minx∈C λ(y), x .
+ˆ
+Local-Optimality Characterization: A new characterization
+for local-optimality of Tanner codes was presented in [3] as
+extension to [2], [13]. Local-optimality is deﬁned in Deﬁnition 4.
+
+ˆ {p | p ∈ V , t(p) ∈ J }. Paths in V are called variable
+ˆ
+ˆ
+J
+ˆ are called local-code paths.
+paths, and paths in J
+
+Deﬁnition 1 (Path-Preﬁx Tree). Consider a graph G = (V, E)
+ˆ
+and a node r ∈ V . Let V denote the set of all backtrackless
+paths in G with length at most h that start at node r, and let
+ˆ
+ˆ
+ˆ
+E
+(p1 , p2 ) ∈ V × V p1 is a preﬁx of p2 , |p1 | + 1 =
+ˆ
+|p2 | . We identify the empty path in V with (r). Denote by
+h
+ˆ , E) the path-preﬁx tree of G rooted at node r
+ˆ
+Tr (G)
+(V
+with height h.
+
+λ, x ⊕ β > λ, x .
+
+ˆ
+ˆ ˆ
+Deﬁnition 2 (d-tree). Denote by Tr2h (G) = (V ∪ J , E) the
+path-preﬁx tree of a Tanner graph G rooted at node r ∈ V.
+A subtree T ⊆ Tr2h (G) is a d-tree if: (i) T is rooted at (r),
+ˆ
+(ii) for every local-code path p ∈ T ∩ J , degT (p) = d, and
+ˆ
+(iii) for every variable path p ∈ T ∩ V, degT (p) = degT 2h (p).
+r
+
+Let T [r, 2h, d](G) denote the set of all d-trees rooted at r that
+are subtrees of Tr2h (G).
+ˆ ˆ ˆ
+Deﬁnition 3 (w-weighted subtree). Let T = (V∪J , E) denote
+a subtree of Tr2h (G), and let w = (w1 , . . . , wh ) ∈ Rh \ {0h }
++
+ˆ
+denote a non-negative weight vector. Let wT : V → R denote
+a weight function based on weight vector w for variable paths
+ˆ
+p ∈ V deﬁned as follows. If p is an empty variable path, then
+wT (p) = 0. Otherwise,
+w
+1
+1
+wT (p)
+·
+·
+, (1)
+w 1 degG t(p)
+degT (q) − 1
++
+q∈Preﬁx (p)
+
+where
+
+q is a preﬁx of p, 1
+
+. We refer to wT as a w-weighted subtree.
+
+For any w-weighted subtree wT of Tr2h (G), let πG,T ,w :
+V → R denote a function whose values correspond to the
+projection of wT on the Tanner graph G. That is, for every
+variable node v in G, πG,T ,w (v)
+{p∈T |t(p)=v} wT (p).
+(w)
+For a Tanner code C(G), let Bd ⊆ [0, 1]N denote the set
+of all projections of w-weighted d-trees on G. That is,
+(w)
+
+Bd
+
+πG,T ,w
+
+T ∈
+
+T [r, 2h, d](G) .
+
+(2)
+
+r∈V
+(w)
+
+Vectors in Bd are referred to as deviations. For two vectors
+x ∈ {0, 1}N and f ∈ [0, 1]N , let x ⊕ f ∈ [0, 1]N denote the
+relative point deﬁned by (x ⊕ f )i |xi − fi |.
+Deﬁnition 4 (local-optimality, [3]). A codeword x ∈ C(G) is
+(h, w, d)-locally optimal with respect to λ ∈ RN if for all
+(w)
+vectors β ∈ Bd ,
+(3)
+
+Theorem 5 (local-optimality is sufﬁcient for ML and LP, [3]).
+Let λ ∈ RN denote the LLR vector received from the channel.
+If x is an (h, w, d)-locally optimal codeword w.r.t. λ and some
+2
+d
+d∗ , then (1) x is the unique maximum-likelihood
+codeword w.r.t. λ, and (2) x is the unique optimal solution of
+the LP-decoder given λ.
+
+Path-preﬁx trees of G that are rooted in variable nodes are
+often called computation trees.
+We use the following notation. Because vertices in Trh (G)
+are paths in G, we denote vertices in path-preﬁx trees by p
+ˆ
+and q. Vertices in G are denoted by u, v, r. For a path p ∈ V ,
+let t(p) denote the last vertex (target) of path p. Denote by
+Preﬁx+ (p) the set of proper preﬁxes of the path p, i.e.,
+Preﬁx+ (p) = q
+
+=
+
+|p|
+2
+
+For two vectors y, z ∈ RN , let “∗” denote coordinatewise
+multiplication, i.e., y ∗ z (y1 · z1 , . . . , yN · zN ).
+Proposition 6 ( [3]). For every λ ∈ RN and every β ∈ [0, 1]N ,
+(−1)x ∗ λ, β = λ, x ⊕ β − λ, x .
+The following proposition states that the mapping (x, λ) →
+(0N , (−1)x ∗ λ) preserves local-optimality.
+
+|q|< |p| .
+
+Proposition 7 (symmetry of local-optimality, [3]). For every
+x ∈ C, x is (h, w, d)-locally optimal w.r.t. λ if and only if 0N
+is (h, w, d)-locally optimal w.r.t. (−1)x ∗ λ.
+
+ˆ ˆ
+Let
+= (V , E) denote a path-preﬁx tree of a Tanner
+ˆ
+ˆ
+graph G = (V ∪ J , E). Let V {p | p ∈ V , t(p) ∈ V}, and
+Trh (G)
+
+2
+
+T
+
+Consider the following iterative trimming process. Start with
+the (d + 1)-tree T and let T ← T ; While there exists a localcode path p ∈ T such that degT (p) = d + 1 do: T ←
+Trim(T , q) where q is a child of p such that λ0 , πG,T ,w
+λ0 , πG,Trim(T ,q),w .
+Lemma 8 guarantees that the iterative trimming process
+halts with a d-tree T whose corresponding deviation β =
+πG,T ,w satisﬁes λ0 , β
+λ0 , β
+0. We conclude by
+Proposition 7 that x is not (h, w, d)-locally optimal w.r.t. λ,
+as required.
+
+q
+
+Fig. 1.
+
+We therefore have for every 2
+
+Tq
+
+Trim(T , q)
+
+d < d∗ ,
+
+Prλ {x is (h, w, d + 1)−locally optimal w.r.t. λ}
+
+Trimmed tree of T induced by q.
+
+Prλ {x is (h, w, d)−locally optimal w.r.t. λ}.
+III. T RIMMING S UBTREES
+
+FROM A
+
+V. H EIGHT H IERARCHY
+
+PATH -P REFIX T REE
+
+Let Tq denote the subtree of a path-preﬁx tree T hanging
+ˆ
+ˆ ˆ
+from path q, i.e., the subtree induced by Vq {p ∈ V ∪J | q ∈
++
+Preﬁx (p) or p = q} (see Figure 1). Let Trim(T , q) denote
+the trimmed-tree of T induced by q obtained by deleting the
+subtree Tq from T . Formally, Trim(T , q) is the path-preﬁx
+ˆ
+ˆ ˆ
+subtree of T induced by V ∪ J \ Vq . Note that if q is a
+sibling of q (i.e., q differs from q only in the last edge), then
+the degree of the parent of q and q decreases as a result
+ˆ
+of trimming Vq . Hence, wT (q ) < wTrim(T ,q) (q ) for every
+ˆ
+variable path q ∈ Vq .
+The proofs of hierarchies presented in the following sections
+are based on the following lemma.
+
+ˆ
+Deﬁnition 10 (reduced d-tree). Denote by Tr2h (G) = (V ∪
+ˆ ˆ
+J , E) the path-preﬁx tree of a Tanner graph G rooted at node
+r ∈ V. A subtree T ⊆ Tr2h (G) is a reduced d-tree if: (i) T
+is rooted at r, (ii) degT (r) = degG (r) − 1, (iii) for every
+ˆ
+local-code path p ∈ T ∩ J , degT (p) = d, and (iv) for every
+ˆ
+non-empty variable path p ∈ T ∩ V, degT (p) = degTr2h (p).
+The only difference between Deﬁnition 2 (d-tree) to a
+reduced d-tree is that the degree of the root in a reduced d-tree
+is smaller by 1 (as if the root itself hangs from an edge).
+Let T red [r, 2h, d](G) denote the set of all reduced d-trees
+rooted at r that are subtrees of Tr2h (G). For a Tanner code
+(w)
+C(G), let B d ⊆ [0, 1]N denote the set of all projections of
+w-weighted reduced d-trees on G. That is,
+
+λ, πG,Trim(T ,q),w .
+
+Proof: See Appendix.
+
+(w)
+
+IV. D EGREE H IERARCHY
+
+OF
+
+Bd
+
+L OCAL -O PTIMALITY
+
+(w)
+
+Vectors in B d are referred to as reduced deviations.
+The following deﬁnition is analogues to Deﬁnition 4 (localoptimality) using reduced deviations instead of deviations.
+
+LOC,Λ (h, w, d)
+
+Deﬁnition 11 (strong local-optimality). Let C(G) ⊂ {0, 1}N
+denote a Tanner code with minimum local distance d∗ . Let
+w ∈ Rh \{0h } denote a non-negative weight vector of length
++
+h and let 2
+d
+d∗ . A codeword x ∈ C(G) is (h, w, d)strong locally-optimal with respect to λ ∈ RN if for all vectors
+(w)
+β ∈ Bd ,
+λ, x ⊕ β > λ, x .
+(4)
+
+{(x, λ) ∈ C × Λ | x is (h, w, d)−locally optimal w.r.t. λ}.
+The following theorem derives an hierarchy on the “density”
+of deviations in local-optimality characterization.
+
+LOC,Λ (h, w, d)
+
+T red [r, 2h, d](G) .
+
+πG,T ,w T ∈
+r∈V
+
+Let Λ ⊆ RN denote a set of vectors. Denote by
+LO C,Λ (h, w, d) the set of pairs (x, λ) ∈ C × Λ such that x
+is (h, w, d)-locally optimal w.r.t. λ. Formally,
+
+Theorem 9 (d-Hierarchy of local-optimality). Let 2
+For every Λ ⊆ RN ,
+
+S TRONG L OCAL -O PTIMALITY
+
+In this section we introduce a new combinatorial characterization named strong local-optimality. We prove that if a
+codeword is strongly locally-optimal then it is also locallyoptimal. The other direction is not true in general.
+
+Lemma 8. Let T denote a subtree of a path-preﬁx tree
+Tr2h (G). For every path p ∈ T with at least two children
+in T , there exists at least one child q of p, such that
+λ, πG,T ,w
+
+OF
+
+d < d∗ .
+
+⊆ LOC,Λ (h, w, d + 1).
+
+Denote by SLOC,Λ (h, w, d) the set pairs (x, λ) ∈ C ×Λ such
+that x is (h, w, d)-strong locally-optimal w.r.t. λ. Formally,
+
+Proof: We prove the contrapositive statement. Assume
+that x is not (h, w, d + 1)-locally optimal w.r.t. λ. By Proposition 7, 0N is not (h, w, d + 1)-locally optimal w.r.t. λ0
+(w)
+(−1)x ∗ λ. Hence, there exists a deviation β = πG,T ,w ∈ Bd
+0
+such that λ , β
+0. Let T denote the (d + 1)-tree that
+corresponds to the deviation β.
+
+SLO C,Λ (h, w, d)
+
+{(x, λ) ∈ C × Λ |x is (h, w, d)−strong
+locally − optimal w.r.t. λ}.
+
+The following lemma states that if a codeword x is strongly
+locally-optimal w.r.t. λ, then x is locally-optimal w.r.t. λ.
+
+3
+
+T
+
+Lemma 12. For every Λ ⊆ RN ,
+SLOC,Λ (h, w, d)
+
+⊆ LOC,Λ (h, w, d).
+
+2h
+
+Proof: We prove the contrapositive statement. Assume
+that x is not (h, w, d)-locally optimal w.r.t. λ. By Proposition 7, 0N is not (h, w, d)-locally optimal w.r.t. λ0 (−1)x ∗λ.
+(w)
+Hence, there exists a deviation β = πG,T ,w ∈ Bd such that
+λ0 , β
+0. Let T denote the d-tree that corresponds to the
+deviation β.
+Denote by (r) the root of T . By Lemma 8, the root (r) has
+a child q such that λ0 , πG,T ,w
+λ0 , πG,Trim(T ,q),w . Note
+that Trim(T , q) is a reduced d-tree rooted at r. Moreover,
+the corresponding reduced deviation β = πG,T ,w satisﬁes
+λ0 , β
+λ0 , β
+0. We conclude by Proposition 7 that x
+is not (h, w, d)-strong locally-optimal w.r.t. λ, as required.
+
+pi
+
+2h
+
+2·k·h
+
+Ti
+
+2h
+
+Following Lemma 12 and Theorem 5 we have the following
+corollary.
+
+Fig. 2. Decomposition of a reduced d-tree T of height 2kh to a set of
+subtrees {T i } that are reduced d-trees of height 2h.
+
+Corollary 13 (strong local-optimality is sufﬁcient for both ML
+and LP). Let C(G) denote a Tanner code with minimum local
+distance d∗ . Let h ∈ N+ and w ∈ Rh . Let λ ∈ RN denote
++
+the LLR vector received from the channel. If x is an (h, w, d)strong locally-optimal codeword w.r.t. λ and some 2 d d∗ ,
+then (1) x is the unique maximum-likelihood codeword w.r.t.
+λ, and (2) x is the unique solution of LP-decoding given λ.
+
+such that λ0 , πG,T ∗ ,w
+0. Hence, 0N is not (h, w, d)-strong
+0
+locally-optimal w.r.t. λ . We apply Proposition 6 again, and
+conclude that x is not (h, w, d)-strong locally-optimal w.r.t. λ,
+as required.
+VI. N UMERICAL R ESULTS
+We conducted simulations to demonstrate two phenomena.
+First, we checked the gap between strong local optimality and
+local optimality. Second, we checked the effect of increasing
+the number of iterations on successful decoding with MLcertiﬁcates.
+We chose a (3, 6)-regular LDPC code with blocklength N =
+1008 and girth g = 6 [14]. We simulated a set Λp of 5000 LLR
+vectors corresponding to the all zeros codeword with respect
+to a BSC with crossover probability p ∈ {0.04, 0.05, 0.06}.
+We used unit level weights, i.e., w = 1h .
+Let SLO0N ,Λp (h, w, 2) (resp., LO0N ,Λp (h, w, 2) ) denote the
+set of LLR vectors λ ∈ Λp such that 0N is strongly locallyoptimal (resp., locally optimal) w.r.t. λ.
+Figure 3 depicts cardinality of SLO0N ,Λp (h, w, 2) and
+LO0N ,Λp (h, w, 2) as a function of h, for three values
+of p. The results suggest that, in this setting, the sets
+SLO {0N },Λp (h, w, 2) and LO {0N },Λp (h, w, 2) coincide as h
+grows. This suggests also that the containment in Lemma 12
+is asymptotically tight. That is, for large height h, strong local
+optimality is very close to local-optimality.
+The results also suggest that the number of iterations needed
+to obtain reasonable decoding with ML-certiﬁcates is far
+greater than the girth. Clearly, the “tree property” that DE
+analysis relies on does not hold for so many iterations. Indeed,
+the simulated crossover probabilities are in the “waterfall”
+region of the word error rate curve with respect to NWMS. We
+are not aware of any analytic explanation of this phenomena
+in ﬁnite length codes.
+Another result of the simulation is that SLO0N ,Λp (h, w, 2) ⊆
+SLO 0N ,Λp (h + 1, w, 2). Namely, once a codeword is strongly
+locally-optimal for λ with height h, then it is also strongly
+
+Consider a weight vector w ∈ Rk·h , and let w = w1 ◦ w2 ◦
+¯
+¯
+¯
+¯
+. . .◦wk denote its decomposition to k weight vectors wi ∈ Rh .
+¯
+¯
+w ∈ Rk·h is a k-legal extension of w ∈ Rh if ∃α ∈ Rk such
+¯
+that wi = αi · w. Note that if w ∈ Rk·h is geometric, then it
+¯
+¯
+is a k-legal extension of w1 in its decomposition.
+¯
+The following theorem derives an hierarchy on the height of
+reduced deviations of strong local-optimality characterization.
+Theorem 14 (h-Hierarchy of strong LO). For every Λ ⊆ RN ,
+if w ∈ Rk·h is a k-legal extension of w ∈ Rh , then
+¯
+SLO C,Λ (h, w, d)
+
+⊆
+
+SLO C,Λ (k
+
+· h, w, d).
+¯
+
+Proof: We prove the contrapositive statement. Assume
+that x is not (k · h, w, d)-strong locally-optimal w.r.t. λ.
+¯
+Proposition 6 implies that 0N is not (k·h, w, d)-strong locally¯
+optimal w.r.t. λ0 (−1)x ∗ λ. Hence, there exists a reduced
+(w)
+¯
+deviation β = πG,T ,w ∈ Bd such that λ0 , β
+0. Let
+¯
+T denote the reduced d-tree that corresponds to the reduced
+deviation β.
+Let {T i } denote a decomposition of T to reduced d-trees
+of height 2h as shown in Figure 2, where leaves of a subtree
+are the roots of other subtrees. Let pi denote the root of a
+reduced d-tree T i in the decomposition of T . Let order(T i )
+pi /h . Namely, the order of T i equals to its level in the
+decomposition. Note that
+αorder(T i ) · πG,T i ,w .
+
+πG,T ,w =
+¯
+{T i }
+
+Because λ0 , β
+0, we conclude by averaging that there
+exists at least one reduced d-tree T ∗ ∈ {T i } of height 2h
+
+4
+
+5000
+4500
+
+node degrees in the deviations. We prove containment, namely,
+the set of locally-optimal codewords with respect to degree
+d + 1 is a superset of the set of locally-optimal codewords
+with respect to degree d.
+The second hierarchy is based on the height of the deviations. We prove that, for geometric level weights, a strongly
+locally-optimal codeword is inﬁnitely often strongly locallyoptimal. This result implies that a codeword that is decoded
+with a certiﬁcate using the iterative decoder NWMS after h
+iterations is decoded with a certiﬁcate after k · h iterations, for
+every integer k.
+
+|LO0N ,Λp (h, 1h , 2)|, p = 0.04
+|SLO0N ,Λp (h, 1h , 2)|, p = 0.04
+|LO0N ,Λp (h, 1h , 2)|, p = 0.05
+
+4000
+3500
+
+|SLO0N ,Λp (h, 1h , 2)|, p = 0.05
+|LO0N ,Λp (h, 1h , 2)|, p = 0.06
+|SLO0N ,Λp (h, 1h , 2)|, p = 0.06
+
+3000
+2500
+2000
+1500
+1000
+
+girth=6
+h=3
+
+500
+0
+1
+
+R EFERENCES
+10
+
+h
+
+100
+
+[1] M. J. Wainwright, T. S. Jaakkola, and A. S. Willsky, “MAP estimation
+via agreement on trees: message-passing and linear programming,” IEEE
+Trans. Inf. Theory, vol. 51, no. 11, pp. 3697–3717, Nov. 2005.
+[2] S. Arora, C. Daskalakis, and D. Steurer, “Message passing algorithms
+and improved LP decoding,” in Proc. STOC’09, USA, 2009.
+[3] G. Even and N. Halabi, “On decoding irregular Tanner codes with localoptimality guarantees,” CoRR, http://arxiv.org/abs/1107.2677, Jul. 2011.
+[4] T. Richardson and R. Urbanke, “The capacity of low-density parity-check
+codes under message-passing decoding,” IEEE Trans. Inf. Theory, vol. 47,
+no. 2, pp. 599–618, Feb. 2001.
+[5] J. Chen and M. P. C. Fossorier, “Density evolution for two improved BPbased decoding algorithms of LDPC codes,” IEEE Commun. Lett., vol. 6,
+no. 5, pp. 208 –210, May 2002.
+[6] B.J. Frey and R. Koetter, “Exact inference using the attenuated maxproduct algorithm,” In Advanced Mean Field Methods: Theory and
+Practice, Cambridge, MA: MIT Press, 2000.
+[7] Y. Weiss and W. T. Freeman, “On the optimality of solutions of the maxproduct belief-propagation algorithm in arbitrary graphs,” IEEE Trans.
+Inf. Theory, vol. 47, no. 2, pp. 736–744, Feb. 2001.
+[8] Y.-Y. Jian and H.D. Pﬁster, “Convergence of weighted min-sum decoding
+via dynamic programming on coupled trees,” CoRR, http://arxiv.org/abs/
+1107.3177, Jul. 2011.
+[9] S. B. Korada and R. L. Urbanke, “Exchange of limits: Why iterative
+decoding works,” IEEE Trans. Inf. Theory, vol. 57, no. 4, pp. 2169–2187,
+Apr. 2011.
+[10] M. Sipser and D. A. Spielman, “Expander codes”, IEEE Trans. Inf.
+Theory, vol. 42, no. 6, pp. 1710–1722, Nov. 1996.
+[11] A. Barg and G. Z´ mor, “Error exponents of expander codes under lineare
+complexity decoding,” SIAM J. Discr. Math., vol. 17, no. 3, pp 426–445,
+2004.
+[12] J. Feldman and C. Stein, “LP decoding achieves capacity,” in Proc.
+SODA’05, Vancouver, Canada, Jan. 2005, pp. 460–469.
+[13] P. Vontobel, “A factor-graph-based random walk, and its relevance for LP
+decoding analysis and Bethe entropy characterization,” in Proc. ITA’10,
+UC San Diego, LA Jolla, CA, USA, Jan. 31-Feb. 5, 2010.
+[14] D. MacKay, Encyclopedia of Sparse Graph Codes. Available: http://
+www.inference.phy.cam.ac.uk/mackay/codes/
+
+320
+
+Fig. 3. Growth of strong local-optimality and local-optimality as a function
+of the height h. |Λp | = 5000 for p ∈ {0.04, 0.05, 0.06}.
+
+locally-optimal for any height h > h. This exhibited strengthening of the height hierarchy result is not true in general.
+Counterexamples can be obtained for other level weights w
+and Tanner codes.
+VII. D ISCUSSION
+The degree hierarchy supports the improvement in the lower
+bounds on the threshold value p of successful LP-decoding
+over a BSCp as a function of d (see [3, Theorem 27]). These
+lower bounds are proved by analyzing the probability of a
+locally-optimal codeword as a function of p and the degree
+d. For example, consider any (2, 16)-regular Tanner code with
+minimum local-distance 4 whose Tanner graph has logarithmic
+girth in the blocklength. The bounds in [3] imply a lower
+bound on the threshold of p0 = 0.019 with respect to degree
+d = 3. On the other hand, the lower bound on the threshold
+increases to p0 = 0.044 with respect to degree d = 4.
+The height hierarchy implies that if a codeword x is
+(h, w, 2)-strong locally-optimal w.r.t. an LLR vector λ, then
+it is also strongly locally-optimal with respect to any legal
+extension of level weights w with larger height h .
+Consider a Tanner code with single parity-check local codes.
+Assume that x is strongly locally-optimal codeword w.r.t.
+λ based on a height parameter h. Because strong localoptimality implies local-optimality, following [3, Theorem 16],
+we conclude that iterative message-passing decoding by NWMS
+is guaranteed to decode the ML-certiﬁed codeword x after
+k · h iterations, for every k ∈ N+ . This gives the following
+new insight of convergence. If a codeword x is decoded after
+h iterations and is certiﬁed to be strongly locally-optimal
+(and hence ML-optimal), then x is the outcome of NWMS
+inﬁnitely many times (i.e., whenever the number of iterations
+is a multiple of h).
+
+A PPENDIX
+Proof sketch of Lemma 8: Consider a path p ∈ T . Then,
+λt(q) · wT (q) +
+
+λ, πG,T ,w =
+ˆ ˆ
+q∈V\Vq
+
+λt(q) · wT (q) .
+ˆ ˆ
+q∈V∩Vq
+
+(a)
+
+(b)
+
+We deal with terms (a) and (b) separately. Because p ∈
+/
+Preﬁx+ (q) for the paths accumulated in term (a), it remains
+unchanged under trimming children of p from T .
+It remains to show that p has a child whose trimming does
+not increase term (b). Let q min denote the child of p, for which
+the subtree hanging from it has a minimum cost w.r.t. λ. By
+averaging, trimming the subtree that hangs from q min cannot
+increase the value of term (b), and the lemma follows.
+
+VIII. C ONCLUSION
+We present hierarchies of local optimality with respect to
+two parameters of the local-optimality characterization for
+Tanner codes [3]. One hierarchy is based on the local code
+
+5
+
+

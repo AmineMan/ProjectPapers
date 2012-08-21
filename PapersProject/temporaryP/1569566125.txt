@@ -1,0 +1,697 @@
+Creator:        TeX
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Fri May 18 15:26:32 2012
+ModDate:        Tue Jun 19 12:55:03 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      441175 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569566125
+
+SPIN: Iterative Signal Recovery
+on Incoherent Manifolds
+Chinmay Hegde and Richard G. Baraniuk
+Department of Electrical and Computer Engineering
+Rice University
+
+operator is the identity, i.e., we observe x ∈ RN such
+that x = a∗ + b∗ . In this case, x contains 2N unknowns
+but only N observations and hence is fundamentally
+ill-posed. Unless we make additional assumptions on
+the geometric structure of the component manifolds A
+and B, a unique decomposition of x into its constituent
+signals (a∗ , b∗ ) may not exist.
+Identiﬁability II. To complicate matters, in more general
+situations the linear operator Φ in (1) might have fewer
+rows that columns, so that M < N . Thus, Φ possesses
+a nontrivial nullspace. Indeed, we are particularly interested in cases where M
+N , i.e., the nullspace of Φ
+is extremely large relative to the ambient space. This
+further emphasizes the problem of identiﬁability of the
+ordered pair (a∗ , b∗ ), given the available observations z.
+Nonconvexity. Even if the above identiﬁability issues
+were resolved, the manifolds A, B might be extremely
+nonconvex, or even non-differentiable. Thus, classical
+numerical methods, such as Newton’s method or steepest
+descent, cannot be applied; neither can the litany of
+convex optimization methods that have been designed
+for linear inverse problems with certain types of signal
+priors [3, 4].
+In this paper, we propose a simple method called
+Successive Projection onto INcoherent manifolds (SPIN)
+to recover the component signals (a∗ , b∗ ) from z. Despite the highly nonconvex nature of the problem and
+the possibility of underdetermined measurements, SPIN
+provably recovers the signal components a∗ and b∗ . For
+this to hold true, we will require that (i) the signal
+manifolds A, B are incoherent, in the sense that the
+secants of A are almost orthogonal to the secants of B;
+and (ii) the measurement operator Φ satisﬁes a certain
+restricted isometry property (RIP) on the secants of the
+direct sum manifold C = A⊕B. We will formally deﬁne
+these conditions in Section II.
+SPIN is iterative in nature. Each iteration consists of
+three steps: computation of the gradient of the error
+2
+1
+function ψ(a, b) = 2 z − Φ(a + b) , forming signal
+proxies for a and b, and orthogonally projecting the
+
+Abstract—Suppose that we observe noisy linear measurements of an unknown signal that can be modeled as the
+sum of two component signals, each of which arises from
+a nonlinear sub-manifold of a high-dimensional ambient
+space. We introduce Successive Projection onto INcoherent
+manifolds (SPIN), a ﬁrst-order projected gradient method
+to recover the signal components. Despite the nonconvex
+nature of the recovery problem and the possibility of
+underdetermined measurements, SPIN provably recovers
+the signal components, provided that the signal manifolds
+are incoherent and that the measurement operator satisﬁes
+a certain restricted isometry property. SPIN signiﬁcantly
+extends the scope of current signal recovery models and
+algorithms for low-dimensional linear inverse problems,
+and matches (or exceeds) the current state of the art in
+terms of performance.
+
+I. I NTRODUCTION
+Estimation of an unknown signal from linear observations is a core problem in signal processing, statistics,
+and information theory. Particular attention has been
+invested in problem instances where the available information is limited and noisy, and where the signals
+of interest possess a low-dimensional geometric structure. Examples of such instances include morphological
+component analysis [1]; sparse approximation and compressive sensing [2, 3]; and afﬁne rank minimization [4].
+In this work, we will study a very general version of
+the linear inverse problem. Suppose that the signal of
+interest x∗ can be written as the sum of two constituent
+signals a∗ ∈ A and b∗ ∈ B, where A, B are arbitrary
+nonlinear sub-manifolds of the signal space RN . We are
+given access to noisy linear measurements of x∗ :
+z = Φ(a∗ + b∗ ) + e,
+
+(1)
+
+where Φ ∈ RM ×N is the measurement matrix. Our
+objective is to recover the pair of signals (a∗ , b∗ ), and
+thus also x∗ , from z. At the outset, numerous obstacles
+arise while trying to solve (1), some that might appear
+to be insurmountable:
+Identiﬁability I. Consider even the simplest case where
+the measurements are noiseless and the measurement
+
+1
+
+Deﬁnition 1: Suppose A, B are submanifolds are RN .
+Let
+
+proxies onto the manifolds A and B. The projection operators onto the component manifolds play a crucial role
+in algorithm stability and performance; some manifolds
+admit stable, efﬁcient projection operators while others
+do not. Interestingly, SPIN exhibits a convergence rate
+comparable to several state-of-the-art algorithms [5, 6],
+despite the nonlinear and nonconvex nature of the above
+reconstruction problem.
+The core essence of our proposed approach has been
+extensively studied in a number of different contexts. In
+particular, SPIN is an iterative projected gradient method
+with the same basic approach as two recent signal recovery algorithms — Gradient Descent with Sparsiﬁcation
+(GraDeS) [5] and Manifold Iterative Pursuit (MIP) [7].
+Our method generalizes these approaches to situations
+where the signal of interest is a linear mixture of signals
+arising from a pair of nonlinear manifolds. Due to this
+particular structure of our setting, SPIN consists of two
+projection steps (instead of one), and the analysis is
+more complicated. An appealing feature of our method
+is its conceptual simplicity plus its ability to generalize
+to mixtures of arbitrary nonlinear manifolds.
+Owing to space constraints, we state our theoretical
+claims and only provide a brief outline of the proofs following each statement. Refer to the extended version of
+this paper [8] for a thorough discussion of our approach,
+with complete proofs and additional applications.
+
+sup
+
+B. Restricted Isometry
+We address the situation when the measurement operator Φ ∈ RM ×N contains a nontrivial nullspace, i.e.,
+when M < N . We will require that Φ satisﬁes a
+restricted isometry criterion on the secants of the direct
+sum manifold C = A ⊕ B.
+Deﬁnition 2: Let C be a submanifold of RN . Then,
+the matrix Φ ∈ RM ×N satisﬁes the restricted isometry
+property (RIP) on C with constant δ ∈ [0, 1) if, for every
+normalized secant u belonging to the secant manifold
+S(C), we have that
+
+The analysis and proof of accuracy of SPIN (Algorithm 1) involves three core ingredients: (i) a geometric notion of manifold incoherence that crystallizes the
+approximate orthogonality between secants of submanifolds of RN , (ii) a restricted isometry condition satisﬁed
+by the measurement operator Φ over the secants of
+a submanifold, and (iii) the availability of projection
+operators that compute the orthogonal projection of any
+point x ∈ RN onto a submanifold of RN .
+
+1 − δ ≤ Φu
+
+A. Manifold Incoherence
+
+2
+
+≤ 1 + δ.
+
+(3)
+
+The notion of restricted isometry (and its generalizations) is an important component in the analysis of
+many algorithms in sparse approximation, compressive
+sensing, and low-rank matrix recovery [3, 4]. While the
+RIP has traditionally been studied in the context of
+sparse signal models, (3) generalizes of this notion to
+arbitrary nonlinear manifolds. A key result [9] states
+that under certain upper bounds on the curvature of
+the manifold C, there exist probabilistic constructions of
+matrices Φ ∈ RM ×N that satisfy the RIP on C such that
+the number of rows of Φ is proportional to the intrinsic
+dimension of C, rather than the ambient dimension N of
+the signal space.
+
+N
+
+Given a manifold A ⊂ R , a normalized secant, or
+simply, a secant, u ∈ RN of A is a unit vector such that
+a−a
+,
+a−a
+
+(2)
+
+where S(A), S(B) are the secant manifolds of A, B
+respectively. Then, A and B are called -incoherent
+manifolds.
+By deﬁnition, the quantity is always positive; further,
+≤ 1, due to the Cauchy-Schwartz inequality. We prove
+that any signal x belonging to the direct sum A ⊕ B
+can be uniquely decomposed into its constituent signals,
+when the upper bound on holds with strict inequality.
+Lemma 1 (Uniqueness): Suppose that A, B are incoherent with < 1. Consider x = a + b = a + b ,
+where a, a ∈ A and b, b ∈ B. Then, a = a , b = b .
+Proof sketch. Let x1 = a + b, and x2 = a + b . Expand
+2
+the relation x1 − x2 = 0, and apply the inequality
+between the arithmetic and geometric means to obtain
+the uniqueness result.
+In Section III, we will see that the condition for exact
+recovery of (a, b) from x will require a mild tightening
+of the upper bound on .
+
+II. G EOMETRIC A SSUMPTIONS
+
+u=
+
+| u, u | = ,
+
+u∈S(A), u ∈S(B)
+
+a, a ∈ A, a = a .
+
+The secant manifold S(A) is the family of all unit
+vectors u generated by pairs a, a belonging to A.
+In linear inverse problems such as sparse signal approximation and compressive sensing, the assumption
+of incoherence between linear subspaces, bases, or dictionary elements is common. We introduce a nonlinear
+generalization of this concept via the secant manifold.
+2
+
+2
+
+Algorithm 1 SPIN
+Inputs: Observation matrix Φ, measurements z, projection operators PA (·), PB (·), number of iterations
+T , step size η
+Outputs: Estimated signal components a ∈ A, b ∈ B
+Initialize: a0 = 0, b0 = 0, r = z, k = 0
+while k ≤ T do
+g k ← ΦT r
+ak ← ak + ηgk , bk ← bk + ηgk
+ak+1 ← PA (ak ), bk+1 ← PB (bk )
+r ← z − Φ(ak+1 + bk+1 )
+k ←k+1
+end while
+return (a, b) ← (aT , bT )
+
+A, b∗ ∈ B. Suppose 0 ≤ δ < (1 − 11 )/(3 + 7 ). Then,
+SPIN (Algorithm 1) with step size η = 1/(1 + δ) and
+projection operators PA , PB outputs aT ∈ A, bT ∈ B
+2
+2
+such that z − Φ(aT + bT ) ≤ β e + ν in no more
+2
+z
+1
+than T = log(1/α) log 2ν iterations for any ν > 0.
+Here, α, β are moderately sized positive constants.
+Proof sketch. For a given set of measurements z obeying
+(1), deﬁne the error function ψ : A × B → R as:
+2
+1
+ψ(a, b) = 2 z − Φ(a + b) . In the extended version
+of this paper [8], we show that at any iteration k, the
+SPIN signal estimates satisfy the relation
+ψ(ak+1 , bk+1 ) ≤ αψ(ak , bk ) + C e
+
+2
+
+,
+
+(5)
+
+where
+α=
+
+C. Projections onto Manifolds
+N
+
+Given an arbitrary nonlinear manifold A ∈ R , we
+deﬁne the operator PA (·) as the Euclidean projection
+projector onto A:
+PA (x) = arg min x − x
+x ∈A
+
+2
+
+.
+
+2δ
+1−δ
+
+1+δ
++ 6 1−δ 1−
+
+1+δ
+1 − 4 1−δ 1−
+
+,
+
+C=
+
+1
+2
+
+1+δ
++ 5 1−δ 1−
+
+1+δ
+1 − 4 1−δ 1−
+
+.
+
+Equation (5) describes a linear recurrence relation for
+the sequence of positive real numbers ψ(ak , bk ), k =
+0, 1, 2, . . . with leading coefﬁcient α < 1. By the choice
+2
+of initialization, ψ(a0 , b0 ) = z . Therefore, for all
+2
+k ∈ N, we have the relation
+
+(4)
+
+We observe that for arbitrary nonconvex manifolds A,
+the minimization problem (4) may not yield a unique
+optimum. Technically, therefore, PA (x) is a set-valued
+operator. For ease of exposition, PA (x) will henceforth
+refer to any arbitrarily chosen element of the set of
+signals that minimize the 2 -error in (4).
+
+ψ(ak , bk ) ≤ αk ψ(a0 , b0 ) +
+Choosing β =
+1
+log(1/α)
+
+z
+2ν
+
+2
+
+C
+1−α ,
+
+C
+e
+1−α
+
+2
+
+.
+
+and k ≥ T such that T =
+
+log
+, the result follows.
+Some implications of Theorem 1 are as follows. For
+the special case where there is no measurement noise
+(i.e., e = 0), Theorem 1 states that after a ﬁnite number
+of iterations, SPIN outputs signal component estimates
+(a, b) such that z − Φ(a + b) < ν for any desired
+precision parameter ν. Since we can set ν to an arbitarily
+small value, we have that the SPIN estimates (a, b)
+converges to the true signals (a∗ , b∗ ).
+Further, suppose that the one of the components
+manifolds is the trivial (zero) manifold; then we have
+that = 0. In this case, SPIN reduces to the Manifold
+Iterative Pursuit (MIP) algorithm for recovering signals
+from a single manifold [7]. Moreover, the condition on
+δ reduces to 0 ≤ δ < 1/3, which exactly matches the
+condition required for guaranteed recovery using MIP.
+Lastly, the condition in Theorem 1 on the inequalities
+linking the isometry constant δ and the manifold incoherence parameter implies that < 1/11. This represents
+a mild tightening of the condition on required for
+a unique decomposition (Lemma 1), even with full
+measurements (i.e., when Φ is the identity operator, or
+more generally, when δ = 0).
+
+III. T HE SPIN R ECOVERY A LGORITHM
+We propose an efﬁcient algorithm to solve the linear
+inverse problem (1) and detail it in pseudocode form
+in Algorithm 1. The algorithm can be viewed as a
+generalization of ﬁrst order recovery methods that have
+been developed for a number of different models [5, 7].
+The key innovation in SPIN is that we formulate two
+proxy vectors for the signal components, ak and bk ,
+and project these onto the corresponding manifolds A
+and B.
+We show that SPIN possesses strong uniform recovery
+guarantees, even under the presence of limited and
+highly inaccurate measurements. These guarantees are
+comparable to those exhibited by existing state-of-the-art
+signal recovery algorithms for sparse approximation and
+compressive sensing, while encompassing a very broad
+range of nonlinear signal models.
+Theorem 1 (Stable recovery): Suppose A, B are incoherent manifolds in RN . Let Φ be a measurement
+matrix with restricted isometry constant δ over the direct
+sum manifold C = A ⊕ B. Suppose we observe noisy
+linear measurements z = Φ(a∗ + b∗ ) + e, where a∗ ∈
+3
+
+3
+
+IV. A PPLICATIONS
+The two-manifold signal model described in this paper
+is applicable to a wide variety of problems. We discuss
+two representative instances.
+A. Articulation Manifolds
+
+Original image
+
+Consider the set of signals M ⊂ RN that are generated by varying K parameters θ ∈ Θ, Θ ⊂ RK .
+Then, we say that the signals trace out a nonlinear
+K-dimensional articulation manifold in RN , where θ
+is called the articulation parameter vector. Examples
+of articulation manifolds include: 1D acoustic chirps
+of varying frequencies (where θ represents the chirp
+rate); 2D images of a white disk translating on a black
+background (where θ represents the planar location of the
+disk center); and 2D images of a 3D object with variable
+pose (where θ represents the 6D pose parameters, three
+corresponding to spatial location and three corresponding
+to orientation).
+We consider the class of compact, smooth Kdimensional articulation manifolds M ⊂ RN . For such
+manifolds, it has been shown [9] that there exist randomized constructions of measurement operators Φ ∈
+RM ×N that satisfy the RIP on the secants of M with
+constant δ, and with probability at least ρ, provided
+M ≥O K
+
+log(CM N δ −1 ) log(ρ−1 )
+δ2
+
+Disk component
+
+Square component
+
+Fig. 1. SPIN recovery of a 64 × 64 image from compressive
+measurements. The image consists of the linear superposition of
+a disk and a square of ﬁxed pre-speciﬁed sizes, but the locations
+of the centers of the disk and the square are unknown. Here,
+the signal length N = 64 × 64 = 4096, and the number of
+linear measurements M = 50. SPIN perfectly reconstructs both
+components from just M/N = 1.2% measurements.
+
+displays the results of SPIN recovery of a 64 × 64 image
+from merely M = 50 random Gaussian measurements.
+The unknown image consists of the linear sum of
+arbitrary translations of template images IA (t), IB (t).
+Here, the templates IA (t), IB (t) are assumed to be
+smoothed 0/1 images on a black background of a white
+disk and a white square respectively. From Fig. 1 we
+observe that SPIN is able to perfectly recover the component signals from very limited observations. Here,
+the operator PA (x) onto the manifold A consists of
+running a matched ﬁlter between the template I(t) and
+the input signal x, and returning I(t + θ), where the
+parameter value θ corresponds to the 2D location of the
+maximum of the matched ﬁlter response. This can be
+very efﬁciently carried out in O (N log N ) operations
+using the Fast Fourier Transform (FFT).
+
+,
+
+for some constant CM that depends only on the smoothness and volume of the manifold M. Therefore, the
+range space of Φ is proportional merely to the number
+of articulation parameters K, and only logarithmic in
+the ambient dimension N . Moreover, given such a measurement matrix Φ with isometry constant δ < 1/3 and
+a projection operator PM (·) onto M, any signal x ∈ M
+can be reconstructed from its compressive measurements
+y = Φx using Manifold Iterative Pursuit (MIP) [7].
+We generalize this setting to the case where the
+unknown signal of interest arises as a mixture of signals
+from two manifolds A and B. For instance, suppose
+we are interested in the space of 2D images, where
+the manifolds A, B comprise of translations of ﬁxed
+template images IA (t), IB (t), where t denotes the 2D
+domain over which the image is deﬁned. Then, the signal
+of interest is a 2D image of the form
+
+B. Signals in Impulsive Noise
+In some situations, the signal of interest x might be
+corrupted with impulsive noise (or shot noise) prior to
+signal acquisition via linear measurements. For example,
+consider Fig. 2(a), where the Gaussian pulse is the signal
+of interest and the spikes correspond to the undesirable
+noise. In this case, the linear observations are more
+accurately modeled as
+z = Φ(x + n), such that x ∈ M,
+and n is a K -sparse signal in the canonical basis.
+Therefore, SPIN can be used to recover x from z,
+provided that the manifold M is incoherent with the
+set of sparse signals ΣK , and Φ satisﬁes the RIP on the
+direct sum M ⊕ ΣK .
+Figure 2 displays the results of a numerical experiment
+that illustrates the utility of SPIN in this setting. We
+consider a manifold of 1D signals of length N = 10000
+comprising shifts of a Gaussian pulse of ﬁxed width
+g0 ∈ RN . The unknown signal x is an element of this
+manifold M and is corrupted by K = 10 spikes of
+unknown magnitudes and locations. This degraded signal
+
+x∗ = a∗ + b∗ = IA (t + θ1 ) + IB (t + θ2 ),
+where θ1 , θ2 denote the unknown translation parameters.
+The problem is to recover (a∗ , b∗ ), or equivalently
+(θ1 , θ2 ), given the measurements z = Φ(a∗ + b∗ ).
+We demonstrate that SPIN offers an easy, efﬁcient
+technique to recover the component images. Figure 1(a)
+4
+
+4
+
+0.3
+
+0.3
+
+0.3
+
+0.25
+
+0.25
+
+0.25
+
+0.2
+
+0.2
+
+0.2
+
+0.15
+
+0.15
+
+0.15
+
+0.1
+
+0.1
+
+0.1
+
+0.05
+
+0.05
+
+0.05
+
+0
+
+0
+
+0
+
+0.05
+
+0.05
+
+0.05
+
+0.1
+0
+
+2000
+
+4000
+
+6000
+
+8000
+
+10000
+
+0.1
+0
+
+(a) Original signal.
+
+2000
+
+4000
+
+6000
+
+8000
+
+10000
+
+(b) Manifold component.
+
+0.1
+0
+
+2000
+
+4000
+
+6000
+
+8000
+
+10000
+
+(c) Noise component.
+
+Fig. 2. SPIN recovery of a shifted Gaussian pulse from compressive measurements. The shift parameter of the pulse is unknown, and
+
+Reconstruction SNR (dB)
+
+the signal is corrupted with K -sparse, impulsive noise of unknown amplitudes and locations. N = 10, 000, K = 10, M = 150.
+(a) Original signal. (b) Reconstructed Gaussian pulse (Recovery SNR = 80.09 dB). (c) Estimated noise component. SPIN perfectly
+reconstructs both components from just M/N = 1.5% measurements.
+
+60
+
+we have focused our attention on signals belonging to the
+direct sum of two signal manifolds. However, SPIN (and
+its accompanying proof mechanism) can be conceptually
+extended to sums of any ﬁnite number Q of manifolds.
+Refer to the extended version of this paper [8] for full
+proofs, detailed discussions, and a comparison of SPIN
+to classical approaches.
+
+K’ = 5
+K’ = 10
+K’ = 15
+
+50
+40
+30
+20
+
+ACKNOWLEDGEMENTS
+50
+
+100
+150
+Number of measurements M
+
+200
+
+This work was supported by the grants NSF
+CCF-0431150, CCF-0926127, and CCF-1117939;
+DARPA/ONR N66001-11-C-4092 and N66001-11-14090; ONR N00014-08-1-1112, N00014-10-1-0989,
+and N00014-11-1-0714; AFOSR FA9550-09-1-0432;
+ARO MURI W911NF-07-1-0185 and W911NF-09-10383; and the Texas Instruments Leadership University
+Program.
+
+Monte Carlo simulation of SPIN recovery, averaged
+over 100 trials. In each trial, the measured signal is the sum
+of a randomly shifted Gaussian pulse and a random K -sparse
+signal. SPIN can tolerate a higher K with increasing M .
+Fig. 3.
+
+is sampled using M = 150 random measurements to
+obtain an observation vector z. For this problem, the
+projection operator PM (·) consists of a matched ﬁlter
+with the template pulse g0 , while the projection operator
+PΣK (·) simply returns the best K -term approximation
+in the canonical basis. Assuming that we have knowledge
+of the number of nonzeros in the noise vector n, we can
+use SPIN to reconstruct both x and n. We observe from
+Fig. 2(b) that SPIN recovers the true signal x with nearperfect accuracy.
+Figure 3 plots the number of measurements M vs.
+the signal reconstruction error (normalized relative to the
+signal energy, and plotted in dB). We observe that by
+increasing M , we can tolerate an increased number K
+of nuisance spikes; we can show that this relationship
+between M and K is in fact linear [8]. This result can
+be extended to any situation where the signals of interest
+obey a “hybrid” model that is a mixture of a nonlinear
+manifold and the set of sparse signals.
+
+R EFERENCES
+[1] M. Elad, J.-L. Starck, P. Querre, and D. Donoho, “Simultaneous
+cartoon and texture image inpainting using morphological component analysis,” Appl. Comput. Harmon. Anal., vol. 19, no. 3, pp.
+340–358, 2005.
+[2] J. Tropp, “Greed is good: Algorithmic results for sparse approximation,” IEEE Trans. Inform. Theory, vol. 50, no. 10, pp. 2231–
+2242, 2004.
+[3] E. Cand` s, “Compressive sampling,” in Proc. Int. Congress of
+e
+Math., Madrid, Spain, Aug. 2006.
+[4] M. Fazel, E. Cand` s, B. Recht, and P. Parrilo, “Compressed
+e
+sensing and robust recovery of low rank matrices,” in Proc. 40th
+Asilomar Conf. Signals, Systems and Computers, Paciﬁc Grove,
+CA, Nov. 2008.
+[5] R. Garg and R. Khandekar, “Gradient descent with sparsiﬁcation:
+an iterative algorithm for sparse recovery with restricted isometry
+property,” in Proc. Int. Conf. Machine Learning, Montreal,
+Canada, Jun. 2009.
+[6] R. Meka, P. Jain, and I. Dhillon, “Guaranteed rank minimization
+via singular value projection,” in Proc. Adv. in Neural Processing
+Systems (NIPS), Vancouver, BC, Dec. 2010.
+[7] P. Shah and V. Chandrasekharan, “Iterative projections for signal
+identiﬁcation on manifolds,” in Proc. Allerton Conf. on Comm.,
+Contr., and Comp., Monticello, IL, Sept. 2011.
+[8] C. Hegde and R. Baraniuk, “Signal recovery on incoherent
+manifolds,” Arxiv preprint arXiv:1202.1595, 2012, Preprint.
+[9] R. Baraniuk and M. Wakin, “Random projections of smooth
+manifolds,” Found. Comput. Math., vol. 9, no. 1, pp. 51–77, 2009.
+
+V. S UMMARY
+We have proposed a projected gradient-descent algorithm (SPIN) for the recovery of signals originating from
+a pair of incoherent manifolds, given limited and noisy
+measurements of their linear sum. For clarity and brevity,
+5
+
+5
+
+

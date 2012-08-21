@@ -1,0 +1,926 @@
+Title:          Near_Opt_Sidel_isit - final.dvi
+Creator:        dvips(k) 5.96dev Copyright 2007 Radical Eye Software
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Wed May  9 14:28:33 2012
+ModDate:        Tue Jun 19 12:55:07 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      392145 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569557633
+
+New Near-optimal Codebooks Associated With
+Binary Sidelnikov Sequences
+Nam Yul Yu
+Department of Electrical and Computer Engineering, Lakehead University
+Thunder Bay, Ontario, Canada
+Email: nam.yu@lakeheadu.ca
+
+Unfortunately, constructing an MWBE codebook in an analytic
+way is known to be extremely difﬁcult [2]. Due to the difﬁculty
+of constructing optimal codebooks, numerous attempts have
+been made to present a near-optimal codebook C where
+Imax (C) is slightly higher than the Welch bound equality, but
+asymptotically achieves the equality for sufﬁciently large N .
+A number of construction examples based on codes and signal
+sets can be found in [2]. Ding and Feng [4][5] also presented
+several near-optimal codebooks from almost difference sets.
+Generalizing this idea, Zhang and Feng [6][7] further constructed near-optimal codebooks with almost difference sets
+and cyclotomic classes.
+This paper discusses a framework for constructing an
+(N, K) codebook C with K < N , where each code vector
+is equivalent to a column of a K × N partial matrix. In the
+framework, we form the K × N matrix by selecting K rows
+from a J × N matrix Φ associated with a binary sequence
+a of length J and Hamming weight K, where a set of the
+selected row indices is equivalent to the index set of nonzero
+entries or the support of a. Throughout this paper, we denote
+the codebook as CΦ (a). It is then found that Imax (CΦ (a)) is
+determined by the maximum magnitude of Φ-transform of the
+binary sequence a. Thus, constructing a codebook CΦ (a) with
+small Imax (CΦ (a)) is equivalent to ﬁnding a binary sequence
+a where the maximum magnitude of its Φ-transform is as
+small as possible. In particular, if the support of the binary
+sequence forms a difference set, the framework can present
+an optimal codebook equivalent to the one constructed by Xia
+et al. [8], or Ding and Feng [9]. Also, if its support forms
+an almost difference set, the codebook may be equivalent
+to the one in [4] or [5]. However, we would like to stress
+that our framework may further present a new codebook with
+nontrivially bounded Imax (CΦ (a)), even if the support of the
+associated sequence a does not form a difference (or almost
+difference) set. In addition, it presents an efﬁcient technique
+to develop an upper bound on Imax (CΦ (a)) through the Φtransform of an arbitrary binary sequence a.
+For speciﬁc constructions, we present new near-optimal
+partial Fourier and Hadamard codebooks associated with binary Sidelnikov sequences [10][11]. First of all, employing
+the N × N inverse discrete Fourier transform (IDFT) matrix
+Φ = F, we construct an (N, K) near-optimal partial Fourier
+
+Abstract—In this paper, an (N, K) codebook is constructed
+from a K × N partial matrix with K < N , where each code
+vector is equivalent to a column of the matrix. To obtain the
+K × N matrix, K rows are selected from a J × N matrix Φ,
+associated with a binary sequence of length J and Hamming
+weight K, where a set of the selected row indices is the index set
+of nonzero entries of the binary sequence. It is then discovered
+that the maximum magnitude of inner products between a pair of
+distinct code vectors is determined by the maximum magnitude
+of Φ-transform of the binary sequence. Thus, constructing a
+codebook with small magnitude of inner products is equivalent
+to ﬁnding a binary sequence where the maximum magnitude
+of its Φ-transform is as small as possible. From the discovery,
+new classes of near-optimal codebooks with nontrivial bounds on
+the maximum inner products are constructed from Fourier and
+Hadamard matrices associated with binary Sidelnikov sequences.
+Index Terms—Codebooks, Fourier matrices, Hadamard matrices, Sidelnikov sequences, Welch bound.
+
+I. I NTRODUCTION
+An (N, K) codebook C = {c0 , · · · , cN −1 } is a set of N
+distinct code vectors in a K-dimensional vector space. Each
+code vector cl = (cl,0 , · · · , cl,K−1 )T , 0 ≤ l ≤ N − 1, has
+K−1
+
+2
+unit-norm, i.e., ||cl || =
+i=0 |cl,i | = 1, where T denotes
+the transpose. For the applications, we need a codebook C
+minimizing Imax (C) or the maximum magnitude of inner
+products between a pair of distinct code vectors. To evaluate
+an (N, K) codebook C, it is important to ﬁnd the minimum
+achievable Imax (C) or its lower bound. The Welch bound [1]
+provides
+
+Imax (C) =
+
+max
+
+0≤l=m≤N −1
+
+cH cm ≥
+l
+
+N −K
+K(N − 1)
+
+with equality if and only if for all pairs of (l, m) with
+N −K
+H
+l = m, cH cm =
+l
+K(N −1) , where cl is the conjugate
+transpose of cl . In particular, if Imax (C) meets the equality of
+the Welch bound, then C is called a maximum-Welch-boundequality (MWBE) codebook [2].
+The MWBE codebook, also known as an equiangular tight
+frame [3], has been of interest in a variety of research areas.
+This work was supported by the National Sciences and Engineering
+Research Council (NSERC) of Canada.
+
+1
+
+codebook CF (a) associated with a binary Sidelnikov sequence,
+where N = pm − 1 and K = N for an odd prime p.
+2
+Through the N -point IDFT of binary Sidelnikov sequences,
+it is easily proven that Imax (CF (a)) is nontrivially bounded
+and nearly achieves the equality of the Welch bound. Second,
+we present a new (N, K) near-optimal partial Hadamard
+codebook CH (a) from the N × N complex cyclic Hadamard
+matrix Φ = H associated with an extended binary Sidelnikov
+−1
+sequence, where N = pm and K = N 2 for an odd
+prime p. The Hadamard transform of the sequence reveals that
+Imax (CH (a)) is nontrivially bounded and nearly achieves the
+Welch bound equality.
+
+positive integer M | pm − 1 such that ψ M (x) = 1 for all
+x ∈ F∗m . The Weil bound [13] gives an upper bound on the
+p
+magnitude of multiplicative character sums. We introduce the
+Weil bound as described in [14].
+Theorem 1: [14] Let f1 (x), · · · , fh (x) be h monic, distinct,
+and irreducible polynomials in Fq [x] which have the positive
+degrees d1 , · · · , dh , respectively. Let d be the number of
+h
+distinct roots of f (x) = i=1 fi (x) in its splitting ﬁeld over
+Fq . Let ψ1 , · · · , ψh be multiplicative characters of Fq . Assume
+h
+that the product character i=1 ψi (fi (x)) is nontrivial, i.e.,
+h
+i=1 ψi (fi (x)) = 1 for some x ∈ Fq . Then, for every
+ai ∈ F∗ , i = 1, · · · , h,
+q
+
+II. P RELIMINARIES
+
+√
+ψ1 (a1 f1 (x)) · · · ψh (ah fh (x)) ≤ (d − 1) q.
+
+The following notations will be used throughout this paper.
+− ZN = {0, · · · , N − 1} is a ring of integers modulo N .
+− Fq = GF(q) is a ﬁnite ﬁeld with q elements and F∗ =
+q
+Fq \ {0}.
+− Fq [x] is a polynomial ring over Fq where each coefﬁcient of f (x) ∈ Fq [x] is an element of Fq .
+− A binary sequence represents a = (a0 , a1 , · · · ) where
+ai ∈ Z2 for all i = 0, 1, · · · . Its biphase version is then
+represented by Ψ(a) = ((−1)a0 , (−1)a1 , · · · ).
+− Let p be prime, and m and k be positive integers with
+k | m. A trace function is a linear mapping from Fpm
+onto Fpk deﬁned by
+m/k−1
+
+Trm (x)
+k
+
+x∈Fq
+
+Similarly, an additive character [12] of Fpm is deﬁned as
+χ(x) = exp j
+
+ik
+
+i=0
+
+t,
+0,
+
+√
+χ (g(x)) ψ (f (x)) ≤ (s + r − 1) pm .
+x∈Fpm
+
+if x = α , 0 ≤ t ≤ q − 2,
+if x = 0.
+t
+
+III. A F RAMEWORK OF C ODEBOOKS A SSOCIATED W ITH
+B INARY S EQUENCES
+This section describes a framework of a codebook CΦ (a)
+constructed from a matrix Φ associated with a binary sequence
+a. The framework employs a J × N matrix Φ with entries of
+φi,l for 0 ≤ i ≤ J − 1 and 0 ≤ l ≤ N − 1, which has the
+following properties.
+1) Property 1: Each entry of Φ has unit magnitude, i.e.,
+|φi,l | = 1.
+2) Property 2: No pair of column vectors in Φ is identical.
+Moreover, the columns of Φ form a group under pointwise multiplication. In other words, for all l1 , l2 ∈ ZN ,
+there exists an l ∈ ZN such that
+
+A. Characteristic sequence and its support
+Let D = {d0 , · · · , dK−1 } be a set of K distinct integers,
+where dk ∈ ZN , 0 ≤ k ≤ K − 1. The characteristic sequence
+of D is then deﬁned as a binary sequence a = (a0 , · · · , aN −1 )
+where
+1,
+if i ∈ D,
+ai =
+0,
+if i ∈ D
+for 0 ≤ i ≤ N − 1. The set D is called the support of a.
+The Hamming weight or the number of nonzero entries of a
+is denoted as wt(a) = |D| = K.
+B. Additive and multiplicative characters
+
+φ∗ 1 · φi,l2 = φi,l ,
+i,l
+
+For a prime p and a positive integer m, let N = pm − 1 and
+α be a primitive element in Fpm . For some l, 1 ≤ l ≤ N − 1,
+a multiplicative character [12] of Fpm can be deﬁned as
+exp
+
+j 2πl logα x
+N
+
+,
+
+0 ≤ i ≤ J − 1.
+
+(1)
+
+3) Property 3: From Property 2, Φ has a column with all
+one entries if l1 = l2 . Without loss of generality, we
+assume that it is the ﬁrst column, i.e., φi,0 = 1 for all i,
+0 ≤ i ≤ J − 1. In (1), l1 = l2 if and only if l = 0.
+4) Property 4: For l = 0, the elements of the lth column
+J−1
+vector sum to zero, i.e., i=0 φi,l = 0.
+In practice, typical examples of Φ having Properties 1 − 4
+are the N × N Hadamard and Fourier matrices with J = N .
+
+if x = 0
+
+0,
+ψ(x) =
+
+x ∈ Fpm
+
+Theorem 2: [15] Let χ be a nontrivial additive character of
+Fpm , and ψ be a nontrivial multiplicative character of order
+M of Fpm , where M | pm − 1. Let f (x) ∈ Fpm [x] have
+degree t and s distinct roots. Let g(x) ∈ Fpm [x] have degree
+r. Suppose that gcd(M, t) = gcd(r, pm ) = 1. Then,
+
+− Let α be a primitive element in Fq . For x ∈ Fq , a
+logarithm over Fq is deﬁned by
+logα x =
+
+,
+
+where χ(x + y) = χ(x)χ(y) for x, y ∈ Fpm . In the following,
+we introduce an upper bound on the hybrid sum involving an
+additive character χ and a multiplicative character ψ.
+
+xp , x ∈ Fpm .
+
+=
+
+2πTrm (x)
+1
+p
+
+if x ∈ F∗m
+p
+
+√
+where j = −1 and ψ(xy) = ψ(x)ψ(y) for x, y ∈ Fpm .
+The order of a multiplicative character is deﬁned as the least
+
+2
+
+J−1
+
+Next, we deﬁne the Φ-transform of a binary sequence. Let
+a = (a0 , a1 , · · · , aJ−1 ) be a binary sequence of length J and
+Hamming weight K, where ai ∈ Z2 for 0 ≤ i ≤ J − 1. With
+a J × N matrix Φ having Properties 1 − 4, the Φ-transform
+of a is deﬁned by a = (a0 , · · · , aN −1 ) = Ψ(a) · Φ, where
+each element of a is given by
+
+where i=0 φi,l = 0 for l = 0 from Property 4. From (2)
+and (3), we have
+Imax (CΦ (a)) =
+=
+
+J−1
+
+(−1)ai φi,l ,
+
+al =
+
+0 ≤ l ≤ N − 1.
+
+=
+
+max
+
+0≤l1 =l2 ≤N −1
+
+1
+1≤l≤N −1 K
+
+cH cl2
+l1
+J−1
+
+ai φi,l
+
+max
+
+i=0
+
+1
+· max |al |.
+2K 1≤l≤N −1
+
+i=0
+
+2
+
+In particular, if Φ is the N × N IDFT matrix, then the Φtransform of a is equivalent to its inverse DFT. On the other
+hand, if Φ is the N × N Hadamard matrix, then the Φtransform of a is equivalent to its Hadamard transform.
+Construction 1 presents a framework of a codebook CΦ (a)
+from a matrix Φ associated with a binary sequence a.
+
+Corollary 1 gives a necessary and sufﬁcient condition for
+CΦ (a) to be MWBE, where the proof can be found in [16].
+Corollary 1: An (N, K) codebook CΦ (a) is MWBE if and
+−K)
+only if |al | = 2 K(N−1) for 1 ≤ l ≤ N − 1.
+(N
+Theorem 3 shows that Imax (CΦ (a)) is determined by the
+maximum magnitude of Φ-transform of the characteristic
+sequence a. Therefore, constructing a codebook CΦ (a) with
+small Imax (CΦ (a)) is equivalent to ﬁnding a binary sequence a
+where the maximum magnitude of its Φ-transform is as small
+as possible. The discovery reveals a theoretical connection
+between a binary sequence a and its associated codebook
+CΦ (a) from a matrix Φ.
+
+Construction 1: Let Φ be a J × N matrix with Properties
+1 − 4, where each entry is denoted as φi,l for 0 ≤ i ≤ J − 1
+and 0 ≤ l ≤ N − 1. Let a = (a0 , · · · , aJ−1 ) be a
+binary sequence of length J and Hamming weight K, and
+D = {d0 , · · · , dK−1 } be its support. Consider a K × N
+partial matrix selecting K rows from Φ, where the selected
+row indices are from D. With the scaling factor of √1 , the
+K
+lth column vector of the partial matrix is given as
+1
+cl = √
+φd0 ,l , φd1 ,l , · · · , φdK−1 ,l
+K
+
+T
+
+IV. N EAR - OPTIMAL C ODEBOOKS A SSOCIATED W ITH
+B INARY S IDELNIKOV S EQUENCES
+
+0 ≤ l ≤ N − 1.
+
+,
+
+A. A partial Fourier codebook
+In Construction 1, we set J = N and Φ = F, where F
+2πil
+is the N × N IDFT matrix with entries of fi,l = ej N for
+√
+0 ≤ i, l ≤ N − 1, where j = −1.
+A binary Sidelnikov sequence was introduced by Sidelnikov [10], and revisited by Lempel, Cohn, and Eastman [11].
+We deﬁne the sequence using log operation.
+
+Then, CΦ (a) = {c0 , c1 , · · · , cN −1 } is an (N, K) codebook
+from the matrix Φ associated with the binary sequence a. We
+also say that a is the characteristic sequence of CΦ (a).
+Theorem 3: In the (N, K) codebook CΦ (a) from Construction 1, the maximum magnitude of inner products of distinct
+code vectors is given by
+Imax (CΦ (a)) =
+
+Deﬁnition 1: Let α be a primitive element in Fpm for
+an odd prime p and a positive integer m. A binary Sidelnikov sequence of period N = pm − 1 is deﬁned as a =
+(a0 , · · · , aN −1 ) where
+
+1
+· max |al |
+2K 1≤l≤N −1
+
+where al is the lth element of Φ-transform of a.
+
+ai ≡ logα (αi + 1) mod 2,
+
+Proof: The inner product of a pair of distinct code vectors is
+given by
+K−1
+
+1
+K
+
+cH cl2 =
+l1
+
+φ∗k,l1 φdk,l2 =
+d
+
+k=0
+J−1
+
+1
+=
+K
+
+1
+K
+
+m
+
+φdk,l
+(2)
+
+Lemma 1: The magnitude of the N -point IDFT of a binary
+Sidelnikov sequence a of length N = pm − 1 is bounded by
+
+ai φi,l
+i=0
+
+N −1
+
+where l1 = l2 and thus l = 0 from Property 3.
+Meanwhile, each element of the Φ-transform a is given as
+J−1
+
+|al | =
+
+|al | =
+
+≤
+
+√
+N +1+1
+
+(5)
+
+Proof: Let ψ1 be a multiplicative character of order 2 of Fpm ,
+i.e., ψ1 (x) = ejπ logα x = (−1)logα x for x ∈ F∗m . Hence,
+p
+the biphase ‘±1’ sequence of a is represented by (−1)ai =
+m
+m
+ψ1 (αi + 1) if i = p 2−1 , or (−1)ai = 1 if i = p 2−1 .
+
+(3)
+
+ai φi,l
+
+=2
+
+2πil
+N
+
+for 0 ≤ l ≤ N − 1.
+
+(1 − 2ai )φi,l
+i=0
+
+(−1)ai ej
+i=0
+
+J−1
+
+(−1)ai φi,l =
+i=0
+J−1
+
+(4)
+
+In (4), note that αi = −1 if and only if i = p 2−1 , where
+ai = 0. It is well known [11] that the binary Sidelnikov
+m
+sequence of period pm − 1 is balanced, or wt(a) = p 2−1 .
+In the following, Lemma 1 studies the N -point IDFT of the
+binary Sidelnikov sequence.
+
+K−1
+k=0
+
+0 ≤ i ≤ pm − 2.
+
+i=0
+
+3
+
+N −1
+
+If l = 0, then a0 = i=0 (−1)ai = N − 2wt(a) = 0 from
+wt(a) = N . If l = 0, then (−1)ai = ψ1 (αi + 1) for i = N .
+2
+2
+2πil
+Let ψ2 be a multiplicative character with ψ2 (αi ) = ej N for
+each l, 1 ≤ l ≤ N − 1. Then, for l = 0,
+|al | = (−1)aN/2 · ej
+
+2πl N
+N · 2
+
+N −1
+
+(−1)ai ej
+
++
+
+for 0 ≤ i, l ≤ N − 1.
+Remark 2: With p = 2, Deﬁnition 2 gives a binary cyclic
+Hadamard matrix H with entries of ±1 via trace functions.
+Employing the binary Hadamard matrix H and a binary sequence a from a trace-type bent function [17], Construction 1
+presents a codebook CH (a). As a is bent, its Hadamard
+transform is two-valued, and it is readily checked that CH (a)
+√
+is MWBE with N = 2m and K = N ±2 N for even m. In fact,
+CH (a) is a trace version of the MWBE codebook in Corollary
+4 of [9] in which the matrix and the characteristic sequence
+are deﬁned by Boolean functions.
+
+2πil
+N
+
+i=0,i= N
+2
+N −1
+
+ψ1 (αi + 1) · ψ2 (αi )
+
+= (−1)l +
+i=0,i= N
+2
+
+≤1+
+
+Next, we present a new near-optimal codebook from a
+complex cyclic Hadamard matrix associated with an extended
+binary Sidelnikov sequence.
+
+ψ1 (x + 1) · ψ2 (x)
+x∈Fpm
+
+√
+≤ 1 + pm
+
+Theorem 5: For an odd prime p, consider a binary sequence
+a = (0 | u) of length N = pm , where u is a binary Sidelnikov
+sequence of length pm − 1 in Deﬁnition 1, and ‘|’ denotes
+a concatenation. Clearly, the Hamming weight of a is K =
+−1
+wt(a) = N2 . Associated with a, Construction 1 presents an
+(N, K) partial Hadamard codebook CH (a) from the complex
+cyclic Hadamard matrix H in Deﬁnition 2, where
+√
+2K + 1 + 1
+.
+Imax (CH (a)) ≤
+2K
+
+where the last inequality is from the Weil bound in Theorem 1.
+Thus, the upper bound of (5) is immediate for any l.
+2
+Next, Theorem 4 develops an upper bound on Imax (CF (a))
+for the partial Fourier codebook CF (a) associated with a binary
+Sidelnikov sequence a. The proof is straightforward from
+Theorem 3 and Lemma 1.
+Theorem 4: Let a be a binary Sidelnikov sequence of length
+N = pm − 1. Construction 1 gives an (N, K) partial Fourier
+codebook CF (a) associated with a, where K = N/2. Then,
+Imax (CF (a)) is bounded by
+√
+2K + 1 + 1
+Imax (CF (a)) ≤
+.
+2K
+
+Proof: With a0 = 0 and ai = ui−1 for 1 ≤ i ≤ N − 1, the
+biphase ‘±1’ sequence of a is represented by
+
+Table I demonstrates that the upper bound is very tight and
+N −K
+√ 1
+close to the Welch bound equality
+for
+K(N −1) =
+2K−1
+large N = 2K. We observe that the partial Fourier codebook
+CF (a) associated with a binary Sidelnikov sequence nearly
+achieves the equality of the Welch bound.
+
+ai
+
+(−1)
+
+N −1
+
+|al | =
+
+(−1)ai hi,l
+i=0
+a pm +1
+
+ψ(x + 1)χ(λx) + (−1)
+
+=
+
+2
+
+· h pm +1 ,l
+
+x∈Fpm
+
+≤
+
+2
+
+ψ(x + 1)χ(λx) + 1
+x∈Fpm
+
+≤
+
+√ m
+p +1
+
+where the last inequality is from the hybrid sum bound in
+Theorem 2. Therefore,
+
+B. A partial Hadamard codebook
+Deﬁnition 2: Let N = pm for a prime p and a positive
+integer m. Let α be a primitive element of the ﬁnite ﬁeld
+Fpm . An N × N cyclic Hadamard matrix H has the entries of
+1,
+m
+i−1
+l−1
+2π
+ej p Tr1 (α ·α ) ,
+
+=
+
+m
+
+if i = 0 and i = p 2+1 ,
+m
+if i = 0 or i = p 2+1
+
+where ψ is a multiplicative character of order 2 of Fpm .
+In Deﬁnition 2, each entry of the Hadamard matrix H is
+m
+2π
+represented by an additive character χ(λx) = ej p Tr1 (λx) ,
+where x = 0 or αi−1 , and λ = 0 or αl−1 for 1 ≤ i, l ≤ N − 1.
+The magnitude of the Hadamard transform of a is given by
+
+Remark 1: In the codebook CF (a), the support of the binary
+Sidelnikov sequence a is equivalent to the almost difference
+set (ADS) in Lemma 18 of [5]. The authors of [5] conjectured
+that the ADS would certainly yield a near-optimal codebook,
+but failed to compute Imax (CF (a)) or its upper bound for
+general N and K. Recently, we were aware that Zhang and
+Feng [7] developed an upper bound on Imax (CF (a)) utilizing
+the Jacobi sums, in an attempt to support the conjecture
+of [5]. In Theorem 4, we presented a new upper bound on
+Imax (CF (a)) that could be easily obtained by the N -point
+IDFT of a binary Sidelnikov sequence, nearly meeting the
+equality of the Welch bound. From numerical experiments,
+we also observed that our new upper bound is tighter than
+Zhang and Feng’s bound for the codebooks in Table I.
+
+hi,l =
+
+ψ(αi−1 + 1),
+1,
+
+1
+· max |al |
+2K 1≤l≤N −1
+√
+√
+N +1
+2K + 1 + 1
+≤
+=
+.
+2K
+2K
+
+Imax (CH (a)) =
+
+if i = 0 or l = 0,
+otherwise
+
+2
+
+4
+
+TABLE I
+(N, K) PARTIAL F OURIER CODEBOOKS CF (a) ASSOCIATED WITH BINARY S IDELNIKOV SEQUENCES (N = pm − 1 AND K =
+
+N
+FOR AN ODD PRIME
+2
+
+(N, K)
+
+Imax (CF (a))
+
+Upper bound (Theorem 4)
+
+Welch bound equality (Iwelch )
+
+Imax (CF (a))/Iwelch
+
+(26, 13)
+(48, 24)
+(80, 40)
+(124, 62)
+(168, 84)
+(288, 144)
+(342, 171)
+(528, 264)
+(728, 364)
+(960, 480)
+
+0.234619
+0.166667
+0.125000
+0.098194
+0.083333
+0.062500
+0.057076
+0.045455
+0.038462
+0.033333
+
+0.238314
+0.166667
+0.125000
+0.098229
+0.083333
+0.062500
+0.057077
+0.045455
+0.038462
+0.033333
+
+0.200000
+0.145865
+0.112509
+0.090167
+0.077382
+0.059028
+0.054153
+0.043561
+0.037088
+0.032292
+
+p)
+
+1.173095
+1.142611
+1.111022
+1.089024
+1.076904
+1.058820
+1.053977
+1.043476
+1.037036
+1.032258
+
+TABLE II
+(N, K) PARTIAL H ADAMARD CODEBOOKS CH (a) ASSOCIATED WITH EXTENDED BINARY S IDELNIKOV SEQUENCES (N = pm AND K =
+ODD PRIME p)
+(N, K)
+
+Imax (CH (a))
+
+Upper bound (Theorem 5)
+
+Welch bound equality (Iwelch )
+
+Imax (CH (a))/Iwelch
+
+(49, 24)
+(81, 40)
+(125, 62)
+(169, 84)
+(243, 121)
+(343, 171)
+(625, 312)
+(961, 480)
+
+0.166667
+0.125000
+0.098229
+0.083333
+0.064548
+0.054232
+0.041667
+0.033333
+
+0.166667
+0.125000
+0.098229
+0.083333
+0.068547
+0.057077
+0.041667
+0.033333
+
+0.147314
+0.113192
+0.090524
+0.077610
+0.064548
+0.054232
+0.040096
+0.032308
+
+N−1
+FOR AN
+2
+
+1.131372
+1.104318
+1.085116
+1.073740
+1.000000
+1.000000
+1.039181
+1.031726
+
+Table II demonstrates that Imax (CH (a)) is tightly bounded
+by the upper bound in Theorem 5, √ nearly achieves the
+and
+N −K
+Welch bound equality K(N −1) = 2K+2 .
+2K
+
+[2] D. V. Sarwate, “Meeting the Welch bound with equality,” Sequences
+and Their Applications, C. Ding, T. Helleseth, and H. Niederreiter Eds.,
+DMTCS Series, pp. 79-102, Springer-Verlag, 1999.
+[3] J. Kovaˇ evi´ and A. Chebira, An Introduction to Frames, Foundations
+c c
+and Trends in Signal Processing, vol. 2, no. 1, 2008.
+[4] C. Ding, “Complex codebooks from combinatorial designs,” IEEE Trans.
+Inf. Theory, vol. 52, no. 9, pp. 4229-4235, Sep. 2006.
+[5] C. Ding and T. Feng, “Codebooks from almost difference sets,” Des.
+Codes Cryptogr.. vol. 46, pp. 113-126, 2008.
+[6] A. Zhang and K. Feng, “Construction of cyclotomic codebooks nearly
+meeting the Welch bound,” Des. Codes Cryptogr., vol. 63, pp. 209-224,
+2012.
+[7] A. Zhang and K. Feng, “Two classes of codebooks nearly meeting the
+Welch bound,” IEEE Trans. Inf. Theory, vol. 58, no. 4, pp. 2507-2511,
+Apr. 2012.
+[8] P. Xia, S. Zhou, and G. B. Giannakis, “Achieving the Welch bound with
+difference sets,” IEEE Trans. Inf. Theory, vol. 51, no. 5, pp. 1900-1907,
+May 2005.
+[9] C. Ding and T. Feng, “A generic construction of complex codebooks
+meeting the Welch bound,” IEEE Trans. Inf. Theory, vol. 53, no. 11,
+pp. 4245-4250, Nov. 2007.
+[10] V. M. Sidelnikov, “Some k-valued pseudo-random sequences and nearly
+equidistant codes,” Probl. Inf. Transm., vol. 5, pp. 12-16, 1969.
+[11] A. Lempel, M. Cohn, and W. L. Eastman, “A class of binary sequences
+with optimal autocorrelation properties,” IEEE Trans. Inf. Theory, vol. 23,
+pp. 38-42, 1997.
+[12] R. Lidl and H. Niederreiter, Finite Fields, in Encyclopedia of Mathematics and Its Applications, vol. 20, Cambridge University Press, 1997.
+[13] A. Weil, Basic Number Theory, 3rd. Ed., Springer-Verlag, 1974.
+[14] D. Wan, “Generators and irreducible polynomials over ﬁnite ﬁelds,”
+Math. Comput., vol. 66, no. 219, pp. 1195-1212, Jul. 1997.
+[15] W. M. Schmidt, Equations Over Finite Fields, Lecture Notes in Mathematics, Springer-Verlag, 1976.
+[16] N. Y. Yu, “A construction of codebooks associated with binary sequences”, IEEE Trans. Inf. Theory, To appear.
+[17] T. Helleseth and A. Kholosha, “On generalized bent functions,” Information Theory and Applications Workshop (ITA), San Diego, CA, Jan./Feb.,
+2010.
+
+V. C ONCLUSION
+This paper has described a framework for constructing a
+codebook CΦ (a) from a matrix Φ associated with a binary
+sequence a. In the framework, Imax (CΦ (a)) is determined
+by the maximum magnitude of Φ-transform of the sequence
+a. Thus, constructing a codebook with small Imax (CΦ (a)) is
+equivalent to ﬁnding a binary sequence a where the maximum
+magnitude in its Φ-transform is as small as possible. Compared to [4]−[9], the framework presents an efﬁcient technique
+for determining the maximum possible value of Imax (CΦ (a))
+for an arbitrary binary sequence a. Through the framework, we
+may enjoy a freedom of choosing a variety of binary sequences
+a to construct new codebooks with nontrivially bounded
+Imax (CΦ (a)). Associated with binary Sidelnikov sequences,
+we presented new near-optimal partial codebooks CΦ (a) by
+efﬁciently proving the upper bounds of Imax (CΦ (a)), which
+demonstrates the effectiveness of the framework.
+Theoretically, this paper made a contribution of discovering a connection between binary sequences and the associated codebooks. The connection showed that various known
+and new codebooks could be constructed from Fourier and
+Hadamard matrices associated with binary sequences.
+R EFERENCES
+[1] L. R. Welch, “Lower bounds on the maximum cross correlation of
+signals,” IEEE Trans. Inf. Theory, vol. IT-20, no. 3, pp. 397-399, May
+1974.
+
+5
+
+

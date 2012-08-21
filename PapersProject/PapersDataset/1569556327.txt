@@ -1,0 +1,726 @@
+Creator:         TeX output 2012.05.02:1645
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Wed May  2 16:46:07 2012
+ModDate:        Tue Jun 19 12:54:46 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      2846815 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569556327
+
+Optimal Save-Then-Transmit Protocol for Energy
+Harvesting Wireless Transmitters
+†
+
+Shixin Luo† , Rui Zhang†‡ , and Teng Joon Lim†
+ECE Department, National University of Singapore. e-mails: {shixin.luo,elezhang,eleltj}@nus.edu.sg
+‡
+Institute for Infocomm Research, A*STAR, Singapore.
+
+a water-ﬁlling energy allocation solution where the so-called
+water levels follow a staircase function was proved to be
+optimal.
+An information theoretic analysis of energy harvesting
+communication systems has been provided in [8], [9]. In [8],
+the authors proved that the capacity of the AWGN channel
+with stochastic energy arrivals is equal to the capacity with an
+average power constraint equal to the average recharge rate.
+This work has been extended in [9] to the fading Gaussian
+channels with perfect/no channel state information at the
+transmitter.
+Due to the theoretical intractability of online power scheduling under the energy causality constraint (cumulative energy
+consumed is not allowed to exceed the cumulative energy
+harvested at every point in time), most current research is
+focused on an ofﬂine strategy with deterministic channel and
+energy state information, which is not practical and can only
+provide an upper bound on system performance.
+In this paper, we consider a wireless system with one
+transmitter and one receiver, with the transmitter using a
+save-then-transmit (ST) protocol (see Fig. 1) to deliver Q
+bits within T seconds, the duration of a transmission frame.
+Because rechargeable energy storage devices (ESDs) cannot
+both charge and discharge simultaneously , which is termed
+the energy half-duplex constraint in this paper, an energy
+harvesting transmitter needs two ESDs, which we call the main
+ESD (MESD) and secondary ESD (SESD). The transmitter
+draws power from the MESD for data transmission, over
+which time the SESD is connected to the energy source and
+charges up. At the end of transmission for a frame, the SESD
+transfers its stored energy to the MESD. A fraction ρ (called
+the save-ratio) of every frame interval is used exclusively
+for energy harvesting by the MESD1 . The energy storage
+efﬁciency, denoted by η, of each ESD may not be 100 percent,
+and a ﬁxed amount of power Pc is assumed to be consumed
+by the transmitter hardware whenever it is powered up. The
+frame interval T is assumed to be small relative to the time
+constant of changes in the ESD charging rate (or energy arrival
+rate). The energy arrival rate is therefore modeled as a random
+variable X in Joules/second which is assumed to be constant
+over a frame.
+Under the above realistic conditions, we minimize the
+
+Abstract—In this paper, the design of a wireless communication
+device relying exclusively on energy harvesting is considered. Due
+to the inability of rechargeable energy sources to charge and
+discharge at the same time, a constraint we term the energy
+half-duplex constraint, two rechargeable energy storage devices
+(ESDs) are assumed so that at any given time, there is always one
+ESD being recharged. The energy harvesting rate is a random
+variable that is constant over the time interval of interest. A savethen-transmit (ST) protocol is introduced, in which a fraction of
+time ρ (dubbed the save ratio) is devoted exclusively to energy
+harvesting, with the remaining fraction 1 − ρ used for data
+transmission. The ratio of the energy obtainable from an ESD
+to the energy harvested is termed the ESD efﬁciency, η. We
+address the practical case of the secondary ESD being a battery
+with η < 1, and the main ESD being a super-capacitor with
+η = 1. The optimal save-ratio that minimizes outage probability
+is derived, from which some useful design guidelines are drawn.
+Numerical results are provided to validate our proposed study.
+
+I. I NTRODUCTION
+The operation of communication networks powered either
+largely or exclusively by renewable sources has become
+increasingly attractive, both due to the increased desire to
+reduce energy consumption in human activities at large, and
+due to necessity brought about by the concept of networking
+heterogeneous devices ranging from medical sensors on/in the
+human body to environment sensors in the wilderness [1],
+[2]. Sensor nodes are powered by batteries that often cannot
+be replaced because of the inaccessibility of the devices.
+Therefore, once the battery of a sensor node is exhausted, the
+node dies. Thus the potentially maintenance-free and virtually
+perpetual operation offered by energy harvesting, whereby
+energy is extracted from the environment, is appealing.
+The availability of an inexhaustible but unreliable energy
+source changes a system designer’s options considerably, compared to the conventional cases of an inexhaustible reliable energy source (powered by the grid), and an exhaustible reliable
+energy source (powered by batteries). There has been recent
+research on understanding data packet scheduling with an
+energy harvesting transmitter that has a rechargeable battery,
+most of which employed a deterministic energy harvesting
+model. In [3], the transmission time for a given amount of data
+is minimized through power control based on known energy
+arrivals over all time. Structural properties of the optimum
+solution were then used to establish a fast search algorithm.
+This work has been extended to battery limited cases in
+[4], and battery imperfections in [5]. Energy harvesting with
+channel fading has been investigated in [6] and [7], wherein
+
+1 Note that the energy source can be connected only to either the SESD or
+the MESD, but not both.
+
+1
+
+Fig. 1.
+
+Save-Then-Transmit (ST) Protocol
+
+Fig. 2.
+
+outage probability (to be deﬁned in the next section) over
+ρ, when transmitting over a block fading channel with an
+arbitrary fading distribution. In this work, we particularize to
+the case where the MESD is a high-efﬁciency super-capacitor
+with η = 1, and the SESD is a low-efﬁciency rechargeable
+battery with 0 < η < 1. Other conﬁgurations of the MESD
+and SESD will be considered in future work.
+
+For any frame, the ST protocol (cf. Fig. 1) is described as
+follows:
+• During time interval (0, ρT ], harvested energy accumulates in the MESD, which corresponds to the situation
+that switches b, c are open and a connects to the MESD
+in Fig. 2;
+• From time ρT to T , the transmitter is powered on for
+transmission with energy from the MESD. We assume
+all the buffered energy in the MESD is used up for
+transmission in each frame. Since the MESD cannot
+charge and discharge at the same time, the SESD starts
+to store up harvested energy while the transmitter is on.
+Referring to Fig. 2, c is closed, b is open and a switches
+to the SESD;
+• At time T , the transmitter completes the transmission and
+powers off. The SESD transfers all its buffered energy to
+the MESD within a negligible charging time, at efﬁciency
+η. In other words, b is closed and switch a, c are open
+in Fig. 2.
+The rate at which the ESDs are charged by the renewable energy source is modeled as a random variable X Joules/second
+(J/s). This is justiﬁed by the assumption that the transmission
+frame interval T is much smaller than the time constant of
+changes in energy availability, e.g., changes in solar or wind
+energy availability occur on a time scale of seconds, whereas
+T is typically on the order of fractions of a second. Therefore
+the random process X(t) representing ESD recharge rate at
+time t is reasonably assumed to be constant over each window
+of T seconds.
+
+II. S YSTEM M ODEL
+A. Deﬁnitions and Assumptions
+The block diagram of the system is given in Fig. 2. The
+energy recovered from the environment2 replenishes either the
+MESD or the SESD at any given time, as indicated by switch
+a. The MESD powers the transmitter directly and usually has
+high power density, good recycle ability and high efﬁciency,
+e.g. a super-capacitor [10]. Since the MESD cannot charge and
+discharge simultaneously, a SESD (e.g. rechargeable battery)
+stores up harvested energy while the transmitter is on, and
+transfers all its stored energy to the MESD once the transmitter
+is off. We assume in the rest of this paper that the SESD is a
+battery with an efﬁciency η, where η ∈ [0, 1]. This means
+that a fraction η of the energy transferred into the SESD
+during charging can be subsequently recovered during discharging. Other conﬁgurations of battery/supercapacitor and
+MESD/SESD will be considered in our future work.
+We assume that Q bits of data are generated and must be
+transmitted within a time slot of duration T seconds (i.e.,
+delay constrained). In the proposed ST protocol, the save-ratio
+ρ is the reserved fraction of time for energy harvesting by
+the MESD within one transmission slot. In other words, data
+delivery only takes place in the last (1 − ρ)T seconds of each
+Q
+time slot, which results in an effective rate of Reﬀ = (1−ρ)T
+bits/sec. We also allow for a constant power consumption of Pc
+Watts by the transmitter hardware whenever it is powered on.
+The combined inﬂuence of ρ, η and Pc on outage probability
+is quantiﬁed in this work.
+Assume a block-fading frequency-nonselective channel,
+where the channel is constant over the time slot T . Over any
+time slot, the baseband-equivalent channel output is given by
+y = h · x + n,
+
+B. Outage Probability
+It is clear that X is a non-negative random variable with
+ﬁnite support, i.e. 0 ≤ X ≤ PH < ∞, as the maximum
+amount of power one can extract from any source is ﬁnite.
+Suppose fX (x) and FX (x) represent its probability density
+function (PDF) and cumulative distribution function (CDF),
+respectively. According to the proposed ST protocol, the total
+buffered energy in the MESD at t = ρT (the start of data
+transmission within a transmission slot) is given by
+
+(1)
+
+ET = X [ρ + η(1 − ρ)] T.
+(2)
+[
+]
+ρ
+ET
+Denote P = (1−ρ)T = X 1−ρ + η as the average transmission power, which is constant over the entire transmission
+period, and Pc as the circuit power (i.e. the power consumed
+
+where x is the transmitted signal, y is the received signal,
+and n is i.i.d. circularly symmetric complex Gaussian (CSCG)
+2
+noise with zero mean and variance σn .
+2 Wind,
+
+Energy Harvesting Circuit Model
+
+solar, geothermal, etc.
+
+2
+
+2
+
+by the hardware during data transmission), again assumed constant. The mutual information of the channel (1) conditioned
+on X and the channel gain h is (assuming P > Pc )
+
+III. O UTAGE M INIMIZATION
+In this section, we design the save-ratio ρ for the ST
+protocol by solving the optimization problem
+
+(
+)
+(P − Pc )|h|2
+RT = log2 1 +
+= log2 (1 + (P − Pc )Γ)
+2
+σz
+(3)
+|h|2
+where Γ = σ2 with PDF fΓ (·) and CDF FΓ (·).
+z
+For a transmitter with energy harvesting capability and
+working under the ST protocol, the outage event is the
+union of two mutually exclusive events: Circuit Outage and
+Channel Outage. Circuit Outage occurs when the MESD has
+insufﬁcient energy stored up at t = ρT to even power on the
+hardware for the duration of transmission i.e. ET < Pc (1−ρ)T
+or equivalent P < Pc . Channel outage is deﬁned as the MESD
+having sufﬁcient stored energy but the channel realization does
+Q
+not support the required target rate Reﬀ = (1−ρ)T bits/s.
+Recalling that X ∈ [0, PH ], the probabilities of Circuit
+Outage and Channel Outage are therefore:
+circuit
+Pout
+= Pr {P < Pc }
+{
+FX [ϕ(·)] if PH > ϕ(·)
+=
+1
+otherwise.
+
+(P1) :
+
+(4)
+
+(5)
+
+A. Ideal System: η = 1 and Pc = 0
+
+Q
+(1−ρ)T
+
+2
+−1
+where g(ρ, η, Pc ) = x[ ρ +η]−Pc and ϕ(ρ, η, Pc ) = ρPc+η .
+1−ρ
+1−ρ
+Since Circuit Outage and Channel Outage are mutually exclusive, it follows that
+
+Suppose that circuit power is negligible, i.e. all the energy
+is spent on transmission, and the SESD has perfect energyρ
+transfer efﬁciency. The condition PH > Pc /( 1−ρ + η) is
+always satisﬁed, and problem (P1) is simpliﬁed to
+]
+[
+Q
+∫ PH
+(2 (1−ρ)T − 1)(1 − ρ)
+(P2) : min.
+fX (x)FΓ
+dx
+0≤ρ≤1
+x
+0
+
+(6)
+
+∗
+where the optimal value of (P2) is denoted as Pout (1, 0), and
+∗
+the optimal save-ratio is denoted as ρ (1, 0).
+Lemma 3.1: The minimum outage probability when η = 1
+and Pc = 0 is given by
+[ Q/T
+]
+∫ PH
+2
+−1
+∗
+fX (x)FΓ
+dx
+(8)
+Pout (1, 0) =
+x
+0
+
+For convenience, we deﬁne
+∫
+ˆ
+Pout (ρ, η, Pc ) = FX [ϕ(·)] +
+
+PH
+
+fX (x)FΓ [g(·)] dx
+
+Pout
+
+i.e. optimize average outage performance Pout in (6) over ρ,
+for any given η ∈ [0, 1] and Pc ∈ [0, ∞). Due to the complex
+form of Pout in (6), numerical methods must be used to solve
+(P1). In general, the problem is not convex.
+Denote the optimal (minimum) outage probability as
+∗
+Pout (η, Pc ) and the optimal save-ratio as ρ∗ (η, Pc ). Note that
+ρ ↗ 1 represents transmission of a very short burst at the
+end of each frame, and the rest of each frame is reserved
+for MESD energy harvesting. ρ = 0 is another special case,
+in which the energy consumed in frame i was collected (by
+the SESD) entirely in frame i − 1. (P1) can always be solved
+through numerical search, but it is challenging to give a closed
+form solution for ρ∗ (η, Pc ) in terms of Pc and η in general.
+We will instead analyze how ρ∗ (η, Pc ) varies with Pc and η
+and thereby get some insights in the rest of this section.
+Proposition 3.1: Pout (ρ, η, Pc ) in (6) is a non-increasing
+function of battery efﬁciency η and a non-decreasing function
+of circuit power Pc for ρ ∈ [0, 1). The optimal value of (P1)
+∗
+Pout (η, Pc ) is strictly decreasing with η and strictly increasing
+with Pc .
+The proof of proposition 3.1 is omitted because of space
+limitations, but its intuition is clear: If η grows, the energy
+available to the transmitter can only grow or remain the
+same, whatever the values of ρ and Pc , hence Pout must be
+non-increasing with η; if Pc grows, the energy available for
+transmission decreases, leading to higher Pout .
+
+channel
+Pout
+= Pr {log2 (1 + (P − Pc )Γ) < Reﬀ , P > Pc }
+{
+}
+2Reff − 1
+= Pr Γ <
+, P > Pc
+P − Pc
+ ∫ PH
+
+fX (x)FΓ [g(·)] dx if PH > ϕ(·)
+=
+ϕ(·)
+
+0
+otherwise.
+
+circuit
+channel
+Pout = Pout
++ Pout
+
+FX [ϕ(·)] +
+ ∫
+PH
+=
+f (x)FΓ [g(·)] dx if PH > ϕ(·)
+ ϕ(·) X
+1
+otherwise.
+
+min.
+
+0≤ρ≤1
+
+(7)
+
+ϕ(·)
+
+and is achieved with the save-ratio ρ∗ (1, 0) = 0.
+Proof: Please refer to the journal version of this paper
+[11].
+Lemma 3.1 indicates that the optimal strategy for a transmitter that uses no power to operate its circuitry powered by two
+ESDs with 100 percent efﬁciency, is to transmit continuously3 .
+
+ˆ
+where Pout (ρ, η, Pc ) < 1 and PH > ϕ(·).
+Unlike the conventional deﬁnition of outage probability in
+a block fading channel, which is dependent only on the fading
+distribution and a ﬁxed average transmit power constraint, in
+an energy harvesting system with block fading and the ST
+protocol, both transmit power and channel are random, and
+the resulting outage is thus a function of the save-ratio ρ, the
+battery efﬁciency η and the circuit power Pc .
+
+3 Except for the time needed in each slot to transfer energy from the SESD
+to the MESD, which we assume to be negligible.
+
+3
+
+3
+
+This is not surprising because the SESD collects energy from
+the environment just as efﬁciently as the MESD does, and
+so idling the transmitter while the MESD harvests energy
+wastes transmission resources (time) while not reaping any
+gains (energy harvested). However, we will see that this is
+only true when there is no circuit power and perfect storage
+efﬁciency.
+B. Inefﬁcient Battery: η < 1 and Pc = 0
+When the SESD energy transfer efﬁciency η < 1 and Pc =
+0, (P1) becomes
+]
+[
+Q
+∫ PH
+(2 (1−ρ)T − 1)
+dx
+(P3) : min.
+fX (x)FΓ
+ρ
+0≤ρ≤1
+x( 1−ρ + η)
+0
+
+Fig. 3.
+
+∗
+Pout (η, 0),
+
+where the optimal value of (P3) is denoted as
+and
+the optimal save-ratio is denoted as ρ∗ (η, 0).
+Lemma 3.2: When SESD energy transfer efﬁciency η < 1
+and circuit power Pc = 0, the optimal save-ratio ρ has the
+following properties.
+1) It is non-zero only for small η:
+)
+[ Q
+
+ ∗
+2
+
+η ∈ Q T −1 Q , 1
+ ρ (η, 0) = 0,
+2)
+[ 2 T (ln Q T )
+(9)
+ ∗
+2 T −1
+ ρ (η, 0) > 0,
+η ∈ 0, Q
+
+Q
+
+recover enough energy (with non-zero probability) to power on
+the transmitter, i.e. ρ ∈ [0, 1). If PH ≤ Pc , by condition PH ≤
+η
+Pc
+ρ
+1−ρ +η
+
+, save-ratio ρ is required to be larger than
+summary,
+• If Pc < PH η
+ˆ
+Pout = Pout (ρ, η, Pc ),
+•
+
+2 T (ln 2) T
+
+2) ρ∗ (η, 0) is a non-increasing function of η, for 0 ≤ η ≤ 1.
+Proof: Please refer to [11].
+According to (9), if the SESD efﬁciency is above a threshold, the increased energy available to the transmitter if the
+MESD rather than the SESD collects energy over [0, ρT ] is
+not sufﬁcient to overcome the extra energy required to transmit
+at the higher rate Reﬀ over (ρT, T ]. The result is that the
+optimal ρ is 0. On the other hand, if η is below that threshold,
+then some amount of time should be spent harvesting energy
+using the higher-efﬁciency MESD even at the expense of
+losing transmission time. Lemma 3.2 quantiﬁes precisely the
+interplay among η, Q, T and ρ.
+We should note here that even though we consider the
+case of having two ESD’s, by setting η = 0, we effectively
+remove the SESD and hence our analysis applies also to the
+single-ESD case. According to (9), if we only have one ESD,
+the optimal save ratio is ρ∗ (0, 0), which is always larger
+than 0. This is intuitively sensible, because with only one
+ESD obeying the energy half-duplex constraint, it would be
+impossible to transmit all the time (ρ = 0) because that would
+leave no time at all for energy harvesting.
+
+ρ (η, Pc ) >
+
+1−ρ
+
+Therefore, if PH >
+
+Pc
+η ,
+
+−η
+
+P
+1−η+ P c
+
+. In
+
+H
+
+∀ρ ∈ [0, 1)
+
+ρ≤
+ρ>
+
+Pc
+PH
+
+−η
+
+P
+1−η+ P c
+Pc
+PH
+
+H
+
+−η
+
+(10)
+
+P
+1−η+ P c
+H
+
+Pc
+PH
+
+−η
+
+P
+1−η+ P c
+
+due to the needs of offsetting circuit
+
+H
+
+power consumption. If Pc < ηPH , theoretically, the transmitter is able to recover enough energy (with non-zero probability
+for all ρ ∈ [0, 1)) to transmit.
+Lemma 3.3: For an energy harvesting transmitter with battery efﬁciency η and ﬁnite circuit power Pc ,
+Q
+
+2T − 1
+Pc
+< Q
+η−
+PH
+2 T (ln 2) Q
+T
+
+=⇒ ρ∗ (η, Pc ) > 0.
+
+(11)
+
+Proof: Please refer to [11].
+Intuitively, the smaller the circuit power is, the more energy we can spend on transmission; the larger the battery
+efﬁciency is, the more energy we can recover from energy
+harvesting. Small circuit power and high battery efﬁciency
+suggests continuous transmission (ρ∗ (η, Pc ) = 0), which is
+consistent with our intuition. According to Lemma 3.3, larger
+circuit power may be compensated by larger ESD efﬁciency
+(when the threshold for η is smaller than 1). A non-zero save
+ratio is only desired if there exists signiﬁcant circuit power to
+be offset or substantial ESD inefﬁciency to be compensated.
+The threshold depends on required transmission rate.
+
+Non-zero circuit power Pc leads to two mutually exclusive
+effects: (i) zero probability of powering on the transmitter for
+the (1−ρ)T duration of transmission – this is when PH < ϕ(·)
+in (6); and (ii) higher outage probability if PH > ϕ(·) because
+some power is devoted to running the hardware.
+Since ρPc+η decreases as ρ increases, its maximum value
+Pc
+η .
+
+If Pc ≥ PH η
+
+ 1,
+
+Pout =
+ P (ρ, η, P ),
+ ˆout
+c
+
+Pc
+PH
+
+If Pc ≥ ηPH , referring to (10), we may conclude that
+∗
+
+C. Finite Circuit Power: η ≤ 1, Pc > 0
+
+is
+
+Optimal save-ratio ρ∗
+
+IV. N UMERICAL E XAMPLES
+To obtain numerical results, we assume that the energy
+harvesting rate X follows a uniform distribution within [0, 100]
+
+the transmitter would be able to
+4
+
+4
+
+Fig. 4.
+
+∗
+Optimal outage probability Pout
+
+Fig. 5.
+
+(i.e., PH = 100 J/s), and the channel is Rayleigh fading with
+exponentially distributed Γ with parameter λ = 0.02. We also
+assume the target transmission rate Rreq = Q = 2 bits/s.4 .
+T
+Fig. 3 demonstrates how battery efﬁciency η and circuit
+power Pc would affect the optimal save-ratio ρ∗ . As observed,
+larger Pc and smaller η would result in larger ρ∗ , i.e. shorter
+transmission time. Since the increment is more substantial
+along Pc axis, circuit power Pc has a larger inﬂuence on
+the optimal save-ratio compared with battery efﬁciency η.
+ρ∗ (1, 0) = 0 veriﬁes the result of Lemma 3.1 for an ideal
+system, while ρ∗ (η, 0) along the line Pc = 0 demonstrates
+the “phase transition” behavior stated in Lemma 3.2. Fig. 4
+∗
+∗
+gives Pout (η, Pc ). Consistent with Proposition 3.1, Pout (η, Pc )
+is monotonically decreasing with battery efﬁciency η and
+monotonically increasing with circuit power Pc . Again, Pc
+affects outage performance more signiﬁcantly then η. From
+Fig. 4, we see that for a reasonable outage probability e.g.
+below 0.05, Pc has to be small and η has to be close to 1.
+Our results can be used to ﬁnd the feasible region in the η-Pc
+plane for a given allowable Pout . Fig. 5 and Fig. 6 compare the
+outage performance before and after optimization. We can see
+that optimizing over save-ratio signiﬁcantly improves system
+performance.
+
+Fig. 6.
+
+Outage performance comparison:
+
+Pc
+PH
+
+= 0.5
+
+Outage performance comparison: η = 0.8
+
+[2] I. F. Akyidiz, W. Su, Y. S. Subramaniam, and E. Cayirei, “A survey on
+sensor networks,” IEEE Commun. Mag., vol. 40, pp. 102-114, August
+2002.
+[3] J. Yang and S. Ulukus, “Optimal packet scheduling in an energy
+harvesting communication system,” IEEE Trans. Commun., vol.60, no.
+1, pp. 220-230, Jan. 2012.
+[4] K. Tutuncuoglu and A. Yener, “Optimum transmission policies for battery limited energy harvesting nodes,” IEEE Trans. Wireless Commun.,
+vol. 11, no. 3, pp. 1180-1189, Mar. 2012.
+[5] B. Devillers and D. Gunduz, “A general framework for the optimization
+of energy harvesting communication systems with battery imperfections,” submitted for publication. Available at [arXiv:1109.5490].
+[6] O. Ozel, K. Tutuncuoglu, J. Yang, S. Ulukus, and A. Yener, “Transmission with energy harvesting nodes in fading wireless channels: optimal
+policies,” IEEE J. Sel. Areas Commun., vol. 29, no. 8, pp. 1732-1743,
+Sep. 2011.
+[7] C. K. Ho and R. Zhang, “Optimal energy allocation for wireless communications with energy harvesting constraints,” submitted for publication.
+Available at [arXiv:1103.5290].
+[8] O. Ozel and S. Ulukus, “Information-theoretic analysis of an energy
+harvesting communication system,” in Proc. IEEE PIMRC, Sep. 2010.
+[9] R. Rajesh, V. Sharma, and P. Viswanath, “Capaciy of fading Gaussian
+channel with an energy harvesting sensor node,” in Proc. IEEE Global
+Commun. Conf. (Globecom), Dec. 2011.
+[10] M. Jayalakshmi and K. Balasubramanian, “Simple capacitors to supercapacitors - an overview,” Int. J. Electrochem. Sci., vol. 3, pp. 1196-1217,
+2008.
+[11] S. Luo, R. Zhang, and T. J. Lim, “Optimal save-then-transmit protocol
+for energy harvesting wireless transmitters,” submitted for publication.
+Available at [arXiv:1204.1240].
+
+V. C ONCLUSION
+In this paper, we studied a wireless system under practical
+energy harvesting conditions. Assuming a general model with
+non-ideal energy storage efﬁciency and transmit circuit power,
+we proposed a Save-then-Transmit (ST) protocol to optimize
+the system outage performance via ﬁnding the optimal saveratio. We characterized how the optimal save-ratio and the
+minimum outage probability vary with practical system parameters. Both analytical and numerical results provide useful
+guidelines for practical system design.
+R EFERENCES
+[1] A. Sinha and A. Chandrakasan, “Dynamic power management in wireless sensor networks,” IEEE Design Test Comp., vol. 18, no. 2, pp.
+62-74, Mar./Apr. 2001.
+4 This is normalized to a bandwidth of 1 Hz, i.e. R
+req is the spectral
+efﬁciency.
+
+5
+
+5
+
+

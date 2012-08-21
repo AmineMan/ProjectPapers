@@ -1,0 +1,1184 @@
+Creator:        TeX
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Sat May 19 11:51:43 2012
+ModDate:        Tue Jun 19 12:55:40 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      1040924 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569566167
+
+Performance Analysis of 1-synthesis with Coherent
+Frames
+Yulong Liu∗ , Shidong Li†‡ , Tiebin Mi† , Hong Lei∗ and Weidong Yu∗
+∗ Institute
+
+of Electronics, Chinese Academy of Sciences, Beijing, China 100190
+of Information Sciences, Renmin University of China, Beijing, China 100872
+‡ Department of Mathematics, San Francisco State University, San Francisco, CA 94132
+† School
+
+a matrix of frame1 vectors (as columns) that are often rather
+coherent in applications, and x ∈ Rd is a sparse coefﬁcient
+vector. The linear measurements of f then can be written as
+
+Abstract—Signals with sparse representations in frames comprise a much more realistic model of nature, it is therefore
+highly desirable to extend the compressed sensing methodology
+to redundant dictionaries (or frames) as opposed to orthonormal
+bases only. In the generalized setting, the standard approach to
+recover the signal is known as 1 -synthesis (or Basis Pursuit). In
+this paper, we present the performance analysis of this approach
+in which the dictionary may be highly - and even perfectly correlated. Our results do not depend on an accurate recovery
+of the coefﬁcients. We demonstrate the validity of the results via
+several experiments.
+
+y = ΦDx + z.
+
+Since x is assumed sparse, the standard way of recovering
+f from (2) is known as 1 -synthesis [8], [13], [7]. From the
+measurements, one ﬁrst ﬁnds the sparsest possible coefﬁcient
+x by solving an 1 minimization problem
+ˆ
+˜
+x = argmin x
+
+I. I NTRODUCTION
+
+s.t.
+
+1
+
+y − ΦD˜
+x
+
+2
+
+≤ ,
+
+(3)
+
+˜
+x∈Rd
+
+where x p (p = 1, 2) denotes the standard p -norm of the
+vector x and is an upper bound of the noise. Then the
+solution to f is derived via a synthesis operation, i.e., ˆ = Dˆ .
+f
+x
+Although empirical studies show that 1 -synthesis often
+achieves good recovery results, the theoretical performance of
+this method is far from satisfactory. The analytical results in
+[20] essentially require that the frame D has columns that
+are extremely uncorrelated such that the compound matrix
+ΦD satisﬁes the requirements imposed by the traditional
+compressed sensing assumptions. However, these requirements
+are often infeasible when D is highly coherent. For example,
+consider a simple case in which Φ ∈ Rm×n is a Gaussian
+matrix with i.i.d. entries, then Φ ∼ N (0, In ⊗ Im ), where ⊗
+denotes the Kronecker product and Im is an identity matrix
+of the size m. It is now well known that with very high
+probability Φ satisﬁes the restricted isometry property (RIP)
+provided that m is on the order of s log(n/s) [3], [5]. Let
+us now examine ΦD. It is not hard to show that ΦD ∼
+N (0, D∗ D⊗Im ), where (·)∗ denotes the transpose operation.
+If D is unitary, then ΦD has the same distribution as Φ and
+satisﬁes the RIP. However, if D is a coherent frame, then ΦD
+may no longer obey the common RIP since the entries of ΦD
+
+Compressed sensing is a new data acquisition theory which
+allows that sparse or compressible signals of interest can
+be recovered from a small number of linear, non-adaptive,
+and usually randomized measurements [5], [6], [10]. By now,
+compressed sensing has attacked abundant applications in
+signal and image processing, see e.g., the two special issues
+[1], [2] and references therein. Formally, one considers the
+following measurement model:
+y = Φf + z,
+
+(2)
+
+(1)
+
+where Φ is an m × n sensing matrix with m
+n (indicating
+some signiﬁcant undersampling) and z ∈ Rm is a noise term
+modeling measurement error. The goal is to reconstruct the
+unknown signal f ∈ Rn based on available measurements y ∈
+Rm .
+In standard compressed sensing scenarios, it is usually
+assumed that the signal f has a sparse (or nearly sparse)
+representation in an orthonormal basis. However, a large
+number of applications in signal and image processing point
+to problems where f is sparse with respect to an overcomplete
+dictionary or a frame rather than an orthonormal basis, see,
+e.g., [19], [8], [4], and references therein. Examples include,
+e.g., signal modeling in array signal processing (oversampled
+array steering matrix), reﬂected radar and sonar signals (Gabor
+frames), and images with curves (curvelets), etc. The ﬂexibility
+of frames is the key characteristic that empowers frames
+to become a natural and concise signal representation tool.
+Therefore, it is highly desirable to extend the compressed
+sensing methodology to redundant dictionaries as apposed to
+orthnormal bases only. In the generalized setting, the signal f
+is now expressed as f = Dx where D ∈ Rn×d (n < d) is
+
+1 A set of vectors {d }
+n
+n
+k k∈I in R is a frame of R if there exist constants
+0 < A ≤ B < ∞ such that
+
+∀ f ∈ Rn ,
+
+A f
+
+2
+2
+
+| f , dk |2 ≤ B f
+
+≤
+
+2
+2,
+
+k∈I
+
+where numbers A and B are called lower and upper frame bounds, respec˜
+tively. A frame {dk }k∈I is an alternative dual frame of {dk }k∈I if
+∀ f ∈ Rn ,
+
+˜
+f , dk dk =
+
+f =
+k∈I
+
+˜
+f , dk dk .
+k∈I
+
+More details about frames can be found in e.g., [9].
+
+1
+
+of D [17]. This leads to the following general-dual-based
+analysis approach
+
+are correlated. Meantime, the mutual incoherence property
+(MIP) [11] may not apply either, as it is very hard for ΦD to
+satisfy the MIP as well when D is highly correlated.
+The perspective of the results in [20] is that some sufﬁcient
+conditions are put on the compound matrix ΦD such that x
+can be recovered accurately, which leads to a good estimate
+of f . However, if one is only interested in reconstructing the
+signal f , then it may be unnecessary to care about obtaining a
+good recovery of x. As pointed out in [7], when the dictionary
+D has two identical columns, it seems impossible to recover a
+unique sparse coefﬁcient vector x from the measurements, but
+we may certainly be able to reconstruct the signal f accurately.
+In other words, a good recovery of x may be unnecessary to
+guarantee an accurate reconstruction of f .
+In this paper, we present a performance analysis for the 1 synthesis approach in which the dictionary D may be highly
+- and even perfectly - correlated. Also, our results do not
+depend on a good recovery of the coefﬁcients. Our basic
+idea is to establish the equivalence between the 1 -synthesis
+approach and the optimal-dual-based 1 -analysis approach
+recently proposed in [17]. Then the recovery error bound for
+the latter will naturally lead to that for the former.
+
+ˆ = argmin D∗ ˜
+˜ f
+f
+
+s.t.
+
+y − Φ˜
+f
+
+2
+
+≤ ,
+
+y − Φ˜
+f
+
+2
+
+≤ ,
+
+(5)
+
+˜
+where columns of D form a general (and any) dual frame
+of D. The performance analysis of the general-dual-based 1 analysis approach was also given in [17]. In order to introduce
+the results, we require the concept of D-RIP [7]: An m ×
+n sensing matrix Φ is said to satisfy the restricted isometry
+property adapted to D (abbreviated D-RIP) with constant δs ∈
+(0, 1) if
+(1 − δs ) v
+
+2
+2
+
+≤ Φv
+
+2
+2
+
+≤ (1 + δs ) v
+
+2
+2
+
+(6)
+
+holds for all v ∈ Σs , where Σs is the union of all subspaces
+spanned by all subsets of s columns of D. The validity of the
+D-RIP was discussed in e.g., [7], [15]. It was shown in [7]
+that any m × n matrix Φ obeying for any ﬁxed ν ∈ Rn
+Pr
+
+Φν
+
+2
+2
+
+2
+2
+
+− ν
+
+≥δ ν
+
+2
+2
+
+≤ ce−γδ
+
+2
+
+m
+
+, δ ∈ (0, 1) (7)
+
+(γ, c are positive constants) will satisfy the D-RIP with
+overwhelming probability provided that m is on the order
+of s log(d/s). Many types of random matrices satisfy (7),
+some examples include matrices with Gaussian, subgaussian,
+or Bernoulli entries. It has also been shown in [15] that
+randomizing the column signs of any matrix that satisﬁes the
+standard RIP results in a matrix which satisﬁes the JohnsonLindenstrauss lemma. Such a matrix would then satisfy the
+D-RIP via (7). Consequently, partial Fourier matrix (or partial
+circulant matrix) with randomized column signs will satisfy
+the D-RIP since these matrices are known to satisfy the RIP.
+With these preliminaries, we now restate the results in [17]
+as follows.
+
+Alongside the 1 -synthesis approach, there is a counterpart
+that takes an analysis point of view, see e.g., [12], [13], [7].
+This alternative ﬁnds an estimate of f directly by solving the
+problem
+1
+
+s.t.
+
+˜∈Rn
+f
+
+II. T HE FAMILY OF A NALYSIS - BASED A PPROACHES
+
+ˆ = argmin D∗ ˜
+¯ f
+f
+
+1
+
+1-
+
+(4)
+
+˜∈Rn
+f
+
+¯
+¯
+where D denotes the canonical dual frame of D, i.e., D =
+∗ −1
+¯ = D.
+(DD ) D. If D is a Parseval frame, then we have D
+It is well known by now [13] that when D is a square
+and invertible dictionary, the 1 -analysis and 1 -synthesis approaches are equivalent. However, when D is an overcomplete
+frame, the gap between them is unexplored.
+A performance study of the 1 -analysis approach (4) in the
+¯
+case of Parseval frames (D = D) was given in [7]. It was
+shown that, under suitable conditions on the sensing matrix
+Φ, the solution to (4) is very accurate provided that D∗ f has
+rapidly decreasing coefﬁcients. In other words, when the frame
+coefﬁcient vector D∗ f is reasonably sparse, 1 -analysis can be
+the right method to use.
+However, the fact that f is sparse in terms of D does not
+imply D∗ f is necessarily sparse. In fact, as the canonical dual
+frame expansion in the case of Parseval frames, D∗ f = D∗ Dx
+has the minimum 2 -norm by the frame property, see, e.g., [9]
+and is usually fully populated which is also pointed out in
+[20]. Put differently, the canonical dual frame of D may be
+ineffective in sparsifying f since 2 -norm tends to spread the
+coefﬁcients into a large number of small coefﬁcients.
+To overcome this difﬁculty, the standard 1 -analysis approach (4) has recently been extended to a more general
+case in which the analysis operator can be any dual frame
+
+Theorem 1. [17] Let D be a general frame of Rn with frame
+˜
+bounds 0 < A ≤ B < ∞. Let D be an alternative dual frame
+˜
+˜
+of D with frame bounds 0 < A ≤ B < ∞, and let ρ = s/b.
+Suppose
+2
+
+1−
+
+˜
+ρB B
+
+˜
+· δs+a + ρB B · δb < 1 − 2
+
+˜
+ρB B
+
+(8)
+
+holds for some positive integers a and b satisfying 0 < b−a ≤
+3a. Then the solution ˆ to (5) satisﬁes
+f
+ˆ−f
+f
+
+2
+
+≤ C0 · + C1 ·
+
+˜
+˜
+D∗ f − (D∗ f )s
+√
+s
+
+1
+
+,
+
+(9)
+
+˜
+where C0 and C1 are some constants and (D∗ f )s denotes the
+˜ ∗ f in magnitude
+vector consisting the largest s entries of D
+(and setting the other to zero).
+Theorem 1 shows that if Φ satisﬁes some proper conditions,
+˜
+then the solution to (5) is very accurate provided that D∗ f has
+rapidly decreasing coefﬁcients. By the deﬁnition of the DRIP, the condition (8) is independent of the coherence of the
+dictionary D. For differently chosen a and b, (8) will give rise
+to different conditions on the D-RIP constant. For instance, if
+
+2
+
+˜
+D is a Parseval frame and D is its canonical dual frame, i.e.,
+˜ = 1, then (8) is satisﬁed whenever δ2s < 0.1398 [17].
+BB
+With the error bound (9), we can easily see the potential
+superiority of using alternative dual frames as analysis operators. For clarity, we consider a simple case in which the noise
+is free, i.e., = 0. Then the error bound (9) reduces to
+ˆ−f
+f
+
+2
+
+≤ C1 ·
+
+˜
+˜
+D∗ f − (D∗ f )s
+√
+s
+
+1
+
+.
+
+Clearly, the solution to (11) deﬁnitely corresponds to that
+˜
+of (5) with some “optimal” dual frame, say Do as the analysis
+˜ f
+operator. The optimality here is in the sense that D∗ ˆ 1
+o
+˜ ∗ ˜ 1 in value among all dual frames
+achieves the smallest D f
+of D and feasible signals satisﬁed the constraint in (11). Once
+ˆ and g are obtained (through solving (13)), it follows from
+ˆ
+f
+˜
+(12) that the analysis operator D∗ is given by
+o
+
+(10)
+
+˜
+¯
+D∗ = D∗ + PWo ,
+o
+
+√
+
+˜
+˜
+Clearly, the quality of the bound D∗ f − (D∗ f )s 1 / s in
+˜
+(10) is measured in terms of how effective D∗ f is in spasifying
+the signal f with respect to the dictionary D. As discussed
+before, the canonical dual frame expansion of f has the mini¯
+˜
+mum 2 -norm, i.e., D∗ f 2 = min x 2 , and is ineffective
+˜ x
+x:D˜ =f
+in promoting sparsity in general. On the other hand, when
+the analysis operator can be any dual frame of D, it is not
+hard to imagine that there should be some dual frame of D,
+˜
+˜
+denoted by DS , such that D∗ f = x. This is due to the fact
+S
+that all coefﬁcients of a frame expansion of f in D should
+correspond to some dual frame of D, which really is the spirit
+˜
+of frame expansions. Generally, DS is much more effective
+in sparsifying the signal f than the canonical dual frame does.
+Therefore, one may expect a better recovery performance by
+taking some “proper” alternative dual frame as the analysis
+operator.
+The important question then is how to choose some appropriate dual frame such that the corresponding analysis
+coefﬁcients are as sparse as possible. Since the true signal
+f is never known before hand in practice, it seems impossible
+˜
+to explicitly construct some proper dual frame D such that
+˜ ∗ f is sparse without additional priori knowledge about f .
+D
+One approach proposed in [17] is by the method of optimaldual-based 1 -analysis:
+ˆ=
+f
+
+argmin
+
+˜ f
+D∗ ˜
+
+1
+
+s.t.
+
+y − Φ˜
+f
+
+2
+
+≤ ,
+
+with Wo satisfying
+
+1
+
+s.t.
+
+y − Φ˜
+f
+
+ˆ
+vec(Wo ) = (ˆ∗ ⊗ Id )† g + Ind − (ˆ∗ ⊗ Id )† (ˆ∗ ⊗ Id ) w
+f
+f
+f
+= (ˆ ⊗ Id )ˆ / ˆ
+f
+g f
+
+2
+2
+
++ Ind − (ˆˆ∗ ⊗ Id )/ ˆ
+ff
+f
+
+2
+2
+
+w,
+(17)
+
+where A† denotes the pseudo-inverse of A and w ∈ Rnd×1 is
+an arbitrary vector. In deriving (17), we have used the two facts
+that (A⊗B)† = A† ⊗B† and (A⊗B)(C⊗D) = AC⊗BD,
+see e.g., [18]. Let w = 0, then (17) reduces to the least square
+solution of Wo
+ls
+ˆ f 2
+Wo = (ˆ∗ ⊗ g)/ ˆ 2 .
+f
+
+(18)
+
+ls
+If we choose Wo = Wo , then (14) becomes
+
+(11)
+
+2
+
+(16)
+
+where vec(Wo ) denotes the vectorization of the matrix Wo by
+stacking the columns of Wo into a single vector. The solution
+to (16) is non-unique in general since this equation is highly
+underdetermined (with d equations but nd unknowns). The
+class of solutions to (16) is given by
+
+ls
+˜
+¯
+¯
+D∗ = D∗ + PWo = D∗ + (ˆ∗ ⊗ Pˆ )/ ˆ 2 .
+f
+g f 2
+o
+
+(19)
+
+When f is sparse with respect to the redundant frame D,
+˜
+it is highly desirable that Do may promote high sparsity in
+the frame expansion of the true signal f . It then follows from
+(9) that an accurate recovery of f may be achieved by the
+solution of (11). Indeed, we have seen that the signal recovery
+via (11) is much more effective than that of the standard 1 analysis approach (4) which uses the canonical dual frame as
+the analysis operator.
+
+˜
+¯
+D = (DD∗ )−1 D + W∗ (Id − D∗ (DD∗ )−1 D) = D + W∗ P,
+(12)
+where P ≡ Id − D∗ (DD∗ )−1 D denotes the orthogonal
+projection onto the null space of D and W ∈ Rd×n is an
+arbitrary matrix. Plug (12) into (11), we obtain
+¯ f
+D∗ ˜ + Pg
+
+(15)
+
+ˆ
+(ˆ∗ ⊗ Id ) · vec(Wo ) = g,
+f
+
+where the optimization is performed simultaneously over both
+all dual frames of D and the feasible signal set. This seemingly
+complicated optimization problem can be reformulated into a
+simpliﬁed form. Note that the class of all dual frames for D
+is given by [16]
+
+argmin
+
+ˆ
+g = Wo ˆ.
+f
+
+˜
+Evidently, the optimal dual frame Do depends on the solutions
+of (13). By utilizing the fact that vec(ABC) = (C∗ ⊗
+A)vec(B), the above equation (15) is equivalent to
+
+˜
+DD∗ =I, ˜∈Rn
+f
+
+(ˆ, g) =
+f ˆ
+
+(14)
+
+III. P ERFORMANCE A NALYSIS OF
+
+1 - SYNTHESIS
+
+In this section, we present the performance analysis of
+the 1 -synthesis approach. We begin by showing that the 1 synthesis and the optimal-dual-based 1 -analysis approaches
+are equivalent.
+
+≤ ,
+
+˜∈Rn , g∈Rd
+f
+
+(13)
+where we have used the fact that when ˜ = 0, g ≡ W˜
+f
+f
+can be any vector in Rd due to the fact that W is free. If
+we simply set Pg ≡ 0, then (13) reduces to the standard 1 analysis approach (4). In [17], an iterative algorithm based on
+the split Bregman iteration [14] was developed to solve the
+optimization problem (13) efﬁciently.
+
+Theorem 2. 1 -synthesis and optimal-dual-based
+are equivalent.
+
+1 -analysis
+
+Proof: We start with the optimal-dual-based 1 -analysis
+¯ f
+˜
+approach as posed in (13). Let x = D∗ ˜ + Pg, then we have
+
+3
+
+¯
+D˜ = ˜. Since the columns of [D∗ , P] span the whole dx
+f
+˜ and g are free, then x ∈ Rd . Put
+˜
+dimensional space and both f
+the two facts into (13), we obtain the 1 -synthesis method (3).
+On the other hand, we start from the 1 -synthesis formulation.
+˜
+For any x ∈ Rd , the following decomposition always holds
+
+IV. N UMERICAL R ESULTS
+In this section, we present some numerical experiments to
+demonstrate the validity of the results obtained in this paper. In
+these experiments, we use two types of frames: Gabor frames
+and a concatenation of the coordinate and Fourier bases. The
+sensing matrix Φ is a Gaussian matrix with m = 32, n = 128.
+Since the dependence on the noise in the error bound (21) is
+optimal and for the purpose of clarity, we only consider the
+noise-free case2 . Both 1 -analysis and 1 -synthesis problems
+are solved by the algorithm developed in [17] because the
+returned auxiliary variable (Pg) by this algorithm can be used
+˜
+to construct the optimal dual frame Do (19). We set λ = µ =
+−12
+1, tol = 10 , nInner = 5, and nOuter = 100 in this
+algorithm for all experiments.
+Example 1: Gabor Frames. Recall that for a window
+function g and positive time-frequency shift parameters α and
+β, the Gabor frame is given by
+
+˜ ˜
+˜
+x = xR + xN = D∗ (DD∗ )−1 D˜ + P˜
+x
+x
+¯ ∗ D˜ + P˜ ,
+=D x
+x
+˜
+˜
+˜
+where xR and xN are the components of x belonging to
+the row space and the null space of D, respectively. By
+the deﬁnition of 1 -synthesis, we have ˜ = D˜ ∈ Rn . Let
+f
+x
+˜
+g = x ∈ Rd , we can arrive at the optimal-dual-based 1 analysis approach and the two methods are equivalent.
+Remark 1: By taking a geometrical description, it was shown
+in [13] that any 1 -analysis problem (with full-rank analysis
+operator) may be reformulated as an equivalent 1 -synthesis
+one. Our results indicate that the reverse is also true. For
+a given 1 -synthesis problem, there exist some appropriate
+analysis operators (e.g., optimal dual frames of D) such that
+the corresponding 1 -analysis problem is equivalent to the 1 synthesis one.
+With this equivalence, we now establish the error bound for
+˜
+the 1 -synthesis approach. Since Do is some alternative dual
+˜
+frame of D, i.e., DD∗ = I, a direct application of Theorem
+o
+1 leads to the following results.
+
+{gl,k (t) = g(t − kα)e2πilβt }l,k .
+
+For many practical applications such as radar and sonar, the
+received signal f often has the form
+s
+
+˜
+· δs+a + ρB Bo · δb < 1 − 2
+
+Evidently, f is sparse with respect to a Gabor frame. In this
+experiment, we construct a Gabor dictionary with Gaussian
+windows, oversampled by a factor of 30 so that d = 30 ×
+n = 3840. The tested signal f is sparse with respect to the
+constructed Gabor frame with sparsity s = ceil(0.2 × m) = 7.
+The positions of the nonzero entries of the coefﬁcient vector
+x are selected uniformly at random, and each nonzero value
+is sampled from standard Gaussian distribution.
+Figure 1 (a) shows that when D is highly coherent with
+coherence3 µ(D) = 0.9934, the recovered coefﬁcients by
+ˆ
+x−
+1 -synthesis are disappointing (with a relative error
+x 2 / x 2 = 0.9039). However, the signal recovered by 1 synthesis is very accurate (with a relative error equal to
+0.0845), see Figure 1 (b). This example also illustrates that
+a good recovery of the coefﬁcients may be unnecessary to
+guarantee an accurate reconstruction of the signal. Figure 1
+(b) also shows that the signal recovery via 1 -synthesis is
+much better than that of 1 -analysis (relative error: 0.0845 vs.
+˜
+0.3445). This is because the optimal dual frame Do is much
+more effective in promoting sparsity in the frame expansion
+¯
+of f than the canonical dual frame D does, see Figure 1 (c),
+˜ ∗ is determined by (19).
+where Do
+Example 2: Concatenations. When signals of interest are
+sparse over several orthonormal bases (or frames), it is natural to use a dictionary D consisting of a concatenation of
+these bases (or frames). In this experiment, we consider a
+
+˜
+ρB Bo (20)
+
+holds for some positive integers a and b satisfying 0 < b−a ≤
+3a. Then the solution ˆ to (3) (or to (11)) satisﬁes
+f
+ˆ−f
+f
+
+2
+
+≤ C0 · + C1 ·
+
+˜
+˜
+D∗ f − (D∗ f )s
+o
+√ o
+s
+
+1
+
+,
+
+(23)
+
+k=1
+
+2
+
+˜
+ρB Bo
+
+ak g(t − tk )eiωk t .
+
+f (t) =
+
+Theorem 3. Let D be a general frame of Rn with frame
+˜
+bounds 0 < A ≤ B < ∞. Let Do be some optimal dual frame
+˜
+˜
+of D deﬁned in (14) with frame bounds 0 < Ao ≤ Bo < ∞,
+and let ρ = s/b. Suppose
+1−
+
+(22)
+
+(21)
+
+˜
+where C0 and C1 are some constants and (D∗ f )s denotes the
+o
+˜ ∗ f in magnitude.
+vector consisting the largest s entries of Do
+Theorem 3 shows that, under suitable conditions on the
+sensing matrix, the recovered signal ˆ by 1 -synthesis is very
+f
+˜
+accurate provided that D∗ f has rapidly decreasing coefﬁcients.
+o
+˜
+˜
+By the optimality of Do , one may expect that Do will promote
+high sparsity in the frame expansion of the true signal f .
+˜
+Indeed, as we shall see in the numerical experiments, Do is
+much more effective in sparsifying f than the canonical dual
+frame does. Consequently, a better signal recovery is often
+achieved by 1 -synthesis.
+Since the class of optimal dual frames is signal-dependent,
+one might naturally question whether the condition (20) is
+˜
+satisﬁed when D∗ is used as the analysis operator. We have
+o
+˜
+¯
+˜
+seen that, when we choose D∗ = D∗ + (ˆ∗ ⊗ Pˆ )/ ˆ 2 , B Bo
+f
+g f 2
+o
+is reasonably small and hence the condition (20) is satisﬁed.
+
+2 Simulations for different noise levels and variable sparsity levels can be
+found in [17].
+3 The coherence of the dictionary D is deﬁned as µ(D)
+=
+| d ,dk |
+, where dj and dk denote columns of D. We say that D
+max d j d
+j=k
+
+j 2
+
+k 2
+
+is incoherent if µ(D) is small.
+
+4
+
+Coefficient Domain
+
+Coefficient Domain
+
+True coeﬃcients
+Recovered by ℓ1 -synthesis
+
+1
+
+V. C ONCLUSIONS
+
+True coeﬃcients
+Recovered by ℓ1 -synthesis
+
+This work has provided a theoretical analysis for 1 synthesis when the dictionary may be highly coherent. Our
+approach was to show the equivalence between 1 -synthesis
+and optimal-dual-based 1 -analysis. With this equivalence, the
+signal recovery error bound for both could be established by
+using the results in [17]. Lastly, the results obtained in this
+paper were validated via numerical experiments.
+
+0.5
+0.5
+0
+0
+−0.5
+−0.5
+−1
+−1
+−1.5
+−1.5
+500
+
+1000
+
+1500
+
+2000
+(a)
+
+2500
+
+3000
+
+3500
+
+50
+
+100
+
+150
+
+200
+
+250
+
+(d)
+
+Signal Domain − Real Part of Signal
+
+ACKNOWLEDGMENT
+
+Signal Domain − Real Part of Signal
+
+0.5
+True signal
+Recovered by ℓ1 -analysis
+Recovered by ℓ1 -synthesis
+
+True signal
+Recovered by ℓ1 -analysis
+Recovered by ℓ1 -synthesis
+
+0.5
+0
+
+Y. Liu would like to thank the School of Information
+Sciences, Renmin University of China for support during his
+visit.
+
+0
+−0.5
+−1
+−0.5
+
+20
+
+40
+
+60
+
+80
+
+100
+
+120
+
+20
+
+Signal Domain − Image Part of Signal
+
+40
+
+60
+
+80
+
+100
+
+120
+
+Signal Domain − Image Part of Signal
+
+0.5
+
+R EFERENCES
+
+0.2
+0.1
+
+0
+
+[1] R. G. Baraniuk, E. J. Cand` s, R. Nowak, and M.Vetterli, “Sensing,
+e
+sampling, and compression,” IEEE Signal Process. Mag., vol. 25, Mar.,
+2008
+[2] R. G. Baraniuk, E. J. Cand` s, M. Elad, and Y. Ma, “Applications of
+e
+sparse representation and compressed sensing,” Proc. IEEE, vol. 98,
+June, 2010.
+[3] R. G. Baraniuk, M. Davenport, R. DeVore, and M. Wakin, “A simple
+proof of the restricted isometry property for random matrices,” Constr.
+Approx., vol. 28, pp. 253–263, 2008.
+[4] A. M. Bruckstein, D. L. Donoho, and M. Elad, “From sparse solutions of
+systems of equations to sparse modeling of signals and images,” SIAM
+Rev., vol. 51, pp. 34–81, 2009.
+[5] E. J. Cand` s and T. Tao, “Near optimal signal recovery from random
+e
+projections: Universal encoding strategies?,” IEEE Trans. Inf. Theory,
+vol. 52, pp. 5406–5425, Dec., 2006.
+[6] E. J. Cand` s, J. Romberg, and T. Tao, “Robust uncertainty principles:
+e
+exact signal reconstruction from highly incomplete frequency information,” IEEE Trans. Inf. Theory, vol. 52, pp. 489–509, Feb., 2006.
+[7] E. J. Cand` s, Y. C. Eldar, D. Needell, and P. Randall, “Compressed
+e
+sensing with coherent and redundant dictionaries,” Appl. Computat.
+Harmon. Anal., vol. 31, pp. 59–73, 2011.
+[8] S. S. Chen, D. L. Donoho, and M. A. Saunders, “Atomic decomposition
+by basis pursuit,” SIAM Rev., vol. 43, pp. 129–159, 2001.
+[9] O. Chiristensen, An Introduction to Frames and Riesz Bases. Boston,
+MA: Birkh¨ user, 2003, pp. 87–121.
+a
+[10] D. L. Donoho, “Compressed sensing,” IEEE Trans. Inf. Theory, vol. 52,
+pp. 1289–1306, Apr., 2006.
+[11] D. L. Donoho, M. Elad, and V. N. Temlyakov, “Stable recovery of sparse
+overcomplete representations in the presence of noise,” IEEE Trans. Inf.
+Theory, vol. 52, pp. 6–18, Jan., 2006.
+[12] M. Elad, J. L. Starck, P. Querre, and D. L. Donoho, “Simultaneous
+cartoon and texture image inpainting using morphological component
+analysis (MCA),” Appl. Computat. Harmon. Anal., vol. 19, pp. 340–
+358, 2005.
+[13] M. Elad, P. Milanfar, and R. Rubinstein, “Analysis versus synthesis in
+signal priors,” Inverse Probl., vol. 23, pp. 947–968, 2007.
+[14] T. Goldstein and S. Osher, “The split Bregman algorithm for L1regularized problems,” SIAM J. Imag. Sci., vol. 2, pp. 323–343, 2009.
+[15] F. Krahmer and R. Ward, “New and improved Johnson-Lindenstrauss
+embeddings via the Restricted Isometry Property,” SIAM J. Math. Anal.,
+vol. 43, pp. 1269–1281, 2011.
+[16] S. Li, “On general frame decompositions,” Numer. Funct. Anal. Optim.,
+vol. 16, pp. 1181–1191, 1995.
+[17] Y. Liu, T. Mi, and S. Li, “Compressed sensing with general frames via
+optimal-dual-based 1 -analysis,” IEEE Trans. Inf. Theory, vol. 58, no. 7,
+July, 2012. [Online]. Available: http://arxiv.org/abs/1111.4345
+[18] H. L¨ tkepohl, Handbook of Matrices. New York: Wiley, 1996.
+u
+[19] S. Mallat and Z. Zhang, “Matching pursuits with time-frequency dictionaries,” IEEE Trans. Signal Process., vol. 41, pp. 3397–3415, Dec.,
+1993.
+[20] H. Rauhut, K. Schnass, and P. Vandergheynst, “Compressed sensing and
+redundant dictionaries,” IEEE Trans. Inf. Theory, vol. 54, pp. 2210–
+2219, May, 2008.
+
+0
+−0.1
+
+−0.5
+
+20
+
+40
+
+60
+(b)
+
+80
+
+100
+
+−0.2
+
+120
+
+20
+
+40
+
+60
+(e)
+
+80
+
+100
+
+120
+
+1.5
+
+1
+¯
+D∗ f
+˜∗
+Do f
+
+0.9
+
+¯
+D∗ f
+˜∗
+Do f
+
+0.8
+0.7
+
+1
+
+0.6
+0.5
+0.4
+0.5
+
+0.3
+0.2
+0.1
+0
+
+10
+
+20
+
+30
+
+40
+
+50
+(c)
+
+60
+
+70
+
+80
+
+90
+
+100
+
+0
+
+10
+
+20
+
+30
+
+40
+
+50
+(f)
+
+60
+
+70
+
+80
+
+90
+
+100
+
+Fig. 1.
+Left: D = Gabor frame. (a): recovery in coefﬁcient domain
+by 1 -synthesis (relative error: 0.9039) with the relative error deﬁned as
+ˆ
+x − x 2 / x 2 . (b): recovery in signal domain by 1 -analysis (relative
+error: 0.3445) and 1 -synthesis (relative error: 0.0845) with the relative error
+deﬁned as ˆ − f 2 / f 2 . (c): The largest 100 coefﬁcients of the coefﬁcient
+f
+√
+¯
+˜
+vector D∗ f and D∗ f in magnitude. Right: D = [I, F]/ 2. (d): recovery
+o
+in coefﬁcient domain by 1 -synthesis (relative error: 7.7681 × 10−6 ). (e):
+recovery in signal domain by 1 -analysis (relative error: 0.8143) and 1 synthesis (relative error: 6.7911 × 10−6 ). (f): The largest 100 coefﬁcients of
+¯
+˜
+the coefﬁcient vector D∗ f and D∗ f in magnitude.
+o
+
+dictionary consisting of the coordinate and Fourier bases, i.e.,
+√
+D = [I, F]/ 2. The tested signal f is a linear combination
+of spikes and sinusoids, i.e., f = f1 + f2 = x1 + Fx2 . The
+sparsity of both x1 and x2 is equal to 4. Again, the positions of
+the nonzero entries of both x1 and x2 are selected uniformly
+at random, and each nonzero value is sampled from standard
+Gaussian distribution.
+Figure 1 (d) and (e) √
+show that when D is incoherent (with
+coherence µ(D) = 1/ n = 0.0884), 1 -synthesis not only
+recover the signal accurately but also achieves a good recovery
+for the coefﬁcients. Figure 1 (e) also shows that 1 -analysis
+almost fails in recovering the signal with a relative error at
+¯
+0.8143. Such a failure is not surprising since D = D is
+ineffective in sparsifying the true signal f , see Figure 1 (f).
+˜
+By contrast, D∗ f decays very quickly, which guarantees the
+o
+good recovery for the signal by 1 -synthesis.
+
+5
+
+

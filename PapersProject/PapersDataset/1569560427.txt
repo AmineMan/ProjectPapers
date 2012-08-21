@@ -1,0 +1,744 @@
+Creator:         TeX output 2012.05.03:1931
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Thu May  3 19:31:31 2012
+ModDate:        Tue Jun 19 12:54:10 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      290662 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569560427
+
+Burst List Decoding of Interleaved Reed–Solomon
+Codes
+Tom Kolan and Ron M. Roth
+Computer Science Department, Technion, Haifa 32000, Israel.
+tomkolan@gmail.com, ronny@cs.technion.ac.il
+c ∈ C and e ∈ B(n, τ ),
+
+Abstract—It is shown that interleaved Reed–Solomon codes can
+be list-decoded for burst errors while attaining the generalized
+Reiger bound for list decoding.
+
+e ∈ D(c + e) .
+Equivalently, for every y ∈ F n ,
+
+I. I NTRODUCTION
+
+(y − C) ∩ B(n, τ ) ⊆ D(y) .
+
+Coding schemes for list decoding of isolated (random)
+errors—especially schemes that are based on Reed–Solomon
+codes and derivatives thereof—have been studied quite extensively [2]–[6]. Less, however, has been published about list
+decoding of burst errors. In a recent paper [7], several bounds
+were obtained on the parameters of list decodable codes for
+single bursts. It was also shown there that Reed–Solomon
+codes attain these bounds. We will review some of the results
+of [7] below, after introducing some deﬁnitions and notation.
+Throughout this work, we let F denote the ﬁnite ﬁeld
+GF(q). The order of an element γ in the multiplicative group
+F ∗ will be denoted by O(γ). For integers i < j, the notation
+[i, j⟩ stands for the integer interval {k ∈ Z : i ≤ k < j}.
+We say that a word e ∈ F n is a τ -burst if either e = 0 (the
+all-zero word) or the indexes i and j (in [0, n⟩) of the ﬁrst and
+last nonzero entries in e satisfy j − i < τ . For a nonzero word
+e, the notation λ(e) will stand for the value of i above, and
+the value j − i + 1 will be referred to as the (actual) length of
+the τ -burst and will be denoted by L(e) (where L(0) = 0).
+The set of all τ -bursts in F n will be denoted by B(n, τ ).
+For a code C of length n over F and a word y ∈ F n , we
+denote by y − C the set {y − c : c ∈ C} (when C is linear,
+this set is a coset of C within F n ). The minimum (Hamming)
+distance of C will be denoted by d(C).
+Let C be a code of length n over F . A (list) decoder for C
+is a mapping D from F n to the set of subsets of F n , such that
+D(y) ⊆ y − C for every y ∈ F n (we knowingly deviate here
+from the standard deﬁnition of a decoder in that D returns a
+list of error words rather than codewords). The list size of a
+decoder D is the largest size of D(y) over all y ∈ F n .
+We say that D detects any single τ -burst error if for every
+c ∈ C and e ∈ B(n, τ ),
+{
+{0}
+if e = 0
+D(c + e) =
+.
+∅
+otherwise
+
+(1)
+
+An (ℓ, τ )-burst list decoder for C is a decoder for C of list
+size at most ℓ that corrects any single τ -burst error. From (1),
+it readily follows that such a decoder exists if and only if for
+every y ∈ F n ,
+|(y − C) ∩ B(n, τ )| ≤ ℓ .
+The following generalization of the Reiger bound (specialized to linear codes) was recently proved in [7].
+Theorem 1.1 ([7, Thms. 2.2–2.3]): Let C be a linear code
+of length n over F and let τ and ℓ be positive integers that
+satisfy the following three conditions:
+1) Either (ℓ+1)τ ≤ n, or ℓ | τ and 2τ ≤ n.
+2) There is a decoder for C that detects any single τ -burst
+error.
+3) There is an (ℓ, τ )-burst list decoder for C.
+Then the redundancy r of C satisﬁes the lower bound
+r ≥ τ + ⌈τ /ℓ⌉ .
+Conversely, it was also shown in [7] that shortened Reed–
+Solomon codes (in short, RS codes) attain this bound.
+Theorem 1.2 ([7, Thm. 4.1]): For 0 ≤ r < n < q, let
+CRS (n, r) denote the RS code of length n and redundancy
+r over F with a parity-check matrix
+(
+)r−1 n−1
+HRS = HRS (n, r) = αst s=0, t=0 ,
+(2)
+where α ∈ F ∗ with O(α) ≥ n. There is an (ℓ, τ )-burst list
+decoder for CRS (n, r), whenever ℓ and τ are positive integers
+that satisfy
+⌈τ ⌉
+.
+r≥τ+
+ℓ
+(Note that condition 2 in Theorem 1.1 is also satisﬁed in this
+case, since d(CRS ) = r + 1 > τ .)
+One drawback of RS codes is that their length is limited to
+at most q − 1. In this work, we show that for the case where
+ℓ divides τ , the bound of Theorem 1.1 is attained also by a
+(τ /ℓ)-level interleaving of CRS (n, ℓ+1), thereby introducing
+optimal codes that are τ /ℓ times longer (for ℓ = 1, this
+result is straightforward and well known). Furthermore, we
+demonstrate that interleaved RS codes can be list-decoded for
+
+Such a decoder for C exists if and only if (c − C) ∩ B(n, τ ) =
+{0} for every c ∈ C. In particular, such a decoder exists if
+d(C) > τ .
+We say that D corrects any single τ -burst error if for every
+
+1
+
+Then D is an (ℓ, ℓ)-burst list decoder for CRS (n, r), and the
+following inequality is satisﬁed for every y ∈ F n \ CRS (n, r):
+∑
+(ℓ + 1 − L(e)) ≤ ℓ .
+
+bursts using an algorithm that is (signiﬁcantly) more efﬁcient
+than a burst list decoder for a non-interleaved RS code with
+comparable parameters. To show that the interleaving indeed
+works, we prove a reﬁnement of Theorem 1.2 for the case
+τ = ℓ. Finally, we show through an example that, unlike the
+special case of RS codes, interleaving does not always preserve
+the list-decoding properties of the constituent code.
+
+e∈D(y)
+
+Our proof of Theorem 2.2 will use the following lemma.
+Lemma 2.3: For integers 0 < ℓ < n < q, let CRS =
+CRS (n, ℓ+1) be as deﬁned in Theorem 1.2 and let
+
+II. T OOLS
+In this section, we consider the case τ = ℓ and prove that
+the (ℓ, ℓ)-burst list decoder D guaranteed in Theorem 1.2 can
+be assumed to satisfy a certain relationship between the size
+of each list D(y) and the lengths of the bursts in D(y).
+This relationship will then be used in Section III to show
+that interleaved RS codes attain the bound of Theorem 1.1.
+We recall the next theorem from [7], which will be used in
+the sequel; hereafter, Fδ [x] denotes the set of all univariate
+polynomials of degree less than δ over F in the indeterminate
+x.
+Theorem 2.1 ([7, Thm. 3.1]): For integers 1 < m ≤ r < q,
+let β0 , β1 , . . . , βm−1 be elements in F ∗ and let γ ∈ F ∗ be
+such that O(γ) ≥ r. Also, let µ0 , µ1 , . . . , µm−1 be positive
+integers such that
+m−1
+∑
+µi = r ,
+
+e0 , e1 , . . . , em−1
+be words in B(n, ℓ), all belonging to the same nontrivial coset
+y − CRS (where y ̸∈ CRS ). Then
+m−1
+∑
+
+(ℓ + 1 − L(ei )) ≤ ℓ .
+
+(4)
+
+i=0
+
+In particular, m ≤ ℓ.
+Proof: The proof builds upon the one given in [7] for
+Theorem 1.2 but requires additional arguments in order to get
+to the ﬁner result. We will assume in the proof that n = O(α)
+(otherwise, append O(α) − n zeroes to each ei and apply the
+proof to CRS (O(α), ℓ+1)).
+For i ∈ [0, m⟩, write
+λi = λ(ei ) ,
+
+τi = L(ei ) ,
+
+and
+
+µi = ℓ + 1 − τi ;
+
+(5)
+
+i=0
+
+note that the support of ei is contained in the set
+
+and, for each i ∈ [0, m⟩, deﬁne the polynomial
+Mi (x; βi , γ) =
+
+r−1−µi
+∏
+
+(x − βi γ t )
+
+Ji = [λi , λi +τi ⟩ .
+(6)
+∑m−1
+We need to show that i=0 µi ≤ ℓ.
+∑m−1
+Suppose to the contrary that i=0 µi ≥ ℓ + 1. Without
+real loss of generality, we will assume hereafter in the proof
+that the latter inequality holds with equality; otherwise, we
+can increase some of the τi ’s (effectively replacing some of
+the actual burst lengths by upper bounds on these lengths) and
+decrease the respective values of µi (= ℓ+1−τi ) accordingly,
+to achieve the equality
+
+(3)
+
+t=0
+
+(which is regarded as a univariate polynomial in the indeterminate x, with βi and γ serving as parameters). The following
+two conditions are equivalent:
+(i) There exist polynomials
+ui (x) ∈ Fµi [x],
+
+i ∈ [0, m⟩ ,
+
+not all zero, such that
+m−1
+∑
+
+m−1
+∑
+
+ui (x)Mi (x; βi , γ) = 0 .
+
+µi = ℓ + 1 .
+
+(7)
+
+i=0
+
+i=0
+
+(ii) For some distinct h, k ∈ [0, m⟩ and some integer b in the
+range −µh < b < µk ,
+βk
+= γb .
+βh
+Next, we state a reﬁnement of Theorem 1.2 for the case
+τ = ℓ: we provide a stronger property of the guaranteed list
+decoder D therein, in terms of the lengths of the decoded
+bursts. Namely, if one or more of the decoded bursts turns
+out to have actual length that is (strictly) smaller than ℓ, then
+such “deﬁciency” in the burst length implies that the size of
+the decoded list size must, in fact, be (strictly) smaller than ℓ.
+Theorem 2.2: For integers 0 < ℓ < r < n < q, let
+CRS (n, r) be as in Theorem 1.2, and let the decoder D for
+CRS (n, r) be deﬁned for every y ∈ F n by
+(
+)
+D(y) = y − CRS (n, r) ∩ B(n, ℓ) .
+
+For i ∈ [0, m⟩, let
+Mi (x) = Mi (x; αλi , α) =
+
+τi −1
+∏
+
+(x − αλi +t )
+
+(8)
+
+t=0
+
+be the specialization of (3) to γ = α, βi = αλi , r = ℓ + 1, and
+µi as in (5). The next steps in our proof are very similar to
+the proof of Theorem 1.2 in [7], with r and ℓ therein replaced
+by ℓ + 1 and m − 1, respectively. It follows from the analysis
+in [7, p. 4189] (details omitted) that there exist polynomials
+ui (x) ∈ Fµi [x] ,
+
+i ∈ [0, m⟩ ,
+
+(9)
+
+not all zero, such that
+m−1
+∑
+i=0
+
+2
+
+ui (x)Mi (x) = 0 .
+
+(10)
+
+Codeword of CRS (n, ℓ+1)
+
+Combining (7)–(10) with Theorem 2.1, we conclude that
+there exist distinct h, k ∈ [0, m⟩ and some integer b in the
+range −µh < b < µk such that
+
+0
+
+namely,
+(mod n) ,
+
+
+Fig. 1.
+
+=
+<
+
+(12)
+
+≤
+
+τ /ℓ
+
+-
+
+Interleaved array, with a τ -burst error marked by the shaded area.
+
+namely, it consists of all n × (τ /ℓ) arrays over F whose
+columns are codewords cj of CRS = CRS (n, ℓ+1). When
+transmitted over a noisy channel, the array is sent row by row,
+in which case a τ -burst error is seen as ℓ-burst errors in the
+columns of the array, as shown in Figure 1. The shaded area
+in the ﬁgure represents a largest possible set of entries that can
+be affected by a single τ -burst: generally, entries in that area
+(including leading or trailing entries) can still be error-free,
+in which case some columns in the array may incur bursts of
+length less than ℓ. While this observation is straightforward, it
+is those lightly corrupted—yet still corrupted—columns that
+could potentially fail the decoding of the array by requiring
+the list size to be greater than ℓ. Indeed, this could happen
+if CRS were replaced by an arbitrary constituent code C, even
+when C is (ℓ, ℓ)-burst list decodable and d(C) ≥ ℓ + 2 (see
+Example 4.1 below). However, as we show, Theorem 2.2 will
+guarantee decoding success for C when C = CRS .
+The following theorem is the main result of this paper.
+Theorem 3.1: Given positive integers ℓ ≤ τ < n < q
+such that ℓ | τ , let C be the (τ /ℓ)-level interleaving of CRS =
+CRS (n, ℓ+1). Then C has an (ℓ, τ )-burst list decoder. In
+particular, C attains the bound of Theorem 1.1 when 2ℓ ≤ n.
+We will prove Theorem 3.1 by introducing an (ℓ, τ )-burst
+list decoding algorithm for C. The algorithm is presented in
+Figure 2, and the remaining part of this section is devoted to
+analyzing that algorithm.
+The input to the algorithm is an n × (τ /ℓ) array Y over
+F , which is assumed to be a copy of a code array of C,
+possibly corrupted by a τ -burst error. The algorithm consists
+of three main loops: (A), (B), and (C). Loop (A) iterates over
+the columns of Y , as long as the columns are codewords of
+CRS . If Y is found to be error-free, then loops (B) and (C) are
+skipped, and the algorithm returns a list of size 1, containing
+the all-zero n × (τ /ℓ) array.
+When Y is ﬂagged with errors, Loop (B) is entered with the
+index j pointing at the ﬁrst column, yj , in Y that is corrupted.
+The (ℓ, ℓ)-burst list decoder D of Theorem 2.2 is applied to
+that column, resulting in the list
+(
+)
+D(yj ) = yj − CRS ∩ B(n, ℓ) = {e0 , e1 , . . . , em−1 } .
+
+(12)
+
+and, so,
+(13)
+
+6
+ℓ
+?
+
+n−1
+
+On the other hand, since eh and ek are distinct yet belong to
+the same coset of CRS , the difference eh − ek is a nonzero
+codeword of CRS and, as such, its Hamming weight is at least
+ℓ + 2. Hence,
+|Jh ∪ Jk | > ℓ + 1
+(13)
+µk
+
+R
+
+.
+.
+.
+
+(11)
+
+where we have used our assumption that n = O(α). Without
+loss of generality we can assume further that 0 ≤ b (< µk ), or
+else simply switch between the roles of h and k. Also, since
+CRS is cyclic when n = O(α), we can rotate the ei ’s, all by
+the same number ρ of positions, and the resulting new words
+will all belong to the same coset of CRS . We should then add,
+modulo n, the integer ρ to each λi (and, respectively, to each
+index in each set Ji in (6)), to obtain the correct index values
+for the rotated words. Thus, (11) still holds (for the same b)
+regardless of the value of ρ; in particular, we can select ρ so
+that (0 ≤) λh ≤ λk (< n).
+Doing so, we get that
+|Jh \ Jk | ≤ λk − λh = b .
+
+“Step”
+
+2
+
+αλk −λh = αb ;
+λk − λh ≡ b
+
+
+
+1
+
+ℓ + 1 − τk
+|Jh ∪ Jk | − |Jk | = |Jh \ Jk |
+λk − λh = b ,
+
+thereby contradicting the fact that b < µk .
+Remark 2.1: It can be shown (by counterexamples) that
+Lemma 2.3 would no longer hold if we attempted to generalize
+it to arbitrary linear codes that attain the bound of Theorem 1.1
+for τ = ℓ, not even when the codes are MDS.
+Proof of Theorem 2.2: First, D is a decoder that corrects
+any single ℓ-burst, since it satisﬁes the containment (1) (with
+equality) for τ = ℓ. Now, since r ≥ ℓ+1, we have CRS (n, r) ⊆
+CRS (n, ℓ+1) and, so, for every y ∈ F n ,
+(
+)
+D(y) ⊆ y − CRS (n, ℓ+1) ∩ B(n, ℓ) .
+For y ̸∈ CRS (n, ℓ+1), we get the result from Lemma 2.3,
+(
+while for y ∈ CRS (n, ℓ+1) \ CRS (n, r), we have y −
+)
+CRS (n, r)) ⊆ CRS (n, ℓ+1) \ {0}, which, in turn, implies that
+the set D(y) is empty.
+III. B URST L IST D ECODING OF INTERLEAVED RS C ODES
+In this section, we show that when ℓ divides τ , a (τ /ℓ)level interleaving of CRS (n, ℓ+1) yields a code C that has an
+(ℓ, τ )-burst list decoder. Speciﬁcally, the code C is deﬁned by
+{
+C = C(n, ℓ, τ ) = (c0 |c1 | . . . |cτ /ℓ−1 ) :
+}
+cj ∈ CRS (n, ℓ+1) for j ∈ [0, τ /ℓ⟩ ;
+
+Writing λi = λ(ei ) and τi = L(ei ), for each i ∈ [0, m⟩, the
+
+3
+
+beyond the array boundaries). Yet, we need to take into
+account that row b′ − 1 might also be part of the τ -burst at
+columns k > j, due to the “step” shown in Figure 1 (which
+may occur if the τ -burst does not start right at the beginning
+of a row). Letting b = b′ − 1, the result follows.
+Lemma 3.3:
+|S| ≤ ℓ .
+
+Input: received array Y = (y0 |y1 | . . . |yτ /ℓ−1 ) over F .
+Data structures:
+Integer intervals V ⊆ [0, n⟩;
+Set S of intervals V ⊆ [0, n⟩;
+{ Arrays EV over F indexed by V ∈ S.
+
+(
+
+for ( ← 0; j < τ /ℓ; j++
+j
+)
+if yj ̸∈ CRS
+} break;
+
+(
+
+){
+
+(A)
+
+Proof: Using the notation (14), we have
+
+)
+
+if j ≥ τ /ℓ
+Output {0n×(τ /ℓ) };
+{
+else
+S ← ∅;
+for every e ∈ D(yj )
+(
+for b = max(λ(e)+L(e)−ℓ, 0)−1;
+){
+b < min(λ(e), n−ℓ); b++
+V ← [max(b, 0), b+ℓ+1⟩;
+S ← S ∪ {V };
+EV ← (0n×j |e);
+}
+
+(
+
+)
+
+for k ← j + 1; k { τ /ℓ; k++
+<
+for every V ∈ S
+(
+){
+if DV (yk ) contains a word e and L(e) ≤ ℓ
+EV ← (EV |e);
+(
+)
+if e ̸= 0 and V = [λ(e), λ(e)+ℓ+1⟩
+} V ← V \ {λ(e)+ℓ};
+
+|S| ≤
+
+i=0
+
+(C)
+
+} Output {EV : V ∈ S};
+
+Fig. 2.
+
+|Si | ≤
+
+m−1
+∑
+
+(ℓ + 1 − τi ) ≤ ℓ ,
+
+i=0
+
+where the last inequality follows from Theorem 2.2.
+Turning to Loop (C), this loop iterates over the remaining
+columns in the array, and to each column, an erasure decoder
+y → DJ (y) for CRS is applied: given any subset J ⊆ [0, n⟩
+and word y ∈ F n , the set DJ (y) consists of all words in the
+coset y − CRS whose support is contained in J. The subsets J
+are taken as the intervals V ∈ S, and Lemma 3.2 guarantees
+that the arrays EV that are formed in Loop (C) range over all
+the τ -bursts in the coset Y −C. Furthermore, since |V | ≤ ℓ+1
+for every V ∈ S, we get from the distance properties of CRS
+that |DV (yk )| ≤ 1 for every k and V ; i.e., there is at most one
+possible column e ∈ DV (yk ) that can be appended to each
+EV while still forming (the ﬁrst k + 1 columns of) a τ -burst.
+Hence, by Lemma 3.3, the output list, {EV : V ∈ S}, has
+size at most ℓ. This completes the proof that the algorithm
+in Figure 1 is an (ℓ, τ )-burst list decoder for C; namely, C
+satisﬁes condition 3 in Theorem 1.1.
+It is easy to see that C also satisﬁes condition 2; in
+fact, Loop (A) can serve as a single (τ + (τ /ℓ))-burst error
+detector for C, where an early “break” from the loop means
+that at least one of the columns in Y has been subject to
+an (ℓ+1)-burst error. Our requirement that 2ℓ ≤ n implies
+that C satisﬁes condition 1 in Theorem 1.1, and a simple
+calculation shows that the redundancy of C is τ + (τ /ℓ),
+thereby attaining the bound of that theorem. This completes
+the proof of Theorem 3.1.
+Remark 3.1: The two “if”s in Loop (C) guarantee that the
+returned list in Figure 2 contains only τ -bursts. Speciﬁcally,
+the outer “if” will disqualify an interval V if the (unique) burst
+error that is returned by the erasure decoder (at any column)
+for that V has length ℓ + 1. And the inner “if” guarantees that
+once we incur the “step” in Figure 1, there will be no “step
+back” in subsequent columns.
+
+(B)
+
+else
+} S ← S \ {V };
+
+}
+
+m−1
+∑
+
+Decoding algorithm for C.
+
+following collection of up to ℓ + 1 − τi integer intervals Vi,b
+is added to the interval set S that is computed in Loop (B):
+{
+Si = Vi,b = [max(b, 0), b+ℓ+1⟩ :
+}
+max(λi +τi −ℓ, 0) − 1 ≤ b < min(λi , n−ℓ) . (14)
+Next, we state two lemmas regarding the interval set S.
+Lemma 3.2: Suppose that E is an n × (τ /ℓ) array over F
+that forms a τ -burst when unfolded (as in Figure 1). Assume
+in addition that E is in the coset Y − C and that column j in
+E equals one of the words in D(yj ). Then the nonzero entries
+in E are all conﬁned to rows that are indexed by one of the
+intervals V ∈ S.
+Proof: Suppose that column j in E equals ei ∈ D(yj ).
+We show that the nonzero entries in E are conﬁned to rows
+that are indexed by one of the intervals Vi,b ∈ Si in (14).
+The projection of the τ -burst to column j forms an ℓ-burst
+that is indexed by an interval [b′ , b′ +ℓ⟩, where
+
+IV. D ISCUSSION
+We start by computing the complexity of the decoding
+algorithm in Figure 2.
+Loop (A) can be carried out by computing the syndrome,
+with respect to the parity-check matrix HRS = HRS (n, ℓ+1)
+in (2), of each column in the array Y (these syndromes will be
+used also for columns j through τ /ℓ−1 in Loops (B) and (C)).
+This computation requires less than 2(τ /ℓ) · (ℓ+1)n = O(τ n)
+arithmetic operations in F .
+
+max(λi +τi −ℓ, 0) ≤ b′ ≤ min(λi , n−ℓ)
+(the max(·, 0) and min(·, n−ℓ) just truncate the lower and
+upper limits so that the interval [b′ , b′ +ℓ⟩ does not extend
+
+4
+
+Loop (B) applies an (ℓ, ℓ)-burst list decoder for CRS (n, ℓ+1)
+to column j in Y . Such a decoder, in turn, can be implemented
+by applying iteratively an erasure decoder DJ (·) to that
+column, where J ranges over the intervals
+
+aj the word in F n whose entries are all equal to aj , deﬁne
+the following ℓ/2 subsets of F n (each of size ℓ):
+{
+}
+Cj = aj − ei,j : i ∈ [0, ℓ⟩ , j ∈ [0, ℓ/2⟩ .
+ℓ/2−1
+
+[b, b+ℓ⟩ ,
+
+The code C is deﬁned as the union ∪j=0 Cj . It can be readily
+veriﬁed that d(C) = ℓ + 2: the distance between any two
+distinct words within each subset Cj is ℓ+2, while the distance
+between any two words from distinct subsets is at least n −
+(ℓ + 2) > 2ℓ ≥ ℓ + 2. In addition, C has an (ℓ, ℓ)-burst list
+decoder: indeed, if the intersection (y −C)∩B(n, ℓ) contained
+more than ℓ words, then at least two of them, say y − cj and
+y − ck , had to correspond to codewords cj and ck that belong
+to distinct subsets Cj and Ck . However, this is impossible,
+since cj and ck , and hence y − cj and y − ck , differ on more
+than 2ℓ positions and, therefore, cannot be both in B(n, ℓ).
+Let C be the code over F obtained by a (τ /ℓ)-level
+interleaving of C, and consider the following n × (τ /ℓ) array
+over F :
+
+b ∈ [0, n−ℓ⟩ .
+
+Given yj ∈ F n , let S(x) be the syndrome polynomial in
+Fℓ+1 [x] that is associated with yj , namely, the coefﬁcients
+of S(x) are given by the syndrome HRS yj . Also, for b ∈
+[0, n−ℓ⟩, let Λb (x) be the erasure-locator polynomial
+Λb (x) =
+
+ℓ−1
+∏
+
+(1 − αb+t x) .
+
+t=0
+
+It follows from the known properties of RS decoding (see,
+for example, [1]) that D[b,b+ℓ⟩ (yj ) ̸= ∅ if and only if the
+coefﬁcient of xℓ in the erasure evaluator polynomial,
+Γb (x) = Λb (x)S(x) MOD xℓ+1 ,
+
+Y = (a0 |a1 | . . . |aℓ/2−1 |0|0| . . . |0) .
+
+is zero (where MOD denotes remaindering). And when that
+happens, the erasure values can be found by Forney’s algorithm, namely, by evaluating the ratio −Γb (x)/(xΛ′ (x)) at
+b
+x = α−b , α−b−1 , . . . , α−b−ℓ+1 . The polynomials Γb (x), in
+turn, satisfy the relationship
+
+When we apply an (ℓ, ℓ)-burst list decoder D for C to each
+column of Y , we get, for the ﬁrst ℓ/2 columns:
+{
+}
+D(aj ) = aj − Cj = e0,j , e1,j , . . . , eℓ−1,j , j ∈ [0, ℓ/2⟩
+(for the remaining columns we get D(0) =({0}).
+)
+Next, for every (i, k) ∈ {(0, ℓ/2−1)} ∪ [1, ℓ⟩ × [0, ℓ/2⟩ ,
+deﬁne the n × (τ /ℓ) array
+
+Γb+1 (x) = Γb (x)(1 − αb+ℓ x)/(1 − αb x) MOD xℓ+1 ;
+as such, they can be all computed using O(ℓn) arithmetic
+operations in F . Recalling that |(yj − CRS ) ∩ B(n, ℓ)| ≤ ℓ,
+we will need to apply Forney’s algorithm at most ℓ times;
+therefore, the overall time complexity of Loop (B) is O(ℓn +
+ℓ3 ) operations in F .
+Loop (C) amounts to applying the RS erasure decoder DV (·)
+at most |S| times to each of the remaining columns of Y . This,
+(
+)
+in turn, can be carried out using O (τ /ℓ)|S|ℓ2 = O(τ ℓ2 )
+operations in F . Hence, the overall time complexity of the
+(
+)
+algorithm in Figure 2 is O(τ n + τ ℓ2 ) = O ℓ(N + ℓτ )
+operations in F , where N = (τ /ℓ)n stands for the effective
+length of C as a linear code over F .
+Our strategy for implementing an (ℓ, ℓ)-burst list decoder
+for CRS (n, ℓ+1) (in the analysis of Loop (B)) can be applied
+more generally to obtain an (ℓ, τ )-burst list decoder for
+CRS (N, τ + (τ /ℓ)). The resulting time complexity will then
+(
+)
+be O τ (N + ℓτ ) operations in F , namely, τ /ℓ times more
+than the decoding complexity of an interleaved RS code of
+the same length.
+We conclude with the next example, where we present
+a code C with d(C) = ℓ + 2 that has an (ℓ, ℓ)-burst list
+decoder, yet the (τ /ℓ)-level interleaving of C is (ℓ′ , τ )-burst
+list decodable only for ℓ′ that grows quadratically with ℓ.
+Example 4.1: Let ℓ ≤ 2q be a positive even integer, let
+τ ≥ ℓ2 /2 be a positive integer multiple of ℓ, and let n
+be an integer greater than (ℓ+2)2 /2. For each i ∈ [0, ℓ⟩
+and j ∈ [0, ℓ/2⟩, set ei,j to be a word in F n with support
+[i(ℓ/2+1) + j, (i+1)(ℓ/2+1) + j⟩ (of size ℓ/2 + 1). Also, let
+a0 , a1 , . . . , aℓ/2−1 be ℓ/2 distinct elements of F . Denoting by
+
+Ei,k = (ei,0 |ei,1 | . . . |ei,k |ei−1,k+1 |ei−1,k+2 | . . .
+|ei−1,ℓ/2−1 |0|0| . . . |0) .
+Clearly, Ei,k ∈ Y − C. In addition, it can be veriﬁed that each
+Ei,k is a τ -burst. Thus, we have shown that the number of
+τ -bursts in Y − C is at least ℓ(ℓ−1)/2 + 1 (which is greater
+than ℓ when ℓ ≥ 4).
+ACKNOWLEDGMENT
+The authors wish to thank Pascal Vontobel for his helpful comments. This work was supported in part by Grant
+No. 1280/08 from the Israel Science Foundation.
+R EFERENCES
+[1] R.E. Blahut, Theory and Practice of Error Control Codes, AddisonWesley, Reading, Massachusetts, 1983.
+[2] P. Elias, “Error-correcting codes for list decoding,” IEEE Trans. on
+Inform. Theory, 37 (1991), 5–12.
+[3] V. Guruswami, A. Rudra, “Explicit codes achieving list decoding capacity: error-correcting with optimal redundancy,” IEEE Trans. Inform.
+Theory, 54 (2008), 135–150.
+[4] V. Guruswami, M. Sudan, “Improved decoding of Reed–Solomon and
+algebraic–geometry codes,” IEEE Trans. Inform. Theory, 45 (1999),
+1757–1767.
+[5] R. Koetter, A. Vardy, “Algebraic soft-decision decoding of Reed–Solomon
+codes,” IEEE Trans. Inform. Theory, 49 (2003), 2809–2825.
+[6] F. Parvaresh, A. Vardy, “Correcting errors beyond the Guruswami–Sudan
+radius in polynomial time,” Proc. 46th Annual IEEE Symp. Foundations
+of Computer Science (FOCS 2005), Pittsburgh, PA (2005), 285–294.
+[7] R.M. Roth, P.O. Vontobel, “List decoding of burst errors,” IEEE Trans.
+Inform. Theory, 55 (2009), 4179–4190.
+
+5
+
+

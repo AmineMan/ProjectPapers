@@ -1,0 +1,1106 @@
+Title:          ISIT12_NguQueShi.dvi
+Creator:        dvips(k) 5.99 Copyright 2010 Radical Eye Software
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Fri May 18 23:02:21 2012
+ModDate:        Tue Jun 19 12:55:57 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      455205 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569565055
+
+Switched Power Allocation for
+MISOME Wiretap Channels
+†
+
+Thang Van Nguyen†, Tony Q. S. Quek‡ , and Hyundong Shin†
+Department of Electronics and Radio Engineering, Kyung Hee University, Korea
+‡
+Institute for Infocomm Research, A∗ STAR, Singapore
+Email: {nguyenthang, hshin}@khu.ac.kr; qsquek@i2r.a-star.edu.sg
+rates, have been analyzed for eclectic antenna conﬁgurations
+at the transmitter, receiver, and eavesdropper. In particular,
+it has been shown that the optimal input covariance matrix
+that maximizes the achievable secrecy rate is of rank one
+(i.e., beamforming) for a multiple-input single-output (MISO)
+case [5]–[8]. Moreover, the on-off power control is the optimal policy that maximizes the perfect secrecy rate achieved
+by beamforming in the direction of the legitimate channel
+when full channel state information (CSI) of the eavesdropper
+channel is infeasible at the transmitter [7]. However, the
+degree of freedom for conﬁdential transmission in this case
+vanishes due to a single high-SNR degree of freedom for
+communication by beamforming in both the legitimate and
+eavesdropper channels [7], [8]. This degree of freedom can
+be recovered by exploiting the simulated interfering signal
+or the so-called artiﬁcial noise [9], [10]. For example, by
+transmitting the information-bearing signal in the direction of
+the legitimate channel along with the artiﬁcial noise in its null
+space, the artiﬁcial noise behaves as interference only in the
+eavesdropper channel to remove the high-SNR communication
+degree of eavesdropping without interfering on the legitimate
+link [9], [10]. The power allocation problem between the
+information signal and artiﬁcial noise was treated to maximize
+the achievable secrecy rate for the worst-case scenario [10].1
+In this paper, we consider secure communication over a
+multiple-input single-output Rayleigh-fading channel in the
+presence of a multiple-antenna eavesdropper—referred to as
+a multiple-input single-output multiple-eavesdropper (MISOME) wiretap channel. More speciﬁcally, we deal with secure
+beamforming with artiﬁcial noise when the transmitter has
+access to full CSI of a legitimate channel but only partial
+statistical CSI of an eavesdropper channel (as in [7], [10] for
+a practical design). We ﬁrst treat the power allocation problem
+between the information-bearing signal and artiﬁcial noise to
+maximize the achievable secrecy rate of the MISOME wiretap
+channel in the presence of a weak (low-SNR) or strong (highSNR) eavesdropper (see Theorems 1 and 2). We then develop
+a near-optimal power allocation strategy in a switched fashion
+for a general case (see Theorem 3); and derive the ergodic
+MISOME secrecy rate achieved by secure beamforming with
+this switched power allocation in closed form (see Theorem 4).
+
+Abstract—In this paper, we consider secure communication
+over a multiple-input single-output Rayleigh-fading channel in
+the presence of a multiple-antenna eavesdropper—referred to as
+a multiple-input single-output multiple-eavesdropper (MISOME)
+wiretap channel. Speciﬁcally, secure beamforming with artiﬁcial
+noise is treated when the transmitter has access to full channel
+state information (CSI) of a legitimate channel but only partial
+statistical CSI of an eavesdropper channel. We ﬁrst derive the
+optimal power allocation between the information-bearing signal
+and artiﬁcial noise (or simulated interference) to maximize the
+achievable secrecy rate in the presence of a weak or strong
+eavesdropper. We then develop a near-optimal power allocation
+strategy in a switched fashion for a general case and derive a
+closed-form expression for the ergodic secrecy rate achieved by
+secure beamforming with this switched power allocation in the
+MISOME wiretap channel.
+
+I. I NTRODUCTION
+Recent advances in wireless networking technologies are
+growing rapidly, evidenced by diverse types of wireless networks such as wireless local area networks, wireless personal
+area network, cellular networks, ad-hoc networks, mesh networks, vehicular networks, femtocell networks, and sensor
+networks. However, the broadcast nature of wireless medium
+makes wireless networks susceptible to eavesdropping and
+hence, secure transmission is a fundamental issue in such
+networks. This problem has been typically addressed at the
+application layer in which the transmitted bits are scrambled
+using a secret key shared between a pair of communication
+nodes. Shannon [1] laid the early foundations on the fundamental limit to secrecy systems and has shown that the
+conditional probability of the cryptogram given a message
+must be independent of the actual transmitted message to
+achieve perfect secrecy of communication, while Wyner [2]
+established a wiretap channel formulation and has shown
+that the perfect secrecy is achievable when the eavesdropper
+channel is a degraded version of the legitimate channel. The
+goal of intrinsically secure networks is to exploit the structure
+of a underlying broadcast channel to transmit a message
+reliably to the intended receiver, while minimizing information
+leakage to the eavesdropper [3], [4].
+In parallel with the potential beneﬁts of multiple-antenna
+systems to the achievable communication rate and reliability in
+wireless channels, the use of multiple antennas has been extensively invoked to enhance the communication conﬁdentiality
+in the physical layer [5]–[8]. The secrecy capacity, achievable
+
+1 There was no power allocation across fading states in [10] for a simple
+design of the power policy.
+
+1
+
+Due to page constraint, we will only present our main results
+without proofs.
+Notation: We denote expectation operator as E {·}; Z+ ,
+Z++ , and C denote nonnegative integer number, positive inte˜
+ger numbers, and complex ﬁeld, respectively; Nm,n is m × n
+complex Gaussian matrix whose entries are i.i.d., circularly
+symmetric, zero-mean, unit-variance, complex Gaussian; (·)†
+is conjugate transpose; 2 F1 (a, b; c; z), En (z), and ÖÐ (n, λ)
+denote Gaussian hypergeometric function, exponential integral
+function of order n, and nth-order Erlang distribution with a
+hazard rate λ, respectively; and identity matrix is denoted by
+I.
+
+signals at the legitimate receiver and eavesdropper are given
+by
+Ýr =
+Ýe =
+
+We consider a MISOME wiretap channel, where an nt antenna transmitter (Alice) sends conﬁdential messages to a
+legitimate single-antenna receiver (Bob) in the presence of an
+ne -antenna passive eavesdropper (Eve) that only receives the
+signal from the transmitter without transmitting any jamming
+signals to the receiver. The received signals at the receiver and
+eavesdropper are respectively given by
+
+Ýe =
+
+×ÒÖr
+nt
+
+×ÒÖe
+nt
+
+rÜ
+
++ Þr
+
+À eÜ + Þ e
+
+λ
+
+×ÒÖr
+
+r
+
+nt
+
+×ÒÖe
+nt
+
+I ×I
+
+×I + Þr
+
++
+
+(4)
+
+1 − λ ×ÒÖe
+nt − 1 nt
+
+A× A
+
++Þe
+
+(5)
+
+where I À eÙ I and A À eÍ A . Since [Ù I Í A ] is a unitary
+˜
+˜
+matrix, I ∼ Nne ,1 and A ∼ Nne ,nt −1 are statistically
+independent.
+Similar to [7], we can achieve the secrecy rate for given r
+using Gaussian codebooks for secure beamforming transmission as in (6), shown at the bottom of the next page, where
+= [ I A ].2
+
+II. S YSTEM M ODEL
+
+Ýr =
+
+λ
+
+III. S WITCHED P OWER A LLOCATION AND E RGODIC
+S ECRECY R ATES
+In this section, we ﬁrst determine the optimal power allocation that maximizes the achievable secrecy rate in (6) for a
+weak (low-SNR) or strong (high-SNR) eavesdropper. We then
+develop a switched power allocation strategy that solves (6)
+in a general case and derive the ergodic secrecy rate with this
+power allocation.
+
+(1)
+(2)
+
+A. Switched Power Allocation
+
+where Ü ∈ Cnt is the transmitted signal satisfying the power
+˜
+˜
+constraint E Ü †Ü = 1; r ∼ N1,nt and À e ∼ Nne ,nt are
+
+The optimal power allocation that maximizes the achievable
+secrecy rate Ês can be found by solving the optimization
+problem in (6). However, the optimal value λ of λ that
+maximizes the secrecy rate Ês is hard to be analytically
+determined due to the non-convexity of Ê (λ) in (6). In the
+following, we ﬁrst solve the power allocation problem for a
+weak or strong eavesdropper, and show how we can extend
+these results to develop a near-optimal solution in a general
+case.
+1): In this case, using the
+1) Weak Eavesdropper (×ÒÖe
+following approximation
+
+ergodic Rayleigh-fading channel gains from the transmitter to
+˜
+the receiver and eavesdropper, respectively; Þr ∼ N1,1 and
+˜
+Þ e ∼ Nne ,1 are additive white Gaussian noises; and ×ÒÖr
+and ×ÒÖe are the average received SNRs per antenna at the
+receiver and eavesdropper without employing artiﬁcial noise,
+respectively. All the random quantities Ü , r , À e , Þr , and Þ e are
+mutually independent.
+For conﬁdential communication, the transmitter can use
+artiﬁcial noise to cause interference to the eavesdropper. In
+this case, the transmitted signal can be divided into the
+information-bearing signal and artiﬁcial noise as [9], [10]
+
+I+
+
+√
+Ü = λ Ù I ×I +
+
+1−λ
+Í A× A
+(3)
+nt − 1
+˜
+where ×I ∈ C and × A ∼ Nnt −1,1 are the information
+signal and artiﬁcial noise with E |×I |2 = E × A 2 = 1,
+respectively; Ù I and Í A are the nt × 1 beamforming vector
+and the nt × (nt − 1) beamforming matrix for the information
+signal and artiﬁcial noise, respectively; and λ ∈ [0, 1] is the
+power allocation ﬁgure, i.e., a ratio between the information
+signal power and total power. In the following, we consider
+that the transmitter has full CSI only for the legitimate channel
+and partial CSI for the eavesdropper channel. By partial CSI,
+we refer to only knowledge of the statistics of CSI. With this
+assumption, it is reasonable to choose Ù I = † / r , i.e., the
+r
+optimal beamforming vector in the absence of eavesdroppers.
+To cause no interference to the legitimate receiver, Í A should
+be chosen in the null space of † . In this case, the received
+r
+
+1 − λ ×ÒÖe
+nt − 1 nt
+
+A
+
+†
+A
+
+−1
+
+≈I
+
+(7)
+
+and letting Ï ∼ ÖÐ (ne , 1), we can rewrite Ês in (6) as (8),
+shown at the bottom of the next page.
+Theorem 1: (On-off Power Allocation [7, Theorem 1]): Let
+λ↓ = arg max Ê↓ (λ)
+0≤λ≤1
+
+(9)
+
+be the optimal value of λ that maximizes the secrecy rate
+Ê↓ (λ) over λ ∈ [0, 1]. Then, the optimal λ↓ is the on-off
+power allocation given by
+λ↓ =
+
+1, if r 2 ≥ ζ↓
+0, otherwise
+
+(10)
+
+2 To guarantee secure communication, we assume that n > n . If n ≤ n ,
+t
+e
+t
+e
+the artiﬁcial noise cannot serve to eliminate all the communication degrees
+of freedom for eavesdroppering [9], [10].
+
+2
+
+with the threshold
+ζ↓ =
+
+Theorem 2 (Decisive Power Allocation): Let
+
+exp e
+
+nt
+×ÒÖe
+
+ne
+n=1
+
+En
+
+×ÒÖr /nt
+
+nt
+
+−1
+
+×ÒÖe
+
+κ = arg max Ê↑ (κ)
+
+be the optimal value of κ that maximizes the secrecy rate
+
+Ê↑ (κ) over κ ∈ [1, ∞). Then, the optimal κ is unique and
+
+Remark 1: For a weak (low-SNR) eavesdropper, the transmitter should use all the power for conﬁdential signal transmission. In this case, it is not necessary to use artiﬁcial noise to
+interfere with the eavesdropper since thermal noise is enough
+to disturb the signal reception at the eavesdropper. As a result,
+the on-off power allocation is optimal [7].
+Remark 2: The on-off threshold ζ↓ decreases inversely with
+×ÒÖr , whereas it grows with ne and ×ÒÖe . As ×ÒÖr , ×ÒÖe → 0,
+we have
+lim
+
+×ÒÖr ,×ÒÖe →0
+×ÒÖe
+×ÒÖr
+
+ζ↓ = α lim z exp ez
+z→∞
+
+→α
+
+κ = nt ,
+1
+nt − ne
+1
+− −
+κ − 1 κ nt (nt − ne )
+× 2 F1 1, nt − ne + 1; nt + 1;
+
+−1
+
+z→∞
+
+ne
+
+(b)
+
+= α lim
+
+A= 1+
+
+En (z)
+n=1
+
+[1 − nEn+1 (z) e ]
+n=1
+
+= ne α
+
+(12)
+
+where (a) follows from the fact that limz→∞ ez En (z) = 0 for
+n ∈ Z++ and (b) follows from the fact that (n − 1) En (z) =
+e−z −zEn−1 (z). Intuitively, this property implies that the frequency of transmission by the legitimate transmitter increases
+with ×ÒÖr . This directly improves the ﬁrst term in (8). However,
+as ne increases, the eavesdropper link becomes more reliable
+and naturally the legitimate transmitter attempts to send the
+information less often.
+1): Using the following
+2) Strong Eavesdropper (×ÒÖe
+approximation
+I+
+
+1 − λ ×ÒÖe
+nt − 1 nt
+
+A
+
+†
+A
+
+≈
+
+nt − 1 nt
+1 − λ ×ÒÖe
+
+κ∈A
+(17)
+
+(nt −1)(ne −1)
+,1
+nt −ne
+
+(nt −1)ne
+nt −1−ne
+
++
+
+.
+
+(18)
+
+and Ê λ↑ = 0, respectively. Let
+
+−1
+
+†
+A
+
+A
+
+= 0,
+
+Remark 3: It follows from Theorem 2 that the optimal
+value of λ for a strong (high-SNR) eavesdropper is equal to
+λ↑ = 1/κ . Note that this optimal value does not depend on
+r and the average SNRs at both receivers. It is only a function
+of the antenna numbers nt and ne . Therefore, a simple
+deterministic power allocation is sufﬁcient for achieving the
+maximal secrecy rate and there is no need to implement any
+adaptive power allocation for the strong eavesdropper.3
+3) Switched Strategy: In general, it is infeasible to analytically derive the optimal value of λ due to the non-convexity of
+the objective function in (6). Therefore, we propose a switched
+power allocation as described in the following theorem.
+Theorem 3 (Switched Power Allocation): Let ζ↓↑ (if exists)
+and ζ↑ be the values of r 2 such that Ê λ↑ − Ê (1) = 0
+
+z
+
+−1
+
+nt − κ
+nt − 1
+
+where
+
+ne
+
+= α lim ez z
+
+(16)
+
+and if ne < nt − 1, κ is the solution of
+
+n=1
+
+(a)
+
+z→∞
+
+given by if ne = nt − 1,
+
+ne
+
+En (z)
+
+(15)
+
+κ≥1
+
+(11)
+
+.
+
+λs = arg max Ê (λ)
+λ∈{λ↓ ,λ↑ }
+
+(13)
+
+(19)
+
+be the switched power allocation. Then, we have
+
+−1
+
+and letting = † A †
+I , we can rewrite Ês in (6) at
+I
+A
+1 as (14), shown at the bottom of the next page.
+high ×ÒÖr
+
+Ês = max E
+0≤λ≤1
+
+ln 1 + λ
+
+×ÒÖr
+nt
+
+r
+
+2
+
+3 The analogous observation was presented in [10]. There was however no
+explicit closed-form solution for the power allocation problem.
+
+− ln 1 + λ
+
+×ÒÖe
+nt
+
+†
+I
+
+I+
+
+1 − λ ×ÒÖe
+nt − 1 nt
+
+A
+
+†
+A
+
+−1
+I
+
+(6)
+
+Ê(λ)
+
+Ês ≈ max ln 1 + λ
+0≤λ≤1
+
+×ÒÖr
+nt
+
+r
+
+2
+
+− EÏ
+
+Ê↓ (λ)
+
+3
+
+ln 1 + λ
+
+×ÒÖe
+nt
+
+Ï
+
+.
+
+(8)
+
+(i) ζ↑ < ζ↓ < ζ↓↑ :
+
+⎧
+2
+⎪1,
+if r ≥ ζ↓↑
+⎨
+λs = λ↑ , if ζ↑ < r 2 < ζ↓↑
+⎪
+⎩
+0,
+otherwise
+
+whose closed-form expression is omitted here. Similarly, we
+can derive the closed-form solution for ζ↓↑ as (25), shown at
+the bottom of the page.
+Remark 4: In Theorem 3, it is obvious that we can get back
+to Theorem 1 at low ×ÒÖe or Theorem 2 at high ×ÒÖe from the
+deﬁnition of λs in (19).
+
+(20)
+
+(ii) other cases:
+
+B. Ergodic Secrecy Rates
+
+ζmin −ζ↓
+ζ↑ −ζ↓ λ↑
+
+λs =
+
++
+
+0,
+
+ζ↑ −ζmin
+ζ↑ −ζ↓ ,
+
+if
+
+2
+
+r
+
+≥ ζmin
+
+Theorem 4: For ζ↑ < ζ↓ < ζ↓↑ , the ergodic secrecy rate
+(nats/s/Hz) of MISOME Rayleigh-fading wiretap channels
+achieved by secure beamforming with artiﬁcial noise for the
+switched power allocation λs is given by
+
+(21)
+
+otherwise
+
+where ζmin = min {ζ↓ , ζ↑ }.
+The switching thresholds ζ↓ , ζ↑ , and ζ↓↑ are critical values,
+†
+which are functions of ×ÒÖr , ×ÒÖe , nt , and ne . Let λ
+I I+
+† −1
+×ÒÖe
+1−λ
+aλ A A
+I where aλ = nt −1 nt . Then, we can obtain the
+cumulative distribution function of λ for z ≥ 0 using [11,
+eq. (11)] as follows:
+ne −1 ne −1−i
+
+F
+
+(z) = 1 −
+λ
+i=0
+
+j=0
+
+ζ
+
+↑
+Ês = Jζ↑
+
+∞
+
+b
+
+∞
+
+b
+Ja (t)
+
+j
+nt − 1 aλ
+z i+j e−z
+.
+i! (1 + aλ z)nt −1
+j
+(22)
+
+a
+
+xm (1 + bx)
+
+−1
+
+−n −x
+
+(1 + cx)
+
+e
+
+0≤λ≤1
+
+1 ×ÒÖr
+κ nt
+
+= max ln
+κ≥1
+
+2
+
+r
+
+nt
+r
+
+nt
+
+1
+t
+
+n
+
++
+
+λ↑
+
+×ÒÖr
+
+ζ
+
+↓
++ Jζ↓↑
+
+nt
+
+×ÒÖr
+nt
+
+(26)
+
+z nt −1 −z
+e dz,
+(nt − 1)!
+a ≥ 0, b ≥ 0, t > 0
+
+ant −n
+1
+Ek a +
+(nt − n)!
+t
+
+ant
+E1−nt (a) ln
+(nt − 1)!
+
+1 + ta
+1 + tb
+
+. (27)
+
+Remark 5: For other cases, using (21), we can again derive
+the closed-form expression for Ês as a form akin to [7, eq.
+(16)].
+
+−E
+
+2
+
+ζ
+
+− Jζ↑↑
+
+1 + tz
+1 + tb
+
+ln
+
+n=1 k=1
+
+dx,
+
+×ÒÖr
+
+nt
+
+a
+
+=e
+
+m ∈ Z+ , n ∈ Z+ , a ≥ 0, b > 0, c > 0 (24)
+
+Ês ≈ max ln λ
+
+×ÒÖr
+
+where
+
+Using (22), we obtain ζ↑ as (23), shown at the bottom of the
+page, where
+m
+In (a, b, c)
+
+λ↑
+
+ln 1 +
+
+−E
+
+ln 1 +
+
+(nt − 1) λ
+1−λ
+
+nt − 1
+κ−1
+
+(14)
+
+.
+
+Ê↑ (κ)
+
+ζ↑ =
+=
+=
+
+nt
+
+λ↑ ×ÒÖr
+nt
+
+λ↑ ×ÒÖr
+
+ζ↓↑ =
+
+×ÒÖr
+
+nt
+
+λ↑ ×ÒÖr
+
+exp
+nt
+
+exp E
+
+λ
+
+ln 1 + λ↑
+
+↑
+
+λ↑ ×ÒÖe
+nt
+
+∞
+
+exp
+0
+
+1 + λ↑ ×ÒÖe z
+nt
+
+×ÒÖe
+nt
+
+−1
+
+λ↑
+
+1−F
+
+λ
+
+↑
+
+(z) dz
+
+−1
+
+⎫
+⎧
+⎤
+⎬
+⎨ne −1 ne −1−i n − 1 aj
+λ↑ i+j
+×ÒÖe
+t
+⎣exp
+I
+, aλ↑
+0, λ↑
+− 1⎦
+⎭
+⎩
+i! nt −1
+nt
+j
+i=0
+j=0
+⎡
+
+ne −1
+i=0
+
+1 − λ↑ exp
+
+nt
+
+e ×ÒÖe Ei+1
+ne −1
+i=0
+
+e
+
+nt
+×ÒÖe
+
+nt
+
+×ÒÖe
+
+Ei+1
+
+ne −1−i nt −1
+j=0
+j
+
+−
+nt
+
+×ÒÖe
+
+4
+
+−
+
+aj
+λ
+
+↑
+
+i!
+
+ne −i nt −1
+j=0
+j
+
+i+j
+Int −1 0, λ↑ ×ÒÖe , aλ↑
+nt
+aj
+λ
+
+i+j
+↑
+i! Int −1
+
+(23)
+
+−1
+.
+
+0, λ↑ ×ÒÖe , aλ↑
+nt
+
+(25)
+
+found directly from (6) by using the numerical method. We
+can see that λ for the weak (low-SNR) or strong (high-SNR)
+eavesdropper converges to λs as stated in Theorems 1 and 2,
+respectively. Hence, we can use the switched power allocation
+in practical design for simplifying the computational complexity while the ergodic secrecy rate remains near-optimally.
+Fig. 2 shows the ergodic secrecy rates Ês for the switched
+and optimal power allocations as a function of ×ÒÖr when
+nt = 3, ne = 1; nt = 3, ne = 2; and nt = 4, ne = 2 for
+×ÒÖe = ×ÒÖr . We observe that the ergodic secrecy rate for the
+switched power allocation is very tight to the optimal secrecy
+rate over the whole SNR regime, showing that the switched
+power allocation can be used instead of the optimal power
+allocation without much losing the secrecy rate.
+
+1.0
+
+Power allocation figure
+
+0.8
+
+= 0.1
+
+= 1
+
+0.6
+
+0.4
+
+= 10
+0.2
+
+snre =  snrr
+
+0.0
+-20
+
+optimal
+switched
+-10
+
+0
+
+10
+
+20
+
+30
+
+V. C ONCLUSIONS
+
+40
+
+In this paper, we investigated secure beamforming with
+the artiﬁcial noise in MISOME wiretap channels. We determined the on-off and decisive power allocations between the
+information-bearing signal and artiﬁcial noise to maximize
+the achievable secrecy rate for weak (low-SNR) and strong
+(high-SNR) eavesdropping; developed the near-optimal power
+control regulated in a switched fashion for the general eavesdropping case; and derived the ergodic MISOME secrecy rate
+achieved by secure beamforming with the switched power
+policy.
+
+snrr (dB)
+
+Fig. 1. Power allocation ﬁgures λ for the switched (solid line) and optimal
+(dashed line) power allocations as a function of ×ÒÖr when r 2 = 1, nt =
+3, ne = 1, and ×ÒÖe = α×ÒÖ r for α = 0.1, 1, and 10.
+4
+
+Ergodic secrecy rate (nats/s/Hz)
+
+switched
+optimal
+
+nt = 3, ne = 1
+
+3
+
+ACKNOWLEGEMENT
+
+This work was supported by the Korea Research Foundation(KRF) grant funded by the Korea government (MEST)
+(No. 2011-0018071 and No. 2011-0001274).
+
+nt = 4, ne = 2
+2
+
+R EFERENCES
+1
+
+0
+
+[1] C. E. Shannon, “Communication theory of secrecy systems,” Bell Syst.
+Tech. J., vol. 28, pp. 656–715, Oct. 1949.
+[2] A. D. Wyner, “The wire-tap channel,” Bell Syst. Tech. J., vol. 54, pp.
+1355–1387, Oct. 1975.
+[3] I. Csisz´ r and J. K¨ rner, “Broadcast channels with conﬁdential mesa
+o
+sages,” IEEE Trans. Inf. Theory, vol. 24, no. 3, pp. 339–348, May 1978.
+[4] S. K. Leung-Yan-Cheong and M. E. Hellman, “The Gaussian wire-tap
+channel,” IEEE Trans. Inf. Theory, vol. 24, no. 4, pp. 451–456, Jul.
+1978.
+[5] A. Khisti and G. W. Wornell, “Secure transmission with multiple
+antennas I: The MISOME wiretap channel,” IEEE Trans. Inf. Theory,
+vol. 56, no. 7, pp. 3088–3104, Jul. 2010.
+[6] F. Oggier and B. Hassibi, “The secrecy capacity of the MIMO wiretap
+channel,” IEEE Trans. Inf. Theory, vol. 57, no. 8, pp. 4961–4972, 2011.
+[7] T. V. Nguyen and H. Shin, “Power allocation and achievable secrecy
+rates in MISOME wiretap channels,” IEEE Commun. Lett., vol. 15,
+no. 11, pp. 1196–1198, Nov. 2011.
+[8] J. Li and A. P. Petropulu, “On ergodic secrecy rate for Gaussian MISO
+wiretap channels,” IEEE Trans. Wireless Commun., vol. 10, no. 4, pp.
+1176–1187, Apr. 2011.
+[9] S. Goel and R. Negi, “Guaranteeing secrecy using artiﬁcial noise,” IEEE
+Trans. Wireless Commun., vol. 7, no. 6, pp. 2180–2189, Jun. 2008.
+[10] X. Zhou and M. R. McKay, “Secure transmission with artiﬁcial noise
+over fading channels: Achievable rate and optimal power allocation,”
+IEEE Trans. Veh. Technol., vol. 59, no. 8, pp. 3831–3842, Oct. 2010.
+[11] H. Gao, P. J. Smith, and M. V. Clark, “Theoretical reliability of MMSE
+linear diversity combining in Rayleigh-fading additive interference channels,” IEEE Trans. Commun., vol. 46, no. 5, pp. 666–672, May 1998.
+
+nt = 3, ne = 2
+
+-5
+
+0
+
+5
+
+10
+
+15
+
+20
+
+25
+
+snrr (dB)
+Fig. 2. Ergodic secrecy rates Ês for the switched and optimal power
+allocations as a function of ×ÒÖr when nt = 3, ne = 1; nt = 3 ne = 2; and
+nt = 4, ne = 2 for ×ÒÖe = ×ÒÖr .
+
+IV. N UMERICAL R ESULTS
+In this section, we provide some numerical results to
+demonstrate the effectiveness of the switched power allocation
+for secure beamforming with artiﬁcial noise to improve the
+ergodic secrecy rate.
+Fig. 1 shows the power allocation ﬁgures λ for the switched
+and optimal power allocations as a function of ×ÒÖr when
+2
+= 1, nt = 3, ne = 1, and ×ÒÖe = α×ÒÖr for α = 0.1,
+r
+1, and 10. The switched power allocation λs is determined
+by Theorem 3, whereas the optimal power allocation λ is
+
+5
+
+

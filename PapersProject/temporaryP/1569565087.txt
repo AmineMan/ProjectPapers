@@ -1,0 +1,1186 @@
+Creator:        TeX
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Wed May 16 10:30:05 2012
+ModDate:        Tue Jun 19 12:54:57 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      545011 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569565087
+
+Exact Scalar Minimum Storage
+Coordinated Regenerating Codes
+Nicolas Le Scouarnec
+Technicolor
+Rennes, France
+on coordinated regenerating codes [2] with exact repair. We
+consider the case of n, k, d > k, t > 1 for scalar constructions
+(i.e., β = 1) and make the following contributions:
+• In the line of exact scalar minimum storage regenerating codes [5], [8], [9], we propose exact scalar minimum storage coordinated regenerating codes (MSCR) for
+n, k = 2, d ≥ k, t = n − d. This interference alignment
+based construction is inspired by [5], [9]. (Section III)
+• Scalar MSR codes can be repaired exactly by aligning
+interferences independently [5], [7]. We show that when
+k ≥ 3, aligning interferences independently is not sufﬁcient to repair exactly scalar MSCR codes. (Section IV).
+Note that these results, which correspond to the MSCR point,
+also apply to exact scalar adaptive regenerating codes [2].
+Most previous works have been limited to single failures
+(t = 1). For multiple failures, there only exist results for
+the case n, k, d = k, t = n − k, a degenerated case where
+the repair of regenerating codes boils down to repairing, in
+parallel, t independent erasure correcting codes [4]. A similar
+construction exists for MBCR codes [10].
+The extended version of the article [11] can be referred to
+for more details on the codes constructions and the related
+work.
+
+Abstract—We study the exact and optimal repair of multiple
+failures in codes for distributed storage. More particularly, we
+examine the use of interference alignment to build exact scalar
+minimum storage coordinated regenerating codes (MSCR). We
+show that it is possible to build codes for the case of k = 2
+and d ≥ k by aligning interferences independently but that this
+technique cannot be applied as soon as k ≥ 3 and d > k. Our
+results also apply to adaptive regenerating codes.
+
+I. I NTRODUCTION
+Codes allow distributed storage systems to tolerate failures
+of some devices. Yet, repairing naively by downloading and
+decoding the whole code induces high repair costs. Regenerating codes reduce this cost by repairing without decoding.
+Optimal tradeoffs between storage and repair cost (network
+bandwidth) have been established both for the single failure
+case [1] and for the multiple failures case [2]–[4] using network information theory. Adaptive regenerating codes, which
+allow the number of devices involved to differ between repairs,
+have been deﬁned in [2]. The two extreme points of the
+optimal tradeoffs are Minimum Bandwidth (MBR/MBCR),
+which minimizes repair cost ﬁrst, and Minimum Storage
+(MSR/MSCR), which minimizes storage ﬁrst as shown on
+Figure 1c. Codes matching these theoretical tradeoffs can be
+built using non-deterministic random linear network codes.
+In this case, repairs are termed as functional repair (Figure 1a) for the regenerated data is not strictly equal to the
+lost data. However, such non-deterministic schemes are not
+desirable for they (i) require homomorphic hash functions
+to provide basic security (integrity checking), (ii) cannot be
+turned into systematic codes, which offer access to data
+without decoding, and (iii) they can only provide probabilistic
+guarantees. Deterministic schemes overcome these issues by
+offering exact repair (i.e., during a repair, the regenerated block
+is equal to the lost block and not only equivalent as shown on
+Figure 1b). Yet, it has been shown that exact repair is strictly
+harder than functional repair [5], [6] , which means that the
+existence of functional regenerating codes does not imply that
+exact regenerating codes exist. Hence, an interesting question
+is whether the previous tradeoffs, which apply to functional
+repairs, can still be achieved for exact repairs. The problem of
+repairing exactly a single failure has been well studied [5]–[9].
+However, the exact repair of multiple failures remains an open
+question since it has been studied only for the very speciﬁc
+setting d = k [4], [10].
+We focus on this problem, and extend our previous work
+
+II. M ODEL
+We consider a system storing a ﬁle of M bits spread onto
+n devices (each storing α = M bits) such that the ﬁle can be
+k
+recovered by collecting enough data from any k devices. For
+repairing coordinated regenerating codes, each failed device1
+contacts d ≥ k live devices and gets β bits from each. The
+t failed devices coordinate by exchanging β bits. The data
+is then processed and α bits are stored. These studies lead
+to the deﬁnition of the optimal tradeoffs between storage α
+and repair costs γ = dβ + (t − 1)β . The values of α, β and
+β corresponding to MSCR and MBCR codes are recalled on
+Figure 1c. In this paper, we will focus on MSCR constructions
+for they are very close to classical erasure correcting codes and
+are highly related to adaptive regenerating codes.
+In the sequel of the article, we will study the exact repair of
+regenerating codes when multiple failures occur. We study the
+non-degenerated case of d > k and use scalar codes (β = 1).
+1 In the article, we use failed devices to designate either the devices that
+have failed, or the new spare devices that hold the repaired data. The meaning
+will be clear from the context.
+
+1
+
+
+b1 + b2
+ 2a1 + 3a2 + 2b1 + 3b2 
+a1 + 2a2 + 2b1 + 3b2
+
+(1, 2)
+
+b1
+b2
+(2, 3)
+
+Collect
+
+a1 + b1
+2a2 + b2
+
+2a2 + b1
+3a1 + a2
+
+
+
+a1
+a2
+(1, 1)
+
+Store
+
+b1
+b2
+(1, 1)
+
+
+
+
+b1 + b2
+
+a1 + a2 + b1 + b2
+2−1 a1 + 3−1 2a2 + b1 + b2
+
+Collect
+
+a1
+a2
+
+MBCR
+α=γ
+β = 2β ′
+1
+β ′ = M 2d−k+t
+k
+
+×
+
+Store
+
+Storage
+
+
+
+a1
+a2
+
+a1 + b1
+a2 + b2
+
+MSCR
+α= M
+k
+× β = β′
+1
+β ′ = M d−k+t
+k
+
+(2−1 , 3−1 )
+
+(1, 1)
+
+2a1 + b1
+a2 + b2
+
+a1 + 2b1
+2a2 + 3b2
+
+(a) Functional repairs
+
+Repair bandwidth
+
+(b) Exact repairs
+
+(c) Tradeoff curve
+
+Figure 1. Regenerating codes offer the optimal tradeoffs (c) between storage and repair bandwidth (network). Regenerating codes can be repaired functionally
+or exactly. In our example, the device storing (a1 , a2 ) fails and is regenerated. When relying on functional repairs (a), the information about (a1 , a2 ) is
+regenerated but not in the same form, while when relying on exact repairs (b), (a1 , a2 ) is repaired exactly.
+
+We adopt the following conventions: data v and codewords w
+are column vectors, the generator matrix G is rectangular and
+the encoding operation w = Gv gives a column vector.
+
+B. Repairing two failures
+The repair consists of the following steps, which map
+onto the process deﬁned in [2]. In this scheme, illustrated in
+Figure 2, we do not rely on random linear network coding but
+give a method for repairing exactly.
+1. Identify lost data. Given the failure of any two devices
+(systematic or redundancy), we perform a change of variables
+to transform the actual code C into a code C , in which the
+failed devices are the systematic ones storing a = (a1 . . . ad )t
+and b = (b1 . . . bd )t . Such a code is guaranteed to exist since
+the original code is MDS (same argument as in [5]).
+2. Prepare (Collect). Each live device that participates to
+the repair computes a sub-block to be sent to the ﬁrst device
+and a sub-block to be sent to the second device. All the subblocks to be sent to the ﬁrst device have the common property
+that the interfering information about b is aligned (i.e., the
+i-th live device, storing ri , use vα i as a repair vector and
+sends3 vαi ri = wαi a + zα b so that the spare device receives
+different information about a but the same about b. To build
+vαi , given some arbitrary alignment vector zα and given that
+ri = Ai a + Bi b, the repair vector is vαi = zα B−1 . Since
+i
+the MDS property is satisﬁed (i.e., we can recover from a
+and ri ), Bi is invertible, and the repair vector exists. The
+role of a and b are reversed for sub-blocks to be sent to the
+second device.
+
+III. E XACT MSCR CODES FOR k = 2
+We consider a system storing a ﬁle of size M = k(d−k+t)
+split in k = 2 blocks (a, b), each of size α = d − k + t
+sub-blocks. The system consists of n = d + t devices as we
+assume that all failed devices and all live devices take part to
+the repair2 . In the sequel of the article, we consider a ﬁnite
+ﬁeld Fq of size q and having a generator element ω.
+The system is compounded of two devices storing the
+systematic part and s = n − 2 devices storing the redundancy
+part.
+t
+• The ﬁrst systematic device stores a = (a1 , . . . , aα ) .
+t
+• The second systematic device stores b = (b1 , . . . , bα ) .
+• The i-th redundancy device, i ∈ {0 . . . α − 1}, stores
+ri = (a1 + ω i mod α b1 , . . . , aα + ω i+α−1 mod α bα )t
+An example for k = 2, d = 3 and t = 2 is given on Figure 3.
+Using the previously deﬁned code, we can state the two
+following theorems:
+Theorem 1. Minimum storage coordinated regenerating codes
+can be repaired exactly (for the systematic devices) when n =
+d + t, k = 2 and t = 2 (i.e., multiple repairs are performed
+simultaneously). Similarly, adaptive regenerating codes with
+k = 2 can be repaired exactly.
+
+3 In this description, v r , w a or z b are of scalars (i.e., the resulting
+αi i
+αi
+αi
+matrices are of dimension 1 × 1). As a result ca = (vα1 r1 , . . . , vαd rd )t is
+t a matrix of dimension (d + 1) × 1.
+a matrix of size d × 1 and (ca |cb vα0 )
+
+Proof: In the sequel of this section, we show that (i) the
+code we deﬁne is an MDS code (i.e., the original data can be
+recovered from any k = 2 devices) and (ii) the two systematic
+devices can be repaired exactly. To repair exactly adaptive
+regenerating codes, we require that any single failure can be
+repaired, in addition to the two aforementioned properties.
+
+
+
+ 
+a1
+b1
+ a2   b2 
+a3
+b3
+
+
+
+
+
+
+
+
+
+
+
+
+
+ r1 
+
+A. The MDS property
+This property is trivially satisﬁed since, when fetching data
+from any two devices, we get α groups of 2 equations over
+2 unknowns, where each group concerns different unknowns.
+The ith group is about ai and bi and consist of 2 independent equations. Hence, the unknowns of each group can be
+recovered and the MDS property is satisﬁed.
+
+vα1
+vβ1
+
+v
+
+ r2  v α2
+β2
+ r3 
+
+
+
+
+vα1 r1
+ca =  vα2 r2 
+vα3 r3
+
+
+
+vβ1 r1
+cb =  vβ2 r2 
+vβ3 r3
+
+Collect
+
+vβ0
+
+ca
+vα0 cb
+
+vα0
+
+vβ0 ca
+cb
+
+Coordinate
+
+
+vα1 r1
+ vα2 r2 
+
+=
+ vα3 r3 
+vα0 cb
+
+
+
+ca vβ0
+ r1 vβ1 
+
+=
+ r2 vβ2 
+r3 vβ3
+
+
+
+
+
+a1
+ a2 
+a3
+
+
+
+b1
+ b2 
+b3
+
+Store
+
+vα3
+vβ3
+
+Figure 2. The repair process, with a coordination step. Interfering information
+transmitted is aligned to allow the recovery of a and b.
+
+2 The code we deﬁne and the proofs are given for n = d + t for the sake of
+clarity. However, the method can also be applied to codes where n > d + t
+
+2
+
+
+
+
+
+a1
+ a2 
+a3
+
+
+
+
+
+
+
+b1
+ b2 
+b3
+
+
+a1 + ω 0b1
+(ω −0 , ω −1 , ω −2 )
+ a2 + ω 1b2 
+(1, 1, 1)
+a3 + ω 2b3
+
+
+
+
+(ω −1 , ω −2 , ω −0 )
+a1 + ω 1b1
+ a2 + ω 2b2 
+(1, 1, 1)
+a3 + ω 0b3
+
+
+
+ (ω −2 , ω −0 , ω −1 )
+a1 + ω 2b1
+ a2 + ω 0b2 
+(1, 1, 1)
+a3 + ω 1b3
+
+
+
+
+ω −0 a1 + ω −1 a2 + ω −2 a3 + b1 + b2 + b3
+−1
+−2
+−0
+ ω a1 + ω a2 + ω a3 + b1 + b2 + b3 
+ω −2 a1 + ω −0 a2 + ω −1 a3 + b1 + b2 + b3
+
+
+Collect
+
+a1 + a2 + a3 + ω 0 b1 + ω 1 b2 + ω 2b3
+a1 + a2 + a3 + ω 1b1 + ω 2b2 + ω 0 b3
+a1 + a2 + a3 + ω 2b1 + ω 0b2 + ω 1 b3
+
+
+
+
+π1
+
+π2
+
+
+
+
+
+
+
+
+
+
+
+
+ω −0 a1 + ω −1 a2 + ω −2 a3 + b1 + b2 + b3
+−1
+−2
+−0
+
+ω a1 + ω a2 + ω a3 + b1 + b2 + b3
+
+
+ω −2 a1 + ω −0 a2 + ω −1 a3 + b1 + b2 + b3
+0
+1
+2 −1
+(ω + ω + ω ) µ(a1 + a2 + a3 ) + (b1 + b2 + b3 )
+
+
+a1 + a2 + a3 + (ω −0 + ω −1 + ω −2)−1 µ(b1 + b2 + b3 )
+
+a1 + a2 + a3 + ω 0 b1 + ω 1 b2 + ω 2b3
+
+
+a1 + a2 + a3 + ω 1 b1 + ω 2 b2 + ω 0b3
+2
+0
+1
+a1 + a2 + a3 + ω b1 + ω b2 + ω b3
+
+µ=1+1+1
+Coordinate
+σ = (1, 1, 1)
+−0
+−1
+−2 −1
+π 1 = (ω + ω + ω ) σ
+π 2 = (ω 0 + ω 1 + ω 2)−1 σ
+
+Figure 3. Exact repair of the systematic part of an MSCR code (n = 5, k = 2, d = 3, t = 2). The state of the system after the storing step is not shown
+but it is clear that the ﬁrst device can recover a and that the second one can recover b.
+
+3. Transfer (Collect). The sub-blocks are sent and the
+ﬁrst (resp. second) device stores them temporarily as ca =
+(vα1 r1 , . . . , vαd rd )t (resp. cb ) for use in steps 4 and 6.
+4. Prepare (Coordinate). Using what has been received
+in step 3, the second spare device prepares a sub-block
+vα0 cb = wα0 a + zα b to be sent to the ﬁrst spare device.
+The information about b is aligned as in sub-blocks prepared
+during step 2. Again, the role a and b are reversed for the
+sub-block to be sent from the ﬁrst to the second spare device.
+5. Transfer (Coordinate). The sub-blocks are sent and the
+ﬁrst (resp. second) spare devices adds them to blocks received
+in step 3 thus storing (ca |vα0 cb )t (resp. (cb |vβ0 ca )t ).
+6. Recover and Store. The d + 1 sub-blocks (ca |vα0 cb )t =
+(wα1 a + zα b, . . . , wαd a + zα b, wα0 a + zα b)t allow recovering both the interfering information zα b (but not the
+individual values of bi ), and the desired information a =
+(a1 . . . ad )t . Indeed, the received sub-blocks deﬁne d + 1
+equations over d+1 unknowns (zα b, a1 , . . . , ad ). The second
+spare device performs a similar processing with the role of
+a and b reversed.
+
+
+
+
+
+
+
+
+
+
+−(α−1)
+ω 0 a1 + · · · + ω.
+aα + σb
+.
+.
+ω −(i mod α) a1 + · · · + ω.−(i+α−1 mod α) aα + σb
+.
+.
+−(α−1 mod α)
+ω
+a1 + · · · + ω −(2α−2 mod α) aα + σb
+(ω 0 + · · · + ω (α−1) )−1 µ(a1 + · · · + aα ) + σb
+
+
+
+
+
+
+
+
+
+
+As a consequence, it consists of a system of α + 1 independent equations and α + 1 unknowns (ai s and σb). As a result,
+the α unknowns ai can be recovered. The second device has
+received something similar with the roles a and b exchanged.
+This repair method applied to a code (n = d + t, k = 2, d >
+k, t = 2) (n = 5 and d = 3 on Figure 3) naturally extends to
+other cases such as codes n > d + t, k = 2, d > k, t = 2.
+C. Repairing one device
+Finally, repairing one single device is easier, and interference alignment has already been used [5], [9]. However, we
+need to show that the code construction we present, which
+supports t = 2, also supports t = 1 to get exact scalar adaptive
+regenerating codes. We can apply the same repair method as
+for repairing two devices except that there is no coordination
+step and the other systematic device sends directly zα b = σb
+during the collecting step. As a result, after the collection
+step, the failed device has received α + 1 equations. Since
+the information about b is aligned, it can be written as
+
+We now apply this general method to the repair of the
+systematic part of the code we deﬁne, as shown on Figure 3.
+A ﬁnite ﬁeld of size q = n − 1 is sufﬁcient to offer the repair
+of the systematic devices using the previously deﬁned code.
+In order to repair the two systematic devices on the code
+we deﬁned, during the collecting step the i-th redundancy
+device sends (ω −(i mod α) , . . . , ω −(i+α−1 mod α) )ri to the
+ﬁrst device being repaired and (1 . . . 1)ri to the second device
+being repaired. The vectors vαi (resp. vβi ) are chosen so that
+zα = σ (resp. zβ = σ) with σ = (1 . . . 1) (α terms). We note
+ca (respectively cb ) the vector of d symbols received by the
+device repairing a (respectively b).
+
+
+
+
+
+
+
+
+
+−(α−1)
+ω 0 a1 + · · · + ω.
+aα + σb
+.
+.
+ω −(i mod α) a1 + · · · + ω.−(i+α−1 mod α) aα + σb
+.
+.
+ω −(α−1 mod α) a1 + · · · + ω −(2α−2 mod α) aα + σb
+σb
+
+
+
+
+
+
+
+
+
+As a consequence, it consists of a system of α + 1 independent equations and α + 1 unknowns (ai s and σb). As a
+result, the α unknowns ai can be recovered.
+Since the code we present has the MDS property and
+supports both repairs of single failures (t = 1) and repairs of
+two failures (t = 2), it implies that it is possible to design exact
+scalar MSCR codes and exact scalar adaptive regenerating
+codes when k = 2, thus leading to Theorem 1.
+
+At the coordination step, the ﬁrst systematic device sends
+(ω −0 + · · · + ω −(α−1) )−1 σca to the second one, while the
+second one sends (ω 0 + · · · + ω α−1 )−1 σcb to the ﬁrst one.
+At the end of these steps, the ﬁrst device has received α + 1
+equations. Let us note µ = 1 + · · · + 1 (α terms). Since the
+interfering information about bi is aligned, it writes as
+
+3
+
+IV. I MPOSSIBILITY OF I NDEPENDENT I NTERFERENCE
+A LIGNMENT FOR E XACT MSCR WHEN k ≥ 3
+
+We are going to prove, by contradiction, that exact repair
+of systematic codes in the scalar case (i.e., β = 1) is not
+achievable when k ≥ 3 and t ≥ 2. For the sake of clarity, our
+proof will describe the case of t = 2, k = 3 and d = 4 but it
+naturally extends to any larger value.
+Assume that it is possible to repair exactly. Hence, it is
+possible to repair the simultaneous failure of devices storing
+a and b. We consider this case and examine how exact repair
+constraints the system.
+For each device being repaired, all live devices project what
+they store onto a single vector and send this vector to the
+said device being repaired. Then, the devices being repaired
+coordinate by exchanging a single vector (a projection of
+what they have received so far). Hence, the device repairing
+a receives, at the end of both the collecting step and the
+coordination step:
+
+In this section, we examine whether the previous scheme,
+inspired by the repair of single failures [5], [9], can be applied
+to multiple failures when k ≥ 3. This overall section is related
+to [5], [7] and similarly shows that requiring exact repairs overconstrains the system and requires alignment of information
+that cannot be aligned to maintain the MDS property thus
+leading to a contradiction.
+When repairing a single failed systematic4 block a, the
+information about the k − 1 other systematic blocks must
+be aligned as shown in [5]. In particular, it is required that
+blocks are aligned independently. Indeed, if we consider that
+the systematic devices send vectors vβ b, vγ c. . . , and that
+the i-th redundancy device sends vαi a + vβi b + vγi c . . . , to
+the device repairing a, then colspan (vβi ) = colspan (vβ ),
+colspan (vγi ) = colspan (vγ ). . . for all i (i.e., systematic
+blocks are considered independently and all the information
+about each interfering block received at the device performing
+the repair spans only one dimension).
+We show that under this requirement, exact repair is not
+possible if k ≥ 3. We give a proof, and explain the meaning
+of this impossibility on the information ﬂow graph.
+
+
+
+
+
+
+
+0
+vα1 A1
+vα2 A2
+vα3 A3
+wA
+
+
+
+
+
+
+
+
+
+a + 
+
+
+
+0
+v α1 B 1
+v α2 B 2
+v α3 B 3
+wB
+
+
+
+
+
+
+
+
+
+b + 
+
+
+
+vγ
+v α1 C 1
+v α2 C 2
+v α3 C 3
+wC
+
+
+
+
+c
+
+
+(1)
+
+To be able to recover a, we must be able to decode the
+d − k + t = 3 desired unknowns of a out of the d + t − 1 = 5
+equations containing a total of k(d − k + t) = 9 unknowns.
+The same applies for b. Hence, when aligning independently
+we must have,
+
+Theorem 2. When requiring interference alignment to be
+applied independently for each interfering systematic device,
+it is not possible to repair exactly MSCR codes with k ≥ 3,
+t ≥ 2 , d > k in the scalar case (i.e., M = k(d − k + t) such
+that each device stores only d−k+t sub-blocks of size β = 1).
+This impossibility also applies to adaptive regenerating codes.
+
+
+
+
+rank 
+
+
+Proof: Since any MDS code C can be turned into a
+systematic code C (as explained in [5]), we base our proof on
+Lemma 3. Indeed, if it was possible to repair exactly MSCR
+codes with k ≥ 3 and t ≥ 2, it would be possible to build
+exact systematic MSCR codes. Moreover, if it was possible to
+exactly repair adaptive regenerating codes, it would be possible
+to derive MSCR codes by using the same repair method and
+restricting it to t = 2. Hence, the impossibility result extends
+to adaptive regenerating codes.
+
+
+
+
+rank 
+
+
+vγ
+v α1 C 1
+v α2 C 2
+v α3 C 3
+wC
+
+
+
+zC
+vγ
+vβ1 C1
+vβ2 C2
+vβ3 C3
+
+
+
+
+
+ = 1,
+
+
+
+
+ = 1,
+
+
+
+
+
+rank 
+
+
+
+
+
+rank 
+
+
+0
+v α1 B 1
+v α2 B 2
+v α3 B 3
+wB
+
+
+
+zB
+0
+v β 1 B1
+v β 2 B2
+v β 3 B3
+
+
+
+
+
+ = 1
+
+
+
+
+ = 3
+
+
+(2)
+
+(3)
+
+Let us consider the choice of vectors vγ , vαi , vβi and of
+matrices Ci that allows exact repairs (i.e., such that constraints
+on ranks are satisﬁed) with coordination (i.e., k ≥ 3 and t ≥
+2):
+• All vαi Ci must be collinear according to (2).
+• All vβi Ci must be collinear too according to (3).
+• During the coordination step, what is sent by the device
+repairing a will necessarily be collinear to vαi Ci (i.e.,
+what is stored) and to vector vγ . Let us name this vector,
+which is colinear to vγ , zc . According to (3), zc , and
+hence vγ must be colinear to all vβi Ci . Hence, we have:
+∀i, vαi = νi vγ C−1 and vβi = µi vγ C−1 . Note that the
+i
+i
+matrix Ci is invertible to guarantee the MDS property.
+As a result, for all i ∈ {1 . . . d}, vectors vαi and vβi are
+collinear since
+νi
+(4)
+vαi = vβi
+µi
+
+Lemma 3. When requiring interference alignment to be applied independently on all devices, it is not possible to repair
+exactly systematic MSCR codes with k ≥ 3, t ≥ 2 , d > k in
+the scalar case (i.e., β = 1).
+Proof: Let us consider a code with k ≥ 3, t ≥ 2, d > k,
+n ≥ d + t and α = d − k + t. Let us assume that we want
+independent interference alignment (i.e., each interfering block
+spans only a sub-space of dimension 1).
+The k ﬁrst devices store systematic blocks as vectors
+a = (ai )1≤i≤α , b = (bi )1≤i≤α , c = (ci )1≤i≤α . . . The
+n − k remaining devices store redundancy blocks as rj =
+A1 a + B1 b + C1 c + . . . . Thus leading to a set-up similar to
+the one depicted on Figure 4.
+
+Let us consider the choice of matrices for Bi that allows
+exact repairs on the device repairing a. According to (2), we
+
+4 Again, the repair of a redundancy block in a code C is equivalent to the
+repair of a systematic block in a code C .
+
+4
+
+
+
+
+a1
+ a2 
+a3
+ 
+c1
+ c2 
+c3
+
+
+
+
+
+b1
+ b2 
+b3
+
+ 
+vγ
+ vα1 C1  
+
+ 
+b + 
+ vα2 C2  c
+
+vα3 C3
+
+ 
+
+
+
+0
+0
+
+  vα1 A1 
+ a +  vα1 B1
+ 
+ vα2 B2
+  vα2 A2 
+vα3 B3
+vα3 A3
+
+vγ
+
+′
+vγ
+
+
+
+vα1
+vβ1
+
+
+
+
+
+vα2
+vβ2
+
+
+
+
+
+
+
+
+
+0
+0
+
+  vβ1 A1 
+ a +  vβ1 B1
+ 
+ vβ2 B2
+  vβ2 A2 
+vβ3 B3
+vβ3 A3
+
+
+
+ 
+
+
+
+ 
+′
+vγ
+
+ vβ1 C1  
+ 
+b + 
+
+ vβ2 C2  c
+vβ3 C3
+
+
+
+
+0
+
+ vα1 A1 
+
+
+
+ vα2 A2  a + 
+
+
+
+
+ vα3 A3 
+wA
+
+
+
+zA
+
+ 0 
+
+
+
+ vβ1 A1  a + 
+
+
+
+
+ vβ2 A2 
+vβ3 A3
+
+ 
+
+
+
+
+
+
+
+
+ 
+
+vγ
+ vα1 C1  
+
+ 
+
+
+ b +  vα2 C2  c
+ 
+
+
+ vα3 C3  
+
+wC
+ 
+
+
+zC
+zB
+′
+ vγ  
+0 
+ 
+
+
+vβ1 B1  b +  vβ1 C1  c
+ 
+
+
+ vβ2 C2  
+
+vβ2 B2
+vβ3 B3
+vβ3 C3
+0
+vα1 B1
+vα2 B2
+vα3 B3
+wB
+
+
+
+vα3
+vβ3
+
+ A1 a + B1 b + C1 c
+
+ A2 a + B2 b + C2 c
+
+ A3 a + B3 b + C3 c
+
+Figure 4.
+
+
+
+
+
+
+
+Collect
+
+Coordinate
+
+Impossibility of achieving exact repair of the systematic part of an MSCR code (k ≥ 3, d > k and t ≥ 2).
+
+α a
+
+α
+
+must have rank (B1 vα1 , . . . , Bd vαd ) = 1, which is equivalent
+to:
+ρ1 vα1 B1 = ρ2 vα2 B2 = · · · = ρd vαd Bd
+(5)
+Combining (4) and (5), we can deduce that
+ν1
+ν2
+νd
+ρ1 vβ1 B1 = ρ2 vβ2 B2 = · · · = ρd vβd Bd (6)
+µ1
+µ2
+µd
+As a result, rank (B1 vβ1 , . . . , Bd vβd ) = 1, which is
+in contradiction with (3) (i.e., b can be repaired too, or
+rank (B1 vβ1 , . . . , Bd vβd ) ≥ d − 1). Hence, the exact repair
+of two failed devices when k ≥ 3 is impossible.
+The proof naturally extends to any higher value of k and t.
+Hence, repairing exactly scalar (i.e., β = 1) codes with d > k,
+k > 2, and t > 1 is impossible when relying on independent
+interference alignment.
+This impossibility means that at some point, the amount of
+information that goes through the information ﬂow graph [1],
+[2] is too low. Indeed, to ensure that the ﬁle is kept over time,
+all cuts between the source S and any data collector DC in a
+graph representing the transfer of data between devices during
+repairs must be greater than or equal to M [2]. However, if we
+consider the graph of Figure 5 and force the device storing c to
+send the same β bits of information (by requiring alignment)
+to both the device storing a and the device storing b, then
+the cut shown on the graph of Figure 5 has an insufﬁcient
+capacity.
+
+α
+
+α b
+
+α
+
+S
+
+α c β
+β
+α
+β
+β
+α
+β
+α
+
+α
+α
+α
+
+...
+
+α
+β′
+
+α
+
+DC
+
+Figure 5. If the system is constrained so that the third (or any additional)
+interfering device sends the same information to all devices because of
+alignment constraints, the ﬂow that can go through the network is no longer
+equal to the ﬁle size M. In this example, where M = 9β and α = 3β, the
+capacity of the cut shown is only α + 5β = 8β < M.
+
+R EFERENCES
+[1] A. G. Dimakis, P. B. Godfrey, Y. Wu, M. O. Wainwright, and K. Ramchandran, “Network Coding for Distributed Storage Systems,” IEEE
+Transactions On Information Theory, vol. 56, pp. 4539–4551, 2010.
+[2] A. Kermarrec, N. Le Scouarnec, and G. Straub, “Repairing Multiple
+Failures with Coordinated and Adaptive Regenerating Codes,” in NetCod, July 2011.
+[3] Y. Hu, Y. Xu, X. Wang, C. Zhan, and P. Li, “Cooperative Recovery
+of Distributed Storage Systems from Multiple Losses with Network
+Coding,” IEEE Journal on Selected Areas in Communications, vol. 28,
+pp. 268–276, 2010.
+[4] K. W. Shum, “Cooperative Regenerating Codes for Distributed Storage
+Systems,” in ICC, 2011.
+[5] N. B. Shah, K. Rashmi, P. V. Kumar, and K. Ramchandran, “Interference
+Alignement in Regenerating Codes for Distributed Storage: Necessity
+and Code Constructions,” Transaction on Information Theory, vol. 58,
+pp. 2134–2158, 2012.
+[6] ——, “Distributed Storage Codes with Repair-by-Transfer and Nonachievability of Interior Points on the Storage-Bandwidth Tradeoff,”
+Transaction on Information Theory, vol. 58, pp. 1837–1852, 2012.
+[7] ——, “Explicit Codes Minimizing Repair Bandwidth for Distributed
+Storage,” in ITW, 2010.
+[8] K. V. Rashmi, N. B. Shah, and P. V. Kumar, “Optimal ExactRegenerating Codes for Distributed Storage at the MSR and MBR Points
+via a Product-Matrix Construction,” IEEE Transaction on Information
+Theory, vol. 57, pp. 5227–5239, 2011.
+[9] C. Suh and K. Ramchandran, “Exact-Repair MDS code construction using interference alignment,” IEEE Transactions On Information Theory,
+vol. 57, pp. 1425–1442, 2011.
+[10] K. W. Shum and Y. Hu, “Exact Minimum-Repair-Bandwidth Cooperative Regenerating Codes for Distributed Storage Systems,” in ISIT, 2011.
+[11] N. Le Scouarnec, “Exact Scalar Minimum Storage Coordinated Regenerating Codes,” ArXiv e-prints, 2012, arXiv:1202.0457.
+
+V. C ONCLUSION
+In this paper, we applied independent interference alignment
+to minimum storage coordinated regenerating codes (MSCR)
+and show that this technique allows exact repair if and only if
+k = 2. Our results also apply to adaptive regenerating codes
+thus providing an interesting solution for the implementation
+of practical systems when k = 2.
+To overcome the impossibility shown in this paper, several
+tracks can be considered: (i) considering a technique that does
+not align the interferences independently, (ii) building vector
+codes (i.e., relying on sub-packetization with β > 1 by opposition to scalar codes β = 1 considered in this paper), or (iii)
+building minimum bandwidth coordinated regenerating codes
+(MBCR) (for single failure, codes exist for all parameters [8]).
+
+5
+
+

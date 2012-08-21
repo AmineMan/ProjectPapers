@@ -1,0 +1,891 @@
+Title:          polar_wom.dvi
+Creator:        dvips(k) 5.991 Copyright 2011 Radical Eye Software
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Tue May 15 12:00:55 2012
+ModDate:        Tue Jun 19 12:55:35 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      595 x 842 pts (A4)
+File size:      317271 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569565765
+
+Polar write once memory codes
+David Burshtein
+School of Electrical Engineering
+Tel-Aviv University, Tel-Aviv 69978, Israel
+Email: burstyn@eng.tau.ac.il
+
+Abstract—A coding scheme for write once memory (WOM)
+using polar codes is presented. It is shown that the scheme
+achieves the capacity region of noiseless WOMs when an arbitrary number of multiple writes is permitted. The encoding
+and decoding complexities scale as O(N log N) where N is
+the blocklength. For N sufﬁciently large, the error probability
+decreases sub-exponentially in N. Some simulation results with
+ﬁnite length codes are presented.
+
+I. I NTRODUCTION
+The model of a write once memory (WOM) was proposed
+by Rivest and Shamir in [1]. In write once memories writing
+may be irreversible in the sense that once a memory cell is in
+some state it cannot easily convert to a preceding state. Flash
+memory is an important example since in regular operation
+the charge level of each memory cell can only increase. It
+is possible to erase together a complete block of cells which
+comprises a large number of cells, but this is a costly operation
+and it reduces the life cycle of the device.
+Consider a binary write-once memory (WOM) with N
+memory cells and t writes. Denote the number of possible
+messages in the l-th write by Ml (1 ≤ l ≤ t). The number of
+bits that are written in the l-th write is kl = log Ml and the
+corresponding code rate is Rl = kl /N . Let sl denote the N
+dimensional state vector of the WOM at time (generation) l
+for 0 ≤ l ≤ t, and suppose that s0 = 0. For l = 1, 2, . . . , t,
+the binary message vector is al (N Rl bits). Given al and the
+memory state sl−1 , the encoder computes sl = El (sl−1 , al )
+using an encoding function El and writes the result sl on the
+WOM. Note that sl ≥ sl−1 where the vector inequality applies
+componentwise. The decoder uses a decoding function Dl to
+ˆ
+compute the decoded message al = Dl (sl ). The goal is to
+design a low complexity read-write scheme that satisﬁes the
+ˆ
+WOM constraints and achieves al = al for l = 1, 2, . . . , t with
+high probability for any set of t messages al , l = 1, 2, . . . , t.
+As is commonly assumed in the literature (see e.g. [2] where
+it is explained why this assumption does not affect the WOM
+rate), we also assume that the generation number on each write
+and read is known.
+The capacity region of the WOM is [3]
+Ct = (R1 , . . . , Rt ) ∈ Rt | Rl < αl−1 h(ǫl ), l = 1, 2, . . . , t
++
+where 0 ≡ ǫ0 ≤ ǫ1 , ǫ2 , . . . , ǫt−1 ≤ ǫt ≡ 1/2}
+(1)
+where
+
+l
+∆
+
+(1 − ǫj )
+
+αl =
+
+Alona Strugatski
+School of Electrical Engineering
+Tel-Aviv University, Tel-Aviv 69978, Israel
+Email: alonast@gmail.com
+(Rt denotes a t-dimensional vector with positive elements;
++
+h(x) = −x log2 x − (1 − x) log2 (1 − x) is the binary entropy
+function). We also deﬁne the maximum average rate, C t , as the
+t
+maximum of ( j=1 Rj )/t over (R1 , . . . , Rt ) ∈ Ct . The maximum average rate was shown to be [3] C t = log2 (t + 1)/t.
+This means that the total number of bits that can be stored
+on N WOM cells in t writes is N log2 (t + 1) which is
+signiﬁcantly higher than N . WOM codes were proposed in
+the past by various authors, e.g. [1], [4], [2], [5], [6] and
+references therein. In this work we propose a new family
+of WOM codes based on polar codes [7]. The method relies
+on the fact that polar codes are asymptotically optimal for
+lossy source coding [8] and can be encoded and decoded efﬁciently (O(N log N ) operations where N is the blocklength).
+We show that our method achieves the capacity region of
+noiseless WOMs when an arbitrary number of multiple writes
+is permitted. The encoding and decoding complexities scale
+as O(N log N ). For N sufﬁciently large, the error probability
+β
+is at most 2−N for any 0 < β < 1/2. We also design actual
+codes and present their performances.
+II. BACKGROUND
+
+j=0
+
+1
+
+P OLAR CODES
+
+In his seminal work [7], Arikan has introduced Polar codes
+for channel coding and showed that they can achieve the
+symmetric capacity (i.e. the capacity under uniform input
+distribution) of an arbitrary binary-input channel. In [9] it
+was shown that the results can be generalized to arbitrary
+discrete memory channels. We will follow the notation in [8].
+1 0
+Let G2 =
+and let its n-th Kronecker product be
+1 1
+⊗n
+G2 . Also denote N = 2n . Let u be an N -dimensional binary
+{0, 1} message vector, and let x = uG⊗n where the matrix
+2
+multiplication is over GF(2). Suppose that we transmit x over
+a memoryless binary-input channel with transition probability
+W (y | x) and channel output vector y. If u is chosen at
+random with uniform probability then the resulting probability
+distribution P (u, x, y) is given by
+P (u, x, y) =
+
+1
+⊗n
+1
+2N {x=uG2 }
+
+N −1
+
+W (yi | xi )
+
+(3)
+
+i=0
+
+Deﬁne the following N sub-channels,
+(i)
+
+(2)
+
+ON
+
+WN (y, ui−1 | ui ) = P (y, ui−1 | ui ) =
+0
+0
+
+1
+2N −1
+
+P (y | u)
+N −1
+ui+1
+
+Denote by I(W ) the symmetric capacity of the channel W
+(it is the channel capacity when the channel is memoryless
+(i)
+binary-input output symmetric (MBIOS)) and by Z(WN ) the
+(i)
+Bhattacharyya parameter of the sub-channels WN . In [7], [10]
+it was shown that asymptotically in N , a fraction I(W ) of the
+nβ
+(i)
+sub-channels satisfy Z(WN ) < 2−2 for any 0 < β < 1/2.
+Based on this result the following communication scheme was
+proposed. Let R be the code rate. Denote by F the set of
+(i)
+N (1 − R) sub-channels with the highest values of Z(WN )
+c
+(denoted in the sequel as the frozen set), and by F the
+remaining N ·R sub-channels. Fix the input to the sub-channels
+in F to some arbitrary frozen vector uF (known both to the
+encoder and to the decoder) and use the channels in F c to
+transmit information. The encoder then transmits x = uG⊗n
+2
+over the channel. The decoder applies the following successive
+cancelation (SC) scheme for i = 0, 1, 2, . . . , N − 1. Denote
+(i)
+LN
+
+=
+
+(i)
+LN (y, ui−1 )
+0
+
+=
+
+(i)
+ˆ0
+WN (y, ui−1
+(i)
+ˆ0
+WN (y, ui−1
+
+ui =
+ˆ
+
+0
+1
+
+w.p.
+w.p.
+
+| ui = 0)
+
+(5)
+
+In fact, as noted in [8], the proof of (5) is not restricted to
+a BSS and extends to general sources, e.g. a binary erasure
+source [8].
+III. E XTENDED RESULTS FOR P OLAR
+
+SOURCE CODES
+
+Although the result in [8] is concerned only with the average
+distortion, one may combine (5) with the strong converse result
+of the rate distortion theorem in [11, p. 127] to conclude
+that |d(X(Y), Y)/N − D| can be made arbitrarily small with
+probability that approaches 1 as n increases. We now extend
+this result. The following discussion is valid for an arbitrary
+discrete MBIOS, W (y | x), in (3). As in [8] we construct a
+source polar code with frozen set deﬁned by,
+(i)
+
+2
+≥ 1 − 2δN
+
+(6)
+
+(note that F depends on N , however for simplicity our
+notation does not show this dependence explicitly) and
+
+| ui = 1)
+
+1)
+
+β
+
+Ed(X(Y), Y)/N ≤ D + O(2−N )
+
+F = i ∈ {0, ..., N − 1} : Z WN
+
+If i ∈ F then ui = ui (uF is common knowledge). Otherwise,
+ˆ
+(i)
+(i)
+if LN > 1 then ui = 0, and if LN ≤ 1 then ui = 1.
+ˆ
+ˆ
+Asymptotically, reliable communication is possible for any
+R < I(W ), and the SC decoder can be implemented in
+complexity O(N log N ).
+Polar codes can also be used for lossy source coding [8].
+Consider a binary symmetric source (BSS), i.e. a random
+binary vector Y uniformly distributed over all N -dimensional
+binary vectors. Let d(x, y) be a distance measure between two
+binary vectors, x and y, such that d(x, y) = N d(xi , yi )
+i=1
+where d(0, 0) = d(1, 1) = 0 and d(0, 1) = d(1, 0) = 1. Deﬁne
+a binary symmetric channel (BSC) W (y | x) with crossover
+parameter D and construct a polar code with frozen set F that
+consists of the (1−R)·N sub-channels with the largest values
+(i)
+of Z(WN ). This code uses some arbitrary frozen vector uF
+which is known both to the encoder and to the decoder (e.g.
+uF = 0) and has rate R = |F c |/N . Given Y = y the SC
+encoder applies the following scheme. For i = 0, 1, . . . , N −1,
+if i ∈ F then ui = ui , otherwise
+ˆ
+(i)
+(i)
+LN /(LN +
+(i)
+1/(LN + 1)
+
+satisﬁes
+
+(4)
+
+(w.p. denotes with probability) The complexity of this scheme
+ˆ
+is O(N log N ). Since uF = uF is common knowledge,
+ˆ
+the decoder only needs to obtain uF c from the encoder
+(|F c | bits). It can then reconstruct the approximating source
+ˆ 2
+codeword x using x = uG⊗n . Let Ed(X(Y), Y)/N be
+the average distortion of this polar code (the averaging is
+over both the source vector, Y, and over the approximating
+source codeword, X(Y), which is determined at random from
+Y). Also denote by R(D) = 1 − h(D) the rate distortion
+function. In [8] it was shown, given any 0 < D < 1/2,
+0 < δ < 1 − R(D) and 0 < β < 1/2, that for N (i.e., n)
+sufﬁciently large, R = |F c |/N = R(D) + δ, and any frozen
+vector uF , the polar code with rate R under SC encoding
+
+2
+
+β
+
+δN = 2−N /(2N )
+
+(7)
+
+By [8, Theorem 19 and Equation (22)] (see also [8, Equation
+(12)]),
+lim
+|F |/N = 1 − I(W )
+n
+N =2 ,n→∞
+
+Hence, for any ǫ > 0, if N is large enough then the rate R of
+the code satisﬁes,
+R = 1 − |F |/N ≤ I(W ) + ǫ
+Let y be a source vector produced by a sequence of
+independent identically distributed (i.i.d.) realizations of Y .
+If uF is chosen at random with uniform probability then the
+vector u produced by the SC encoder (that utilizes (4)) has a
+conditional probability distribution given by [8]
+N −1
+
+Q(ui | ui−1 , y)
+0
+
+Q(u | y) =
+
+(8)
+
+i=0
+
+where
+Q(ui | ui−1 , y) =
+0
+
+1/2
+P (ui | ui−1 , y)
+0
+
+if i ∈ F
+if i ∈ F c
+
+(9)
+
+On the other hand, the conditional probability of u given y
+corresponding to (3) is,
+N −1
+
+P (ui | ui−1 , y)
+0
+
+P (u | y) =
+i=0
+
+In the sequel we employ standard strong typicality arguments. Similarly to the notation in [12, Section 10.6, pp. 325326], we deﬁne ǫ-strongly typical sequences x, y ∈ X N × Y N
+with respect to a distribution p(x, y) on X × Y, and denote
+∗(N )
+∗(N )
+it by Aǫ (X, Y ) (or Aǫ
+for short), as follows. Let
+C(a, b|x, y) denote the number of occurrences of the symbols
+∗(N )
+a, b in x, y. Then x, y ∈ Aǫ (X, Y ) if the following two
+conditions hold. First, for all a, b ∈ X × Y with p(a, b) > 0,
+
+|C(a, b | x, y)/N − p(a, b)| < ǫ. Second, for all a, b ∈ X × Y
+with p(a, b) = 0, C(a, b | x, y) = 0.
+∆
+In our case x = x(u) = uG⊗n . Note that G⊗n is a
+2
+2
+full rank matrix. Therefore each vector u corresponds to
+∗(N )
+exactly one vector x. We say that u, y ∈ Aǫ (U, Y )
+∗(N )
+if x(u), y ∈ Aǫ (X, Y ) with respect to the probability
+distribution p(x, y) = W (y | x)/2 (see (3)).
+Theorem 1: Let the source vector random variable Y be
+created by a sequence of N i.i.d. realizations of Y . Consider
+a polar code for source coding [8] with block length N = 2n ,
+and let U be the random variable denoting the output of the SC
+encoder. Then for any 0 < β < 1/2, ǫ > 0 and n sufﬁciently
+β
+∗(N )
+large, U, Y ∈ Aǫ (U, Y ) w.p. at least 1 − 2−N .
+Recall that the SC encoder’s output u has conditional
+probability distribution Q(u | y) given by (8)-(9). Hence, for
+β
+∗(N )
+large n, Theorem 1 asserts, Q Aǫ (U, Y ) > 1 − 2−N .
+Proof: By [8, Lemma 5 and Lemma 7],
+
+where
+
+ αl−1 (1 − ǫl )
+
+
+αl−1 ǫl
+f (s, b) =
+
+ (1 − αl−1 )
+
+0
+
+∗(N )
+
+(1, 0)
+
+0
+X
+
+|Q(u, y) − P (u, y)| ≤ 2|F |δN
+
+≤
+
+αl−1 (1 − ǫl )
+
+αl−1 ǫl
+
+(0, 0)
+(S, V )
+
+αl−1 ǫl
+
+αl−1 (1 − ǫl )
+
+(0, 1)
+
+1 − αl−1
+
+(10)
+
+u,y∈Aǫ
+
+(12)
+
+1 − αl−1
+
+P (u, y)
+∗(N )
+
+u,y∈Aǫ
+
+s = 0, b = 0
+s = 0, b = 1
+s = 1, b = 0
+s = 1, b = 1
+
+and where αl is deﬁned in (2). This channel is also shown in
+Figure 1. It is easy to verify that the capacity of this channel is
+1−αl−1 h(ǫl ) and that the capacity achieving input distribution
+is symmetric, i.e., P (X = 0) = P (X = 1) = 1/2. For each
+
+1
+
+Q(u, y) −
+
+if
+if
+if
+if
+
+(1, 1)
+
+∗(N )
+u,y∈Aǫ
+
+Fig. 1.
+
+The probability transition function of the l-th channel
+
+In addition,
+P A∗(N ) =
+ǫ
+1−P
+
+∃a, b :
+
+channel, l, we design a polar code with blocklength N and
+frozen set of sub-channels Fl deﬁned by (6). The rate is
+
+1
+C(a, b | X(U), Y) − p(a, b) ≥ ǫ
+N
+
+′
+Rl = 1 − αl−1 h(ǫl ) + δl
+
+where we have used the fact that p(a, b) = 0 implies
+C(a, b | X(U), Y) = 0. Let Z be a binary {0, 1} random
+variable such that Zi = 1 if (Xi (U), Yi ) = (a, b) and Zi = 0
+otherwise. Then,
+N
+
+P (Zi = 1) = p(a, b) ,
+
+C(a, b | X(U), Y) =
+
+Zi
+i=1
+
+Applying Hoeffding’s inequality and the union bound it fol∗(N )
+lows that P Aǫ
+≥ 1 − e−N γ for some constant γ (that
+can depend on ǫ). Combining this with (10) we get
+Q A∗(N ) ≥ 1 − e−N γ − 2|F |δN
+ǫ
+Recalling the deﬁnition of δN , (7), the theorem follows.
+Although not needed in this paper, it can now be shown that
+for n sufﬁciently large, d(X(Y), Y)/N < D + δ w.p. at least
+β
+1 − 2−N .
+IV. T HE
+
+PROPOSED POLAR
+
+WOM
+
+CODE
+
+Given some set of parameters 0 ≤ ǫ1 , ǫ2 , . . . , ǫt−1 ≤ 1/2,
+ǫ0 ≡ 0 and ǫt ≡ 1/2, we ﬁrst consider the following t test
+channels. The input set of each channel is {0, 1}. The output
+set is {(0, 0), (0, 1), (1, 0), (1, 1)}. Denote the input random
+variable by X and the output by (S, V ). The probability
+transition function of the l-th channel is deﬁned by,
+Pl ((S, V ) = (s, v) | X = x) = f (s, x ⊕ v)
+
+(11)
+
+3
+
+(13)
+
+where δl > 0 is arbitrarily small for N sufﬁciently large. This
+code will be used as a source code. The relation between Rl
+′
+and Rl is
+′
+Rl = 1 − Rl
+Now we deﬁne El (s, a) and Dl (s) as follows.
+Encoding function, ˆ = El (s, a):
+s
+1) Let v = s ⊕ g where ⊕ denotes bitwise XOR and g is
+a sample from an N dimensional uniformly distributed
+random binary {0, 1} vector. The vector g is a common
+randomness source (dither), known both to the encoder
+and to the decoder.
+2) Let yj = (sj , vj ) and y = (y1 , y2 , . . . , yN ). Compress
+the vector y using the l-th polar code with uFl = al .
+This results in a vector u and a vector x = uG⊗n .
+2
+3) Finally ˆ = x ⊕ g.
+s
+ˆ
+Decoding function, a = Dl (ˆ):
+s
+1) Let x = ˆ ⊕ g.
+s
+−1
+ˆ
+2) a = x G⊗n
+where (z)Fl denotes the elements
+2
+Fl
+of the vector z in the set Fl .
+Note that the information is embedded within the set Fl .
+Hence, when considered as a WOM code, our code has rate
+′
+Rl = |Fl |/N = (N − |Flc |)/N = 1 − Rl .
+For the sake of the proof we slightly modify the coding
+scheme as follows:
+
+(M1) The deﬁnition of the l-th channel is modiﬁed such that
+in (12) we use ǫl − ζ instead of ǫl where ζ > 0 will be
+chosen arbitrarily small.
+′
+(M2) The encoder sets uFl = al ⊕ gl instead of uFl = al ,
+′
+where gl is |Fl | dimensional uniformly distributed binary (dither) vector known both at the encoder and
+decoder. In this way, the assumption that uFl is uniformly distributed holds. Similarly, the decoder modiﬁes
+−1
+′
+ˆ
+its operation to a = x G⊗n
+⊕ gl .
+2
+Fl
+(M3) We assume a random permutation of the input vector
+y prior to quantization in each polar code. These random permutations are known both at the encoder and
+decoder. More precisely, in step 2 the encoder applies
+˜
+the permutation on y to produce y. Then it compresses
+˜
+˜
+y and obtains the codeword x. Finally it applies the
+˜
+inverse permutation on x to produce x and proceeds to
+step 3. The decoder, in the end of step 1, permutes x to
+˜
+˜
+produce x and uses x instead of x in step 2.
+(M4) Denote the Hamming weight of the WOM state sl after
+l writes by Γl = wH (sl ). Also denote the binomial
+distribution with N trials and success probability 1 − α
+by B(N, 1 − α), such that Υ ∼ B(N, 1 − α) if for
+k = 0, 1, . . . , N , Pr (Υ = k) = N (1 − α)k αN −k .
+k
+After the l-th write we pick a number k from the
+distribution B(N, 1 − αl ). If wH (sl ) < k then we ﬂip
+k − wH (sl ) elements in sl from 0 to 1.
+Theorem 2: Consider an arbitrary information sequence
+a1 , . . . , at with rates R1 , R2 , . . . , Rt that are inside the capacity region (1) of the binary WOM. For any 0 < β < 1/2
+and N sufﬁciently large, the coding scheme described above
+can be used to write this sequence reliably over the WOM
+β
+w.p. at least 1 − 2−N in encoding and decoding complexities
+O(N log N ).
+To prove the theorem we need the following lemma1 .
+Consider an i.i.d. source (S, V ) with the following probability
+distribution,
+
+ (1 − αl−1 )/2 if s = 1, v = 0
+
+
+αl−1 /2
+if s = 0, v = 0
+P ((S, V ) = (s, v)) =
+if s = 0, v = 1
+ αl−1 /2
+
+
+(1 − αl−1 )/2 if s = 1, v = 1
+(14)
+Note that this source has the marginal distribution of the output
+of the l-th channel deﬁned by (11)-(12) under a symmetric
+input distribution.
+Lemma 1: Consider a polar code designed for the l-th
+channel deﬁned by (11)-(12) as described above. The code
+′
+has rate Rl deﬁned in (13), a frozen set of sub-channels, Fl ,
+and some frozen vector UFl which is uniformly distributed
+over all |Fl | dimensional binary vectors. The code is used to
+encode a random vector (S, V) drawn by i.i.d. sampling from
+the distribution (14) using the SC encoder. Denote by X the
+encoded codeword. Then for any δ > 0, 0 < β < 1/2 and N
+1 This Lemma is formulated for the original channel with parameter ǫ , and
+l
+not for the (M1) modiﬁed channel with parameter ǫl − ζ.
+
+4
+
+β
+
+sufﬁciently large, the following holds w.p. at least 1 − 2−N ,
+|{k : Sk = 0 and Xk ⊕ Vk = 1}| < (ǫl αl−1 + δ) N
+{k : Sk = 1 and Xk ⊕ Vk = 1} = ∅
+The proof follows from Theorem 1 that asserts, for N (i.e.,
+n) large enough, that
+∗(N )
+
+(X(U), (S, V)) ∈ Aδ/2 (X, (S, V ))
+β
+
+w.p. at least 1 − 2−N . The details are omitted due to space
+limitations.
+We proceed to the proof of Theorem 2. We denote by
+Sl , S, V, G, X and Γl the random variables corresponding to
+sl , s, v, g, x and γl .
+Proof of Theorem 2: Note that we only need to prove
+successful encoding since the WOM is noiseless.
+Recall that Γl = wH (Sl ). Suppose that Γl−1 ∼ B(N, 1 −
+αl−1 ). Our ﬁrst claim is that under this assumption, for ξ > 0
+sufﬁciently small and N sufﬁciently large, w.p. at least 1 −
+β
+2−N , the encoding will be successful and Γl /N < 1−αl −ξ.
+Considering step 1 of the encoding we see that (S, V) can
+be considered as i.i.d. sampling of the source (S, V ) deﬁned
+in (14) (since G is a BSS and using (M3) above). Hence, by
+Lemma 1 (with δ/2 instead of δ) and (M1), the compression
+of this vector in step 2 satisﬁes the following for any δ > 0
+β
+and N sufﬁciently large w.p. at least 1 − 2−N .
+1) If Sk = 1 then Xk = Vk = Sk ⊕ Gk = Gk ⊕ 1.
+2) For at most [(ǫl − ζ)αl−1 + δ/2] N components k we
+have Sk = 0 and Xk = Vk ⊕ 1 = Sk ⊕ Gk ⊕ 1 = Gk ⊕ 1.
+ˆ
+Hence in step 3 of the encoding, if Sk = 1 then Sk = Xk ⊕
+Gk = 1 (i.e. the WOM constraints are satisﬁed). In addition
+there are at most [(ǫl − ζ)αl−1 + δ/2]N components k for
+β
+ˆ
+which Sk = 0 and Sk = 1. Therefore, w.p. at least 1 − 2−N ,
+ˆ
+the vectors S and S satisfy the WOM constraints and,
+ˆ
+wH (S) < [1 − αl−1 + (ǫl − ζ)αl−1 + δ]N
+= [1 − αl − ζαl−1 + δ]N
+
+(15)
+
+(in the ﬁrst inequality we have used the fact that for n
+sufﬁciently large, Γl−1 < (1 − αl−1 + δ/2)N w.p. at least
+1 − e−N ǫ for some ǫ > 0 independent of N ). Setting
+ξ = ζαl−1 − δ yields our ﬁrst claim.
+From (15) we know that k in (M4) will indeed satisfy the
+β
+required condition w.p. at least 1 − 2−N . The proof of the
+theorem now follows by using induction on l to conclude that
+β
+(w.p. at least 1 − 2−N ) the l-th encoding is successful and
+Γl ∼ B(N, 1 − αl ). The complexity claim is due to the results
+in [7].
+We note the following. The test channel in the ﬁrst write
+is actually a BSC (since αl−1 = 1 in Figure 1). Similarly,
+it is easy to verify that in the last (t) write we can merge
+together the source symbols (0, 0) and (0, 1) thus obtaining a
+test channel which is a binary erasure channel (BEC).
+In practice (e.g., in ﬂash memory), the dither g can be
+determined from the address of the data word (i.e., the address
+is used as a seed to a random number generator).
+
+In the rare event of an encoding error, the encoder may reencode using another dither value. The decoder can realize the
+correct dither value, either by direct communication (similarly
+to the assumption that the generation number is known), or by
+switching to the next dither value upon detecting (e.g., using
+CRC) a decoding failure.
+V. S IMULATION R ESULTS
+To demonstrate the performance of our coding scheme
+for ﬁnite length codes we performed experiments with polar WOM codes with n = 10, 12, 14, 16. Each polar code
+was constructed using the test channel in Figure 1 with the
+appropriate parameters ǫl and αl−1 . To learn the frozen set
+Fl of each code we used the Monte-Carlo approach that was
+described in [13] (which is a variant of the method proposed
+by Arikan [7]). Figure 2 summarizes our results with t = 2
+write WOMs designed to maximize the average rate. Using
+the results in [3] we set ǫ1 = 1/3. Hence α1 = 2/3. Each
+point in each graph was determined by averaging the results
+of 1000 Monte-Carlo experiments. Figure 2-left shows the
+success rate of the ﬁrst write as a function of the rate loss
+∆R1 compared to the optimum (R1 = h(1/3) = 0.9183) for
+each value of n. Here success is deﬁned as wH (s1 )/N ≤ ǫ1 .
+Figure 2-right shows the success rate of the second write as
+a function of the rate loss ∆R2 compared to the optimum
+(R2 = 2/3) for each value of n. Here success is deﬁned
+as successful encoding (and decoding) of both data items
+under the WOM constraints. Each experiment in the second
+write was performed by using a ﬁrst write with rate loss of
+∆R1 = 0.01. For n = 10, 12, 14, ∆R1 should be higher, but
+this is compensated by using higher values of ∆R2 . As an
+alternative we could have used a higher rate loss ∆R1 for
+n = 10, 12, 14, in which case ∆R2 decreases. In terms of
+total rate loss both options yielded similar results. We see that
+for n = 16 the total rate loss required for successful (with
+very high probability) ﬁrst and second write is about 0.08.
+FIRST WRITE
+
+SECOND WRITE
+1
+
+0.8
+SUCCESS RATE
+
+1
+
+0.8
+
+0.6
+
+0.6
+
+0.4
+
+0.4
+10
+12
+14
+16
+
+0.2
+
+10
+12
+14
+16
+
+0.2
+
+0
+
+0
+0
+
+0.01
+
+0.02
+∆R1
+
+0.03
+
+0.04
+
+0
+
+0.05
+
+0.1
+∆R2
+
+0.15
+
+0.2
+
+Fig. 2. Left: The performance curves of the ﬁrst write to the WOM. Right:
+The performance curves of the second write to the WOM.
+
+We have also experimented with a t = 3 write WOM. We set
+ǫ1 = 1/4, ǫ2 = 1/3 and ǫ3 = 1/2 (α1 = 3/4 and α2 = 1/2)
+to maximize the average rate in accordance with [3]. To ﬁnd
+the frozen set Fl of each code we used density evolution [14],
+[13]. The maximum average rate is obtained for R1 = .8113,
+R2 = .6887 and R3 = 1/2. The actual information rates for
+
+5
+
+a polar code with n = 16 were R1 = .7913, R2 = .6687
+and R3 = .34. For M = 1000 read/write experiments all
+information triples were encoded (and decoded) successfully.
+VI. D ISCUSSION
+One possible generalization of our work is to the case
+of a noisy WOM. In this case one might wish to consider
+communications over a Gelfand-Pinsker (GP) channel and use
+the results in [8]. However, these results may not be suitable
+for WOM codes, as they require a two-stage writing process
+where the second write does not satisfy the power constraint.
+Other codes and decoding methods may be considered in
+our WOM scheme, for example low-density generating-matrix
+(LDGM) codes that were shown useful in the past for lossy
+compression. Since iterative decoding usually yields better
+results compared to SC decoding of polar codes [7] [13], it
+may be possible to improve the performance of our SC encoder
+by using iterative encoding combined with decimation.
+ACKNOWLEDGMENT
+This research was supported by the Israel Science Foundation, grant no. 772/09.
+R EFERENCES
+[1] R. Rivest and A. Shamir, “How to reuse a write-once memory,”
+Information and Control, vol. 55, no. 1-3, pp. 1–19, 1982.
+[2] E. Yaakobi, S. Kayser, P. Siegel, A. Vardy, and J. Wolf, “Efﬁcient twowrite WOM-codes,” in Proc. IEEE Information Theory Workshop (ITW),
+Dublin, Ireland, September 2010, pp. 1–5.
+[3] C. Heegard, “On the capacity of permanent memory,” IEEE Transactions
+on Information Theory, vol. 31, no. 1, pp. 34–42, 1985.
+[4] G. Cohen, P. Godlewski, and F. Merkx, “Linear binary code for writeonce memories,” IEEE Transactions on Information Theory, vol. 32,
+no. 5, pp. 697–700, 1986.
+[5] E. Yaakobi, P. Siegel, A. Vardy, and J. Wolf, “Multiple error-correcting
+WOM-codes,” in Proc. IEEE International Symposium on Information
+Theory (ISIT), Austin, Texas, June 2010, pp. 1933–1937.
+[6] A. Shpilka, “New constructions of WOM codes using the Wozencraft
+ensemble,” Arxiv preprint arXiv:1110.6590, 2011.
+[7] E. Arikan, “Channel polarization: A method for constructing capacityachieving codes for symmetric binary-input memoryless channels,” IEEE
+Transactions on Information Theory, vol. 55, no. 7, pp. 3051–3073,
+2009.
+[8] S. Korada and R. Urbanke, “Polar codes are optimal for lossy source
+coding,” IEEE Transactions on Information Theory, vol. 56, no. 4, pp.
+1751–1768, 2010.
+[9] E. Sasoglu, E. Telatar, and E. Arikan, “Polarization for arbitrary discrete
+memoryless channels,” in Proc. IEEE Information Theory Workshop
+(ITW), 2009, pp. 144–148.
+[10] E. Arikan and E. Telatar, “On the rate of channel polarization,” in Proc.
+IEEE International Symposium on Information Theory (ISIT), 2009, pp.
+1493–1495.
+[11] I. Csisz´ r and J. K¨ rner, Information Theory: Coding Theorems for
+a
+o
+Discrete Memoryless Systems, 2nd ed. Budapest: Akad´ miai Kiad´ ,
+e
+o
+December 1997.
+[12] T. M. Cover and J. A. Thomas, Elements of Information Theory, 2nd ed.
+New York: Wiley, 2006.
+[13] S. Korada, “Polar codes for channel and source coding,” Ph.D. dissertation, EPFL, Lausanne, Switzerland, 2009.
+[14] R. Mori and T. Tanaka, “Performance and construction of polar codes
+on symmetric binary-input memoryless channels ,” in Proc. IEEE
+International Symposium on Information Theory (ISIT), Seoul, Korea,
+June 2009, pp. 1496 – 1500.
+
+

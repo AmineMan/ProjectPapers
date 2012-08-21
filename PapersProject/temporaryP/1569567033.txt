@@ -1,0 +1,876 @@
+Creator:        TeX
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Fri May 18 15:57:08 2012
+ModDate:        Tue Jun 19 12:54:40 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      522270 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569567033
+
+The Log-Volume of Optimal Constant-Composition
+Codes for Memoryless Channels, Within O(1) Bits
+Pierre Moulin
+Dept of Electrical and Computer Engineering
+University of Illinois at Urbana-Champaign
+
+error probabilities are obtained using strong large-deviations
+analysis, which are closely related to Laplace’s method for
+asymptotic expansion of integrals [6], [7], [8]. A strong largedeviations analysis provides an asymptotic expansion for the
+n
+probability of rare events such as
+i=1 Ui ≥ na where
+{Ui , 1 ≤ i ≤ n} are independent and identically distributed
+(iid) random variables, and a is strictly larger than the mean of
+U1 [6], [7]. In contrast, the classical (“weak”) large-deviations
+analysis merely states that the aforementioned probability
+vanishes as exp{−nΛ(a)+o(n)} where Λ(·) denotes the largedeviations function for U1 .
+This paper builds on [5] to analyze the performance of
+constant-composition codes, which are well suited to coding
+problems involving input constraints, in which case iid random
+codes generally fail to achieve the second-order rate. In the
+absence of input constraints, we also show that the log-volume
+achieved by random constant-composition codes differs from
+that achieved by iid random codes by a constant ∆cc that is
+explicitly identiﬁed.
+To carry this analysis, we have derived a new result on
+conditional strong large-deviations analysis. This shows that
+1
+the O(log n) term in (1) is 2 log n under regularity assumptions. The analysis also yields the next term in the expansion,
+which is a constant when the underlying loglikelihood random
+variables are of the nonlattice type, and a bounded oscillating
+function of n otherwise. The quest for that term requires a
+precise characterization of the asymptotics of channel ﬂuctuations. To this end we use two-term Edgeworth expansions [9],
+[10] which can be traced back to Cram´ r [11] and Esseen [12].
+e
+The Berry-Esseen theorem [10] was used in [1], [2] provides
+a bound for deviation from Gaussianity, but that bound is not
+sharp enough for our purposes.
+All the analysis and results in this paper are based on
+asymptotics and the average error probability criterion. Only
+two inequalities are used. The ﬁrst is the classical unionof-events bound (also see the RCU bound of [2, p. 2312]),
+which is used for analysis of our random-coding scheme and
+turns out to be remarkably tight. The second inequality is one
+introduced in [2] for proving converse theorems: it provides an
+upper bound for M ∗ (n, ) in terms of a maxmin optimization
+problem involving the power of a Neyman-Pearson test at
+signiﬁcance level 1 − . This is a remarkably powerful idea
+which can also be traced back to Strassen [1, pp. 711, 712].
+In order to keep the presentation focused, we assume broad
+regularity conditions on the channels of interest and exclude
+
+Abstract—This paper derives a tight asymptotic upper bound
+∗
+on the maximum volume Mcc (n, ) of length-n constantcomposition codes subject to an average decoding error probabil√
+1
+ity : M cc (n, ) = exp{nC − nV Φ−1 (1 − ) + 2 log n + An, +
+o(1)} where Φ is the cdf of the standard normal distribution,
+and An, is a bounded sequence that can be explicitly identiﬁed
+and reduces to a constant in the nonlattice case. A lower
+bound is presented, differing from the upper bound by an easily
+computable multiplying constant. These expressions hold under
+certain regularity assumptions on the channel.
+
+I. I NTRODUCTION
+Shannon’s seminal paper introduced the fundamental capacity limits for memoryless communication channels. For
+any channel code of length n and tolerable decoding error
+probability , the maximum volume of the code is given by
+M ∗ (n, ) = enC+o(n) . The o(n) is signiﬁcant for practical
+values of n, hence much effort went into characterizing it
+in the early 1960’s. In particular, Strassen [1] discovered
+that, under regularity assumptions, the o(n) term is of the
+√
+form − nV Φ−1 (1 − ) + O(log n) where Φ is the Gaussian
+cumulative distribution function (cdf) and V is the channel
+dispersion, or second-order coding rate. This line of research
+seemed forgotten until new ideas revived it, almost half a
+century later [2], [3], [4]. The sharpest general result to date
+is
+√
+M ∗ (n, ) = exp{nC − nV Φ−1 (1 − ) + O(log n)} (1)
+subject to some regularity conditions on the channel law.
+The appeal of asymptotic expansions such as (1) is that (i)
+they convey signiﬁcant insights into the essence of the problem
+and (ii) they are practically useful as the remainder O(·) term
+can be bounded and often neglected for moderate values of n,
+as demonstrated in [2].
+Still there remains much mystery regarding the third term
+in (1), which has been characterized only for the binary
+1
+symmetric channel (BSC) where it is 2 log n [2, p. 2332].
+For the additive white Gaussian channel, the third term is
+sandwiched between O(1) and 3 log n + O(1). For the binary
+2
+erasure channel (BEC), the third term is O(1). For discrete
+memoryless channels with ﬁnite input alphabet X , under
+regularity assumptions on the channel law, the third term can
+be upper-bounded by 1 (|X | − 1) log n. The third term is often
+2
+signiﬁcant for moderate values of n. Additional analysis is
+given in [3, Sec. 3.4.5].
+Our recent paper [5] presents a more reﬁned analysis of
+the problem, in which asymptotic equalities for the relevant
+
+1
+
+For some DMCs with capacity-achieving distribution, the
+random variable l(X, Y ) is of the lattice type. For instance
+l(X; Y ) ∈ {log(2λ), log(2 − 2λ)} for the BSC with crossover
+1
+probability λ = {0, 2 , 1} and uniform input distribution;
+λ
+the span of the lattice is log | 1−λ |. However for almost
+every asymmetric binary channel, as well as for almost every
+nonbinary channel (symmetric or not), l(X; Y ) is not of the
+lattice type. We refer to capacity problems where l(X, Y ) is
+of the lattice type as the lattice case. The lattice case is not
+considered in this paper.
+Let Wx {W (·|x)} ∈ P(Y) for each x ∈ X . We deﬁne
+the following moments of the random variable l(X, Y ) with
+respect to the joint distribution P ×W : the unconditional mean
+(= mutual information)
+
+among others channels with zero dispersion and channels for
+which the capacity-achieving distribution is not unique. Due to
+space limitations, only sketches of the proofs are given here;
+complete derivations are given in the full paper [13].
+Notation. We use uppercase letters for random variables,
+lowercase letters for their individual values, calligraphic letters
+for alphabets, and boldface letters for sequences. The set of
+all probability measures over a ﬁnite set X is denoted by
+P(X ). Mathematical expectation with respect to probability distribution P is denoted by the symbol EP . Given a
+distribution P on the random variable X and a conditional
+distribution W on another random variable Y given X, we
+denote by P × W the joint distribution on (X, Y ) and by
+(P W ) the marginal distribution on Y . The indicator function
+of a set A is denoted by 1{x ∈ A}. All logarithms are
+natural logarithms. The probability density function (pdf) of
+the normal random variable is denoted by φ(x), x ∈ R and
+x
+its cdf by Φ(x) = −∞ φ.
+The symbol f (n) ∼ g(n) denotes asymptotic equality:
+limn→∞ f (n) = 1. The notations f (n) = o(g(n)) (small oh)
+g(n)
+and f (n) = O(g(n)) (big oh) indicate that
+zero and ﬁnite, respectively.
+
+limn→∞ f (n)
+g(n)
+
+I(P, W )
+
+= EP ×W [l(X, Y )]
+= D(P × W P × (P W )),
+
+the conditional mean (given X)
+D(Wx P W ) = EWx [l(x, Y )],
+
+is
+
+x ∈ X,
+
+the unconditional information variance
+Vu (P, W )
+
+Let X and Y be two ﬁnite alphabets. Consider a memoryless
+channel (W, X , Y) characterized by a conditional probability
+mass function {W (y|x), x ∈ X , y ∈ Y}. Given an input
+probability distribution P on X , denote by (P W )(y) =
+x∈X P (x)W (y|x), ∀y ∈ Y the output probability distribution. Given X = x, the conditional pdf above will often
+be denoted by Wx ∈ P(Y). Kullback-Leibler divergence
+between two distributions P and Q on a common alphabet
+P (X)
+is denoted by D(P Q)
+EP [ln Q(X) ], divergence variance
+
+V (P, W )
+
+W (y|x)
+,
+(P W )(y)
+
+x ∈ X , y ∈ Y.
+
+V (P × W P × (P W )),
+
+=
+
+(4)
+
+VarP ×W [l(X, Y )|X]
+
+=
+
+P (x)V (Wx P W ),
+
+(5)
+
+x
+
+the conditional third central moment (given X)
+T (P, W )
+
+=
+
+P (x)T (Wx P W ),
+
+(6)
+
+x
+
+and the conditional skewness
+
+3
+
+third moment by T (P Q)
+EP [ln
+− D(P Q)] .
+Given two alphabets X and Y, a X -valued random variable
+X distributed as P , and two conditional distributions W
+and Q on a Y-valued random variable Y given X, we
+|X)
+denote by D(W Q|P ) = EP ×W ln W (Y |X) the conditional
+Q(Y
+KL divergence between W and Q given P , and likewise
+by V (W Q|P ) and T (W Q|P ) the conditional divergence
+variance and the conditional divergence third moment.
+A real random variable L is said to be of the lattice type
+if there exists numbers d and l0 such that L belongs to the
+lattice {l0 + kd, k ∈ Z} with probability 1. The largest d for
+which this holds is called the span of the lattice, and l0 is the
+offset.
+The empirical distribution (n-type) on X of a sequence x ∈
+n
+1
+ˆ
+X n is deﬁned by Px (x)
+i=1 1{xi = x}, x ∈ X . We
+n
+denote by T [P ] the set of all sequences of type P (type class)
+and by UX|P the uniform distribution over type class T [P ].
+Following Gallager [14, p. 17], deﬁne the mutual information between the events X = x and Y = y as
+l(x, y) = log
+
+VarP ×W [l(X, Y )]
+
+the conditional information variance (given X)
+
+P (X)
+EP [ln Q(X) ]2 − D2 (P Q), and divergence
+P (X)
+Q(X)
+
+=
+=
+
+A. Deﬁnitions
+
+by V (P Q)
+
+(3)
+
+S(P, W ) =
+
+T (P, W )
+.
+[V (P, W )]3/2
+
+(7)
+
+We also deﬁne the Fisher information matrix J whose
+components are
+Jxx (P, W )
+
+−
+
+∂ 2 I(P, W )
+,
+∂P (x)∂P (x )
+
+∀x, x ∈ X .
+
+(8)
+
+The rank of this matrix is at most |X | − 1; denote by J † its
+pseudo-inverse. We shall also use the nonnegative quantity
+∂V (P, W ) ∂V (P, W ) †
+J (P, W )
+∂P (x)
+∂P (x ) xx
+x,x
+(9)
+which is actually zero in several problems of interest. We also
+denote by V (P, W ) ∈ R|X | the gradient of V (P, W ) with
+respect to P .
+Next, let the triple (X , X, Y ) ∈ X 2 × Y be distributed
+according to the joint probability law PX XY (x , x, y) =
+P (x )P (x)W (y|x). Deﬁne the tilted joint distribution
+A(P, W )
+
+˜
+PX
+
+(2)
+
+2
+
+XY
+
+1
+V (P, W )
+
+(x , x, y)
+
+W (y|x )W (y|x)P (x)P (x )
+,
+(P W )(y)
+
+(10)
+
+which has the same X and (X, Y ) marginals as PX XY
+but is symmetric in X and X. The random variables A
+W
+|X
+W (Y |X)
+ln (P (Y )(Y ) and B
+ln (P W )(Y ) are generally dependent
+W
+)
+but have the same marginal owing to the symmetry property
+above. Denote by
+ρ(P ; W ) =
+
+CovP (A, B)
+˜
+VarP (A)VarP (B)
+˜
+˜
+
+∈ [−1, 1]
+
+the maximum value of Mn for (n, ) constant-composition
+codes under the average error probability criterion
+Pe (fn , gn , W )
+
+If the cost constraint P ∈ Γ(ξ) is inactive in (18), the
+capacity-achieving P ∗ satisﬁes Vu (P ∗ , W ) = V (P ∗ , W ). If
+the constraint is active, then Vu (P ∗ , W ) > V (P ∗ , W ).
+C. Main Result
+Assume the following:
+
+P ∗ (x)CovWx [1{Y = y}, 1{Y = y }]
+
+(A1) The maximum P ∗ of the mutual information in (18)
+is unique and belongs to Γr (ξ) of (17).
+(A2) All codewords x(m), m ∈ Mn are of the same type.
+
+x∈X
+
+P ∗ (x)[W (y|x)1{y = y } − W (y|x)W (y |x)] (13)
+x∈X
+
+Let
+
+and the constant
+1
+Tr(K† KG ) − ln |K† KG | − (|Y| − 1)
+H
+H
+2
+
+(14)
+
+log M cc (n, )+log
+
+t
+∗
+Pn = P ∗ − n−1/2 √ J(P ∗ , W )† ·
+2 V
+
+(15)
+
+V (P ∗ , W ) + O(1/n).
+
+(22)
+∗
+Here Pn achieves the maximum of the functional nI(P ; W )−
+nV (P ; W )t where P ranges over all feasible types.
+A sketch of the derivation of the lower and upper bounds is
+presented in Secs. III and IV, respectively. It is unclear whether
+the gap 1−log(1−ρ2 ) between lower and upper bounds should
+be attributed to the use of random codes, or to the union bound,
+or both. Either way, the gap can easily be computed explicitly
+via (11) and may be as small as one nat (for for additive noise
+channels). Hence random codes perform well, and the union
+bound is quite tight. Also note that [2, Theorem 48] used a
+∗
+different method to derive an upper bound on log Mcc (n, ).
+However that method does not yield an explicit value for the
+O(1) term.
+
+(16)
+
+{P ∈ Γ(ξ) : 0 < V (P ; W ) < ∞,
+(17)
+
+We denote by
+∗
+Mcc (n, )
+
+∗
+1 − ρ2 −1 ≤ log Mcc (n, ) ≤ log M cc (n, )
+
+The lower bound is achieved by random constant-composition
+codes with type
+
+as well as the regular subset
+
+|S(P ; W )| < ∞, |ρ(P ; W )| < 1, supp(P ) = X }.
+
+(20)
+
+√
+1
+M cc (n, ) = nC − nV t + log n + A − ∆cc + o(1). (21)
+2
+
+Since this paper only deals with constant-composition codes,
+the same results can be obtained under an average-cost constraint. Deﬁne the set of distributions
+
+Γr (ξ)
+
+(19)
+
+where (in the nonlattice case)
+
+i=1
+
+{P ∈ P(X ) : EP [ψ(X)] ≤ ξ}
+
+A = A(P ∗ , W )
+
+Theorem 1.1: Assume (A1) and (A2) hold. Then
+
+n
+
+Γ(ξ)
+
+S = S(P ∗ ; W ),
+
+< 1/2) and
+√
+S V 2
+1
+1
+t2
+(t − 1) + t2 + log(2πV ).
+A = A−
+8
+6
+2
+2
+
+The message m to be transmitted is drawn uniformly from
+the message set Mn = {1, 2, · · · , Mn }. A code is a pair of
+encoder mapping fn : Mn → F ⊂ X n , x(m) = fn (m), and
+decoder mapping gn : Y n → Mn , m = gn (y). The code
+ˆ
+1
+has volume (or size) Mn and rate Rn = n log Mn .
+We assume that codewords are subject to a cost constraint.
+Given a cost function ψ : X → R and a target cost ξ, we
+assume the maximum-cost constraint
+∀m = 1, 2, · · · , Mn .
+
+V = V (P ∗ , W ),
+
+(hence t > 0 for
+
+B. Shannon Capacity
+
+ψ(xi (m)) ≤ ξ,
+
+Φ−1 (1 − ),
+ρ = ρ(P ∗ , W ),
+
+t
+
+where † denotes matrix pseudo-inverse. Both KG and KH
+have rows summing to zero and are thus rank-deﬁcient, where
+the constant eigenvector [|Y|−1/2 , · · · , |Y|−1/2 ] corresponds
+to the null eigenvalue. The notation |K| denotes the product
+of the nonzero eigenvalues of the matrix K.
+
+1
+n
+
+(18)
+
+P ∈Γ(ξ)
+
+= (P ∗ W )(y)1{y = y } − (P ∗ W )(y)(P ∗ W )(y ), (12)
+
+∆cc
+
+m∈Mn y
+
+C = max I(P ; W ).
+
+KG (y, y ) = Cov(P ∗ W ) (1{Y = y}, 1{Y = y })
+
+=
+
+W n (y|fn (m))1{gn (y) = m}.
+
+Shannon capacity is given by
+
+(11)
+
+the normalized correlation coefﬁcient between A and B under
+˜
+PX XY . For an additive-noise channel, ρ(P ∗ , W ) = 0 for the
+(uniform) capacity-achieving distribution P ∗ [5].
+Finally, deﬁne the matrices (y, y ∈ Y)
+
+KH (y, y ) =
+
+1
+Mn
+
+max{Mn : ∃(fn , gn ) : Pe (fn , gn , W ) ≤ }
+
+3
+
+uniformly in t.
+This proposition is a generalization of the Cram´ r-Esseen
+e
+theorem [12] and of a result given in [10] for the sum of
+independent but not identically distributed random variables.1
+The Berry-Esseen bound used in [1], [2] is not sufﬁciently
+reﬁned to yield the sharper asymptotics of interest here.
+Let t and t ,n be the 1 − -quantiles of Φ and Fn
+respectively, i.e., Φ(t ) = Fn (t ,n ) = 1 − . Then
+
+II. R EFINED A SYMPTOTICS
+This section presents three results that are used to prove
+the direct coding theorem and the converse. The ﬁrst is a
+reﬁnement on the Central Limit Theorem (CLT). The second
+is a new strong large-deviations result for Neyman-Pearson
+tests. The third is a new conditional strong large-deviations
+result.
+Fix a type P and let X be uniformly distributed over T [P ]
+(X ∼ UX|P ). Let Qn
+(UX|P W n ) ∈ P(Y n ). We derive
+reﬁned asymptotics for the loglikelihood ratio
+
+S
+= t + √ (t2 − 1) + o(n−1/2 ).
+(28)
+6 n
+Strong Large Deviations for Binary Hypothesis testing.
+W n (Y|X)
+.
+(23) We use the following lemma from [5]:
+Zn ln
+Qn (Y)
+Lemma 2.3: (Second-order Taylor series expansion of
+The mean and variance of Zn are respectively given by large-deviations function for binary hypothesis testing.) ConI(UX|P , W n ) and V (UX|P , W n ), asymptotic expansions of sider two probability measures P and Q over a common space
+which are given in the following lemma.
+and assume that P is dominated by Q (P
+Q). Assume
+Lemma 2.1:
+D = D(P Q) and V = V (P Q) are positive and ﬁnite, and
+T
+EUX|P ×W n [Zn ] = I(UX|P ; W n ) = nI(P ; W ) − ∆cc + o(1) = T (P Q) is ﬁnite. Let Λ(a) = sups [as − κ(s)] where the
+dP
+cumulant generating funtion κ(s) = ln EQ [( dQ )s ]. Then
+n
+VarUX|P ×W n [Zn ] = V (UX|P ; W ) = nV (P ; W ) + O(1)
+(a − D)2
+SkewnessUX|P ×W n [Zn ] = S(UX|P ; W n ) = S(P ; W ) + O(1/n).
+Λ(a) = a +
++ O((a − D)3 ) as a ↑ D. (29)
+2V
+t
+
+Sketch of proof. We ﬁrst show that
+n
+
+I(UX|P ; W )
+
+,n
+
+The following result is a variation of the large-deviations
+analysis of [5] for the sum of iid random variables, and
+uses Lemma 2.3. The ﬁnal equality follows by application
+of Lemma 2.1.
+Proposition 2.4: Let t and B ∈ R be arbitrary constants.
+Fix a n-type P and let Qn (UX|P W n ). Assume Zn of (23)
+is of the nonlattice type. Then, as n → ∞,
+
+n
+
+= nI(P ; W ) − D(Qn (P W ) ). (24)
+
+Since both Qn and (P W )n are permutation-invariant, the
+divergence D(Qn (P W )n ) equals the divergence between
+ˆ
+ˆ
+the distribution of the corresponding random types Q PY
+ˆ
+ˆY (where Y ∼ (P W )n ) on Y.
+(where Y ∼ Qn ) and P
+P
+Deﬁne the normalized random variables
+Qn Zn ≥ I(UX|P ; W n ) − V (UX|P ; W n ) t + B
+√
+ˆ − (P W ))
+n(P
+Gn
+2
+√
+exp{−I(UX|P ; W n ) + V (UX|P ; W n ) t − ( t2 + B) + o(1)}
+ˆ
+Hn
+n(Q − (P W )) ∈ R|Y| .
+=
+2πV (UX|P ; W n )
+n
+Thus D(Qn (P W ) ) = D(PGn PHn ). The random variables
+t2
+Gn and Hn have zero means and respective covariance ma- = exp{−nI(P ; W ) + nV (P ; W ) t − ( 2 + B − ∆cc ) + o(1)} .
+2πnV (P ; W )
+trices KG and KH of (12), (13), for all n. They converge in
+distribution to N (0, KG ) and N (0, KH ), respectively. Let G∗
+The following proposition gives asymptotics of the Neymanand H ∗ be Gaussian random vectors with the same mean and
+Pearson test between UX|P × W n and UX|P × Qn at signiﬁcovariance matrix as Gn and Hn , respectively. The divergence
+cance level 1 − . The statement follows from the fact that the
+D(Qn (P W )n ) = D(PGn PHn ) converges to
+NP test is a loglikelihood ratio test and is proved by application
+1
+†
+†
+of (28) and Prop. 2.4.
+D(PG∗ PH ∗ ) =
+Tr(KH KG ) − ln |KH KG | − (|Y| − 1) .
+2
+Proposition 2.5: (NP) Assume (A1) and (A2) hold. Let
+(25)
+Combining (24) and (25) proves the ﬁrst part of the claim
+τn
+nI(P ; W ) − nV (P ; W ) t
+(about the mean of Zn ). The second and third part (variance
+1
+− S(P ; W ) V (P ; W )(t2 − 1) − ∆cc .
+and skewness) are proved similarly.
+2
+6
+Proposition 2.2: (Reﬁned CLT). Assume 0 < V (P ; W ) < In the non-lattice case,
+∞ and |S(P ; W )| < ∞. Then under UX|P × W n , the cdf of
+1
+exp −τn − 2 t2
+n
+β1− (UX|P × W n , UX|P × Qn ) =
+(30)
+−Zn + I(UX|P ; W )
+2πnV (P ; W )
+Tn
+(26)
+I(UX|P ; W n )
+and
+satisﬁes
+(UX|P × W n ) [Zn ≥ τn ] = 1 − + o(n−1/2 ) as n → ∞. (31)
+√
+S
+(27)
+Fn (t) = Φ(t) − √ (1 − t2 ) φ(t) + o(1/ n)
+1 Note a typo in [10, Eqn (6.1)], where s2 should be replaced with s3 .
+6 n
+n
+n
+
+4
+
+where the inequality follows from the union bound. In the last
+∗
+∗
+∗
+line, zn is derived so that (Mn −1)Pr[Z2,n ≥ zn |Z1,n = zn ] =
+1. We then use precise asymptotics for PZ1,n and PZ2,n |Z1,n
+to derive the desired result. It sufﬁces to prove achievability
+of an average probability of + o(n−1/2 ) to prove the claim.
+∗
+The statistics of Z1,n are obtained from Lemma 2.1 with Pn
+in place of P . Deﬁning Tn = (Z1,n − E[Z1,n ])/ Var(Z1,n )
+and using Prop. 2.2, we obtain FTn (t ,n ) = 1 − + o(n−1/2 ).
+The conditional probability PZ2,n |Z1,n [Z2,n ≥ z|Z1,n = z] in
+∗
+(36) is evaluated using Prop. 2.6. The threshold zn is selected
+1
+∗
+∗
+∗
+as zn = E[Z1,n ]− Var[Z1,n ]tn where tn = t ,n + √nV . Then
+the two terms in the right side of (36) are respectively given
+φ(t
+φ(t
+by − √nV) + o(n−1/2 ) and √nV) (1 + o(1)). The O(n−1/2 )
+terms cancel out and the desired result follows.
+
+Conditional Strong Large Deviations. Fix P and deﬁne
+PXX Y (x, x , y) = UX|P (x )UX|P (x )W n (y|x), thus X is
+independent of (X, Y). Let
+Zn = ln
+
+W n (Y|X )
+,
+(UX|P W n )(Y)
+
+Tn
+
+−Zn + I(UX|P ; W n )
+I(UX|P ; W n )
+
+(32)
+The proposition below is proved by applying the method of
+exponential tilting to evaluate the asymptotics of the joint
+probability PXX Y [Tn ≥ t , Tn ∈ [t, t + dt)] for an inﬁnitesimal dt, and dividing the result by the asymptotic probability
+PXY [Tn ∈ [t, t + dt)].
+Proposition 2.6: If |ρ| = 1 then for any t ∈ R,
+PXX Y [Tn ≥ t | Tn ∈ [t, t + dt)]
+=
+
+exp{−I(UX|P ; W n ) +
+
+V (UX|P ; W n ) t −
+
+t2
+2
+
++ o(1)}
+
+IV. C ONVERSE : S KETCH OF THE P ROOF
+
+To prove the upper bound in Theorem 1.1, we apply
+Theorem 28 for constant-composition codes in [2, p. 2318]
+2
+exp{−nI(P ; W ) + nV (P ; W ) t − t2 − ∆cc + o(1)} which implies M (n, ) ≤ 1/β1− (W n (·|x), QY ) where QY
+=
+is an arbitrary permutation-invariant distribution on Y n , and
+2π(1 − ρ2 )nV (P ; W )
+as n → ∞.
+(33) x is any element of T [P ] where P ∈ Γ(ξ). Using the same
+arguments as in [2, Lemma 29] and choosing QY = Qn , we
+have
+1
+.
+M (n, ) ≤
+III. ACHIEVABILITY: S KETCH OF THE P ROOF
+β1− (UX|P × W n , UX|P × Qn )
+Let the number of codewords be Mn = enRn where The asymptotics of the right side are given in Prop. 2.5.
+Rn = log M cc (n, ) + log 1 − ρ2 − 1.
+Optimizing over all feasible P proves the claim.
+2π(1 − ρ2 )V (UX|P ; W n )
+
+ACKNOWLEDGMENT
+
+Random coding scheme. The codewords {x(m), 1 ≤ m ≤
+∗
+∗
+Mn } are drawn iid from the type class T [Pn ] where Pn is
+∗
+given in (22) and the O(1/n) term is selected to ensure Pn
+∗
+is a valid type, i.e., each Pn (x), x ∈ X , is a multiple of 1/n.
+Deﬁne the random variables
+W n (Y|X(m))
+Zm,n ln
+, 1 ≤ m ≤ Mn .
+(34)
+Qn (Y)
+Hence Zm,n is a loglikelihood score minus the constant
+ln Qn (Y). The ML decoding rule can be written as
+m = arg
+ˆ
+
+max
+
+1≤m≤Mn
+
+Zm,n .
+
+This work was supported by DARPA under the ITMANET
+program. The author would like to thank T. Riedl for informative discussions about Strassen’s paper [1].
+R EFERENCES
+[1] V. Strassen, “Asymptotische Absch¨ tzungen in Shannon’s Informationsa
+theorie,” Trans. 3rd Prague Conf. Info. Theory, pp. 689—723, 1962.
+[2] Y. Polyanskiy, H. V. Poor and S. Verd´ , “Channel Coding Rate in the
+u
+Finite Blocklength Regime,” IEEE Trans. Information Theory, Vol. 56,
+No. 5, pp. 2307—2359, May 2010.
+[3] Y. Polyanskiy, “Channel Coding: Nonasymptotic Fundamental Limits,”
+PhD thesis, EE Dept, Princeton U., Nov. 2010.
+[4] M. Hayashi, “Information Spectrum Approach to Second-Order Coding
+Rate in Channel Coding,” IEEE Trans. Information Theory, Vol. 55,
+No. 11, pp. 4947—4966, Nov. 2009.
+[5] P. Moulin, “The Log-Volume of Optimal Codes for Memoryless Channels,
+Up to a Few Nats,” Proc. ITA, San Diego, CA, Feb. 2012.
+[6] D. Blackwell and J. L. Hodges, “The Probability in the Extreme Tail of
+a Convolution,” Ann. Math. Stat., Vol. 30, pp. 1113—1120, 1959.
+[7] R. Bahadur and R. Ranga Rao, “On Deviations of the Sample Mean,”
+Ann. Math. Stat., Vol. 31, pp. 1015—1027, 1960.
+[8] N. R. Chaganty and J. Sethuraman, “Strong Large Deviation and Local
+Limit Theorems,” Ann. Prob. Vol. 21, No. 3, pp. 1671—1690, 1993.
+[9] D. L. Wallace, “Asymptotic Approximations to Distributions,” Ann. Math.
+Stat., Vol. 29, No. 3, pp. 635—654, Sep. 1958.
+[10] W. Feller, An Introduction to Probability Theory and Its Applications,
+Vol. II, Wiley, NY, 1971.
+[11] H. Cram´ r, “Sur un nouveau th´ or` me-limite de la th´ orie des probae
+e e
+e
+bilit´ s,” Actualit´ s Sci. et Industrielles, No. 736, Hermann, Paris, 1938.
+e
+e
+[12] C.-G. Esseen, “Fourier analysis of distribution functions,” Acta Mathematica, Vol. 77, pp. 1—125, 1945.
+[13] P. Moulin, preprint, to be posted on arxiv.
+[14] R. G. Gallager, Information Theory and Reliable Communication, Wiley,
+New York, 1968.
+
+(35)
+
+In case of a tie, an error is declared.
+Overview of error probability analysis. By symmetry of
+the codebook construction and the decoding rule, the error
+probability for message m is independent of m. For the
+calculation below, we assume without loss of generality that
+m = 1 was sent. We use the bound
+Pr[Error] = Pr max Zm,n ≥ Z1,n
+m≥2
+
+PZ1,n (dz) Pr max Zm,n ≥ z|Z1,n = z
+
+=
+
+m≥2
+
+R
+
+≤
+
+PZ1,n (dz) min{1, (Mn − 1)Pr[Z2,n ≥ z|Z1,n = z]}
+
+∗
+= PZ1,n [Z1,n ≤ zn ] + (Mn − 1)
+
+×
+∗
+z>zn
+
+PZ1,n (dz)PZ2,n |Z1,n [Z2,n ≥ z|Z1,n = z] (36)
+
+5
+
+

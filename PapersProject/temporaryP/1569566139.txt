@@ -1,0 +1,755 @@
+Title:          pliable-ic-final.pdf
+Author:         sree
+Creator:        TeX
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Fri May 18 21:03:02 2012
+ModDate:        Tue Jun 19 12:55:54 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      291480 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569566139
+
+Pliable Index Coding
+Siddhartha Brahma, Christina Fragouli
+EPFL, Switzerland
+
+Abstract—We propose a new formulation of the index coding
+problem, where instead of demanding a speciﬁc bit (or message),
+clients are “pliable” and are happy to receive any one bit they
+do not have. We prove that with this relaxation, although some
+instances of this problem become simple, in general the problem
+of ﬁnding the optimal linear code remains NP-hard. We also
+n
+show that if the server has n bits, O(log n log( log n )) coded bit
+transmissions are sufﬁcient to satisfy the clients in the worst case,
+in contrast to the Ω(n) transmissions required in index coding.
+We develop several approximation algorithms and evaluate their
+performance through simulations.1
+
+clients have no side information; if each one of them requests a
+different message, with index coding we need n transmissions,
+while if the clients are pliable, we can simply send any one
+message. Using a probabilistic argument, we in fact show that
+n
+only O(log n log( log n )) coded bits are sufﬁcient in the worst
+case and this improves to O(log n) (almost surely) for random
+side information sets (for the case m = n).
+The ﬁnal contribution of this paper is a family of approximation algorithms we develop. These are based on a bipartite
+graph representation of the problem and employ coverings of
+the graph. We present three algorithms: the ﬁrst based on a
+greedy covering of the graph, the second based on randomized
+covering and the third based on a reduction to ICOD.
+The paper is organized as follows. After a brief survey of
+work related to index coding in Section II, in Section III we
+precisely deﬁne the PICOD problem. In Section IV, we prove
+that ﬁnding the optimal linear code for PICOD is NP-Hard.
+In Section V we prove upper bounds on the number of coded
+bits required to solve an instance of PICOD. In Section VI
+we develop several efﬁcient polynomial time approximation
+algorithms. In Section VII we show through simulations on
+random instances of the problem that the algorithms work
+very well in practice and the required number of broadcasts
+is signiﬁcantly less than that required in ICOD for similar
+settings.
+
+I. I NTRODUCTION
+In the well-known Index Coding with side-information
+problem (ICOD), a server holds m bits (or messages), and
+can broadcast over a noiseless channel to a set of n receivers
+or clients. Each client has as side information some subset of
+the m bits, and requests from the server a speciﬁc message she
+does not have. The objective is to devise an optimal coding
+strategy that minimizes the number of broadcast transmissions
+the server makes to satisfy the demands of all clients [4]. This
+problem has been proven to be NP-hard; infact, it is even hard
+to ﬁnd constant-factor approximations [2], [13], [11].
+But what if the clients are “pliable”, and are happy to
+receive any one message they do not already have? There are
+several applications that motivate this relaxation: for example,
+the clients might be doing an internet search, have collected
+some information and are interested in receiving with low
+delay additional information on the subject they are searching;
+they do not care which speciﬁc piece of information they do
+receive, as long as it is something they do not already have.
+We term this formulation Pliable Index Coding (PICOD). In
+this paper, we are interested in linear coding solutions.
+Our ﬁrst question was, whether removing the speciﬁc requirements we can ﬁnd an optimal linear code in polynomial
+time. We hoped that this might be true, since we now have a
+signiﬁcantly larger number of choices in what to transmit to
+each receiver. This turns out not to be the case; we prove that
+the problem remains NP-hard.
+Our second question was, how many transmissions do we
+need in this case, i.e., what is the effect on the length of
+the code. In traditional index coding, it is easy to construct
+instances that require Ω(n) bits and even for random instances
+of the problem (i.e. random side information sets), Haviv et.al.
+[10] show that the minimum length of linear index codes is
+√
+almost surely Ω( n). Pliable index coding can only do better,
+and much better in some cases. For example, assume that the
+
+II. R ELATED W ORK
+Over the past few years, there has been a signiﬁcant amount
+of work on the theory of ICOD, especially for linear codes.
+The problem was introduced by Birk et. al. [4] in the context
+of an application in satellite communication networks. BarYossef et.al. [2] presented the ﬁrst theoretical analysis of the
+problem. They showed that the optimal length for a scalar
+linear index code is given by a graph functional called the
+minrk. They conjectured this to be true even for non-linear
+codes, which was disproved by Lubetzky et.al. [12]. New
+graph parameters were introduced in [1] showing the strict
+separation of optimal solutions for different ﬁeld sizes.
+Building on the work of [11], [9] which investigate the
+connections between Index Coding and Network Coding and
+using information theoretic linear programs Blasiak et.al [5]
+prove some of the best known bounds for the index coding
+problem. The work of Blasiak et.al [5], [6] also shows several
+separation results between the optimal linear and non-linear
+index codes. These results can also be used to come up with
+instances in network coding that have large gaps between
+linear and non-linear coding rates. There have been several
+other papers dealing with variants of the ICOD problem
+
+1 This work was supported by the European Research Council grant
+NOWIRE ERC-2009-StG-240317.
+
+1
+
+(a)
+
+Server has
+bits b1 , b2 , b3
+
+(b)
+
+Server has
+bits b1 , b2 , b3
+
+Client 1
+Has b2 , b3
+Requires b1
+
+Client 2
+Client 3
+Has b1
+Has b2
+Requires b2 Requires b3
+
+been shown to be NP-Hard by Schaefer [14]. Suppose φ is
+made up of M literals αi , · · · , αM and N0 clauses
+
+b1 ⊕ b2
+1 Broadcast
+
+b1 ⊕ b2 , b3
+2 Broadcasts
+Client 1
+Has b2 , b3
+Requires b1
+
+N0
+
+φ(α1 , · · · , αM ) =
+
+Client 2
+Client 3
+Has b1
+Has b2
+Requires b2 or b3 Requires b1 or b3
+
+(αi,1 ∨ αi,2 ∨ αi,3 )
+i=1
+
+where clause i is a disjunction of the literals αi,1 , αi,2 , αi,3 .
+The precise reduction is shown in the following lemma.
+Lemma 4.1: Given an instance φ of MONOTONE-1in3SAT as deﬁned above, there is an instance Iφ,M,N0 of linear
+PICOD such that φ has a satisfying assignment if and only if
+we can ﬁnd for Iφ,M,N0 a solution of length 1.
+Proof: Given the MONOTONE-1in3-SAT instance φ,
+consider an instance Iφ,M,N0 of PICOD deﬁned as follows:
+1) There are N0 clients ci , i ∈ [N0 ] corresponding to the
+clauses where ci corresponds to clause i.
+2) There are M bits bj , j ∈ [M ] corresponding to the
+literals where bit bj corresponds to literal αj .
+3) The side information set for ci consists of all the bits
+that do not correspond to the literals in clause i. That is
+Nc [i] = {j, literal αj is not in clause i}
+
+Fig. 1. (a) ICOD needs 2 boradcasts and (b) PICOD needs just one broadcast
+
+including the complementary index coding problem [7], secure
+index coding [8] and index coding with outerplanar side
+information [3].
+III. P ROBLEM D EFINITION
+We will assume that the messages are bits and encodings
+are linear, i.e., the encoded bits are the binary sum of uncoded
+bits over the ﬁeld GF (2). Suppose that the server has m
+information bits b1 , · · · , bm and there are n clients c1 , · · · , cn .
+Each client ci knows a subset of bits bNc [i] , where Nc [i] is a
+strict subset of [m]. Here bNc [i] denotes the set {bj , j ∈ Nc [i]}
+and [m] = {1, 2, · · · , m}. Thus Nc [i] represents the indices
+of the bits that client ci has as side information. Given m, n
+and the side information sets Nc [i], the linear Pliable Index
+Coding with Side Information (PICOD) problem is to devise
+a minimum length linear code C which consists of
+1) A linear encoding function E mapping x ∈ {0, 1}m to
+E(x) ∈ {0, 1}l , where l is the length of the code.
+2) Decoding functions D1 , · · · , Dn for the n clients such
+that Di (E(x), bNc [i] ) = bki for some ki ∈ Nc [i] = [m] \
+Nc [i].
+As is standard, it is assumed that the server knows the
+side information sets. In contrast to ICOD where the bit
+requirements ki ∈ Nc [i] are speciﬁed precisely, in PICOD
+it is sufﬁcient for each client ci to learn any one bit that she
+does not already know. To illustrate the difference, consider
+the scenario shown in Figure 1. In ICOD, at least 2 broadcast
+transmissions are needed. Client 1 can decode b1 from b1 ⊕ b2
+as she knows b2 . Client 2 can decode b2 from b1 ⊕ b2 as
+well, and client 3 gets b3 directly. It is easy to see that one
+transmission does not sufﬁce in this case. On the other hand,
+in PICOD, it is sufﬁcient to send just b1 ⊕ b2 as clients 1 and
+3 can decode b1 = b2 ⊕ (b1 ⊕ b2 ) while client 3 can decode
+b2 = b1 ⊕ (b1 ⊕ b2 ). Note that in both cases, coding does help
+as the number of transmissions is less than 3.
+
+Therefore, |Nc [i]| = M − 3 and |Nc [i]| = 3 for all
+i ∈ [N0 ].
+Suppose there exists a linear code of length 1 that is a solution
+to Iφ,M,N0 . It is of the following form
+S = bj 1 ⊕ bj 2 · · · ⊕ b j s
+for some j1 , · · · , js ∈ [M ]. Let Js = {j1 , · · · , js }. Since
+every client ci must be able to decode at least one bit not in
+Nc [i] and there is only one coded bit, ∀i ∈ [N0 ], there exists
+jt ∈ Js such that jt ∈ Nc [i]. Since bji has to be decodable
+by ci , there can be at most one such index. Thus, the set Js
+has the property that exactly one of its members is present
+in each Nc [i]. Clearly, if we set the corresponding literals
+{αjk , 1 ≤ k ≤ s} to True and others to False, we make
+sure that all the clauses (which correspond to the clients) are
+satisﬁed and exactly one literal in each clause is True, which
+therefore satisﬁes φ. Thus, a code of length 1 for Iφ,M,N
+can be used to generate a satisfying assignment for φ that
+has exactly one True literal in each clause. Exactly the same
+argument can be reproduced backwards to prove the converse,
+which completes the reduction. Finally, it is easy to see that
+the reduction can be accomplished in polynomial time.
+Since MONOTONE-1in3-SAT is NP-Hard, Lemma 4.1
+implies that PICOD is NP-Hard. Therefore, in general we
+cannot hope to get polynomial time algorithms for ﬁnding the
+minimum length code unless P=NP.
+
+IV. PICOD IS NP-H ARD
+For given side information sets, the length of the optimal
+pliable index code cannot be worse than the length of the
+optimal index code. This is because the index code encodes
+for a speciﬁc set of required bits, which is just one of the
+many conﬁgurations allowed in the pliable case. However, as
+we show in this section, even for linear codes, PICOD is an
+NP-Hard problem. This will be accomplished by reducing the
+MONOTONE-1in3-SAT problem to the PICOD problem.
+Given a 3SAT instance φ with all literals in non-negated
+form, the MONOTONE-1in3-SAT problem asks whether there
+is a satisfying assignment such that exactly one literal is True
+in each clause of the formula. MONOTONE-1in3-SAT has
+
+V. U PPER B OUNDS FOR PICOD
+We know that for ICOD there are instances which require
+Ω(n) coded bits. Is it also the case with PICOD? We show
+in this section that for PICOD we can do much better. For
+the remaining of the paper, we will assume that m = n to
+simplify the exposition. Similar results can be obtained for
+general values of m as well.
+We can visualize an instance of PICOD using a bipartite
+graph G with n vertices on one side representing the bits
+
+2
+
+(a)
+
+b1
+
+(b)
+
+b2
+
+b1
+
+W =4
+
+b2
+
+in B1 is
+
+b3
+
+Pi = d(ci )p(1 − p)d(ci )−1
+
+W =5
+
+The expected number of vertices in W (B1 ) is
+c1 c2
+
+c3
+
+c1 c2
+
+c 4 c5
+
+c3
+
+c4 c 5
+
+k
+
+c6 c 7
+
+Ep [|W (B1 )|] =
+
+d(ci )p(1−p)d(ci )−1 ≥ kdmin p(1−p)dmax −1
+
+i=1
+
+(c)
+
+b1
+
+W Decreases. Stop!
+
+b2
+
+b3
+
+1
+The expression p(1 − p)x is maximized for p = x . Therefore
+1
+by selecting p = dmax we get
+dmin
+dmin
+k
+Ep [|W (B1 )|] ≥ k
+(1 − dmax )dmax −1 ≥ k
+≥
+dmax
+edmax
+er
+By the probabilistic method, there is at least one subset of B1
+k
+for which |W (B1 )| ≥ er which means the sum of the bits
+in B1 can satisfy a constant fraction of the k client vertices.
+1
+We are then left with at most k(1 − er ) client vertices. The
+ratio of the maximum and minimum degrees in this set is also
+bounded by r and hence the argument can be repeated until
+only a constant number of them are left. Since the number of
+client vertices reduces by a constant fraction in each iteration,
+at most O(log(k)) coded bits are required to satisfy all the k
+client vertices.
+For a general graph G representing an instance of PICOD, we
+use a suitable partition of the client vertices along with the
+above lemma to prove the following result.
+Theorem 5.2: For any PICOD instance with n bits and n
+client vertices, all the client vertices can be satisﬁed with a
+n
+code of length O(log n log( log n )) bits.
+Proof: The degrees of the client vertices can range from
+1 to n. Partition the vertices into t subsets S1 , . . . , St such that
+Si = {cl | 2i−1 ≤ d(cl ) ≤ 2i }. For the non-empty ones, clearly
+the ratio of the maximum and minimum degrees in each of
+the sets Si is at most 2 and t ≤ log2 (n) . Therefore, by the
+previous lemma, we need at most K log(|Si |) bits to satisfy
+the clients in Si , for some absolute constant K. The number
+of coded bits required is at most
+
+b4
+
+W =4
+
+c1 c2
+
+c3
+
+c4 c5
+
+c 6 c7
+
+c8
+
+Fig. 2. (a) A subgraph showing the coding scheme (b),(c) Greedy covering
+of the client vertices by neighboring bit vertices
+
+(termed as “bit vertices”) and n vertices on the other side
+representing the clients (termed as “client vertices”). We will
+identify the vertices by the bits or clients they represent. There
+is an edge from bj to ci if j ∈ Nc [i]. In Figure 2(a) shown
+above, bit b1 is not in the side information sets of clients
+c1 , c2 , c3 and hence is connected to them in G. In what follows,
+we will denote the neighborhood of ci in G by N [ci ] and its
+degree by d(ci ) = |N [ci ]|. N [bj ] and d(bj ) = |N [bj ]| are
+similarly deﬁned. We will use the term “satisfy” to imply that
+a code solves the PICOD problem for a speciﬁc subset of
+clients.
+Consider two bits b1 and b2 and their neighborhoods N [b1 ]
+and N [b2 ] in G. We distinguish the client vertices in N [b1 ] ∪
+N [b2 ] into two types, depending on the number of bit vertices
+they are adjacent to. The set of client vertices that are adjacent
+to exactly one of the bit vertices in B, is denoted by W (B).
+In Figure 2(a), for B = {b1 , b2 }, W (B) = {c1 , c2 , c4 , c5 } and
+is depicted by the double circles. Note that if b1 ⊕ b2 is sent to
+these |W (B)| = 4 vertices, each of them can decode a bit she
+does not have: c1 and c2 can decode b1 = b2 ⊕ (b1 ⊕ b2 ) as
+they know b2 ; similarly, c4 and c5 can decode b2 as they know
+b1 . On the other hand, the set of clients which are adjacent to
+more than one bit vertex, as is {c3 }, can decode neither b1 nor
+b2 . The same logic can be extended if B contains more than
+two bit vertices: if we transmit the sum of the bits in B, all
+the |W (B)| client vertices will be able to decode a bit they do
+not have; in other words, it is sufﬁcient to broadcast the sum
+bit to “satisfy” all the |W (B)| clients. We use this intuition
+to prove the following results.
+
+t
+
+t
+
+log(|Si |) = K log
+
+K
+
+|Si |
+
+≤ K log
+
+t
+i=1
+
+|Si |
+
+t
+
+t
+i=1
+n
+n
+))
+≤ Kt log( ) = O(log n log(
+t
+log(n)
+where the ﬁrst inequality follows from the Arithmetic MeanGeometric Mean inequality [15].
+Theorem 5.3: For a random PICOD instance where an edge
+between bj and ci in G exists with a constant probability q, for
+a large enough n, all the clients can be satisﬁed with O(log n)
+coded bit transmissions almost surely.
+Proof: By the law of large numbers, the degree of each
+client vertex is concentrated near the mean nq. That is, for a
+large enough n, almost surely d(ci ) ∈ [n(q − ), n(q + )], for
+any > 0. If we select an < q/3, almost surely the ratio of
+the maximum and minimum degrees is ≤ 2. Then the claim
+follows from Lemma 5.1.
+i=1
+
+Lemma 5.1: W.l.o.g let C = {c1 , c2 , . . . , ck } be a group
+of k client vertices and dmax = max{d(ci )| i ∈ [k]} and
+dmin = min{d(ci )| i ∈ [k]}. Let dmax ≤ rdmin for some
+ﬁxed constant r ≥ 1. Then there is a code of length O(log(k))
+that “satisﬁes” C.
+Proof: We will use a probabilistic argument. Consider the
+neighborhood B0 of C in G, i.e., B0 = ∪k N [ci ]. Randomly
+i=1
+select a subset B1 of bit vertices by selecting each vertex of
+B0 with probability p (which will be determined later). Then
+the probability Pi of ci being adjacent to exactly one vertex
+
+VI. A PPROXIMATION A LGORITHMS
+In this section we propose polynomial approximation algorithms for solving the linear PICOD problem. The ﬁrst two
+
+3
+
+has no edges to W (B2 ) and B2 has no edges to W (B1 ),
+then by the same reasoning as above, we can send the sum
+of all the bits in B1 ∪ B2 to satisfy all the client vertices
+in W (B1 ) ∪ W (B2 ). This can be extended to include more
+than two sets by selecting the sets greedily. When this postprocessing step is added to RANDCOV, we call the algorithm
+RANDCOV-PP. The expected running time of RANDCOV-PP
+remains O(n log2 n).
+
+algorithms are developed on the bipartite graph representation
+and the use of sets B and W (B), described in the beginning
+of Section V. They differ in the way we choose the set of bit
+vertices B. The third one is based on a reduction to the index
+coding problem.
+A. Algorithm GRCOV
+We try to ﬁnd a set of bit vertices B such that |W (B)| is
+maximized. Rather than trying to obtain the maximum such set,
+we greedily ﬁnd a maximal such set. Let B = {bv1 , · · · , bvt }
+be a set of bit vertices. B is a maximal set if for any vertex
+/
+bvt+1 ∈ B, |W (B ∪ {bvt+1 })| < |W (B)|. To ﬁnd a maximal
+set, we start with the null set and keep on adding bit vertices
+that greedily maximize |W (B)| in each step; we stop when no
+further additions are possible without decreasing |W (B)|. For
+example, Figure 2 represents a possible sequence of operations
+where B = {b1 , b2 , b3 } is a maximal set. When b3 is added,
+the cardinality of W (B) increases but further addition of b4
+decreases it, in which case we stop.
+Once such a maximal set BM is obtained, an encoded bit
+consisting of the sum of all the bits in BM is broadcasted. The
+vertices in W (BM ) and all edges incident to it are removed
+and the algorithm is resumed for the remaining graph, until
+all the client vertices are satisﬁed. We call this GRCOV (for
+greedy cover). A simple implementation of the algorithm has
+a running time of O(n3 ). While we have not been able to
+prove worst case approximation guarantees for GRCOV, there
+exist examples where GRCOV can take Ω(log n) bits while
+the optimal code requires just two bits. We omit them due to
+lack of space.
+
+C. Algorithm ICOD-SETCOV
+Finally, we propose another algorithm that is based on a
+reduction to the ICOD problem. In an instance of PICOD, it
+is sufﬁcient that ci is able to decode any one bit in N [i]. We
+split client ci into |N [i]| “pseudo-clients” each with a distinct
+bit from N [i] as a requirement and with the same common
+n
+side information sets. Therefore, in total we get i=1 |N [i]|
+pseudo-clients. This is an instance of the ICOD problem and
+can be solved using one of the algorithms proposed in [4]. We
+use the simplest one based on greedy clique cover.
+Let the set of encoded bits be E. For the greedy clique
+cover algorithm, each encoded bit allows for decoding in one
+step. In other words, each client can decode its required bit
+using just one encoded bit and each encoded bit can satisfy
+the requirements of a certain number of pseudo-clients. This
+naturally deﬁnes a “covering” relationship where an encoded
+bit covers a set of pseudo-clients. Also note that each pseudoclient in fact corresponds to an original client, the one from
+which it was created. Therefore, for each encoded bit et ∈ E
+we can deﬁne the set of original clients that it “covers” as
+Cov(et ) = {ct,1 , · · · , ct,st } ⊆ {c1 , · · · , cn }
+In fact, the same client can occur in several of these covering
+sets. Since we only need a client to be able to decode a single
+bit that it does not know, it is sufﬁcient to ﬁnd a collection
+of et such that the corresponding Cov(et )s cover all the
+clients. Further we want to minimize the size of this collection
+for the optimal encoding. This is precisely an instance of
+the minimum SET-COVER problem with clients being the
+elements and the Cov(et ) being the sets. In our simulations,
+we use the standard greedy approximation algorithm to solve
+it. We call this algorithm ICOD-SETCOV and the running
+time for a non-optimized implementation is O(n4 ).
+
+B. Algorithm RANDCOV
+The RANDCOV (for randomized cover) algorithm follows
+the procedure in the proof of Theorem 5.2 (in Section V) to
+ﬁnd an encoding. The client vertices are partitioned into at
+most t = O(log n) groups S1 , . . . , St such that the ratio of
+the maximum and minimum degrees in each group is at most
+r (a ﬁxed constant). Let the maximum degree of client vertices
+in Si be dmax,i . In the neighborhood N [Si ], we select each
+1
+vertex with probability pi = dmax,i . If Bi is the set of selected
+vertices, the clients in W (Bi ) are satisﬁed. This process is
+continued until all the vertices in Si are satisﬁed. The number
+of randomly sampled sets required is also the number of coded
+bits required. This is done for each of the sets Si to ﬁnd a code
+for all the client vertices. Along the lines of Theorem 5.2, it
+n
+can be proved that RANDCOV requires O(log n log( log(n) )
+bits in expectation. (We omit the proof due to lack of space).
+The expected running time of RANDCOV is O(n log2 n).
+Algorithm RANDCOV-PP: Although it is possible to
+prove bounds on the number of bits required by RANDCOV,
+as we shall see in the next section, a simple implementation
+does not perform very well as compared to GRCOV on
+random instances. To make it more efﬁcient we propose the
+following post processing phase. Let B1 and B2 be two sets
+of bit vertices and let the corresponding client vertex sets
+that they satisfy be W (B1 ) and W (B2 ) respectively. If B1
+
+VII. E XPERIMENTAL R ESULTS
+In this section, we present results of extensive simulations
+on random instances of PICOD to evaluate the performance of
+the algorithms presented in the previous section. The number
+of clients and bits is chosen to be both n = 512. For
+RANDCOV and RANDCOV-PP we choose r = 3. The ﬁrst set
+of results correspond to random instances of PICOD generated
+as a function of the bit probability pbit - the probability of a
+client knowing a particular bit.2 Figure 3 shows the average
+performance of the algorithms over several runs (more than
+2 Such random instances can model block-fading in wireless channels: when
+the channel SNR is low, the client higher layers experience erasures with
+probability p, while at a next block of high SNR, we want to perform
+“lossless” transmissions as efﬁciently as possible.
+
+4
+
+45
+25
+
+GRCOV
+Max Bits for GRCOV
+RANDCOV
+RANDCOV−PP
+ICOD−SETCOV
+ICOD
+
+35
+
+Number of Coded Bits
+
+Number of Coded Bits
+
+20
+
+GRCOV
+RANDCOV
+RANDCOV−PP
+ICOD−SETCOV
+
+40
+
+15
+
+10
+
+30
+25
+20
+15
+10
+
+5
+
+5
+0
+
+0
+
+0.2
+
+0.4
+
+0.6
+
+0.8
+
+0
+
+1
+
+Bit Probability pbit (n=512)
+
+Fig. 3.
+
+1
+
+2
+
+4
+
+8
+
+16
+
+32
+
+64
+
+128
+
+256
+
+512
+
+Number of Different Degrees in Client Vertices (n=512)
+
+Fig. 4. Average performance of PICOD algorithms with the number of
+different degrees of client vertices (the x-axis has a log scale)
+
+Average performance of PICOD algorithms for varying pbit
+
+many random graphs, where in each graph there are client
+vertices with degrees {1, 2, . . . , 16}, n/16 for each degree.
+Even in this case, GRCOV beats all the other algorithms.
+However, RANDCOV-PP performs signiﬁcantly better than
+ICOD-SETCOV over most of the range.
+
+10, 000 for each value of pbit ). We also plot the performance
+of the clique cover algorithm for ICOD presented in [4].
+As expected, we observe a signiﬁcant difference between
+the performance of the PICOD algorithms and the ICOD
+algorithm for the same pbit . While all the three PICOD
+algorithms proposed above take less than 26 bits on average,
+the ICOD solution hovers in this range only for pbit ≥ 0.87
+which is the case when the side information sets are dense. In
+the remaining range of pbit values, all the PICOD algorithms
+use fewer bits and the difference only becomes larger when
+the side information sets are sparser.
+Among the four algorithms for PICOD presented in the
+paper, GRCOV performs by far the best. For the random
+graphs on which the simulations were run, arguments similar
+to the ones used in Section V can be used to show that it
+produces an encoding with the same asymptotic performance
+as RANDCOV, but the practical performance is much better. In
+fact, the maximum number of coded bits required by GRCOV
+(this is among the random instances in the simulation, not
+globally), which is also plotted in the ﬁgure, is not substantially different from the average number. The performance
+of RANDCOV-PP is substantially better than RANDCOV,
+especially when the side information sets are denser and hence
+the G is sparser. Also, the performance of RANDCOV takes
+a hit in this regime. Both of these are due to the fact that
+the number of partitions in the client vertices increases, although most of them are “disjoint” which allows RANDCOVPP to improve the performance signiﬁcantly. Finally, ICODSETCOV performs as good as GRCOV when pbit ≤ 0.5 but
+becomes worse as G becomes sparser. This can be partly
+explained by the suboptimal nature of the greedy SET-COVER
+algorithm that we are using.
+Finally, Figure 4 shows the average performance of the
+PICOD algorithms on random instances of graphs as a function
+of the number of different degrees of the client vertices.
+For example, the points corresponding to 16 on the x-axis
+represents the average performance of the algorithms over
+
+R EFERENCES
+[1] N. Alon, A. Hassidim, E. Lubetzky, U. Stav and A. Weinstein, “Broadcasting with side information”, Proc. of the 49th Annual IEEE Symposium
+on Foundations of Computer Science, pp. 823–832, 2008.
+[2] Z. Bar-Yossef, Y. Birk, T. S. Jayram and T. Kol, “Index Coding with Side
+Information”, Proc. of 47th Annual IEEE Symposium on Foundations of
+Computer Science, pp. 197-206, 2006.
+[3] Y. Berliner and M. Langberg, “Index coding with outerplanar side
+information”, Proc. of IEEE International Symposium on Information
+Theory, pp. 806–810, 2011.
+[4] Y. Birk and T. Kol. “Informed-source coding-on-demand (ISCOD) over
+Broadcast Channels”, Proc. of INFOCOM, vol. 3, pp. 1257–1264, 1998.
+[5] A. Blasiak, R. Kleinberg and E. Lubetzsky, “Index coding via linear
+programming”, Available at http://arxiv.org/abs/1004.1379.
+[6] A. Blasiak, R. Kleinberg and E. Lubetzsky, “Lexicographic products and
+the power of non-linear network coding”, 52nd IEEE Symposium on
+Foundations of Computer Science, pp. 609–618, 2011.
+[7] M. A. R. Chaudhry, Z. Asad, A. Sprintson and M. Langberg, “On
+the complementary index coding problem”, Proc. of IEEE International
+Symposium on Information Theory, pp. 244–248, 2011.
+[8] S. H. Dau, V. Skachek and Y. M. Chee, “On secure index coding with
+side information”, Proc. of IEEE International Symposium on Information
+Theory, pp. 983–987, 2011.
+[9] S. El Rouayheb, A. Sprintson and C. Georghiades, “On the relation
+between the index coding and the network coding problems”, Proc. of the
+IEEE International Symposium on Information Theory, pp. 1823–1827,
+2008.
+[10] I. Haviv and M. Langberg, “On linear index coding for random graphs”,
+Available at http://arxiv.org/abs/1107.0390.
+[11] M. Langberg and A. Sprintson, “On the hardness of approximating the
+network coding capacity”, Proc. of the IEEE International Symposium on
+Information Theory, pp. 315–319, 2008.
+[12] E. Lubetzky and U. Stav, “Non-linear index coding outperforming the
+linear optimum”, Proc. of 48th Annual IEEE Symposium on Foundations
+of Computer Science, pp. 161-168, 2007.
+[13] R. Peeters,“Orthogonal representations over ﬁnite ﬁelds and the chromatic number of graphs”,Combinatorica, vol. 16, no. 3, pp. 417–431,
+1996.
+[14] T. J. Schaefer. “The complexity of satisﬁability problems”, Proc. of the
+10th Annual ACM Symposium on Theory of Computing, pp. 216226, 1978.
+[15] M. J. Steele. “The Cauchy-Schwarz Master Class”, Cambridge University Press, 2004.
+
+5
+
+

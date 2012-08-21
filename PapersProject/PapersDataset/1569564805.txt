@@ -1,0 +1,714 @@
+Creator:        TeX
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Fri May 18 23:49:01 2012
+ModDate:        Tue Jun 19 12:55:15 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      397856 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569564805
+
+Update Efﬁcient Codes for Error Correction
+Arya Mazumdar and Gregory W. Wornell
+
+Venkat Chandar
+
+Dept. EECS, MIT, Cambridge, MA 02139
+email: {aryam, gww}@mit.edu
+
+MIT Lincoln Laboratory, Lexington, MA 02420
+Email: vchandar@mit.edu
+
+Deﬁnition 1: A code (C, φ) is (u, t)-update-efﬁcient if for
+all x ∈ Fk , and for all e ∈ Fk such that wt(e) ≤ u, we have
+2
+2
+φ(x + e) = φ(x) + e , for some e ∈ Fn such that wt(e ) ≤ t.
+2
+For much of our development in this paper, we focus on the
+case where u = 1, and equivalently refer to an (1, t)-updateefﬁcient code as one having update efﬁciency t.
+As background for the present work, much of the initial
+work on update efﬁcient codes has focused on their use on
+the binary erasure channel (BEC), which is a natural model
+for capturing server failures. For example, in [2] it is shown
+that there exist capacity-achieving codes for the BEC with
+update-efﬁciency O(log n). A subsequent paper [13] shows,
+using the randomized codes proposed [2], that it is possible
+for capacity-achieving codes for the BEC to have both updateefﬁciency and repair-bandwidth efﬁciency, a property desirable
+in distributed storage. Yet another recent paper [9] considers
+the update-efﬁciency of linear codes.
+In this paper we are concerned with update-efﬁcient codes
+that also correct errors. In addition to distributed storage
+applications, another potential application for such codes is
+transmitting uncompressed video over a noisy communication
+link. As the messages (video-frames) only change slightly
+from one frame to the next, update-efﬁcient codes can be an
+efﬁcient mechanism for encoding the sequence of frames.
+We consider two models of error: random and adversarial.
+The random errors take the form of independent bit ﬂips,
+corresponding to a binary symmetric channel (BSC), with ﬂip
+probability 0 < p < 1/2. Such a channel is denoted via
+BSC(p).
+Correcting errors is generally a more difﬁcult task than
+correcting erasures. In this paper we show that the result for
+erasures in the paper [2] carries over for the case of errors,
+viz., there exist linear codes with update efﬁciency O(log n)
+that achieve rates arbitrary close to the BSC(p) capacity of
+1 − h(p), where h(p) = −p log p − (1 − p) log(1 − p) is the
+binary entropy function, with probability of error approaching
+zero. In addition, we show a converse result. To be speciﬁc,
+we show that for a suitable α > 0, within the ensemble of
+positive rate linear codes with update efﬁciency α log n, almost
+all codes have a probability of error bounded away from zero
+on the BSC(p). We also show a stronger version of this result,
+namely, that for some other α > 0, there does not exist a code
+with update-efﬁciency α log n that has both positive rate and
+arbitrarily small probability of error.
+
+Abstract—An update efﬁcient code is a mapping from messages
+to codewords such that small perturbations in the message
+induce only slight changes to the corresponding codeword. The
+parameter that captures this notion is called update-efﬁciency. In
+this paper we study update-efﬁcient error-correcting codes and
+develop their basic properties. While update-efﬁciency and errorcorrection are two conﬂicting objectives, we deduce conditions for
+existence of such codes. In particular, logarithmically growing
+update-efﬁciency is achievable with a capacity-achieving linear
+code in both binary symmetric and binary erasure channels.
+On the other hand we show a tight converse result. Our result
+implies that it is not possible to have a capacity-achieving code
+in binary symmetric channel that has sub-logarithmic updateefﬁciency. This is true in the case of the binary erasure channel
+as well for linear codes. We also discuss a number of questions
+related to update-efﬁcient adversarial error-correcting codes.
+
+I. I NTRODUCTION
+In a variety of applications such as distributed storage
+networks, there is a need for update-efﬁcient codes. Such
+networks consist of multiple distributed and unreliable storage
+devices across which dynamically changing information must
+be stored. Each time a portion of the information content
+changes, its associated reliable encoding must also change,
+and the contents of the storage devices updated accordingly. In
+such applications, to minimize the communication bandwidth
+and power resources required by such networks, it is desirable
+to have encodings that are update-efﬁcient, i.e., minimize
+the number of storage devices affected when the information
+content changes. In this paper we examine aspects of the
+degree to which such update-efﬁcient codes are possible.
+In our development, a code C ∈ Fn is a collection of binary
+2
+n-vectors with a one-to-one encoding map φ : Fk → C, k < n.
+2
+We restrict our attention speciﬁcally to error-correcting codes
+(i.e., channel codes). The support of a vector x, denoted
+supp(x), is the set of coordinates where x has nonzero values.
+In turn, the weight of a vector, denoted wt(x), is the size its
+support.
+The notion of update-efﬁciency for channel codes is introduced in [2]. A code is called update-efﬁcient if for a small
+change in the message x ∈ Fk , the corresponding codeword
+2
+φ(x) changes only slightly. Formally, we have the following
+deﬁnition.
+This work was supported in part by the US Air Force Ofﬁce of Scientiﬁc
+Research under Grant No. FA9550-11-1-0183, by the National Science
+Foundation under Grant No. CCF-1017772, and by Hewlett-Packard Labs.
+The results of this paper can be generalized to q-ary alphabets (q > 2)
+with little effort.
+
+All logarithms in this paper are base 2 unless otherwise indicated.
+
+1
+
+Let Γn,k,t be the set of all k × n matrices over F2 such that
+each row has exactly t ones. First, we recall the following
+lemma from [5], which shows that almost all the matrices in
+Γn,k,t generate codes with dimension k (i.e., the rank of the
+matrix is k).
+Lemma 2: Randomly and uniformly choose a matrix G
+−t
+from Γn,k,t . If k is such that k ≤ 1 − e 2 − o(e−t ) n,
+ln
+then with probability 1 − o(1) the rank of G is k.
+This lemma, along with the next theorem, prove that almost
+all codes in Γn,k,t are bad for small t.
+Theorem 3: Fix an 0 < α < 1/2, and assume that k ≥
+√
+2 2α
+n
+nα , t ≤ n/2. Then, for at least 1 − tn−t proportion of the
+matrices in Γn,k,t , the associated linear code has probability
+α
+√
+of error at least n t 2−λp t over a BSC(p) for p < 1/2 and
+λp = −1 − 1/2 log p − 1/2 log(1 − p) > 0.
+Before proving this theorem, we state the following corollary.
+Corollary 4: For at least 1 − o(1) proportion of all linear
+codes with update efﬁciency t < α− log n, α < 1/2, > 0
+λp
+and dimension k, k > nα , the probability of error is 1 − o(1)
+over a BSC(p) for p < 1/2.
+In particular, this shows that codes with update efﬁciency <
+log n/(2λp ) and rate > nα−1 are almost always bad.
+Proof of Corollary 4: From Lemma 2 it is clear that 1 −
+o(1) proportion of all codes in Γn,k,t have rank k. Hence, if 1−
+o(1) proportion of codes in Γn,k,t have some property, 1−o(1)
+proportion of codes with update-efﬁciency t and dimension
+k also have that property. Plugging in the value of t in the
+expression for the error probability from Theorem 3 gives the
+corollary.
+To prove Theorem 3 we will need the following series of
+lemmas.
+Lemma 5: Let x ∈ {0, 1}n be a vector of weight t. Let the
+all-zero vector of length n be transmitted over a BSC with ﬂip
+probability p < 1/2. If the received vector is y, then,
+
+For the case of adversarial errors, update-efﬁciency and
+error correction are conﬂicting objectives. However, following
+[2] and [11], it can be shown that there exist codes with updateefﬁciency O(log n) that correct any pn adversarial errors if
+there is sufﬁcient shared randomness between the encoder and
+the decoder. We discuss several properties of linear codes that
+result in good update-efﬁcient error correcting codes, and give
+a number of examples. Finally, we turn our attention to general
+(u, t)-update-efﬁcient codes and provide bounds on the size of
+an update-efﬁcient code in terms of the minimum distance of
+the code.
+In this paper, we focus primarily on linear codes, which
+are attractive in terms of representation and both encoding
+and decoding complexity. A linear code (C, φ) is such that
+φ : Fk → C is a homomorphism. It can always be represented
+2
+by a k × n generator matrix G such that φ(x) = xT G, for
+any x ∈ Fk . Note that G for a code is not unique; distinct G
+2
+give different labelings. By an [n, k, d] code we mean a linear
+code with length n, dimension k and minimum distance d.
+For a linear code, the maximum number of bits that change
+in the codeword when one bit in the message changes is the
+maximum over the weights of the rows of the generator matrix.
+Hence, for an update-efﬁcient code, we need a representation
+of the linear code where the maximum weight of the rows of
+the generator matrix is low.
+Proposition 1: A linear code C will have update-efﬁciency t
+if and only if there is a generator matrix G of C with maximum
+row weight t.
+Proof: It is easy to see that if the maximum number of
+ones in any row is bounded above by t, then at most t bits
+need to be changed following a one bit change in the message.
+On the other hand, if the code has update-efﬁciency
+t then there must exist a labeling φ that gives a
+sparse generator matrix. Speciﬁcally, the vectors
+(1, 0, . . . , 0), (0, 1, . . . , 0), . . . , (0, 0 . . . , 1)
+∈
+Fk must
+2
+produce vectors of weight at most t under φ, so the generator
+matrix given by φ has row weight at most t.
+Proposition II-B implies that given a linear code, to see
+whether it is update-efﬁcient or not, we need to ﬁnd the
+sparsest basis for the code. A linear code with a sparse basis
+is informally called a low density generator matrix (LDGM)
+code.
+
+1
+Pr(wt(y) > dH (x, y)) ≥ √ 2−λp t ,
+t
+where λp = −1 − 1/2 log p − 1/2 log(1 − p) > 0.
+The proof is omitted.
+Lemma 6: Suppose two random vectors x, y ∈ {0, 1}n are
+chosen independently and uniformly from the set of all length√
+n binary vectors of weight t ≤ n/2. Then,
+
+II. LDGM CODES AND CAPACITY OF BSC
+
+Pr(supp(x) ∩ supp(y) = ∅) > 1 −
+
+A. No good codes with update efﬁciency < α log n
+
+t2
+.
+n−t+1
+
+Proof: The probability in question equals,
+
+We start this section with a negative result regarding updateefﬁcient codes on the BSC. Suppose we want to construct a
+code with update efﬁciency t. We will look at the ensemble
+of linear codes with update-efﬁciency t and show that almost
+all codes in this ensemble are bad for t less than certain
+value. Proposition II-B shows that a linear code with update
+efﬁciency t always has a generator matrix with maximum row
+weight t. For simplicity, we consider generator matrices where
+all rows have weight t, but all the results can be extended to
+the case where the row weight is at most t.
+
+n−t
+t
+n
+t
+
+2
+
+((n − t)!)2
+(n − 2t)!n!
+(n − t)(n − t − 1)(n − t − 2) . . . (n − 2t + 1)
+=
+n(n − 1)(n − 2) . . . (n − t + 1)
+t
+t
+t
+= 1−
+1−
+... 1 −
+n
+n−1
+n−t+1
+t
+t
+t2
+> 1−
+≥1−
+.
+n−t+1
+n−t+1
+
+=
+
+In the last step we have truncated the series expansion of
+t
+n−t+1
+
+respect to the binary erasure channel, this is a stronger result.
+To see that a BSC(p) is a degraded version of BEC with
+erasure probability 2p, one can concatenate a BEC(2p) with a
+channel with ternary input {0, 1, ?} and binary output {0, 1}
+such that with probability 1 the inputs {0, 1} remain the same,
+and with uniform probability ? goes to {0, 1}.
+Our second result says that for the binary symmetric channel, even non-linear codes cannot have low update efﬁciency.
+We include both results because although the second result
+applies to more general codes, we have not been able to
+extend the second result to the binary erasure channel. We
+conjecture that for positive rates, even nonlinear codes must
+have logarithmic update complexity for the binary erasure
+channel (at zero rate, trivial counterexamples can be found).
+The proof for linear codes used over a binary erasure channel is based on Proposition , i.e., when the update complexity
+is low, the generator matrix G is very sparse. Let the random
+subset I ∈ {1, . . . , n} denote the coordinates not erased by
+the binary erasure channel. Let GI denote the submatrix of G
+induced by the unerased received symbols, i.e., the columns
+of G corresponding to I. Then, because G is so sparse, it is
+quite likely that GI has several all zero rows, and the presence
+of such rows implies a large error probability. We formalize
+the argument below.
+Theorem 8: Consider using some linear code of length n,
+dimension k and update-efﬁciency t, speciﬁed by generator
+matrix G over BEC(p). Assume that, for some > 0, t <
+−k2
+ln 2n ln /(−2 ln p). Then, the average probability of error is
+at least 1/2 − .
+Proof: For linear codes over the binary erasure channel,
+analyzing the probability of error essentially reduces to analyzing the probability that the matrix GI induced by the unerased
+columns of G has rank k (note that the rank is computed over
+F2 ). To show that the rank is likely to be less than k for
+sufﬁciently small t, let us ﬁrst compute the expected number
+of all zero rows of GI . Since G has update-efﬁciency t, every
+row of G has weight at most t, so the expected number of all
+zero rows of GI is at least kpt . The rank of GI , rk(GI ), is
+at most k minus the number of all zero rows, so the expected
+rank of GI is at most k − kpt .
+Now, observe that the rank is a 1-Lipschitz functional
+of the independent random variables denoting the erasures
+introduced by the channel. Therefore, by Azuma’s inequality
+[1, Thm. 7.4.2], the rank of GI satisﬁes
+
+t
+
+1−
+after the ﬁrst two terms. The inequality will be
+justiﬁed if the terms of the series are decreasing in absolute
+value. Let us verify that to conclude the proof. In the following
+Xi denote the ith term in the series, 0 ≤ i ≤ t.
+Xi+1
+=
+Xi
+
+t
+i+1
+t
+i
+
+·
+
+t
+t−i
+t
+=
+·
+≤ 1,
+n−t+1
+i+1 n−t+1
+
+for all i ≤ t − 1.
+Lemma 7: For 0 < α < 1/2,√choose random vectors
+xi , 1 ≤ i ≤ nα of weight t ≤ n/2 independently and
+uniformly from the set of weight-t vectors. Then,
+t2 n2α
+.
+n−t
+This implies all of the vectors have disjoint supports with
+2 2α
+n
+probability at least 1 − tn−t .
+Proof: The claim follows from taking a union bound over
+all pairs of randomly chosen vectors.
+Now we are ready to prove Theorem 3.
+Proof of Theorem 3: We begin by choosing a matrix
+G uniformly at random from Γn,k,t . This is equivalent to
+choosing each row of G uniformly and independently from
+the set of all weight-t binary vectors. Now k > nα , hence
+there exist nα vectors among the rows of G such that any two
+2 2α
+n
+of them have disjoint support with probability at least 1− tn−t
+2 2α
+t n
+(from Lemma 7). Hence for at least a proportion 1 − n−t of
+matrices of Γn,k,t , there are nα rows with disjoint supports.
+Suppose G is one such matrix. It remains to show that the
+α
+√
+code C deﬁned by G has probability of error at least n t 2−λp t
+over a BSC(p).
+Suppose, without loss of generality, that the all zero vector
+is transmitted over a BSC(p) and y is the vector received. Let
+xi , 1 ≤ i ≤ nα be codewords of weight t with disjoint support,
+guaranteed to exist by our assumption on C. The probability
+that the maximum likelihood decoder incorrectly decodes y
+to xi satisﬁes
+1
+Pr(wt(y) > dH (xi , y)) ≥ √ 2−λp t
+t
+from Lemma 5. As the codewords x1 , . . . xnα have disjoint
+supports, the probability that the maximum likelihood decoder
+α
+√
+incorrectly decodes to any one of them is at least n t 2−λp t .
+Pr(∀i = j, supp(xj ) ∩ supp(xi ) = ∅) ≥ 1 −
+
+It should be noted that the above theorem is easily extendable to the random ensemble of matrices whose entries are
+independently chosen from F2 with Pr(1) = t/n.
+
+λ2
+
+Pr(rk(GI ) ≥ E rk(GI ) + λ) < e− 2n .
+Therefore,
+
+B. No good codes with update efﬁciency < α log n, revisited
+
+λ2
+
+Pr(rk(GI ) ≥ k − kpt + λ) < e− 2n .
+
+In this subsection, for a smaller α than discussed above, we
+show that no code can simultaneously achieve low probability
+of error on the binary symmetric channel and have update
+complexity less than α log n. More precisely, we give two
+results. The ﬁrst result says that linear codes cannot have low
+update complexity when used over the binary erasure channel
+(BEC). Since the binary symmetric channel is degraded with
+
+In particular,
+Pr(rk(GI ) = k) < e−
+
+k2 p2t
+2n
+
+Assuming the value given for t we see that
+Pr(rk(GI ) = k) < .
+
+3
+
+.
+
+Since even the maximum likelihood decoder makes an error
+with probability at least 0.5 when rk(GI ) < k, this shows
+−k2
+that when t < ln 2n ln /(−2 ln p), the probability of error is
+at least 1/2− . (In fact, the average error probability converges
+to 1. The above argument can easily be extended to show that
+kδ
+the probability of decoding successfully is at most e−Ω( log k )
+for some δ > 0, but we omit the details.)
+Now, we show that even nonlinear codes cannot have
+low update efﬁciency for the binary symmetric channel. The
+argument is based on a simple observation. If a code has
+dimension k and update efﬁciency t, then any given codeword
+has k neighboring codewords within distance t, corresponding
+to the k possible 1-bit changes to the information bits. If t is
+sufﬁciently small, it is not possible to pack k + 1 codewords
+into a Hamming ball of radius t and maintain a low probability
+of error.
+Theorem 9: Consider using some (possibly non-linear)
+code of length n, dimension (possibly fractional) k, and
+update-efﬁciency t over BSC(p). Assume that for some α > 0,
+t ≤ (1−α) log k/ log((1−p)/p). Then, the average probability
+of error is at least 1 − o(1), where o(1) denotes a quantity that
+goes to zero as k → ∞.
+The proof will appear in the full version of the paper.
+
+most
+n −E(p,
+2
+m
+
+)m
+
+=
+
+nE(p, )
+E(p, )
+=
+.
+(1 + α)n1+α log n
+(1 + α)nα log n
+
+However, notice that the generator matrix has row weight
+1+α
+bounded above by m = E(p, ) log n. Hence, we have con1+α
+structed a code with update efﬁciency E(p, ) log n, and rate
+1−h(p)− that achieves a probability of error <
+on a BSC(p).
+
+E(p, )
+(1+α)nα log n
+
+III. A DVERSARIAL CHANNEL
+In the adversarial error model, the adversary is allowed to
+introduce up to s errors at locations of his choice. It is known
+that to correct s adversarial errors the minimum distance d(C)
+of a code C needs to be at least 2s + 1. However, if a code
+has update-efﬁciency t, then there must exist two codewords
+within distance t of each other. Hence, small update-efﬁciency
+implies limited error correction capability. We investigate these
+observations in more detail below.
+A. Correcting adversarial errors with a randomized code
+Although it is impossible for a ﬁxed error-correction code
+with small update efﬁciency to correct a large number of
+errors, if we randomize the code then it is possible to fool
+the adversary. In fact, with a randomized code it is possible to
+correct pn adversarial errors with a code rate approaching
+the capacity of a BSC(p). This idea has been used in the
+ˆ ˆ
+case of erasures in [2]. Let (C, φ) be a random code deﬁned
+as follows from another code (C, φ). Suppose σ ∈ Sn is
+an uniform random permutation on the set {1, . . . , n}, and
+z ∈ Fn is a uniform random vector. The random encoding in
+2
+ˆ
+ˆ
+C is deﬁned by φ(x) = σ(φ(x)) + z, x ∈ Fk . If the operation
+2
+ˆ
+ˆ
+of the decoding algorithm of C and C are denoted by ψ and ψ
+−1
+n
+ˆ
+respectively, then ψ(y) = ψ(σ (y + z)), y ∈ F2 . We have
+the following theorem that stems from [11].
+Theorem 10: Let C be a codes with rate 1 − h(p) − that
+achieves probability of error approaching 0 as n → ∞ over
+ˆ
+a BSC(p). Suppose C is a random code formed as above.
+ˆ
+Then, against any adversarial pn errors, the code Cn will have
+probability of error approaching 0 as n → ∞.
+In the above theorem if we take the code C to be the explicit
+ˆ
+code designed in Section II-C, then the code C remains an
+update-efﬁcient code with update-efﬁciency O(log n). Hence
+by sharing O(n log n) bits between the encoder and decoder,
+it is possible to correct a large number of adversarial errors
+with a high rate code. We omit the proof of the above theorem
+here, as it follows directly from [11].
+
+C. Good codes exists with update efﬁciency O(log n)
+On the other hand, it is relatively easy to construct a code
+with update efﬁciency O(log n) that achieves capacity on the
+binary symmetric channel. One can in principle choose the
+rows of the generator matrix randomly from all low weight
+vectors and argue that this random ensemble contain many
+codes that achieve capacity of the binary symmetric channel
+(BSC). Some steps in this direction have been made in [10].
+However there are easier ways to construct capacity achieving
+codes that have update efﬁciency O(log n). Let us describe
+one such construction1 .
+It is known that for every > 0 and any sufﬁciently large n,
+there exist a linear code of length n and rate 1 − h(p) − that
+has probability of error at most 2−E(p, )n . There are numerous
+evaluations of this result and estimates of E(p, ) > 0. We
+refer the reader to [3] as an example.
+1+α
+Let m = E(p, ) log n, for , α > 0 (we avoid using ceiling
+and ﬂoor to have a clean presentation). We know that for
+ˆ
+sufﬁciently large n, there exists a linear code C given by the
+ˆ with rate R = 1 − h(p) − that
+mR × m generator matrix G
+has probability of error at most 2−E(p, )m .
+Let G be the nR × n matrix that is the Kronecker product
+ˆ
+of G and the n/m × n/m identity matrix In/m , i.e.,
+
+B. Codes with small weight bases and the Griesmer bound
+
+ˆ
+G = In/m ⊗ G.
+
+As noted at the start of this section, in an error correcting
+code minimum distance and update efﬁciency are conﬂicting
+objectives. A code with distance d must have update-efﬁciency
+at least d because the nearest codeword is at least distance d
+away. If the update-efﬁciency of the code C is denoted by t(C)
+then t(C) ≥ d(C), where d(C) is the minimum distance of the
+code. Hence, the aim of a code-designer would be to design
+
+Clearly a codeword of the code C given by G is given by
+ˆ
+n/m codewords of the code C concatenated side-by-side. The
+probability of error of C is therefore, by the union bound, at
+1 This construction was suggested by Yury Polyanskiy in private communication.
+
+4
+
+u
+k
+i=0 i
+
+≤ B(n, d, t), where B(n, d, w) is the size of the
+largest code with distance d such that each codeword has
+weight at most w.
+Proof: Suppose C is an update-efﬁcient code where x ∈
+u
+Fk is mapped to y ∈ Fn . Now, the i=0 k different message
+2
+2
+i
+vectors that are within distance u from x should map to
+codewords within distance t from y. Suppose these codewords
+are y 1 , y 2 , . . . . Consider the vectors y−y, y 1 −y, y 2 −y, . . . .
+These must be at least distance d apart from one another and
+all of their weights are at most t. This proves the claim.
+It is not very difﬁcult to construct a (u, O(u log n)) update
+efﬁcient code that achieves the capacity of a BSC(p) by
+modifying the constructions of Section II-C. On the other
+hand, one expects a converse result of the form
+
+a code whose update-efﬁciency is as close to the distance as
+possible. As we saw in the Introduction, for a linear code C
+the update efﬁciency is simply the weight of the maximum
+weight row of a generator matrix. We recall the following
+theorem from [6].
+Theorem 11: Any binary linear code of length n, dimension
+k and distance d has a generator matrix consisting of rows of
+k−1 d
+is a nonnegative
+weight ≤ d+s where s = n− j=0 2j
+integer.
+The fact that s is a non-negative integer also follows from the
+well-known Griesmer bound [12] that states for any linear code
+k−1 d
+with length n, dimension k and distance d, n ≥ j=0 2j .
+Corollary 12: For any linear [n, k, d] code C with updatek−1 d
+efﬁciency t, d ≤ t ≤ d + n − j=0 2j .
+It is clear that for codes achieving the Griesmer bound with
+equality, the update-efﬁciency is exactly equal to the minimum
+distance, i.e., the best possible. There are a number of families
+of codes that achieve the Griesmer bound. For examples of
+such families and their characterizations we refer the reader
+to [4], [7].
+
+u
+
+i=0
+
+k
+i
+
+≤ K(n, t, p),
+
+where K(n, t, p) is the maximum size of a code with codewords having weight bounded by t that achieves arbitrarily
+small probability of error. A formal expression for K(n, t, p)
+is a subject of our ongoing work.
+
+Example: Suppose C is an [n = 2m − 1, k = 2m − 1 − m, 3]
+Hamming code. For this code t(C) ≤ 3+(n−3−2−(k−2)) =
+n − k = m = log(n + 1). In fact, for all n, Hamming codes
+have update-efﬁciency 3. One way to prove this is by explicitly
+constructing a generator matrix for the Hamming code with
+weight 3 rows. One can also appeal to the following theorem
+of Simonis [14].
+Theorem 13: Any [n, k, d] binary linear code can be transformed in to a code with same parameters that has a generator
+matrix consisting of only weight d rows.
+The implication of this theorem is that if there exists an
+[n, k, d] linear code, then there exists an [n, k, d] linear code
+with update-efﬁciency d. In his paper [14], Simonis gave
+an algorithm to transform any linear code into an updateefﬁcient linear code (a code with update-efﬁciency equal to
+the minimum distance). However, the algorithm is of exponential complexity. It is of interest to have a polynomial time
+algorithm for the procedure.
+On the other hand, the above theorem says that there exists
+a linear [n = 2m − 1, k + 2m − 1 − m, 3] code that has
+update-efﬁciency only 3. All codes with these parameters are
+equivalent to the Hamming code of the same parameters up to
+a permutation of coordinates [8], providing an indirect proof
+that Hamming codes have update-efﬁciency 3.
+Analysis of the update-efﬁciency of BCH codes and other
+linear codes is of independent interest. In general, ﬁnding a
+sparse basis for a linear code seems to be a hard problem.
+
+Acknowledgement: A. M. thanks Yury Polyanskiy and
+Barna Saha for useful discussions.
+R EFERENCES
+[1] N. Alon, J. Spencer, The Probabilistic Method, Wiley-Interscience, 2000.
+[2] N. P. Anthapadmanabhan, E. Soljanin, S. Vishwanath, “Update-efﬁcient
+codes for erasure correction,” 48th Annual Allerton Conference on
+Communication, Control, and Computing, pp. 376–382, October, 2010.
+[3] A. Barg, G. D. Forney, Jr., “Random codes: minimum distances and
+error exponents,” IEEE Transactions on Information Theory, vol. 48,
+no. 9, pp. 2568–2573, September, 2002.
+[4] B. I. Belov, V. N. Logachev, V. P. Sandimirov, “Construction of a class
+of linear binary codes achieving the Varshamov/Griesmer bound,” Probl.
+Peredachi Inf., vol. 10, issue 3, pp. 36–44, 1974.
+[5] N. Calkin, “Dependent sets of constant weight binary vectors,” Combinatorics, Probability and Computing, vol. 6, no. 3, pp. 263–271, 1997.
+[6] S. D. Dodunekov, N. L. Manev, “An improvement of the Griesmer bound
+for some small minimum distances,” Discrete Applied Mathematics,
+vol. 12, pp. 103–114, 1985.
+[7] T. Helleseth, “New constructions of codes meeting the Griesmer bound,”
+IEEE Transactions on Information Theory, vol. 29, no. 3, May, 1983.
+[8] W. C. Huffman, V. Pless, Fundamentals of Error-Correcting Codes,
+Cambridge, 2003.
+[9] A. Jule, I. Andriyanova, “Some Results on update complexity of a linear
+code ensemble,” International Sym. on Network Coding, pp. 1–5, 2011.
+[10] A. M. Kakhaki, H. K. Abadi, P. Pad, H. Saeedi, F. Marvasti, K. Alishahi, “Capacity achieving linear codes with binary sparse generating
+matrices,” preprint, arXiv:1102.4099, 2011.
+[11] M. Langberg, “Private codes or Succinct random codes that are (almost)
+perfect,” Proc. Foundations of Computer Science, pp. 325–334, 2004.
+[12] F. Macwilliams, N. Sloane, The Theory of Error-Correcting Codes,
+North-Holland, 1977.
+[13] A. S. Rawat, S. Vishwanath, A. Bhowmick, E. Soljanin, “Update
+efﬁcient codes for distributed storage,” IEEE International Symposium
+on Information Theory, pp. 1457–1461, Jul 31–Aug 5, 2011.
+[14] J. Simonis,“On generator matrices of codes,” IEEE Transactions on
+Information Theory, vol. 38, no. 2, March, 1992.
+
+IV. G ENERAL UPDATE EFFICIENT CODES
+Let us now return now to codes satisfying Deﬁnition 1.
+Extending the u = 1 case, clearly any (u, t)-update-efﬁcient
+code must satisfy t ≥ d, the minimum distance of the code,
+but for general u we can strengthen this bound.
+Proposition 14: Suppose a (u, t)-update-efﬁcient code of
+length n, dimension k and minimum distance d exists. Then
+
+5
+
+

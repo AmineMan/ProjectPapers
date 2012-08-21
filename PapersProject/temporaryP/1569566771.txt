@@ -1,0 +1,848 @@
+Creator:        TeX
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Fri May 18 20:56:03 2012
+ModDate:        Tue Jun 19 12:54:15 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      492829 bytes
+Optimized:      no
+PDF version:    1.7
+ISIT'2012 1569566771
+
+Quadratic Gaussian Source Broadcast with
+Individual Bandwidth Mismatches
+Louis Tan and Ashish Khisti
+
+Emina Soljanin
+
+Dept. of Electrical & Computer Engineering
+University of Toronto
+Toronto, ON M5S 3G4 Canada
+{ltan, akhisti}@comm.utoronto.ca
+
+Bell Labs, Alcatel-Lucent
+Murray Hill NJ 07974, USA
+emina@alcatel-lucent.com
+
+second. The associated bandwidth expansion factor is
+b = Wc /Ws channel uses per source sample. Given
+b and the signal-to-noise ratios, a tradeoff between the
+achievable distortion pairs at the two users is of interest.
+Now consider a variation on this problem. Imagine
+that we require a low distortion even when experiencing
+a weaker channel but we are willing to wait longer,
+i.e., observe more channel symbols before making a
+reconstruction. That is, we have the option of trading
+distortion for delay. In this setup, the transmitter continues broadcasting and each receiver continues listening
+until the distortion is sufﬁciently small. Such a problem
+can be modelled as an extension of the model considered
+in [1]–[3] where each receiver has a different bandwidth
+expansion factor.
+In [4] a single server streaming model has been
+introduced. A server wishes to communicate a source
+sequence to a group of heterogeneous users over a broadcast channel. The underlying channels are modelled as
+erasure channels and each user’s channel has a certain
+loss probability. Furthermore each user is only interested
+in retrieving a certain fraction of source packets. The
+transmitter continuously broadcasts coded packets and
+each receiver waits until it is able to retrieve sufﬁciently
+many packets of the underlying source. While the focus
+in [4] is to optimize the degree distribution of a rateless
+codes for this application, it can also be formulated as a
+joint source-channel coding problem for sending a binary
+source over a binary erasure broadcast channel with an
+erasure distortion measure [5]. In the present paper we
+only focus on the Gaussian version of the problem.
+
+Abstract—We study the problem of broadcasting a
+Gaussian source over a Gaussian broadcast channel to
+two users with individual source-channel bandwidth mismatches, under a quadratic distortion measure. Speciﬁcally
+we study the tradeoff between the achievable distortion
+pairs between the two users. The case when the bandwidthexpansion factors of the two users are identical has been
+well studied in the literature and to our best knowledge
+remains an open problem. Surprisingly, when the bandwidth expansion factors are different, we characterize a
+range of values where both the users simultaneously attain
+their point-to-point optimal distortion. Furthermore in the
+high signal-to-noise ratio regime, this set includes nearly
+all points where the weaker user has the higher bandwidth
+expansion factor. In other cases, we propose an achievable
+tradeoff between the distortion pairs.
+
+I. I NTRODUCTION
+Consider the problem of sending a bandlimited Gaussian source over an additive bandlimited Gaussian noise
+channel. Suppose that we are unclear about the exact
+channel noise variance, however we still require that
+the encoder guarantees certain levels of reconstruction
+quality depending on the channel noise actually realized
+when the system is operational. For example, we design
+a single encoder and require that it achieves a low distortion for low noise power while relaxing our requirements
+and allowing for a higher distortion when experiencing
+higher noise power. This problem has been treated in
+the literature by considering a single transmitter that
+in fact broadcasts simultaneously to multiple receivers,
+each with different signal to noise ratios [1]–[3]. Given
+that the source and channel bandwidths are Ws and
+Wc (Hz) respectively, we typically sample the source
+at a rate of 2Ws samples per second, and subsequently
+encode the samples to be sent over the discrete-time
+Gaussian channels at a rate of 2Wc channel uses per
+
+II. P ROBLEM F ORMULATION
+The problem is illustrated in Fig. 1. We consider a
+memoryless stationary Gaussian source {S(i)}i=1,2,...
+producing symbols according to N (0, σ 2 ), which we
+wish to communicate to two users. Denote the vector
+
+This work was supported by an NSERC (Natural Sciences Engineering Research Council) Discovery Grant from the Government of
+Canada and an Ontario Graduate Scholarship (OGS).
+
+1
+
+Y1 (1)
+
+X(1)
+
+X(2)
+
+X(n1 )
+
+Z1 (1)
+
+2) Two decoding functions gi : Rni → Rk for i ∈
+n
+{1, 2} such that Ed(S k , gi (X ni + Zi i )) ≤ Di
+holds for i ∈ {1, 2}.
+where E(·) is the expectation operation.
+
+Y1 (2)
+
+Z1 (2)
+Y1 (n1 )
+
+Decoder 1
+
+Now as mentioned in Section I, we associate with
+the ith user, a delay parameter bi ∈ [0, ∞), called the
+bandwidth expansion factor. This represents the number
+of channel uses per source symbol that are delivered over
+the ith user’s channel. That is, the ith user requires that
+at most bi · k channel uses be employed on his channel
+before he reconstructs S k subject to his distortion constraint. Our problem is now deﬁned as characterizing
+the achievable distortion region under a given pair of
+bandwidth expansion factors as per the next deﬁnition.
+
+Z1 (n1 )
+Y2 (1)
+
+Sk
+
+Encoder
+
+Z2 (1)
+
+Y2 (2)
+
+Z2 (2)
+Y2 (n1 )
+
+Decoder 2
+X(n1 + 1)
+
+Z2 (n1 )
+Y2 (n1 + 1)
+
+X(n2 )
+
+Z2 (n1 + 1)
+Y2 (n2 )
+
+Deﬁnition 2. A distortion pair (D1 , D2 ) is said to be
+(b1 , b2 ) achievable over the Gaussian broadcast channel
+under power constraint P , if for every δ > 0 there exists
+for sufﬁciently large k, a (k, P, b1 ·k, b2 ·k, d1 , d2 ) sourcechannel code such that
+
+Z2 (n2 )
+
+Fig. 1. Broadcasting a Gaussian source over a Gaussian broadcast
+channel with individual bandwidth mismatches. Here, the total number
+of channel uses, n = max(n1 , n2 ) = n2 .
+
+(S(1), S(2), . . . , S(k)) as S k . The source is communicated by a block encoding function that maps the length
+k source sequence S k , to a length n channel input
+sequence X n = (X(1), X(2), . . . , X(n)) where X(l)
+denotes the lth channel input and X n satisﬁes a power
+constraint. Note here that our notation deﬁnes X n as the
+ﬁrst n channel symbols sent.
+Let Yi (l) be the channel output observed by user i on
+the lth channel use for i ∈ {1, 2} and l = 1, 2, . . . , n.
+The channel model is given by
+Yi (l) = X(l) + Zi (l),
+
+D i + δ ≥ di ,
+
+i ∈ {1, 2}.
+
+(3)
+
+The achievable distortion region is the set of all
+achievable distortion pairs under the prescribed bandwidth expansion pair.
+III. A N I NNER B OUND FOR THE ACHIEVABLE
+D ISTORTION R EGION
+In this section, we propose several coding schemes
+that collectively provide an inner bound for the achievable distortion region. Assume that N1 < N2 . Since the
+performance of the Gaussian broadcast channel is identical to that of a degraded Gaussian broadcast channel
+[6, p. 570], we will refer to user 1 as the strong user, and
+user 2 as the weak user. We specialize our analysis and
+focus on the case in which both users have bandwidth
+expanded and the strong user has the more stringent
+delay constraint, i.e., 1 < b1 < b2 . In this case, we
+will ﬁnd particular values b∗ and b2 in Section III-A, for
+1
+which both users can simultaneously achieve distortions
+that are point-to-point optimal. In particular, we say that
+user i achieves his point-to-point distortion at bandwidth
+∗
+expansion factor bi , if he achieves a distortion Di given
+by
+
+(1)
+
+where Zi (l) is the zero-mean additive Gaussian noise
+observed at user i’s lth channel output. The channel is
+memoryless in the sense that Zi (l) is drawn i.i.d. from
+a N (0, Ni ) distribution.
+Now although the length n channel input is broadcasted to both users, we will assume that due to each
+user’s delay constraint, the ith user reconstructs the
+source after observing only the ﬁrst ni channel input
+symbols, denoted as X ni , where ni ≤ n. Speciﬁcally, we
+have that n = max(n1 , n2 ). The reconstruction’s ﬁdelity
+is measured with the squared error distortion
+k
+1￿
+d(sk , sk ) =
+ˆ
+(s(j) − s(j))2 .
+ˆ
+(2)
+k j=1
+
+∗
+Di (bi ) = ￿
+
+Deﬁnition 1. A (k, P, n1 , n2 , D1 , D2 ) source-channel
+code for source S on the Gaussian broadcast channel
+consists of
+1) An encoding function fk : Rk → Rn satisfying
+(1) n = max(n1 , n2 ), (2)X n = fk (S k ) and (3)
+￿n
+1
+2
+j=1 E(X(j)) ≤ P .
+n
+
+σ2
+1+
+
+P
+Ni
+
+￿b i ,
+
+i ∈ {1, 2},
+
+(4)
+
+where (4) is obtained from substituting for the rate
+distortion and channel capacity functions of the Gaussian
+source/channel into the separation theorem. Since we
+will be interested in studying how the distortions of the
+
+2
+
+1
+Analog
+Fig. 2.
+
+b1
+Digital
+
+b2
+
+i.i.d. from a N (0, P ) distribution, where C2 is the
+channel capacity for the weak user, i.e., C2 = 1 log(1 +
+2
+P/N2 ). From the channel coding theorem, it is not hard
+to see that with arbitrarily small probability of error, the
+strong user has to listen to only k(b∗ − 1) channel uses
+1
+before being able to uniquely identify which codeword
+was sent by joint-typicality decoding, where b∗ satisﬁes
+1
+k(b∗ − 1)C1 = k(b2 − 1)C2 , i.e.,
+1
+￿
+￿
+￿
+￿
+(b∗ − 1)
+P
+(b2 − 1)
+P
+1
+log 1 +
+=
+log 1 +
+.
+2
+N1
+2
+N2
+(6)
+After recovering the channel codeword and thus the
+coarse description, the strong user can perform their own
+MMSE estimate of the quantization error to achieve a
+distortion of
+DQ
+￿.
+D1 = ￿
+(7)
+P
+1 + N1
+
+b
+
+The splitting into analog and digital branches in time.
+
+two users depend on their bandwidth expansion factors,
+∗
+we use a slight abuse of notation and express Di as
+a function of only bi . In the following sections, we
+will parameterize the problem by ﬁxing any arbitrary
+b2 , while considering the distortions of both users as we
+vary b1 relative to b2 .
+A. A Critical Bandwidth Expansion Value
+Consider ﬁrst, the problem of coding entirely for the
+weak user so that he achieves his point-to-point distortion at some b2 > 1. We will use a hybrid digital-analog
+coding scheme as in [1]–[3]. We ﬁrst split our channel
+block of length n = b2 k into a lower analog branch and
+an upper digital branch which are to be concatenated
+together, i.e., multiplexed in that order in time (see
+Fig. 2). The digital branch is of blocklength k(b2 − 1)
+and contains a coarse description of the source sequence
+S k . Speciﬁcally, we perform vector quantization of the
+source at average distortion DQ , which is set so that
+the quantizer rate is equal to the weak user’s channel
+capacity on the digital branch, i.e.,
+￿ 2￿
+￿
+￿
+1
+σ
+(b2 − 1)
+P
+log
+=
+log 1 +
+.
+(5)
+2
+DQ
+2
+N2
+
+Combining (4), (5), (6) and (7), we have that at b∗ , the
+1
+∗
+strong user can in fact achieve distortion D1 = D1 (b∗ ).
+1
+
+Theorem 1. Let b2 > 1. Then for some b∗ satisfying (6),
+1
+∗
+∗
+the distortion pair (D1 , D2 ) = (D1 (b∗ ), D2 (b2 )) is
+1
+(b∗ , b2 ) achievable.
+1
+Again, it is worth mentioning that the result of both
+users achieving their point-to-point distortion in Theorem 1 is not possible in the familiar problem where
+b1 = b2 . Naturally, the question now arises as to what
+the achievable distortions would be if we deviate from
+these critical bandwidth expansion factors. We explore
+this in the next two sections.
+
+k
+Denote the output of the source quantizer as SQ .
+k
+We subtract SQ from the source sequence S k , and the
+resultant quantization error vector E k , is scaled and sent
+over the analog branch, which has blocklength k.
+At the receiver, the weak user demultiplexes the
+analog and digital branches and ﬁrst recovers the coarse
+description from the digital branch. He then obtains the
+linear minimum mean squared error (MMSE) estimate of
+ˆ
+the quantization error E k from the analog branch, and
+k
+ˆ
+ˆ
+reconstructs the source sequence as S k = SQ + E k . It is
+readily veriﬁed that this scheme is point-to-point optimal
+for the weak user at b2 .
+Now consider the strong user as all this transpires. He
+also demultiplexes the analog and digital branches. That
+is, he observes the ﬁrst k channel symbols and sets this
+aside as the analog branch and then observes the next
+k(b2 − 1) channel symbols as a digital branch. We note
+however, that the strong user can actually listen to only
+k(b∗ − 1) < k(b2 − 1) channel symbols after the analog
+1
+branch and yet still recover the coarse description.
+In the digital branch, note that the encoder employs
+a Gaussian codebook composed of 2k(b2 −1)C2 length
+k(b2 − 1) codewords whose components are sampled
+
+B. A Successive Reﬁnement Coding Scheme
+In this section, we consider the case that the delay of
+the strong user, b1 , is even stricter than that given by
+b∗ , i.e., 1 < b1 < b∗ < b2 . In this case, we will use a
+1
+1
+“successive reﬁnement” strategy consisting of the coding
+scheme of Section III-A followed by Wyner-Ziv coding
+to show that both users can still simultaneously achieve
+point-to-point optimal distortions.
+Now given that b1 < b∗ , we ﬁrst ﬁnd a ˜2 satisfying
+b
+1
+(6) when b∗ and b2 are replaced by b1 and ˜2 respectively.
+b
+1
+In other words, we ﬁnd a ˜2 such that k(b1 − 1)C1 =
+b
+k(˜2 − 1)C2 , i.e.,
+b
+￿
+￿
+￿
+￿
+(b1 − 1)
+P
+(˜2 − 1)
+b
+P
+log 1 +
+=
+log 1 +
+.
+2
+N1
+2
+N2
+(8)
+Operationally, this is equivalent to employing the
+coding scheme of Section III-A with a coarse de˜
+scription that achieves distortion DQ using rate
+˜
+(1/2) log(σ 2 /DQ ) = (˜2 − 1) log(1 + P/N2 ). Here ˜2
+b
+b
+is chosen as in (8) and from Theorem 1, we achieve
+
+3
+
+P
+βP
+
+the point-to-point optimal distortions for both user 1 and
+user 2 at b1 and ˜2 respectively. To show that we can also
+b
+be optimal for user 2 at b2 , we use Wyner-Ziv coding
+immediately after the coding scheme of Section III-A.
+Speciﬁcally, after k˜2 channel uses, we send a Wynerb
+Ziv bit stream for the weak user assuming that he has
+∗
+side information at a mean squared error of D2 (˜2 ) with
+b
+respect to the source. Note here that we can invoke the
+upper bound on the quadratic Wyner-Ziv rate-distortion
+function as in [2], to show that in order to achieve a
+new distortion of D2 , a bit stream of rate RWZ (D2 ) is
+sufﬁcient, where
+1
+D∗ (˜2 )
+b
+RWZ (D2 ) = log 2
+.
+(9)
+2
+D2
+
+1
+Analog
+
+b∗
+1
+I
+
+b1
+
+b2
+
+b
+
+II
+
+Fig. 3. The splitting into analog and digital branches. The digital
+branch is further split into Region I and Region II and the power in
+it (shown vertically) is allocated between a common message (crosshatched) and a private message.
+
+respectively. As the private message is intended only
+for user 1, we can send it only over Region I. We
+will dedicate a portion β ∈ [0, 1] of the total power in
+Region I for this purpose. Speciﬁcally, we set
+￿
+￿
+b1 − 1
+βP
+R1 =
+log 1 +
+.
+(11)
+2
+N1
+
+Setting (9) equal to the channel capacity of the weak
+user’s remaining digital branch, we get that
+￿
+￿
+∗
+1
+D2 (˜2 )
+b
+(b2 − ˜2 )
+b
+P
+log
+=
+log 1 +
+.
+(10)
+2
+D2
+2
+N2
+
+The common message is a coarse description of the
+source. It is sent over both regions, however only a
+portion (1 − β) of the power in Region I will be used
+for this purpose while the full power of Region II will
+be used. Speciﬁcally, we perform vector quantization of
+ˆ
+the source at an average distortion DQ , set so that
+￿
+￿
+￿
+￿
+2
+1
+σ
+b1 − 1
+(1 − β)P
+R0 = log
+=
+log 1 +
+ˆ
+2
+2
+N2 + βP
+DQ
+￿
+￿
+b 2 − b1
+P
++
+log 1 +
+.
+(12)
+2
+N2
+
+Combining (4) and (10) and rearranging for D2 , we
+have that after sending the Wyner-Ziv bit stream, we can
+∗
+in fact achieve D2 = D2 (b2 ) at b2 .
+
+Theorem 2. Let b2 > 1 and let b∗ satisfy (6) for the
+1
+choice of b2 . Then for any b1 such that 1 < b1 ≤ b∗ , the
+1
+∗
+∗
+distortion pair (D1 , D2 ) = (D1 (b1 ), D2 (b2 )) is (b1 , b2 )
+achievable.
+As an interesting aside, from (6) we have that in the
+limit of high SNR (P ￿ N1 ), b∗ = b2 − oP (1) where
+1
+oP (1) goes to zero as P → ∞. Theorem 2 then states
+that we can nearly achieve point-to-point optimality for
+both users for any b1 < b2 under bandwidth expansion.
+
+Equation (12) makes it clear that user 2 will be able
+to recover the coarse description by treating the private
+message as noise in Region I, and then recovering the
+rest of the message in Region II. In order for user 1 to
+also recover the message in Region I, we require that
+￿
+￿
+(1 − β)P
+b1 − 1
+R0 ≤
+log 1 +
+.
+(13)
+2
+N1 + βP
+After each user recovers the coarse description, they
+again estimate the quantization error over the analog
+˜
+branch, after which, user i can achieve distortion Di of
+ˆ
+DQ
+˜
+Di =
+, i ∈ {1, 2}.
+(14)
+P
+1 + Ni
+Since this is all we will be sending to the weak
+˜
+user, D2 is the ﬁnal distortion user 2 achieves. We
+will however, send extra Wyner-Ziv bits for user 1 in
+Region I assuming that he already has side information
+˜
+at distortion D1 relative to the source. The extra bits help
+user 1 achieve a distortion D1 , where we set D1 so that
+the Wyner-Ziv rate equals the private message rate, i.e.,
+˜
+1
+D1
+RWZ (D1 ) = log
+= R1 .
+(15)
+2
+D1
+Suppose for now that user 1 is to be optimal at b1 . In
+this case, we see that (13) must be met with equality. To
+
+C. An Achievable Tradeoff
+In this section, we present an achievable tradeoff in
+distortion pairs for when 1 < b∗ < b1 < b2 . We will
+1
+again use a hybrid-digital analog scheme, however this
+time, we will further divide the digital branch (in time)
+into two regions. Region I will include the channel uses
+from k to kb1 while Region II will include the channel
+uses from kb1 to kb2 (see Fig. 3). Following this division,
+we now view the digital branch analogously to the
+product of two unmatched degraded broadcast channels
+[7]. Here, Region I corresponds to a degraded brodcast
+channel in which user 1 is the stronger user, while
+Region II corresponds to another broadcast channel in
+which user 2 is the stronger user and user 1 has inﬁnite
+noise power. We will use these two broadcast channels
+to send a common message intended for both users, and
+a private message intended only for user 1; cf. [2], [3].
+We denote the common and private message rates,
+measured in bits per source symbol, as R0 and R1
+
+4
+
+D1 (β) ￿ ￿
+D2 (β) ￿ ￿
+
+1+
+
+(1−β)P
+N2 +βP
+
+￿b1 −1 ￿
+
+1+
+
+P
+N2
+
+1+
+
+P
+N2
+
+2
+
+1+
+
+(1−β)P
+N2 +βP
+
+σ
+￿b1 −1 ￿
+
+σ2
+￿b2 −b1 ￿
+
+1+
+
+￿b2 −b1 +1
+
+P
+N1
+
+￿￿
+1+
+
+βP
+N1
+
+(16)
+
+￿b1 −1
+
+(17)
+
+0.35
+
+this end, deﬁne β0 as the value of β that accomplishes
+this. Combining (12) and (13), we have that
+￿
+￿ ￿
+￿ b2 −1
+b1 −1
+P
+P
+1 + N1 − 1 + N2
+β0 =
+.
+(18)
+￿
+￿ b2 −1 ￿
+￿
+b1 −1
+P
+P
+P
+P
+− 1 + N1 N2
+N1 1 + N2
+
+Achievable Boundary
+Point-to-point Bound
+Distortion of Weak User
+
+0.3
+
+It can be veriﬁed that 0 < β0 < 1 whenever 1 < b∗ <
+1
+b1 < b2 , which is the region of interest and so β0 is
+indeed a valid power allocation. Deﬁning the functions
+D1 (β) and D2 (β) as in (16) and (17), after combining
+(11), (12), (14) and (15) for user 1 and (12) and (14) for
+user 2, we have that the distortion pair (D1 (β0 ), D2 (β0 ))
+is achievable. In particular, since the right hand sides of
+(12) and (13) are equal when β = β0 , we can conﬁrm
+that user 1 is optimal at b1 for this power allocation.
+Let us now consider the scenario if we did not require
+user 1 to be optimal at b1 . To this end, we restrict β by
+setting β = αβ0 for some α ∈ [0, 1]. In particular, if
+α = 1, we recover β = β0 as our power allocation, and
+user 1 is optimal. As we decrease α (and in turn β),
+we introduce more slackness in (13) until β = 0. This
+makes the coding identical to that in Section III-A, so
+that the weak user is optimal. In general, we may achieve
+a tradeoff in distortions by letting α vary in [0, 1].
+
+0.25
+
+0.2
+
+0.15
+
+0.1
+
+1
+
+1.2
+
+1.4
+
+1.6
+
+1.8
+
+2
+
+Strong user’s bandwidth expansion factor b1
+
+Fig. 4. Distortion of the weak user when the strong user is optimal
+at b1 . We vary b1 and ﬁx b2 = 2, b∗ = 1.68, SNR1 = 6.02 dB,
+1
+SNR2 = 3.01 dB, σ 2 = 1.
+
+scheme for the weak user when the strong user is always
+optimal at b1 and we vary b1 relative to a ﬁxed b2 . As
+is readily seen, the weak user is also able to achieve
+an optimal distortion, shown as the dashed line, until a
+critical bandwidth expansion factor b∗ . After this critical
+1
+value, the requirement that the strong user is optimal
+results in an increasing distortion for the weak user.
+
+Theorem 3. Let b2 > 1 and let b∗ satisfy (6) for the
+1
+choice of b2 . Then for any α ∈ [0, 1] and for any b1 such
+that 1 < b∗ < b1 < b2 , the distortion pair (D1 , D2 ) =
+1
+(D1 (αβ0 ), D2 (αβ0 )) is (b1 , b2 ) achievable, where β0 is
+given by (18)
+
+R EFERENCES
+[1] U. Mittal and N. Phamdo, “Hybrid digital-analog (hda) joint
+source-channel codes for broadcasting and robust communications,” IEEE Trans. Inf. Theory, vol. 48, no. 5, pp. 1082–1102,
+May 2002.
+[2] Z. Reznic, M. Feder, and R. Zamir, “Distortion bounds for
+broadcasting with bandwidth expansion,” IEEE Trans. Inf. Theory,
+vol. 52, no. 8, pp. 3778–3788, Aug. 2006.
+[3] V. M. Prabhakaran, R. Puri, and K. Ramchandran, “Hybrid digitalanalog codes for source-channel broadcast of gaussian sources
+over gaussian channels,” IEEE Trans. Inf. Theory, vol. 57, no. 7,
+pp. 4573–4588, Jul. 2011.
+[4] Y. Li, E. Soljanin, and P. Spasojevi´ , “Three schemes for wirec
+less coded broadcast to heterogeneous users,” Elsevier Physical
+Communications: Special Issue on Wireless Network Coding, To
+appear 2012 arXiv:submit/0477372.
+[5] L. Tan, MASc. thesis, Dept. Elect. Eng., Univ. Toronto, Toronto,
+ON, In preparation 2012.
+[6] T. M. Cover and J. A. Thomas, Elements of Information Theory,
+2nd ed. New Jersey: Wiley, 2006.
+[7] A. E. Gamal, “The capacity of the product and sum of two
+unmatched broadcast channels,” Problemy Perdachi Informatsi,
+vol. 16, no. 1, pp. 3–23, Jan.-Mar. 1980.
+
+We remark that as b1 → b2 , from (18) we have
+that β0 → 1. In this case, Theorem 3 reduces to
+the achievable scheme proposed in [2]. In light of the
+results in [3] and [7] we also suggest that the results
+of this section may be improved by further allocating
+power amongst the analog and digital branches and subbranches, introducing a private message to user 2 and
+optimizing over the boundaries of Regions I and II,
+however for conciseness, we do not pursue this here.
+Finally, we mention that the outer bound in [2] using
+b = max (b1 , b2 ) = b2 , may also be applied here since
+this bound would be obeyed a fortiori when b1 < b2 .
+Theorem 3 completes our coding scheme for any b1
+and b2 such that 1 < b1 < b2 . Fig. 4 plots our achievable
+
+5
+
+

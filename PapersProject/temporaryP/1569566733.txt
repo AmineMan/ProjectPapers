@@ -1,0 +1,1069 @@
+Creator:         TeX output 2012.05.17:1739
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Thu May 17 17:40:02 2012
+ModDate:        Tue Jun 19 12:56:14 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      329081 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569566733
+1
+
+Opportunistic Interference Alignment for MIMO
+IMAC: Effect of User Scaling Over
+Degrees-of-Freedom
+Hyun Jong Yang1 , Won-Yong Shin2 , Bang Chul Jung3 , and Arogyaswami Paulraj1
+of EE, Stanford Univ., Stanford, CA 94305, E-mail: {hjdbell, apaulraj}@stanford.edu
+2 Div. of MSE, Dankook Univ., Yongin, 448-701, Korea, E-mail: wyshin@dankook.ac.kr
+3 Dept. of ICE, Gyeongsang National Univ., Tongyeong 650-160, Korea, E-mail: bcjung@gnu.ac.kr
+1 Dept.
+
+scheduling for implementing the IA principle. Unlike the case
+of the conventional IA schemes, the OIA scheme basically
+operates with local channel state information at transmitters
+(CSIT) and no time/frequency domain expansion. Furthermore, no iteration is needed prior to data transmission. The
+OIA scheme, thus, operates as a decentralized manner which
+does not involve joint processing among all communication
+links. It was shown in [9] that the OIA scheme achieves KS
+DoF if N scales faster than SNR(K−1)S in a high signal-tonoise ratio (SNR) regime, where S(≤ M ) is the number of
+selected mobile stations (MSs) in each cell.
+In this paper, we introduce OIA for the MIMO IMAC,
+where each cell consists of a BS with M antennas and N MSs
+having L antennas each. In [10], the outer bound on the DoF
+in MIMO IMAC with time-invariant channel coefﬁcients is
+characterized, and necessary conditions for M and L needed
+to achieve the optimal DoF are derived. However, the main
+goal of the proposed MIMO OIA is to study the required user
+scaling needed to achieve the target DoF of KS, which is optimal if S = M , for arbitrary M and L. More speciﬁcally, we
+propose the following three types of OIA: antenna selectionbased OIA, singular value decomposition (SVD)-based OIA,
+and vector-quantized (codebook-based) OIA.
+As our main result, we analyze the scaling condition between the required number of MSs per cell, N , and the
+received SNR under which KS DoF can be achieved. We show
+that for the antenna selection-based OIA, the required number
+of MSs, N , scales as L−1 SNR(K−1)S . Thus, the required
+user scaling does not fundamentally change, compared with
+the SIMO IMAC case [9], if L is a constant independent
+of N . For the SVD-based OIA, each MS ﬁnds the weight
+vector that minimizes the leakage of interference (LIF) using
+the SVD method. We show that the SVD-based OIA can
+greatly reduce the required user scaling to SNR(K−1)S−L+1 .
+Note that since the local CSIT is assumed, information of
+weight vectors at each selected MS should be sent to the
+corresponding BS. Inspired by this fact, we further propose a
+vector-quantized OIA in which the weight vectors are chosen
+in a predeﬁned codebook. It is shown that if the quantization
+level (i.e., codebook size) scales polynomially with respect to
+SNR, then the required user scaling can vary from SNR(K−1)S
+to SNR(K−1)S−L+1 accordingly. This implies that there exists
+
+Abstract—We consider a new opportunistic interference alignment (OIA) for the K-cell multiple-input multiple-output
+(MIMO) interfering multiple-access channel (IMAC) with timeinvariant channel coefﬁcients, where each cell consists of a base
+station (BS) with M antennas and N mobile stations (MSs)
+having L antennas each. In this paper, we propose three OIA
+techniques: antenna selection-based OIA, singular value decomposition (SVD)-based OIA, and vector-quantized (codebookbased) OIA. Then, their performance is analyzed in terms of user
+scaling law required to achieve KS degrees-of-freedom (DoF),
+where S(≤ M ) denotes the number of simultaneously transmitting MSs per cell. As our main result, it is shown that the
+antenna selection-based OIA does not fundamentally change the
+user scaling required to achieve KS DoF if L is ﬁxed, compared
+with the single-input multiple-output (SIMO) IMAC case. In
+contrast, it is shown that the SVD-based OIA can greatly reduce
+the required user scaling to SNR(K−1)S−L+1 through optimizing
+weight vectors at each MS. Furthermore, we show that the vectorquantized OIA can achieve the same user scaling as the SVDbased OIA case if the codebook size is beyond a certain value.
+For the vector-quantized OIA, we analyze a fundamental tradeoff between the quantization level (i.e., codebook size) and the
+required user scaling.
+
+I. I NTRODUCTION
+Interference management is a crucial problem in wireless communications. Interference alignment (IA) [1]–[7] has
+emerged as a fundamental solution to achieve the optimal
+degrees-of-freedoms (DoF) in interference channels (ICs). It
+was shown that the DoF of IA schemes strictly surpass what is
+achievable on the interference, multiple-access, and broadcast
+components individually, for various scenarios: two-user X
+network [2], [3], multiuser IC [1], multiuser multiple-input
+multiple-output (MIMO) IC [7], and cellular IC [5], [6].
+Recently, the concept of opportunistic interference alignment
+(OIA) was proposed in [8], [9] for the K-cell single-input
+multiple-output (SIMO) interfering multiple-access channel
+(IMAC) with time-invariant channel coefﬁcients, where each
+base station (BS) has M antennas. The basic idea of OIA lies
+in the utilization of multiuser diversity via opportunistic user
+This research was supported in part by the KCC(Korea Communications
+Commission), Korea, under the RD program supervised by the KCA(Korea
+Communications Agency) [(KCA- 2011-11913-04001)]. This work has been
+supported in part by the NSF Programmable Open Mobile Internet (POMI)
+2020 project [Award number: 0832820].
+
+1
+
+2
+selected
+MSs
+
+[qk,1 , . . . , qk,M −S ], is determined ofﬂine and is known to all
+the BSs and MSs, where qk,i ∈ CM ×1 is an orthonormal basis
+vector.
+In the OIA in SIMO IMAC, each BS opportunistically
+selects a set of MSs who generate the minimum interference
+to the other BSs. For computing its generating interference to
+other BSs, the j-th MS in the i-th cell calculates the leakage
+of interference (LIF) [8], [9], which is expressed as:
+K
+(
+) 2
+∑
+[i,j]
+[i,j]
+ηSIMO =
+Proj⊥Qk hk
+,
+(2)
+
+BS
+
+BS
+
+Fig. 1.
+
+MIMO IMAC with K = 2, M = 3, S = 2, and L = 2.
+
+k=1,k̸=i
+
+a fundamental trade-off between the quantization level and the
+user scaling while achieving KS DoF.
+Notations: C indicates the ﬁeld of complex numbers. The
+function f (x) deﬁned by f (x) = ω(g(x)) implies that
+g(x)
+limx→∞ f (x) = 0. (·)T and (·)H denote the transpose and
+the conjugate transpose, respectively.
+
+where Proj⊥A denotes the orthogonal projection of the basis
+A. Each MS reports this metric to the associated BS, and each
+BS selects S MSs with smallest LIF metrics among N MSs.
+The following theorem is the main result of OIA for the
+required user scaling.
+Theorem 1 (Theorem 1, [9]): The OIA scheme with the
+scheduling metric given in (2) and the zero-forcing (ZF) ﬁlter
+at each BS achieves
+DoF ≥ KS
+(3)
+
+II. S YSTEM AND C HANNEL M ODELS
+Let us consider the K-cell MIMO IMAC, each cell of which
+consists of a BS with M antennas and N MSs, each with
+L antennas. The number of MSs selected to transmit uplink
+signals in each cell is denoted by S ≤ M . The case where
+K = 2, M = 3, S = 2, and L = 2 is depicted in Fig. 1.
+It is assumed that each selected MS transmits a single spatial
+stream. To consider nontrivial cases, we assume that L < (K−
+1)S + 1, because all the inter-cell interference can be canceled
+at the MSs otherwise. The channel matrix from the j-th MS
+in the i-th cell to the k-th BS (in the k-th cell) is denoted by
+[i,j]
+Hk ∈ CM ×L . Frequency-ﬂat fading is assumed and channel
+reciprocity between uplink and downlink channels is assumed.
+Without loss of generality, the indices of the selected MSs
+in every cell are assumed to be (1, . . . , S). The overall DoF
+is deﬁned by
+∑K ∑S
+[i,j]
+i=1
+j=1 R
+DoF = lim
+,
+(1)
+SNR→∞
+log SNR
+
+with high probability (whp) if
+(
+)
+N = ω SNR(K−1)S .
+
+(4)
+
+B. OIA for MIMO IMAC
+In this subsection, the overall procedure of the proposed
+OIA techniques for MIMO IMAC is presented.
+The interference space of the k-th BS is denoted by Qk as
+in Section III-A. Let us denote the null space of Qk as
+Uk = [uk,1 , . . . , uk,S ]
+
+null(Qk ),
+
+(5)
+
+M ×1
+
+where uk,i ∈ C
+is orthonormal. A simple way to
+determine Qk and Uk would be choosing M − S columns
+of a left or right singular matrix of any M × M matrix as Qk
+and choosing the rest of the S columns as Uk .
+Let us deﬁne w[i,j] as the weight vector at the j-th MS in
+the i-th cell. Then, the LIF metric is deﬁned by
+K
+(
+) 2
+∑
+[i,j]
+[i,j]
+ηMIMO =
+Proj⊥Qk Hk w[i,j]
+(6)
+
+where R[i,j] denotes the achievable rate for the j-th MS in the
+i-th cell.
+
+k=1,k̸=i
+
+III. ACHIEVABILITY R ESULTS
+=
+
+For completeness, we brieﬂy review the achievability result
+of OIA for SIMO IMAC. Then, we propose three OIA
+techniques for MIMO IMAC and analyze their performance
+in terms of DoF and the associated user scaling. In addition,
+our schemes are compared with an ideal scenario where there
+are no inter-cell interferences, resulting in an upper bound on
+the performance.
+
+K
+∑
+
+[i,j]
+
+UH Hk w[i,j]
+k
+
+2
+
+.
+
+(7)
+
+k=1,k̸=i
+
+All the MSs report their LIF metrics to corresponding BSs.
+Then, each BS selects S MSs having smallest LIF metrics
+among N MSs in the cell. Subsequently, the j-th MS in the
+i-th cell forwards the information on w[i,j] to the i-th BS for
+decoding.
+The received signal at the i-th BS is expressed as:
+
+A. Review on OIA in SIMO IMAC
+
+yi =
+
+[i,j]
+
+In SIMO IMAC, the channel matrix Hk becomes an M ×
+1 vector. For consistency with literature, let us denote this
+[i,j]
+channel vector by hk ∈ CM ×1 . From the pilot signals from
+BSs (including home cell BS and neighboring cell BSs), each
+[i,j]
+MS can estimate the channel vectors hk , k = 1, . . . , K,
+utilizing the channel reciprocity. As in [8], [9], it is assumed
+that the interference space of the k-th BS, denoted by Qk =
+
+S
+∑
+
+[i,j]
+
+Hi
+
+w[i,j] x[i,j]
+
+j=1
+desired signal
+
++
+
+K
+∑
+
+S
+∑
+
+[k,m]
+
+Hi
+
+w[k,m] x[k,m] +zi ,
+
+k=1,k̸=i m=1
+inter-cell interference
+
+2
+
+(8)
+
+3
+
+where x[i,j] is the transmit symbol with unit power, and
+zi ∈ CM ×1 denotes additive noise, each element of which is
+independent and identically distributed complex Gaussian with
+zero mean and the variance of SNR−1 . As in SIMO IMAC [8],
+[9], the linear ZF detection is applied as
+ri = [ri,1 , . . . , ri,S ]
+
+T
+
+Fi H UH yi ,
+i
+
+2) SVD-Based OIA: In the SVD-based OIA, each MS ﬁnds
+the optimal weight vector that minimizes its LIF metric. Let
+us rewrite the LIF metric for MIMO IMAC as
+K
+∑
+
+[i,j]
+
+ηSVD =
+
+(9)
+
+[
+G
+
+[i,j]
+
+(
+
+[i,j]
+
+U1 H H1
+
+(
+Ui+1
+
+Consequently, the achievable rate of the j-th MS in the i-th
+cell, R[i,j] , is given by (11) at the bottom of the next page.
+In the following subsections, we consider three different
+strategies to determine the weight vector w[k,m] .
+1) Antenna Selection-Based OIA: In the antenna selectionbased OIA, we have w[i,j] ∈ {e1 , . . . , eL }, where el denotes
+the l-th column of the (L × L)-dimensional identity matrix.
+[i,j]
+[i,j]
+Let us denote the l-th column of Hk by hk,l , l = 1, . . . , L.
+Then, the j-th MS in the i-th cell chooses the optimal weight
+[i,j]
+vector as wAS = eˆ , where the index ˆ j) is obtained
+l(i,
+l(i,j)
+from
+K
+∑
+2
+[i,j]
+ˆ j) = arg min
+l(i,
+Uk H hk,l
+.
+(12)
+
+H
+
+)T
+
+[i,j]
+Hi+1
+
+(
+)T
+[i,j]
+, . . . , Ui−1 H Hi−1 ,
+
+)T
+
+(
+, . . . , UK
+
+=
+
+Uk
+
+(
+
+[i,j]
+
+(18)
+
+[i,j]
+
+[i,j]
+
+[i,j]
+
+wSVD = vL ,
+
+(19)
+
+[i,j]
+
+where vL is the L-th column of V[i,j] . With this choice the
+LIF metric is simpliﬁed to
+[i,j] 2
+
+ηSVD = σL
+
+.
+
+(20)
+
+Theorem 3: The proposed SVD-based OIA scheme with the
+scheduling metric (20) achieves
+
+2
+
+(13)
+
+DoF ≥ KS
+
+(21)
+
+(
+)
+N = ω SNR(K−1)S−L+1 .
+
+whp if
+
+(22)
+
+Proof: The SINR for the j-th MS in the i-th cell, deﬁned
+in (11), can be expressed as:
+
+(14)
+
+2
+
+SINR[i,j] ≥
+
+)
+
+N = ω L−1 SNR(K−1)S .
+
+. (17)
+
+where σ1 ≥ · · · ≥ σL . Then, it is apparent that the optimal
+w[i,j] is determined as
+
+and is reported to the associated BS.
+The following theorem establishes the DoF achievability of
+the antenna selection-based OIA.
+Theorem 2: The antenna selection-based OIA with the
+scheduling metric (13) achieves
+
+whp if
+
+]T
+
+where Ω[i,j] ∈ C(K−1)S×L and V[i,j] ∈(CL×L consist )
+of
+[i,j]
+[i,j]
+orthonormal columns, and Σ[i,j] = diag σ1 , . . . , σL ,
+
+k=1,k̸=i
+
+DoF ≥ KS
+
+)T
+
+H
+
+[i,j]
+
+[i,j]
+hk,ˆ
+l(i,j)
+
+[i,j]
+HK
+
+G[i,j] = Ω[i,j] Σ[i,j] V[i,j] ,
+
+Then, the corresponding LIF metric is given by
+H
+
+H
+
+Let us further denote the SVD of G[i,j] as
+
+k=1,k̸=i
+
+K
+∑
+
+,
+(16)
+
+(10)
+
+[i,j]
+ηAS
+
+2
+
+= G[i,j] w[i,j]
+
+k=1,k̸=i
+
+Fi = [fi,1 , . . . , fi,S ]
+([
+]−1 )H
+[i,1]
+[i,S]
+Ui H Hi w[i,1] , . . . , Ui H Hi w[i,S]
+.
+
+1≤l≤L
+
+2
+
+[i,j]
+
+Uk H Hk w[i,j]
+
+1+
+
+(15)
+
+SNR/ ∥fi,j ∥
+
+∑K
+
+∑S
+
+k=1,k̸=i
+
+m=1
+
+[k,m]
+
+UH Hi
+i
+
+[k,m]
+
+wSVD
+
+.
+
+2
+
+SNR
+(23)
+
+Proof: For compactness, we only provide a brief sketch
+of the proof. The main difference in the proof of Theorem 2
+compared to the proof of [9, Theorem 1] is that the LIF metric
+of each selected MS, given by (13), can be represented as the
+minimum of L independent LIF metrics in SIMO IMAC. That
+[i,j]
+is, ηAS is the minimum of L independent Chi-square random
+variables with degrees of freedom 2(K − 1)S. Following the
+footsteps of the proof of [9, Theorem 1] with this change
+leads to the N scaling result given in (15). The detailed proof
+is included in [11].
+Thus, the antenna selection-based OIA does not fundamentally
+change the user scaling if L is ﬁxed. Note that, however, the
+required user scaling is reduced if L scales polynomially with
+respect to SNR.
+
+Thus, it is apparent that the DoF of KS is achieved if the in2
+∑K
+∑S
+H [k,m] [k,m]
+terference term
+wSVD
+SNR
+k=1,k̸=i
+m=1 Ui Hi
+remains smaller than ϵ for increasing SNR, where ϵ > 0 is an
+arbitrary positive constant. Let us deﬁne PSVD as
+{ K
+S
+∑ ∑
+2
+[k,m] [k,m]
+PSVD
+lim Pr
+Ui H Hi
+wSVD
+SNR ≤ ϵ,
+SNR→∞
+
+k=1,k̸=i m=1
+
+}
+
+∀ MS j, j = 1, . . . , S, ∀ BS i, i = 1 . . . , K .
+
+(24)
+
+Then, the DoF is bounded as
+DoF ≥ KS · PSVD .
+
+3
+
+(25)
+
+4
+
+where ϵκ , ϵ′ > 0 are arbitrarily small constants.
+κ
+Proof: Using the results on the vector quantization in
+[14], [16], [17], we show that the upper-bound of the LIF
+metric can be written by two independent terms as
+
+When calculating this lower bound, we assumed that the DoF
+of KS is achieved if the interference remains smaller than ϵ
+for increasing SNR, and that zero DoF is achieved otherwise.
+It is important to note that the sum of the received interference
+terms that appears in (24) is equivalent to the sum of the LIF
+metrics of the selected MSs. That is,
+K
+∑
+
+K
+∑
+
+S
+∑
+
+[k,m]
+
+Ui H Hi
+
+[k,m]
+
+2
+
+wSVD
+
+=
+
+i=1 k=1,k̸=i m=1
+
+K S
+∑∑
+
+[i,j] 2
+
+≤ ε−1 σL
+˜κ
+
+[i,j]
+
+ηSVD .
+
+(33)
+
+˜
++ (1 + µ)νf ε−1 G[i,j] u
+˜κ
+
+2
+
+,
+
+(34)
+
+˜
+where εκ , µ > 0 are arbitrarily small constants, and u becomes
+˜
+an independent random vector isotropically distributed over
+the L-dimensional unit sphere as εκ → 0. Here, νf denotes the
+˜
+Gilbert-Vashamov bound on the distance of any two codebook
+vectors, which is given by [14], [18]
+
+Subsequently, we exploit the fact that the LIF metric
+given in (20) is the smallest eigen-value of the complex
+H
+H
+central Wishart matrix G[i,j] G[i,j] , i.e., G[i,j] G[i,j] ∼
+CW (K−1)S (L, I) [12]. The result for the polynomial probability density function of this smallest eigenvalue derived in
+[13, Theorem 4] is also used. Here, we need to choose ϵ small
+−1
+enough such that ϵSNR 2 < 1 for arbitrarily large SNR. The
+KS
+detailed proof is shown in [11].
+3) Vector-Quantized OIA: Let us denote the codebook set
+consisting of Nf elements as
+{
+}
+Cf
+c1 , . . . , cNf ,
+(27)
+
+νf
+
+[i,j]
+
+1≤n≤Nf
+
+G[i,j] cn
+
+2
+
+.
+
+(29)
+
+[i,j]
+
+Noting that wVQ with an inﬁnitely large codebook becomes
+[i,j]
+vL in (19), we employ the widely-used suboptimal rule
+[14]–[16], which is deﬁned as
+2
+(
+)H
+[i,j]
+[i,j]
+ˆ
+wVQ = arg max1≤n≤Nf vL
+cn .
+(30)
+This rule is mathematically much more tractable than the
+optimal rule in (29), and rapidly approaches to the original
+rule in terms of the performance as Nf grows [14]–[16].
+Theorem 4: The vector-quantized OIA with the weight vector given by (30) and the optimal Grassmannian codebook Cf
+[14] achieve whp
+DoF ≥ KS,
+(31)
+
+C. Comparison
+For comparison, we now consider an upper limit on the
+DoF in MIMO IMAC. From a Genie-aided removal of all the
+inter-cell interferences, we obtain K parallel MAC systems.
+Under the basic assumption that S MSs in a cell transmit
+simultaneously, the DoF for each MAC is thus upper-bounded
+by S, which is the same as the SIMO IMAC case [9]. Hence,
+this ideal upper bound on the total DoF, given by KS, matches
+our lower bound that is achieved using the OIA based only on
+local CSIT at each MS.
+
+(
+
+{
+N = ω max SNR(K−1)S−L+1+εκ ,
+−(K−1)S/(L−1)
+
+(
+
+(K−1)S+ε′
+κ
+
+· SNR
+
+)
+
+})
+,
+
+(35)
+[i,j] 2
+
+Each MS ﬁnds the weight vector in the codebook from
+wVQ = arg min
+
+Nf −1/(L−1) .
+
+Note that the ﬁrst term of (34) is a function of σL , and
+hence, similar derivations in Section III-B2 are used for this
+term. On the other hand, the second term becomes a Chisquare random variable with degrees of freedom 2(K − 1)S
+for arbitrarily small εκ , and thus, the results in Section III-B1
+˜
+are also used. The detailed proof is shown in [11].
+Thus, a trade-off between Nf and the required user scaling
+is clearly observed from (32). Speciﬁcally, if Nf scales polynomially with respect to SNR, then, the required user scaling
+varies accordingly.
+Corollary 1: From Theorem 4, the loss due to a ﬁnite
+codebook becomes )
+negligible and we only require N =
+(
+ω SNR(K−1)S−L+1 to achieve the DoF of KS, if Nf =
+(
+)
+2
+ω SNR(L−1) /((K−1)S) .
+We complete Section III-B with the following remarks.
+Remark 1: If L = 1, then the channel becomes SIMO
+IMAC, and the user scaling results given in (15), (22), and
+(
+)
+(32) (for any Nf > 1) become N = ω SNR(K−1)S , which
+is consistent with the result in Theorem 1.
+[i,j]
+Remark 2: Note that if L ≥ (K − 1)S + 1, then wSVD can
+[i,j]
+be chosen such that ηSVD = 0 as seen from (18) to (20).
+
+where c1 , . . . , cNf ∈ CL×1 are chosen from the Ldimensional unit sphere. Then, the number of bits to represent
+Cf is denoted as
+nf = ⌈log2 Nf ⌉.
+(28)
+
+Nf
+
+2
+
+i=1 j=1
+
+(26)
+
+if
+
+[i,j]
+
+[i,j]
+
+ˆ
+ηVQ = G[i,j] wVQ
+
+(32)
+
+
+
+
+R[i,j] = log 1 + SINR[i,j] = log 1 +
+
+
+SNR
+2
+
+∥fi,j ∥ +
+
+∑K
+k=1,k̸=i
+
+4
+
+∑S
+m=1
+
+[k,m]
+
+fi,j H Ui H Hi
+
+2
+
+w[k,m] SNR
+
+
+.
+
+(11)
+
+5
+
+2
+
+10
+
+18
+
+Max SNR
+SIMO OIA
+
+1
+
+10
+
+Sum Rates (bits/s/Hz)
+
+Sum-LIF
+
+Vector-quantized OIA
+
+0
+
+10
+
+nf = 3
+nf = 5
+
+-1
+
+SVD-based OIA
+
+nf = 9
+1
+
+Antenna selection-based OIA
+
+10
+
+SIMO OIA
+
+8
+6
+
+2
+
+10
+
+3
+
+N
+
+10
+
+nf = 3
+nf = 5
+
+Max. SNR
+
+nf = 7
+
+2
+
+-2
+
+10
+
+12
+
+4
+
+nf = 7
+
+10
+
+Vector-quantized OIA
+
+14
+
+Antenna selection-based OIA
+
+10
+
+SVD-based OIA
+
+16
+
+0
+
+4
+
+10
+
+nf = 9
+0
+
+5
+
+10
+
+15
+
+SNR (dB)
+
+20
+
+25
+
+30
+
+Fig. 2. Sum-LIF vs. N in MIMO IMAC where K = 2, M = 4, S = 3,
+L = 2, and SNR=10dB.
+
+Fig. 3. Sum-rates vs. SNR in MIMO IMAC where K = 2, M = 4, S = 3,
+L = 2, and N = 100.
+
+IV. N UMERICAL E XAMPLES
+
+[4] K. Gomadam, V. R. Cadambe, and S. A. Jafar, “A distributed numerical
+approach to interference alignment and applications to wireless interference networks,” IEEE Trans. Inf. Theory, vol. 57, no. 6, pp. 3309–3322,
+June 2011.
+[5] C. Suh and D. Tse, “Interference alignment for cellular networks,”
+in Proc. 46th Annual Allerton Conf. Communication, Control, and
+Computing, Urbana-Champaign, IL, Sept. 2008, pp. 1037 – 1044.
+[6] A. S. Motahari, O. Gharan, M.-A. Maddah-Ali, and A. K. Khandani,
+“Real interference alignment: exploiting the potential of single antenna systems,” IEEE Trans. Inform. Theory, submitted for publication,
+Preprint, [Online]. Available: http://arxiv.org/abs/0908.2282.
+[7] T. Gou and S. A. Jafar, “Degrees of freedom of the K user M X N
+MIMO interference channel,” IEEE Trans. Inf. Theory, vol. 56, no. 12,
+pp. 6040–6057, Dec. 2010.
+[8] B. C. Jung and W.-Y. Shin, “Opportunistic interference alignment for
+interference-limited cellular TDD uplink,” IEEE Commun. Lett., vol. 15,
+no. 2, pp. 148–150, Feb. 2011.
+[9] B. C. Jung, D. Park, and W.-Y. Shin, “Opportunistic interference
+mitigation achieves optimal degrees-of-freedom in wireless multi-cell
+uplink networks,” IEEE Trans. Commun., to appear, Preprint, [Online].
+Available: http://arxiv.org/abs/1006.2380.
+[10] T. Kim, D. J. Love, and B. Clerckx, “On the spatial degrees of
+freedom of multicell and multiuser MIMO channels,” IEEE Trans.
+Inform. Theory, submitted for publication, Preprint, [Online]. Available:
+http://arxiv.org/abs/1111.3160 2011.
+[11] H. J. Yang, W.-Y. Shin, B. C. Jung, and A. Paulraj, “Opportunistic
+interference alignment for MIMO interfering multiple-access channels,”
+in preparation.
+[12] A. Maaref and S. Aissa, “Eigenvalue distributions of Wishart-type
+random matrices with application to the performance analysis of MIMO
+MRC systems,” IEEE Trans. Wireless Commun., vol. 6, no. 7, pp. 2678–
+2689, July 2007.
+[13] S. Jin, M. R. McKay, X. Gao, and I. B. Collings, “MIMO multichannel
+beamforming: SER and outage using new eigenvalue distributions of
+complex noncentral Wishart matrices,” IEEE Trans. Commun., vol. 56,
+no. 3, pp. 424–434, mar 2008.
+[14] D. J. Love and R. W. Heath, Jr., “Grassmannian beamforming for
+multiple-input multple-output wireless systems,” IEEE Trans. Inf. Theory, vol. 49, no. 10, pp. 2735–2747, Oct. 2003.
+[15] B. Mondal and R. W. Heath, Jr., “Performance analysis of quantized
+beamforming MIMO systems,” IEEE Trans. Signal Process., vol. 54,
+no. 12, pp. 4753–4766, Dec. 2006.
+[16] B. Mondal, S. Dutta, and R. W. Heath, Jr., “Quantization on the
+grassmann manifold,” IEEE Trans. Signal Process., vol. 55, no. 8, pp.
+4208–4216, Aug. 2007.
+[17] N. Jindal, “MIMO broadcast channels with ﬁnite-rate feedback,” IEEE
+Trans. Inf. Theory, vol. 52, no. 11, Nov. 2006.
+[18] A. Barg and D. Y. Nogin, “Bounds on packings of spheresin the
+Grassmann manifold,” IEEE Trans. Inf. Theory, vol. 48, no. 9, pp. 2450–
+2454, Sept. 2002.
+
+For comparison, the max-SNR scheme was considered, in
+which each MS employs eigen-beamforming to maximize its
+SNR and the BS selects best S MSs that have higher effective
+SNRs than the rest. In addition, the OIA scheme employing a
+ﬁxed weight vector, i.e., w[i,j] = e1 for all MSs, is considered,
+which is equivalent to the OIA scheme for SIMO IMAC. Thus,
+we refer this scheme as ‘SIMO OIA’. For the proposed vectorquantized OIA, the random codebook was assumed, each
+element of which was independently and uniformly generated
+in a unit sphere.
+Fig. 2 depicts the log-log plot of the sum-LIF, the sum of
+the LIF metrics of the selected MSs, vs. N when K = 2,
+L = 2, M = 4, S = 3, and SNR is 10dB. This performance
+measurement enables us to measure the quality of the proposed
+OIA schemes, as shown in [4]. The sum-LIF of the antenna
+selection-based OIA as well as that of the vector-quantized
+OIA with ﬁxed nf degrease with respect to N at the same
+rate of the SIMO OIA, because all these schemes are subject
+to the required user scaling of SNR(K−1)S . On the other hand,
+the decreasing rate of the SVD-based OIA is higher, which is
+subject to the required user scaling of SNR(K−1)S−L+1 .
+Fig. 3 illustrates the sum-rates of the considered schemes
+when K = 2, M = 4, S = 3, N = 100, and L = 2. A tradeoff between the sum-rate for given N and the quantization
+level Nf is clearly observed. The sum-rate of the vectorquantized OIA with nf = 9 nearly attains the sum-rate of
+the SVD-based OIA.
+R EFERENCES
+[1] V. R. Cadambe and S. A. Jafar, “Interference alignment and degrees of
+freedom of the K-user interference channel,” IEEE Trans. Inf. Theory,
+vol. 54, no. 8, pp. 3425–3441, Aug. 2008.
+[2] S. A. Jafar and S. Shamai (Shitz), “Dgrees of freedom region of the
+MIMO X channel,” IEEE Trans. Inf. Theory, vol. 54, no. 1, pp. 151–
+170, Jan. 2008.
+[3] M. A. Maddah-Ali, A. S. Motahari, and A. K. Khandani, “Communication over MIMO X channels: Interference alignment, decomposition,
+and performance analysis,” IEEE Trans. Inf. Theory, vol. 54, no. 8, pp.
+3457–3470, Aug. 2008.
+
+5
+
+

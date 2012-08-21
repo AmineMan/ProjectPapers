@@ -1,0 +1,814 @@
+Creator:        TeX
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Tue May 15 21:45:51 2012
+ModDate:        Tue Jun 19 12:56:24 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      1709813 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569566649
+
+Wireless Device-to-Device Communications with Distributed Caching
+Negin Golrezaei, Alexandros G. Dimakis, Andreas F. Molisch
+Dept. of Electrical Eng.
+University of Southern California
+Los Angeles, CA, USA
+emails: {golrezae,dimakis,molisch}@usc.edu
+device. Storage allows users to collaborate even when they
+do not request the same content at the same time. This is a
+new dimension in wireless collaboration architectures beyond
+relaying and cooperative communications.
+Our contributions: In this paper we introduce the novel
+D2D architecture and formulate some theoretical problems that
+arise. Speciﬁcally, we identify a conﬂict between collaboration
+distance and interference. We show how to optimize the D2D
+collaboration distance and analyze the scaling behavior of
+D2D beneﬁts. The optimal collaboration distance depends on
+the content request statistics which are modeled by a Zipf
+distribution. Our main result is a closed form expression
+of the optimal collaboration distance as a function of the
+content reuse distribution parameters. We show that if the
+Zipf exponent of the content reuse distribution is greater than
+1, it is possible to have a number of D2D interference-free
+collaboration pairs that scales linearly in the number of nodes.
+If the Zipf exponent is smaller than 1, we identify the best
+possible scaling in the number of D2D collaborating links.
+Surprisingly, a very simple distributed caching policy achieves
+the optimal scaling behavior and therefore there is no need to
+centrally coordinate what each node is caching.
+The remainder of this paper is organized as follows: In Section II we setup the D2D formulation and explain the tradeoff
+between collaboration distance and interference. Section III
+contains our two main theorems, the scaling behavior for Zipf
+exponents greater and smaller than 1. In Section IV we discuss
+future directions, open problems and conclusions. Finally, in
+the Appendix we include some interesting technical parts of
+our proofs. Due to space constraints we omit the complete
+proofs from this version of the paper.
+
+Abstract—We introduce a novel wireless device-to-device (D2D)
+collaboration architecture that exploits distributed storage of
+popular content to enable frequency reuse. We identify a fundamental conﬂict between collaboration distance and interference
+and show how to optimize the transmission power to maximize
+frequency reuse. Our analysis depends on the user content
+request statistics which are modeled by a Zipf distribution.
+Our main result is a closed form expression of the optimal
+collaboration distance as a function of the content reuse distribution parameters. We show that if the Zipf exponent of
+the content reuse distribution is greater than 1, it is possible
+to have a number of D2D interference-free collaboration pairs
+that scales linearly in the number of nodes. If the Zipf exponent
+is smaller than 1, we identify the best possible scaling in the
+number of D2D collaborating links. Surprisingly, a very simple
+distributed caching policy achieves the optimal scaling behavior
+and therefore there is no need to centrally coordinate what each
+node is caching.
+
+I. I NTRODUCTION
+Wireless mobile data trafﬁc is expected to increase by
+a factor of 40 over the next ﬁve years, from the current
+93 Petabytes to 3600 Petabytes per month in the next ﬁve
+years [1]. This explosive demand is fueled mainly by mobile
+video trafﬁc that is expected to increase by a factor of 65 times,
+and become the by far dominant source of data trafﬁc. Modern
+smartphones and tablets have signiﬁcant storage capacity often
+reaching several gigabytes. Recent breakthroughs in dense
+NAND ﬂash will make 128GB smartphone memory chips
+available in the coming months. In this paper we show how
+to exploit these storage capabilities to signiﬁcantly reduce
+wireless capacity bottlenecks.
+The central idea in this paper is that, for most types of
+mobile video trafﬁc, we can replace backhaul connectivity
+with storage capacity. This is true because of content reuse,
+i.e., the fact that popular video ﬁles will be requested by
+a large number of users. Distributed storage enhances the
+opportunities for user collaboration.
+We recently introduced the idea of femtocaching helpers [2]
+[3], small base stations with a low-bandwidth (possibly wireless) backhaul link and high storage capabilities. In this paper
+we take this architecture one step further: We introduce a
+device-to-device (D2D) architecture where the mobiles are
+used as caching storage nodes. Users can collaborate by
+caching popular content and utilizing local device-to-device
+communication when a user in the vicinity requests a popular
+ﬁle. The base station can keep track of the availability of the
+cached content and direct requests to the most suitable nearby
+
+II. M ODEL AND S ETUP
+We consider n users distributed uniformly in a unit square
+and consider this as single cell. The base station (BS) might be
+aware of the stored ﬁles and channel state information of the
+users and control the D2D communications. For simplicity,
+we neglect inter-cell interference and consider one cell in
+isolation. We further assume that the D2D communication
+does not interfere with communication between the BS and
+users. This assumption is justiﬁed if the D2D communications
+occur in a separate frequency band (e.g., WiFi). For the deviceto-device throughput, we henceforth do not need to consider
+explicitly the BS and its associated communications.
+The communication is modeled by random geometric graph
+G(n, r(n)) where two users (assuming D2D communication is
+possible) can communicate if their physical distance is smaller
+
+This research was supported in part by NSF Career Grant CCF-1055099
+and research gifts by Intel and Microsoft Research.
+
+1
+
+mobile, caching has to be optimized in a distributed way. The
+simple randomized caching policy we investigate makes each
+user choose which ﬁle to cache by sampling from a caching
+distribution. It is clear that popular ﬁles should be stored
+with a higher probability, but the question is that how much
+redundancy we want to have in our distributed cache.
+We assume that all D2D links share the same time-frequency
+transmission resource within one cell area. This is possible
+since the distance between requesting user and user with the
+stored ﬁle will typically small. However, there should be no
+destructive interference of a transmission by others on an
+active D2D link. We assume that (given that node u wants
+to transmit to node v) any transmission within range r(n)
+from v (the receiver) can introduce interference for the u − v
+transmission. Thus, they cannot be activated simultaneously.
+This model is known as protocol model; while it neglects
+important wireless propagation effects such as fading [9], it
+can provide fundamental insights and has been widely used in
+prior literature [4].
+To model interference given a storage conﬁguration and user
+requests we start with all potential D2D collaboration links.
+Then, we construct the conﬂict graph as follows. We model
+any possible D2D link between node u as transmitter to node
+v as a receiver with a vertex u − v in the conﬂict graph.
+Then, we draw an edge between any two vertices (links) that
+create interference for each other according to the protocol
+model. Figure 2 shows how the RGG is converted to the
+conﬂict graph. In Figure 2(a), receiver nodes are green and
+transmitter nodes are yellow. The nodes that should receive
+their desired ﬁles from the BS are gray. A set of D2D links is
+called active if they are potentially active and can be scheduled
+simultaneously, i.e., form an independent set in the conﬂict
+graph. The random variable counting the number of active
+D2D links under some policy is denoted by L.
+Figure 2(b) shows the conﬂict graph and one of maximum
+independent sets for the conﬂict graph. We can see that out of
+14 possible D2D links 9 links can co-exist without interference. As is well known, determining the maximum independent set of an arbitrary graph is computationally intractable
+(NP complete [10]). Despite the difﬁculty of characterizing
+the number of interference-free active links, we can determine
+the best possible scaling law in our random ensemble.
+
+Fig. 1. Random geometric graph example with collaboration distance r(n).
+
+than some collaboration distance r(n) [4], [5]. The maximum
+allowable distance for D2D communication r(n) is determined
+by the power level for each transmission. Figure 1 illustrates
+an example of random geometric graph (RGG).
+We assume that users may request ﬁles from a set of size
+m that we call a “library”. The size of this set should increase
+as a function of the number of users n. Intuitively, the set of
+YouTube videos requested in Berkeley in one day should be
+smaller than the set of requested in Los Angeles. We assume
+that this growth should be sublinear in n, e.g. m could be
+Θ(log(n)).
+Each user requests a ﬁle from the library by sampling
+independently using a popularity distribution. Based on numerous studies, Zipf distributions have been established as
+good models to the measured popularity of video ﬁles [6],
+[7]. Under this model, the frequency of the ith popular ﬁle,
+denoted by fi , is inversely proportional to its rank:
+fi =
+
+1
+iγr
+m
+j=1
+
+, 1 ≤ i ≤ m.
+
+(1)
+
+1
+
+j γr
+
+The Zipf exponent γr characterizes the distribution by controlling the relative popularity of ﬁles. Larger γr exponents
+correspond to higher content reuse, i.e., the ﬁrst few popular
+ﬁles account for the majority of requests.
+Each user has a storage capacity called cache which is
+populated with some video ﬁles. For our scaling law analysis
+we assume that all ﬁles have the same size, and each user
+can store one ﬁle. This yields a clean formulation and can be
+easily extended for larger storage capacities.
+Our architecture works as follows: If a user requests one of
+the ﬁles stored in neighbors’ caches in the RGG, neighbors
+will handle the request locally through D2D communication;
+otherwise, the BS should serve the request. Thus, to have D2D
+communication it is not sufﬁcient that the distance between
+two users be less than r(n); users should ﬁnd their desired
+ﬁles locally in caches of their neighbors. A link between
+two users will be called potentially active if one requests a
+ﬁle that the other is caching. Therefore, the probability of
+D2D collaboration opportunities depends on what is stored
+and requested by the users.
+The decision of what to store can be taken in a distributed
+or centralized way. A central control of the caching by the
+BS allows very efﬁcient ﬁle-assignment to the users [8].
+However, if such control is not desired or the users are highly
+
+III. A NALYSIS
+A. Finding the optimal collaboration distance
+We are interested in determining the best collaboration
+distance r(n) and caching policy such that the expected
+number of active D2D links is maximized. Our optimization
+is based on balancing the following tension: The smaller
+the transmit power, the smaller the region in which a D2D
+communication creates interference. Therefore, more D2D
+pairs can be packed into the same area allowing higher
+frequency reuse. On the other hand, a small transmit power
+might not be sufﬁcient to reach a mobile that stores the desired
+ﬁle. Smaller power means smaller distance and hence smaller
+probability of collaboration opportunities. The optimum way
+to solve this problem would be to assign different transmit
+
+2
+
+using a Zipf caching distribution with exponent γc > 1
+then E[L] = Θ(n).
+The ﬁrst part of the theorem 1 is trivial since the number of
+active D2D links can at most scale linearly in the number of
+users. The second part indicates that if we choose ropt (n) =
+
+(a)
+
+1
+Θ( n ) and γc > 1, E[L] can grow linearly with n. There is
+some simple intuition behind this result: We show that in this
+regime users are surrounded by a constant number of users in
+expectation. If the Zipf exponent γc is greater than one, this
+sufﬁces to show that the probability that they can ﬁnd their
+desired ﬁles locally is a non-vanishing constant as n grows.
+Our proof is provided in the Appendix A.
+For the low content reuse region γr < 1, we obtain the
+following result:
+Theorem 2: If γr < 1,
+n
+i) Upper bound: For any caching policy, E[L] = O( mη )
+1−γr
+where η = 2−γr ,
+
+(b)
+
+Fig. 2.
+a) Random geometric graph, yellow and green nodes indicate
+receivers, transmitters in D2D links. Gray nodes get their request ﬁles from
+the BS. Arrows show all possible D2D links. b) conﬂict graph based on Figure
+2(a) and one of maximum independent set of the conﬂict graph; pink vertices
+are those D2D links that can be activated simultaneously.
+
+η+
+
+ii) Achievability: If ropt (n) = Θ( mn ) and users cache
+ﬁles randomly and independently according to a Zipf distribution with exponent γc , for any exponent η + , there
+n
+1
+exists γc such that E[L] = Θ( mη+ ) where 0 < < 6
+and γc is a solution to the following equation
+
+power to each node dynamically, to maximize the number
+of non-interfering collaborating pairs. However this approach
+would be intractable and non-practical.
+Our approach is to enforce the same transmit power for
+all the users and show how to optimize it based on the
+content request statistics. Our analysis involves ﬁnding the
+best compromise between the number of possible parallel D2D
+links and the probability of ﬁnding the requested content. Our
+results consist of two parts. In the ﬁrst part (upper bound),
+we ﬁnd the best achievable scaling for the expected number
+of active D2D links. In the second part (achievability), we
+determine an optimal caching policy and r(n) to obtain the
+best scaling for the expected number of active links E[L].
+The best achievable scaling for the expected number of active D2D links depends on the extend of content reuse. Larger
+Zipf distribution exponents correspond to more redundancy in
+the user requests and a small number of ﬁles accounts for
+the majority of video trafﬁc. Thus, the probability of ﬁnding
+requested ﬁles through D2D links increases by having access
+to few popular ﬁles via neighbors.
+We separate the problem into two different regions depending on the Zipf exponent: γr > 1 and γr < 1. For each
+of these regimes, we ﬁnd the best achievable scaling for E[L]
+and the optimum asymptotic r(n) denoted by ropt (n). We also
+show that a simple distributed caching policy with the properly
+chosen caching distribution has optimal scaling, i.e., matches
+the scaling behavior that any centralized caching policy could
+achieve1 .
+Our ﬁrst result is the following theorem:
+Theorem 1: If the Zipf exponent γr > 1,
+i) Upper bound: For any caching policy, E[L] = O(n),
+c1
+c2
+ii) Achievability: Given that
+n ≤ ropt (n) ≤
+n and
+
+(1 − γr )γc
+=η+ .
+1 − γr + γc
+We show that when there is low content reuse, linear scaling
+in frequency re-use is not possible. At a high level, in order
+to achieve the optimal scaling, on average a user should be
+surrounded by Θ(mη ) users. Comparing with the ﬁrst region
+where γr > 1, we can conclude that when there is less
+redundancy, users have to see more users in the neighborhood
+to ﬁnd their desired ﬁles locally. Due to space constraints we
+omit this proof.
+IV. D ISCUSSION AND C ONCLUSIONS
+The study of scaling laws of the capacity of wireless
+networks has received signiﬁcant attention since the pioneering
+work by Gupta and Kumar [4] (e.g. see [11]–[13]). The ﬁrst
+result was pessimistic: if n nodes are trying to communicate
+(say by forming n/2 pairs), since the typical distance in a
+√
+2D random network will involve roughly Θ( n) hops, the
+throughput per node must vanish, approximately scaling as
+√
+1/ n. There are, of course, sophisticated arguments performing rigorous analysis that sharpens the bounds and numerous
+interesting model extensions. One that is particularly relevant
+to this project is the work by Grossglauser and Tse [12]
+that showed that if the nodes have inﬁnite storage capacity,
+full mobility and there is no concern about delay, constant
+(non-vanishing) throughput per node can be sustained as the
+network scales.
+Despite the signiﬁcant amount of work on ad hoc networks,
+there has been very little work on ﬁle sharing and content
+distribution over wireless ( [2], [14]) beyond the multiple
+unicast trafﬁc patters introduced in [4]. Our result shows that if
+there is sufﬁcient content reuse, non-vanishing throughput per
+node can be achieved, even with constant storage and delay.
+
+1 We use the standard Landau notation: f (n) = O(g(n)) and f (n) =
+Ω(g(n)) respectively denote |f (n)| ≤ c1 g(n) and |f (n)| ≥ c2 g(n) for
+some constants c1 , c2 . f (n) = Θ(g(n)), stands for f (n) = O(g(n)) and
+f (n) = Ω(g(n)). Little-o notation, i.e., f (n) = o(g(n)) is equivalent to
+f (n)
+limn→∞ g(n) = 0.
+
+3
+
+In our recent work [15] we empirically analyzed the optimal
+collaboration distance for ﬁxed number of users.
+On a more technical note, the most surprising result is perhaps the fact that in Theorem 2, a simple distributed policy can
+n
+match the optimal scaling behavior E[L] = O( mη ). Further,
+for both regimes, the distributed caching policy exponent γc
+should not match the request Zipf exponent γr , something that
+we found quite counter intuitive.
+Overall, even if linear frequency re-use is not possible, we
+expect the scaling of the library m to be quite small (typically
+logarithmic) in the number of users n. In this case we obtain
+near-linear (up to logarithmic factors) growth in the number of
+D2D links for the full spectrum of Zipf exponents. Our results
+are encouraging and show that distributed caching can enable
+collaboration and mitigate wireless content delivery problems.
+
+(a)
+
+Fig. 3. a) Dividing cell into virtual clusters. b) In the worst case, a good
+cluster can block at most 16 clusters. In the dashed circle, receiving is not
+possible and in the solid circle, transmission is not allowed.
+
+where U is a random vector of stored ﬁles by users in the cluster. u is a realization of U and |u| denotes the length of vector
+u. The ith element of u denoted by ui ∈ {1, 2, 3, . . . , m}
+indicates what user i in the cluster stores.
+For each u, we deﬁne a value:
+
+A PPENDIX A
+P ROOF OF T HEOREM 1
+The ﬁrst part of the theorem is easy to see since the number
+of D2D links cannot exceed the number of users.
+For the second part of theorem 1, we divide the cell into
+2
+r(n)2 virtual square clusters. Figure 3(a) shows the virtual
+clusters in the cell. The cell side is normalized to 1 and the side
+√
+of each cluster is equal to r(n) . Thus, all users within a cluster
+2
+can communicate with each other. Based on our interference
+model, in each cluster only one link can be activated. Thus,
+to prove the theorem, it is enough to show that in a constant
+fraction of virtual clusters, there are active D2D links that
+do not introduce interference to each other. This is because
+1
+r(n) = Θ( n ) and there are Θ(n) virtual clusters in the
+cell. When there is an active D2D link within a cluster, we
+call the cluster good. But not all good clusters can be activated
+simultaneously. One good cluster can at most block 16 clusters
+(see Figure 3(b)). The maximum interference happens when
+a user in the corner of a cluster transmits a ﬁle to a user in
+the opposite corner. So, we have E[L] ≥ E[G] where E[G] is
+17
+the expected number of good clusters. Since we want to ﬁnd
+the lower bound for E[L], we can limit users to communicate
+with users in virtual clusters they belong to. Therefore, we
+have
+2
+E[G] ≥
+r(n)2
+
+v(u) =
+|u|
+
+˜
+where u = ∪j=1 uj and ∪ is the union operation. Actually
+v(u) is the sum of popularities of the union of ﬁles in u. The
+cluster is considered to be good if at least a user i in the cluster
+˜
+requests one of the ﬁles in u − {ui }. Note the possibility of
+self-requests, i.e., a user might ﬁnd the ﬁle it requests in its
+own cache; in this case clearly no D2D communication will
+be activated by this user. Accounting for these self-requests,
+the probability that user i ﬁnds its request ﬁles locally within
+the cluster is (v(u) − fui ). Thus, we obtain:
+Pr[good|u, k] ≥ 1 − (1 − (v(u) − max fui ))k .
+i
+
+2
+r(n)2
+
+E[G] ≥
+
+Pr[good|k] Pr[K = k],
+
+n
+
+Pr[K = k]
+k=1
+
+1 − (1 − (v(u) − f1 ))k Pr[U = u].
+
+×
+
+k=0
+
+(4)
+
+u∈x
+
+where x = u |u| = k and 1 ∈ u . Let us further deﬁne a
+random variable V which is sum of popularities of the union
+of ﬁles stored by users in the cluster. Then, in equation (4),
+we can take the expectation with respect to V , i.e.,
+E[G] ≥
+
+2
+r(n)2
+
+n
+
+2
+≥
+r(n)2
+
+Pr[K = k]
+k=0
+
+Pr[good|u, k] Pr[U = u],
+
+(3)
+
+Let us only consider cases where at least one user in the cluster
+caches ﬁle 1 (the most popular ﬁle). Then, from (2) and (3),
+the following lower bound is achieved:
+
+n
+
+×
+
+fi ,
+i∈˜
+u
+
+2
+where r(n)2 is the total number of virtual clusters. K is
+the number of users in the cluster, which is a binomial
+2
+random variable with n trials and probability of r(n) , i.e.,
+2
+2
+K = B(n, r(n) ). Pr[K = k] is the probability that there are
+2
+k users in the cluster and Pr[good|k] is the probability that
+the cluster is good conditioned on k. The probability that a
+cluster is good depends on what users cache. Therefore,
+
+2
+E[G] ≥
+r(n)2
+
+(b)
+
+(2)
+
+n
+
+Pr[K = k]EV [1 − (1 − (V − f1 ))k |Ak ]
+1
+k=1
+n
+
+Pr[K = k]EV [(V − f1 )|Ak ],
+1
+k=1
+
+where Ak is the event that at least one of k users in the cluster
+1
+caches ﬁle 1 and EV [.] is the expectation with respect to V .
+
+u |u|=k
+
+4
+
+k ∗ − h∗ should be greater than 1 which results in a constant
+2
+lower bound for c1 . The second exponent, i.e., k ∗ p1 δ1 /3 is
+2
+−k∗ p1 δ1 /3
+Θ(1). The term (1 − 2e
+) is a positive constant if
+ln 2ζ(γc
+1
+c1 ≥ 3δ2 (1−δ) ) , where ζ(γ) =
+j γ is the Riemann zeta
+
+Let Ak for 1 ≤ h ≤ k denote the event that h users out of
+1,h
+k users in the cluster cache ﬁle 1. Then, we get:
+2
+E[G] ≥
+r(n)2
+×
+
+n
+
+k
+
+EV [(V − f1 )|Ak ]
+1,h
+
+Pr[K = k]
+k=1
+
+k
+h
+
+1
+
+h=1
+
+(p1 )h (1 − p1 )k−h ,
+
+m
+
+(5)
+
+fj (1 − (1 − pj )
+
+m
+
+fj 1j |Ak ]
+1,h
+
+b
+
+H(γ, a, b) =
+
+m
+
+j=a
+
+j=2
+
+R EFERENCES
+
+−f1 )|Ak ]
+1,h
+
+Substituting EV [(V
+in (5) and limiting the interval
+of k, we can obtain:
+2
+Pr[K = k]×
+E[G] ≥
+r(n)2
+
+[1] “http://www.cisco.com/en/us/solutions/collateral/ns341/ns525/ns537
+/ns705/ns827/white paper c11-520862.html.”
+[2] N. Golrezaei, K. Shanmugam, A. Dimakis, A. Molisch, and G. Caire,
+“Femtocaching: Wireless video content delivery through distributed
+caching helpers,” in INFOCOM. IEEE, 2012.
+[3] ——, “Wireless video content delivery through coded distributed
+caching,” in ICC. IEEE, 2012.
+[4] P. Gupta and P. Kumar, “The capacity of wireless networks,” Information
+Theory, IEEE Transactions on, vol. 46, no. 2, pp. 388–404, 2000.
+[5] M. Penrose and O. U. Press, Random geometric graphs.
+Oxford
+University Press Oxford, 2003, vol. 5.
+[6] M. Cha, H. Kwak, P. Rodriguez, Y. Ahn, and S. Moon, “I tube, you tube,
+everybody tubes: analyzing the world’s largest user generated content
+video system,” in Proceedings of the 7th ACM SIGCOMM conference
+on Internet measurement. ACM, 2007, pp. 1–14.
+[7] “http://traces.cs.umass.edu/index.php/network/network.”
+[8] N. Golrezaei, A. Dimakis, and A. Molisch, “Asymptotic throughput of
+base station assisted device-to-device communications,” pp. 382–390, to
+be submitted for publication.
+[9] A. Molisch, Wireless communications. Wiley, 2011.
+[10] E. Lawler, J. Lenstra, A. Kan, and E. U. E. Institute, “Generating
+all maximal independent sets: Np-hardness and polynomial-time algorithms,” SIAM J. Comput., vol. 9, no. 3, pp. 558–565, 1980.
+[11] A. Ozgur, O. L´ vˆ que, and D. Tse, “Hierarchical cooperation achieves
+e e
+linear capacity scaling in ad hoc networks,” in INFOCOM 2007. 26th
+IEEE International Conference on Computer Communications. IEEE.
+IEEE, 2007, pp. 382–390.
+[12] M. Grossglauser and D. Tse, “Mobility increases the capacity of adhoc wireless networks,” in INFOCOM 2001. Twentieth Annual Joint
+Conference of the IEEE Computer and Communications Societies.
+Proceedings. IEEE, vol. 3. IEEE, 2001, pp. 1360–1369.
+[13] M. Franceschetti, M. Migliore, and P. Minero, “The capacity of wireless networks: information-theoretic and physical limits,” Information
+Theory, IEEE Transactions on, vol. 55, no. 8, pp. 3413–3424, 2009.
+[14] Y. Chen, C. Caramanis, and S. Shakkottai, “On ﬁle sharing over a
+wireless social network,” in Information Theory Proceedings (ISIT),
+2011 IEEE International Symposium on. IEEE, 2011, pp. 249–253.
+[15] N. Golrezaei, A. Molisch, and A. Dimakis, “Base station assisted deviceto-device communications for high-throughput wireless video networks,”
+submitted for publication.
+[16] H. Chernoff, “A measure of asymptotic efﬁciency for tests of a hypothesis based on the sum of observations,” The Annals of Mathematical
+Statistics, vol. 23, no. 4, pp. 493–507, 1952.
+[17] J. Conrey, “The riemann hypothesis,” Notices of the AMS, vol. 50, no. 3,
+pp. 341–353, 2003.
+
+k∈I
+
+k
+h
+
+fj (1 − (1 − pj )k−h )
+h=1 j=2
+
+(p1 )h (1 − p1 )k−h , (6)
+
+where 0 < δ < 1 and I = [nr(n)2 (1−δ)/2, nr(n)2 (1+δ)/2].
+Deﬁne k ∗ ∈ I such that it minimizes the expression in the last
+1
+line of (6). Considering that r(n) = Θ( n ), k ∗ is Θ(1). Then
+from (6), we have:
+2
+E[G] ≥
+Pr[k ∈ I]
+r(n)2
+k∗
+h
+
+×
+
+k∗
+
+m
+
+fj (1 − (1 − pj )k
+
+∗
+
+−h
+
+)
+
+h=1 j=2
+
+(p1 )h (1 − p1 )k
+
+∗
+
+−h
+
+2 2
+2
+≥
+(1 − 2e−nr(n) δ /6 )
+r(n)2
+
+(7)
+k∗ p1 (1+δ1 )
+
+k∗
+h
+
+h=k∗ p1 (1−δ1 )
+
+m
+
+fj (1 − (1 − pj )k
+
+×
+
+∗
+
+−h
+
+)(p1 )h (1 − p1 )k
+
+∗
+
+−h
+
+,
+
+(8)
+
+j=2
+
+where 0 < δ1 < 1. We apply the Chernoff bound in (7) to derive (8) [16]. Since the exponent nr(n)2 δ 2 /6 is Θ(1), we can
+2 2
+select the constant c1 such that the term (1 − 2e−nr(n) δ /6 )
+becomes positive.
+Let us deﬁne h∗ ∈ [k ∗ p1 (1 − δ1 ), k ∗ p1 (1 + δ1 )] such that it
+minimizes the expression in the last line of (8). From (1) and
+lemma 1, p1 is Θ(1) and as a result, h∗ is also Θ(1). Using
+the Chernoff bound in (8), we get:
+2 2
+∗
+2
+2
+(1 − 2e−nr(n) δ /6 )(1 − 2e−k p1 δ1 /3 )
+E[G] ≥
+r(n)2
+×
+
+k∗
+h∗
+
+m
+∗
+
+(p1 )h (1 − p1 )k
+
+∗
+
+1
+iγ .
+
+The proof is omitted due to lack of space.
+
+fj (1 − (1 − pj )k−h ).
+
+m
+
+fj pj .
+j=2
+
+To show that E[G] scales linearly with n, the term j=2 fj pj
+should not be vanishing as n goes to inﬁnity. It can been shown
+m
+that if γr , γc > 1, j=2 fj pj = Θ(1) (see lemma 1).
+Lemma 1: If γ > 1, a = o(b), and a = Θ(1),
+b
+then H(γ, a, b) = Θ(1) and
+j=a fj pj = Θ(1) where
+
+j=2
+
+k
+
+)>
+
+j=2
+
+m
+
+=
+
+m
+k∗ −h∗
+
+where pj represents the probability that ﬁle j is cached by a
+user based on Zipf distribution with exponent γc . To calculate
+EV [(V − f1 )|Ak ], we deﬁne an indicator function 1j for
+1,h
+each ﬁle j ≥ 2. 1j is equal to 1 if at least one user in the
+cluster stores ﬁle j. Hence,
+EV [(V − f1 )|Ak ] = E[
+1,h
+
+j=1
+
+function [17]. Further, the summation in (9) satisﬁes
+
+−h∗
+
+fj (1 − (1 − pj )k
+
+∗
+
+−h∗
+
+).
+
+j=2
+
+(9)
+
+5
+
+

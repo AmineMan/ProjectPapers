@@ -1,0 +1,835 @@
+Title:          Main.dvi
+Creator:        'Certified by IEEE Journals PDF Checker: 05/10/2012 11:30:57 PM'
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Thu May 10 22:56:39 2012
+ModDate:        Tue Jun 19 12:54:26 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      425525 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569566927
+
+Distributed Rateless Coding with Cooperative
+Sources
+Mahyar Shirvanimoghaddam, Yonghui Li and Branka Vucetic
+School of Electrical and Information Engineering
+The University of Sydney
+Sydney, NSW, Australia
+Emails:{mahyar.shirvanimoghaddam, yonghui.li, branka.vucetic}@sydney.edu.au
+
+In [7], a distributed rateless code with an unequal error
+protection (UEP) property has been proposed for the same
+system model as in [5]. In fact, different data importance
+levels necessitate the design of distributed rateless codes
+with different error probabilities for different sources. Various
+block lengths and degree distributions have been considered
+at different source nodes. Degree distributions in [7] have
+been optimized using a multi-objective optimization approach.
+However, cooperation between the users has not been considered.
+In this paper a distributed rateless coding (DRC) scheme
+is proposed for a two-user MAC. In the proposed scheme,
+each user keeps transmitting their rateless coded symbols until
+its message can be completely decoded by the other user or
+an acknowledgment is received from the destination. After
+successful recovery of one user’s message by the other user
+but not by the destination, cooperation process starts. Each
+user encodes both users’ message by a rateless code and
+transmit them to the destination until both users’ messages are
+recovered by the destination. The proposed scheme is analyzed
+using the AND-OR tree analysis [8] and degree distributions
+are optimized by using a linear programming optimization
+approach. Simulation results show that the proposed scheme
+outperforms the non-cooperative rateless coded scheme where
+each user’s message is transmitted only by itself without
+cooperation with the other user. When the erasure probability
+of the inter-user channel is low, the proposed scheme performs
+very close to the perfect-cooperation scheme where each user’s
+message is assumed to be known at the other user.
+The rest of the paper is organized as follows. In Section II,
+the system model and the DRC scheme is described. AND-OR
+tree analysis of the DRC scheme is provided in Section III.
+In Section IV, a suboptimum optimization problem is deﬁned
+to ﬁnd an appropriate degree distribution. Simulation results
+are provided in Section V, followed by concluding remarks in
+Section VI.
+
+Abstract—In this paper, we propose a distributed rateless
+coding (DRC) scheme for a two-user cooperative system. In
+DRC, the overall transmission is divided into two phases, a
+broadcast phase and a cooperation phase. In the broadcast
+phase, each user keeps transmitting its rateless coded symbols
+to the other user and the destination until its message has been
+successfully decoded by the destination or the other user. In the
+cooperation phase, each user encodes both users’ messages by
+using a rateless code and transmits them to the destination. A
+linear programming optimization problem is then formulated to
+ﬁnd the optimal degree distribution for the proposed distributed
+rateless code. The performance of the proposed code is analyzed
+and validated by simulations.
+Index Terms—distributed coding, rateless code, LT coding,
+erasure channel.
+
+I. I NTRODUCTION
+Rateless code is a class of powerful error correction codes.
+They are rateless in the sense that they are able to generate
+an unlimited number of parity symbols. The design process
+of rateless codes is mainly comprised of determining an
+appropriate degree distribution [1]. Recently, rateless codes
+have been applied to coded cooperation [2] to further improve
+transmission efﬁciency and performance.
+In [3], a rateless coded cooperation scheme has been
+proposed for a two-user multiple access channel (MAC). In
+this scheme, one user helps to forward other user’s message
+only after its message has been successfully received by
+the destination and it has completely decoded other user’s
+message. In [4], a coded cooperation scheme based on rateless
+codes was designed for multi-user MACs, where each user
+cannot start the cooperation process until it has fully recovered
+other users’ messages. Its performance has been investigated
+by simulations, but no analysis and degree optimization has
+been carried out. Puducheri et. al. [5] proposed a distributed
+rateless coding scheme, where an intermediate relay node
+combines all incoming rateless coded symbols from sources.
+The degree distribution of rateless codes used at sources was
+designed in a way such that the combined symbols at the relay
+follow the standard Robust Soliton degree (RSD) distribution.
+The idea is further extended in [6], where incoming messages
+from sources are encoded using a degree distribution which
+is different from that used at sources, and suboptimal degree
+distributions have been obtained for both the source and relay
+node.
+
+II. D ISTRIBUTED R ATELESS C ODING
+MAC
+
+FOR A
+
+T WO -U SER
+
+In this paper, we consider a two-user cooperative multiple
+access channel, where two users, namely S1 and S2 , want to
+transmit their information symbols to the destination cooperatively. The channel between each pair of nodes is considered
+
+1
+
+Fig. 1.
+
+System model
+
+to be an erasure channel with a speciﬁc erasure probability
+(Fig. 1).
+Each user uses an LT code [9] to encode its information
+messages. LT encoding process contains two important steps;
+ﬁrst, an integer d, called degree, is obtained from a predeﬁned
+degree distribution. Then, d distinct information symbols are
+randomly selected and XORed to generate a coded symbol.
+D
+Let Ω(x) = i=1 Ωi xi be the generator polynomial of the
+degree distribution, where Ωi denotes the probability that a
+coded symbol has degree i, D is the maximum degree, and
+D
+i=1 Ωi = 1. The LT encoding process can be described by a
+bipartite graph, where the variable and check nodes represent
+message symbols and LT coded symbols, respectively [1].
+The overall transmission of the DRC scheme is divided into
+two phases, a broadcast phase and a cooperative phase. In
+the broadcast phase, each user generates coded symbols from
+its own message symbols using degree distribution Ω(x) and
+keeps transmitting them to the other user and the destination
+until it receives an acknowledgement from either the other user
+or the destination. If both users’ messages are successfully
+decoded at the destination before they are recovered by the
+other user, the destination will send an acknowledgment to
+both users. Then the sources start broadcasting new messages.
+Otherwise, the user that has successfully recovered the other
+user’s message starts the cooperation phase and encodes both
+users’ messages using an LT code with degree distribution
+Φ(x) and two users sequentially transmits coded symbols to
+the destination. When the destination successfully decodes
+both users’ messages, it sends an acknowledgement to both
+users. Then each user starts a new message transmission.
+Throughout the paper the following notations are used. k is
+the message length of each user. N1 and N2 are total numbers
+of the received coded symbols from S1 and S2 , respectively,
+at the destination in the broadcast phase, and N3 is the total
+number of the coded symbols received in the cooperation
+phase from both users. Also, Ω′ (x) denotes the derivative of
+Ω(x).
+III. AND-OR T REE
+
+ANALYSIS OF THE
+
+DRC
+
+Fig. 2.
+
+AND-OR tree, Tl,m , m = 1, 2.
+
+variable nodes if and only if it has received at least one
+message with value ”0” from its neighboring variable nodes.
+Thus, check nodes perform the logical AND operation [7].
+Since coded symbols received at the destination are generated
+from both user’s information symbols, three types of LT coded
+symbols exist at the destination. In the bipartite graph, coded
+symbols that are only connected to S1 (S2 )’s information
+symbols are referred to as Type-1 (Type-2) coded symbols
+and those connected to both users’ information symbols are
+called as Type-3 coded symbols.
+Therefore, in the AND-OR trees of the DRC scheme, three
+types of coded symbols are mapped to Type-C1 , Type-C2 , and
+Type-C3 AND nodes, and information symbols of S1 and S2
+are mapped to Type-X1 and Type-X2 OR nodes, respectively.
+We consider two AND-OR trees, Tl,1 and Tl,2 , with depth 2l
+(Fig. 2), such that the root of Tl,1 is a Type-X1 AND node
+and the root of Tl,2 is a Type-X2 AND node. Both trees have
+Type-X1 and Type-X2 OR nodes, and Type-C1 , Type-C2 , and
+Type-C3 AND nodes, where OR nodes are located at depth
+0, 2, ..., 2l and AND nodes are located at depth 1, 3, ..., 2l − 1.
+Furthermore, AND nodes at depth 2i − 1 has children among
+OR nodes at depth 2i, and children of OR nodes at depth 2j
+are from AND nodes at depth 2j + 1.
+In the AND-OR tree, Type-C1 (Type-C2) AND nodes are
+only connected to Type-X1 (Type-X2) OR nodes. A Type-Xi
+OR node at depth 2l is independently assigned a value of 0 or
+1, with the probability of p0,i = 1. The OR-nodes and ANDnodes, which do not have children, are assigned a value of ”0”
+and ”1”, respectively. By treating the tree as a Boolean circuit,
+we can derive the following lemma for the error probability
+of the DRC scheme using AND-OR tree analysis (see the
+appendix for the proof).
+Lemma 1: Let pl,m , m = 1, 2, be the probability that an
+information symbol of Sm is not recovered after l iterations,
+then we have:
+
+SCHEME
+
+In [1, 7], it was shown that iterative belief propagation
+decoding of rateless codes can be mapped to an AND-OR tree
+to analyze the recovery probability of an information symbol.
+The details of such mapping can be found in [7, 8]. More
+speciﬁcally, in the belief propagation decoding algorithm, at
+each iteration, a variable node sends a symbol ”1” to its
+neighboring check nodes if and only if it has received at least
+one message with value ”1” from its other neighboring check
+nodes. Thus variable nodes perform the logical OR operation.
+Similarly, a check node passes a symbol ”0” to its neighboring
+
+D−1
+
+pl,m = δm
+
+βm,d (1 − pl−1,m )d
+
+1−
+
+×
+
+d=0
+D−1 d
+
+β3,d−i,i (1 − pl−1,m )d−i (1 − pl−1,3−m )i
+
+δ3 1 −
+
+,
+
+d=0 i=1
+
+(1)
+where p0,m = 1, δj (x) = A δj,i xi , j ∈ {1, 2, 3}, δm,i is
+i=0
+the probability that a Type-Xm OR node has i children among
+
+2
+
+Type-Cm AND nodes, δ3,i is the probability that a Type-X1
+or Type-X2 OR node has i children among Type-C3 AND
+nodes, βm,i is the probability that a Type-Cm AND node is
+connected to i Type-Xm OR nodes as its children, and β3,i,j
+is the probability that a Type-C3 AND node is connected to
+i Type-X1 and j Type-X2 OR nodes as its children. These
+probabilities can be calculated as follows:
+Nm µ1 + N3 Φ(0.5)µ2
+k
+N3 (1 − 2Φ(0.5))µ2
+δ3 (x) = eα3 (x−1) , α3 =
+,
+2k
+
+δm (x) = eαm (x−1) , αm =
+
+βm,i =
+
+which arises form the fact that a coded symbol of degree
+d is actually of degree d + w with probability Φd+w before removing all edges connected to the known symbols.
+Since d + w information symbols are selected uniformly and
+randomly from 2k information symbols to generate a coded
+symbol in the cooperation phase, then (6) is straightforward.
+Furthermore, Eq. (7) shows that Φ∗ = 0, which means after
+0
+removing all the edges connected to the known information
+symbols, some coded symbols may not have connections to
+any information symbol. Thus these coded symbols should be
+removed from the tanner graph and the degree distribution of
+the remaining coded symbols will be:
+
+(2)
+(3)
+
+(i + 1)Ωi+1
+Nm
+Nm + N3 Φ(0.5)
+µ1
+(i + 1)Φi+1
+N3 Φ(0.5)
++
+, (4)
+Nm + N3 Φ(0.5)
+µ2
+
+β3,i,j =
+
+(i + j + 1)Φi+j+1
+µ2
+
+k
+i
+
+k
+j
+
+2k
+i+j
+
+Φ(1) (x) ≥ −r1 ln 1 − x − c
+
+(5)
+
+DISTRIBUTION OPTIMIZATION
+
+(1 − x)
+2k
+
+Φ∗
+d
+
+=
+
+Φd+w
+w=0
+
+k
+w
+
+k
+d
+
+2k
+d+w
+
+i=1
+D
+
+Φi = 1,
+
+(10)
+
+1 ≤ i ≤ D,
+
+subject to
+
+(11)
+
+i=1
+
+0 ≤ Φi ≤ 1,
+k
+
+(1 − x)
+2k
+
+iΦi xi−1 ≥ −r0 ln 1 − x − c
+i=1
+
+D D−d
+
+, x ∈ [0, 1 − δ], (6)
+
+, d = 0, 1, ..., D
+
+iΦi
+
+minimize
+
+dΦd+w
+
+k
+w
+
+d=1 w=0
+
+where r0 , δ and c are constant values. This inequality ensures
+that the iterative belief propagation algorithm can proceed by
+keeping the number of degree-one coded symbols larger than
+a speciﬁc value at each iteration [1].
+If the receiver already knows one user’s information symbols, it can remove all the edges connected to the known
+symbols in the tanner graph. The probability that a coded
+symbol has a degree d can be calculated as follows:
+D−d
+
+(9)
+
+D
+
+From Lemma 1, we can deﬁne an optimization problem
+to minimize the error probability of S1 and S2 at a speciﬁc
+decoding iteration l, denoted by pl,1 and pl,2 , respectively.
+However, to ﬁnd the optimum degree distribution, N1 , N2 ,
+and N3 need to be known beforehand. Since, these values
+depend on channel erasure probabilities, they cannot be found
+without the knowledge of the channel erasure probability. As
+a result, a sub-optimum degree distribution may be used.
+According to [1], in order to ensure the successful recovery
+of 2k information symbols with a minimum overhead, the
+derivative of Φ(x) should satisfy the following condition,
+Φ′ (x) ≥ −r0 ln 1 − x − c
+
+,
+
+Using (7) and (8), (9) can be rewritten in terms of Φ(x) as in
+(13). It is also important to ﬁnd the degree distribution with
+minimum average degree in order to minimize the encoding
+complexity. So, the optimization problem can be formulated
+as follows:
+
+dΦd are average
+dΩd and µ2 =
+where µ1 =
+degrees of degree distribution functions, Ω(x) and Φ(x),
+which are the degree distributions used at the broadcast and
+cooperation phase of the DRC scheme..
+IV. T HE DEGREE
+
+(1 − x)
+k
+
+′
+
+,
+
+(8)
+
+Similar to the optimization problem in [1], for given r1 and δ,
+(1)
+the derivative of Φ(1) (x) = D Φd xd also needs to satisfy
+d=1
+the following condition for x ∈ [0, 1 − δ]:
+
+D
+d=1
+
+D
+d=1
+
+Φ∗
+d
+, d = 1, 2, ..., D,
+1 − Φ∗
+0
+
+(1)
+
+Φd =
+
+− r1 ln 1 − x − c
+
+k
+d
+
+2k
+d+w
+(1 − x)
+k
+
+,
+
+(12)
+
+xd−1 ≥
+
+D
+
+(1 −
+
+Φw
+w=1
+
+k
+w
+), (13)
+2k
+w
+
+where x ∈ [0, 1 − δ].
+
+In fact, (12)-(11), and the objective function are linear in
+Φ(x), so the optimization problem can be solved using a
+linear programming algorithm. For k = 10000 and δ = 0.01,
+the optimized degree distribution obtained by this method is
+
+(7)
+
+3
+
+0
+
+10
+
+5.5
+5
+
+−1
+
+−2
+
+10
+
+DRC, Scenario 2
+DRC, Scenario 1
+No−coop., Scenario 1
+No−coop., Scenario 2
+Full−coop., Scenario 1
+Full−coop., Scenario 2
+
+4.5
+4
+
+LT code
+with Φ(1)(x)
+
+LT code
+with Φ(x)
+
+LT code
+with Ω(x)
+
+N/K
+
+BER
+
+10
+
+3.5
+
+Simulation
+Analysis
+
+3
+−3
+
+10
+
+2.5
+2
+
+−4
+
+10
+
+1
+
+1.05
+
+1.1
+
+1.15
+Overhead: γ
+
+1.2
+
+1.25
+
+1.5
+0
+
+1.3
+
+Fig. 3. BER versus overhead when k = 10000, γ is the number of coded
+symbols divided by the number of information symbols.
+
+0.2
+0.4
+0.6
+0.8
+Erasure probability of the inter−user channel
+
+Fig. 4.
+
+1
+
+Overall overhead versus the erasure rate, k = 10000.
+
+1.5
+Scenario 2, DRC, S
+
+given by Φ(x) = 0.01x + 0.4328x2 + 0.2217x3 + 0.0051x5 +
+0.1524x6 + 0.0604x18 + 0.066x19 + 0.0514x48 , r0 = 0.9091
+and r1 = 0.7844.
+Furthermore, in the broadcast phase, each user only encodes
+its own information symbols, and so we ﬁnd the degree
+distribution which guarantees a successful decoding with a
+minimum overhead. So, in the broadcast phase, we use the
+same optimization problem as in [1]. The obtained degree
+distribution for δ = 0.01 and k = 10000 is Ω(x) =
+0.01x+0.487x2 +0.1654x3 +0.1055x4 +0.12x7 +0.0192x8 +
+0.0785x24 + 0.0144x25.
+Fig. 3 shows the bit error rate (BER) versus the number of
+coded symbols divided by the number of information symbols
+for LT codes with different degree distributions Ω(x), Φ(x),
+and Φ(1) (x), that are obtained by the optimization technique
+provided in this section. It can be noted from Fig. 3 that 2k
+information symbols can be recovered by receiving at least
+1.12 × 2k coded symbols generated by a LT code with Φ(x).
+Also k information symbols can be completely decoded with a
+high probability by using a LT code with Φ(1) (x) and receiving
+at least 1.23k coded symbols.
+V. S IMULATION
+
+1.4
+
+2
+
+Scenario 2, DRC, S
+
+1
+
+Scenario 1, DRC, S1
+
+1.2
+
+Scenario 1, DRC, S
+
+1.1
+M/k
+
+1.3
+
+No−cooperation
+
+2
+
+1
+0.9
+0.8
+0.7
+0.6
+0.5
+0.4
+0
+
+Fig. 5.
+
+0.2
+0.4
+0.6
+0.8
+Erasure probability of the inter−user channel
+
+1
+
+Overhead for each user versus the erasure rate, k = 10000.
+
+coded symbols to perform a successful decoding. Similarly,
+S2 should send k(1 + δk )/(1 − e2 ) coded symbols. If e1 =
+e2 = e, then, the users should send overall 2k(1 + δk )/(1 − e)
+coded symbols to the destination to guarantee that both users’
+messages can be decoded successfully.
+In the Perfect-cooperation scheme, the destination needs to
+receive at least 2k(1 + δ2k ) coded symbols in order to fully
+decode both users’ messages. Thus, users should send overall
+2k(1 + δ2k )/(1 − e) coded symbols (e1 = e2 = e). Since, δk
+and δ2k go to zero when k goes to inﬁnity, the total number
+of symbols required for a successful transmission in both Nocooperation and Perfect-cooperation schemes will be the same
+when k is relatively large. Therefore, in the symmetric case,
+for a relatively large k, the cooperation between the users
+cannot improve error performance at the destination.
+Fig. 4 shows the ratio of the total number of transmitted
+symbols (N ) and that of information symbols (K = 2k) versus
+different erasure probabilities of the inter-user channel. Two
+Scenarios, namely Scenario 1 and Scenario 2, are considered
+in simulations. In Scenario 1, e1 = 0.2, e2 = 0.8, and in
+Scenario 2, e1 = 0.3, e2 = 0.6. As can be seen in Fig 4, the
+
+RESULTS
+
+We consider that the channel between the users is reciprocal,
+i.e., e12 = e21 . The proposed scheme is compared with
+No-cooperation and Perfect-cooperation schemes. In the Nocooperation scheme, each user only transmits rateless coded
+symbols from its own message. In the Perfect-cooperation
+scheme, each user’s message is assumed to be perfectly known
+to the other user, so each user generates coded symbols from
+both users’ messages.
+In the No-cooperation scheme, S1 ’s information symbols
+will be decoded as soon as the destination receives at least
+k(1 + δk ) coded symbols, where δk is the average overhead
+required to ensure a successful decoding at the destination.
+Since the symbols transmitted from S1 may be erased, S1
+should transmit at least k(1 + δk )/(1 − e1 ) coded symbols
+to ensure that the destination receives an adequate number of
+
+4
+
+1)Φi+1 edges are connected to Type-C1 AND nodes of degree
+(i+1)Ωi+1
+N
++
+i + 1. Therefore, we have β1,i = N1 +N31
+Φ(0.5)
+µ1
+
+DRC scheme outperforms the No-cooperation scheme when
+the erasure probability of the inter-user channel is lower than
+that of the channel between the users and the destination.
+Also, for the very small erasure probability of the inter-user
+channel, the DRC scheme performs very close to the Perfectcooperation scheme. Analytical results obtained from lemma 1
+have been also provided in Fig. 4 and an excellent agreement
+with the simulation results has been demonstrated.
+Fig. 5 shows the number of coded symbols (M ) that should
+be received from each user to guarantee its successful receipt
+at the destination. It can be seen from the ﬁgure that when
+S1 has better channel to the destination, it needs to send more
+coded symbols compared to S2 . This is because the proposed
+scheme aims to jointly decode both users’ messages with minimum overhead at the destination, instead of decoding them
+separately. Hence, compared to the No-cooperation scheme,
+more coded symbols from S1 are required at the destination
+to decode S1 ’s message. Although a large overhead is required
+to decode S1 ’s message, the overall overhead required for
+decoding both users’ message is considerable lower compared
+to the No-cooperation scheme.
+
+N3 Φ(0.5)
+(i+1)Φi+1
+.
+N1 +N3 Φ(0.5)
+µ2
+Similarly, β3,i,j is the
+
+A PPENDIX A
+P ROOF OF L EMMA 1
+
+probability that a randomly chosen
+edge in Tl,1 is connected to a Type-C3 AND node with i and j
+children among Type-X1 and Type-X2 OR nodes, respectively.
+This is the probability that the edge is connected to a degreei + j + 1 Type-C3 AND node which have i Type-X1 and j
+Type-X2 OR nodes of children. Since information symbols
+from both users are selected uniformly and randomly in the
+encoding process during the cooperation phase, the probability
+that a coded symbol of degree i + j + 1 in the cooperation
+phase is connected to i and j information symbols of S1 and
+k
+k
+2k
+S2 , respectively is
+/
+. Moreover, the total
+i
+j
+i+j
+number of edges connected to Type-C3 AND nodes is N3 µ2 ,
+and the total number of edges connected to degree i + j + 1
+Type-C3 AND nodes is N3 (i + j + 1)Φi+j+1 . Hence, β3,i,j =
+k
+2k
+(i+j+1)Φi+j+1 k
+/
+.
+µ2
+i
+j
+i+j
+Moreover, δ1,i is the probability that a Type-X1 OR node
+connected to a randomly chosen edge is connected to i TypeC1 AND nodes. The total number of edges connected to
+Type-X1 OR nodes is N1T = N1 µ1 + N3 Φ(0.5)µ2 and the
+probability that i of these edges are connected to a speciﬁc
+N1T 1 i
+1
+( k ) (1 − k )N1T −i which can be
+Type-X1 OR node is
+i
+i
+approximated by poisson distribution as e−N1T /k (N1T /k) . We
+i!
+i
+α
+deﬁne α1 = N1T /k and δ1 (x) = i e−α1 i!1 xi = eα1 (x−1) .
+Similar results can be found for δ3 where the total number of
+edges connected to Type-C3 AND nodes is N3T = N3 (1 −
+2Φ(0.5)) and α3 = N3 /2k. Then, we have δ3 (x) = eα3 (x−1) .
+This completes the proof.
+
+The proof of (1) is straightforward and is similar to the
+proof of [5, lemma1] and is not provided here due to space
+limitation. We just prove the rest of the lemma. The proof is
+provided only for Tl,1 , and due to the symmetry, similar results
+can be proven for Tl,2 . Since a degree-d coded symbol in the
+cooperation phase is generated from both users’ information
+symbols based on degree distribution Φ(x), the probability that
+this symbol is not connected to any information symbol of S2
+in the tanner graph is 2−d . Therefore, the probability that a
+coded symbol is not connected to any information symbol of
+B
+S2 is Φ(0.5) = d=1 Φd 2−d . Hence, the number of Type-C1
+AND nodes is actually N1 + N3 Φ(0.5), where N1 of them
+have been generated in the broadcast phase based on Ω(x)
+and N3 Φ(0.5) of them have been generated in the cooperation
+phase.
+Additionally, β1,i is the probability that a randomly chosen
+edge in Tl,1 is connected to a Type-C1 AND node with i
+children among Type-X1 OR nodes and it is also equal to
+the probability that this edge is connected to a Type-C1 AND
+node of degree i + 1. So N1 (i + 1)Ωi+1 out of N1 µ1 edges
+connected to Type-C1 AND nodes are actually connected to
+degree-(i + 1) Type-C1 AND nodes. Similarly, N3 Φ(0.5)(i +
+
+R EFERENCES
+[1] A. Shokrollahi, “Raptor codes,” IEEE Transactions on Information Theory, vol. 52, pp. 2551 –2567, June 2006.
+[2] T. Hunter and A. Nosratinia, “Diversity through coded cooperation,” IEEE
+Transactions on Wireless Communications, vol. 5, pp. 283 – 289, Feb.
+2006.
+[3] W. Chen and W. Chen, “A new rateless coded cooperation scheme for
+multiple access channels,” in 2011 IEEE International Conference on
+Communications (ICC), pp. 1 –5, June. 2011.
+[4] M. Uppal, Z. Yang, A. Host-Madsen, and Z. Xiong, “Cooperation in the
+low power regime for the MAC using multiplexed rateless codes,” IEEE
+Transactions on Signal Processing, vol. 58, pp. 4720 –4734, Sep. 2010.
+[5] S. Puducheri, J. Kliewer, and T. Fuja, “The design and performance
+of distributed LT codes,” , IEEE Transactions on Information Theory,
+vol. 53, pp. 3740 –3754, Oct. 2007.
+[6] D. Sejdinovic, R. Piechocki, and A. Doufexi, “AND-OR tree analysis
+of distributed LT codes,” in IEEE Information Theory Workshop on
+Networking and Information Theory (ITW) 2009., pp. 261 –265, June
+2009.
+[7] A. Talari and N. Rahnavard, “Distributed rateless codes with UEP
+property,” in IEEE International Symposium on Information Theory
+Proceedings (ISIT), pp. 2453 –2457, June 2010.
+[8] M. G. Luby, M. Mitzenmacher, and M. A. Shokrollahi, “Analysis of
+random processes via and-or tree evaluation,” in Proceedings of the
+ninth annual ACM-SIAM symposium on Discrete algorithms, SODA ’98,
+(Philadelphia, PA, USA), pp. 364–373, Society for Industrial and Applied
+Mathematics, 1998.
+[9] M. Luby, “LT codes,” in Proceedings. The 43rd Annual IEEE Symposium
+on Foundations of Computer Science, pp. 271 – 280, Nov. 2002.
+
+VI. C ONCLUSION
+A distributed rateless coding scheme for a two-user cooperative access network has been proposed in this paper. The
+proposed scheme has been analyzed by the AND-OR tree
+method and a suboptimum linear programming optimization
+approach was used to ﬁnd good degree distributions in the
+broadcast and cooperative phases. Simulation results have
+conﬁrmed that the proposed scheme outperforms the Nocooperation scheme in various simulation setups.
+
+5
+
+

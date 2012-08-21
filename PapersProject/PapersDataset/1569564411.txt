@@ -1,0 +1,567 @@
+Creator:        TeX
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Sat May 12 18:26:16 2012
+ModDate:        Tue Jun 19 12:54:42 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      425326 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569564411
+
+Continuous Time Channels with Interference
+Ioana Ivan∗ , Michael Mitzenmacher† , Justin Thaler† , Henry Yuen∗
+∗ MIT
+
+Computer Science and Artiﬁcial Intelligence Laboratory
+University, School of Engineering and Applied Sciences
+
+† Harvard
+
+At a high level, our results are two-fold. First, we
+show that delay errors in the presence of interference
+are surprisingly powerful. Second, in the context of
+delay errors with interference, we ﬁnd that seemingly
+innocuous modeling decisions can have large effects on
+channel behavior.
+
+Abstract—Khanna and Sudan [2] studied a natural
+model of continuous time channels where signals are
+corrupted by the effects of both noise and delay, and
+showed that, surprisingly, in some cases both are not
+enough to prevent such channels from achieving unbounded
+capacity. Inspired by their work, we consider channels that
+model continuous time communication with adversarial
+delay errors. The sender is allowed to subdivide time into
+an arbitrarily large number M of micro-units in which
+binary symbols may be sent, but the symbols are subject to
+unpredictable delays and may interfere with each other. We
+model interference by having symbols that land in the same
+micro-unit of time be summed, and we study k-interference
+channels, which allow receivers to distinguish sums up to
+the value k. We consider both a channel adversary that
+has a limit on the maximum number of steps it can delay
+each symbol, and a more powerful adversary that only has
+a bound on the average delay.
+We give precise characterizations of the threshold between ﬁnite and inﬁnite capacity depending on the interference behavior and on the type of channel adversary: for max-bounded delay, the threshold is at Dmax =
+Θ (M log (min{k, M })), and for average bounded delay the
+threshold is at Davg = Θ
+M min{k, M } .
+
+Related Work. Typically a communication channel is
+modeled as follows. The channel takes as input a signal
+f , modeled as a function from some domain T to some
+˜
+range R, and the channel outputs a received signal f :
+T → R, which is a noisy version of f . For discrete time
+channels, T is a ﬁnite domain {0, . . . , T − 1} where T
+is the time duration, and for continuous-time channels,
+T is a continuous domain such as the interval [0, T ]. For
+discrete signal channels, R is a ﬁnite set such as {0, 1},
+and for continuous signal channels, R is an inﬁnite set
+such as the interval [0, 1].
+Shannon showed in the discrete time setting, the
+capacity of the channel is ﬁnite even if the signal is
+continuous, as long as there is signal noise [4]. Nyquist
+[3] and Hartley [1] showed that even in the continuous
+time setting, the capacity is ﬁnite if one places certain
+restrictions on the Fourier spectrum of the signal.
+Most relevant to us is recent work by Khanna and
+Sudan [2], which introduced continuous-time channels
+with signal noise and delay errors. They modeled their
+channel as the limit of a discrete process, and found that
+the capacity of their channel is inﬁnite unless at least
+one of the error sources is adversarial.
+Our work differs from previous work in several ways.
+We consider channels which introduce delays adversarially, but we additionally consider a very simple model
+of interference. We also consider two limitations on the
+adversary: one where maximum delay for any symbol
+is bounded, and one where the average delay over all
+symbols is bounded. In both cases, we ﬁnd that our
+channels display a clean threshold behavior.
+We believe that the adversarial setting presented here
+offers a clean initial analysis of the interference model,
+already with surprising results. A next natural step
+would be to analyze the effect of random delays in the
+presence of interference, and we leave this question as
+an interesting direction for future work.
+
+I. I NTRODUCTION
+We study continuous time channels with adversarial
+delay errors in the presence of interference. Our models
+are inspired by recent work of Khanna and Sudan [2],
+who studied continuous-time channels in the presence of
+both delay errors and (signal) noise errors. In this model,
+the communicating parties can subdivide time as ﬁnely
+as they wish. In each subdivided unit of time a 0 or 1 can
+be sent, but the sent signals are subject to unpredictable
+delays. Khanna and Sudan found (suprisingly) that the
+channel capacity in their model is ﬁnitely bounded only
+if at least one of the two sources of error (delay or
+signal noise) is adversarial. However, they assumed that
+at any instant in time, the receiver observes the sum of
+the signals delivered.
+In this paper, we observe that the behavior of the
+channel changes dramatically if one accounts for the
+possibility of interference, and that this holds even in
+the absence of signal noise. Our model of interference
+is very simple; the symbols received at each time unit are
+summed, and the receiver sees the exact sum if it is less
+than k, but values greater than k cannot be distinguished
+from each other.
+
+1
+
+II. M ODEL AND S UMMARY OF R ESULTS
+
+the order of the limits in the deﬁnition of the channel
+capacity is crucial, as we show in Section V.
+
+Modeling Time. Following [2], we model continuous
+time as the limit of a discrete process. More speciﬁcally,
+the sender and receiver may send messages that last a
+duration of T units of time, but also can divide every unit
+of time into M subintervals called micro-intervals, and
+the sender may send one bit per micro-interval. We refer
+to M as the granularity of time, and refer to a sequence
+of M micro-intervals as a macro-interval. We call T the
+message duration of the channel. A codeword c sent over
+the channel is therefore represented as c ∈ {0, 1}M T .
+Modeling Delays. The effect of the channel on a sent
+codeword c ∈ {0, 1}M T is to delay symbols of c by
+some amount, e.g. the ith symbol of c may be moved to
+the jth timestep of the received codeword, where j ≥ i.
+The delay process is adversarial, where we assume that
+the adversary knows the encoding/decoding scheme of
+the sender and receiver, and both the symbols that get
+delayed and the amount they are delayed can depend on
+the codeword that is sent. We formalize the notions of
+max-bounded delay and average-bounded delay below.
+Modeling Interference. If multiple symbols are delivered at the same time step, there are several natural ways
+the channel could behave. In [2], the receiver observes
+the sum of all bits delivered at that instant of time; we
+call this the sum channel. Another obvious choice is for
+the receiver to see the OR of all bits delivered at that
+instant in time; we call this the OR channel.
+We generalize these two models to what we call the
+k-interference channel. If there are fewer than k 1s
+delivered at an instant in time, the receiver will see the
+exact number of 1s delivered; otherwise the receiver will
+only see that at least k 1s have arrived. Thus, the sum
+channel can be viewed as the ∞-interference channel,
+and the OR channel as the 1-interference channel. We
+consider k-interference channels as k varies between
+the extremes of 1 and ∞, and may depend on the
+granularity of time M . We call the parameter k the
+collision resolution of the channel.
+Valid Codebooks. For any ﬁxed channel and codeword
+c, we let B(c) denote the set of possible received strings
+corresponding to c. For any time T , we say a codebook
+C ⊆ {0, 1}M T is valid for a channel if for any c = c
+in C, B(c) ∩ B(c ) = ∅. Informally, this means that the
+adversary cannot cause the decoder to confuse c with c
+for any other codeword c .
+Rate and Capacity. For any ﬁxed granularity of
+time M and time T , let sM,T := log |C(M, T )|,
+where |C(M, T )| denotes the size of largest valid
+codebook C(M, T ) ⊆ {0, 1}M T for the channel. The
+capacity of the channel at granularity M is deﬁned
+as R(M ) = lim supT →∞ {sM,T /T }. The capacity
+of the channel is deﬁned as lim supM →∞ R(M ) =
+lim supM →∞ [lim supT →∞ {sM,T /T }]. We stress that
+
+Encoding: For every T and M , the sender encodes
+sT,M bits as M T bits by applying an encoding function
+ET : {0, 1}sT ,M → {0, 1}M T . The encoded sequence is
+denoted X1 , . . . , XM T .
+Delay: The delay is modeled by a delay function ∆ :
+[M T ] → Z≥0 , where Z≥0 denotes the non-negative
+integers. The delay function has to satisfy a constraint
+depending on the type of delay channel we have:
+• Max-bounded delay: For all i ∈ [M T ], ∆(i) ≤ Dmax ,
+where Dmax is the bound on the maximum delay.
+• Average-bounded delay:
+i ∆(i) ≤ M T · Davg ,
+where Davg is the bound on the average delay.
+Received Sequence. The ﬁnal sequence seen by the
+receiver given delay ∆, is Y1 , . . . , YM T ∈ Z≥0 , where
+Yi := min{k, j≤i s.t. j+∆(j)=i Xj } and k is the collision resolution parameter of the channel. We will ignore
+the symbols that get delayed past timestep M T .
+For brevity, we use the shorthand AVG-k channel and
+MAX-k channel, where the meaning is clear.
+A. Summary of Results
+We prove that in the case of max-bounded delay, the
+capacity is ﬁnite if Dmax = Ω (M log (min{k, M })), and
+inﬁnite otherwise. In contrast, we prove that in the case
+of average-bounded delay, the capacity is ﬁnite if Davg =
+M · min{k, M } , and inﬁnite otherwise.
+Ω
+We also consider a number of variant channels and
+observe that seemingly innocuous modeling choices
+cause the behavior to change drastically. In particular,
+we consider settings where the granularity of time is
+allowed to grow with the message duration, and where
+adversarial signal noise can also be added. For brevity,
+we provide a few speciﬁc interesting results.
+III. M AX -B OUNDED D ELAY C HANNEL
+We give a precise characterization of the inﬁnite/ﬁnite
+capacity threshold of the MAX-k channel. Here and
+throughout, k refers to the collision resolution paramater,
+and M to the granularity of time.
+Theorem III.1. If Dmax is the max-delay bound for the
+MAX-k channel, then then the capacity of the channel is
+inﬁnite when Dmax = o (M log (min{k, M })), and the
+capacity is ﬁnite when Dmax = Ω (M log (min{k, M })).
+Proof: Inﬁnite capacity regime. Suppose Dmax =
+cM log (min{k, M }) for c = o(1) (here, c denotes a
+function of M that is subconstant in M ).
+Assume for simplicity that 1/c is an integer. Also
+1
+assume that c ≥ log k and k ≤ M , as smaller values of c
+and larger values of k only make communication easier.
+
+2
+
+We give a valid codebook of size s = 2T /2c , showing
+R(M ) = ω(1), and thus the capacity is inﬁnite. Given a
+message x ∈ {0, 1}T /2c , the sender breaks the message
+x into blocks of length log k. The sender then encodes
+each block independently, using 2cM log k bits for each
+block as described below. The resulting codeword has
+T
+length 2c log k · 2cM log k = T M as desired.
+A block is encoded as follows. Since each block is
+log k bits long, we interpret the block as an integer y,
+1 ≤ y ≤ k. The sender encodes the block as a string of
+2cM log k bits, where the ﬁrst y ≤ k bits in the string are
+1s, and all remaining bits are 0s. To decode the j’th block
+of the sent message, the receiver simply looks at the j’th
+set of 2cM log k bits in the received string, and decodes
+the block to the binary representation of y, where y is
+the total count of 1s received in those 2cM log k bits.
+Since the maximum delay is bounded by cM log k,
+and 1s only occur as the ﬁrst k ≤ M ≤ cM log k
+locations of each sent block, any 1-bit must be delivered
+within its block. Furthermore, the count of 1 bits is
+preserved, because at most k 1 bits collide within a
+block. Correctness of the decoding algorithm follows.
+
+is inﬁnite when Davg = o( M min{k, M }), and the
+capacity is ﬁnite when Davg = Ω( M min{k, M }).
+√ Proof: Inﬁnite capacity regime. Suppose Davg =
+c M k, where c = o(1) (that is, again, c is a function
+of M that is subconstant in M ). Let T be the message
+1
+duration. Assume without loss of generality that c ≥ M k
+and k ≤ M (smaller values of c and larger values of k
+only make communication easier).
+Suppose the sender wants to send a message x ∈
+{0, 1}sT ,M with sT,M = T /c. As in [2, Lemma 4.1], we
+use a concatenated code: we assume that x has already
+been encoded under a classical error-correcting code C
+that corrects a 1/5-fraction of adversarial errors (or any
+other constant less than 1/4), as this will only affect the
+rate achieved by our scheme by a constant factor. C is
+then concatenated with the following inner code, which
+is tailored for resilience against delay errors: each bit
+of x gets encoded into a block of length 2 = 2cM :
+0’s map to 2 0’s (called a 0-block), and 1’s map to
+1’s followed by 0’s (called a 1-block). The resulting
+codeword is thus M T symbols long as required.
+For decoding, let Y = Y1 , . . . , YM T be the received
+word. The receiver divides Y into blocks of length . Let
+γ(i) = j∈[iM T,...,(i+1)M T −1] Yj denote the number of
+1s encountered in the ith block. The receiver decodes Y
+as a message y ∈ {0, 1}sT ,M where √i is declared to be 1
+y
+√
+k, 0 otherwise. Notice
+k ≥ 1. Finally, the
+if γ(i) ≥
+receiver will decode y using the outer decoder to obtain
+the original message. By the error-correcting properties
+of the outer code C, it sufﬁces to show that at least
+4/5ths of the inner-code blocks get decoded correctly.
+We use a potential argument to demonstrate that the
+adversary can afford to corrupt a vanishingly small fraction of the blocks. We maintain a potential function Φ(i)
+that measures the total amount of delay the adversary can
+apply after performing the ith action (where an action
+is delaying a single symbol some distance). Initially,
+Φ(0) = M T Davg .
+Turning a 0-block into a 1-block requires the adversary
+√
+to delay at least
+k 1 symbols from some previous
+block at least a distance /2, so this requires reducing
+√
+Φ by Ω( 3/2 k). To turn a 1-block into a 0-block, the
+adversary can either 1) move 1 symbols out of the 1block (evicting 1s), or 2) collide 1s within the 1-block, or
+3) a combination of both. We show that any combination
+√
+requires reducing Φ by Ω( 3/2 k) as well.
+Suppose the adversary chooses to corrupt a 1-block
+by evicting δ 1 symbols,√ colliding the remaining 1
+and
+symbols so that at most
+k 1s remain. The adversary
+minimizes the amount of delays it spends to do this
+by evicting the last δ 1s from a block, and choosing
+α equally spaced “collision points” (CPs) within the
+remaining 1s, where each remaining 1 symbol is delayed
+
+Finite Capacity Regime. Suppose the delays have
+bounded maximum Dmax = cM log (min{k, M }), with
+c = Ω(1). We give an adversary who ensures that there at
+most O(log k) bits of information are transmitted every
+c log k macro-timesteps. Thus, for c = Ω(1), the rate is
+bounded above by O( 1 ) = O(1) for all values of M ,
+c
+and hence the capacity is ﬁnite.
+Assume ﬁrst that k ≤ M . The adversary breaks the
+sent string into blocks of length Dmax , and delays every
+sent symbol to the end of its block. The adversary
+clearly never introduces a delay longer than Dmax microtimesteps. Each received block can only take k + 1
+values: all bits of the received block will be 0, except for
+the last symbol which can take any integer value between
+0 and k. Thus, only O(log k) bits of information are
+transmitted every Dmax = cM log k micro-timesteps, or
+c log k macro-timesteps, demonstrating ﬁnite capacity.
+If k > M , then the adversary is the same as above,
+where the block size is Dmax = cM log M . Each
+received block can only take one of cM log M +1 values,
+since all bits of the block are 0, except for the last symbol
+which may vary between 0 and cM log M . Thus, only
+log(cM log M ) = O(c log M ) bits of information are
+transmitted every c log M macro-timesteps, completing
+the proof.
+IV. AVERAGE -B OUNDED D ELAY C HANNEL
+We now study the behavior of the AVG-k channel.
+Theorem IV.1. If Davg is the average-delay bound for
+the AVG-k channel, then then the capacity of the channel
+
+3
+
+ensure that the value of the ﬁnal index is k.
+When this step completes, the size of the bank
+will be between Davg and s .
+b) If s < Davg + k − , the adversary adds all
+1s in the block to the bank, ensuring that the
+received block consists entirely of 0s. When this
+step completes, the bank has size least s and at
+most Davg + k ≤ 2Davg .
+
+to the nearest CP ahead of it. Evicting δ 1s out of the
+block requires the adversary to spend at least δ delays.
+Each CP receives ( − δ)/α 1 symbols, and the amount
+of delays spent per CP is 1 + 2 + · · · + ( − δ)/α =
+2
+Θ ( −δ) . Thus, the total amount of delay spent by
+α2
+2
+
+the adversary to corrupt the 1-block is Ω ( −δ) + δ .
+α
+This is minimized when δ = 0, i.e. when no symbols
+√
+are evicted. Since αk ≤
+k (because each CP will have
+value k in the received string if at least k 1s are delivered
+√
+at that index), the adversary needs to use Ω( 3/2 k)
+units of potential in order to corrupt a 1-block.
+In our analysis, the minimum potential reduction
+√
+Ω( 3/2 k) accounts for corrupting at most a block
+and its adjacent neighbor. Thus, the maximum num√
+ber of blocks corruptable is 2Φ(0)/Ω( 3/2 k) =
+√
+O(c(M/ )3/2 T ) = O(T / c). Since the original codeword had a total of T /c blocks, the maximum fraction
+√
+of blocks corruptable is O( c). However, c = o(1), so
+a vanishingly small fraction of blocks are corrupted, and
+the original message can be recovered. Thus, we have
+constructed a valid codebook of size 2Ω(T /c) , and this
+implies that the capacity is inﬁnite.
+
+2) If
+
+> Davg (we call the block heavy):
+
+a) If s ≤ Davg , the adversary adds Davg − s < of
+the new 1s to the bank, and it delays the rest of
+the 1s to the nearest integer multiple of Davg .
+b) Otherwise, s will be at least Davg . The adversary
+will place k 1s at every location which is an
+integer multiple of Davg using bits from√ bank
+its
+(this requires at most kM/Davg = kM/ kM =
+Davg bits), and delays the ﬁrst −Davg 1s within
+the current block to the nearest integer multiple
+of Davg . The last Davg 1s get added to the bank
+to replace the 1s lost from the bank, so the bank
+stays at size s.
+√
+We argue that at most M k log k + O(T ) bits of
+information are transmitted over T blocks by the above
+scheme. Once the bank reaches size Davg , there are only
+three possible values for each received block: the allzeros vector; the vector that is all 0s except for the ﬁnal
+index which has value k; and the vector that is all 0s
+except for indices which are integer multiples of Davg ,
+which have value exactly k. Before the bank reaches
+size Davg , any light block is still received as either
+the ﬁrst or second possibility just described. Finally, at
+most one heavy block is encountered before the bank
+reaches size Davg , and this block can take on at most
+√
+k M/Davg ≤ k M k possible values. Thus, over all T
+√
+blocks, at most M k log k + O(T ) bits of information
+are transmitted, and hence the capacity is ﬁnite.
+Finally, we bound the average delay incurred by the
+adversary. For each block, we separately bound the total
+delays incurred by the symbols banked at the beginning
+of the block and symbols within the block. The symbols
+within any light block are responsible for total delay at
+most M Davg , since at most Davg symbols are delayed
+at most M . The symbols within in any heavy block are
+responsible for total delay at most 2M Davg , since all but
+at most Davg 1s are delayed only until the nearest integer
+multiple of Davg , and the rest are delayed at most M .
+As the bank contains at most 2Davg 1s, banked symbols
+contribute at most 2M Davg total delays per block. The
+adversary therfore spends at most 4M Davg total delays
+per block, for an average delay of 4Davg . To reduce this
+to Davg , we modify the above construction to use a block
+length of M/16 micro-timesteps, decreasing the average
+delay appropriately while increasing the rate by only a
+
+Finite capacity regime. Suppose the delays have
+bounded average Davg = c M min{k, M }, for some
+constant c. We will assume for simplicity that c = 1 and
+k ≤ M , and explain how to handle smaller values of
+c and larger values of k later. We show the capacity is
+ﬁnite by specifying an adversary who ensures that there
+are a constant number of possible received strings for
+almost every macro-timestep.
+To accomplish this, the adversary will break the sent
+string into blocks of length M . It scans the blocks
+sequentially, and adds and removes 1s so that each block
+will have 1s only at indices that are multiples of Davg , or
+at the very last index of the block. The adversary ensures
+that it can always add 1s when it needs to by maintaining
+a “bank” of delayed 1s from previous blocks that will
+have size between Davg and 2Davg 1s whenever possible.
+The bank will always be small enough so that it does
+not contribute too many delays to the average. Once the
+bank reaches size Davg , its size never falls below this
+level again. We show that the amount of information
+transmitted before the bank reaches this size is negligible
+for large T .
+The adversary considers each block in turn, and its
+actions falls into four cases. Let denote the number of
+1s in the block, and let s denote the size of the bank at
+the start of the block.
+1) If ≤ Davg (we call the block light):
+a) If s ≥ Davg + k − , the adversary will delay all
+1s in the block until the ﬁnal index within the
+block. If < k, the adversary will also deliver
+k − 1s from the bank at the ﬁnal index to
+
+4
+
+constant factor.
+It remains to explain how to handle cases c < 1
+and k > M . If c < 1, we simply decrease the block
+size further, from M/16 to M c2 /16. This decreases the
+average delay by a factor of c and increases the rate by
+only a constant factor. For k > M , we note the adversary
+described above never delivers more than M 1s at any
+particular micro-timestep. Thus, even if k > M , the the
+received string is the same as it would be if k = M .
+
+B. Adding noise
+In this section we note that the combination of interference with noise yields a max-bounded adversary that
+is surprisingly potent. We omit the proof of the statement
+for lack of space (it appears in the arXiv version).
+Theorem V.2. Suppose the adversary is allowed to ﬂip t
+bits per macro-timestep, and delay each bit a maximum
+of Dmax micro-timesteps. Then the capacity of the 1interference channel is ﬁnite if Dmax · t = Ω(M ), and is
+inﬁnite if Dmax · t = o(M ). In particular, the capacity is
+√
+ﬁnite if t = Dmax = Ω( M ).
+
+V. E XTENSIONS AND A LTERNATIVE M ODELS
+A. The Order of the Limits Matters
+Under the deﬁnition of capacity used in the sections
+above and in [2], lim supM →∞ lim supT →∞ {kM,T /T },
+the sender and receiver are not allowed to let the granularity of time grow with T . If we instead deﬁne the capacity to be lim supT →∞ lim supM →∞ {kM,T /T }, then
+the channel would behave very differently. Conceptually,
+the reason is that if M is allowed to grow with T , the
+sender and receiver can choose M to be so much larger
+than T that a vast amount of information (relative to T )
+can be encoded in just the ﬁrst macro-timestep, avoiding
+interference issues.
+To demonstrate one place where this interchange of
+limits alters the channel capacity, we show the AVG-1
+channel behaves differently under this deﬁnition.
+
+VI. D ISCUSSION
+We studied a variety of natural models for continuoustime channels with delay errors in the presence of
+interference. Our results show that these channels exhibit
+a clean threshold behavior. Further, the results can be
+viewed as a counterweight to those of Khanna and Sudan
+[2], by showing that other natural additional restrictions
+can lead to ﬁnite capacity in their model.
+Many questions remain for future work. Our results
+only address adversarial delays; random delays under
+our interference model remains open. One might also
+consider different models of interference, or different
+limitations on the delays introduced by the adversary.
+Acknowledgments: Michael Mitzenmacher was supported by NSF grants CCF-0915922 and IIS-0964473.
+Justin Thaler was supported by the Department of Defense through the National Defense Science & Engineering Graduate Fellowship (NDSEG) Program, and by
+NSF grant CCF-0915922. Henry Yuen was supported by
+an MIT Presidential Fellowship.
+
+Theorem V.1. If one interchanges the order of limits in
+the deﬁnition of channel capacity, then the capacity of
+the AVG-1 channel with Davg = o(M ) is inﬁnite.
+Proof: The idea is that the sender encodes ω(1) bits
+of information via the location of the ﬁrst 1 in the entire
+codeword. More formally, suppose Davg = cM − 1 with
+c = o(1), and let c = c/2. Assume for simplicity that
+M c is an integer. We will construct a valid codebook
+C ⊆ {0, 1}M T with |C| = Ω(1/c ) = ω(1) such that
+for each message x ∈ C, the last T − 1 macro-timesteps
+consist only of 0s. Thus, we only specify the ﬁrst macrotimestep in each codeword x. In the ﬁrst codeword, the
+ﬁrst macro-timestep will simply be M c 0s followed by
+M − M c 1s. In the second codeword, the ﬁrst macrotimestep will be 2M c 0s followed by M − 2M c 1s.
+In general, in the ith codeword, the ﬁrst macro-timestep
+will be iM c 0s followed by M − iM c 1s.
+The decoder will look at the position L of the leftmost 1 in the received string and output the largest i
+such that iM c ≤ L.
+In order for the adversary to force the decoder to
+decode incorrectly, the decoder has to make the ﬁrst 1
+appear at least c · M positions later than it does in the
+sent string. For this to happen, the adversary has to spend
+at least 1 + 2 + · · · + M c ≥ M 2 c 2 /2 delays in total.
+2
+So the average delay has to be at least M c = M c . For
+2T
+4T
+ﬁxed T , this is Ω(M ).
+
+R EFERENCES
+[1] R. V. L. Hartley. Transmission of information. Bell Syst. Tech.
+Journal, 7:535–563, 1928.
+[2] S. Khanna and M. Sudan. Delays and the capacity of continuoustime channels. In R. Ostrovsky, editor, FOCS, pages 758–767.
+IEEE, 2011.
+[3] H. Nyquist. Certain Factors Affecting Telegraph Speed. Bell
+System Technical Journal, page 324, 1924.
+[4] C. E. Shannon. Communication in the Presence of Noise.
+Proceedings of the IRE, 37(1):10–21, Jan. 1949.
+
+5
+
+

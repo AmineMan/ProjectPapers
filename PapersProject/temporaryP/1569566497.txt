@@ -1,0 +1,692 @@
+Creator:         TeX output 2012.05.18:1636
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Fri May 18 16:37:03 2012
+ModDate:        Tue Jun 19 12:55:31 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      336802 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569566497
+
+Binary Graphs and Message Passing Strategies for
+Compressed Sensing in the Noiseless Setting
+Francisco Ramirez-Javega, Meritxell Lamarca, Javier Villares
+Signal Processing and Communications Group,
+Department of Signal Theory and Communications (TSC)
+Universitat Politecnica de Catalunya (UPC)
+Email: javega@tsc.upc.edu, meritxell.lamarca@upc.edu, javier.villares@upc.edu
+measurement matrices were shown to outperform 𝑙1 -based
+theoretical limits, e.g. the scheme proposed in [9].
+In this paper a new graph-based scheme is introduced that
+also outperforms the 𝑙1 theoretical limits and has very low
+computational complexity, thanks to the use of binary sparse
+matrices. The proposed scheme stems from the original design
+of sudocodes [10], which has the distinctive features of taking
+inﬁnite reliability decisions (i.e. no errors are made), requiring
+binary sparse measurement matrices and its worst case computational complexity at the decoder side is 𝑂 (𝑘 log(𝑘) log(𝑛)).
+The scheme in this paper combines the introduction of a
+block-wise constructed binary measurement matrix structure
+with the proposal of a check node degree proﬁle design
+criterion and an extension of the existing veriﬁcation-based
+decoding algorithms [11], [12]. This enhancement of the
+veriﬁcation algorithm in [11] is particularly relevant for very
+sparse signals, since in this case length-four cycles cannot be
+avoided in the graph. The use of binary measurement matrices
+is a key point to reduce the computational complexity at
+the decoder side, as in this case the decoding process only
+performs additions and comparisons, enabling the use of both
+a sudocode-based or veriﬁcation-based decoder, which has
+an 𝑂(𝑛) computational complexity at the decoder side. The
+proposed algorithm outperforms the results in [10] and [11]
+in terms of number of measurements while having a similar
+decoding complexity than [11].
+This paper is structured as follows. In section II we present
+the proposed scheme. We introduce a systematic method
+to construct binary matrices in section III. We propose in
+section IV an extension of the decoding algorithm proposed
+in [11] aimed at mitigating the effect of cycles of length 4
+in dense binary graphs for the noiseless setting. In section V
+we give a closed-form expression to obtain the appropriate
+check node degree proﬁle. Finally, in section VI simulation
+results illustrate the performance enhancement obtained by the
+proposed compressed sensing system.
+
+Abstract—We propose a scheme for Compressed Sensing in the
+noiseless setting that reconstructs the original signal operating on
+a binary graph where the samples are obtained sequentially. The
+proposed scheme has an affordable computational complexity
+and a large performance enhancement with respect to similar
+schemes in the literature, thanks to the proposed measurement
+matrix structure and enhanced decoding based on a message
+passing algorithm.
+
+I. I NTRODUCTION
+The Compressed Sensing (CS) problem considers the estimation of an unknown and sparse signal vector x ∈ 𝑛 from
+𝑚
+a vector of linear observations y ∈
+, 𝑚 < 𝑛, y = Ax
+𝑚×𝑛
+where A ∈
+is a ﬁxed randomly generated matrix
+known as measurement matrix and only a small number 𝑘
+(the sparsity index), 𝑘 << 𝑛, of elements of x are non-zero.
+The set containing the positions of these elements is known
+as the support set, deﬁned as 𝒮 ≜ {𝑖 ∈ 1, ..., 𝑛 : 𝑥 𝑖 ∕= 0},
+with cardinality ∣𝒮∣ = 𝑘. The solution to this system of
+ˆ
+equations is known to be given by the vector x0 that minimizes
+∥x∥0 (𝑙0 norm) subject to y = Aˆ 0 , which is a non-convex
+x
+optimization problem.
+ˆ
+The authors in [1], [2] established that the vector x1 with
+ˆ
+minimum 𝑙1 norm subject to y = Aˆ 1 coincides with x0
+x
+whenever the measurement matrix satisﬁes the RIP condition
+[1]. Some examples of RIP matrices are given, with high
+probability, by matrices whose entries are i.i.d. Radamacher
+or Gaussian [3] [4]. These facts enabled the development of
+several 𝑙1 -based reconstruction algorithms to solve the set
+of equations (see [5], [6] and references therein) and the
+characterization of the intrinsic limits, in terms of samples
+(𝑚), of 𝑙1 -based algorithms [7].
+Recently, within this framework, the authors in [8] showed
+that 𝑚 ≥ 𝑘 samples sufﬁces to reconstruct a real-valued signal
+with 𝑘 non-zero components in the almost lossless compression setting in the 𝑛 asymptotic regime. This result indicated
+that 𝑙1 -based algorithms are non-optimal, since they require
+a number of samples larger than 𝑘 to succesfully recover the
+signal [7]. Simultaneously, in the literature some algorithms
+based on message propagation over graph representations of
+
+4
+
+4
+
+4
+
+II. S YSTEM D ESCRIPTION
+We assume that the signal vector x is strictly 𝑘-sparse,
+0 < 𝑘 ≤ 𝑛, i.e. all the realizations have exactly 𝑘 non-null
+components and the components that are not indexed in 𝒮
+are strictly zero. The coefﬁcients indexed in 𝒮 are randomly
+drawn according to a generic probability density function. We
+
+0 This work has been partially funded by the Spanish Government under the projects: TEC2007-68094-C02-02, TEC2010-21245-C02-01,
+CSD2008-00010, CEN-20101019, and the Catalan Government under Grant
+2009SGR1236.
+
+1
+
+assume through all the work that the measures y = Ax are not
+corrupted by noise. A is a binary matrix where the number of
+ones depends on the sparsity ratio 𝑘/𝑛 and is sparse becoming
+denser for very low values of 𝑘/𝑛. Matrix A is ﬁxed for all
+signal realizations. It is randomly generated according to the
+procedure described in section III and it is characterized by
+the fraction of rows/columns with 𝑑 ones, denoted respectively
+as R(d) and L(d), the check and variable node degree proﬁles
+of the associated graph.
+The proposed system employs a sequential non-adaptive
+sampling procedure, i.e., the measurements are drawn one by
+one following the order of the rows of matrix A and after
+each new measurement is drawn a new attempt is made to
+recover the sequence x. This procedure is followed until all
+the components in x are identiﬁed. Note that the number
+of measurements required to reconstruct vector x may be
+different for each signal realization.
+The binary and sparsity features of A are exploited to
+retrieve the signal vector x with a low-complexity decoding
+algorithm based on the description of the system by a graph.
+The decoding attempts are done using the algorithm described
+in section IV-B.
+
+The design of sub-matrices A1 ...A 𝑁 is done such that
+cycles of length four are avoided whenever possible. However,
+unfortunately, when the signal to be sensed is very sparse
+these cycles are unavoidable if one wants to keep the number
+of measurements low (and close to the theoretical limit)
+and the vector length 𝑛 is ﬁnite. Indeed, if the number of
+measurements is in the order of 𝑘 then the check node degree
+must be at least 𝑛/𝑘 in order to guarantee that all signal
+coefﬁcients are sensed once. Hence the check node degree
+grows as the signal becomes sparse, matrix A becomes denser
+and length-four cycles become unavoidable for ﬁnite length 𝑛.
+This behavior explains the relevance of the enhancement of the
+decoding algorithm proposed in the next section.
+IV. R ECONSTRUCTION A LGORITHM
+In this section we present the proposed reconstruction
+(decoding) algorithm, which is an enhancement of the veriﬁcation algorithm proposed in [11]. This algorithm performs
+message passing over the bipartite graph representation of the
+measurement matrix A.
+The following notation is used hereafter: we denote as 𝜙
+and ℐ a row vector of A and the set of non-null components
+of 𝜙, respectively. Hence, the cardinality of ℐ is ∣ℐ∣ = 𝑑, the
+check node degree.
+
+III. C ONSTRUCTION OF THE M EASUREMENT M ATRIX
+
+A. Veriﬁcation Algorithm (VA)
+
+The measurement matrix A can be represented by a graph
+having three sets of nodes: signal nodes (elements of vector x),
+measurement nodes (elements of vector y) and check nodes
+connected to 𝑑 signal and one measurement nodes as indicated
+by the binary measurement matrix A. Hereafter we refer to
+the signal nodes as variable nodes.
+The graph is fundamentally characterized by the degree
+distribution of the check nodes R(𝑑) and that of the variable
+nodes L(𝑑). We design the distribution L(𝑑) to be regular, i.e.
+all the variable nodes are connected to the same number/degree
+𝑁 of measurement nodes; the distribution R(𝑑) is optimized in
+section V, where a proﬁle R(𝑑) having at most two consecutive
+degrees is adopted.
+Rather than generating matrix A as a random realization
+of the ensemble of matrices having degrees proﬁles R(𝑑)
+and L(𝑑), this paper proposes to introduce some structure in
+the construction of matrix A. The purpose is to guarantee
+that all components of vector x contribute to a measurement
+before any of them is sensed again. This structure is beneﬁcial
+in the sequential sampling procedure: it ensures that all the
+components of vector x are sensed equally early, avoiding the
+possibility that one non-zero sample may not be sensed until
+late and, therefore, the sequential sampling may require a large
+number of samples to stop.
+Hence, we propose to construct a matrix A by sub-blocks.
+Let us assume, for the sake of simplicity that all rows have the
+same degree 𝑑. Then, 𝑁 = 𝑚𝑑/𝑛 sub-matrices A1 ...A 𝑁 of
+dimension 𝑛/𝑑 × 𝑛 are randomly drawn from the ensemble of
+all matrices of row degree 𝑑 and column degree 1. Afterwards,
+these sub-matrices are stacked to build matrix A as A =
+[AT ...AT ]T .
+1
+𝑁
+
+First, we present the application of the veriﬁcation algorithm
+(VA) in [11] to reconstruct the vector x in the set-up of
+section II. This algorithm was identiﬁed by [11] to be a
+different implementation of the sudocode decoding algorithm
+[10], which has 𝑂 (𝑘 log(𝑘) log(𝑛)) computational complexity
+as opposed to [11] whose computational complexity is 𝑂(𝑛).
+It must be noted that the algorithm presented in section IV-B
+can be implemented as in [10] or in [11].
+When applied in the CS framework, VA exploits that (i)
+there is no noise, (ii) the probability density function of the
+components of vector x is a continuous function with a mass
+concentration at zero, 𝑝(𝑥 = 0) = 1 − 𝑘/𝑛, and (iii) the graph
+has no cycles of length four. Due to these facts the following
+statements hold:
+∙ S1. If a measurement 𝑦 is zero, all the variable nodes
+indexed by ℐ are zero.
+∙ S2. When the graph does not exhibit cycles of length four
+and two measurements 𝑦 𝑗 and 𝑦 𝑣 are identical (𝑦 𝑗 = 𝑦 𝑣 ),
+that pair of measurements share a single variable node,
+∣ℐ 𝑗 ∩ ℐ 𝑣 ∣ = 1. Therefore, it follows that the common
+component in the intersection set must be equal to 𝑦 𝑗
+and the remaining variable nodes in ℐ 𝑗 and ℐ 𝑣 must be
+equal to zero.
+Keeping the above statements in mind, the algorithm works
+as follows. The check (variable) nodes exchange with the
+variable (check) nodes messages having the following form:
+{state,x} where state=’v’ indicates that we know for sure
+that the value of the associated variable node is x (i.e. the
+variable node is veriﬁed) whereas state=’?’ informs that x is
+solely an estimate of the variable node value (i.e. the variable
+
+2
+
+Algorithm 1 Check node update rules
+for
+all check nodes and their measurement y
+for
+all the veriﬁed messages from the variable
+nodes in ℐ
+Subtract their values from 𝑦 and remove
+their indexes from ℐ to compute 𝑦 ′ and ℐ? .
+endfor
+for
+all variable nodes in ℐ? apply rules C1-C3:
+C1
+If 𝑦 ′ = 0, propagate to all the variable nodes indexed by ℐ? : {’v’, 0}.
+C2
+If ∣ℐ? ∣ = 1, propagate to the variable
+nodes in ℐ? : {’v’, 𝑦 ′ }.
+C3
+Otherwise, propagate to all the variable nodes indexed by ℐ? : {’?’, 𝑦 ′ }.
+endfor
+endfor
+
+node is still not veriﬁed). A check node is said to verify a
+neighboring variable node whenever the ﬁrst can infer with
+inﬁnite reliability the value of the latter using statements S1
+and S2. Then, the veriﬁed variable node propagates its state to
+the other check nodes in its neighborhood so that these check
+nodes can remove the contribution of the veriﬁed variable node
+from their respective measurement and try to infer, in the next
+round, the values of the remaining variable nodes connected
+to them.
+The iterative process starts with the variable nodes sending
+a non-veriﬁed message {’?’,−}, with dummy value −, to
+all the attached check nodes. On its turn, the measurement
+nodes simply send to their respective check nodes a message
+containing the measurement value, {’v’, 𝑦}, and do not update
+their message during the decoding process.
+Then, the check nodes are activated and send a message
+computed as indicated by Algorithm 1, which is now explained
+brieﬂy, to the variable nodes in their neighborhood. First of
+all, each check node removes the contributions of the incoming
+veriﬁed messages from its measurement 𝑦 to obtain 𝑦 ′ . Next, it
+updates all the edges connected to variable nodes that remain
+not veriﬁed (indexed in the set ℐ? ), according to rules C1, C2
+and C3. Rule C1 exploits statement S1. Rule C2 deals with
+the trivial case in which there is a single non-veriﬁed variable
+node connected to the check node. Rule C3 deals with the
+remaining cases: whenever the check node cannot infer the
+value of a variable node it propagates the non-veriﬁed message
+with the updated measurement, (’?’,𝑦 ′ ).
+After the check nodes update, the variable nodes are activated and proceed as indicated in Algorithm 2. Rule V1 deals
+with veriﬁed variable nodes. In this case, due to the absence
+of noise, each veriﬁed variable node informs to the check
+nodes in its neighborhood that it is veriﬁed by propagating
+a veriﬁed message along with its value. Rule V2 exploits
+statement S2. In this case, the variable node receives more
+than one non-veriﬁed message with equal estimate 𝑦 ′ so it can
+infer its value. Hence, the variable node switches its state to
+veriﬁed and informs of this update to all the check nodes in its
+neighborhood by sending them the message {’v’,𝑦 ′ }. Finally,
+in case of rule V3, the variable node just sends a non-veriﬁed
+message {’?’,−} to all the neighboring check nodes.
+
+Algorithm 2 Variable node update rules
+for
+each non-veriﬁed variable node apply rules V1-V3:
+V1
+If the variable node receives a veriﬁed message, then propagate this message through
+the remaining edges {’v’, 𝑦 ′ }.
+V2
+If the variable node receives at least two
+non-veriﬁed messages with the same estimate 𝑦 ′ , then propagate {’v’, 𝑦 ′ } to all the
+nodes connected to them.
+V3
+Else, propagate {’?’, −} through its edges.
+endfor
+
+that variable nodes that are in the intersection must sum up
+to 𝑦 𝑗 . In that case, it is important that the variable nodes in
+the intersection inform the check nodes of this coincidence so
+that the variable nodes that do not belong to the intersection
+set can be veriﬁed as zero.
+To implement the above mechanism, we have modiﬁed the
+original message passing algorithm including a new message
+named coincidence. This message is generated at the variable
+nodes that detect coincident measurements and is sent to the
+check nodes detected to be in the coincidence state. Thanks to
+this, the check nodes know that (i) there is at least another
+check node with a measurement equal to its measurement
+and the cardinality of the intersection (the number of received
+coincident messages) and (ii) one or more of the nodes in
+coincident state sum up to the measurement. In other words,
+if a check node receives only a coincidence message it means
+that there is no cycle of length four so it can verify the variable
+node that sent the coincidence message with the value of the
+measurement and the remaining nodes with zero (applying the
+original rule V2). Otherwise, if the check node receives more
+than one coincidence message, it sends a non-veriﬁed message
+to the variable nodes that sent coincidence messages and
+propagates veriﬁcation messages {’v’,𝑥 = 0} to the remaining
+ones. Brieﬂy, these changes are summarized as follows:
+∙ New variable node rule V2: If a variable node receives at
+least two non-veriﬁed messages with the same estimate,
+
+B. Enhanced Veriﬁcation Algorithm (EVA)
+This paper proposes a modiﬁcation of the veriﬁcation algorithm in section IV-A that improves its performance for very
+sparse sources while preserving its 𝑂(𝑛) computational complexity and requiring only local operations. This enhancement
+is similar in spirit to the one proposed in [13] for decoding of
+LDPC codes in BEC channels. More speciﬁcally, the improvement consists in extending rule V2 in Algorithm 2 to deal with
+graphs having cycles of length four, i.e., ∣ℐ 𝑗 ∩ ℐ 𝑣 ∣ ≥ 1. In the
+presence of such cycles, if two measurements 𝑦 𝑗 and 𝑦 𝑣 take
+the same value (𝑦 𝑗 = 𝑦 𝑣 ), we know that the variable nodes
+that are not in the intersection set ℐ 𝑗 ∩ ℐ 𝑣 are equal to zero
+but we cannot determine the individual value of each variable
+node that are in the intersection; in fact, we can only afﬁrm
+
+3
+
+∙
+
+n,k
+10000,100
+10000,10
+100000,10
+
+it sends a coincidence message to these check nodes,
+and transmits {’?’,−} to the remaining nodes in its
+neighborhood.
+Check node rule C4: If a check node receives at least a
+coincidence message, it veriﬁes as zero the variable nodes
+that have not sent coincidence messages. Additionally, if
+the check node receives only a coincidence message, it
+veriﬁes the corresponding variable node using its own
+measurement. Otherwise, it propagates {’?’,𝑦 ′ } to the
+variable nodes that sent coincidence messages.
+
+R(⌊ ¯ = ⌈ ¯ − ¯ R(⌈ ¯ = ¯ − ⌊ ¯
+𝑑⌋)
+𝑑⌉ 𝑑,
+𝑑⌉)
+𝑑
+𝑑⌋
+
+(5)
+
+and ¯ can be calculated as shown in (6)
+𝑑
+¯ = −𝑡1 (1 + 𝑡2 )/2
+𝑑
+𝑝
+2
+𝑡1 =
+,
++
+1 − 𝑝 log(𝑝)
+
+𝑡2 =
+
+√
+
+1−(4𝑝)
+log(𝑝)(1−𝑝)𝑡2
+1
+
+(6)
+
+Note that (6) only requires the knowledge of the sparsity ratio
+of x, 𝑝 = 1 − 𝑘/𝑛. It is worth mentioning that ¯ is close to
+𝑑
+the check node degrees that were found experimentally to be
+optimum in [10, ﬁgure 2] and that ¯ increases as 𝑛/𝑘 increases.
+𝑑
+The idea behind equation (4) is that by verifying as much
+variable nodes per measurement as possible the phase transition2 zone will be reached as soon as possible (in terms
+of samples). The EVA algorithm shows a kind of avalanche
+effect when it reaches its phase transition zone: once it reaches
+this zone the addition of a single sample may enable the
+veriﬁcation of a large fraction of variable nodes. This happens
+because rule C2 in Algorithm 1 is activated when the average
+number of non-veriﬁed variable nodes connected to check
+nodes is close to 1. When this happens the avalanche effect
+is triggered; before that, variable nodes can only be veriﬁed
+in the graph when statements S1 and S2 in section IV-A or
+modiﬁed S2 in section IV-B happen. Hence, by maximizing
+the fraction of variable nodes connected to check nodes with
+∣ℐ ∩ 𝒮∣ ≤ 1 we try to reduce as fast as possible the number
+of non-veriﬁed variable nodes while keeping low the number
+of generated measurements.
+
+(2)
+
+However, we also generate measurements with contribution
+of more than one non-null component of vector x such that
+∣ℐ ∩ 𝒮∣ > 1, with a probability
+𝑝(∣ℐ ∩ 𝒮∣ > 1) = 1 − 𝑝(∣ℐ ∩ 𝒮∣ = 1) − 𝑝(∣ℐ ∩ 𝒮∣ = 0). (3)
+According to equations (1)-(3), the probability of verifying
+null and non-null components of x depends critically on 𝑑
+and 𝑝. Hence, the veriﬁcation process can be sped up by
+selecting a degree R(𝑑) that balances properly the amount
+of vectors generated according to equations (1) and (2).
+With this purpose, we propose to employ the check node
+degree distribution R(𝑑) that maximizes the average number
+of variable nodes connected to check nodes so as ∣ℐ ∩ 𝒮∣ ≤ 1,
+as follows
+∑
+maximize
+R(𝑑) 𝑑 𝑝(∣ℐ ∩ 𝒮∣ ≤ 1)
+
+VI. RESULTS
+Table I compares the joint performance of the proposed
+matrix construction method, the proposed check node degree
+design and the proposed message passing algorithm with the
+performance of the sudocodes [10]. In this table, 𝑚 represents
+
+∀𝑑
+
+R(𝑑) ≥ 0,
+∑
+R(𝑑) = 1
+
+EVA.
+
+4
+
+and tells us the probability of recovering 𝑑 zeros of vector
+x from a single measurement. Obtaining a vector 𝜙 which
+overlaps only with one element of the support set of x, i.e.
+∣ℐ ∩ 𝒮∣ = 1, happens with probability
+
+subject to
+
+OF SUDOCODES WITH
+
+∣ℐ∩𝒮∣ ≤ 1 for asymptotic 𝑚. Then it follows that 𝑑 𝑝(∣ℐ∩𝒮∣ ≤
+1) is the average number of edges per check node that satisfy
+∣ℐ ∩ 𝒮∣ ≤ 1 for a given 𝑝 and 𝑑.
+It is straightforward to show that for a ﬁxed 𝑝 and 𝑑 ∈ +
+the relaxed function 𝑑 𝑝(∣ℐ ∩𝒮∣ ≤ 1) has a single maximum at
+¯ It can be shown that whenever we ﬁx the number of non-null
+𝑑.
+coefﬁcients of R(𝑑) to two and assuming that 𝑛/𝑘 >> 1, the
+optimum choice of the two non-null degrees are the closest
+∑
+ones around ¯ In this case
+𝑑.
+R(𝑑)𝑑 𝑝(∣ℐ ∩ 𝒮∣ ≤ 1) has a
+unique solution R(𝑑) that can be inferred from ¯ as follows1
+𝑑
+
+V. D ESIGN OF THE C HECK N ODE D EGREE
+
+R(𝑑)
+
+Proposed method
+m=375
+m=85
+m=92
+
+Table I
+C OMPARISON
+
+This section analyzes the inﬂuence of the sparsity ratio
+on the performance of a VA-based decoding scheme and
+applies the results to obtain a criterion to design R(𝑑) for
+the veriﬁcation algorithm. Even though it is out of the scope
+of the current work, it must be noted that the performance of
+the EVA can be further improved in graphs with length-four
+cycles by changing the criteria to design of the R(𝑑).
+Let us consider the case 𝑛 → ∞ and call 𝑝 the nonvanishing probability of a signal component being 0, 𝑝 =
+1 − 𝑘/𝑛. For simplicity we assume that all the 𝜙 vectors
+have degree 𝑑. Then, when all the ones in 𝜙 overlap with null
+components of x, ∣ℐ ∩ 𝒮∣ = 0, the measurement 𝑦 = 𝜙 𝑇 x
+is equal to zero, using statement S1. This happens with
+probability:
+𝑝(∣ℐ ∩ 𝒮∣ = 0) = 𝑝 𝑑
+(1)
+
+𝑝(∣ℐ ∩ 𝒮∣ = 1) = 𝑑 𝑝 𝑑−1 (1 − 𝑝).
+
+Sudocodes [10]
+m=803
+m=461
+m=931
+
+(4)
+1 Derivation
+
+is omitted due to space constraints
+Compressed Sensing, the reconstruction algorithms show a dual behavior, i.e. algorithms do not converge to a solution until the number of samples
+𝑚 is large enough. The limit between the zone were algorithms converge and
+do not converge is known as the phase transition zone. See [7], [8] for further
+details.
+2 In
+
+∀𝑑
+
+where 𝑝(∣ℐ ∩ 𝒮∣ ≤ 1) = 𝑝(∣ℐ ∩ 𝒮∣ = 0) + 𝑝(∣ℐ ∩ 𝒮∣ = 1).
+Note that 𝑝(∣ℐ ∩ 𝒮∣ ≤ 1) is the fraction of check nodes with
+
+4
+
+1
+
+employing measurement matrices constructed with the method
+proposed in this paper. Notice that, the latter range coincides
+with 𝑛/𝑘 ≥ 100 for 𝑛 = 16000.
+
+VA. pe=0.5
+−3
+
+0.8
+
+VA. pe=10
+
+EVA. p =0.5
+
+VII. C ONCLUSIONS
+
+e
+
+−3
+
+EVA. p =10
+
+This paper has proposed a graph-based CS scheme that
+outperforms sudocodes irrespective of the sparsity ratio and
+also outperforms VA in very sparse scenarios when the
+measurement matrix is binary. The performance enhancement
+for sparsity ratios where a length-4 cycle-free graph can
+be constructed is obtained employing the proposed matrix
+structure and check node degree distribution, specially aimed
+to exploit the features of the VA algorithm. For larger sparsity
+ratios, an enhanced decoding algorithm has been introduced
+that allows to deal with cycles of length-4. The combination
+of the proposed enhancements over existing methods in the
+literature allow to obtain a low complexity CS scheme with
+good performance that outperforms the 𝑙1 theoretical limits in
+the noiseless setting.
+Further work must be done to improve the performance of
+this scheme in the noiseless setting, ﬁrst by ﬁnding new rules
+to enhance the performance of the reconstruction algorithm
+and ﬁnding new methods to design binary matrices to exploit
+both the enhancement of the EVA and these new rules.
+
+e
+
+LP−PT
+
+k/m
+
+0.6
+0.4
+0.2
+0
+0
+
+0.2
+
+0.4
+
+m/n
+
+0.6
+
+0.8
+
+1
+
+Figure 1. Phase transition diagram as a function of sampling, sparsity and
+block length 𝑛. Comparison of veriﬁcation (VA) and enhanced veriﬁcation
+(EVA) algorithm for n=16000 and several sparsity ratios on a phase diagram.
+
+the maximum number of samples required for perfect reconstruction obtained after 105 Monte Carlo simulations. Note
+that the number of samples required by the proposed scheme
+is 2 to 10 times smaller that the one required by sudocodes. It
+must be noted that the proposed method also outperforms that
+one in [11, ﬁgure 6] where the adopted LM2-MB algorithm
+is the VA algorithm in presented in section IV-A. In this
+case for 𝑛 = 10000 the method in [11] requires 𝑚 > 500
+measurements to reconstruct a sequence with 𝑘 = 100; in our
+case, 𝑚 = 375 sufﬁces to reconstruct almost any sequence
+with 𝑘 = 100 (see table I).
+Figure 1 shows a phase transition diagram as a function
+of the number of samples 𝑚, sparsity 𝑘 and block length 𝑛.
+The horizontal axis corresponds to the sampling ratio, 𝛿 =
+𝑚/𝑛. The vertical axis represents the ratio 𝜌 = 𝑘/𝑚. The
+curve labeled as LP-PT is phase transition for 𝑙1 reconstruction
+[7]. The curves represent the performance of the veriﬁcation
+(VA) and enhanced veriﬁcation (EVA) algorithms for different
+ˆ
+𝑝 𝑒 = 𝑝(x ∕= x) when the proposed matrix construction is
+employed. The same measurement matrix was employed to
+run all the simulations (VA and EVA) for a ﬁxed 𝑛/𝑘 ratio.
+The plots depict the performance of the veriﬁcation algorithm
+with binary matrices (VA). These matrices were obtained with
+the structure presented in section III and with R(𝑑) selected
+for 𝑝 = 1 − 𝑘/𝑛 as indicated by equations (6) and (5). At least
+105 Monte Carlo simulations were run per point.
+The plots obtained with VA and EVA show a dual behavior:
+both have the same performance as long as it is possible to
+generate graphs without cycles of length 4 (for 𝛿 < 0.05
+in this case, i.e. 𝑛/𝑘 > 100). Once the measurement matrix
+becomes dense, i.e. for large 𝑛/𝑘 ratios, the behavior of the
+algorithms changes: VA performance decreases dramatically
+whereas EVA performance falls slowly. These results can be
+compared with the 𝑙1 theoretical limit for asymptotic 𝑛. Figure
+1 shows that VA can outperform the 𝑙1 in an approximate range
+between 𝛿 ∈ (0.05, 0.25) and EVA between 𝛿 ∈ (0, 0.25), both
+
+R EFERENCES
+[1] D.L. Donoho, “Compressed sensing,” IEEE Trans. Inform. Theory, vol.
+52, no. 4, pp. 1289 –1306, April 2006.
+[2] E.J. Candes and T. Tao, “Near-optimal signal recovery from random
+projections: Universal encoding strategies?,” IEEE Trans. Inform.
+Theory, vol. 52, no. 12, pp. 5406 –5425, December 2006.
+[3] R. Baraniuk, M. Davenport, R. DeVore, and M. Wakin, “A simple proof
+of the restricted isometry property for random matrices,” Constructive
+Approximation, vol. 28, pp. 253–263, 2008.
+[4] Venkat Chandar, “A negative result concerning explicit matrices with
+the restricted isometry property,” Tech. Rep., 2008.
+[5] T. Blumensath and M.E. Davies, “Stagewise weak gradient pursuits,”
+IEEE Trans. Signal Process., vol. 57, no. 11, pp. 4333 –4346, November
+2009.
+[6] R. Calderbank, S. Howard, and S. Jafarpour, “Construction of a large
+class of deterministic sensing matrices that satisfy a statistical isometry
+property,” IEEE J. of Sel. Topics in Signal Process., vol. 4, no. 2, pp.
+358 – 374, April 2010.
+[7] David L. Donoho, Arian Maleki, and Andrea Montanari, “Messagepassing algorithms for compressed sensing,” Proceedings of the National
+Academy of Sciences, vol. 106, no. 45, pp. 18914–18919, 2009.
+[8] W. Yihong and S. Verdu, “Renyi information dimension: Fundamental
+limits of almost lossless analog compression,” IEEE Trans. Inform.
+Theory, vol. 56, no. 8, pp. 3721 –3748, August 2010.
+[9] P. Schniter, “Turbo reconstruction of structured sparse signals,” in
+Information Sciences and Systems (CISS), 2010 44th Annual Conference
+on, March 2010, pp. 1 –6.
+[10] S. Sarvotham, D. Baron, and R.G. Baraniuk, “Sudocodes - fast
+measurement and reconstruction of sparse signals,” in 2006 IEEE
+International Symposium on Information Theory, July 2006, pp. 2804
+–2808.
+[11] Fan Zhang and H. D. Pﬁster, “On the iterative decoding of high-rate
+LDPC codes with applications in compressed sensing,” CoRR, vol.
+abs/0903.2232, 2009.
+[12] Fan Zhang and H.D. Pﬁster, “Analysis of veriﬁcation-based decoding
+on the q -ary symmetric channel for large q,” Information Theory, IEEE
+Transactions on, vol. 57, no. 10, pp. 6754 –6770, Octuber 2011.
+[13] P.M. Olmos, J.J. Murillo-Fuentes, and F. Perez-Cruz, “Tree-structure
+expectation propagation for decoding LDPC codes over binary erasure
+channels,” in Information Theory Proceedings (ISIT), 2010 IEEE
+International Symposium on, June 2010, pp. 799 –803.
+
+5
+
+

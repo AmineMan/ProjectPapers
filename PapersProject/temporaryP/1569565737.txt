@@ -1,0 +1,939 @@
+Title:          isit2012.dvi
+Creator:        dvips(k) 5.98 Copyright 2009 Radical Eye Software
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Thu May 10 13:16:29 2012
+ModDate:        Tue Jun 19 12:56:00 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      323478 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569565737
+
+Low Complexity Syndrome Based
+Decoding of Turbo Codes
+Jan Geldmacher, Klaus Hueske, and J¨ rgen G¨ tze
+u
+o
+
+Martin Kosakowski
+
+Information Processing Lab, TU Dortmund University
+Otto-Hahn-Strasse 4, 44227 Dortmund, Germany.
+Correspondence: jan.geldmacher@ieee.org
+
+Research In Motion Deutschland GmbH
+Universit¨ tsstr. 140
+a
+44799 Bochum, Germany.
+
+fewer errors. Combining this with a syndrome based state identiﬁcation [5] allows to estimate possible error-free subblocks
+in the input sequence. The MAP algorithm then only needs to
+process the remaining erroneous blocks.
+The basic idea of this so-called block syndrome decoder
+(BSD) principle has been described previously for Viterbi decoding [6] and Turbo equalization [7]. The extension to Turbo
+decoding as presented in this work requires a modiﬁcation
+of the original syndrome based MAP decoding algorithm:
+In order to achieve a meaningful syndrome based state estimation, we propose a precorrection scheme, which corrects
+hard decision errors in the systematic and parity part with
+ongoing iterations. The transition metric involved with this
+modiﬁcation is derived in the following Sec. II. The resulting
+Turbo decoding framework is described in Sec. III. Sec. IV
+brieﬂy reviews ET and the BSD principle and its application
+in context of Turbo decoding. And ﬁnally numerical results
+and conclusions are given in Sec. V and Sec. VI, respectively.
+
+Abstract—A new syndrome trellis based decoding approach
+for Turbo coded data is described in this paper. Based on
+estimating error symbols instead of code symbols, it inherently
+features options for reducing the computational complexity of
+the decoding process. After deriving required transition metrics,
+numerical results in terms of block error rate and required
+equivalent iterations are presented to demonstrate the efﬁciency
+of the approach.
+
+I. I NTRODUCTION
+Forward error correction based on Turbo coding has been
+adopted in numerous applications since its initial presentation
+[1]. Especially in mobile communication systems like the Long
+Term Evolution (LTE) system their error correcting performance is an integral part for enabling high data throughput. On
+the downside, however, is the high computational complexity
+involved with the decoder’s iterative implementation, which
+makes it one of the most complex and power consuming parts
+in the receiver baseband signal processing. Therefore it is
+important to keep the computational effort as small as possible
+and to avoid unnecessary iterations of the decoder. This can
+be achieved by using early termination (ET) schemes, which
+stop the iteration process if a block is not decodable (Low SNR
+ET) or already successfully decoded (High SNR ET). Several
+methods have been proposed to achieve this, see for example
+[2]–[4]. An effective ET scheme leaves the highest number of
+iterations to the medium SNR range, the waterfall region of
+the code. Unfortunately this is also often the desired working
+point of the system – in the LTE system for example, the CQI
+reporting adaptively keeps the system at a target block error
+rate (BLER) of about 10%, which corresponds to the waterfall
+region for common block lengths.
+In this paper a syndrome trellis based MAP decoding
+algorithm is proposed. While its trellis complexity and performance in terms of the generated soft information is equivalent
+to the conventional encoder trellis based MAP algorithm, it can
+be modiﬁed to reduce the computational effort during Turbo
+decoding. Especially in the medium SNR range, where many
+iterations are required to decode a received block, a signiﬁcant
+reduction can be achieved, such that the proposed approach
+can complement High and Low SNR ET schemes.
+A key property of the underlying syndrome based decoding
+algorithm are the unbalanced probabilities of the trellis states,
+which tend to the all-zero state if the input sequence contains
+
+II. S YNDROME BASED MAP D ECODING
+A. Derivation of Transition Metric
+Given a k/n-rate binary convolutional code C, then HT is
+a syndrome former of C, if GHT = 0, where G represents
+an encoder of C. Let r denote the binary hard decision of a
+received sequence,
+r = uG ⊕ ǫc = v ⊕ ǫc ,
+
+(1)
+
+where u denotes the original information sequence and ǫc
+the hard decision of the channel error. Applying an arbitrary
+sequence x to r and using HT yields the syndrome b,
+b = (r ⊕ x)HT .
+
+(2)
+
+Then each sequence e corresponding to each path in the trellis
+representation of HT subject to b represents an admissible
+error sequence for (r ⊕ x), i.e. (r ⊕ x ⊕ e) ∈ C, and x ⊕ e = ǫ
+denotes an admissible error sequence for r. The objective here
+is to ﬁnd an estimate for ǫ, given r, an arbitrary x and the
+trellis of HT subject to b.
+More speciﬁcally, the proposed syndrome based MAP decoder maximizes the a posteriori probability P (et |˜, x) of an
+r
+error symbol et given the received soft decision sequence ˜
+r
+and a binary sequence x. et is an element of e at time instant
+
+1
+
+Finally combining (13) and (14) using e = 2e − 1 results in
+˜
+
+t. The probability P (et = el |˜, x) for some error symbol el ,
+r
+l = 1 . . . 2n , can be expressed using all transitions Ttel in the
+trellis of HT that lead to an error symbol el at time instant t:
+
+p(˜|e, x) ∼ exp(−(˜|˜| −
+r
+xr
+
+2
+Ec e)2 /(2σn )).
+˜
+
+(15)
+
+P (Ψt = p, Ψt+1 = q|˜, x) (3)
+r
+
+Under the assumption, that the a priori probability P (ǫ) of
+an error is supplied in the form of an LLR LA (ǫ),
+
+In (3), Ψt = p and Ψt+1 = q denote trellis states at time
+instants t and t + 1, respectively. It is well known that
+P (Ψt = p, Ψt+1 = q|˜, x) can be efﬁciently computed by
+r
+performing forward and backward recursions on the trellis [8].
+Thus, using the forward and backward state probabilities αt (p)
+and βt+1 (q) of states p and q yields
+
+P (ǫ = 1)
+,
+(16)
+P (ǫ = 0)
+the a priori probabilities for the cases e = 0, e = 1, x = 0
+and x = 1 can be combined to the following expression
+exp (−LA (ǫ)/2)
+exp (−˜eLA (ǫ)/2)
+x˜
+P (e, x) =
+1 + exp (−LA (ǫ))
+∼ exp (−˜eLA (ǫ)/2) .
+x˜
+(17)
+
+P (et = el |˜, x) =
+r
+
+el
+
+(p,q)∈Tt
+
+P (Ψt = p, Ψt+1 = q|˜, x) ∼ αt (p)γt (p, q)βt+1 (q).
+r
+
+LA (ǫ) = log
+
+(4)
+
+Putting (15) and (17) into (6) yields the transition probability
+n
+
+The probability γt (p, q) of a transition from state p to state q
+at time instant t is given as
+
+γt (p, q) ∼
+
+γt (p, q) = p(˜t |Ψt = p, Ψt+1 = q, xt )P (Ψt = p|Ψt+1 = q)
+r
+= p(˜t |e(p,q) , xt )P (et = e(p,q) , xt ).
+r
+(5)
+
+(j)
+P (et
+
+γt (p, q) =
+i=1
+
+=
+
+(j)
+(j)
+e(p,q) , xt ),
+
+(j) (j)
+
+j=1
+
+log γt (p, q) ∼ −
+
+(6)
+
+2
+
+2
+Ec ) /(2σn ))
+2
+Ec )2 /(2σn ))
+2
+Ec )2 /(2σn ))
+2
+Ec )2 /(2σn ))
+
+p(˜ > 0|e = 0, x = 0) ∼ exp(−(˜ −
+r
+r
+
+p(˜ ≤ 0|e = 0, x = 0) ∼ exp(−(˜ +
+r
+r
+
+p(˜ > 0|e = 0, x = 1) ∼ exp(−(˜ +
+r
+r
+p(˜ ≤ 0|e = 0, x = 1) ∼ exp(−(˜ −
+r
+r
+
+−
+
+(18)
+
+1
+2
+2σn
+
+n
+(i)
+
+i=1
+
+(i)
+
+(˜t |˜t | −
+x r
+
+(i)
+
+˜
+Ec e(p,q) )2
+
+p(˜|e = 0, x = 0) ∼ exp(−(−|˜| +
+r
+r
+
+(19)
+
+j=1
+(j)
+
+B. Relation to Other Work
+Schalkwijk et. al. have proposed syndrome decoding for
+convolutional codes [9], where the trellis of HT is constructed
+subject to b = rHT . Tajima et. al. have derived soft decision
+transition metrics for this approach [10], [11]. On the other
+hand, constructing the trellis of HT subject to b = 0 [12]–
+[14], results in a trellis where each path represents a element
+of C, and where the conventional MAP transition metric can
+be adopted. The main objective of this approach is a possible
+reduction of trellis complexity for high code rates.
+Both methods can be found as special cases of the approach
+proposed in this paper, by selecting x = 0 or x = r. However,
+instead of selecting a ﬁxed value for x, we propose to select
+x as an estimate of the channel error ǫc . Therefor, if x is a
+suitable “precorrection” for r, the trellis state probabilities are
+dominated by the all zero state. This property can be exploited
+to achieve a reduction of computational complexity as will be
+described in Sec. IV-B.
+
+(7)
+(8)
+(9)
+(10)
+
+2
+Ec )2 /(2σn )). (12)
+
+Further, using x = 2x − 1 simpliﬁes (11) and (12) to
+˜
+(13)
+
+In the same way, the probability p(˜|e = 1, x) of recieving r
+r
+˜
+given e = 1 and x, can be derived as
+2
+Ec )2 /(2σn )).
+
+(j)
+
+(j)
+
+2
+Ec )2 /(2σn )) (11)
+
+2
+Ec )2 /(2σn )).
+
+(j) (j)
+
+xt e(p,q) LA (ǫt )/2,
+˜ ˜
+
+and using the fact that terms independent of e(p,q) and xt
+˜
+˜
+have no inﬂuence on a maximization, the ﬁnal transition metric
+Γt (p, q) from state p to state q at time instant t becomes
+√
+k
+n
+Ec
+1
+(j) (j)
+(j)
+(i) (i) (i)
+Γt (p, q) = 2
+x e
+˜ ˜
+LA (ǫt ).
+xt |˜t |˜(p,q) −
+˜ r e
+σn i=1
+2 j=1 t (p,q)
+(20)
+
+Combining (7), (8), and (9), (10), results in
+
+p(˜|e = 1, x) ∼ exp(−(˜|˜| −
+r
+xr
+
+(j)
+
+k
+
+where we assume that an error symbol consists of n bit, and
+that a priori information is available for the ﬁrst k bit.
+In the following, a transmission over an AWGN channel
+2
+with noise power σn and energy per coded bit Ec is assumed.
+(i) (i)
+(i)
+Also, to simplify the notation, p(˜t |e(p,q) , xt ) =: p(˜|e, x)
+r
+r
+is used in the following. In order to ﬁnd p(˜|e, x), the
+r
+probabilities of the different combinations of r > 0, r ≤ 0,
+˜
+˜
+e = 0, e = 1, x = 0 and x = 1 have to be combined to one
+expression. For example, letting e = 0 yields the probabilities
+of the corresponding four combinations:
+
+p(˜|e = 0, x) ∼ exp(−(˜|˜| +
+r
+xr
+
+(i)
+
+2
+Ec e(p,q) )2 /(2σn ))
+˜
+
+exp −˜t e(p,q) LA (ǫt )/2 .
+x ˜
+
+j=1
+
+p(˜|e = 0, x = 1) ∼ exp(−(|˜| +
+r
+r
+
+(i)
+
+Note that some scaling factors have been skipped in the
+derivation such that suitable normalization would be required
+in order to get true probabilities.
+Based on (18) a log domain formulation is readily found as
+
+k
+(i) (i)
+(i)
+p(˜t |e(p,q) , xt )
+r
+
+i=1
+k
+
+·
+
+The error symbol associated with the transition from p to
+q is denoted by e(p,q) and p(˜t |e(p,q) , xt ) is determined by
+r
+the channel, while P (et = e(p,q) , xt ) denotes the a priori
+probability of et . The “precorrection” symbol is denoted by
+xt . Further factorization yields
+n
+
+(i)
+
+exp(−(˜t |˜t | −
+x r
+
+(14)
+
+2
+
+III. T URBO D ECODING
+
+B. Turbo Decoder with Precorrection
+Like in the conventional Turbo decoder, both constituent
+decoders use the systematic and their according parity part of
+the received softbits, and, as priors, the interleaved extrinsic
+LLRs of the systematic part generated by the other decoder.
+Additionally, the precorrection sequence x is used.
+Generally an arbitrary sequence can be selected for x,
+without changing the absolute values of the generated LLRs.
+However, as mentioned before, here it is desired to make b
+a function of the remaining errors in r. This can be achieved
+by selecting x as an extrinsic estimate of the channel error
+ǫc , which in context of the Turbo decoding framework can be
+done as follows:
+• The systematic part of x is set to the hard decision of
+the a priori values LA (ǫ). This estimate stems from the
+other constituent decoder.
+• The parity part of x is set to the extrinsic estimate of the
+parity error from the previous iteration, from the same
+constituent decoder.
+As a result the sequence x depends on both constituent
+decoders. In case of convergence, it therefore leads to a
+decreasing hamming weight of the syndrome sequence b with
+ongoing iterations.
+It is important to note that up to this point the described
+syndrome based Turbo decoder is identical to the conventional
+decoder in terms of decoding performance and trellis complexity. Additional effort is required to compute the sequence x
+and the syndrome b. However, both are low complexity, binary
+operations.
+
+In the following subsection the operation of one constituent
+decoder is summarized, while Subsection III-B provides an
+overview of the resulting Turbo decoding framework with
+precorrection. A binary Turbo code based on two parallel concatenated recursive systematic convolutional codes is assumed.
+Puncturing may be employed on transmitter side. In this case
+a depuncturing is realized on receiver side by placing zero
+reliability softbits at the punctured positions. The energy per
+transmitted bit is set to Ec = 1, for simplicity of notation.
+A. Implementation of Constituent Decoder
+A constituent decoder takes the received soft decision sequence ˜, a precorrection sequence x and a priori LLRs of the
+r
+errors LA (ǫ) in the systematic part as input. For the systematic
+part, it generates an a posteriori hard decision estimate ǫ of
+ˆ
+the error in the hard decision r of ˜ and extrinsic LLRs LE (ǫ).
+r
+The decoder performs the following steps:
+1) Precorrection and syndrome computation The precorrection sequence x is applied to the hard decision r of
+˜, and the syndrome b is computed as
+r
+b = (r ⊕ x)HT .
+
+(21)
+
+2) Trellis operation Given the trellis of HT subject to
+b, the LogMAP or MaxLog algorithm is applied to
+generate an a posteriori estimate L(ǫ):
+The initial state for the forward recursion is set to
+the zero state, while the initial state for the backward
+recursion is selected according to the ﬁnal state of the
+syndrome former from (21). The LogMAP or MaxLog
+algorithm based on the transition metric (20) is applied,
+resulting in the a posteriori LLR L(e). Note that in
+2
+case of the MaxLog algorithm, the noise power σn can
+be neglected in (20), because the result of the MaxLog
+algorithm is independent of any scaling factor.
+In order to generate the LLR L(ǫ) of the absolute error
+in r, the sign of L(e), which is an estimate of the error
+in r ⊕ x, has to be ﬂipped according to x,
+(j)
+
+(j)
+
+(j)
+
+L(ǫt ) = −˜t L(et ) for j = 1 . . . n.
+x
+
+IV. R EDUCTION OF D ECODING C OMPLEXITY
+In order to reduce the computational complexity of the
+decoder, ET for high and low SNR scenarios can be adopted.
+Furthermore, we propose the BSD approach to reduce the
+average number of iterations for medium to high SNR. Both
+approaches will now be reviewed brieﬂy in context of the
+syndrome based Turbo decoder.
+A. Early Termination
+Several ET schemes have been proposed, which may be
+classiﬁed into
+• hard or soft decision based criteria,
+• threshold-based or adaptive criteria, and
+• Low and/or High SNR criteria.
+In practice a low complexity criterion capable of Low and
+High SNR ET is preferred. One might also want to avoid a
+threshold, because it can be difﬁcult to select suitable values
+for all possible states of a system.
+In this work a modiﬁed version of the improved hard
+decision aided (IHDA) criterion [15] is applied. Although
+originally only described for High SNR ET, it can be easily
+extended to also cover Low SNR ET. For the syndrome based
+Turbo decoder it may be implemented in the following way:
+• Count the sign differences ∆i between the a posteriori
+LLRs L1 (ǫ) and L2 (ǫ) of the ﬁrst and second constituent
+decoder, respectively, after each full iteration i.
+
+(22)
+
+The hard decision ǫ of L(ǫ) delivers the a posteriori
+ˆ
+estimate of the channel error ǫc . Applying the systematic
+part of ǫ to the systematic part of r results in the estimate
+ˆ
+u of the original information bits u.
+ˆ
+3) Generation of Extrinsic LLR Extrinsic LLRs LE (ǫ)
+are generated by removing the a priori information
+(j)
+LA (ǫ) and the received softbits from L(ǫt ),
+(j)
+
+(j)
+
+LE (ǫt ) =
+
+L(ǫt ) +
+(j)
+L(ǫt )
+
++
+
+(j)
+2
+2 r
+σn |˜t |,
+(j)
+2
+2 r
+σn |˜t | −
+
+j>k
+(j)
+LA (ǫt ),
+
+else.
+
+The systematic extrinsic LLRs are (de-)interleaved and
+become the a priori LLR of the other constituent decoder.
+
+3
+
+Terminate the decoding process after the i-th iteration for
+i > 1 if
+– ∆i = 0 (High SNR ET),
+– ∆i ≥ ∆i−1 (Low SNR ET), or
+– i = imax (max. number of iterations imax reached).
+This criterion performs well for low and high SNR, is independent of a threshold and keeps the implementation overhead
+small. Note however, that any other criterion, which has been
+proposed for conventional MAP decoding can be adopted for
+syndrome based decoding as well.
+
+heuristically. It is important to note that ℓmin is dependent
+on the underlying code (and puncturing scheme), and less
+dependent on other system parameters like block length or
+modulation type. Thus it is not prohibitive to select it in
+advance for the considered system and its code rates.
+
+•
+
+V. N UMERICAL R ESULTS
+This section shows simulation results for performance and
+computational complexity in terms of BLER and the average
+number of required iterations.
+A. Simulation Parameters
+
+B. Block Syndrome Decoding
+
+The following simulation results are based on a
+binary Turbo code using parallel concatenation of two
+UMTS/LTE compatible recursive systematic encoders
+1+D+D 3
+G(D) = 1, 1+D2 +D3 . A corresponding syndrome former1
+
+Based on the described syndrome based Turbo decoder, the
+BSD concept [6], [7] can be applied to achieve a reduction of
+decoding effort. Because of the precorrection, the syndrome
+sequence b of a constituent decoder shows subsequences of
+consecutive zeros, whose length and number increase with
+ongoing iterations in case of convergence. As described in
+Sec. I and in [6], [7], this can be exploited to separate
+the input sequence into subblocks that are considered to be
+erroneous and subblocks that are considered to be error-free.
+Consequently, a reduction of decoding effort can be achieved
+by only processing the erroneous subblocks and neglecting the
+supposedly error-free subblocks.
+More precisely the syndrome based Turbo decoding algorithm from Sec. III is extended as follows:
+1) Preprocessing of syndrome Identify subsequences of
+length ≥ ℓmin zeros in b. Consider the corresponding
+subblocks in ˜, except a padding of ⌊ℓmin /2⌋ at the
+r
+beginning and end of each subblock, as error-free and
+the remaining subblocks as erroneous.
+2) Processing of blocks
+a) Erroneous blocks The erroneous subblocks are
+processed by the syndrome based MAP decoder,
+(j)
+which generates extrinsic values LE (ǫt ) and the
+(j)
+estimated error ǫt for all t in these subblocks as
+ˆ
+described in Sec. III-A. Note that these blocks can
+be considered to be terminated in the zero state,
+because the zero state is the most likely state in
+the preceding and succeeding error-free blocks.
+b) Error-free blocks No processing is required for the
+supposedly error-free blocks. Instead, the extrinsic
+LLR is set to a sufﬁciently large value c > 0,
+(j)
+
+(j)
+
+LE (ǫt ) = xt c, j = 1 . . . n,
+˜
+
+T
+
+is HT (D) = 1 + D + D3 , 1 + D2 + D3 . Two code
+rates are evaluated: R = 1/3 and R = 1/2, where the
+latter is generated by puncturing odd and even parity bits
+of the ﬁrst and second encoder, respectively. A pseudorandom interleaver of length 6144 is used, along with BPSK
+modulated transmission over an AWGN channel. The decoder
+is based on the MaxLog algorithm and maximum number of
+imax = 8 iterations.
+B. BLER and Average Iterations
+For R = 1/2 and R = 1/3 Fig. 1 compares BLER and the
+average number of iterations for the following four cases:
+• Reference / Genie ET This setting serves as a reference.
+The reference BLER is shown in Fig. 1(a) for the case
+where no ET is done and where the decoder always
+executes imax = 8 iterations. The lowest possible number
+of iterations without BLER degradation is plotted in
+Figs. 1(b) and 1(c) and termed Genie ET. Here it is
+assumed that the decoder could perfectly detect undecodable blocks after the ﬁrst full iteration (Low SNR ET
+scenario) and successfully decoded blocks after each full
+iteration (High SNR ET scenario).
+• ET In this case only Low and High SNR ET is applied
+as described in Sec. IV-A.
+• BSD This is the result of the BSD approach (Sec. IV-B).
+• BSD & ET This is the result of complementing Low and
+High SNR ET with the BSD approach.
+The design parameter ℓmin has been chosen individually
+for the different code rates as ℓmin = 31 and ℓmin = 25 for
+R = 1/2 and R = 1/3, respectively. The choice of ℓmin is
+a tradeoff between the required BLER performance and the
+resulting reduction of computational complexity. In this case,
+is has been selected such that there is negligible degradation
+for BLERs around 10%. This is a typical working point in the
+LTE system, but has also been shown to be a reasonable choice
+in general if automatic retransmissions are involved [17].
+
+(23)
+
+and the estimated error ǫ is set according to the
+ˆ
+precorrection sequence
+(j)
+
+ǫt
+ˆ
+
+(j)
+
+= xt , j = 1 . . . n.
+
+(24)
+
+A reasonable choice for c is the largest value in
+the quantization range of the LLR values.
+The choice of the design parameter ℓmin affects the achievable reduction of decoding effort and the possible loss in decoding performance due to falsely classiﬁed error-free blocks.
+Given an acceptable loss in BLER or BER, it may be selected
+
+1 A syndrome former for R = 1/2 encoders of the form G(D) =
+[G1 (D), G2 (D)] or G(D) = [1, G2 (D)/G1 (D)] can be directly seen to
+be HT (D) = [G2 (D), G1 (D)]T . For higher codes rates it can be computed
+using the invariant factor decomposition of G(D) [16, Sec. 2.2 and Sec. 2.9].
+
+4
+
+0
+
+8
+
+10
+
+8
+Genie ET
+ET
+BSD
+BSD & ET
+
+7
+
+Avg. Iterations
+
+BLER
+
+6
+Avg. Iterations
+
+6
+
+R=1/2
+
+R=1/3
+
+−1
+
+10
+
+Genie ET
+ET
+BSD
+BSD & ET
+
+7
+
+5
+
+4
+
+5
+
+4
+
+−2
+
+10
+
+3
+
+−3
+
+10
+
+0.4
+
+0.6
+
+0.8
+
+1
+1.2
+Eb/N0 [dB]
+
+1.4
+
+1.6
+
+1.8
+
+(a) BLER for R = 1/3 and R = 1/2.
+Fig. 1.
+
+3
+
+2
+
+Reference
+ET
+BSD
+BSD & ET
+
+2
+
+1
+0
+
+0.2
+
+0.4
+
+0.6
+Eb/N0 [dB]
+
+0.8
+
+1
+
+(b) Average Iterations for R = 1/3.
+
+1.2
+
+1
+
+0.8
+
+1
+
+1.2
+1.4
+Eb/N0 [dB]
+
+1.6
+
+1.8
+
+(c) Average Iterations for R = 1/2.
+
+Performance results for BSD with High and Low SNR ET in terms of BLER and average iterations.
+
+As shown in Fig. 1(a) the BLER around the 10% BLER
+working point is practically identical in all cases. For smaller
+BLERs there is a visible degradation: For example at 1%
+BLER the combination of BSD & ET shows a loss of about
+0.2dB to the reference.
+Figs. 1(b) and 1(c) show the average number of iterations.
+In case of ET this is measured by just averaging over the
+iterations carried out by the decoder until termination or until
+imax is reached. In case of BSD, each iteration is weighted
+by the percentage of erroneous blocks before the average is
+computed. For both code rates and BSD&ET a signiﬁcant
+reduction of the number of iterations is visible: For example
+at the working point, the reduction against using only ET is
+about 1 full iteration (around 20%) without loss in BLER
+performance. For higher SNR the reduction is even larger than
+for Genie ET, because the BSD processes subblocks and the
+conventional ET scheme always processes the whole block.
+It can also be observed, that for High SNR, the number of
+iterations is determined by the BSD. On the other hand in the
+low SNR range the average number of iterations is dominated
+by the ET scheme only. The reason for the latter is clearly
+that the constituent decoders do not converge to a common
+solution and thus no suitable precorrection can be found. In
+the medium range, both schemes complement each other such
+that the combination of both yields more reduction than each
+approach can achieve separately.
+
+R EFERENCES
+[1] C. Berrou, A. Glavieux, and P. Thitimajshima, “Near shannon limit errorcorrecting coding and decoding: Turbo-codes,” in IEEE ICC 93, vol. 2,
+Geneva, Switzerland, May 1993, pp. 1064–1070.
+[2] A. Worm, H. Michel, F. Gilbert, G. Kreiselmaier, M. Thul, and N. Wehn,
+“Advanced implementation issues of turbo-decoders,” in 2nd International Symposium on Turbo-Codes and Related Topics, Brest, 2000.
+[3] F. Gilbert, F. Kienle, and N. Wehn, “Low complexity stopping criteria
+for UMTS turbo-decoders,” in VTC 2003-Spring, April 2003.
+[4] F.-M. Li and A.-Y. Wu, “On the new stopping criteria of iterative turbo
+decoding by using decoding threshold,” IEEE Transactions on Signal
+Processing, vol. 55, no. 11, pp. 5506–5516, 2007.
+[5] A. H. Vinck, P. Dolezal, and Y. Kim, “Convolutional encoder state
+estimation,” IEEE Trans. Inf. Th., vol. 44, no. 4, pp. 1604–1609, 1998.
+[6] J. Geldmacher, K. Hueske, and J. G¨ tze, “An adaptive and complexity
+o
+reduced decoding algorithm for convolutional codes and its application
+to digital broadcasting systems,” in Int. Conf. on Ultra Modern Telecommunications (ICUMT2009), St. Petersburg, Russia, Oct. 2009.
+[7] J. Geldmacher, K. Hueske, S. Bialas, and J. G¨ tze, “Adaptive low
+o
+complexity MAP decoding for turbo equalization,” in 6th Int. Symp.
+on Turbo Codes & Iterative Inf. Proc. (ISTC2010), Brest, France, 2010.
+[8] L. Bahl, J. Cocke, F. Jelinek, and J. Raviv, “Optimal decoding of
+linear codes for minimizing symbol error rate,” IEEE Transactions on
+Information Theory, vol. 20, no. 2, pp. 284 – 287, March 1974.
+[9] J. Schalkwijk and A. Vinck, “Syndrome decoding of binary rate-1/2
+convolutional codes,” IEEE Trans. Comm., vol. 24, no. 9, Sept. 1976.
+[10] M. Tajima, “Metrics for syndrome decoding of convolutional codes,”
+Electr. and Comm. in Japan, vol. 79, no. 12, pp. 22–30, 1996.
+[11] M. Tajima, K. Shibata, and Z. Kawasaki, “Relation between encoder
+and syndrome former variables and symbol reliability estimation using
+a syndrome trellis,” IEEE Trans. Comm., vol. 51, no. 9, Sept. 2003.
+[12] T. Yamada, H. Harashima, and H. Miyakawa, “A new maximum
+likelihood decoding of high rate convolutional codes using a trellis,”
+Trans. IEICE Electr. and Comm. in Japan, vol. J66-A, no. 7, 1983.
+[13] L. Lee, D. Tait, P. Farrell, and P. Leung, “Novel scarce-state-transition
+syndrome-former error-trellis decoding of (n, n-1) convolutional codes,”
+in IEEE International Symposium on Information Theory, 1995, p. 219.
+[14] T. Minowa and H. Imai, “Decoding of high-rate turbo codes using a syndrome trellis,” in Communications, 2001. ICC 2001. IEEE International
+Conference on, vol. 1, Jun. 2001, pp. 74 –78 vol.1.
+[15] T. Ngatched and F. Takawira, “Simple stopping criterion for turbo
+decoding,” Electr. Letters, vol. 37, no. 22, pp. 1350 –1351, Oct 2001.
+[16] R. Johannesson and K. S. Zigangirov, Fundamentals of Convolutional
+Coding. IEEE press, 1999.
+[17] P. Wu and N. Jindal, “Coding versus arq in fading channels: How reliable
+should the phy be?” IEEE Trans. Comm., vol. 59, no. 12, Dec 2011.
+[18] H. Liu, C. Jego, E. Boutillon, M. Jezequel, and J.-P. Diguet, “Scarce
+state transition turbo decoding based on re-encoding combined with a
+dummy insertion,” Electr. Letters, vol. 45, no. 16, pp. 846 – 848, 2009.
+[19] M. Tajima, K. Okino, and T. Miyagoshi, “Minimal code(error)-trellis
+module construction for rate-k/n convolutional codes: Extension of
+yamada-harashima-miyakawas construction,” IEICE Transactions on
+Fundamentals, vol. E90-A, no. 11, pp. 2629–2634, 2007.
+
+VI. C ONCLUSIONS
+A syndrome based MAP decoding approach for convolutional codes has been presented in this paper and its application
+to Turbo codes has been described. The extension with the
+so called BSD principle for reduction of computational complexity has been described. Further it has been demonstrated
+that the combination with an ET scheme can further reduce
+the average number of iterations, with negligible performance
+loss around a given typical working point.
+Besides the BSD approach it should be noted that the
+described syndrome decoder with precorrection also yields
+scarce state transitions, which cannot be directly realized using
+the conventional MAP decoding approach [18]. Moreover, in
+case of true high rate codes, well-known trellis complexity
+reduction methods can be realized as well (cf. [19]).
+
+5
+
+

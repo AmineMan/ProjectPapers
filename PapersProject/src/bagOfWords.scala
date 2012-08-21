@@ -24,52 +24,62 @@ trait bagOfWords {
 
 	//}
 	//}
+  /*
 	def main(args: Array[String]): Unit = {
 
 			val directory : java.io.File = new java.io.File("PapersDataset/")
 	val papersSorted = getScores(directory)
-	for(i<- 0 to 27){
-		for(j<- 0 to 27){
-			println(papersSorted(i)(j))
+	for(i<- 0 to 11){
+		for(j<- 0 to 11){
+				println(papersSorted(i)(j))			
 		}
 	}
 
 	}
 
-
+*/
 	//}
 
 
 
 	//compare based on scores and return List[Paper]
 	def compareBoW(papers : List[Paper], limit : Int) : List[Paper] = {
- papers.map(p => {
-      // Check that paper isn't already linked
-      if (p.meta.get("linked") == None) {
-        // Get list of papers that aren't current paper
-        val otherPapers = papers.filter(p != _)
+	  val matrixOfWeights: Array[Array[Double]] = getMatrixOfScores(new java.io.File("PapersDataset/"))
+			papers.map(p => {
+				// Check that paper isn't already linked
+				if (p.meta.get("linked") == None) {
+					// Get list of papers that aren't current paper
+					val otherPapers = papers.filter(p != _)
 
-        // Compare to every other paper
-        // Test
-        val weights : List[Double] = for (other <- otherPapers) yield getScores(new java.io.File("PapersDataset/"))(p.index)(other.index)
+							// Compare to every other paper
+							// Test
+					
+							val weights : List[Double] = for (other <- otherPapers) yield getScores(matrixOfWeights, p.index)(other.index)
 
-        // Make links
-        //val links = for ((p,w) <- otherPapers.zip(weights) if w >= limit) yield Link(p.id,w)
-        val links = for ((p,w) <- otherPapers.zip(weights) if w >= 0.0) yield Link(p.index,w)
+							// Make links
+							//val links = for ((p,w) <- otherPapers.zip(weights) if w >= limit) yield Link(p.id,w)
+							val links = for ((p,w) <- otherPapers.zip(weights) if w > 0.0) yield Link(p.index,w)
 
-        // Add links to paper, and set it as linked
-        val result = p.setLinks(links).setMeta("linked", "yes")
+					// Add links to paper, and set it as linked
+					val result = p.setLinks(links).setMeta("linked", "yes")
 
-        // Save result
-        Cache.save(result, Cache.linked)
+					// Save result
+					Cache.save(result, Cache.linked)
 
-        result
-      }
-      else p
-    })
+					result
+				}
+				else p
+			})
 	}
 
-	def getScores(directory: java.io.File): Array[Array[Double]] ={
+	def getScores(matrixOfScores: Array[Array[Double]], column: Int): List[Double] ={
+	  
+	  val matrixOfScoresTranspose = matrixOfScores.transpose
+	  
+	  return matrixOfScoresTranspose(column).toList
+
+	}
+	def getMatrixOfScores(directory: java.io.File): Array[Array[Double]] ={
 
 			val filesList = new java.io.File(directory.toString).listFiles.filter(_.getName.endsWith(".txt"))
 
@@ -84,6 +94,7 @@ trait bagOfWords {
 					//now we want to have a map between words and the number of occurences
 					//create an array for easier manipulation
 					val counts = new Array[Map[java.lang.String,Int]](filesList.length)
+					
 					//Create an array of lists to store all different lists of keys:
 					val countsList = new Array[List[java.lang.String]](filesList.length)
 
@@ -91,29 +102,31 @@ trait bagOfWords {
 					var textsList = List[java.lang.String]()
 					//reading from every entry of the list:
 					for (k <- 0 to filesList.length-1){
-						
+
 						source(k) = scala.io.Source.fromFile(filesList(k))
-						text(k) = source(k).mkString
-						//leave out unecessary characters from the analysis
-						text(k) = clean(text(k))
-						source(k).close ()
+								text(k) = source(k).mkString
+								//leave out unecessary characters from the analysis
+								text(k) = clean(text(k))
+								source(k).close ()
 
-						occurences(k) = text(k).split("\\s+").groupBy(x=>x)
+								occurences(k) = text(k).split("\\s+").groupBy(x=>x)
 
-						// create a map of the keys of the text with their occurences
-						counts(k) = occurences(k).mapValues(x=>x.length)
+								// create a map of the keys of the text with their occurences
+								counts(k) = occurences(k).mapValues(x=>x.length)
+//println(counts(k))
+								//only working with keys for now, creating a list of keys for every text:
+								countsList(k) = counts(k).keys.toList
 
-						//only working with keys for now, creating a list of keys for every text:
-						countsList(k) = counts(k).keys.toList
-
-						if(k == 0){
-							textsList = countsList(k)
-						}else{
-							textsList = textsList ::: countsList(k)
-						}
+								if(k == 0){
+									textsList = countsList(k)
+								}else{
+									textsList = textsList ::: countsList(k)
+								}
+						
+						
 					}
 
-
+//println(counts.deep.mkString("\n"))
 			//building dictionary:
 			//find unique words in texts:
 
@@ -121,6 +134,7 @@ trait bagOfWords {
 			val textsLength = textsList.length
 
 					val dictionary = textsList.removeDuplicates.sort(_<_)
+					//println(dictionary)
 
 					// we compute the array of scores for the vectors of words for every document
 					val tfidfArray = new Array[Array[Double]](dictionary.length,datasetSize)
@@ -280,19 +294,20 @@ println("the number of distinct words in text 6 is: " + countsList(5).length)
 	//Computing TF value:
 
 	def tf(term: String, document: Int, counts: Array[Map[java.lang.String,Int]]): Double = {
-			val freq = 0
+			val keyValue = counts(document).values
+			val normalisationTerm = keyValue.max
+//test without normalisation	
 					if (counts(document).contains(term)){
 						val freq = counts(document)(term)
-					}else{
-						val freq = 0
+						val normalizedFreq = freq/normalisationTerm					
+					return freq				
+					}else{					 
+					return 0.0
 					}
 
 			//normalization with respect to the documents length to prevent any bias:
-			val keyValue = counts(document).values
-					val sum = keyValue.reduceLeft(_+_)
-					val normalizedFreq = freq/sum
-
-					return normalizedFreq
+			//new normalisation with respect to the highest occurence in the document
+			
 	}
 
 	//Computing IDF value
@@ -300,13 +315,12 @@ println("the number of distinct words in text 6 is: " + countsList(5).length)
 	def idf(term: String, datasetSize : Int, counts: Array[Map[java.lang.String,Int]]): Double = {
 			//math.log(size / index.getDocCount(term))
 			// take the logarithm of the quotient of the number of documents by the documents where term t appears
-			var appearances = 1
-					for(i <- 0 to datasetSize-1){
-						var termFreq = tf(term,i,counts)
-								if (termFreq > 0){
+			var appearances = 0
+				for(i <- 0 to datasetSize-1){
+					  if (counts(i).contains(term)){
 									appearances += 1
 								}
-					}
+					}	
 			return math.log(datasetSize/appearances)
 	}
 
@@ -315,6 +329,7 @@ println("the number of distinct words in text 6 is: " + countsList(5).length)
 			//tfidf = tf*idf
 
 			val tfidf = tf(term,document,counts)*idf(term,datasetSize,counts)
+			//println(tf(term,document,counts)+ "life is what it is" + idf(term,datasetSize,counts))
 					return tfidf
 
 	}

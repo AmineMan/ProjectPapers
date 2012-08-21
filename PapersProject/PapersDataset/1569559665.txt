@@ -1,0 +1,1475 @@
+Creator:        TeX
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Mon Apr 23 11:24:01 2012
+ModDate:        Tue Jun 19 12:56:25 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      500665 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569559665
+
+On the Sphere Decoding Complexity of High Rate
+Multigroup ML Decodable STBCs
+Lakshmi Prasad Natarajan, K. Pavan Srinath and B. Sundar Rajan
+Dept. of ECE, IISc, Bangalore 560012, India
+Email: {nlp,pavan,bsrajan}@ece.iisc.ernet.in
+most cases A is chosen to be a subset of ΘZK , where
+Θ ∈ RK×K is a full-ranked matrix. For a complex matrix A, let vec(A) denote the complex vector obtained by
+stacking the columns of A one below the other and let
+vec(A) = [vec(ARe )T vec(AIm )T ]T . Now, the received matrix Y can be rewritten as y = vec(Y) = Gx + w, where
+x = [x1 , . . . , xK ]T , w = vec(W) and the equivalent channel
+matrix
+
+Abstract—A Space-Time Block Code (STBC) is said to be
+multigroup ML decodable if the information symbols encoded by it
+can be partitioned into two or more groups, such that each group
+of symbols can be ML decoded independently of the other symbol
+groups. In this paper, we show that the upper triangular matrix
+R encountered during the sphere decoding of a linear dispersion
+STBC can be rank-deﬁcient even when the rate of the code is
+less than the minimum of the number of transmit and receive
+antennas. We then show that all known families of high rate
+(rate greater than 1) multigroup ML decodable codes have rankdeﬁcient R matrix, even when the rate is less than the number of
+transmit and receive antennas, and this rank-deﬁciency problem
+arises only when the number of receive antennas is strictly less
+than the number of transmit antennas. Unlike the codes with
+full-rank R matrix, the average sphere decoding complexity of
+the STBCs whose R matrix is rank-deﬁcient is polynomial in
+the constellation size, and hence is high. We derive the sphere
+decoding complexity of most of the known high rate multigroup
+ML decodable codes, and show that for each code, the complexity
+is a decreasing function of the number of receive antennas.
+
+G = [vec(A1 H) vec(A2 H) · · · vec(AK H)] ∈ R2M T ×K .
+Consider the vector of transformed information symbols
+s = Θ−1 x which takes values from A = Θ−1 A ⊂ ZK . The
+components of s take integer values and hence one can use a
+sphere decoder to decode s and then obtain the ML estimate
+of the information vector x. The ML decoder is given by
+ˆ = arg mins∈A ||y − GΘs||2 .
+s
+F
+B. Motivation for our results
+
+I. I NTRODUCTION
+
+For a system where rank(G) = K, the sphere decoding
+complexity, averaged over noise and channel realizations, is
+independent of the constellation size, and is roughly polynomial in the dimension of the sphere decoding search [11], [12].
+However, if rank(G) = K < K, the average sphere decoding
+complexity is no more independent of the constellation size. In
+this case, the conventional sphere decoder is modiﬁed as follows [13]: the R matrix resulting from the QR-decomposition
+of GΘ will be of the form R = [Ra Rb ] ∈ RK ×K , where Ra
+is a K × K upper triangular, full-rank matrix. There is a
+corresponding partition of s as [sT sT ]T . If q is the size of the
+a b
+regular PAM constellation used, then for each of the q K−K
+values of the vector sb , the conditionally optimal estimate of sa
+is found by ﬁrst removing the interference from sb , and then
+using a sphere decoder with the upper triangular matrix Ra
+to obtain the estimate ˆa (sb ). Then, from the resulting q K−K
+s
+tuples (ˆa (sb ), sb ), the optimal vector is chosen by the brutes
+force enumeration of their ML metrics ||Y − HX||2 . Thus,
+F
+for any STBC whose equivalent channel matrix G is such that
+rank(G) = K < K, the sphere decoding complexity is of the
+order of q K−K .
+It is claimed in [1] without proof that R ≤ min{M, N } is a
+sufﬁcient condition for rank(G) = K. In Section II, we show
+that the claim made in [1] is true only for M ≥ N , and there
+exist codes with rank(G) < K when R ≤ min{M, N } and
+M < N . This observation is the gateway to the new results
+
+A. System Model
+We consider Space-Time Block Codes (STBCs) for an
+N transmit antenna, M receive antenna, quasi-static MIMO
+channel with Rayleigh ﬂat fading, Y = XH + W, where X is
+the T × N codeword matrix and W is the additive noise at the
+receiver. The entries of H and W are i.i.d. zero mean, complex
+Gaussian random variables. The channel H is assumed to
+be known at the receiver, but not at the transmitter. Let
+C=
+
+K
+i=1
+
+xi Ai [x1 , . . . , xK ]T ∈ A
+
+be an STBC encoding
+
+K real information symbols x1 , . . . , xK , where the T × N
+complex matrices A1 , . . . , AK , which are called linear dispersion or weight matrices, are linearly independent over the
+real ﬁeld R [1], [2], and the ﬁnite signal set A ⊂ RK . The
+K
+rate of C is R = 2T complex symbols per channel use (cspcu).
+The linear independence of the weight matrices implies that
+R ≤ N . The code C is said to be multigroup or g-group ML
+decodable if {x1 , . . . , xK } can be partitioned into g subsets or
+groups, such that each group of symbols can be ML decoded
+independently of other symbol groups. Because such codes
+offer reduced complexity ML decoding, they have gathered
+much interest in the literature. Examples include [2]–[5] and
+the references therein, and the more recent high rate (R > 1)
+codes in [6]–[10].
+Generally, the signal set A is chosen in such a way that
+the STBC C has full-diversity and large coding gain. In
+
+1
+
+presented in the rest of the paper.1
+
+a decreasing function of the number of receive antennas
+(Section III, see Table I).
+Notations: Throughout the paper, matrices (vectors) are
+denoted in bold, uppercase (lowercase) letters. For a complex
+matrix A, its transpose and conjugate-transpose are denoted by
+AT and AH , respectively. The n×n identity matrix is denoted
+by In and 0 is the null matrix of appropriate dimension.
+√
+Unless used as a subscript or to denote indices, i = −1. For
+square matrices Aj , j = 1, . . . , d, diag(A1 , . . . , Ad ) denotes
+the square, block-diagonal matrix with A1 , . . . , Ad on the
+diagonal, in that order.
+The proofs of all the propositions, theorems and other
+claims are omitted due to space considerations, but are available in [14] along with several illustrative examples.
+
+C. Contributions of the Paper
+We now introduce the notion of singularity of an STBC
+which is a direct indicator of its sphere decoding complexity
+(note that since H is a random matrix, rank(G) is a random
+variable as well).
+Deﬁnition 1: Let C
+be an STBC with rate
+R ≤ min{M, N }. We say that C is singular for M receive
+antennas if rank(G) < K with probability 1. Otherwise, C is
+said to be non-singular for M receive antennas.
+Example 1: In [6], a rate R = 17 code for N = 4 antennas
+8
+with K = 17 real symbols was presented. Let the number of
+receive antennas be M = 3. Then, R < min{M, N } and the
+equivalent channel matrix G is of size 24 × 17. Now consider
+the following randomly generated channel matrix
+0.3457 + 0.2299i
+ 0.7316 − 0.5338i
+H=
+0.5140 + 0.9689i
+−0.2146 − 1.2102i
+
+
+0.2078 − 0.0723i
+−0.5567 − 0.1707i
+0.6282 + 0.2257i
+−0.8111 + 0.2212i
+
+II. BASIC RESULTS ON THE RANK OF THE EQUIVALENT
+CHANNEL MATRIX
+
+
+−0.7558 − 0.6116i
+−0.5724 − 0.0212i
+.
+−2.0819 − 0.1166i
+1.0171 + 0.4439i
+
+We now present a few fundamental results on the rank of the
+equivalent channel matrix. The following proposition says that
+the rank-deﬁciency problem arises only in asymmetric MIMO
+with M < N .
+Proposition 1: If M ≥ N , every T × N STBC is nonsingular for M receive antennas.
+Let A1 , A2 , . . . , AK denote the R-linear subspace of
+CT ×N spanned by the matrices A1 , . . . , AK .
+Proposition 2: Let B1 , . . . , BK be T ×N complex matrices
+such that A1 , . . . , AK = B1 , . . . , BK and let H ∈ CN ×M
+be any matrix. Then the column spaces of the matrices
+
+The resulting G matrix has rank only 16 and the upper
+triangular matrix R of size 24 × 17 obtained from its QRdecomposition is of the form [RT 0T ]T , where R1 ∈ R16×17
+1
+is shown in (1) at the top of the next page, and 0 is the 8 × 17
+all zero matrix. The non-zero entries of R1 are denoted by ‘a’.
+From (1), we see that the ﬁrst 16 columns of R are linearly
+independent and the last column lies in the span of the ﬁrst
+16 columns. After removing the last 8 rows of R, which are
+all zeros, the sphere decoder uses the 16 × 17 real matrix
+R1 to ﬁnd the ML estimate of the information vector. In this
+case, the complexity of sphere decoding this STBC for this
+particular channel realization H is of the order of q 17−16 = q.
+In Section III-A, by establishing that rank(G) = 16 with
+probability 1 when the randomness of H is taken into account,
+we show that this STBC is singular for M = 3.
+The contributions and organization of this paper are as
+follows.
+• We introduce the notion of singularity of an STBC which
+is a direct indicator of its sphere decoding complexity.
+• We show that R ≤ min{M, N } is not a sufﬁcient condition for an STBC to be non-singular for M receive antennas (Theorem 1, Section II). Thus, even when M ≥ R,
+the matrix R need not be full-ranked. We also show that
+the case of singular STBCs arises only for asymmetric
+MIMO systems with M < N (Proposition 1, Section II).
+• We show that all known families of high rate (R > 1)
+multigroup ML decodable codes [6]–[10] are nonsingular for certain values of M (Section III, see Table I
+for a summary of results).
+• We derive the sphere decoding complexity of almost all
+known high-rate multigroup ML decodable codes and
+show that in each case the sphere decoding complexity is
+
+GA (H) = [vec(A1 H) vec(A2 H) · · · vec(AK H)] and
+
+(2)
+
+GB (H) = [vec(B1 H) vec(B2 H) · · · vec(BK H)]
+
+(3)
+
+are identical. In particular, rank(GA (H)) = rank(GB (H)).
+The following result shows that if every weight matrix of a
+given STBC is multiplied on the left by a constant invertible
+matrix, then the rank of the equivalent channel matrix is
+unchanged.
+Proposition 3: Let C ∈ CT ×T be any full-rank matrix,
+Bi = CAi , i = 1, . . . , K, and H be any N × M complex
+matrix. Then we have rank(GA (H)) = rank(GB (H)), where
+GA (H) and GB (H) are as deﬁned in (2) and (3).
+It is shown in [10] that for any N ≥ 1, there exists
+an explicitly constructable set of N 2 matrices belonging to
+CN ×N that are unitary, Hermitian and linearly independent
+over R. This set of matrices forms a basis for the space of
+Herm
+N × N Hermitian matrices. Denote by CN
+any STBC
+2
+obtained by using these N matrices as weight matrices. For
+positive integers n and m, deﬁne the function
+f (n, m) = n2 − ((n − m)+ )2 ,
+where (a)+ = max{a, 0}. We now state the main result of
+this paper.
+Theorem 1: The equivalent channel matrix of the STBC
+Herm
+CN
+for M receive antennas has rank f (N, M ) with
+probability 1.
+
+1 Throughout this paper, by sphere decoding complexity we mean the
+average sphere decoding complexity, and the focus is on the dependence of
+the complexity on the constellation size q.
+
+2
+
+a
+0
+0
+
+0
+
+0
+
+0
+
+0
+
+0
+R1 = 
+0
+0
+
+0
+
+0
+
+0
+
+0
+
+0
+0
+
+0
+a
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+
+
+
+0
+0
+a
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+
+0
+0
+0
+a
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+
+0
+0
+0
+0
+a
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+
+0
+0
+0
+0
+0
+a
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+
+0
+a
+a
+0
+a
+0
+a
+0
+0
+0
+0
+0
+0
+0
+0
+0
+
+0
+a
+0
+a
+a
+0
+a
+a
+0
+0
+0
+0
+0
+0
+0
+0
+
+0
+0
+a
+a
+a
+0
+a
+a
+a
+0
+0
+0
+0
+0
+0
+0
+
+0
+0
+a
+a
+0
+a
+a
+a
+a
+a
+0
+0
+0
+0
+0
+0
+
+0
+0
+a
+0
+a
+a
+a
+a
+a
+a
+a
+0
+0
+0
+0
+0
+
+0
+0
+0
+a
+a
+a
+a
+a
+a
+a
+a
+a
+0
+0
+0
+0
+
+0
+a
+0
+a
+0
+a
+a
+a
+a
+a
+a
+a
+a
+0
+0
+0
+
+0
+a
+a
+0
+0
+a
+a
+a
+a
+a
+a
+a
+a
+a
+0
+0
+
+0
+a
+0
+0
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+0
+
+0
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+
+
+0
+a
+a
+
+a
+
+0
+
+0
+
+a
+
+a
+.
+a
+
+
+a
+a
+
+a
+
+a
+
+a
+
+a
+a
+
+(1)
+
+The sphere decoder uses the 8 × 9 matrix R obtained from
+R by deleting its last 4 rows which are all zero. Hence,
+for this particular channel realization H, the sphere decoding
+complexity is of the order of q 9−8 = q.
+Suppose the code obtained from an STBC C with a signal set A is g-group ML decodable for some g > 1. The
+information symbols {x1 , . . . , xK } can be partitioned into g
+vectors xI1 , . . . , xIg of length λ1 , . . . , λg respectively such
+that each symbol vector can be ML decoded independently
+of other symbol vectors. There is a corresponding partition of
+the channel matrix into g submatrices G1 , . . . , Gg , such that
+
+In Section III, we use the above theorem to arrive at the rank
+of the equivalent channel matrix of almost all known high-rate
+multigroup ML decodable codes.
+Herm
+is N , the number of symbols is K = N 2 ,
+The rate of CN
+2
+and the rank of the equivalent channel is less than K whenever
+M < N . Thus, this STBC is singular for all N ≤ M < N .
+2
+Herm
+Example 2: Consider the STBC C3
+used in an asymmetric MIMO system with M = 2 receive antennas. In this
+case, R = 3 < min{M, N } and the equivalent channel matrix
+2
+G is of size 12 × 9. From Theorem 1, we know that the rank
+of G is equal to f (3, 2) = 8 with probability 1. Hence, this
+STBC is singular for 2 receive antennas. The 9 weight matrices
+Herm
+are as follows
+of the STBC C3
+
+g
+
+Gk xIk , Gk ∈ R2M T ×λk , for k = 1, . . . , g. (4)
+
+Gx =
+k=1
+
+
+
+1
+
+0
+
+0
+
+0
+
+0
+
+1
+
+0
+1
+
+0
+
+ 
+
+1
+ 
+0 ,  0
+ 
+
+0
+−1
+
+0
+
+1
+
+0
+
+1
+
+0
+
+0
+
+1
+
+ 
+0 ,  0
+ 
+
+1
+
+0
+
+0
+
+0
+ 
+
+−i
+
+0
+
+0
+
+ 
+0
+1
+ 
+0 , 0
+ 
+1
+0
+ 
+i
+1
+ 
+0 , 0
+ 
+0
+0
+
+0
+1
+0
+0
+0
+1
+
+0
+
+ 
+
+ 
+
+0 1 0
+0
+ 
+ 
+0  , 1 0 0 , −i
+ 
+ 
+−1
+0 0 1
+0
+
+
+
+0
+1
+0
+0
+
+
+
+1 and 0
+0
+i .
+
+
+
+0
+0 −i 0
+
+i
+0
+0
+
+
+0
+
+0 ,
+
+1
+
+III. S PHERE DECODING COMPLEXITY OF HIGH RATE
+MULTIGROUP ML DECODABLE CODES
+
+The structure of the 12 × 9 upper triangular matrix R obtained
+from the QR decomposition of G is
+
+a
+0
+
+0
+0
+
+0
+
+0
+
+0
+
+0
+
+0
+
+0
+0
+0
+
+a
+a
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+
+a
+a
+a
+0
+0
+0
+0
+0
+0
+0
+0
+0
+
+a
+a
+a
+a
+0
+0
+0
+0
+0
+0
+0
+0
+
+a
+a
+a
+a
+a
+0
+0
+0
+0
+0
+0
+0
+
+a
+a
+a
+a
+a
+a
+0
+0
+0
+0
+0
+0
+
+a
+a
+a
+a
+a
+a
+a
+0
+0
+0
+0
+0
+
+a
+a
+a
+a
+a
+a
+a
+a
+0
+0
+0
+0
+
+In this section, we show that all known families of highrate (R > 1) multigroup ML decodable codes are singular for
+certain number of receive antennas. Table I summarizes the
+results of this section. The table lists the sphere decoding
+complexity and the minimum number of receive antennas for
+Herm
+non-singularity of CN
+, all the codes in [6], [8], [9], and the
+codes in [10] corresponding to even number of ML decoding
+groups.
+
+
+a
+a
+
+a
+a
+
+a
+
+a
+,
+a
+
+a
+
+0
+
+0
+0
+0
+
+A. Code from Ren et. al. [6]
+In [6], a 2-group decodable STBC for 4 transmit antennas
+with R = 17 was constructed (see Example 1). For this code,
+8
+with the notations as used in (4), g = 2, xI1 = x1 , λ1 = 1,
+xI2 = [x2 , . . . , x17 ]T , λ2 = 16 and G = [G1 G2 ]. The
+weight matrix corresponding to x1 is I4 . Since any two weight
+matrices from different ML decoding groups must be HurwitzRadon orthogonal [3], [5], i.e., satisfy AH Aj + AH Ai = 0,
+i
+j
+
+when H equals the following randomly generated matrix
+
+
+−0.5688 − 0.8117i
+ 0.4926 + 0.0742i
+0.5905 + 0.5107i
+
+In [15] it is shown that for any k = k and any channel
+realization H, every column of Gk is orthogonal to every
+column of Gk . As a direct consequence of this, we have the
+following proposition.
+Proposition 4: For any g-group ML decodable STBC and
+g
+any channel realization H, rank(G) = k=1 rank(Gk ).
+
+
+−0.1723 + 1.8282i
+0.1525 − 0.4716i .
+−0.8244 + 0.1325i
+
+3
+
+TABLE I
+C OMPARISON OF S PHERE D ECODING C OMPLEXITIES OF KNOWN SINGULAR STBC S
+Transmit
+
+Code
+
+Rate
+
+Minimum M
+
+Order of Sphere
+
+(cspcu)
+
+Delay
+
+for
+
+Decoding Complexity
+
+Groups
+
+Antennas
+N
+
+T
+
+g
+
+R
+
+non-singularity
+
+Exponent of q †,∗
+
+≥1
+
+N
+
+1
+
+N
+2
+
+N
+
+(N − M )+
+
+2
+
+Ren et. al. [6]
+
+4
+
+4
+
+2
+
+17
+8
+
+4
+
+(4 − M )+
+
+2
+
+Ren et al. [8]
+
+≥1
+
+≥ 2N
+
+2
+
+N 2 −1
+T
+
+N
+
+(N − M )+ · (T − N − M )
+
+2m , m ≥ 2
+
+N
+
+2
+
+1
+N
+
+N
+2
+
+Herm (Theorem 1)
+CN
+
+Srinath et al. [9]
+
+N−
+N
+4
+
++
+
+( N − M )+
+2
+
+2
+
+
+Natarajan et. al. [10]‡
+
+ng2
+
+n2
+
+g−1
+2
+
+g−1
+2
+
+,n≥1
+
+,n≥1
+
+N
+
+gN
+
+2 ,
+
+2 ,
+
+† The size of the real constellation used is denoted by q.
+∗ For any real number a, a+ is deﬁned as max{a, 0}.
+‡ [10] contains codes for all g > 1 and not just even values
+
+≥1
+
+≥1
+
+N
+g2g−1
+
+N
+2g−1
+
++
+
++
+
+g 2 −g
+2N
+
+g−1
+2N
+
++
+N
+
+N
+g2g−2
+
+
+g2
+
+g−1
+2
+
+N
+
+N
+2g−2
+
+2
+
+g−1
+2
+
+−2
+
+−2
+
+g−1
+2
+
+g−1
+2
+
+M
+
+2
+
+
++
+
+2
+
+M
+
+of g.
+
+for all the matrices in G2 , V2 is constant, denoted by F2 . Each
+group contains n2 + 1 real symbols.
+We will now derive the rank of the submatrix G1
+of G that corresponds to G1 = {A1 , . . . , An2 +1 }. Consider the set G1 = {Ai = CAi , i = 1, . . . , n2 + 1}, where
+C = diag(In , iFH ). Since C is unitary, from Proposition 3,
+2
+the rank of G1 equals the rank of G1 , the equivalent channel
+matrix corresponding to G1 . Since the multiplication of all the
+weight matrices of an STBC by a unitary matrix does not affect
+its multigroup ML decodability, for every matrix B ∈ G2 , CB
+is Hurwitz-Radon orthogonal to Aj , j = 1, . . . , n2 + 1, where
+Aj and CB are block diagonal and are of the form
+
+all the matrices in the second group are skew-Hermitian, i.e.,
+AH = −Ai , i = 2, · · · , 17. As a result, we can express
+i
+these weight matrices as Ai = iI4 .Ai , i = 2, · · · , 17, with
+A1 , . . . , A17 being Hermitian matrices. It is clear that for any
+channel realization H, G1 = [vec(H)], which is non-zero with
+probability 1. Hence, rank(G1 ) = 1 with probability 1. From
+Proposition 3 and Theorem 1, rank(G2 ) = f (4, M ) with
+probability 1. So,
+1) For M = 3, rank(G2 ) = 15. Since xI1 and xI2 can
+be decoded independently of each other, the sphere
+decoding complexity of the ﬁrst group is independent of
+q while that of the second group is O(q (16−15) ) = O(q).
+Consequently, the sphere decoding complexity of the
+code in [6] is O(q) for 3 receive antennas.
+2) For M ≥ 4, f (4, M ) = 16, hence the STBC in [6]
+is non-singular, and its sphere decoding complexity is
+independent of q.
+
+Aj =
+
+F1
+0
+
+0
+Dj
+
+and CB =
+
+V
+0
+
+0
+,
+iIn
+
+for some unitary matrices Dj and V. This implies that every
+Dj , j = 1, . . . , n2 + 1 is Hurwitz-Radon orthogonal to iIn .
+Thus, {Dj |j = 1, . . . , n2 + 1} is a set of n × n unitary,
+Hermitian matrices.
+Note that A1 , . . . , An2 +1 is the span of
+
+B. Codes from Srinath et. al. [9]
+A family of 2-group ML decodable STBCs was constructed
+1
+in [9] for N = 2m , m > 1 antennas with rate R = N + N
+4
+5
+cspcu. This family includes the rate 4 code of [7] for N = 4
+as a special case. The number of symbols in the STBC is
+2
+K = N + 2. In the rest of this subsection we show that
+2
++ 2
+N
+−M )
+its sphere decoding complexity is O q ( 2
+, for
+
+F1
+0
+
+0
+0
+,
+0
+0
+
+0
+0 0
+,
+,...,
+D1
+0 Dn2 +1
+
+(5)
+
+and from Proposition 3 has the same dimension as that
+of A1 , . . . , An2 +1 over R, which is equal to n2 + 1. The
+ﬁrst matrix in (5) is linearly independent of the remaining
+matrices and hence the dimension of the span of the remaining matrices in (5) is n2 . Without loss of generality,
+let us assume that D1 , . . . , Dn2 are linearly independent, thus
+D1 , . . . , Dn2 is the space of all n × n Hermitian matrices.
+Then, A1 , . . . , An2 +1 equals the space spanned by
+
+R ≤ M < N , where a is the smallest integer greater than
+2
+or equal to a. Note that the sphere decoding complexity is a
+decreasing function of the number of receive antennas M .
+The STBCs of [9] have a block diagonal structure. The
+weight matrices for N = 2m antennas are of the form
+diag(V1 , V2 ), where V1 , V2 ∈ Cn×n are unitary and n = N .
+2
+Denote the set of weight matrices belonging to the ﬁrst and
+the second ML decoding groups by G1 and G2 , respectively.
+For all the matrices in G1 , V1 is constant, denoted by F1 , and
+
+F1
+0
+
+0
+0 0
+0 0
+,
+,...,
+.
+0
+0 D1
+0 Dn 2
+
+(6)
+
+Let the channel matrix be partitioned as H = [HT HT ]T ,
+1
+2
+where H1 , H2 ∈ Cn×M . From Proposition 2, the rank
+
+4
+
+of G1 is the dimension of the space spanned by
+matrices in (6) multiplied on the right by H, i.e.,
+F1 H1
+0
+0
+,
+,...,
+0
+D1 H2
+D n2 H 2
+
+n−2
+
+codes with even g is of the order of q
+and the codes are non-singular only for M ≥
+
+. With probability 1, H1 is
+
+N
+2
+
++
+
+2
+
+K =2
+
+N
+4
+
+−
+
+K=2
+
+N2
+4
+
+the order of q
+
++1 .
+
+2
+
+N
+g2g−2 .
+
+Also
+g−1
+2
+
+n−2
+
+g−1
+2
+
++
+
+M
+
+2
+
+.
+
+IV. C ONCLUSION
+In this paper we have shown that even when the rate
+R ≤ min{M, N }, the R matrix arising during the sphere
+decoding of an STBC can be rank deﬁcient, and that this rankdeﬁciency arises only in the case of asymmetric MIMO with
+M < N . Since the sphere decoding complexity decreases with
+increase in rank(R), for systems with M < N , the weight
+matrices must be constructed intelligently, so that the resulting
+code has an R matrix with a large rank.
+
++ 1 , we see that the STBCs in [9] are singular
+
+−M
+
++
+
+M
+
+in [10], non-delay optimal codes with T = gN , N = n2
+,
+N
+n ≥ 1, and rate R = 2g−1 + g−1 were constructed. The sphere
+2N
+decoding complexity of these codes for even values of g is of
+
+non-zero and hence the ﬁrst matrix is linearly independent of
+the remaining matrices. From Theorem 1 and Proposition 2,
+the dimension of the span of the remaining n2 matrices
+is f (n, M ) = n2 − ((n − M )+ )2 with probability 1. Thus
+rank(G1 ) equals f (n, M ) + 1 with probability 1.
+Similarly we can show that rank(G2 ) = f (n, M ) + 1
+with probability 1 as well. From Proposition 4,
+rank(G) = rank(G1 ) + rank(G2 )
+which
+equals
+2
+
+g−1
+2
+
+Comparing this with
+
+for all R ≤ M < N .
+2
+Now, the two groups of symbols can be ML decoded
+independently of each other, and the number of symbols in
+each group is K , with rank(G1 ) = rank(G1 ) = K . Thus,
+2
+2
+the sphere decoding complexity of the STBC is of the order
++ 2
+N
+K−K
+−M )
+of q 2 = q ( 2
+.
+
+R EFERENCES
+[1] B. Hassibi and B. M. Hochwald, “High-Rate Codes that are Linear in
+Space and Time,” IEEE Trans. Inf. Theory, vol. 48, no. 7, pp. 18041824, Jul. 2002.
+[2] G. S. Rajan and B. S. Rajan, “Multi-group ML Decodable Collocated
+and Distributed Space Time Block Codes,” IEEE Trans. Inf. Theory,
+vol.56, no.7, pp. 3221-3247, Jul. 2010.
+[3] D. N. Dao, C. Yuen, C. Tellambura, Y. L. Guan and T. T. Tjhung,
+“Four-Group Decodable Space-Time Block Codes,” IEEE Trans. Signal
+Processing, vol. 56, no. 1, pp. 424-430, Jan. 2008.
+[4] H. Wang, D. Wang, and X.-G. Xia, “On Optimal Quasi-Orthogonal
+Space-Time Block Codes With Minimum Decoding Complexity,” IEEE
+Trans. Inf. Theory, vol. 55, no. 3, pp. 1104-1130, Mar. 2009.
+[5] Z. A. Khan and B. S. Rajan, “Single Symbol Maximum Likelihood
+Decodable Linear STBCs,” IEEE Trans. Inf. Theory, vol. 52, No. 5,
+pp. 2062-2091, May 2006.
+[6] T. P. Ren, Y. L. Guan, C. Yuen, and R. J. Shen, “Fast-Group-Decodable
+Space-Time Block Code,” in Proc. of IEEE ITW 2010, Cairo, Egypt,
+Jan. 06-08, 2010.
+[7] C. Yuen, Y. L. Guan, and T. T. Tjhung, “On the search for high-rate
+quasi-orthogonal space-time block code,” Int. J. Wireless Inf. Network
+(IJWIN), vol. 13, pp. 329-340, Oct. 2006.
+[8] T. P. Ren, C. Yuen, Y. L. Guan, E. Gunawan, and E. Y. Zhang,
+“Unbalanced and Balanced 2-Group Decodable Spatial Multiplexing
+Code,” in Proc. of IEEE VTC (Fall), 2009.
+[9] K. P. Srinath and B. S. Rajan, “High-Rate, 2-Group ML-Decodable
+STBCs for 2m Transmit Antennas,” in Proc. of IEEE ISIT 2009, Seoul,
+South Korea, June 28- July 03, 2009, pp. 2008-2012.
+[10] L. P. Natarajan and B. S. Rajan, “Asymptotically-Good, Multigroup
+ML-Decodable STBCs,” in Proc. of IEEE Globecom 2010 , Miami,
+Florida, USA, Dec. 06-10, 2010.
+[11] E. Viterbo and J. Boutros, “A Universal Lattice Code Decoder for
+Fading Channels,” IEEE Trans. Inf. Theory, vol. 45, no. 5, pp. 16391642, Jul. 1999.
+[12] O. Damen, A Chkeif, and J.-C. Belﬁore, “Lattice Code Decoder for
+Space-Time Codes,” IEEE Commn. Letters, vol. 4, no. 5, May 2000.
+[13] M. O. Damen, H. El Gamal, and G. Caire,“On Maximum-Likelihood
+Detection and the Search for the Closest Lattice Point,” IEEE Trans.
+Inf. Theory, vol. 49, no. 10, pp. 2389-2402, Oct. 2003.
+[14] L. P. Natarajan, K. P. Srinath and B. S. Rajan, “On the Sphere Decoding
+Complexity of STBCs for Asymmetric MIMO Systems,” available
+online at arXiv:1104.0640v2 [cs.IT] 05 Sep. 2011.
+[15] K. P. Srinath and B. S. Rajan, “Low ML-Decoding Complexity, Large
+Coding Gain, Full-Rate, Full-Diversity STBCs for 2x2 and 4x2 MIMO
+Systems,” IEEE J. Sel. Topics Signal Process., vol. 3, No. 6, pp. 916
+- 927, Dec. 2009.
+
+C. Codes from Ren et. al. [8]
+In [8], 2-group ML decodable codes for all N ≥ 1 and all
+2
+even T ≥ 2N were constructed with rate R = N − N T−1 .
+The number of symbols per group is K = T N − N 2 + 1.
+2
+The codes of this family are singular for all R ≤ M < N
+receive antennas, and their sphere decoding complexity is
++
+O q (N −M ) ·(T −N −M ) . From Proposition 1, it is clear that
+these codes are non-singular if and only if M ≥ N .
+Example 3: Consider the STBC from [8] for N = 4 and
+T = 2N = 8. The rate of this code is R = 17 and the number
+8
+of symbols per decoding group is K = 17. From the above
+2
+discussion it is clear that this STBC is singular for M = 3. The
+rank of the equivalent channel matrix of each ML decoding
+group equals 16 with probability 1 and hence the sphere
+decoding complexity is O(q).
+It is interesting to compare this code with the code from [6]
+which was discussed in Section III-A and Example 1, when
+the number of receive antennas is M = 3. Both codes have
+the same parameters N , R, and both have a sphere decoding
+complexity that is linear in the constellation size q. However,
+the code discussed in Section III-A is fast-group-decodable
+and 5 levels can be removed from the sphere decoding search
+tree of its second decoding group [6]. Hence, this code uses
+a 10-dimensional sphere decoder to decode the second group
+of 16 symbols. On the other hand, the code from [8] uses a
+16 dimensional search tree for decoding each ML decoding
+group. Thus, the overall sphere decoding complexity of the
+code from [6] is less than that of [8].
+D. Codes from Natarajan et. al. [10]
+In [10], delay optimal g-group ML decodable codes were
+g−1
+constructed for all g > 1, N = ng2 2 , n ≥ 1, with rate
+2
+−g
+R = g2N + g2N . The sphere decoding complexity of the
+g−1
+
+5
+
+

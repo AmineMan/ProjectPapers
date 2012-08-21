@@ -1,0 +1,784 @@
+Title:          ISIT2012_finalversion.pdf
+Subject:        
+Keywords:       
+Author:         ayfer
+Creator:        PDFCreator Version 1.2.1
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Fri May 18 19:06:13 2012
+ModDate:        Tue Jun 19 12:54:23 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      339133 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569566977
+
+Dynamic QMF for Half-Duplex Relay Networks
+¨ u
+Ayfer Ozg¨ r
+
+Suhas Diggavi
+
+Stanford University
+aozgur@stanford.edu
+
+UCLA
+suhas@ee.ucla.edu
+
+Abstract—The value of relay nodes to enhance the error
+performance versus rate trade-off in wireless networks has
+been studied extensively. However, wireless nodes currently are
+constrained to only transmit or receive at a given frequency,
+i.e., half-duplex constraint. The diversity-multiplexing tradeoff
+(DMT) for half-duplex networks are less understood. In the
+special cases where the DMT is currently known, such as the relay
+channel and the line network, it is achieved by either dynamic
+decoding or a quantize-map-forward (QMF) strategy with a ﬁxed
+half-duplex schedule. The main question we investigate in this
+paper is whether these two strategies are sufﬁcient to achieve the
+DMT of half-duplex wireless networks or we need new strategies
+for general setups. We propose a generalization of the two existing
+schemes through a dynamic QMF strategy and show that in a
+parallel relay channel it outperforms both earlier schemes. We
+also establish the DMT for the relay channel with multiple relays
+and multiple antennas in some special cases.
+
+I. I NTRODUCTION
+The diversity-multiplexing trade-off (DMT) [2] captures
+the inherent tension between rate and reliability over fading
+channels. It has been used to demonstrate the value of relays
+in wireless networks [3], [4], [5], [6]. The two critical issues
+that complicate the problem in relay networks is who knows
+what channel state and whether nodes can listen and transmit
+at the same time (i.e., half or full duplex). The DMT of fullduplex wireless networks can be fully characterized, even with
+only receiver channel knowledge, which can be forwarded
+to the destination. For example, it can be achieved by a
+quantize-map-and-forward (QMF) strategy introduced in [1].
+This is a simple consequence of the fact that QMF achieves
+the capacity of wireless relay networks within a constant gap
+without requiring (transmit) channel state information (CSI)
+at the relays [1].
+In current wireless systems, nodes operate in a half-duplex
+mode, i.e., they can not simultaneously transmit and receive
+signals on the same frequency band. Designing DMT optimal
+strategies for half-duplex networks is more challenging as it
+also involves an optimization over the listen and transmit times
+for the relays. In a fading environment where transmit CSI
+is unavailable at the nodes, such a listen-transmit schedule
+needs to be either ﬁxed or depend only on local receive CSI.
+Characterizing the DMT of general half-duplex relay networks
+remains as an open problem, despite interesting progress in
+some special cases (see [7], [9] and references therein).
+¨ u
+The work of A. Ozg¨ r was partially supported by the ERC grant NOWIRE
+ERC-2009-StG-240317. The work of S. N. Diggavi was partially supported
+through NSF-CPS award 1136174.
+
+1
+
+Fig. 1. a) Single relay network. b) Line relay network. c) The relay channel
+with multiple antennas
+
+This work is particularly motivated by three recent results
+that characterize the DMT in three basic relaying setups:
+•
+
+•
+
+•
+
+[10] shows that the optimal DMT for the relay channel with N non-interfering relays (see Figure 1-(a))
+is achieved by the QMF scheme with a ﬁxed RX-TX
+schedule for the half-duplex relays that does not depend
+on the channel realizations. The performance meets the
+full-duplex DMT.
+[12] shows that the DMT for the line relay network (see
+Figure 1-(b)) is achieved by dynamic decode-and-forward
+(DDF) [7]. In DDF the relay listens until it gathers
+enough mutual information to decode the transmitted
+message so its RX time is dynamically determined as
+a function of its backward channel realization and the
+targeted rate. The optimal performance does not reach
+the full-duplex DMT. The result generalizes to multiple
+hops and multiple transmit and receive antennas at the
+realays.
+[13] shows that to achieve the DMT of a single relay
+channel with multiple antennas at the relay node (see
+Figure 1-(c)) we need both of the above strategies. In this
+case there is a regime where DDF achieves the optimal
+DMT when ﬁxed schedules are sub-optimal, and there is a
+second regime where a ﬁxed schedule with QMF achieves
+the optimal DMT when DDF is strictly suboptimal.
+However, the optimal DMT does not necessarily meet
+the full-duplex DMT anymore.1 .
+
+It can be show that in all other scenarios [8], [9], [11] where
+1 This result was independently derived by the authors and was part of
+the initially submitted version of this paper. After [13] was brought to our
+attention by the reviewers, we have removed this part from the ﬁnal version
+of the paper. A subtlety regarding this result is discussed in Section III
+
+3
+
+2.5
+
+2
+
+1.5
+
+1
+
+0.5
+
+0
+0
+
+0.1
+
+0.2
+
+0.3
+
+0.4
+
+0.5
+
+0.6
+
+0.7
+
+0.8
+
+0.9
+
+1
+
+Fig. 3. ’–’ QMF with half-Rx half-Tx schedule for the relay, ’- -’ full-duplex
+upper bound, ’+’ optimal DMT.
+
+Fig. 2. a. The relay channel with multiple relays with multiple antennas
+studied in Section IV. b. The parallel relay network studied in Section V.
+
+the optimal DMT is achieved by another strategy, it can be also
+achieved by one of two strategies above, moreover with the
+added beneﬁt of avoiding extra requirements such as transmit
+CSI at the relay as in [8]. Therefore, the current results in
+the literature exhibit the following dichotomy: in all cases
+where the DMT of half-duplex relay networks is known it
+is either achieved by DDF where the relay waits until it can
+fully decode the source message, or by QMF with a ﬁxed
+schedule independent of the channel realizations. A natural
+generalization of these two strategies is dynamic QMF where
+a relay listens for a fraction of time determined by its receive
+CSI that is not necessarily long enough to allow decoding of
+the transmitted message. The relay then quantizes maps and
+forwards the received signal as in the original QMF [1]. The
+goal of this paper is to understand whether this additional
+ﬂexibility for the dynamic schedule is critical.
+To make progress on this question, we ﬁrst consider a
+natural generalization of the setups in [10] and [13], the relay
+channel with N non-interfering multiple-antenna relays. We
+are able to characterize the DMT of this setup for a class of
+antenna conﬁgurations. However, the optimal DMT is again
+achieved by QMF with ﬁxed schedules. We then turn to
+a conﬁguration of two parallel relays and demonstrate that
+DQMF outperforms both earlier schemes in this case. This
+example establishes the necessity of DQMF for achieving the
+DMT of general wireless networks.
+II. S YSTEM M ODEL
+We consider a wireless network where a source S and a destination D want to communicate with the help of half-duplex
+relays. In this paper we focus on two simple conﬁgurations depicted in Figure 2-(a) and (b) and studied in Sections IV and V
+respectively. In the ﬁrst case, the communication from a singleantenna source to a single-antenna destination is assisted by
+multiple relays with multiple antennas. The source signal is
+broadcasted to the relays and the relay signals superpose at
+the destination. A direct link between the source and the
+destination may or may not be present. Figure 2-(a) shows
+a special case with one two-antenna relay and two singleantenna relays. In the second setup, the source communicates
+to the destination through two independent line networks. As
+opposed to the ﬁrst setup, here there is no broadcast at the
+
+2
+
+source or superposition at the destination. The two relays can
+be thought of as operating at two different frequencies. Each
+of the two relays is equipped with a single antenna in this
+case.
+All channels are assumed to be ﬂat-fading, i.e. the channel
+gains for every link depicted in Figure 2 (from a transmit
+to a receive antenna) are i.i.d. circularly-symmetric complex
+Gaussian random variables CN (0, 1). We assume quasi-static
+fading, i.e. the channel gains remain constant over the duration
+of the codeword and change independently from one codeword
+to another. The channel realizations are known at the receivers
+but not at the transmitters. The additive noise at the receivers
+is CN (0, 1). All nodes in the system are subject to the same
+average power constraint speciﬁed by the average signal to
+noise power ratio SNR.
+A scheme, consisting of a family of codes {CSNR } indexed
+by SNR with rate R(SNR) and average error probability
+Pe (SNR) is said to achieve a multiplexing gain r and diversity
+gain d if [2]
+Pe (SNR)
+R(SNR)
+= r, lim
+= −d.
+SNR→∞ log SNR
+log SNR
+We consider codes with sufﬁciently long codewords so that
+the error event is dominated by outage, the event that the
+capacity of the system falls below the targeted rate. For each
+r, the supremum d(r) of the diversity gain achievable over all
+families of codes is called the DMT of the system.
+lim
+
+SNR→∞
+
+III. R ELAY WITH M ULTIPLE A NTENNAS
+In this section, we state the DMT of the half-duplex relay
+channel in Figure 1-(c).
+Theorem 3.1: The DMT for the half-duplex relay channel
+with n transmit and receive antennas at the relay in Figure 1(c) is given by
+
+1
+ (n + 1)(1 − r) 0 ≤ r < (n+1)
+nr
+1
+(n + 1) − 1−r (n+1) ≤ r < 1
+d(r) =
+2
+
+1
+2(1 − r)
+2 ≤ r ≤ 1.
+
+When 0 ≤ r ≤ 1/2, the optimal DMT is achieved by
+dynamic decode and forward (DDF) at the relay. When
+1/2 < r ≤ 1, the DMT optimal strategy is quantize-mapand-forward (QMF) at the relay with a ﬁxed half RX-half
+TX schedule. The full-duplex performance is reached only for
+0 ≤ r < 1/(n + 1). See Figure 3 for the case of two antennas
+at the relay.
+This result was part of our ISIT submission, but reviewers
+pointed out [13] which had obtained this result. The only
+
+Fig. 4. The optimal ﬁxed schedule when relays are grouped in three sets as
+shown in a). Each of the three states in b,c,d are active a fraction 1/3 of the
+total time.
+
+subtle difference in our approach is that the upper bounds on
+the DMT tradeoff differ from [13] since they are based on the
+general upper bound on the capacity of arbitrary half-duplex
+relay networks derived in [14, Section VI]. The upper bound in
+[14, Section VI] allows for both random (message dependent)
+schedules and for optimization of the transmit powers across
+different transmit and receive states of the network. This
+covers possible message dependent schedules that a simpler
+time schedule based upper bound does not cover. However, it
+then shows that the gain from such techniques is bounded by
+a constant independent of SNR, and hence can not impact the
+DMT tradeoff.
+IV. M ULTIPLE R ELAYS WITH M ULTIPLE A NTENNAS
+In this section, we characterize the DMT of the relay
+channel with N relays each with ni transmit and receive
+antennas for i = 1, . . . , N when antenna conﬁgurations satisfy
+a speciﬁc property. The result is summarized in the following
+theorem.
+Theorem 4.1: Let ni , i = 1, . . . , N be such that the relay
+nodes can be grouped into k sets, each set containing the
+same total number of antennas (equal to i ni /k) . Then a
+QMF strategy with a ﬁxed schedule where every set receives
+a fraction 1/k of the total time and transmits a fraction 1/k
+achieves the full-duplex DMT. The full-duplex DMT is given
+by d(r) = (1 − r) i ni when there is no direct link between
+the source and the destination and d(r) = (1 − r)(1 + i ni )
+when the direct link is present.
+Figure 2-(a) illustrates one such conﬁguration. Note that
+by grouping the two single-antenna relays together, we obtain
+two sets of relays each with a total number of 2 antennas.
+The optimal ﬁxed schedule is to have the multiple-antenna
+relay listen half the time to the source node when the two
+single antenna relays are simultaneously transmitting to the
+destination. In the remaining half, the multiple-antenna relay
+is transmitting to the destination while the single-antenna
+relays are listening. Figure 4 illustrates the corresponding ﬁxed
+schedule when k = 3. Note that if the multiple antenna relay
+in Figure 2-(a) contained three antennas instead of two, the
+network would fail to satisfy the condition in Theorem 4.1.
+Another conﬁguration that fails to satisfy the condition is the
+relay channel with multiple antennas in Figure 1-(c) for which
+we know that QMF with ﬁxed schedules is not optimal in
+certain regimes and the optimal DMT does not meet the fullduplex DMT (see Section III and [13]).
+Proof of Theorem 4.1: We consider the case where the direct
+link between the source and the destination is not present.
+Let us enumerate the antennas at the relays as i = 1, . . . , m
+
+3
+
+where m = i ni and let hsi and hid be the channel gains
+between the antenna i and the source and the destination nodes
+respectively. Let K1 , . . . , Kk be the k sets of relays each
+containing an equal total number of antennas. The performance
+of the QMF strategy in half-duplex networks under a ﬁxed
+RX-TX schedule for the relays is lower bounded in [1,
+Section VIII-C]. For the schedule in Figure 4, where each set
+K1 , . . . , Kk listens and transmits a fraction 1/k of the total
+time such that there is a single set that listens and a single set
+that transmits at any given time, the performance of QMF is
+lower bounded by RQM F ≥ Ch.d. − κ where κ is a constant
+independent of SNR and
+Ch.d. = min
+Λ
+
+1
+k
+
+k
+
+|hid |2 SNR
+
+log 1 +
+j=1
+
+i∈Λ∩Kj
+
+|hsi |2 SNR
+
++ log 1 +
+¯
+i∈Λ∩Kj
+
+and the minimization is over all possible subsets Λ of the relay
+nodes. In the high-SNR limit, the outage event {RQM F ≤
+r log SNR} is equivalent to
+O(r) =
+
+min
+Λ
+
+1
+k
+
+k
+
+max βi + max αi ≤ r
+
+j=1
+
+¯
+i∈Λ∩Kj
+
+i∈Λ∩Kj
+
+2
+
+si |
+where αi := limSNR→∞ log(1+|hSNR SNR) , is the exponential
+log
+order of |hsi |2 or the multiplexing gain of the corresponding
+channel, and βi is the exponential order of |hid |2 . The outage
+probability is given by
+
+·
+
+PO(r) = SNR−dQM F (r)
+·
+
+where = implies that
+in SNR and from [2],
+
+log PO(r)
+log SNR
+
+→ −dQM F (r) asymptotically
+m
+
+dQM F (r) = min
+
+2m −
+
+m
+
+αi −
+i=1
+
+s.t.
+
+min
+Λ
+
+1
+k
+
+βi
+i=1
+
+k
+
+max βi + max αi ≤ r
+
+j=1
+
+i∈Λ∩Kj
+
+and 0 ≤ αi , βi , ≤ 1,
+
+¯
+i∈Λ∩Kj
+
+i = 1, . . . m.
+
+(1)
+(2)
+
+Assume that the minimizing set Λ in condition (1) in¯
+cludes all the relay nodes (i.e. Λ = ∅). Then the condition
+k
+m
+j=1 maxi∈Kj βi ≤ kr implies that
+i=1 βi ≤ mr, which
+in turn implies that dQM F (r) ≥ m(1 − r). Similarly, for all
+other Λ’s by ﬁrst relaxing the condition (1) to
+min
+Λ
+
+1
+k
+
+k
+
+max( max βi , max αi ) ≤ r,
+j=1
+
+i∈Λ∩Kj
+
+¯
+i∈Λ∩Kj
+
+one can show that the sum of the m of the 2m variables αi
+and βi is smaller than mr. This again implies that dQM F (r) ≥
+m(1 − r) which is the full-duplex performance. Therefore,
+QMF with the particular chosen ﬁxed schedule achieves the
+optimal DMT. The result can be extended to the case with a
+direct link between the source and the destination.
+
+gains α, γ, β, η of the channels) is to listen half the time and
+transmit the second half. Therefore, the DMT achieved by this
+strategy is given by the following optimization problem
+
+2
+1.8
+1.6
+1.4
+1.2
+1
+
+dQM F (r) = min
+
+0.8
+0.6
+0.4
+
+min
+
+such that
+
+0.2
+0
+0
+
+0.1
+
+0.2
+
+0.3
+
+0.4
+
+0.5
+
+0.6
+
+0.7
+
+0.8
+
+0.9
+
+1
+
+4−α−γ−η−β
+1 1
+1 1
+α, γ + min
+η, β
+2 2
+2 2
+
+< r.
+
+Solving this optimization problem we obtain
+Fig. 5. ’–’ QMF with half-Rx half-Tx schedule for the relay, ’- -’ upper
+bound, ’+’ dynamic QMF.
+
+V. DYNAMIC QMF
+In the dynamic QMF (DQMF) strategy relays listen for a
+fraction of time, which is a function of their received CSI
+and then quantize, map, and forward the received signal as in
+the original QMF [1]. Clearly this generalizes DDF as well,
+since if the receive time is sufﬁcient to decode, the difference
+between decoding and quantizing the received signal is the
+removal or forwarding of the additive noise correspondingly,
+which does not matter at high-SNR. It is applicable to general
+networks, but all the difﬁculty is then encapsulated in the
+(dynamic) choice of the receive times. To understand whether
+this additional ﬂexibility is critical, we focus on a speciﬁc
+network.2
+We consider the setup in Figure 2-(b) where S communicates to D with the help of two parallel half-duplex relays.
+For this network, we demonstrate that the DQMF strategy
+outperforms both DDF and the static QMF for 0 ≤ r ≤ 1/2.
+See Figure 5.
+1) QMF with ﬁxed RX-TX schedules: The performance of
+the QMF strategy when the the relays listen for a fraction
+t1 and t2 of the time and transmit a fraction (1 − t1 ) and
+(1−t2 ) respectively is lower bounded in [1, Section VIII-C] by
+RQM F ≥ Ch.d. (t1 , t2 ) − κ where κ is a constant independent
+of SNR and Ch.d. (t1 , t2 ) is given by
+
+dQM F (r) = 2 − 2r.
+The dominant outage event occurs when one of two channels
+in each path are strong, say α = η = 1, and the remaining two
+channels have a total of 2r multiplexing gain, i.e γ + β = 2r.
+2) Upper Bound on the DMT Trade-off: In [14, Section VI],
+we derive an upper bound on the capacity of half-duplex relay
+networks, when all the channels are globally known, which
+allows to optimize the transmit and receive schedule for the
+relays based on global knowledge of instantaneous channel
+realizations. For the setup in Figure 2-(b), this upper bound
+yields
+C≤
+
+max
+
+t1 (hs1 ,hs2 ,h2d ,h2d )
+t2 (hs1 ,hs2 ,h2d ,h2d )
+
+Ch.d. (t1 , t2 ) + G
+
+where G is a constant independent of SNR and t1 and t2 can
+be optimized as a function of the channel gains. In terms of
+the multiplexing gain rC of the system, we have
+rC ≤
+
+max
+
+t1 (α,γ,η,β)
+t2 (α,γ,η,β)
+
+min(t1 α, (1 − t1 )γ) + min(t2 η, (1 − t2 )β).
+
+The right hand side is maximized by the choice t1 = γ/(α+γ)
+and t2 = β/(η + β). Therefore, we get the following upper
+bound on the DMT of parallel channel in Fig. 1-(b),
+du.b. (r) = min
+4−α−γ−η−β
+ηβ
+αγ
++
+≤ r.
+such that
+α+γ
+η+β
+
+Ch.d. (t1 , t2 ) =
+
+Note that for 0 ≤ r ≤ 1/2, α = 1, η = 1, β = r/(1 − r)
+and γ = 0 (or any symmetrical conﬁguration), and for 1/2 ≤
++ min t2 log(1 + |hs2 |2 SNR), (1 − t2 ) log(1 + |h2d |2 SNR) , r ≤ 1, α = η = β = 1 and γ = (r − 1/2)/(3/2 − r) are
+in the domain of the optimization problem above. Therefore,
+where hsi and hid are the channel coefﬁcients between relay plugging these points provides immediately an upper bound
+i = 1, 2 and the source and the destination node respectively. on du.b. (r), which in turn upper bounds d(r), the DMT of the
+In the high-SNR limit, the outage event is given by
+network. We have,
+min t1 log(1 + |hs1 |2 SNR), (1 − t1 ) log(1 + |h1d |2 SNR)
+
+O(r) =
+
+min (t1 α, (1 − t1 )γ) + min (t2 η, (1 − t2 )β) ≤ r
+
+d(r) ≤ du.b ≤
+
+in terms of the multiplexing gains of the channels α =
+2
+s1 |
+limSNR→∞ log(1+|hSNR SNR) indicated in Figure 2-(b). Due to
+log
+the symmetry of the two stages of communication it is easy
+to observe that the optimal ﬁxed schedule for each relay
+(which does not depend on the instantaneous multiplexing
+2 In the reference [13] pointed to us in the review process a dynamic QMF
+strategy based on [1, Section VIII-C] is proposed where the switching times
+are optimized based on the entire network state as in [1, Section VIII-C]. In
+our terminology, we only use received CSI at the relays for determining the
+switching schedules and hence what we term as DQMF is different from [13].
+
+4
+
+2−
+1−
+
+r
+1−r
+r−1/2
+3/2−r
+
+1
+0≤r< 2
+1
+2 ≤ r ≤ 1.
+
+This upper bound is depicted in Figure 5.
+3) Dynamic Decode and Forward: It is easy to verify that in
+this case, DDF has the same performance as the static QMF. In
+DDF, each relay waits until it is able to decode the transmitted
+message, i.e., for the ﬁrst relay t1 = r/α and for the second
+relay t2 = r/η. The scheme is in outage as soon as both
+α < r and η < r, in which case none of the relays ever
+get to transmit. Therefore, for the DMT of DDF, we have
+dDDF (r) ≤ 2−2r. An alternative strategy could be to split the
+
+information stream into two streams each of multiplexing gain
+r/2 and send them over the two orthogonal paths while relays
+perform DDF of the individual streams, i,e t1 = r/2α and
+t2 = r/2η. Communication is in outage if one of the streams
+is in outage which happens when α < r/2. This means the
+diversity at rate r is 1 − r/2, even worse.
+4) Dynamic QMF: Now we want to show that a dynamic
+QMF strategy, where the RX times for the two relays depend
+on the backward channel realizations can perform better than
+the ﬁxed half-half schedule when 0 ≤ r ≤ 1/2. Consider
+the following dynamic QMF strategy. For a ﬁxed x, let the
+x
+ﬁrst relay listen for a fraction t1 = x+α of the total duration
+for communication, then quantize its received signal, map it
+to a new codeword and transmit it in the remaining (1 − t1 )
+fraction of the time. Similarly, the second relay listens for
+x
+a fraction t2 = x+η of the total time. Note that because t1
+and t2 depend on the backward channel realizations α and η,
+this is a dynamic strategy. When contrasted with the upper
+bound in part-2 above, the relays here decide on their Rx
+times by assuming that the channels at the second stage have
+multiplexing gain x. (We assume that this forward channel
+information is not available at the relays, otherwise they could
+simply choose the x’s as γ and β respectively as in the upper
+bound derivation and achieve the upper bound derived in part2.) x will be later optimized as a function of r to achieve the
+best performance at every r. For now, it is a ﬁxed constant
+such that 2r ≤ x ≤ 1.
+The motivation behind this strategy is the following: when
+the channels in the ﬁrst stage are weak (in particular 2r or
+smaller as in the outage event for the ﬁxed half-half schedule),
+this strategy allocates more time to the ﬁrst stage. On the other
+hand, if they are strong (larger than x), the strategy allocates
+more time for the second stage which helps in case the second
+stage turns out to be weak. Therefore, it tries to balance the two
+stages of the communication by looking only at the realization
+of the backward channel at the relays. The RX times do not
+necessarily allow the relays to be able to decode the source
+message, therefore the strategy does not reduce to DDF.
+The performance of the QMF strategy established in [1,
+Section VIII-C] also holds under dynamic schedules. DMT of
+this strategy is given by
+dDQM F (r) = min
+4 − α − γ − η − β s. t.
+x
+x
+α
+η
+min
+α,
+γ + min
+η,
+β
+x+α x+α
+x+η x+η
+
+(3)
+≤ r.
+
+The following proposition lower bounds dDQM F (r).
+Proposition 5.1:
+xr
+)
+dDQM F (r) ≥ min(2 − xr − r, 2 −
+x−r
+From the proposition, the DMT for DQMF is maximized
+when x is chosen such that x2 − rx − r = 0. The resulting
+performance is depicted in Fig. 5.
+We skip the proof of the proposition due to space constraints
+and below only summarize the dominant outage events considering the following three cases separately: the information
+
+5
+
+transfer is limited by 1) the ﬁrst hop for both relays; 2)
+the second hop for both relays; 3) the ﬁrst hop for the ﬁrst
+relay and the second hop for the second relay. These cases
+correspond to the following conditions
+1) γ ≥ x and β ≥ x: In this case the condition (3) becomes
+(x/(x + α))α + (x/(x + η))η ≤ r. The dominant outage
+event is α = 0 and η = rx/(x − r) (or vice a versa),
+γ = β = 1, which yields dDQM F (r) = 2 − rx/(x − r).
+2) γ ≤ x and β ≤ x: In this case the condition (3) becomes
+(α/(x + α))γ + (η/(x + η))β ≤ r. The dominant outage
+event is α = 1 and η = 1, β = 0 and γ = r(x + 1),
+which yields dDQM F (r) = 2 − r(x + 1).
+3) γ ≥ x and β ≤ x: In this case the condition (3) becomes
+(x/(x + α))α + (η/(x + η))β ≤ r. The dominant outage
+events are α = 0 and η = 1, β = r(x + 1) and γ = 1,
+and α = rx/(x − r) and η = 1, γ = 1, and β = 0, which
+yield dDQM F (r) = min(2 − rx/(x − r), 2 − r(x + 1)).
+Note that the case γ ≤ x and β ≥ x is analogous due to
+the symmetry in the problem.
+R EFERENCES
+[1] S. Avestimehr, S. Diggavi and D. Tse, Wireless network information
+ﬂow: a deterministic approach, IEEE Transactions on Information
+Theory, Vol 57, No 4, April 2011.
+[2] L. Zheng and D. Tse, Diversity and multiplexing: A fundamental tradeoff in multiple-antenna channels, IEEE Trans. Inform. Theory, vol. 49,
+no. 5, pp. 1073-1096, 2003.
+[3] J. N. Laneman and G. W. Wornell, Distributed space-timecoded protocols for exploiting cooperative diversity in wireless networks, IEEE
+Trans. Inform. Theory, vol. 49(10), pp. 24152425, 2003.
+[4] J. N. Laneman, D. Tse, and G. W. Wornell, Cooperative diversity in
+wireless networks: efﬁcient protocols and outage behavior, IEEE Trans.
+Inform. Theory, vol. 50(12), pp. 3062-3080, 2004.
+[5] A. Sendonaris, E. Erkip, and B. Aazhang, User cooperation diversity
+Part I: System description, IEEE Trans. Commun., vol. 51, no. 11, pp.
+19271938, Nov. 2003.
+[6] A. Sendonaris, E. Erkip, and B. Aazhang, User cooperation diversity
+Part II: Implementation aspects and performance analysis, IEEE Trans.
+Commun., vol. 51, no. 11, pp. 1939-1948, 2003.
+[7] K. Azarian, H. El Gamal, and P. Schniter, On the achievable diversity
+multiplexing tradeoff in halfduplex cooperative channels, IEEE Trans.
+Inform. Theory, vol. 51, no. 12, pp. 4152-4172, 2005.
+[8] M. Yuksel and E. Erkip, Multi-antenna cooperative wireless systems: A
+diversity multiplexing tradeoff perspective, IEEE Trans. on Information
+Theory, Special Issue on Models, Theory and Codes for Relaying and
+Cooperation in Communication Networks, vol. 53, pp. 33713393, Oct.
+2007.
+[9] K. Sreeram, S. Birenjith, and P. V. Kumar, DMT of Multihop Cooperative Networks - Part II: Half-Duplex Networks with Full-Duplex
+Performance, Proc. IEEE Int. Symp. Inform. Theory, Toronto, July 6-11,
+2008.
+[10] S. Pawar, S. Avestimehr and D. Tse, Diversity multiplexing tradeoff
+of the half-duplex relay channel, in Proc. of Allerton Conference On
+Communication, Control, and Computing, 2008.
+[11] D. Gunduz, A. Goldsmith, H. V. Poor, MIMO two-way relay channel:
+Diversity-multiplexing tradeoff analysis, Asilomar Conf. Signals, Systems and Computers, Paciﬁc Grove, CA, Oct. 2008.
+[12] D. Gunduz, M. A. Khojastepour, A. Goldsmith, H. V. Poor, Multi-hop
+MIMO relay networks: Diversity-multiplexing tradeoff analysis, IEEE
+Transactions on Wireless Communications, Vol. 9, No. 5, pp. 17381747, May 2010.
+[13] S. Karmakar, and M. K. Varanasi The diversity-multiplexing-trade-off
+of the MIMO half-duplex relay channel, submitted to IEEE Trans. on
+Information Theory, June 2011.
+[14] A. Ozgur and S. Diggavi, Approximately achieving Gaussian relay
+network capacity with lattice codes, e-print arXiv:1005.1284v2.
+
+

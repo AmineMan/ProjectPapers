@@ -1,0 +1,711 @@
+Creator:         TeX output 2012.04.23:2156
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Mon Apr 23 21:56:26 2012
+ModDate:        Tue Jun 19 12:55:16 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      271303 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569566683
+
+An Algebraic Framework for Concatenated Linear
+Block Codes in Side Information Based Problems
+Felipe Cinelli Barbosa∗ , J¨ rg Kliewer† , Max H. M. Costa∗
+o
+∗ School
+
+of Electrical and Computer Engineering, University of Campinas, Campinas, Brazil
+Email: fcb@ieee.org, max@fee.unicamp.br
+† Klipsch School of Electrical and Computer Engineering, New Mexico State University, NM, USA
+Email: jkliewer@nmsu.edu
+In [6] superposition coding was proposed for the binary
+CCSI case for which random codes and maximum-likelihood
+(ML) decoding is able to achieve capacity. Differently from
+superposition coding, nested codes have been used for the binary SCSI case, and a technique based on nested parity check
+codes has been proposed in [7] which asymptotically achieves
+the rate-distortion bound for a Bernoulli symmetric source.
+Recently, in [8] the authors present compound LDPC/LDGM
+constructions for both problems which asymptotically achieve
+capacity for the CCSI problem and the rate distortion bound
+for the SCSI problem with bounded graphical complexity
+under ML decoding. They show that these compound codes
+essentially have a joint source-channel coding interpretation.
+Further, polar codes have been shown to be asymptotically
+optimal for both problems with bounded decoding complexity
+[9]. However, their performance for practical block lengths is
+worse than for other codes of the same length [10]. Finally,
+other coding schemes for both SCSI and CCSI based on common modulation and coding schemes, as trellis coded quantization/modulation and turbo codes have been presented (see,
+e.g., [6], [11], [12]).
+The novel contribution of this paper is an algebraic framework which extends the above results for the binary SCSI and
+CCSI cases to concatenated nested linear block codes. In particular, we show that by concatenating two linear block codes
+new binary constructions can be obtained which preserve the
+nested structure either of the outer or of the inner code. This
+opens up a wide range of possible new code combinations
+and indicates that code concatenation can alleviate the search
+for both practical and optimal constructions. We analyze code
+concatenations for q m -ary outer codes and q-ary inner codes
+as a binary inner code can be simply obtained by q = 2.
+Recent work by Guruswami and Rudra [13] gives an explicit
+construction of folded RS (FRS) codes that can achieve list
+decoding capacity. We show this result implies that if RS codes
+are used as source codes, the rate-distortion bound is achieved
+for IID q-ary sources. Together with the fact that concatenated
+binary codes using outer FRS codes can achieve list decoding
+capacity for concatenated codes [13], it motivates the use
+of nested RS codes as outer codes in combination with list
+decoding for both SCSI and CCSI problems. Finally, based on
+our ﬁndings we exemplarily present an algebraic concatenated
+nested coding scheme that asymptotically achieves the ratedistortion and capacity-rate bounds with low encoding and
+
+Abstract—This work provides an algebraic framework for
+source coding with decoder side information and its dual problem, channel coding with encoder side information, showing
+that nested concatenated codes can achieve the corresponding
+rate-distortion and capacity-noise bounds. We show that code
+concatenation preserves the nested properties of codes and that
+only one of the concatenated codes needs to be nested, which
+opens up a wide range of possible new code combinations
+for these side information based problems. In particular, the
+practically important binary version of these problems can be
+addressed by concatenating binary inner and non-binary outer
+linear codes. By observing that list decoding with folded ReedSolomon codes is asymptotically optimal for encoding IID q-ary
+sources and that in concatenation with inner binary codes it can
+asymptotically achieve the rate-distortion bound for a Bernoulli
+symmetric source, we illustrate our ﬁndings with a new algebraic
+construction which comprises concatenated nested cyclic codes
+and binary linear block codes.
+
+I. I NTRODUCTION
+Two traditional problems in the ﬁeld of communications are
+the Wyner-Ziv coding problem [1] and its dual version, the
+Gel’fand-Pinsker problem [2], [3]. The ﬁrst is an instance of
+distributed source coding: one source is encoded by taking advantage of the fact that the decoder receives another correlated
+source as side information. In contrast, the Gel’fand-Pinsker
+problem is a channel coding problem in which a channel
+encoder embeds messages by using available channel state
+information as side information [3]. We will refer to these
+problems also as source coding with decoder side information
+(SCSI) for the Wyner-Ziv case, and as channel coding with
+encoder side information (CCSI) for the Gel’fand-Pinsker
+problem in the following, respectively.
+The duality of these problems has been studied in [4] for
+the Gaussian case, where the authors also analyze how this
+relationship can be exploited to design dual coset codes. While
+nested lattice based coset coding schemes for these problems
+have been proposed for continuous-input (Gaussian) channels
+[5], in the following we focus on the binary version of these
+problems, as this is beneﬁcial in many applications which cope
+with binary data and communication channels, as for example
+in digital watermarking for the case of CCSI and in distributed
+video coding for SCSI.
+`
+This work was supported in part by Fundacao de Amparo a Pesquisa do
+¸˜
+Estado de S˜ o Paulo, Brazil, under grants 2009/07239-3 and 2007/56052a
+8, by the Centre Interfacultaire Bernoulli, EPFL, Switzerland, and by the
+U.S. National Science Foundation under grants CCF-0830666 and CCF1017632.
+
+1
+
+decoding complexity.
+
+B. Source coding with decoder side information
+This problem addresses the compression of a symmetric
+source W ∼ Bern( 1 ) by exploiting the knowledge of another
+2
+correlated source Y as side information at the decoder. The
+correlation between sources can be represented as W = Y ⊕S
+where S ∼ Bern(p) is a “separation” vector corresponding to
+errors on a virtual BSC(p) modeling the correlation. For the
+ˆ
+estimate of the source sequence W we require a constraint on
+the maximal distortion D, given as
+
+II. N ESTED L INEAR B LOCK C ODES
+These codes were ﬁrst proposed in [14] under the name
+of partitioned cyclic codes and can be generally deﬁned as
+follows.
+Deﬁnition 1 (Nested Linear Block Code). A nested linear
+N
+block code C is deﬁned such that (i) C ⊂ F2 , (ii) C = C1 +C2 ,
+(iii) C1 ∩ C2 = {0}, where C1 and C2 are subcodes.
+
+N
+1 ∑
+ˆ
+dH (Wi , Wi ) ≤ D,
+N i=1
+
+It has been shown in [5], [6], [8] that nested codes are able
+to achieve the rate-distortion bound for the SCSI problem and
+symmetric Bernoulli sources and the capacity-noise bound for
+the CCSI problem and binary symmetric channels (BSCs) as
+communication channels, respectively. In the following, we
+revise these results and the use of nested linear block codes
+in these problems, where we focus on the binary case.
+
+where dH (·) denotes the Hamming distance.
+The encoder receives a sequence of N bits from source W ,
+represented by W. It can be interpreted as
+W = c + E,
+
+A. Channel coding with encoder side information
+For this problem, we consider a BSC with noise vector Z ∼
+Bern(p) (BSC(p)) and interference S, representing the channel
+N
+state, which is uniformly distributed over F2 and known a
+priori at the encoder. The channel output is given by
+Y = E + S + Z,
+
+where c ∈ C. We also require
+≤ D due to (6), such
+ˆ
+that the stored version of W is given as W = c, otherwise an
+encoder error is declared. We again assume that information
+is conveyed in K1 dimensions of the N -dimensional vector
+N
+space F2 , corresponding to code C1 . Thus, the resulting
+compression rate is K1 /N .
+At the decoder, the encoded information of length K1 can
+be recovered as a codeword in C1 of length N . Because the
+decoder has access to side information Y it can recover c2
+according to
+
+(1)
+
+c1 + Y
+
+(8)
+
+Lemma 2 ([8]). The overall compression rate of the scheme
+under the distortion constraint in (6) is given as
+K1 /N = h(p ∗ D) − h(D) − ϵ
+
+(9)
+
+for any ϵ > 0, where p ∗ D = p(1 − D) + D(1 − p) represents
+binary convolution.
+
+(3)
+
+The rate K1 /N in (9) approaches the rate h(p ∗ D) − h(D)
+of the rate-distortion bound RW Z (D, p) = l.c.e.{h(p ∗ D) −
+h(D), (p, 0)}, where “l.c.e.” denotes the lower convex envelope. All other rates on the curve RW Z (D, p) can be obtained
+by time sharing with the point (p, 0).
+
+(4)
+
+III. C ONCATENATION OF N ESTED C ODES
+The results presented in Section II indicate that nested linear
+block codes can asymptotically achieve the limits for both
+SCSI and CCSI problems but does not address how practical
+capacity-approaching codes for these cases can be obtained.
+However, the asymptotically capacity-achieving results for
+compound LDGM/LDPC codes in [8] suggests that code
+concatenation may result in practical and efﬁcient codes for
+these applications.
+In this section we provide an new algebraic framework for
+nested concatenated codes for which the constructions in [8]
+
+Lemma 1 ([8]). The error probability in recovering c1 + c2
+from Y approaches zero with increasing N under the constraint (2) for the transmitted codeword E if the maximal
+message rate is given as
+K1 /N = h(W ) − h(p) − ϵ.
+
+ˆ
+= W + c2 + W + S,
+= c2 + E + S.
+
+ˆ
+The decoder can then reconstruct W by considering that c =
+c1 + c2 .
+
+with c1 ∈ C1 , such that E satisﬁes the constraint in (2).
+Otherwise, an encoder error is declared. From (1) we obtain
+the received vector as
+Y = c1 + c2 + Z.
+
+(7)
+
+1
+N wH (E)
+
+where E is the transmitted codeword under the input constraint
+1
+wH (E) ≤ W,
+(2)
+N
+with wH (·) denoting the Hamming weight.
+For encoding, we assume that without loss of generality
+subcode C1 carries the information which is transmitted in
+N
+K1 dimensions of the N -dimensional vector space F2 . If
+K = dim(C) according to property (ii) in Deﬁnition 1 we have
+that K2 = dim(C2 ) where K = K1 + K2 . Note that a nested
+parity-check code is simply a dual code of the nested generator
+code CG (N, K, R) = C1 (N −K2 , K1 , R)+C2 (N, K2 , R+K1 )
+[14].
+For a given information vector encoded in C1 , there are 2K2
+possible vectors in C2 . The encoder now has the task to ﬁnd
+a vector c2 in C2 such that
+S = c1 + c2 + E,
+
+(6)
+
+(5)
+
+Note that (5) approaches the rates h(W ) − h(p) of
+the capacity-noise bound RGP (W, p) = u.c.e.{h(W ) −
+h(p), (0, 0)} where “u.c.e.” denotes the upper convex envelope. All other rates on the curve RGP (W, p) can be obtained
+by time sharing with the point (0, 0).
+
+2
+
+ψ(u) = 0}, where Cq (nm, km) is the equivalent code C in
+the underlying ﬁeld Fq . As ψ ∗ is one-to-one, ker(ψ ∗ ) = {0},
+i.e., u = 0. Equivalently, ker(ϕ) = {0}, which means that
+v = 0. But since C1 ∩ C2 = {0}, then v = 0 if and only
+if v1 = v2 = 0. In other words, ψ ∗ (ϕ(C1 ∩ C2 = {0})) =
+{ψ ∗ (ϕ(v1 ))}v1 ∈C1 ∩ {ψ ∗ (ϕ(v2 ))}v2 ∈C2 = {0}.
+By using a similar approach, it follows from Proposition 1
+that its converse also holds, i.e., that the nested property is
+preserved if the inner code is a nested q-ary linear block code
+and the outer code is a Q-ary linear block code.
+
+can be seen as special cases. In particular, we formally prove
+that code concatenation preserves the nested code structure,
+where the inner code serves as translator to a q-ary ﬁeld in
+such way that the outer code operates in the corresponding q m ary extension ﬁeld. This especially also covers the practically
+important binary case for q = 2.
+n
+nm
+Deﬁnition 2. Let ϕ : FQ → Fq , with Q = q m , be a bijective
+n
+nm
+linear map deﬁned as ϕ(v) = u, where v ∈ FQ and u ∈ Fq .
+This means that a sequence of length n in FQ can be expressed
+as a q-ary sequence of length nm. If m = 1 we have u = v
+and there is no mapping.
+
+Proposition 2. The concatenation between a linear code
+C(n, k) over FQ and a linear code CΨ over Fq , CΨ =
+CΨ1 + CΨ2 and CΨ1 ∩ CΨ2 = {0}, produces codewords of
+an equivalent linear code Ceq (N, K) over Fq , such that
+∗
+∗
+1) Ceq (N, K) = {ψ1 (ϕ(v)) + ψ2 (ϕ(v))}v∈C ,
+∗
+∗
+2) {ψ1 (ϕ(v)) ∩ ψ2 (ϕ(v))}v∈C = {0},
+∗
+nm
+N
+∗
+nm
+N
+where ψ1 : Fq → Fq and ψ2 : Fq → Fq are linear
+∗
+maps such that ψj (u1 , . . . , un ) = (ψj (u1 ), . . . , ψj (un )), with
+nm/l
+nm/l
+u i ∈ Fq
+, i = 1, . . . , n, and ψj : Fq
+→ CΨj , j = 1, 2.
+
+nm/l
+Fq
+,i
+
+Deﬁnition 3. Let u = (u1 , ..., ul ) , ui ∈
+= 1, ..., l,
+where 1 ≤ l ≤ n and l is a divisor of mn. Further,
+let CΨ (N/l, nm/l, dΨ ) be a q-ary linear block code. Then,
+nm/l
+ψ : Fq
+→ CΨ is a bijective linear map such that
+ψ(ui ) = ui GΨ , where GΨ is a generator matrix for CΨ .
+This deﬁnition means that the sequence u is partitioned into
+l groups of nm/l q-ary symbols that are each encoded by CΨ .
+Note that this partition corresponds to an (nm/l)-folded code
+nm/l
+over Fq
+. If l = n, then the groups have length m, and
+are the q-ary representation of a Q-ary symbol. If l = 1, the
+entire q-ary sequence u is encoded as a single input message
+by CΨ .
+
+Propositions 1 and 2 show that properties (i) and (ii) in
+Deﬁnition 1 still hold after code concatenation, no matter
+whether the nested code is an inner or outer code. The only
+requirement is that both subcodes are concatenated with the
+same outer code, in order to preserve property (ii). We deﬁne
+the subcodes in the resulting q-ary nested structure of Ceq
+as Ceq1 = {ψ ∗ (ϕ(v1 ))}v1 ∈C1 and Ceq2 = {ψ ∗ (ϕ(v2 ))}v2 ∈C2
+which now instead can be employed in both the SCSI and the
+CCSI cases.
+IV. C ONCATENATED N ESTED C YCLIC C ODES AND
+B INARY L INEAR B LOCK C ODES
+When employing nested codes to the SCSI problem as in
+Section II, Ceq2 is required to be a good channel code to correct
+the error formed by the source encoding distortion and the
+observation error. At the same time, Ceq must be a D-distortion
+source code to output a codeword as close as possible to the
+information sequence produced by the source with a distortion
+constraint D. In the case of CCSI, Ceq2 takes on the role of
+a good W -distortion source code whereas Ceq is the channel
+code.
+While channel coding can be performed by means of
+good decoding algorithms, performing source coding with
+error correcting codes makes it necessary to have complete
+algorithms that can return the nearest codewords. Motivated
+by recent results on list decoding of RS codes we will now
+study the suitability of these codes for source encoding.
+
+Deﬁnition 4. We deﬁne the extended one-to-one linear map
+nm
+N
+ψ ∗ : Fq
+→ Fq as ψ ∗ (u)
+(ψ(u1 ), . . . , ψ(ul )) =
+(u1 GΨ , . . . , ul GΨ ).
+Lemma 3. Let v be a codeword of the nested linear block
+code C(n, k, d) over FQ with Q = q m and C = C1 +
+C2 . The concatenation between C and CΨ (N/l, nm/l, dΨ )
+yields an equivalent code Ceq (N, K, D) over Fq according
+to Ceq (N, K, D) = {ψ ∗ (ϕ(v))}v∈C where K = km and
+D ≥ dΨ d.
+The proof follows in a straightforward way from sequential
+concatenation [15]. Note that ϕ(v) is a q-ary codeword of
+Cq (nm, km, dq ), which is the q-ary version of C in the
+underlying ﬁeld Fq .
+The following proposition represents the main result of this
+section and states that the nested property as stated in Deﬁnition 1 is preserved if the outer code is a nested q-ary linear
+block code and the inner code is a Q-ary linear block code.
+Proposition 1. The concatenation between C and CΨ produces
+codewords of an equivalent linear code Ceq (N, K) over Fq ,
+such that
+1) Ceq (N, K) = {ψ ∗ (ϕ(v1 ))}v1 ∈C1 + {ψ ∗ (ϕ(v2 ))}v2 ∈C2 ,
+2) {ψ ∗ (ϕ(v1 ))}v1 ∈C1 ∩ {ψ ∗ (ϕ(v2 ))}v2 ∈C2 = {0}.
+Proof: 1) According to Lemma 3 we have Ceq =
+{ψ ∗ (ϕ(v))}v∈C . Since C = C1 + C2 , then Ceq = {ψ ∗ (ϕ(v1 +
+v2 ))}v1 ∈C1 ;v2 ∈C2 . But as ψ ∗ and ϕ are a linear maps and both
+n
+C1 and C2 are also subspaces over the ground ﬁeld Fq , as FQ is
+nm
+equivalent to Fq , the additivity property of linear mappings
+yields {ψ ∗ (ϕ(v1 + v2 ))}v1 ∈C1 ;v2 ∈C2 = {ψ ∗ (ϕ(v1 ))}v1 ∈C1
++ {ψ ∗ (ϕ(v2 ))}v2 ∈C2 .
+2) We deﬁne the kernel of ψ ∗ to be ker(ψ ∗ )
+
+A. List decoding for folded Reed-Solomon codes
+In [13], Guruswami and Rudra describe an explicit family
+of codes with a list decoding algorithm that can asymptotically
+achieve the information-theoretic limit of list decodability,
+with encoding and decoding performed in polynomial time.
+The proposed codes are folded RS codes, which can be seen
+as standard RS codes viewed as codes over a larger alphabet.
+Deﬁnition 5 (ν-Folded Reed-Solomon Code (FRS)). Let α ∈
+Fq be a primitive element of Fq . Let n′ ≤ q − 1 be a multiple
+
+{u ∈ Cq |
+
+3
+
+of ν and 1 ≤ k < n. An FRS code C (ν) (n′ , k) over alphabet
+ν
+Fq is a folded version of the RS code C(n, k) over Fq and is
+deﬁned as
+
+ﬁnite ﬁeld Fq , where q = 2m . The polynomial xn − 1 can be
+factorized as
+xn − 1 = g(x)(r) f (x)(k1 ) h(x)(k2 ) ,
+
+{([i(αjν ), i(αjν+1 ), ..., i(αjν+ν−1 )], 0 ≤ j < n′ ) |
+deg(i(x)) < k, i(x) ∈ Fq [x]}, (10)
+
+(11)
+
+where r = n − (k1 + k2 ). The notation “a(x) ” is used to
+indicate the degree of polynomial “a(x)”, and henceforth the
+argument “(x)” will be omitted in order to simplify notation.
+Note that for m = 1 we obtain BCH codes, otherwise RS
+codes are employed.
+The polynomial g (r) corresponds to a generator polynomial
+of the code C(n, k1 + k2 ), and (gf )(r+k1 ) is a generator polynomial for C2 (n, k2 ). The codewords in C can be expressed
+as a sum of codewords as follows:
+(·)
+
+where n′ = n/ν. In other words, a FRS code is an RS code
+where ν consecutive symbols each are grouped together.
+The GR algorithm for FRS codes of rate R allows to list
+decode in polynomial time up to a fraction of (1 − R − ε)
+worst-case errors. The folding operation does not change the
+rate of the RS code (R = k/n = k/n′ ν), thus e′ ν/n =
+1 − k/n − ε, so e = e′ ν is the number of correctable errors
+for the corresponding unfolded RS code [13].
+
+(k1 −1) (r)
+
+v (n−1) = i1
+
+Proposition 3. If the GR list decoding algorithm is used
+in conjunction with RS codes for source encoding of IID qary sources, the probability of encoding errors asymptotically
+vanishes.
+
+where
+
+(k −1)
+i1 1 g (r)
+
+g
+
+(k2 −1)
+
++ i2
+
+(gf )(r+k1 ) ,
+
+(12)
+
+∈ C1 (n − k2 , k1 ).
+
+C. Construction for the CCSI case
+(k −1)
+
+At the outer encoder, information i1 1
+is encoded using
+(n−1)
+(r)
+g of code C(n, k1 + k2 ), producing v1
+(zero padded to
+achieve length n) of the shortened cyclic code C1 (n − k2 , k1 ).
+In order to allow incorporating binary side information, the
+sequence v1 ∈ C1 is mapped to its binary representation u1 ,
+which is then partitioned into l groups of nm/l bits that are
+each encoded by a BLBC code CΨ (N/l, nm/l). Thus, the
+resulting codewords c1 = ψ ∗ (ϕ(v1 )) have length N and are
+codewords in Ceq1 (N − K2 , K1 ).
+Encoding steps: I) (Outer encoding): Encode information
+(k −1)
+using the generator g (r) for C(n, k1 +k2 ), thus produci1 1
+(n−k −1)
+ing a codeword v1 2
+of C1 (n − k2 , k1 ) padded with k2
+zeros; II) (Code concatenation): Encode l groups of nm/l bits
+of codeword v1 (received from the outer encoder) by using the
+inner code CΨ , resulting in c1 ; III) Compute S − c1 ; IV) Find
+c2 ∈ Ceq2 according to (3) such that (2) holds; V) Transmit E.
+Note that the encoding complexity is essentially given by
+step IV, because all other operations are linear. For FRS codes
+a folding/unfolding step has to be performed before ﬁnding
+v2 ∈ C2 (n, k2 ) as follows.
+n/ν
+nm
+Folding/unfolding step: (i) Code folding σ : F2 → F2mν ,
+n/ν
+n
+∗ ′
+′
+∗
+σ(u) = u , (ii) Code unfolding σ : F2mν → F2m , σ (v2 ) = v2 .
+
+Proof: Starting from an observation that the normalized
+covering radius t(C)/n of a linear code C(n, k) [16] is
+t(C)/n ≤ 1 − k/n, which is met with equality by RS codes,
+we see that e = t(C) − ε, where ε > 0, C(n, k) is the unfolded
+RS code and t(C) is its covering radius. Because a fraction
+ν
+of errors over Fq is equivalent to a fraction of errors over
+Fq , the GR algorithm for FRS codes asymptotically corrects a
+number of errors over Fq that is equal to the covering radius
+of the corresponding unfolded RS code.
+Note that list decoding may not output a single codeword
+but a list of possible codewords. This does not pose a problem
+since the source encoder can always pick the one which is
+closest to the source sequence in Hamming distance.
+Using concatenated codes for both the CCSI and the SCSI
+problems, there are two different ways of implementing the
+source encoding step of ﬁnding a vector c2 ∈ Ceq2 and
+c ∈ Ceq , respectively. The ﬁrst way is to perform separate
+source encoding for each of the concatenated codes. While
+RS outer codes in conjunction with the GR algorithm can
+n
+optimally perform source encoding in Fq , the performance of
+this strategy also depends on the inner code. Another way is to
+perform source encoding over the concatenated binary code.
+In fact, list decoding capacity for binary codes can be asymptotically achieved if FRS codes are concatenated with random
+binary linear block codes (BLBC) [13]. This means that every
+Hamming sphere of radius h−1 (1 − R − ε) has polynomially
+many codewords. Thus, it is possible to asymptotically achieve
+the rate-distortion bound for a Bernoulli symmetric source.
+In the following we provide a general setup which universally addresses the scenario of outer algebraic RS or BCH
+codes and arbitrary inner BLBCs.
+
+Proposition 4. Consider a symmetric Bernoulli source. Source
+encoding via list decoding of RS/BLBC code Ceq2 can asymptotically achieve a vanishing probability of encoding error.
+Thus, given a concatenated RS/BLBC channel code Ceq which
+asymptotically achieves capacity on the BSC(p), the resulting
+joint source-channel coding scheme for the CCSI case achieves
+the capacity-noise bound RGP (W, p).
+Proof: From the rate distortion bound for a symmetric
+Bernoulli sequence, the rate for the W -distortion source code
+Ceq2 is given as K2 /N ≥ 1−h(W ). Because list decoding can
+asymptotically correct an error fraction of h−1 (1 − R2 − ε),
+we see that R2 = 1 − h(W ) − ε asymptotically achieves the
+rate-distortion bound and therefore results in an encoding error
+probability which asymptotically tends to zero. Therefore, if
+the RS/BLBC code Ceq achieves capacity on the BSC(p), we
+
+B. Nested cyclic codes
+The coding scheme for the outer code is based on an
+algebraic construction of nested cyclic codes. These codes
+form an ideal in the polynomial ring Fq [x]/(xn − 1), where
+Fq [x] is the set of polynomials in x with coefﬁcients from the
+
+4
+
+have R = 1 − h(p) − ε which results in R1 = h(W ) − h(p).
+This is equivalent to the capacity-noise bound RGP (W, p).
+The channel coding performance of the proposed scheme
+is essentially the one for the chosen concatenated RS/BLBC
+code Ceq2 . Here we can exploit the fact that some constructions
+(e.g., RS/LDPC) are capacity approaching, for which effective
+decoding algorithms exist.
+After transmission of E, the decoder receives Y in (1) and
+the error vector Z is corrected in the same fashion as in any
+standard concatenated scheme (by using the corresponding
+decoding algorithms for each code), resulting in an error-free
+codeword (12). Then, the embedded information i1 is extracted
+by a modulo operation and a polynomial division according
+to
+v (n−1) mod (gf )(k1 +r)
+(k −1)
+i1 1
+=
+.
+(13)
+g (r)
+
+source-channel codes. Therefore, the optimal asymptotic performance for both binary SCSI and CCSI problems can be
+universally achieved by concatenation with a linear block code,
+provided that one of the constituent codes has the necessary
+nested property. In particular, while in [8] ML decoding is
+assumed, through a novel RS/BLBC construction with low
+encoding and decoding complexity we show that list decoding
+provides the optimal source encoding performance asymptotically for both problems. At the same time, for channel
+error correction any capacity-approaching algorithm can be
+independently used.
+It is still a challenge to exploit the full potential of concatenation with practical list decoding algorithms, but separate
+source and channel encoding is a feasible approach as practical
+encoding and decoding algorithms exist for each code. Future
+work will focus on studying other concatenated schemes
+employing QC-LDPC, polar, and BCH codes as outer codes,
+which seems to be a promising avenue since these codes have
+been successfully employed for source coding [9], [15], [17].
+
+Decoding steps: I) Receive Y, recover v ∈ C; II) Compute
+as in (13).
+
+(k1 −1)
+
+i1
+
+D. Construction for the SCSI case
+The encoder receives a sequence of N bits from a Bernoulli
+symmetric source W , represented by W, which is equivalent
+ˆ
+to a codeword W = c in Ceq (N, K) plus a “quantization”
+ˆ
+error E (7). An encoder error is declared if a codeword W = c
+cannot be found.
+Encoding steps: I) Receive W, recover v ∈ C; II) Com(k −1)
+as in (13).
+pute: i1 1
+Analogous to the CCSI case, for FRS codes an extra
+folding/unfolding step must be performed before ﬁnding v ∈
+C(n, k), with the difference that now the folded codeword
+is v ′ ∈ C (ν) (n′ , k), so σ ∗ (v ′ ) = v. We have the following
+statement which is analogous to Proposition 4.
+
+R EFERENCES
+[1] A. D. Wyner and J. Ziv, “The rate-distortion function for source encoding
+with side information at the encoder,” IEEE Trans. Inf. Theory, vol. 22,
+no. 1, pp. 1–10, Jan. 1976.
+[2] S. I. Gel’fand and M. S. Pinsker, “Coding for channel with random
+parameters,” Probl. Contr. Inf. Theory, vol. 9, no. 1, pp. 19–31, 1983.
+[3] M. H. M. Costa, “Writing on dirty paper,” IEEE Trans. Inf. Theory,
+vol. 29, no. 3, pp. 439–441, May 1983.
+[4] S. Pradhan, J. Chou, and K. Ramchandran, “Duality between source
+coding and channel coding and its extension to the side information
+case,” IEEE Trans. Inf. Theory, vol. 49, no. 5, pp. 1181–1203, May
+2003.
+[5] R. Zamir, S. Shamai, and U. Erez, “Nested linear/lattice codes for
+structured multiterminal binning,” IEEE Trans. Inf. Theory, vol. 48,
+no. 6, pp. 1250–1276, Jun. 2002.
+[6] A. Bennatan, D. Burshtein, G. Caire, and S. Shamai, “Superposition
+coding for side-information channels,” IEEE Trans. Inf. Theory, vol. 52,
+no. 5, pp. 1872–1889, May 2006.
+[7] S. Shamai, S. Verd´ , and R. Zamir, “Systematic lossy source/channel
+u
+coding,” IEEE Trans. Inf. Theory, vol. 44, no. 2, pp. 564–579, Mar.
+1998.
+[8] M. J. Wainwright and E. Martinian, “Low-density codes that are optimal
+for binning and coding with side information,” IEEE Trans. Inf. Theory,
+vol. 55, no. 3, pp. 1061–1079, Mar. 2009.
+[9] S. Korada and R. Urbanke, “Polar codes are optimal for lossy source
+coding,” in Proc. IEEE Information Theory Workshop, Taormina, Italy,
+Oct. 2009, pp. 149–153.
+[10] N. Hussami, R. Urbanke, and S. Korada, “Performance of polar codes
+for channel and source coding,” in Proc. IEEE Int. Symposium on
+Inform. Theory, Seoul, Korea, Jun. 2009, pp. 1488–1492.
+[11] A. Liveris, Z. Xiong, and C. Georghiades, “Nested convolutional/turbo
+codes for the binary Wyner-Ziv problem,” in Proc. Int. Conf. Image
+Process., vol. 1, Sep. 2003, pp. 601–604.
+[12] Y. Sun, M. Uppal, A. D. Liveris, S. Cheng, V. Stankovic, and Z. Xiong,
+“Nested turbo codes for the Costa problem,” IEEE Trans. Commun.,
+vol. 56, no. 3, pp. 388–399, Mar. 2008.
+[13] V. Guruswami and A. Rudra, “Explicit codes achieving list decoding
+capacity: Error-correction with optimal redundancy,” IEEE Trans. Inf.
+Theory, vol. 54, no. 1, pp. 135 –150, Jan. 2008.
+[14] C. Heegard, “Partitioned linear block codes for computer memory with
+”stuck-at” defects,” IEEE Trans. Inf. Theory, vol. 54, no. 4, pp. 1259–
+1265, Nov. 1983.
+[15] R. J. McEliece, The theory of information and coding. Reading, MA:
+Addison-Wesley, 1977.
+[16] S. L. G. Cohen, I. Honkala and A. Lobstein, Covering Codes. Amsterdam: North-Holland Publishing Company, 1997.
+[17] Y. Matsunaga and H. Yamamoto, “A coding theorem for lossy data
+compression by LDPC codes,” IEEE Trans. Inf. Theory, vol. 49, no. 9,
+pp. 2225–2229, Sep. 2009.
+
+Proposition 5. Consider a symmetric Bernoulli source. Source
+encoding via list decoding of RS/BLBC code Ceq can asymptotically achieve a vanishing probability of encoding error.
+Thus, given a concatenated RS/BLBC channel code Ceq2 which
+asymptotically achieves capacity on the BSC(p ∗ D), the
+resulting joint source-channel coding scheme for the SCSI case
+achieves the rate-distortion bound RGP (W, p).
+(k −1)
+
+The encoder extracts a polynomial i1 1
+of length k1 (K1
+bits) from v (n−1) (12), so the compression rate is K1 /N .
+The encoding steps in this case are essentially the same as
+the decoding steps of CCSI, but instead of channel decoding
+we employ source encoding algorithms which dominate the
+encoding complexity (see encoder step I).
+For decoding, the steps are analogous to the encoding steps
+of the CCSI case, with the difference that S becomes Y, and
+instead of sending the error pattern after ﬁnding c2 ∈ Ceq2 ,
+the information word corresponding to the actual codeword
+ˆ
+W = c1 + c2 is stored. Here, channel decoding is employed
+which dominates the complexity as all other operations are
+linear.
+V. C ONCLUSION
+Within the proposed algebraic framework we proved that
+code concatenation preserves the nested structure of joint
+
+5
+
+

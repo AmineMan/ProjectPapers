@@ -1,0 +1,849 @@
+Creator:        TeX
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Thu May 17 17:01:37 2012
+ModDate:        Tue Jun 19 12:54:34 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      329469 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569559199
+
+A Factor-Graph Representation of
+Probabilities in Quantum Mechanics
+Hans-Andrea Loeliger
+
+Pascal O. Vontobel
+
+ETH Zurich
+loeliger@isi.ee.ethz.ch
+
+Hewlett–Packard Laboratories, Palo Alto
+pascal.vontobel@ieee.org
+
+x5
+
+Abstract—A factor-graph representation of quantum-mechanical probabilities is proposed. Unlike standard statistical models,
+the proposed representation uses auxiliary variables (state variables) that are not random variables.
+
+x2
+
+f1
+
+I. I NTRODUCTION
+
+f2
+
+x3
+
+x1
+
+Statistical models with many variables are often represented
+by factor graphs [1]–[4] or similar graphical representations
+[5]–[7]. Such graphical representations can be helpful in
+various ways, including elucidation of the model itself as well
+as the derivation of algorithms for statistical inference.
+So far, however, quantum mechanics (e.g., [8], [9]) has
+been standing apart. Despite being a statistical theory, quantum mechanics does not seem to ﬁt into standard statistical
+categories. Indeed, it has often been emphasized that quantum
+mechanics is a generalization of probability theory that cannot
+be understood in terms of “classical” statistical modeling.
+In this paper, we propose the different perspective that the
+probabilities in quantum mechanics are quite ordinary, but
+their state-space representation is of a type not previously used
+in statistical modeling. In particular, we propose a factor-graph
+representation of quantum mechanics that correctly represents
+the joint probability distribution of any number of measurements. Like most statistical models, the proposed factor graphs
+use auxiliary variables (state variables) in addition to the
+actually observed variables; however, in contrast to standard
+statistical models, the auxiliary variables in the proposed factor
+graphs are not random variables. Nonetheless, the probabilities
+of the observations are marginals of the factor graph, as in
+standard statistical models.
+The paper is structured as follows. Section II reviews
+factor graphs and their connection to linear algebra and tensor
+diagrams. Section III makes the pivotal observation that factor
+graphs with complex factors and with auxiliary variables
+that are not random variables can represent probability mass
+functions. The main results are given in Section IV.
+We will use standard linear algebra notation rather than
+the bra-ket notation of quantum mechanics. The Hermitian
+transpose of a complex matrix A will be denoted by AH = AT ,
+where AT is the transpose of A and A is the componentwise
+complex conjugate. An identity matrix will be denoted by I.
+
+f3
+x4
+
+Fig. 1.
+
+Forney factor graph of (1).
+
+g
+
+x5
+x2
+
+f1
+
+f2
+
+x1
+Fig. 2.
+
+x3
+
+f3
+
+x4
+Closing boxes in factor graphs.
+
+alphabets and all functions take values in C. We will use
+Forney factor graphs (also called normal factor graphs) as
+in [2], [3] where nodes/boxes represent factors and edges
+represent variables. For example, assume that some function
+f (x1 , . . . , x5 ) can be written as
+f (x1 , . . . , x5 ) = f1 (x1 , x2 , x5 )f2 (x2 , x3 )f3 (x3 , x4 , x5 ). (1)
+The corresponding factor graph is shown in Fig. 1.
+The Forney factor-graph notation is intimately connected
+with the idea of “closing boxes” by summing over internal variables [2]. For example, closing the inner dashed
+box in Fig. 2 replaces the two nodes/factors f2 (x2 , x3 ) and
+f3 (x3 , x4 , x5 ) by the single node/factor
+g(x2 , x4 , x5 ) =
+
+f2 (x2 , x3 )f3 (x3 , x4 , x5 );
+
+(2)
+
+x3
+
+closing the outer dashed box in Fig. 2 replaces all nodes/
+factors in (1) by the single node/factor
+f (x1 , x4 ) =
+
+f (x1 , . . . , x5 );
+
+(3)
+
+x2 ,x3 ,x5
+
+and closing ﬁrst the inner dashed box and then the outer dashed
+box replaces all nodes/factors in (1) by
+
+II. O N FACTOR G RAPHS AND M ATRICES
+Factor graphs represent factorizations of functions of several
+variables. In this paper, all variables take values in ﬁnite
+
+f1 (x1 , x2 , x5 )g(x2 , x4 , x5 ) = f (x1 , x4 ).
+x2 ,x5
+
+1
+
+(4)
+
+AB
+X0
+x
+
+y
+
+r
+
+r
+
+A
+
+B
+
+r
+
+r
+A
+
+Fig. 5.
+
+B
+
+Factor graph of tr(A) (left) and of tr(AB) = tr(BA) (right).
+
+1, if x1 = · · · = xn
+0, otherwise.
+
+Factor graph of the hidden Markov model (9) for n = 3.
+
+The factor graph of (9) is given in Fig. 5. (As shown in
+this example, variables in factor graphs are often denoted
+by capital letters [2].) Closing the dashed box in Fig. 5
+yields p(y1 , . . . , yn ), the probability mass function of the
+observables.
+As illustrated by this example, auxiliary variables in statistical models are often introduced in order to obtain nice
+state-space models.
+In traditional statistical models, such auxiliary state variables are themselves random variables, and the total model
+is a joint probability law over all variables as, e.g., in (9).
+(A statistical model may also contain parameters in addition
+to auxiliary random variables, but such parameters are not
+relevant for the present discussion.)
+The ﬁrst main point of this paper is this: requiring the
+auxiliary state variables to be random variables may be unnecessarily restrictive. The beneﬁts of state-space representations
+may be obtained by merely requiring a function f (y, x) (with
+a useful factorization) such that the probability mass function
+of the observables is
+
+(5)
+
+(6)
+
+(7)
+
+p(y) =
+
+y
+
+A(x, x),
+
+f (y, x);
+
+(10)
+
+x
+
+which is the closed-box function (the external function) of
+Fig. 3. Note that the identity matrix corresponds to an equality
+constraint function f= (x, y).
+In this notation, the trace of a square matrix A is
+tr(A) =
+
+p(yk , xk |xk−1 ). (9)
+k=1
+
+The multiplication of two matrices A and B can then be
+written as
+A(x, y)B(y, z),
+
+Y3
+
+p(y1 , . . . , yn , x0 , . . . , xn ) = p(x0 )
+
+The corresponding node (which is denoted by “=”) can serve
+as a branching point in a factor graph, cf. Figs. 7–11.
+A matrix A ∈ Cm×n may be viewed as a function
+{1, . . . , m} × {1, . . . , n} → C : (x, y) → A(x, y).
+
+Y2
+
+n
+
+Note the equality between (4) and (3), which holds in general:
+closing an inner box within some outer box (by summing over
+its internal variables) does not change the closed-box function
+of the outer box.
+A half edge in a factor graph is an edge that is connected
+to only one node (such as x1 in Fig. 1). The external function
+of a factor graph (in [12]–[14] also called partition function)
+is deﬁned to be the closed-box function of a box that contains
+all nodes and all full edges, but all half edges stick out (such
+as the outer box in Fig. 2). The external function of Fig. 1
+is (3).
+The equality constraint function f= is deﬁned as
+
+(AB)(x, z) =
+
+X3
+
+III. S TATISTICAL M ODELS WITH AUXILIARY VARIABLES
+U SING C OMPLEX FACTORS
+Statistical models usually contain auxiliary variables in
+addition to the observable variables. Consider, for example,
+a hidden Markov model with observables Y1 , . . . , Yn and
+auxiliary variables (hidden variables) X0 , X1 , . . . , Xn such
+that
+
+r
+A
+
+f= (x1 , . . . , xn ) =
+
+X2
+
+Y1
+
+Fig. 3. Factor-graph representation of matrix multiplication (7). The small
+dot denotes the variable that indexes the rows of the corresponding matrix.
+
+Fig. 4.
+
+X1
+
+z
+
+the function f (y, x) need not be a probability mass function
+and it need not even be real valued.
+For example, consider the factor graph in Fig. 6, where all
+factors are complex valued. Note that the lower dashed box
+in Fig. 6 mirrors the upper dashed box, but all factors in the
+lower box are the complex conjugates of the corresponding
+factors in the upper dashed box. The closed-box function of
+the upper dashed box is
+
+(8)
+
+x
+
+which is the external function (which is a constant) of the
+factor graph in Fig. 4. Also shown in Fig. 4 is the graphical
+proof of the identity tr(AB) = tr(BA), which is much used
+in quantum mechanics.
+Factor graphs for linear algebra operations such as Fig. 3
+and Fig. 4 (and the corresponding generalizations to tensors)
+are essentially tensor diagrams (or trace diagrams) as in
+[10], [11]. This connection between factor graphs and tensor
+diagrams was noted in [12]–[14].
+
+g(y1 , y2 , y3 ) =
+
+g1 (x1 , y1 )g2 (x1 , x2 , y2 )g3 (x2 , y3 ) (11)
+x1 ,x2
+
+and the closed-box function of the lower dashed box is
+g1 (x1 , y1 ) g2 (x1 , x2 , y2 ) g3 (x2 , y3 ) = g(y1 , y2 , y3 ).
+x1 ,x2
+
+(12)
+
+2
+
+g1
+g
+
+X1
+
+g2
+
+X2
+
+g3
+
+(see [9, Chap. 2]). Measurements as in Fig. 8 are included as
+a special case with Yk = {1, . . . , M } and
+Ak (y) = Bk (y)Bk (y)H ,
+
+Y1
+
+Y2
+X1
+
+g
+g1
+Fig. 6.
+
+Y3
+
+where Bk (y) denotes the y-th column of Bk .
+It is clear from Section III that the external function of
+Fig. 7 (with measurements as in Fig. 8 or as in Fig. 11)
+is real and nonnegative. We now proceed to analyze these
+factor graphs and to verify that they yield the correct quantummechanical probabilities p(y1 , y2 ) for the respective class of
+measurements. To this end, we need to understand the closedbox functions of the dashed boxes in Fig. 9. We begin with
+the dashed box on the right-hand side of Fig. 9, where Y2 is
+assumed to be unknown.
+
+X2
+g2
+
+g3
+
+Factor graph for p(y1 , y2 , y3 ) with complex-valued factors.
+
+If follows that the closed-box function in Fig. 6 (with both
+dashed boxes closed) is
+g(y1 , y2 , y3 )g(y1 , y2 , y3 ) = |g(y1 , y2 , y3 )|2 ,
+
+(15)
+
+Proposition 1. Closing the dashed box on the right-hand side
+in Fig. 9 (with a measurement of Y2 as in Fig. 8 or as in
+Fig. 11, but with unknown result of the measurement) reduces
+it to an equality constraint function.
+2
+
+(13)
+
+which is real and nonnegative and thus suitable to represent a
+probability mass function p(y1 , y2 , y3 ) (up to a scale factor).
+We will see that factor graphs as in Fig. 6—with two parts,
+one part being the complex conjugate mirror image of the
+other part—can represent probabilities in quantum mechanics.
+
+The proof of this proposition and the proofs of the subsequent
+propositions are easy, and are omitted due to space constraints.
+Proposition 1 guarantees, in particular, that a future measurement (with as yet unknown results) does not inﬂuence
+present or past observations.
+The proposition clearly holds also for the extension of Fig. 7
+to any ﬁnite number of measurements Y1 , Y2 , . . . and can then
+be applied recursively from right to left.
+Applying reductions according to Proposition 1 recursively
+from right to left in Fig. 7 leads to the following proposition.
+
+IV. FACTOR G RAPHS FOR Q UANTUM M ECHANICS
+Consider the factor graph of Fig. 7. In this ﬁgure, U0 and U1
+are M × M unitary matrices, and all variables except Y1 and
+Y2 take values in the set {1, . . . , M }. The two large boxes in
+the ﬁgure represent measurements, as will be detailed below.
+The factor/box p(x0 ) is a probability mass function over the
+initial state X0 . We will see that this factor graph (with suitable
+modeling of the measurements) represents the joint probability
+mass function p(y1 , y2 ) of a general M -dimensional quantum
+system with two observations Y1 and Y2 . The generalization
+to more observed variables Y1 , Y2 , . . . is obvious.
+The unitary matrices U0 and U1 in Fig. 7 represent the
+development of the system between the initial state and the
+ﬁrst measurement, or between measurements, respectively,
+according to the Schr¨ dinger equation.
+o
+In the most basic case, the initial state X0 = x0 is known
+and the measurements look as shown in Fig. 8, where the
+matrices B1 and B2 are also unitary. In this case, the observed
+variables Y1 and Y2 take values in {1, . . . , M } as well. Note
+that the lower part of this factor graph is the complex conjugate
+mirror of the upper part (as in Fig. 6).
+In quantum-mechanical terms, measurements as in Fig. 8 are
+projection measurements with one-dimensional eigenspaces.
+Note that the value of Y1 and Y2 is the index of the measured
+eigenspace (rather than the corresponding eigenvalue).
+A very general form of measurement is shown in Fig. 11.
+In this case, the range of Yk is a ﬁnite set Yk , and for each
+y ∈ Yk , the factor Ak (˜k , xk , y) corresponds to a complex
+x
+square matrix Ak (y) (with row index xk and column index
+˜
+xk ) such that
+Ak (y)H Ak (y) = I
+(14)
+
+Proposition 2. The factor graph of Fig. 7 (with measurements
+as in Fig. 8 or as in Fig. 11) represents a properly normalized
+probability mass function, i.e., the external function p(y1 , y2 )
+is real and y1 ,y2 p(y1 , y2 ) = 1.
+2
+Consider now the dashed box on the left in Figs. 9 and 10,
+which turns out to be the density matrix of quantum mechanics. We will distinguish between the closed-box function
+ρk (xk , xk ) before measuring Yk (as in Fig. 9), and the closedbox function ρk (˜k , xk ) after the observation Yk = yk (as
+˜ x ˜
+in Fig. 10). The former is easily seen to be properly normalized, but the latter needs normalization to satisfy (16).
+The corresponding matrices will be denoted by ρk and ρk ,
+˜
+respectively. The proper normalization can then be expressed
+by the condition
+tr(ρk ) = tr(˜k ) = 1.
+ρ
+
+(16)
+
+Proposition 3 (Unitary Evolution Between Measurements).
+The matrix ρk+1 is obtained from the matrix ρk as
+˜
+ρk+1 = Uk ρk Uk .
+˜ H
+
+(17)
+2
+
+Proposition 4 (Basic Projection Measurement). In Fig. 7
+(generalized to any number of observations), if Yk is measured
+
+y∈Jk
+
+3
+
+˜
+X1
+
+r X1
+X0
+
+U0
+
+=
+
+˜
+X2
+
+X2
+
+˜
+X2
+
+U1
+˜
+X1
+
+X1
+
+r
+
+p(x0 )
+
+H
+U0
+
+Fig. 7.
+
+r X2
+
+=
+
+r
+H
+U1
+
+Y1
+
+Y2
+
+Factor graph of quantum system with two measurements and the corresponding observations Y1 and Y2 .
+
+r
+
+r
+H
+B1
+
+r
+
+H
+U0
+
+X0 = x0
+
+U0
+r
+
+=
+
+r
+
+=
+
+B1
+
+r
+
+r
+
+B1
+
+H
+B2
+
+r
+
+r
+
+r
+
+H
+B1
+
+=
+
+U1
+
+H
+U1
+
+r
+
+=
+B2
+
+B2
+
+=
+
+=
+
+r
+H
+B2
+
+Y1
+
+Y2
+
+Fig. 8. Important special case of Fig. 7: all matrices are unitary and the initial state X0 = x0 is known. In quantum-mechanical terms, such measurements
+are projection measurements with one-dimensional eigenspaces.
+
+ρ1
+
+f=
+r
+
+X0
+
+=
+
+U0
+
+r X2
+
+˜
+X2
+
+X2
+
+˜
+X2
+
+U1
+˜
+X1
+
+X1
+
+r
+
+p(x0 )
+
+˜
+X1
+
+X1
+
+H
+U0
+
+r
+
+=
+
+H
+U1
+
+Y1
+
+Y2
+
+Fig. 9. The closed-box function of the dashed box on the left is the density matrix ρ1 (x1 , x1 ). If Y2 is not known, the dashed box on the right reduces to
+˜
+˜
+the constraint X1 = X1 .
+
+∝ ρ1
+˜
+˜
+X1
+
+r X1
+X0
+p(x0 )
+
+U0
+
+=
+
+H
+U0
+
+Fig. 10.
+
+˜
+X2
+
+X2
+
+˜
+X2
+
+U1
+˜
+X1
+
+X1
+
+r
+
+r X2
+
+r
+
+=
+
+H
+U1
+
+Y1 = y1
+
+Density matrix ρ1 after measuring Y1 = y1 .
+˜
+
+4
+
+Y2
+
+Xk
+
+Ak
+
+According to Propositions 2–5, the factor graph of Fig. 7
+(with measurements as in Fig. 8 or as in Fig. 11) yields indeed
+the correct quantum-mechanical probabilities for the respective
+class of measurements.
+
+˜
+Xk
+
+q
+
+=
+Xk
+
+V. C ONCLUSION
+
+˜
+Xk
+
+q
+
+We have proposed a class of factor graphs that represent
+quantum-mechanical probabilities involving any number of
+measurements, both for basic projection measurements and for
+general measurements as in [9, Chap. 2]. Such factor graphs
+have not previously been used in statistical modeling.
+The space constraints of this paper preclude the discussion
+of further pertinent topics that we intend to address elsewhere,
+including the meaning of such factor graphs from a statisticalmodeling point of view (disregarding physics), the relation to
+quantum Bayesian networks (see, e.g., [15]), to quantum belief
+propagation (see, e.g., [16]), and to tensor diagrams/networks
+for analyzing quantum systems (see, e.g., [17]). It is also
+noteworthy that quantum circuits as in [9, Chap. 4] may be
+viewed as halves of factor graphs as in this paper, where the
+missing other half is a complex conjugate mirror image as in
+Section III.
+
+AH
+k
+Yk
+Fig. 11. General measurement as in [9, Chap. 2]. Condition (14) must be
+satisﬁed.
+
+as in Fig. 8, then
+P (Yk = y | Yk−1 = yk−1 , . . . , Y1 = y1 )
+= Bk (y)H ρk Bk (y)
+
+(18)
+
+H
+
+(19)
+
+= tr Bk (y)Bk (y) ρk ,
+
+where Bk (y) is the y-th column of Bk . After measuring/observing Yk = y, the density matrix is
+ρk = Bk (y)Bk (y)H .
+˜
+
+R EFERENCES
+
+(20)
+2
+
+[1] F. R. Kschischang, B. J. Frey, and H.-A. Loeliger, “Factor graphs and the
+sum-product algorithm,” IEEE Trans. Inf. Theory, vol. 47, pp. 498–519,
+Feb. 2001.
+[2] H.-A. Loeliger, “An introduction to factor graphs,” IEEE Sig. Proc. Mag.,
+Jan. 2004, pp. 28–41.
+[3] H.-A. Loeliger, J. Dauwels, Junli Hu, S. Korl, Li Ping, and F. R. Kschischang, “The factor graph approach to model-based signal processing,”
+Proceedings of the IEEE, vol. 95, no. 6, pp. 1295–1322, June 2007.
+[4] M. M´ zard and A. Montanari, Information, Physics, and Computation.
+e
+Oxford University Press, 2009.
+[5] M. I. Jordan, “Graphical models,” Statistical Science, vol. 19, no. 1,
+pp. 140–155, 2004.
+[6] Ch. M. Bishop, Pattern Recognition and Machine Learning. New York:
+Springer Science+Business Media, 2006.
+[7] D. Koller and N. Friedman, Probabilistic Graphical Models. Cambridge,
+MA, MIT Press, 2009.
+[8] G. Auletta, M. Fortunato, and G. Parisi, Quantum Mechanics. Cambridge
+University Press, 2009.
+[9] M. A. Nielsen and I. L. Chuang, Quantum Computation and Quantum
+Information. Cambridge University Press, 2000.
+[10] P. Cvitanovi´ , Group Theory: Birdtracks, Lie’s, and Exceptional Groups.
+c
+Princeton Univ. Press, 2008.
+[11] E. Peterson, “Unshackling linear algebra from linear notation,”
+arXiv:0910.1362, 2009.
+[12] A. Al-Bashabsheh and Y. Mao, “Normal factor graphs and holographic
+transformations,” IEEE Trans. Inf. Theory, vol. 57, no. 2, pp. 752–763,
+Feb. 2011.
+[13] G. D. Forney, Jr., and P. O. Vontobel, “Partition functions of normal
+factor graphs,” Proc. Inf. Theory & Appl. Workshop, UC San Diego, La
+Jolla, CA, USA, Feb. 6–11, 2011.
+[14] A. Al-Bashabsheh, Y. Mao, and P. O. Vontobel, “Normal factor graphs:
+a diagrammatic approach to linear algebra,” Proc. IEEE Int. Symp. Inf.
+Theory, St. Petersburg, Russia, Jul. 31–Aug. 5, 2011, pp. 2178–2182.
+[15] R. R. Tucci, “Quantum information theory – a quantum Bayesian net
+perspective,” arXiv:quant-ph/9909039v1, 1999.
+[16] M. S. Leifer and D. Poulin, “Quantum graphical models and belief
+propagation,” Annals of Physics, vol. 323, no. 8, pp. 1899–1946, Aug.
+2008.
+[17] Z.-C. Gu, M. Levin, and X.-G. Wen, “Tensor-entanglement renormalization group approach as a uniﬁed method for symmetry breaking and
+topological phase transitions,” Phys. Rev. B, vol. 78, p. 205116, Nov.
+2008.
+
+Note that (20) is properly normalized because
+tr(Bk (y)Bk (y)H ) = tr(Bk (y)H Bk (y)) = Bk (y) 2 = 1.
+In the special case of Fig. 8, with known initial state
+X0 = x0 , the matrix ρk factors as
+ρk (xk , xk ) = ψk (xk )ψk (xk ),
+
+(21)
+
+or, in matrix notation,
+H
+ρk = ψk ψk ,
+
+(22)
+
+where ψk is a column vector of norm 1. The post-measurement
+density matrix ρk factors analoguously, as is obvious from
+˜
+(20). In quantum-mechanical terms, ψk is the quantum state.
+The probability (18) can then be expressed as
+P (Yk = y | Yk−1 = yk−1 , . . . , Y1 = y1 )
+H
+= Bk (y)H ψk ψk Bk (y)
+
+(23)
+
+= Bk (y)H ψk
+
+(24)
+
+2
+
+,
+
+which is the most basic form of computing probabilities in
+quantum mechanics.
+Proposition 5 (General Measurement). In Fig. 7 (generalized to any number of observations), if Yk is measured as in
+Fig. 11, then
+P (Yk = y | Yk−1 = yk−1 , . . . , Y1 = y1 )
+= tr Ak (y)ρk Ak (y)H .
+
+(25)
+
+After measuring/observing Yk = y, the density matrix is
+ρk =
+˜
+
+Ak (y)ρk Ak (y)H
+tr(Ak (y)ρk Ak (y)H )
+
+(26)
+2
+
+5
+
+

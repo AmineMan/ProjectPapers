@@ -1,0 +1,1040 @@
+Title:          ISIT041612.pdf
+Author:         chihw
+Creator:         TeX output 2012.05.16:1158
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Wed May 16 12:01:06 2012
+ModDate:        Tue Jun 19 12:55:41 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      332145 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569565311
+1
+
+Linear Network Coding Capacity Region of
+2-Receiver MIMO Broadcast Packet Erasure
+Channels with Feedback
+Chih-Chun Wang, David J. Love; {chihw,djlove}@purdue.edu
+Center of Wireless Systems and Applications (CWSA)
+School of Electrical and Computer Engineering, Purdue University, USA
+
+This works considers the MIMO broadcast PEC with 2
+receivers and channel output feedback. Motivated by the
+immense success of linear network coding (LNC) [7], this
+work focuses exclusively on LNC schemes and characterizes
+∗
+∗
+the full LNC feedback capacity region (R1 , R2 ). A new
+framework is proposed that uniﬁes the problems of ﬁnding a capacity outer bound and designing the corresponding
+bound-achieving solution into a single linear-programming
+(LP) problem. Speciﬁcally we use an LP solver to search
+exhaustively over all possible LNC design choices and ﬁnd
+the LNC solution that achieves the highest throughput. The
+exhaustiveness guarantees that the resulting LNC scheme
+is throughput optimal (among all LNC solutions) and thus
+achieves the LNC capacity.
+Remark: Such a constructive optimality proof has been
+widely used in the networking community but not in the
+information theory community. For example, in the networking
+society, the optimal multi-path routing scheme is found by
+simply searching over all possible routing decisions that
+obey the ﬂow-conservation law, which is in contrast with the
+information-theoretic approach that ﬁrst ﬁnds a cut and an
+achievability scheme and later proves that they meet. This
+exhaustive-search-based approach was previously not possible
+since there are too many LNC design choices. With a new
+framework that leverages upon the underlying linear space
+structure of LNC, we can greatly reduce the number of design
+choices and are thus able to design provably optimal LNC
+schemes without the need of ﬁnding any cut condition!
+
+Abstract—This work studies the capacity of the 2-receiver
+multiple-input/multiple-output (MIMO) broadcast packet erasure channels (PECs) with channel output feedback, which is in
+contrast with the single-input/single-output setting of the existing
+works. Motivated by the immense success of linear network
+coding (LNC) in theory and in practice, this work focuses
+exclusively on LNC schemes and characterizes the LNC feedback
+∗
+∗
+capacity region (R1 , R2 ) of 2-receiver MIMO broadcast PECs.
+A new linear-space-based approach is proposed, which uniﬁes
+the problems of ﬁnding a capacity outer bound and devising
+the achievability scheme into a single linear programming (LP)
+problem. Speciﬁcally, an LP solver is used to exhaustively search
+for the LNC scheme(s) with the best possible throughput, the result
+of which is thus guaranteed to attain the LNC feedback capacity.
+
+I. I NTRODUCTION
+It is well known that feedback enlarges the capacity region
+of broadcast channels [2], [8]. Recently the feedback capacity region of K-receiver broadcast packet erasure channels
+(PECs) has been fully characterized for K ≤ 3 and for the
+special case of perfectly-fair capacity with spatially independent erasure events [4], [9]. Speciﬁcally, a 1-to-K PEC takes
+an input symbol (also known as a packet) W from some
+sufﬁciently large ﬁnite ﬁeld GF(q) and each destination dk (out
+of K destinations) receives either the input packet Zk = W
+or an erasure Zk = ∗, depending on whether the packet W
+has successfully arrived at dk . The capacity results in [4], [9]
+capture closely the network coding capacity for the downlink
+scenario from a single access point to multiple clients with
+one antenna and simple modulation schemes [6].
+On the other hand, such a single-input/single-output (SISO)
+broadcast PEC model does not take into account several commonly used modern communication schemes. For example, 2
+antennas may be used at both the source s and the destinations
+dk , which corresponds to a multiple-input/multiple-output
+(MIMO) PEC [3] that takes (W [1] , W [2] ) ∈ (GF(q))2 as input,
+and each dk may receive one of the four possible outcomes
+(W [1] , ∗), (∗, W [2] ), (W [1] , W [2] ), and (∗, ∗) depending on
+whether the packet W [m] sent by antenna m, m = 1, 2, is
+decodable or not. Even when only a single antenna is used,
+source s may use Orthogonal Frequency Division Multiple
+Access (OFDMA), which, in each time slot, can send out
+multiple streams of packets over different sub-carriers. Each
+sub-carrier may experience different erasure events. Each dk
+constantly scans all subcarriers and records any overheard
+packets. The multiple sub-carriers in OFDMA can again be
+modelled as a MIMO broadcast PEC.
+
+II. P ROBLEM F ORMULATION
+The M -input 2-receiver MIMO broadcast PEC is deﬁned as
+Δ
+follows. For any time slot, source s sends M symbols W =
+(W [1] , W [2] , · · · , W [M ] ) ∈ (GF(q))M and each di receives a
+random subset rxi ⊂ {1, 2, · · · , M } of the W [·] symbols for
+i = 1, 2. The MIMO broadcast PEC can be described by the
+joint reception probability prx1 ,rx2 such that ∀rx1 ,rx2 prx1 ,rx2 =
+1. For example, when M = 3, p{1,2},{2,3} is the probability
+Δ
+
+Δ
+
+that d1 receives Z1 = (W [1] , W [2] , ∗) and d2 receives Z2 =
+(∗, W [2] , W [3] ). We consider only stationary and memoryless
+channels, i.e., {prx1 ,rx2 } does not change with respect to time
+and the reception events for any distinct time slots t1 , t2 , · · ·
+are independent. The above setting is a strict generalization of
+the (M, 2) erasure broadcast channel in [3], which requires
+the independence across different receivers and across all M
+sub-channels.
+
+1
+
+2
+[m]
+
+Lemma 1: A rate vector (R1 , R2 ) is achievable by LNC
+[m]
+[m]
+if there exist 2M non-negative variables R1 and R2 , for
+all m = 1, · · · , M , such that the following conditions are
+satisﬁed.
+M
+
+We use pa1 a2 to denote the (marginal) reception probabilities for the m-th symbol W [m] where each bit ai indicates
+whether di receives W [m] or not for i = 1, 2. For example,
+[m]
+
+p10 =
+
+prx1 ,rx2 .
+
+∀m = 1, · · · , M,
+
+⎧
+⎪
+⎨
+⎪
+⎩
+
+(4)
+
+[m]
+[m]
+R1
+R2
+[m]
+[m]
+[m]
+[m]
+[m]
+p10 +p11
+p10 +p01 +p11
+[m]
+[m]
+R1
+R2
+[m]
+[m]
+[m]
+[m]
+[m]
+p10 +p01 +p11
+p01 +p11
+
++
+
++
+
+<1
+<1
+
+. (5)
+
+Proof: Eq. (4) follows from summing up the per-input
+LNC rates and (5) follows from the feedback capacity region
+results for 1-input 2-receiver broadcast PECs [5].
+If we restrict ourselves to consider only (M, 2) erasure
+channels in [3], for which all sub-channels are independent,
+then we can follow the capacity outer bound construction in [8]
+and use the zero-feedback capacity results in [3] to construct
+the following capacity outer bound.
+Lemma 2: Consider (M, 2) erasure channels. Even when
+we allow the use of non-linear codes (see (1)), a rate vector
+(R1 , R2 ) is achievable only if there exist 4M non-negative
+[m,k]
+for all i, k ∈ {1, 2} and m ∈ {1, · · · , M }
+variables Ri
+such that the following conditions are satisﬁed.
+
+(1)
+
+and two decoding functions: for all i = 1, 2,
+ˆ
+Xi = gi [Zi ]n , {ft (·, ·, [rx1 , rx2 ]t−1 ) : t = 1, · · · , n} , (2)
+1
+1
+where [Zi ]n denotes what di has received from time 1 to
+1
+n, and [rx1 , rx2 ]t−1 denotes the channel output information
+1
+from time 1 to (t − 1). In (2) we assume that each di
+knows1 how the coded symbols are generated (the functions
+ft (·, ·, [rx1 , rx2 ]t−1 )) but does not know the actual information
+1
+symbols X1 and X2 used to generate W(t).
+A network code is linear if the encoders ft are linear with
+respect to X1 and X2 , i.e., (1) can be written as
+W(t) = X · Ct ,
+
+= Ri
+
+Ri
+m=1
+
+Consider the following communication problem. For any
+rate vector (R1 , R2 ), within n time slots source s would
+Δ
+like to send two independent packet streams Xi =
+nRi
+(Xi,1 , Xi,2 , · · · , Xi,nRi ) ∈ (GF(q))
+to destination di for
+i = 1, 2. At the end of each time slot, each di reports back to s
+which subset of symbols it has received (the rxi value) through
+the use of ACK or NACK. This channel output feedback
+setting was not considered in the existing work [3].
+If we use the input argument “(t)”, t = 1, 2, · · · , n, to
+distinguish the n channel usages, a network code can be
+described by n encoding functions: for all t = 1, · · · , n,
+W(t) = ft (X1 , X2 , [rx1 , rx2 ]t−1 )
+1
+
+[m]
+
+∀i = 1, 2,
+
+∀rx1 ,rx2 s.t. m∈rx1 ,m∈rx2
+/
+
+M
+
+[m,k]
+
+∀i, k ∈ {1, 2},
+
+Ri
+⎧
+⎪
+⎨
+
+= Ri
+
+m=1
+
+∀m ∈ {1, · · · , M },
+
+⎪
+⎩
+
+[m,1]
+[m,1]
+R1
+R2
+[m]
+[m]
+[m]
+[m]
+[m]
+p10 +p11
+p10 +p01 +p11
+[m,2]
+[m,2]
+R1
+R2
+[m]
+[m]
+[m]
+[m]
+[m]
+p10 +p01 +p11
+p01 +p11
+
++
+
++
+
+≤1
+≤1
+
+.
+
+[m]
+
+For some special choices of the parameters pa1 a2 , either (i)
+the inner and outer bounds do meet; or (ii) we can design
+simple LNC solutions that follow the ideas of [5] and attain
+the outer bound. The capacity region is thus determined for
+[m]
+those values of pa1 a2 . However, the capacity characterization
+[m]
+problem remains open for general pa1 a2 . Take the following 2input, 2-receiver MIMO broadcast PEC for example. Suppose
+the joint reception probability {prx1 ,rx2 } satisﬁes
+
+(3)
+
+where Ct is an (nR1 + nR2 ) × M matrix in GF(q) and
+Δ
+X = (X1 , X2 ) is an n(R1 + R2 )-dimensional row vector
+consisting of all information symbols. The choice of Ct
+depends on [rx1 , rx2 ]t−1 . In practice [1], the coding coefﬁcients
+1
+Ct are often embedded in the header of the packets so that a
+decoder of the form of (2) can be used.
+Deﬁnition 1: A rate vector (R1 , R2 ) is achievable by LNC
+if for any > 0 there exists a linear network code of length
+ˆ
+n and ﬁnite ﬁeld GF(q) such that Prob(Xi = Xi ) < for all
+i = 1, 2. The LNC capacity region is deﬁned as the closure
+of all (R1 , R2 ) that are achievable by LNC.
+
+[1]
+
+p00 = 0,
+[2]
+
+[1]
+
+p01 = 0.125,
+
+p00 = 0.04,
+
+[2]
+
+p01 = 0.16,
+
+[1]
+
+p10 = 0,
+[2]
+
+[1]
+
+p11 = 0.875;
+
+p10 = 0.16,
+
+[2]
+
+p11 = 0.64,
+
+and the reception events for the 1st and the 2nd inputs are
+independent. This is equivalent to the setting of independent
+sub-channels with the m-th-input-to-di sub-channel having
+success probability 0.875, 1, 0.8, and 0.8 for (m, i) = (1, 1),
+(1, 2), (2, 1), and (2, 2), respectively. We plot in Fig. 1 the
+inner and outer bounds in Lemmas 1 and 2 for this example.
+As can be seen, there is a non-zero gap. Further, for these
+[m]
+particular pa1 a2 values there is no LNC solution similar to
+those in [5] that can achieve (R1 , R2 ) = (0.875, 0.96), a point
+within the outer bound.
+In this work, we will characterize the LNC capacity region
+for any general2 M -input MIMO broadcast PECs without
+relying on the (existing) outer bound arguments in Lemma 2.
+
+III. A N I LLUSTRATIVE E XAMPLE
+A simple inner bound on the above capacity problem is to
+perform LNC over the M different SISO broadcast PECs (one
+for each of the M inputs) separately. We thus have
+1 In general, d always knows f (·, ·, ·), the overall communication
+t
+i
+scheme that is agreed upon before transmission. But di may not know
+t−1
+ft (·, ·, [rx1 , rx2 ]1 ) since it depends on the (random) channel realization.
+However, in addition to the allotted n time slots, s can simply use a few
+extra time slots to “broadcast” the binary channel status [rx1 , rx2 ]n to both
+1
+destinations so that a more powerful decoder in (2) can be used. The overhead
+of using extra time slots to convey the binary receptions status [rx1 , rx2 ]n to
+1
+{d1 , d2 } diminishes to zero when a sufﬁciently large GF(q) is used. As a
+result, we focus exclusively on decoders of the form of (2). Also see [1] and
+our discussion of the practical LNC implementation.
+
+2 It remains an open problem whether Lemma 2 is true for the cases in
+which the sub-channels are dependent since the results in [3] no longer hold.
+On the other hand, our results hold for dependent sub-channels as well.
+
+2
+
+3
+
+⎛
+1.5
+
+⎞
+
+⎜
+⎜
+⎜
+⎝
+m=1
+M
+
+y5 =
+
+1.4
+
+∀b ∈ {0, 1, 2, 3, 9,
+11, 18, 19, 27}
+
+1.3
+R2
+
+M
+
+y6 = R1 +
+
+1.2
+
+[m]
+
+x0
+
+⎟
+[m] ⎟ [m]
+[m]
+[m]
+xb ⎟ p10 + p01 + p11
+⎠
+
+[m]
+
++ x1
+
+[m]
+
++ x9
+
+[m]
+
+[m]
+
+1
+0.3
+
+M
+
+LNC capacity
+Per−input LNC inner bound
+0.4
+
+0.5
+
+R
+
+y7 = R2 +
+
+0.6
+
+0.7
+
+(13)
+[m]
+
+x0
+
+[m]
+
++ x2
+
+[m]
+
++ x18
+
+[m]
+
+[m]
+
+[m]
+
+p10 + p01 + p11
+
+m=1
+
+0.8
+
+[m]
+
+p10 + p01 + p11
+
+m=1
+
+1.1
+
+(12)
+
+1
+
+.
+
+(14)
+
+• Group 3, termed the rank-comparison conditions, has 8
+inequalities:
+y3 ≤ y6 , y4 ≤ y7
+(15)
+
+Fig. 1. The LNC capacity computed by Proposition 1 versus the per-input
+LNC inner bound in Lemma 1. The LNC capacity also coincides with the
+capacity outer bound in Lemma 2.
+
+y6 ≤ (R1 + R2 ), y7 ≤ (R1 + R2 )
+y1 + y2 − y5 ≥ 0
+y5 + y3 − y6 ≥ y1
+y5 + y4 − y7 ≥ y2
+y6 + y7 − (R1 + R1 ) ≥ y5 .
+
+IV. M AIN R ESULTS
+Consider a ﬁnite index set FTs of 18 elements:
+Δ
+
+FTs =
+
+(16)
+(17)
+(18)
+(19)
+(20)
+
+{0, 1, 2, 3, 7, 9, 11, 15, 18, 19, 23, 27, 31, 47, 63, 87, 95, 127}.
+(6)
+
+• Group 4, termed the decodability conditions, has 2 equalities:
+(21)
+y3 = y1 and y4 = y2 .
+
+It will be clear in Section V why we consider such an index
+set. The main results of this work can now be stated as follows.
+Proposition 1: A rate vector (R1 , R2 ) is in the LNC capacity region of a M -input 2-receiver MIMO broadcast PEC
+[m]
+if and only if there exist 18M non-negative variables xb
+for all b ∈ FTs and m = 1, · · · , M , and 7 non-negative
+variables y1 to y7 such that jointly they satisfy 4 groups of
+linear conditions:
+• Group 1, termed the time-sharing conditions, has M equalities:
+[m]
+∀m = 1, · · · , M,
+= 1.
+(7)
+xb
+
+Corollary 1: The capacity region of an M -input 2-receiver
+MIMO broadcast PEC depends only on the per-input marginal
+[m]
+probabilities pa1 a2 . Whether the reception events of two inputs
+m1 and m2 are independent or not does not affect the capacity.
+Proof: This is a direct result of Proposition 1.
+V. P ROOF OF P ROPOSITION 1
+We ﬁrst provide detailed sketches of the proof of Proposition 1 for the case of M = 1. That is, for each time slot, s
+sends a symbol W (t) = X · cT where ct is an n(R1 + R2 )t
+dimensional (row) coding vector and cT is the transpose of ct .
+t
+We will comment on how to generalize the proof for arbitrary
+M values in Section VI.
+
+∀b∈FTs
+
+• Group 2, termed the rank-conversion conditions, has 7
+equalities: ⎛
+⎞
+⎜
+⎜
+y1 =
+⎜
+⎝
+m=1
+
+⎟
+
+M
+
+⎛
+⎜
+⎜
+⎜
+⎝
+m=1
+
+[m] ⎟
+xb ⎟
+∀b ∈ {0, 1, 2, 3, 7, 9, 11, 15,
+18, 19, 23, 27, 31, 47, 63}
+
+M
+
+y2 =
+
+∀b ∈ {0, 1, 2, 3, 7, 9, 11, 15,
+18, 19, 23, 27, 31, 87, 95}
+
+⎛
+
+⎜
+⎜
+⎜
+⎝
+m=1
+M
+
+y3 = R1 +
+
+⎛
+⎜
+⎜
+⎜
+⎝
+m=1
+
+∀b ∈ {0, 1, 2, 3, 7,
+9, 11, 15, 47}
+
+M
+
+y4 = R2 +
+
+∀b ∈ {0, 1, 2, 3, 7,
+18, 19, 23, 87}
+
+⎠
+
+[m]
+p10
+
++
+
+[m]
+p11
+
+A. Basic Deﬁnitions
+For each di , we deﬁne the knowledge space Si (t) in the
+end of time t by
+
+(8)
+
+Δ
+
+Si (t) = span{cτ : ∀τ ≤ t s.t. i ∈ rxi at time τ }.
+
+⎞
+⎟
+[m] ⎟ [m]
+[m]
+xb ⎟ p01 + p11
+⎠
+
+That is, Si (t) is the linear span of the vectors of those packets
+that have successfully arrived at di . One can easily see that in
+the end of time t, di is able to compute the value of X · vT
+for all v ∈ Si (t) by linearly combining Zi (τ ) for all τ ≤ t.
+For j = 1 to n(R1 + R2 ), let δj denote an n(R1 + R2 )dimensional elementary delta (row) vector with its j-th coordinate being one and all the other coordinates being zero.
+Δ
+Deﬁne Ω = span{δj : j = 1, · · · , n(R1 + R2 )} as the overall
+Δ
+message space and deﬁne Ω1 = span{δj : j = 1, · · · , nR1 }
+Δ
+and Ω2 = span{δj : j = (nR1 + 1), · · · , n(R1 + R2 )} as the
+individual message spaces for d1 and d2 , respectively. Both
+Si (t) and Ωi are linear subspaces of Ω for i = 1, 2.
+Δ
+For any two linear subspaces A, B ⊆ Ω, deﬁne A ⊕ B =
+span{v : ∀v ∈ A ∪ B} as the linear sum space of A and
+
+(9)
+
+⎞
+
+⎟
+[m] ⎟ [m]
+[m]
+xb ⎟ p10 + p11
+⎠
+
+(10)
+
+⎞
+⎟
+[m] ⎟ [m]
+[m]
+xb ⎟ p01 + p11
+⎠
+
+(22)
+
+(11)
+
+3
+
+4
+
+as the normalized expected number of ct of type b. Since the
+total number of time slots is n, this time-sharing argument
+proves that (7) holds for the case of M = 1.
+Consider the linear spaces Ak , k = 1 to 7, in the beginning
+of time 1 and in the end of time n, and denote them by Ak (0)
+and Ak (n), respectively. Consider A6 = S1 ⊕ S2 ⊕ Ω1 for
+example. By (22) we have Rank(A6 (0)) = Rank(Ω1 ) = nR1 .
+We then note that when source s sends a ct ∈ TYPEb for some
+b with b6 being 0, then that ct is not in A6 = S1 ⊕ S2 ⊕ Ω1 .
+Therefore, whenever one of d1 and d2 receives W (t) = X · cT
+t
+successfully, the rank of A6 will increase by one. We thus have
+
+B. From the discussion in the beginning of this subsection, di
+can decode the desired Xi,1 , · · · , Xi,nRi symbols if and only
+if in the end of time n we have Ωi ⊆ Si (n), or equivalently
+(Si (n) ⊕ Ωi ) = Si (n).
+
+(23)
+
+B. Breakdown The Design Choices
+In the beginning of time t, there are q n(R1 +R2 ) different
+ways of designing the coding vector ct ∈ Ω. To simplify the
+design choices, we consider the following 7 linear subspaces:
+Δ
+
+A1 = S1 ;
+Δ
+
+Δ
+
+A2 = S2 ;
+
+A3 = S1 ⊕ Ω1 ;
+
+(24)
+
+Δ
+
+A4 = S2 ⊕ Ω2 ;
+
+Δ
+
+A6 = S1 ⊕ S2 ⊕ Ω1 ;
+
+Δ
+
+A5 = S1 ⊕ S2 ;
+
+Δ
+
+A7 = S1 ⊕ S2 ⊕ Ω2 ,
+
+n
+
+(25)
+
+Rank(A6 (0)) +
+
+1
+∀b w. b6 =0
+
+(26)
+
+t=1
+
+ct ∈ TYPEb , and
+one of {d1 , d2 } receives it
+
+= Rank(A6 (n))
+
+for which we use S1 and S2 as shorthand for S1 (t − 1) and
+S2 (t − 1), the knowledge spaces in the end of time t − 1. In
+the subsequent discussion, we often drop the input argument
+“(t)” when the time instant of interest is clear in the context.
+We can now partition the overall message space Ω into 27 =
+128 disjoint subsets depending on whether ct is in Ak or not,
+for k = 1, · · · , 7. Each subset is termed a coding type and can
+be indexed by a 7-bit string b = b1 b2 · · · b7 where each bk
+indicates whether ct ∈ Ak or not. For example, type-0010111
+contains the coding vectors that are in A3 ∩ A5 ∩ A6 ∩ A7 , but
+not in any of A1 , A2 , and A4 , which is denoted by
+
+(29)
+
+Δ 1
+yk = n E {Rank(Ak (n))}
+
+as the normalized rank of
+Deﬁne
+Ak (n). Taking the normalized expectation of (29), counting
+only the FTs, and by Wald’s lemma, we have proven that (13)
+must hold for M = 1. By similar rank-conversion arguments,
+we can also prove (8) to (14) for M = 1.
+For the following, we will derive the rank comparison
+inequalities in Group 3. By (24) to (26), in the end of time n
+we must have
+A3 ⊂ A6 ,
+
+TYPE0010111
+
+A4 ⊂ A7 ,
+
+A6 ⊂ Ω, and A7 ⊂ Ω.
+
+(30)
+
+Considering the normalized expected ranks of the above
+inequalities in the end of time n, we have proven (15) and
+(16). Before continuing, we present the following lemma.
+Lemma 3: For any two linear spaces B1 and B2 , we have
+Rank(B1 ⊕ B2 ) + Rank(B1 ∩ B2 ) = Rank(B1 ) + Rank(B2 ).
+We then consider the following inequality:
+
+Δ
+
+= (A3 ∩ A5 ∩ A6 ∩ A7 )\(A1 ∪ A2 ∪ A4 )
+(27)
+= (A3 ∩ A5 )\(A1 ∪ A4 ).
+(28)
+Eq. (28) follows from the fact that by (24) to (26) we have
+A5 ⊂ (A6 ∩ A7 ) and A2 ⊂ A4 . We can also view b as a base2 expression with b1 (resp. b7 ) being the most (resp. least)
+signiﬁcant bit3 , e.g., type-0010111 is type-23. Note that some
+of the 128 coding types are always empty, which are termed
+the infeasible types. For example, type-1000000 is infeasible
+since there cannot be any v ∈ Ω that is in A1 = S1 but not
+in A3 = S1 ⊕ Ω1 ⊃ A1 . Overall, there are only 18 Feasible
+Types (FTs) and the list of them is the FTs deﬁned in (6).
+This new framework allows us to focus on the “types” of
+the coding choices without worrying about designing the exact
+values of ct ∈ Ω. Speciﬁcally, we will focus on the following
+design problem: From which one of the 18 FTs should we
+choose ct in order to maximize the throughput? We will also
+analyze the performance of any given scheme by quantifying
+how frequently a coding vector ct of type-b is sent.
+
+Rank(S1 ⊕ S2 ) + Rank(S1 ⊕ Ω1 ) − Rank(S1 ⊕ S2 ⊕ Ω1 )
+= Rank((S1 ⊕ S2 ) ∩ (S1 ⊕ Ω1 ))
+≥ Rank(S1 )
+
+(31)
+(32)
+
+where (31) follows from Lemma 3, and (32) follows from
+simple set operations. By taking the normalized expectation
+on (32) in the end of time n, we have proven (18). Similarly,
+we can derive the following inequalities:
+Rank(S1 ) + Rank(S2 ) − Rank(S1 ⊕ S2 ) ≥ 0
+Rank(S1 ⊕ S2 ) + Rank(S2 ⊕ Ω2 )
+− Rank(S1 ⊕ S2 ⊕ Ω2 ) ≥ Rank(S2 )
+
+Fix any given linear network code such that di can decode
+all Xi,1 to Xi,nRi in the end of time n for all i = 1, 2. Since
+the 18 disjoint FTs fully cover4 Ω, for each time t we can
+always label the coding choice ct of the given LNC scheme
+[1] Δ 1
+n
+as one of the 18 FTs. Deﬁne xb = n E
+t=1 1{ct ∈TYPEb }
+
+(34)
+
+Rank(S1 ⊕ S2 ⊕ Ω1 ) + Rank(S1 ⊕ S2 ⊕ Ω2 )
+− Rank(Ω) ≥ Rank(S1 ⊕ S2 ),
+
+C. The “Only If” Analysis of Proposition 1
+
+(33)
+
+(35)
+
+and use them to prove (17), (19), and (20), respectively.
+Finally, since we focus on an LNC scheme that each di can
+decode its desired information symbols, we can prove (21) by
+the decodability condition (23) and by (24)–(26).
+D. The “If” Analysis of Proposition 1
+
+3 We append zeros in the preﬁx to make the length of b always 7. For
+example, the base-2 representation of b = 6 is 0000110.
+4 The actual set of vectors in a type, e.g., (27), evolves over time since the
+Ak deﬁnitions in (24) to (26) depend on the knowledge spaces S1 and S2 in
+the end of time t − 1. However, the 18 FTs always cover Ω for any t value.
+
+A critical difference between Lemma 2 and the outer
+bounding part in Proposition 1 is that the latter is a constructive
+approach while the former is implicitly a cut condition. As will
+
+4
+
+5
+
+∗
+be demonstrated, the optimizing {x∗ : ∀b ∈ FTs} and y1 to
+b
+∗
+y7 in Proposition 1 can be directly translated to a capacityachieving scheme, while it is not clear how the optimizing
+[m,k]
+Ri
+in Lemma 2 would guide the LNC design.
+More explicitly, a capacity achieving LNC solution can
+now be designed as follows. In the beginning of time t,
+source s ﬁrst uses the previous reception status [rx1 , rx2 ]t−1
+1
+to determine the subspaces A1 to A7 . Then s simply needs
+to choose the ct from one of the 18 FTs. As long as we can
+make the long-term relative frequency of sending ct of typeb equal x∗ for all b ∈ FTs, then the aforementioned (outer
+b
+bound) analysis guarantees that the resulting LNC scheme is
+throughput optimal.
+A detailed sketch of the proof is as follows. For any
+(R1 , R2 ) in the interior of the capacity, let {xR } (and the
+b
+R
+R
+companying y1 to y7 ) denote the variables that satisfy the
+conditions in Proposition 1 and we can, without loss of generality, assume that when plugging in {xR }, the rank comparison
+b
+inequalities in (15)–(20) are strict inequality, or equivalently,
+the set/rank inequalities (30)–(35) are strict inequalities. The
+central question that decides whether we can attain the target
+frequency {xR } is: Suppose we are able to achieve the target
+b
+relative frequency {xR } up to time (t−1) (which leads to strict
+b
+inequalities (15)–(20) at time t − 1). Can we freely choose
+(from the 18 FTs) which coding type to use for time t? If the
+answer is yes, then we can attain the target frequency xR and
+b
+maintain strict inequalities (15)–(20) iteratively throughout the
+entire n time slots.
+To answer this question, consider type-23, as deﬁned in (28).
+For s to be able to choose a ct from TYPE23 , we must have
+TYPE23 = ∅. Note that whether TYPE23 = ∅ holds can be
+decided by comparing the sizes of (A3 ∩A5 ) and ((A3 ∩A5 )∩
+(A1 ∪ A4 )). Also note that |A3 ∩ A5 | = q Rank(A3 ∩A5 ) and
+
+strict. Therefore, when all 8 inequalities in (30)–(35) are strict,
+all 18 FTs are non-empty. Source s can thus freely select any
+FT with the goal of maintaining the target relative frequency
+{xR }. The central question is thus answered afﬁrmatively.
+b
+VI. F URTHER D ISCUSSION
+To generalize the proof for arbitrary M , we simply need to
+consider 18M different joint coding types since each coding
+[m]
+vector ct for the m-th input may belong to one of the 18
+FTs. We can then follow similar analysis as in Section V. The
+ﬁnal step is to notice from the resulting LP conditions that the
+dependence between any two input sub-channels has no effect
+on the overall capacity. This observation allows us to rewrite
+the conditions with the marginal coding types and reduce the
+number of x variables from 18M to 18M as in Proposition 1.
+The proof for general M is thus complete.
+We have used an LP solver to compute the LNC capacity
+[m]
+region for various parameter values pa1 a2 and in all our experiments the LNC capacity coincides with the outer bound in
+Lemma 2. We are currently proving the following conjecture.
+Conjecture 1: The capacity outer bound in Lemma 2 holds
+even when the sub-channels are dependent, and it coincides
+with the LNC capacity for arbitrary M values.
+Note that Proposition 1 has established the best LNC
+throughput. Even if Conjecture 1 is not true, any (R1 , R2 )
+outside the rate region of Proposition 1 can only be achieved
+by non-linear codes, which are less favorable in practice.
+VII. C ONCLUSION
+This work has characterized the full LNC capacity of the 2receiver MIMO broadcast PECs with channel output feedback.
+One future direction is to generalize the results for an arbitrary
+number of receivers. This work was supported in parts by NSF
+grants CCF-0845968 and CNS-0905331.
+
+|(A3 ∩ A5 ) ∩ (A1 ∪ A4 )|
+≤ |A3 ∩ A5 ∩ A1 | + |A3 ∩ A5 ∩ A4 )|
+
+R EFERENCES
+
+= q Rank(A3 ∩A5 ∩A1 ) + q Rank(A3 ∩A5 ∩A4 ) .
+
+[1] P. Chou, Y. Wu, and K. Jain, “Practical network coding,” in Proc. 41st
+Annual Allerton Conf. on Comm., Contr., and Computing. Monticello,
+IL, October 2003.
+[2] T. M. Cover, “Comments on broadcast channels,” IEEE Trans. Inf. Theory,
+vol. 44, no. 6, pp. 2524–2530, Oct. 1998.
+[3] A. Dana and B. Hassibi, “The capacity region of multiple input erasure
+broadcast channels,” in Proc. IEEE Int’l Symp. Inform. Theory. Adelaide,
+Australia, September 2005.
+[4] M. Gatzianas, L. Georgiadis, and L. Tassiulas, “Multiuser broadcast
+erasure channel with feedback — capacity and algorithms,” in Proc.
+NetCoop, 2010.
+[5] L. Georgiadis and L. Tassiulas, “Broadcast erasure channel with feedback
+— capacity and algorithms,” in Proc. 5th Workshop on Network Coding,
+Theory, & Applications (NetCod). Lausanne, Switzerland, June 2009,
+pp. 54–61.
+[6] D. Koutsonikolas, C.-C. Wang, Y. Hu, and N. Shroff, “FEC-based
+AP downlink transmission schemes for multiple ﬂows: Combining the
+reliability and throughput enhancement of intra- and inter-ﬂow coding,”
+Elsevier Performance Evaluation (PEVA), vol. 68, no. 11, November
+2011.
+[7] S.-Y. Li, R. Yeung, and N. Cai, “Linear network coding,” IEEE Trans.
+Inf. Theory, vol. 49, no. 2, pp. 371–381, February 2003.
+[8] L. Ozarow and S. Leung-Yan-Cheong, “An achievable region and outer
+bound for the Gaussian broadcast channel with feedback,” IEEE Trans.
+Inf. Theory, vol. 30, no. 4, July 1984.
+[9] C.-C. Wang, “Capacity of 1-to-K broadcast packet erasure channels with
+channel output feedback,” IEEE Trans. Inf. Theory, vol. 58, no. 2, pp.
+957–988, February 2012.
+
+Assuming q ≥ 3, we thus have TYPE23 = ∅ if and only if
+Rank(A3 ∩ A5 )
+> max(Rank(A3 ∩ A5 ∩ A1 ), Rank(A3 ∩ A5 ∩ A4 )).
+By (24)–(26) and Lemma 3, we can prove that
+Rank(A3 ∩ A5 ) − Rank(A3 ∩ A5 ∩ A1 )
+= Rank(S1 ⊕ Ω1 ) + Rank(S1 ⊕ S2 )
+− Rank(S1 ⊕ S2 ⊕ Ω1 ) − Rank(S1 )
+and
+
+Rank(A3 ∩ A5 ) − Rank(A3 ∩ A5 ∩ A4 )
+= Rank(S1 ⊕ S2 ⊕ Ω2 ) − Rank(S2 ⊕ Ω2 )
+= Rank(A7 ) − Rank(A4 ).
+
+The above analysis shows that when both A4 ⊂ A7 and
+(32) are strict inequalities, TYPE23 = ∅ and choosing a
+ct from TYPE23 is possible. By similar arguments, it can
+be proven that (i) Each FT is associated with a subset of
+inequalities of (30)–(35); and (ii) A FT is non-empty if and
+only if the inequalities in the corresponding subset are all
+
+5
+
+

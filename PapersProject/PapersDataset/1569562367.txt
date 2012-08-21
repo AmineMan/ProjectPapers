@@ -1,0 +1,726 @@
+Creator:        TeX
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Tue May 15 17:20:58 2012
+ModDate:        Tue Jun 19 12:55:18 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      361369 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569562367
+
+The minimax risk of truncated series estimators
+for symmetric convex polytopes
+Adel Javanmard∗
+
+Li Zhang
+
+Department of Electrical Engineering
+Stanford University
+
+Microsoft Research Silicon Valley
+Mountain View, CA
+
+Speciﬁcally, we show that for a symmetric convex polytope deﬁned by m hyperplanes, the truncated series estimator is within
+O(log m) factor of the optimal. Previously, such results have
+only been obtained for particular family of convex polytopes
+such as those corresponding to the Lipschitz condition [13] or
+satisfying certain isometric conditions [17]. As a motivating
+example, we discuss one application of our result in estimating
+values of a Lipschitz function.
+Example. One important estimation problem in the literature
+is the estimation of functions satisfying certain continuity or
+Lipschitz conditions from noisy measurements. Consider a
+univariate Lipschitz function f : [0, 1] → R. Suppose that
+xi = f (ti ) for i = 1, . . . , n, and we have measurements yi
+according to the model yi = xi + wi for some gaussian noise
+wi . Then Lipschitz condition, with constant L, translates to
+the linear constraints:
+
+Abstract—We study the optimality of the minimax risk of
+truncated series estimators over symmetric convex polytopes.
+We show that the optimal truncated series estimator is within
+O(log m) factor of the optimal if the polytope is deﬁned by
+m hyperplanes. This represents the ﬁrst such bounds towards
+general convex bodies. In proving our result, we ﬁrst deﬁne a
+geometric quantity, called the approximation radius, for lower
+bounding the minimax risk. We then derive our bounds by establishing a connection between the approximation radius and the
+Kolmogorov width, the quantity that provides upper bounds for
+the truncated series estimator. Besides, our proof contains several
+ingredients which might be of independent interest: 1. The notion
+of approximation radius depends on the volume of the body. It is
+an intuitive notion and is ﬂexible to yield strong minimax lower
+bounds; 2. The connection between the approximation radius
+and the Kolmogorov width is a consequence of a novel duality
+relationship on the Kolmogorov width, developed by utilizing
+some classical results from convex geometry [1], [18], [6].
+
+I. I NTRODUCTION
+In this paper, we study the minimax risk of estimators over
+symmetric convex polytopes. We show that for a symmetric
+convex polytope deﬁned by m hyperplanes, the truncated
+series estimator, a well-known special type of linear estimator,
+is within O(log m) factor of the optimal.
+In non-parametric statistics, the minimax risk of an estimator measures the worst case expected loss of the estimator for
+input coming from some subset X ⊆ Rn (see Section II-B
+for a formal deﬁnition). Tremendous work has been done on
+understanding the optimal minimax risk for various families
+of X. But it is usually very difﬁcult to design the optimal
+estimator. Truncated series estimators are a family of linear
+estimators that simply project an observation to a properly
+chosen subspace. Despite its simplicity, the truncated series
+estimator is surprisingly powerful and is shown to be nearly
+optimal for wide families of convex bodies. [16] shows that
+such estimator is nearly optimal for ellipsoids. In [4], it
+is shown that it is nearly optimal for the wider family of
+orthosymmetric and quadratically convex objects, including p
+balls for p ≥ 2. Another family of sets for which minimax risk
+has been explored are the full approximation sets. Lorentz [10]
+proposed metric entropy bounds on this family. Using these
+bounds, Yang and Barron [21] showed that truncated series
+estimators indeed achieve near optimal minimax risk over
+these sets.
+In this paper, we show that the power of truncated series
+estimator extends to the rich class of symmetric polytopes.
+
+|xi+1 − xi | ≤ L |ti+1 − ti |, for i = 1, . . . , n − 1.
+
+(1)
+
+These constraints indeed deﬁne a symmetric convex polytope
+X = {x : |xi+1 − xi | ≤ L |ti+1 − ti |, for 1 ≤ i ≤ n − 1} .
+When the sampling is uniform, i.e. ti = (i − 1)/(n − 1),
+then X has a more special form of X = {x : |xi+1 − xi | ≤
+L/(n − 1)}. In this case, previous work [13], [19] has shown
+that the best truncated series estimator is nearly optimal. As
+a consequence of our work, the truncated series estimator is
+nearly optimal (within O(log n) factor) for estimating Lipschitz function at arbitrary sample set {t1 , . . . , tn }. In addition,
+this extends to higher order Lipschitz or continuity conditions
+as those conditions can be represented as nO(1) symmetric
+linear constraints.
+At the high level, the proof of our results follows a very
+simple strategy. We choose a family of “obstruction objects”
+for which we can obtain lower bounds of the minimax risk.
+Then we show a “duality” result that if X does not have a good
+truncated series estimator, then it will have to contain a “large”
+obstruction, and therefore no estimator can do well on X. Of
+course, the difﬁculty is in choosing the obstruction so that
+we can prove the corresponding duality result. Some natural
+obstructions include hyper-rectangles and Euclidean balls, for
+which we know very tight minimax lower bound. But they turn
+out to be too restrictive to allow a strong enough duality result.
+To overcome this difﬁculty, we consider a broader family
+consisting of objects which contain a “non-negligible” fraction
+
+*The work was partially done during an internship at Microsoft Research.
+
+1
+
+of a “large” Euclidean ball; whence we are able to establish
+a desired duality relationship.
+More speciﬁcally, we ﬁrst deﬁne a geometric measure for
+any set, called approximation radius, and then develop a lower
+bound technique which bounds the minimax risk of any body
+by its approximation radius. Intuitively, the approximation
+radius of an object X is the maximum radius of a ball with
+“non-negligible” volume fraction inside X. By reﬁning the
+technique in [21], [17], we can show that the minimax risk
+of X is asymptotically as large as that of the ball with X’s
+approximation radius (see Theorem III.2). On the other hand,
+the minimax risk of truncated series estimator is determined by
+the Kolmogorov width of the object. Our bound is then derived
+by showing that the approximation radius is asymptotically
+close to the Kolmogorov widths for the symmetric polytopes
+(see Theorem III.5). For the connection, we ﬁrst derive a
+duality relationship between the Kolmogorov widths of X and
+its polar dual X ◦ (see Theorem III.4), by utilizing some results
+from convex geometry started in [1]. The Kolmogorov width of
+X ◦ is then shown, by probabilistic arguments, to be intimately
+related to the approximation radius of X.
+
+approximation radius of that body. Compared to the existing
+lower bound techniques, such as the Bernstein bound and the
+bound followed from considering the worst (typically discrete)
+distributions (see [13], [19] and [3], [5]), the approximation
+radius relies on a volume estimation and is both convenient to
+operate and ﬂexible to provide strong lower bounds.
+One center piece in this paper is the connection established
+between the approximation radius and the Kolmogorov width.
+Towards this step, we use some results developed in Banach
+space geometry which was initialized in [1] for investigating
+the invertibility of matrices with large “robust” rank and
+subsequently developed by [18], [6]. In particular, we show
+a duality relationship between the Kolmogorov widths of a
+convex body and its polar dual body. Our result has a similar
+ﬂavor to the classical duality in [12] but is tighter when the
+dimension gap is small.
+B. Organization
+Due to space limitations, most of the details in the proofs are
+omitted from this abstract and can be found in [8]. But we will
+present all the deﬁnitions (Section II) and results (Section III)
+as well as crucial steps in proving our results (Section IV).
+We will also discuss some applications and open questions in
+Section V.
+II. P RELIMINARIES
+
+A. Related work
+There is a vast body of work on the minimax estimators and
+it is beyond the scope of this paper to survey them. We refer
+to [13], [19], [9] for comprehensive survey and will describe
+some work most relevant to this paper. Since we focus on the
+mean squared error (MSE), all the subsequent discussion is in
+the context of MSE.
+The minimax bounds have been developed for various
+families of convex bodies through intensive research in the
+past decades. Asymptotically tight bounds have been proposed
+for convex bodies that correspond to various continuity or
+energy conditions; the classes of H¨ lder balls, Sobolev balls,
+o
+and Besov balls. We refer to Chapter 2.8 in [19] for a comprehensive recount of the references. Despite these remarkable
+results, it is still largely unknown how to compute the minimax
+risk for an arbitrary convex body. Some previous work does
+attempt to deal with less speciﬁc objects (see [17] and the
+references therein), but all the optimality results are under
+(fairly strong) isometric assumption about the objects.
+On the other hand, the truncated series estimator has a
+nice geometric interpretation and is related to the classical
+Kolmogorov width of the underlying object. In addition to
+its simplicity, [4] shows that it is asymptotically optimal for
+the class of orthosymmetric and quadratically convex objects.
+This includes the class of diagonally stretched p balls for
+p ≥ 2. Present paper shows that the power of truncated series
+estimators also extend to the family of symmetric convex
+polytopes, as long as the polytope is deﬁned by not so many
+hyperplanes.
+To achieve our result, we develop a lower bound technique
+based on a geometric quantity which we dub approximation
+radius. Using Fano’s inequality and the reﬁnement developed
+in [21], [17], we show that the minimax risk of a convex body
+is lower bounded by that of the ball with radius equal to the
+
+A. Notations and deﬁnitions
+For a vector x = (x1 , · · · , xn ) and a real number p ≥ 1,
+denote by x p the p -norm of x, and x ∞ = maxi |xi |.
+n
+When p is absent, it means 2 norm. Let Bp (x, r) denote the
+n dimensional p ball with radius r and center x. Whenever
+n
+the center is at the origin, it is denoted by Bp (r). Also, we
+drop the superscript n, whenever the dimension is clear from
+the context, and suppress the argument r for r = 1.
+A set X ⊂ Rn is called centrally symmetric (or simply
+symmetric) if for any x ∈ X, we have −x ∈ X. For a set X,
+the 2 -radius of X is deﬁned as
+rad(X) = max x .
+x∈X
+
+m,n
+For p > 0, and n ≥ 1, the family Fp
+is deﬁned as
+m,n
+Fp = {X : X = {x :
+
+Ax
+
+p
+
+≤ 1}, for A ∈ Rm×n } (2)
+
+m,n
+In particular, when p = ∞, F∞ consists of symmetric
+convex polytopes deﬁned by m hyperplanes. Throughout we
+consider bounded convex bodies. Our results easily extend
+to unbounded convex bodies, but the presentation would be
+cumbersome including separate case analysis which does not
+add any new insight.
+
+B. Minimax risk
+Suppose we are given measurements of an unknown ndimensional vector x, according to the model
+y = x + w,
+n
+
+(3)
+2
+
+where w ∈ R follows the normal distribution, w ∼ N(0, σ I),
+and x lies in X, a compact convex set in Rn . The goal of the
+
+2
+
+Clearly, 0 ≤ vr(X, r) ≤ 1. The following is a simple but
+very useful fact about volume ratio of convex bodies
+
+minimax estimation problem is to estimate vector x, with small
+error loss, and to evaluate the estimator under the minimax
+principle.
+For any estimator M : Rn → Rn , the maximum mean
+squared error of M on (X, σ) is deﬁned as
+R(M, X, σ) = max Ey∼x+w x − M (y)
+
+2
+
+x∈X
+
+Fact II.1. If X is convex and contains the origin, then
+vr(X, r), and hence vrk (X, r) for any k, is non-increasing
+in r.
+
+,
+
+Central to lower bounding the minimax risk is the notion
+of approximation radius.
+
+and the minimax risk of X is
+
+Deﬁnition II.2. For 0 ≤ c ≤ 1, and integer 1 ≤ k ≤ n,
+the (c, k)-approximation radius of X, denoted by zc,k (X), is
+deﬁned as the maximum r such that vrk (X, r) ≥ c, i.e.
+
+R(X, σ) = min R(M, X, σ) .
+M
+
+Estimators generally can be nonlinear function. We denote
+by RL (X, σ) the minimax risk when M is linear. A special
+and commonly used linear estimator is the truncated series
+estimator [4]. Truncated series estimator is deﬁned by M (y) =
+P y for some orthogonal projection P from Rn to some lower
+dimensional space. The minimax risk for truncated estimators
+is deﬁned as
+
+zc,k (X) = sup{r : vrk (X, r) ≥ c} .
+
+Note that if X contains the origin in its interior, then
+zc,k (X) is always deﬁned for 0 ≤ c ≤ 1.
+III. M AIN RESULTS
+In this paper, we are interested in the minimax risk of
+the truncated series estimator for symmetric convex bodies.
+m,n
+=
+Deﬁne β(X) = maxσ>0 RT (X, σ)/R(X, σ), and βp
+m,n
+maxX∈Fp β(X). Our main result is stated below.
+
+RT (X, σ) = min max Ey∼x+w x − P y 2 ,
+P
+
+x∈X
+
+where the minimum is taken over all the orthogonal projections. Since truncated series estimators are linear, we clearly
+have R(X, σ) ≤ RL (X, σ) ≤ RT (X, σ).
+It turns out that the minimax risk for truncated series
+estimators is completely characterized by the Kolmogorov kwidth dk of X, deﬁned as [15]
+
+m,n
+Theorem III.1. If n = Ω(log m), then β∞ ≤ c·log m, where
+m,n
+c < 2 · 108 . Furthermore, β∞ = Ω( log m/ log log m).
+
+The lower bound follows immediately from previous works.
+n
+As shown√ [3] (Theorem 3), for the unit 1 ball X = B1 ,
+in
+√
+RT (X, 1/ n) = Ω(1) but R(X, 1/ n) = O( log n/n).
+n
+m,n
+m,n
+Since B1 ∈ F∞ where m = 2n , we have β∞ =
+Ω( log m/ log log m) for n = Ω(log m). In this paper, our
+main result is to provide a nearly matching upper bound
+of O(log m). The upper bound is the consequence of the
+following theorems: Theorem III.2 lower bounds the minimax
+risk by the approximation radius; Theorems III.4, III.5 together
+establish a lower bound on the approximation radius by the
+Kolmogorov width, which in turn upper bounds the minimax
+risk of the truncated series estimator.
+
+dk (X) = min max x − Pk x ,
+Pk x∈X
+
+where the minimum is taken over all k-dimensional projections. Then, we have
+RT (X, σ) = min dk (X)2 + kσ 2 .
+(4)
+k
+
+For the mean squared error considered in this paper, there is
+a more direct equivalent deﬁnition of the Kolmogorov k-width
+under 2 metric.
+dk (X) = min rad(P (X)) ,
+P ∈Pk
+
+Theorem III.2. There exists a universal constant C > 0 such
+that for any convex set X, and any 0 < c∗ ≤ 1,
+
+where Pk denotes all the k-codimensional projections. Recall
+rad(X) denotes the 2 -radius of X, i.e. maxx∈X x 2 .
+C. Approximation radius
+
+R(X, σ) ≥ Cc2 max min {zc∗ ,k (X)2 , kσ 2 } .
+∗
+0≤k≤n
+
+We deﬁne the notion of approximation radius, a geometric
+measure of any convex body, which as we shall show, provides
+a lower bound for the minimax risk of the body.
+k
+We use vol(X) to denote the volume of X and Hn to denote
+n
+all the k dimensional subspaces in R . Assume X ⊆ Rn is
+a convex body that contains the origin. For any r > 0, the
+volume ratio vr(X, r) of X is deﬁned as
+vr(X, r) =
+
+n
+vol(X ∩ B2 (r))
+n (r))
+vol(B2
+
+(5)
+
+(6)
+
+The connection between the Kolmogorov width and the
+approximation radius is established via the polar dual of the
+body.
+Deﬁnition III.3. For any K ⊂ Rn , denote by K ◦ the (polar)
+dual set of K,K ◦ = {y | x · y ≤ 1 for all x ∈ K}. If K lies
+on a lower dimensional subspace, K ◦ is understood as the
+dual set on the lowest dimensional subspace that contains K.
+
+1/n
+
+,
+
+Theorem III.4. For any convex centrally symmetric X ⊂ Rn
+and any 0 ≤ k ≤ n and 0 < < 1,
+
+and the k-volume ratio vrk (X, r) of X is deﬁned as the
+maximum volume ratio over all the k dimensional central cut
+of X, i.e.
+
+dk (X)dn−(1−
+
+)k (X
+
+◦
+
+) ≤ c1
+
+where c1 > 0 is a universal constant.
+
+vrk (X, r) = max vr(X ∩ H, r) .
+H∈Hk
+n
+
+3
+
+k
+
+,
+
+m,n
+Theorem III.5. For any X ∈ F∞ , 0 < c∗ ≤ 0.2, and
+0 < k ≤ n,
+
+that the convex hull spanned by {±v1 , . . . , ±vk+1 } contains
+an Ω((1 − )k) dimensional ball with radius Ω( /kδ). The
+theorem is proved using the following property of the polar
+dual of a body.
+
+k
+1
+·
+,
+log m dn−k (X ◦ )
+
+zc∗ ,k (X) ≥ c2
+
+Fact IV.4. Let H be a subspace of Rn . Denote by PH the
+projection on H. Then PH (K ◦ ) = (H ∩ K)◦ .
+
+where c2 > 0 is a universal constant.
+The paper is mainly devoted to proving Theorems III.2,
+III.4, and III.5, which together imply Theorem III.1. In the
+following section, we will sketch the proof of these results.
+The details can be found in [8].
+
+C. Proof of Theorem III.5
+By setting = 1/2 in Theorem III.4, we have that X contains an Ω(k)-dimension ball with radius Ω( 1/k dk (X)). In
+the proof of Theorem III.5, we show that we can expand this
+ball by factor k/ log m so that it still has non-negligible
+intersection with X. The intuition is that in k-dimensional
+space, in order to bound a sphere tightly, one needs exp(Ω(k))
+hyperplanes. We use a probabilistic argument to make this
+intuition rigorous.
+
+IV. S KETCH OF P ROOFS
+A. Proof of Theorem III.2
+The proof is based on the information-theoretic bound
+established in [21], [17]. In this technique, the minimax risk
+is lower bounded by restricting to a maximal ﬁnite set of
+points {x1 , · · · , xr } in X, separated from each other by at
+least an amount in the loss metric. The following proposition
+is from [17], [21].
+
+D. Proof of Theorem III.1
+The main theorem follows easily from all these preparations. Let k ∗ = min{k ≥ 1|dk (X)2 ≤ kσ 2 }. By Eq. (4),
+RT (X, σ) ≤ dk∗ (X)2 + k ∗ σ 2 ≤ 3 min{dk∗ −1 (X)2 , k ∗ σ 2 }.
+On the other hand, by Theorem III.5 and III.4,
+
+Proposition IV.1. For any set X, let N (X) be any -net for
+X and Mδ (X) be a δ-packing in X. Then,
+R(X, σ) ≥
+
+δ
+2
+
+2
+
+2
+
+1−
+
+log2 |N (X)| + 2σ2 + 1
+log2 |Mδ (X)|
+
+.
+
+zc∗ ,(k∗ −1)/2 (X) = Ω( √
+
+(7)
+
+1
+dk∗ −1 (X)) .
+log m
+
+For any k and c∗ consider the k-dimensional central cross
+section Y of X that attains the approximation radius zc∗ ,k .
+√
+Let rk = min{zc∗ ,k (X), kσ}, and Yk = Y ∩ B2 (rk ).
+We can then provide an upper bound of N (Yk ) of Yk by
+N (B2 (rk )) and a lower bound of Mδ (Yk ) by the volume
+bound. Theorem III.2 then follows from Proposition IV.1.
+
+Applying Theorem III.2, we have R(X, σ) = Ω((log m)−1 ·
+min dk∗ −1 (X)2 , k ∗ σ 2 ). Combining both bounds, we have
+that
+RT (X, σ)
+= O(log m) .
+(8)
+R(X, σ)
+
+B. Proof of Theorem III.4
+
+A. Applications to estimating Lipschitz functions
+
+We take a detour to establish the connection between
+the Kolmogorov width and the approximation radius. The
+connection is via a novel duality relationship between the
+Kolmogorov widths of X and those of its polar dual, as
+stated in Theorem III.4. The proof is an application of some
+celebrated works in convex geometry [1], [18], [6].
+
+The problem of estimating values of a Lipschitz function, at
+a set of sampled points, from noisy measurements is discussed
+in the introduction. Since the Lipschitz condition can be represented as linear conditions, Theorem III.1 is widely applicable
+to such problems. For example, the function can be deﬁned
+on any metric space, the sampling points can be arbitrary set
+of points, and the Lipschitz or continuity condition can be of
+higher order and even include constraints with different orders.
+As long as the number of corresponding linear constraints is
+bounded by nO(1) for n samples, the approximation factor is
+within a small factor of O(log n) of the optimal.
+
+V. D ISCUSSIONS
+
+Deﬁnition IV.2. A set of vectors V = {v1 , · · · , vs } is called
+δ-wide if for any 1 ≤ i ≤ s, dist(vi , span[V /{vi }]) ≥ δ.
+The following proposition concerns an interesting property
+of δ-wide sets, and can be gleaned from [1], [18], [6].
+Proposition IV.3. For any δ-wide set V = {v1 , · · · , vs }, there
+exists σ ⊆ {1, . . . , s} with |σ| ≥ (1 − )s such that for any
+α = (αj )j∈σ ,
+αj vj ≥ c
+j∈σ
+
+s
+
+B. Smooth convex bodies
+m,n
+In the above, we showed that β∞ = O(log m). The
+m,n
+celebrated Pinsker bound [16] states that β2
+= O(1).
+√
+m,n
+What about βp
+for other p’s? By plugging σ = 1/ n
+in Theorem 3 in [3], we have that for 1 ≤ p < 2,
+n,n
+βp = Ω((n/ log n)1−p/2 ). So we will not be able to obtain a
+similar bound to Theorem III.1 when p < 2. On the other hand,
+we conjecture that similar upperbound holds when p ≥ 2.
+
+|αj | ,
+
+δ
+j∈σ
+
+√
+with c = ( 2 − 1)/2.
+Write δ = dk (X). Consider the k + 1 points V =
+{v1 , . . . , vk+1 } inside X which forms the largest k+1 simplex.
+We can show that V is δ-wide. By Proposition IV.3, we show
+
+Conjecture V.1. For any p ≥ 2, there exists a constant C =
+m,n
+C(p), such that for any m, n ≥ 2, βp ≤ C log m.
+
+4
+
+Deﬁne the distance d(X, Y ) between two centrally symmetric convex body X, Y as the smallest c such that there
+exists a uniformly scaled orthogonal transformation F such
+that F Y ⊆ X ⊆ cF Y . We note that d(·, ·) is similar to but
+different from the classical Banach-Mazur distance in which F
+is any linear transformation. Also log d(·, ·) is a pseudometric
+(non-negative, symmetric, and with triangular inequality). By
+straightforward arguments, β(X) ≤ d(X, Y )2 β(Y ). Since
+n
+n
+n
+n
+d(Bp , B2 ) = n1/2−1/p and d(Bp , B∞ ) = n1/p for p ≥ 2,
+we have the following nontrivial bound.
+
+VI. C ONCLUSION
+In this paper, we showed that the truncated series estimator
+can achieve nearly optimal minimax risk for symmetric polytopes deﬁned by few hyperplanes. There are some outstanding
+open questions raised by this work.
+m,n
+1) What is the best bound for β∞ ? Our work leaves a gap
+of Ω( log m/ log log m) and O(log m).
+m,n
+2) What is the best bound for βp
+for p ≥ 2? We
+conjecture it is O(log m).
+3) How tight is the approximation radius bound for lower
+bounding the minimax risk for convex bodies? For 1 ball, it
+√
+has a gap of Θ( log n). This is the largest gap we know of.
+4) How to efﬁciently approximate the optimal truncated
+series estimator for any symmetric polytope?
+Acknowledgment. The authors thank the reviewers for their
+insightful comments.
+R EFERENCES
+
+m,n
+Corollary V.2. For p ≥ 2, βp
+= O(min(n1−2/p , m2/p
+√
+n,n
+log m)). In particular, for p ≥ 2, βp = O( n log n).
+
+C. Tightness of the approximation radius bound
+We have used the approximation radius to lower bound the
+minimax risk of a convex body X. How tight is this bound?
+By comparing this lower bound with the one obtained from
+the hardest rectangular subproblem (Bernstein width), we can
+n
+show that it is asymptotically optimal for Bp when p ≥ 2 [8].
+n
+Here, we consider Bp for 1 ≤ p < 2 and show that the
+lower bound of using approximation radius is very close to
+the minimax upper bound but does leave a small gap of factor
+of Θ((log n)1−p/2 ).
+We start by computing (the order of) zc,k (X). Using a result
+in [11] regarding the volume of the sections of p balls, we
+have that
+n
+zc,k (Bp ) = Θ((1/c) · k 1/2−1/p ) .
+
+[1] J. Bourgain and L. Tzafriri. Invertibility of ‘large’ submatrices with
+applications to the geometry of banach spaces and harmonic analysis.
+Israel Journal of Mathematics, 57(2):137–224, 1987.
+[2] A. Brieden. Geometric optimization problems likely not contained in
+APX. Discrete and Computational Geometry, 28:201–209, 2002.
+[3] D. Donoho and I. M. Johnstone. Minimax risk over p -balls for q -error.
+Probability Theory and Related Fields, 99(2):277–303, 1994.
+[4] D. Donoho, R. Liu, and B. MacGibbon. Minimax risk over hyperrectangles, and implications. AOS, 18(3):1416–1437, 1990.
+[5] D. L. Donoho, I. Johnstone, A. Maleki, and A. Montanari. Compressed sensing over p -balls: Minimax mean square error. CoRR,
+abs/1103.1943, 2011.
+[6] A. Giannopoulous. A note on the Banach-Mazur distance to the cube.
+Operator Theory, 77:67–73, 1995.
+[7] M. X. Goemans and D. P. Williamson. Improved approximation algorithms for maximum cut and satisﬁability problems using semideﬁnite
+programming. J. ACM, 42(6):1115–1145, 1995.
+[8] A. Javanmard and L. Zhang. The minimax risk of truncated series
+estimators for symmetric convex polytopes. arXive:1201.2462,
+2012.
+[9] I. M. Johnstone. Gaussian estimation: Sequence and wavelet models.
+available at http://www-stat.stanford.edu/people/faculty/johnstone, 2011.
+[10] G. G. Lorentz. Metric entropy and approximation. Bull. Amer. Math.
+Soc., 72:903–937, 1966.
+n
+[11] M. Meyer and A. Pajor. Sections of the unit ball of lp . Journal of
+Functional Analysis, 80(1):109–123, 1988.
+[12] V. Milman. Spectrum of a position of a convex body and linear duality
+relations. In Isarel Mathematics Conference Proceedings 3, pages 151–
+162, 1990.
+[13] A. Nemirovski. Topics in Non-parametric Statistics. Lecture Notes in
+Mathematics. Springer, 1998.
+[14] A. Nemirovski, C. Roos, and T. Terlaky. On maximization of quadratic
+form over intersection of ellipsoids with common center. Mathematical
+Programming, Series A, 86:463–473, 1999.
+[15] A. Pinkus. n-Widths in Approximation Theory. Springer-Verlag, 1984.
+[16] M. S. Pinsker. Optimal ﬁltering of square integrable signals in Gaussian
+white noise. Problems of Information Transmission, 16:120–133, 1980.
+[17] G. Raskutti, M. J. Wainwright, and B. Yu. Minimax rates of estimation
+for high-dimensional linear regression over q -balls. IEEE Transactions
+on Information Theory, 57(10):6976–6994, 2011.
+[18] S. J. Szarek and M. Talagrand. An isomorphic version of the SauerShelah lemma and the Banach-Mazur distance to the cube. In GAFA
+Seminar 87-88, Lecture Notes in Mathematics, pages 105–112. SpringerVerlag, 1989.
+[19] A. B. Tsybakov. Introduction to Nonparametric Estimation. Springer
+Series in Statistics. Springer, 2009.
+[20] K. R. Varadarajan, S. Venkatesh, Y. Ye, and J. Zhang. Approximating
+the radii of point sets. SIAM J. Comput., 36(6):1764–1776, 2007.
+[21] Y. Yang and A. Barron. Information-theoretic determination of minimax
+rates of convergence. AOS, 27(5):1564–1599, 1999.
+
+When σ ≤ 1, we choose k ≈ σ −p in Theorem III.2 and
+n
+obtain a lower bound of R(Bp , σ) = Ω(σ 2−p ). By [3], the
+n
+optimal upper bound for Bp is R = Θ(σ 2−p (2 log nσ p )1−p/2 )
+1/ log n. Hence the approximation
+for (1/n)1/p
+σ
+radius bound leaves a gap of Θ((log n)1−p/2 ). Actually, the
+√
+largest gap we know of is log n by setting p = 1 in the
+above bound.
+D. Computational complexity
+We have shown that the truncated series estimator is close
+to optimal for symmetric convex polytopes. For the family of
+m,n
+ellipsoids F2 , the optimal truncated series estimator can be
+computed by singular value decomposition. However, computing the best truncated series estimator, or the Kolmogorov
+width, for symmetric convex polytopes, is NP hard. When
+k = 0, d0 (X) is the radius of X, and it is exactly the 2 -norm
+maximization problem considered in [2]. As shown in [2],
+for 2 ≤ p < ∞ the p -norm-maxima over (even symmetric)
+polytopes cannot be computed in polynomial time within a
+factor of 1.090, unless P=NP.
+On the other hand, using semi-deﬁnite programming (SDP)
+√
+relaxation, one can compute O( log m) approximation of the
+radius [7], [14], i.e. d0 (X). However, it is not known how to
+approximate dk (X) for k > 1. [20] showed that if the number
+√
+of vertices of X is v, then SDP gives an O( log v) approximation for dk . Nevertheless, in our problem, the number of
+vertices of a symmetric polytope can be exponential in n. So
+the technique in [20] does not directly apply to our problem.
+
+5
+
+

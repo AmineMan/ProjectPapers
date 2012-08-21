@@ -1,0 +1,1188 @@
+Creator:        TeX
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Mon May 14 14:06:44 2012
+ModDate:        Tue Jun 19 12:54:44 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      469555 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569552245
+
+Moderate-Deviations of Lossy Source Coding for
+Discrete and Gaussian Sources
+Vincent Y. F. Tan
+Institute for Infocomm Research, A*STAR (Email: tanyfv@i2r.a-star.edu.sg)
+Department of Electrical and Computer Engineering, National University of Singapore
+
+and CLT regimes. In particular, we study the performance of
+source codes of rates Rn = R(P, D) ± n where n is a
+sequence that is asymptotically larger than 1/n (cf. (1)).
+Our results apply to both ﬁnite alphabet and Gaussian sources
+but do not reduce to the LD or CLT settings. Moreover, neither
+the LD nor CLT results specialize to our setting. We show that
+the dispersion V (P, D) also plays a fundamental role in this
+MD setting. Besides studying the excess distortion probability,
+we also study the complementary probability (also termed the
+probability of correct decoding) for codes whose rates are
+below the rate-distortion function. Similarly, the fundamental
+nature of the dispersion is revealed.
+This work is inspired by the work on MD in the context
+of channel coding [13], [14]. It was shown in [13] that for
+positive discrete memoryless channels (i.e., W (y|x) > 0 for
+all x, y), the dispersion also governs the “MD exponent”
+
+Abstract—We study the moderate-deviations (MD) setting for
+lossy source coding of stationary memoryless sources. More
+speciﬁcally, we derive fundamental compression limits of source
+codes whose rates are R(D) ± n , where R(D) is the ratedistortion function and n is a sequence that dominates 1/n.
+This MD setting is complementary to the large-deviations and
+central limit settings and was studied by Altug and Wagner for
+the channel coding setting. We show, for ﬁnite alphabet and
+Gaussian sources, that as in the central limit-type results, the
+so-called dispersion for lossy source coding plays a fundamental
+role in the MD setting for the lossy source coding problem.
+Index Terms—Moderate-deviations, rate-distortion, dispersion.
+
+I. I NTRODUCTION
+Rate-distortion theory [1] consists in ﬁnding the optimal
+compression rate for a source X ∼ P subject to the condition
+that there exists a code which can reproduce the source to
+within a distortion level D. The optimal compression rate for
+the distortion level D is known as the rate-distortion function
+R(P, D). This function can be expressed as the minimization
+of mutual information over test channels [1].
+It is also of interest to study the excess distortion probability
+for codes at rate R > R(P, D). This is the probability
+that the average distortion between X n and its reconstruction
+ˆ
+X n exceeds D. The exact exponential rate of decay of this
+probability was derived by Marton [2] for discrete memoryless
+sources (DMSs). This was extended to Gaussian [3] and
+general sources [4]. These results belong to the theory of largedeviations (LD) and are reviewed in Section II.
+With the revival of interest in second-order coding rates
+and dispersion analysis [5]–[7], various researchers have also
+studied the fundamental limit of lossy compression subject
+to the condition that the probability of excess distortion is
+no larger than > 0. In particular, it was shown in [8] and
+independently in [9], [10] that
+R(n, D, ) ≈ R(P, D) +
+
+V (P, D)/n Q−1 ( ),
+
+1
+1
+.
+log e(fn , ϕn , W ) = −
+2
+n→∞ n n
+2V (W )
+lim
+
+(2)
+
+The direct part was proved by considering the Taylor expansion of Gallager’s random coding exponent. We also use
+this proof strategy. In [14], several assumptions in [13] were
+relaxed and the relations between the MD and CLT were
+clariﬁed. Concurrent to this work, Sason [15] studied MD
+for binary hypothesis testing. Finally, we mention that He et
+al. [16] studied the redundancy of the Slepian-Wolf problem
+which is also related to [8]–[10] and to the current problem.
+II. S YSTEM M ODEL AND BASIC D EFINITIONS
+Let P(X ) be the set of probability mass functions supported
+on the ﬁnite alphabet X . Let Pn (X ) ⊂ P(X ) be the set of nn
+types. For a type Q ∈ Pn (X ), let TQ be the set of sequences
+n
+x of type Q, i.e., the type class. The reproduction alphabet
+ˆ
+ˆ
+is denoted as X . In addition, let d : X × X → R+ be a
+distortion measure such that for every x ∈ X , there exists an
+ˆ
+x0 ∈ X for which d(x, x0 ) = 0. The average distortion is
+ˆ
+ˆ
+n
+1
+n
+d(x , xn ) := n i=1 d(xi , xi ). For a function f : A → B,
+ˆ
+ˆ
+the notation f := |f (A)| denotes the cardinality of its range.
+n
+A DMS X n ∼ i=1 P (xi ) is described at rate R by an
+encoder. The decoder receives the description index over a
+ˆ
+noiseless link and generates a reconstruction sequence X n ∈
+ˆ n . We now remind the reader of the rate-distortion problem.
+X
+
+(1)
+
+where R(n, D, ) is the optimal rate of compression of a
+memoryless source at blocklength n and V (P, D) is known
+as the dispersion of the source. Eq. (1) holds true for both
+discrete and Gaussian sources and belongs to the realm of
+central limit theorem (CLT)-style results. It is similar to the
+pointwise redundancy results in lossy source coding [11].
+In this paper, we operate in a moderate-deviations (MD)
+regime [12, Section 3.7] that “interpolates between” the LD
+
+Deﬁnition 1. A rate-distortion code consists of (i) an encoder
+ˆ
+fn : X n → Mn and (ii) a decoder ϕn : Mn → X n . The rate
+
+1
+
+of the code is Rn :=
+
+1
+n
+
+That is, n = ω(( log n )1/2 ) ∩ o(1). Assume that R(Q, D)
+n
+is twice differentiable w.r.t. Q in a neighborhood of P
+and V (P, D) > 0. There exists a rate-distortion code
+1
+{(fn , ϕn )}n∈N with rates n log fn ≤ R(P, D) + n such
+that
+1
+1
+.
+(11)
+lim sup 2 log e(fn , ϕn , P, D) ≤ −
+n n
+2V (P, D)
+n→∞
+
+log |Mn |.
+
+The rate-distortion function R(P, D) is deﬁned as the
+inﬁmum of all numbers R for which there exists codes
+{(fn , ϕn )}n∈N for which the probability of excess distortion
+e(fn , ϕn , P, D) := P(d(X n , ϕn (fn (X n ))) > D)
+
+(3)
+
+is arbitrarily small for sufﬁciently large blocklengths n. The
+rate-distortion function [1] can be expressed as
+R(P, D) =
+
+min
+
+ˆ
+W :E[d(X,X)]≤D
+
+I(P, W ),
+
+Furthermore, every rate-distortion code {(fn , ϕn )}n∈N with
+1
+rates n log fn ≤ R(P, D) + n must satisfy
+
+(4)
+
+1
+1
+log e(fn , ϕn , P, D) ≥ −
+.
+(12)
+n 2
+2V (P, D)
+n
+Though somewhat ungainly, the log factor in (10) appears to
+be essential because the proof hinges on the method of types.
+So our analysis does not completely close the gap between
+the CLT and LD regimes. This log factor is unnecessary in
+the Gaussian case as will be seen in Theorems 5 and 6.
+Theorem 1 means that if the dispersion V (P, D) is small,
+the “MD exponent” (2V (P, D))−1 is large, corresponding
+to a faster decay in the excess distortion probability. This
+has the same interpretation as in the CLT regime (1). As an
+example, for the Bernoulli source with Hamming distortion,
+the dispersion can be computed as
+lim inf
+n→∞
+
+ˆ
+where E[d(X, X)] :=
+x
+ˆ
+x,ˆ P (x)W (ˆ|x)d(x, x). Another
+x
+fundamental quantity introduced by Ingber and Kochman [8]
+is the dispersion for lossy source coding
+V (P, D) := VarX [R (X; P, D)],
+
+(5)
+
+where R (x; P, D) = ∂P∂(x) R(P, D) for x ∈ X is the partial
+derivative of the rate-distortion function w.r.t. P (x) (assuming
+it exists). In (5), the variance is taken w.r.t. the distribution P
+and R (X; P, D) is a function of the random variable X. In
+fact, the term dispersion is usually an operational one but since
+it was shown in [8] that the operational deﬁntion coincides
+with the one in (5), we will abuse terminology and use the
+generic term dispersion for both quantities.
+We analyze e(fn , ϕn , P, D) in the so-called MD regime
+1
+where the rate of the code Rn := n log fn = R(P, D) + n
+for some sequence n . Clearly, if n → 0, then Rn →
+R(P, D). When the rate of the code R is a constant strictly
+above R(P, D), Marton [2] showed that
+1
+log e(fn , ϕn , P, D) = −F (P, R, D),
+n
+where Marton’s exponent is deﬁned as
+lim
+
+n→∞
+
+F (P, R, D) :=
+
+min
+
+D(Q || P ).
+
+Q∈P(X ):R(Q,D)≥R
+
+V (Bern(α), D) = α(1 − α) log2
+
+min
+
+D(Q || P ).
+
+Q∈P(X ):R(Q,D)≤R
+
+(6)
+
+(9)
+
+1
+ˆ log n .
+log |CQ | ≤ R(Q, D) + J(|X |, |X |)
+(15)
+n
+n
+where J is some function of the size of the alphabets. Consider
+the set C that that is the union of all sets that D-cover the types
+Q ∈ Un (D, n ), deﬁned as
+
+III. D ISCRETE M EMORYLESS S OURCES (DMS)
+Our main result for a DMS with bounded distortion measure
+ˆ
+(i.e. d : X × X → [0, dmax ]) is stated as follows:
+
+lim
+
+n→∞
+
+n
+
+be any positive sequence satisfying
+
+n
+
+= 0,
+
+n 2
+n
+= ∞.
+n→∞ log n
+lim
+
+(13)
+
+Lemma 2. If the limit exists, Marton’s exponent satisﬁes
+F (P, R(P, D) + δ, D)
+1
+lim
+.
+(14)
+=
+δ→0
+δ2
+2V (P, D)
+In the sequel, we assume that the limit in (14) exists.
+Otherwise, the results are modiﬁed accordingly by considering
+the upper and lower limits in (14) and replacing the dispersion
+by its upper and lower limit versions. We ﬁrst prove the direct
+part of Theorem 1 in (11) followed by the converse in (12).
+Proof: The code construction proceeds along the lines of
+that in [8]. Fix a sequence n satisfying (10). From the reﬁned
+type covering lemma by Berger (stated in [19]), for every type
+Q ∈ Pn (X ) there exists a set CQ that completely D-covers
+n
+n
+TQ (i.e., for every xn ∈ TQ there exists an xn ∈ CQ such that
+ˆ
+n
+n
+d(x , x ) ≤ D) and CQ has rate
+ˆ
+
+(7)
+
+The exponent is positive for R < R(P, D). These limits
+and exponents are Sanov-like LD results [12]. We present
+MD versions of Marton’s and Iriyama’s results where the
+1
+normalizations in (6) and (8) need not be n .
+
+Theorem 1. Let
+
+.
+
+The parameter that maximizes (resp. minimizes) V (P, D) is
+α ≈ 0.0832 (resp. α = 0, 0.5). Thus, the “MD exponent” is
+maximized when the source is deterministic or has maximum
+entropy. The proof uses the following lemma, whose proof
+is essentially identical to that of [18, Theorem 8], where the
+divergence and the constraint set in (7) are approximated by
+a quadratic and an afﬁne subspace respectively.
+
+The exponent is positive for R > R(P, D). One can also consider the probability of correct decoding 1 − e(fn , ϕn , P, D).
+In [17, pp. 156], it was shown that:
+1
+lim
+log (1 − e(fn , ϕn , P, D)) = −G(P, R, D),
+(8)
+n→∞ n
+where the exponent for correct decoding is
+G(P, R, D) :=
+
+1−α
+α
+
+Un (D,
+(10)
+
+n)
+
+:= Q ∈Pn (X ) : R(Q, D) < R(P, D) +
+Q−P
+
+2
+
+1
+
+≤
+
+n/
+
+V (P, D) .
+
+n,
+
+(16)
+
+ˆ
+where n := n − J(|X |, |X |) log n − |X | log(n+1) . The second
+n
+n
+constraint on the 1 distance of the type Q to the true
+distribution P is to ensure that R( · , D) is differentiable. This
+is also done in [16, Theorem 4]. Note that if n satisﬁes (10)
+so does n . Now, consider the size of C:
+|C| =
+
+ˆ
+Put Ψn := (K(|X |, |X |) + 1) log n . Then, (21) yields
+n
+1
+1
+ˆ
+P(d(X n , X n ) > D|EΨn ) ≥ 1 − ≥ .
+(22)
+n
+2
+Hence, it remains to bound the second term in (20). Let n :=
+n + Ψn and consider,
+
+|CQ |
+Q∈Pn (X ):R(Q,D)<R(P,D)+
+
+P n (EΨn ) = P(R(PX n , D) − R(P, D) ≥ R − R(P, D)+Ψn )
+
+n
+
+≥ P(R(PX n , D) − R(P, D) ≥
+
+ˆ log n
+≤ (n + 1)|X | exp n R(Q∗ , D) + J(|X |, |X |)
+n
+≤ exp [n (R(P, D) + n )]
+(17)
+
+P(R(PX n , D) ≥ R(P, D) +
+
+Q∈Pn (X ):R(Q,D)≥R(P,D)+
+
+≥ (n + 1)
+
+Lemma 3. If
+
+n , D)],
+
+(18)
+
+2V (P, D)
+
+2
+n)
+
+−
+
+satisﬁes (10), the types Q(n) satisfy
+
+|X | log(n + 1)
+n
+
+,
+
+where we invoked Lemma 2 with n = o(1) in the role of δ.
+Now, we take the logarithm and normalize by n 2 to assert the
+n
+achievability part of the theorem in (11). Note that we used
+the fact that log2n → 0.
+n n
+Now for the converse, we ﬁx a code {(fn , ϕn )}n∈N of rate
+1
+Rn = n log fn ≤ R(P, D) + n and observe that
+ˆ
+e(fn , ϕn , P, D) ≥ P(d(X n , X n ) > D|EΨn )P(EΨn ).
+
+Theorem 4. Let n be any positive sequence satisfying (10).
+Assume that R(Q, D) is twice differentiable w.r.t. Q in a neighborhood of P and V (P, D) > 0 There exists a rate-distortion
+1
+code {(fn , ϕn )}n∈N with rates n log fn ≥ R(P, D) − n
+such that
+1
+1
+. (25)
+lim inf 2 log (1 − e(fn , ϕn , P, D)) ≥ −
+n→∞ n n
+2V (P, D)
+
+(20)
+
+where the event EΨn := {R(PX n , D) ≥ Rn + Ψn } and PX n
+is the type of X n . From the converse of the type covering
+lemma [21, Lemma 3], for any type Q ∈ Pn (X ) such that
+n
+R(Q, D) > R, the fraction of TQ that is covered by any set
+ˆ
+is no greater than exp[−n(R(Q, D) − R + K(|X |, |X |) log n )].
+n
+Hence, the ﬁrst term above can be bounded as
+
+Furthermore, every rate-distortion code {(fn , ϕn )}n∈N with
+1
+rates n log fn ≥ R(P, D) − n must satisfy
+
+ˆ
+P(d(X n , X n ) > D|EΨn )
+ˆ log n
+≥ 1 − exp −n Ψn + K(|X |, |X |)
+n
+
+(24)
+
+The last inequality is an application of Lemma 2 with n =
+o(1) in the role of δ. Now, we take the logarithm and normalize
+by n 2 to establish the converse noting that η is arbitrary,
+n
+Ψn = O( log n ) and log2n → 0. The latter allows us to assert
+n
+n n
+that n / n → 1.
+Note that the multiplicative nature of (24) is necessary to
+establish Theorem 1. The analysis for the probability of correct
+decoding 1 − e(fn , ϕn , P, D) in the MD regime is analogous
+and is stated in the following:
+
+e(fn , ϕn , P, D)
+− o(
+
+n
+
+e(fn , ϕn , P, D)
+1
+≥ (n + 1)−|X | exp[−n(1 + η)F (P, R(P, D) + n , D)]
+2
+2
+1
+n
+2
+≥ (n + 1)−|X | exp −n(1 + η)
++ o( n ) .
+2
+2V (P, D)
+
+Combining (18) and (19) with the union bound,
+2
+n
+
+(23)
+
+Let η > 0. For n large enough, the ratio in (24) is smaller
+than 1 + η. Uniting (20) – (24) yields
+
+where we applied the type counting lemma and the deﬁnition
+of Marton’s exponent in the last line. Next, from [20],
+√
+P( PX n − P 1 > n / V ) ≤ 2|X | exp −n 2 /(2V ) . (19)
+n
+
+≤ 2 exp −n
+
+|| P )
+
+D(Q(n) || P )
+= 1.
+n→∞ F (P, R(P, D) + n , D)
+
+n
+
+≤ (n + 1)|X | exp[−nF (P, R(P, D) +
+
+n
+
+(n)
+
+exp −nD(Q
+
+lim
+
+exp(−nD(Q || P ))
+Q∈Pn (X ):R(Q,D)≥R(P,D)+
+
+−|X |
+
+where the ﬁrst inequality is from the deﬁnition of Rn ≤
+R(P, D) + n and in the last inequality we deﬁned the type
+Q(n) := arg minQ∈Pn (X ):R(Q,D)≥R(P,D)+ n D(Q || P ). In the
+appendix, we prove the following key continuity statement.
+
+n
+
+≤
+
+exp(−nD(Q || P ))
+(n + 1)|X |
+
+Q∈Pn (X ):R(Q,D)≥R(P,D)+
+
+n
+P n TQ
+Q∈Pn (X ):R(Q,D)≥R(P,D)+
+
+n
+
+≥
+
+n)
+
+≤
+
++ Ψn )
+
+n
+P (TQ )
+
+=
+
+The ﬁrst inequality applies (15) and the type counting lemma.
+Furthermore, Q∗ is the dominating type. The second inequality
+applies the deﬁnitions of Un and n . Take fn to be the function
+that maps a sequence xn ∈ X n with type Pxn to a predeﬁned
+index in C = ∪Q∈Un CQ and take ϕn to be the function that
+maps the index to the reproduction sequence in CPxn that Dcovers xn . Now, we evaluate the error probability, which is
+the P n -probability of the types not in Un (D, n ). Consider,
+
+n
+n
+
+lim sup
+n→∞
+
+(21)
+
+1
+1
+log (1 − e(fn , ϕn , P, D)) ≤ −
+. (26)
+n 2
+2V (P, D)
+n
+
+Proof: Similar to Theorem 1.
+
+3
+
+where we used the deﬁnition of n . Hence, the rate Rn ≤
+R(σ 2 , D) + n as required. For the probability of excess
+distortion, we have
+
+IV. Q UADRATIC G AUSSIAN S OURCE C ODING
+We now turn our attention to the quadratic Gaussian setting
+where X n is a length-n vector whose entries are identically
+distributed as zero-mean Gaussians with variance σ 2 . The
+distortion measure is d(x, x) := (x − x)2 . It is known [1]
+ˆ
+ˆ
+that in this case, the rate-distortion function takes the form
+2
+
+R(σ 2 , D) =
+
+1
+σ
+log max 1,
+2
+D
+
+.
+
+(27)
+
+≤P
+
+Furthermore, Ihara and Kubo [3] showed that the analogue of
+Marton’s exponent in (7) also holds in the Gaussian setting.
+Indeed, it is shown that the excess distortion exponent is
+1 D 2R
+e − 1 − log
+F (σ , R, D) =
+2 σ2
+2
+
+D 2R
+e
+σ2
+
+.
+
+n
+
+lim
+
+n→∞
+
+= 0,
+
+lim n
+
+n→∞
+
+2
+n
+
+= ∞.
+
+(28)
+
+(30)
+
+enRn ≥
+
+There exists a rate-distortion code {(fn , ϕn )}n∈N with rates
+1
+2
+n log fn ≤ R(σ , D) + n such that
+lim sup
+n→∞
+
+1
+log e(fn , ϕn , σ 2 , D) ≤ −1.
+n 2
+n
+
+:= σ 2 : |R(ˆ 2 , D) − R(σ 2 , D)| <
+ˆ
+σ
+
+n
+
+,
+
+n )),
+
++P
+
+i=1
+
+n 2
+e
+2
+
+n
+
+−1−2
+
+1
+n
+
+n
+2
+Xi < σ 2 e−2
+
+.
+
+n
+
+n
+
+i=1
+
+(35)
+
+Vol(An )
+Vol(Bn (0, γn ))
+√
+√
+=
+=
+Vol(Bn (0, D))
+Vol(Bn (0, D))
+n
+
+≥ Rn ≥
+
+1
+2
+
+log
+
+2
+γn
+D,
+
+n
+
+γ
+√n
+D
+
+.
+
+i.e.,
+(36)
+
+The probability of excess distortion can be lower bounded as:
+e(fn , ϕn , σ 2 , D) = P(X n ∈ An ) ≥ P(X n ∈ Bn (0, γn )).
+/
+/
+2
+Now deﬁne the random variables Yi := Xi /σ 2 and note that
+2
+the Yi ’s are χ1 -distributed. With this notation, and using (36),
+
+e(fn , ϕn , σ 2 , D) ≥ P
+
+1
+n
+
+n
+
+Yi >
+i=1
+
+γn
+≥P
+σ2
+
+1
+n
+
+n
+
+Yi > e2
+
+n
+
+i=1
+
+Recall that for the χ2 -distribution, the cumulant generating
+1
+function is Λ(θ) = − 1 log(1 − 2θ) and the rate function is
+2
+1
+1
+I(y) = maxθ {θy − Λ(θ)} = 2 (y − 1) − 2 log y. Furthermore,
+1
+1
+∗
+θ (y) := 2 (1− y ) is the maximizer. Using the standard change
+of measure technique for the lower bound in Cram´ r’s theorem
+e
+(see proof of [12, Theorem 2.2.3]),
+
+(33)
+
+where n := n − 5 log n − log 6 . By using the deﬁnition of
+2n
+n
+R(σ 2 , D) in (27), it is easy to see that σ 2 ∈ Un if and only
+ˆ
+if e−2 n < σ 2 /σ 2 < e2 n . We now use a result by Vergerˆ
+Gaugry [22, Theorem 1.2], which in our context, says that
+6n5/2 (σ 2 e2 n /D)n/2 reconstruction points sufﬁce to D-cover
+1
+length-n vectors xn whose empirical variance n i x2 ∈ Un .
+i
+Hence, the size of the code is bounded as
+|C| ≤ 6n5/2 (σ 2 e2 n /D)n/2 ≤ exp(n(R(σ 2 , D) +
+
+2
+Xi > σ 2 e2 n )
+
+γn ≤ σ 2 e2 n .
+
+1
+lim inf 2 log e(fn , ϕn , σ 2 , D) ≥ −1.
+(32)
+n→∞ n n
+In contrast to the DMS case, the dispersion for the quadratic
+Gaussian case (29) is constant. Hence, the exponents in (31)
+and (32) are also constant. Also note from (30) that the
+requirement on n is less stringent than in the DMS case (10).
+In particular, the log factor is no longer required. This is
+because the method of types is not used in the proof.
+Proof: Fix the sequence n . For the direct part, let us
+consider the set of “empirical variances”
+n)
+
+i=1
+
+Hence, we have R(σ 2 , D) +
+
+(31)
+
+Furthermore, every rate-distortion code {(fn , ϕn )}n∈N with
+1
+rates n log fn ≤ R(P, D) + n must satisfy
+
+Un (D,
+
+2
+Xi ∈ Un
+/
+
+The ﬁrst inequality is by the deﬁnition of Un and the union
+bound. The second is an application of the upper bound of
+Cram´ r’s theorem [12] applied to the χ2 -random variables
+e
+1
+2
+Xi /σ 2 . Now note from Taylor’s theorem that e2 n −1−2 n =
+2
+2
+2 n + o( n ). Taking the logarithm, normalizing by n 2 and
+n
+taking the upper limit of (35) yields the desired result in (31).
+We now turn our attention to the converse. The gist of the
+proof follows from the converse in [3] but, as we shall see,
+the error probability analysis is more intricate. Fix codes of
+1
+rates Rn = n log fn ≤ R(σ 2 , D) + n . Let the reproduction sequences be denoted √ xn (m), m ∈ Mn . Also,
+as ˆ
+let An := ∪m∈Mn Bn (ˆn (m), D) where Bn (cn , r) is the
+x
+n-dimensional ball centered at cn with radius r. Now, let
+γn > 0 be such that Vol(Bn (0, γn )) = Vol(An ). Clearly,
+√
+1
+Vol(An ) ≤ |Mn | Vol(Bn (0, D)). Since Rn = n log |Mn |,
+
+be any positive sequence satisfying
+n
+
+1
+n
+
+n
+
+n
+
+≤ 4 exp −
+
+whenever R > R(σ 2 , D) and zero otherwise. The exponent for
+correct decoding G(σ 2 , R, D) takes the same form as in (28)
+when R < R(σ 2 , D) and zero otherwise. In this case, it
+is easy to show by direct differentiation of F (σ 2 , R, D) (or
+G(σ 2 , R, D)) that the dispersion for lossy source coding is
+1
+(29)
+V (σ 2 , D) = ,
+2
+for all σ 2 and all D. In analogy to Theorem 1, we have the
+following in the quadratic Gaussian setting:
+Theorem 5. Let
+
+1
+n
+
+e(fn , ϕn , σ 2 , D) = P
+
+e(fn , ϕn , σ 2 , D) ≥ βn exp −nI(e2 n ) −
+
+n
+(1 − e−2 n )τn ,
+2
+
+n
+1
+˜
+where βn := P( n i=1 Yi ∈ (e2 n , e2 n + τn )) and τn is a
+˜
+sequence to be chosen. The random variables Yi have (tilted)
+distribution q(˜) := exp[θ∗ (e2 n )˜ − Λ(θ∗ (e2 n ))]p(˜) where
+y
+y
+y
+
+(34)
+
+4
+
+.
+
+(n)
+
+p( · ) is the χ2 distribution of the Yi ’s. By the choice of q( · ),
+1
+˜
+Eq [Yi ] = e2 n . Put τn := ζ n for some small ζ > 0. Then,
+1
+n
+
+1 − βn ≤ P
+
+n
+
+˜
+Yi ≤ e2
+i=1
+
+n
+
++P
+
+1
+n
+
+for n large. Let Marton’s exponent be D(QM || P ) =
+F (P, R(P, D) + n , D). Then, notice that
+D(Q(n) || P )
+
+n
+
+˜
+Yi ≥ e2
+
+n
+
++ τn
+
+(n)
+
+D(QM || P )
+
+i=1
+
+1
+32
+2
+32
+2
+1
+≤ +√ + 2 = +√ + 2
+2
+2
+n nτn
+n nζ
+
+n
+
+1
+exp −n 2 (1 + ζ + o(1)) ,
+(37)
+n
+4
+because I(e2 n ) = 2 +o( 2 ) and 1−e−2 n = 2 n +o( n ). The
+n
+n
+converse in (32) follows by taking the logarithm, normalizing
+by n 2 , taking n → ∞, and ﬁnally taking ζ → 0.
+n
+The MD setting for the probability of correct decoding of
+Gaussian sources can also analyzed analogously:
+e(fn , ϕn , σ 2 , D) ≥
+
+1
+log (1 − e(fn , ϕn , σ 2 , D)) ≥ −1.
+n 2
+n
+
+(38)
+
+Furthermore, every rate-distortion code {(fn , ϕn )}n∈N with
+1
+rates n log fn ≥ R(σ 2 , D) − n must satisfy
+lim sup
+n→∞
+
+1
+log (1 − e(fn , ϕn , σ 2 , D)) ≤ −1.
+n 2
+n
+
+(39)
+
+Proof: Similar to Theorem 5 and uses ideas in [3].
+V. C ONCLUSION
+In this paper, we analyzed the MD regime for lossy source
+coding. In analogy to (2), we showed for discrete sources that
+lim
+
+n→∞
+
+1
+1
+log e(fn , ϕn , P, D) = −
+2
+n n
+2V (P, D)
+
+(n)
+
+D(QM || P )
+
++ 1.
+
+(41)
+
+[1] C. E. Shannon, “Coding theorems for a discrete source with a ﬁdelity
+criterion,” IRE Int. Conv. Rec., vol. 7, pp. 142–163, 1959.
+[2] K. Marton, “Error exponent for source coding with a ﬁdelity criterion,”
+IEEE Trans. on Inf. Th., vol. 20, no. 2, pp. 197–199, Mar 1974.
+[3] S. Ihara and M. Kubo, “Error exponent of coding for memoryless
+gaussian sources with a ﬁdelity criterion,” IEICE Transactions, vol. 83A, no. 10, pp. 1891–1897, 2000.
+[4] K. Iriyama, “Probability of error for the ﬁxed-length lossy source coding
+of general sources,” IEEE Trans. on Inf. Th., vol. 51, no. 4, pp. 1498–
+1507, Apr 2005.
+[5] Y. Polyanskiy, H. V. Poor, and S. Verd´ , “Channel coding in the ﬁnite
+u
+blocklength regime,” IEEE Trans. on Inf. Th., pp. 2307 – 59, May 2010.
+[6] M. Hayashi, “Information spectrum approach to second-order coding
+rate in channel coding,” IEEE Trans. on Inf. Th., pp. 4947 – 66, Nov
+2009.
+[7] V. Y. F. Tan and O. Kosut, “On the dispersions of three network
+information theory problems,” arXiv:1201.3901, Feb 2012, [Online].
+[8] A. Ingber and Y. Kochman, “The dispersion of lossy source coding,” in
+Data Compression Conference (DCC), 2011.
+[9] V. Kostina and S. Verd´ , “Fixed-length lossy compression in the ﬁnite
+u
+blocklength regime: Discrete memoryless sources,” in Int. Symp. Inf.
+Th., 2011.
+[10] ——, “Fixed-length lossy compression in the ﬁnite blocklength regime:
+Gaussian source,” in Information Theory Workshop, 2011.
+[11] I. Kontoyiannis, “Pointwise Redundancy in Lossy Data Compression and
+Universal Lossy Data Compression,” IEEE Trans. on Inf. Th., vol. 46,
+no. 1, pp. 136–152, 2000.
+[12] A. Dembo and O. Zeitouni, Large Deviations Techniques and Applications, 2nd ed. Springer, 1998.
+[13] Y. Altug and A. B. Wagner, “Moderate deviation analysis of channel
+coding: Discrete memoryless case,” in Int. Symp. Inf. Th., 2010.
+[14] Y. Polyanskiy and S. Verd´ , “Channel dispersion and moderate deviau
+tions limits for memoryless channels,” in Allerton Conference, 2010.
+[15] I. Sason, “On Reﬁned Versions of the Azuma-Hoeffding Inequality with
+Applications in Information Theory,” arXiv:1111.1977, Nov 2011.
+[16] D.-K. He, L. A. Lastras-Monta˜ o, E.-H. Yang, A. Jagmohan, and
+n
+J. Chen, “On the redundancy of Slepian-Wolf coding,” IEEE Trans. on
+Inf. Th., vol. 55, no. 12, pp. 5607–27, Dec 2009.
+[17] I. Csisz´ r and J. Korner, Information Theory: Coding Theorems for
+a
+Discrete Memoryless Systems. Akademiai Kiado, 1997.
+[18] V. Y. F. Tan, A. Anandkumar, L. Tong, and A. S. Willsky, “A largedeviation analysis for the maximum likelihood learning of Markov tree
+structures,” IEEE Trans. on Inf. Th., vol. 57, no. 3, pp. 1714–35, Mar
+2011.
+[19] B. Yu and T. P. Speed, “A rate of convergence result for a universal dsemifaithful code,” IEEE Trans. on Inf. Th., vol. 39, no. 3, pp. 813–820,
+Mar 1997.
+[20] T. Weissman, E. Ordentlich, G. Seroussi, S. Verdu, and M. L. Weinberger, “Inequalities for the l1 deviation of the empirical distribution,”
+Hewlett-Packard Labs, Tech. Rep., 2003.
+[21] Z. Zhang, E.-H. Yang, and V. K. Wei, “The redundancy of source coding
+with a ﬁdelity criterion: Known statistics,” IEEE Trans. on Inf. Th.,
+vol. 43, no. 1, pp. 71–91, Jan 1997.
+[22] J. L. Verger-Gaugry, “Covering a ball with smaller equal balls in Rn ,”
+Disc. and Comp. Geom., vol. 33, no. 1, pp. 143–155, 2005.
+[23] H. Palaiyanur and A. Sahai, “On the uniform continuity of the ratedistortion function,” in Int. Symp. Inf. Th., 2008.
+
+Theorem 6. Let n be any positive sequence satisfying (30).
+There exists a rate-distortion code {(fn , ϕn )}n∈N with rates
+1
+2
+n log fn ≥ R(σ , D) − n such that
+n→∞
+
+D(Q(n) || P ) − D(QM || P )
+
+1
+The numerator of the ﬁrst term on the RHS in (41) is O( n )
+(n)
+(n)
+because |D(Q(n) || P ) − D(QM || P )| = O( Q(n) − QM 1 )
+(n)
+1
+(n)
+and Q −QM 1 = O( n ). From Lemma 2, the denominator
+2
+(Marton’s exponent) scales as n /(2V (P, D)) = ω( log n ).
+n
+Thus, the ﬁrst term in (41) tends to zero and the ratio of the
+divergence in (23) and Marton’s exponent tends to one.
+R EFERENCES
+
+,
+2
+
+where in the second inequality, we applied the Berry-Ess´ en
+e
+˜
+theorem to the ﬁrst term (the third moment of Yi is 15e−7 n )
+and Chebyshev’s inequality to the second. By (30), βn → 1
+2
+from below. With this choice of τn , for n sufﬁciently large,
+
+lim inf
+
+(n)
+
+=
+
+(40)
+
+and for Gaussian sources the RHS of (40) is equal to −1
+independent of σ 2 and D. As in [8]–[11], this reveals that the
+fundamental nature of the dispersion in the lossy source coding
+context. There are at least three avenues for future research: (i)
+Can the results be applied to, for instance, general sources as
+in [4]? (ii) Can similar analysis of the MD setting be applied
+to lossy source coding problems with side information, e.g.,
+the Wyner-Ziv problem? (iii) What is the exact relationship
+between the MD and CLT regimes cf. [14]?
+A PPENDIX : P ROOF OF L EMMA 3
+Proof: The rate-distortion function is uniformly continuous. Speciﬁcally, R(Q, D)−R(P, D) = O( Q−P 1 log Q−
+P 1 ) [23]. Also, minQ∈Pn (X ) Q − P 1 ≤ |X |/n for any
+P ∈ P(X ) [12, Lemma 2.1.2] so minQ∈Pn (X ) R(Q, D) −
+R(P, D) = O( log n ) which is asymptotically dominated by
+n
+log n 1/2
+). Thus, there exist n-types in the regularn = ω(( n )
+closed set {Q ∈ P(X ) : R(Q, D) − R(P, D) ≥ n }
+
+5
+
+

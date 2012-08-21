@@ -1,0 +1,814 @@
+Creator:         TeX output 2012.05.16:1441
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Wed May 16 14:41:58 2012
+ModDate:        Tue Jun 19 12:54:20 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      272443 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569563007
+
+Quantization Effect On Second Moment Of
+Log-Likelihood Ratio And Its Application To
+Decentralized Sequential Detection
+Yan Wang & Yajun Mei
+School of Industrial and Systems Engineering
+Georgia Institute of Technology, Atlanta, Georgia 30332–0225
+with equality if and only if Y = ϕ(X) is a sufﬁcient statistic
+of X, see Theorem 4.1 of Kullback and Leibler [2]. This
+is consistent with our intuition that Y = ϕ(X) is generally
+less informative than the X itself. Note that the inequality
+(1), which will be referred to as Kullback-Leibler’s inequality
+below, deals with the expected value or ﬁrst moment of the
+log-likelihood ratio.
+In this paper, we extend the Kullback-Leibler inequality
+(1) to investigate the quantization effects on the second or
+other higher moments of the log-likelihood ratio. Our research is motivated by the decentralized sequential detection problem where there are unobservable random variables
+Xk,n ; k = 1, . . . , K; n = 1, 2, . . . , and where what is actually
+observed are their quantized versions Yk,n = ϕk,n (Xk,n ). In
+such a problem, one wants to design appropriate quantization
+functions ϕk,n ’s so as to utilize the Yk,n ’s to make the best
+possible decision (under a proper criterion). Intuitively, it
+is natural to choose ϕk,n to maximize the Kullback-Leibler
+divergence of the quantized observations Iϕ (f1,k , f0,k ) (or
+possibly Iϕ (f0,k , f1,k )) if the Xk,n ’s are independent with
+density f1,k or f0,k for each k. In order to guarantee that the
+corresponding statistical procedures are indeed efﬁcient, one
+needs to verify that the distribution of quantized observations
+Yk,n satisﬁes some standard regularity conditions, and one of
+them is that the second moments of the log-likelihood ratios
+have a common upper bound over a class of allowable quantization functions ϕk,n ’s, or equivalently, that the variances of
+quantized observations are bounded above.
+Unfortunately, it can be analytically challenging or intractable to verify the assumptions for quantized observations
+Yk,n directly, even if the distributions of the unobservable
+random variable Xk,n are known to belong to some simple
+families of distributions, as one may have a large class of
+quantization functions ϕk,n to work with when ﬁnding the
+optimal one. To overcome such a difﬁculty, in this paper we
+show that one could dispense with quantization and only look
+at the second moment associated with the raw data Xk,n ’s
+since the boundedness of the unquantized version implies
+the boundedness of the quantized version regardless of the
+quantization function ϕk,n . Also see Le Cam and Yang [4]
+for similar approaches in other contexts.
+The remainder of the paper is organized as follows. In
+Section II we extend the Kullback-Leibler’s inequality (1) to
+
+Abstract—It is well known that quantization cannot increase
+the Kullback-Leibler divergence which can be thought of as the
+expected value or ﬁrst moment of the log-likelihood ratio. In
+this paper, we investigate the quantization effects on the second
+moment of the log-likelihood ratio. It is shown that quantization
+may result in an increase in the case of the second moment,
+but the increase is bounded above by 2/e. The result is then
+applied to decentralized sequential detection problems to provide
+a simpler sufﬁcient condition for asymptotic optimality theory,
+and the technique is also extended to investigate the quantization
+effects on other higher-order moments of the log-likelihood ratio
+and provide lower bounds on higher-order moments.
+
+I. I NTRODUCTION
+In information theory and statistics, the Kullback-Leibler
+divergence is a fundamental quantity that characterizes the
+difference between two probability distributions P1 and P0 of
+a random variable X. Denote by f1 (x) and f0 (x) the densities
+of P1 and P0 with respect to some common underlying
+probability measure µ, then the Kullback-Leibler divergence
+from P1 to P0 is
+∫
+f1 (x)
+I(f1 , f0 ) = f1 (x) log
+dµ(x) = E1 {Z}
+f0 (x)
+where Z is the log-likelihood ratio
+f1 (X)
+f0 (X)
+and E1 means taking the expectation over the distribution P1 .
+In some applications, we need to deal with the quantized
+version of X that is a function of X and often is required to
+belong to a ﬁnite alphabet. Denote by Y = ϕ(X) the quantized observation, and let Pϕ and fi (y; ϕ) be the probability
+i
+distribution and probability mass (or density) function of Y
+when X is distributed according to Pi for i = 0 or 1. Then
+the Kullback-Leibler divergence of the quantized observation
+Y is
+Iϕ (f1 , f0 ) = E1 {Zϕ }
+Z = log
+
+where Zϕ is the log-likelihood ratio of Y = ϕ(X) deﬁned by
+Zϕ = log
+
+dPϕ
+1
+dPϕ
+0
+
+(Y ) = log
+
+f1 (Y ; ϕ)
+.
+f0 (Y ; ϕ)
+
+An important property is that quantization cannot increase the
+Kullback-Leibler divergence, that is,
+Iϕ (f1 , f0 ) ≤ I(f1 , f0 )
+
+(1)
+
+1
+
+˜
+Now by the deﬁnitions of H2 (t), H2 (t) and Vϕ (f1 , f0 ), we
+have
+{
+}
+Vϕ (f1 , f0 ) = E1 H2 (L−1 )
+ϕ
+{
+}
+˜
+≤ E1 H2 (L−1 )
+ϕ
+{ ( {
+})}
+˜ 2 E1 L−1 Y
+= E1 H
+{ { (
+) }}
+˜
+≤ E1 E1 H2 L−1 Y
+{ (
+)}
+˜
+= E1 H2 L−1
+
+the second moment of the log-likelihood ratio, and Section
+III discusses an application our result in the decentralized
+sequential detection problems. In Section IV, we extend our
+result to investigate the quantization effects on other higherorder moments of the log-likelihood ratio.
+II. S ECOND - ORDER M OMENTS
+For the X and Y = ϕ(X), deﬁne their respective second
+moments of log-likelihood ratios as
+∫
+(
+{ }
+f1 (x) )2
+V (f1 , f0 ) = E1 Z 2 = f1 (x) log
+dµ(x);
+f0 (x)
+{ 2}
+Vϕ (f1 , f0 ) = E1 Zϕ
+∫
+(
+f1 (y; ϕ) )2
+=
+f1 (y; ϕ) log
+dµ(y),
+(2)
+f0 (y; ϕ)
+
+˜
+where the ﬁrst inequality follows from H2 (t) ≤ H2 (t), and
+the second inequality is to apply Jensen’s inequality to the
+˜
+convex function H2 (t).
+(
+)
+˜
+Meanwhile, the difference between E1 {H2 L−1 } and
+( −1 )
+} turns out to be insigniﬁcant. By
+V (f1 , f0 ) = E1 {H2 L
+˜
+deﬁnition, H2 (t) ≤ H2 (t) + 2 t for all t > 0, and thus
+e
+{ (
+)}
+{ (
+)} 2 {
+}
+˜
+≤ E1 H2 L−1 + E1 L−1
+E1 H2 L−1
+e
+2
+= V (f1 , f0 ) +
+e
+where we use the fact that
+∫
+∫
+E1 {L−1 } = (f0 (x)/f1 (x))f1 (x)dµ = f0 (x)dµ = 1.
+
+where Z and Zϕ are the log-likelihood ratios of X and Y.
+Our main result of this section is the following theorem.
+Theorem 1. For any measurable function ϕ, we have
+2
+Vϕ (f1 , f0 ) ≤ V (f1 , f0 ) + .
+e
+
+(3)
+
+Proof: Let L = eZ = f1 (X)/f0 (X) and Lϕ = eZϕ =
+f1 (Y ; ϕ)/f0 (Y ; ϕ) be the likelihood ratios. To simplify notation, let E1 {·|Y } denote the conditional expectation with
+respect to a given value of the quantization observation
+Y = ϕ(X), then it is easy to see that
+{
+}
+{
+}
+f0 (X)
+f0 (Y ; ϕ)
+E1 L−1 Y = E1
+= L−1 .
+Y =
+ϕ
+f1 (X)
+f1 (Y ; ϕ)
+
+Combining the above inequalities yields (3), completing the
+proof of our theorem.
+It is useful to provide some comments to better understand
+our theorem. First, the discrete version of the KullbackLeibler’s inequality (1) is the well-known log-sum inequality:
+for non-negative numbers a1 , . . . , an and b1 , . . . , bn , denote
+the sum of all ai ’s by a and the sum of all bi ’s by b, and then
+we have
+n
+a ∑
+ai
+a log ≤
+ai log
+b
+bi
+i=1
+
+Recall that in the proof of the Kullback-Leibler’s inequality
+(1), one uses heavily the fact that the function H(t) = − log t
+is convex when t > 0. Then, by Jensen’s inequality,
+Zϕ
+
+= log Lϕ = H(L−1 ) = H(E1 (L−1 |Y ))
+ϕ
+≤ E1 (H(L−1 )|Y ) = E1 (Z|Y ),
+
+and the Kullback-Leibler’s inequality (1) is proved by taking
+expectations under P1 on both sides.
+Unfortunately, the above approach fails for the second moment case since the function H2 (t) = (− log t)2 = (log t)2 is
+no longer convex (nor is it concave). Fortunately, this approach
+can be salvaged by what we call the “convex domination”
+approach, i.e., by ﬁnding a convex function that is larger, but
+not too much larger, than H2 (t) = (log t)2 .
+To do so, taking derivatives of the function H2 (t) = (log t)2
+leads to
+
+with equality if and only if ai /bi are constant. Meanwhile, the
+discrete version of our result in (3) becomes that
+n
+(
+a )2 ∑ (
+ai )2 2
+a log
+≤
+ai log
++ b.
+b
+bi
+e
+i=1
+
+Note that the extra term on the right side is 2b/e instead of
+2/e as we do not put any normalization conditions on a or b.
+Second, a comparison of (1) and (3) shows that we have an
+extra constant term 2/e for the second moment case, and thus
+′
+′′
+H2 (t) = 2 log t/t and H2 (t) = 2(1 − log t)/t2 .
+it is natural to ask whether or not the term can be eliminated,
+Thus H2 (t) = (log t)2 is convex on t ≤ e but is concave on i.e., whether it is always true that Vϕ (f1 , f0 ) ≤ V (f1 , f0 ).
+The following counterexample provides a negative answer.
+t ≥ e. Hence, if we consider the following new function
+Suppose that the X takes three distinct values 0, 1, 2 with
+{
+H2 (t) = (log t)2 ,
+if 0 < t ≤ e
+probabilities 29/36, 1/9, 1/12 under P1 and equal probabil˜
+H2 (t) =
+, ities 1/3 under P . Let ϕ be a function with a binary range
+′
+2
+0
+H2 (e) + H2 (e)(t − e) = e t − 1, if t > e
+{0, 1} such that ϕ(0) = 0, ϕ(1) = ϕ(2) = 1. Then it is easy
+˜
+then it is clear that H2 (t) is a continuous convex function of to verify that V (f1 , f0 ) = 0.9215 ≤ Vϕ (f1 , f0 ) = 0.9224.
+t when t ≥ 0. Moreover, the concavity of H2 (t) on t ≥ e More generally, other counterexamples can be easily found
+˜
+implies that H2 (t) dominates H2 (t).
+by choosing two distributions P1 and P0 of X, both of
+
+2
+
+k
+Xn
+
+In the simplest version of decentralized quickest change
+detection problems, we assume that an event occurs to the
+network system at some unknown time ν, and changes the
+k
+probability measure of the raw data Xn from P0 (with density
+k
+k
+k
+f0 for observations Xn ) to P1 (with density f1 ). Furthermore,
+we assume that the observations are independent over time and
+from sensor to sensor, conditional on each hypothesis on the
+possible change-time ν = 1, 2, 3, . . . or ν = ∞ (no change).
+The objective is to jointly optimize the policies at the local
+sensors and fusion center levels so as to detect the change as
+soon as possible subject to a constraint on the false alarm rate.
+A crucial challenge in decentralized quickest change detection is which kind of local quantizers should be used at each
+local sensor. This is easy if one further assumes that each local
+sensor uses a stationary local quantizer, as the corresponding
+problem reduces to the classical centralized case and various
+well-developed optimal or asymptotic optimal theories are
+applicable, see for example Lorden [5], Moustakides [8], Page
+[9], Pollak [10], Shiryaev [11] and [12], etc. In fact, it is
+not difﬁcult to see that the optimal stationary quantizer ϕ∗
+for any local sensor S k is the one that maximizes the local
+k
+k
+Kullback-Leibler divergence Iϕ (f1 , f0 ), and it can be shown
+∗
+that such an optimal quantizer ϕ is a Monotone Likelihood
+Ratio Quantizer (MLRQ), see, for example, Tsitsiklis [14],
+Crow and Schwartz [1], Tartakovsky and Veeravalli [13].
+On the other hand, the scenario becomes more complicated
+if the local quantizers are allowed to be non-stationary. By
+comparing with Bayes procedures, Veeravalli [16] conjectures
+that the schemes based on the optimal stationary MLRQ ϕ∗
+are asymptotically optimal regardless whether the quantizers
+are stationary or not. While this conjecture sounds reasonable
+as maximizing the Kullback-Leibler divergence seems to be
+natural to construct optimal local quantizers, it is very challenging to prove or disprove it, partly because the regularity
+conditions of the quantized observations are needed to do any
+reasonable asymptotic analysis.
+Some sufﬁcient conditions under which this conjecture
+holds are available in the literature. By Lai [3], this conjecture
+is true under the following sufﬁcient condition:
+
+Sk
+k
+Un
+
+k
+Vn
+
+K
+Un
+K
+Xn S K
+
+1
+Un
+1
+S 1 Xn
+
+Fusion Center
+1
+Vn
+
+K
+Vn
+
+Fig. 1.
+
+A Decentralized Sensor Network
+
+which are supported on n + 1 (n ≥ 2) points x0 , . . . , xn
+such that the likelihood ratio L0 = f0 (x0 )/f1 (x0 ) < e and
+Li = f0 (xi )/f1 (xi ) > e for i = 1, . . . , n with L1 , . . . , Ln
+being n distinct values. If we consider a quantization function
+ϕ that maps all x1 , . . . , xn to a single point y1 but maps x0
+to another point y0 , then V (f1 , f0 ) ≤ Vϕ (f1 , f0 ), since the
+function H2 (t) = (log t)2 is strictly concave on t ≥ e. In
+other words, unlike the case of Kullback-Leibler’s inequality
+(1), a quantization indeed can increase the second moment of
+the log-likelihood ratio. Fortunately, our theorem shows that
+such an increase is at most 2/e.
+III. D ECENTRALIZED S EQUENTIAL D ETECTION
+The problem that motivated us to write the present paper
+arises from decentralized sequential detection problems, see,
+Veeravalli, Basar and Poor [17], and Veeravalli [13], [15]. Fig.
+1 depicts a typical conﬁguration of a decentralized network
+system that consists of K geographically deployed local
+sensors S 1 , . . . , S K and a fusion center. At each time step
+k
+n = 1, 2, . . . , each local sensor S k observes a raw data Xn
+k
+and sends a quantized message Un to the fusion center, which
+makes a ﬁnal decision when stopping taking observations. Due
+to constraints on communication bandwidths or requirements
+of reliability, the local sensors are required to compress the
+k
+raw data to quantized sensor messages Un ’s, which all belong
+k
+to ﬁnite alphabets, say {0, 1, . . . , l − 1} respectively. In
+other words, the fusion center has no direct access to the
+raw observations and has to make its decisions based on the
+quantized sensor messages. If necessary, the fusion center can
+k
+send feedback, Vn , to the local sensors to adaptively adjust
+the local quantization so as to achieve maximum efﬁciency.
+There are many possible useful setups for the decentralized
+network system, and one widely used setup is the system
+with limited local memory and full feedback, or Case E in
+Veeravalli, Basar and Poor [17]. Mathematically, in such a
+system, the quantized sensor message sent from the local
+sensor S k to the fusion center at time n is
+k
+k
+Un = ϕk (Xn ; Fn−1 )
+n
+
+ν+t K
+{
+∑∑
+k
+lim sup esssupP(ν) max
+Zi,ϕ
+n→∞ ν≥1
+t≤n
+i=ν k=1
+}
+≥ Itot (1 + δ)n U1 , . . . , Uν−1 = 0,
+
+(5)
+
+where P(ν) is the probability measure when the change occurs
+k
+at time ν, Zi,ϕ is the likelihood ratio for the quantized data
+k
+Ui , i.e.,
+f k (U k ; ϕk )
+k
+Zi,ϕ = log 1 ik i
+k
+f0 (Ui ; ϕk )
+i
+∑K
+k
+k
+k
+k
+and Itot = k=1 Imax with Imax = supϕ I(f1 , f0 ; ϕ). Here
+k
+k
+fm (u; ϕi ) is probability mass function, i.e.,
+{
+}
+k
+k
+fm (u; ϕk ) = Pk ϕk (Xi ) = u , m = 0, 1.
+i
+m
+i
+
+(4)
+
+k=1,...,K
+k
+k
+k
+where Fn−1 = {U[1,n−1] } (here U[1,n] = {U1 , . . . , Un } )
+denotes all past sensor messages at the fusion center.
+
+Unfortunately, condition (5) involves all possible nonstationary quantizers, and it is too complicated to be veriﬁed
+
+3
+
+k
+Denote them by ϕk
+opt,0 and ϕopt,1 respectively. To develop
+a simple but asymptotically optimal decentralized sequential
+tests, Mei [7] introduces the concept of “tandem quantizers”
+where the test procedure is divided into two stages. In the
+ﬁrst stage, any reasonable stationary quantizer is used and the
+network system makes a preliminary decision about which of
+two hypothesis is likely to be true. Then at the second stage,
+each local sensor switches to one of two optimal stationary
+k
+quantizers ϕk
+opt,0 or ϕopt,1 , based on the preliminary decision.
+It was shown in Mei [7] that under the condition (6) together
+k
+k
+with the symmetric condition that supϕ Vϕ (f0 , f1 ) < ∞,
+the proposed two-stage tests with the tandem quantizers are
+asymptotically optimal among all decentralized sequential
+tests with or without stationary quantizers. By Theorem 1, the
+asymptotic optimality theory in Mei [7] holds under a simpler
+sufﬁcient condition: the proposed two-stage tests are asymptotically optimal as long as the distributions of raw sensor
+k
+k
+k
+k
+observations satisfy V (f1 , f0 ) < ∞ and V (f0 , f1 ) < ∞ for
+all k = 1, . . . , K. In particular, they are asymptotically optimal
+when the raw observations are normally or exponentially
+distributed.
+
+it directly. By using Kolmogorov’s inequality for martingales,
+Mei [6] provides a simpler though stronger sufﬁcient condition, and shows that the conjecture holds if there is a uniform
+bound on the second moments of the log-likelihood ratios
+of quantized observations. Speciﬁcally, Mei [6] showed that
+condition (5) holds if for all k = 1, . . . , K,
+k
+k
+sup Vϕ (f1 , f0 ) < ∞,
+
+(6)
+
+ϕ
+
+where Vϕ is deﬁned in (2). While it was shown in [6] that relation (6) holds when the quantized messages belong to binary
+sensor messages with l = 2 and when f0 and f1 belong to
+the same one-parameter exponential family satisfying certain
+restrictions, it is still an open problem whether condition (6)
+holds in general or not, especially when the quantizers can
+have arbitrary forms and belong to the inﬁnite dimensional
+functional space.
+To verify (6) in more general scenarios, given the inequality
+in Theorem 1, it is enough to consider the second moment
+associated with the raw data. To be more speciﬁc, by Theorem
+1, if for all k = 1, . . . , K, for the raw observations, we have
+)2
+∫ (
+k
+f1 (x)
+k
+k
+k
+log k
+f1 (x)dµ(x) < ∞, (7)
+V (f1 , f0 ) =
+f0 (x)
+
+IV. G ENERAL H IGHER - ORDER M OMENTS
+The convex domination technique we developed in proving
+Theorem 1 can have a broad application. In this section, it
+is applied to deal with some properties of the higher-order
+moments of the log-likelihood ratios.
+For a positive integer j = 1, 2, . . . , deﬁne the j-th moment
+of the log-likelihood ratios as
+∫
+(
+{
+}
+f1 (x) )j
+Wj (f1 , f0 ) = E1 (Z)j = f1 (x) log
+dµ(x);
+f0 (x)
+{
+}
+Wϕ,j (f1 , f0 ) = E1 (Zϕ )j
+(
+)j
+∫
+f1 (y; ϕ)
+=
+f1 (y; ϕ) log
+dµ(y),
+(8)
+f0 (y; ϕ)
+
+then condition (6) holds and so does (5). Note that condition
+(7) only deals with the densities of raw observations and does
+not involve the stationary or non-stationary quantizers. Moreover, it is a standard assumption in the statistical literature as
+a regularity condition for the raw density functions. Therefore,
+condition (7) provides a simple but useful sufﬁcient condition
+under which the long-standing conjecture of asymptotic optimality of the schemes with the optimal stationary MLRQ ϕ∗
+is true regardless whether the quantizers are stationary or not.
+Similarly, our results can also be applied to the problem
+of decentralized sequential hypotheses testing, see Veeravalli,
+Basar and Poor [17]. This problem is similar to the abovementioned decentralized quickest change detection problem
+except that the distributions of the raw data do not change
+over time. In other words, we have two simple hypotheses H0
+k
+and H1 regarding the distributions of Xn ’s, and conditional
+k
+on each of these two hypotheses, the raw observations {Xn }
+form i.i.d. sequences over time n and are independent among
+different sensors. The objective here is to use as few samples
+as possible to correctly decide which of these two simple
+hypotheses is true. An optimal sequential test is one that
+balances the trade-off between the average sample size under
+each hypothesis and the probabilities of making Type I and
+II errors, see Veeravalli, Basar and Poor [17], Veeravalli [15]
+and Mei [7] for more details.
+Unlike the quickest change detection problem, nonstationary quantizers are generally needed in order to develop
+asymptotically optimal decentralized sequential tests. This is
+because each local sensor will have two kinds of optimal
+k
+k
+stationary quantizers: one maximizes Iϕ (f0 , f1 ) (if H0 is true)
+k
+k
+and the other maximizes Iϕ (f1 , f0 ) (if H1 is true), due to
+the asymmetric properties of the Kullback-Leibler divergences.
+
+where Z and Zϕ are the log-likelihood ratios of X and Y.
+It turns out that we need to consider two different cases,
+depending on whether j is even or odd.
+When j ≥ 1 is even, it is straightforward to apply our
+technique in Theorem 1. Below we will present a more general
+result on the α-moments of the absolute values of the loglikelihood ratios Z and Zϕ for any real number α ≥ 1.
+˜
+Theorem 2. Deﬁne Wα (f1 , f0 ) = E1 {|Z|α } and
+˜ ϕ,α (f1 , f0 ) = E1 {|Zϕ |α } . Then for any α ≥ 1,
+W
+˜
+˜
+Wϕ,α (f1 , f0 ) ≤ Wα (f1 , f0 ) + Cα ,
+
+(9)
+
+where the constant
+α(α − 1)α−1
+>0
+eα−1
+and C1 = 1 by convention that 00 = 1.
+Cα =
+
+(10)
+
+Proof: The proof is identical to that of Theorem 1, except
+considering the convex function
+{
+Hα (t) = | log t|α if 0 < t ≤ tα
+˜
+Hα (t) =
+,
+Cα t − dα
+if t > tα (≥ 1)
+
+4
+
+where Cα is deﬁned in (10) and dα = (α − 1)α−1 ≥ 0.
+
+˜
+if 1 ≤ t < t0 , then by taking derivatives, H(t) − H(t) is a
+decreasing function and thus
+
+Note that Theorem 2 describes the quantization effects on
+the j-th moment of log-likelihood ratios when the integer j ≥
+1 is even, and includes Theorem 1 as a special case with α =
+2. A simple calculation shows that C2 = 2/e ≈ 0.7358 and
+C4 = 108/e3 ≈ 5.3770. In addition, it is interesting to see that
+E1 {Zϕ } ≤ E1 {Z} (by the Kullback-Leibler’s inequality) but
+E1 |Zϕ | ≤ E1 |Z| + 1 (by Theorem 2 with α = 1). Moreover,
+˜
+˜
+it is generally not true that Wϕ,α (f1 , f0 ) ≤ Wα (f1 , f0 ), and
+counterexamples can be found by exploring the fact that for
+any α ≥ 1, Hα (t) = | log t|α is strictly concave when t ≥ tα .
+
+∗
+˜
+˜
+˜
+˜
+H(t) − H(t) ≤ H(1) − H(1) = H(1) ≤ H(t∗ ) = Cj .
+∗
+˜
+Thus, for all t > 0 we have 0 ≤ H(t) − H(t) ≤ Cj , and our
+claim is proved.
+The remaining proof of Theorem 3 can then be proceeded
+along the same line as in Theorem 1 and thus omitted.
+Clearly, the convex domination method we developed allows
+one to deal with non-convex functions and can have broad
+applications. As an illustration, it can also be used to establish
+lower bound for Wj (f1 , f0 ) and Wϕ,j (f1 , f0 ) in (8) for a given
+odd integer j ≥ 1. The proof is omitted due to the page limit.
+
+Now let us focus on the case when the integer j ≥ 1 is
+odd. In order to establish the relationship between Wj (f1 , f0 )
+and Wϕ,j (f1 , f0 ) deﬁned in (8), it turns out that when j ≥ 1
+∗
+is odd, we need to deﬁne another constant Cj to be the only
+real number x ≥ 0 that satisﬁes the equation
+x = (j − 1)j−1 − Cj exp(−x1/j ),
+
+Theorem 4. For an integer j ≥ 1, the j-th moments
+of log-likelihood ratios, Wϕ,j (f1 , f0 ) and Wj (f1 , f0 ), have
+a lower bound 0 if j is even, and have a lower bound
+−j(j − 1)j−1 /ej−1 − (j − 1)j if j is odd.
+
+(11)
+
+ACKNOWLEDGEMENTS
+This research was supported in part by grants from the
+AFOSR grant FA9550-08-1-0376 and the NSF grants CCF0830472 and DMS-0954704.
+
+where Cj is deﬁned in (10). A simple numerical calculation
+∗
+∗
+shows that C1 = 0 and C3 ≈ 3.6518.
+The following theorem describes the quantization effects
+on the higher-order moments of the log-likelihood ratios, and
+includes the Kullback-Leibler’s inequality (1) as a special case.
+
+R EFERENCES
+[1] R. W. Crow, S. C. Schwartz, “Quickest detection for sequential decentralized decision systems,” IEEE Trans. Aerosp. Electron. Syst., vol. 32,
+pp. 267-283, Jan. 1996.
+[2] S. Kullback, R. A. Leibler, “On information and sufﬁciency”, Ann. Math.
+Statist., vol. 22, no. 1, pp. 79-86, 1951.
+[3] T. L. Lai, “Information bounds and quick detection of parameter changes
+in stochastic systems,” IEEE Trans. Inf. Theory, vol. 44, pp. 2917-2929,
+Nov. 1998.
+[4] L. Le Cam and G. Yang, “On the preservation of local asymptotic
+normality under information loss,” Ann. Statist., vol. 16, pp. 483-520,
+1988.
+[5] G. Lorden, “Procedures for reacting to a change in distribution,” Ann.
+Math. Statist., vol. 42, pp. 1897-1908, 1971.
+[6] Y. Mei, “Information bounds and quickest change detection in decentralized decision systems,” IEEE Trans. Inf. Theory, vol. 51, pp. 2669-2681,
+Jul. 2005.
+[7] Y. Mei, “Asymptotic optimality theory for decentralized sequential hypothesis testing in sensor networks” IEEE Trans. Inf. Theory, vol. 54, pp.
+2072-2089, May. 2008.
+[8] G. V. Moustakides, “Optimal stopping times for detecting changes in
+distributions,” Ann. Statist., vol.14, pp. 1379-1387, 1986.
+[9] E. S. Page, “Continuous inspection schemes,” Biometrika, vol. 41, pp.
+100-115, 1954.
+[10] M. Pollak, “Optimal detection of a change in distribution,” Ann. Statist.,
+vol. 13, pp. 206-227, 1985.
+[11] A. N. Shiryayev, “On optimum methods in quickest detection problems,”
+Theory Probab. Appl., vol. 8, pp. 22-46, 1963.
+[12] —, Optimal Stopping Rules. New York: Springer-Verlag, 1978.
+[13] A. G. Tartakovsky, V. V. Veeravalli, “An efﬁcient sequential procedure
+for detecting changes in multichannel and distributed systems,” Proc. 5th
+Int. Conf. Information Fusion, vol. 2, Annapolis, MD, pp. 1-8, Jul. 2002.
+[14] J. N. Tsitsiklis, “Extremal properties of likelihood ratio quantizers”,
+IEEE Trans. Commun., vol. 41, pp. 550-558, 1993.
+[15] V. V. Veeravalli, “Sequential decision fusion: theory and applications”,
+J. Franklin Inst., vol. 336, pp. 301-322, Feb. 1999.
+[16] —, “Decentralized quickest change detection,” IEEE Trans. Inf. Theory,
+vol. 47, pp. 1657-1665, May 2001.
+[17] V. V. Veeravalli, T. Basar, and H. V. Poor, “Decentralized sequential
+detection with a fusion center performing the sequential test,” IEEE Trans.
+Inf. Theory, vol. 39, pp. 433-442, Mar. 1993.
+
+Theorem 3. For any measurable function ϕ, if the integer
+j ≥ 1 is odd, we have
+∗
+Wϕ,j (f1 , f0 ) ≤ Wj (f1 , f0 ) + Cj ,
+
+(12)
+
+∗
+where Cj is deﬁned by equation (11).
+
+Proof: Fix the odd integer j ≥ 1, by taking derivatives, it
+is easy to see that H(t) = (− log t)j is convex on 0 < t ≤ 1
+or t ≥ ej−1 but is concave when 1 ≤ t ≤ ej−1 . Let t0 = ej−1 ,
+then H(t) ≤ H(t0 ) + H ′ (t0 )(t − t0 ) = −Cj t + dj for 1 ≤ t ≤
+t0 , where Cj > 0 is deﬁned in (10) and dj = (j − 1)j−1 ≥ 0.
+Now the line y = −Cj t + dj intersects the curve y = H(t) =
+(− log t)j at two points: one is t = t0 = ej−1 ≥ 1 and the
+other is in the interval (0, 1] and denoted by t∗ ≤ 1. Therefore,
+we can construct a convex function as follows:
+
+ H(t) = (− log t)j , if 0 < t ≤ t∗ (≤ 1);
+
+˜
+−Cj t + dj ,
+if t∗ ≤ t < t0 = ej−1 ;
+H(t) =
+
+
+H(t) = (− log t)j , if t ≥ t0 (≥ 1).
+˜
+Clearly, by our construction, the convex function H(t) is
+j
+continuous and dominates H(t) = (− log t) .
+∗
+˜
+Next, we claim that 0 ≤ H(t) − H(t) ≤ Cj for all t > 0,
+∗
+where Cj is deﬁned through (11). In other words, the dif˜
+ference between H(t) and H(t) = (− log t)j is insigniﬁcant.
+∗
+To prove this claim, ﬁrst note that Cj = H(t∗ ) ≥ 0 and it
+˜
+sufﬁces to prove the claim when t∗ ≤ t < t0 , i.e., when H(t)
+is decreasing as it is a linear function with negative slope. The
+proof needs to consider two scenarios, depending on whether
+t ≤ 1 or ≥ 1. If t∗ ≤ t ≤ 1, then the claim clearly holds
+∗
+˜
+˜
+since H(t) ≤ H(t∗ ) = Cj and H(t) ≥ 0. On the other hand,
+
+5
+
+

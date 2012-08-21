@@ -1,0 +1,904 @@
+Title:          Conference_paper_ISIT_short2.pdf
+Author:         dduyck
+Creator:        Adobe Acrobat 10.1.2
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Fri May 11 16:14:17 2012
+ModDate:        Tue Jun 19 12:56:26 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      439637 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569566157
+
+Time-Varying Space-Only Codes
+Dieter Duyck, Marc Moeneclaey
+
+Sheng Yang
+
+Fambirai Takawira
+
+Joseph J. Boutros
+
+Ghent University; University of Kwazulu Natal∗
+Ghent, Belgium; Durban, South Africa
+{mm,dduyck}@telin.ugent.be
+
+Sup´ lec
+e
+Paris, France
+sheng.yang@supelec.fr
+
+University of Witwatersrand
+Johannesburg, South Africa
+fambirai.takawira@wits.ac.za
+
+Texas A&M University
+Doha, Qatar
+boutros@tamu.edu
+
+lower detection complexity, but in general at the expense of a
+signiﬁcantly reduced bit rate. Considerable effort has been put
+in reducing the decoding complexity of non-orthogonal STCs.
+For example, the complexity of decoding squared 2 × 2 STCs
+for the 2×2 MIMO channel was said to be reduced to O(M 2.5 )
+[14], [16]. However, the achieved complexity reductions are
+not valid for all STCs and all MIMO channels.
+We add a new dimension to the quest for low-complexity
+STCs, by reducing the dimension of the STC itself, without
+compromising on rate or diversity. In the context of coded
+communication, i.e., assuming an error-correcting code with
+coding rate Rc < 1, we prove that the outage probability1
+of an n × r MIMO channel with r ≥ n, can have full
+transmit diversity using time-varying n × 1 (i.e. space-only)
+STCs, limiting its dimension by a factor of n with respect to
+optimal STCs. Time-varying rotations were ﬁrst used by [21],
+where the diversity-multiplexing tradeoff has been analysed for
+Gaussian alphabets in a multihop scenario. This paper extends
+[5], where full diversity of this new class of STCs was proved
+for 2×2 MIMO channels. This work has been extended in [6],
+also including the case where r < n, including more detailed
+proofs and more numerical results.
+Notation: we write scalars, vectors and matrices as x, x
+and X. The Landau symbols f (n) = O(g(n)) and f (n) =
+Ω(g(n)) mean f (n) ≤ kg(n) and f (n) ≥ kg(n) for some
+.
+positive k. The equation sign f (γ) = g(γ), introduced in
+log f (γ)
+[19], means that limγ→∞ log γ = limγ→∞ log g(γ) . Similar
+log γ
+˙
+˙
+meanings hold for ≤ and ≥.
+
+Abstract—Multiple antennas are used to increase reliability
+and bit rate for a given bandwidth. For a ﬁxed transmission
+rate, discrete input alphabets and no channel state information
+at the transmitter, optimal space-time codes (STCs) achieving
+both gains (full rate and full diversity) are well known. However, the complexity of maximum likelihood decoding increases
+exponentially with the number of space and time dimensions of
+the STC. Despite praiseworthy efforts to reduce the decoding
+complexity, optimal STCs are not used in practice in the case of
+more than two transmit antennas because of complexity reasons.
+It is generally accepted that reducing the dimension of the STC
+leads to a reduced diversity order. We show that this is not
+true for coded communication, assuming the presence of an
+outer error-correcting code with any coding rate. We propose a
+new class of full-rate full-diversity STCs; more speciﬁcally, timevarying space-only codes. This new class is referred to as EMI
+codes. Full diversity is proven in terms of outage probability, for
+the case where the number of receive antennas is larger than or
+equal to the number of transmit antennas, and is numerically
+veriﬁed in terms of outage and word error probability using
+LDPC codes.
+
+I. I NTRODUCTION
+Channels with multiple antenna at in- and output (MIMO)
+have more degrees of freedom which can be used to increase
+spectral efﬁciency (through spatial multiplexing) and reliability (through diversity). We consider classical Rayleigh faded
+n × r MIMO channels, where n and r are the number of
+transmit and receive antennas, respectively. The maximum
+spectral efﬁciency under which the maximal diversity order
+rn is achievable is min(n, r) log2 M , where M is the constellation size, achieving a multiplexing gain of min(n, r).
+When the spectral efﬁciency is taken constant, both diversity
+and multiplexing gains can be fully achieved simultaneously,
+through full-rate full-diversity space-time codes (STCs). STCs
+for uncoded communication, i.e., without outer code, have
+been designed by minimizing the pairwise error probability
+under maximum likelihood (ML) decoding (e.g. [1], [12], [15],
+[18]). For coded communication, STCs have been designed
+assuming a genie (e.g. [11]). An STC taking into account both
+criteria was proposed in [4].
+In the worst case, without sphere decoding [20], the complexity of exhaustive ML decoding of a u×v STC (coding over
+u space dimensions and v time dimensions) at the receiver
+scales as O(M uv ). Therefore, optimal n × n STCs may
+be too complex to decode, e.g. scaling as O(1616 ) when
+16−QAM and n = 4. Orthogonal STCs [18] have a much
+
+II. S YSTEM
+
+MODEL
+
+We consider a point-to-point MIMO channel H = [hi,j ] ∈
+Cr×n with n transmit antennas and r receive antennas, where
+hi,j ∼ CN (0, 1) is the complex path gain from transmit
+antenna j to receive antenna i. We assume that all path gains
+are independent. The channel state information is perfectly
+known at the receiver side, but unknown at the transmitter
+side. The channel is assumed to vary slowly, so that it remains
+constant during the transmission of at least one codeword.
+Assuming a total of Nc channel uses per codeword, the output
+of the matched ﬁlter at the destination is
+√
+µt = γ Hζ t + ν t , t = 1, . . . , Nc ,
+(1)
+1 The outage probability is a fundamental and achievable lower bound on
+the average word error rate (WER) of coded systems [2].
+
+* D. Duyck thanks the University of Kwazulu Natal which supported this
+work and where he is currently registered as an exchange student.
+
+1
+
+where µt , ν t ∈ Cr×1 , ζ t ∈ Cn×1 and γ is the average signalto-noise ratio per symbol (SNR) at each transmit antenna2.The
+additive white Gaussian noise vector ν t has i.i.d. entries,
+νi,t ∼ CN (0, 1). The transmit vector ζ t belongs to Ωζ and
+its components ζj,t satisfy E[|ζj,t |2 ] = 1, ∀ j, t. The overall
+received signal-to-noise ratio per information bit is denoted as
+REb /N0
+Eb
+Es
+, where R = log2 (|Ωζ |)Rc
+N0 , so that N0 = γ =
+nr
+is the spectral efﬁciency and Rc is the coding rate. The
+instantaneous mutual information I(ζ t ; µt |H) depends on Ωζ
+and the channel realization H.
+The channel realization H can be decomposed by a singular
+value decomposition (SVD) as H = U ΣV † , where U ∈ Cr×r
+and V ∈ Cn×n are unitary matrices, uniformly distributed in
+the Stiefel manifold with respect to the Haar measure [13, Sec.
+2.1.4] [7, Sec. 3.2], V † is the Hermitian transpose of V , and
+Σ ∈ Rr×n is a diagonal matrix with the non-negative singular
+values σi , i = 1, . . . , min(r, n) of H on its diagonal. Because
+H is known at the receiver, the following transformation can
+be performed,
+√
+yt = U † µt = γ ΣV † ζ t + wt , t = 1, . . . , Nc (2)
+
+are n × n full-rate full-diversity STCs (hence k = n). The
+precoder Pl = P is constant, has dimension n2 and its
+elements are optimized to maximize the coding gain (see for
+example [1], [4], [11], [12], [15], [18]). As mentioned before,
+their detection is complex for increasing n.
+We propose time-varying space-only STCs, hence k = 1 so
+that Pl only has dimension n, but Pl varies with l. Because
+the STC is space-only, the notation simpliﬁes: ζ t = Pt zt ,
+t = 1, . . . , Nc , where zt,i ∈ Ωz , i = 1, . . . , n. We consider
+the Cartesian product of n constellations Ωz = (Ωz )n , so
+that zt ∈ Ωz . We denote our new precoder type by the EMI
+code, where EMI (Ergodic Mutual Information) refers to the
+temporal mean of the mutual information.
+
+where wt follows the same distribution as ν t . Because U † µt
+is an invertible transformation, no information is lost, i.e.,
+I(ζ t ; yt |Σ, V ) = I(ζ t ; µt |H). The outage probability is
+expressed as
+
+where xt = V † Pt zt = Vt zt (this can model both our proposed
+time-varying space-only precoder Pt as a ﬁxed space-only
+precoder Pt = P ). Hence, Σ corresponds to the parallel
+channel, Vt corresponds to the precoder and zt corresponds
+to the symbol vector that is transformed by the precoder. The
+parallel channel model with precoding is well known for the
+study of signal space diversity (SSD) (see [3] for uncoded and
+[9] for coded communication over parallel channels), where
+Vt is a rotation matrix. In SSD, full transmit diversity is
+achieved when Vt is chosen so that st,i = 0, ∀ i, t, where
+st = x′ − xt , x′ , xt ∈ Ωx , x′ = xt .
+t
+t
+t
+If Vt is a bad precoder, full diversity is not achieved.
+Deﬁnition 1: We deﬁne bad precoders Pbad as the set of
+precoders so that ∃ i ∈ {1, . . . , n}, xt , x′ t = xt , satisfying
+xt,i = x′ or equivalently, st,i = 0.
+t,i
+The main difference with the parallel channel with precoding is that the considered precoder Vt is random for MIMO.
+At ﬁrst, consider a unitary but ﬁxed precoder Pt = P , so
+that Vt has the same distribution as V , hence Vt is uniformly
+distributed in the Stiefel manifold with respect to the Haar
+measure. Because Vt is ﬁxed, we drop all time indices t and
+denote V ′ = Vt . As the precoder does not change the channel
+distribution, seen by the symbol vector z, it is well known
+that a ﬁxed space-only precoder does not achieve transmit
+diversity. However, from the parallel channel point of view,
+this may not seem obvious, as the probability of having
+bad precoders, V ′ ∈ Pbad , is zero. In accordance with the
+terminology of parallel channels with precoding, we explain
+the loss of transmit diversity by deﬁning corrupt precoders.
+Deﬁnition 2: We deﬁne corrupt precoders Pc as the set of
+precoders so that ∃ z, z′ = z, satisfying |si | ≤ γ −0.5 , ∀ i > 1.
+Lemma 1: The probability that a random precoder falls in
+the set of corrupt precoders is
+
+Pout = Pr(Et [I(ζ t ; yt |Σ, V )] < R),
+
+III. L INK
+
+The channel Eq. (2) is very similar to that of a parallel
+channel with precoding. We denote xt = V † ζ t , where xt ∈
+Ωx , hence I(xt ; yt |Σ, V ) = I(ζ t ; y t |H). Inserting xt in Eq.
+(2), we have that
+√
+(6)
+yt = γ Σxt + wt , t = 1, . . . , Nc ,
+
+(3)
+
+where Et [.] is the temporal mean (assuming that Nc → ∞).
+The SNR-exponent of the outage probability, known as the
+diversity order, is
+dout = lim −
+γ→∞
+
+log Pout
+.
+log γ
+
+(4)
+
+In the case that r > n, then the last r − n received symbols
+in yt contain only noise due to the fact that the bottom r − n
+rows of Σ are zero (see Eq. (2)). Hence, when we consider
+r > n in the following, then, allowing an abuse in notation,
+yt , wt and Σ refer to the top n rows of the actual vectors
+yt , wt and Σ, respectively. As a result, a new n × n MIMO
+channel is obtained, with a different singular value distribution
+than that from a normal n × n channel. Therefore, we only
+consider n × n channels in the following (using the notation
+from Eq. (2)), but we use the actual singular value distribution.
+An n × k STC (containing nk elements) contains k vectors
+¯
+ζ t . Stacking all columns of the n × k STC into the vector ζ l ,
+¯ as a linear transform of the symbol vector zl
+we can write ζ l
+¯
+ζ l = Pl zl , l = 1, . . . , Nc /k.
+
+WITH A PARALLEL CHANNEL WITH PRECODING
+
+(5)
+
+where the components of zl belong to an M -QAM constellation Ωz , i.e., zl,i ∈ Ωz , i = 1, . . . , nk. We denote
+m = n log2 M , which is, on average, the maximal number
+of bits that can be conveyed per channel use.
+The optimal STCs for an n × r MIMO channel with r ≥ n
+2 In some papers, the average signal-to-noise ratio at each receive antenna
+is considered, which is nγ.
+
+Pr(Pc )=γ −(n−1) .
+˙
+
+2
+
+given that α ∈ Bǫ . For this coding rate, the outage probability
+is
+Pout|V ′ =Vl ≥
+p(α)dα.
+(11)
+
+Proof: See App. A.
+Lemma 2: In a point-to-point n × r MIMO ﬂat fading
+channel with a ﬁxed n × n precoder Pt = P , there exists
+a coding rate Rc < 1 where at most the receive diversity is
+achieved (i.e., dout ≤ r) due to corrupt precoders V ′ ∈ Pc .
+Proof: The outage probability is
+p(V ′ )Pout|V ′ dV ′ +
+
+Pout =
+
+p(V ′ )Pout|V ′ dV ′
+
+p(V )dV = Pout|V ′ =Vl Pr(Pc )
+
+(8)
+
+′
+
+Pc
+
+n
+
+dout ≤ dout (ǫ) = n − 1 + inf
+
+(7)
+
+¯
+Pc
+
+Pc
+
+≥ Pout|V ′ =Vl
+
+Bǫ
+
+˙ 1
+Noting that Pout ≥ γ n−1 Pout|V ′ =Vl and following the same lines
+as in [19, Theorem 4], [9], we obtain the SNR-exponent
+
+′
+
+α∈Bǫ
+
+V ′ ∈Pc
+
+First, let us study Pout|V ′ =Vl . As in [10], [19], we deﬁne the
+log σ2
+ordered normalized fading gains αi = − log γi , α1 ≥ α2 ≥
+. . . ≥ αn , where the joint distribution p(α) is given by [19]
+n
+
+(γ
+j>i
+
+−αi
+
+−γ
+
+γ −(r−n+1)αi
+
+i=1
+−αj 2 − n γ −αi
+i=1
+
+) e
+
+IV. F ULL
+
+.
+
+si = (xi − x′ ) and R{.} takes the real part. The normalized
+i
+fading gains α ∈ Rn , but since we are interested in the SNRexponent, we only consider the dominant region, α ∈ Rn (see
++
+[19, Theorem 4], [10]). In order to determine the diversity
+order (Eq. (4)), we can apply the dominated convergence
+theorem [10, App. 2], so that
+n
+γ→∞
+
+f (αi , si , wi )
+x′ ∈Ωx i=1
+n
+
+= Ew
+
+lim log2
+
+γ→∞
+
+f (αi , si , wi )
+
+(10)
+
+x′ ∈Ωx i=1
+
+p(Vt )I(Vt )dVt +
+
+Et [I(Vt )] =
+
+For corrupt precoders, ∃ z = zc , z′ = zc , satisfying |si | ≤
+−0.5
+γ
+, ∀i > 1. In the case of a corrupt precoder, we observe
+that for large γ and i > 1, limγ→∞ f (αi , si , wi ) = 1 if αi > 0.
+For large γ, the instantaneous mutual information is
+I (x, y|Σ, V ′ ∈ Pc ) = m−2−m
+
+RATE AND FULL DIVERSITY SPACE - ONLY CODES
+
+We propose to marginalize the effect of corrupt precoders
+by averaging the mutual information over all unitary precoders
+Vt during the transmission of a codeword. Therefore, we let
+Pt be uniformly distributed in the Stiefel manifold. Since
+V is unitary and independent of Pt and the distribution of
+Pt is invariant to unitary transformation, Vt = V † Pt is also
+uniformly distributed in the Stiefel manifold.
+Proposition 1: In a point-to-point n × r MIMO ﬂat fading
+channel, using a coding rate Rc < 1 and using n×n precoders
+Pt , randomly generated for each channel use, being uniformly
+distributed in the Stiefel manifold, full diversity is achieved.
+Proof: Similarly to Pc , we deﬁne a larger set Sc , which is
+the set of precoders Vt so that ∃ i, z, z′ = z, satisfying |si |2 ≤
+(log γ)−p , for any p > 0. The probability Pr(Vt ∈ Sc ) → 0
+for large γ (see App. B). Denoting I(xt ; yt |Σ, Vt ) as I(Vt ),
+we can write Et [I(Vt )] as
+
+The mutual information can be expressed as in Eq. (9) where
+√
+1−αi
+|si |2 −2 γ 1−αi R{wi s∗ }
+i ,
+f (αi , si , wi ) = e−γ
+
+lim Ew log2
+
+(2i − 1 + r − n)αi . (12)
+
+The inﬁnum is (r − n + 1)(1 + ǫ), which is achieved when
+αn = . . . = α2 = 0 and α1 = 1 + ǫ. This holds for each
+ǫ > 0, and the bound in Eq. (12) can be made tight taking the
+inﬁnum inf ǫ dout (ǫ) (see e.g. [9]), we obtain dout ≤ r.
+In accordance with the terminology of parallel channels with
+precoding, the loss of transmit diversity is caused because the
+random precoder falls too often in the set of corrupt precoders,
+or more precisely, because the speed at which the probability
+to have a corrupt precoder goes to zero is too slow.
+
+¯
+where Pc is the complement of Pc and Vl = argmin Pout|V ′ .
+
+p(α) = K −1 (log γ)n
+
+i=1
+
+Sc
+
+≥ Iin = I(Vl )
+
+¯
+Sc
+
+¯
+Sc
+
+p(Vt )I(Vt )dVt . (13)
+
+p(Vt )dVt = I(Vl )(1 − Pr(Sc )),
+
+where Vl = argmin I(Vt ) (worst case). Note that (13) is
+¯
+Vt ∈Sc
+
+Ew [log2 (1 + g(α, x))] ,
+
+the sample mean (over Vt , uniform in the Stiefel manifold)
+which is equal to the temporal mean because Pt is randomly
+generated at each channel use. Thus, we have that
+
+x∈Ωx
+
+
+ O e−γ 1−αm ,
+if αi < 1, ∀ i
+where g(α, xc ) =
+,
+1 α1 −1
+ Ω e −( γ )
+,
+α1 > 1
+where αm = maxi αi .
+In the event that α ∈ Bǫ , the instantaneous mutual infor−ǫ
+mation is m − Ω e−γ
+, where
+
+Pout = Pr(Et [I(Vt )] ≤ R) ≤ Pr(Iin ≤ R),
+
+(14)
+
+¯
+By deﬁnition of Sc , |si | > (log γ) , so that for large γ,
+
+1 α −1
+ Ω e −( γ ) i
+, αi > 1
+f (αi , si , wi ) =
+(15)
+ O e−γ 1−αi ,
+αi < 1.
+−p
+
+Bǫ = {α : α1 ≥ . . . ≥ αn > 0 : α1 ≥ 1 + ǫ}.
+
+n
+Hence, if
+i=1 1{αi < 1} ≥ 1 (1{.} is the indicator
+function), then I(Vl ) → m for large γ. More speciﬁcally,
+
+Hence, there exists a coding rate so that the spectral efﬁciency
+mRc is always larger than or equal to the mutual information,
+
+3
+
+n
+
+I (x, y|Σ, V ′ ) = m − 2−m
+
+10
+
+f (αi , si , wi )
+
+Ew log2
+
+(9)
+
+x′ ∈Ωx i=1
+
+x∈Ωx
+
+0
+
+10
+
+0
+
+10
+
+10
+
+Outage probability / Word Error Rate
+
+Outage probability / Word Error Rate
+
+Out No Prec
+-1
+
+-2
+
+Out No Prec
+No prec
+10
+
+-3
+
+Out EMI
+Out EMI-10
+
+10
+
+EMI-10
+
+-4
+
+Out Golden
+
+No prec
+Out EMI-10 code
+10
+
+-1
+
+EMI-10
+Out Perfect STC
+Perfect STC
+
+10
+
+-2
+
+10
+
+-3
+
+Golden
+10
+
+-5
+
+7
+
+10
+
+13
+Eb/N0 [dB]
+
+16
+
+19
+
+7
+
+10
+
+13
+
+16
+
+Eb/N0 [dB]
+
+Fig. 1. We compare the outage probability of several STCs for 2 × 2 MIMO.
+We use Ωz = 4−QAM and a coding rate Rc = 0.9 so that R = 3.6 bpcu.
+
+Fig. 2. We compare the outage probability of several STCs for 3 × 3 MIMO.
+We use Ωz = 4−QAM and a coding rate Rc = 0.9 so that R = 5.4 bpcu.
+
+consider
+
+We assume an n × n MIMO channel, where n = 2 (Fig. 1)
+and n = 3 (Fig. 2). In the legend of the Figs., “Out” refers
+to outage, and the other curves refer to the practical WER
+performance. In all cases, the loss of the EMI code to the
+optimal STCs is more or less 1.5 dB in terms of the outage
+probability. The EMI-10 code performs 0.5 dB worse than the
+EMI code. The WERs of the LDPC codes suggest that the
+results with respect to the outage probabilities are maintained
+when using a practical error-correcting code.
+Note that the focus of this paper was on diversity and rate.
+The coding gain will be considered in future work.
+
+n
+
+Aǫ = {α :
+
+i=1
+
+1{αi < 1 − ǫ} ≥ 1}, ǫ > 0
+ǫ
+
+so that I(Vl |α ∈ Aǫ ) = m − O e−γ . Note that for large γ
+and Rc = 1 − ǫ2 , ǫ2 > 0,
+lim Pr(I(Vl |α ∈ Aǫ )(1 − Pr(Sc )) ≤ Rc m = 0.
+
+γ→∞
+
+¯
+In other words, Pr(Iin ≤ R) ≤ Pr(Aǫ ). Hence, for large γ
+and any ǫ, ǫ2 > 0, the outage probability is upper bounded
+n
+¯
+¯
+by Pr(Aǫ ), where Aǫ = {α : i=1 1{αi ≥ 1 − ǫ} = n}.
+Following the same lines as before (or see [9], [19]),
+
+VI. C ONCLUSION
+
+n
+
+dout ≥ sup inf
+ǫ
+
+¯
+α∈Aǫ
+
+i=1
+
+(2i − 1 + r − n)αi
+
+Through a lossless transformation at the receiver, the MIMO
+channel is converted into a parallel channel with a random
+precoder V that depends on the channel realization. The
+new channel has an identical mutual information. Using this
+new channel model, we study the fundamental reason why
+full diversity is not achieved without space-time coding. A
+set of corrupt precoders, with a non-negligible probability
+of occurrence, causes the loss in transmit diversity order.
+Therefore, we propose a new full-diversity full-rate spaceonly code which we refer to as the EMI code. The latter
+averages the mutual information of the MIMO channel over all
+random precoders V , thereby marginalizing corrupt precoders.
+We prove that the new precoder achieves full diversity if an
+error-correcting code with coding rate Rc < 1 is used. The
+EMI code is said to be full rate because n new symbols
+are transmitted each channel use, where n is the number of
+transmit antennas. The main asset of this new coding scheme
+is that its complexity of decoding is signiﬁcantly lower, as its
+dimension is n instead of n2 , at the expense of a small loss
+in performance. The theory is corroborated in the numerical
+
+(16)
+
+By letting ǫ2 → 0+ , we obtain dout = nr for any Rc < 1.
+The proposed code is denoted as EMI code or EMI-T
+code when Pt is randomly generated at each channel use
+or only a ﬁnite number of times T during the transmission
+of a codeword, respectively. The convergence properties for
+increasing T are not discussed here because of the lack of
+space.
+V. N UMERICAL
+
+RESULTS
+
+We compare the outage probability of the proposed EMI
+code with the outage probabilities of the Golden code [1]
+and the perfect STC [8]. To show the practical relevance, we
+include the word error rate (WER) performance of a simple
+regular (3, 30) LDPC code [17] of coding rate Rc = 0.9 and
+block length N = 5760, where N = mNc . In all simulation
+results, Ωz = 4−QAM, so that the spectral efﬁciency is
+R = 0.9 ∗ 2 ∗ n = n ∗ 1.8 bpcu.
+
+4
+
+where the ﬁrst inequality is because the number of pairs z, z′
+is ﬁnite and where (21) follows from |vi |2 ∼ β(1, n − 1) (see
+App. A). Hence, for large γ, Pr(Sc ) → 0.
+
+results, using a coding rate Rc = 0.9 and 10 rotations per
+codeword.
+A PPENDIX
+
+R EFERENCES
+
+A. Probability of corrupt precoders
+
+[1] J.-C. Belﬁore, G. Rekaya, and E. Viterbo, “The golden code: a 2x2 full
+rate space-time code with non-vanishing determinants,” IEEE Trans. on
+Inf. Theory, vol. 51, no. 4, pp. 1432-1436, Apr. 2005.
+[2] E. Biglieri, J. Proakis, and S. Shamai, “Fading channels: informationtheoretic and communications aspects,” IEEE Trans. on Inf. Theory,
+vol. 44, no. 6, pp. 2619-2692, Oct. 1998.
+[3] J.J. Boutros and E. Viterbo, “Signal space diversity: a power- and
+bandwidth-efﬁcient diversity technique for the Rayleigh fading channel,”
+IEEE Trans. on Inf. Theory, vol. 44, no. 4, pp. 1453-1467, July 1998.
+[4] J.J. Boutros and H. Randriambololona, “The Aladdin-Pythagoras spacetime code,” in Proc. IEEE Intern. Symp. on Inf. Theory (ISIT), pp. 28232827, July 2009.
+[5] D. Duyck, S. Yang, F. Takawira, J.J. Boutros, and M. Moeneclaey,
+“Time-Varying Space-Only Code: A New Paradigm for Coded MIMO
+Communication” in Proc. Int. Symp. on Comm., Contr. and Sign. Proc.
+(ISCCSP), Rome, Italy, May 2012.
+[6] D. Duyck, S. Yang, F. Takawira, J.J. Boutros, and M. Moeneclaey,
+“Time-Varying Space-Only Codes for Coded MIMO” submitted
+to IEEE Trans. on Inf. Theory, May 2012, Download from
+telin.ugent.be/˜dduyck/publications/Journal EMI print.pdf.
+[7] A. Edelman, Eigenvalues and Condition Numbers of Random Matrices,
+Ph.D. thesis, MIT, May 1989.
+[8] P. Elia, B.A. Sethuraman, and P.V. Kumar, “Perfect SpaceTime Codes
+for Any Number of Antennas,” IEEE Trans. on Inf. Theory, vol. 53,
+no. 11, pp. 3853-3868, Nov. 2007.
+[9] A. Guill´ n i F` bregas and G. Caire, “Multidimensional coded modue
+a
+lation in block-fading channels,” IEEE Trans. on Inf. Theory, vol. 54,
+no. 5, pp. 2367-2372, 2008.
+[10] A. Guill´ n i F` bregas and G. Caire, “Coded modulation in the blocke
+a
+fading channel: coding theorems and code construction,” IEEE Trans.
+on Inf. Theory, vol. 52, no. 1, pp. 91-114, Jan. 2006.
+[11] N. Gresset, L. Brunel, and J.J. Boutros, “Space-time coding techniques
+with bit-interleaved coded modulations for MIMO block-fading channels,” IEEE Tr. on Inf. Theory, vol. 54, no. 5, pp. 2156-2178, May
+2008.
+[12] E.R. Larsson and P. Stoica, “Space-Time Block Coding for Wireless
+Communications,” Cambridge University Press, 2003.
+[13] R. J. Muirhead, Aspects of Multivariate Statistical Theory. New York:
+Wiley, 1982.
+[14] L.P. Natarajan, P.K. Srinath and B.S. Rajan, “Generalized Distributive
+Law for ML Decoding of STBCs,” in Proc. Information Theory Workshop (ITW), Paraty, Brasil, Oct. 2011.
+[15] C. Oestges and B. Clerckx, “MIMO Wireless Communications: from
+real world propagation to space-time code design,” Academic Press,
+Elsevier, 2007.
+[16] K.P. Srinath and B.S. Rajan, “Low ML-Decoding Complexity, Large
+Coding Gain, Full-Rate, Full-Diversity STBCs for 2 × 2 and 4 × 2
+MIMO Systems,” IEEE J. of Sel. Topics in Sign. Proc., vol. 3, no. 6,
+pp. 916–927, Dec. 2009.
+[17] T.J. Richardson, M.A. Shokrollahi, and R.L. Urbanke, “Design of
+capacity-approaching irregular low-density parity-check codes,” IEEE
+Trans. on Inf. Theory, vol. 47, no. 2, pp. 619-637, Feb. 2001.
+[18] V. Tarokh, N. Seshadri, and A.R. Calderbank, “Space-time codes for
+high data rate wireless communication: performance criterion and code
+construction,” IEEE Trans. on Inf. Theory, vol. 44, no. 2, pp. 744-765,
+Mar. 1998.
+[19] L. Zheng and D.N.C. Tse, “Diversity and Multiplexing: A Fundamental
+Tradeoff in Multiple-Antenna Channels,” IEEE Trans. on Inf. Theory,
+vol. 49, no. 5, pp. 1073-1096, May 2003.
+[20] E. Viterbo, J.J. Boutros, “A Universal Lattice Code Decoder for Fading
+Channels,” IEEE Trans. on Inf. Theory, vol. 45, no. 5, pp. 1639-1642,
+1999.
+[21] S. Yang, J.-C. Belﬁore, “Distributed rotation recovers spatial diversity,”
+IEEE Intern. Symp. on Inf. Theory (ISIT), pp. 2158-2162 , June 2010.
+
+Before we determine the probability of corrupt precoders,
+we consider the following Lemma.
+Lemma 3: Consider two independent random variable X
+and Y which are χ2 -distributed with parameter 2a and 2b,
+respectively. Then the random variable
+Z=
+
+X
+∼ β(a, b)
+X +Y
+
+Proof: X ∼ Γ(a, θ = 2) ⇔ X ∼ χ2 (2a). A property
+of Beta-distributions is that if X ∼ Γ(a, θ = 2) and Y ∼
+X
+Γ(b, θ = 2), then Z = X+Y ∼ β(a, b).
+′ z−z′
+Consider v = V ||z−z′ || , so that s = ||z − z′ ||v. We ﬁrst
+show that v is uniform in the Stiefel manifold Sn,1 , which is
+the set of all v where v† v = 1; i.e. its density is constant
+for all v. Consider any v2 in Sn,1 . Consider R so that v2 =
+Rv. Matrix R always exists; more speciﬁcally, R = V2 V1H ,
+where V2 and V1 are unitary matrices with v2 and v on its
+z−z′
+ﬁrst column, respectively. Hence v2 = RV ′ ||z−z′ || , where
+RV ′ is uniformly distributed in Sn,n , thus v2 has the same
+distribution as v. As a consequence of the uniform distribution,
+it is shown in [7, Theorem 3.1] that vt can be constructed as
+g
+vt =
+,
+(17)
+||g||
+where g ∼ CN (0, I). Hence,
+n
+
+i=2
+
+|vi |2 =
+
+n
+i=2
+n
+i=1
+
+|gi |2
+|gi |2
+
+and
+
+|vi |2 =
+
+|gi |2
+.
+n
+2
+i=1 |gi |
+
+n
+
+Because |gi |2 ∼ χ2 (2) and i=2 |gi |2 ∼ χ2 (2(n − 1)) (up
+to a constant), we have that n |vi |2 ∼ β(n − 1, 1) and
+i=2
+|vi |2 ∼ β(1, n − 1) by Lemma 3. Now we can determine
+Pr(Pc ).
+.
+Pr(Pc ) = Pr(|s2 |2 ≤ γ −1 , . . . , |sn |2 ≤ γ −1 )
+(18)
+.
+= Pr(
+.
+= Pr(
+
+n
+
+i=2
+n
+i=2
+
+˙
+|si |2 ≤γ −1 )
+
+(19)
+
+˙
+|vi |2 ≤γ −1 ) = γ −(n−1) .
+
+(20)
+
+where the ﬁrst equality is because the number of pairs z, z′ is
+ﬁnite.
+B. Probability of Sc
+n
+
+˙
+Pr(Sc )≤
+
+i=1
+n
+
+n
+
+Pr(|si |2 ≤ (log γ)−p )=
+˙
+
+=
+i=1
+
+i=1
+
+Pr(|vi |2 ≤ (log γ)−p )
+
+(n − 1)(log γ)−p − O((log γ)−2p ),
+
+(21)
+
+5
+
+

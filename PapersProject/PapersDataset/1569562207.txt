@@ -1,0 +1,893 @@
+Title:          ISIT12_ExpCod.dvi
+Creator:        dvips(k) 5.98 Copyright 2009 Radical Eye Software
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Fri May 18 23:42:35 2012
+ModDate:        Tue Jun 19 12:55:34 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      299169 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569562207
+
+Expansion Coding: Achieving the Capacity of an
+AEN Channel
+O. Ozan Koyluoglu, Kumar Appaiah, Hongbo Si, and Sriram Vishwanath
+Laboratory for Informatics, Networks and Communications
+Wireless Networking and Communications Group
+The University of Texas at Austin
+1 University Station, C0806, Austin, TX 78712
+Email: {ozan,a.kumar,sihongbo}@mail.utexas.edu, sriram@austin.utexas.edu
+the channel input constraint. Then, utilizing an approximately
+optimal input distribution, we show that one can celebrate the
+achievability of an ǫ-gap to capacity result in the high SNR
+regime. This method together with capacity-achieving lowcomplexity codes (such as polar coding) allows one to achieve
+the capacity of the AEN in the high SNR regime.
+
+Abstract—A general method of coding over expansions is proposed, which allows one to reduce the highly non-trivial problem
+of coding over continuous channels to a much simpler discrete
+ones. More speciﬁcally, the focus is on the additive exponential
+noise (AEN) channel, for which the (binary) expansion of the
+(exponential) noise random variable is considered. It is shown
+that each of the random variables in the expansion corresponds
+to independent Bernoulli random variables. Thus, each of the
+expansion levels (of the underlying channel) corresponds to a
+binary symmetric channel (BSC), and the coding problem is
+reduced to coding over these parallel channels while satisfying the
+channel input constraint. This optimization formulation is stated
+as the achievable rate result, for which a speciﬁc choice of input
+distribution is shown to achieve a rate which is arbitrarily close to
+the channel capacity in the high SNR regime. Remarkably, the
+scheme allows for low-complexity capacity-achieving codes for
+AEN channels, using the codes that are originally designed for
+BSCs. Extensions to different channel models and applications
+to other coding problems are discussed.
+
+The additive exponential noise (AEN) channel is of particular interest as it models worst-case noise given a mean
+and a non-negativity constraint on noise [1]. In addition, the
+AEN model naturally arises in non-coherent communication
+settings, and in optical communication scenarios. (We refer to
+[1] and [2] for an extensive discussion on the AEN channel.)
+Verd´ derived the optimal input distribution and the capacity
+u
+of the AEN channel in [1]. Martinez, on the other hand,
+proposed the pulse energy modulation scheme, which can
+be seen as a generalization of amplitude modulation for the
+Gaussian channels. In this scheme, the constellation symbols
+are chosen as c(i − 1)l , for i = 1, · · · , 2M with a constant
+c, and it is shown that the information rates obtained from
+this constellation can achieve an energy (SNR) loss of 0.76
+√
+dB (with the best choice of l = 1 (1 + 5)) compared to
+2
+the capacity in the high SNR regime. Another constellation
+technique for this coded modulation approach is recently
+considered in [3], where log constellations are designed such
+that the real line is divided into (2M − 1) equally probable
+intervals. M of the centroids of these intervals are chosen
+as constellation points, and, by a numerical computation of
+the mutual information, it is shown that these constellations
+can achieve within a 0.12 dB SNR gap in the high SNR
+regime. Our approach, which achieves arbitrarily close to the
+capacity of the channel, outperforms these previously proposed
+modulation techniques.
+
+I. I NTRODUCTION
+In this work, we propose the method of constructing (binary)
+expansions of discrete-time continuous alphabet channels, and
+coding over the resulting set of parallel channels. We apply this
+coding over expansions method to additive exponential noise
+(AEN) channels, where the signal and noise terms constructing
+the channel output are represented with their corresponding
+binary digits. Focusing on the additive exponential noise
+component, we show that the binary expansion of the noise
+consists of independent Bernoulli distributed random variables
+at each level. (The mean of each random variable is a function
+of its level number in the expansion and the mean of the
+underlying exponential noise.) This way, thanks to the expansion technique, we show that continuous alphabet channels can
+be considered as a set of parallel binary symmetric channels
+(BSCs).
+Instead of coding for every level in the expansion, we consider signaling over a ﬁnite number of levels, and we resolve
+the problem arising from carryovers either by considering
+them as noise, or by decoding them the least signiﬁcant bit
+onwards to the most signiﬁcant bit. For each case, we state
+the corresponding achievable rate as an optimization problem,
+where the rate is maximized over the choices of the Bernoulli
+distributions for the signal transmission over each level with
+the constraint that that the combined random variables satisfy
+
+The rest of the paper is organized as follows. The next
+section describes the AEN channel model. In Section III, we
+present the key result which shows that independent Bernoulli
+distributed random variables occur in the binary expansion
+of an exponential random variable. Armed with this result,
+Section IV develops the expansion coding technique, where
+we state the main results of the paper. Numerical results are
+provided in Section IV-C, and the paper is concluded with a
+discussion section (Section V).
+
+1
+
+II. C HANNEL
+
+III. E XPONENTIAL D ISTRIBUTION : B INARY E XPANSION
+
+MODEL AND BACKGROUND
+
+We show the following lemma, which allows us to have independent Bernoulli random variables in the binary expansion
+of an exponential random variable.
+Lemma 1: Let Bl ’s be independent Bernoulli random variables with parameters given by pl , i.e., Pr{Bl = 1} = pl
+and Pr{Bl = 0} = 1 − pl , and consider the random variable
+deﬁned by
+
+We consider the additive exponential noise (AEN) channel
+given by
+Yi = Xi + Zi , i = 1, · · · , n,
+
+(1)
+
+where Zi ’s denote additive noise terms and are independently
+and identically distributed according to an exponential density
+with mean EZ ; i.e., omitting the index i, the noise has the
+following density:
+
+∞
+
+2 l Bl .
+
+B=
+
+(7)
+
+l=−∞
+
+p(z) =
+
+1 − Ez
+e Z u(z),
+EZ
+
+Then, the choice of
+
+(2)
+
+1
+,
+(8)
+1 + eλ2l
+implies that the random variable B is exponentially distributed
+with mean λ−1 , i.e., the density of B is given by
+pl =
+
+where u(z) = 1 for z ≥ 0 and u(z) = 0 otherwise.
+The transmitter conveys one of the messages, m, which is
+uniformly distributed in M, i.e., the random message M ∈
+M {1, · · · , 2nR }; and it does so by mapping the message
+to the channel input using the encoding function f (·) : M →
+n
+X n , where X1 (m) = f (m), under the constraint that X = ℜ
+and
+1
+E
+n
+
+p(b) = λe−λb u(b).
+
+Proof: The proof follows by extending the one given in
+[4], which considers the expansion of a truncated exponential
+random variable. (The proof is omitted here due to space
+constraints and is given in [5].)
+
+n
+
+i=1
+
+Xi ≤ EX ,
+
+(3)
+
+where EX is the maximum average energy.
+The decoder uses the decoding function g(·) to map its
+channel observations to an estimate of the message. Specifically, g(·) : Y n → M, where the estimate is denoted by
+ˆ
+M g(Y n ).
+The rate R is said to be achievable, if the average probability
+of error deﬁned by
+Pe
+
+1
+|M|
+
+Pr{g(Y n ) = m|M = m is sent.}
+
+IV. C ODING
+
+OVER EXPANSIONS
+
+Our proposed coding scheme, referred to as expansion
+coding, consists of constructing binary expansion of the channel and coding for the resulting (dependent) parallel binary
+symmetric channels (BSCs). More speciﬁcally, for some nonnegative L1 and L2 , binary expansion refers to a modulation
+scheme over the binary expansion of the channel for levels
+ranging from −L1 to L2 , i.e.,
+
+(4)
+
+L2
+
+m∈M
+
+L2
+
+2l Yi,l =
+
+Yi
+l=−L1
+
+can be made small for large n. The capacity of AEN is denoted
+by C, which is the maximum achievable rate R.
+The capacity of AEN is given in [1], where
+C = log(1 + SNR),
+
+(9)
+
+2l (Xi,l + Zi,l ),
+
+(10)
+
+l=−L1
+
+where the expansions of the signal and noise are given by
+L2
+
+(5)
+
+L2
+
+2l Xi,l ,
+
+Xi
+l=−L1
+
+2l Zi,l .
+
+and Zi
+
+(11)
+
+l=−L1
+
+When we take the limit L1 , L2 → ∞, the channel given by
+(10) corresponds to the one given by (1).
+We propose coding over the expansion levels of this channel. More speciﬁcally, the least signiﬁcant bit channel is given
+by
+(12)
+Yi,−L1 = Xi,−L1 ⊕ Zi,−L1 , i = 1, · · · n.
+
+where SNR = EX , and the capacity achieving input distribuEZ
+tion is given by
+−x
+EX
+EZ
+e EX +EZ +
+δ(x) u(x),
+2
+(EX + EZ )
+(EX + EZ )
+(6)
+where δ(x) = 1 if x = 0, and 0 otherwise. Note that this is
+the p∗ (x) = arg max I(X; Y ), where p(y|x) is given by the
+
+p∗ (x) =
+
+A capacity achieving BSC code is utilized over this channel
+with input probability distribution given by p−L1 . (For example, the polar coding method [6], allows one to construct
+capacity achieving codes for the l = −L1 level channel.)
+Instead of directly using the capacity achieving code design,
+we use the combination of the capacity achieving code and the
+method of Gallager [7] to achieve a rate corresponding to the
+one obtained by the mutual information I(Xl ; Yl ) evaluated
+with an input distribution given by a Bernoulli distribution
+
+p(x)
+
+AEN channel (1).
+Surprisingly, while the capacity achieving input distribution
+for the additive white Gaussian noise (AWGN) channel is
+Gaussian, here the optimal input distribution is not exponentially distributed. However, we observe that in the high SNR
+regime, the optimal distribution gets closer to an exponential
+distribution with mean EX + EZ .
+
+2
+
+with parameter pl . (The desired distributions will be made
+clear in the following part.)
+Noting that the sum is a modulo-2 sum in the above channel,
+there will be carryovers from this sum to the next level, l =
+−L1 + 1. Denoting the carryover seen at level l as Ci,l , the
+remaining channels can be represented with with the following
+˜
+Yi,l = Xi,l ⊕ Zi,l ,
+
+i = 1, · · · n,
+
+B. Decoding carryovers
+In the scheme above, let us consider decoding starting from
+the level l = −L1 . The receiver will obtain the correct Xi,−L1
+for i = 1, · · · , n. As the receiver has the knowledge of Yi,−L1
+for i = 1, · · · , n, it will also have the knowledge of the correct
+noise sequence Ni,−L1 for i = 1, · · · , n. With this knowledge,
+the receiver can directly obtain Ci,−L1 +1 for i = 1, · · · , n,
+which is the carryover from level l = −L1 to level l = −L1 +
+1. Using this carryover sequence in decoding at level l =
+−L1 + 1, the receiver can get rid of carryover noise. Thus, the
+effective channel that the receiver will see can be represented
+by
+Yi,l = Xi,l ⊕ Zi,l , i = 1, · · · , n,
+(17)
+
+(13)
+
+˜
+where the effective noise, Zi,l , is a Bernoulli random variable
+obtained by the convolution of the noise and the carryover
+˜
+ql
+˜
+Pr{Zi,l = 1} = ql ⊗ cl
+ql (1 − cl ) + cl (1 − ql ) with
+ql
+Pr{Zi,l = 1} and cl
+Pr{Ci,l = 1}. Here, the carry
+over probability is given by
+cl = pl−1 ql−1 , l ∈ {−L1 + 1, · · · , L2 }.
+˜
+
+for l = −L1 , · · · , L2 . We remark that with this decoding
+strategy the effective channels will no longer be a set of
+independent parallel channels, as decoding in one level affects
+the channels at higher levels. However, if the utilized coding
+method is strong enough (e.g., if the error probability decays
+to 0 exponentially with n), then this carryover decoding error
+can be made insigniﬁcant by increasing n for a given number
+of levels (here, L1 + L2 + 1). We state the rate resulting from
+this approach in the following.
+Theorem 3: Expansion coding, by decoding the carryovers,
+achieves the rate given by
+
+(14)
+
+Due to Lemma 1, the noise seen at each level will be
+described by independent Bernoulli random variables, and
+therefore, our coding scheme will be over the parallel channels
+given by (13) for l = −L1 , · · · , L2 , where the noise for each
+˜
+level is distributed as Pr{Zi,l = 1} = ql = ql ⊗ (pl−1 ql−1 ),
+˜
+˜
+and q−L1 −1 0, p−L1 −1 = 0.
+˜
+A. Considering carryovers as noise
+Using a capacity achieving code for BSCs, combined with
+the Gallager’s method, expansion coding readily achieves the
+following result.
+Theorem 2: Expansion coding, when implemented with capacity achieving codes for the resulting BSCs, achieves the
+rate given by
+
+L2
+
+R2 =
+l=−L1
+
+l=−L1
+
+H(pl ⊗ ql ) − H(˜l ),
+˜
+q
+
+1
+E
+n
+
+(15)
+
+n
+
+Xi =
+i=1
+
+1
+n
+
+n
+
+L2
+
+i=1 l=−L1
+
+2l pl ≤ EX .
+
+n
+
+Xi =
+i=1
+
+1
+n
+
+n
+
+L2
+
+i=1 l=−L1
+
+2l pl ≤ EX .
+
+(19)
+
+Compared to the previous case, the optimization problem is
+simpler here as the rate expression is simply the sum of the
+rates obtained from a set of parallel channels.
+We now show that the proposed scheme achieves the capacity of AEN channel in the high SNR regime for a sufﬁciently
+high number of levels. Towards this end, we provide a bound
+ˆ
+for the capacity gap, ∆C C − C, where
+
+for any L1 , L2 > 0, where ql = ql ⊗ (pl−1 ql−1 ) for l >
+˜
+˜
+−L1 and q−L1 = q−L1 . To satisfy the energy constraint, pl ∈
+˜
+[0, 0.5] is chosen such that
+1
+E
+n
+
+(18)
+
+for any L1 , L2 > 0, where pl ∈ [0, 0.5] is chosen to satisfy
+
+L2
+
+R1 =
+
+H(pl ⊗ ql ) − H(ql ),
+
+(16)
+
+The optimization problem stated in the result above is highly
+non-trivial. However, utilizing the optimal input distribution
+given in (6), one can adopt the following approximate distributions in Theorem 2. At a high SNR, we observe that
+the optimal input distribution can be approximated by an
+exponential distribution. Then, one can simply choose pl from
+the binary expansion of the exponential distribution with mean
+EX + EZ . To satisfy the power constraint, we use coding only
+EX
+for EX +EZ of the time, and for the rest we set the channel
+input to 0. (As a second approach, in the numerical results, we
+compare this choice with that of choosing pl from the binary
+expansion of the exponential distribution with mean EX .) The
+next method gives a better rate result with a minimal increase
+in complexity.
+
+ˆ
+C=
+
+SNR
+1 + SNR
+
+L+γ
+
+l=−L
+
+[H(pl ⊗ ql ) − H(ql )]
+
+(20)
+
+is the achievable rate given in Theorem 3 with L1 = L,
+L2 = L + γ, and γ = log(1 + SNR), when the approximate
+input distribution discussed above (i.e., exponential with mean
+EX + EZ ) is used. First, we obtain the asymptotic behavior of
+entropy at each level. (Without loss of generality, we assume
+EZ = 1 in the following analysis.)
+Lemma 4: Entropy of the Bernoulli random variable at level
+l, H(ql ), is bounded by
+H(ql ) < c1 · 2−l
+
+H(ql ) > 1 − c2 · 2l
+
+3
+
+for l ≥ 0,
+
+for l ≤ 0,
+
+(21)
+(22)
+
+Theorem 5: For any ǫ > 0, there exists an ǫ-dependent
+(positive) constant c = log γ(1+8 log e) , such that if γ ≥ 2c
+ǫ
+and L ≥ c, then the capacity gap is bounded by ∆C ≤ ǫ.
+(The total number of levels is given by 2L + γ + 1, where
+γ = log(1 + SNR).)
+Proof: We ﬁrst observe that
+
+1
+p
+
+l
+
+0.9
+
+q
+
+0.8
+
+rl=pl(1−ql)+ql(1−pl)
+
+l
+
+H(rl)−H(ql)
+0.7
+0.6
+0.5
+
+L+γ
+
+0.4
+0.3
+
+l=−L
+
+L+γ
+
+[H(pl ⊗ ql ) − H(ql )] =
+
+l=−L
+
+L+γ
+
+0.2
+
++
+
+0.1
+0
+−10
+
+[H(pl ⊗ ql ) − H(pl )]
+
+l=−L
+−5
+
+0
+
+5
+
+10
+Levels
+
+15
+
+20
+
+25
+
+30
+
+L+γ
+
+≥
+
+Fig. 1: Signal and noise probabilities, and rate per level.
+pl , ql , pl ⊗ ql and rate at each level are shown, where γ = 15.
+The coding scheme with L = 5 covers the signiﬁcant portion
+of the rate obtained by using all of the parallel channels. As
+shown in the text, pl is a shifted version of ql .
+
+l
+
+l=−L
+
+[H(pl ) − H(ql )] , (23)
+
+where the last inequality is due to the fact that H(pl ⊗ ql ) ≥
+H(pl ). Observing that
+pl+γ =
+
+1
+= ql ,
+1 + e2l
+
+(24)
+
+and adopting Lemma 4, we have
+(1) c ≤ l ≤ γ − c: H(pl ) − H(ql ) > 1 − c2 · 2l−γ − c1 · 2−l ,
+(2) −c < l < c: [H(pl ) − H(ql )] + [H(pl+γ ) − H(ql+γ )] =
+H(pl ) − H(ql+γ ) > 1 − c2 · 2l−γ − c1 · 2−(l+γ) , and
+(3) −L ≤ l ≤ −c and γ+c ≤ l ≤ γ+L: H(pl )−H(ql ) > 0.
+Combining these pieces together, and lower bounding the
+summation over indices l ∈ [−L : L + γ] by considering the
+summation over l ∈ [−c + 1 : γ + c − 1], we obtain
+
+where c1 and c2 are both constants taking the values c1 =
+3 log e and c2 = log e.
+Proof: Note that,
+H(ql ) = −ql log ql − (1 − ql ) log(1 − ql )
+
+[H(pl ) − H(ql )] ,
+
+l
+
+1
+e2
+e2
+1
+.
+=−
+l log
+l −
+l log
+1 + e2
+1 + e2
+1 + e2
+1 + e2l
+When l ≤ 0, we obtain a lower bound as
+
+L+γ
+
+l
+
+e2
+H(ql ) = log 1 + e
+−
+log e · 2l
+1 + e2l
+> log(1 + 1) − log e · 2l
+2l
+
+L+γ
+
+[H(pl ⊗ ql ) − H(pl )] ≥
+
+l=−L
+γ−c
+
+= 1 − log e · 2l .
+
+>
+l=c
+
+On the other hand, when l ≥ 0, by using the facts that log(1 +
+x) < log e · x for any 0 < x < 1, and ex > 1 + x + x2 /2 for
+any x > 0, we have
+
+l=−L
+
+[H(pl ) − H(ql )]
+
+1 − c2 · 2l−γ − c1 · 2−l
+c−1
+
++
+l=−c+1
+
+1 − c2 · 2l−γ − c1 · 2−(l+γ)
+
+> γ 1 − (c1 + c2 )2−c − (c1 + c2 )2c−γ−1
+
+2l
+
+l
+l
+1
+e
+log 1 + e2 +
+log 1 + e−2
+2l
+2l
+1+e
+1+e
+l
+1
+2l
+<
+log 2e
++ log 1 + e−2
+2l
+1+e
+l
+1 + 2l log e
+<
++ e−2 log e
+1 + e2l
+1 + 2l log e
+1
+<
++
+log e
+l + 22l /2
+1+1+2
+1 + 2l
+< 2−l 2 log e + 2−l log e
+
+H(ql ) =
+
+> γ(1 − 2−c 8 log e),
+
+(25)
+
+where the last inequality uses the assumption that γ ≥ 2c.
+Thus, we obtain a bound for the capacity gap
+2γ − 1
+∆C = γ −
+2γ
+
+L+γ
+
+l=−L
+
+[H(pl ⊗ ql ) − H(pl )]
++ [H(pl ) − H(ql )]
+
+= 2−l 3 log e.
+
+≤ γ − (1 − 2−γ )γ(1 − 2−c 8 log e)
+
+This lemma shows us that the tails bounds are exponential.
+Although better bounds may exist, the exponential bound is
+sufﬁcient for further analysis. Based on the Lemma above, we
+obtain the following.
+
+< γ2−γ + γ2−c 8 log e
+≤ γ2−c (1 + 8 log e)
+= ǫ,
+
+4
+
+18
+16
+
+Capacity
+R1 with C1
+R with C
+1
+
+14
+
+Rate (bits)
+
+12
+
+2
+
+R with C
+2
+
+1
+
+R2 with C2
+
+10
+
+•
+8
+6
+4
+2
+0
+−10
+
+0
+
+10
+
+20
+SNR (dB)
+
+30
+
+40
+
+50
+
+Fig. 2: Numerical results. R1 : The rate obtained by considering carry over as noise. R2 : The rate obtained by decoding
+carry overs at each level. C1 : Choosing pl from the binary expansion of the exponential distribution with mean EX +EZ . To
+satisfy the power constraint, only a fraction of the channel uses
+(i.e., EX /(EX + EZ ) of the time) is utilized. C2 : Choosing
+pl from the binary expansion of the exponential distribution
+with mean EX . Solid and dotted curves correspond to coding
+over 41 and 21 number of levels, respectively.
+
+•
+
+where we used γ ≥ 2c and choose c = log γ(1+8 log e) . Fig. 1
+ǫ
+helps explicate the key steps of the proof.
+C. Numerical results
+
+need to implement Gallager’s method in constructing the
+input distribution p(x) = Ber(pl ) for coding over level
+l. (See, e.g., [6], [8] for details.) In addition, expansion
+modulation can be implemented over a q-ary expansion of
+the channel, and any good code for the resulting modulo
+q-sum channel can be used.
+Avestimehr et al. [9] have introduced the deterministic
+approximation approach for point-to-point and multi-user
+channels. The basic idea is to construct an approximate
+channel for which the transmitted signals are assumed to
+be noiseless above the noise level. Using this high SNR
+approximation, one only needs to deal with the interference seen at a particular receiver (in a networked model).
+Expansion coding scheme can be seen as a generalization
+of these deterministic approaches. Here, the (effective)
+noise in the channel is carefully calculated and the system
+takes advantage of coding over the noisy levels at any
+SNR. This generalized channel approximation approach
+can be useful in reducing the large gaps reported in the
+previous works.
+Although our discussion is limited to the AEN channel,
+where the proposed scheme outperforms the previously
+proposed modulation schemes and performs arbitrarily
+close to the capacity of the AEN channel, the expansion
+coding refers to a more general framework and is not
+limited to such channels. Towards this end, our ongoing
+efforts are focused on utilizing the proposed scheme
+for AEN multiple-user channels, and for their AWGN
+counterparts.
+ACKNOWLEDGEMENT
+
+We calculate the rates obtained from the two schemes above
+(R1 in Theorem 2 and R2 in Theorem 3) with two different
+input probability distribution choices (denoted by C1 and C2 ):
+• C1 : Choosing pl from the binary expansion of the exponential distribution with mean EX + EZ . To satisfy the
+power constraint, we use coding only for the fraction of
+the channel uses (i.e., EX /(EX + EZ ) of the time).
+• C2 : Choosing pl from the binary expansion of the exponential distribution with mean EX .
+The ﬁrst choice closely resembles the optimal distribution
+given in (6). However, as the unused channels vanish in the
+high SNR regime, we expect that both choices result in the
+same rate as SNR gets large. Numerical results are given in
+Fig. 2. It is evident from the ﬁgure (and from the analysis given
+in Theorem 5) that the proposed technique, when implemented
+with sufﬁciently large number of levels, outperforms the SNR
+gaps previously reported in [2] and [3].
+
+We thank G. D. Forney, Jr. for insightful discussions and
+comments.
+R EFERENCES
+[1] S. Verd´ , “The exponential distribution in information theory,” Problems
+u
+of Information Transmission, vol. 32, no. 1, pp. 86–95, Jan.-Mar. 1996.
+[2] A. Martinez, “Communication by energy modulation: The additive exponential noise channel,” IEEE Trans. on Inf. Theory, vol. 57, no. 6, pp.
+3333–3351, Jun. 2011.
+[3] S. Y. Le Goff, “Capacity-approaching signal constellations for the
+additive exponential noise channel,” CoRR, vol. abs/1111.6414, 2011.
+[Online]. Available: http://arxiv.org/abs/1111.6414
+[4] G. Marsaglia, “Random variables with independent binary digits,” Ann.
+Math. Statist., vol. 42, no. 6, pp. 1922–1929, 1971.
+[5] O. O. Koyluoglu, K. Appaiah, H. Si, and S. Vishwanath, “Expansion
+coding: Achieving the capacity of an AEN channel,” CoRR, vol.
+abs/1202.1572, 2012. [Online]. Available: http://arxiv.org/abs/1202.1572
+[6] E. Arıkan, “Channel polarization: A method for constructing capacityachieving codes for symmetric binary-input memoryless channels,” IEEE
+Trans. Inf. Theory, vol. 55, no. 7, pp. 3051–3073, Jul. 2009.
+[7] R. G. Gallager, Information Theory and Reliable Communication. John
+Wiley & Sons, Inc., 1968.
+[8] E. Sasoglu, E. Telatar, and E. Arıkan, “Polarization for arbitrary discrete
+memoryless channels,” in Proc. 2009 IEEE Information Theory Workshop
+(ITW 2009), Taormina, Sicily, Italy, Oct. 2009.
+[9] A. Avestimehr, S. Diggavi, and D. Tse, “Wireless network information
+ﬂow: A deterministic approach,” IEEE Trans. Inf. Theory, vol. 57, no. 4,
+pp. 1872–1905, Apr. 2011.
+
+V. D ISCUSSION
+We note the followings.
+• Expansion coding allows the construction of good channel codes for discrete-time continuous channels using
+good discrete memoryless channel codes. For instance,
+one can utilize binary expansion together with polar
+codes. The underlying code is q-ary polar code, as we
+
+5
+
+

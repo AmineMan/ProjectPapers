@@ -1,0 +1,812 @@
+Creator:        TeX
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Fri Apr 27 09:52:41 2012
+ModDate:        Tue Jun 19 12:55:46 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      497134 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569566429
+
+Cryptanalysis of a Homomorphic Encryption
+Scheme From ISIT 2008
+Jingguo Bi
+
+Mingjie Liu
+
+Xiaoyun Wang
+
+Lab of Cryptographic Technology
+and Information Security
+School of Mathematics,
+Shandong University
+250100, Jinan, China
+Email:jguobi@mail.sdu.edu.cn
+
+Institute for Advanced Study,
+Tsinghua University
+100084, Beijing, China
+Email: liu-mj07@mails.tsinghua.edu.cn
+
+Lab of Cryptographic Technology
+and Information Security
+School of Mathematics,
+Shandong University
+250100, Jinan, China
+Institute for Advanced Study,
+Tsinghua University
+100084, Beijing, China
+Email:xiaoyunwang@mail.tsinghua.edu.cn
+
+that, further research focused on how to fast implement the
+existing fully homomorphic schemes [29], [14], and how to
+construct new homomorphic encryption schemes based on
+other hard problems, such as approximate greatest common
+divisor problems [8], [6] and Ring-LWE [2], [3]. As to the
+cryptanalysis of homomorphic encryptions, Chen and Nguyen
+[7] presented a square-root attack to break the challenges
+announced in [6] successfully.
+The MCG cryptosystem is a lattice-based encryption
+scheme with bounded homomorphic property. This scheme
+operates over vector spaces of Zp , the encryption and decryption speeds are faster than the previous homomorphic schemes.
+The one-wayness of the MCG scheme relies on the hardness
+of the Computational Knapsack Vector Problem (CKVP). For
+the settings of recommended parameters, the known method
+to recover the message is to ﬁnd a short vector in a lattice
+with dimension of at least 600. In this paper, we present a
+key-recovery attack on MCG by avoiding the CKVP directly.
+Firstly, we uncover a hidden linear relationship between the
+public keys and the private keys, then construct a reduceddimension lattice from partial public keys. Finally, we compute
+the equivalent secret keys by solving the Closest Vector
+Problem (CVP) of the new lattice. Our attack is more efﬁcient
+than solving the CKVP. According to our experiments, all the
+three scheme instances with the recommended parameters are
+broken practically.
+We organize the paper as follows. In Section 2, we recall
+some backgrounds about lattices. Section 3 describes the MCG
+lattice-based homomorphic encryption scheme. In Section 4,
+we show how to attack the scheme. In section 5, experimental
+results of our attack are provided. We conclude this paper in
+Section 6 .
+
+Abstract—At ISIT 2008, Aguilar Melchor, Castagnos and Gaborit presented a lattice-based homomorphic encryption scheme
+(abbreviated as MCG). Its security is based on the Computational
+Knapsack Vector Problem. In this paper, we explore a secret
+linear relationship between the public keys and the secret keys,
+which can be used to construct a reduced-dimension lattice, and
+then we obtain a group of equivalent private keys by solving the
+Closest Vector Problem of the lattice. Moreover, our attack is
+practical on all the three settings of recommended parameters,
+and the running time to recover the equivalent private keys is
+only several hours on a single PC.
+Key words: Lattice-based, Homomorphic encryption, Keyrecovery attack
+
+I. I NTRODUCTION
+Homomorphic encryption is an interesting concept to protect privacy, which was proposed by Rivest, Adleman and Dertouzos [26] in 1978. Since its publication, several homomorphic encryptions have been designed for the e-voting system
+[5], [24], [9], private information retrieval protocol [19], [21]
+and so on. Nowadays, cloud computing has become trendy in
+computer science. One obstruction to cloud computing is the
+loss of privacy and sensitive data. Homomorphic encryption
+schemes can partially solve this problem.
+Formally, a homomorphic encryption scheme can be described as follows: for two messages m1 , m2 , it satisﬁes that
+Dec(En(a) ⊗ En(b)) = a ⊕ b, where ⊗ and ⊕ are two
+operations over ciphertexts and plaintexts, respectively. Usually, if ⊕ represents modular addition over plaintexts, we call
+the scheme additively-homomorphic. After the introduction of
+privacy homomorphism, many schemes have been proposed,
+such as additive homomorphic encryption schemes [16], [1],
+[23], [30], [24], [9], [15], [18], [20], [25] and multiplicative
+homomorphic encryption schemes [10]. At TCC’05, Boneh
+et. al. [4] ﬁrstly constructed an encryption scheme permitting
+both operations at the same time - this scheme handles an
+arbitrary number of additions and just one multiplication. More
+recently, Gentry proposed a fully homomorphic cryptosystem
+based on ideal lattice which allows arbitrary times additions
+and multiplications on encrypted data [11], [12], [13]. After
+
+II. P RELIMINARIES
+Let Rm be the m-dimensional Euclidean space. A lattice
+n
+in Rm is a discrete group L(b1 , . . . , bn ) = { i=1 xi bi :
+xi ∈ Z} of all integral combinations of n linearly independent
+vectors b1 , . . . , bn ∈ Rm . The integer n is called the rank of
+
+1
+
+the lattice L. The sequence of vectors (b1 , . . . , bn ) is called
+a lattice basis, and it is conveniently represented as a matrix
+
+5) Generate the random scrambling matrix ∆ from
+GL2N (Zp ).
+6) For each i ∈ {0, 1, · · · , n}, compute
+
+B = (b1 , . . . , bn ) ∈ Rm×n ,
+
+Bi = [Bi1 |Bi2 + εi ]∆ = [Pi M1 |Pi M2 + εi ]∆.
+
+where the columns represent the base vectors. The determinant
+of the lattice L is deﬁned as det(L(B)) = det(BT B).
+The most famous computational hard problems on lattices
+are SVP (Shortest Vector Problem) and CVP (Closest Vector
+Problem).
+
+The public key consists of matrices B0 , · · · , Bn . The private
+keys are the hidden matrix M and the scrambling matrix ∆.
+Encryption:
+Choose a message vector m in ZN 0 and select n random dism
+turbing vectors ri with coordinates in [−r0 , −r0 /2]∪[r0 /2, r0 ].
+Input: a message m ∈ ZN 0 .
+m
+1) For each i ∈ {1, · · · , n}, randomly construct the disturbing vectors ri in ZN .
+r0
+n
+2) Compute c = mB0 + i=1 ri Bi .
+Output: the ciphertext c ∈ (Z/pZ)2N .
+Decryption:
+Input: a ciphertext c ∈ (Z/pZ)2N .
+1) Compute the unscrambled vector c = c −1 .
+2) Retrieve the noise e = cD − cU M−1 M2 , where cU
+1
+and cD are the undisturbed and disturbed halves of c
+respectively.
+3) For each ei in e = [e1 , · · · , eN ], compute ei = ei − µ
+with µ = ei mod q if (ei mod q) < q/2, and µ = (ei
+mod q) − q, otherwise.
+4) For each i ∈ {1, · · · , N }, compute mj = ej /q.
+5) Return m = (m1 , · · · , mN ).
+Output: the plaintext m.
+One-wayness against Chosen Plaintext Attack:
+
+Deﬁnition 1. (SVP) Given a basis of a lattice L, ﬁnd a nonzero vector u ∈ L, such that u ≤ v for any vector
+v ∈ L \ 0.
+Deﬁnition 2. (CVP) Given a basis B of a lattice L and a
+target vector t ∈ L, ﬁnd a vector u ∈ L such that
+/
+u−t ≤ x−t ,
+for any other x ∈ L.
+Deﬁnition 3. (Successive minima) Given a lattice L with rank
+n, the i-th minima λi (L) is the radius of the smallest sphere
+centered in the origin containing i linearly independent lattice
+vectors, i.e.,
+λi (L) = inf {r : dim(span(L ∩ Bn (r))) ≥ i},
+where Bn (r) represents the n-dimension ball centered at the
+origin with radius r.
+Deﬁne the λ2 -gap as λ2 /λ1 . Intuitively, as the gap becomes
+larger, the basis reduction algorithm will work better.
+
+Deﬁnition 4. (Computational Knapsack Vector Problem) Let
+p be a large prime number. Let e and r be two integers with
+e < r < p . Consider a set of n + 1 different matrices
+B0 , B1 , · · · , Bn of size N × 2N . Let c be an element of the
+subset
+
+III. D ESCRIPTION OF THE MCG H OMOMORPHIC S CHEME
+The notation Mn (Zp ) denotes the n × n matrices over Zp ,
+and GLn (Zp ) represents the invertible matrices of Mn (Zp ).
+All the operations between matrix are over Zp . For simplicity,
+we omit this in the rest of our paper.
+The main parameters:
+The MCG scheme has ﬁve global parameters. Let N be
+the number of coordinates of the plaintext vectors, and m0
+represents the characteristic of the ring over which they are
+constructed. The symbol l denotes the maximum number of
+homomorphic operations that can be done, n represents the
+number of noisy matrices in the public key, and r0 is the upper
+bound for the coordinates of the random disturbing vectors
+used in the encryption.
+Key generation:
+1) Let s0 = n × N × r0 + (N − 1) × m0 , set q = 2 × s0 ×
+(2l + 1), and select a prime p such that p = q × r + s
+with s < s0 .
+2) Choose two random matrices M1 from GLN (Zp ) and
+M2 from MN (Zp ). Denote M = [M1 |M2 ].
+3) For each i ∈ {0, 1, · · · , n}, generate a random matrix
+Pi ∈ GLN (Zp ), compute the matrix Bi = [Bi1 |Bi2 ] =
+[Pi M1 |Pi M2 ].
+4) For each i ∈ {0, 1, · · · , n}, generate a random N × N
+noise matrix εi over {−1, 1}. For the matrix ε0 , multiply
+each diagonal term by q.
+
+n
+
+ri Bi , m ∈ ZN , ri ∈ ZN , i ∈ {1, · · · , n}
+r
+e
+
+mB0 +
+i=1
+2N
+
+of (Z/pZ)
+
+. Recover m in the expression.
+
+Clearly, this problem is a generalization of the knapsack
+problem. Breaking the one-wayness of the MCG scheme can
+be reduced to an instance of CKVP with r = m0 and e = r0 .
+To solve this instance of CKVP, the designers suggested the
+following lattice spanned by the columns of (n + 3)N × ((n +
+3)N + 1) matrix
+LHLP =
+
+I
+B
+
+0
+cT
+
+0
+pI
+
+,
+
+where B = (BT |BT | · · · |BT ).
+n
+0
+1
+Apparently, the vector
+x = (m1 , · · · , mN , r11 , · · · , r1N , · · · , rn1 , · · · , rnN , 0, · · · , 0)T
+is a short vector in lattice LHLP . The recommended parameters are n = 9 and N = 50, which ensure the dimension
+of lattice LHLP up to 600 to resist against the lattice attack.
+In this paper, we skip the CKVP and propose a key-recovery
+attack for this scheme.
+2
+
+2
+
+the columns of (n + 1)N × (n + 3)N matrix E, where E =
+B pI . As the rank of lattice L reaches (n + 1)N = 500,
+the existing lattice reduction algorithms can not ﬁnd a short
+vector effectively.
+
+IV. C RYPTANALYSIS OF MCG H OMOMORPHIC S CHEME
+In this section, we describe the details of our attack on MCG
+scheme. Firstly, we show that, there is a hidden linear relationship between the public keys and private keys. Secondly, we
+construct a reduced-dimension lattice from the partial rows
+of the public matrices, and then generate N CVP-instances
+to recover the hidden noisy matrices. Finally, we show how
+to obtain a group of equivalent private keys from the noisy
+matrices.
+
+To overcome this difﬁculty, we construct a new reduceddimension lattice
+L = {y ∈ Z2N +k : y = Ax
+
+where (2N + k) × 2N matrix A is truncated from the ﬁrst
+2N + k rows of matrix B.
+It is easy to verify that,
+
+
+ε0
+ = ε,
+AD =  ε1
+¯
+ε2[1−k]
+
+A. Linear Relationship between Public Keys and Private Keys
+Theorem 1. Let B be an (n + 1)N × 2N matrix, and
+P, ε be two (n + 1)N × N matrices such that B =
+(B0 , B1 , · · · , Bn )T , P = (P0 , P1 , · · · , Pn )T and ε =
+(ε0 , ε1 , · · · , εn )T , where the matrices Bi , Pi , εi , 0 ≤ i ≤ n
+are described as above. Deﬁne lattice
+(n+1)N
+
+L = {y ∈ Z
+
+2N
+
+: y = Bx mod p for x ∈ Z
+
+where ε2[1−k] is the ﬁrst k rows of ε2 . Because every
+column vector of ε includes a large q, each column vector
+¯
+may not be the shortest vector of lattice L . In order to
+remove the impact of q, we generate the target vectors as
+ti = (0, 0, · · · , 0, q, 0, · · · , 0) for 1 ≤ i ≤ N , q is located at
+the i-th position. We expect that the i-th column vector of ε
+¯
+is the closest vector to target ti . The distance between ti and
+L is,
+√
+distance(ti , L ) = 2N + k − 1.
+
+}.
+
+Then each column of matrix ε is a vector belongs to lattice
+L.
+Proof: From the public key generation, we know that,
+Bi = [Pi M1 |Pi M2 + εi ]∆, i ∈ {0, 1, · · · , n}.
+Then,
+
+B0
+ B1
+
+ .
+ .
+.
+
+
+
+
+
+
+
+ −1 
+ ∆ = 
+
+
+
+Bn
+
+P0
+P1
+.
+.
+.
+
+
+
+
+
+
+
+
+
+ M1 | 
+
+
+
+Pn
+
+P0
+P1
+.
+.
+.
+
+
+
+
+
+
+
+
+
+ M2 + 
+
+
+
+Pn
+
+ε0
+ε1
+.
+.
+.
+εn
+
+
+
+We use Kannan’s embedding technique [17] to solve the CVP instances CVP(ti , L ). Firstly, we obtain a short basis S of L
+
+ by running the lattice reduction algorithm, and then construct
+
+N embedding lattices as
+
+Let ∆−1 = (∆1 |∆2 ), each ∆i is a 2N × N matrix, we have,
+(B∆1 |B∆2 ) = (PM1 |PM2 + ε).
+
+Li =
+
+(1)
+
+ti
+1
+
+.
+
+εi = (εi1 , · · · , εi2N +k , −1)T ∈ Li ,
+(2)
+
+where εij ∈ {−1, 1} for j = i and εii = 0.
+We will prove that each εi is the shortest vector of the new
+lattice Li with a high probability. Once we have recovered
+the i-th column of the noisy matrix, we can obtain the i-th
+column of the bridge matrix D by solving a linear system
+of equations. Furthermore, the whole noisy matrix can be
+recovered by Equation (4).
+
+Furthermore, we have
+B(∆2 − ∆1 M−1 M2 ) = ε.
+1
+
+S
+0
+
+Note that for 1 ≤ i ≤ N , the vector
+
+From Equation (1), we know that,
+B∆1 M−1 M2 + ε = B∆2 .
+1
+
+mod p for x ∈ Z2N },
+
+(3)
+
+From the deﬁnition of lattice L, each column of the matrix ε
+is a vector that belongs to lattice L.
+B. Recover the Noisy Matrix ε
+
+Theorem 2. Let p be a prime, such that p
+2N . Choose
+2N log(2πe)
+1
+k = 2 log p−log(2πe) + 4, then for all but a fraction p of
+
+From Theorem 1, there exists a bridging matrix D such that
+
+
+
+
+B0
+ε0
+ B1 
+ ε1 
+
+
+
+
+(4)
+ .  D =  .  mod p.
+ . 
+ . 
+.
+.
+Bn
+εn
+
+(2N +k)×(2N )
+
+the S’s in Zp
+, the vector (Sdi − ti , −1)T is the
+shortest vector of lattice Li deﬁned as above, where di is the
+i-th column of matrix D.
+Proof: Note that,
+
+To recall the special structure of each matrix above, each Bi
+is N × 2N matrix and εi is a square matrix with dimension
+N . For i ∈ {0, 1, · · · , n}, the elements of εi are over {−1, 1},
+except each diagonal term of matrix ε0 is −q or q.
+
+(Sdi − ti , −1)T = (εi1 , · · · , εi2N +k , −1)T ,
+where εij ∈ {−1, 1} for j = i and εii = 0. The length of
+√
+each vector is 2N + k.
+√
+Next, we will prove the lattice vector with length 2N + k
+1
+is a shortest vector for all but a fraction p of the S’s.
+
+Remark 1. Note that q is much smaller than p, so each column
+of ε is a short vector of L. Obviously, lattice L is spanned by
+3
+
+3
+
+Algorithm 1. Recover the noisy matrix
+
+Without loss of generality, suppose vector (vj , −j)T ∈ Li ,
+for some j from {0, 1, · · · , p − 1}. Then we have
+
+Input: The n + 1 public matrices B0 , · · · , Bn .
+2N log(2πe)
+1) Choose k = 2 log p−log(2πe) + 4, establish a (2N + k) ×
+2N matrix A from the ﬁrst 2N + k rows of matrix B.
+2) Construct the (2N + k) × (4N + k) matrix A = (A|qI),
+the column vectors of matrix A span lattice L , run BKZ
+algorithm on L , obtain a short basis S with rank 2N + k.
+3) For 1 ≤ i ≤ N , generate the target vector ti =
+(0, 0, · · · , 0, q, 0, · · · , 0), where q is located at the i-th
+position. For each ti , construct the embedding lattice by
+S ti
+and run BKZ algorithm to get a vector
+Li =
+0 1
+Ci and instead of 0 by q for the i-th term.
+−1
+B0
+4) Compute matrix T =
+, construct a 2N × 2N
+B1
+matrix C truncated from the ﬁrst 2N rows of C, then
+compute the bridging matrix D = T × C
+5) Recover the noisy matrix ε by ε = B × D.
+Output: The bridging matrix D and the noisy matrix ε.
+
+2N +k
+
+(vj , −j)T = (
+
+xi si − jti , −j)T , xi ∈ Z.
+i=1
+
+Let N (n, R2 ) denote the number of integer points in
+Bn (R), where Bn (R) represents the n-dimension ball centered at the origin with radius R.
+From [22], when R > n/2,
+N (n, R2 ) ≈ (
+
+2πe n/2 n
+) R .
+n
+
+(5)
+
+Since p is a prime, for uniformly random choice of matrix
+S, any non-zero vector x ∈ Z2N and a ﬁxed j, we have
+pr {Sx = vj + jti } = p−(2N +k) .
+Let R =
+
+√
+
+(6)
+
+2N + k, denote the vector sets
+
+To ensure the invertibility of matrix (∆1 |∆2 ), we
+should construct the two matrices ∆1 and ∆2 such that
+gcd(det((∆1 |∆2 )), p) = 1. From Equation (8), we have
+
+2N
+Vj = {(vj + jti ) ∈ Zp +k | vj + jti ≤ R}.
+
+Note that R
+
+p, then |Vj | = N (2N + k, R2 ).
+
+det(∆1 |∆2 ) = det(∆1 |D).
+
+Randomly choose a 2N × N matrix ∆1 until we can get an
+appropriate matrix ∆1 such that gcd(det(∆1 |D), p) = 1.
+Randomly generate an N × N matrix M , compute ∆2 =
+pr =
+P r{Sx = v}
+∆1 M + D, then the scrambling matrix ∆−1 = (∆1 |∆2 ) is
+x∈Z2N \0 v∈Vj
+p
+constructed. Choose a random N × N invertible matrix M1
+≤ (N (2N + k, R2 )/p2N +k )p2N ≤ N (2N + k, R2 )/pk .
+over Z/pZ, then compute M2 = M1 M , the hidden matrix
+M = (M1 |M2 ) is found. Finally, we get a set of equivalent
+From (5), we deduce that
+private keys.
+2N +k
+2πe 2N +k 2N +k
+2
+2
+2
+)
+R
+= (2πe)
+.
+N (2N + k, R ) ≈ (
+Remark 2. For the correctness of our series of equivalent
+2N + k
+private keys, recall that
+2N log(2πe)
+Choose k0 = 2 log p−log(2πe) + 1, when k = k0 + 3, the
+c∆−1 = (m, r1 , · · · , rn )B(∆1 |∆2 )
+probability satisﬁes,
+= (m, r1 , · · · , rn )(B∆1 |B∆2 ).
+n+k0
+2πe
++1
+k0 +3
+2
+k
+−2
+/p
+≤ 3 < p . Because ∆2 = ∆1 M + D, we can calculate e =
+pr ≤ N (n + k, R )/p ≤ (2πe) 2
+p
+(m, r1 , · · · , rn )ε as well.
+Therefore, for all but a fraction less than p−2 of the S ∈
+We summarize the whole algorithm which leads to ﬁnd the
+(2N +k)×2N
+Zp
+, there is no vector shorter than R in Vj .
+group of equivalent private keys below (Algorithm 2).
+Consider all sets Vj , with probability (1 − p−2 )p ≈ 1 − p−1 ,
+Algorithm 2. Main strategy of this attack
+all vectors in Li is larger than R except the one (Sdi −
+T
+Input: The n + 1 public matrices B0 , · · · , Bn .
+ti , −1) .
+1) Recover the noisy matrix ε and the corresponding bridging
+To sum up, we formalize an algorithm to recover the
+matrix D by using Algorithm 1.
+bridging matrix and noisy matrix below (Algorithm 1).
+The probability that a vector from Vj belongs to Li is
+
+2) Randomly choose a 2N × N matrix ∆1 such that the new
+matrix (∆1 |D) is invertible over Z/pZ.
+3) Randomly choose an N × N matrix M , compute ∆2 =
+∆1 M + D.
+4) Randomly choose an N × N invertible matrix M1 over
+Z/pZ, compute M2 = M1 M .
+Output: The equivalent private keys M = (M1 |M2 ) and ∆−1 =
+(∆1 |∆2 ).
+
+C. Recover the Equivalent Private Keys
+Once we have recovered the noisy matrix ε and the corresponding bridging matrix D, note that
+D = ∆2 − ∆1 M−1 M2 .
+1
+
+(7)
+
+Denote the N × N matrix M = M−1 M2 , then
+1
+(∆1 |∆2 ) = (∆1 |D)
+
+I M
+0 I.
+
+V. E XPERIMENTS RESULTS
+To validate the efﬁciency of our attack, we implemented the
+attack using the NTL library [28] developed by Victor Shoup.
+
+(8)
+
+4
+
+4
+
+TABLE I
+C HOICES OF k FOR DIFFERENT N
+
+N
+k
+
+15
+5
+
+20
+9
+
+25
+12
+
+30
+14
+
+35
+19
+
+40
+22
+
+45
+30
+
+[5] Cohen, J. and Fischer.: A Robust and Veriﬁable Cryptographically
+Secure Election Scheme, FOCS, pp.372-382 (1985).
+[6] J.-S. Coron, A. Mandal, D. Naccache, and M. Tibouchi. Fully homomorphic encryption over the integers with shorter public-keys. In Advances
+in Cryptology - Proc. CRYPTO 2011, volume 6841, pp 487-504, LNCS,
+Springer, 2011.
+[7] Yuanmi Chen and Phong Q. Nguyen. Faster Algorithms for Approximate
+Common Divisors: Breaking Fully-Homomorphic-Encryption Challenges over the Integers,Cryptology ePrint Archive, Report 2011/436,
+2011, http://eprint.iacr.org/.
+[8] van Dijk,M., Gentry, C., Halevi, S., Vaikuntanathan, V.: Fully homomorphic encryption over the integers. In: Gilbert, H. (ed.) EUROCRYPT
+2010. LNCS, vol. 6110, pp. 24-43. Springer, Heidelberg (2010)
+[9] Damgard, I., Jurik, M.J.: A Generalisation, a Simpliﬁcation and some
+Applications of Pailliers Probabilistic Public-Key System. In: PKC 01.
+Volume 1992 of LNCS series. (2001)
+[10] Taher El-Gamal. A public key cryptosystem and a signature scheme
+based on discrete logarithms. In CRYPTO, pages 10-18, 1984.
+[11] Gentry, C.: A fully homomorphic encryption scheme. Ph.D. thesis,
+Stanford University (2009), http://crypto.stanford.edu/craig
+[12] Gentry, C.: Fully homomorphic encryption using ideal lattices. In:
+Proceedings of the 41st ACM Symposium on Theory of Computing.
+STOC 2009, pp. 169-178. ACM, New York (2009)
+[13] Craig Gentry. Toward basing fully homomorphic encryption on worstcase hardness. In Tal Rabin, editor, CRYPTO, volume 6223 of Lecture
+Notes in Computer Science, pages 116-137. Springer, 2010.
+[14] Gentry, C., Halevi, S.: Implementing Gentrys Fully-Homomorphic Encryption Scheme. In: Paterson, K.G. (ed.) EUROCRYPT 2011. LNCS,
+vol. 6632, pp. 129-148. Springer, Heidelberg (2011)
+[15] S. Goldwasser and D. Kharchenko. Proof of plaintext knowledge for the
+Ajtai-Dwork cryptosystem. TCC 2005, pp. 529-555.
+[16] S. Goldwasser and S. Micali. Probabilistic encryption and how to play
+mental poker keeping secret all partial information. STOC 82, pp. 365377.
+[17] R.Kannan. Minkowski’s convex body theorem and integer programming.
+Mathematics of operation research, 12(3):415-440.
+[18] A. Kawachi, K. Tanaka, K. Xagawa. Multi-bit cryptosystems based on
+lattice problems. PKC 07, pp. 315-329.
+[19] Lipmaa, H.: An Oblivious Transfer Protocol with Log-Squared Communication. In: 8th Information Security Conference (ISC05), Singapore.
+Volume 3650 of Lecture Notes in Computer Science., Springer (2005)
+314-328
+[20] C.A. Melchor, G. Castagnos, and P. Gaborit. Lattice-based homomorphic
+encryption of vector spaces. ISIT 08, pp. 1858-1862.
+[21] Aguilar Melchor, C., Gaborit, P.: A Lattice-Based ComputationallyEfﬁcient Private Information Retrieval Protocol. In: Western European
+Workshop on Research in Cryptology (WEWoRC2007), Bochum, Germany. Book of Abstracts. (2007) 50-54.
+[22] J.E.Mazo and A.M.Odlyzko, Lattice points in high-dimensional spheres,.
+Monatsh. Math. 110 (1990), 47-61.
+[23] D.Naccache and J.Stern. A New Public-Key Cryptosystem Based on
+Higher Residues. ACM CCS 98.
+[24] P. Paillier. Public-Key Cryptosystems Based on Composite Degree
+Residuosity Classes. Eurocrypt 99, pp. 223-238.
+[25] C. Peikert and B. Waters. Lossy Trapdoor Functions and Their Applications. STOC 08, pp. 187-196.
+[26] R. Rivest, L. Adleman, and M. Dertouzos. On data banks and privacy
+homomor- phisms. In Foundations of Secure Computation, pages 169180, 1978.
+[27] C. P. Schnorr. A hierarchy of polynomial lattice basis reduction algorithms. Theoretical Com- puter Science, 53:201-224, 1987.
+[28] V. Shoup. NTL, Number Theory C++ Library. Av. at
+http://www.shoup.net/ntl/.
+[29] Smart, N.P., Vercauteren, F.: Fully homomorphic encryption with relatively small key and ciphertext sizes. In: Nguyen, P.Q., Pointcheval, D.
+(eds.) PKC 2010. LNCS, vol. 6056, pp. 420-443. Springer, Heidelberg
+(2010)
+[30] T. Okamoto and Uchiyama. A New Public-Key Cryptosystem as Secure
+as Factoring. Eurocrypt 98, pp. 308-318.
+
+50
+34
+
+TABLE II
+C HOICES OF k AND CORRESPONDING EMBEDDING LATTICE GAPS
+
+k
+Gap
+
+Instance 1
+10
+3.3
+
+Instance 2
+8
+27.1
+
+Instance 3
+35
+10.8
+
+In our attack, we invoked the lattice reduction algorithm BKZ20 [27] with reduction parameter 0.99.
+In our tests, we enlarged the value k a little compared with
+the estimated value in Theorem 2 to ensure the embedding
+lattice would produce a bigger λ2 -gap. In order to give a
+more exact estimation, we performed ten experiments for each
+set of recommended parameters. To illustrate the accuracy of
+the estimation of k value from Theorem 2, we summarize
+the experimental data in Table 1 for the third recommended
+parameters n = 9, p = 218 , q = 212 , m0 = 32, r0 = 5.
+The second row of Table 1 represents the k selections that
+we can successfully compute the noisy matrix for all the
+ten experiments. Corresponding with the three recommended
+groups of parameters, we did experiments for each instance
+and summarize the gaps of the embedding lattices and the
+choices of k in Table 2.
+VI. C ONCLUSION
+In this paper, we describe a reduced-dimension attack on the
+MCG homomorphic scheme. For the instances of the three sets
+of recommended parameters, the equivalent private keys can
+be recovered practically. The main contribution of our attack is
+to explore a secret linear equation between the public keys and
+the private keys, and then recover the private keys by solving
+a special closest vector problem.
+ACKNOWLEDGMENT
+We would like to thank Professor Phong Nguyen for his
+helpful comments.
+This work is partially supported by NSF of China under grants No.61133013 and No.60931160442, and Tsinghua University Initiative Scientiﬁc Research Program
+No.2009THZ01002.
+R EFERENCES
+[1] J. Benaloh. Veriﬁable secret-ballot elections. Ph.D. thesis, Yale Univ,
+Dept. of Comp. Sci. 1988.
+[2] Z. Brakerski and V. Vaikuntanathan. Efﬁcient fully homomorphic encryption from (standard) LWE. FOCS 2011.
+[3] Zvika Brakerski and Vinod Vaikuntanathan. Fully Homomorphic Encryption from Ring-LWE and Security for Key Dependent Messages.
+In Advances in Cryptology - Proc. CRYPTO 2011, volume 6841, pp
+505-524, LNCS, Springer, 2011.
+[4] Dan Boneh, Eu-Jin Goh, and Kobbi Nissim. Evaluating 2-DNF formulas
+on ciphertexts. In Theory of Cryptography - TCC’05, volume 3378 of
+Lecture Notes in Computer Science, pages 325-341. Springer, 2005.
+
+5
+
+5
+
+

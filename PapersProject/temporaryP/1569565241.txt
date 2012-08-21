@@ -1,0 +1,790 @@
+Creator:        TeX
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Tue May  1 10:09:01 2012
+ModDate:        Tue Jun 19 12:54:33 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      332661 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569565241
+
+Observability, Controllability and Local Reducibility
+of Linear Codes on Graphs
+G. David Forney, Jr.
+
+Heide Gluesing-Luerssen
+
+Laboratory for Information and Decision Systems
+Massachusetts Institute of Technology
+Cambridge, MA 02139
+Email: forneyd@comcast.net
+
+University of Kentucky
+Department of Mathematics
+Lexington, KY 40506
+Email: heide.gl@uky.edu
+
+II. N OTATION AND TERMINOLOGY
+
+Abstract—This paper is concerned with the local reducibility
+properties of linear realizations of codes on ﬁnite graphs.
+Trimness and properness are dual properties of constraint
+codes. A linear realization is locally reducible if any constraint
+code is not both trim and proper. On a ﬁnite cycle-free graph, a
+linear realization is minimal if and only if every constraint code
+is both trim and proper.
+A linear realization is called observable if it is one-to-one,
+and controllable if all constraints are independent. Observability
+and controllability are dual properties. An unobservable or
+uncontrollable realization is locally reducible. A parity-check
+realization is uncontrollable if and only if it has redundant parity
+checks. A tail-biting trellis realization is uncontrollable if and
+only if its trajectories partition into disconnected subrealizations.
+General graphical realizations do not share this property.
+
+All of our realizations will be ﬁnite and linear. We will
+generally use the notation and terminology of [1] and [7].
+A linear code C over a ﬁnite ﬁeld F is a subspace of a
+symbol sequence space A = Πk∈IA Ak , where each symbol
+alphabet Ak is a ﬁnite-dimensional vector space over F, and
+IA is a ﬁnite index set. For a state realization of C, we deﬁne
+also a set {Sj : j ∈ IS } of state spaces Sj and a set {Ci : i ∈
+IC } of local constraint codes Ci , where each constraint code
+Ci involves some subsets A(i) = k∈I (i) Ak and S (i) =
+A
+j∈IS (i) Sj of the symbol and state variables, respectively. In
+a linear realization, each state space Sj and each constraint
+code Ci is a vector space over F. The state sequence space is
+S = j∈IS Sj .
+The behavior of a realization is the set B of all pairs
+(a, s) ∈ A × S such that all constraints are satisﬁed; i.e.,
+(a(i) , s(i) ) ∈ Ci for all i. The code C that it generates or
+realizes is the set of all symbol sequences a ∈ A that appear
+in some (a, s) ∈ B; i.e., the projection B|A of B on A.
+A state realization is called normal if every symbol variable is involved in precisely one constraint code, and every
+state variable is involved in precisely two constraint codes.
+As shown in [1], any realization may be straightforwardly
+“normalized” by introducing replica variables and equality
+constraints. Therefore we will assume henceforth that all
+realizations are normal. A normal realization has a natural
+graphical representation, a normal graph, in which constraint
+codes are represented by vertices, states by ordinary edges,
+and symbol variables by half-edges; see [1]. We will assume
+that all normal graphs are connected.
+A trellis realization is a normal realization in which every
+constraint code involves precisely two state variables. Thus
+the graph of a trellis realization must be either a ﬁnite chain
+graph, called a conventional trellis realization, or a single-cycle
+graph, called a tail-biting trellis realization. We will depict
+trellis realizations by traditional trellis diagrams, in which all
+branches, states and symbols are shown explicitly.
+A realization of a code C will be called observable if for
+each a ∈ C there is precisely one pair (a, s) ∈ B. We deﬁne
+the unobservable behavior Bu as the set of pairs (0, s) ∈ B;
+thus a realization is observable iff Bu is trivial.
+
+I. I NTRODUCTION
+For conventional linear state-space (trellis) realizations of
+codes or systems, minimality is well understood and can be
+characterized in many ways; see [8], [2] and the references
+therein.
+For realizations on more general graphs, the situation is
+much less studied and more complicated. In particular, a
+given code does not have a unique minimal realization on
+a graph with cycles; see [7] for a detailed discussion of the
+speciﬁc class of tail-biting trellis realizations. Yet it has long
+been known that realizations on graphs with cycles can be
+much simpler, and therefore may allow more powerful iterative
+decoding algorithms.
+In this paper, we will study properties of linear realizations
+on general graphs that allow “local reduction” operations. For
+instance, we will show that local reduction is possible if any
+constraint code in the realization is not both trim and proper;
+moreover, when the graph of the realization is cycle-free, the
+converse is sufﬁcient for minimality. We go on to show that a
+realization is locally reducible if it is not observable (one-toone) or uncontrollable (has dependent constraints). We show
+that the effects of uncontrollability are similar for tail-biting
+trellis realizations to those for conventional trellis realizations,
+but that this result does not generalize straightforwardly to the
+general case.
+The work of the second author was supported in part by National Science
+Foundation grant #DMS-0908379.
+This conference paper is based on the preprint [3].
+
+1
+
+Projection/cross-section duality. If C and C ⊥ are orthogonal
+linear codes deﬁned on IA , and J ⊆ IA , then C:J and (C ⊥ )|J
+are orthogonal linear codes deﬁned on J .
+
+A realization will be called state-trim if each state appears
+on a valid trajectory; i.e., if the projection of B onto each Sj
+is Sj (surjective). Similarly, using trellis terminology, a realization will be called branch-trim if the projection of B onto
+each constraint code Ci is surjective. A state-trim and branchtrim realization is called reduced [7].
+A constraint code Ci will be called trim if the projection
+of Ci onto every state space Sj that is involved in Ci is
+surjective, and proper if it has no nonzero codewords whose
+support is a single state space Sj .
+As in [7], a realization with state spaces Sj is called minimal
+if there exists no realization of the same code with state
+˜
+spaces Sj that has the same graph topology (i.e., the same in˜
+dex sets IA , IS , IC , IA(i) , IS (i) ) such that dim Sj ≤ dim Sj
+for all j, with at least one strict inequality. It is well known
+that on a cycle-free graph a minimal realization is unique up
+to isomorphism; however, on a graph with cycles, there is in
+general no unique minimal realization.
+In this paper, a realization will be called locally reducible
+if there is a replacement of one state space Sj by a smaller
+state space, and a corresponding reduction of the constraint
+codes involving Sj , such that the resulting realization realizes
+the same code. (More general notions of local reducibility will
+be considered in [5].) We use two dual methods of reducing
+a state space, namely restricting and taking quotients; these
+operations will be called trimming and merging, respectively.
+
+In this paper, our main tool will be normal realization
+duality, which follows directly from projection/cross-section
+duality [1]. Given a normal linear realization, its dual realization is deﬁned as the normal linear realization with the same
+graph topology in which the variable alphabets Ak , Sj are
+ˆ ˆ
+replaced by their dual spaces Ak , Sj , the constraint codes Ci
+⊥
+are replaced by their orthogonal codes Ci , and the sign of each
+dual state variable is inverted in one of the two constraints in
+which it is involved. Then we have:
+Normal realization duality. If a normal realization realizes a
+linear code C, then its dual realization realizes the orthogonal
+linear code C ⊥ .
+III. T RIMNESS AND PROPERNESS
+To repeat, a linear constraint code Ci is trim if the projection
+of Ci onto every state space Sj that is involved in Ci is Sj , and
+proper if there are no nonzero codewords of Ci whose support
+is a single state space Sj .
+As observed in [6], these are dual properties:
+Theorem 1. A linear constraint code Ci is trim if and only if
+⊥
+the orthogonal constraint code Ci is proper.
+Proof : Ci is not trim if the projection (Ci )|Sj of Ci on any
+⊥
+state space Sj involved in Ci is a proper subspace of Sj . Ci
+⊥
+is not proper if the cross-section (Ci ):Sj is nontrivial. By
+ˆ
+⊥
+projection/cross-section duality, (Ci ):Sj is the orthogonal code
+ˆ
+⊥
+to the projection (Ci )|Sj . Thus (Ci ):Sj is nontrivial if and only
+ˆ
+if (Ci )|Sj is a proper subspace of Sj .
+
+A. Duality
+We brieﬂy recall some of the basic duality principles that
+will be used heavily in this paper, following [1], [4].
+If V is a ﬁnite-dimensional vector space over a ﬁnite ﬁeld
+ˆ
+F, then its linear-algebra dual space V is a vector space over
+F of the same dimension such that there is a well-deﬁned
+ˆ
+inner product ·, · : V × V → F. Given any basis of V ,
+ˆ
+there exists a dual basis for V such that the inner product of
+ˆ
+two vectors in V and V is equal to the dot product of their
+respective coordinate vectors. Two elements v ∈ V, v ∈ V are
+ˆ ˆ
+orthogonal if v, v = 0.
+ˆ
+If W ⊆ V is a subspace, then its orthogonal space W ⊥ ⊆
+ˆ is the space of all vectors in V that are orthogonal to all
+ˆ
+V
+⊥ ⊥
+ˆ = ˆ
+vectors in W . We have (W ) = W and W ∼ V /W ⊥ ,
+⊥
+ˆ = dim V .
+implying dim W + dim W = dim V
+If V = Πk Vk is a ﬁnite direct product of vector spaces Vk ,
+ˆ
+ˆ
+then V = Πk Vk , with inner product given by the componenˆ
+twise sum v, v = k vk , vk . If W = Πk Wk is a direct
+ˆ
+⊥
+ˆ
+product of subspaces Wk ⊆ Vk , then W ⊥ = Πk Wk ⊆ V .
+A key duality lemma for linear codes is projection/crosssection duality [1]. For any subset J ⊆ IA of an index set
+IA , the projection map PJ : A → AJ = k∈J Ak is deﬁned
+by the map a = {ak : k ∈ IA } → aJ = {ak : k ∈ J }. The
+projection C|J of a linear code C deﬁned on IA on J is then
+deﬁned as the image of PJ : C → AJ , a subspace of AJ .
+The cross-section of C on J is deﬁned as C:J = {aJ ∈ C J |
+(aJ , 0IA −J ) ∈ C}, a subspace of C|J . Then we have:
+
+This leads immediately to conditions for local reducibility:
+Theorem 2. A realization containing a constraint code Ci that
+is not both trim and proper is locally reducible.
+Proof : A constraint code Ci that is not trim may obviously
+be locally reduced by restricting Sj to Sj = (Ci )|Sj , without
+changing the code C realized by the realization.
+Dually, a linear constraint code Ci that is not proper (i.e.,
+involves a state space Sj such that Tj = (Ci ):Sj is nontrivial)
+may be locally reduced by mapping Sj → Sj /Tj via the
+natural map sj → sj + Tj , with corresponding maps in all
+constraint codes that involve Sj , without changing the code C
+realized by the realization.
+Since taking quotients as above preserves linearity, it is the
+appropriate notion of “merging” for linear realizations.
+Finally, we have the following remarkably simple result:
+Theorem 3 (trim + proper = minimal). For a linear realization on a ﬁnite cycle-free graph, the following are equivalent:
+1) The realization is minimal.
+2) Every constraint code is both trim and proper.
+3) The state space associated with any edge Sj is isomorphic to C|Pj /C:Pj , where Pj is the “past” of Sj .
+
+2
+
+Theorem 4. A normal linear realization is controllable (has
+independent constraints) if and only if its dual realization is
+observable. Moreover, it is controllable if and only if dim B =
+i dim Ci − dim S.
+
+Sketch of proof (see [3]):
+(1 ⇒ 2) By Theorem 2, if any constraint code is not both trim
+and proper, then the realization is locally reducible.
+(2 ⇒ 3) In a cycle-free graph, every edge Sj is a cut set, whose
+removal partitions the graph into two disconnected subgraphs,
+Pj and Fj . If the graph is ﬁnite, then each edge has a ﬁnite past
+depth dj (maximum distance to any leaf in Pj ). By induction
+on dj , we can show that trimness implies that every state
+sj ∈ Sj is reached by some symbol conﬁguration aP ∈ C|Pj ,
+and properness implies that every aP ∈ C|Pj reaches a unique
+state sj ∈ Sj . This implies that the set of sequences in Pj that
+reach the zero state in Sj is precisely the cross-section C:Pj .
+Moreover, by linearity, if aP (sj ) ∈ C|Pj is any sequence that
+reaches another state sj ∈ Sj , then the set of all sequences
+that reach that state is C:Pj + aP (sj ), a coset of C:Pj in C|Pj .
+Thus the realization induces a one-to-one map between Sj
+and the quotient space C|Pj /C:Pj , which by linearity is an
+isomorphism.
+(3 ⇒ 1) Since Sj ∼ C|Pj /C:Pj , and by the same argu=
+ment Sj ∼ C|Fj /C:Fj , we have that C is the union of the
+=
+cosets {C:Pj × C:Fj + (aP (sj ), aF (sj )) : sj ∈ Sj }, where
+{aP (sj ) : sj ∈ Sj } and {aF (sj ) : sj ∈ Sj } are sets of coset
+representatives for C|P /C:P and C|F /C:F , respectively. This
+implies that no further merging of states is possible, so the
+realization is minimal.
+
+Proof : In view of the normal degree restrictions, the only way
+⊥
+that a nontrivial sum of constraints (ˆ(i) , ˆ(i) ) ∈ Ci can equal
+a s
+zero is if all symbol values ak equal zero, and for each pair
+ˆ
+ˆ
+of dual state values sj , sj ∈ Sj , we have sj = −ˆj . But these
+ˆ ˆ
+ˆ
+s
+ˆ s
+are precisely the conditions such that (0, ˆ) is a valid nonzero
+trajectory in the dual realization; i.e., for the dual realization
+to be unobservable.
+For the formula, we start with dim B = dim A + dim S −
+⊥
+⊥
+(i)
+(i)
+i dim Ci , substitute dim Ci = dim A +dim S −dim Ci ,
+(i)
+(i)
+and note that
+= dim A and
+=
+i dim A
+i dim S
+2 dim S, by the normal degree restrictions.
+We use the term “controllable” even though: (a) this term
+was introduced at a time when linear system theory was
+embedded in control theory, which is not our context here;
+(b) although the behavior of uncontrollable tail-biting trellis
+realizations is similar to that of uncontrollable conventional
+trellis realizations, as we will see below in Theorem 7,
+such uncontrollability properties do not necessarily extend to
+realizations on general graphs, as we will see in Example 2.
+The reader who is not so interested in continuity with classical
+linear system theory might therefore prefer terms like “oneto-one” and “independent” to “observable” and “controllable.”
+
+Although the result ”trim + proper = minimal” has long
+been known for conventional trellis realizations [8], it seems
+to be new for realizations on more general cycle-free graphs.
+The proof of Theorem 3 shows constructively that a ﬁnite
+linear cycle-free realization is minimal if and only if every
+state space Sj is isomorphic to C|Pj /C:Pj ∼ C|Fj /C:Fj which
+=
+is the essence of the State Space Theorem [1].
+This result immediately suggests straightforward iterative
+minimization algorithms, involving a ﬁnite series of local
+reductions.
+Finally, we observe that the “shortest basis” approach to
+minimality that is used for conventional linear trellis realizations (see [2] and references therein) cannot be extended
+to general cycle-free realizations, because it relies on the
+“product construction” for trellis realizations, which generally
+does not exist for more general cycle-free graphs. In this
+respect, the “trim + proper” approach to minimality may be
+regarded as more basic than the “shortest basis” approach.
+
+Example 1 (cf. [7, Fig. 5]). The binary linear (3, 2, 2) block
+code C = {000, 110, 101, 011} may be realized by the linear
+tail-biting trellis realization shown in Fig. 1(a), with three
+binary symbol alphabets, three binary state spaces S0 = S1 =
+S2 = {0, 1}, and three constraint codes C0 = C1 = C2 =
+{000, 110, 101, 011}, where C2 involves S2 and S0 . This is
+a product realization generated by 110, 011, 101 , with the
+indicated circular spans. Because the all-zero symbol sequence
+is realized by two trajectories, this realization is unobservable.
+t 0 t 0 t 0 t
+d  d  d 
+ 
+ 
+1   1 1 1 1
+1
+d t d t d t
+ 0d 0d 0d
+t
+(a)
+
+Fig. 1.
+
+t 1
+
+t 1
+
+t 1
+
+t
+
+t 0
+
+t 0 t 0
+(b)
+
+t
+
+Dual unobservable and uncontrollable tail-biting trellis realizations.
+
+The dual linear tail-biting trellis realization is shown in Fig.
+1(b). (No sign inverters are needed because the ﬁeld is F2 .) The
+dual realization realizes the orthogonal (3, 1, 3) code C ⊥ =
+{000, 111}; however, by Theorem 4 it is uncontrollable, since
+it is the dual to an unobservable realization. Explicitly, the
+three constraints corresponding to the branches 101 in the three
+primal constraint codes (i.e., the components of the nonzero
+trajectory (0, 1) in the primal behavior) are dependent.
+We shall see in Theorem 7 that the fact that the dual
+behavior B◦ comprises two disjoint paths is another proof
+that the dual realization is uncontrollable. Alternatively, it is
+⊥
+uncontrollable because dim B◦ = 1,
+i dim Ci = 3 and
+ˆ
+ˆ
+dim S = i dim Si = 3.
+
+IV. O BSERVABILITY AND CONTROLLABILITY
+The behavior B ⊆ A × S of a linear realization is deﬁned
+⊥
+by a system of
+i dim Ci linear homogeneous constraint
+equations. The constraint system is independent if and only
+if the dimension of the solution space B is equal to the
+number of variables minus the number of equations; i.e., iff
+⊥
+dim B = dim A + dim S − i dim Ci .
+We now show that a linear realization has independent
+constraints if and only if its dual realization is observable.
+Because of the classical duality between observability and
+controllability, we will subsequently call a realization with
+independent constraints controllable.
+
+3
+
+linearly dependent. Thus a generator realization is observable
+if and only if its generators are linearly independent. By
+observability/controllability duality, a parity-check realization
+is controllable iff its checks are linearly independent.
+
+A. Generator and parity-check realizations
+We next consider the familiar classes of generator and
+parity-check realizations, and determine their observability and
+controllability properties.
+A generator realization of a linear code C ⊆ Fn is speciﬁed
+by a set of generator n-tuples gi ∈ Fn such that C is the
+set of all linear combinations a = i αi gi . The generators
+are linearly independent if dim C = . The realization has n
+symbol variables Ak , equality constraints that generate up to
+n replicas αik = αi of each of the coefﬁcients αi , and n linear
+constraint codes that enforce the constraints ak = i αik gik .
+(If gik = 0, then the replica αik may be omitted.)
+A parity-check realization of a linear code C is the dual to a
+generator realization of C ⊥ . Parity-check realizations are used
+for low-density parity-check (LDPC) codes, for example.
+
+For example, the parity-check realization of Fig. 2 is observable but uncontrollable. So is the realization of Fig. 1(b),
+which may be viewed as a parity-check realization with the
+three redundant check 3-tuples 110, 011, 101.
+B. Local reducibility
+We now show how to locally reduce any unobservable or
+uncontrollable realization.
+Theorem 6. An unobservable linear realization with a nonzero
+trajectory (0, s) ∈ B may be locally reduced by trimming any
+single state space in the support of s. The dual uncontrollable
+realization may be correspondingly locally reduced by the dual
+merging operation.
+
+Example 2. The ﬁve binary 8-tuples 11110000, 00111100,
+00001111, 11000011, 01011010 form a set of ﬁve linearly
+dependent generators for the (8, 4, 4) ﬁrst-order Reed-Muller
+(RM) code. Since C is self-dual (i.e., C ⊥ = C), the same ﬁve
+binary 8-tuples form a set of linearly dependent checks for C.
+The parity-check realization based on these ﬁve check 8-tuples
+is shown in Fig. 2.
+= 
+
+ 
+=  
+
+ 
+ 
+ 
+
+
+
+
+=  
+
+
+
+ 
+
+
+
+   
+= 
+
+
+
+d
+ 
+d
+
+
+ 
+
+=  d   
+
+ d   
+
+
+ 
+
+
+
+ d 
+
+d
+=
+ 
+ 
+d
+
+  
+  d
+
+
+
+ 
+=   
+ 
+
+ 
+
+
+=  
+
+Proof : Select any state space Sj such that sj = 0 in some
+unobservable trajectory (0, s) ∈ B. Choose a basis {gj } for
+Sj with gj1 = sj . The coordinates of sj are thus 10 . . . 0.
+Deﬁne the subspace Tj ⊂ Sj as the set of all sj ∈ Sj
+such that sj1 = 0, and trim the realization by restricting
+B to the subbehavior B consisting of those trajectories
+that pass through a state sj ∈ Tj . We may then replace
+Sj by Tj , reducing the state space dimension by one. The
+trajectory (0, s) is then not in the trimmed behavior B , since
+sj1 = 1. However, given any (a, s ) ∈ B, the entire coset
+{(a, s +αs) : α ∈ F} is in B and thus realizes a. In this coset,
+the value of Sj1 runs through {sj1 + αsj1 : α ∈ F} = F, so
+precisely one trajectory (a, s + αs) has ﬁrst state coordinate
+sj1 + αsj1 = 0. Thus the trimmed realization still realizes
+every a ∈ C.
+In the dual realization, the corresponding local reduction is
+ˆ
+ˆ
+the merging of the states in Sj to their cosets in Sj /(Tj )⊥ via
+ˆ
+the natural map. In other words, the ﬁrst coordinate of Sj is
+simply deleted. Since the trimmed primal realization generates
+C, the merged dual realization must still generate C ⊥ .
+
++
++
++
++
++
+
+C. Tail-biting trellis realizations
+Fig. 2.
+
+Next, we consider linear tail-biting trellis realizations, which
+form the simplest class of realizations on a graph with a cycle.
+We will see that the effects of uncontrollability in this case
+are similar to those seen in classical state-space (conventional
+trellis) realizations, namely:
+
+Uncontrollable parity-check realization of (8, 4, 4) code.
+
+Theorem 5. A generator realization is controllable, and a
+parity-check realization is observable. A generator realization
+is observable if and only if its generators are linearly independent, and a parity-check realization is controllable if and only
+if its checks are linearly independent.
+
+Theorem 7. A reduced linear tail-biting trellis realization is
+uncontrollable if and only if its behavior consists of disconnected subbehaviors.
+
+Proof : A parity-check realization is obviously observable,
+since all state variables are (multiples of) replicas of symbol
+variables (see, e.g., Fig. 2). By observability/controllability
+duality, a generator realization must therefore be controllable.
+In a generator realization, there is a nonzero conﬁguration
+(0, s) if and only if there is some nontrivial linear combination of the generators that equals the zero codeword
+0 ∈ C, which happens if and only if the generators are
+
+Proof : The dual unobservable tail-biting trellis realization has
+a nonzero trajectory (0, s) ∈ B. Moreover, si = 0 for all i,
+since otherwise some constraint code Ci would not be proper.
+We again choose a basis for each state space Si with gi1 = si ,
+so the coordinates of each si are 10 . . . 0. If we choose a
+ˆ
+dual basis for each state space Si in the dual uncontrollable
+ˆ
+realization, then the inner product of elements of Si and Si is
+
+4
+
+given by the dot product of their coordinate vectors. Thus the
+ˆ
+set s⊥ ⊆ Si of dual states orthogonal to si is the subspace
+i
+ˆi of Si consisting of states whose ﬁrst coordinate is zero.
+ˆ
+T
+ˆ
+ˆ
+ˆ
+The |F| cosets of Ti in Si are the subsets of Si whose ﬁrst
+coordinates equal a certain value of F.
+Each constraint code Ci thus contains an element
+(si , ai , si+1 ) with ai = 0 and si and si+1 having coordinates
+10 . . . 0. It follows that if (ˆi , ai , −ˆi+1 ) is any element of
+s ˆ
+s
+⊥
+the orthogonal code Ci (using the convention that the sign
+inversion is always applied to si+1 ), then
+ˆ
+=
+
+D. General realizations
+We have seen that for trellis realizations, the effects of
+uncontrollability for conventional and tail-biting trellises are
+similar. However, for more general realizations, we do not
+necessarily have the same phenomenon of disconnected subbehaviors. For example, in the uncontrollable parity-check
+realization of Fig. 2, every state variable is a replica of a
+symbol variable, and thus (from the properties of C) every
+pair of state variables that do not both correspond to the same
+symbol variable can take on all possible pairs of values.
+Unobservable realizations would appear to be clearly undesirable for use with iterative decoding: because every code
+sequence has multiple representations, it seems that an iterative
+decoding algorithm would never converge to any one of them.
+However, we have seen that any unobservable realization may
+be locally reduced, so without loss of generality we can always
+assume an observable realization for any given code.
+On the other hand, uncontrollable parity-check realizations
+can be and have been used successfully with iterative decoding. Moreover, it is known that redundant parity checks
+tend to reduce the number of pseudocodewords with iterative
+decoding of LDPC codes, so in this respect uncontrollability
+may actually be helpful. Thus it would be useful to have
+a better understanding of the properties of uncontrollable
+realizations.
+
+(si , ai , si+1 ), (ˆi , ai , −ˆi+1 )
+s ˆ
+s
+
+=
+
+0
+
+The fundamental structure theorem of Koetter and Vardy [7]
+states that every linear reduced tail-biting (or conventional)
+trellis realization is a product realization. In this light, it is
+easy to see that a tail-biting trellis is controllable if and only
+if none of the spans of its generators is degenerate.
+
+si , si + ai , ai − si+1 , si+1
+ˆ
+ˆ
+ˆ
+
+= si1 − si+1,1 .
+ˆ
+ˆ
+It follows that in any dual trajectory (ˆ, ˆ), the ﬁrst coordinates
+a s
+of the dual state variables must be equal: si1 = si+1,1 . Thus
+ˆ
+ˆ
+ˆi are partitioned by their ﬁrst coordinates
+the state spaces S
+ˆ
+into |F| cosets of Ti , such that state transitions are possible
+only within cosets. The trajectories in the dual behavior B◦
+thus partition into disconnected cosets, each consisting of the
+trajectories that go through states with a particular value of
+the ﬁrst coordinate.
+Example 3. The tail-biting trellis realization of Fig. 3 realizes
+the binary linear (5, 3) block code C = 01110, 10010, 01101 .
+Since it has a nonzero trajectory (0, s), this realization is
+unobservable. Its ﬁve state spaces have been coordinatized so
+that the state values along the nonzero trajectory (0, s) are
+either 10 or 1.
+11
+10
+01
+00
+Fig. 3.
+
+11
+10
+01
+00
+Fig. 4.
+
+t
+t 0 t
+t
+d1
+1 f 1 d 
+e  ¡ 1 1
+0  
+ 
+t d t 0 t 0 tfe¡¡0t d t
+0d
+   e  0d
+f
+e ¡
+¡ 1
+f 
+e0
+1 ¡
+e 1
+t
+t f et 0 t
+¡
+ 
+¡
+e
+1  1 d 1
+d1
+f 1  
+d ¡¡0eet   t  fft   t
+t 0dt
+ 0  0 1 d
+0d
+
+R EFERENCES
+[1] G. D. Forney, Jr., “Codes on graphs: Normal realizations,” IEEE Trans.
+Inf. Theory, vol. 47, pp. 520–548, Feb. 2001.
+[2] G. D. Forney, Jr., “Minimal realizations of linear systems: The ‘shortest
+basis’ approach,” IEEE Trans. Inf. Theory, vol. 57, pp. 726–737, Feb.
+2011.
+[3] G. D. Forney, Jr. and H. Gluesing-Luerssen, “Codes on graphs: Observability, controllability and local reducibility,” submitted to IEEE Trans.
+Inf. Theory, Mar. 2012. ArXiv: 1203.3115 [cs.IT].
+[4] G. D. Forney, Jr. and M. D. Trott, “The dynamics of group codes: Dual
+abelian group codes and systems,” IEEE Trans. Inf. Theory, vol. 50, pp.
+2935–2965, Dec. 2004.
+[5] H. Gluesing-Luerssen and G. D. Forney, Jr., “Local irreducibility of tailbiting trellises,” in preparation, 2012.
+[6] H. Gluesing-Luerssen and E. A. Weaver, “Characteristic generators and
+dualization for tail-biting trellises,” IEEE Trans. Inf. Theory, vol. 57, pp.
+7418–7430, Nov. 2011.
+[7] R. Koetter and A. Vardy, “The structure of tail-biting trellises: Minimality
+and basic principles,” IEEE Trans. Inf. Theory, vol. 49, pp. 2081–2105,
+Sept. 2003.
+[8] A. Vardy, “Trellis structure of codes,” in Handbook of Coding Theory (V.
+Pless and C. Huffman, eds.), pp. 1989–2118. New York: Elsevier, 1998.
+
+Unobservable linear tail-biting trellis realization.
+
+t
+d1
+t d t 1
+0d
+
+t
+t 1
+1 d 
+0  
+1
+ 
+    d
+t 0 t d t 0
+
+t
+
+t
+d1
+0d
+t d t 0
+
+t 1
+1 
+ 
+ 
+t 0 t 0
+
+t 1
+
+t
+
+t 0
+
+t
+
+t
+
+Dual uncontrollable linear tail-biting trellis realization.
+
+The dual realization of Fig. 4 realizes the orthogonal (5, 2)
+code C ⊥ = 10111, 01100 . This is a product realization with
+generators 10111, 01100 , where the span of the second
+generator is degenerate (i.e., all states are nonzero). It has two
+disjoint subbehaviors, as predicted by Theorem 7.
+
+5
+
+

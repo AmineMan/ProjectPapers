@@ -1,0 +1,1050 @@
+Title:          IC_Distortion_Separation.dvi
+Creator:        www.freepdfconvert.com         
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Thu May 10 10:24:11 2012
+ModDate:        Tue Jun 19 12:55:34 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      360364 bytes
+Optimized:      no
+PDF version:    1.7
+ISIT'2012 1569565375
+
+Lossy Source-Channel Communication over a
+Phase-Incoherent Interference Relay Channel
+H. Ebrahimzadeh Saffar, M. Badiei Khuzani and P. Mitran
+University of Waterloo, Waterloo, Ontario, Canada
+Email: {hamid, mbadieik, pmitran}@ece.uwaterloo.ca
+approach is shown in [13] to be optimal or approximately
+optimal to communicate independent sources. Their results are
+based on building channel codes on top of previously existing
+joint source-channel codes and thus the distortion region (or
+inner/outer bounds on it) is not found. In [4], on the other hand,
+it is shown that separate source-channel coding is not optimal
+for lossless transmission of correlated sources over a multiple
+access channel (MAC). However, in [2], [1], the authors show
+that performing separate source and channel coding for the
+important case of a Gaussian MAC with unknown phase shifts
+at the encoders is optimal for the lossless case. They have
+also shown optimality of separation for the MAC in the lossy
+coding context in the high ﬁdelity regime.
+The recent work [8] addresses the lossless joint sourcechannel coding problem for a phase fading Gaussian multiple
+access relay channel and proves a separation theorem under
+some channel coefﬁcients. For the achievability part, the
+authors use the results of [6], and [11], based on a combination
+of Markov encoding at the encoders and backward decoding
+at the receiver [5].
+Herein, we consider the problem of sending a pair of
+correlated Gaussian sources over a phase-fading Gaussian
+interference relay channel which manifests both interference
+and cooperation in wireless communications. The transmitters
+encode the continuous sources and send them over the channel
+while satisfying certain power constraints. We assume that the
+phase shifts over channels under consideration are random but
+ﬁxed over the block length. As a practical assumption, we
+assume that the phases are not known to the transmitters and
+the relay while the channel state information (CSI) is available
+to decoders. We thus refer to the channel under consideration
+as a phase incoherent interference relay channel (PI-IRC). At
+the receivers, the sources are intended to be reconstructed
+with the best possible minimum square error distortions. The
+contributions of this work are as follows:
+
+Abstract—We study the lossy communication of a bivariate
+Gaussian source over an interference channel with the presence
+of a helping relay. We assume that the wireless links introduce
+random phase shifts which are unknown to the transmitters
+(including the relay) and call the channel a phase incoherent
+interference relay channel (PI-IRC). We derive inner and outer
+bounds for the achievable distortion region, where the inner
+bound is derived under speciﬁc strong interference conditions
+as well as strong gain conditions between transmitters and the
+relay. When the sources are correlated, we ﬁnd an approximate
+achievable distortion region in the high SNR regime. In case
+of independent sources, the bounds are tight and by explicitly
+providing the achievable distortion region, we show that a separation theorem results for the PI-IRC under strong interference
+conditions. By removing the relay, the result also specializes to
+an interference channel.
+Index Terms—Joint source-channel coding, distortion region,
+interference channel, interference relay channel, phase uncertainty, correlated sources.
+
+I. I NTRODUCTION
+An inherent challenge to modern communication systems
+is the issue of incoherence or asynchronism between different
+nodes of a communication network. In particular, time or
+phase asynchronism in wireless channels due to factors such
+as feedback delay, the bursty nature of some applications,
+and reaction delay, make the design of precoders/encoders
+much more difﬁcult [12]. Moreover, in wireless multi-user
+systems, interference and relaying from other sources can
+make synchronization a more complex problem.
+In point-to-point wireless systems, achieving receiver synchronization is possible in principle, using training sequences
+and/or feedback. However, the assumption of full receivertransmitter synchronization, although analytically convenient,
+is rarely practical and it is in some cases theoretically infeasible [16]. In highly mobile environments, for instance, fading
+in conjunction with feedback delay may result in out of date
+phase knowledge by the time it reaches the transmitters.
+Channel uncertainty, i.e., the situations in which the communicating parties (or some of them) have to work without
+the full knowledge of the law governing the channel [7],
+is a suitable framework to analytically study the issue of
+phase asynchronism. Also, in order to study informationtheoretical aspects of this problem, the mathematical model
+of a compound channel has been proposed by various authors
+[3], [15]. A compound channel is generally represented by a
+family of transition probabilities pθ |X , where the index θ is
+Y
+the state of the channel and is chosen from a set Θ that models
+the uncertainty.
+In this paper, we are interested in joint source-channel
+coding for phase asynchronous wireless networks involving
+essential elements of wireless communications, i.e, interference and cooperation. The problem of ﬁnding the optimal
+solution for lossless/lossy joint source-channel coding over an
+arbitrary communication network is open in general. For lossy
+source-channel coding over interference networks, a separation
+
+•
+•
+
+•
+
+1
+
+We ﬁrst ﬁnd a rectangular outer bound to the distortion
+region which is represented by constraints on D1 and D2 .
+Under speciﬁc strong interference gain conditions, and
+under the extra condition of strong gains from transmitters to the relay, we ﬁnd an inner bound to the distortion
+region represented by constraints on D1 , D2 , and D1 D2 .
+For a ﬁxed correlation coefﬁcient between the sources,
+we show that in the high SNR regime, the constraints
+on D1 and D2 of the inner bound coincide with those
+of the outer bound whereas the third constraint of the
+inner bound shrinks a portion of the achievable distortion
+1
+region proportional to 1−ρ2 where ρ is the correlation
+coefﬁcient.
+In the case of independent sources (again under strong
+interference conditions), we show that the inner bound
+exactly matches the outer bound and consequently fully
+characterize the achievable distortion region. Namely,
+we ﬁnd the optimal distortion region and determine the
+optimality of separate source and channel coding for the
+
+phase incoherent case, as opposed to cases where the
+transmitters have knowledge of the phase shifts and could
+potentially achieve higher rates using beamforming, for
+example.
+• Similar inner and outer bounds can be found for an interference channel with an arbitrary number of relays under
+phase asynchronism. Our results can also be specialized
+to an interference channel by omitting the relay, i.e., an
+inner and outer bound to the distortion region as well as
+the optimal joint source channel coding distortion region
+for independent sources are also found. For the case of
+no relay (interference channel), the results hold for both
+phase coherent and incoherent scenarios.
+Although we assume non-ergodic phase shifts throughout
+the paper, as in [1], [6, Thm. 2], our results also apply to the
+case where the phases change i.i.d. from symbol to symbol.
+Also, in this paper, we focus on the strong interference regime,
+leaving other interference conditions as considerable future
+works.
+The rest of this paper is organized as follows. In Section II,
+we present the preliminaries along with a key lemma. Next, the
+outer bound and the inner bound on the achievable distortion
+region are described and proved in Section III. In Section
+IV, we state specializations of our results to the high SNR
+regime, independent sources and interference channel. Finally
+we conclude the paper in Section V.
+II. P ROBLEM S TATEMENT AND
+
+CU1,U2 =
+
+ρ
+1
+
+g2r ejθ2r
+U2
+
+Y2i = g12 e
+
+X1i + g22 e
+
+gr2 ejθr2
+
+g22ejθ22
+
+X2
+
+Y2
+
+m
+
+Mθ (pX )
+
+,
+
+X2i + gr2 e
+
+g21 ejθ21
+
+[0, 2π)8 represents the phase shifts introduced by the channel
+to inputs X1 , X2 and Xr , respectively.
+Deﬁnition 1: Let X = (X1 , X2 , · · · , Xm ), be a vector of random variables with joint distribution pX and
+maxi E Xi 2 ≤ ∞. Also let the scalar RV V
+m
+jθi
+Xi + Z, where gi ejθi are arbitrary complex coefi=1 gi e
+ﬁcients and Z ∼ CN (0, N ).
+We now present a key lemma which asserts that the minimum over θ = (θ1 , θ2 , · · · , θm ) of the mutual information between X and V , is maximized when X is a zeromean Gaussian vector with independent elements, i.e., RVs
+X1 , X2 , · · · , Xm are independent Gaussians with zero mean.
+Notation: For convenience, we denote the mutual information between X and V by
+gi ejθi Xi + Z).
+
+I(X;
+i=1
+
+Lemma 1: [10] Let P = {pX : E Xi 2 ≤ Pi , ∀i}
+and p∗ ∈ P be a zero-mean Gaussian distribution with
+X
+independent elements and E Xi 2 = Pi , ∀i. Then,
+m
+
+jθr2
+
+2
+gi Pi /N = Mθ (p∗ ),
+X
+
+sup min Mθ (pX ) = log 1+
+
+pX ∈P
+
+θ
+
+i=1
+
+i.e., when θ is chosen adversarially, the best X is a zero-mean
+Gaussian vector with independent elements and Var(Xi ) =
+Pi , ∀i.
+Deﬁnition 2: Joint source-channel code: A joint sourcechannel code of length n for the PI-IRC with correlated
+sources is deﬁned by
+1) Two encoding functions
+n
+(x11 , x12 , · · · , x1n ) = xn : Rn → X1 ,
+1
+n
+(x21 , x22 , · · · , x2n ) = xn : Rn → X2 ,
+2
+
+that map the source outputs to the codewords. Furthermore, we deﬁne relay encoding functions by
+
+Y1i = g11 ejθ11 X1i + g21 ejθ21 X2i + gr1 ejθr1 Xri + Z1i ,
+jθ22
+
+gr1ejθr1
+
+Fig. 1. Correlated Gaussian sources and phase incoherent interference relay
+channel
+
+where ρ ∈ [−1, 1]. Both of the sources are to be transmitted to
+the corresponding destinations through a continuous alphabet
+and discrete-time memoryless non-ergodic Gaussian interference relay channel. The setup is shown in Fig. 1. The channel
+is parameterized by the phase shifts that are introduced by
+different paths of the network and are, as a realistic assumption
+for wireless networks, not known to the transmitters. The
+vector θ denotes the phase fading parameters. Encoders wish
+to use codes that are robust for all θ. In our model, the receiver
+is fully aware of θ. For simplicity, throughout the paper, we
+assume that transmitter node with index i ∈ {1, 2, r} has
+power constraint Pi and the noise power at all corresponding
+receiving nodes is N .
+Such a channel is referred to as a compound channel
+[3], [15]. Nevertheless, in order to avoid ambiguity, we call
+the particular channel under consideration a phase-incoherent
+interference relay channel (PI-IRC).
+As shown in Fig. 1, the PI-IRC (X1 × X2 × Xr , Y1 × Y2 ×
+Yr , pθ (y1 , y2 , yr |x1 , x2 , xr )) is described by relationships
+jθ12
+
+Y1
+
+r
+
+Consider a memoryless bivariate Gaussian source consisting
+of two zero-mean correlated Gaussian outputs (U1 , U2 ) with
+covariance matrix
+1
+ρ
+
+g12 ejθ12
+
+g1r ejθ1r
+
+K EY L EMMA
+
+A
+
+g11 ejθ11
+
+X1
+
+U1
+
+xri = fi (yr1 , yr2 , · · · , yr(i−1) ), i = 1, 2, · · · , n.
+
+Xri + Z2i ,
+
+2) Power constraint P1 , P2 and Pr at the transmitters, i.e.,
+
+Yri = g1r ejθ1r X1i + g2r ejθ2r X2i + Zri ,
+
+E
+
+where X1i , X2i , Xri , Y1i , Y2i , Yri ∈ C, Z1i , Z2i , Zri ∼
+CN (0, N ) are circularly symmetric complex Gaussian noises,
+g11 , g21 , gr1 , g12 , g22 , gr2 , g1r , g2r are ﬁxed channel
+gains, and parameter θ = (θ11 ,θ21 , θr1 ,θ12 , θ22 , θr2 , θ1r , θ2r )∈
+
+1
+n
+
+n
+
+Xji
+
+2
+
+≤ Pj , j = 1, 2, r,
+
+(1)
+
+i=1
+
+where E is the expectation operation over the distribution induced by Un , Un .
+1
+2
+
+2
+
+Since (5) can be derived for all values of θ, we have
+
+3) Two decoding functions
+n
+gθ,1
+
+n
+:Y1
+
+→R
+
+n
+
+n
+, gθ,2
+
+:
+
+n
+Y2
+
+n
+
+→R .
+
+min I(U1 , Xr ; Y1 |X2 , θ) ≤
+
+(2)
+
+θ
+
+n max min h(g11 X1 ejθ11 + gr1 Xr ejθr1 + Z1 ) − n h(Z1 )
+
+n
+n
+The estimated vectors gθ,1 (Y1 ), gθ,2 (Y2 ) are denoted
+ˆ ˆ
+by U1 , U2 respectively.
+
+pX1 ,Xr
+
+2
+2
+≤ n log 1 + (g11 P1 + gr1 Pr )/N .
+
+Deﬁnition 3: A distortion pair (D1 , D2 ) is said to be
+achievable if there exists a sequence of encoding functions
+satisfying the corresponding power constraints and decoding
+functions, such that the average minimum squared error (MSE)
+resulting from functions satisfy
+lim sup E
+n→∞
+
+1
+n
+
+n
+
+2
+
+ˆ
+(Uji − Uji ) )
+
+(6)
+
+where pX1 ,Xr is the joint distribution of (X1 , Xr ) and (c)
+follows directly from Lemma 1.
+On the other hand,
+I(U1 , Xr ; Y1 |X2 , θ) ≥ I(U1 ; Y1 |X2 , θ)
+= h U1 |X2 − h(U1 |X2 , Y1 , θ)
+ˆ
+≥ h U1 |U2 , X2 − h U1 − U1 )
+
+≤ Dj , j = 1, 2.
+
+i=1
+
+ˆ
+= h U1 |U2 − h U1 − U1 ).
+
+III. I NNER AND O UTER B OUNDS ON THE D ISTORTION
+R EGION
+A. Outer bound
+Theorem 1: Let
+1
+A = max
+,
+2 P + g 2 P + g 2 P )/N ]2
+[1 + (g11 1
+21 2
+r1 r
+1 − ρ2
+(3)
+2 ,
+2
+2
+[1 + (g11 P1 + gr1 Pr )/N ]
+1
+B = max
+2,
+2
+2
+2
+[1 + (g12 P1 + g22 P2 + gr2 Pr )/N ]
+1 − ρ2
+(4)
+2 .
+2
+2
+[1 + (g22 P2 + gr2 Pr )/N ]
+
+lim inf min
+n→∞
+
+θ
+
+(d) 1
+1
+(1 − ρ2 )
+I(U1 , Xr ; Y1 |X2 , θ) ≥ log
+, (8)
+n
+2
+D1
+
+where (d) is a straight forward result of (7) following from the achievability assumption on D1 . Thus
+combining the lower and upper bounds (6), (8) on
+lim inf n→∞ minθ I(U1 , Xr ; Y1 |X2 , θ)
+log 1 +
+
+2
+g11 P1 + gr1 Pr
+N
+
+≥
+
+1
+(1 − ρ2 )
+log
+.
+2
+D1
+
+Similarly, we derive the same inequality for D2 and therefore two of the inequalities of Theorem 1 are established.
+Now,
+by
+similar
+arguments
+and
+reusing
+Lemma 1, we derive lower and upper bounds
+1
+on
+lim inf n→∞ minθ n I(X1 , X2 , Xr ; Y1 |θ),
+and
+1
+lim inf n→∞ minθ n I(X1 , X2 , Xr ; Y2 |θ):
+
+D2 ≥ B.
+
+Proof:
+n
+n
+Let {xn (un ), xn (un )}, and g1θ , g2θ be sequences in
+1
+1
+2
+2
+n of codebooks and decoders for the PI-IC for which
+(D1 , D2 ) is achievable. Fix a PI-IRC with given parameter θ, a codebook C, and induced empirical distribution
+p(u1 , u2 , x1 , x2 , xr )pθ (y1 , y2 , yr |x1 , x2 , xr ). Then we have
+
+min
+θ
+
+1
+I(X1 , X2 ,Xr ; Y1 |θ)
+n
+2
+2
+2
+≤ log 1 + (g11 P1 + g21 P2 + gr1 Pr )/N ,
+
+ˆ
+ˆ
+I(X1 , X2 , Xr ; Y1 ) ≥ I(U1 ; U1 ) ≥ h(U1 ) − h(U1 − U1 ),
+
+i=1
+
+(a)
+
+= n h(g 11 X1W ejθ11 + gr1 XrW ejθr1 + Z1W |W ) − h(Z1 )
+
+log 1 +
+
+(b)
+
+(5)
+
+W ∼ Uniform{1, 2, · · · , n},
+Xj = XjW , j ∈ {1, r}, Z1 = Z1W .
+
+Xji
+
+1
+1
+log
+.
+2
+D1
+
+2
+2
+2
+2
+g12 ≥g11 (1 + g22 P2 /N + gr2 Pr /N )
+(11)
+Pr
+P2
+2
+2
+2
++ gr1 (1 + g22
++ gr2 Pr /N ),
+P1
+N
+2
+2
+2
+2
+g21 ≥g22 (1 + g11 P1 /N + gr1 Pr /N )
+(12)
+
+n
+2
+
+≥
+
+B. Inner bound
+Theorem 2: Suppose the strong interference gain conditions
+
+Note that from (1), the input signals X1 , Xr satisfy the power
+constraints
+1
+E|Xj | = E
+n
+
+2
+2
+2
+g11 P1 + g21 P2 + gr1 Pr
+N
+
+(10)
+
+The proof of the converse is complete by noting that a
+similar bound on D2 can be found by following similar steps
+for I(X1 , X2 , Xr ; Y2 |θ).
+
+where (a) and (b) follow by deﬁning new random variables
+
+2
+
+(9)
+
+and
+
+I(U1 , Xr ; Y1 |X2 , θ) = h(Y1 |X2 , θ) − h(Y1 |X2 , U1 , Xr , θ) which results in
+1
+1
+1
+≤ h(g 11 X1 ejθ11 + gr1 Xr ejθr1 + Z1 ) − h(Z1 )
+lim inf min I(X1 , X2 , Xr ; Y1 ) ≥ log
+.
+n
+n→∞
+θ n
+2
+D1
+≤
+h(g11 X1i ejθ11 + gr1 Xri ejθr1 + Z1i ) − h(Z1 )
+Combining (9) and (10), we have
+
+≤ n h(g11 X1 ejθ11 + gr1 Xr ejθr1 + Z1 ) − n h(Z1 )
+
+(7)
+
+But (7) is true for all values of θ. Hence, we have
+
+A necessary condition for the pair (D1 , D2 ) to be achievable
+is given by
+D1 ≥ A,
+
+θ
+
+(c)
+
+≤ Pj , j = 1, r,
+
+i=1
+
+and Z1 ∼ CN (0, N ).
+
+3
+
+Pr
+2 P1
+2
+(1 + g22
++ gr2 Pr /N ),
+P2
+N
+as well as the encoders to relay strong gain conditions
+2
++ gr2
+
+min
+
+i∈{1,2}
+
+2
+2
+2
+g11 P1 +gr1 Pr ≤ g1r P1 ,
+2
+2
+2
+g22 P2 +gr2 Pr ≤ g2r P2 ,
+2
+2
+2
+2
+2
+g1i P1 + gri Pr + g2i P2 ≤ g1r P1 + g2r P2 .
+
+the ﬁrst terms of (20)-(22) larger than the others and hence we
+can drop them from the constraints. Also due to the strong interference conditions of (11) and (12), we can drop the mutual
+information terms I(X1 , Xr ; Y2 |X2 , θ), I(X2 , Xr ; Y1 |X1 , θ)
+from (20) and (21). Hence, for such independent Gaussians
+X1 , X2 , Xr , the sufﬁcient conditions reduce to
+
+(13)
+(14)
+(15)
+
+2
+2
+R1 ≤ log(1 + (g11 P1 + gr1 Pr )/N ),
+2
+2
+R2 ≤ log(1 + (g22 P2 + gr2 Pr )/N ),
+
+hold. An achievable distortion region for source-channel communication of (U1 , U2 ) over the PI-IRC is given by
+D1 ≥ A +
+D2 ≥ B +
+
+ρ2
+ρ2 )2
+
+(1 −
+ρ2
+
+2
+
+· A · B,
+
+2
+2
+2
+R1 + R2 ≤ min log(1 + (g12 P1 + g22 P2 + gr2 Pr )/N ),
+2
+2
+2
+log(1 + (g11 P1 + g21 P2 + gr1 Pr )/N ) .
+
+(16)
+
+· A · B,
+
+(17)
+
+2
+2
+R1 = min log(1 + (g11 P1 + gr1 Pr )/N ),
+
+log
+
+(18)
+
+log
+
+(D1 , D2 ) :
+
+D2 ≥ (1 − ρ2 )2−2R2 + ρ2 2−2(R1 +R2 ) ,
+1+
+
+1+
+
+≥ (1 − ρ2 )2−2(R1 +R2 ) .
+
+(26)
+
+2
+2
+2
+1 − ρ2 (1 + (g12 P1 + gr2 Pr + g22 P2 )/N ) , (27)
+
+and by the strong interference conditions (11) and (12), the
+constraints (23)-(25) are satisﬁed and we are guaranteed to
+have reliable decodings of both the ﬁrst and second channel
+encoders codewords. Furthermore, by replacing R1 , R2 , as
+chosen in (26) and (27), in (19), one obtains the achievable
+distortion region given by (16)-(18).
+Remark 1: A similar outer bound and inner bound can
+be derived for a phase incoherent interference channel with
+multiple relays.
+Remark 2: Note that if there are no relays in the network,
+for deriving the outer bound in Section III-A, Lemma 1 is not
+needed since there is only one phase in (5) then. Therefore,
+as opposed to the case of an interference relay channel, for
+an interference channel, the results carry on to the scenario
+in which the encoders are aware of the phase shifts as well.
+Namely, by removing relay dependant terms and redeﬁning A
+and B in (3) and (4), Theorem 1 applies to a general Gaussian
+interference channel. Theorem 2 can also be specialized to an
+interference channel with equations (11), (12) replaced by very
+strong interference conditions
+
+D1 ≥ (1 − ρ2 )2−2R1 + ρ2 2−2(R1 +R2 ) ,
+
+4ρ2 D1 D2
+(1−ρ2 )2
+
+2
+2
+2
+1 − ρ2 (1 + (g11 P1 + gr1 Pr + g21 P2 )/N )
+
+2
+2
+R2 = min log(1 + (g12 P1 + gr2 Pr )/N ),
+
+Proof: To establish the achievability argument, we follow
+a separate source-channel coding scheme based on lossy
+distributed source coding and reliable channel coding for the
+PI-IRC where both of the receivers are forced to estimate
+both of the sources with respective distortions D1 , D2 . The
+source coding indices and channel coding rates are denoted
+by ω1i , ω2i , and R1 , R2 respectively.
+Source Coding: An inner region Rin (D1 , D2 ) on the rate
+region R(D1 , D2 ) of distributed source coding of two Gaussian sources for a common decoder is given in [9], [14]. The
+inner region can be reexpressed as the following achievable
+distortion region
+
+2D1 D2
+
+(25)
+
+By choosing R1 and R2 as
+
+(1 − ρ2 )
+A·B
+A2 · B 2
+D1 D2 ≥
++ ρ2
+.
+(1 − ρ2 )
+(1 − ρ2 )4
+
+Din (D1 , D2 ) =
+
+(23)
+(24)
+
+(19)
+
+2
+2
+2
+g12 ≥g11 (1 + g22 P2 /N ),
+2
+2
+2
+g21 ≥g22 (1 + g11 P1 /N ).
+
+Channel Coding: Using block Markov coding in conjunction
+with backward decoding at the receivers and forward decoding
+at the relay, as shown in Table I, we can derive the following
+sufﬁcient conditions to reliably decode all messages at both
+decoders for a compound IRC [10]:
+
+(28)
+(29)
+
+C. Approximate inner bound
+In the moderate to high SNR regime, i.e., when the noise
+power N is relatively small, the second terms in the right
+hand sides of (16)-(18) will be negligible compared to the
+ﬁrst terms. The inner bound can thus be approximately (or
+exactly in the limit) described by {D1 ≥ A, D2 ≥ B, D1 D2 ≥
+AB
+1−ρ2 }. Therefore, the constraints on D1 and D2 coincide in
+both the inner region and outer region. The third constraint
+on D1 D2 makes the inner region restricted by a curve and
+results in a ρ-dependant gap between the regions. This can
+be inferred as approximate optimality of separation for values
+of the correlation coefﬁcient that have small magnitude. A
+typical example is depicted in Fig. 2, where the approximate
+inner bound practically matches the actual inner bound. We
+also see that for ρ = 0, the regions exactly coincide for all
+SNR regimes.
+
+R1 < min I(X1 ; Yr |X2 , Xr , θ),
+I(X1 , Xr ; Y1 |X2 , θ), I(X1 , Xr ; Y2 |X2 , θ) , (20)
+R2 < min I(X2 ; Yr |X1 , Xr , θ),
+I(X2 , Xr ; Y1 |X1 , θ), I(X2 , Xr ; Y2 |X1 , θ) , (21)
+R1 + R2 < min I(X1 , X2 ; Yr |Xr , θ),
+I(X1 , X2 , Xr ; Y1 |θ), I(X1 , X2 , Xr ; Y2 |θ) , (22)
+for some input distribution p(x1 )p(x2 )p(xr ).
+For independent Gaussians X1 ∼ CN (0, P1 ), X2 ∼
+CN (0, P2 ), Xr ∼ CN (0, Pr ), the conditions (13)-(15) make
+
+4
+
+Block 1
+x1 (1, ω11 )
+x2 (1, ω21 )
+xr (1, 1)
+
+Encoder
+1
+2
+r
+
+Block 2
+x1 (ω11 , ω12 )
+x2 (ω21 , ω22 )
+xr (ω11 , ω21 )
+
+Block B
+x1 (ω1(B−1) , ω1B )
+x2 (ω2(B−1) , ω2B )
+xr (ω1(B−1) , ω2(B−1) )
+
+Block B + 1
+x1 (ω1B , 1)
+x2 (ω2B , 1)
+xr (ω1B , ω2B )
+
+TABLE I
+B LOCK M ARKOV ENCODING SCHEME FOR IRC.
+
+−3
+
+12
+
+x 10
+
+V. CONLUSION
+We have derived a general outer bound on the distortion
+region, for sending a bivariate Gaussian source over an IRC
+under phase uncertainty at the transmitters. Using a separation
+approach, we then derived an inner bound for the distortion
+region under speciﬁc SNR-dependant gain conditions which
+mainly represent strong interferences between the transmitters
+and the unwanted receivers. Next, an approximation to the
+inner bound in the high SNR regime was found. Under the
+speciﬁed gain conditions and phase uncertainty at transmitters,
+we consequently characterized the achievable distortion region
+for independent sources and proved a separation theorem. By
+removing the relay, our results were specialized to communication of independent Gaussians over an interference channel
+with SNR-dependant strong interference gains.
+
+ρ = 0.9
+g12 = g21 = 4.69
+g = g = 3.46
+
+10
+
+1r
+
+2r
+
+D
+
+2
+
+SNR = 7 dB
+8
+
+6
+
+4
+0
+
+0.005
+
+0.01
+D1
+
+0.015
+
+0.02
+
+R EFERENCES
+
+Fig. 2. An achievable distortion region with ρ = 0.3, P1 = P2 = Pr =
+5, N = 1. All channel gains (except for g12 , g21 , g1r , g2r ) are 1. The exact
+inner bound is sketched with starred lines whereas dashed lines depict the
+approximate inner bound.
+
+[1] F. A. Abdallah, R. Knopp, and G. Caire, “Transmission of correlated
+sources over gaussian multiple-access channels with phase shifts,” in
+Proc. 46th Annu. Allerton Conf. Communications, Control, and Computing, Monticello, IL, Sep. 2008, pp. 873 – 878.
+[2] F. A. Abdallah, “Source channel coding techniques applied to wireless
+sensor networks,” Ph.D. dissertation, Universite de Nice-Sophia Antipolis, 2008.
+[3] D. Blackwell, L. Breiman, and A. J. Thomasian, “The capacity of a class
+of channels,” Ann. Math. Stat., vol. 30, pp. 1229 – 1241, Dec. 1959.
+[4] T. Cover, A. Gamal, and M. Salehi, “Multiple access channels with
+arbitrarily correlated sources,” IEEE Trans. Information Theory, vol. 26,
+no. 6, pp. 648 – 657, Nov. 1980.
+[5] G. Kramer, M. Gastpar, and P. Gupta, “Capacity theorems for wireless
+relay channels,” in Proc. 41st Annu. Allerton Conf. Communications,
+Control, and Computing, Monticello, IL, Oct. 2003, pp. 1074 – 1083.
+[6] ——, “Cooperative strategies and capacity theorems for relay networks,”
+IEEE Trans. Information Theory, vol. 51, no. 9, pp. 3037 – 3063, Sep.
+2005.
+[7] A. Lapidoth and P. Narayan, “Reliable communication under channel
+uncertainty,” IEEE Trans. Information Theory, vol. 44, no. 6, pp. 2148
+–2177, Oct. 1998.
+[8] Y. Murin, R. Dabora, and D. Gunduz, “Source channel coding theorems
+for the multiple-access relay channel,” Submitted to IEEE Trans. Inform.
+Theory, May 2011, (arXiv:1106.3713v2).
+[9] Y. Oohama, “Gaussian multiterminal source coding,” IEEE Trans. Information Theory, vol. 43, no. 6, pp. 1912 –1923, Nov 1997.
+[10] H. E. Saffar, E. H. M. Alian, and P. Mitran, “Separation theorems
+for phase-incoherent multiple-user channels,” Submitted to IEEE Trans.
+Inform. Theory, Oct. 2011, (arXiv:1110.3062).
+[11] L. Sankaranarayanan, G. Kramer, and N. B. Mandayam, “Capacity
+theorems for the multiple-access relay channel,” in Proc. 42nd Annu.
+Allerton Conf. Communications, Control, and Computing, Monticello,
+IL, Oct. 2004, pp. 1782–1791.
+[12] A. Tchamkerten, V. Chandar, and G. Wornell, “Communication under
+strong asynchronism,” IEEE Trans. Information Theory, vol. 55, no. 10,
+pp. 4508 –4528, Oct. 2009.
+[13] C. Tian, J. Chen, S. Diggavi, and S. Shamai, “Optimality and approximate optimality of source-channel separation in networks,” in Proc.
+IEEE Int. Symp. Information Theory, Toronto, ON, Canada, Jun. 2010,
+pp. 495 –499.
+[14] A. Wagner, S. Tavildar, and P. Viswanath, “Rate region of the quadratic
+Gaussian two-encoder source-coding problem,” IEEE Trans. Information
+Theory, vol. 54, no. 5, pp. 1938 –1961, May 2008.
+[15] J. Wolfowitz, Coding Theorems of Information Theory.
+New
+York:Springer-Verlag, 1978.
+[16] H. Zhang, N. Mehta, A. Molisch, J. Zhang, and H. Dai, “On the
+fundamentally asynchronous nature of interference in cooperative base
+station systems,” in Proc. IEEE Int. Conf. Communications, Glasgow,
+Scotland, Jun. 2007, pp. 6073 –6078.
+
+IV. O PTIMAL D ISTORTION R EGIONS
+For the special case of ρ = 0, the inner bound of Theorem
+2 will coincide with the outer bound given in Theorem 1.
+Therefore, we can fully characterize the optimal distortion
+regions for the case of independent Gaussians and state the
+following separation theorem as a corollary.
+Corollary 1: Provided the gain conditions (11)-(15) are
+met, the set of all achievable distortion pairs (D1 , D2 ) for
+a PI-IRC with ρ = 0 is given by
+D1 ≥
+D2 ≥
+
+1
+[1 +
+
+2
+(g11 P1
+
+2,
+
+2
++ gr1 Pr )/N ]
+1
+
+2.
+
+2
+2
+[1 + (g22 P1 + gr2 Pr )/N ]
+
+Furthermore, in order to achieve this distortion region, it is
+sufﬁcient to perform lossy source coding and channel coding
+separately.
+A similar corollary can be stated for an interference channel:
+Corollary 2: Provided the gain conditions (28), and (29)
+are met, the set of all achievable distortion pairs (D1 , D2 ) for
+an interference channel, with a pair of independent Gaussian
+sources, is given by
+D1 ≥
+
+1
+
+[1 +
+
+2,
+2
+g11 P1 /N ]
+
+D2 ≥
+
+1
+
+[1 +
+
+2.
+2
+g22 P1 /N ]
+
+Furthermore, in order to achieve this distortion region, it is
+enough to perform lossy source coding and channel coding
+separately.
+
+5
+
+

@@ -1,0 +1,1014 @@
+Title:          ISIT_Sampling_camera_ready
+Subject:        
+Keywords:       
+Author:         Adel Javanmard
+Creator:        Preview
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Wed May 16 00:38:46 2012
+ModDate:        Tue Jun 19 12:56:02 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      539259 bytes
+Optimized:      no
+PDF version:    1.7
+ISIT'2012 1569565545
+
+Subsampling at Information Theoretically Optimal Rates
+Adel Javanmard
+
+Andrea Montanari
+
+Department of Electrical Engineering
+Stanford University
+
+Department of Electrical Engineering and
+Department of Statistics
+Stanford University
+Instantaneous sampling corresponds to vectors ai that are
+canonical base vectors.
+Measurements can also be given in terms of the Fourier
+transform of the signal:
+
+Abstract—We study the problem of sampling a random signal
+with sparse support in frequency domain. Shannon famously
+considered a scheme that instantaneously samples the signal at
+equispaced times. He proved that the signal can be reconstructed
+as long as the sampling rate exceeds twice the bandwidth (Nyquist
+rate). Cand` s, Romberg, Tao introduced a scheme that acquires
+e
+instantaneous samples of the signal at random times. They proved
+that the signal can be uniquely and efﬁciently reconstructed,
+provided the sampling rate exceeds the frequency support of the
+signal, times logarithmic factors.
+In this paper we consider a probabilistic model for the signal,
+and a sampling scheme inspired by the idea of spatial coupling in
+coding theory. Namely, we propose to acquire non-instantaneous
+samples at random times. Mathematically, this is implemented by
+acquiring a small random subset of Gabor coefﬁcients. We show
+empirically that this scheme achieves correct reconstruction as
+soon as the sampling rate exceeds the frequency support of the
+signal, thus reaching the information theoretic limit.
+
+y = AF x + w ,
+b
+
+B. Information theory model
+
+In [4], Cand` s, Romberg, Tao studied a randomized scheme
+e
+that samples the signal instantaneously at uniformly random
+times. Mathematically, this corresponds to choosing the measurement vectors ai to be a random subset of the canonical
+basis in Cn . They proved that, with high probability, these
+measurements allow to reconstruct x uniquely and efﬁciently,
+provided m C|S| log n, where S = {! 2 ⌦ : x(!) 6= 0} is
+b
+the frequency support of the signal.
+In this paper, we consider a probabilistic model for the
+signal x, namely we assume that the components x(!), ! 2 ⌦
+b
+b
+are i.i.d. with P{b(!) 6= 0}  " and E{|b(!)|2 }  C < 1.
+x
+x
+The distribution of x(!) is assumed to be known. Indeed,
+b
+information theoretic thinking has led to impressive progress in
+digital communication, as demonstrated by the development of
+modern iterative codes [14]. More broadly, probabilistic models can lead to better understanding of limits and assumptions
+in relevant applications to digital communication and sampling
+theory.
+
+A. Deﬁnitions
+For the sake of simplicity, we consider a discrete-time model
+(analogous to the one of [4]) and denote signals in time
+domain as x 2 Cn , x = (x(t))1tn = (x(1), . . . , x(n))T .
+Their discrete Fourier transform is denoted by x 2 Cn ,
+b
+x = (b(!))!2⌦n , where ⌦n = {! = 2⇡k/n : k 2 {0, 1, . . . ,
+b
+x
+n 1}}. The Fourier transform x = (Fx) is given by
+b
+n
+X
+1
+x(!) = hb! , xi =
+b
+b! (t) x(t) , b! (t) ⌘ p ei!t . (1)
+n
+t=1
+Here h · , · i denotes the standard scalar product on Cn . Also,
+for a complex variable z, z is the complex conjugate of z.
+Notice that (b! )!2⌦n is an orthonormal basis of Cn . This
+implies Parseval’s identity hb1 , x2 i = hx1 , x2 i. In addition,
+x b
+the inverse transform is given by
+X
+1 X
+x(t) =
+x(!) b! (t) = p
+b
+x(!) ei!t .
+b
+(2)
+n
+
+C. Related work
+Following [4] that considers a discrete-time model, the
+author in [3] studied the sampling problem for multi band,
+spectrum-sparse continuous-time signals and showed that blind
+reconstruction near Landau rate is possible with high probability.
+The sampling scheme developed here is inspired by the idea
+of spatial coupling, that recently proved successful in coding
+theory [7], [16], [10], [11] and was introduced to compressed
+sensing by Kudekar and Pﬁster [9]. The basic idea, in this
+context, is to use suitable band diagonal sensing matrices.
+Krzakala et al. [8] showed that, using the appropriate message passing reconstruction algorithm, and ‘spatially-coupled’
+sensing matrices, a random k-sparse signal x 2 Rn can be
+b
+recovered from k+o(n) measurements. This is a surprising result, given that standard compressed sensing methods achieve
+successful recovery from ⇥(k log(n/k)) measurements.
+
+!2⌦n
+
+We will denote by Tn = {1, . . . , n} the time domain, and will
+consider signals that are sparse in the Fourier domain.
+A sampling mechanism is deﬁned by a measurement matrix
+A 2 Rm⇥n . Measurement vector y = (y(1), . . . , y(m))T 2
+Rm is given by
+y = Ax + w ⌘ y0 + w ,
+
+(4)
+
+The rows of AF are denoted by b⇤ , . . . , b⇤ , and obviously
+a1
+am
+bi = Fai . Here and below, for a matrix M , M ⇤ is the
+a
+⇤
+hermitian adjoint of M , i.e. Mij = Mji .
+
+I. I NTRODUCTION
+
+!2⌦n
+
+AF = AF⇤ .
+
+(3)
+
+where w is a noise vector with variance 2 , and y0 is the
+vector of ideal (noiseless) measurements. In other words,
+y(i) = hai , xi where we let a⇤ , . . . a⇤ be the rows of A.
+m
+1
+
+1
+
+The results of [8] were based on statistical mechanics methods and numerical simulations. A rigorous proof was provided
+in [5] using approximate message passing (AMP) algorithms
+[6] and the analysis tools provided by state evolution [6],
+[2]. Indeed, [5] proved a more general result. Consider a
+non-random sequence of signals x(n) 2 Rn indexed by the
+b
+problem dimensions n, and such that the empirical law of the
+Pn
+(n)
+entries of x(n) , pX (t) = n 1 i=1 x(n) , converges weakly
+b
+b
+bi
+to a limit pX with bounded second moment. Then, spatiallyb
+coupled sensing matrices under AMP reconstruction achieve
+(with high probability) robust recovery of x(n) , as long as the
+b
+number of measurements is m d(pX ) + o(n). Here d(pX )
+b
+b
+is the (upper) Renyi information dimension of the probability
+distribution pX . This quantity ﬁrst appeared in connection with
+b
+compressed sensing in the work of Wu and Verd´ [17]. Taking
+u
+an information-theoretic viewpoint, Wu and Verd´ proved that
+u
+the Renyi information dimension is the fundamental limit for
+analog compression.
+
+analytically tractable avenue. Our method can be thought of as
+a subsampling of a discretized Gabor transform of the signal.
+In [13], Gabor frames have also been used to exploit the
+sparsity of signals in time and enable sampling multipulse
+signals at sub-Nyquist rates.
+II. S AMPLING SCHEME
+A. Constructing the sensing matrix
+The sensing matrix A is drawn from a random ensemble
+denoted by M(n, m1 , L, `, ⇠, ). Here n, m1 , L, ` are integers
+and ⇠, 2 (0, 1). The rows of A are partitioned as follows:
+R=
+
+[m1 Rk [ R0 ,
+k=1
+
+(5)
+
+where |Rk | = L, and |R0 | = bn c. Hence, m = m1 L + bn c.
+Notice that m/n = (m1 L + bn c)/n. Since we will take n
+much larger than m1 L, the undersampling ratio m/n will be
+arbitrary close to . Indeed, with an abuse of language, we
+will refer to as the undersampling ratio.
+We construct the sensing matrix A as follows:
+1) For each k 2 {1, · · · , m1 }, and each r 2 Rk , ar = b2⇡k/n .
+2) The rows {ar }r2R0 are deﬁned as
+
+D. Contribution
+Using spatial coupling and (approximate) message passing, the approaches of [8], [5] allow successful compressed
+sensing recovery from a number of measurements achieving
+the information-theoretic limit. While these can be formally
+interpreted as sampling schemes for the discrete-time sampling problem introduced in Section I-A, they present in fact
+several unrealistic features. In particular, the entries of A are
+independent Gaussian entries with zero mean and suitably
+chosen variances. It is obviously difﬁcult to implement such a
+measurement matrix through a physical sampling mechanism.
+The present paper aims at showing that the spatial coupling
+phenomenon is –in the present context– signiﬁcantly more
+robust and general than suggested by the constructions of
+[8], [5]. Unfortunately, a rigorous analysis of message passing
+algorithms is beyond reach for sensing matrices with dependent or deterministic entries. We thus introduce an ensemble
+of sensing matrices, and show numerically that, under AMP
+reconstruction, they allow recovery at undersampling rates
+close to the information dimension. Similar simulations were
+already presented by Krzakala et al. [8] in the case of matrices
+with independent entries.
+Our matrix ensemble can be thought of as a modiﬁcation of
+the one in [4] for implementing spatial coupling. As mentioned
+above, [4] suggests to sample the signal pointwise (instantaneously) in time. In the Fourier domain (in which the signal
+is sparse) this corresponds to taking measurements that probe
+all frequencies with the same weight. In other words, AF is
+not band-diagonal as required in spatial coupling. Our solution
+is to ‘smear out’ the samples: instead of measuring x(t⇤ ), we
+modulate the signal with a wave of frequency !⇤ , and integrate
+it over a window of size W 1 around t⇤ . In Fourier space, this
+corresponds to integrating over frequencies within a window
+W around !⇤ . Each measurement corresponds to a different
+time-frequency pair (t⇤ , !⇤ ). While there are many possible
+implementations of this idea, the Gabor transform offers an
+
+ar (t) = a(t; tr , !r ) ,
+
+(6)
+
+where {tr }r2R0 are independent and uniformly random in Tn ,
+and {!r }r2R0 are equispaced in ⌦n . Finally, for t⇤ 2 Tn , and
+!⇤ 2 ⌦n , we deﬁne
+nX
+o1/2
+1 i!⇤ t
+a(t; t⇤ , !⇤ ) =
+e
+P⇠,` (t⇤ , t) , C` =
+P⇠,` (t⇤ , t)2
+.
+C`
+t2Tn
+
+Here P⇠,` (t⇤ , t) is the probability that a random walk on the
+circle with n sites {1, . . . , n} starting at time 0 at site t⇤ is
+found at time ` at site t. The random walk is lazy, i.e. it stays
+on the same position with probability 1 ⇠ 2 (0, 1) and moves
+with probability ⇠ choosing either of the adjacent sites with
+equal probability.
+Notice that the probabilities P⇠,` (t⇤ , t) satisfy the recursion
+P⇠,`+1 (t⇤ , t) = (1
+
+⇠) P⇠,` (t⇤ , t) +
+
+⇠
+P⇠,` (t⇤
+2
+
+1, t)
+
+(7)
+⇠
+P⇠,` (t⇤ + 1, t) , P⇠,0 (t⇤ , t) = I(t = t⇤ ) ,
+2
+where sums on Tn are understood to be performed modulo n.
+We can think of P⇠,` as a discretization of a Gaussian kernel.
+Indeed, for 1 ⌧ ` ⌧ n2 we have, by the local central limit
+theorem,
+n (t t )2 o
+1
+⇤
+P⇠,` (t⇤ , t) ⇡
+exp
+.
+(8)
+2⇠`
+(2⇡⇠`)1/2
++
+
+and hence C` ⇡ (4⇡⇠`) 1/4 .
+The above completely deﬁne the sensing process. For the
+signal reconstruction we will use AMP in the Fourier domain,
+i.e. we will try to reconstruct x from y = AF x + w. It
+b
+b
+is therefore convenient to give explicit expressions for the
+measurement matrix in this domain.
+1) For each k 2 {1, · · · , m1 }, and each r 2 Rk , we have
+ar = ek , where ek 2 Rn refers to the k th standard basis
+ˆ
+
+2
+
+element, e.g., e1 = (1, 0, 0, · · · , 0). These rows are used to
+sense the extreme of the spectrum frequencies.
+2) For r 2 R0 , we have br (!) = b(!; tr , !r ), where
+a
+a
+b(!; t⇤ , !⇤ ) =
+a
+
+1
+p e
+C` n
+
+i(! !⇤ )t⇤
+
+1
+
+⇠ + ⇠ cos(!
+
+the sequence { (t)}t 0 is determined by the following state
+evolution recursion.
+⇣ X
+⌘
+X
+2
++
+Wai mmse
+Wbi b (t) 1 . (13)
+a (t + 1) =
+
+`
+
+!⇤ ) .
+
+i2[n]
+
+b2[m]
+
+b
+Here mmse( · ) is deﬁned as follows. If X ⇠ pX and Y =
+b
+Again, to get some insight, we consider the asymptotic behav- b
+1/2
+b
+X +s
+Z for Z ⇠ NC (0, 1) independent of X, then
+ior for 1 ⌧ ` ⌧ n2 . It is easy to check that b is signiﬁcantly
+a
+1
+2
+different from 0 only if ! !⇤ = O(` 1/2 ) and
+b
+b
+mmse(s) ⌘ E X E[X|Y ]
+.
+(14)
+n
+o
+2
+1
+1
+2
+b(!; t⇤ , !⇤ ) ⇡ p exp
+a
+i(! !⇤ )t⇤
+⇠`(! !⇤ ) .
+III. N UMERICAL SIMULATIONS
+2
+C` n
+We consider a Bernoulli-Gaussian distribution pX = (1
+b
+Hence the measurement yi depends on the signal Fourier
+") 0 + " C , where C is the standard complex gaussian
+1/2
+transform only within a window of size W = O(`
+), with
+1/n ⌧ W ⌧ 1. As claimed in the introduction, we recognize measure and 0 is the delta function at 0. We construct
+x
+that the rows of A are indeed (discretized) Gabor ﬁlters. Also a random signal (b(!))!2⌦n by sampling i.i.d. coordinates
+x(!) ⇠ pX . We have d(pX ) = " [17] and
+b
+b
+b
+it is easy to check that A is roughly band-diagonal with width
+F
+
+W.
+
+⌘t,i (vi ) =
+
+B. Algorithm
+
+We use a generalization of the AMP algorithm for spatiallycoupled sensing matrices [5] to the complex setting. Assume
+that the empirical law of the entries of x(n) converges weakly
+b
+to a limit pX , with bounded second moment. The algorithm
+b
+proceeds by the following iteration (initialized with x1 =
+bi
+b
+E{X} for all i 2 [n]). For xt 2 Cn , rt 2 Cm ,
+b
+
+"
+
+"
+
+1+si
+
+1
+
+1+si
+
+1
+
+(vi )
+
+(vi ) + (1
+
+")
+
+si
+
+1
+
+1
+·
+vi , (15)
+(vi ) 1 + si 1
+
+where 2 (z) = 1/(⇡ 2 ) exp{ zz/ 2 } is the density function of the complex normal distribution with mean zero and
+variance 2 .
+A. Evolution of the algorithm
+
+Our ﬁrst set of experiments aims at illustrating the spatial
+coupling phenomenon and checking the predictions of state
+x
+b
+= ⌘t (b + (Q
+x
+AF ) r ) ,
+(9) evolution. In these experiments we use " = 0.1, = 0.001,
+t
+t
+t
+r = y AF x + b
+b
+rt 1 + dt rt 1 .
+= 0.15, n = 5000, ` = 800, m1 = 20, L = 3, and ⇠ = 0.5.
+State evolution yields an iteration-by-iteration prediction
+Here ⌘t (v) = (⌘t,1 (v1 ), . . . , ⌘t,n (vn )), where ⌘t,i : C ! C is
+of the AMP performance in the limit of a large number
+a scalar denoiser. In this paper we assume that the prior pX
+b
+of dimensions. State evolution can be proved rigorously for
+is known and use the posterior expectation denoiser
+sensing matrices with independent entries [2], [1]. We also
+X
+1/2
+b b
+⌘t,i (vi ) = E{X|X + si
+Z = vi } , si =
+Wai a (t) 1 , refer to [5] for a heuristic derivation which provides the right
+a2[m]
+intuition in the case of spatially-coupled matrices. We expect
+b
+where X ⇠ pX and Z ⇠ NC (0, 1) is a standard com- however the prediction to be robust and will check it through
+b
+b
+plex normal random variable, independent of X. Also, rt numerical simulations for the current sensing matrix AF . In
+is the complex conjugate of rt and
+indicates Hadamard particular, state evolution predicts that
+⇣X
+⌘
+(entrywise) product. The matrix Qt 2 Rm⇥n , and the vector
+E{|bt (y) xi |2 } ⇡ mmse
+xi
+b
+Wa,i a 1 (t 1) .
+(16)
+bt 2 Rm are given by
+t+1
+
+t
+
+Qt
+ai
+
+=
+
+⇤ t
+
+t
+
+P
+
+a (t)
+
+b2[m]
+
+bt
+a
+
+=
+
+X
+
+Wbi
+
+a2R
+
+1
+
+b (t)
+
+Qt 1 Wai @⌘t
+ai
+
+1
+
+1,i
+
+Figure 1 shows the evolution of proﬁle (t) 2 Rm , given by
+the state evolution recursion (13). This clearly demonstrates
+the spatial coupling phenomenon. In our sampling scheme,
+additional measurements are associated to the ﬁrst few coordinates of x, namely, x1 , · · · , xm1 . This has negligible effect on
+b
+b
+b
+the undersampling rate ratio because m1 L/n ! 0. However,
+the Fourier components x1 , · · · , xm1 are oversampled. This
+b
+b
+leads to a correct reconstruction of these entries (up to a mean
+square error of order 2 ). This is reﬂected by the fact that
+becomes of order 2 on the ﬁrst few entries after a few
+iterations (see t = 5 in the ﬁgure). As the iteration proceeds,
+the contribution of these components is correctly subtracted
+from all the measurements, and essentially they are removed
+from the problem. Now, in the resulting problem the ﬁrst
+few variables are effectively oversampled and the algorithm
+
+(10)
+
+,
+
+(11)
+
+,
+
+i2[n]
+
+dt
+a
+
+=
+
+X
+
+Qt 1 (AF )2 @⌘t
+ai
+ai
+
+1,i
+
+,
+
+(12)
+
+i2[n]
+
+where Wai ⌘ |(AF )ai |2 and @⌘t,i ⌘ @⌘t,i (bt + ((Qt
+xi
+AF )⇤ rt )i ), @⌘t,i ⌘ @⌘t,i (bt + ((Qt AF )⇤ rt )i ). Throughout,
+xi
+⌘t,i (v) is viewed as a function of v, v, and v, v are taken
+as independent variables in the sense that @v/@v = 0. Then,
+@⌘t,i and @⌘t,i respectively denote the partial derivative of
+⌘t,i with respect to v and v. Also, derivative is understood
+here on the complex domain. (These are the principles of
+Wirtinger’s calculus for the complex functions [15]). Finally,
+
+3
+
+0.06
+0.05
+
+a (t)
+
+tradeoff of A if the following happens in the large-system
+limit n, m ! 1, with m/n = . The scheme A does
+(with high probability) correctly recover the original signal
+provided
+> A ("), while for
+< A (") the algorithm
+fails with high probability. We will consider three schemes.
+For each of them, we consider a set of sparsity parameters
+" 2 {0.1, 0.2, 0.3, 0.4, 0.5}, and for each value of ", evaluate
+the empirical phase transition through a logit ﬁt (we omit
+details, but follow the methodology described in [6]).
+1) Scheme I: We construct the sensing matrix as described
+in Section II-A and for reconstruction, we use the algorithm
+described in Section II-B. An illustration of the phase transition phenomenon is provided in Fig. 4. This corresponds to
+" = 0.2 and an estimated phase transition location = 0.23.
+As it is shown in Fig. 3, our results are consistent with the
+hypothesis that this scheme achieves successful reconstruction
+at rates close to the information theoretic lower bound >
+d(pX ) = ". (We indeed expect the gap to decrease further by
+b
+taking larger values of `, n.)
+2) Scheme II: The sensing matrix AF is obtained by choosing m rows of the Fourier matrix F at random. In time domain,
+this corresponds to sampling at m random time instants as in
+[4]. Reconstruction is done via AMP algorithm with posterior
+expectation as the denoiser ⌘. More speciﬁcally, through the
+following iterative procedure.
+
+t=5
+t=50
+t=100
+t=150
+t=200
+t=250
+t=300
+t=350
+t=400
+
+0.04
+0.03
+0.02
+0.01
+0
+0
+
+100
+
+200
+
+300
+
+a
+Fig. 1.
+
+Proﬁle
+
+a (t)
+
+400
+a
+
+500
+
+600
+
+700
+
+800
+
+versus a for several iteration numbers.
+
+0
+
+MSEAMP
+MSESE
+
+−1
+
+log10 (MSE)
+
+−2
+−3
+−4
+−5
+−6
+−7
+0
+
+Fig. 2.
+
+100
+
+200
+
+300
+Iteration
+
+400
+
+500
+
+xt+1 = ⌘t (bt + A⇤ rt ) ,
+b
+x
+1
+rt = y Abt + rt 1 h@⌘t
+x
+
+600
+
+Comparison of MSEAMP and MSESE across iteration.
+
+1i
+
+1
++ rt
+
+1
+
+h@⌘t
+
+1i .
+
+(19)
+
+b b
+Here ⌘t (v) = (⌘t (v1 ), . . . , ⌘t (vn )), where ⌘t (vi ) = E{X|X +
+1/2
+xt
+t Z = vi } and Z ⇠ NC (0, 1). Also @⌘t,i ⌘ @⌘t (bi +
+t
+⇤ t
+⇤ t
+(A r )i ), @⌘t,i ⌘ @⌘t (bi + (A r )i ) and for a vector u 2 Rn ,
+x
+Pn
+hui = n 1 i=1 ui .
+The sequence t is determined by state evolution
+1
+1
+b
+(20)
+t+1 = mmse( t ) ,
+0 = Var(X)/ .
+
+reconstructs their values up to a mean square error of 2 .
+Correspondingly, the proﬁle
+falls to a value of order 2
+in the next few coordinates. As the process is iterated, all
+the variables are progressively reconstructed and the proﬁle
+follows a traveling wave with constant velocity. After a
+sufﬁcient number of iterations (t = 400 in the ﬁgure), is
+uniformly of order 2 .
+In order to check the prediction of state evolution, we
+compare the empirical and the predicted mean square errors
+1 t
+MSEAMP =
+kb (y) xk2 ,
+x
+b 2
+(17)
+n
+n
+⇣X
+⌘
+1X
+MSESE =
+mmse
+Wa,i a 1 (t 1) . (18)
+n i=1
+
+When A has independent entries Aij ⇠ N(0, 1/m), state
+evolution (20) predicts the performance of the algorithm (19)
+[2]. Therefore, the algorithm successfully recovers the original
+signal with high probability, provided
+> ˜(") = sup s · mmse(s) .
+
+(21)
+
+s 0
+
+a2R
+
+The values of MSEAMP and MSESE versus iteration are
+depicted in Fig. 2. (Values of MSEAMP and the bar errors
+correspond to M = 30 Monte Carlo instances). This veriﬁes
+that the state evolution provides an iteration-by iteration prediction of AMP performance. We observe that MSEAMP (and
+MSESE ) decreases linearly versus iteration.
+B. Phase diagram
+In this section, we consider the noiseless compressed sensing setting, and reconstruction through different algorithms
+and sensing matrix ensembles.
+Let A be a sensing matrix–reconstruction algorithm scheme.
+The curve " 7! A (") describes the sparsity-undersampling
+
+As shown in Fig. 3, the empirical phase transition for scheme
+II is very close to the prediction ˜("). Note that schemes
+I, II both use posterior expectation denoising. However, as
+observed in [8], spatially-coupled matrices in scheme I significantly improve the performances.
+3) Scheme III: We use the spatially-coupled sensing matrix
+described in Section II-A, and an AMP algorithm with softthresholding denoiser
+⇣
+✓ ⌘
+⌘ST (z; ✓) = 1
+z.
+(22)
+|z| +
+The algorithm is deﬁned as in Eq. (9), except that the softthresholding denoiser is used in lieu of the posterior expecta-
+
+4
+
+1
+
+1
+
+0.9
+0.8
+
+Empirical
+Logit fit
+
+0.8
+Success Rate
+
+0.7
+
+δ
+
+0.6
+0.5
+Scheme II I (empirical)
+
+0.4
+
+` 1(✏)
+
+0.3
+
+0.6
+
+0.4
+
+Scheme II (empirical)
+
+0.2
+
+˜(✏)
+
+0.1
+
+Scheme I (empirical)
+
+0.2
+
+=✏
+
+0
+0
+
+0.2
+
+0.4
+
+0.6
+
+0.8
+
+0
+0
+
+1
+
+ε
+
+Fig. 3.
+
+0.1
+
+0.2
+
+0.3
+
+0.4
+
+0.5
+
+δ
+
+Phase transition lines for Schemes I, II, III.
+
+Fig. 4.
+
+tion. Formally, let ⌘t (v) = (⌘t,1 (v1 ), · · · , ⌘t,n (vn )) with
+X
+1/2
+⌘t,i (vi ) = ⌘ST (vi , ↵⇤ (")si
+), si =
+Wai a (t) 1 , (23)
+
+Phase transition diagram for Scheme I, and " = 0.2.
+
+R EFERENCES
+[1] M. Bayati, M. Lelarge, and A. Montanari. Universality in message
+passing algorithms. submitted, 2012.
+[2] M. Bayati and A. Montanari. The dynamics of message passing on
+dense graphs, with applications to compressed sensing. IEEE Trans. on
+Inform. Theory, 57:764–785, 2011.
+[3] Y. Bresler. Spectrum-blind sampling and compressive sensing for
+continuous-index signals. In ITA, pages 547–554, 2008.
+[4] E. Candes, J. K. Romberg, and T. Tao. Robust uncertainty principles:
+Exact signal reconstruction from highly incomplete frequency information. IEEE Trans. on Inform. Theory, 52:489 – 509, 2006.
+[5] D. L. Donoho, A. Javanmard, and A. Montanari.
+Informationtheoretically optimal compressed sensing via spatial coupling and approximate message passing. arXiv:1112.0708, 2011.
+[6] D. L. Donoho, A. Maleki, and A. Montanari. Message Passing
+Algorithms for Compressed Sensing. PNAS, 106:18914–18919, 2009.
+[7] A. Felstrom and K. Zigangirov. Time-varying periodic convolutional
+codes with low-density parity-check matrix. IEEE Trans. on Inform. Theory, 45:2181–2190, 1999.
+[8] F. Krzakala, M. M´ zard, F. Sausset, Y. Sun, and L. Zdeborova. Statistical
+e
+physics-based reconstruction in compressed sensing. arXiv:1109.4424,
+2011.
+[9] S. Kudekar and H. Pﬁster. The effect of spatial coupling on compressive
+sensing. In 48th Annual Allerton Conference, pages 347 –353, 2010.
+[10] S. Kudekar, T. Richardson, and R. Urbanke. Threshold Saturation via
+Spatial Coupling: Why Convolutional LDPC Ensembles Perform So
+Well over the BEC. IEEE Trans. on Inform. Theory, 57:803–834, 2011.
+[11] S. Kudekar, T. Richardson, and R. Urbanke. Spatially Coupled
+Ensembles Universally Achieve Capacity under Belief Propagation.
+arXiv:1201.2999, 2012.
+[12] A. Maleki, L. Anitori, A. Yang, and R. Baraniuk. Asymptotic Analysis of
+Complex LASSO via Complex Approximate Message Passing (CAMP).
+arXiv:1108.0477, 2011.
+[13] E. Matusiak and Y. C. Eldar. Sub-Nyquist sampling of short pulses. In
+ICASSP, pages 3944–3947, 2011.
+[14] T. Richardson and R. Urbanke. Modern Coding Theory. Cambridge
+University Press, Cambridge, 2008.
+[15] P. J. Schreier and L. L. Scharf. Statistical signal processing of complexvalued data : the theory of improper and noncircular signals. Cambridge
+University Press, Cambridge, 2010.
+[16] A. Sridharan, M. Lentmaier, D. J. C. Jr, and K. S. Zigangirov. Convergence analysis of a class of LDPC convolutional codes for the erasure
+channel. In 43rd Annual Allerton Conference, Monticello, IL, Sept.
+2004.
+[17] Y. Wu and S. Verd´ . R´ nyi Information Dimension: Fundamental Limits
+u e
+of Almost Lossless Analog Compression. IEEE Trans. on Inform.
+Theory, 56:3721–3748, 2010.
+[18] Z. Yang, C. Zhang, and L. Xie. On phase transition of compressed
+sensing in the complex domain. IEEE Signal Processing Letters, 19:47–
+50, 2012.
+
+a2[m]
+
+and the sequence of proﬁles { (t)}t 0 is given by the following recursion.
+X
+1/2
+1/2
+b
+b
+Wai E{|⌘t,i (X + si
+Z; ↵⇤ si
+) X|2 }.
+a (t + 1) =
+i2[n]
+
+Finally ↵⇤ = ↵⇤ (") is tuned to optimize the phase transition
+boundary. This is in fact a generalization of the complex AMP
+(CAMP) algorithm that was developed in [12] for unstructured
+matrices. CAMP strives to solve the standard convex relaxation
+X
+minimizekbk1 =
+x
+|b(!)| , subject to AF x = y.
+x
+b
+!2⌦n
+
+For a given ", we denote by `1 (") the phase transition location
+for `1 minimization, when sensing matrices with i.i.d. entries
+are used. This coincides with the one of CAMP with optimally
+tuned ↵ = ↵⇤ (") [18], [12].
+The empirical phase transition of Scheme III is shown in
+Fig. 3. The results are consistent with the hypothesis that the
+phase boundary coincides with `1 . In other words, spatiallycoupled sensing matrix does not improve the performances
+under `1 reconstruction (or under AMP with soft-thresholding
+denoiser). This agrees with earlier ﬁndings by Krzakala et al.
+for Gaussian matrices ([8], and private communications). This
+can be inferred from the the state evolution map. For AMP
+with posterior expectation denoiser, and for " < < ˜("), the
+state evolution map has two stable ﬁxed points; one of order
+2
+, and one much larger. Spatial coupling makes the algorithm
+converge to the ‘right’ ﬁxed point. However, the state evolution
+map corresponding to the soft-thresholding denoiser is concave
+and has only one stable ﬁxed point, much larger than 2 .
+Therefore, spatial coupling is not helpful in this setting.
+ACKNOWLEDGMENT
+A.J. is supported by a Caroline and Fabian Pease Stanford
+Graduate Fellowship. Partially supported by NSF CAREER
+award CCF- 0743978 and AFOSR grant FA9550-10-1-0360.
+The authors thank the reviewers for their insightful comments.
+
+5
+
+

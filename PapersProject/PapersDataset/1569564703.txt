@@ -1,0 +1,1242 @@
+Creator:        TeX
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Thu May 17 16:52:49 2012
+ModDate:        Tue Jun 19 12:56:12 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      459626 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569564703
+
+Corrupted and missing predictors: Minimax bounds
+for high-dimensional linear regression
+Po-Ling Loh
+
+Martin J. Wainwright
+
+Department of Statistics
+University of California, Berkeley
+Berkeley, CA 94720
+Email: ploh@berkeley.edu
+
+Departments of Statistics and EECS
+University of California, Berkeley
+Berkeley, CA 94720
+Email: wainwrig@stat.berkeley.edu
+
+to grow with and possibly exceed the sample size n, but the
+number k of relevant predictors is substantially less than p. Our
+approach consists of a two-pronged attack: on the statistical
+side, we demonstrate an efﬁcient estimator for our model and
+prove upper bounds on 2 -error between the estimator and
+the population parameter; while on the information-theoretic
+side, we establish lower bounds on 2 -error that hold for any
+estimator derived from the data. Our upper and lower bounds
+in the additive noise setting agree up to constant factors,
+demonstrating that our proposed estimator is minimax optimal.
+
+Abstract—Missing and corrupted data are ubiquitous in many
+science and engineering domains. We analyze the informationtheoretic limits of recovering sparse vectors under various models
+of corrupted and missing data. In particular, consider a highdimensional linear regression model y = Xβ ∗ + , where y ∈ Rn
+is the response vector, X ∈ Rn×p is a random design matrix with
+p
+n and rows distributed i.i.d. as N (0, Σx ), β ∗ ∈ Rp is the
+unknown regression vector, and ∼ N (0, σ 2 I) is independent
+additive noise. Whereas a traditional approach assumes that the
+covariates X are fully observed, we assume only that a corrupted
+version Z is observed. Our main contribution is to establish
+minimax rates of convergence for estimating β ∗ in squared 2 loss, assuming β ∗ is k-sparse. Our upper and lower bounds in
+both additive noise and missing data cases scale as k log(p/k) ,
+n
+with prefactors depending only on the corruption and/or missing
+pattern of the data.
+
+A. Problem setup
+Consider the linear regression model
+yi = xi , β ∗ + i ,
+
+I. I NTRODUCTION
+
+for i = 1, 2, . . . , n,
+
+where the xi ’s are p-dimensional covariates, the yi ’s are response variables, the i ’s are independent noise, and β ∗ ∈ Rp
+is the unknown vector. In matrix form, we write y = Xβ ∗ + ,
+where X ∈ Rn×p and y, ∈ Rn . Since we are working in a
+high-dimensional setting (p
+n), we must impose additional
+structure on β ∗ . Henceforth, we assume that β ∗ 0 ≤ k,
+meaning β ∗ has at most k nonzero entries.
+In the traditional linear regression framework, one would estimate β ∗ based on observations (y, X). However, we assume
+that only the pair (y, Z) is available, where Z is a version of
+X corrupted by noise. We analyze the following settings:
+(a) Additive noise: For each i, observe zi = xi + wi , where
+wi is independent of xi .
+(b) Missing data: For each i and each component j, independently observe zij = xij with probability 1 − α, and
+zij = with probability α, where α ∈ [0, 1).
+In both cases, we assume the xi ’s and i ’s are drawn i.i.d.
+2
+from the distributions N (0, σx I) and N (0, σ 2 I), respectively.
+2
+We assume the wi ’s are drawn i.i.d. from N (0, σw I) in the
+additive noise case.
+Our analysis focuses on the minimax squared 2 -error
+
+The goal of prediction is to estimate a mapping between a
+vector x ∈ Rp of covariates and a response variable y ∈ R.
+In standard prediction problems, the data are fully observed,
+meaning estimators are constructed based on a collection of
+pairs (xi , yi ) ∈ Rp × R. In many applications, however, the
+assumption of complete observations is unrealistic: elements
+of x ∈ Rp may be corrupted (e.g., due to noise and other
+disturbances), or partly missing (e.g., due to failures to respond
+in survey data). In mathematical terms, such corruptions may
+be modeled as random additive or multiplicative perturbations.
+For instance, simple measurement error may be modeled as an
+additive perturbation; and missing data may be modeled as a
+multiplicative perturbation, where each entry is multiplied by
+a Bernoulli random variable that results in missingness with a
+certain probability. In contrast to the classical setup, such prediction problems in which both the covariate and response are
+observed subject to noise are less well understood, and blindly
+applying classical methods to the corrupted variables will
+generally yield estimators that are not statistically consistent
+for the true population parameter. Although there are a variety
+of heuristic methods for problems with corrupted/missing data
+(e.g., see Little and Rubin [4]), the theory is still lacking.
+This paper focuses on fundamental or information-theoretic
+limitations of prediction under various forms of corrupted covariates, particularly in the context of sparse high-dimensional
+linear regression, where the number of predictors p is allowed
+
+M(n, p, k) := inf
+
+sup
+
+β β ∗ ∈B0 (k)∩B2 (1)
+
+β − β∗ 2.
+2
+
+Note that the supremum is taken over k-sparse vectors in the
+2 unit ball, whereas the inﬁmum is taken over all measureable
+functions β of the observed data (y, Z). In Theorems 1 and 3,
+
+1
+
+we derive upper bounds for M by analyzing a modiﬁed
+version of the Lasso for corrupted covariates. In Theorems 2
+and 4, we derive lower bounds via information-theoretic
+techniques, where we ﬁrst reduce the estimation problem to a
+hypothesis testing problem and then apply Fano’s inequality
+to lower-bound the error probability. This type of reduction is
+standard in minimax statistical analysis (e.g., [2, 8, 7]).
+The remainder of the paper is organized as follows. In
+Section II, we state the upper and lower bounds obtained in
+the additive noise and missing data settings. In Section III, we
+provide proofs of our results.
+
+chosen to be 1/2; it may be replaced by a constant arbitrarily
+close to 1, by a suitable modiﬁcation of the universal constants.
+Theorem 2. In the additive noise setting, if 8 ≤ k ≤ p/2 and
+n k log(p/k), we have
+M≥
+
+σ2
+
+Note in particular that when the κ = σw is bounded above
+2
+x
+2
+by a constant and α
+σx , the bounds in Theorems 1 and 2
+match up to constant factors, identifying minimax optimal
+rates for the additive noise setting. The assumption of bounded
+κ merely requires the SNR to be bounded away from zero.
+
+Following standard conventions, we use f (n)
+g(n) to
+denote that f (n) ≤ cg(n) for a universal constant c > 0,
+and similarly, f (n) g(n) to denote that f (n) ≥ c g(n) for
+a universal constant c > 0. We write f (n)
+g(n) when
+f (n) g(n) and f (n) g(n) hold simultaneously.
+
+B. Missing data setting
+2
+In the missing data setting, we assume xi ∼ N (0, σx I), and
+α ∈ [0, 1) is the probability that a given entry is missing. We
+have the following upper bound:
+
+II. M AIN RESULTS AND CONSEQUENCES
+We now state our main results. Following Loh and Wainwright [5], we deﬁne the surrogate Γ ∈ Rp×p for Σx , deﬁned
+in the additive noise and missing cases as
+T
+(a) Γ = Z nZ − Σw ,
+T
+T
+Z
+(b) Γ = Z nZ − α diag Z nZ , Z = 1−α ,
+
+Theorem 3. In the missing data setting, if Γ satisﬁes Assump1
+tion 1 and n (1−α)2 k log(p/k), we have
+M≤
+
+2
+cσx
+2
+α
+
+σ +
+
+ασx
+1−α
+
+2
+
+k log(p/k)
+,
+n
+
+with probability at least 1 − c2 exp(−c2 k log(p/k)).
+
+respectively. We assume Γ obeys the lower-RE condition:
+
+For a lower bound, we have the following:
+
+Assumption 1 (Lower-RE condition). For√
+some α > 0, we
+have θT Γθ ≥ α θ 2 whenever θ 1 ≤ c0 k θ 2 .
+2
+
+Theorem 4. In the missing data setting, if 8 ≤ k ≤ p/2 and
+1
+n (1−α)2 k log(p/k), we have
+
+By Lemmas 1 and 3 of Loh and Wainwright [5], Assump2
+tion 1 holds w.h.p. for α
+σx in both settings of interest.
+
+M≥
+
+A. Additive noise setting
+
+σ 2 k log(p/k)
+cσ 2
+,
+2 + σ2
+− α) σx
+n
+
+2
+σx (1
+
+(3)
+
+with probability at least 1/2.
+
+We begin by stating an upper bound for the additive noise
+2
+setting, when X and W are Gaussian with covariance σx I and
+2
+σw
+2
+2
+2
+2
+σw I, respectively. We write σz := σx + σw and κ := σ2 .
+
+Note that when α = 0, corresponding to no missing data,
+Theorem 3 again reduces to known results. Furthermore, both
+upper and lower bounds grow as the inverse of (1 − α),
+agreeing with intuition—as the proportion of missing entries
+increases, the estimation problem increases in difﬁculty. However, a gap of a factor of (1 − α) remains between the scaling
+in Theorems 3 and 4.
+
+x
+
+Theorem 1. In the additive noise setting, if Γ satisﬁes Assumption 1 and n k log(p/k), we have
+2 2
+2
+c((1 + κ)σx σw + σ 2 σz ) k log(p/k)
+,
+α2
+n
+
+(2)
+
+with probability at least 1/2.
+
+B. Notation
+
+M≤
+
+2 2
+2
+c (σx σw + σ 2 σz ) k log(p/k)
+,
+4
+σx
+n
+
+(1)
+
+with probability at least 1 − c1 exp(−c2 k log(p/k)).
+
+C. Related work
+
+Note that when σw = 0, corresponding to the classical case
+of fully-observed covariates, the upper bound reduces to
+
+In an earlier paper [5], we propose a family of modiﬁed
+Lasso estimators for use in high-dimensional linear regression
+problems, when the unknown vector β ∗ is sparse and the
+covariates are observed subject to additive noise or missing
+data. We use the same estimators to establish upper bounds
+on 2 -error rates in the present paper; however, our analysis
+yields sharper bounds. We improve the asymptotic scaling in
+the squared 2 -error from k log p to k log(p/k) , and tighten the
+n
+n
+prefactor so it achieves known minimax results in the limit
+of no corruption. Note, however, that the upper bounds in the
+previous paper apply more generally to sub-Gaussian matrices
+with nondiagonal covariances, whereas our current analysis
+
+2
+cσ 2 σx k log(p/k)
+.
+2
+α
+n
+
+Past work has established bounds of this form for the Lasso
+and related estimators [3, 1], and this rate has been shown
+to be minimax optimal [6]. In the more general setting with
+σw > 0, the bound (1) has a qualitatively similar form, with
+the prefactor growing with the magnitude of σw .
+We now turn to a lower bound that matches the upper bound
+up to a constant factor. The probability for the lower bound is
+
+2
+
+Dividing through by ν 2 yields
+√
+c k
+ν 2≤
+max ϕ
+α
+
+only applies when covariates are Gaussian and covariances
+are multiples of the identity. Our proof techniques for lower
+bounds closely follow those of Raskutti et al. [6].
+III. P ROOFS OF MAIN RESULTS
+A. Proof of Theorem 1
+It sufﬁces to demonstrate an estimator for β ∗ which, w.h.p.,
+has small 2 -norm error. We use the following estimator
+proposed in Loh and Wainwright [5]:
+β ∈ arg
+β
+
+where (Γ, γ) =
+
+1 T
+β Γβ − γ T β + λ β
+2
+
+min
+√
+
+1≤ k
+
+ZT Z
+n
+
+T
+
+− Σw , Zn y
+
+ϕ
+
+log(p/k)
+,
+n
+
+we obtain the bound
+
+cϕ2 k log(p/k)
+.
+n
+α2
+
+The remaining component is to ﬁnd an
+M ≤
+appropriate choice of the prefactor ϕ.
+Let u ∈ B0 (k) ∩ B2 (1). Then
+ZT y
+ZT Z
+−
+− Σw β ∗
+n
+n
+Z T (Xβ ∗ + )
+ZT Z
+= uT
+−
+− Σw β ∗
+n
+n
+uT Z T
+ZT W
+≤
++ uT Σw −
+β∗
+n
+n
+≤ (σ σz + σw σz )t,
+
+,
+
+|uT (γ − Γβ ∗ )| = uT
+
+are unbiased estimators
+
+log(p/k)
+n
+
+for (Σx , Cov(xi , yi )), and λ
+
+1
+
+Hence, choosing λ
+
+log(p/k)
+,λ .
+n
+
+is chosen appropri-
+
+∗
+
+ately. We show that if β ∈ B0 (k) ∩ B2 (1), then β − β ∗ 2
+2
+satisﬁes the proper upper bound.
+Since β ∗ is feasible and β is optimal, we have
+1 T
+ν Γν ≤ ν, γ − Γβ ∗ + λ{ β ∗ 1 − β ∗ + ν 1 },
+(4)
+2
+√
+where ν = β − β ∗ . Since ν 1 ≤ 8 k ν 2 , we may lowerbound the LHS of inequality (4) using Assumption 1.
+To upper-bound the RHS of inequality (4), we use the
+following combinatorial lemma, a slight generalization of
+Lemma 11 in Loh and Wainwright [5]:
+
+with probability at least 1 − 2 exp(−cnt2 ), using standard tail
+bounds for sub-Gaussian matrices. Taking ϕ = (σ σz +σw σz )
+and t =
+
+k log(p/k)
+n
+
+M≤
+
+gives
+2
+cσz (σw + σ )2 k log(p/k)
+,
+α2
+n
+
+w.h.p. Finally, we bound
+
+Lemma 1. For any constant c > 0, we have
+√
+B1 (c k) ∩ B2 (1) ⊆ (1 + 2c) cl{conv{B0 (k) ∩ B2 (1)}},
+
+2
+2
+2
+2 2
+2
+σz (σw + σ )2 ≤ σz (2σw + 2σ 2 ) = 2(1 + κ)σx σw + 2σ 2 σz .
+
+B. Proof of Theorem 2
+
+where cl{·} and conv{·} denote the topological closure and
+convex hull, respectively.
+√
+ν
+Since ν 1 ≤ c k ν 2 , we apply Lemma 1 to u = ν 2
+to obtain u ⊆ (1 + 2c) cl{conv{B0 (k) ∩ B2 (1)}}, so
+
+For lower bounds, we follow a standard argument [2, 7, 8]
+to transform the estimation problem into a hypothesis testing
+problem. Namely, given any δ-packing {β1 , . . . , βM } of the
+target set B0 (k) ∩ B2 (1), we have the inequality
+
+|ν T (γ − Γβ ∗ )| ≤ (1 + 2c) ν
+
+P min
+
+sup
+
+2
+
+|u T (γ − Γβ ∗ )|.
+
+u ∈cl{conv{B0 (k)
+∩B2 (1)}}
+
+β
+
+P(β = B) ≥ 1 −
+
+2
+
+≤ Cϕ ν
+
+2
+
+√
+k log(p/k)
++ c kλ ν
+n
+
+≥
+
+δ2
+4
+
+≥ min P(β = B),
+β
+
+I(y; B) + log 2
+.
+log M
+
+I(y; B) = EB [D(Py|B Py )] =
+≤
+
+Combining this with inequality (4) and the lower-RE bound
+then implies
+2
+2
+
+2
+2
+
+(6)
+
+In order to upper-bound the mutual information I(y; B), let Pβ
+denote the distribution of y given B = β (when Z is observed).
+For conciseness of notation, denote Pj = Pβj . Since y is
+1
+distributed as the mixture M j Pj , we have
+
+k log(p/k)
+,
+n
+with probability at least 1 − c1 exp(−c2 k log(p/k)), where ϕ
+is a function of the problem parameters, derived below.
+Finally, note that
+√
+β∗ 1 − β∗ + ν 1 ≤ ν 1 ≤ c k ν 2.
+
+α ν
+
+β ∗ ∈B0 (k)∩B2 (1)
+
+β − β∗
+
+(5)
+where B is uniformly distributed over {β1 , . . . , βM } and β is
+an estimator. We then lower-bound the RHS using Fano:
+
+Clearly, the sup may be taken over u ∈ B0 (k) ∩ B2 (1).
+Furthermore, we may use a standard discretization argument
+for each support set S with |S | ≤ k, followed by a union
+bound over all choices of S . Since the discretization gives a
+p k
+p
+factor of ck and the union bound gives a factor of k ≤ k ,
+it sufﬁces to bound the sup w.h.p. for an arbitrary ﬁxed unit
+vector u with u 0 ≤ k. This yields a bound of the form
+|ν T (γ − Γβ ∗ )| ≤ Cϕ ν
+
+max
+
+1
+M
+1
+M2
+
+D Pj
+j
+
+1
+M
+
+D(Pj P ),
+
+P
+(7)
+
+j,
+
+exploiting the convexity of the KL divergence in the last inequality. Finally, we upper-bound the pairwise KL divergences
+D(Pj P ) explicitly, and then choose an appropriate value of
+δ to ensure that P(β = B) ≥ 1/2. The key steps therefore
+
+2.
+
+3
+
+involve ﬁnding an appropriate δ-packing of the target set and
+an upper-bound on the mutual information.
+1
+The following lemma shows that there exists a 2 -packing
+p−k
+k
+of the target set with log M ≥ 2 log k/2 :
+
+where the last inequality uses Lemma A.1 in the Appendix.
+Expanding σ 2 in inequality (10) then yields the desired result.
+In particular, for βj , β in the δ-packing, Lemmas 2 and 3
+together imply that
+
+Lemma 2. There exists a 1 -packing of B0 (k) ∩ B2 (1) in 2 2
+norm with log M ≥ k log p−k . In particular, if δ < 1 , there
+2
+k/2
+2
+exists a 2δ-packing {β1 , . . . , βM } of the same set such that
+βj − βk 2 ≤ 4δ for all pairs (j, k).
+
+D(Pj P ) ≤
+
+so by inequality (7), we also have
+
+The proof is based on a modiﬁcation of a result due to Raskutti
+et al. [6]. We now derive an explicit expression for Pβ , which
+we will use to compute the KL divergences appearing in
+inequality (7). By independence, Pβ is a product distribution
+of yi |zi , over all i. We claim that for each i,
+
+I(y; B) ≤
+
+P(β = B) ≥ 1 −
+
+0
+0
+
+β T Σx
+Σx + Σ w
+
+β T Σx β + σ 2
+Σx β
+
+,
+
+,
+
+so equation (8) follows immediately by standard results on
+conditional Gaussians. We now derive the following lemma:
+
+D(Pβ
+
+δ2 =
+
+n
+log
+2
++
+
+n
+= log
+2
+
+2
+σβ
+2
+σβ
+
+y − ZΣ−1 Σx β
+z
+2
+2σβ
+
+−
+
+y − ZΣ−1 Σx β
+z
+2
+2σβ
+2
+σβ
+2
+σβ
+
+2
+2
+
+|uT (γ − Γβ ∗ )| ≤ uT
++
+(9)
+
+4
+σx
+2
+σz
+
+β
+
+2
+2
+
++ σ2 =
+
+4
+1 σx
+Z(β − β )
+4
+2σ 2 σz
+
+2 2
+σx σw
++ σ 2 := σ 2
+2
+σz
+
+2
+2
+
+≤
+
+4
+cnσx
+β−β
+2
+σ 2 σz
+
++ α uT
+
+diag
+
+ZT Z
+n
+
+−
+
+β∗
+
+2
+σx
+I
+1−α
+
+β∗ .
+
+σ2
+
+Z T (Z − X)
+1
+=
+n
+n
+
+gives the same value for all β. Then equation (9) becomes
+D(Pβ Pβ ) =
+
+uT Z T
+n
+
+α
+Z T (Z − X)
+−
+σ2 I
+n
+1−α x
+
+x
+Note that Z is sub-Gaussian with parameter (1−α)2 , so we
+can bound the second term by σx σ t with probability at least
+1−α
+1 − 2 exp(−cnt2 ). Similarly, we may bound the third term by
+2
+ασx
+(1−α)2 t. Finally, note that
+
+2
+2
+where σβ = β T (Σx − Σx Σ−1 Σx )β + σ 2 , and σβ is deﬁned
+z
+analogously.
+2
+2
+In our setting, since Σx = σx I, Σw = σw I, and β 2 = 1,
+2
+σx −
+
+2 2
+2
+c(σx σw + σ 2 σz ) k
+p−k
+log
+,
+4
+σx
+n
+k/2
+
+Z
+Z = 1−α is a rescaled version of the missing data matrix.
+Let u ∈ B0 (k) ∩ B2 (1). Using the fact that y = Xβ ∗ + and
+expanding, we have the bound
+
+2
+2
+
+1
++ 2 ZΣx Σ−1 (β − β ) 2 ,
+z
+2
+2σβ
+
+2
+σβ =
+
+p−k
+k/2 ,
+
+C. Proof of Theorem 3
+Again following Loh and Wainwright [5], we use the
+T
+T
+T
+estimators Γ = Z nZ − α diag Z nZ , γ = Zn y , where
+
+2
+σβ
+2 −1
+σβ
+
+n
++
+2
+
+log
+
+2
+
+Pβ (y)
+log
+Pβ (y)
+
+= EPβ
+
+k
+8
+
+and using inequality (5), we conclude that M ≥ δ4 with
+probability at least 1/2. Finally, note that when p/k ≥ 2, we
+p
+p
+have p−k = 2 k − 1 ≥ k , so we may replace the quotient
+k/2
+p−k
+p
+k/2 by k in the lower bound to obtain the result we seek.
+
+2
+2.
+
+Proof: Assume σ and σw are not both 0; otherwise, the
+theorem is trivially true. By equation (8), we can write
+D(Pβ Pβ ) = EPβ
+
+(11)
+
+Choosing
+
+Lemma 3. For any β, β ∈ B0 (k), we have
+cnσ 4
+Pβ ) ≤ 2 2 x 2 2 β − β
+σx σw + σ σz
+
+4
+cnδ 2 σx
+2 2
+2
+σx σw +σ 2 σz + log 2
+.
+p−k
+k
+2 log k/2
+
+Note that for p/k ≥ 2 and k ≥ 8, we have log 2 ≤
+so inequality (11) implies that
+
+
+4
+cnδ 2 σx
+2 2
+2
+1
+σx σw +σ 2 σz
+.
++
+P(β = B) ≥ 1 −  k
+p−k
+4
+2 log k/2
+
+Indeed, (yi , zi ) is clearly jointly Gaussian with mean 0, and
+by computing covariances,
+∼N
+
+4
+cnδ 2 σx
+.
+2 2
+2
+σx σw + σ 2 σz
+
+Substituting into Fano’s inequality (6) gives
+
+yi | zi ∼ N (β T Σx Σ−1 zi , β T (Σx − Σx Σ−1 Σx )β + σ 2 ). (8)
+z
+z
+
+yi
+zi
+
+4
+cnδ 2 σx
+,
+2 2
+2
+σx σw + σ 2 σz
+
+n
+
+zi (zi − xi )T =
+i=1
+
+1
+α
+n (1 − α)2
+
+n
+T
+zi zi ,
+i=1
+
+where zi is the observed vector with 0’s in missing positions.
+T
+Conditioned on the missing positions, uT Z (Z−X) β ∗ is subn
+2
+ασx
+exponential with parameter (1−α)2 . Since a mixture of subexponentials is sub-exponential with the same parameter, we
+
+2
+2,
+
+(10)
+
+4
+
+2
+ασx
+(1−α)2 t.
+k log(p/k)
+yields
+n
+
+have a bound of the form
+
+Then ϕ =
+
+with t = (1 − α)
+
+σx σ
+1−α
+
++
+
+2
+ασx
+(1−α)2
+
+the bound.
+
+IV. C ONCLUSION
+We have derived upper and lower bounds for the 2 error
+for estimating an unknown sparse regression vector in a
+high-dimensional setting, and shown that the bounds match
+in the additive noise setting when the signal-to-noise ratio
+for the observed covariates is bounded below by a positive
+constant. Our bounds illustrate the interplay between the
+signal of the true unobserved covariates and the sources of
+corruption present in the covariate and response variables.
+
+D. Proof of Theorem 4
+Note that when σ = 0, the theorem is trivially true; hence,
+we assume σ > 0. We use the same δ-packing obtained in
+Lemma 2. To compute the KL divergences, we ﬁrst derive
+the distribution of y | Z for a ﬁxed β, which is a product
+distribution of yi | zi over all i. Furthermore, we may write
+yi = xi,obs , βobs + xi,mis , βmis + i ,
+
+(12)
+
+where obs denotes the indices of the the observed coordinates
+and mis denotes the indices of the missing coordinates. Note
+that βobs and βmis vary with i. From equation (12), we have
+
+Acknowledgments: PL acknowledges support from a Hertz
+Foundation Fellowship and an NDSEG Fellowship; MJW
+and PL were also partially supported by grants NSF-DMS0907632 and AFOSR-09NL184.
+
+T
+T
+yi | zi ∼ N (zi β, βmis Σx,mis βmis + σ 2 ).
+
+A PPENDIX
+
+2
+σi,β
+
+T
+βmis Σx,mis βmis
+
+2
+σβ
+
+2
+σx
+
+βmis 2
+2
+
+2
+
+Lemma A.1. Suppose X ∈ Rn×p is a sub-Gaussian matrix
+2
+2
+with parameter σx . For t ≤ σx , we have
+
+Denote
+=
+=
+=
++ σ . By
+a similar computation as before, for β = β, we have
+1
+1
+D(Pβ Pβ ) =
+n
+n
+
+n
+
+1
+log
+2
+
+i=1
+
+2
+σi,β
+2
+σi,β
+
++
+
+1
+2
+
+2
+σi,β
+−1
+2
+σi,β
+
+1
+T
++ 2 (zi (β − β ))2 .
+2σi,β
+
+1
+Xv
+n
+
+(13)
+
+R EFERENCES
+[1] P. J. Bickel, Y. Ritov, and A. Tsybakov. Simultaneous
+analysis of Lasso and Dantzig selector. Annals of Statistics, 37(4):1705–1732, 2009.
+[2] L. Birg´ . Approximation dans les espaces metriques
+e
+et theorie de l’estimation. Z. Wahrsch. verw. Gebiete,
+65:181–327, 1983.
+[3] E. Candes and T. Tao. The Dantzig selector: Statistical
+estimation when p is much larger than n. Annals of
+Statistics, 35(6):2313–2351, 2007.
+[4] R. Little and D. B. Rubin. Statistical analysis with missing
+data. Wiley, New York, 1987.
+[5] P. Loh and M.J. Wainwright. High-dimensional regression
+with noisy and missing data: Provable guarantees with
+non-convexity. Annals of Statistics, To appear. Available
+at http://arxiv.org/abs/1109.3714.
+[6] G. Raskutti, M.J. Wainwright, and B. Yu. Minimax
+rates of estimation for high-dimensional linear regression
+over q -balls. IEEE Transactions on Information Theory,
+57(10):6976–6994, 2011.
+[7] Y. Yang and A. Barron. Information-theoretic determination of minimax rates of convergence. Annals of Statistics,
+27(5):1564–1599, 1999.
+[8] B. Yu. Assouad, Fano, and Le Cam. In Research Papers in
+Probability and Statistics: Festschrift in Honor of Lucien
+Le Cam, pages 423–435. 1996.
+
+Further note that
+2
+σi,β
+σ 2 ( βmis 2 − βmis 2 )
+σ 2 uT (β 2 − β 2 )
+2
+2
+−1= x
+= x i 2
+,
+2
+2
+σi,β
+σi,β
+σi,β
+where ui ∈ Rp is a binary vector with 1’s corresponding
+to missing values in zi , and β 2 and β 2 are obtained by
+componentwise squaring of β and β . The matrix U with rows
+uT is i.i.d. Bernoulli, hence sub-Gaussian with parameter 1.
+i
+Applying Lemma A.1 to U and Z with covariances α(1 − α)I
+4
+1
+cσx
+D(Pβ Pβ ) ≤ 4 (1−α) β 2 −β 2
+n
+σ
+
+we obtain
+
+2
+2 c σx
+(1−α)
+2+
+σ2
+
+β−β
+
+2
+2,
+
+2
+since σi,β ≥ σ 2 . Finally, note that
+
+β2 − β 2
+
+2
+2
+
+≤ β−β
+
+2
+2
+
+β+β
+
+2
+2
+
+≤2 β−β
+
+2
+2,
+
+by Cauchy-Schwarz and the triangle inequality. When
+{β1 , . . . , βM } is a δ-packing of B0 (k) ∩ B2 (1), we have
+4
+σ2
+σx
++ x
+4
+σ
+σ2
+2 2
+σ σ + σ2
+= cnδ 2 (1 − α) x x 2
+σ2 σ
+
+D(Pj P ) ≤ cnδ 2 (1 − α)
+
+for all j = , with probability at least 1 − exp(−ck log(p/k)).
+cσ 2
+σ2
+k
+Choosing δ 2 = σ2 (1−α) σ2 +σ2 n log p−k yields the bound.
+k/2
+x
+
+∀v ∈ B0 (2k) ∩ B2 (1),
+
+Proof: See Lemma 15 in Loh and Wainwright [5]. The
+p
+only modiﬁcation is to use the tighter bound 2k ≤ (p/k)k .
+
+By a Taylor expansion, log x ≤ (x − 1) + c(x − 1) for x
+2
+σi,β
+close to 1. Taking x = σ2 , equation (13) becomes
+i,β
+
+
+2
+n
+2
+T
+1
+1
+c σi,β
+(zi (β − β ))2 
+
+.
+D(Pβ Pβ ) ≤
+−1 +
+2
+2
+n
+n i=1 2 σi,β
+2σi,β
+
+k log(p/k)
+,
+n
+
+− v T Σx v ≥ t
+
+4
+with probability at most c1 exp(−c2 nt2 /σx + 2k log(p/k)).
+
+2
+
+2
+and (1 − α)σx I, taking t = (1 − α)σ 2
+
+2
+2
+
+x
+
+5
+
+

@@ -1,0 +1,799 @@
+Title:          isit_dima_v9.dvi
+Creator:        dvips(k) 5.98 Copyright 2009 Radical Eye Software
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Thu May 17 16:28:03 2012
+ModDate:        Tue Jun 19 12:54:25 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      441140 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569566605
+
+Improving Spatially Coupled LDPC Codes by Connecting Chains
+Dmitri Truhachev∗ , David G. M. Mitchell† , Michael Lentmaier‡ , and Daniel J. Costello, Jr.†
+∗
+
+Department of Computing Science, University of Alberta, Edmonton, Canada
+dmitryt@ualberta.ca
+†
+Dept. of Electrical Engineering, University of Notre Dame, Notre Dame, Indiana, USA,
+{david.mitchell, costello.2}@nd.edu
+‡
+Vodafone Chair Mobile Communications Systems, Dresden University of Technology, Dresden, Germany,
+michael.lentmaier@ifn.et.tu-dresden.de
+II. C ODE C ONSTRUCTION
+A protograph [17] is a small Tanner graph described by
+an nc × nv incidence matrix B, known as a base matrix,
+that consists of non-negative integers Bi,j that correspond to
+Bi,j parallel edges in the graph. A protograph-based code
+is obtained by taking an M -fold graph cover of a given
+protograph and can be described by an M nc × M nv paritycheck matrix obtained by replacing each non-zero entry Bi,j
+by a sum of Bi,j non-overlapping permutation matrices of
+size M × M and a zero entry by the M × M all-zero matrix.
+Therefore, a protograph with a lifting factor of M describes
+an ensemble of LDPC codes.
+
+Abstract—In this paper, we study ensembles of connected
+spatially coupled low-density parity-check codes (SC-LDPCCs),
+i.e., ensembles described by graphs in which regular SC-LDPCC
+chains of various lengths serve as edges. We show that, by
+carefully connecting individual SC-LDPCC chains, we obtain
+LDPC code ensembles with improved iterative decoding thresholds compared to those of a single coupled chain, in addition to
+reducing the decoding complexity required to achieve a speciﬁc
+bit error probability. Moreover, we show that, like the component
+SC-LDPCC chains, the proposed constructions have a typical
+minimum distance that grows linearly with block length.
+
+I. I NTRODUCTION
+Recently, iterative processing on spatially coupled sparse
+graphs has received a lot of attention in the literature. The
+concept of coupling a sequence of identical small structured
+graphs into a chain with improved properties, ﬁrst demonstrated in the context of low-density parity-check (LDPC)
+convolutional codes [1], has been shown to be applicable to a
+diverse list of topics, such as compressed sensing [2], multiuser
+communication [3] [4], quantum codes [5], relay channels [6],
+[7], wiretap channels [8], and models in statistical physics [9].
+Ensembles of spatially coupled LDPC codes (SC-LDPCCs)
+can be obtained by terminating regular LDPC convolutional
+code ensembles [10]. The slight irregularity resulting from
+the termination of the convolutional codes has been shown to
+lead to substantially better belief propagation (BP) decoding
+thresholds compared to corresponding block, or uncoupled,
+code ensembles for a variety of channels [10]–[13]. Further, it
+has recently been proven analytically for the binary erasure
+channel (BEC) that the BP decoding thresholds of a class
+of regular SC-LDPCC ensembles approach the maximum a
+posteriori (MAP) decoding thresholds of the corresponding
+LDPC block code ensembles [14].
+In this work, we extend the results presented in [15],
+[16] and show that by carefully connecting individual SCLDPCC chains, we can obtain LDPC code ensembles with
+improved iterative decoding thresholds for a wide variety of
+rates. Communication over the binary erasure channel (BEC)
+and the additive white Gaussian noise (AWGN) channel have
+been considered. Moreover, we show that this new code
+construction also decreases the decoding complexity required
+to achieve speciﬁc decoding error probabilities in the near
+threshold region. Finally, we show that the constructed ensembles, like the individual component SC-LDPCC chains,
+are asymptotically good, i.e., they have the property that their
+minimum distance increases linearly with block length.
+
+A. SC-LDPCC Ensembles
+a)
+
+b)
+
+c)
+
+d)
+Fig. 1. The protographs of several SC-LDPCC chains of length L = 8: (a)
+(3, 6)-regular, (b) (4, 8)-regular, (c) (3, 9)-regular, and (d) their simpliﬁed
+representation.
+
+A protograph of a (3, 6)-regular SC-LDPCC chain of length
+L = 8 is depicted in Fig. 1(a). The green circles in the
+ﬁgure illustrate check nodes and the black circles illustrate
+variable nodes. Note that each variable node is connected to 3
+parity check nodes, while the parity check nodes in the middle
+are connected to 6 variable nodes. The check nodes located
+at the beginning and at the end of the chain, however, are
+
+This work was partially supported by NSF Grants CCF-0830650 and CCF1161754, and the Alberta Innovates Fund.
+
+1
+
+only connected to either 2 or 4 variable nodes. Figs. 1(b)
+and (c) show the coupling concept for (4, 8)- and (3, 9)regular graphs, respectively. A simpliﬁed illustration of the
+protographs of a length L = 8 chain is given in Fig. 1(d). Each
+magenta node illustrates a segment of the (J, K)-regular SCLDPCC chain. We will denote the ensemble associated with a
+(J, K)-regular SC-LDPCC chain of length L by C(J, K, L).
+
+B. Asymptotic Minimum Distance Analysis
+In [18], Divsalar presented a technique to calculate the
+average weight enumerator for protograph-based block code
+ensembles. This weight enumerator can be used to test if an
+ensemble is asymptotically good, i.e., if the minimum distance
+typical of most members of the ensemble is at least as large as
+δmin n, where δmin > 0 is the minimum distance growth rate
+of the ensemble and n is the block length. In [19], it was shown
+that ensembles of (J, K)-regular SC-LDPCCs (i.e., individual
+chains) are asymptotically good. In Section IV, we present the
+results of a similar protograph-based analysis for ensembles of
+connected SC-LDPCCs to see if they share the good distance
+properties of the individual chains.
+
+B. Connecting Two Coupled Chains: The Loop
+In this paper, we will construct the protograph of an
+LDPC code ensemble by interconnecting the protographs of
+two (J, K)-regular SC-LDPCC chains.1 The connected protograph, depicted in Fig. 2, is called the loop and is denoted by
+L(J, K, L). Here, the last segment of chain one is connected
+to an inner segment of chain two, while the ﬁrst segment of
+chain two is connected to an inner segment of chain one. It
+was shown in [16] that, when connecting SC-LDPCC chains,
+the performance is sensitive to the position of the connecting
+points. In this paper, we will connect the chains at positions
+max(2, ⌊L/3⌋). The particular connections made between the
+chains will vary depending on the component chains, and
+we will see in Section IV that the threshold and speed of
+convergence can be improved by carefully choosing where to
+place the connecting edges.
+
+IV. R ESULTS
+In this section, we present the iterative decoding threshold
+and asymptotic minimum distance results obtained for several
+SC-LDPCC loop ensembles. We will ﬁrst show that the
+L(J, 2J, L) loop ensembles have the same rate but better
+thresholds than the individual C(J, 2J, L) ensembles. We then
+proceed to show that this same improvement is visible as we
+increase the rate of the component SC-LDPCC chains.
+A. The (3, 6) SC-LDPCC Loop Ensemble L(3, 6, L)
+The ﬁrst component chain we consider is the (3, 6)-regular
+SC-LDPCC chain shown in Fig. 1(a). We take two of these
+chains and connect them together as shown in Fig. 2. The
+connections are made as shown in Fig. 3. Note that, at the
+connection points, the two check nodes at the end of the chain
+have an additional 2 and 4 edges (shown in red) that connect to
+the variable nodes of the adjacent chain. As a result, the loop
+construction L(3, 6, L) has reduced check node degrees only at
+the open ends of the loop. However, at each connection point,
+there are 6 variable nodes that have degree 4. Consequently, for
+the loop ensemble L(3, 6, L), the average check node degree
+is 6(L + 1)/(L + 2) and the average variable node degree is
+3(L+1)/L. We note that, just as in the case of a single (3, 6)regular SC-LDPCC chain, the degree distribution approaches
+that of a (3, 6)-regular code as L grows. The rates of both
+the loop ensemble L(3, 6, L) and the single chain ensemble
+C(3, 6, L) are equal and are given by RL = (L − 2)/2L.
+
+Fig. 2. Two connected (J, K)-regular SC-LDPCC chains of length L = 15.
+
+III. A NALYSIS OF C ONNECTED SC-LDPCC S
+A. Iterative Decoding Analysis
+The analysis of the iterative decoding performance of codes
+described by protographs can be obtained via density evolution, which, for the case of the BEC, is explained as follows.
+We denote the set of variable nodes connected to check
+node k in the protograph by V(k) and the set of check nodes
+connected to variable node j by C(j). The probability that
+the message passed from check node k to variable node j in
+(i)
+iteration i is an erasure is denoted by qkj . The probability of
+an erasure message from variable node j to check node k is
+(i)
+similarly denoted by pjk . The following equations relate the
+erasure probabilities of the messages at different iterations:
+(i)
+
+(i−1)
+
+qkj = 1 −
+
+(1 − pj ′ k ) ,
+j ′ ∈V(k)
+
+(i)
+pjk
+
+j
+(i)
+qk ′ j
+
+=ǫ
+
+(1)
+
+.
+
+(2)
+
+k′ ∈C(j) k
+(0)
+
+The variable node messages are initialized as pjk = ǫ at
+iteration 0. The bit error probability of variable node j at
+iteration i can be calculated as
+(i)
+
+Pb (j) = ǫ
+
+qkj .
+
+(3)
+
+(a)
+
+(b)
+
+k∈C(j)
+
+Fig. 3. Graphs depicting (a) two connected spatially coupled (3, 6)-regular
+protograph chains, and (b) the simpliﬁed representation. The connecting edges
+are shown in red.
+
+1 Constructions
+
+consisting of more than two connected chains are also
+possible [15], [16].
+
+2
+
+Rate
+0.4167
+0.4333
+0.4444
+
+Fig. 4 shows the calculated BEC thresholds for the
+L(3, 6, L) ensembles in comparison to the C(3, 6, L) and
+C(4, 8, L) single chain ensembles for a variety of chain lengths
+L. Comparing the L(3, 6, L) ensembles to the C(3, 6, L) ensembles, we observe that, for L > 5, the thresholds of the loop
+ensembles are generally superior with the exception of large L.
+In particular, we observe a dramatic threshold improvement for
+ensembles with rates in the region 0.3571 ≤ RL ≤ 0.4375. For
+large values of L, the improvement diminishes. The thresholds
+of the single chain ensembles C(3, 6, L) and C(4, 8, L) can be
+observed to converge to values close to the MAP threshold
+of the underlying (J, K)-regular LDPC code as L becomes
+sufﬁciently large. (Recall that it has been shown in [14] that
+the BP thresholds of a class of SC-LDPCC ensembles on
+the BEC are equal to the (optimal) MAP thresholds of their
+corresponding LDPC block code ensembles.) As a result, for
+large L, we observe the surprising behaviour that the iterative
+decoding thresholds of the C(4, 8, L) ensembles are larger
+than the C(3, 6, L) thresholds (unlike the corresponding LDPC
+block code ensembles). However, even in this region, we
+observe that the thresholds of the L(3, 6, L) ensemble remain
+above the C(4, 8, L) thresholds for rates between 0.4 and 0.45.
+In the next section, we will see that a loop constructed using
+(4, 8)-regular SC-LDPCC chains achieves further performance
+improvement.
+AWGN channel thresholds for the loop ensembles
+L(3, 6, L) are given in Table I for L = 12, 15, and 18. The
+results for the single chain ensembles C(3, 6, L) are shown
+for comparison. We notice that the thresholds of the loop
+ensembles are signiﬁcantly better than these for corresponding
+single chains.
+0.5
+
+TABLE I
+AWGN CHANNEL THRESHOLDS (EB /N0 )∗ CALCULATED FOR THE
+L(3, 6, L) LOOP ENSEMBLES AND THE C(3, 6, L) ENSEMBLES FOR
+L = 12, 15, AND 18.
+
+the node position for the single chain ensemble C(3, 6, 15)
+and iteration numbers 1, 6, 11, . . . , 36. The BEC erasure probability is ﬁxed to be 0.488. We note that the red curves
+achieve low bit error probabilities much faster than the green
+curves. In addition, it takes fewer decoding iterations for the
+loop ensemble L(3, 6, 15) to converge to a given bit error
+probability.
+0
+−0.5
+−1
+−1.5
+−2
+−2.5
+−3
+−3.5
+−4
+−4.5
+
+2
+
+SC−LDPC chain C(3,6,L)
+SC−LDPC loop L(3,6,L)
+SC−LDPC chain C(4,8,L)
+(J,K)−regular LDPC
+
+(3,6)
+
+0.4
+
+L=4
+
+L=6
+
+Rate
+
+0.25
+0.2
+
+L=4
+
+L=3
+
+0.15
+
+Increasing chain
+length L
+0.4
+
+0.5
+
+L=4
+
+0.6
+
+0.7
+
+0.8
+
+8
+
+10
+
+12
+
+14
+
+Fig. 6 shows the asymptotic minimum distance growth
+rates calculated for the L(3, 6, L) ensembles as well as some
+C(J, 2J, L) ensembles and (J, K)-regular LDPCC ensembles.
+In addition to their good threshold performance, the L(3, 6, L)
+ensembles were found to be asymptotically good for all
+tested values of L. As the chain length L increases, the rate
+increases and the minimum distance growth rates decrease for
+all the SC-LDPCC ensembles. We observe that, for short chain
+lengths L = 3, 4, 5, the L(3, 6, L) ensembles display distance
+growth rates similar to the C(4, 8, L) ensembles, and much
+larger than the C(3, 6, L) ensembles. This can be explained
+in part by the increased variable node degrees (the average
+variable node degrees are 4, 3.75, and 3.6, respectively, while
+the average check node degrees are 4.8, 5, and 5.1429,
+respectively). For L > 5, as the thresholds of the L(3, 6, L)
+ensembles exceed the thresholds of the C(3, 6, L) ensembles,
+we see that the distance growth rates display the opposite
+behaviour. Finally, as L → ∞ the minimum distance growth
+rates decrease and tend to zero as L → ∞.
+
+L=5
+L=3
+
+6
+
+Fig. 5. Logarithm of the bit error probability for the variable nodes of
+a) chain one of the ensemble L(3, 6, 15) (red curves), and b) ensemble
+C(3, 6, 15) (green curves), as a function of the position of the node in the
+chain. The curves (either red or green) are computed for decoding iterations
+1, 6, 11, . . . , 36 (from top to bottom). The position where chain one is
+connected to the end of chain two is shown by the red triangle.
+
+Shannon
+limit
+
+L=5
+
+0.3
+
+4
+
+Node position in the chain
+
+0.35
+
+0.05
+0.3
+
+(Eb /N0 )∗
+1.1167dB
+1.0431dB
+0.9659dB
+
+Ensemble
+C(3, 6, 12)
+C(3, 6, 15)
+C(3, 6, 18)
+
+−5
+(4,8)
+
+0.45
+
+0.1
+
+(Eb /N0 )∗
+0.6520dB
+0.7281dB
+0.7850dB
+
+Ensemble
+L(3, 6, 12)
+L(3, 6, 15)
+L(3, 6, 18)
+
+0.9
+
+BEC threshold
+
+Fig. 4. BEC thresholds calculated for the L(3, 6, L) loop ensembles as well
+as some C(J, K, L) ensembles and (J, K)-regular LDPCC ensembles.
+
+In addition to an improvement in threshold, we also ﬁnd that
+connecting two chains may improve the speed of convergence
+of the chains at the connecting points. The evolution of
+the bit error probability for the variable nodes of the loop
+ensemble L(3, 6, 15) is illustrated in Fig. 5. The red curves
+correspond to the error probability at each node position at
+iterations 1, 6, 11, . . . , 36 (from top to bottom). The green
+curves correspond to the error probability as a function of
+
+3
+
+(3,6)
+
+(5,10)
+
+0.5
+0.45
+0.4
+
+(5,8)
+
+(3,5)
+
+Rate
+
+0.35 L=7
+L=6
+0.3
+
+length L. We see the same behaviour as for the (3, 6) loops:
+for short L and low rates, the ensemble C(4, 8, L) has the
+largest threshold; for a large rate region in the middle of the
+achievable range, the loop ensembles have signiﬁcantly better
+thresholds; and, ﬁnally, the improvement observed for the loop
+ensembles diminishes as L becomes large and the thresholds
+converge at a value slightly below the MAP threshold of
+the underlying ensemble. The threshold difference between
+ensembles LA (4, 8, L) and LB (4, 8, L) indicates that the
+performance is sensitive to the choice of additional edges
+connecting the chains.
+
+SC−LDPC chain C(3,6,L)
+SC−LDPC loop L(3,6,L)
+SC−LDPC chain C(4,8,L)
+(J,K)−regular LDPC
+
+(4,8)
+
+(4,6)
+L=5
+
+0.25
+
+L=4
+
+Gilbert−Varshamov
+bound
+
+L=7
+
+L=5
+
+L=4
+(3,4)
+(4,5)
+
+0.2
+
+L=5
+L=3
+
+0.1
+0.05
+0
+
+(5,6)
+
+L=3
+
+0.15
+
+Increasing chain
+length L
+0.05
+
+0.1
+
+L
+6
+9
+12
+15
+75
+150
+
+L=4
+
+0.15
+
+0.2
+
+0.25
+
+0.3
+
+0.35
+
+dmin / n
+
+Fig. 6.
+Asymptotic minimum distance growth rates calculated for the
+L(3, 6, L) loop SC-LDPCC ensembles as well as some C(J, K, L) SCLDPCC ensembles and (J, K)-regular LDPCC ensembles.
+
+B. The (4, 8) SC-LDPCC Loop Ensemble L(4, 8, L)
+We now proceed to form a loop consisting of two (4, 8)regular SC-LDPCC chains. The individual chains are shown
+in Fig. 1(b). We consider two different ways to connect the
+chains, depicted in Fig. 7. The ﬁrst, shown in Fig. 7(a), has
+an additional 12 edges added at the connecting point. Here,
+the check nodes at the connection all have degree 8, while
+the 6 connecting variable nodes of chain one have degree 6.
+The second connection, depicted in Fig. 7(b), introduces 6
+additional edges and connects them in a similar fashion to the
+(3, 6) chains. As a result, the 3 check nodes at the connecting
+end of chain two have degree 6, and the 6 connecting variable
+nodes of chain one have degree 5. We denote the ensembles
+connected using Fig. 7(a) by LA (4, 8, L) and the ensembles
+connected using Fig. 7(b) by LB (4, 8, L).
+
+R
+0.2500
+0.3333
+0.3750
+0.4000
+0.4800
+0.4900
+
+LA (4, 8, L)
+0.5629
+0.5342
+0.5185
+0.5088
+0.4975
+0.4971
+
+LB (4, 8, L)
+0.5709
+0.5399
+0.5247
+0.5138
+0.4975
+0.4971
+
+C(4, 8, L)
+0.5748
+0.5194
+0.5021
+0.4983
+0.4977
+0.4977
+
+TABLE II
+BEC THRESHOLDS FOR SC-LDPCC LOOP ENSEMBLES LA (4, 8, L) AND
+LB (4, 8, L) AND THE SINGLE CHAIN SC-LDPCC ENSEMBLE C(4, 8, L).
+
+Fig. 8 shows the evolution of the bit error probability for
+the variable nodes of chain one for the ensembles LA (4, 8, 12)
+(blue curves) and LB (4, 8, 12) (red curves). The BEC erasure
+probability is ﬁxed to be 0.514, and error probabilities are
+plotted for iteration numbers 1, 6, 11, . . . , 56. We observe that
+the red curves (corresponding to fewer additional edges at the
+connecting points) achieve low bit error probabilities much
+faster than the blue curves, i.e., in addition to improved thresholds, connection method B also enables faster convergence to
+a speciﬁc bit error probability.
+
+0
+-0.5
+-1
+-1.5
+-2
+-2.5
+-3
+-3.5
+-4
+
+(a)
+
+(b)
+
+-4.5
+
+Fig. 7. Connected spatially coupled (4, 8)-regular protograph chains. The
+connecting edges are shown in red.
+
+-5
+2
+
+4
+
+6
+
+8
+
+10
+
+12
+
+Node position in the chain
+
+A
+
+BEC thresholds calculated for the ensembles L (4, 8, L)
+and LB (4, 8, L) are given in Table II, as well at the thresholds
+calculated for the single chain ensemble C(4, 8, L). We see
+that the thresholds of the ensembles with connection B (fewer
+connecting edges) are always at least as large as the thresholds
+for connection A, with equality occurring for large chain
+
+Fig. 8. Logarithm of the bit error probability for the variable nodes of
+chain one of the ensembles LA (4, 8, 12) (blue curves) and LB (4, 8, 12) (red
+curves), as a function of the position of the node in the chain. The curves
+(either blue or red) are computed for decoding iterations 1, 6, 11, . . . , 56
+(from top to bottom). The position where chain one is connected to the end
+of chain two is shown by the red triangle.
+
+4
+
+C. The (3, 9) SC-LDPCC Loop Ensemble L(3, 9, L)
+As a ﬁnal example, we construct some higher rate loop ensembles by connecting two (3, 9)-regular SC-LDPCC chains.
+As a result of the boundary effects of spatial coupling, there
+is some rate loss for ﬁnite chain length L. Consequently, a
+code designer may be tempted to choose a large chain length
+L, where the design rate of the ensemble is higher and the
+threshold is closer to capacity. However, the performance of
+the code is also affected by the size of the lifting factor M
+and, for a ﬁxed block length, practical limitations may require
+a moderate choice of L, where the thresholds are typically
+further from capacity. For high rate coupled ensembles, in
+the region of moderate values of L, the loop ensembles are
+particularly promising, since this is where they provide the
+largest threshold improvement. A (3, 9)-regular SC-LDPCC
+chain is shown in Fig. 1(c). We connect the chains as shown
+in Fig. 9, using the reduced edge type of connection discussed
+in Section IV-B.
+
+(a)
+
+the achievable rate region. Moreover, we saw that connecting
+SC-LDPCC chains may also reduce the decoding complexity
+required to achieve a speciﬁc bit error probability. We also
+showed that, like the component SC-LDPCC chains, the
+proposed constructions have a typical minimum distance that
+grows linearly with block length, and there exists a trade-off
+between the minimum distance growth rate and the iterative
+decoding threshold for a particular code rate. Finally, we observed that the iterative decoding thresholds and convergence
+behaviour can be further improved by carefully designing the
+connections between the chains.
+R EFERENCES
+[1] A. Jim´ nez Felstr¨ m and K. Sh. Zigangirov, “Time-varying periodic
+e
+o
+convolutional codes with low-density parity-check matrices,” IEEE
+Trans. Inf. Theory, vol. 45, no. 6, pp. 2181–2191, Sept. 1999.
+[2] S. Kudekar and H. D. Pﬁster, “The effect of spatial coupling on
+compressive sensing,” in Proc. Allerton Conference on Communications,
+Control, and Computing, Monticello, IL, Sept. 2010.
+[3] C. Schlegel and D. Truhachev, “Multiple access demodulation in the
+lifted signal graph with spatial coupling,” in Proc. IEEE Int. Symp. on
+Inf. Theory, St. Petersburg, Russia, Aug. 2011, pp. 2989–2993.
+[4] K. Takeuchi, T. Tanaka, and T. Kawabata, “Improvement of BP-based
+CDMA multiuser detection by spatial coupling,” in Proc. IEEE Int.
+Symp. on Inf. Theory, St. Petersburg, Russia, Aug. 2011.
+[5] M. Hagiwara, K. Kasai, H. Imai, and K. Sakaniwa, “Spatially coupled
+quasi-cyclic quantum LDPC codes,” in Proc. IEEE Int. Symp. on Inf.
+Theory, St. Petersburg, Russia, Aug. 2011.
+[6] Z. Si, R. Thobaben, and M. Skoglund, “Bilayer LDPC convolutional
+codes for half-duplex relay channels,” in Proc. IEEE International
+Symposium on Information Theory, St. Petersburg, Russia, Aug. 2011.
+[7] H. Uchikawa, K. Kasai, and K. Sakaniwa, “Spatially coupled LDPC
+codes for decode-and-forward in erasure relay channel,” in Proc. IEEE
+Int. Symp. on Inf. Theory, St. Petersburg, Russia, Aug. 2011.
+[8] V. Rathi, R. Urbanke, M. Andersson, and M. Skoglund, “Rateequivocation optimally spatially coupled LDPC codes for the BEC
+wiretap channel,” in Proc. IEEE Int. Symp. on Inf. Theory, St. Petersburg,
+Russia, Aug. 2011.
+[9] S. H. Hassani, N. Macris, and R. Urbanke, “Coupled graphical models
+and their thresholds,” in Proc. IEEE Inf. Theory Workshop, Dublin,
+Ireland, Oct. 2010.
+[10] M. Lentmaier, G. P. Fettweis, K. Sh. Zigangirov, and D. J. Costello,
+Jr., “Approaching capacity with asymptotically regular LDPC codes,” in
+Proc. Inf. Theory and App. Workshop, San Diego, CA, Feb. 2009.
+[11] M. Lentmaier, A. Sridharan, D. J. Costello, Jr., and K. Sh. Zigangirov,
+“Iterative decoding threshold analysis for LDPC convolutional codes,”
+IEEE Trans. Inf. Theory, vol. 56, no. 10, pp. 5274–5289, Oct. 2010.
+[12] M. Lentmaier, D. G. M. Mitchell, G. P. Fettweis, and D. J. Costello, Jr.,
+“Asymptotically good LDPC convolutional codes with AWGN channel
+thresholds close to the Shannon limit,” in Proc. 6th Int. Symp. on Turbo
+Codes and Iterative Inf. Processing, Brest, France, Sept. 2010.
+[13] S. Kudekar, C. M´ asson, T. Richardson, and R. Urbanke, “Threshold
+e
+saturation on BMS channels via spatial coupling,” in Proc. 6th Int. Symp.
+on Turbo Codes and Iterative Information Processing, Brest, France,
+Sept. 2010.
+[14] S. Kudekar, T. J. Richardson, and R. L. Urbanke, “Threshold saturation
+via spatial coupling: why convolutional LDPC ensembles perform so
+well over the BEC,” IEEE Trans. Inf. Theory, vol. 57, no. 2, pp. 803–
+834, Feb. 2011.
+[15] D. Truhachev, D. G. M. Mitchell, M. Lentmaier, and D. J. Costello, Jr.,
+“Connecting spatially coupled LDPC code chains,” in Proc. IEEE Int.
+Conf. on Comm., Ottawa, Canada, June 2012.
+[16] D. Truhachev, D. G. M. Mitchell, M. Lentmaier, and D. J. Costello,
+Jr., “New codes on graphs constructed by connecting spatially coupled
+chains,” in Proc. Inf. Theory and App. Workshop, San Diego, CA, Feb.
+2012.
+[17] J. Thorpe, “Low-density parity-check (LDPC) codes constructed from
+protographs,” Jet Propulsion Laboratory, Pasadena, CA, INP Progress
+Report 42-154, Aug. 2003.
+[18] D. Divsalar, “Ensemble weight enumerators for protograph LDPC
+codes,” in Proc. IEEE Int. Symp. on Inf. Theory, Seattle, WA, July 2006.
+[19] M. Lentmaier, D. G. M. Mitchell, G. P. Fettweis, and D. J. Costello, Jr.,
+“Asymptotically regular LDPC codes with linear distance growth and
+thresholds close to capacity,” in Proc. Inf. Theory and App. Workshop,
+San Diego, CA, Feb. 2010.
+
+(b)
+
+Fig. 9. Graphs depicting (a) two connected spatially coupled (3, 9)-regular
+protograph chains, and (b) the simpliﬁed representation. The connecting edges
+are shown in red.
+
+The BEC thresholds calculated for the ensembles L(3, 9, L)
+and C(3, 9, L) are given in Table III. We see that ensemble
+L(3, 9, L) has signiﬁcantly larger thresholds than ensemble
+C(3, 9, L) for all the moderate values of L tested. Also, we ﬁnd
+that the loop ensembles L(3, 9, L) are asymptotically good.
+For example, we calculate δmin as 0.0063, 0.0036, and 0.0023
+for L = 6, 8, and 12, respectively.
+L
+6
+8
+12
+100
+
+R
+0.5556
+0.5883
+0.6111
+0.6600
+
+L(3, 9, L)
+0.3746
+0.3604
+0.3437
+0.3191
+
+C(3, 9, L)
+0.3605
+0.3392
+0.3235
+0.3196
+
+TABLE III
+BEC THRESHOLDS FOR THE SC-LDPCC LOOP ENSEMBLE L(3, 9, L) AND
+THE SINGLE CHAIN SC-LDPCC ENSEMBLE C(3, 9, L).
+
+V. C ONCLUSIONS
+In this paper, we showed that by connecting individual
+chains of (J, K)-regular SC-LDPCCs we obtain LDPC code
+ensembles with improved iterative decoding thresholds compared to those of a single coupled chain for a large portion of
+
+5
+
+

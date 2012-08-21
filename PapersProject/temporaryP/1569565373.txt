@@ -1,0 +1,938 @@
+Title:          C:/Users/Anna/Google Drive/WAM RM isit12 revision/multi-cell v8.dvi
+Creator:        www.freepdfconvert.com         
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Fri May 18 15:55:18 2012
+ModDate:        Tue Jun 19 12:54:49 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      305822 bytes
+Optimized:      no
+PDF version:    1.7
+ISIT'2012 1569565373
+
+Trade-offs between
+Instantaneous and Total Capacity
+in Multi-Cell Flash Memories
+Eyal En Gad
+
+Anxiao (Andrew) Jiang
+
+Jehoshua Bruck
+
+Electrical Engineering
+California Institute of Technology
+Pasadena, CA 91125, U.S.A.
+eengad@caltech.edu
+
+Computer Science and Engineering
+Texas A&M University
+College Station, TX 77843, U.S.A.
+ajiang@cse.tamu.edu
+
+Electrical Engineering
+California Institute of Technology
+Pasadena, CA 91125, U.S.A.
+bruck@caltech.edu
+
+this representation method “the trivial scheme”. We could also
+use a bit more sophisticated update schemes. For example, we
+could store only 1 bit in each cell, according to the parity of
+the level of the cell. If the cell is in level 3, for example, it
+stores the value 1. Using this scheme, we can update the data
+q − 1 times before a block erasure will be required. We call this
+scheme “the parity scheme”. Update schemes like the parity
+scheme can be especially useful for enterprise applications of
+ﬂash memory, where the endurance of the memory becomes
+a major design concern. Update schemes are also known as
+write once memory (WOM) codes for q = 2 [6], and write
+asymmetric memory (WAM) codes for q > 2 [3]. In this paper
+we focus on the WAM model. The capacity of WAM codes
+was studied at [4], but no capacity achieving constructions are
+known.
+A main trade-off in the design of WAM codes is between the
+number of times we can update the memory and the amount
+of data the memory can store at a time. We call the amount
+of data stored at a time the instantaneous rate of the code.
+In general, the higher the instantaneous rate, the lower the
+number of times we can update the memory. In order to settle
+this trade-off, we focus on optimizing the product of these
+two values. In other words, we optimize the total amount
+of data the memory stores between two erasures. We call
+that number the total rate of the code. Once the total rate
+is optimized, we optimize the instantaneous rate under that
+constraint. Back to the previous examples, we remember that
+the trivial scheme has an instantaneous rate of log2 q bits in
+each cell. Its total rate is the same, since we can only write the
+data once between block erasures. The parity scheme, however,
+has an instantaneous rate of only 1 bit per cell. Its total rate
+is q − 1 bits per cell, since it allows for q − 1 writes between
+block erasures. So the parity scheme is better according to our
+standards.
+In MLC ﬂash memory, the process of writing a speciﬁc
+level on a cell is designed to cautiously approach the target
+level from below so as to avoid undesired block erasures in
+case of overshoots. Consequently, these attempts require many
+programming cycles, and they work only up to a moderate
+number of levels per cell. In order to avoid that problem, it was
+suggested to represent the data by a set of n cells, according
+
+Abstract—The limited endurance of ﬂash memories is a major
+design concern for enterprise storage systems. We propose a
+method to increase it by using relative (as opposed to ﬁxed)
+cell levels and by representing the information with Write
+Asymmetric Memory (WAM) codes. Overall, our new method
+enables faster writes, improved reliability as well as improved
+endurance by allowing multiple writes between block erasures.
+We study the capacity of the new WAM codes with relative levels,
+where the information is represented by multiset permutations
+induced by the charge levels, and show that it achieves the
+capacity of any other WAM codes with the same number of
+writes. Speciﬁcally, we prove that it has the potential to double
+the total capacity of the memory. Since capacity can be achieved
+only with cells that have a large number of levels, we propose a
+new architecture that consists of multi-cells - each an aggregation
+of a number of ﬂoating gate transistors.
+
+I.
+
+INTRODUCTION
+
+Flash memory is the most widely-used type of non-volatile
+electronic memory [1]. The amount of charge stored in a ﬂash
+memory cell can be quantized into q
+2 discrete values in
+order to represent up to log2 q bits. (The cell is called a singlelevel cell (SLC) if q = 2, and called a multi-level cell (MLC)
+if q > 2). We call the q states of a cell its levels: level 0, level
+1, . . ., level q − 1. The charge is quantized into the discrete
+levels by an appropriate set of threshold levels. The level of
+a cell can be increased by injecting charge into the cell, and
+decreased by removing charge from the cell. Flash memories
+have the prominent property that although it is relatively easy
+to increase a cell’s level, it is very costly to decrease it. This
+follows from the fact that ﬂash-memory cells are organized
+as blocks, where every block has about 105 ∼ 106 cells.
+To decrease any cell’s level, the whole block needs to be
+erased (which means to remove the charge from all the cells
+of the block) and then be reprogrammed. Block erasures not
+only are slow and energy consuming, but also signiﬁcantly
+reduce the longevity of ﬂash memories, because every block
+can endure only 104 ∼ 105 erasures with guaranteed quality
+[1]. Therefore, it is highly desirable to minimize the number
+of block erasures.
+We can store log2 q bits on a ﬂash cell with q levels.
+That way, each time we want to update the data on the
+memory, we would have to erase the whole block. We call
+
+1
+
+state of all the cells is 0. We want to reuse the WAM for T
+successive cycles. We only consider the following case: The
+encoder knows and the decoder does not know the previous
+state of the memory. The encoder and decoder can use arbitrary
+codes for every cycle, and there are no decoding errors (zeroerror case). For the vectors
+
+to the permutation induced by the relative charge levels of
+the individual cells [5]. When we inject charge into a cell,
+we only need to make its charge level higher than that of the
+previous cell in the permutation, and therefore there is no risk
+of overshooting. Another advantage of representing data by
+relative levels is that the threshold levels are no longer needed.
+This mitigates the effects of retention in the cells (slow charge
+leakage). That method was called rank modulation.
+In this paper we extend this idea and suggest to use
+permutations of a given multiset. That is, we still use the
+relative levels of the cells instead of the absolutes level, but
+allow multiple cells to be in the same relative level. We
+use multisets with the same multiplicity for all the elements.
+That is, the number of cells in each relative level is equal.
+Using multiset permutations, we still beneﬁt from all of the
+advantages of rank modulation. In addition, we gain more
+ﬂexibility, and we show in this work that this ﬂexibility could
+result in better performance.
+While the values of the cells don’t need to be quantized
+using thresholds, we still use discrete levels for the analysis.
+This is to allow easy and fair analysis, and because there
+should still be a certain charge difference between the cells
+in order to limit errors. When we use a discrete model, the
+problem of designing update schemes with relative levels
+become a special case of the WAM problem. Namely, we
+are interested in a class of WAM codes, where the data is
+represented only by the multiset permutation induced by the
+levels of the cells. We call this class of codes: rank modulation
+WAM (RMWAM) codes. We deﬁne the capacity of the model
+as the tightest upper bound on the amount of information that
+can be stored on the memory over multiple writing cycles,
+and study the capacity of rank modulation WAM model. We
+show that when q is large, it can achieve the capacity of the
+more general WAM model for the same number of writes.
+Speciﬁcally, it is possible to store almost 2 bits per cell at a
+given time, while reusing the memory close to q times. That is
+twice the amount of information that is stored with the “parity
+scheme” from the example above. One caveat for that results is
+that in practical ﬂash memory devices, q is a moderately small
+number. In order to tackle this obstacle, we propose a method
+to achieve high values of q with the existing cell technology.
+The main idea is to combine several ﬂoating gate transistors
+into a virtual cell, which we call a multi-cell.
+The rest of the paper is organized as following: In section
+II we present the notations and deﬁnitions. In section III we
+study the cost of updating the memory under the RMWAM
+model. In section IV we state and discuss the main result of
+the paper, the capacity of the model. Section V describes the
+proof of the capacity theorem, and ﬁnally, in section VI we
+present the proposed structure of multi-cell ﬂash memory.
+II. D EFINITIONS
+
+x n = ( x1 , x2 , . . . , x n ) ∈ Z n
+q
+y n = ( y1 , y2 , . . . , y n ) ∈ Z n
+q
+
+we denote x n ⇒ yn if and only if xi
+
+yi , i = 1, 2, . . . , n.
+
+Deﬁnition 1. An (n, T, M1 , · · · , MT ) WAM code consists of T
+T
+pairs of encoding and decoding functions{( f t, gt )}t=1 , where
+the message index sets It = {1, · · · , Mt }, the encoding
+functions f t : It × Z n → Z n , and the decoding function
+q
+q
+gt : Z n → It . These encoding and decoding functions
+q
+n
+satisfy: For any m1 ∈ I1 , m2 ∈ I2 , · · · , m T ∈ IT , denote y0 =
+n and y n = f ( m , y n ), t = 1, · · · , T .
+(0, · · · , 0) = 0 ∈ Z q
+t
+t t −1
+t
+Then, yn−1 ⇒ yn and gt (yn ) = mt , t = 1, · · · , T .
+t
+t
+t
+Denote
+
+Rt = (1/n) log2 Mt ,
+
+t = 1, · · · , T.
+
+We will use the binary logarithm in the rest of the paper. The
+T-tuple ( R1 , · · · , R T ) is called the rate vector of this code.
+The closure of the set of all rate-vectors A T is called the
+capacity region of the WAM. The maximum total number of
+information bits stored in one storage cell of the WAM during
+the T updating cycles is
+T
+
+CT = max
+
+∑ Rt |( R1, R2, · · · , RT ) ∈ AT
+
+.
+
+t =1
+
+q
+Fu and Vinck [4] showed that CT = log ( T +−−1).
+q 1
+Since we want to use only the relative values of the cells,
+we use permutations of a multiset. We use a multiset of l
+elements (not including repetitions), where the multiplicity
+of each element is z. The cardinality of the multiset is
+thus n = lz. We denote the set of all permutations of
+a multiset of l elements with multiplicities z as Sl,z . Let
+c = (c1 , c2 , . . . , cn ), with ci ∈ {0, 1, . . . , q − 1} be the state
+of an array of n ﬂash cells, each having q discrete levels. We
+further assume that the variables induce a multiset permutation
+σ = [σ (1), σ (2), . . . , σ (n)] ∈ Sl,z . The multiset permutation σ
+is uniquely deﬁned by the constraint ci > c j for all (i, j) s.t.
+σ (i ) > σ ( j), where l − 1 σ (i ) > σ ( j) 0. We deﬁne σ −1
+such that σ −1 (i ) is the set of all cells with relative level i.
+
+Deﬁnition 2.
+A
+(l, z, T, M )-Rank-Modulation WriteAsymmetric-Memory (RMWAM) code is a WAM code
+for which:
+1) ( Mt , f t , gt , It ) = ( M, f , g, I ) for all t = 1, · · · , T .
+2) g : Sl,z → I is based only according to the multiset
+permutation induced by the cell levels.
+
+AND NOTATIONS
+
+A write asymmetric memory (WAM) is a q-ary information
+storage medium consists of n cells. The q states of a cell
+are also called levels: from level 0 to level q − 1. A cell can
+change from level i to level j if and only if i < j. The initial
+
+Since Mt = M for t = 1, · · · , T, it follows that Rt =
+R = (1/lz) log M for t = 1, · · · , T. Therefore we call R
+
+2
+
+And the induction is proven. Now let σ (i ) = l − 1:
+
+the instantaneous rate of the code, and RT the total rate (also
+known as sum rate). In addition, we deﬁne C = CT /T, and
+call C the instantaneous capacity of the RMWAM model, and
+CT its total capacity.
+III.
+
+cost(c → c ) = ci − c j
+
+= max{σ (i ),
+σ (i ) +
+
+max
+[σ ( j) − σ ( j)]} − (l − 1)
+s.t. σ ( j)<σ (i)
+= ( l − 1) − ( l − 1) +
+max
+[σ ( j) − σ ( j)]
+j s.t. σ ( j )< σ ( i )
+= max (σ (i ) − σ (i ))
+j
+
+COST OF UPDATE
+
+To change the multiset permutation from σ to σ , we
+program the cells based on their relative levels in σ , so that
+every cell’s level increases as little as possible. Let c =
+(c1 , c2 , . . . , cn ) denote the new cell’s levels to be set. First, for
+each i ∈ σ −1 (0), we set ci = ci . Then, for j = 1, 2, · · · , l − 1,
+and for i ∈ σ −1 ( j), we set
+ci = max{ci ,
+
+max
+
+k ∈ σ −1 ( j − 1 )
+
+i =0,··· ,l −1
+
+We now show an example of an update operation, and
+calculate the cost according to the two equivalent deﬁnitions:
+Example 1. Let (l, z) = (3, 1), and c = (0, 1, 2). So σ =
+[0, 1, 2]. Now let σ = [1, 2, 0]. We increase the levels of the
+cells to represent σ . First we set c3 = c3 = 2. Then we set
+c1 = max{c1 , c3 + 1} = max{0, 3} = 3. Finally we set c2 =
+4. The cost of the update is c2 − c3 = 4 − 2 = 2. We can
+also calculate it directly from the multiset permutations: σ =
+[0, 1, 2], and σ = [1, 2, 0]. So σ − σ = [−1, −1, 2], and the
+maximum is 2, so this is the cost.
+
+c k + 1 }.
+
+Given two cell states c and c , let cost(c → c ) denote the cost
+of changing the cell state from c to c . We deﬁne the cost as
+the difference between the levels of the highest cell, before and
+after the update operation. Namely, if σ ( j) = σ (i ) = l − 1,
+cost(c → c ) = ci − c j .
+In order to calculate the cost, we need to simulate the update
+operation. We now present an equivalent deﬁnition of the
+cost, that can be calculated directly from the current multiset
+permutation and the multiset permutation to be written. The
+Lemma is a generalization of Theorem 1 from [2], and it
+further assumes that ci = σ (i ) for i = 1, · · · , n.
+
+Finally, for a ﬁxed σ ∈ Sl,z , set
+Bl,z,r (σ ) = {σ ∈ Sl,z |cost(σ → σ )
+
+We note that | Bl,z,r (σ )| is independent of σ.
+
+IV. C APACITY
+In the following we present an expression for the capacity
+of the RMWAM model.
+Theorem 1. CT is maximal when T = q − l + 1, and in this
+case:
+2z
+l − 1 log ( z )
+C=
+×
+l
+z
+The proof of Theorem 1 will be given in section V.
+As a corollary of the theorem, we look at three different
+cases:
+1) The case of (l, z) = (2, ∞). Here C = limz→∞ (1/2) ×
+
+Lemma 1.
+
+cost(σ → σ ) =
+
+max (σ (i ) − σ (i ))
+
+i =0,··· ,l −1
+
+In other words, the cost is the asymmetric inﬁnity metric.
+Proof:
+Assume by induction on σ (i ), that
+ci = max{σ (i ), σ (i ) +
+
+j
+
+s.t.
+
+[σ ( j) − σ ( j)]}
+
+max
+
+σ ( j )< σ ( i )
+
+log (2z)
+z
+z
+
+= 1. Therefore we can store up to 1 bit in
+each cell in each updating cycle. In fact, in this case,
+a trivial code that assign a different message index to
+each multiset permutation achieves the capacity.
+2) The case of (l, z) = (∞, 1). Here C = liml →∞ l −1 ×
+l
+
+In the base case, σ (i ) = 0, so there is no j s.t. σ ( j) <
+σ (i ). Therefore, ci = σ (i ) = ci , as described in the
+programming process. For σ (i ) > 0,
+ci = max{ci ,
+max
+
+k ∈ σ −1 ( σ ( i )−1)
+
+=
+
+max
+
+k ∈ σ −1 ( σ ( i )−1)
+
+max
+
+max
+
+j
+
+max
+
+k ∈ σ −1 ( σ ( i )−1)
+
+j
+
+= 1. Therefore in this case we can also store up
+to 1 bit in each cell in each updating cycle. However,
+here it is not easy to design a code that archives the
+capacity, and that problem is still open.
+3) For (l, z) = (∞, ∞). Here C = liml,z→∞ l −1 ×
+l
+
+s.t.
+
+max
+
+log (2z)
+z
+z
+
+= 1 × 2 = 2. So we can store up to 2
+bits per cell in each updating cycle in this case. So
+CT = 2(q − l + 1), and in the case of q
+l, CT → 2q.
+We notice that in that case the total capacity of the
+WAM model is the same [4]. That is since for WAM,
+q
+−l −
+CT = log ( T +−−1) = log (2qq−1 1) → 2q , q/l → ∞.
+q 1
+So in this case, the total capacity of the RMWAM model
+is the same as that of the WAM model.
+
+[σ ( j) − σ ( j)]} + 1
+
+s.t. σ ( j)<σ (k)
+{σ ( k ) − σ ( k ),
+j
+
+= σ (i ) +
+
+log (2)
+1
+1
+
+{σ ( k ),
+
+σ (k) +
+
+= σ (i ) +
+
+c k + 1}
+
+ck + 1
+
+k ∈ σ −1 ( σ ( i )−1)
+
+r }.
+
+max
+[σ ( j) − σ ( j)]}
+s.t. σ ( j)<σ (k)
+[σ ( j) − σ ( j)]
+
+σ ( j )< σ ( i )
+
+3
+
+V. P ROOF
+
+OF THEOREM
+
+1
+
+= r2 log
+
+A. Converse Part
+
+((r +1)z)
+(r + 1) z
+z
++ l log
+z
+(rz)
+z
+− log z! + r log z! − r log z!
+
+If we want to guarantee that the cost of each update
+operation is no more than r, we must set M
+| Bl,z,r (σ )|.
+Otherwise, if we would like to write the message m, we cannot
+guarantee that there is a multiset permutation in Bl,z,r (σ )
+1
+that represents m. We let Kr = lm log | Bl,z,r (σ )|. By setting
+R Kr , we cannot guarantee to write more than (q − l + 1)/r
+times, so RT is at most (q − l + 1)Kr /r. In Lemma 2 we
+calculate Bl,z,r (σ ) in order to achieve an explicit bound on
+the rate. The lemma is a generalization of Theorem 2 from
+[2] for general z.
+
++ log((r + 1)z)! − lr log
+
+= (l − r ) log
+
+((r +1)z)
+(r + 1) z
+z
+− r log rz
+z
+(z)
+
+> (l − r ) log
+
+((r +1)z)
+(r + 1) z
+z
+− r log rz
+z
+(z)
+
+log
+
+Lemma 2.
+
+| Bl,z,r (σ )| =
+
+[(r + 1)z]! (r + 1)z
+z
+(z!)r +1
+
+l −(r +1)
+
+In the case of z
+√ 1
+2l H ( λ) :
+
+(zr )! zr
+(z!)r z
+
+log 3 − log e > 0.
+
+l
+2 we use the inequality (λl )
+
+8lλ(1− λ)
+
+((r +1)z)
+(r + 1) z
+z
+− r log rz
+z
+(z)
+z
+zr + i
+(r + 1) z
+log
+− ∑ r log
+z
+zr − z + i
+i =1
+r+1
+r
+− rz log
+z log(r + 1) + zr log
+r
+r−1
+r
+− (1/2) log 8z
+r+1
+r2
+r
+= z log(r + 1) − zr log 2
+− (1/2) log 8z
+r+1
+r −1
+
+log
+
+2
+
+r −1
+1
+r
+log 1 + 2
+2−1
+r
+r −1
+r
+− (1/2) log 8z
+r+1
+r
+22z
+> z − (1/2) log 8z
+> (1/2) log
+0
+r+1
+8z
+
+= z log(r + 1) − z
+
+1.
+2,
+0
+
+When r = 1, | Bl,z,1 (u)| = (2z)
+z
+
+r log | Bl,m,r −1(u)| − (r − 1) log | Bl,m,r (u)|
+
+= r log
+
+((r +1)z)
+(r + 1) z
+z
+− r log
+z
+(rz)
+z
+
+log(r + 1) − log(1 + 1/r )r
+
+l −(r +1)
+
+log | Bl,z,r −1(u)| log | Bl,z,r (u)|
+−
+r−1
+r
+
+(rz)!
+(z!)r
+
+e:
+
+1)z]!/(z!)r +1 ((r +1)z)
+.
+z
+Since RT
+(q − l + 1)Kr /r, we are now interested in
+the behavior of Kr /r. In Lemma 3 we show that Kr /r is
+decreasing in r, and thus RT (q − l + 1)K1 .
+Proof: It is enough to show that for r
+
++ log
+
+In the case of z = 1 we use the inequality (1 + (1/x )) x <
+
+Proof: We use induction on l. When l = r + 1, the statement is trivial, and | Bl,z,r (σ )| = (lz)!/(z!)l . Now we assume
+that the statement is true for l
+l0 , and consider l = l0 + 1
+and l > r + 1. Let σ ∈ Bl,m,r (σ ). According to Lemma 1,
+for any i ∈ σ −1 (0), σ (i ) ∈ {0, 1, · · · , r }. Therefore, there are
+ˆ
+((r + 1)z)!/(z!(rz)!) choices to form σ −1 (0). Let σ ∈ Sl −1,z
+ˆ
+be obtained from σ by setting σ (i ) = σ (i ) − 1 for all i
+ˆ
+s.t. σ (i )
+r + 1 and ﬁll the lower levels of σ arbitrarily
+ˆ
+with the remaining cells. In addition, let σ (i ) = σ (i ) − 1
+for all i ∈ σ −1 (0). Given a certain choice of σ −1 (0),
+/
+there is a one-to-one mapping between updating the levels
+of the remaining z(l − 1) cells from σ to σ and updating
+ˆ
+ˆ
+the levels of those z(l − 1) cells from σ into σ . Therefore
+ˆ
+ˆ
+we have cost(σ → σ ) = cost(σ → σ )
+r. So we
+get | Bl,z,r (σ )| = ((r + 1)z)!/(z!(rz)!)| Bl −1,z,r(σ )| = [(r +
+
+Lemma 3. Kr /r is decreasing in r for r
+
+((r +1)z)
+(r + 1) z
+((r + 1)z)!
+z
+− log
+− r log
+z
+(rz)!
+(rz)
+z
+
+l −1
+
+. Therefore, here:
+
+l −r
+
+(1/lz) log | Bl,z,1(σ )| = (1/lz) log
+
+R
+
+(z(r + 1))! z(r + 1) l −(r +1)
+z
+(z!)( r + 1)
+rz
+rz
+= r log(rz)! − r2 log z! + rl log
+− r2 log
+z
+z
+2
+− (r − 1) log((r + 1)z)! + (r − 1) log z!
+(r + 1) z
+(r + 1) z
+− l (r − 1) log
++ (r2 − 1) log
+z
+z
+− (r − 1) log
+
+=
+
+2z
+z
+
+l −1
+
+2z
+l − 1 log ( z )
+×
+l
+z
+
+B. Direct part
+We now show there exists a code whose rate approaches
+the upper bound.
+Proof: Let M = | Bl,z,1(σ )|/(lz)1+ , where is a positive
+constant. In the following we show that there exists a (l, z, q −
+
+4
+
+l + 1, M )-RMWAM code. We ﬁrst calculate R:
+R = (1/lz) log M
+
+Bit
+Line
+
+= (1/lz) log | Bl,z,1(σ )| − (1/lz)(1 + ) log(lz)
+2z
+
+l − 1 log ( z )
+×
+, lz → ∞
+l
+z
+So the instantaneous rate of such a code is asymptotically
+optimal. If we show that the cost is always 1, it follows that
+the total rate is also asymptotically optimal.
+M
+Suppose { Fm }m=1 is a partition of Sl,z , i.e., Fm ∩ Fm = ∅,
+M F = S . We now show that there exists
+m = m ; and ∪m=1 m
+l,z
+a partition of Sl,z , such that for any σ ∈ Sl,z and any m ∈ M,
+there exists a vector σ ∈ Fm , such that cost(σ → σ ) = 1. We
+use a random coding method. With every σ ∈ Sl,z , we connect
+a random index rσ which is uniformly distributed over the
+data set I = {1, · · · , M }, and all these random indices are
+independent. Deﬁne
+
+M
+Then { Fm }m=1 forms
+and σ ∈ Sl,z , then
+
+= exp{−(lz)
+
+}
+
+WL2
+
+...
+
+WL1
+
+...
+
+WL0
+
+...
+
+Ground
+Select
+
+Ground
+Select
+
+Traditional NAND flash
+structure
+Figure 1.
+
+Multi-cell NAND flash
+structure
+
+The proposed architectural change in NAND ﬂash
+
+multi-cells and with traditional cells. In order to approach a
+total capacity of 2nq with RMWAM, the number of updates
+the code can take must be much greater than the number of
+relative levels we use. By using multi-cells, we increase T at
+the expense of the R, and thus approach CT faster.
+VII.
+
+CONCLUSIONS
+
+In this paper, we studied the capacity of rank-modulation
+write asymmetric memory codes. A class of WAM codes,
+RMWAM codes can allow faster update and better protection
+against errors in ﬂash memories, since they don’t require
+discrete threshold levels. We showed that the capacity of
+RMWAM codes approaches the capacity of WAM codes. In
+addition, we presented a new ﬂash cell structure (multi-cell)
+that can increase the number of levels in the cells.
+
+Therefore,
+Pr {∃m ∈ M and σ ∈ Sl,z , s.t. Fm ∩ Bl,z,1(σ ) = ∅}
+M |Sl,z | exp{−(lz)1+ }
+
+, lz → ∞
+
+This implies that when n = lz is sufﬁciently large, there exists
+a partition of Sl,z such that the cost of each update is 1.
+VI.
+
+...
+
+WL0
+
+m = 1, 2, · · · , M.
+
+exp{lz(2 + ln(lz) − (lz) )} → 0
+
+WL3
+
+WL1
+
+exp{−| Bl,z,1 (σ )|/M }
+
+22lz (lz)! exp{−(lz)1+ }
+
+...
+
+WL2
+
+Pr { Fm ∩ Bl,z,1(σ ) = ∅} = Pr {∀σ ∈ Bl,z,1(σ ), rb = m}
+1+
+
+WL4
+
+WL3
+
+a random partition of Sl,z . Fix m ∈ M
+
+= [1 − 1/M ]| Bl,z,1 (σ)|
+
+Bit Line
+Select
+
+WL4
+
+→
+
+Fm = {σ ∈ Sl,z |rσ = m},
+
+Bit
+Line
+
+Bit Line
+Select
+
+VIII.
+
+ACKNOWLEDGMENTS
+
+This work was partially supported by an NSF grant ECCS0801795 and a BSF grant 2010075. The author would like
+to acknowledge that Qing Li from Texas A&M University
+derived Lemmas 1 and 2 independently.
+
+MULTI - CELL FLASH MEMORY
+
+NAND ﬂash memory is the most widely used type for
+general storage purpose. In NAND ﬂash, several ﬂoating gate
+transistors are connected in series, where we read or write only
+one of them at a time. We propose to replace each transistor
+with a multi-cell of m transistors connected in parallel, and to
+connect their control gates, as shown in Figure 1. That way,
+their current sums together in read operations, and the read
+precision increases by m times, allowing to store mq levels
+in a single multi-cell. In write operations, we write the same
+value to all the transistors, such that the sum of their charge
+levels gives us the desired total level. We suspect that the error
+rate would be similar to that of a traditional ﬂash cell.
+If we store data on n transistors that form n/m multi-cells
+of mq levels without a WAM code, we would get a rate of
+R = RT = (n/m) log2 (mq). This is less than the n log2 q we
+would get using traditional cells. However, if we use RMWAM
+codes, we could get a total capacity approaching 2nq both with
+
+R EFERENCES
+[1] P. Cappelletti, C. Golla, P. Olivo, and E. Zanoni, Flash Memories.
+Kluwer Academic Publishers, 1999.
+[2] E. En Gad, A. Jiang, and J. Bruck, “Compressed encoding for rank
+modulation,” in Proceedings of the 2011 IEEE Int. Symp. on Inform.
+Theory, ISIT2011, St. Petersburg, Russia, Aug. 2011, pp. 884–888.
+[3] A. Fiat and A. Shamir, “Generalized “write-once” memories,” IEEE
+Trans. on Inform. Theory, vol. IT-30, no. 3, pp. 470–480, May 1984.
+[4] F.-W. Fu and A. J. Han Vinck, “On the capacity of generalized write-once
+memory with state transitions described by an arbitrary directed acyclic
+graph,” IEEE Trans. on Inform. Theory, vol. 45, no. 1, pp. 308–313, Jan.
+1999.
+[5] A. Jiang, R. Mateescu, M. Schwartz, and J. Bruck, “Rank modulation
+for ﬂash memories,” IEEE Trans. on Inform. Theory, vol. 55, no. 6, pp.
+2659–2673, Jun. 2009.
+[6] R. L. Rivest and A. Shamir, “How to reuse a “write-once” memory,”
+Inform. and Control, vol. 55, pp. 1–19, 1982.
+
+5
+
+

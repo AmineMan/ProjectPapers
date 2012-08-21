@@ -1,0 +1,839 @@
+Creator:         TeX output 2012.05.18:2231
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Fri May 18 22:31:19 2012
+ModDate:        Tue Jun 19 12:54:19 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      366688 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569565583
+
+Erasure Coding for Real-Time Streaming
+Derek Leong
+
+Tracey Ho
+
+Department of Electrical Engineering
+California Institute of Technology
+Pasadena, California 91125, USA
+
+Department of Electrical Engineering
+California Institute of Technology
+Pasadena, California 91125, USA
+
+derekleong@caltech.edu
+
+tho@caltech.edu
+
+Abstract—We consider a real-time streaming system where
+messages are created sequentially at the source, and are encoded
+for transmission over a packet erasure channel. Each message
+must subsequently be decoded at the receiver within a given delay
+from its creation time. We consider code design and maximum
+message rates when all messages must be decodable by their
+respective deadlines under a speciﬁed set of erasure patterns
+(erasure model). Speciﬁcally, we provide a code construction that
+achieves the optimal rate for an asymptotic number of messages,
+under erasure models containing a limited number of erasures
+per coding window, per sliding window, and containing erasure
+bursts of a limited length.
+
+correct erasure bursts of a given length. Tekin et al. [3] considered erasure correction coding for a non-real-time streaming
+system where all messages are initially present at the encoder.
+We begin with a formal deﬁnition of the problem in
+Section II, and proceed to describe the construction of our
+intrasession code in Section III. We then demonstrate the
+optimality of this code under each erasure model in the
+subsequent sections. Proofs of some theorems can be found
+in Appendix B; complete proofs are deferred to the extended
+paper [4].
+
+I. I NTRODUCTION
+
+II. P ROBLEM D EFINITION
+
+We consider packet erasure correction coding for a real-time
+streaming system where messages are created sequentially at
+the source, and each message must be decoded at the receiver
+within a given delay from its creation time. The coding scheme
+is designed to ensure recovery of messages under a given set
+of possible erasure patterns (erasure model).
+In particular, we consider three erasure models: the ﬁrst
+model considers a limited number of erasures in each coding
+window, the second considers a limited number of erasures in
+each sliding window, while the third considers erasure bursts
+of a limited length. For each erasure model, the objective is to
+ﬁnd an optimal code that achieves the maximum message size
+among all codes that allow all messages to be decoded by their
+respective deadlines under all admissible erasure patterns.
+We present an explicit intrasession code construction which
+speciﬁes an allocation of each packet’s capacity among the
+different messages; coding occurs within each message but
+not across messages. Intrasession coding is attractive due to
+its relative simplicity, but it is not known in general when
+intrasession coding sufﬁces or when intersession coding is
+needed. We show that for an asymptotic number of messages,
+our code construction achieves the optimal rate among all
+codes (intrasession or intersession) for the ﬁrst and second
+erasure models with any given number of erasures per window,
+and for the third erasure model with sufﬁciently short or long
+erasure bursts.
+In related work, Martinian et al. [1], [2] provided constructions of streaming codes that minimize the delay required to
+
+Consider a discrete-time data streaming system comprising
+a source and a receiver, with a directed link of normalized
+unit capacity from the source to the receiver. The source
+creates independent messages of uniform size s > 0 at regular
+intervals of c ∈ Z+ time steps, and is allowed to transmit at
+most a unit amount of coded data over the link at each time
+step. The receiver attempts to decode each message within
+d ∈ Z+ time steps of its creation.
+More precisely, each message k ∈ Z+ is created at time step
+(k − 1)c + 1, and is to be decoded by time step (k − 1)c + d.
+The coded data transmitted at each time step t ∈ Z+ must be
+a function of messages created at time step t or earlier. Let
+coding window Wk be the interval of d time steps between
+the creation time and the decoding deadline of message k, i.e.,
+Wk
+
+{(k − 1)c + 1, . . . , (k − 1)c + d}.
+
+We shall assume that d > c so as to avoid the degenerate case
+of nonoverlapping coding windows for which it is sufﬁcient
+to code individual messages separately.
+Consider the ﬁrst n messages {1, . . . , n}, and the union of
+their (overlapping) coding windows Tn , given by
+Tn
+
+W1 ∪ · · · ∪ Wn = {1, . . . , (n − 1)c + d}.
+
+An erasure pattern E ⊆ Tn speciﬁes the set of erased or lost
+data transmissions over the link. More precisely, if t ∈ E, then
+none of the data transmitted at time step t is received by the
+receiver; if t ∈ Tn \E, then all of the data transmitted at time
+step t is received by the receiver at time step t. An erasure
+model essentially describes a distribution of erasure patterns.
+For a given pair of positive integers a and b, we deﬁne
+the offset quotient qa,b and remainder ra,b to be the unique
+
+This work was supported in part by the Air Force Ofﬁce of Scientiﬁc
+Research under Grant FA9550-10-1-0166.
+
+1
+
+{
+}
+t−1
++ t−d
+= k∈Z :
++1≤k ≤
++1 .
+c
+c
+Treating nonpositive messages 0, −1, −2, . . . as dummy messages, we can write
+⌉
+⌊
+⌋}
+{⌈
+t−1
+t−d
++ 1 ,...,
++1
+.
+At =
+c
+c
+Expressing this in terms of qd,c , rd,c , qt,c , rt,c yields
+{
+⌈
+⌉
+}
+rt,c − rd,c
+At = qt,c + 1 − qd,c +
+, . . . , qt,c + 1 .
+c
+
+(a) (c, d) = (3, 9)
+
+It follows that the number of active messages |At | varies over
+time depending on the value of rt,c ; speciﬁcally, two cases are
+possible:
+Case 1: If rt,c ≤ rd,c , then
+1−c
+rt,c − rd,c
+−1 <
+≤
+≤ 0,
+c
+c
+⌈
+⌉
+r −r
+which implies that t,c c d,c = 0, and
+(b) (c, d) = (3, 8)
+
+At = {qt,c + 1 − qd,c , . . . , qt,c + 1} .
+
+Fig. 1. Allocation of link capacity at each time step t, in the encoding of
+messages {1, . . . , 6}, for (a) (c, d) = (3, 9) and (b) (c, d) = (3, 8). Each
+message is assigned a unique color. In (a), because d is a multiple of c, we
+have qd,c + 1 = 3 active messages at each time step. In (b), because d is not
+a multiple of c, we have either qd,c = 2 or qd,c + 1 = 3 active messages at
+each time step.
+
+The qd,c + 1 messages of At are therefore encoded at time
+1
+step t, with each message allocated qd,c +1 amount of link
+capacity.
+Case 2: If rt,c > rd,c , then
+rt,c − rd,c
+c−1
+0<
+≤
+< 1,
+c
+c
+⌈
+⌉
+r −r
+which implies that t,c c d,c = 1, and
+
+integers satisfying the following three conditions:
+a = qa,b b + ra,b ,
+
+qa,b ∈ Z+ ,
+0
+
+ra,b ∈ {1, . . . , b}.
+
+Note that our deﬁnition departs from the usual deﬁnition of
+quotient and remainder in that ra,b can be equal to b but not
+0.
+
+At = {qt,c + 1 − (qd,c − 1), . . . , qt,c + 1} .
+The qd,c messages of At are therefore encoded at time step t,
+1
+with each message allocated qd,c amount of link capacity.
+Note that when d is a multiple of c, we have rt,c ≤ rd,c = c
+for any t, which implies that qd,c + 1 messages are encoded
+at every time step.
+In our subsequent performance analysis of this code, we
+make repeated use of two key code properties; these are
+presented as technical lemmas in Appendix A.
+
+III. C ODE C ONSTRUCTION
+We present an intrasession code which codes only within
+each message and not across different messages. We begin
+by specifying the amount of link capacity allocated for the
+encoding of each message at each time step. An appropriate
+code (e.g., random linear coding, MDS code) is then applied to
+the allocation so that each message can be decoded whenever
+the total amount of received data that encodes that message is
+at least the message size s.
+The allocation of link capacity follows a simple rule: the
+link capacity at each time step is divided evenly among all
+active messages. We say that message k is active at time step t
+if and only if t falls within its coding window, i.e., t ∈ Wk .
+Fig. 1 shows how much link capacity at each time step is
+allocated to each message, for two instances of (c, d).
+For a given choice of c and d, the messages that are encoded
+at a given time step t ∈ Z+ can be stated explicitly as follows:
+First, we deﬁne At to be the set of active messages at time
+step t, i.e.,
+At
+
+IV. P ERFORMANCE UNDER z E RASURES
+PER C ODING W INDOW
+For the ﬁrst erasure model, we look at erasure patterns
+that have a limited number of erasures per coding window.
+Consider the ﬁrst n messages {1, . . . , n}, and the union of
+CW
+their (overlapping) coding windows Tn . Let En be the set of
+erasure patterns that have z or fewer erasures in each coding
+window Wk , i.e.,
+{
+}
+CW
+En
+E ⊆ Tn : |E ∩ Wk | ≤ z ∀ k ∈ {1, . . . , n} .
+The objective is to construct a code that allows all n messages {1, . . . , n} to be decoded by their respective deadlines
+CW
+CW
+under any erasure pattern E ∈ En . Let sn be the maximum
+message size that can be achieved by such a code, for a given
+choice of n, c, d, and z.
+
+{k ∈ Z+ : t ∈ Wk }
+= {k ∈ Z+ : (k − 1)c + 1 ≤ t ≤ (k − 1)c + d}
+
+2
+
+We observe that over a ﬁnite time horizon (i.e., when the
+number of messages n is ﬁnite), intrasession coding can be
+suboptimal. For example, given (n, c, d, z) = (3, 1, 3, 1), the
+optimal intrasession code (which can be found by solving a
+linear program) achieves a message size of 6 , which is strictly
+7
+CW
+smaller than the maximum achievable message size sn of 1
+obtained by intersession coding, e.g., transmitting messages
+(1, 2, 1⊕2, 3, 3) at time steps (1, 2, 3, 4, 5), respectively.
+However, it turns out that the intrasession code constructed
+in Section III is asymptotically optimal; the gap between the
+CW
+maximum achievable message size sn and the message size
+achieved by the code vanishes as the number of messages n
+goes to inﬁnity:
+
+SW
+CW
+We note that since En ⊆ En , we therefore have
+CW
+sn ≥ sn . For the special case of c = 1, each sliding window is also a coding window, and so this sliding window
+erasure model reduces to the coding window erasure model
+SW
+CW
+of Section IV, i.e., En = En . Over a ﬁnite time horizon,
+intrasession coding can also be suboptimal for this erasure
+model; the illustrating example from Section IV applies here
+as well.
+Surprisingly, the constructed intrasession code also turns
+out to be asymptotically optimal over all codes; the omission
+SW
+CW
+of erasure patterns in En compared to En has not led
+to an increase in the maximum achievable message size
+(cf. Theorem 1):
+
+Theorem 1. The code constructed in Section III is asymptotically optimal in the following sense: the code achieves a
+message size of
+d−z
+∑
+yj ,
+
+Theorem 2. The code constructed in Section III is asymptotically optimal in the following sense: the code achieves a
+message size of
+d−z
+∑
+yj ,
+
+SW
+
+j=1
+
+j=1
+
+which is equal to the asymptotic maximum achievable message
+SW
+size limn→∞ sn .
+
+which is equal to the asymptotic maximum achievable message
+CW
+size limn→∞ sn , where y = (y1 , . . . , yd ) is deﬁned as
+(
+y
+
+d entries
+
+1
+1
+1
+1
+,...,
+,
+,...,
+qd,c + 1
+qd,c + 1 qd,c
+qd,c
+(qd,c +1)rd,c entries
+
+Proving the above theorem requires a different approach
+from that of Theorem 1. When d is a multiple of c, we need
+only consider a cut-set bound corresponding to an obvious
+“worst-case” erasure pattern in which exactly z erasures occur
+in every sliding window, speciﬁcally, a periodic erasure pattern
+with alternating intervals of z erasures and d − z nonerasures.
+When d is not a multiple of c, we consider a “base” erasure
+pattern E ′ chosen with the help of Lemma 2, and inductively
+compute an upper bound for the conditional entropy
+(
+)
+H X[Wn ∩ E ′ ] M [{1, . . . , n}], X[{1, . . . , (n − 1)c}]
+
+)
+.
+
+qd,c (c−rd,c ) entries
+
+We prove the above theorem by considering a cut-set bound
+corresponding to a speciﬁc “worst-case” erasure pattern in
+which exactly z erasures occur in every coding window.
+This erasure pattern is chosen with the help of Lemma 2;
+speciﬁcally, the erased time steps are chosen to coincide with
+the larger blocks allocated to each message in the constructed
+code.
+
+by using erasure patterns derived from the base, where Xt is
+a random variable representing the coded data transmitted at
+time step t, Mk is a random variable representing message k,
+X[A] (Xt )t∈A , and M [A] (Mk )k∈A . The nonnegativity
+SW
+of this expression leads us to a bound for sn that matches
+the message size achieved by the constructed code in the limit
+n → ∞.
+
+V. P ERFORMANCE UNDER z E RASURES
+S LIDING W INDOW OF d T IME S TEPS
+
+PER
+
+For the second erasure model, we look at erasure patterns
+that have a limited number of erasures per sliding window of
+d time steps. Consider the ﬁrst n messages {1, . . . , n}, and the
+union of their (overlapping) coding windows Tn . Let sliding
+window Lt denote the interval of d time steps beginning at
+time step t, i.e.,
+Lt
+
+VI. P ERFORMANCE UNDER E RASURE B URSTS
+OF z T IME S TEPS
+For the third erasure model, we look at erasure patterns
+that contain erasure bursts of a limited number of time steps.
+Consider the ﬁrst n messages {1, . . . , n}, and the union of
+B
+their (overlapping) coding windows Tn . Let En be the set of
+erasure patterns in which each erasure burst is z or fewer time
+steps in duration, and consecutive bursts are separated by a
+gap of d − z or more time steps, i.e.,
+{
+B
+En
+E ⊆ Tn :
+
+{t, . . . , t + d − 1}.
+
+SW
+Let En be the set of erasure patterns that have z or fewer
+erasures in each sliding window Lt , i.e.,
+{
+}
+SW
+En
+E ⊆ Tn : |E ∩ Lt | ≤ z ∀ t ∈ {1, . . . , (n − 1)c + 1} .
+
+The objective is to construct a code that allows all n messages {1, . . . , n} to be decoded by their respective deadlines
+SW
+SW
+under any erasure pattern E ∈ En . Let sn be the maximum
+message size that can be achieved by such a code, for a given
+choice of n, c, d, and z.
+
+(t∈E ∧ t+1∈E) ⇒ |E ∩ {t+1, . . . , t+d−z}| = 0,
+/
+}
+(t∈E ∧ t+1∈E) ⇒ |E ∩ {t+1, . . . , t+z+1}| ≤ z .
+/
+
+3
+
+The objective is to construct a code that allows all n messages
+{1, . . . , n} to be decoded by their respective deadlines under
+B
+B
+any erasure pattern E ∈ En . Let sn be the maximum message
+size that can be achieved by such a code, for a given choice
+of n, c, d, and z.
+Using the proof technique of Theorem 2, we can show that
+the constructed intrasession code is asymptotically optimal
+when the erasure bursts are sufﬁciently short or long:
+
+(a) (c, d) = (3, 9)
+
+Theorem 3. If
+z ≤ c − rd,c
+or
+z ≥ qd,c c = d − rd,c ,
+then the code constructed in Section III is asymptotically
+optimal in the following sense: the code achieves a message
+size of
+d−z
+∑
+yj ,
+
+(b) (c, d) = (3, 8)
+(1)
+
+j=1
+
+which is equal to the asymptotic maximum achievable message
+B
+size limn→∞ sn .
+
+(i)
+
+(i) Over the time steps in the set Tn , each message
+1
+k ∈ {1, . . . , n} is allocated qd,c +1 amount of link ca1
+pacity if ri,c ≤ rd,c , and qd,c amount of link capacity if
+ri,c > rd,c .
+(i)
+(ii) The allocated link capacity in Tn for each message
+k ∈ {1, . . . , n} is contained within a single time step
+(as opposed to being spread over multiple time steps).
+(iii) The total amount of link capacity over all time steps in
+(i)
+(i)
+Tn , i.e., Tn , has the following upper bound:
+ n
+
+ q + 1 + 2 if ri,c ≤ rd,c ,
+ d,c
+(i)
+Tn <
+ n
+
+
++2
+if ri,c > rd,c .
+qd,c
+
+A PPENDIX A
+C ODE P ROPERTIES
+The ﬁrst property describes when it is possible to decode
+each message:
+Lemma 1 (Message Decodability). Consider the code constructed in Section III for a given choice of c and d. If message
+size s satisﬁes the inequality
+s≤
+
+ℓ
+∑
+
+(d)
+
+Fig. 2. Partitioning of the set of time steps Tn into the d sets Tn , . . . , Tn ,
+in the encoding of messages {1, . . . , 7}, for (a) (c, d) = (3, 9) and
+(i)
+(b) (c, d) = (3, 8). Each set Tn is assigned a unique color. The number i
+(i)
+at the top of each time step t indicates the set Tn to which t belongs.
+
+yj ,
+
+j=1
+
+where y = (y1 , . . . , yd ) is as deﬁned in Theorem 1, then each
+message k ∈ Z+ can be decoded from the data at any ℓ time
+steps in its coding window Wk .
+
+Fig. 2 shows how the set of time steps Tn is partitioned into
+(d)
+(1)
+the d sets Tn , . . . , Tn , for two instances of (c, d).
+
+The second property describes a way of partitioning time
+steps into sets with certain speciﬁc properties, which are used
+in our speciﬁcation of the worst-case erasure patterns:
+
+A PPENDIX B
+P ROOFS OF T HEOREMS
+Proof of Lemma 1: Consider a given message k ∈ Z+
+and its coding window
+{
+}
+Wk = (k − 1)c + i : i ∈ {1, . . . , d} .
+
+Lemma 2 (Partition of Coding Windows). Consider the code
+constructed in Section III for a given choice of c and d.
+Consider the ﬁrst n messages {1, . . . , n}, and the union
+of their (overlapping) coding windows Tn . The set of time
+(1)
+(d)
+steps Tn can be partitioned into d sets Tn , . . . , Tn , given
+by
+{(
+}
+)
+ j(qd,c + 1) + qi,c c + ri,c ∈ Tn : j ∈ Z+
+
+0
+
+
+
+
+
+if ri,c ≤ rd,c ,
+(i)
+Tn
+{(
+}
+)
+
+ j qd,c + qi,c c + ri,c
+
+∈ Tn : j ∈ Z+
+0
+
+
+
+
+if ri,c > rd,c ,
+
+1
+At each time step t ∈ Wk , message k is allocated either qd,c +1
+1
+or qd,c amount of link capacity; at all other time steps t ∈ Wk ,
+/
+message k is allocated zero link capacity.
+Let xi be the amount of link capacity at time step t =
+(k − 1)c + i that is allocated to message k. Writing t in terms
+of qi,c and ri,c produces
+
+with the following properties:
+
+It follows from the code construction that the value of xi
+depends on ri,c ; speciﬁcally, two cases are possible:
+
+t = (k − 1)c + i = (k − 1 + qi,c ) c + ri,c .
+qt,c
+
+4
+
+rt,c
+
+(i)
+
+1
+Case 1: If ri,c ≤ rd,c , then xi = qd,c +1 . Since
+i ∈ {1, . . . , d}, this condition corresponds to the case
+where qi,c ∈ {0, . . . , qd,c } and ri,c ∈ {1, . . . , rd,c }. Therefore,
+1
+message k is allocated qd,c +1 amount of link capacity per
+time step for a total of (qd,c + 1)rd,c time steps in the coding
+window Wk .
+1
+Case 2:
+If
+ri,c > rd,c ,
+then
+xi = qd,c .
+Since
+i ∈ {1, . . . , d}, this condition corresponds to the case
+where qi,c ∈ {0, . . . , qd,c − 1} and ri,c ∈ {rd,c + 1, . . . , c}.
+1
+Therefore, message k is allocated qd,c amount of link capacity
+per time step for a total of qd,c (c − rd,c ) time steps in the
+coding window Wk .
+Observe that y is simply a vector containing the elements
+of {xi }d sorted in ascending order. Since
+i=1
+
+∑
+i∈U
+
+xi ≥
+
+|U |
+∑
+
+yj
+
+where Tn is as deﬁned in Lemma 2. Since the code allocates a positive amount of link capacity to each message
+k ∈ {1, . . . , n} only within its coding window Wk , it follows
+(i)
+from Property (ii) of Lemma 2 that for each set Tn , we have
+(i)
+Tn ∩ W k = 1
+
+which implies that
+E ′ ∩ Wk = z
+(1)
+
+∀ U ⊆ {1, . . . , d},
+
+it follows that over any ℓ time steps in the coding window
+Wk , the total amount of link capacity allocated to message k
+∑ℓ
+is at least j=1 yj . Therefore, as long as the message size s
+∑ℓ
+does not exceed j=1 yj , message k can always be decoded
+from the data at any ℓ time steps in Wk .
+Proof of Theorem 1: Consider the code constructed
+in Section III for a given choice of c and d. According to
+Lemma 1, if message size s satisﬁes the inequality
+
+n→∞
+
+yj .
+
+d−z
+
+∑d−z
+Since a message size of j=1 yj is known to be achievable
+(by the code constructed in Section III), we have the following
+CW
+upper and lower bounds for sn :
+d−z
+∑
+
+1∑
+≤
+(n yj + 2).
+n j=1
+d−z
+
+yj ≤ sn
+
+j=1
+
+CW
+
+These turn out to be matching bounds in the limit as n → ∞:
+d−z
+∑
+j=1
+
+∑
+1∑
+(n yj + 2) =
+yj .
+n→∞ n
+j=1
+j=1
+d−z
+
+d−z
+
+CW
+yj ≤ lim sn ≤ lim
+
+n→∞
+
+We therefore have equation (1) as required.
+R EFERENCES
+
+(1)
+
+[1] E. Martinian and C.-E. W. Sundberg, “Low delay burst erasure correction
+codes,” in Proc. IEEE Int. Conf. Commun. (ICC), May 2002.
+[2] E. Martinian and M. Trott, “Delay-optimal burst erasure code construction,” in Proc. IEEE Int. Symp. Inf. Theory (ISIT), Jun. 2007.
+[3] Ö. F. Tekin, S. Vyetrenko, T. Ho, and H. Yao, “Erasure correction for
+nested receivers,” in Proc. Allerton Conf. Commun., Control, Comput.,
+Sep. 2011.
+[4] D. Leong and T. Ho, “Erasure coding for real-time streaming.” [Online].
+Available: http://purl.org/net/2012.01
+
+j=1
+
+CW
+To obtain an upper bound for sn , we consider the cutset bound corresponding to a speciﬁc erasure pattern E ′ from
+CW
+En . Let {1, . . . , d} be partitioned into two sets V (1) and V (2) ,
+where
+{
+}
+V (1)
+i ∈ {1, . . . , d} : ri,c ≤ rd,c ,
+{
+}
+V (2)
+i ∈ {1, . . . , d} : ri,c > rd,c .
+( (1)
+)
+Let v = (v1 , . . . , vd ) be deﬁned as v
+v | v(2) , where
+v(1) is the vector containing the (qd,c + 1)rd,c elements of
+V (1) sorted in ascending order, and v(2) is the vector containing the qd,c (c − rd,c ) elements of V (2) sorted in ascending
+order. Deﬁne the erasure pattern E ′ ⊆ Tn as follows:
+
+d
+∪
+
+1 ∑ (vj )
+1∑
+Tn
+≤
+(n yj + 2).
+n j=1
+n j=1
+d−z
+
+CW
+sn ≤
+
+yj ,
+
+d−z
+∑
+
+1 ∑ (vj )
+T
+.
+n j=1 n
+d−z
+
+(v
+CW
+Tn j ) =⇒ sn ≤
+
+Applying the upper bounds in Property (iii) of Lemma 2, and
+writing the resulting expression in terms of yj produces
+
+then any message k ∈ {1, . . . , n} can be decoded from the
+data at any d − z time steps in its coding window Wk .
+∑d−z
+Therefore, the code achieves a message size of j=1 yj , by
+allowing all n messages {1, . . . , n} to be decoded as long
+as there are z or fewer erasures in each coding window Wk ,
+CW
+or equivalently, under any erasure pattern E ∈ En . We will
+proceed to show that this message size matches the maximum
+CW
+achievable message size sn in the limit, i.e.,
+CW
+lim sn =
+
+d−z
+∑
+j=1
+
+j=1
+
+E′
+
+(d)
+
+CW
+n sn ≤ Tn \E ′ =
+
+d−z
+∑
+
+∀ k ∈ {1, . . . , n}
+
+because Tn , . . . , Tn are disjoint sets. Therefore, E ′ is an
+CW
+admissible erasure pattern, i.e., E ′ ∈ En .
+Now, consider a code that achieves the maximum message
+CW
+size sn . Such a code must allow all n messages {1, . . . , n} to
+be decoded under the speciﬁc erasure pattern E ′ . We therefore
+CW
+have the following cut-set bound for sn :
+
+j=1
+
+s≤
+
+∀ k ∈ {1, . . . , n},
+
+(v
+Tn j ) ,
+
+j=d−z+1
+
+5
+
+

@@ -1,0 +1,905 @@
+Creator:        TeX
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Fri May 18 08:26:31 2012
+ModDate:        Tue Jun 19 12:54:40 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      510173 bytes
+Optimized:      no
+PDF version:    1.7
+ISIT'2012 1569566403
+
+Bounds on the Minimum Energy-Per-Bit
+for Bursty Trafﬁc in Diamond Networks
+Ilan Shomorony† , Raúl Etkin∗ , Farzad Parvaresh∗ and A. Salman Avestimehr†
+† Cornell University, Ithaca, NY
+∗ Hewlett-Packard Laboratories, Palo Alto, CA
+In this work we start studying the fundamental limits of
+bursty communication in relay networks. We consider the
+symmetric diamond network shown in Figure 1, and we follow
+the bursty communication model from [4]. We assume that
+B bits of data become available at the source at a random
+arrival time νB , and must be communicated to the destination
+with a maximum delay dB 1 . The arrival time νB of the data
+at the source is assumed to be drawn uniformly at random
+from {1, ..., AB }, independent of the data bits. Moreover, νB
+is unknown to both relays and the destination, and unknown
+to the source until time t = νB . Under a similar setting,
+the asynchronous minimum energy-per-bit for point-to-point
+channels was characterized in [4].
+
+Abstract—When data trafﬁc in a wireless network is bursty,
+small amounts of data sporadically become available for transmission, and the energy cost associated with synchronizing the
+network nodes prior to each communication block is not negligible. Therefore, designing energy-efﬁcient communication schemes
+for such asynchronous scenarios is of particular importance.
+In this paper, we show that, for symmetric diamond networks,
+by performing the tasks of synchronization and communication
+separately, it is possible to achieve the minimum energy-per-bit
+to within a factor that ranges from 2 in the synchronous case to
+1 in the highly asynchronous regime.
+
+I. I NTRODUCTION
+Traditional wireless communication models assume that
+transmitters and receivers are synchronized, in the sense that
+the receiver knows when data transmission is about to start.
+In applications such as Wi-Fi and cellular networks, where
+large amounts of data are to be transmitted, this is justiﬁed
+by the fact that the time and energy required for synchronization are negligible when compared to what is required for
+data communication. However, in certain applications such as
+wireless sensor networks, small amounts of time-sensitive data
+are sporadically available for transmission, at times that are
+unknown to the receivers. In such scenarios, the receiver is
+constantly listening to the output of a noisy channel in an
+attempt to identify a message. An extra amount of energy is
+then spent at the transmitter to make sure that the message is
+not missed and the noise is not mistaken for the message.
+In the sporadic data model, this extra energy represents a
+signiﬁcant part of the total energy spent and becomes a
+relevant quantity. There is a large body of work treating
+synchronization from a practical perspective with the goal
+of minimizing overheads and synchronization errors [1, 2].
+However, these studies lack a fundamental characterization of
+the energy and bandwidth costs of synchronization.
+Early work on the fundamental limits of asynchronous
+communication involved characterizing the data rates that can
+be achieved when the receiver does not know the beginning
+of the communication block [3]. Later, in [4], a similar model
+was considered, but the performance metric was instead the
+energy (or, in general, the cost) per bit required for reliable
+communication. In wireless sensor networks, sensors are often
+battery-operated. Thus, in the case of short and sporadic
+transmissions, i.e., bursty trafﬁc, when synchronization costs
+may dominate the communication costs, the characterization
+of the minimum energy-per-bit is very relevant.
+
+Z1
+g
+
+S
+
+relay 1
+
+h
+
+D
+
+Z2
+
+g
+Fig. 1.
+
+ZD
+
+relay 2
+
+h
+
+Symmetric diamond network.
+
+By considering the diamond network, the main question
+we wish to address is “how should relays facilitate the communication between source and destination when they do not
+know the beginning of the transmission block?”. The natural
+approach is to consider a separation-based coding scheme, i.e.,
+performing the tasks of synchronization and communication
+separately. Thus, as soon as the message arrives (at time νB )
+the source uses a synchronization signal in order to inform the
+relays that the message is about to be transmitted. The relays
+can then do the same, making the destination aware of the
+beginning of the transmission block. If this synchronization
+procedure succeeds, communication can then take place as if
+we were in the synchronous setting.
+Separation-based schemes are important due to their ease
+of design and implementation. However, they are potentially
+wasteful, since, in principle, relays do not need to know the
+beginning of the transmission block precisely. In essence, we
+would like to know whether the relays should be synchronized
+and whether separation-based schemes perform well. We for1 We index the random arrival time ν and the delay constraint d by B since
+we will consider an asymptotic regime in B, as described in Section II.
+
+1
+
+malize the notion of relay synchronization by saying that a
+coding scheme synchronizes relay i if the signals received
+by relay i during times 1, 2, ..., AB , AB + 1, ..., AB + dB ,
+represented by YiAB +dB , reveal a signiﬁcant amount of information about νB ; i.e., if H(νB | YiAB +dB ) is small. We then
+show that any scheme for the symmetric diamond network that
+achieves a ﬁnite energy-per-bit must synchronize both relays.
+The main idea of the proof is that, in any coding scheme
+with small error probability, the relays must spend a signiﬁcant
+amount of energy between times νB and νB + dB . Therefore,
+each relay can construct a short list of “guesses” for the true
+arrival time based on where most of its output energy is spent,
+and that list contains νB with high probability, implying that
+H(νB | YiAB +dB ) is small.
+The fact that the relays need to be synchronized suggests
+that there is a certain energy penalty associated with using
+the relays in the asynchronous setting. This idea allows us
+to derive a lower bound for the asynchronous minimum
+energy-per-bit. This bound is then shown to be within a
+constant fraction of the energy-per-bit achieved by a simple
+separation-based scheme. This fraction is 1/2 in the worstcase, but it approaches 1 as (log AB )/B increases, implying
+that separation-based schemes are nearly optimal in the highasynchronism regime.
+
+with a delay of dB , assuming an arrival distribution νB . This
+code is comprised of
+B
+• an encoding function for the source f : [1 : 2 ] × [1 :
+dB +1
+AB ] → R
+, which deﬁnes the source transmit signals
+for [νB : νB + dB ], given the B message bits and their
+arrival time νB ;
+t−1
+• relaying functions ρi,t : R
+→ R, which deﬁne relay
+i’s transmit signal at time t given its received signals in
+times 1, ..., t − 1, for t = 1, ..., AB + dB ;
+• a sequential decoder (τ, m), which, at time t, decides to
+ˆ
+either decode the message (in which case it sets τ = t
+and outputs a decoded message m) or to wait (in which
+ˆ
+case τ > t).
+Notice that, outside the interval [νB : νB + dB ], the source is
+not allowed to transmit. Thus, for relay i ∈ {1, 2} and time
+t ∈ [νB : νB + dB ], Yi [t] = Zi [t].
+/
+Deﬁnition 1. Energy-per-bit eb is achievable if we can ﬁnd
+a sequence of codes {Ck }∞ and a sequence {Bk }∞ , with
+k=1
+k=1
+Bk → ∞ as k → ∞, where code Ck can transmit Bk bits
+with a maximum delay of dBk , assuming the input distribution
+is νBk , and we have
+1. limk→∞ Pr (error (Ck )) = 0
+log dBk
+=0
+2. limk→∞
+Bk
+E[ECk ]
+3. lim inf k→∞
+≤ eb ,
+Bk
+￿
+￿Ak +dBk ￿
+where ECk ￿
+XS [t]2 + X1 [t]2 + X2 [t]2 is the
+t=1
+total energy used by code Ck , and Ak ￿ 2βBk , and error (Ck )
+is the event {m ￿= m} ∪ {τ > νBk + dBk } for code Ck . The
+ˆ
+asynchronous minimum energy-per-bit is the inﬁmum over all
+achievable energy-per-bit values.
+
+II. P ROBLEM S ETUP
+We consider the symmetric diamond network, shown in
+Figure 1. We assume a discrete-time model where, at time
+t, each transmitter node u ∈ {S, 1, 2} transmits a realvalued signal Xu [t], each relay i, for i ∈ {1, 2}, receives
+√
+Yi [t] = √ gXS [t] + Zi [t], and the destination D receives
+YD [t] = h (X1 [t] + X2 [t]) + ZD [t], where Z1 [t], Z2 [t] and
+ZD [t] are independent i.i.d. N (0, N0 ) noise terms.
+Our bursty trafﬁc model follows the asynchronous communication model introduced in [4]. The source receives a B-bits
+message m at some random time ν ∈ [1 : A], where, for a < b,
+we deﬁne [a : b] ￿ {a, a + 1, ..., b}. The source then needs to
+communicate this message to the destination with a delay of
+at most d time-steps.
+In order to formally deﬁne reliable communication, we
+consider the asymptotic regime of B → ∞. Thus, we consider
+a sequence of arrival distributions {νB }∞ , where νB is
+B=1
+uniform on [1 : AB ] and AB = 2βB , for B = 1, 2, ... and some
+β > 0. Notice that, as B → ∞, B/AB → 0, thus capturing
+the idea of short and sporadic messages. Once the B bits arrive
+at the source at time νB , they must be communicated to the
+destination within a delay dB . Notice that, in order for the
+problem to be meaningful, dB should be small in comparison
+to AB . Otherwise, it would be possible to devise a strategy
+where the source only starts its trasmission at pre-deﬁned timesteps separated by dB time-steps, and the trafﬁc would not be
+actually bursty. Thus, since AB is exponential in B, we will
+require the delay dB to be subexponential in B.
+An asynchronous code C for the symmetric diamond network is designed to communicate a speciﬁc number of bits B
+
+III. M AIN R ESULT
+Our main result is to ﬁnd upper and lower bounds on the
+asynchronous minimum energy-per-bit for the symmetric diamond network. The achievability scheme for the upper bound
+uses a separation-based code. The lower bound is obtained by
+formalizing the notion of relay synchronization, and showing
+that, for any sequence of coding schemes that achieve ﬁnite
+energy-per-bit, both relays must be synchronized.
+Theorem 1. The asynchronous minimum energy-per-bit for
+the symmetric diamond network in Figure 1 satisﬁes
+￿
+￿
+￿
+￿
+1
+1
+β
+1
+1+β
+γ(1 + β)
++
+≥ easync ≥ γ
++
++
+,
+b
+g 2h
+g
+2g
+2h
+
+where γ = 2N0 ln 2 is the minimum energy-per-bit of an
+AWGN channel in the synchronous setting.
+The ratio between the upper and lower bound is
+￿
+￿
+1
+1
+1
+γ(1 + β) g + 2h
+(1 + β) g
+1+β
+￿
+￿ ≤ β
+= 1
+.
+1
+β
+1+β
+1
+γ g + 2g + 2h
+2 +β
+g + 2g
+
+Therefore, separation-based schemes achieve to within a factor
+of (1 + β)/( 1 + β) from the minimum energy-per-bit. This
+2
+
+2
+
+ratio equals 2 when β = 0 (i.e., in the synchronous case)
+but it decreases towards 1 as β increases. We conclude that
+separation-based coding schemes are nearly optimal in highasynchronism regimes.
+
+correctly also tends to 0 as k → ∞. The total energy-per-bit
+consumed in the synchronization phase is
+
+IV. ACHIEVABILITY WITH S EPARATION -BASED S CHEMES
+
+To compute the energy used in the communication phase,
+we notice that we can analyze the two hops separately, since
+we are employing decode-and-forward. For the ﬁrst hop, the
+energy-per-bit can be chosen arbitrarily close to the minimum
+energy-per-bit for a point-to-point channel with channel gain
+g, i.e., γ/g. In the second hop, we use beamforming to reduce
+the energy-per-bit that is consumed. It can be seen that the
+total energy-per-bit used by both relays together can be chosen
+arbitrarily close to γ/(2h). We conclude that energy-per-bit
+
+(1 + δ)2 γβ [1/g + 1/(2h)] .
+
+Our upper bound in Theorem 1 is achieved with a simple
+separation-based scheme; i.e., a scheme where we perform
+the tasks of synchronization and communication separately.
+Synchronization will be achieved through pulses, and, for
+communication, we will use a simple decode-and-forward
+scheme. Notice that several relaying schemes that outperform
+decode-and-forward are known [5]. However, decode-andforward is simpler to analyze and, as we will see, performs
+nearly optimally.
+
+(1 + δ)2 γ(1 + β) [1/g + 1/(2h)]
+
+Theorem 2. Separation-based coding schemes can achieve
+energy-per-bit
+
+is achieved by our sequence of codes {Ck }∞ .
+k=1
+V. L OWER B OUND T HROUGH R ELAY S YNCHRONIZATION
+
+(1 + δ)2 γ(1 + β) [1/g + 1/(2h)]
+
+The main ingredient that is necessary to prove our lower
+bound on the minimum asynchronous energy-per-bit is the fact
+that a relay can only be helpful in a coding scheme (from the
+energy-per-bit point of view) if it is synchronized. In this work,
+we will deﬁne synchronization as follows.
+
+on the symmetric diamond network, for any δ > 0.
+Proof: We construct a sequence of codes {Ck }∞ , where
+k=1
+Ck transmits Bk bits assuming arrival distribution νBk , for
+any sequence {Bk }∞ , where Bk → ∞ as k → ∞. Our
+k=1
+scheme is based on having the source send a pulse as soon
+as the message arrives. This pulse is detected by the relays,
+which send another pulse to the destination, taking advantage
+of beamforming. After relays and destination correctly detect
+their pulses, the network is in the synchronous setting, and we
+may employ decode-and-forward to communicate the Bk bits.
+More precisely, upon receiving the message, at time νBk ,
+the source will transmit a pulse of magnitude
+￿
+(1 + δ) (γβBk )/g,
+
+Deﬁnition 2. We say that relay i is synchronized in the
+sequence of codes {Ck }∞ if
+k=1
+￿
+￿
+￿
+￿ ˜
+lim H νBk ￿ YiAk /Bk = 0,
+k→∞
+
+˜
+
+˜
+where YiAk is the length-Ak vector of received signals of relay
+˜
+i when using code Ck , where Ak ￿ Ak + dBk .
+
+We show that, for any sequence of codes {Ck }∞ that
+k=1
+achieves a ﬁnite energy-per-bit eb according to Deﬁnition 1,
+both relays must be synchronized.
+
+for δ > 0. Relay i declares that the pulse is detected √ time t
+at
+if Yi [t] is the ﬁrst received signal larger than (1+δ/2) γβBk .
+We let L1 be the event that relay i does not detect the pulse,
+and L2 be the event that relay i incorrectly detects noise as
+the pulse before the pulse is sent. The probability of error in
+detecting the pulse can be upper bounded as Pr(L1 ∪ L2 ) ≤
+Pr(L1 ) + Pr(L2 ), and we have
+￿
+￿
+￿
+Pr(L1 ) = Pr Zi [1] > δ/2 γβBk → 0 as k → ∞,
+￿
+￿
+￿
+Pr(L2 ) ≤ Pr ∃ t : Zi [t] ≥ (1 + δ/2) γβBk
+≤ 2βBk e−(1+δ/2)
+= 2−βBk (δ+δ
+
+2
+
+/4)
+
+2
+
+Lemma 1. Suppose we have a sequence of asynchronous
+codes {Ck }∞ for the symmetric diamond network that
+k=1
+achieves a ﬁnite energy-per-bit. Then, relay i ∈ {1, 2} can
+(i)
+create a list Λk ⊂ [1 : Ak ] based on its received signals that
+contains νBk with vanishing error probability, and has a size
+(i)
+|Λk | that is subexponential in Bk .
+
+Proof Sketch: Here, we describe the steps to prove that
+(i)
+relay i ∈ {1, 2} can create a list Λk with subexponential
+￿
+￿
+(1)
+(2)
+size, such that limk→∞ Pr νBk ∈ Λk ∪ Λk
+/
+= 0. In [6],
+we show that this result can be strengthened and we can in
+￿
+￿
+(i)
+fact have have limk→∞ Pr νBk ∈ Λk = 0 for i = 1, 2.
+/
+The intuition behind the proof is simple. If a code Ck has
+small error probability, then, in the block [νBk : νBk + dBk ],
+at least one of the two relays should consume a signiﬁcant
+amount of energy. Moreover, if the sequence of codes {Ck }∞
+k=1
+achieves a ﬁnite energy-per-bit, the relays should not be
+spending too much energy outside of [νBk : νBk + dBk ]. Thus,
+by only looking at the times when the relays consume the most
+energy, one should be able to estimate the arrival time νBk .
+
+βBk ln 2
+
+→ 0 as k → ∞.
+
+If the relays correctly detect the pulse, they can transmit pulses
+to the destination in the next time slot. Since they can use
+beamforming to reduce the total energy required, at time νBk +
+1, each relay will send a pulse of magnitude
+￿
+(1 + δ) (γβBk )/(4h).
+Then by following similar steps as before, it can be shown that
+the probability that the destination does not decode the pulse
+
+3
+
+(i)
+
+Relay i builds Λk by adding to it the ﬁrst dBk E [ECk ] /α
+time-steps t ∈ [1 : Ak ] for which it consumes a total energy
+of at least αBk in the time window [t : t + dBk ], for some
+α > 0 to be determined. We show that there must be an α for
+(1)
+(2)
+which the probability that νBk ∈ Λk ￿ Λk ∪Λk tends to 0 as
+/
+k → ∞. The main idea of the argument is as follows. Fix some
+α > 0, and notice that, if one of the relays uses a total energy
+of at least αBk in the “correct window”, i.e., [νBk : νBk +dBk ],
+then with high probability νBk will be included in Λk . This
+is the case since, from Markov’s inequality, the probability
+that the relays consume a total energy of at most E [ECk ] Bk
+is at least 1 − 1/Bk , and, in this case, there cannot be more
+than dBk E [ECk ] /α windows [t : t + dBk ] where one of the
+relays uses energy at least αBk . Therefore, it sufﬁces to ﬁnd
+an α > 0 for which
+￿
+￿
+(r ,r )
+lim inf Pr ECk1 2 [νBk : νBk + dBk ] < 2αBk = 0, (1)
+
+a list Λk as described. If 1νBk ∈Λk is an indicator function for
+the event νBk ∈ Λk , we will have
+˜
+H(νBk , 1νBk ∈Λk |Λk )
+H(νBk |YiAk )
+H(νBk |Λk )
+≤
+≤
+Bk
+Bk
+Bk
+1 + H(νBk |Λk , 1νBk ∈Λk )
+≤
+Bk
+1 + H(νBk |Λk , νBk ∈ Λk )
+≤
+Bk
+H(νBk |Λk , νBk ∈ Λk ) Pr(νBk ∈ Λk )
+/
+/
++
+Bk
+1 + log |Λk | + βBk Pr(νBk ∈ Λk )
+/
+≤
+,
+Bk
+
+which tends to 0 as k → ∞, because |Λk | is subexponential
+in Bk , and Pr(νBk ∈ Λk ) → 0 as k → ∞, which implies that
+/
+relay 1 is synchronized according to Deﬁnition 2. Therefore,
+as a corollary of Lemma 1, we have shown the following.
+
+k→∞
+
+(r ,r )
+
+where ECk1 2 [νBk : νBk + dBk ] is the energy spent by the
+relays in the window [νBk : νBk + dBk ]. By contradiction, we
+suppose that no such α exists, which means that for any ﬁxed
+α, the limit inferior in (1) equals some δ(α) > 0. But then we
+notice that, since the error probability of our original sequence
+of codes {Ck }∞ tends to 0 as k → ∞, for large k, the error
+k=1
+probability can be arbitrarily smaller than δ(α). Intuitively,
+(r ,r )
+this means that, conditioned on the event ECk1 2 [νBk : νBk +
+dBk ] < 2αBk , the probability of error is still going to 0,
+as k → ∞. Moreover, this should hold for any small α >
+0. To obtain a contradiction, we show that the sequence of
+codes {Ck }∞ can be used to construct another sequence of
+k=1
+￿
+codes {Ck }∞ for the second hop of the diamond network in
+k=1
+the synchronous setting (i.e., the two-input one-output channel
+from Figure 2), where the transmitters (which correspond to
+the relays in the diamond network) use energy at most 2αBk
+and transmit Bk − o(Bk ) bits with vanishing error probability.
+This implies that the transmitters spend a total energy-perh
+
+Lemma 2. In any sequence of asynchronous codes {Ck }∞
+k=1
+for the symmetric diamond network that achieves a ﬁnite
+energy-per-bit, both relays are synchronized.
+Next, we will let C(P ) be the capacity region of a degraded
+BC X ↔ Y1 ↔ Y2 . Recall that this capacity region consists
+of all pairs (R1 , R2 ) such that
+R1 ≤
+R2 ≤
+
+I(X n ; Y1n |U )
+I(U ; Y2n ),
+
+(2)
+
+for some ￿ n and some distribution p(u, xn ) such that
+￿
+E ￿X n ￿2 ≤ nP . An important quantity for us will be the
+(1 : ρ)-capacity of this BC, which we deﬁne as
+C1:ρ (P ) = max{R : (R, ρR) ∈ C(P )},
+
+for some ρ > 0. Using the multi-letter description of the
+capacity (2), it is easy to see that we have
+￿
+￿
+I(X n ; Y1n |U ) I(U ; Y2n )
+C1:ρ (P ) = sup
+min
+,
+. (3)
+n
+ρn
+n,p(u,xn ):
+
+ZD
+
+E￿X n ￿2 ≤nP
+
+Theorem 3. The asynchronous minimum energy-per-bit easync
+b
+for the symmetric diamond network is lower bounded as
+￿
+￿
+β
+1
+1+β
+async
+eb
+≥γ
++
++
+.
+g
+2g
+2h
+
+D
+
+S
+
+1
+n
+1
+n
+
+h
+Fig. 2. Two-input one-output channel obtained from the second hop of the
+network in Figure 1
+
+Proof: Suppose we have a sequence of codes {Ck }∞
+k=1
+that achieves a ﬁnite energy-per-bit. We consider using code
+Ck on the BC in Figure 3, in the synchronous setting. Notice
+√
+that, for this BC, Y2 = gX + Z2 is a scalar, while Y1 =
+√
+√
+( gX + Z1,1 , gX + Z1,2 ) is a vector, and Z1,1 , Z1,2 and
+Z2 are independent i.i.d. N (0, N0 ) noise terms. To use code
+Ck on this channel in the synchronous setting, we have the
+source choose an arrival time νBk uniformly at random from
+[1 : 2βBk ] and transmit the message as if we were in the
+asynchronous setting. Since it has two antennas, destination
+D1 can then simulate what the relays would have received
+and transmitted and what the destination would have received
+
+bit of at most 2α + o(1), where α can be chosen arbitrarily
+small. But this is clearly a contradiction, since the two-input
+one-output channel considered has a positive (synchronous)
+minimum energy-per-bit.
+Finally, from Deﬁnition 1, E [ECk ] is linear in Bk and dBk
+(i)
+is subexponential in Bk . Thus |Λk | = dBk E [ECk ] /α must
+be subexponential in Bk .
+To see that Lemma 1 implies that both relays must be
+synchronized, consider a sequence of codes {Ck }∞ that
+k=1
+achieves a ﬁnite energy-per-bit, and assume that relay i creates
+
+4
+
+Z1,1
+Z1, 2
+
+g
+g
+
+S
+
+Z2
+
+g
+Fig. 3.
+
+Now, by combining (5) and (6), we conclude that
+￿
+￿
+(s)
+˜
+C1:β E[ECk ]/Ak
+2g
+C1:β (P )
+≥ sup
+≥
+(s)
+˜
+γ [1 + 2β] P >0
+P
+E[ECk ]/Ak
+￿
+￿
+￿
+￿ ˜
+1
+˜
+min Bk − H(￿k ) − ￿k Bk , Bk − β H(νBk ￿Y2Ak ) /Ak
+≥
+(s)
+˜
+E[ECk ]/Ak
+￿
+￿
+￿
+￿￿
+￿ ˜
+1
+1
+min 1 − Bk H(￿k ) − ￿k , 1 − βBk H νBk ￿Y2Ak
+=
+.
+(s)
+E[ECk ]/Bk
+
+D1
+
+D2
+
+Degraded BC considered in the proof of Theorem 3.
+
+in the diamond network. This guarantees that, with probability
+1 − ￿k , where ￿k → 0, destination D1 can decode m correctly
+and output a list [τ − dBk : τ ] containing νBk .
+˜
+Let X Ak be the the random vector corresponding to the
+transmit signals of the source when using code Ck on the
+˜
+˜
+BC, and Y1Ak and Y2Ak the outputs at D1 and D2 respectively. Since, from Lemma 2, we may assume that relay 2 is
+synchronized in the diamond network, destination D2 will be
+synchronized in this BC, which implies that
+￿
+￿
+￿
+￿ ˜
+lim H νBk ￿Y2Ak /Bk = 0.
+(4)
+
+By taking lim sup when k → ∞ and using (4), we obtain
+￿
+￿
+2g
+(s)
+≥ lim sup E ECk /Bk
+γ [1 + 2β]
+k→∞
+￿
+￿
+￿
+￿
+γ [1 + 2β]
+β
+1
+(s)
+⇒ lim inf E ECk /Bk ≥
+=γ
++
+. (7)
+k→∞
+2g
+g
+2g
+Next we apply code Ck to the network in Figure 2. This time,
+the source simulates the transmit signals of the source and the
+received signals at the relays in Figure 1. Then it computes the
+transmit signals of the relays in Figure 1 and transmits them,
+one on each antenna. By viewing the channel from Figure 2
+as a point-to-point channel, from Theorem 3 in [4], we have
+￿
+￿
+γ
+(r ,r )
+lim inf E ECk1 2 /Bk ≥ (1 + β) .
+(8)
+k→∞
+2h
+Therefore, by combining (7) and (8), we obtain
+￿
+￿
+￿
+￿
+β
+1
+1+β
+(s,r ,r )
+lim inf E ECk 1 2 /Bk ≥ γ
++
++
+,
+k→∞
+g
+2g
+2h
+which concludes the proof of Theorem 3.
+
+k→∞
+
+Now, using (3) with U = νBk , we obtain
+￿ ￿
+￿
+￿
+￿ ￿
+￿
+˜
+(s)
+˜
+C1:β E ECk /Ak ≥ min H X Ak |νBk
+￿
+￿
+￿
+￿
+￿￿
+˜
+˜
+￿ ˜
+1
+˜
+−H X Ak |Y1Ak , νBk , Bk − β H νBk ￿Y2Ak /Ak
+￿
+￿
+￿
+￿￿
+(i)
+￿ ˜
+1
+˜
+≥ min Bk − H(￿k ) − ￿k Bk , Bk − β H νBk ￿Y2Ak /Ak ,
+(5)
+
+VI. C ONCLUDING R EMARKS
+In this work, we found asymptotically tight bounds for
+the asynchronous minimum energy-per-bit of the symmetric
+diamond network. In [6], we extend these results to the
+asymmetric case. This is done by showing that any relay that
+is used (i.e., does not stay silent) must be synchronized, which
+yields bounds similar to those in Theorem 1.
+
+(s)
+
+where (i) follows from Fano’s inequality, and ECk is the
+energy consumed by the source in code Ck . Notice that the
+capacity region C(P ) of the Gaussian degraded BC is known
+in closed-form, and in the case of the BC from Figure 3, it
+consists of all non-negative pairs (R1 , R2 ) satisfying
+R1 ≤
+
+1
+2
+
+log (1 + α2gP/N0 )
+￿
+￿
+(1 − α)gP
+R2 ≤ 1 log 1 +
+,
+2
+N0 + αgP
+
+VII. ACKNOWLEDGEMENTS
+The research of A. S. Avestimehr and I. Shomorony was
+supported in part by the NSF CAREER award 0953117, NSF
+Grant CCF-1144000, and NSF TRUST Center.
+
+for some α ∈ [0, 1]. It is then not difﬁcult to see that the
+(1 : β)-capacity of our BC can be expressed as
+￿
+1
+C1:β (P ) = max min
+log (1 + α2gP/N0 ) ,
+0≤α≤1
+2
+￿
+￿￿
+1
+(1 − α)gP
+log 1 +
+.
+2β
+N0 + αgP
+
+R EFERENCES
+[1] W.D. Warner and C. Leung. Ofdm/fm frame synchronization for mobile
+radio data communication. IEEE Transactions on Vehicular Technology,
+42(3):302–313, August 1993.
+[2] M. Speth, D. Daecke, and H. Meyr. Minimum overhead burst synchronization for ofdm based broadband transmission. IEEE Global
+Telecommunications Conference (GLOBECOM 98), 5:2777–2782, 1998.
+[3] A. Tchamkerten, V. Chandar, and G.W. Wornell. Communication under
+strong asynchronism. IEEE Transactions on Info. Theory, 55(10):4508–
+4528, October 2009.
+[4] V. Chandar, A. Tchamkerten, and D. Tse. Asynchronous capacity per
+unit cost. ISIT Proceedings, June 2010.
+[5] F. Parvaresh and R. Etkin. Relaying information by low duty cycle
+signals in gaussian diamond networks. submitted to IEEE Transactions
+on Information Theory, July 2011.
+[6] I. Shomorony, R. Etkin, F. Parvaresh, and A. S. Avestimehr. Asynchronous diamond networks: Bounds on the minimum energy-per-bit.
+Submitted to IEEE Transactions on Information Theory, May 2012.
+
+Hence we have
+￿
+C1:β (P )
+log (1 + α2gP/N0 )
+sup
+≤ max min sup
+,
+0≤α≤1
+P
+2P
+P >0
+P >0
+￿
+￿
+log 1 + (1−α)gP
+N0 +αgP
+
+sup
+2βP
+P >0
+￿
+￿
+α2g (1 − α)g
+2g
+= max min
+,
+=
+.
+(6)
+0≤α≤1
+γ
+βγ
+γ [1 + 2β]
+
+5
+
+

@@ -1,0 +1,853 @@
+Creator:        TeX
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Fri May 18 15:30:30 2012
+ModDate:        Tue Jun 19 12:54:23 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      521866 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569565909
+
+Rateless Coded Hybrid Amplify/Decode-Forward
+Cooperation for Wireless Multicast
+Talha Ahmed Khan, Momin Uppal, Anders Høst-Madsen† , and Zixiang Xiong‡
+Department of Electrical Engineering, LUMS School of Science and Engineering, Pakistan
+†
+Dept of Electrical Engineering, University of Hawaii, Honolulu, HI 96822
+‡
+Department of Electrical and Computer Engineering, Texas A&M University, College Station, TX 77843
+Email: {talha.khan,momin.uppal}@lums.edu.pk, ahm@hawaii.edu, zx@tamu.edu
+
+of the cooperation schemes for the point-to-point communication link have been presented from an information-theoretic
+viewpoint in [1], [2].
+With the growing popularity of mobile multimedia applications, the importance of investigating cooperation for a multicast/broadcast setting can not be over-emphasized. Several recent works have focused on the cooperative multicast problem
+(see [4] and references therein). More recently, a cooperative
+wireless multicast setting was investigated in [5] using the
+traditional two-hop multicast scheme with ﬁxed-rate codes.
+As opposed to the ﬁxed-rate cooperation of [5], we propose
+a cooperation strategy based on rateless coding, due to which
+the users can decode adaptively and forward the information
+the moment decoding is successful. In addition, we present a
+hybrid relaying strategy which uses a combination of AF and
+DF, thus making sure that users start relaying even if they have
+not decoded the source message – we call it the ADF strategy.
+We employ the bucket-ﬁlling approach of [6] for performance
+evaluation in terms of the outage behavior. Simulation results
+indicate the superiority of our hybrid approach over individual
+rateless coded AF and DF schemes, as well as the ﬁxed-rate
+two-hop scheme of [5].
+
+Abstract—We consider a cooperative wireless multicast channel
+with no channel state information available at the transmitters,
+and where all wireless links undergo independent identically
+distributed quasi-static Rayleigh fading. For cooperation, we
+propose a rateless coded approach and identify its beneﬁts over a
+conventional ﬁxed-rate two-hop strategy. In addition to providing
+robust communications under fading conditions, rateless coding
+is able to exploit the cooperation beneﬁts to a greater degree.
+A hybrid rateless coded cooperation scheme is proposed which
+employs amplify-and-forward (AF) in conjunction with decodeand-forward (DF) strategy. Results based on Monte-Carlo simulations indicate that the rateless coded hybrid scheme is able
+to signiﬁcantly outperform two-hop cooperation, as well as the
+individual AF and DF strategies.
+
+I. I NTRODUCTION
+Multiple-input multiple-output (MIMO) communication has
+in recent years emerged as the technology of choice for
+combating the effects of multipath fading, shadowing, and
+interference in wireless networks. However, the shrinking size
+of mobile devices poses a serious threat to the viability of this
+technique. Alternatively, spatio-temporal diversity can also be
+exploited using cooperative communications [1]. In a cooperative communication system, dedicated relays are introduced
+which receive, process and forward the source message to
+the destination nodes. Alternatively, the network nodes might
+cooperate amongst themselves while sending and/or receiving
+information. This cooperative diversity offers advantages over
+traditional wireless networks in terms of an increased throughput and/or a higher reliability. It also provides the multiplexing
+and diversity gains which are typically associated with multiantenna communications [2].
+In order to exploit spatial diversity in wireless networks,
+various cooperation protocols have been proposed (see [3]
+and references therein). These protocols can generally be
+divided into three categories, namely, Decode-and-Forward
+(DF), Amplify-and-Forward (AF), and Compress-and-Forward
+(CF). In DF, a cooperating node attempts to decode the information from a source before re-encoding it and forwarding to
+the destination. On the other hand, in AF and CF strategies, the
+nodes need not decode the source information to cooperate.
+In AF, the nodes simply amplify and forward the received
+analog signal, whereas in CF, the nodes quantize the received
+information before compressing the quantization indices and
+forwarding to the destination. Detailed comparative analyses
+
+II. S YSTEM M ODEL
+We consider a Gaussian multicast channel consisting of a
+base-station (source) and a cluster of N users, where all the
+users need the same message from the source. All the users
+as well as the base-station are assumed to employ a single
+receive/transmit antenna. Let ci be the complex channel gain
+between the base-station and user i, i = 1, . . . , N , and cij be
+the complex channel gain between user i and j, with cij = cji .
+All links are assumed to experience independent identically
+distributed (i.i.d) block ﬂat Rayleigh fading with E[|cij |2 ] = 1
+and E[|ci |2 ] = 1/ξ where ξ ≥ 1 accommodates the fact
+that the source-user links may experience a greater path loss
+compared with the inter-user links (possibly because the interuser distances may be smaller compared to the source-to-user
+distances). It is assumed that nodes have no channel state
+information (CSI) except as required for decoding. Let X[n]
+and Xi [n] be the transmitted signal from the base-station and
+user i at time n, respectively. The received signal Yi [n] at user
+
+1
+
+i is then given by
+
+On the other hand, the outage rate for a given outage probability p can be determined from (3) as
+
+N
+
+Yi [n] = ci X[n] +
+
+cij Xj [n] + Zi [n]
+
+Ro (p, SNRt ) = log2 1 −
+
+j=1,j=i
+
+where Zi [n] denotes the zero-mean, additive i.i.d circularly
+symmetric complex Gaussian noise. Without loss in generality,
+we assume that the noise is of unit variance. In addition, we
+assume that the source as well as all the users employ the
+same average transmit power P , and therefore have the same
+average transmit signal-to-noise ratio, i.e. SNRs = SNRu =
+SNR = P . The total system signal-to-noise ratio is then given
+as SNRt = (N + 1)SNR. For evaluating the performance of
+the proposed cooperation strategies, we consider the outage
+behavior at the individual users. A user declares an outage if
+it is not able to decode at the target rate R. Let Ri (c, SNR) be
+the achievable rate at user i as a function of the SNR and the
+set c of all channel gains. The outage probability pi (R, SNR)
+at user i is then deﬁned as the probability that the achievable
+rate Ri (c, SNR) is less than the target rate R. Another outage
+measure we will employ is the outage rate. The outage rate
+at user i for a given outage probability p is deﬁned as the
+maximum rate at which the base-station could transmit such
+that the user is able to decode it with an outage probability
+not exceeding p. Mathematically,
+o
+Ri (p, SNR) = max R Pr (Ri (c, SNR) < R) ≤ p
+
+An upper bound on the achievable rate at a given user can
+be obtained using the cut-set arguments [7]. This upper bound
+for user 1 is given as
+ub
+ub
+Rub (c, SNR) = min Ra , Rb ,
+
+
+ub
+Ra
+
+ub
+Rb
+
+=
+
+N
+
+log2 1 + |c1 |2 SNRs +
+
+
+|c1j |2 SNRu 
+
+j=2
+
+The outage probability and the outage rate corresponding to
+the upper bound can be evaluated numerically.
+C. Rateless coded Cooperation
+Most works on cooperative wireless multicast (see [5] and
+references therein) consider the ﬁxed-rate two-hop DF relaying
+strategy in which the base-station broadcasts in the ﬁrst stage
+using ﬁxed-rate codes while the users attempt to decode the
+source message. In the second stage, only those users which
+have decoded the message correctly in the ﬁrst stage are
+allowed to relay, while the base-station and remaining users
+remain silent. We argue that this scheme fails to enhance
+user cooperation due to its non-adaptive nature. The biggest
+drawback is that only those users are allowed to relay who
+successfully decode the source message at the end of the ﬁrst
+stage. This effectively bars all the remaining users from cooperating even though they could possibly decode the message in
+the second stage. Similarly, the successful users have to wait
+till the start of the second stage before they could participate in
+relaying. As opposed to the ﬁxed-rate two-hop scheme of [5],
+we propose a cooperative multicast scheme which incorporates
+rateless coding at all the nodes. It can leverage the cooperative
+advantages as the users decode adaptively and are allowed to
+start relaying/cooperating as soon as they succeed in decoding.
+In addition, rateless codes can adapt to channel variations and
+thus provide reliable yet efﬁcient communication. We now
+present the proposed rateless-coded relaying strategies.
+1) DF Cooperation: We ﬁrst explain the rateless-coded
+DF scheme. In this scheme, the base-station broadcasts the
+message using rateless codes with a signal-to-noise ratio
+SNRs , while the users try to decode the source message. Let
+D be the set of users to have decoded the message at any given
+time while Dc be {1, ..., N }/D, where / implies subtraction.
+If a user succeeds in decoding the source message, it stops
+listening and starts forwarding the decoded information using
+SNRu . It is further assumed that the base-station as well as
+the users transmit from independent rateless codebooks.
+
+(1)
+
+In non-cooperative multicast, the users do not transmit. The
+achievable rate at user i is simply given as
+(2)
+
+where we have assumed that the base-station uses all available
+system power. This ensures a fair comparison of cooperative
+and non-cooperative multicast since both employ the same
+system power. Since |ci |2 follows an exponential distribution,
+the outage probability for a given target rate R is given as
+
+=
+
+|cj |2 SNRs  ,
+
+log2 1 +
+j=1
+
+A. Non-Cooperative Multicast
+
+Pr (R1 (c, SNRt ) < R)
+(2R − 1)ξ
+1 − exp −
+SNRt
+
+=
+
+
+
+N
+
+
+
+In this section, we will present the proposed rateless coded
+hybrid ADF strategy, along with an algorithm for evaluating
+the performance. In addition, we will also discuss the rateless
+coded DF strategy, as well as the information theoretic upper
+bound. However, we ﬁrst present the performance analysis for
+a non-cooperative multicast channel.
+
+=
+
+(5)
+
+with
+
+III. C OOPERATION S TRATEGIES AND P ERFORMANCE
+A NALYSIS
+
+p (R, SNRt )
+
+(4)
+
+B. Upper Bound
+
+Note that because of channel symmetry, the outage rate
+and the outage probability for all users will be identical, i.e.
+o
+Ri (p, SNR) = Ro (p, SNR), and pi (R, SNR) = p (R, SNR) ∀
+i = 1, . . . , N . Thus, without loss in generality, we will consider the outage behavior of user 1 for performance analysis.
+
+Ri (c, SNRt ) = log2 1 + |ci |2 SNRt ,
+
+SNRt
+ln (1 − p)
+ξ
+
+(3)
+
+2
+
+For outage detection, we use the bucket ﬁlling approach of
+[6] where each user is assigned an information bucket of
+unit volume. A full information bucket indicates that the user
+is capable of decoding the source message. If the users are
+subjected to a peak power constraint, the information bucket
+ﬁll-rate for user i ∈ Dc can be expressed as
+
+
+Fi(DF ) = log2 1 + |ci |2 SNRs +
+
+|cij |2 SNRu 
+
+the received symbols while simultaneously trying to decode
+the source message. When a user succeeds in decoding the
+source message, it stops amplifying and starts forwarding the
+decoded version using a rateless code.1 Meanwhile, the basestation also continues to transmit using an independent rateless
+code. It is assumed that the base-station transmits until either
+all the users have decoded the message, or a certain maximum
+time is elapsed. We propose two different ADF strategies
+which are described below in detail.
+Multi-Slot ADF (ADF-MS): In multi-slot ADF, the total
+available bandwidth is initially divided into N+1 orthogonal
+bands(slots) of equal width – one for the base-station and one
+for each of the N users. In order to improve the spectral
+efﬁciency, the users/base-station are allowed to redistribute
+their bandwidth such that there are |Dc | + 1 orthogonal bands
+at any given time: The base-station and the users belonging to
+the set D transmit in the same band (we call it the source
+band) from independent rateless codebooks while each of
+the remaining users (belonging to the set Dc ) employ their
+respective bands to amplify and forward what they receive
+in the source band. It should be noted that each user listens
+to the transmission in all the bands except the one in which
+it transmits – thus ADF-MS is half-duplex. The signal Yis
+received in the source band at user i is given as
+
+(6)
+
+j∈D
+
+However, in case of an energy or an average power constraint at the individual users, the modiﬁed ﬁll-rate expression
+is given as
+
+
+2
+|cij | SNRu 
+(7)
+Fi(DF ) = log2 1 + |ci |2 SNRs +
+1 − Rtd [j]
+j∈D
+
+where td [j] is the normalized time at which user j ∈ D
+decodes its message and R is the target rate. As a user
+does not transmit till it decodes, the normalization factor
+(1 − Rtd [j]) ensures that it consumes all of its available
+energy in relaying. We refer to the DF schemes corresponding
+to (6) and (7) as (un-normalized) DF, and normalized DF,
+respectively. As opposed to normalized DF where each user
+is allowed to use a scaled transmit power P/(1 − Rtd [i]])
+while relaying, un-normalized DF requires all the users to
+relay with a transmit power not greater than P , regardless
+of the time at which they decode the source message. It
+can be veriﬁed that if SNRu = 0, and SNRs = SNRt , both
+(6) and (7) degenerate to the ﬁll-rates corresponding to the
+direct non-cooperative multicast case. We now describe the
+bucket-ﬁlling algorithm that we use for outage detection:
+01
+02
+03
+04
+05
+06
+07
+08
+09
+10
+11
+12
+
+:
+:
+:
+:
+:
+:
+:
+:
+:
+:
+:
+:
+
+Yis [n] = ci X[n] +
+
+s
+cij Xj [n] + Zi [n]
+
+(8)
+
+j∈D,j=i
+s
+where Zi represents the noise in the source band at user i.
+Since the total bandwidth is divided into |Dc | + 1 bands of
+s
+equal width, the variance of the AWGN Zi [n] is given as
+−1
+(|Dc | + 1) . Similarly, the source band signal Yij ampliﬁed
+by user j (∀j ∈ Dc ) that is received at user i is given as
+
+Initialize: t = 0; D = ∅
+Initialize: Ui = 1, i = 1, ..., N.
+1
+While (user 1 ∈ Dc and t ≤ R )
+Update ﬁll rates Fi using (7)
+∀i ∈ Dc
+U
+Calculate ﬁll times: ti = Fi
+∀i ∈ Dc
+i
+Calculate minimum ﬁll time: tm = mini∈Dc (ti )
+Update Volumes: Ui = Ui − tm × Fi
+∀i∈Dc
+Update set: D = D {i ∈ Dc |ti = tm }
+Update time: t = t + tm
+Update decoding times:td [j] = t∀{j ∈ Dc |tj = tm }
+end While
+1
+If t > R Outage, else Succesful Decoding
+
+j
+Yij [n] = cij Aj (Yjs [n − 1]) + Zi [n],
+
+(9)
+
+j
+j
+where Zi is the corresponding noise with E[|Zi |2 ] =
+−1
+c
+(|D | + 1) and Aj is the ampliﬁcation factor employed by
+user j. The value for Aj can be computed directly from the
+constraint A2 E[|Yjs |2 ] = SNRu , and is given as
+j
+
+A2 =
+j
+
+SNRu
+s
+|cjm |2 SNRu + E[|Zj |2 ]
+
+|cj |2 SNRs +
+
+.
+
+(10)
+
+m∈D
+
+Similar to the previous scheme, we can use the bucket-ﬁlling
+algorithm to detect outages for ADF-MS. In order to obtain the
+expression for the ﬁll-rate, we represent the signals received
+at a user i∈ Dc in matrix form as:
+
+Using Monte-Carlo simulations, this outage-detection
+algorithm can be used to calculate the outage probability, as
+well as the outage rate.
+2) Hybrid ADF Cooperation: In DF, users start to cooperate only after they have decoded the source message. However,
+it is possible to have further improvement in performance if the
+users yet to decode also participate in relaying. With this motivation, we propose a hybrid Amplify/Decode-and-Forward
+(ADF) relaying strategy in which AF is used in conjunction
+with DF. In ADF, the users transmit the ampliﬁed versions of
+
+Yi = H i X + Zi
+
+(11)
+
+i
+
+where the vector Y consists of the received signal in each of
+the (|Dc | + 1) receiving bands at user i, with each signal component scaled by the standard deviation of the corresponding
+1 Note that the proposed ADF scheme is different from a general relaying
+selection strategy (e.g. [8]) where depending on the channel conditions, either
+AF or DF is employed.
+
+3
+
+equivalent noise, and is given by (∀j ∈ Dc )
+
+IV. S IMULATION R ESULTS
+
+We now present the results obtained using Monte Carlo
+, · · · ]T simulations for each one of the schemes mentioned above.
+−1
+(|Dc | + 1) (1 + |cij |2 |Aj |2 )
+Fig. 1 shows the outage probability vs the total system signalto-noise ratio SNRt curves for N =10 users, target rate R = 0.1
+The vector X = [Xs , · · · , Xj , · · · ]T ∀j ∈ D is a collection b/s/Hz and ξ = 5. It can be observed that cooperative schemes
+of the signals being transmitted from the source and the users provide an appreciable gain in performance compared to the
+in the set D, and H i is the corresponding (|Dc |+1)×(|D|+1) non-cooperative (direct) multicast. Furthermore, a comparison
+coefﬁcient matrix for user i which could be easily computed between the discussed rateless-coded strategies and the ﬁxedfrom (8)–(10). The equivalent noise vector Zi has i.i.d. AWGN rate two-hop scheme shows that the former provides a signiﬁelements of unit variance. The information bucket ﬁll-rate for cant gain over the latter. For example, at an outage probability
+user i ∈ Dc can be calculated using [9]
+of p = 0.02, ADF-MS outperforms the two-hop strategy by
+1
+a margin of approximately 3.4 dB. It can also be seen that
+i X i∗
+Fi(ADF −M S) = c
+log2 det I|Dc |+1 + H R H
+|D | + 1
+10
+(12)
+where (.)∗ represents conjugate transpose, RX is the covariance matrix of the vector X and I|Dc |+1 is an identity matrix
+of order |Dc | + 1. Since the base-station and successful users
+are assumed to transmit from independent rateless codebooks,
+Direct
+DF
+we have RX = ID+1 SNR.
+10
+DF (normalized)
+ADF_MS
+Dual-Slot ADF (ADF-DS): We now present the dual-slot
+ADF_DS
+AF
+ADF scheme in which the total available bandwidth is
+Two Hop
+Upper Bound
+divided equally into two frequency slots. Similar to ADF-MS,
+the base-station and successful users transmit in the same
+frequency band using independent rateless codebooks. The
+10
+difference from ADF-MS is that all the remaining users now
+share the same frequency band (we call it the AF band) to
+−2
+−1
+0
+1
+2
+3
+4
+5
+6
+7
+8
+SNR (dB)
+amplify and forward the information symbols received in the
+source band. Hence, the modiﬁed expression for the signal
+Fig. 1. Outage probability versus the system signal-to-noise ratio SNRt for
+received at user i in the AF band is
+a ﬁxed rate of R=0.1 b/s/Hz, N =10 users, and ξ = 5.
+Yi = [
+
+Yij
+
+Yis
+,··· ,
+s
+E[|Zi |2 ]
+
+Outage Probability
+
+0
+
+−1
+
+−2
+
+t
+
+YiAF [n] =
+
+AF
+cij Aj (Yjs [n − 1]) + Zi [n]
+
+(13)
+
+j∈D c ,j=i
+
+0.5
+
+Yjs
+
+where
+and Aj are the same as given in (8) and (10),
+s
+AF
+respectively, and with E[|Zi |2 ] = E[|Zi |2 ] = 1/2. As
+before, we can express the received signals at a user i ∈ Dc
+in matrix form as
+˜i
+˜i
+˜i
+Y =H X+Z
+(14)
+√
+
+√
+
+2Yis , √1+
+
+2YiAF
+2
+2
+c ,j=i |cij | |Aj |
+j∈D
+
+DF
+DF (normalized)
+ADF_MS
+ADF_DS
+AF
+Two Hop
+
+0.4
+Outage Spectral Efficiency (bits/s/Hz)
+
+˜i
+with Y =
+
+0.45
+
+T
+
+consisting of
+
+the signals received in the two frequency bands at user i scaled
+by the standard deviation of the equivalent noise. The vector
+˜i
+X is the same as in ADF-MS, H is the corresponding (2 ×
+˜i
+(|D| + 1)) coefﬁcient matrix, and Z is the noise vector with
+i.i.d elements of unit variance. We again use the bucket-ﬁlling
+approach for outage detection. The ﬁll-rates for this scheme
+can be calculated using [9]
+
+0.35
+
+0.3
+
+0.25
+
+0.2
+
+0.15
+
+0.1
+
+0.05
+
+0
+12.5
+
+13
+
+13.5
+
+14
+
+14.5
+
+15
+Eb (dB)
+
+15.5
+
+16
+
+16.5
+
+17
+
+17.5
+
+Fig. 2. Outage rate versus the system energy per bit Eb for ﬁxed outage
+probability p=0.02, N =10 users, and ξ = 5.
+
+∗
+1
+˜i
+˜i
+log2 det I2 + H RX H
+.
+(15)
+2
+Since all the codebooks are assumed to be independent, we
+have RX = ID+1 SNR. It should be noted that ADF-DS is
+inherently full-duplex because the users transmit and receive
+simultaneously in the AF band.
+
+Fi(ADF −DS) =
+
+the rateless coded hybrid ADF cooperation outperforms the
+individual AF2 and DF schemes. For instance, at an outage
+probability of p = 0.02, ADF-MS outperforms rateless coded
+AF and normalized DF cooperation by approximately 1.3 and
+2 The rateless coded AF we consider is similar to ADF-MS except that the
+users continue to relay using AF even if they have decoded the message.
+
+4
+
+0
+
+10
+
+Outage Probability
+
+2.5 dB, respectively. Moreover, the performance gap between
+ADF and rateless-coded DF cooperation increases further (by
+approximately 0.3 dB at p = 0.02) if we impose a peak power
+constraint at individual users. This is because un-normalized
+DF fails to consume the total available energy at the nodes
+and performs worse than the normalized DF scheme.
+For a ﬁxed outage probability p=0.02, Fig. 2 shows the outage
+rate plotted against the system energy per bit Eb = (N +1)SNR
+Ro (p,SNR)
+for N =10 users and ξ = 5. It is evident that the ADF schemes
+provide signiﬁcant reduction in the required Eb compared
+to individual AF and DF strategies as well as the two-hop
+scheme, specially in the low-power/low-rate regime. For example, with ADF-MS, the energy per bit required to achieve an
+outage rate of 0.05 b/s/Hz is 1.6, 2.8 and 3.4 dB less than that
+required by rateless coded AF, rateless coded normalized DF
+cooperation, and two-hop DF cooperation, respectively. Thus
+the proposed cooperation strategies are of particular interest
+in applications such as wireless sensor networks where nodes
+have limited energy resources and/or the required spectral
+efﬁciencies are low. It can also be seen that at relatively higher
+rates, ADF-DS performs better than ADF-MS. This makes
+intuitive sense since in ADF-DS the total bandwidth is divided
+into only two equal slots, as opposed to (Dc +1) slots in ADFMS which plays a role in decreasing the spectral efﬁciency
+of ADF-MS over ADF-DS at relatively higher signal-to-noise
+ratios. Also, the curves for AF and both the ADF schemes
+exhibit a dipping behavior (near the axis) indicating that the
+minimum value of Eb is achieved for a non-zero spectral
+efﬁciency. This is consistent with the results in [10] in which a
+similar behavior was observed for AF cooperation in a threenode relay network under an ergodic rate setting.
+Figs. 3 and 4 show similar results for ξ = 2 where
+the performance of rateless coded AF degrades compared to
+normalized DF. However, the hybrid ADF still outperforms its
+nearest competitor by a handsome margin. For example, it can
+be seen from Fig. 3 that the performance gap between ADFMS and normalized DF is approximately 1.42 dB at p = 0.02.
+Similarly, in Fig. 4 ADF-MS outperforms normalized DF by
+1.35 dB at an outage rate of 0.05 b/s/Hz.
+
+−1
+
+10
+
+Direct
+DF
+DF (normalized)
+ADF_MS
+ADF_DS
+AF
+Two Hop
+Upper Bound
+
+−2
+
+10
+
+−5
+
+−4
+
+−3
+
+−2
+
+−1
+
+0
+SNRt (dB)
+
+1
+
+2
+
+3
+
+4
+
+5
+
+Fig. 3. Outage probability versus the system signal-to-noise ratio SNRt for
+a ﬁxed rate of R=0.1 b/s/Hz, N =10 users, and ξ = 2.
+0.5
+
+0.45
+
+Outage Spectral Efficiency (bits/s/Hz)
+
+0.4
+
+0.35
+
+0.3
+
+DF
+DF (normalized)
+ADF_MS
+ADF_DS
+AF
+Two Hop
+
+0.25
+
+0.2
+
+0.15
+
+0.1
+
+0.05
+
+0
+10
+
+10.5
+
+11
+
+11.5
+
+12
+
+12.5
+Eb (dB)
+
+13
+
+13.5
+
+14
+
+14.5
+
+15
+
+Fig. 4. Outage rate versus the system energy per bit Eb for ﬁxed outage
+probability p=0.02, N =10 users, and ξ = 2.
+
+[3] A. Sendonaris, E. Erkip, and B. Aazhang. User cooperation diversity.
+Part II. Implementation aspects and performance analysis. Communications, IEEE Transactions on, 51(11):1939–1948, 2003.
+[4] O. Alay, P. Liu, Z. Guo, L. Wang, Y. Wang, E. Erkip, and S. Panwar.
+Cooperative layered video multicast using randomized distributed space
+time codes. In INFOCOM Workshops 2009, IEEE, pages 1–6. IEEE,
+2009.
+[5] H. Zhao and W. Su. Cooperative wireless multicast: performance
+analysis and power/location optimization. Wireless Communications,
+IEEE Transactions on, 9(6):2088–2100, 2010.
+[6] M. Uppal, A. Høst-Madsen, and Z. Xiong. Outage capacity of the
+broadcast channel in the low power regime. In Information Theory
+Proceedings (ISIT), 2010 IEEE International Symposium on, pages 609–
+613. IEEE.
+[7] T.M. Cover and J.A. Thomas. Elements of information theory, volume 6.
+Wiley Online Library, 1991.
+[8] B. Can, H. Yomo, and E. De Carvalho. Hybrid forwarding scheme
+for cooperative relaying in ofdm based networks. In Communications,
+2006. ICC’06. IEEE International Conference on, volume 10, pages
+4520–4525. IEEE, 2006.
+[9] D. Tse and P. Viswanath. Fundamentals of wireless communication.
+Cambridge Univ Pr, 2005.
+[10] Y. Yao, X. Cai, and G.B. Giannakis. On energy efﬁciency and
+optimum resource allocation of relay transmissions in the low-power
+regime. Wireless Communications, IEEE Transactions on, 4(6):2917–
+2927, 2005.
+
+V. C ONCLUSION
+In this paper, we explored an i.i.d fading cooperative multicast channel employing rateless coding at each node. We
+proposed a hybrid ADF cooperation that uses amplify-forward
+in conjunction with decode-forward cooperation. Using outage
+probability and outage rate as performance measures, the proposed hybrid scheme was shown to signiﬁcantly outperform
+the individual ratless-coded AF and DF schemes, as well as
+the ﬁxed-rate two-hop relaying strategy.
+R EFERENCES
+[1] J.N. Laneman, D.N.C. Tse, and G.W. Wornell. Cooperative diversity in
+wireless networks: Efﬁcient protocols and outage behavior. Information
+Theory, IEEE Transactions on, 50(12):3062–3080, 2004.
+[2] KJ Liu, A.K. Sadek, W. Su, and A. Kwasinski. Cooperative communications and networking. Cambridge University Press, 2009.
+
+5
+
+

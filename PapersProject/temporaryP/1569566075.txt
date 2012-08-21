@@ -1,0 +1,921 @@
+Creator:        TeX
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Sat May 19 04:24:51 2012
+ModDate:        Tue Jun 19 12:55:06 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      451005 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569566075
+
+Making WOM Codes Decodable Using Short
+Synchronous WOM Codes
+Nicolas Bitouz´ † , Alexandre Graell i Amat‡ , and Eirik Rosnes§
+e
+† Department
+
+of Electronics, Telecom Bretagne, Brest, France
+of Signals and Systems, Chalmers University of Technology, SE-412 96 Gothenburg, Sweden
+§ Department of Informatics, University of Bergen, N-5020 Bergen, Norway
+nicolas.bitouze@telecom-bretagne.eu, alexandre.graell@chalmers.se, eirik@ii.uib.no
+
+‡ Department
+
+3) For 1 ≤ i ≤ t, Di : {0, . . . , q − 1}n → {1, . . . , Mi },
+and
+• ∀m ∈ {1, . . . , M1 }, D1 (E1 (m)) = m,
+• for 2 ≤ i ≤ t, ∀(m, c) ∈ {1, . . . , Mi } × Im(Ei−1 ),
+Di (Ei (m, c)) = m.
+For simplicity, in the remainder of the paper, we will refer
+to WOM codes simply as codes. The rate of the above code,
+referred to as the WOM-rate, is deﬁned as follows [2]:
+Deﬁnition 2: The rate of generation i ∈ {1, . . . , t} of an
+[n, t : M1 , . . . , Mt ] q-ary code C is
+
+Abstract—While some write once memory (WOM) codes are
+inherently decodable, others require the added knowledge of the
+current generation in order to successfully decode the state of
+the memory. If there is no limit on the code length, n, a binary
+non-decodable t-write WOM code can be made decodable at an
+insigniﬁcant cost in terms of code rate by adding t − 1 cells to
+store the current generation after replicating the code enough
+times for the t − 1 cells to be of negligible weight. This justiﬁes
+the research on non-decodable WOM codes. However, if n is
+bounded, the t − 1 additional cells may introduce a signiﬁcant
+loss in terms of code rate. In this paper, we propose a new method
+to make non-decodable WOM codes decodable at a lower price
+when n is bounded. The main idea is to add cells that do not
+only store the current generation, but also additional data, by
+using a synchronous (t − 1)-write WOM code of length t − 1
+or slightly above which does not contain the all-zero codeword.
+A bound on the rate of a simple family of synchronous WOM
+codes with n = t is given, as well as very short codes from this
+family. Better codes are then obtained by local manipulations of
+these codes. Finally, a construction of synchronous WOM codes
+with good properties is proposed to reach higher values of t.
+
+logq Mi
+n
+and the WOM-rate of C is deﬁned as
+∆
+
+Ri (C) =
+t
+
+∆
+
+Ri (C) =
+
+R(C) =
+i=1
+
+t
+i=1
+
+(1)
+
+logq Mi
+.
+n
+
+(2)
+
+Given t, q and sometimes n, one would like to maximize the
+WOM-rate. In this paper, we only consider binary codes, i.e.,
+q = 2.
+Depending on the structure of the code, the state of the cells
+may or may not sufﬁce to determine the current generation
+(i.e., how many times the block has been written, and which
+map Di should be used to decode). In other words, the code
+is not always decodable. We call decodable codes the codes
+such that for any state of the cells c and any i1 and i2 with
+c ∈ Im(Ei1 ) ∩ Im(Ei2 ), Di1 (c) = Di2 (c). A code is called
+synchronous [1] if a given state of the cells can only be reached
+at a given generation, i.e., the sets Im(Ei ) are disjoint for
+1 ≤ i ≤ t. A simple way to guarantee that a code is synchronous is to force the Hamming weight w of the cells to be
+an injective function of the generation, i.e., for c1 ∈ Im(Ei1 )
+and c2 ∈ Im(Ei2 ), w(c1 ) = w(c2 ) ⇒ i1 = i2 . These codes
+are called laminar in [1]. By construction, synchronous codes
+are decodable. A construction of synchronous (and laminar)
+codes was given in [1] for n = t being a power of two, and
+WOM-rate log2 (t)/2. However, synchronous codes have not
+been extensively studied. Non-synchronous codes can still be
+directly decoded if, when the decoder cannot determine the
+current generation, the choice of Di has no impact on the
+decoded symbol. Notice that synchronous codes are decodable,
+but the reverse does not always hold. For later use, if an [n, t :
+
+I. I NTRODUCTION AND D EFINITIONS
+A write once memory (WOM) [1] is a storage device
+consisting of memory cells that take on q ≥ 2 possible states in
+{0, . . . , q −1}, and such that the state of a given cell cannot be
+decreased. The main problem in the WOM model is to know
+how much information can be stored into n q-ary memory
+cells using t writes (also called generations), starting from
+the all-zero state. Formally, we are looking for t-write WOM
+codes, which are codes designed to store and update data in
+the WOMs using t writes. WOM codes are deﬁned by their
+t encoding and decoding maps. The following deﬁnition is
+taken from [2]:
+Deﬁnition 1: An [n, t : M1 , . . . , Mt ] t-write q-ary WOM
+code C is a coding scheme for n q-ary WOM cells, which
+consists of t pairs of encoding and decoding maps Ei and Di
+(1 ≤ i ≤ t) such that:
+1) E1 : {1, . . . , M1 } → {0, . . . , q − 1}n .
+2) For 2 ≤ i ≤ t:
+n
+• Ei : {1, . . . , Mi } × Im(Ei−1 ) → {0, . . . , q − 1} ,
+• ∀(m, c) ∈ {1, . . . , Mi } × Im(Ei−1 ),
+∀j ∈ {1, . . . , n}, (Ei (m, c))j ≥ (c)j .
+Research supported by the Swedish Agency for Innovation Systems (VINNOVA) under the P36604-1 MAGIC project.
+
+1
+
+M1 , . . . , Mt ] code is synchronous (respectively decodable),
+we will use the superscript “sync”, [n, t : M1 , . . . , Mt ]sync
+(respectively “dec”, [n, t : M1 , . . . , Mt ]dec ). Also, the binary
+cells that can be written from 0 to 1 but not from 1 to 0 are
+called wits [1].
+A non-decodable code C with parameters [n, t :
+M1 , . . . , Mt ] can be turned into a decodable (and even synchronous) code by simply concatenating k instances of C with
+a block of t − 1 cells that stores the current generation (by
+being ﬁlled one by one at each write, starting at the second
+generation). The resulting code is a synchronous code with
+k
+parameters [kn + t − 1, t : M1 , . . . , Mtk ]. Note that if k goes
+to inﬁnity, the WOM-rate of this code goes to the WOM-rate
+of the original code C, R(C). A common approach in the
+literature is to design codes that approach the boundaries of
+the capacity region (see, e.g., [2], [3]), and then make them
+decodable using this method. Therefore, most of the state-ofthe-art high-rate codes are not directly decodable. However,
+if the target application speciﬁes t and n, making a nondecodable code decodable using the above-mentioned method
+can signiﬁcantly degrade its WOM-rate. For instance, consider
+n = 6 and t = 4, and assume that we do not know a decodable
+code of length 6. In this case, we could select a non-decodable
+4-write code of length 3, and append 3 cells to store the current
+generation. The resulting WOM-rate is half the original one,
+as the additional cells only carry information about the current
+generation.
+Notice that if the system must be able to know, when the
+state of the memory is the all-zero vector, whether this is
+because the block is empty or because it contains the allzero codeword, then adding t − 1 cells is not enough to
+make the code decodable, but t cells are required in this case,
+instead. Here we consider the case where t − 1 additional cells
+are enough. The analysis for the other scenario is extremely
+similar.
+In this paper, we propose a different approach to make
+a non-decodable t-write code C decodable. The key idea
+is to append t − 1 additional cells which store not only
+the current generation but also new data, by using a t-write
+synchronous code with length t − 1, and writing generations
+of C and of the synchronous code simultaneously. In the
+scenario where the system must know the difference between
+the all-zero codeword and an empty block of memory, a twrite synchronous code of length t which does not contain
+the all-zero codeword would be required. To unify the search
+for codes for both scenarios, we search for codes with n = t
+which do not contain the all-zero codeword, and we turn
+them into a code suited for the scenario where the distinction
+between the all-zero codeword and an empty block is not
+required, by adding a generation that only contains the allzero codeword. Then, synchronousness guarantees that by
+observing the t−1 new cells, the decoder can always determine
+the current generation, and use this knowledge to decode the
+obtained code. We also consider using t-write synchronous
+codes with length slightly above t−1 (the length should remain
+small, because we do not expect to ﬁnd synchronous codes of
+
+WOM-rate higher than non-decodable ones, thus the highest
+number of cells should be reserved to the non-decodable code).
+In particular, our focus is on binary laminar codes, but the
+proposed approach can be extended to non-laminar codes and
+non-binary codes.
+II. L AMINAR WOM C ODES WITH n = t
+In this section, we focus on building laminar codes with
+n = t, that write exactly 1 wit at each generation. Also,
+in order to simplify the problem, we try to maximize the
+values of Mi generation by generation, rather than globally
+maximizing the WOM-rate. Consider a code C with n = t that
+writes exactly 1 wit per generation, and a generation i > 1.
+Assuming that the previous generations are already ﬁxed, the
+condition we have on Mi is that for every x ∈ Im(Ei−1 ),
+and for every m ∈ {1, . . . , Mi }, there exists y ∈ Im(Ei ) such
+that x ≤ y and Di (y) = m (where x ≤ y if xk ≤ yk for
+n
+all k, 1 ≤ k ≤ n). Denote by Ei the set of binary vectors
+of length n and Hamming weight i. It follows that at each
+n
+generation i, Im(Ei ) ⊆ Ei . We use this set inclusion to make
+our maximization at each generation completely independent
+from the other generations, at the cost of optimality.
+Let us deﬁne the equivalence relation ≡n on Im(Ei ) by
+i
+y ≡n y if and only if Di (y) = Di (y ). Let us refer to the
+i
+equivalence classes of this relation as the codeword classes of
+n
+C at generation i. Codeword classes are subsets Y ⊆ Ei for
+which, if we do not take the previous generations into account,
+the following must hold:
+n
+∀x ∈ Ei−1 , ∃y ∈ Y : x ≤ y.
+
+(3)
+
+n
+We are also interested in the partitions of Ei as a set of
+valid codeword classes. If Y denotes such a partition, we want
+that
+n
+∀Y ∈ Y, ∀x ∈ Ei−1 , ∃y ∈ Y : x ≤ y.
+(4)
+
+Each valid partition Y corresponds to a valid decoding map
+(modulo reordering), and thus each cardinality |Y| to a valid
+Mi . We are therefore interested in ﬁnding the maximum
+cardinality, denoted by Ai (n), of such a partition. We give
+an upper bound on Ai (n):
+Proposition 1: Let Bi (n) be deﬁned by
+
+
+
+
+n
+
+∆ 
+i
+.
+
+(5)
+Bi (n) =
+min
+|Y |
+Y s.t. (3) holds
+
+Then, the maximum cardinality Ai (n) of a partition Y that
+satisﬁes (4) is upper bounded by Ai (n) ≤ Bi (n).
+n
+Proof: Let Y be any partition of Ei . Then,
+|Y| ·
+
+min
+
+Y s.t. (3) holds
+
+|Y |
+
+n
+|Y | = |Ei | =
+
+≤
+Y ∈Y
+
+n
+.
+i
+
+(6)
+
+This holds in particular when Y is of maximum cardinality.
+This bound can be computed using a computer search for
+the smallest Y that satisﬁes (3). The search nis relatively slow,
+|E
+|
+but notice that by lower-bounding |Y | by i−1 (each element
+i
+
+2
+
+TABLE I
+U PPER BOUND Bi (n) ON Ai (n). VALUES IN BOLD ARE CONSTRUCTIVE , AND ARE SUCH THAT Ai (n) = Bi (n).
+i
+n
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+
+1
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+
+2
+
+3
+
+4
+
+5
+
+6
+
+7
+
+8
+
+9
+
+10
+
+11
+
+12
+
+13
+
+14
+
+15
+
+16
+
+1
+1
+3
+3
+5
+5
+7
+7
+9
+9
+11
+11
+13
+13
+15
+
+1
+1
+2
+3
+5
+5
+6
+6
+7
+8
+10
+10
+13
+13
+
+1
+1
+2
+2
+5
+5
+5
+6
+6
+7
+9
+9
+13
+
+1
+1
+2
+2
+3
+4
+5
+6
+6
+7
+9
+9
+
+1
+1
+2
+2
+3
+4
+5
+5
+6
+6
+9
+
+1
+1
+2
+2
+3
+3
+4
+5
+5
+7
+
+1
+1
+2
+2
+3
+3
+5
+5
+6
+
+1
+1
+2
+2
+3
+3
+4
+5
+
+1
+1
+1
+2
+3
+3
+4
+
+1
+1
+2
+2
+3
+3
+
+1
+1
+2
+2
+3
+
+1
+1
+2
+2
+
+1
+1
+2
+
+1
+1
+
+1
+
+n
+y ∈ Ei covers exactly i elements
+closed-form bound:
+
+
+n
+
+i
+Ai (n) ≤ Bi (n) ≤  |E n |
+i−1
+
+i
+
+n
+x ∈ Ei−1 ), we obtain a
+
+
+ 
+ 
+n
+ 
+i
+=
+ (n)
+i−1
+
+
+
+
+
+.
+
+
+in Section II by merging several generations together: taking,
+as the new set of codeword classes, the union of the sets
+of codeword classes of two or more consecutive generations.
+For instance, the [4, 4 : 4, 3, 1, 1]sync code can be turned
+into a [4, 3 : 4, 3, 2]sync code by merging its third and
+fourth generations together. Instead of having one codeword
+class at generation 3 ({1110, 1101, 1011, 0111}) and one at
+generation 4 ({1111}), now the third generation has two
+codeword classes: {1110, 1101, 1011, 0111} and {1111}, and
+there is no fourth generation anymore. Likewise, a [5, 3 :
+5, 3, 4]sync code (of WOM-rate 1.181) can be derived from
+the [5, 5 : 5, 3, 2, 1, 1]sync code by merging the last three
+generations together. However, consider the codeword classes
+of vectors of weight 4. These were constructed in order to
+cover every word of weight 3, while they now only have to
+cover every word of weight 2. The optimization also did not
+allow codeword classes of mixed weights. We can reorganize
+the set of vectors of weight 3 or more into a better balanced
+set of codeword classes. In (8), we give the codeword classes
+of the third generation of a [5, 3 : 5, 3, 6]sync code (of WOMrate 1.298) obtained by reorganizing the third generation of
+the [5, 3 : 5, 3, 4]sync code:
+
+(7)
+
+i
+
+While the closed-form bound can be computed efﬁciently
+and is reached for some values of (n, i) (for instance, for
+n ≤ 3, or for i ≤ 2, or i = n), even for relatively low
+values of n and i, it can be strictly higher than Ai (n).
+For instance, A3 (4) = 1, while the closed-form bound
+4
+4
+is 2. Indeed, E3 = {1110, 1101, 1011, 0111} and E2 =
+{1100, 1010, 1001, 0110, 0101, 0011}, and while each element
+4
+4
+of E3 covers 3 elements of E2 , it is not possible to pick two
+4
+4
+elements of E3 that cover distinct elements of E2 . Therefore,
+4
+the codeword classes in E3 have cardinality at least 3, and not
+n
+|Ei−1 |
+= 2.
+i
+A. Comparison with a Computer Search for Small n
+For very small values of n, the exact value of Ai (n) can be
+computed by conducting a simple exhaustive search on the set
+of codeword classes. Values of Bi (n) are also obtained with
+an exhaustive search, but on the minimum size of codeword
+classes, which is signiﬁcantly faster. The results of the two
+searches are reported for n ≤ 16 in Table I. The values in
+bold font are Ai (n), the others are Bi (n). The few values
+of Ai (n) that were computed exactly match Bi (n), so it is
+unknown whether there are pairs (n, i) such that Ai (n) <
+Bi (n). Note that these values are constructive. For instance, a
+[4, 4 : 4, 3, 1, 1]sync and a [5, 5 : 5, 3, 2, 1, 1]sync code can be
+obtained from the search.
+
+{01111, 11001, 10110}, {10111, 11100, 01011},
+{11011, 01110, 10101}, {11101, 00111, 11010},
+{11110, 10011, 01101}, {11111}.
+
+(8)
+
+For comparison, the 4 codeword classes of the third generation of the [5, 3 : 5, 3, 4]sync code are:
+{11100, 11010, 10101, 01011, 00111} (weight 3 only),
+{11001, 10110, 10011, 01110, 01101} (weight 3 only),
+
+III. L AMINAR WOM C ODES WITH n > t
+
+{11110, 11101, 11011, 10111, 01111} (weight 4 only),
+
+The constraints that we applied on the codes of Section II,
+especially the constraint that n = t, keep the code WOMrates relatively low. Lifting the constraint on n = t allows
+for higher WOM-rates, and laminar codes with n slightly
+larger than t can easily be derived from codes obtained as
+
+{11111} (weight 5).
+
+(9)
+
+Other choices can be made regarding which generations to
+merge to obtain a 3-write code from the [5, 5 : 5, 3, 2, 1, 1]sync
+code, but lower WOM-rates are obtained.
+
+3
+
+TABLE II
+R ATES OF DECODABLE CODES OBTAINED BY CONCATENATING
+SYNCHRONOUS CODES , WITH TARGET CODE LENGTH n = 64.
+
+IV. A C ONSTRUCTION FOR S YNCHRONOUS WOM C ODES
+OF H IGHER t
+
+t
+Rate of non-dec.
+Rate of dec.
+With data
+We propose a construction to obtain synchronous codes
+code from [4]
+with no data
+Sync. code
+Rate
+for higher values of t by concatenating n instances of a
+[3, 3 : 3, 1, 1]
+1.7941
+4
+1.8564
+1.7694
+synchronous code of length n, and using a second synchronous
+[5, 3 : 5, 3, 6]
+1.8128
+5
+1.9664
+1.8435
+[4, 4 : 4, 3, 1, 1]
+1.8995
+code of length n to decide, at each generation, which of the
+6
+2.1297
+1.9633
+[5, 5 : 5, 3, 2, 1, 1]
+2.0400
+n instances of the ﬁrst code are going to be modiﬁed.
+[6, 6 : 6, 5, 3, 1, 1, 1]
+2.0677
+7
+2.1697
+1.9663
+Theorem 1: Let C be an [n, t : M1 , . . . , Mt ] synchronous
+[8, 6 : 8, 4, 6, 3, 4, 2]
+2.0886
+code of WOM-rate R, and C an [n , t : M1 , . . . , Mt ]
+TABLE III
+synchronous code of WOM-rate R . Then there exists an
+R ATES OF DECODABLE CODES OBTAINED BY CONCATENATING
+[nn , tt : M1 M1 , . . . , M1 Mt , . . . , Mt M1 , . . . , Mt Mt ] synSYNCHRONOUS CODES , WITH TARGET CODE LENGTH n = 256.
+t
+t
+chronous code C1 of WOM-rate R1 = n R + n R .
+t
+Rate of non-dec.
+Rate of dec.
+With data
+A formal proof is omitted here, and we only give the idea of
+code from [4]
+with no data
+Sync. code
+Rate
+how the construction works. We ﬁrst consider only the case
+[3, 3 : 3, 1, 1]
+1.8408
+4
+1.8564
+1.8346
+where n = t (in which C writes exactly one wit at each
+[5, 3 : 5, 3, 6]
+1.8455
+5
+1.9664
+1.9358
+[4, 4 : 4, 3, 1, 1]
+1.9498
+generation). The key idea is that the nn wits of C1 are divided
+6
+2.1297
+2.0881
+[5, 5 : 5, 3, 2, 1, 1]
+2.1073
+into n blocks of n wits, and the tt generations are divided
+[6, 6 : 6, 5, 3, 1, 1, 1]
+2.1442
+7
+2.1697
+2.1188
+into t stages of t generations. In the ﬁrst stage, during each
+[8, 6 : 8, 4, 6, 3, 4, 2]
+2.1494
+of the ﬁrst t generations we use the encoding function of the
+ﬁrst generation of C to write in exactly one empty block of n
+cells. C tells us which of the n blocks is going to be written: encode the same m0 as in the case n = t (since adding Mp
+it writes exactly one wit among n per generation, which we has no effect modulo Mp ).
+map to one block among the n blocks at each generation.
+Let us now establish the WOM-rate R1 of C1 .
+After this ﬁrst stage, each block contains a codeword of the
+t
+t
+p=1
+l=1 log(Mp Ml )
+ﬁrst generation of C. During the second stage, we use the
+R1 =
+nn
+encoding function of the second generation of C, and C once
+
+
+
+t
+t
+again points to the block that will be written. This process is
+1 
+t
+log
+Mp + log  (Ml )t  (10)
+=
+repeated for all t stages. Thus, during the l-th generation of
+nn
+p=1
+l=1
+the p-th stage (1 ≤ p ≤ t, 1 ≤ l ≤ t ), we pick messages in
+{1, . . . , Mp × Ml }, and each message m1 can be mapped to
+1
+t
+t
+=
+(t · nR + t · n R ) = R + R .
+a pair of messages (m, m ) ∈ {1, . . . , Mp } × {1, . . . , Ml }.
+nn
+n
+n
+From the decoder perspective, at all times, either every
+block has codewords of the same generation p of C, or there A. Example
+are blocks at generation p and blocks at generation p − 1.
+Let C be the [4, 3 : 4, 3, 2]sync code deﬁned by:
+Because C is synchronous, the decoder has knowledge of the
+1
+2
+3
+4
+value of p (the current stage). Let c = (c1 , . . . , cn ) where −1
+D1
+{0001}
+{0010}
+{0100}
+{1000}
+ck = 0 if the k-th block is at generation p − 1 and ck = 1 if −1
+{1100, 0011} {1010, 0101} {1001, 0110}
+−
+the k-th block is at generation p. The decoder knows c and D2
+{0111, 1011,
+−1
+therefore m . However, it does not have knowledge of which D3
+{1111}
+−
+−
+1101, 1110}
+block of wits was written last. Therefore, we do not directly
+encode m in the block that is written: instead, we encode a Let C be the [2, 2 : 2, 1]sync code deﬁned by:
+message m0 such that by decoding every block of wits at
+1
+2
+generation p using C, and then taking the modulo Mp sum of
+(D1 )−1 {01} {10}
+the decoded messages in {1, . . . , Mp }, we recover m. m0 is
+(D2 )−1 {11}
+−
+(modulo Mp ) m minus the sum of the decoded messages of
+all the blocks at generation p (the encoder must therefore be
+The code C1 obtained with the construction is a [8, 6 :
+able to decode C).
+8, 4, 6, 3, 4, 2]sync code. Consider that the eight cells are in
+Now, if n = t , C may write several wits during some state (c1 , c2 ) = (1100, 0010). Let us ﬁrst consider the decodgenerations. When this happens, the encoder of C1 writes in ing of the message. The generation in C of the ﬁrst block c1 is
+every block pointed at by C , once again so that the modulo 2, and that of the second block c2 is 1, thus p = 2 (the highest
+Mp sum of the decoded messages is m. Here, there are more of the two) and c = (10). The fact that C is synchronous
+degrees of freedom than in the case n = t (in which m0 was guarantees that only one encoding function of C has c in its
+fully determined). A simple way to deterministically choose range: here, it is the encoding function for l = 1. Thus, we are
+the values that we encode in each of the blocks that will be at the ﬁrst generation (l = 1) of the second stage (p = 2), so
+written is to encode Mp in each block but the last, and then the overall generation is i = (p−1)t +l = (2−1)×2+1 = 3.
+
+4
+
+We have m = D1 (10) = 2. m is the modulo Mp sum of
+Dp (ck ) for all indices k of a block at generation p of C.
+Here, there is only one block at generation p = 2 for C:
+block c1 = (1100), therefore m = D2 (c1 ) (mod 3) = 1. The
+original message pair was therefore (1, 2). This can be mapped
+to m1 ∈ {1, . . . , Mp × Ml } by m1 = (m − 1)Ml + m , for
+instance, which gives m1 = 0 × 2 + 2 = 2.
+Let us now encode a new message m1 = 2 ∈ {1, 2, 3} for
+generation 4. Our new m and m are 2 and 1, respectively,
+so that (m − 1)Ml + m = (2 − 1) × 1 + 1 = 2. c = (10)
+will become c = (11) because E2 (1, 10) = (11). Therefore,
+the second block is going to be written (because the second
+wit of c changes). We ﬁrst decode all the blocks already at
+generation p = 2: here, we only have one block at generation
+p = 2, and D2 (c1 ) = D2 (1100) = 1. We therefore encode in
+the second block c2 a message m0 such that 1 + m0 = m
+(mod Mp ), where Mp = M2 = 3 and m = 2. Thus, m0 = 1.
+c2 is then replaced by Ep (1, 0010) = (0011). The state of the
+cells is (1100, 0011) after this encoding phase.
+
+V. R ESULTS
+We compare our method of making WOM codes decodable
+with the method that adds t − 1 data-less cells. For this
+comparison, we consider two different target code lengths:
+n = 64 and n = 256. We then assume, for each value of
+n and for t between 4 and 7, that there is a code with WOMrate equal to the best currently known WOM-rate for t-write
+codes (from [4]), and with length n minus the length of the
+synchronous code that we concatenate to it. We do not use the
+actual code lengths at which these state-of-the-art WOM-rates
+are reached because they are very large [5].
+The results are reported in Tables II and III. The second
+column of each table reports the state-of-the-art WOM-rate of
+non-decodable codes, for each value of t. The third column
+shows the WOM-rate that would be obtained by appending
+t − 1 data-less cells to a code of length n − t + 1 and WOMrate equal to the one reported in the second column. The
+last two columns show, for various synchronous codes, the
+WOM-rate that we obtain for the same target length. The
+[3, 3 : 3, 1, 1]sync , [4, 4 : 4, 3, 1, 1]sync , [5, 5 : 5, 3, 2, 1, 1]sync ,
+and [6, 6 : 6, 5, 3, 1, 1, 1]sync codes are from Section II, the
+[5, 3 : 5, 3, 6]sync code is from Section III, and the [8, 6 :
+8, 4, 6, 3, 4, 2]sync code is from the construction of Section IV.
+Note that our technique yields higher WOM-rates compared to
+just appending a block of t − 1 cells with no information, for
+both target lengths. These WOM-rates are (to the best of our
+knowledge) also higher than the best WOM-rates for binary
+multiple-write codes (and hence better than the rates of any
+directly decodable code) known prior to [4], which justiﬁes
+our approach.
+
+B. Results
+Let us denote by F (C, C ) the code obtained by applying
+the construction of Theorem 1 to C and C . We can iterate the
+above construction by choosing C and C , and then deﬁning
+C0 = C and for all m > 0, Cm = F (Cm−1 , C ). This
+generates codes with even higher values of t, which have to
+be compared with a construction of synchronous codes from
+[1] (where n = t is any power of two and the WOM-rate is
+log2 (t)/2). Notice that the two constructions happen to match
+when we take as C = C the trivial [2, 2 : 2, 1]sync code.
+First, we restrict ourselves to codes with n = t (which are
+easier to compare) and we ﬁx C = C. The WOM-rate of the
+tm -write code Cm after m iterations of the construction is
+R(C)
+log2 (tm ).
+R(Cm ) = mR(C) = logt (tm )R(C) =
+log2 (t)
+(11)
+R(C)
+Therefore, for codes with n = t, the higher log (t) is, the better
+2
+this iterated construction works. The code that maximizes this
+ratio among those found by our computer search is the one
+R(C)
+with n = t = 2 (with log (t) = 1 ), making the codes from
+2
+2
+[1] the best in terms of asymptotic WOM-rate until codes
+for higher values of n = t are found. For instance, Table I
+suggests that a [8, 8 : 8, 7, 5, 5, 2, 2, 1, 1]sync code could exist,
+with a ratio of 0.519 (and even better synchronous codes
+could exist even for n = t = 8, if we remove the added
+constraints from Section II). However, when the code length is
+not a power of two, our construction yields codes with lengths
+of the form 2a 3b 5c by mixing different elementary codes of
+lengths 2, 3, and 5 as the C codes, instead of always using the
+length-2 code. This is a much denser coverage of the potential
+values of t. Furthermore, if we consider codes with n slightly
+greater than t, we can reach higher WOM-rates at equal values
+of t. Consider, for instance, the code F (C, C ) with C the
+[4, 3 : 4, 3, 2]sync code and C the [2, 2 : 2, 1]sync code. The
+construction then yields a [8, 6 : 8, 4, 6, 3, 4, 2]sync code of
+WOM-rate 1.512 (larger than log2 (t)/2 both for t = 6 and
+t = 8). This is the example code of Section IV-A.
+
+VI. C ONCLUSION
+In this paper, we proposed short synchronous WOM codes
+as a basic tool to make non-decodable WOM codes decodable
+while preserving the WOM-rate as much as possible. We
+derived bounds for a simple family of short synchronous
+WOM codes, and constructed some synchronous WOM codes
+for small values of t. Furthermore, we proposed a construction
+method to build synchronous WOM codes for higher values of
+t obtained by concatenating shorter synchronous WOM codes.
+ACKNOWLEDGMENTS
+The authors wish to thank S. Kayser for the valuable
+discussion.
+R EFERENCES
+[1] R. L. Rivest and A. Shamir, “How to reuse a “write-once” memory,”
+Information and Control, vol. 55, no. 1-3, pp. 1–19, Oct./Nov./Dec. 1982.
+[2] R. Gabrys, E. Yaakobi, L. Dolecek, P. H. Siegel, A. Vardy, and J. K.
+Wolf, “Non-binary WOM-codes for multilevel ﬂash memories,” in Proc.
+IEEE Inform. Theory Workshop, Paraty, Brazil, Oct. 2011, pp. 40–44.
+[3] E. Yaakobi, S. Kayser, P. H. Siegel, A. Vardy, and J. K. Wolf, “Efﬁcient
+two-write WOM-codes,” in Proc. IEEE Inform. Theory Workshop, Dublin,
+Ireland, Aug./Sep. 2010.
+[4] S. Kayser, E. Yaakobi, P. H. Siegel, A. Vardy, and J. K. Wolf, “Multiplewrite WOM-codes,” in Proc. 48th Annual Allerton Conf. Commun.,
+Control, and Computing, Monticello, IL, Oct. 2010, pp. 1062–1068.
+[5] S. Kayser, private communication.
+
+5
+
+

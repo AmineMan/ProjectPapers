@@ -1,0 +1,997 @@
+Creator:        TeX
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Sat May 19 00:34:24 2012
+ModDate:        Tue Jun 19 12:56:16 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      650116 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569566223
+
+On the Maximum A Posteriori Decoding
+Thresholds of Multiuser Systems with Erasures
+Phong S. Nguyen, Arvind Yedla, Henry D. Pﬁster, and Krishna R. Narayanan
+Department of Electrical and Computer Engineering, Texas A&M University
+upper bounds on the MAP thresholds [8], [9]. This paper
+focuses, however, on the erasure noise models. The simplicity
+of these toy models allows one to perform a thorough analysis
+and provide insights into the general case. For each problem,
+we derive the appropriate EXIT curve and use the natural
+area theorem to obtain an upper bound on the MAP threshold.
+We then provide a counting argument that allows numerical
+veriﬁcation of the bound’s tightness.
+As mentioned earlier, one direct application of this analysis
+is veriﬁcation of the threshold saturation phenomenon, the
+underlying mechanism behind the impressive performance
+of SC codes. While the BP thresholds of SC were recently
+observed to get close to the Shannon limits of these considered problems [8], [10], with the MAP threshold evaluated
+here, one can see that the BP thresholds of SC codes saturate
+not just to some value that can be close to the “capacity”
+but this value turn outs to be exactly the MAP threshold of
+the underlying ensemble. Since the MAP thresholds can be
+shown to converge to the Shannon limit as the node degrees
+increase, it is not surprising that SC codes can achieve the
+entire capacity region of the corresponding problems.
+A. Preliminaries
+The degree distribution (d.d.) of a standard LDPC ensemble is deﬁned, from the edge perspective, by the pair
+of polynomials (λ, ρ) and, from the node perspective, by
+(L, R) [1]. The LDPC ensemble of length n with d.d. (λ, ρ)
+is denoted by LDPC(n, λ, ρ). We also consider two edge type
+LDPC ensembles [11] whose d.d.s are deﬁned by
+
+Abstract—A fundamental connection between the belief propagation (BP) and maximum a posteriori (MAP) decoding thresholds was derived by Méasson, Montanari, and Urbanke using
+the area theorem for extrinsic information transfer (EXIT)
+curves. This connection allows the MAP threshold, for the
+binary erasure channel, to be evaluated efﬁciently via an upper
+bound that can be shown to be tight in some cases.
+In this paper, a similar analysis is used to extend these
+results to several multiuser systems, namely a noisy SlepianWolf problem and a multiple-access channel with erasures.
+The simplicity of these channel models allows for rigorous
+analysis and enables the derivation of upper bounds on the
+MAP thresholds using EXIT area theorems. In some cases,
+one can also show these bounds are tight. One interesting
+application is that the MAP thresholds can be compared with
+the BP thresholds of spatially-coupled codes to verify threshold
+saturation for the corresponding systems.
+
+I. I NTRODUCTION
+The graph structure of low-density parity-check (LDPC)
+codes leads naturally to belief propagation (BP), a lowcomplexity message-passing decoding, which is optimal if
+the graph has no cycles. On the other hand, maximum a
+posteriori (MAP) decoding is globally optimal but its complexity is prohibitively large in many scenarios. Associated
+with each decoder is a maximum noise threshold, below
+which it is possible to have reliable communication. In many
+cases, there is a gap between the BP and MAP thresholds [1].
+Evaluating these two thresholds, for an iterative decoding
+system, is an important part of understanding the codes and
+decoding algorithms.
+An interesting example is the threshold saturation phenomenon of spatially-coupled (SC) LDPC codes, whereby
+the BP threshold improves to the MAP threshold [2]. While
+determining the BP threshold is straightforward via densityevolution (DE) analysis, evaluating the MAP threshold directly is problematic due to complexity issues. Fortunately,
+for LDPC codes on the binary erasure channel (BEC), a
+fundamental relationship between the BP and MAP thresholds can be found using extrinsic information transfer (EXIT)
+curves. One can use this connection to upper bound the MAP
+threshold [3]. This bounding technique has now been used in
+various point-to-point communication problems [4], [5], [6]
+and also to evaluate the MAP threshold of turbo codes [7].
+In this paper, we use a similar analysis to evaluate the MAP
+thresholds of LDPC codes over two multiuser systems: the
+noisy Slepian-Wolf (SW) problem and the two-user multipleaccess channel (MAC). For more realistic noise models, one
+can use generalized EXIT (GEXIT) analysis to compute
+
+[1]
+
+i j
+Li,j z1 z2 ,
+
+L, R[1] , R[2] =
+i,j
+
+[2]
+
+Ri z i ,
+i
+
+Ri z i ,
+i
+
+where Li1 ,i2 gives the fraction of bit nodes with ij outgoing
+[j]
+edges of type j and Ri gives the fraction of check nodes
+with i edges of type j for j ∈ {1, 2}.
+Throughout this paper, X[j] is used to denote a vector of
+bits where [j] indicates user (or channel) j for j ∈ {1, 2}.
+[j]
+Likewise, Xi represents the ith bit and X [j] is sometimes
+[j]
+used if the bit index is not emphasized. For simplicity, X∼i
+is used when the ith bit is omitted from the vector X[j] .
+An erasure is denoted by ?. For SC codes, the (l, r, L, w)
+ensemble deﬁned in [2] is considered. Due to the space
+limitation, many of the results in this paper are presented
+without complete proofs and the details can be found in [12].
+II. S LEPIAN -W OLF WITH E RASURES
+A. Channel Model
+Two correlated discrete memoryless sources are encoded
+by two independent linear encoding functions of identical
+design rate r. These encoders map k input symbols (U[1]
+
+This material is based upon work supported by the National Science
+Foundation under Grant No. 0747470. The work of P. Nguyen was also
+supported in part by a Vietnam Education Foundation fellowship.
+
+1
+
+case ( [1] , [2] ) = (1, 1). Many steps in analysis, presented in
+Section II, are based on this assumption for the curve C.
+B. EXIT Functions
+
+ρ
+permutation π2
+
+x2
+
+λ
+p
+γ
+λ
+
+2
+
+Deﬁnition 1: Consider a sequence of LDPC(n, λ, ρ) ensembles. For each n, pick Cn uniformly at random from
+LDPC(n, λ, ρ) and let X[1] , X[2] be chosen uniformly from
+Cn . Let Y1n be the received sequence after transmission over
+the SWE with erasure rate pair ( [1] , [2] ) characterized by a
+common parameter . The (MAP-)EXIT function (associated
+with Cn ) is deﬁned by
+1 d
+· H X[1] , X[2] |Y[1] [1] ( ) , Y[2] [2] ( ) .
+h( )
+n d
+Theorem 1: The above deﬁnition of the EXIT function
+naturally gives an area theorem as follows
+ˆ ∗
+1
+h( )d = H X[1], X[2] |Y[1] ( [1] ( ∗ )), Y[2] ( [2] ( ∗ )) .
+n
+0
+
+1
+
+permutation π1
+
+ρ
+
+Fig. 1.
+
+f (⋅)
+
+x1
+
+Tanner graph for an LDPC code and the SWE
+
+and U[2] ) to n output symbols (X[1] and X[2] ) which are
+then transmitted through two independent channels. A central
+location receives (Y[1] , Y[2] ) and jointly decodes them to
+(U[1] , U[2] ). In the model we consider, the two channels are
+BECs with erasure rate [1] and [2] , respectively. That is
+[j]
+
+Yi
+
+[j]
+
+=
+
+Xi
+?
+
+with probability 1 −
+[j]
+with probability i ,
+
+[j]
+i ,
+
+As a consequence, if ∗ = 1 then this gives the area
+´1
+h( )d = H(U [1] , U [2] )r = (2 − p)r given a uniform
+0
+prior on the codeword sets.
+Lemma 1: For the SWE, the EXIT function becomes
+
+[1]
+i
+
+for j ∈ {1, 2} and i ∈ {1, 2, . . . , n} where we assume
+=
+[2]
+[1]
+[2]
+and i =
+for all i. We also consider an erasure
+correlation model between the two sources. More speciﬁcally,
+let Z be a Bernoulli-p random variable then the two sources
+are the same Bernoulli- 1 random variable if Z = 1 and are
+2
+i.i.d. Bernoulli- 1 random variables if Z = 0. The decoder
+2
+is assumed to have access to the side information Z. The
+Slepian-Wolf region is given in [8] by
+[1]
+
+[1]
+
++
+
+[1]
+
+≤ 1 − H(U1 |U2 )r = 1 − (1 − p)r,
+
+[2]
+
+[2]
+1
+d [1]
+[1]
+[1]
+[2]
+[2] d
+H(Xi |Y∼i ,Y[2])
++H(Xi |Y[1],Y∼i )
+n i=1
+d
+d
+[2]
+
+where Y[1] , Y[2] , Y∼i , Y∼i , [1] , [2] are functions of .
+When the BP estimator is used instead of the MAP estimator, one also has the BP-EXIT function. The asymptotic BPEXIT function can be obtained by taking the average BPEXIT function over all the codes Cn and taking n → ∞ and
+followed by the number of BP iterations → ∞. Using the
+concentration theorem and the fact that, for a ﬁxed number of
+iterations, the computation graph for a speciﬁc bit becomes
+tree-like as n → ∞, one can compute the asymptotic BPEXIT function as follows.
+Lemma 2: The (asymptotic) BP-EXIT function is given by
+d [1]
+d [2]
+hBP ( ) = L(y(x1 ))
++L(y(x2 ))
+d
+d
+where (x1 , x2 ) is the f.p. pair at channel erasure rate pair
+( [1] ( ), [2] ( )).
+
+≤ 1 − H(U2 |U1 )r = 1 − (1 − p)r,
+
+[2]
+
+n
+
+h( ) =
+
+≤ 2 − H(U1 , U2 )r = 2 − (2 − p)r.
+
+Assume that the sequences U[1] and U[2] are encoded by
+LDPC codes with the same d.d. (λ, ρ) using a punctured
+systematic encoder. The fraction of punctured systematic
+L
+bits is γ = 1 − R (1) (see more discussion in [8]). After
+(1)
+γ
+puncturing, the two codes have rate r = 1−γ . The Tanner
+graph for an LDPC code and the SW problem with erasures
+(SWE) is given by Fig. 1.
+If the joint BP decoder is used, one has the following DE
+ﬁxed-point (f.p.) equation (see [8])
+x1 = γf (L(y(x2 ))) + (1 − γ)
+
+[1]
+
+λ(y(x1 )),
+
+C. MAP Threshold
+
+x2 = γf (L(y(x1 ))) + (1 − γ)
+
+[2]
+
+λ(y(x2 )),
+
+Generally speaking, the MAP threshold (along the curve
+C) can be deﬁned as the supremum of all parameters such
+that h( ) = 0. Likewise, one can deﬁne the BP threshold. By
+the optimality of the MAP decoder, one can invoke the data
+processing inequality [13] and have the following lemma.
+Lemma 3: For the SWE, one has 0 ≤ h( ) ≤ hBP ( ) ≤ 2.
+Remark 1: With the above analysis, one can use a similar
+approach to [3] to obtain an upper bound on the MAP
+threshold. ´More speciﬁcally, by ﬁnding the largest ¯MAP
+1
+such that ¯MAP hBP ( )d = H(U [1] , U [2] )r, one has MAP ≤
+´1
+´1
+¯MAP which follows from ¯MAP h( )d ≤ ¯MAP hBP ( )d =
+´1
+H(U [1] , U [2] )r ≤ MAP h( )d .
+To compute the area under the BP-EXIT curve, it is more
+convenient to consider the extended BP (EBP) EXIT curve
+that extends the BP-EXIT by also including the unstable f.p.s.
+
+where f (t) (1 − p) + pt and y(t) 1 − ρ(1 − t). Here, x1
+(resp. x2 ) is the average erasure rate of messages from bit
+nodes to check nodes corresponding to source 1 (resp. 2) in
+the limit of inﬁnite block length and inﬁnite number of BP
+iterations. From this, one can write
+[1]
+
+(x1 , x2 ) = [x1 /λ(y(x1 )) − γf (L(y(x2 )))] /(1 − γ),
+
+[2]
+
+(x1 , x2 ) = [x2 /λ(y(x2 )) − γf (L(y(x1 )))] /(1 − γ).
+
+Let us express x1 (x) and x2 (x) according to a common
+parameter x, say x = x1 , and consider a smooth curve C
+from (x1 (1), x2 (1)) = (1, 1) decreasing in both arguments.
+This curve C can be characterized by a single parameter ∈
+[0, 1], say = ( [1] + [2] )/2, and = 1 corresponds to the
+
+2
+
+2
+
+θ(e1, e2)
+
+0
+
+Deﬁnition 2: The EBP-EXIT curve for the SWE is de[1]
+[2]
+ﬁned by (x), L(y(x1 (x))) d d (x) + L(y(x2 (x))) d d (x)
+for x ∈ [0, 1] where the second coordinate is called the EBPEXIT function hEBP (x).
+The area under the BP-EXIT curve can be computed with
+the help of a “trial entropy” as follows.
+´ x EBP
+Lemma 4: Let P (x)
+h (t)d (t) denote the “trial
+0
+entropy”. Then, (1 − γ)P (x) equals
+
+θ(e1, e2)
+
+0
+
+−1
+8
+
+1
+
+0
+
+e1
+
+1
+2
+
+1
+2
+
+10
+
+(a)
+
+e2
+
+−1
+8
+
+1
+
+e2
+
+1
+2
+
+00
+
+(b)
+
+1
+2
+
+e1
+
+1
+
+Fig. 2. θ(e1 , e2 ) of the residual graph for: (a) the SWE in Remark 2 and
+(b) the EMAC in Remark 3.
+
+2
+
+L(y(xj ))[
+
+[j]
+
+(1 − γ) + (1 − p)γ] + γp
+
+j=1
+
+residual graph is zero because if this is true, the MAP decoder
+should decode perfectly for all < ¯MAP . One can use the
+test in [11] to numerically verify this fact. For simplicity,
+we focus on the curve C that extends linearly from (1, 1)
+according to 1− [1] = A(1− [2] ) for some A > 0 where, e.g.,
+A = 1 represents the symmetric channel condition. In Fig. 2
+(a), the function θ(e1 , e2 ) (see [11, p. 11] for deﬁnition) for
+the residual graph d.d. is plotted for the case A = 3 and one
+2
+can see that the maximum of θ(e1 , e2 ) over the unit square
+is zero. Thus, the actual rate of the residual graph equals its
+design rate, which is zero, with high probability as n → ∞.
+This implies that the upper bound is tight and MAP = ¯MAP .
+
+L(y(xj ))
+j=1
+
+2
+
+−
+j=1
+
+L (1)
+1 − R(1 − xj ) + xj R (1 − xj )
+R (1)
+
+where [j] and xj are also functions of x for j ∈ {1, 2}.
+Corollary 1: The EBP-EXIT satisﬁes the area theorem
+ˆ 1
+hEBP (t)dt = P (1) = (2 − p)r = H(U [1] , U [2] )r.
+0
+
+Corollary 2: If xMAP is the unique positive root of P (x) =
+0, then ¯MAP ´ (xMAP ) ≥ MAP upper bounds the MAP thresh1
+old because ¯MAP hBP ( )d = P (1) − P (xMAP ) = (2 − p)r.
+If one considers regular LDPC ensembles of a ﬁxed rate,
+using the property P (xMAP ) = 0, the following lemma
+shows that, for sufﬁciently high degrees, ¯MAP approaches
+the Shannon limit.
+Lemma 5: Consider a sequence of (l, r)-regular ensembles where l → ∞ and the rate r = 1 − l is ﬁxed. Then, we
+r
+have ¯MAP (l, r) → Sh (r) where Sh (r) corresponds to the
+boundary of the SW region along the curve C.
+Lemma 6: Assume the joint BP decoder is run until it
+reaches a f.p. Remove all known bits and merge pairs of
+aligned bits that have the same value into larger bit nodes
+and obtain a residual graph. The residual graph can be seen
+as a two edge type LDPC ensemble and its expected d.d.
+(normalized with respect to the original graph) is1
+
+III. MAC WITH E RASURES
+A. Channel Model
+In this section, we consider the two-user MAC channel
+with erasure noise (EMAC) discussed in [10] and evaluate
+the MAP threshold when the two users transmit LDPC codes.
+[1]
+[2]
+Let the inputs Xi , Xi ∈ {±1} then the output is given by
+[1]
+
+r2 ≤ I(X [2] ; Y |X [1] ) = 1 − ,
+
+2
+
+˜
+L (z1 , z2 ) =
+
+L(y(xj )zj )(
+
+[j]
+
+r1 + r2 ≤ I(X [1] , X [2] ; Y ) = 3(1 − )/2,
+
+(1 − γ) + (1 − p)γ)
+
+and therefore the Shannon limit, i.e., the supremum of all
+erasure rates that allows reliable communication for both
+2
+users, is Sh (r1 , r2 ) = min 1 − r1 , 1 − r2 , 1 − 3 (r1 + r2 ) .
+[j]
+We consider X to be chosen uniformly at random from
+LDPC(n, λ[j] , ρ[j] ) for j ∈ {1, 2}, respectively. If one uses
+the joint BP decoder operating on the Tanner graph in Fig.
+3, then the DE f.p. equation is given by
+
+j=1
+
++ γpL(y(x1 )z1 )L(y(x2 )z2 ),
+˜ [1] (z) = R(1−x1 +zx1 ) − R(1−x1 ) − zx1 R (1−x1 ),
+R
+˜
+R[2] (z) = R(1−x2 +zx2 ) − R(1−x2 ) − zx2 R (1−x2 ),
+where (x1 , x2 ) is the f.p. at erasure rate pair ( [1] ( ), [2] ( ))
+and y1 y(x1 ) and y2 y(x2 ).
+Theorem 2: At = ¯MAP , the design rate of the residual
+graph equals zero.
+Proof: The rate of the residual graph is
+L (1) ˜ [1]
+˜
+˜
+r =1 −
+˜
+R (1) + R[2] (1) /L (1, 1).
+(1)
+R (1)
+
+x1 =
+
+two edge type standard d.d. is
+
+˜
+˜ [1]
+˜ [2]
+L (z1 ,z2 ) R (z) R (z)
+, [1] , [2]
+˜
+˜
+˜
+L (1,1)
+R (1) R (1)
+
++ (1 − )L[2] (y2 (x2 )/2 λ[1] (y1 (x1 ))
+
+x2 =
+
++ (1 − )L[1] (y1 (x1 )/2 λ[2] (y2 (x2 )),
+
+where xj is the expected erasure rate of the messages from
+bit nodes to check nodes corresponding to user j (in the limit
+of inﬁnite block length and inﬁnite number of BP iterations)
+and yj (xj ) 1 − ρ[j] (1 − xj ) for j = 1, 2. One can express
+the f.p. pair (x1 , x2 ) as a function of a common parameter
+x, say x = x1 . Thus, one can write (x), x1 (x) and x2 (x)
+to emphasize the dependence on x and note that (1) = 1.
+With some abuse of notation, we write yj (x) as a shorthand
+notation of yj (xj (x)) for j = 1, 2.
+
+Therefore, one can see from (1), Lemma 4 and Corollary
+˜
+2 that r¯MAP = (1 − γ)P (xMAP )/L¯MAP (1, 1) = 0.
+˜
+Remark 2: To show the tightness of the MAP upper
+bound, it remains to be shown that the actual rate of the
+1 The
+
+[2]
+
+Xi + Xi
+Zi with probability 1 − i ,
+?
+with probability i ,
+where erasure rate i = for all i ∈ {1, 2, . . . , n}. The
+achievable rate region for the rate pair (r1 , r2 ) of the two
+users is characterized by
+r1 ≤ I(X [1] ; Y |X [2] ) = 1 − ,
+Yi =
+
+.
+
+3
+
+ρ2
+
+permutation π2
+
+compute the asymptotic BP-EXIT function as given in the
+following lemma.
+Lemma 8: For BP estimator, the (asymptotic) BP-EXIT
+function, hBP ( ), equals
+
+x2
+
+λ2
+
+λ1
+
+permutation π1
+
+ρ1
+
+Fig. 3.
+
+L[1] (y1 (x1 ))+L[2] (y2 (x2 ))−L[1] (y1 (x1 ))L[2] (y2 (x2 ))/2,
+where (x1 , x2 ) is the f.p. pair at channel erasure rate .
+
+x1
+
+C. MAP Threshold
+The MAP threshold MAP for the EMAC is deﬁned as the
+supremum of all channel parameters such that h( ) = 0.
+The BP threshold BP is deﬁned similarly.
+Lemma 9: For the EMAC problem, one has
+
+Tanner graph of the joint decoder for the EMAC
+
+B. EXIT Functions
+Deﬁnition 3: Consider sequences of LDPC(n, λ[1] , ρ[1] )
+[j]
+and LDPC(n, λ[2] , ρ[2] ) ensembles. For each n, pick Cn
+[j] [j]
+[j]
+uniformly at random from LDPC(n, λ , ρ ). Let X be
+[j]
+chosen uniformly from Cn for j ∈ {1, 2} and Y be the
+received sequence at the output of the EMAC with erasure
+[1]
+probability . The MAP-EXIT function (associated with Cn
+[2]
+and Cn ) is deﬁned by
+
+0 ≤ h( ) ≤ hBP ( ) ≤ 3/2.
+Thus, one can invoke the standard MAP bounding technique,
+´1
+i.e., ﬁnding the largest ¯MAP such that ¯MAP hBP ( )d = r1 +
+r2 and obtaining MAP ≤ ¯MAP as a result.
+To conveniently compute the area under the BP-EXIT
+curve, we deﬁne the EBP-EXIT curve as follows.
+Deﬁnition 4: The EBP-EXIT curve for the EMAC is
+1
+(x), L[1] (y1 (x))+L[2] (y2 (x))− L[1] (y1 (x))L[2] (y2 (x))
+2
+for x ∈ [0, 1] where the second coordinate is called the EBPEXIT function hEBP (x). ´
+x EBP
+Lemma 10: Let P (x)
+h (t)d (t) denote the “trial
+0
+entropy”. Then, one ﬁnds that P (x) equals
+
+1 dH(X[1] , X[2] |Y( ))
+·
+.
+(2)
+n
+d
+Theorem 3: The deﬁnition of the EXIT function leads to
+an area theorem that says
+ˆ ∗
+1
+h( )d = H(X[1] , X[2] |Y( ∗ )).
+n
+0
+´1
+Consequently, if ∗ = 1 then one has 0 h( )d = r1 + r2
+given a uniform prior on the set of the codewords.
+Lemma 7: The EXIT function, h( ), for the EMAC equals
+h( ) =
+
+−
+
+[2]
+
+[1]
+
+[2]
+
+H(Xi , Xi |Y) + H(X∼i , X∼i |Y, Xi , Xi )
+and observe that the second term does not depend on
+Thus, assuming i = gives
+n
+d
+∂
+H(X[1] , X[2] |Y) =
+H(X[1] , X[2] |Y)
+d
+∂ i
+i=1
+n
+
+=
+i=1
+[1]
+
+∂
+[1]
+[2]
+H(Xi , Xi |Y)
+∂ i
+
+i.
+
+(3)
+
+[2]
+
+Now, H(Xi , Xi |Y∼i , Zi = 0) = 0 implies that
+[1]
+
+[2]
+
+H(Xi , Xi |Y)
+=
+
+L[j] (1)
+1−R[j] (1−xj (x))−xj (x)R[j] (1−xj (x)) .
+R[j] (1)
+j=1
+
+Corollary 3: The EBP-EXIT curve for the EMAC satisﬁes
+´1
+the area theorem 0 hEBP (t)dt = P (1) = r1 + r2 .
+Corollary 4: If xMAP is the unique positive root of P (x) =
+0, then ¯MAP
+(xMAP ) ≥ MAP upper bounds the MAP
+´1
+threshold because ¯MAP hBP ( )d = P (1) − P (xMAP ) = r1+r2 .
+Again, by considering regular LDPC ensembles of a ﬁxed
+rate and using the property P (xMAP ) = 0, ¯MAP can be shown
+to approach the Shannon limit.
+Lemma 11: Consider a sequence of regular ensembles
+(i.e., (l[1] , r[1] ) and (l[2] , r[2] )) and assume l[j] → ∞ so
+that rj = (r[j] − l[j] )/r[j] is ﬁxed (for j ∈ {1, 2}). Then,
+¯MAP (l[1] , r[1] , l[2] , r[2] ) → Sh (r1 , r2 ).
+Lemma 12: Assume the joint BP decoder is run until it
+reaches a ﬁxed point. Next, remove all the known bits and
+their adjacent edges and check nodes. Further, merge any
+pair of bit nodes at the same index that have the same value.
+The residual graph can be seen as a two edge type LDPC
+ensemble and its expected d.d. (normalized with respect to
+the original graph) is
+2
+˜
+L[j] (yj zj ),
+L (z1 ,z2 ) = L[1] (y1 z1 )+ L[2] (y2 z2 )+ 1−
+
+Proof: First, we write H(X[1] , X[2] |Y) as
+[1]
+
+1 − (x)
+L[j] (yj (x))
+2
+j=1
+
+2
+
+n
+
+[2]
+
+L[j] (yj (x)) +
+j=1
+
+1
+1
+[1]
+[2]
+[1]
+[2]
+H(Xi ,Xi |Y∼i ( ))− H(Xi ,Xi |Y∼i ( ),Zi = 0) .
+n i=1
+2
+
+[1]
+
+2
+
+2
+
+(x)
+
+1− i
+[1] [2]
+[1] [2]
+H(Xi ,Xi |Y ,Zi = 0).
+i H(Xi ,Xi |Y )+
+∼i
+∼i
+
+(4)
+2
+Finally, combining (3), (4), and (2) gives the result.
+Replacing the MAP estimator with the BP estimator gives
+the BP-EXIT function for this problem. The asymptotic BPEXIT function is obtained by taking the expectation over the
+[1]
+[2]
+codes Cn , Cn , the limit as the blocklength goes to inﬁnity,
+and the limit as the number of BP iterations goes to inﬁnity.
+By invoking the concentration theorem and the tree-like
+property of the computation graph for a bit node, one can
+
+2
+
+j=1
+
+˜
+R[1](z) =R[1] (1−x1 +zx1 )−R[1] (1−x1 )−zx1 R[1] (1−x1 ),
+˜
+R[2](z) =R[2] (1−x2 +zx2 )−R[2] (1−x2 )−zx2 R[2] (1−x2 ),
+where (x1 , x2 ) is the f.p. at channel erasure rate .
+
+4
+
+1.5
+
+2
+L = 16 8
+L=
+
+1
+
+0.5
+
+0
+
+L=
+
+2
+
+(3,6,3,9,L,5)
+
+2
+
+BP
+
+BP
+
+0.5
+
+¯MAP (4, 6)
+BP
+(4, 6, L, 5)
+
+(4, 6)
+
+1
+
+=
+
+L=8
+
+BP
+
+1.5
+L
+
+L = 16
+
+h
+
+¯MAP (3, 6, 3, 9)
+
+h
+
+BP
+
+(3, 6, 3, 9)
+
+BP
+
+0
+0.2
+
+0.4
+
+0.6
+
+0.8
+
+1
+
+0
+
+(a)
+
+0.2
+
+0.4
+
+0.6
+
+0.8
+
+1
+
+(b)
+
+Fig. 4. BP-EXIT curves and MAP threshold for: (a) the (4, 6)-regular and (4, 6, L, 5) SC ensembles for the SWE where A = 3/2 and L = 2, 8, 16, 32, 64,
+(b) the (3, 6, 3, 9) uncoupled and (3, 6, 3, 9, L, 5) SC ensembles for the EMAC for L = 2, 8, 16, 32, 64.
+
+Theorem 4: At erasure rate = ¯MAP , the design rate of
+the residual graph r¯MAP equals zero.
+˜
+Proof: The result follows from
+L[1] (1) ˜ [1]
+L[2] (1) ˜ [2]
+˜
+r =1−
+˜
+R (1)+ [2]
+R (1) /L (1, 1)
+R[1] (1)
+R (1)
+
+this calculation is required to make the above statement
+rigorous in our recent proof of threshold saturation for these
+systems [14].
+R EFERENCES
+[1] T. J. Richardson and R. L. Urbanke, Modern Coding Theory. Cambridge University Press, 2008.
+[2] S. Kudekar, T. J. Richardson, and R. L. Urbanke, “Threshold saturation
+via spatial coupling: Why convolutional LDPC ensembles perform so
+well over the BEC,” IEEE Trans. Inform. Theory, vol. 57, no. 2, pp.
+803–834, 2011.
+[3] C. Méasson, A. Montanari, and R. L. Urbanke, “Maxwell construction:
+The hidden bridge between iterative and maximum a posteriori decoding,” IEEE Trans. Inform. Theory, vol. 54, no. 12, pp. 5277–5307, Dec.
+2008.
+[4] C. Méasson, A. Montanari, T. J. Richardson, and R. Urbanke, “The
+generalized area theorem and some of its consequences,” IEEE Trans.
+Inform. Theory, vol. 55, no. 11, pp. 4793–4821, Nov. 2009.
+[5] C. Wang and H. D. Pﬁster, “Upper bounds on the MAP threshold of
+iterative decoding systems with erasure noise,” in Proc. Int. Symp. on
+Turbo Codes & Related Topics, Lausanne, Switzerland, Sept. 2008, pp.
+7–12.
+[6] P. S. Nguyen, A. Yedla, H. D. Pﬁster, and K. R. Narayanan, “Threshold saturation of spatially-coupled codes on intersymbol-interference
+channels,” June 2012, accepted to IEEE Int. Conf. Commun., Ottawa,
+Canada.
+[7] C. Méasson, A. Montanari, T. J. Richardson, and R. Urbanke, “Maximum a posteriori decoding and turbo codes for general memoryless
+channels,” in Proc. IEEE Int. Symp. Inform. Theory, Adelaide, Australia, 2005, pp. 1241–1245.
+[8] A. Yedla, H. D. Pﬁster, and K. R. Narayanan, “Universality for the
+noisy Slepian-Wolf problem via spatial coupling,” in Proc. IEEE Int.
+Symp. Inform. Theory, St. Petersburg, Russia, July 2011, pp. 2567–
+2571.
+[9] A. Yedla, P. S. Nguyen, H. D. Pﬁster, and K. R. Narayanan, “Universal
+codes for the Gaussian MAC via spatial coupling,” in Proc. Annual
+Allerton Conf. on Commun., Control, and Comp., Monticello, IL, Sept.
+2011.
+[10] S. Kudekar and K. Kasai, “Spatially coupled codes over the multiple
+access channel,” in Proc. IEEE Int. Symp. Inform. Theory, St. Petersburg, Russia, July 2011, pp. 2816–2820.
+[11] V. Rathi, M. Andersson, R. Thobaben, J. Kliewer, and M. Skoglund,
+“Performance analysis and design of two edge type LDPC codes
+for the BEC wiretap channel,” Sept. 2010, [Online]. Available:
+http://arxiv.org/abs/1009.4610.
+[12] P. S. Nguyen, “Advanced coding techniques with applications to
+storage systems,” Ph.D. dissertation, Texas A&M University, College
+Station, TX, 2012.
+[13] T. M. Cover and J. A. Thomas, Elements of Information Theory, ser.
+Wiley Series in Telecommunications. Wiley, 1991.
+[14] A. Yedla, Y. Y. Jian, P. S. Nguyen, and H. D. Pﬁster, “A simple proof
+of threshold saturation for coupled vector recursions,” submitted to
+IEEE Inform. Theory Workshop, 2012.
+
+as well as Lemma 10 and Corollary 4.
+Remark 3: Similar to Remark 2, one can use the test
+in [11, p. 11] to show the tightness of the bound. For
+example, let us consider the case when user 1 and user 2
+use the (3, 6)-regular and (3, 9)-regular LDPC ensembles,
+respectively. From Fig. 2 (b), the maximum of θ(e1 , e2 ),
+for the corresponding residual graph, over the unit square
+is zero. Ths implies that the actual rate of the residual graph
+equals its design rate with high probability as n → ∞ and
+consequently, the MAP upper bound is tight.
+IV. T HRESHOLD S ATURATION OF SC C ODES
+One important application of our analysis is that one can
+compare the MAP thresholds of uncoupled LDPC ensembles
+with the BP thresholds of SC ensembles to observe the
+threshold saturation. This can be nicely seen by plotting the
+BP-EXIT curves for both the coupled and uncoupled systems.
+In Fig. 4 (a), the BP-EXIT curves for the (4, 6, L, 5) SC
+ensembles based on the punctured (4, 6)-regular ensemble
+(see [8]) are plotted for the SWE with an asymmetric channel
+3
+condition (A = 2 ). It can be seen that as L increases,
+these curves saturate to the MAP threshold of the uncoupled
+system. Similarly, in Fig. 4 (b) for the EMAC, the BP-EXIT
+curves for the (3, 6, 3, 9, L, 5) SC system, i.e., the two users
+use the (3, 6, L, 5) and (3, 9, L, 9) ensembles respectively,
+also saturate to the MAP threshold of the uncoupled system.
+Similar plots for the SWE with symmetric channel conditions
+(A = 1) and the EMAC with symmetric user rates (r1 = r2 )
+are also given in [8], [10], bit without rigorous consideration
+of the MAP thresholds.
+The main result of this paper is the MAP threshold
+evaluation and not the BP threshold of SC. Still, this analysis
+allows one to observe that the saturation point of the BP
+thresholds for SC equals the MAP threshold of the underlying
+ensembles for these two multiuser problems. In particular,
+
+5
+
+

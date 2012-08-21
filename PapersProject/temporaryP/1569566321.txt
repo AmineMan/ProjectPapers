@@ -1,0 +1,1042 @@
+Creator:        TeX
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Fri May 18 15:52:44 2012
+ModDate:        Tue Jun 19 12:55:03 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      659436 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569566321
+
+Compressed Sensing on the Image of Bilinear Maps
+Philipp Walk
+
+Peter Jung
+
+Lehrstuhl für Theoretische Informationstechnik
+Technische Universität München
+Theresienstrasse 90, 80290 München
+Email: philipp.walk@tum.de
+
+Lehrstuhl für Informationstheorie und
+Theoretische Informationstechnik
+Technische Universität Berlin
+Einsteinufer 25, 10587 Berlin
+Email: peter.jung@mk.tu-berlin.de
+
+the support of signal and channel coefﬁcients are known to the
+transmitter, whereby the image of this particular subspaces
+under T is contained in some subspace up to dimension
+SF . In both cases an additional factor, logarithmic N , is
+necessary for the unknown location of the supports. However,
+in the worst case, the sparsity of the inputs to T behave
+multiplicatively. The essence of this contribution is to establish
+conditions on T under which the overall compressibility still
+behaves only additively in S and F . This has a relevant
+impact on the complexity of the output set T (ΣS , ΣF ) and
+hence substantially improve the rate in compressed sampling.
+Furthermore, understanding the coupling between two sparse
+sources directly generalizes to the coupling of ﬁnitely many
+sources.
+In their recent work [1], Hedge and Baraniuk considered
+(S, F )-sparse circular convolutions in RN , see Section III, and
+formulated a restricted isometry property (RIP) for the set of
+all differences in the union of the image of all (S, F )-sparse
+circular convolutions. It turns out that their proof approach
+leads to difﬁcult mathematical problems, which according to
+the authors’ knowledge are still unsolved. Since the proof
+in [2, Lemma 5.1] relies on a linear structure, which may
+not be present for the image of bilinear maps, more strict
+conditions on T and the input sets X and Y are needed to
+control the norm of the output set. However, the authors could
+establish in this work the result of Hedge and Baraniuk for a
+certain restriction on Euclidean convex cones. Another special
+case occurs for S and F dimensional subspaces, which are
+“properly” separated. In this case, the image under the circular
+convolution is isomorphic to the set of all simple tensors,
+which in turn is isomorphic to the set of rank-1 operators from
+X to Y . Hence the main theorem implies certain results from
+the theory of rank-1 matrix recovery [3], [4], [5]. Moreover,
+the developed framework applies to all bilinear operations
+which have a certain restricted norm multiplicativity property
+on convex cones in an arbitrary basis. This enables compressed
+sensing on “sparse” output sets, which can not be written as a
+ﬁnite union of subspaces, and leads to generalized structured
+sparsity models [6], [7], [8].
+The outline of this paper is as follow. In Section II the
+fundamental concept of bilinear maps T on ﬁnite dimensional Euclidean spaces is introduced. The authors formulate
+a sufﬁcient condition in Deﬁnition 1, which ensures a better
+probability as in [2] for the RIP on the image of such bilinear
+maps. Some important and simple couplings T for certain
+communication scenarios are discussed in Section III. Here the
+
+Abstract—For several communication models, the dispersive
+part of a communication channel is described by a bilinear
+operation T between the possible sets of input signals and channel
+parameters. The received channel output has then to be identiﬁed
+from the image T (X, Y ) of the input signal difference sets X and
+the channel state sets Y . The main goal in this contribution is to
+characterize the compressibility of T (X, Y ) with respect to an
+ambient dimension N . In this paper we show that a restricted
+norm multiplicativity of T on all canonical subspaces X and
+Y with dimension S resp. F is sufﬁcient for the reconstruction of output signals with an overwhelming probability from
+O((S + F ) log N ) random sub-Gaussian measurements. Thus,
+in this case, the number of degrees of freedom of each output
+grows only additively instead of multiplicatively with the input
+dimensions (sparsity) S and F . This is a relevant improvement in
+the output compressibility and suggests a substantially reduced
+rate in compressed sampling algorithms.
+
+I. I NTRODUCTION
+From an abstract point of view, a dispersive communication
+channel is given as a bilinear operation T (s, h) between the
+input signal s and the channel parameter h plus additive noise
+n. For example, on RN this action could be represented as a
+matrix multiplication, i.e. the received signal is then:
+r = Hs + n.
+
+(1)
+
+and the corresponding channel matrix H ∈ RN ×N is given
+by the action Hs = T (s, h). If the channel matrix is known
+at the receiver and the possible input signals s exhibit a
+linear structure the set of all outputs Hs is a linear space.
+However, if the channel matrix has unknown parameters and
+the signal set is for example only a union of subspaces, the
+set of all possible outputs usually looses its linearity and
+the receiver is thus confronted with the determination of r
+from a non-linear manifold. Then, in order to provide efﬁcient
+sampling and reception in such a non–coherent setting, it is
+of fundamental importance to characterize the complexity of
+the output set and relate it to structural properties of the
+channel and of the possible transmit signals. In compressed
+sensing for example, such an assumption is the sparsity S of
+the signal set, i.e. the transmitter might operate in a peaky
+fashion and the data is concentrated only on unknown but
+small sets of S
+N sample points. Let us denote this union
+of so called canonical subspaces with ΣS . Even more, the
+set of non–zero coefﬁcients in the vector h ∈ RN during
+transmission can be small as well, i.e. concentrated on subsets
+of cardinality F
+N such that h ∈ ΣF . The intrinsic
+dimension for sampling the signal r in (1) is S + F as soon
+
+1
+
+X has dimensionality S if the space span X has dimension
+S.
+
+main result is applied to some channel models, e.g. circular
+convolutions, which establishes an additive behavior of the
+sparsity S and F of the signal inputs and channel states.
+Section IV concludes this work with a conjecture for the RIP
+on the image of all (S, F )-sparse circular convolutions.
+
+B. Main Theorem
+Our main theorem provides a generalized compressed sensing framework by a stable embedding of certain (S, F )-sparse
+signal models which can not be anymore described by Ksparse signal models ΣK . Since T has the RNMP, there
+exists by Deﬁnition 1 a subset O ⊂ X × Y such that the
+representation by T and O leads to a stable embedding of
+channel outputs T (s, h) received over a ﬁxed but unknown F sparse channel state h ∈ Y if the difference set of all channel
+outputs T (s1 − s2 , h) is a subset of T (X, Y ).
+Theorem 1: Let 2 ≤ S, F, N, M ∈ N with SF ≤ N and
+X, Y ⊂ RN are S resp. F dimensional convex cones. If the
+bilinear map T : X × Y → RN has the restricted norm multiplicativity property with bounds α and β, then a realization
+of a sub-Gaussian matrix Φ : RN → RM with M ≤ N and
+[Φ]ij ∼ N (0, 1/M ) fulﬁlls for every z ∈ T (X, Y )
+
+II. M AIN R ESULT
+Every bilinear map T : RN × RN → RN is a binary
+operation on RN and deﬁnes therefore a multiplication on RN .
+The N dimensional linear space RN , +, ·, T is then called
+an associative algebra1 over R. Since we are interested in a
+stable embedding of the output (image), we have to equip the
+algebra with a norm · . In our main Theorem 1 we need for
+the proof technique, based on [2], a nesting in the 2 -norm,
+i.e. we have to bound the norm of the output z by the product
+of the norms of the inputs x, y from below and above. This
+is a very strict property for algebras since this would imply
+that the nullspace of T is N := (0, X) ∪ (Y, 0), i.e. T is
+non-singular on X × Y . If we remove all singularity points
+in X × Y we obtain a subset O ⊂ X × Y on which T is nonsingular. But then there could still exist a sequence on ∈ O\N
+such that limn T (on ) = 0. The following deﬁnition exclude
+such sequences and provides how close 0 can be approached.
+Deﬁnition 1 (Restricted norm multiplicativity property):
+Let X, Y ⊂ RN . Then the bilinear map T : X × Y → RN
+has the restricted norm multiplicativity property (RNMP), if
+0 < α :=
+
+sup
+
+inf
+
+(x,y)∈O\N
+O⊂X×Y
+T (O)=T (X,Y )
+
+T (x, y)
+.
+x y
+
+(1 − δ) z ≤ Φz ≤ (1 + δ) z
+for any δ ∈ (0, 1) with probability
+≥ 1 − 2N (X 1 , X δ/d )N (Y 1 , Y δ/d )e−c0 (δ/2)M
+
+inf
+
+(x,y)∈X×Y \N
+
+T (x, y)
+.
+x y
+
+√
+
+α) ,
+,
+
+α=β
+α=β
+
+(6)
+
+c0 (δ/2) := (3δ 2 − δ 3 )/48.
+1
+
+(7)
+∃{pi }n :
+i=1
+1
+
+1
+
+Remark 2: Here N (X , X ) := min{n |
+X ⊂
+(X + pi )} denotes the covering number of X by the
+i
+covering sets X . The determination of the covering numbers
+is a Banach geometrical problem and well studied for various
+compact subsets of Banach-spaces [10].
+Remark 3: To compute the probability for a mapping Φ
+which is universal for all L = N N ≤ N S+F canonical
+S
+F
+(S, F ) dimensional convex cone pairs (X, Y ) we apply the
+union bound technique. Once universal RNMP bounds for
+all L canonical cone pairs are found, we get the RIP with
+overwhelming probability for M = O((S + F ) log(N )).
+Proof: The main idea follows the technique in [2], where
+Baraniuk et al. considered a linear subspace Z of RN with a
+δ/4-net R for Z 1,1 and obtained by the measure concentration
+phenomenon of Gaussian matrices Φ, that for every r ∈ R and
+any δ ∈ (0, 1) it holds2 :
+
+(3)
+
+A. Notation
+
+δ
+r
+2
+
+(8)
+
+> 1 − 2e−co (δ/2)M .
+
+(9)
+
+| Φr − r | ≤
+
+N
+
+In the following we will only consider R with standard
+inner product product and the corresponding Euclidean norm
+2
+x := x, x . For a given subset X ⊆ RN we will denote
+the shell in X with inner and outer radii α and β by X α,β :=
+{ x ∈ X | α ≤ x ≤ β} and abbreviate further X α := X 0,α .
+The functional x 0 denotes the cardinality of the support of
+x in the Euclidean basis {ei }N −1 , i.e. the sparsity of x with
+i=0
+respect to the Euclidean basis. A convex set X ⊂ RN is a
+convex cone if for every x ∈ X and λ ≥ 0 it follows λx ∈ X.
+constructions are possible for
+
+β
+7 α (2 +
+12
+
+d = d(α, β) :=
+
+(2)
+
+Remark 1: It is known [9], that for ﬁnite–dimensional algebras there always exists β < ∞. Obviously, β is always an
+upper bound on O and this simpliﬁcation will become relevant
+in the proof of Theorem 1. If α = β(= 1), then the norm is
+called multiplicative on O , but only few algebras are norm–
+multiplicative.
+Essentially, the implicit use of the set O removes the redundancy in representing T (X, Y ), i.e. removing unnecessary
+direction pairs in X × Y . Surely, the exact determination of
+the set O is a combinatorial hard problem and depends on
+T as well as on the subsets X and Y . Moreover, this set in
+general lacks for linear or convex properties.
+
+1 Similar
+
+(5)
+
+and constants
+
+Moreover, we deﬁne the universal upper bound by
+β :=
+
+(4)
+
+with probability
+Both, the constant δ and the dimension of Z determine then
+the cardinality of R, which is given by the covering number
+and yields the scaling of the exponential term in (9). This idea
+can be used again on X and Y as well to get an upper bound
+2 every
+
+CN .
+
+δ/2 r
+
+2
+
+2
+
+r ∈ RN and the inequality (8) is equivalent to
+, see [2].
+
+Φr
+
+2
+
+− r
+
+2
+
+≤
+
+Figure 1: Net construction in the shells for covering the sphere in Z.
+x ∈ X (p) := X + p and y ∈ Y (q) := Y + q. The image
+T (X (p), Y (q)) is the covering set of the point T (p, q) and
+the union forms a covering for Z 1,1 by (13). Note that this
+covering sets in Z are not necessarily convex! By using the
+triangle inequality and a zero addition in p, q we have for any
+T (p, q) ∈ R that all z = T (x, y) ∈ T (X (p), Y (q)) ∩ Z 1,1
+˜
+(i.e. (x, y) ∈ O1 ∩ X (p) × Y (q)) satisfy:
+
+on the cardinality of R, but now in terms of the covering
+numbers N (X 1 , X δ/d ) and N (Y 1 , Y δ/d ). For this we need
+to control the norm of z by elements in X × Y which is
+possible if T has the RNMP, since the set O does not contain
+”bad” representation pairs for Z := T (X, Y ). It is in fact not
+necessary to give an explicit parametrization of O. The only
+information needed for the proof are the bounds α and β.
+Every normalized z ∈ Z 1,1 can be represented as an element
+from the image under T of O1 := { o ∈ O | T (o) = 1} ⊂
+X × Y . Since T has the RNMP on O we have by Deﬁnition 1
+for (x, y) ∈ O1 :
+α x
+
+y ≤1≤β x
+
+y .
+
+| Φz − ΦT (p, q) | ≤ Φ(T (x − p, y − q))
++ Φ(T (x − p, q)) + Φ(T (p, y − q)) . (15)
+Using the universal bound 1 + A in (14) we obtain:
+
+(10)
+
+≤ (1 + A)
+
++ T (x − p, y − q)
+
+If we rescale the elements in the pair (x, y) ∈ O1 by µ := x
+˜
+˜
+resp. µ−1 > 0 and set x := x/µ ∈ X 1,1 and y := µy ∈ Y
+(X and Y are cones), we get by bilinearity:
+T (˜ , y) = z = T (x, y)
+x ˜
+
+⇒
+
+1
+1
+˜
+≤ y ≤ .
+β
+α
+
+(11)
+
+≤ (1 + A)β
+
+for all z ∈ Z,
+
+y−q + q
+
+x−p + x−p
+
+y−q
+
+.
+
+b
+
+Since (p, q) ∈ X × Y is a -net point-pair for (x, y), we get
+
+(12)
+
+≤ (1 + A)β b + b +
+
+2
+
+≤1
+
+≤ (1 + A)β(2b + 1) . (17)
+
+If we deﬁne the constant c = c(α, β) by:
+√
+c := β(2b + 1) = β 2/ α + 1 > 1,
+
+(18)
+
+we obtain the upper bound
+Φz ≤ (1 + A)c + ΦT (p, q) .
+
+(19)
+
+The main tool of the proof is the measure concentration in
+(8). But there is no norm nesting T (p, q) since in general
+˜
+˜
+(p, q) ∈ O1 . Even if (p, q) ∈ O1 we don’t get from
+(13) a tight scaling for vanishing . Therefore we use the
+continuity property (bilinearity) of T to upper and lower bound
+T (p, q) in terms of for every Cartesian product of two
+convex covering sets X (p), Y (q). Let us deﬁne the preimage of T (X (p), Y (q)) ∩ Z 1,1 by
+
+(13)
+
+˜
+˜
+˜
+where O1,X and O1,Y are projections of O1 to X resp. Y .
+˜
+These are axial lines in the shells, see Fig. 1. Note, that O1
+can not be written as a Cartesian product, since only certain
+pairs are allowed.
+The algebraic part of the proof goes as follows: Any
+realization of Φ is a linear map on a ﬁnite–dimensional normed
+space RN and hence bounded, i.e. there exist A ≥ −1 s.t.
+Φz ≤ (1 + A) z
+
+p
+b
+
+Hence there exist a representation set for Z 1,1 by pairs in
+X 1,1 × Y 1/β,1/α . Since α ≤ 1 ≤ β we can also choose a
+˜
+representation set O1 which is contained in the symmetrized
+set of convex shells X a,b ×Y a,b with common inner and outer
+1
+1
+radii a := β − 2 ≤ 1 ≤ α− 2 =: b.
+˜
+˜
+˜
+O1 ⊂ O1,X × O1,Y ⊂ X a,b × Y a,b ,
+
+(16)
+
+and since x−p ∈ X and y−q ∈ Y we can apply the universal
+upper bound β of the RNMP in (2) to get:
+
+and from absolute homogeneity of · we have with (10):
+˜
+˜
+α y ≤1≤β y
+
+T (p, y − q) + T (x − p, q)
+
+˜
+Z −1 (p, q) := (x, y) ∈ X (p) × Y (q) ∩ O1 .
+
+(14)
+
+If this set is not empty (otherwise (p, q) can be dropped from
+P × Q), just grap one pair (x, y) ∈ Z −1 (p, q). But then there
+exist3 (c, d) ∈ X × Y s.t. (x, y) = (p + c, q + d) and so:
+
+where 1 + A ≥ 0 denotes the smallest upper bound (operator
+norm of Φ restricted to Z). If we can show that A ≤ δ we
+have shown the upper bound in (4). Since Φ is linear and
+Z a cone (not necessarily convex), it is enough to ﬁnd an
+upper bound in (14) for all z ∈ Z 1,1 . Let P ⊂ X a,b and
+Q ⊂ Y a,b be -nets for X a,b resp. Y a,b with ∈ (0, 1) and
+deﬁne R := {T (p, q) : (p, q) ∈ P × Q} ⊂ Z. It follows that
+|R| ≤ N (X b , X )N (Y b , Y ). Thus, every z ∈ Z 1,1 can now
+be represented with (13) by a pair (x, y) ∈ X a,b × Y a,b with
+
+T (p, q) = T (x − c, y − d)
+= T (x, y) − T (x, d) − T (c, y) + T (c, d) .
+3 If X is a convex cone, then p is the aphex point of the covering set X (p)
+which is again a convex cone (non-symmetrical), precisely X 1 = X . Hence
+x−p ∈ X . If X is a linear space, then X is a ball (symmetric) with center
+at the origin and so x − p ∈ X again.
+
+3
+
+Since 0 ≤ c , d ≤
+
+˜
+
+The covering number N (X b , X δ/d ) remains the same if we
+√
+˜
+scale both sets X b ,√ δ/d by 1/b = α, [10, Lemma 4.16]
+X
+˜
+giving with d := d/ α the δ-embedding with probability:
+
+we get with (3) the lower bound
+
+T (p, q) ≥ T (x, y) − T (x, d) − T (c, y) − T (c, d)
+2
+
+≥ 1 − 2βb − β
+
+≥ 1 − β(2b + 1) = 1 − c
+
+δ
+
+δ
+
+δ
+
+> 1 − 2N (X 1 , X d )N (Y 1 , Y d )e−c0 ( 2 )M
+
+and the upper bound
+III. A PPLICATIONS
+Before using the theorem we will discuss the following
+observations. A simple coupling T in (1) is given by the
+pointwise multiplication, e.g. a fading channel:
+
+T (p, q) ≤ T (x, y) + T (x, d) + T (c, y) + T (c, d)
+2
+
+≤ 1 + 2βb + β
+
+≤ 1 + β(2b + 1) = 1 + c .
+
+Let us discuss the discontinuity of this norm estimation. If we
+have α = β, hence norm multiplicativity, then we would get
+c = 3. But in fact, this is to bad, since the shells are now unit
+spheres and every p, q is normalized and hence by the norm
+multiplicativity T (p, q). But this gives c = 0. To respect this
+fact we deﬁne c and get for all net point pairs
+˜
+1− c ≤ T (p, q) ≤ 1+ c
+˜
+˜
+
+,
+
+c :=
+˜
+
+c
+0
+
+, α=β
+. (20)
+, α=β
+
+Φz ≤ (1 + A)c + (1 + δ/2)(1 + c )
+˜
+= 1 + Ac + c + c + δ(˜ + 1)/2.
+˜
+c
+Now, by compactness, there exist a maximal z ∈ Z 1,1 such
+that equality in (14) is achieved. Hence we get
+2c + c (2 + δ) + δ
+˜
+.
+2(1 − c )
+
+> 1 − 2 (12/δ)
+
+δ
+3 +2
+≤ δ.
+1−3
+
+δ
+5δ+7δ δ<1
++2
+≤ 14 δ ≤
+1−c
+1− 7
+
+5c
+2
+
+A≤
+
+12
+14 δ
+6
+7
+
+=
+
+δ
+7c
+
+≤1
+
+2
+
+≤ U
+
+(23)
+
+˜
+
+> 1 − 2N (X b , X δ/d )N (Y b , Y δ/d )e−c0 (δ/2)M ,
+√
+˜ := d(α, β) = 7β(2/ α + 1) , α = β .
+˜
+d
+12
+, α=β
+
+(24)
+
+(25)
+
+by considering all z ∈ Z we get by inserting (23) and (20)
+with same probability as in (24)
+1−
+
+δ
+2
+
+1−c
+˜
+
+δ
+˜ β)
+d(α,
+
+− (1 + δ)
+
+0
+
+2
+
+s
+
+2
+
+h
+
+2
+
+2
+
+≤ max | ej , Uei |
+i,j
+
+s
+
+2
+1
+
+h
+
+2
+
+2
+
+≤N U
+
+2
+∞
+
+min{ s
+
+0
+
+, h 0} s
+
+2
+
+h
+
+2
+
+.
+
+(31)
+
+s
+
+2
+
+≤ min{ h
+
+0
+
+, s 0} h
+
+2
+
+s
+
+2
+
+.
+
+(32)
+
+If s and h are sparse in the Fourier basis, we can proceed
+as before. But for (S, F )–sparsity in the time domain (with
+respect to the Euclidean basis) we need RNMP for . We
+call such a restricted circular convolution an (S, F )-sparse
+circular convolution, see [1]. In general there doesn’t exists
+a lower bound α > 0 for sparse circular convolutions, since
+the nullspace of T can contain elements (s, h) with s = 0
+and h = 0. One can prevent this behavior by restricting the
+domain of T to certain convex sets X, Y ⊂ RN .
+
+˜
+If α = β then c = 0, c = 3 and d = 12. This gives
+˜
+(27)
+
+˜
+If α = β then c = c, d = 7c and
+˜
+Φz ≥ 1 −
+
+s
+
+h
+
+cδ
+. (26)
+˜ β)
+d(α,
+
+Φz ≥ 1 − δ/2 − δ/2 = 1 − δ.
+
+(29)
+
+a) Sparse Circular Convolutions: Let us consider multiplication in the frequency domain, i.e. U = F is the Fourierlk √
+matrix with [F]lk = e−2πi N / N for l, k ∈ {0, . . . , N − 1}.
+Then T =
+is the circular convolution in the time domain
+√
+by (30). With F ∞ = 1/ N we obtain from (31)
+
+1,1
+
+Φz ≥
+
+2
+∞
+
+T (s, h)
+
+The lower bound 1 − δ follows from this with
+Φz ≥ ΦT (p, q) − (1 + A)c
+
+.
+
+with U ∞ := maxi,j | ej , Uei | and s 1 := j | s, ej |.
+Hence, by commutativity of T , we obtain for any unitary
+matrix U the upper estimate:
+
+This upper bound holds with probability larger than
+˜
+
+h
+
+≤ max | ej , Us |
+j
+
+= δ.
+
+e
+
+which obeys the following 2 -norm inequality:
+1
+2
+2
+T (s, h) 2 = U∗ (Us Uh) =
+| ei , Us Uh, ei |
+N
+i
+
+(22)
+
+If we have α = β then c = c = c(α, β). Deﬁning
+˜
+with δ ∈ (0, 1) we get from (21):
+
+min{S,F } −c0 (δ/2)M
+
+This easily extents to pointwise multiplications in another
+domains, i.e. for some given unitary matrix U we can deﬁne
+the new product (commutative as well):
+√
+(30)
+T (s, h) = N U∗ (Us Uh),
+
+(21)
+
+Let us proceed by case distinction. If α = β then c = 0, c = 3.
+˜
+δ
+Deﬁning = 12 ≤ 1 with δ ∈ (0, 1) we get
+A≤
+
+(28)
+
+with diagonal channel matrix H = diag(h). There, we have
+the norm inequality h s ≤ h s and RN , +, , ·
+becomes an unital commutative algebra with unit element
+1 = (1, . . . , 1)T . Unfortunately, one can not establish a lower
+norm multiplicativity bound α > 0 on any disjoint convex
+subsets X, Y ⊂ RN . Hence we can not apply efﬁciently
+our theorem on these sets. But actually this is not necessary
+here, since for any S, F dimensional subspaces X, Y the
+output z has sparsity less than min{S, F } with respect to the
+Euclidean basis. In this simple case we can immediately apply
+the original Lemma 5.1 in [2] to establish the RIP on X Y
+with probability
+
+Then we can use the measure concentration in (8) to obtain
+from (19) and (20) with probability larger than in (9)
+
+A≤
+
+s := (h0 s0 , . . . , hN−1 sN−1 )T
+
+T (s, h) = Hs = h
+
+δ−c δ
+2cδ
+−c −
+≥ 1 − δ.
+2
+7c
+
+4
+
+IV. C ONCLUSIONS
+
+b) Sparse Circular Convolutions on Positive Cones:
+If we assume the channel is only an on/off channel or a
+fading channel with positive parameters hi ≥ 0 and the signal
+parameters are also positive, then we can easily establish the
+following lower bound:
+h
+
+2
+
+h2 s2 +
+j k
+
+s =
+k,j
+
+hj hl sk
+k,j,l=j
+
+j sk l
+
+≥ h
+
+2
+
+s
+
+2
+
+In many communication schemes the coupling of channeland signal parameters is given by bilinear maps T and sparsity
+is present in both inputs to T . It is therefore of general interest
+for several engineering applications to characterize the compressibility of the whole output set. In this paper we provide
+such a characterization once the RNMP can be established,
+uniformly or in some probabilistic setting. However, a uniform
+treatment of the exemplary case of (S, F )–sparse circular
+convolutions is still an open problem. It is also not fully
+understood whether the RNMP is only a sufﬁcient or really a
+necessary condition for a scaling with O(S +F ). In particular,
+it is important to know whether to the following conjecture is
+true: Let (X, Y ) be (S, F )–sparse canonical subspaces in RN
+(S, F ≥ 2). Does then any realization of a sub-Gaussian matrix
+Φ : RN → RM with M ≤ N and [Φ]ij ∼ N (0, 1/M ) fulﬁlls
+for every z ∈ X Y
+
+.
+
+≥0
+
+Hence we obtain together with (32) for positive inputs
+h
+
+s ≤ h
+
+s ≤
+
+min{S, F } h
+
+s .
+
+(33)
+
+The positive elements in span{ei }i∈I with I ⊂ {0, . . . , N −1}
+form a canonical (Euclidean) S = |I|-dimensional positive
+convex cone X. If X and Y are canonical S resp. F dimensional positive convex cones, then we can apply our theorem
+with the norm bounds derived in (33), to establish the RIP
+on X Y . With a result of Rogers-Zhong [11] and Rogers
+[12] we can ﬁnd an upper bound for the covering number
+of S ≥ 3 dimensional positive cones X 1 by N (X 1 , X ) ≤
+S
+(4/ ) 7S log S. For S = 2 we can upper bound this by the
+covering √
+number with S-dim ˜-balls contained in X , where
+√
+˜ = /(2 2). Hence (3/˜)2 = (6 2/ )2 ˜-balls resp. -cones
+cover the whole unit ball and hence X 1 . But this number is
+less than (4/ )2 14 log 2 and thus Rogers bound holds also for
+all S ≥ 2. A rough estimate shows that Rogers bound can
+S
+be upper bounded for S ≥ 2 by (18/ ) . Since α = 1 and
+˜
+β = min{S, F } in (33) we get d = d = 21β with (24).
+For = δ/d we can hence establish the RIP on X Y by
+Theorem 1 with probability
+S+F
+
+≥ 1 − 2 378
+
+min{S, F }/δ
+
+e−c0 (δ/2)M .
+
+(1 − δ) z
+
+h = s
+
+h .
+
+S+F
+
+e−c0 (δ/2)M .
+
+2
+
+≤ (1 + δ) z
+
+2
+
+(37)
+
+S+F
+
+ACKNOWLEDGMENT
+The authors would like to thank Holger Boche and David
+Gross for their helpful discussion on this topic. This work
+was partly supported by the Deutsche Forschungsgemeinschaft
+(DFG) grants Bo 1734/13-1 and JU 2795/1-1&2.
+R EFERENCES
+[1] C. Hegde and R. G. Baraniuk, “Sampling and recovery of pulse streams,”
+IEEE Trans. Signal Process., vol. 59, no. 4, pp. 1505–1517, April 2011.
+[2] R. G. Baraniuk, M. Davenport, R. DeVore, and M. Wakin, “A simple
+proof of the restricted isometry property for random matrices,” Constructive Approximation, vol. 28, no. 3, pp. 253–263, January 2008.
+[3] B. Recht, M. Fazel, and P. A. Parrilo, “Guaranteed minimum-rank
+solutions of linear matrix equations via nuclear norm minimization,”
+SIAM Journal on Applied Mathematics, vol. 52, pp. 471–501, 2010.
+[4] E. J. Candes and T. Tao, “The power of convex relaxation: Near-optimal
+matrix completion,” IEEE Trans. Inf. Theory, vol. 56, pp. 2053–2080,
+2010.
+[5] D. Gross, “Recovering low-rank matrices from few coefﬁcients in any
+basis,” IEEE Trans. Inf. Theory, vol. 57, pp. 1548 – 1566, 2011.
+[6] R. Baraniuk and M. Wakin, “Random projections of smooth manifolds,”
+Foundations of Computational Mathematics, vol. 9, pp. 51–77, 2009.
+[7] M. F. Duarte and Y. C. Eldar, “Structured compressed sensing: From
+theory to applications,” IEEE Trans. Signal Process., vol. 59, pp. 4053
+– 4085, 2011.
+[8] R. Baraniuk, V. Cevher, and M. Wakin, “Low-dimensional models for
+dimensionality reduction and signal recovery: A geometric perspective,”
+Proceedings of the IEEE, vol. 98, pp. 959–971, 2010.
+[9] R. Arens, M. Goldberg, and W. Luxemburg, “Multiplicativity factors for
+seminorms. II,” Journal of Mathematical Analysis and Applications, vol.
+170, pp. 401–413, 1992.
+[10] G. Pisier, The volume of convex bodies and Banach space geometry.
+Cambridge University Press, 1989.
+[11] C. A. Rogers and C. Zong, “Covering convex bodies by translates of
+convex bodies,” Mathematika, vol. 44, pp. 215–218, 1997.
+[12] C. Rogers, “A note on coverings,” Mathematika, vol. 4, pp. 1–6, 1957.
+[13] W. Greub, Multilinear algebra. Springer, 1967.
+
+(34)
+
+(35)
+
+Here we use the fact, that every simple tensor ˜ ⊗ h has a
+s ˜
+˜
+unique representation up to scalars by ˜ and h, [13]. This
+s
+implies a norm multiplicativity, i.e. ˜ ⊗ h = ˜ h .
+s ˜
+s ˜
+The covering number for an S dimensional ball X 1 ⊂ RN
+S
+with X can be upper bounded by N (X 1 , X ) ≤ (3/ ) [10].
+Together with the norm multiplicativity (35), 1 = α = β, we
+get d = 12 and obtain by Theorem 1 as probability bound
+> 1 − 2 (36/δ)
+
+≤ Φz
+
+with failure probability pe ≤ 2 (d/δ)
+e−c0 (δ/2)M for some
+ﬁxed constant d > 1 and every δ ∈ (0, 1)?
+
+c) Sparse Circular Convolutions and Tensor Products:
+A main property of the circular convolution is that the
+image of Euclidean basis vectors (ei , ej ) is again an Euclidean basis vector. Let X := span{ei }i∈I and Y :=
+span{ej }j∈J with |I| = S and |J| = F . Then it is easy
+to show that X
+Y = span{ek }k∈I⊕J where I ⊕ J :=
+{ (i + j) mod N | i ∈ I, j ∈ J}. If |I ⊕ J| = SF then the
+subspaces X, Y are “properly” separated [1] and one can
+show easily that the image is Hilbert isomorph (isometric) to
+the set of all simple tensor products. This means, there exist
+isomorphism, s.t. on these extremal pairs (X, Y ) the norm ·
+becomes multiplicatively. Hence we get for all (s, h) ∈ X ×Y
+s
+
+2
+
+(36)
+
+5
+
+

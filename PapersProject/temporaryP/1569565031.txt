@@ -1,0 +1,1006 @@
+Creator:         TeX output 2012.05.17:1545
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Thu May 17 15:45:40 2012
+ModDate:        Tue Jun 19 12:55:56 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      295710 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569565031
+
+Lattice codes achieving strong secrecy over the
+mod-Λ Gaussian Channel
+Cong Ling and Laura Luzzi
+
+Jean-Claude Belﬁore
+
+Department of Electrical
+and Electronic Engineering
+Imperial College London, United Kingdom
+cling@ieee.org, l.luzzi@imperial.ac.uk
+
+D´ partement Communications
+e
+et Electronique
+T´ l´ com-ParisTech, Paris, France
+ee
+belﬁore@telecom-paristech.fr
+
+of the coarse lattice Λe and a random point inside this coset
+is transmitted.
+In [5] the existence of lattice codes (based on the ensemble
+of random lattice codes) achieving the secrecy capacity under
+the weak secrecy criterion was demonstrated. Explicit wiretap
+lattice codes from an error probability point of view were
+proposed in [6], which also introduced the notion of secrecy
+gain and showed that Eve’s correct decoding probability
+limn→∞ Pc = 0 for even unimodular lattices.
+In this paper we prove that lattice codes can achieve
+strong secrecy if both Bob and Eve’s channels are mod-Λ
+Gaussian channels. We follow Csisz´ r’s idea [2] to show that
+a
+the conditional output distributions corresponding to different
+messages converge to the same distribution in the sense of L1
+distance or variational distance. As shown in [7], this can be
+done by choosing a binning scheme such that the bin rate is
+above the capacity of the eavesdropper’s channel. We propose
+the ﬂatness factor as a fundamental new parameter to prove L1
+convergence of conditional outputs and to assess the goodness
+of lattice codes for secrecy. We note that we do not require
+the message M to be uniformly distributed, which implies that
+the proposed code features semantic security.
+The analysis of the mod-Λ channel was a key element in
+the proof that lattice coding and decoding achieve the capacity
+of the additive white Gaussian noise (AWGN) channel in
+[8, 9]. The mod-Λ wiretap channel was already considered
+in [10] in the context of secrecy with noisy feedback, where
+it was suggested that ﬁnding good wiretap codes for this
+model can give signiﬁcant insight to solve the AWGN case.
+However, as observed in [10], transferring these techniques
+from the modulo-Λ case to the AWGN case is not trivial since
+the modulo structure helps to conceal information from the
+eavesdropper.
+
+Abstract—We consider a wiretap scenario where the main
+channel and eavesdropper’s channel are modulo lattice Gaussian
+channels. We prove that nested lattice codes can achieve strong
+secrecy for this model, which gives considerable insights to tackle
+the genuine Gaussian wiretap channel. The key tool in our
+proof is an L1 convergence result for the conditional output
+distributions corresponding to different messages, which follows
+from the properties of the lattice Gaussian measure. No constraint
+on the a priori distribution of the message is imposed, which
+means that the proposed scheme is actually semantically secure.
+We not only show the existence of lattice codes that are good for
+secrecy, but also propose the ﬂatness factor as a design criterion.
+
+I. I NTRODUCTION
+The idea of information-theoretic security stems from Shannon’s notion of perfect secrecy. Perfect security can be
+achieved by encoding an information message M into a codeword Z in such a way that the mutual information I(M; Z) = 0.
+However, perfect security is impractical because it requires a
+one-time pad.
+In the context of noisy channels, Wyner [1] proved that
+both robustness to transmission errors and a prescribed degree of data conﬁdentiality could simultaneously be attained
+by channel coding without any secret key. Wyner replaced
+Shannon’s perfect secrecy with the weak secrecy condition
+1
+limn→∞ n I(M; Zn ) = 0, namely the asymptotic rate of leaked
+information between the message M and the channel output
+Zn should vanish as the block length n tends to inﬁnity.
+Unfortunately, it is still possible for a scheme satisfying
+weak secrecy to exhibit some security ﬂaws, e.g., the total
+amount of leaked information may go to inﬁnity, and now
+it is widely accepted that a physical-layer security scheme
+should be secure in the sense of Csisz´ r’s strong secrecy
+a
+limn→∞ I(M; Z) = 0 [2].
+Explicit wiretap codes achieving strong secrecy over discrete memoryless channels have been proposed in [3, 4].
+For continuous channels such as the Gaussian channel, the
+problem of achieving strong secrecy is still open. Recently,
+some progress has been made in using nested lattice codes
+over Gaussian wiretap channels. It is quite natural to replace
+Wyner’s random binning with coset coding induced by a lattice
+partition Λe ⊂ Λb . The secret bits are used to select one coset
+
+II. G AUSSIAN MEASURES ON LATTICES
+The lattice Gaussian measure arises in a number of problems
+in coding [8] and cryptography [11]. Let σ > 0, λ and x be
+any vectors in Rn and Λ an n-dimensional lattice in Rn . We
+deﬁne the Gaussian distribution of variance σ centered at λ as
+∥x−λ∥2
+1
+e− 2σ2 .
+fσ,λ (x) = √
+( 2πσ)n
+
+1
+
+and the Gaussian measure on Λ as
+∑
+∑ − ∥x−λ∥2
+1
+fσ,λ (x) = √
+e 2σ2 .
+fσ,Λ (x) =
+( 2πσ)n λ∈Λ
+λ∈Λ
+
+Proof: From the proof of Proposition 1, we can see that
+maxx∈R(Λ) |fσ,Λ (x) − Ex [fσ,Λ (x)]|
+Ex [fσ,Λ (x)]
+∑
+∑
+2
+∗ 2
+−2π 2 σ 2 ∥λ∗ ∥2
+=
+e
+−1=
+e−πs ∥λ ∥ ≤ ϵ
+
+(1)
+
+A. Flatness factor
+
+λ∗ ∈Λ∗
+
+Deﬁnition 1 (Flatness factor). The ﬂatness factor of the
+Gaussian measure is deﬁned as the maximum ratio fσ,Λ (x)
+can deviate from the uniform distribution on the fundamental
+region R(Λ) of Λ:
+ϵΛ (σ)
+
+maxx∈R(Λ) |fσ,Λ (x) − Ex [fσ,Λ (x)]|
+.
+Ex [fσ,Λ (x)]
+
+In other words, fσ,Λ (x) is within 1±ϵΛ (σ) from the uniform
+distribution. Note that this deﬁnition is slightly different from
+that in [12]. The difference is that this deﬁnition also accounts
+for the minimum of fσ,Λ (x).
+
+B. Variational distance
+
+Proposition 1 (Expression of ϵΛ (σ)).
+(
+)
+n
+1
+ϵΛ (σ) = γ 2 ΘΛ
+−1
+2πσ 2
+
+We introduce the notion of variational distance or statistical
+distance between two distributions:
+Deﬁnition 3 (Variational distance). Let p and q be two discrete
+distributions on a ﬁnite set X . Then the variational distance
+between p and q is
+∑
+V(p, q)
+|p(x) − q(x)| .
+
+2
+n
+
+(Λ)
+where γ = V2πσ2 is the generalized signal-to-noise ratio
+(SNR), V (Λ) is the fundamental volume of Λ, and ΘΛ (y) =
+∑
+−πy∥λ∥2
+is the theta series.
+λ∈Λ e
+
+x∈X
+
+Proof: Obviously, Ex [fσ,Λ (x)] = 1/V (Λ). Using the
+Fourier expansion of fσ,Λ (x) [8, 11], we have
+V (Λ) fσ,Λ (x) −
+=
+
+∑
+
+e−2π
+
+Similarly, for continuous distributions with densities p and q,
+the variational distance is deﬁned by
+∫
+V(p, q)
+|p(x) − q(x)| dx = ∥p − q∥L1 .
+
+1
+V (Λ)
+
+σ 2 ∥λ∗ ∥2
+
+σ 2 ∥λ∗ ∥2
+
+The ﬂatness factor also gives a bound on the variational
+distance between the Gaussian distribution reduced mod R(Λ)
+and the uniform distribution UR(Λ) on R(Λ). This result was
+already proven in [11] using the smoothing parameter when
+R(Λ) is the fundamental parallelotope.
+
+cos(2π⟨λ∗ , x⟩) − 1
+−1
+
+2
+
+λ∗ ∈Λ∗
+(a)
+
+≤
+
+∑
+
+e−2π
+
+2
+
+λ∗ ∈Λ∗ \0
+
+√
+for s = 2πσ.
+In spite of the equivalence, the advantage of the ﬂatness
+factor is two-fold:
+• It gives a precise characterization ϵ by the theta series.
+Note that it is ϵ, not the smoothing parameter, that is of
+interest to communications.
+• The smoothing parameter is mostly concerned with small
+values of ϵ, while the ﬂatness factor can handle both
+large and small values of ϵ. The latter is of interest in
+communication applications [12].
+
+λ∗ ∈Λ∗
+
+V (Λ) ∑ − ∥λ∥22
+e 2σ − 1
+= V (Λ)fσ,Λ (0) − 1 = √
+( 2πσ)n λ∈Λ
+(
+)
+V (Λ)
+1
+(c)
+= √
+ΘΛ
+− 1,
+2πσ 2
+( 2πσ)n
+
+Proposition 3. For c ∈ Rn let Y (x) = [fσ,c (x)] mod R(Λ).
+Then
+V(Y, UR(Λ) ) ≤ ϵΛ (σ).
+
+(b)
+
+Proof: Observe that restricting the Gaussian measure to
+any fundamental region of Λ is equivalent to considering the
+Gaussian distribution mod R(Λ):
+∑
+[fσ,c (x)] mod R(Λ) =
+fσ,c (x − λ)1R(Λ) (x) =
+
+where the equality in (a) holds if x ∈ Λ so that ⟨λ∗ , x⟩ is an
+integer, (b) is due to the Poisson sum formula, and (c) follows
+from the deﬁnition of the theta series.
+Remark 1. The equality in (a) implies that the maxima of both
+fσ,Λ (x) and |fσ,Λ (x) − Ex [fσ,Λ (x)]| are reached if x ∈ Λ.
+
+=
+
+∑
+
+λ∈Λ
+
+fσ,λ (x − c)1R(Λ) (x) = fσ,Λ (x − c)1R(Λ) (x)
+
+λ∈Λ
+
+Deﬁnition 2 (Smoothing parameter [11]). For a lattice Λ and
+ϵ > 0, the∑
+smoothing parameter ηϵ (Λ) is the smallest s > 0
+2
+∗ 2
+such that λ∗ ∈Λ∗ \{0} e−πs ∥λ ∥ ≤ ϵ.
+
+Then by deﬁnition of ϵΛ (σ), we ﬁnd
+∫
+[fσ,c (x)] mod R(Λ) − UR(Λ) (x) dx ≤
+R(Λ)
+
+The next proposition shows that the ﬂatness factor and
+smoothing parameter are in fact equivalent.
+√
+Proposition 2. If ηϵ (Λ) = 2πσ, then ϵΛ (σ) = ϵ.
+
+≤ V (Λ) max
+
+x∈R(Λ)
+
+2
+
+fσ,Λ (x − c) −
+
+1
+≤ ϵΛ (σ).
+V (Λ)
+
+Gaussian channel, the transmitted codebook C must satisfy an
+average power constraint
+[ n ]
+∥X ∥
+= P.
+(5)
+EC
+n
+
+III. A N U PPER B OUND ON M UTUAL I NFORMATION
+In what follows we will consider both continuous and
+discrete random variables as well as mixed pairs of discrete
+and continuous random variables. Let X, Y be continuous
+random variables taking values in Rn with densities pX and
+pY respectively, and M, M′ discrete random variables taking
+values in a ﬁnite set Mn with probability mass functions
+pM , pM′ . Let pXM (x, m) be the joint hybrid density of the
+mixed pair (X, M): that is, ∀m ∈ Mn , pXM (·, m) is the density
+corresponding to the probability measure µm (A) = P{M =
+m, X ∈ A} for all measurable sets A ⊆ Rn .
+The Kullback-Leibler divergence of the distributions
+∫
+pX
+pX , pY is D(pX ∥pY ) = Rn pX (x) log pY (x) dx. Similarly,
+(x)
+∑
+pM (m)
+D(pM ∥pM′ ) =
+m∈M pM (m) log pM′ (m) . It is well known
+that the mutual information I(X; Y) = D(pXY ∥pX pY ).
+The following Lemma is a continuous version of Lemma 1
+in [2]. The proof is similar to the discrete case and will be
+given in the full version of this paper.
+
+Consider a message set Mn = {1, . . . , 2nR }, and a oneto-one function f : Mn → [Λb /Λe ] which associates each
+message m ∈ Mn to a coset leader λm ∈ Λb ∩ V(Λe ). Note
+that we make no a priori assumption on the distribution of M.
+In order to encode the message m, Alice selects a random
+lattice point λ ∈ Λe ∩ V(Λs ) according to the discrete uniform
+1
+distribution pL (λ) = 2nR′ and transmits Xn = λ + λm . For
+λi ∈ [Λs /Λe ], deﬁne
+Ri (Λe ) = (V(Λe ) + λi ) mod Λs =
+∑
+=
+(V(Λe ) + λi + λs ) ∩ V(Λs ).
+λs ∈Λs
+
+The Ri (Λe ) are fundamental regions of Λe and
+∪
+Ri (Λe ) = V(Λs ).
+
+Lemma 1. Let X and Z be continuous random variables
+deﬁned on Rn with distributions pX and pZ . Let f : Rn →
+{1, 2, . . . , k} be any mapping, and let M = f (X). If k ≥ 4,
+then
+k
+I(M; Z) ≤ dav (f ) log
+,
+dav (f )
+∑k
+where dav (f ) = m=1 pM (m)V(pZ|M =m , pZ ).
+
+We now apply the continuous version of Csisz` r’s Lemma to
+a
+derive an upper bound on the amount of leaked information
+on the mod-Λs wiretap channel (4). Note that even though we
+consider a mod-Λs channel, the secrecy condition is given in
+terms of the ﬂatness factor of the lattice Λe .
+
+Note that Lemma 2 in [2] also holds: for any distribution
+qZ on Rn ,
+
+Theorem 1. Suppose that the ﬂatness factor of Λe is ϵΛe (σe )
+on the eavesdropper’s channel. Then
+
+k
+∑
+
+dav ≤ 2
+
+pM (m)V(pZ|M=m , qZ ).
+
+λi ∈[Λs /Λe ]
+
+I(M; Zn ) ≤ 2ϵΛe (σe )nR − 2ϵΛe (σe ) log 2ϵΛe (σe )
+
+(2)
+
+Lemma 2. Suppose that the number of bins is |Mn | = k =
+2nR and that ∀n there exists some density un over Rn such
+that V(pZn |M=m , un ) ≤ εn , ∀m ∈ {1, . . . , 2nR }. Then dav ≤
+2εn and so
+I(M; Z ) ≤ 2εn nR − 2εn log 2εn .
+
+(3)
+
+λ∈Λe ∩V(Λs )
+
+∑
+
+=
+
+2
+
+1
+nR′
+
+λ∈Λe ∩V(Λs )
+
+IV. ACHIEVING STRONG SECRECY
+
+2
+
+∥z−λm −λ∥
+1
+−
+2
+2σe
+√
+e
+( 2πσe )n
+
+The output distribution of Eve’s channel supposing that the
+message m was sent is then given by
+
+Let Λs ⊂ Λe ⊂ Λb be a nested chain of n-dimensional
+lattices in Rn such that
+1
+log |Λb /Λe | = R,
+n
+
+(7)
+
+¯
+¯
+Proof: Let Zn = Xn + Nn . The distribution of Zn
+e
+supposing that the message m was sent is
+∑
+pL (λ)pZn |Xn (z|λ + λm ) =
+pZn |M=m (z) =
+¯
+¯
+
+m=1
+
+n
+
+(6)
+
+pZn |M=m (z) = p[Zn ] mod Λs |M=m (z)
+¯
+∥z−λm −λi −λs ∥2
+∑
+∑
+1V(Λs ) (z)
+−
+2
+2σe
+√
+=
+e
+2nR′ ( 2πσe )n
+λ ∈Λ λ ∈[Λ /Λ ]
+
+1
+log |Λe /Λs | = R′ .
+n
+
+We consider a wiretap channel whose input Xn belongs to
+the Voronoi region V(Λs ) (i.e., Λs is the shaping lattice), while
+the outputs Yn and Zn at Bob and Eve’s end respectively are
+given by
+{
+Yn = [Xn + Nn ] mod Λs ,
+b
+(4)
+Zn = [Xn + Nn ] mod Λs ,
+e
+
+s
+
+s
+
+i
+
+s
+
+e
+
+∑
+
+∥z−λm −λ∥2
+1V(Λs ) (z)
+−
+2
+2σe
+√
+=
+e
+2nR′ ( 2πσe )n
+λ∈Λe
+−λ∥
+∑
+∑ 1Ri (Λe ) (z) − ∥z−λm2 2
+2σe
+√
+=
+e
+nR′ ( 2πσ )n
+2
+e
+λ ∈[Λ /Λ ] λ∈Λ
+i
+
+s
+
+e
+
+nR′
+
+where Nn , Nn are n-dimensional Gaussian vectors with zero
+e
+b
+2
+2
+mean and variance σb , σe respectively. As in the classical
+
+=
+
+2
+∑
+i=1
+
+3
+
+1
+2nR′
+
+e
+
+∑
+λ∈Λe
+
+fσ,λm (z − λ)1Ri (Λe ) (z) =
+
+′
+
+=
+
+2nR
+∑
+i=1
+
+1
+2nR′
+
+V. C ONCLUDING REMARKS
+Yi (z),
+
+We close this paper with some remarks.
+Relation to secrecy gain: A small ﬂatness factor requires a
+small theta series, which coincides with the criterion of secrecy
+gain: a large secrecy gain requires a small theta series [6].
+Relation to resolvability: In [7, 13] (see also the earlier works [14, 15]) a technique based on resolvability was
+suggested to obtain strong secrecy, which uses a binning
+scheme such that the bin rate is above the capacity of the
+eavesdropper’s channel. We will show this is also the case for
+the proposed lattice scheme.
+If the bin rate R′ is large enough, we can approximate the
+average power P in (5) with the second moment per dimension
+σ 2 (Λs ) (continuous approximation [16], which could be made
+rigorous by adding a dither [9]):
+∫
+1 1
+2
+2
+σ (Λs ) =
+∥x∥ dx ≈ P.
+n V (Λs ) V(Λs )
+
+where Yi (z) = [fσ,λm (z)] mod(Ri (Λe ) + λi ) has support in Ri (Λe ). From Proposition 3, we have that ∀i ∈
+′
+{1, . . . , 2nR }, V(Yi , URi (Λe ) ) ≤ ϵΛe (σe ). From the decom∑2nR′ 1
+position UV(Λs ) (z) = i=1 2nR′ URi (Λe ) (z), we obtain
+V(pZn |M=m , UV(Λs ) ) ≤
+′
+2nR
+∑ 1 ∫
+≤
+Yi (z) − URi (Λe ) (z) dz ≤ ϵΛe (σe ).
+2nR′ Ri (Λe )
+i=1
+Recalling the deﬁnition of dav in Lemma 1, and deﬁning
+qZ (z) = UV(Λe ) (z), from the inequality (2) we ﬁnd that
+dav ≤ 2ϵΛ(n) (σe ). Then the mutual information can be
+e
+estimated using Lemma 2.
+From Theorem 1, we obtain a sufﬁcient condition for a
+sequence of nested lattice wiretap codes to achieve strong
+secrecy:
+
+Now choose Λs which is good for quantization.
+Then the normalized second moment G(Λs ) =
+
+Corollary 1. I(M, Zn ) → 0 as n → ∞ for a sequence of
+(1)
+(n)
+lattices Λe such that ϵΛ(n) (σe ) = o n .
+
+P
+
+e
+
+2
+
+V (Λs ) n
+
+We now consider the problem of ﬁnding a sequence of
+(1)
+lattices Λ(n) such that ϵΛ(n) (σe ) = o n . In fact, we can
+have exponential decrease.
+
+ϵΛ(n) (σ) ≤ γ
+
+1
+2πe
+
+2
+
+V (Λs ) n
+
+=
+
+as n → ∞. Since V (Λs ) = 2nR V (Λe ), the
+
+strong secrecy condition becomes
+)n
+(
+2
+P
+V (Λs )
+→ 0.
+n =
+′
+′
+2
+2
+G(Λs )22R 2πσe
+2nR (2πσe ) 2
+
+Theorem 2. There exists a sequence of lattices Λ(n) such that
+the ﬂatness factor goes to zero exponentially:
+n
+2
+
+→
+
+′
+
+σ 2 (Λs )
+
+This is guaranteed if
+
+(8)
+
+P
+2
+22R′ 2πσe
+
+< G(Λs ) →
+
+1
+2πe ,
+
+′
+
+or 22R >
+
+This condition is satisﬁed if the bin rate R′ >
+log e.
+As was shown in [8], the capacity of the mod-Λs channel is
+achieved by the uniform distribution on V(Λs ) and is given by
+(
+)
+1
+2
+2
+2
+C(Λs , σe ) = n log(V (Λs )) − h(Λs , σe ) , where h(Λs , σe )
+¯n =
+is the differential entropy of the Λs -aliased noise N
+[Nn ] mod Λ. Note that if Λs is good for quantization, the Λs n
+aliased noise tends to be Gaussian, and V (Λs ) ≈ (2πeP ) 2 ,
+2
+2
+so C(Λs , σe ) → 1 log 2πeP − 1 log 2πeσe = 1 log SNRe .
+2
+2
+2
+Relation to Poltyrev’s setting of inﬁnite constellations:
+Poltyrev initiated the study of inﬁnite constellations in the
+presence of Gaussian noise [17]. In this setting, although
+the standard channel capacity is meaningless (so he deﬁned
+generalized capacity), the secrecy capacity is ﬁnite. This is
+because the secrecy capacity of the Gaussian wiretap channel
+σ2
+as P → ∞ converges to a ﬁnite rate 1 log( σe ). Lattice
+2
+2
+b
+codes can not be better than this, so it is an upper bound.
+Even though we considered a mod-Λs channel in this paper,
+we may enlarge V(Λs ) (i.e., increase R′ while ﬁxing R) to
+approach an inﬁnite constellation. It is easy to check that,
+given R, the upper bound on the mutual information of our
+proposed scheme is independent of V (Λs ), and thus the limit
+exists as V (Λs ) → ∞. This corresponds to the case of
+inﬁnite constellations. Further, the achieved secrecy rate is
+only 1 log2 e away from the upper bound.
+2
+Relation to the genuine AWGN channel: We expect that the
+technique developed in this paper can be extended to solve
+Pe
+SNRe ·e.
+2
+σe
+1
+1
+2 log SNRe + 2
+
+as long as the generalized SNR γ < 1.
+Proof: Our new averaging bound for the theta series
+(see the Appendix) guarantees the existence of a sequence of
+lattices Λ(n) such that ΘΛ (y) ≤ 1+ 1 n . For this sequence,
+V (Λ)y 2
+Proposition 1 gives
+(
+n )
+n
+V (Λ)
+(2πσ 2 ) 2
+ϵΛ (σ) ≤
+1+
+−1=γ2.
+n
+V (Λ)
+(2πσ 2 ) 2
+Therefore, if Eve’s generalized SNR γe is smaller than 1,
+then strong secrecy can be achieved by lattice codes, and in
+fact the mutual information will vanish exponentially.
+So far we have proven the existence of good lattice codes
+for strong secrecy. The ﬂatness factor actually tells more than
+that. From a practical perspective, we have a design criterion:
+Corollary 2 (Design criterion of good lattice codes for secrecy). A lattice Λe is good for secrecy if its ﬂatness factor
+ϵΛe is small.
+To prove the reliability for Bob, we need a ﬁne lattice Λb
+which is good for channel coding. We use a sphere-bound
+achieving lattice deﬁned by Forney [8], whose error probability
+tends to zero as long as γb > e. It is easy to see that we may
+obtain any secrecy rate
+( 2)
+σe
+1
+1
+(9)
+− log e.
+R < log
+2
+2
+σb
+2
+
+4
+
+for any y > 0, since αp → ∞ under the conditions given.
+Moreover,
+∫
+pk − 1 ∑
+−1
+f (v)dv
+f (v) → V
+pn − 1
+Rn
+n
+
+the problem of the AWGN wiretap channel with a power
+constraint.
+ACKNOWLEDGMENTS
+The research of L. Luzzi is supported by the European
+Union Seventh Framework Programme (FP7/2007-2013) under grant agreement n. PIEF-GA-2010-274765. The authors
+would like to thank Damien Stehl´ and Matthieu Bloch for
+e
+helpful discussions.
+
+v∈αZ
+
+as α → 0, p → ∞ and αn pn−k = V is ﬁxed. To see
+this, consider any sequence αk → 0 and deﬁne fk (v) =
+( ⌊ ⌉)
+v
+f αk αk , then use Lebesgue’s dominated convergence
+theorem, the functions fk being dominated by g(v) which is
+∑n
+[
+]
+1 2
+1 n
+equal to 1 if v ∈ − 1 , 2 and equal to e−πy i=1 (|vi |− 2 )
+2
+otherwise. Thus, we have
+∫
+1 ∑ ∑
+−1
+f (v)dv.
+(12)
+f (v) → 1 + V
+|C|
+Rn
+C∈C v∈αΛC
+∫
+Since Rn f (v)dv = y −n/2 , we obtain (10).
+
+A PPENDIX
+AVERAGING BEHAVIOR OF THETA SERIES
+In [18], Loeliger derived a version of the MinkowskiHlawka theorem based on the averaging over ConstructionA lattices. We will adapt his method to derive the average
+behavior of the theta series for Construction A. Loeliger’s
+derivation has a limitation in that it requires a function of
+bounded support, which is not the case for the Gaussian
+function associated with the theta series. This limitation will
+be circumvented here.
+For integer p > 0, let Zn → Zn : v → v be the elementp
+wise reduction modulo-p. Following [18], consider mod-p lattices (Construction A) of the form ΛC {v ∈ Zn : v ∈ C},
+where p is a prime and C is a linear code over Zp . In the
+proof, scaled mod-p lattices αΛC {αv : v ∈ ΛC } for some
+α ∈ R are used. The fundamental volume of such a lattice is
+V (αΛC ) = αn pn−k , where n and k are the block length and
+dimension of the code C, respectively. A set C of linear codes
+over Zp is said to be balanced if every nonzero element of Zp
+is contained in the same number of codes from C. In particular,
+the set of all linear (n, k) codes over Zp is balanced.
+
+R EFERENCES
+[1] A. D. Wyner, “The wire-tap channel,” Bell System Technical Journal,
+vol. 54, pp. 1355–1387, Oct. 1975.
+[2] I. Csisz´ r, “Almost independence and secrecy capacity,” Problems of
+a
+Information Transmission, vol. 32, pp. 40–47, 1996.
+[3] A. Subramanian, A. Thangaraj, M. Bloch, and S. McLaughlin, “Strong
+secrecy on the binary erasure wiretap channel using large-girth LDPC
+codes,” IEEE Transactions on Information Forensics and Security, vol. 6,
+no. 3, pp. 585 –594, Sept. 2011.
+[4] H. Mahdavifar and A. Vardy, “Achieving the secrecy capacity of wiretap
+channels using Polar Codes,” IEEE Trans. Inform. Theory,, vol. 57,
+no. 10, pp. 6428 –6443, Oct. 2011.
+[5] L.-C. Choo, C. Ling, and K.-K. Wong, “Achievable rates for lattice
+coding over the Gaussian wiretap channel,” in ICC 2011 Physical Layer
+Security Workshop, 2011.
+[6] F. Oggier, P. Sol´ , and J.-C. Belﬁore, “Lattice codes for the wiretap
+e
+Gaussian channel: Construction and analysis,” Mar. 2011. [Online].
+Available: http://arxiv.org/abs/1103.4086
+[7] M. Bloch, “Achieving secrecy: capacity vs. resolvability,” in Proc. Int.
+Symp. Inform. Theory (ISIT 2011), St. Petersburg, Russia, July-August
+2011.
+[8] G. Forney, M. Trott, and S.-Y. Chung, “Sphere-bound-achieving coset
+codes and multilevel coset codes,” IEEE Trans. Inform. Theory, vol. 46,
+no. 3, pp. 820 –850, may 2000.
+[9] U. Erez and R. Zamir, “Achieving 1/2 log (1+SNR) on the AWGN
+channel with lattice encoding and decoding,” IEEE Trans. Inform.
+Theory, vol. 50, no. 10, pp. 2293 – 2314, oct. 2004.
+[10] L. Lai, H. El Gamal, and H. Poor, “The wiretap channel with feedback:
+Encryption over the channel,” IEEE Trans. Inform. Theory, vol. 54,
+no. 11, pp. 5059 –5067, nov. 2008.
+[11] D. Micciancio and O. Regev, “Worst-case to average-case reductions
+based on Gaussian measures,” in Proc. Ann. Symp. Found. Computer
+Science, Rome, Italy, Oct. 2004, pp. 372–381.
+[12] J.-C. Belﬁore, “Lattice codes for the compute-and-forward protocol: The
+ﬂatness factor,” in Proc. ITW 2011, Paraty, Brazil, 2011.
+[13] L. Luzzi and M. R. Bloch, “Capacity based random codes cannot achieve
+strong secrecy over symmetric wiretap channels,” in SecureNets 2011,
+2011.
+[14] I. Devetak, “The private classical capacity and quantum capacity of a
+quantum channel,” IEEE Transactions on Information Theory, vol. 51,
+no. 1, pp. 44 –55, Jan. 2005.
+[15] M. Hayashi, “General nonasymptotic and asymptotic formulas in channel resolvability and identiﬁcation capacity and their application to the
+wiretap channel,” IEEE Transactions on Information Theory, vol. 52,
+no. 4, pp. 1562 –1575, April 2006.
+[16] G. Forney and L.-F. Wei, “Multidimensional constellations. I. introduction, ﬁgures of merit, and generalized cross constellations,” IEEE J. Sel.
+Areas Commun., vol. 7, no. 6, pp. 877–892, Aug 1989.
+[17] G. Poltyrev, “On coding without restrictions for the AWGN channel,”
+IEEE Trans. Inform. Theory, vol. 40, pp. 409–417, Mar. 1994.
+[18] H. A. Loeliger, “Averaging bounds for lattices and linear codes,” IEEE
+Trans. Inform. Theory, vol. 43, pp. 1767–1773, Nov. 1997.
+
+Lemma 3 (Average behavior of theta series). Let C be any
+balanced set of linear (n, k) codes over Zp . Then, for 0 <
+k < n and for αn pn−k = V ﬁxed,
+1 ∑
+lim
+ΘαΛC (y) = 1 + V −1 y −n/2 .
+(10)
+α→0,p→∞ |C|
+C∈C
+
+Proof: Let f (v) = e−πy∥v∥ for v ∈ Rn and ﬁxed y ∈
+R , and denote by C ′ the set of all nonzero codewords of C.
+Following [18], we have
+1 ∑ ∑
+f (v) =
+|C|
+C∈C v∈αΛC
+[
+]
+∑
+∑
+1 ∑
+=
+f (αv) +
+f (αv) =
+|C|
+n
+n
+′
+2
+
++
+
+C∈C
+
+∑
+
+v∈Z :v=0
+
+v∈Z :v∈C
+
+p −1 ∑
+f (αv) =
+(11)
+pn − 1
+v∈Zn :v=0
+v∈Zn :v̸=0
+
+
+∑
+∑
+pk − 1  ∑
+f (v)
+f (v) −
+f (v) + n
+=
+p −1
+n
+n
+n
+=
+
+k
+
+f (αv) +
+
+v∈αZ
+
+v∈αpZ
+
+v∈αpZ
+
+where (11) is due to the balance of C. We have
+∑
+f (v) = ΘαpZn (y) → 1
+v∈αpZn
+
+5
+
+

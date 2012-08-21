@@ -1,0 +1,1017 @@
+Title:          ISIT_2012_Zhuohua.pdf
+Author:         zhuohuawu
+Creator:        TeX
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Fri May 18 23:23:25 2012
+ModDate:        Tue Jun 19 12:55:04 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      316850 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569566485
+
+Partial Decode-Forward Binning for Full-Duplex
+Causal Cognitive Interference Channels
+Zhuohua Wu and Mai Vu
+Department of Electrical and Computer Engineering, McGill University, Montreal
+Emails: zhuohua.wu@mail.mcgill.ca, mai.h.vu@mcgill.ca
+W1
+
+Abstract—The causal cognitive interference channel (CCIC)
+is a four-node channel, in which the second sender obtains
+information from the ﬁrst sender causally and assists in the transmission of both. We propose a new coding scheme called HanKobayashi partial decode-forward binning (HK-PDF-binning),
+which combines the ideas of Han-Kobayashi coding, partial
+decode-forward relaying, conditional Gelfand-Pinsker binning
+and relaxed joint decoding. The second sender decodes a part
+of the message from the ﬁrst sender, then uses Gelfand-Pinsker
+binning to bin against the decoded codeword. When applied to
+the Gaussian channel, this HK-PDF-binning essentializes to a
+correlation between the transmit signal and the state, which
+encompasses the traditional dirty-paper-coding binning as a
+special case when this correlation factor is zero. The proposed
+scheme encompasses the Han-Kobayashi rate region and achieves
+both partial decode-forward relaying rate for the ﬁrst user and
+interference-free rate for the second user.
+
+W2
+
+Fig. 1.
+
+X1
+
+( X 2 ,Y )
+
+S1
+
+D1
+
+Y1
+
+ˆ
+W1
+
+S2
+
+D2
+
+Y2
+
+ˆ
+W2
+
+The full-duplex causal cognitive interference channel.
+
+This scheme therefore brings a new way of coding and can be
+combined with existing schemes for the IC-SC to improve
+rates further. We then apply our scheme to the Gaussian
+channel and show that introducing a correlation between the
+state and the transmit signal can enlarge the rate region by
+allowing both state nullifying and forwarding at the cognitive
+user.
+
+I. I NTRODUCTION
+The causal Cognitive Interference Channel (CCIC) is a
+practically-oriented cognitive channel, in which the second
+(cognitive) sender obtains information from the ﬁrst (primary)
+sender causally, then uses that to assist the transmissions of
+the ﬁrst sender and its own message. This is different from
+the traditional cognitive channel in which the cognitive user
+knows the primary user’s message non-causally.
+Coding for the traditional (non-causal) CIC is mainly based
+on combining Gelfand-Pinsker binning technique [1] with
+Han-Kobayashi coding [2], [3] for the interference channel.
+Since the cognitive user has the primary user’s message noncausally, the fact that it relays this message is implicit. In the
+causal-CIC, however, the cognitive user has to relay explicitly.
+Speciﬁcally in this paper, we apply partial decode-forward
+relaying [4], in which the cognitive user ﬁrst decodes the
+primary user’s message causally, then transmits the decoded
+message and its own message cognitively.
+The CCIC can also be considered as a special case of the
+interference channel with source cooperation (IC-SC) in which
+both senders exchange information. Several coding schemes
+have been proposed for the IC-SC by applying different ways
+of rate splitting, block Markov encoding and/or GelfandPinsker binning [5]–[8]. These existing schemes may encompass the Han-Kobayashi rate region or the partial decodeforward (PDF) relaying rate, but none achieve both.
+In this paper, we propose a new coding scheme for the CCIC
+based on block Markov encoding, partial decode-forward
+relaying, Gelfand-Pinsker binning and Han-Kobayashi coding
+by splitting the ﬁrst user’s message into 3 parts and the second
+user’s into 2 parts. The proposed scheme achieves both the
+Han-Kobayashi region and the PDF rate for the primary user.
+
+II. CCIC C HANNEL M ODELS
+A. Full-duplex DM-CCIC model
+The full-duplex causal cognitive interference channel consists of two input alphabets X1 , X2 , and three output alphabets
+Y1 , Y2 , Y. The channel is characterized by a channel transition probability p(y1 , y2 , y|x1 , x2 ), where x1 and x2 are the
+transmit signals of S1 and S2 , y1 , y2 and y are the received
+signals of D1 , D2 and S2 . Figure 1 illustrates the channel
+model, where W1 and W2 are the messages of S1 and S2 .
+A (2nR1 , 2nR2 , n) code consists of the following:
+nR1
+• Two message sets W1 × W2 = [1, 2
+] × [1, 2nR2 ] with
+uniform, independent messages W1 , W2 , respectively.
+• Two encoders: one maps message w1 into codeword
+n
+xn (w1 ) ∈ X1 , and one maps w2 and each received
+1
+k−1
+sequence y
+into a symbol x2k (w2 , y k−1 ) ∈ X2 .
+n
+n
+• Two decoders: one maps y1 into w1 ∈ W1 ; one maps y2
+ˆ
+into w2 ∈ W2 .
+ˆ
+The deﬁnitions for the error probability, achievable rates and
+capacity region follow the standard ones in [9].
+B. Full-duplex Gaussian CCIC model
+The standard full-duplex Gaussian causal cognitive interference channel is shown in Figure 2 as
+Y1 = X1 + bX2 + Z1 ,
+Y2 = aX1 + X2 + Z2 ,
+Y = cX1 + Z,
+
+(1)
+
+where Z1 , Z2 , Z ∼ N (0, 1) are independent Gaussian noises,
+and a, b and c are cross-channel gains. If the original channel
+
+1
+
+Z1
+
+c
+
+Z
+
+1
+
+X1
+
+
+Y : X2
+
+a
+
+
+
+SP
+
+Y1
+
+SP
+
+1
+
+
+
+1]
+
+S1
+
+Bin
+
+Y2
+
+w10[i
+1
+
+w21i
+w22i
+
+Fig. 2. Standard full-duplex Gaussian causal cognitive interference channel.
+
+D1
+
+S2
+
+D2
+
+SP
+
+w12i
+
+Z2
+
+b
+
+w10[ i
+
+w10i
+w11i
+
+1]
+
+SP
+
+ˆ
+w10[i
+ˆ
+w21[i
+
+1]
+
+ˆ
+w11[i
+
+1]
+
+ˆ
+w12[i
+
+1]
+
+1] (for some)
+
+ˆ
+ˆ
+w21i w22i
+ˆ22i (for some)
+v
+ˆ
+w11i (for some)
+
+Fig. 3. Coding structure for the full-duplex Han-Kobayashi PDF-binning
+scheme at block i. (SP = superposition, Bin = binning)
+
+is not in this standard form, we can always transform it into
+the standard form using a procedure similar to the interference
+channel [10]. The transmit signals X1 and X2 are subject to
+power constraints P1 and P2 , respectively.
+
+and I2 — I14 are deﬁned as
+I2
+I3
+I4
+I5
+I6
+I7
+I8
+I9
+I10
+I11
+I12
+I13
+I14
+
+III. PARTIAL DECODE - FORWARD BINNING SCHEME
+A. Han-Kobayashi PDF-binning scheme
+Figure 3 illustrates the idea of the full-duplex HanKobayashi PDF-binning scheme. Message w1 is split into three
+parts: w10 , w11 , w12 , corresponding to the common (forwarding), public and private parts, and message w2 is split into
+two parts: w21 , w22 , corresponding to the public and private
+parts. Take the transmission in block i as an example. At
+S1 , the current common message w10i is superimposed on
+the previous commons message w10[i−1] ; message w11i is
+encoded independently of both w10[i−1] and w10i ; message
+w12i is then superimposed on all three messages w10[i−1] ,
+w10i and w10i . S2 decodes w10[i−1] of the previous block
+˜
+and uses conditional binning to bin the codeword for its
+private part w22[i] against w10[i−1] , conditionally on knowing
+˜
+the public part w21[i] . At the end of block i, D1 uses joint
+decoding over two consecutive blocks to decode a unique
+tuple (w10[i−1] , w11[i−1] , w12[i−1] ) for some w21[i−1] without
+ˆ
+ˆ
+ˆ
+ˆ
+requiring this message part to be correct. D2 treats the
+codeword for w10[i−1] as the state and searches for a unique
+pair (w21i , w22i ) for some w11i .
+
+P1
+
+≤ min{I2 + I5 , I6 }
+≤ I12
+≤ min{I2 + I7 , I8 } + I13
+≤ min{I2 + I3 , I4 } + I14
+≤ min{I2 + I9 , I10 } + I11
+≤ min{I2 + I3 , I4 }
++ min{I2 + I9 , I10 } + I13
+≤ min{I2 + I7 , I8 } + I11 + I14
+
+(4)
+
+Proof: Fix a joint probability distribution as in (3).
+1) Codebook generation: For each block i:
+nR10
+• Independently generate 2
+sequences tn (w10 ) ∼
+10
+n
+nR10
+].
+k=1 p(t10k ), w10 ∈ [1, 2
+n
+nR10
+• For each t10 (w10 ), independently generate 2
+sen
+n
+quences u10 (w10 |w10 ) ∼
+p(u10k |t10k ), w10 ∈
+k=1
+[1, 2nR10 ]. w10 and w10 are the common (forwarding)
+messages of the previous and current blocks, respectively.
+nR11
+• Independently generate 2
+sequences un (w11 ) ∼
+11
+n
+p(u11k ), w11 ∈ [1, 2nR11 ].
+k=1
+n
+n
+n
+• For each t10 (w10 ), u10 (w10 |w10 ) and u11 (w11 ),
+nR12
+independently
+generate
+2
+sequences
+n
+xn (w12 |w11 , w10 , w10 ) ∼ k=1 p(x1k |t10k , u10k , u11k ),
+1
+w12 ∈ [1, 2nR12 ].
+nR21
+• Independently generate 2
+sequences un (w21 ) ∼
+21
+n
+nR21
+].
+k=1 p(u21k ), w21 ∈ [1, 2
+n
+n(R22 +R22 )
+• For each u21 (w21 ), independently generate 2
+n
+n
+sequences u22 (w22 , v22 |w21 ) ∼
+k=1 p(u22k |u21k ),
+w22 ∈ [1, 2nR22 ] and v22 ∈ [1, 2nR22 ].
+n
+n
+• For each t10 (w10 ), u21 (w21 ) and u22 (w22 , v22 |w21 ),
+n
+generate one sequence x2 (w10 , w21 , w22 , v22 )
+∼
+n
+k=1 p(x2k |t10k , u21i , u22i ).
+2) Encoding:
+Let
+(w10i , w11i , w12i , w21i , w22i )
+be the new messages to be sent in block i, and
+(w10[i−1] , w11[i−1] , w12[i−1] , w21[i−1] , w22[i−1] )
+be
+the
+messages sent in block i − 1. At the beginning of block i:
+
+Theorem 1. The convex hull of the following rate region is
+achievable for the CCIC using HK-PDF-binning:
+⎧
+⎪ R1
+⎪
+⎪ R2
+⎪
+⎪
+⎪
+⎪ R1 + R 2
+⎪
+⎪
+⎨
+R1 + R 2
+⎪ R1 + R 2
+⎪
+⎪ 2R + R
+⎪
+⎪
+1
+2
+⎪
+⎪
+⎪
+⎪
+⎩
+R1 + 2R2
+
+= I(U10 ; Y |T10 )
+= I(X1 ; Y1 |T10 , U10 , U11 , U21 )
+= I(U10 , X1 ; Y1 |T10 , U11 , U21 ) + I(T10 ; Y1 )
+= I(U11 , X1 ; Y1 |T10 , U10 , U21 )
+= I(U10 , U11 , X1 ; Y1 |T10 , U21 ) + I(T10 ; Y1 )
+= I(X1 , U21 ; Y1 |T10 , U10 , U11 )
+= I(U10 , X1 , U21 ; Y1 |T10 , U11 ) + I(T10 ; Y1 )
+= I(U11 , X1 , U21 ; Y1 |T10 , U10 )
+= I(T10 , U10 , U11 , X1 , U21 ; Y1 )
+= I(U22 ; Y2 |U21 , U11 ) − I(U22 ; T10 |U21 )
+= I(U21 , U22 ; Y2 |U11 ) − I(U22 ; T10 |U21 )
+= I(U11 , U22 ; Y2 |U21 ) − I(U22 ; T10 |U21 )
+= I(U11 , U21 , U22 ; Y2 ) − I(U22 ; T10 |U21 ).
+
+(2)
+
+where
+P1 =p(t10 )p(u10 |t10 )p(u11 )p(x1 |t10 , u10 , u11 )p(u21 ) (3)
+p(u22 |u21 , t10 )p(x2 |t10 , u21 , u22 )p(y1 , y2 , y|x1 , x2 ),
+
+2
+
+•
+•
+
+S1 transmits xn (w12i |w11i , w10i , w10[i−1] ).
+1
+S2 searches for a v22i such that
+
+•
+
+(tn (w10[i−1] ), un (w21i ), un (w22i , v22i |w21i ))
+10
+21
+22
+∈ A(n) (PT10 U22 |U21 ).
+
+max
+R2 =
+
+(5)
+
+S2 then transmits xn (w10[i−1] , w21i , w22i , v22i ).
+2
+3) Decoding: At the end of block i:
+• S2 knows w10[i−1] and declares message w10i was sent
+ˆ
+if it is the unique message such that
+
+n
+un (w21[i−1] ), y1 (i − 1)) ∈ A(n) (PT10 U10 U11 X1 U21 Y1 )
+21 ˆ
+
+(6)
+
+n
+T10 (w10[i−1] )
+
+D2 treats
+as the state and searches for a
+ˆ
+ˆ
+ˆ
+unique (w21i , w22i ) for some (w11i , v22i ) such that
+ˆ
+n
+(un (w11i ), un (w21i ), un (w22i , v22i |w21i ), y2 (i))
+ˆ
+ˆ
+11 ˆ
+21 ˆ
+22 ˆ
+
+∈ A(n) (PU11 U21 U22 Y2 ). (7)
+Applying standard error analysis and Fourier Motzkin elimination, we obtain rate region (2). For details see [11].
+Remark 1. Even though at S2 we use standard Gelfand-Pinsker
+binning technique, but depending on the joint distribution
+between the binning auxiliary random variable (U22 ) and the
+state (T10 ), S2 can also forward a part of the state (i.e. message
+w10 of the previous block) to D1 .
+Remark 2. In the binning step (5) at S2 , we use conditional
+binning instead of unconditional binning. The binning is only
+between the codeword for Han-Kobayashi private message part
+U22 (w22 ) and the state T10 (w10 ), conditionally on knowing
+the Han-Kobayashi public messsage part w21 . This conditional
+binning is possible since w21 is decoded at both destinations.
+Remark 3. In the decoding step (7) at D2 , we use joint decoding of both the Gelfand-Pinsker auxiliary random variable
+(u22 ) and the Han-Kobayashi public message parts (w11 and
+w21 ), instead of decoding Gelfand-Pinsker and Han-Kobayashi
+codewords separately. This joint decoding is possible since the
+n
+n
+codewords for w11 and w21 (i.e. U11 and U21 ) are independent
+n
+of the state in Gelfand-Pinsker coding (i.e. T10 ). Joint decoding
+at both D1 (6) and D2 (7) help achieve the largest rate region
+for this coding structure.
+Remark 4. Inclusion of Han-Kobayashi rate region and the
+maximum rate for each user
+• The HK-PDF-binning scheme becomes the HanKobayashi scheme if T10 = U10 = ∅ and X2 = U22 .
+• S1 achieves the partial decode-forward relaying rate if
+we set U11 = U21 = U22 = ∅, and X2 = T10 .
+max
+R1 =
+
+max
+
+p(u10 ,x2 )p(x1 |u10 ,x2 )
+
+min
+
+(9)
+
+The interference channel with source cooperation (IC-SC)
+is a 4-node channel in which both S1 and S2 can receive
+signal from each other and use that cooperatively in sending
+messages to D1 and D2 . This channel therefore includes the
+CCIC as a special case (when S2 sends no information to S1 ).
+1) Host-Madsen’s scheme [5]: This scheme for Gaussian
+IC-SC is based on dirty paper coding and block Markov encoding; it includes the rate for decode-forward relaying but not
+the Han-Kobayashi region. However, since both senders must
+decode the cooperative message from the other sender in order
+to apply dirty paper coding, the scheme cannot be applied to
+the CCIC which has only uni-directional cooperation.
+2) Prabhakaran-Viswanath’s scheme [6]: This scheme is
+based on 4-part rate splitting and block Markov superposition
+coding. It may not contain the Han-Kobayashi region or the
+PDF rate, depending on channel parameters. The ideas in this
+scheme, however, can be combined with our scheme to further
+improve the rate region.
+3) Cao-Chen’s scheme [7]: This scheme is quite close to
+our proposed scheme. It is also based on 3-part message
+splitting, block Markov encoding, Gelfand-Pinkser binning
+and random binning, and achieves the Han-Kobayashi region.
+But this scheme cannot achieve the decode-forward relaying
+rate because of no block Markovity between the current
+and the previous cooperative messages, hence no coherent
+transmission between source and relay.
+4) Yang-Tuninetti’s scheme [8]: This scheme combines
+ideas in previous schemes by doing 4-part message splitting,
+block Markov superposition coding, Marton double binning
+and Gelfand-Pinsker binning. It achieves the Han-Kobayashi
+region but not the partial decode-forward relaying rate as in
+(8). In this scheme, destination 2 decodes the cooperativecommon part of user 1, thus limits rate R1 to be below the
+decode-forward relaying rate. In our proposed scheme, the
+forwarding part of user 1 is not decoded at destination 2. (In
+[8], it is claimed to achieve the partial decode-forward relaying
+rate but only by setting Y1 = Y2 , which is not necessary in
+our scheme for the CCIC.)
+Furthermore, in both [7] and [8], joint decoding of both
+the state and the binning auxiliary variables is used at the
+destinations, but this joint decoding is invalid as it results in
+a rate region larger than is possible. In our proposed scheme,
+all message parts that are jointly decoded with the binning
+auxiliary variable are encoded independently of the state.
+Hence none of the existing schemes for the IC-SC include
+both the HK rate region and the decode-forward relaying
+rate as our proposed scheme (see Remark 4). More detailed
+analysis can be found in [11].
+
+(tn (w10[i−2] ), un (w10[i−1] |w10[i−2] ), un (w11[i−1] ),
+10
+10 ˆ
+11 ˆ
+n
+ˆ
+ˆ
+ˆ
+x1 (w12[i−1] |w11[i−1] , w10[i−1] , w10[i−2] ),
+
+•
+
+{I(U22 ; Y2 ) − I(U22 ; X1 )}
+
+B. Comparison with existing schemes for the IC-SC
+
+D1 knows w10[i−2] and searches for a unique tuple
+(w10[i−1] , w11[i−1] , w12[i−1] ) for some w21[i−1] such that
+ˆ
+ˆ
+ˆ
+ˆ
+
+n
+and (tn (w10[i−1] ), y1 (i)) ∈ A(n) (PT10 Y1 ).
+10 ˆ
+
+max
+
+p(x1 ,u22 )
+p(x2 |x1 ,u22 )
+
+In this case, there is no forwarding of the state at S2 .
+
+(tn (w10[i−1] ), un (w10i |w10[i−1] ), y n (i)) ∈ A(n) (PT10 U10 Y ).
+10
+10 ˆ
+•
+
+Here, there is no binning but only forwarding at S2 .
+S2 achieves the maximum rate as in Gelfand-Pinsker
+coding if we set U11 = U21 = ∅, T10 = U10 = X1 .
+
+(8)
+
+{I(U10 ; Y |X2 ) + I(X1 ; Y1 |U10 , X2 ), I(X1 , X2 ; Y1 )}
+
+3
+
+a=0.5, b=0.7, c=2, P1=1.4, P2=2
+
+IV. G AUSSIAN CCIC RATE REGIONS
+
+0.8
+
+A. Signaling and rates for Han-Kobayashi PDF-binning
+
+0.7
+
+In the Gaussian channel, input signals for the HK-PDFbinning scheme in Section III-A can be represented as
+R2 ( bps / Hz )
+
+T10
+U10
+U11
+X1
+U21
+
+0.6
+
+= αS10 (w10 ),
+(10)
+= αS10 (w10 ) + βS10 (w10 ),
+= γS11 (w11 ),
+= αS10 (w10 ) + βS10 (w10 ) + γS11 (w11 ) + δS12 (w12 ),
+= θS21 (w21 ),
+
+X2 = θS21 (w21 ) + μ ρS10 (w10 ) +
+
+0
+
+1 − ρ2 S22 ,
+
++C
+I10 =C
+
+(11)
+
+I12 =C
++C
+I13 =C
++C
+I14 =C
+
+Corollary 1. The achievable rate region for the fullduplex Gaussian-CCIC using the Han-Kobayashi PDFbinning scheme is the convex hull of all rate pairs (R1 , R2 )
+satisfying (2) with
+
++C
+I5 =C
+I6 =C
++C
+I7 =C
+I9 =C
+
+0
+
+0.2
+
+Fig. 4.
+
+I8 =C
+
+An important feature of the signaling design in (10) is ρ
+(−1 ≤ ρ ≤ 1), the correlation factor between the transmit
+signal (X2 ) and the state (S10 ) at S2 . In traditional dirty paper
+coding, the transmit signal and the state are independent. Here,
+we introduce correlation between them, which includes dirty
+paper coding as a special case when ρ = 0. This correlation
+allows both signal forwarding and traditional binning at the
+same time. λ is the partial decode-forward binning parameter
+which will be optimized later.
+
+I4 =C
+
+HKŦPDFŦBinning (Ŧ1d U d 1)
+DPCŦBinning (U=0)
+0.4
+
+0.6
+
+0.8
+
+1
+
+1.2
+
+1.4
+
+R1 ( bps / Hz )
+
+α 2 + β 2 + γ 2 + δ 2 ≤ P1
+
+I2 =C
+
+0.3
+
+0.1
+
+where S10 , S10 , S11 , S12 , S21 , S22 are independent N (0, 1)
+random variables to encode w10 , w10 , w11 , w12 , w21 , w22 ,
+respectively. U22 is the auxiliary random variable for binning
+that encodes w22 . X1 and X2 are the transmit signals of S1 and
+S2 . The parameters α, β, γ, δ, θ and μ are power allocation
+factors satisfying power constraints
+θ 2 + μ 2 ≤ P2 .
+
+0.4
+
+0.2
+
+1 − ρ2 S22 ,
+
+U22 = X2 + λS10 = (μρ + λ)S10 + θS21 (w21 ) + μ
+
+0.5
+
++C
+
+Effect of the binning correlation factor ρ.
+
+β 2 + δ 2 + b2 θ 2
+b2 μ2 (1 − ρ2 ) + 1
+(α + bμρ)2
+β 2 + γ 2 + δ 2 + b2 θ2 + b2 μ2 (1 − ρ2 ) + 1
+(α + bμρ)2 + β 2 + γ 2 + δ 2 + b2 θ2
+b2 μ2 (1 − ρ2 ) + 1
+2
+μ (1 − ρ2 )
+2 β 2 + a2 δ 2 + 1
+a
+θ2
+2 + a2 β 2 + a2 δ 2 + μ2 (1 − ρ2 ) + 1
+(aα + μρ)
+μ2 (1 − ρ2 )
+a2 β 2 + a2 δ 2 + 1
+a2 γ 2
+(aα + μρ)2 + a2 β 2 + a2 δ 2 + μ2 (1 − ρ2 ) + 1
+μ2 (1 − ρ2 )
+(12)
+a2 β 2 + a2 δ 2 + 1
+a2 γ 2 + θ 2
+2 + a2 β 2 + a2 δ 2 + μ2 (1 − ρ2 ) + 1
+(aα + μρ)
+
+with C(x) = 1 log(1 + x), α, β, γ, δ, θ and μ satisfy the
+2
+power constraints (11) and −1 ≤ ρ ≤ 1.
+
+c2 β 2
+δ2
+; I3 = C
+2 δ2 + 1
+2 μ2 (1 − ρ2 ) + 1
++c
+b
+β 2 + δ2
+b2 μ2 (1 − ρ2 ) + 1
+(α + bμρ)2
+β 2 + γ 2 + δ 2 + b2 θ2 + b2 μ2 (1 − ρ2 ) + 1
+γ 2 + δ2
+b2 μ2 (1 − ρ2 ) + 1
+β 2 + γ 2 + δ2
+2 μ2 (1 − ρ2 ) + 1
+b
+(α + bμρ)2
+2 + γ 2 + δ 2 + b2 θ 2 + b2 μ2 (1 − ρ2 ) + 1
+β
+δ 2 + b2 θ 2
+b2 μ2 (1 − ρ2 ) + 1
+γ 2 + δ 2 + b2 θ 2
+μ2 (1 − ρ2 )
+; I11 = C
+b2 μ2 (1 − ρ2 ) + 1
+a2 β 2 + a2 δ 2 + 1
+
+Proof: Applying Theorem 1 with the signaling in (10),
+we obtain the rate region in Corollary 1.
+Remark 5. Maximum rates for each sender
+√
+• Setting δ = 0, ρ = ±1, μ = ρ P2 , we obtain the
+maximum R1 as in partial decode-forward relaying:
+
+c2 γ 2
+
+max
+R1 =
+
+max2
+2
+
+α2 +β +γ ≤P1
+
+C
+•
+
+α+b
+
+min C
+P2
+
+2
+
+c2 β 2
++1
+
++ C(γ 2 ),
+
+c2 γ 2
+
++ β2 + γ2
+
+.
+
+√
+Setting ρ = 0, β = γ = δ = 0, θ = 0 and μ = P2 , we
+obtain the maximum R2 as in dirty paper coding:
+max
+R2 = C(P2 ).
+
+This is also the interference-free rate for user 2.
+
+4
+
+(13)
+
+(14)
+
+a=0.5, b=0.7, c=2, P1=1.4, P2=2
+
+a=1.2, b=1.4, c=2, P1=1.4, P2=2
+0.7
+
+0.6
+
+0.6
+
+R2 ( bps / Hz )
+
+0.8
+
+0.7
+
+R2 ( bps / Hz )
+
+0.8
+
+0.5
+
+0.4
+
+0.3
+
+HK
+HKŦPDFŦBin
+RC Cutset  CIC cap.
+ICŦUC outer bound [15]
+
+0.2
+
+0.1
+
+0
+
+0
+
+0.2
+
+0.4
+
+0.6
+
+0.8
+
+0.3
+
+HK
+HKŦPDFŦBin
+RC Cutset  CIC cap.
+ICŦUC outer bound [15]
+
+0.1
+
+1
+
+1.2
+
+0
+
+1.4
+
+Fig. 6.
+
+B. Optimal binning parameter for HK-PDF-binning
+Corollary 2. The optimal λ∗ for the HK-PDF-binning is
+aαμ2 (1 − ρ2 ) − μρ(a2 β 2 + a2 δ 2 + 1)
+a2 β 2 + a2 δ 2 + μ2 (1 − ρ2 ) + 1
+
+0
+
+0.5
+
+1
+
+1.5
+
+R1 ( bps / Hz )
+
+Rate regions for full-duplex schemes in weak interference.
+
+λ∗ =
+
+0.4
+
+0.2
+
+R1 ( bps / Hz )
+
+Fig. 5.
+
+0.5
+
+Rate regions for full-duplex schemes in strong interference.
+
+parameter for the coding scheme. Results show that the HanKobayashi PDF-binning scheme for the CCIC contains both
+the Han-Kobayashi region and partial decode-forward relaying
+rate. Thus cognitive communication is also beneﬁcial even in
+causal setting.
+
+(15)
+
+Proof: λ∗ is obtained by maximizing I11 in (2). The
+detailed proof is omitted and can be seen in [11].
+Remark 6. Effect of ρ:
+∗
+• If ρ = 0, λ becomes the optimal λ for traditional dirty
+max
+paper coding [12], which achieves R2 as in (14).
+∗
+• If ρ = ±1, λ differs from the λ in traditional dirty paper
+max
+coding and achieves R1 as in (13).
+• The effect of ρ is shown in Figure 4. The dashed line
+represents the rate region for DPC-binning (ρ = 0), while
+the solid line represents the region for HK-PDF-binning
+when we adapt ρ ∈ [−1, 1]. Figure 4 illustrates that the
+correlation factor ρ can enlarge the rate region.
+
+R EFERENCES
+[1] S. Gel’fand and M. Pinsker, “Coding for channels with random parameters,” Probl. Contr. and Info. Theory, vol. 9, no. 1, pp. 19–31, 1980.
+[2] T. Han and K. Kobayashi, “A new achievable rate region for the
+interference channel,” IEEE Trans. on Info. Theory, vol. 27, no. 1, pp.
+49–60, Jan. 1981.
+[3] H.-F. Chong, M. Motani, H. Garg, and H. El Gamal, “On the HanKobayashi region for the interference channel,” IEEE Trans. on Info.
+Theory, vol. 54, no. 7, pp. 3188–3195, July 2008.
+[4] T. Cover and A. El Gamal, “Capacity theorems for the relay channel,”
+IEEE Trans. on Info. Theory, vol. 25, no. 5, pp. 572–584, Sep. 1979.
+[5] A. Host-Madsen, “Capacity bounds for cooperative diversity,” IEEE
+Trans. on Info. Theory, vol. 52, no. 4, pp. 1522–1544, Apr. 2006.
+[6] V. Prabhakaran and P. Viswanath, “Interference channels with source
+cooperation,” IEEE Trans. on Info. Theory, vol. 57, no. 1, pp. 156–186,
+Jan. 2011.
+[7] Y. Cao and B. Chen, “An achievable rate region for interference channels
+with conferencing,” in Proc. IEEE Int’l Symp. on Info. Theory (ISIT),
+June 2007, pp. 1251–1255.
+[8] S. Yang and D. Tuninetti, “Interference channel with generalized feedback (a.k.a. with source cooperation): Part I: Achievable region,” IEEE
+Trans. on Info. Theory, vol. 57, no. 5, pp. 2686–2710, May 2011.
+[9] A. El Gamal and Y.-H. Kim, Network Information Theory. Cambridge
+University Press, 2012.
+[10] A. Carleial, “Interference channels,” IEEE Trans. on Info. Theory,
+vol. 24, no. 1, pp. 60–70, Jan. 1978.
+[11] Z. Wu and M. Vu, “Partial decode-forward binning schemes for the
+causal cognitive relay channels,” submitted to IEEE Trans. on Info.
+Theory, Dec. 2011, available at http://arxiv.org/abs/1111.3966.
+[12] M. Costa, “Writing on dirty paper (corresp.),” IEEE Trans. on Info.
+Theory, vol. 29, no. 3, pp. 439–441, May 1983.
+[13] I. Maric, R. Yates, and G. Kramer, “Capacity of interference channels
+with partial transmitter cooperation,” IEEE Trans. on Info. Theory,
+vol. 53, no. 10, pp. 3536–3548, Oct. 2007.
+[14] W. Wu, S. Vishwanath, and A. Arapostathis, “Capacity of a class of
+cognitive radio channels: Interf. channels with degraded message sets,”
+IEEE Trans. on Info. Theory, vol. 53, no. 11, pp. 4391–4399, Nov. 2007.
+[15] R. Tandon and S. Ulukus, “Dependence balance based outer bounds
+for Gaussian networks with cooperation and feedback,” IEEE Trans. on
+Info. Theory, vol. 57, no. 7, pp. 4063–4086, July 2011.
+
+C. Numerical examples
+In this section, we provide numerical comparison among
+the proposed HK-PDF-binning scheme, the original HanKobayashi scheme, and an outer bound combining the capacity
+for the (non-causal) CIC [13], [14] and the outer bound for
+the IC with user cooperation (IC-UC) [15]. Figure 5 shows
+an example for weak interference and Figure 6 for strong
+interference. We can see that the proposed HK-PDF-binning
+scheme contains the Han-Kobayashi region, partial decodeforward relaying rate for user 1 as in (13) and interference-free
+rate for user 2 as in (14). The outer bound is the intersection
+of the two bounds drawn and is loose as this bound is not
+achievable. However, we observe that as b decreases, the HKPDF-binning rate region becomes closer to the outer bound.
+V. C ONCLUSION
+In this paper, we have proposed a new coding scheme for
+the full-duplex causal cognitive interference channel based
+on partial decode-forward relaying, Gelfand-Pinsker binning
+and Han-Kobayashi coding. For the Gaussian channel, we
+introduce a correlation between the transmit signal and the
+state, which enlarges the rate region by allowing both state
+nullifying and forwarding. We also derive the optimal binning
+
+5
+
+

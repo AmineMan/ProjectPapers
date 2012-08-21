@@ -1,0 +1,892 @@
+Creator:        TeX
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Fri May 18 16:25:05 2012
+ModDate:        Tue Jun 19 12:55:45 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      524147 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569566293
+
+Constructing Polar Codes for Non-Binary Alphabets
+and MACs
+Ido Tal
+
+Artyom Sharov
+
+Alexander Vardy
+
+University of California San Diego,
+La Jolla, CA 92093, USA
+idotal@ieee.org
+
+Technion,
+Haifa, 32000, Israel
+sharov@cs.technion.ac.il
+
+University of California San Diego,
+La Jolla, CA 92093, USA
+avardy@ucsd.edu
+
+(t = 1 if we are in fact considering a single-user channel). We
+would like to mention up-front that the running time of our
+building-block method and thus of our whole algorithm grows
+very fast in q = pt . Thus, our algorithm can only be argued
+to be practical for small values of q.
+The structure of our paper is as follows. In Section II
+we setup the basic concepts and notation that will be used
+later on. Section III introduces the sum-rate of a MAC,
+and explains why we choose it as the ﬁgure of merit of
+our approximation. Section IV contains our approximation
+algorithm and Section V outlines how it is used as a building
+block in constructing a polar code. In Section VI we introduce
+a more reﬁned analysis of our approximating algorithm.
+
+Abstract—Consider a channel with an input alphabet that is
+ﬁnite but not necessarily binary. A method for approximating
+such a channel having a large output alphabet size by a degraded
+version of it having a smaller output alphabet size is presented
+and analyzed. The approximation method is used to construct
+polar codes for both single-user and multiple-access channels
+with prime input alphabet sizes.
+
+I. I NTRODUCTION
+Polar codes [1] have recently been invented by Arıkan. In
+his seminal paper, Arıkan introduced polar codes in the context
+of a binary-input, memoryless, output-symmetric channel over
+which information is to be sent. The deﬁnition of polar
+codes was soon generalized to a channel with prime input
+alphabet size in [2]. A further generalization to a polar coding
+scheme for a multiple-access channel (MAC) with prime input
+alphabet size is presented in [3] and [4].
+The merits of the polar coding schemes presented in
+[1], [2], [3], and [4] are as follows. Firstly, the schemes
+are both explicit and symmetric-capacity achieving (sum-rate
+symmetric-capacity achieving in the MAC setting). Secondly,
+they have corresponding encoding and decoding algorithms
+that are efﬁcient. To date, no other family of codes attains
+all of these properties. However, a major shortcoming of the
+above schemes is that, although the constructions are explicit,
+the corresponding papers do not suggest an efﬁcient method
+of carrying them out. In fact, in a naive implementation, the
+construction complexity is exponential in n, the codeword
+length. Recently, an efﬁcient construction algorithm for the
+single-user binary-input channel was presented in [5] and
+analyzed in [6]. Our aim in this paper is to generalize the
+construction algorithm presented in [5] to single-user channels
+and MACs with input alphabets having size p, where p is a
+prime.
+The main building block that our construction algorithm
+will make use of, is a method to approximate a MAC by
+another MAC. The utility of the approximation is that the new
+MAC will have a reduced output alphabet size. As was the
+case in [5], our method will have a tunable ﬁdelity parameter,
+allowing for an arbitrarily close approximation (in a sense
+which will shortly be deﬁned). Also, in contrast to the naive
+implementation which requires running time exponential in n,
+our construction algorithms will run in time linear in n. Let the
+underlying MAC have an input alphabet of size p and t users
+
+II. P RELIMINARIES
+A. Multiple-access channel
+Since a single-user channel is a special case of a MAC, we
+ﬁnd it more general to consider MACs. Let W : X t → Y
+designate a generic t-user MAC, where X = {0, 1, . . . , p − 1}
+is the input alphabet, p is prime, and Y is the ﬁnite output
+alphabet. Denote a vector of user inputs by u ∈ X t , where
+u = (u(i) )t . Our MAC is speciﬁed through the probability
+i=1
+function W , where W (y|u) is the probability of observing the
+output y given that the user input was u.
+B. Arıkan transforms
+(i)
+
+(i)
+
+For input vectors u0 = (u0 )t and u1 = (u1 )t , denote
+i=1
+i=1
+by u0 ⊕p u1 the component-wise sum modulo p of u0 and
+u1 . That is,
+(i)
+
+(i)
+
+u0 ⊕p u1 = (u0 ⊕p u1 )t .
+i=1
+Next, denote the Arıkan transforms of P as
+W− = W
+
+W
+
+and
+
+W+ = W
+
+W ,
+
+where
+W − : X t → Y2
+
+and
+
+W + : X t → Y2 × X t
+
+are deﬁned as follows:
+W − (y0 , y1 |u0 ) =
+u1 ∈X t
+
+1
+
+1
+W (y0 |u0 ⊕p u1 ) · W (y1 |u1 ) , (1)
+pt
+
+W + (y0 , y1 , u0 |u1 ) =
+
+We ﬁrst mention the following simpliﬁcation. As shown in
+[3, Appendix A], there is a conceptually simple coding scheme
+in which the sum of the rates of all users1 can be made to
+approach R(W ). In short: code for user i assuming that the
+previous i−1 users are known to the receiver and the next t−i
+users are treated as noise. In this scheme, the coding problem
+essentially reduces to coding for a single-user channel, and we
+can effectively consider only the case t = 1 (which is solved in
+[5] for p = 2). Note that in this scheme, we do not code using
+the evolved MACs. However, the problem of coding directly
+via the evolved MACs seems to also have merit, and so we
+chose to consider the more general case of t ≥ 1.
+In the next section, we show a method by which to approximate one MAC by another MAC with a smaller output
+alphabet size. The ﬁgure of merit we chose to measure our
+approximation by is the sum-rate. Namely, we give bounds
+on how much the sum-rate might decrease due to the approximation. At this point, we would like to explain why
+we chose the sum-rate as the ﬁgure of merit. In fact, there
+are two complementary explanations. First, as was shown in
+[3] and [4], although the mean symmetric-capacity region is
+generally reduced after each polarization step, the sum-rate is
+not. Namely, for every MAC W we have that
+
+1
+W (y0 |u0 ⊕p u1 ) · W (y1 |u1 ) . (2)
+pt
+C. Underlying and evolved MACs
+Let the underlying MAC through which information is to
+be transmitted be denoted by W : X t → Y. Denote the length
+of the codewords to be used by n = 2m . Given an index
+(m)
+0 ≤ i < n, we recursively deﬁne Wi , termed the ith MAC
+to have evolved from m transforms, as follows. The base of
+the recursion is the underlying channel:
+(0)
+
+W0
+
+=W.
+
+(3)
+
+The recursion step is given by:
+(m+1)
+
+W2i
+
+(m+1)
+W2i+1
+
+(m)
+
+(m)
+
+=
+
+(Wi
+
+Wi
+
+=
+
+(m)
+(Wi
+
+(m)
+Wi )
+
+),
+
+(4)
+
+.
+
+(5)
+
+As explained in [3] and [4], polar coding is achieved through
+the evolved MACs. Thus, they are the objects we will be
+interested in.
+D. Degradation
+We deﬁne the notion of a degraded MAC in an analogous
+way to that of a degraded single-user channel. Speciﬁcally, let
+two t-user MACs W : X t → Y and Q : X t → Y be given.
+We say that Q is degraded with respect to W and denote this
+as Q
+W if there exists a function P : Y → Y such that
+the following holds. First, P must be a probability function in
+the following sense: for all y ∈ Y and y ∈ Y we must have
+that P (y |y) ≥ 0. More so, we must have for all y ∈ Y that
+
+2R(W ) = R(W − ) + R(W + ) .
+
+This, together with the fact that [3] and [4] show that the
+sum-rate can be approached by polar coding make R(W )
+a natural ﬁgure of merit. Secondly, the following lemma
+shows that a given ﬁdelity of R(Q) with respect to R(W )
+essentially implies the same ﬁdelity with respect to the other
+mutual informations associated with the MACs Q W . Note
+that these mutual informations do indeed play a role when
+constructing a polar coding scheme for a MAC [3][4].
+Lemma 2: Let W : X t → Y and Q : X t → Y be a pair
+of t-user MACs such that Q W and
+
+P (y |y) = 1 .
+y ∈Y
+
+Secondly, the concatenation of P to W must result in Q. That
+is, for all y ∈ Y and u ∈ X t we require that
+
+R(Q) ≥ R(W ) − ε ,
+Q(y |u) =
+
+(6)
+
+W (y|u) · P (y |y) .
+
+(7)
+
+where ε ≥ 0. Let U be uniformly distributed over X t . Denote
+by Y and Y the random variables one gets as the output of
+W and Q, respectively, when the input is U. Let the sets A,
+B, and C form a partition of the user index set {1, 2, . . . , t}.
+Denote UA = (U (i) )i∈A and UB = (U (i) )i∈B . Then,
+
+y∈Y
+
+The following lemma is essentially a restatement of [7,
+Lemma 4.7].
+Lemma 1: Let two t-user MACs W : X t → Y and Q :
+t
+X → Y be such that Q W . Denote by Q− and Q+ the
+result of applying the Arıkan transforms to Q and let W −
+and W + be the result of applying the same transforms on W .
+Then,
+Q− W − and Q+ W + .
+
+I(UA ; UB , Y ) ≥ I(UA ; UB , Y ) − ε .
+Proof: Let UC = (U
+
+(i)
+
+(8)
+
+)i∈C , and note that both
+
+I(UA , UB , UC ; Y ) =
+
+Namely, degradation is preserved by both Arıkan transforms.
+
+I(UB ; Y ) + I(UA ; UB , Y ) + I(UC ; UA , UB , Y ) , (9)
+
+III. T HE SUM - RATE CRITERION
+
+and
+(U (i) )t
+i=1
+
+Let a t-user MAC W be given. Next, let U =
+be
+a random variable uniformly distributed over X t . Let Y be the
+random variable one gets as the output of W when the input
+is U. The sum-rate of W is deﬁned as the mutual information
+
+I(UA , UB , UC ; Y ) =
+I(UB ; Y ) + I(UA ; UB , Y ) + I(UC ; UA , UB , Y ) . (10)
+1 In fact, the whole symmetric rate region can be attained using the method
+in [3, Appendix A], either by time sharing or rate splitting.
+
+R(W ) = I(U; Y ) .
+
+2
+
+η(x)
+
+By deﬁnition, since Q is degraded with respect to W , there
+exists a corresponding intermediate channel P : Y → Y .
+Thus, by the data processing inequality applied to Y and Y
+through P , we get that each term on the RHS of (9) is an
+upper bound on the corresponding term in (10). Since
+
+4/µ
+
+4/µ
+
+β
+3/µ
+
+2/µ
+
+2/µ
+
+1/µ
+
+ε ≥ I(UA , UB , UC ; Y ) − I(UA , UB , UC ; Y ) =
+
+3/µ
+
+1/µ
+
+[I(UB ; Y ) − I(UB ; Y )]+[I(UA ; UB , Y ) − I(UA ; UB , Y )]
++ [I(UC ; UA , UB , Y ) − I(UC ; UA , UB , Y )] , (11)
+and each parenthesized difference term of the RHS is positive,
+we deduce that
+
+1 2
+
+I(UA ; UB , Y ) − I(UA ; UB , Y ) ≤ ε .
+
+(12)
+
+Note that in our deﬁnition of ϕ, we make the implicit assumption that the output alphabet Y has been purged of all letters y
+for which the denominator in (12) is zero, since these outputs
+will never occur. Next, for y ∈ Y let us abuse notation and
+denote ϕW (y) = ϕ(y) as shorthand for
+
+η(x) = −x log2 x .
+Using the above notation, we have that
+ϕ(y)
+
+η(ϕ(u|y)) .
+
+(13)
+
+u∈X t
+
+In a nutshell, our algorithm will merge output letters y1 , y2 ∈
+Y if they both fall into the same “bin”. We now show how to
+place output letters into bins.
+It is easy to prove that the function η(x) is ∩-concave on
+0 ≤ x ≤ 1 and attains its maximum when x is equal to
+α=
+
+1
+≈ 0.3679 .
+e
+
+For x = α the value of η(x) is denoted as
+β=
+
+6
+
+7
+
+8
+
+b(x)
+
+1
+.
+µ
+
+We say that two output letters are in the same bin if for all
+u ∈ X t we have that b(ϕ(u|y1 )) = b(ϕ(u|y2 )). The degrading
+process consists of the following procedure.
+• We count the number of non-empty bins, and then construct an output alphabet Y , the size of which is the
+number of non-empty bins.
+• To each non-empty bin we associate a distinct letter in
+Y . For a y ∈ Y , denote by B(y ) all the y ∈ Y in the
+bin associated with y .
+• The degraded MAC is obtained from the original MAC
+through an intermediate channel P : Y → Y . The
+channel maps (with probability 1) each letter y ∈ Y to
+the letter y ∈ Y associated with the bin y is in. That is,
+each member of B(y ) is mapped to y .
+Denote the MAC one gets by the above degrading procedure
+applied to a MAC W by Q. By deﬁnition, Q is a t-user MAC
+which is degraded with respect to W . Let Y be the random
+variable one gets as the output of Q when the input is U.
+Clearly, for all y ∈ Y and u ∈ U,
+
+In the interest of brevity, denote
+
+y∈Y
+
+5
+
+|η(x) − η(x )| ≤
+
+ϕ(y) = P(Y = y) .
+
+R(W ) = t log2 p −
+
+4
+
+Next, deﬁne the following function b : [0, 1] → {1, 2, . . . , 2µ}
+
+j
+if x < α and j−1 ≤ η(x) < µ ,
+j
+
+µ
+b(x) = µ
+if x = α ,
+
+
+j
+2µ + 1 − j if x > α and j−1 ≤ η(x) < µ .
+µ
+(14)
+The next lemma is a simple consequence of the deﬁnition of
+b(x).
+Lemma 3: Let 0 ≤ x ≤ 1 and 0 ≤ x ≤ 1 be such that
+b(x) = b(x ). Then,
+
+We now start the exposition of our MAC approximation
+algorithm. As before, consider a t-user MAC W : X t → Y,
+where X = {0, 1, . . . , p − 1}. Let the random variables U and
+Y be as before, and deﬁne the function ϕW = ϕ : X t × Y →
+[0, 1] as follows: for u ∈ X t and y ∈ Y,
+P(U = u, Y = y)
+.
+P(Y = y)
+
+3
+
+Fig. 1. Functions η(x) = −x log2 (x) and b(x) with µ = 6.5 and µ =
+β · µ = 4.
+
+IV. D EGRADED APPROXIMATION
+
+ϕ(u|y) = P(U = u|Y = y) =
+
+x
+
+α
+
+1
+≈ 0.5307
+e · ln 2
+
+P(Y = y |U = u) =
+
+P(Y = y|U = u) .
+y∈B(y )
+
+(see Figure 1).
+Let the positive real µ be a given ﬁdelity parameter and
+deﬁne
+µ= β·µ .
+
+Lemma 4: Let µ be speciﬁed and y ∈ Y be given. Then,
+for all y ∈ B(y ) and for all u ∈ X t ,
+b(ϕW (u|y)) = b(ϕQ (u|y )) .
+
+3
+
+That is, loosely speaking, if y were to be binned, it would
+occupy the same bin as (any) y ∈ B(y ).
+Proof: The main point to notice is that for a ﬁxed 1 ≤
+j ≤ 2µ, the set of x for which b(x) = j is contiguous (as
+is exempliﬁed in Figure 1). To see this, recall the deﬁnition
+of b(x) in (14) and note that η(x) is strictly increasing for
+0 ≤ x < α and strictly decreasing for α < x ≤ 1.
+To ﬁnish the proof, it sufﬁces to show that ϕQ (u|y ) is
+a convex combination of ϕW (u|y), y ∈ B(y ), since this
+implies that ϕQ (u|y ) is contained in the contiguous set all
+the ϕW (u|y) are members of. Indeed, it can be easily seen
+that
+ϕW (y)
+· ϕW (u|y)
+(15)
+ϕQ (u|y ) =
+ϕQ (y )
+
+V. C ONSTRUCTION ALGORITHM
+In this section we outline a construction method for polar
+codes. Due to space limitations, we only show and analyze
+(m)
+the algorithm used to approximate Wi . That is, we show
+here the analog of [5, Algorithm A]. In order to actually
+construct polar codes, one needs an analog of [5, Algorithm
+C]. However, getting from one algorithm to the other, with [3],
+[4], and [5] as references, should be rather straightforward.
+For a given channel index 0 ≤ i < n, denote by i =
+b1 , b2 , . . . , bm 2 the binary representation of i, where b1 is
+the most signiﬁcant bit. Also, let degrading_merge(W, µ)
+be the result of applying the approximation method outlined
+in Section IV to a MAC W using the ﬁdelity parameter µ.
+
+y∈B(y )
+
+and
+ϕQ (y ) =
+
+ϕW (y) .
+
+Algorithm A: A high level description of the degrading
+procedure
+input : An underlying MAC W, a ﬁdelity parameter µ,
+an index i = b1 , b2 , . . . , bm 2 .
+(m)
+output: A MAC that is degraded with respect to Wi .
+1 Q ← degrading_merge(W, µ);
+2 for j = 1, 2, . . . , m do
+3
+if bj = 0 then
+4
+W←Q Q
+5
+else
+6
+W←Q Q
+
+(16)
+
+y∈B(y )
+
+Theorem 5: Let W be a t-user MAC and let Q be the MAC
+one gets by applying the degrading operation described above
+with ﬁdelity criterion µ. Then,
+pt
+.
+µ
+Proof: By (13) and (16), we can write the difference
+R(W ) − R(Q) as
+R(Q) ≥ R(W ) −
+
+R(W ) − R(Q) =
+
+7
+
+[η(ϕQ (u|y )) − η(ϕW (u|y))] . (17)
+
+ϕ(y)
+y ∈Y y∈B(y )
+
+8
+
+Q ← degrading_merge(W, µ);
+return Q;
+
+u∈X t
+
+Considering the innermost sum, we have by Lemma 4 that
+
+Note that since we trim the output alphabet size after each
+iteration, it does not grow out of control. Speciﬁcally, it is easy
+to show that the output alphabet size of each MAC encountered
+during the run of Algorithm A, except for possibly W, is at
+most q · (2µ)2q . Thus, if p, t, and µ are regarded as constants,
+and i ranges from 0 to n−1, the running time of the algorithm
+(assuming calculations are shared) is a constant times n = 2m ,
+the codeword length.
+The following theorem gives an upper bound on the average
+loss in sum-rate due to running Algorithm A. It is a direct
+consequence of Lemma 1 and Theorem 5
+Theorem 7: Let an underlying t-user MAC W : X t → Y
+be given, where X = {0, 1, . . . , p − 1} and p is prime. Denote
+(m)
+by Qi the channel returned by running Algorithm A with
+parameters i and µ. Then,
+
+b(ϕW (u|y)) = b(ϕQ (u|y )) .
+Thus, by Lemma 3 we conclude that each innermost term has
+absolute value at most 1/µ. Plugging this in yields
+R(W ) − R(Q) ≤
+
+ϕ(y)
+y ∈Y y∈B(y )
+
+u∈X t
+
+1
+=
+µ
+
+ϕ(y) ·
+y ∈Y y∈B(y )
+
+pt
+pt
+=
+.
+µ
+µ
+
+Recall that the point of running the degrading approximation
+was to reduce the size of the output alphabet. The following
+lemma gives an upper bound on its size.
+Lemma 6: Let W : X t → Y be a t-user MAC and let
+Q : X → Y be the MAC one gets by applying the degrading
+operation described above with ﬁdelity criterion µ. Recall that
+q = pt . Then,
+|Y | ≤ (2µ)q ≤ (2µ)q .
+
+1
+n
+
+(m)
+
+R(Wi
+
+(m)
+
+) − R(Qi
+
+) ≤
+
+0≤i<n
+
+m · pt
+.
+µ
+
+VI. I MPROVEMENTS
+
+Proof: Recall that two letters y1 , y2 ∈ Y are in the same
+bin if and only if b(ϕ(u|y1 )) and b(ϕ(u|y2 )) are equal for all
+u ∈ X t . The proof follows by recalling that the number of
+values u can take is q and the number of values b(·) can take
+is 2µ.
+
+Recall that the bound derived in Theorem 5 came about by
+bounding the difference in the innermost sum in (17) by 1/µ.
+We now show how to rewrite the difference R(W ) − R(Q) in
+a slightly different manner, which will lead to a tighter bound.
+
+4
+
+η(x)
+
+More so, the θ maximizing the above expression is given by
+
+4/µ
+
+4/µ
+
+β
+3/µ
+
+3/µ
+
+2/µ
+
+2/µ
+
+1/µ
+
+1/µ
+
+1 2
+
+3
+
+4
+
+γy =
+
+ϕW (y)
+,
+ϕQ (y )
+
+γy = 1 ,
+5
+
+6
+
+7
+
+8
+
+b(x)
+
+y∈B(y )
+
+and that for each δy there is a corresponding 0 ≤ θy ≤ 1 such
+that
+δy = θy · a + (1 − θy ) · b .
+
+Fig. 2. Function η(x) = −x log2 (x). The horizontal magenta lines are a
+depiction of the improved bound one gets by the application of Lemma 8.
+
+Rearranging the sums in (17) and recalling (16), we have that
+
+Next, we set
+
+ϕQ (y )η(ϕQ (u|y ))−
+y ∈Y u∈X t
+
+y∈B(y )
+
+ϕW (y)η(ϕW (u|y)) .
+and rewrite (18) as,
+
+y∈B(y )
+
+Next, recalling the deﬁnition of ϕQ (u|y ) given in (15), we
+have that
+
+
+η [θ · a + (1 − θ) · b] − 
+
+ϕW (y)
+· ϕW (u|y) −
+ϕQ (y )
+y∈B(y )
+
+
+ϕW (y)
+
+η(ϕW (u|y)) .
+ϕQ (y )
+
+
+
+η 
+
+
+
+where the ﬁrst step follows from Jensen’s inequality. Recall
+that here we have set θ to a speciﬁc value, whereas in (19)
+θ is optimized. Thus, the last displayed equation is a lower
+bound on the expression given in (19).
+ACKNOWLEDGMENTS
+We would like to thank Eren Saso˘ lu for very productive
+¸ ¸ g
+discussions.
+
+y∈B(y )
+
+R EFERENCES
+
+Recall that by the binning operation, we have that b(ϕW (u|y))
+has the same value for all y ∈ B(y ). This observation implies
+that the following is well-deﬁned. Pick some y ∈ B(y ) and
+denote by Iy the interval that is the pre-image of b(ϕW (u|y))
+with respect to the binning function b:
+
+[1] E. Arıkan, “Channel polarization: A method for constructing capacityachieving codes for symmetric binary-input memoryless channels,” IEEE
+Trans. Inform. Theory, vol. 55, pp. 3051–3073, 2009.
+[2] E. Saso˘ lu, E. Telatar, and E. Arıkan, “Polarization for arbitrary discrete
+¸ ¸ g
+memoryless channels,” arXiv:0908.0302v1.
+[3] E. Saso˘ lu, E. Telatar, and E. Yeh, “Polar codes for the two-user multiple¸ ¸ g
+access channel,” arXiv:1006.4255v1.
+[4] E. Abbe and E. Telatar, “Polar codes for the m-user MAC and matroids,”
+arXiv:1002.0777v2.
+[5] I. Tal and A. Vardy, “How to construct polar codes,” submitted to IEEE
+Trans. Inform. Theory, available online as arXiv:1105.6164v2,
+2011.
+[6] R. Pedarsani, S. H. Hassani, I. Tal, and E. Telatar, “On the construction
+of polar codes,” in Proc. IEEE Int’l Symp. Inform. Theory (ISIT’2011),
+Saint Petersburg, Russia, 2011, pp. 11–15.
+[7] S. B. Korada, “Polar codes for channel and source coding,” Ph.D.
+dissertation, Ecole Polytechnique F´ d´ rale de Lausanne, 2009.
+e e
+
+where y ∈ B(y ) .
+
+The following lemma implies a simple upper bound on (18).
+For a graphical representation, see Figure 2.
+Lemma 8: Let W , u, and y be given. Denote by a and
+b the inﬁmum and supremum of Iy , respectively. Then, the
+difference in (18) is at most
+max
+
+γy · (θy · η(a) + (1 − θy ) · η(b)) =
+
+η [θ · a + (1 − θ) · b] − [θ · η(a) + (1 − θ) · η(b)] ,
+
+We now focus on bounding the difference
+
+
+ϕW (y)
+η
+· ϕW (u|y) −
+ϕQ (y )
+y∈B(y )
+
+
+ϕW (y)
+
+η(ϕW (u|y)) . (18)
+ϕQ (y )
+
+Iy = {x : b(x) = b(ϕW (u|y)} ,
+
+
+
+y∈B(y )
+
+y∈B(y )
+
+0≤θ≤1
+
+γy · η(δy ) ≤
+
+η [θ · a + (1 − θ) · b] −
+
+
+
+ 
+u∈X t
+
+
+
+y∈B(y )
+
+R(W ) − R(Q) =
+
+y ∈Y
+
+γy · θ y .
+
+θ=
+
+R(W ) − R(Q) =
+
+ϕQ (y )
+
+δy = ϕW (u|y) .
+
+and
+
+Recall that
+
+x
+
+α
+
+−(η(b)−η(a))
+
+1
+e
+
+b−a
+·2
+.
+θmax =
+b−a
+Proof: Obtaining the expression for θmax is an easy
+application of calculus. We now focus on the ﬁrst part of the
+theorem, and begin by setting up some notation. Let,
+
+b−
+
+η [θ · a + (1 − θ) · b] −
+[θ · η(a) + (1 − θ) · η(b)]
+
+. (19)
+
+5
+
+

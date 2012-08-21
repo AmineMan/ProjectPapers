@@ -1,0 +1,1040 @@
+Title:          Labelings_TCM_ISIT_vfinal.dvi
+Creator:        dvips(k) 5.95b Copyright 2005 Radical Eye Software
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Thu May 17 19:10:50 2012
+ModDate:        Tue Jun 19 12:56:01 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      529311 bytes
+Optimized:      no
+PDF version:    1.7
+ISIT'2012 1569565829
+
+On the Equivalence of TCM Encoders
+Alex Alvarado§, Alexandre Graell i Amat‡ , Fredrik Br¨ nnstr¨ m‡ , and Erik Agrell‡
+a
+o
+§ Department
+
+of Engineering, University of Cambridge, UK
+of Signals and Systems, Chalmers University of Technology, Gothenburg, Sweden
+alex.alvarado@ieee.org, {alexandre.graell,fredrik.brannstrom,agrell}@chalmers.se
+
+‡ Department
+
+G = [13, 4]
+
+Abstract—Optimal trellis-coded modulation (TCM) schemes
+are obtained by jointly designing the convolutional encoder
+and the binary labeling of the constellation. Unfortunately this
+approach is infeasible for large encoder memories or constellation
+sizes. Traditional TCM designs circumvent this problem by using
+a labeling that follows the set-partitioning principle and by
+performing an exhaustive search over the encoders. Therefore,
+traditional TCM schemes are not necessarily optimal. In this
+paper, we study binary labelings for TCM and show how they
+can be grouped into classes, which considerably reduces the
+search space in a joint design. For the particular case of 8-ary
+modulation the search space for the labelings is reduced from 8!
+to 240. Using this classiﬁcation, we formally prove that for any
+channel it is always possible to design a TCM system based on
+the binary-reﬂected Gray code with identical performance to the
+one proposed by Ungerboeck in 1982. Moreover, the classiﬁcation
+is used to tabulate asymptotically optimal TCM schemes.
+
+SP Mapper (NBC)
+00
+
+01
+
+10
+
+11
+
+s1
+
+i1,n
+
+s2
+
+s3
+
+s4
+
+xn
+
+(a)
+G = [13, 4]
+
+Transform BRGC Mapper
+00
+
+01
+
+11
+
+10
+
+s1
+
+i1,n
+
+s2
+
+s3
+
+s4
+
+xn
+
+(b)
+G = [13, 17]
+BRGC Mapper
+00
+
+I. I NTRODUCTION
+Trellis-coded modulation (TCM) systems are commonly
+constructed by coupling a convolutional encoder and a constellation labeled using the set-partitioning (SP) principle.
+TCM was introduced in [1], quickly adopted in the modem
+standards in the early 90s, and it is a well studied topic,
+cf. [2], [3, Ch. 18]. As an alternative to TCM, bit-interleaved
+coded modulation (BICM) [4], [5] was introduced in 1992.
+BICM is usually referred to as a pragmatic approach for coded
+modulation and is well suited for fading channels.
+In this paper we study binary labelings for TCM. Of
+particular interest are the binary reﬂected Gray code (BRGC)
+[6] and the natural binary code (NBC) [7]. The BRGC is often
+used in BICM designs because it maximizes the BICM mutual
+information for medium and high signal-to-noise ratios [5,
+Sec. III] and the NBC is often used in TCM designs because
+it follows the SP principle when it is used with constellations
+having certain symmetries, cf. [1, Fig. 4], [8, Fig. 3].
+The performance of BICM for the additive white Gaussian
+noise (AWGN) channel can be improved if the interleaver
+is removed [9], a conﬁguration that was later called “BICM
+with trivial interleavers” (BICM-T) in [10]. BICM-T was
+recognized as a TCM transmitter used with a BICM receiver
+and it was shown to perform asymptotically as well as TCM if
+
+01
+
+11
+
+10
+
+s1
+
+i1,n
+
+s2
+
+s3
+
+s4
+
+xn
+
+(c)
+
+Fig. 1. Three equivalent TCM transmitters: (a) convolutional encoder with
+generators G = [13, 4] and an SP mapper [1]; (c) convolutional encoder with
+generators G = [13, 17] and a BRGC mapper [10]. The system in (b) shows
+how a transformation (binary addition) can be included in the mapper (to go
+from (b) to (a)) or in the code (to go from (b) to (c)).
+
+the convolutional encoder is properly selected [10, Table III]
+and the BRGC is used. The transmitters in [1, Table I] and
+[10, Table III] for the 8-state (memory ν = 3) convolutional
+encoder1 are shown in Fig. 1 (a) and Fig. 1 (c), respectively.
+The authors in [10] failed to note that in fact the optimal
+BICM-T conﬁguration is equivalent to the one proposed by
+Ungerboeck 30 years earlier. For a 4-ary pulse amplitude modulation (PAM) constellation (shown in Fig. 1), Ungerboeck’s
+SP mapper (which is in this case equivalent to the NBC) can be
+generated using the BRGC mapper plus one binary addition
+(transform) applied to its inputs, as shown in Fig. 1(b). If
+the transform is included in the mapper, the conﬁguration
+in Fig. 1(a) is obtained, while if it is included in the code,
+the conﬁguration in Fig. 1(c) is obtained. This equivalence
+also applies to convolutional encoders with larger number
+of memories2 and simply reveals that a TCM transmitter
+
+Research supported by The British Academy and The Royal Society via the
+Newton International Fellowship scheme, UK, by the European Community’s
+Seventh’s Framework Programme (FP7/2007-2013) under grant agreement
+No. 271986, by the Swedish Research Council (VR) under grants #6212006-4872 and #621-2011-5950, and by the Swedish Agency for Innovation
+Systems (VINNOVA) under the P36604-1 MAGIC project.
+
+1 Throughout
+
+this paper, all polynomial generators are given in octal form.
+some particular values of ν this equivalence is not seen in the
+tables, because [10, Table III] lists the convolutional encoders in lexicographic
+order, and for some values of ν, there are multiple encoders with identical
+performance.
+2 For
+
+1
+
+TCM Encoder
+u1,n
+
+i1,n
+···
+
+Conv.
+Encoder
+
+ik,n
+
+···
+
+based on a BRGC mapper will have identical performance
+to Ungerboeck’s TCM if the encoder is properly modiﬁed.
+The previous discussion raises the question about the use
+of non-SP labelings for TCM. This problem has indeed been
+studied in the literature, see for example [11, Sec. 13.2.1,
+Problem 13–11], [3, Example 18.2] or the so-called pragmatic
+TCM [12, Ch. 8], [13]. In [9], a binary labeling for BICMT was heuristically proposed for M PAM constellations for
+M = 4, 8, 16. Traditional TCM designs either optimize the
+convolutional encoder for a constellation using an SP labeling,
+cf. [1], [8], or simply connect a convolutional encoder designed
+for binary transmission with an ad-hoc binary labeling (Gray
+in [14] and non-Gray in [13]). TCM designs based on SP
+are considered heuristic [15, pp. 525, 531], and thus, they do
+not necessarily lead to an optimal design [11, p. 680]. Indeed,
+Ungerboeck’s TCM design is based on heuristic rules that aim
+to increase the Euclidean distance (ED) when compared with
+uncoded transmission with the same spectral efﬁciency. This
+discussion raises another question, namely, the optimal joint
+design of the convolutional encoder and the labeling.
+To the best of our knowledge there are no works formally
+addressing the joint design of the convolutional encoder and
+the labeling of a TCM system. In this paper we study this
+problem and formally prove that for any channel, binary
+labelings can be grouped into different classes that will result
+in equivalent TCM transmitters. The classes are closely related
+to the Hadamard classes introduced in [16] in the context of
+vector quantization. The proposed classiﬁcation allows us to
+formally prove that in any TCM system the NBC labeling can
+be replaced by many other labelings (including the BRGC),
+provided that the convolutional encoder is properly modiﬁed.
+
+xn
+
+ΦL
+
+um,n
+
+Fig. 2. Generic TCM encoder under consideration: A feedforward convolutional encoder of rate R = k/m with 2ν states serially concatenated with a
+memoryless mapper ΦL .
+
+The connection between the input and output bits is deﬁned by
+the binary representation of the convolutional encoder matrix
+ (1)
+
+(2)
+(m)
+g1
+g1
+. . . g1
+ (1)
+(2)
+(m) 
+ g2
+g2
+. . . g2 
+G  .
+(1)
+.
+. 
+..
+ .
+.
+. 
+.
+ .
+.
+. 
+(1)
+
+gk
+
+(l)
+
+(l)
+
+(2)
+
+gk
+
+(m)
+
+. . . gk
+
+(l)
+
+where g p
+[gp,1 , . . . , gp,νp +1 ]T ∈ B νp +1 is a column
+vector representing the connection between the pth input
+sequence and the lth output sequence with l = 1, . . . , m. The
+(l)
+(l)
+coefﬁcients gp,1 , . . . , gp,νp +1 are associated to the input bits
+ip,n , . . . , ip,n−νp , respectively, and G ∈ B (ν+k)×m . Through(l)
+out this paper we will show the vectors g p deﬁning G either
+(l)
+in binary or octal notation. When shown in octal notation, gp,1
+will always represent the most signiﬁcant bit (cf. Fig. 1).
+The convolutional encoder matrix (1) allows us to express
+the output of the convolutional encoder at time n, which we
+denote by un = [u1,n , . . . , um,n ], as a function of (ν + k)
+information bits, i.e.,
+un = j n G
+
+(2)
+
+where j n [i(1) , . . . , i(k) ] with i(p) [ip,n , . . . , ip,n−νp ] are
+n
+n
+n
+the information bits, and the matrix multiplication is in GF(2).
+The coded bits un are mapped to N -dimensional real
+constellation symbols using the mapper ΦL : B m → X where
+X ⊂ RN is the constellation used for transmission, with
+|X | = M = 2m . We use xn ∈ X to denote the transmitted
+symbols at time n and we use the matrix S = [sT , . . . , sT ]T
+1
+M
+with sq ∈ RN and q = 1, . . . , M to denote the ordered
+constellation points.
+The binary labeling of the qth symbol in S is denoted by
+cq = [cq,1 , . . . , cq,m ] ∈ B m , where cq,l is the bit associated
+to the lth input of the mapper in Fig. 2. The labeling matrix
+is deﬁned as L = [cT , . . . , cT ]T , where cq in L corresponds
+1
+M
+to the binary labeling of the symbol sq in S. The resulting
+spectral efﬁciency of the system is k [bit/symbol].
+
+II. P RELIMINARIES
+A. Notation Convention
+Throughout this paper, scalars are denoted by italic letters x,
+row vectors are denoted by boldface letters x = [x1 , . . . , xN ],
+and matrices by capital boldface letters X. Sets are denoted
+using calligraphic letters C and the binary set is deﬁned as
+B
+{0, 1}. Binary addition is denoted by a ⊕ b. We use
+Rm to denote the set of all reduced column echelon binary
+matrices of size M × m (see Section III) and Tm to denote
+the set of all invertible m × m binary matrices.
+B. System Model
+We consider the TCM encoder shown in Fig. 2 where a
+feedforward convolutional encoder of rate R = k/m is serially
+connected to a mapper ΦL where the index L emphasizes the
+dependency of the mapper on the labeling (deﬁned later). At
+each discrete time instant n, the information bits i1,n , . . . , ik,n
+are fed to the convolutional encoder, which is fully determined
+by k shift registers and the way the input sequences are
+connected (through the registers) to its outputs. We denote
+the length of the pth shift register by νp , with p = 1, . . . , k,
+the overall constraint length (or memory of the convolutional
+k
+encoder) by ν = p=1 νp , and the number of states by 2ν .
+
+C. Binary Labelings for TCM
+The NBC of order m is deﬁned as N m [nT , . . . , nT ]T ,
+1
+M
+where nq = [nq,1 , . . . , nq,m ] ∈ B m is the base-2 representation of the integer q −1, where nq,m is the least signiﬁcant bit.
+The BRGC of order m is deﬁned as B m
+[bT , . . . , bT ]T ,
+1
+M
+m
+where bq = [bq,1 , . . . , bq,m ] ∈ B . The bits of the BRGC
+can be generated from the NBC as bq,1 = nq,1 and bq,l =
+nq,l−1 ⊕ nq,l for l = 2, . . . , m.
+
+2
+
+Proof: Let v q
+[0, . . . , 0, 1, 0, . . . , 0] be a vector of
+length M , where the one is in position q. Thus cq = v q L
+for q = 1, . . . , M . The mapping ΦL satisﬁes by deﬁnition
+ΦL (cq ) = sq or, making the dependency on L explicit,
+
+Example 1: The NBC and BRGC of order m = 3 are
+
+T
+
+T
+00001111
+00001111
+N 3 = 0 0 1 1 0 0 1 1 , B 3 = 0 0 1 1 1 1 0 0 . (3)
+01010101
+01100110
+
+ΦL (c) = sq ,
+
+Alternatively, we have that nq,l = bq,1 ⊕ . . . ⊕ bq,l−1 ⊕ bq,l
+for l = 1, . . . , m, or, in matrix notation, B m = N m T and
+N m = B m T −1 , where
+
+
+
+
+111 ... 11
+110 ... 00
+0 1 1 . . . 1 1
+0 1 1 . . . 0 0
+
+
+
+
+0 0 1 . . . 1 1
+0 0 1 . . . 0 0
+
+
+
+
+(4)
+T =  . . .  , T −1 =  . . .  .
+.. . 
+.. . 
+ .
+ .
+. 
+. 
+ .
+ .
+0 0 0 . . . 1 1
+0 0 0 . . . 1 1
+000 ... 01
+000 ... 01
+
+ΦL (cT ) = sq ,
+˜
+= sq ,
+
+˜
+if cT = v q L
+if c = v q L
+
+(6)
+
+˜
+where the last step follows because L = LT . Since the
+right-hand sides of (5) and (6) are equal, ΦL (cT ) = ΦL (c)
+˜
+for all c ∈ B m .
+Theorem 1: For any G ∈ Gk,m,ν , L ∈ Lm , and T ∈ Tm ,
+˜
+˜ ˜
+the two TCM encoders Θ = [G, L] and Θ = [G, L] are
+˜ = LT and G = GT .
+˜
+equivalent, where L
+˜
+Proof: For any j ∈ B ν+k , ΦL (j G) = ΦL (jGT ) =
+˜
+˜
+ΦL (jG), where the last equality follows by Lemma 1. The
+theorem now follows using Deﬁnition 1.
+Theorem 1 tells us that an exhaustive search over Gk,m,ν
+and Lm will include many pairs of equivalent TCM encoders.
+Therefore, an optimal TCM encoder with given parameters
+can be found by searching over a subset of Gk,m,ν and the
+whole set Lm or vice versa. In this paper, we choose the latter
+approach, searching over a subset of Lm .
+A reduced column echelon matrix4 is, in the context of
+binary labelings, deﬁned as a binary labeling matrix in which
+(i) the ﬁrst “1” in any column is in a row where all other
+elements are “0” and (ii) the number of leading zeros decreases
+in every column. The matrix N 3 in Example 1 (or more
+generally N m ) is an example of a reduced column echelon
+matrix. On the other hand, B m is not a reduced column
+echelon matrix. The following theorem, adapted from [17,
+p. 187, Corollary 1] to the concept of reduced column echelon
+matrices, shows an important matrix factorization which will
+be used in Example 2 and Theorem 3.
+Theorem 2: Any binary labeling L ∈ Lm can be uniquely
+factorized as
+−1
+
+For a given constellation S and a given ν, a TCM encoder
+is fully deﬁned by the convolutional encoder matrix G and the
+labeling of the constellation L. In this paper, a TCM encoder is
+deﬁned by the pair Θ = [G, L]. For given integers k, m, and ν,
+we deﬁne the convolutional encoder universe as the set Gk,m,ν
+of all (ν + k) × m binary matrices G.3 In [1], [8] Ungerboeck
+optimized TCM codes in terms of the minimum ED over all
+possible convolutional codes for well-structured one- and twodimensional constellations and a labeling L that follows the SP
+principle, e.g., the NBC. On the other hand, in [10, Sec. IV-C]
+BICM-T systems over all G ∈ G1,2,ν (R = 1/2 and 4PAM)
+and L = B 2 were optimized. We are also interested in the
+labeling universe, deﬁned for a given integer m as the set Lm
+of all M × m binary matrices whose M rows are all distinct.
+To the best of our knowledge, there are no works addressing
+the problem of designing a TCM encoder by exhaustively
+searching over the labeling universe and the convolutional encoder universe. In this paper, we show how a joint optimization
+over all G ∈ Gk,m,ν and L ∈ Lm can be restricted, without
+loss of generality, to a joint optimization over all G ∈ Gk,m,ν
+and over a subset of Lm .
+FOR
+
+(5)
+
+m
+
+for any c ∈ B . Similarly, for any c ∈ B ,
+
+D. System Optimization and Search Problems
+
+III. E QUIVALENT L ABELINGS
+
+if c = v q L
+
+m
+
+TCM E NCODERS
+
+L = LR T
+
+(7)
+
+The output of a given TCM encoder Θ = [G, L] at time n
+depends on (ν +k) information bits. Using (2), the transmitted
+symbol at time n can then be expressed as xn = ΦL (un ) =
+ΦL (j n G).
+˜
+Deﬁnition 1: Two TCM encoders Θ = [G, L] and Θ =
+˜ ˜
+[G, L] are said to be equivalent if they give the same output
+symbol for the same information bit sequence, i.e., if they
+˜
+fulﬁll ΦL (jG) = ΦL (j G) for any j ∈ B ν+k .
+˜
+Remark 1: For any channel, equivalent TCM encoders have
+the same bit error rate and frame error rate (FER).
+˜
+Lemma 1: ΦL (c) = ΦL (cT ) where L = LT , for any two
+˜
+mappers ΦL and ΦL that use the same constellation S, any
+˜
+T ∈ Tm , and any c ∈ B m .
+
+where T ∈ Tm and LR ∈ Rm .
+Theorem 2 shows that all binary matrices L can be uniquely
+generated by ﬁnding all the invertible matrices T (the set Tm )
+and all the different reduced column echelon matrices LR (the
+set Rm ). In particular, we have [16, eq. (18)] MT |Tm | =
+m
+k−1
+) and |Lm | = M ! = MR MT , where MR
+k=1 (M − 2
+|Rm |. In Table I, the values for MR and MT for 1 ≤ m ≤ 6
+are shown. In view of Theorem 1 and Table I, for a joint
+design and 8-ary constellations (m = 3), the total number of
+different binary labelings that must be tested is reduced from
+8! = 40320 to 240.
+A modiﬁed Hadamard class is deﬁned as the set of matrices
+L that can be generated via (7) using the same reduced column
+
+3 Note that whenever G is given in its binary form, ν , . . . , ν are also
+1
+k
+needed to interpret G correctly according to (1).
+
+4 The only difference between a reduced column echelon matrix and the
+commonly used reduced row echelon matrix [17, pp. 183–184] is a transpose.
+
+3
+
+TABLE I
+N UMBER OF CLASSES (MR = |Rm |) AND THEIR CARDINALITY
+(MT = |Tm |) FOR DIFFERENT VALUES OF m.
+
+m 1 2
+MR 2 4
+MT 1 6
+
+3
+
+4
+
+5
+9
+
+240
+168
+
+6
+28
+
+6.2943 · 1078
+
+6
+
+1.0378 · 10
+
+2.0159 · 1010
+
+2.6315 · 10
+
+20160
+
+Thus, the BRGC and the NBC of order m = 2 belong to the
+same modiﬁed Hadamard class, and convolutional encoders
+can be chosen to make the two resulting TCM encoders equivalent. This was illustrated in Fig. 1, where the transform block
+corresponds to the transform matrix T = [[1, 1]T , [0, 1]T ]T =
+T −1 . Since N 2 = B 2 T −1 , the TCM encoders [G[13,17] , B 2 ]
+and [G[13,4] , N 2 ] are equivalent, where
+
+9.9994 · 10
+
+M ! 2 24 40320 2.0923 · 1013 2.6313 · 1035 1.2689 · 1089
+
+G[13,4] =
+echelon matrix LR . Note that these modiﬁed Hadamard classes
+are narrower than the regular Hadamard classes deﬁned in
+[16], each including M reduced column echelon matrices.
+There are thus MR modiﬁed Hadamard classes, each with
+cardinality MT .
+The problem of ﬁnding the set Rm of reduced column echelon matrices for a given m can be solved by using a modiﬁed
+version of the full linear search algorithm introduced in [16,
+Sec. VIII]. Such an algorithm would generate one member of
+each modiﬁed Hadamard class, the one that corresponds to a
+reduced column echelon matrix LR .
+Example 2: For m = 2, where MR = 4, we have
+R2 =
+
+0011
+0101
+
+T
+
+,
+
+0011
+1001
+
+T
+
+,
+
+0101
+1001
+
+T
+
+,
+
+0110
+1010
+
+01
+01
+10
+10
+11
+11
+,
+,
+,
+,
+,
+10
+11
+01
+11
+01
+10
+
+(8)
+
+=
+
+0011
+0101
+
+T
+
+11
+.
+01
+
+T
+
+11
+.
+01
+
+In this section we show how the classiﬁcation introduced
+in this paper can be used to ﬁnd asymptotically optimal TCM
+encoders in terms of FER. We use a union bound on the FER
+that is a straightforward generalization of the bound presented
+in [18] for convolutional codes. For the AWGN channel, and
+a block length of K symbols, we obtain
+
+(9)
+
+FER ≤
+
+KAd Q
+d∈D
+
+d2
+
+Es
+2N0
+
+.
+
+(11)
+
+In (11), Es is the average symbol energy, N0 /2 is the variance
+of the noise, Ad is the distance multiplicity of the TCM system, which gives the average number of pairs of sequences at
+ED d [19, eq. (6.9)] and D is the set of all EDs {d1 , d2 , d3 , . . .}
+(di < di+1 ) between any two sequences5 of the TCM system,
+where d1 is the minimum ED.
+We call the inﬁnite set of pairs (d, Ad ) the distance spectrum
+(DS) of a given TCM encoder Θ = [G, L], where d ∈ D. An
+optimal DS TCM (ODSTCM) encoder is deﬁned in the same
+way optimum distance spectrum convolutional encoders are
+deﬁned in [20]. This means that to minimize the FER, the
+DS (d, Ad ) must be sequentially optimized, i.e., ﬁrst d1 is
+maximized, then Ad1 is minimized, then d2 maximized, etc.
+We performed a search over G ∈ Gk,m,ν and L ∈ Lm
+√
+for k = 1 and 4PAM (m = 2 and sq = (2q − 5)/ 5). The
+results are shown in Table II, where the ODSTCM encoders
+are shown as [·, ·]∗ . For 4PAM, the possible squared EDs can
+be expressed as d2 = d2 + 0.8(l − 1) for l = 2, 3, . . . In
+1
+l
+this table, we also list the encoders proposed by Ungerboeck
+
+A. NBC and BRGC
+Another way of interpreting the result in Theorem 1 is that
+˜ ˜
+˜
+for any TCM encoder Θ = [G, L], a new equivalent TCM
+encoder can be generated using a convolutional encoder G =
+˜
+˜
+GT −1 and a labeling L = LT −1 that belongs to the same
+˜
+modiﬁed Hadamard class as the original labeling L. One direct
+consequence of this result is that any TCM encoder using the
+NBC labeling can be constructed using the BRGC and an
+appropriately selected encoder.
+Example 3: For the two TCM encoders in Fig. 1, the NBC
+and BRGC labelings are related via B 2 = N 2 T , i.e.,
+T
+
+1011
+1111
+
+IV. A PPLICATION : A SYMPTOTICALLY O PTIMAL TCM
+
+Using Theorem 2, all the 24 binary labelings in L2 (cf. Table I)
+can be generated by multiplying the matrices in R2 and in T2 .
+As a consequence of Theorems 1 and 2, the two TCM
+encoders [G, L] and [GT −1 , LR ] are equivalent for any
+G ∈ Gk,m,ν and L ∈ Lm , where LR and T are given by
+the factorization (7). In other words, all nonequivalent TCM
+encoders can be generated using one member of each modiﬁed
+Hadamard class only, and thus, a joint optimization over all
+G ∈ Gk,m,ν and L ∈ Lm can be reduced to an optimization
+over all G ∈ Gk,m,ν and L ∈ Rm with no loss in performance.
+This means that the search space is reduced by a factor of
+MT = M !/MR .
+
+0011
+0110
+
+= G[13,17] T −1 =
+
+Theorem 3 can be understood as follows. Any TCM encoder using the NBC N m and a convolutional encoder G
+is equivalent to a TCM encoder using the BRGC B m and a
+convolutional encoder GT with T given by (4).
+
+T
+
+.
+
+T
+
+The above relation between the NBC and the BRGC is
+generalized to an arbitrary order m in the following theorem.
+Theorem 3: The BRGC and the NBC of any order m
+belong to the same modiﬁed Hadamard class.
+Proof: The BRGC and NBC are related via B m =
+N m T , with T given by (4). The theorem now follows from
+Theorem 2 and the deﬁnition of a modiﬁed Hadamard class.
+
+where the ﬁrst element in R2 is the NBC (cf. Section II-C).
+The MT = 6 binary invertible matrices for m = 2 are
+T2 =
+
+1011
+0100
+
+5 Since TCM systems are in general not linear, A should be calculated
+d
+without making the assumption that the all-zero sequence was transmitted [2,
+p. 101] [11, Problem 13–11].
+
+(10)
+
+4
+
+1
+
+TABLE II
+U NGERBOECK AND ODSTCM E NCODERS : 4PAM, NBC, AND k = 1.
+d2
+1
+
+1
+
+4.00
+
+2
+
+7.20
+
+3
+
+8.00
+
+4
+
+8.80
+
+5
+
+10.40
+
+6
+
+11.20
+
+7
+
+12.80
+
+8
+
+13.60
+
+G
+–
+[3, 1]∗
+[5, 2]U
+[7, 2]∗
+[13, 4]U
+[13, 4]∗
+[23, 4]U
+[23, 10]∗
+[45, 10]U
+[55, 4]∗
+[103, 24]U
+[107, 32]∗
+[235, 126]U
+[313, 126]∗
+[515, 362]U
+[677, 362]∗
+
+A d1 , A d2 , A d3 , A d4 , A d5
+–
+0.50, 0.50, 0.50, 0.50, 0.50
+1.00, 1.25, 1.75, 2.56, 3.81
+0.50, 1.25, 1.63, 2.56, 3.78
+0.25, 1.00, 1.56, 2.75, 3.14
+0.25, 1.00, 1.56, 2.75, 3.14
+0.63, 0.50, 2.00, 2.02, 2.03
+0.13, 0.50, 1.88, 2.39, 3.72
+1.13, 1.52, 2.59, 3.58, 5.29
+0.75, 2.13, 2.14, 4.47, 5.45
+2.34, 0.00, 2.82, 0.00, 7.60
+0.13, 1.44, 1.41, 1.73, 4.58
+2.19, 0.00, 3.05, 0.00, 10.09
+1.46, 0.00, 4.77, 0.00, 15.42
+0.53, 1.89, 1.66, 3.81, 6.03
+0.36, 1.06, 1.47, 3.44, 5.25
+
+0.9
+
+−1
+
+10
+
+0.8
+−2
+
+10
+
+0.7
+
+ν=2
+−3
+
+0.6 10
+FER
+
+ν
+
+0
+
+10
+
+0.5 10−4
+0.4
+
+−5
+
+10
+
+0.3
+−6
+
+0.2
+
+ν=4
+
+10
+
+−7
+
+FER Bound [·, ·]U
+FER Bound [·, ·]∗
+Simulations [·, ·]U
+Simulations [·, ·]∗
+
+ν=8
+
+ν=6
+
+0.1 10
+3
+4
+5
+6
+7
+8
+9
+in [8, Table I] (shown as [·, ·]U ). The search was performed
+Es /N0 [dB]
+6
+numerically considering 5 terms in the spectrum . Although 0
+no gains in terms of minimum ED were obtained, the DS of Fig. 3. FER bound in (11) using the 20 ﬁrst terms of the DS and simulations
+the ODSTCM encoders is better than those in [8, Table I]. for Ungerboeck’s encoders ([·, ·]U ) and the ODSTCM encoders ([·, ·]∗ ) from
+Also, the NBC was among the optimal labelings found for all Table II together with NBC labeling for K = 1000.
+values of ν and is therefore the chosen labeling (ﬁrst one in
+lexicographical order) in Table II. This is however not the case
+[5] G. Caire, G. Taricco, and E. Biglieri, “Bit-interleaved coded modulation,” IEEE Trans. Inf. Theory, vol. 44, no. 3, pp. 927–946, May 1998.
+for other combinations of m, k, and ν, which are not shown
+[6] E. Agrell, J. Lassing, E. G. Str¨ m, and T. Ottosson, “On the optimality
+o
+here due to space limitations. Fig. 3 shows that the new TCM
+of the binary reﬂected Gray code,” IEEE Trans. Inf. Theory, vol. 50,
+schemes have better FER performance not only asymptotically
+no. 12, pp. 3170–3182, Dec. 2004.
+[7] E. Agrell and A. Alvarado, “Optimal alphabets and binary labelings
+but also for realistic signal-to-noise ratios.
+V. C ONCLUSIONS
+
+[8]
+
+We analyzed the problem of jointly designing the convolutional encoder and the labeling of a TCM scheme, by grouping
+the labelings into classes. Theoretically, this contributes to
+a better understanding of the interplay between code and
+labeling in TCM systems. Practically, it enables more powerful
+optimization methods for TCM schemes. As a proof of concept, TCM schemes were found that improve on Ungerboeck’s
+celebrated designs by up to 0.3 dB.
+
+[9]
+
+[10]
+[11]
+[12]
+
+VI. ACKNOWLEDGMENT
+
+[13]
+
+The authors would like to thank Prof. Dr.-Ing. Robert
+Fischer for pointing out the equivalence between TCM systems
+with convolutional encoders optimized for the BRGC and the
+NBC, and showing how the convolutional encoders in [10]
+and [1] are related. These observations inspired this paper.
+
+[14]
+
+[15]
+[16]
+
+R EFERENCES
+[1] G. Ungerboeck, “Channel coding with multilevel/phase signals,” IEEE
+Trans. Inf. Theory, vol. 28, no. 1, pp. 55–67, Jan. 1982.
+[2] E. Biglieri, D. Divsalar, P. J. McLane, and M. K. Simon, Introduction
+to Trellis-Coded Modulation with Applications. Prentice Hall, 1992.
+[3] S. Lin and D. J. Costello, Jr., Error Control Coding, 2nd ed. Englewood
+Cliffs, NJ: Prentice Hall, 2004.
+[4] E. Zehavi, “8-PSK trellis codes for a Rayleigh channel,” IEEE Trans.
+Commun., vol. 40, no. 3, pp. 873–884, May 1992.
+
+[17]
+[18]
+[19]
+[20]
+
+6 Note
+
+that in some cases there are multiple TCM encoders yielding the
+same 5-term spectrum. In this case, the ﬁrst pair of labeling and convolutional
+encoder (tested in a lexicographic order) is chosen.
+
+5
+
+for BICM at low SNR,” IEEE Trans. Inf. Theory, vol. 57, no. 10, pp.
+6650–6672, Oct. 2011.
+G. Ungerboeck, “Trellis-coded modulation with redundant signal sets
+Part II: State of the art,” IEEE Commun. Mag., vol. 25, no. 2, pp. 12–
+21, Feb. 1987.
+C. Stierstorfer, R. F. H. Fischer, and J. B. Huber, “Optimizing BICM
+with convolutional codes for transmission over the AWGN channel,” in
+International Zurich Seminar on Communications, Zurich, Switzerland,
+Mar. 2010.
+A. Alvarado, L. Szczecinski, and E. Agrell, “On BICM receivers for
+TCM transmission,” IEEE Trans. Commun., vol. 59, no. 10, pp. 2692–
+2702, Oct. 2011.
+J. B. Barry, E. A. Lee, and D. G. Messerschmitt, Digital Communication,
+3rd ed. Springer, 2004.
+G. C. Clark, Jr. and J. B. Cain, Error-correction coding for digital
+communications, 2nd ed. Plenum Press, 1981.
+A. J. Viterbi, J. K. Wolf, E. Zehavi, and R. Padovani, “A pragmatic
+approach to trellis-coded modulation,” IEEE Commun. Mag., vol. 27,
+no. 7, pp. 11–19, July 1989.
+J. P. Odenwalder, A. J. Viterbi, I. M. Jacobs, and J. A. Heller, “Study of
+information transfer optimization for communication satellites,” Linkabit
+Corporation, San Diego, CA, Tech. Rep. NASA-CR-114561, Jan. 1973,
+available at http://hdl.handle.net/2060/19730012162.
+J. G. Proakis, Digital Communications, 4th ed. McGraw-Hill, 2000.
+P. Knagenhjelm and E. Agrell, “The Hadamard transform—a tool for
+index assignment,” IEEE Trans. Inf. Theory, vol. 42, no. 4, pp. 1139–
+1151, July 1996.
+G. Birkhoff and S. Mac Lane, A Survey of Modern Algebra, 4th ed.
+New York: Macmillan, 1977.
+G. Caire and E. Viterbo, “Upper bound on the frame error probability
+of terminated trellis codes,” IEEE Commun. Lett., vol. 2, no. 1, pp. 2–4,
+Jan. 1998.
+C. B. Schlegel and L. C. Perez, Trellis and Turbo Coding, 1st ed. John
+Wiley & Sons, 2004.
+P. Frenger, P. Orten, and T. Ottosson, “Convolutional codes with optimum distance spectrum,” IEEE Trans. Commun., vol. 3, no. 11, pp.
+317–319, Nov. 1999.
+
+

@@ -1,0 +1,711 @@
+Creator:        TeX
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Mon May 14 11:18:09 2012
+ModDate:        Tue Jun 19 12:56:11 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      375949 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569565961
+
+Secure Network Coding and Non-Malleable Codes:
+Protection Against Linear Tampering
+Herv´ Chabanne∗†‡ , G´ rard Cohen†‡ , Alain Patey∗†‡
+e
+e
+∗ Morpho
+† T´ l´ com
+ee
+
+‡ Identity
+
+ParisTech
+and Security Alliance (The Morpho and T´ l´ com ParisTech Research Center)
+ee
+Email: {chabanne,cohen,patey}@telecom-paristech.fr
+
+literature on how to use Differential Fault Analysis to break
+cryptosystems (e.g. [7], [8]).
+The property of non-malleability, as deﬁned in [1], is subject
+to a choice of a family of modiﬁcations that we allow an adversary to make on the codewords. Dziembowski et al. proved
+that it is impossible for a code to be non-malleable w.r.t. the set
+of all possible modiﬁcations of codewords. An important class
+of tampering functions, considered in [1] and [2], is the class
+of bit-wise independent tampering functions, i.e. modiﬁcations
+that affect each bit of the codeword independently: ﬂipping the
+bit or setting it to 0 or 1 (see Section II-B1). This is typically
+what can be done using fault injections and, consequently,
+focusing on this family of tampering functions is worthwhile.
+In [1], a construction for NMC w.r.t. all bit-wise independent
+functions is proposed but an implementable construction is
+left as an open problem. In [2], Chabanne et al. show that
+Linear Coset Coding, as used in the Wire-Tap Channel II
+[9] (or Wire-Tap Channel with erasures), is a way to build
+a NMC w.r.t. a subset of the class of bit-wise independent
+tampering functions. Moreover, this technique is explicitly
+implementable and has computationally efﬁcient encoding and
+decoding procedures.
+In this paper, we deeper investigate the class of functions
+w.r.t. which Linear Coset Coding is non-malleable. We ﬁrst
+make the observation that the action of a bit-wise independent
+tampering function f on a codeword c ∈ {0, 1}n can be
+represented as f (c) = A.c + B where A is a diagonal square
+matrix of size n and B is a vector of size n, both with
+coefﬁcients in {0, 1} (cf. Figure 3). From this remark, we
+investigate the class of matrix-vector couples (A, B) such that
+the linear coset coding construction is non-malleable w.r.t.
+f : x → A.x + B.
+In [10], El Rouayheb and Soljanin consider the use of
+Coset Coding in the Secure Network Coding (SNC) setting
+introduced in [11]. In a few words, in the SNC setting, a
+codeword is sent through a network represented as a directed
+acyclic graph, a linear function of the original codeword being
+available at each edge and it is required that a wiretapper
+accessing any bounded subset of these edges gains no information on the original codeword. This setting generalizes,
+for instance, One-Time Pad, Wire-Tap Channel II and Secret
+Sharing (see [12] for a comprehensive study on SNC). [10]
+suggests to encode messages using Coset Coding and gives a
+
+Abstract—At ICS 2010, Dziembowski et al. introduced the notion of Non-Malleable Codes (NMC), adapting the cryptographic
+notion of non-malleability to the coding theory. Using NMC, if an
+attacker modiﬁes a codeword, decoding this modiﬁed codeword
+will return either the original message or a completely unrelated
+value.
+The property of non-malleability depends on a family of
+modiﬁcations authorized to the attacker. In their paper, Dziembowski et al. propose a construction valid for the family of
+all bit-wise independent functions. At ITW 2011, Chabanne et
+al. proposed another construction for non-malleable codes w.r.t.
+bit-wise independent tampering functions by drawing a parallel
+between NMC and the Wire-Tap Channel II.
+In this paper, we show that the construction using Linear
+Coset Coding proposed by Chabanne et al. is non-malleable
+w.r.t. a larger class of functions, by considering linear tampering.
+Our results are derived from security results on Secure Network
+Coding using Linear Coset Coding, introduced by El Rouayheb
+and Soljanin at ISIT 2007.
+Index Terms—Non-Malleable Codes, Secure Network Coding,
+Wire-Tap Channel II, Coset Coding
+
+I. I NTRODUCTION
+In cryptography, the non-malleability property requires that
+it is impossible, given a ciphertext, to produce another different
+ciphertext so that the corresponding plaintexts are related to
+each other. Recently, Dziembowski et al. [1] proposed a transposition of the cryptographic deﬁnition of non-malleability
+to the ﬁeld of coding theory. NMC have then been subject
+of several research papers in the past two years [2]–[5].
+Informally, a NMC is deﬁned as a code such that, when a
+codeword is subject to modiﬁcations, its decoding procedure
+either corrects these errors and decodes to the original message
+or returns a value that is completely unrelated to the original
+message.
+The motivation for NMC is tamperproofness. Nonmalleability can indeed be useful in real-life applications.
+Some storage devices may be assumed to be “read-proof”
+because of a sufﬁcient amount of physical or algorithmic
+protections to prevent anyone from learning the data stored
+on them. However, even if one cannot read the data, injecting
+faults in the data and observing the way it affects functions
+using these data can help to recover them. Injecting faults can
+be done for instance using lasers [6]. There exists an important
+This work has been partially funded by the ANR SPACES project.
+
+1
+
+2) Deﬁnition of NMC: Let F be a family of tampering
+functions. For each f ∈ F, we deﬁne a random variable
+Tamperf corresponding to the tampering experiment dem
+scribed in the previous section:
+
+security condition on the linear combinations on the codeword
+spread through the network, depending on the parity-check
+matrix used for the Coset Coding and on the rank of these
+linear combinations.
+In the following, we show that this approach for SNC can
+lead to a new approach for NMC but the security requirements
+for SNC are stronger than ours since the adversary gets
+codewords in the context of SNC but only decoded codewords
+in the context of NMC. Their analysis can however be used
+to deﬁne a class of linear functions w.r.t. which Linear Coset
+Coding is non-malleable.
+This paper is organized as follows. In Section II, we do some
+recalls on the results of [1] and [2] and begin our investigation
+on linear tampering functions. In Section III, we consider the
+approach of SNC and recall some results on the security of
+SNC using coset coding. In Section IV, we state and prove our
+results on the non-malleability of Linear Coset Coding w.r.t.
+linear tampering functions. We ﬁnally conclude in Section V.
+
+Tamperf =
+m
+
+The randomness is induced by the encoding function Enc.
+The Non-Malleability property is deﬁned as follows:
+Deﬁnition 1 (Non-Malleability). Let (Enc, Dec) be a coding
+scheme, where Enc : {0, 1}k → {0, 1}n is random and Dec :
+n
+{0, 1}n → {0, 1}k ∪ {⊥} deterministic. Let F ⊂ Fn F2 be a
+2
+family of tampering functions.
+We say that the coding scheme (Enc, Dec) is non-malleable
+w.r.t. F if for each f ∈ F, there exists a distribution Df over
+{0, 1}k ∪ {⊥, same} such that, ∀s ∈ {0, 1}k , we have:
+
+II. N ON -M ALLEABLE C ODES AND C OSET C ODING
+Tamperf ≈
+m
+
+In this section, we recall the deﬁnition of NMC [1] and the
+results of Chabanne et al. [2] on the non-malleability of Linear
+Coset Coding.
+In the following, a [n, k, d] linear code denotes a subspace
+of dimension k of Fn with minimal Hamming distance d.
+2
+
+Fig. 1.
+
+c
+
+f
+
+c
+˜
+
+Dec
+
+ Output
+
+m ← Df
+˜
+m if m = same
+˜
+m otherwise
+˜
+
+
+
+
+(1)
+
+
+
+First, notice that the deﬁnition is relative to a family F of
+tampering functions, but the property of indistinguishability
+concerns each function f separately. Non-malleability w.r.t. a
+family is in fact non-malleability w.r.t. each function in this
+family.
+Now let us recall what we expect from a NMC. We want
+that, after the tampering experiment, either the codeword c is
+˜
+well-decoded to the original message m despite the tampering
+or the decoding procedure results in a value m that is unrelated
+˜
+to the original message. That is the idea behind the distribution
+Df : either it returns the symbol same, meaning that the
+decoding furnishes the original value or it returns a value
+m ∈ {0, 1}k ∪ {⊥}. As Df depends only on f and not on
+˜
+the message m, in the latter case, the value returned in the
+second part of Equation (1) is unrelated to m.
+3) Basic Examples and General Results: We informally
+give a few examples and results on NMC to illustrate the
+deﬁnition. Details and proofs can be found in [1].
+• Every code is non-malleable w.r.t. {id} where id is the
+identity function on Fn .
+2
+• Error-correcting (resp. error-detecting) codes are nonmalleable w.r.t. the families of tampering functions introducing only errors that they can correct (resp. detect).
+n
+nF
+• No code is non-malleable w.r.t. F2 2
+Fn
+n
+• If F ⊂ F2 2 is a family of functions such that n >
+log(log(|F|)), then there exists a non-malleable code
+w.r.t. F.
+
+In the following, we consider a randomized encoding function Enc : {0, 1}k → {0, 1}n , which is associated to a deterministic decoding function Dec : {0, 1}n → {0, 1}k ∪ {⊥},
+where ⊥ means that the codeword cannot be decoded. Let F2
+denote the ﬁeld with two elements.
+1) The Tampering Experiment: Let us ﬁrst introduce the
+situation considered in NMC. In this model, a source message
+m is encoded using Enc, in order to be later decoded using
+Dec. The codeword c = Enc(m) is stored on a device or
+sent over a channel before being decoded. During this phase,
+an attacker applies some tampering n
+function f belonging to a
+given family of functions F ⊂ Fn F2 . A tampered codeword
+2
+c = f (c) is thus obtained. This erroneous codeword is then
+˜
+decoded to m = Dec(˜). This process is described in Figure 1.
+˜
+c
+Enc
+
+
+
+
+where ≈ denotes computational or statistical indistinguishability.
+
+A. Deﬁnition of Non-Malleability
+
+m
+
+c ←R Enc(m), c = f (c), m = Dec(˜)
+˜
+˜
+c
+Output : m
+˜
+
+m
+˜
+
+The Tampering Experiment
+
+Now focus on the behaviour of the attacker, called Eve in
+the following. Eve applies a function f ∈ F to the codeword
+c, but she does not read c. In the real world, this can be seen as
+injecting faults on a device that you cannot read (e.g. a smartcard) using, for instance, a laser. In this experiment, Eve can
+however read the resulting decoded message m and try to learn
+˜
+as much as possible about m from m. Let us also specify that
+˜
+f is a deterministic function and, furthermore, that Eve knows
+which function she has chosen in F.
+
+B. Non-Malleability of Linear Coset Coding
+1) Bit-wise Independent Tampering: Bit-wise independent
+tampering is a special case of tampering where each bit of the
+
+2
+
+the fact that A is a diagonal matrix. If fi =keep (resp. ﬂip)
+then Aii = 1 and Bi = 0 (resp. 1). If fi =0 (resp. 1) then
+Aii = 0 and Bi = 0 (resp. 1). Consequently, the condition for
+non-malleability stated in Theorem 1 only concerns A. More
+precisely, with the notations of the theorem, the condition is
+|{Aii |Aii = 0}| > k.
+
+codeword is tampered with independently. Formally a function
+f : {0, 1}n → {0, 1}n is bit-wise independent if we can ﬁnd
+n independent functions f1 , . . . , fn : {0, 1} → {0, 1} such
+that ∀x ∈ {0, 1}n , f (x) = (f1 (x), . . . , fn (x)). There are four
+possibilities for each fi which we denote by keep, ﬂip, 0 and
+1 (keep and ﬂip are explicit, 0 (resp. 1) is the function that
+sets a bit to 0 (resp. 1) regardless of what it was before).
+In [1], a construction for a NMC w.r.t. the family of all
+bit-wise independent functions is introduced. It uses Linear
+Error-Correcting Secret-Sharing (LECSS) schemes [13] and
+Algebraic Manipulation Detection (AMD) codes [14], which
+are quite unusual tools. The construction is furthermore not explicitly implementable. Therefore, Chabanne et al. [2], drawing a parallel with the Wire-Tap Channel II [9], proposed to
+use Linear Coset Coding as a way to achieve non-malleability
+w.r.t. bit-wise independent functions.
+2) Linear Coset Coding: Linear Coset Coding (LCC) is a
+random encoding used in particular for the Wire-Tap Channel
+[9], [15]. This type of encoding uses a [n, n − k, d] linear code
+C with a parity-check matrix H. To encode a message m ∈
+Fk , one randomly chooses an element among all c ∈ Fn such
+2
+2
+that m = Hc. To decode a codeword c, one just applies the
+parity-check matrix H and obtains the syndrome of c for the
+code C, which is the message m. This procedure is summed
+up in Figure 2.
+
+f = (keep,ﬂip,0,1).
+
+1
+0
+A=
+0
+0
+Fig. 3.
+
+Linear Representation of Bit-wise Independent Functions
+
+We will see in Section IV how this condition on diagonal
+matrices extends to all matrices via considerations on the rank.
+Before that, let us consider the setting of Secure Network
+Coding and see how it is related to our problem.
+III. S ECURE NETWORK C ODING
+We give a quick overview of the results on Secure Network
+Coding. For more details, see [12].
+A. Presentation
+The Secure Network or Wiretap Network Model was introduced in [11] by Cai and Yeung. It is an extension of
+the Network Model where the network is represented as a
+directed acyclic graph with a single source node sending a
+message m over the network towards user nodes, at the end of
+paths in the graph. The message is encoded before being sent
+through the network. To each edge of the graph is associated
+a packet depending of this codeword. In the model considered
+here, an intermediate node receives one or several packets and
+sends a linear combination of these packets through the edges
+that leave the node. In the SNC model, we also consider a
+wiretapper that can access a subset of the edges of the network
+and tries to recover m from the combinations of packets that
+he obtained. The security condition of SNC states that:
+1) The user nodes can recover the original message m from
+the packets that they received
+2) For any subset of edges that we allow the adversary to
+obtain, the adversary gets no information on m.
+Usually, a bound µ is given and the adversary can access
+any set of µ edges, but only one at a time, without getting
+information on m.
+As an example, we represent in Figure 4 a secure butterﬂy
+network, where the source node s wishes to send a message
+m ∈ F3 to two user nodes U1 and U2 . Therefore, s picks a
+random x1 ∈ F3 and sets x2 = m−x1 and proceeds as one can
+see in the ﬁgure. Notice that intermediate nodes act as follows:
+if they receive one edge, they transmit what they receive, if
+they receive two edges, they transmit a linear combination of
+the packets they received. It is easy to see that the user nodes
+can recover the message and that an adversary with access to
+up to µ = 1 edge learns no information on m.
+
+Given: C a [n, n − k, d] linear code with a k × n paritycheck matrix H
+Encode: m ∈ Fk →R c ∈ Fn s.t. Hc = m
+2
+2
+Decode: c ∈ Fn → m = Hc
+2
+Fig. 2.
+
+∀x ∈ F4 , f (x) = A.x + B with
+2
+
+ 
+0 0 0
+0
+1
+1 0 0
+,B =  
+0
+0 0 0
+0 0 0
+1
+
+Linear Coset-coding
+
+In the following, we only consider LCC based on maximum
+distance separable (MDS) codes. In the MDS case, we have
+necessarily d = k + 1, so we might withdraw the distance
+from the code notation and talk about [n, n − k] MDS codes.
+3) Non Malleability: It is proven in [2] that linear coset
+coding is a NMC w.r.t. bit-wise independent functions where
+the number of 0 and 1 is above a threshold dependent on the
+distance of the underlying code. We recall the main result of
+[2], adapted to the case of MDS codes.
+n
+
+Theorem 1 ( [2]). Let F ⊂ Fn F2 be a family of bit-wise
+2
+independent tampering functions such that:
+∀f = (f1 , . . . , fn ) ∈ F, |{i|fi = 0 or fi = 1}| ≥ D.
+Let C be a [n, n − k] MDS linear code such that k < D.
+Then a LCC using C is non-malleable w.r.t. F.
+4) Towards Linear Tampering: In order to study nonmalleability of LCC w.r.t. linear tampering functions, we ﬁrst
+study the representation of bit-wise independent functions as
+linear functions.
+Let f be a bit-wise independent function and let A ∈
+Fn×n , B ∈ Fn be such that ∀x ∈ Fn , f (x) = A.x+B. A small
+2
+2
+2
+example summing up all possibilities is drawn in Figure 3. The
+fact that f is a bit-wise independent function is equivalent to
+
+3
+
+x1
+x1
+
+x1
+m
+
+s
+
+x2
+
+Fig. 4.
+
+x2
+
+x1 + 2x2
+x2
+
+x2
++2
+x1
++2
+x2
+
+In the context of SNC, the user encodes a message using
+LCC, deﬁnes a set of linear manipulations that the intermediate
+nodes are allowed to operate on the codewords. The adversary
+gets a bounded set of linearly manipulated codewords and tries
+to gain information from them, but should learn nothing.
+In the context of NMC w.r.t. linear tampering, the user
+encodes using LCC. The adversary is allowed to apply a set
+of linear manipulations on the codeword but cannot see the
+modiﬁed codewords. He however tries to learn information
+from the result of the decoding of these modiﬁed codewords.
+So, the way that the codewords are manipulated is the
+same but the adversary does not observe the same thing in
+both settings, i.e. modiﬁed codewords in the SNC setting and
+modiﬁed decoded messages in the NMC setting. Given that
+an adversary in the SNC model can for instance decode what
+he observes, the SNC model is stronger, and if a combination
+(linear function) of codewords is allowed to be observed by
+the adversary in the SNC model while maintaining security,
+then the corresponding LCC is non-malleable w.r.t. this linear
+function.
+We can see, on the example of Figure 4 that the NMC
+model encompasses more linear functions. For instance, let us
+0 1
+consider the function f : x →
+x. One cannot allow
+1 2
+0 1
+x1
+x2
+the SNC adversary to observe
+=
+,
+1 2
+x2
+x1 + 2x2
+since m = x1 + x2 . But in the case of the tampering
+0 1
+x1
+experiment, one obtains m = 1 1
+˜
+= x1 ,
+1 2
+x2
+which gives no information on m.
+Let us now explain how we are using the proof of Theorem 2
+to ﬁnd a class of linear functions w.r.t. which LCC is non
+malleable. In the SNC model, the adversary observes Ac
+(with the notations of the tampering experiment). In the NMC
+model, the adversary observes HAc. If we apply the security
+analysis of Theorem 2 on HA instead of A, we get a nonmalleability result, depending on the rank of HA and of the
+linear span of the rows of HA. In the SNC model, there is
+a bound on the number of edges observed by the adversary,
+which is the same as the maximal rank of A. Since the rank
+is the only parameter that matters to prove security, we can
+get rid of the condition on the number of edges (i.e. on the
+number of rows of A) and work with square matrices.
+
+U1
+
+x1
+
+U2
+
+A Secure Butterﬂy Network
+
+B. SNC and LCC
+In [10], El Rouhayeb and Soljanin suggest to use Linear
+Coset Coding as a way to achieve security in the SNC model.
+If the source node wishes to send a k-symbol message over the
+network, it uses Linear Coset Coding with a k×n parity-check
+matrix H and sends the n symbols over the network. The
+intermediate nodes send a predetermined linear combination
+of the elements they received through the edges leaving them.
+For instance, let us consider the Secure Butterﬂy network
+represented in Figure 4 again. It corresponds to a SNC using
+LCC, where n = 1, k = 2 and H = 1 1 .
+We sum up the security condition given in [10]:
+Theorem 2 (Security of SNC using LCC). A SNC based on
+LCC based on a MDS code with a k × n parity-check matrix
+H, such that no linear combination of µ ≤ n − k packets sent
+over edges belongs to the space spanned by the rows of H, is
+secure against an adversary who can observe µ edges.
+We see that it proves the security of the Secure Butterﬂy
+Network of Figure 4, since µ = 1 and the coding vectors
+present in the edges can be represented as (1, 0), (0, 1) and
+(1, 2), each of which not belonging to the space spanned by
+(1, 1).
+Let us give an overview of the arguments of the proof of
+Theorem 2, as proposed in [10]. Let us denote by S the random
+variable associated with the k symbols of original message,
+by Y the random variable associated with the n LCC symbols
+and by Z the random variable associated with the µ packets
+observed by the adversary. We should have H(S|Z) = H(S)
+and H(S|Y ) = 0, here H denotes the entropy function. This is
+translated to a condition on the matrix A whose rows are the
+coding vectors associated with the packets carried in the set
+W of edges that the adversary observes. The ﬁrst condition
+is rank(A)≤ n − k. When equality is achieved in the latter
+H
+inequality, it implies a second condition: rank
+= n for
+A
+all A such that rank(A) = n − k, which explains the condition
+on the rows of A and H. For a full proof, see [10] or the proof
+of Section IV-B, which is similar.
+
+B. Proof of Non-Malleability
+We formalize the previous analysis in the following theorem:
+Theorem 3 (Non-Malleability of LCC w.r.t. linear functions).
+Let C be a [n, n − k] MDS linear code, with a k × n paritycheck matrix H.
+n
+Let F lin ⊂ Fn F2 be a family of linear tampering functions
+2
+such that ∀f : x → A.x + B ∈ F lin ,
+1) rank(HA) ≤ n − k
+2) span(rows of HA) ∩ span(rows of H) = {0}
+Then a LCC using C is non-malleable w.r.t. F lin .
+
+IV. N ON -M ALLEABLE C ODES W. R . T. L INEAR TAMPERING
+F UNCTIONS
+A. From SNC to NMC
+We here show that the approach of Secure Network Coding
+can be used to consider the non-malleability of LCC w.r.t.
+linear functions.
+
+4
+
+Proof: This result is an adaptation of the analysis of
+[10] to the setting of the Tampering Experiment described in
+Section II-A.
+Let H be a parity-check matrix of a [n, n − k] MDS code
+and f ∈ F lin In order to simplify the proof, we consider a
+linear function without second member f : x → A.x. This
+is non restrictive, indeed, with the notations of the tampering
+experiment, if HAc is unrelated to m then so is HAc + HB.
+Let M = (m1 , . . . , mk ) denote the random variable associated with the k symbols of the original message, C =
+(c1 , . . . , cn ) denote the random variable associated with the
+˜
+n symbols of the codeword (i.e. M = HC) and M =
+(m1 , . . . , mk ) denote the random variable associated with the
+˜
+˜
+k symbols of the result of the tampering experiment (i.e.
+˜
+˜
+M = HAC). Writing H(M, C, M ) in two different forms
+˜ )), we get:
+(and removing H(M
+
+linear functions that induced decorrelation between m and
+˜
+m, and not those introducing errors that are corrected. For
+instance, LCC are non-malleable w.r.t. the functions f : x →
+x + c where c is a codeword of the underlying MDS code, i.e.
+where Hc = 0.
+
+˜
+˜
+˜
+˜
+H(M |M ) + H(C|M, M ) = H(C|M ) + H(M |C, M )
+
+[1] S. Dziembowski, K. Pietrzak, and D. Wichs, “Non-malleable codes,” in
+ICS, A. C.-C. Yao, Ed. Tsinghua University Press, 2010, pp. 434–452.
+[2] H. Chabanne, G. Cohen, J. Flori, and A. Patey, “Non-malleable codes
+from the wire-tap channel,” in Information Theory Workshop (ITW),
+2011 IEEE, oct. 2011, pp. 55 –59.
+[3] S. G. Choi, A. Kiayias, and T. Malkin, “Bitr: Built-in tamper resilience,”
+in ASIACRYPT, ser. Lecture Notes in Computer Science, D. H. Lee and
+X. Wang, Eds., vol. 7073. Springer, 2011, pp. 740–758.
+[4] F.-H. Liu and A. Lysyanskaya, “Tamper and leakage resilience in the
+split-state model,” Brown University, Tech. Rep., 2011.
+[5] K. Cwalina, “Explicit construction of a non-malleable code: an analysis
+of a recent approach by d., k. and o.” Uniwersytet Warszawski, Tech.
+Rep., 2011.
+[6] S. P. Skorobogatov and R. J. Anderson, “Optical fault induction attacks,”
+in CHES, ser. Lecture Notes in Computer Science, B. S. K. Jr., Cetin
+¸
+Kaya Koc, and C. Paar, Eds., vol. 2523. Springer, 2002, pp. 2–12.
+¸
+[7] D. Boneh, R. A. DeMillo, and R. J. Lipton, “On the importance
+of checking cryptographic protocols for faults (extended abstract),” in
+EUROCRYPT, 1997, pp. 37–51.
+[8] H. Bar-El, H. Choukri, D. Naccache, M. Tunstall, and C. Whelan,
+“The sorcerer’s apprentice guide to fault attacks,” in Workshop on Fault
+Diagnosis and Tolerence in Cryptography in association with DSN 2004
+- The International Conference on Dependable Systems and Networks,
+2004, pp. 330–342.
+[9] L. H. Ozarow and A. D. Wyner, “Wire-tap channel II,” in EUROCRYPT,
+1984, pp. 33–50.
+[10] S. Y. El Rouayheb and E. Soljanin, “On wiretap networks ii,” in
+Information Theory, 2007. ISIT 2007. IEEE International Symposium
+on, june 2007, pp. 551 –555.
+[11] N. Cai and R. Yeung, “Secure network coding,” in Information Theory,
+2002. Proceedings. 2002 IEEE International Symposium on, 2002, p.
+323.
+[12] N. Cai and T. Chan, “Theory of secure network coding,” Proceedings
+of the IEEE, vol. 99, no. 3, pp. 421 –437, march 2011.
+[13] H. Chen, R. Cramer, S. Goldwasser, R. de Haan, and V. Vaikuntanathan,
+“Secure computation from random error correcting codes,” in EUROCRYPT, ser. Lecture Notes in Computer Science, M. Naor, Ed., vol.
+4515. Springer, 2007, pp. 291–310.
+[14] R. Cramer, Y. Dodis, S. Fehr, C. Padr´ , and D. Wichs, “Detection of
+o
+algebraic manipulation with applications to robust secret sharing and
+fuzzy extractors,” in EUROCRYPT, ser. Lecture Notes in Computer
+Science, N. P. Smart, Ed., vol. 4965. Springer, 2008, pp. 471–488.
+[15] A. D. Wyner, “The wire-tap channel,” The Bell System Technical
+Journal, vol. 54, no. 8, pp. 1355–1387, October 1975.
+
+V. C ONCLUSION
+In this paper, we have extended the analysis of Linear Coset
+Coding as a non-malleable code. Following a security analysis
+close to the one of Secure Network Coding, we proved that
+Linear Coset Coding is non-malleable w.r.t. linear functions
+such that their product with the parity-check matrix of the
+underlying code fulﬁls conditions on rank and dimension.
+An interesting problem is to characterize the whole class of
+functions w.r.t. which such codes are non-malleable.
+R EFERENCES
+
+where H denotes the entropy function.
+˜
+The decodability of the codeword gives H(M |C, M ) = 0.
+˜ ) = H(M ). We
+The security condition implies that H(M |M
+˜
+˜
+thus obtain H(C|M, M ) = H(C|M ) − H(M ). This implies
+that n − rank(HA) − k ≥ 0. We consequently require that
+rank(HA) ≤ n − k.
+˜
+If the latter bound is achieved, H(C|M, M ) = 0 and the
+system of equations
+M
+˜
+M
+
+=
+
+H
+C
+HA
+
+H
+must be n.
+HA
+Since rank(H) = k and rank(HA) = n − k, we obtain our
+condition on the spaces spanned by the rows of H and the
+rows of HA.
+We can then deduce a distribution Df , which is indistinguishable from the result of the tampering experiment. It can
+for instance be described as Df = HAB + HB where B
+is a vector of n Bernoulli(1/2) distributions. This proves that
+this LCC satisﬁes non-malleability w.r.t. f and, consequently,
+non-malleability w.r.t. F lin .
+has to have a unique solution, then rank
+
+Remark 1. For the same LCC, the class of linear functions
+considered in Theorem 2 is included in the class of functions
+considered in Theorem 3.
+Bit-wise independent tampering functions, seen as linear
+functions (see Section II-B) considered in Theorem 1 are also
+included.
+Remark 2. Notice that we de do not prove the reciprocal
+propriety of Theorem 3. Indeed, we only aimed at considering
+
+5
+
+

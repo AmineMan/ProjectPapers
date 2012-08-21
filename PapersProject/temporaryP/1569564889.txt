@@ -1,0 +1,743 @@
+Creator:        TeX
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Wed May  9 17:13:25 2012
+ModDate:        Tue Jun 19 12:56:07 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      426389 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569564889
+
+A general test to check the feasibility of linear
+interference alignment
+´
+O. Gonz´ lez, I. Santamaria
+a
+
+C. Beltr´ n
+a
+
+Communications Engineering Department
+University of Cantabria
+Santander, 39005, SPAIN
+{oscargf,nacho}@gtas.dicom.unican.es
+
+Dept. of Mathematics, Statistics and Computation
+University of Cantabria
+Santander, 39005, SPAIN
+beltranc@unican.es
+
+of freedom. The proposed feasibility test, however, provides
+only necessary conditions and is combinatorial in nature since
+must check all possible ways to suppress interfering streams
+at both sides of the link and for all users.
+More recent work on the feasibility of IA has been presented
+in [5] and [6]. Speciﬁcally, [5] studies the dimensions of
+the algebraic varieties involved in the alignment problem
+(input, output and solution variety), and proves a sufﬁcient
+and necessary condition of feasibility for the particular case
+of symmetric square MIMO interference channels, where all
+transmitters and receivers have the same number of antennas,
+all users transmit the same number of streams and there are
+at least three interfering users (K ≥ 3). For the general case
+with arbitrary system parameters, only a necessary condition is
+proved in [5]. Similar algebraic tools are used in [6] to prove
+general bounds on the tuple of DoF that are achievable through
+linear interference alignment. Furthermore, for the particular
+case of symmetric systems where the number of transmit and
+receive antennas is divisible by the number of streams the
+bound is tight and can be achieved through IA.
+In this paper we propose a polynomial-time complexity test
+of feasibility for the linear alignment problem. The main idea
+is to consider the input space (projective space of MIMO
+interference channels) and the solution variety (channels, precoders and decoders satisfying the IA polynomial equations)
+as smooth compact manifolds and to study the linear mapping
+between the tangent spaces of both smooth manifolds given
+by the ﬁrst projection. It the mapping is surjective, which
+amounts to check whether a given matrix is full-rank, the
+linear alignment is feasible; otherwise is infeasible. We show
+that the test is consistent with all known DoF outer bounds
+for the interference channel (e.g., [7], [8], [9], [10], [11]).
+Furthermore, the proposed feasibility test can be used to obtain
+the total DoF for any K-user MIMO interference channel
+simply by checking the feasibility of all possible DoF tuples.
+
+Abstract—In this paper, we propose a test for checking the
+feasibility of linear interference alignment (IA) for multiple-input
+multiple-output (MIMO) channels with constant coefﬁcients for
+any number of users, antennas and streams per user. We consider
+the compact complex manifold formed by those channels, precoders and decoders that satisfy the polynomial IA equations (the
+so-called solution variety), and study its projection onto the input
+space formed by the interference channels. When the derivative of
+this projection is surjective, namely when the tangent space of the
+solution variety is projected into the whole tangent space of the
+inputs space, the linear alignment problem is feasible; otherwise
+is infeasible. Building on these results, a general feasibility test,
+which amounts to check whether a given matrix is full-rank or
+not, is proposed.
+
+I. I NTRODUCTION
+It has been recently shown that to achieve the maximum
+spatial degrees of freedom (DoF) of the K-user multiple-input
+multiple-output (MIMO) interference channel, the interference
+from other transmitters must be aligned at each receiver
+in a lower-dimensional subspace. This is the basic idea of
+the interference alignment (IA) technique, which was ﬁrst
+proposed in [1], [2] and has received a lot of attention since
+then.
+In this paper, we restrict our attention to alignment schemes
+in signal vector space (i.e., schemes that apply linear precoding and decoding), and address the feasibility of linear
+IA for MIMO interference networks with constant channel
+coefﬁcients, which remains as an open problem in its full
+generality. The ﬁrst work to study this problem was [3],
+where the solvability of the IA polynomial equations was
+analyzed based on classic results in algebraic geometry like
+Bezout’s and Bernstein’s theorems. By counting the number of
+equations and variables involved in any subset of zero-forcing
+alignment equations, Yetis et al. introduced in [3] the deﬁnition
+of a proper system. Connections between proper and feasible
+systems were established only for the single-beam case in
+which each user transmits only one stream of data, whereas
+for the multibeam case the equivalence between proper and
+feasible systems does not longer hold.
+In [4] the feasibility of IA was studied by interpreting
+the alignment process as a joint transmit-receive zero-forcing
+scheme in which each interfering stream can be suppressed
+at either the transmitter or the receiver sacriﬁcing one degree
+
+II. P ROBLEM S TATEMENT
+We consider in this paper the K-user MIMO interference
+channel with transmitter j having Mj ≥ 1 antennas and
+receiver j having Nj ≥ 1 antennas. We assume without
+loss of generality that each user wishes to send dj ≥
+
+1
+
+1 streams or messages1 . We adhere to the notation used
+in [3] and denote this asymmetric interference channel as
+K
+k=1 (Mk × Nk , dk ) = (M1 × N1 , d1 ) · · · (MK × NK , dK ).
+The symmetric case in which all users transmit d streams
+and are equipped with M transmit and N receive antennas
+K
+is denoted as (M × N, d) . In the square symmetric case all
+users have the same number of antennas M = N .
+The MIMO channel from transmitter l to receiver k is
+denoted as Hkl and assumed to be ﬂat-fading and constant
+over time. Each Hkl is an Nk ×Ml complex matrix with independent entries drawn from a continuous distribution (channels
+generated in this way are generic). For the sake of simplicity,
+we will consider only the fully connected interference channel
+where each user receives interference from the rest of K − 1
+transmitters, and where each transmitter interferes to all the
+K − 1 unintended receivers. However, the results in this paper
+can be easily extended to partially connected networks.
+User j encodes its message using an Mj × dj precoding
+matrix Vj and the received signal is given by
+yj = Hjj Vj xj +
+
+Hji Vi xi + nj ,
+
+A. Feasibility of IA
+In this paper we are interested in studying the following feasibility problem: For a given interference network,
+K
+k=1 (Nk × Mk , dk ), to decide whether there exists a linear
+alignment solution for generic interference MIMO channels
+Hkl . In that case, we say that the problem is generically
+feasible, or simply feasible.
+To formally state the feasibility problem, let us consider the
+following diagram
+V
+π1
+H
+H=
+
+S = Gd1 ,N1 × · · · × GdK ,Nk × Gd1 ,M1 × · · · × GdK ,MK
+
+(1)
+
+is the output space formed by the precoder and decoder
+Grassmannians (Ga,b denotes the Grassmannian formed by
+the linear subspaces of complex dimension a in Cb , with
+0 ≤ a ≤ b); and
+V = {(H, U, V ) ∈ H × S : (3) holds}
+is the so–called solution variety. Note that we are denoting by
+H the collection of all matrices Hkl , and, similarly, U and V
+denote the set of Uj and Vj , 1 ≤ j ≤ K, respectively. Deﬁned
+in this way, H, S and V are all compact and smooth manifolds
+[13]. Speciﬁcally, the set V is given by certain polynomial
+equations, linear in each of the H, U, V and therefore is an
+algebraic subvariety of the product space H × S.
+−1
+Note that, given H ∈ H, the set π1 (H) is a copy of the
+set of U, V such that (3) holds, that is the solution set of
+the linear interference alignment problem. On the other hand,
+−1
+given (U, V ) ∈ S, the set π2 (U, V ) is a copy of the set of
+H ∈ H such that (3) holds. The feasibility question studied
+in this paper can then be restated more formally as follows,
+−1
+Problem 1: Is π1 (H) = ∅ for a generic H?
+
+(2)
+
+where superscript T denotes transpose.
+The interference alignment (IA) problem consist in ﬁnding
+the precoders and decoders, Vj and Uj , in such a way that
+the interfering signals at each receiver fall into a reduceddimensional subspace and the receivers can then extract the
+projection of the desired signal that lies in the interferencefree subspace. To this end, it is required that the polynomial
+equations
+k = l,
+
+(3)
+
+III. M AIN R ESULT
+The following theorem solves the question posed in Problem
+1 and, as a by product, provides a simple feasibility test.
+Theorem 1: Problem 1 is feasible iff for almost every
+choice of Hkl , and for any choice of Uk , Vl satisfying (3),
+the linear mapping, θ, deﬁned by
+
+are satisﬁed, while the signal subspace for each user must
+be linearly independent of the interference subspace and must
+have dimension dk , that is
+T
+rank(Uk Hkk Vk ) = dk ,
+
+∀ k ∈ {1, . . . , K}.
+
+(4)
+
+T
+˙
+˙
+˙
+˙
+˙T
+˙
+(U1 , . . . , UK , V1 , . . . , VK ) → Uk Hkl Vl + Uk Hkl Vl
+
+Taking (4) into account, we assume in the sequel that for
+any feasible IA strategy the number of streams transmitted by
+each user satisﬁes the point-to-point bound given by
+1 ≤ dk ≤ min{Nk , Mk },
+1 If
+
+∀ k ∈ {1, . . . , K}.
+
+(7)
+
+is the input space composed by the Cartesian product of all
+interference MIMO channels (here, P(MNk ×Ml (C) denotes
+the projective space of complex-valued Nk × Ml matrices),
+
+i=j
+
+T
+Uk Hkl Vl = 0,
+
+P(MNk ×Ml (C))
+k=l
+
+where xj is the dj × 1 transmitted signal and nj is the
+zero mean unit variance circularly symmetric additive white
+Gaussian noise vector. The ﬁrst term in (1) is the desired
+signal, while the second term represents the interference space.
+The receiver j applies a linear decoder Uj of dimensions
+Nj × dj , i.e.,
+T
+T
+Uj Hji Vi xi + Uj nj ,
+
+(6)
+
+where
+
+i=j
+
+T
+T
+Uj yj = Uj Hjj Vj xj +
+
+π2
+S
+
+(8)
+
+is surjective, i.e., it has maximal rank equal to
+k=l dk dl .
+˙ 1 , . . . , UK , V1 , . . . , VK denotes a set of matrices of
+˙
+˙
+˙
+Here, U
+˙
+dimensions Nk × dk or Ml × dl depending on whether Uk
+˙ l is considered, which are afﬁne representations of the
+or V
+components of a vector in the tangent space of V.
+
+(5)
+
+a user has dk = 0, it can be removed from the interference channel.
+
+2
+
+2) To check whether the matrix B (in any basis) deﬁning
+the linear mapping (8) satisﬁes det(BB ∗ ) = 0, which
+means that the mapping θ is surjective.
+Now, we detail both stages of the proposed IA feasibility test.
+
+A. Proof sketch and mathematical insights
+A detailed proof of the claim in Theorem 1 can be found
+in [13]. Here, due to space limitations, we only provide a
+sketch of the proof along with a more descriptive explanation
+that help readers to develop a clear understanding of our main
+result. It is not difﬁcult to see that V is not only an algebraic set
+but also a compact complex manifold, whose dimension can
+be easily computed from the fact that its constituent equations
+are, when regarded as afﬁne equations, independent. One can
+also (trivially) compute the dimension of H and S. If dim V <
+dim H, then the projection π1 (V) cannot cover most of H. It
+turns out that this is indeed the case that the problem is not
+proper as deﬁned in [3]. Let us center our attention in the
+proper case: we have dim V ≥ dim H, but it can still happen
+that π1 (V) is only a zero–measure set of H. The reader can
+have in mind a vertical line projecting into a horizontal line:
+both sets have the same dimension but the projection of the
+vertical line is just a point, thus a zero measure subset of
+the horizontal line. Mathematically, this is identiﬁed by the
+fact that for every element of V, the derivative of π1 is not
+surjective, namely it does not project the tangent space of V
+onto the whole tangent space of H, just on a vector subspace.
+Now, the tangent space of V is easy to describe: it is the set
+˙ ˙ ˙
+of tangent vectors (H, U , V ) such that
+T ˙
+T
+˙T
+˙
+Uk Hkl Vl + Uk Hkl Vl + Uk Hkl Vl = 0,
+
+A. Solving the inverse IA problem
+The inverse IA problem consists of, given arbitrary (random) realizations of Uk , Vl , ﬁnding a set of MIMO channels
+such that (3) holds. Since this problem is linear in the entries
+of the MIMO channels, it amounts to solving the following
+set of linear systems of equations
+Akl vec(Hkl ) = 0,
+
+k = l,
+
+(9)
+
+where vec(Hkl ) is a vectorized version of the MIMO channel
+matrix Hkl , and Akl is an dk dl × Nk Ml matrix obtained as
+the transpose of the Kronecker product of Vl and Uk , that is
+Akl = (Vl ⊗ Uk )T ,
+
+k = l.
+
+(10)
+
+For example, for the 3-user interference channel, the inverse
+IA problem reduces to solving the following linear systems of
+equations
+(Vl ⊗ Uk )T vec(Hkl ) = 0,
+(11)
+where (k, l) ∈ {(1, 2), (1, 3), (2, 1), (2, 3), (3, 1), (3, 2)}.
+B. Checking the rank of the linear mapping θ
+
+k = l.
+
+The solution of the inverse IA problem obtained in the
+previous stage, provide us with a generic choice of Uk , Vl and
+Hkl satisfying (3). For this particular element of the solution
+variety, the linear mapping θ given by (8) can be written in
+matrix form as
+Bw,
+(12)
+
+Because Uk and Vl are full–rank, the fact that the derivative
+of π1 is surjective is then equivalent to the mapping (8) being
+surjective (this is not a completely obvious fact, see [13] for a
+proof.) Thus, checking the rank of θ detects if the projection
+from V onto H has a surjective derivative at some chosen
+point. Now, standard tools from differential topology2 and
+algebraic geometry prove that:
+• either θ is almost everywhere surjective, in which case
+the problem is feasible or
+• θ is nowhere surjective, in which case the problem is
+infeasible.
+This is the main idea behind the proof of our Theorem 1.
+Note that choosing at random some (H, U, V ) ∈ V and
+checking if the associated linear mapping (8) is surjective
+permits to decide if the IA problem is feasible or not. If the test
+answers “feasible” then the problem is feasible. If it answers
+“infeasible” then, unless we were extremely unlucky and
+chose (H, U, V ) in a certain zero–measure set, the problem
+is infeasible (and thus our answer is correct). In practice, one
+can repeat the test a few times to discard that possibility.
+
+˙
+˙
+˙
+˙
+where w = vec([U1 , . . . , UK , V1 , . . . , VK ]) and B is a block
+matrix with K(K − 1) row partitions (as many blocks as
+interfering links) and 2K column partitions (as many blocks
+as precoding and decoding matrices). Checking the feasibility
+of IA then reduces to check whether the matrix B is full rank
+or not. The vectorization of the mapping (8) shows that B is
+(U )
+(V )
+composed of two main kinds of blocks, Bkl and Bkl , i.e.
+T
+˙T
+˙
+vec(Uk Hkl Vl + Uk Hkl Vl ) =
+T
+T
+˙
+˙
+(Idl ⊗ Uk Hkl ) vec(Vl ) + (VlT Hkl ⊗ Idk )KNk ,dk vec(Uk ),
+(U )
+
+Bkl
+
+(V )
+
+Bkl
+
+(13)
+where In denotes the n × n identity matrix and Km,n is
+the mn × mn commutation matrix which is deﬁned as the
+matrix that transforms the vectorized form of an m × n matrix
+(U )
+into the vectorized form of its transpose. Block Bkl has
+(V )
+dimensions dl dk × dl Ml , whereas block Bkl is dl dk × dk Nk .
+(U )
+(V )
+For a given tuple (k, l), Bkl and Bkl are placed in the
+row partition that corresponds to the interfering link indicated
+(U )
+by the tuple (k, l). However, Bkl is placed in the l + K(V )
+th column partition, whereas Bkl occupies the k-th column
+partition. The rest of blocks are occupied by null matrices
+
+IV. F EASIBILITY T EST
+As indicated by Theorem 1, the proposed feasibility test has
+to perform two tasks:
+1) To choose an arbitrary set (Hkl , Uk , Vl ) such that (3)
+holds: we call this the inverse IA problem.
+2 Remarkably, a theorem by Ehresmann [12] that strongly uses the fact that
+V is compact and that the base ﬁeld is C and not R.
+
+3
+
+with all entries being zero. The dimensions of B are therefore
+K
+k=l dk dl ×
+j=1 (Mj + Nj )dj .
+Once B has been built, the last step is to check if its rank is
+maximum, that is, rank(B) = k=l dk dl . A simple method
+consists of generating a random element b in C k=l dk dl ,
+computing the least squares solution of Bw = b and checking
+if Bw − b is small enough, say smaller than or equal to
+10−8 . With high probability in the choice of b this test will
+determine if θ is a surjective mapping.
+Notice that B has the same structure as the incidence
+matrix of the network connectivity graph. Taking again the
+3-user interference channel as an example, B is constructed
+as follows
+
+ (V )
+(U )
+B12
+0
+0
+0
+B12
+0
+ (V )
+(U ) 
+ B13
+0
+0
+0
+0
+B13 
+
+
+(V )
+(U )
+ 0
+B21
+0
+B21
+0
+0 
+
+
+(V )
+(U )
+ 0
+B23
+0
+0
+0
+B23 
+
+
+
+
+(V )
+(U )
+ 0
+0
+B31
+B31
+0
+0 
+(V )
+(U )
+0
+0
+B32
+0
+B32
+0
+(U )
+
+independent variables in every set of equations in (3) is at
+least as large as the number of equations in that set. This result
+assumes the polynomial equations involved in the problem are
+generic. However, for multibeam scenarios this assumption
+does not hold, and a correspondence between proper and
+feasible systems cannot be established. Conversely, improper
+systems are infeasible, as proved in [5] and [6]. Our test
+is congruent with these results since improperness implies
+K
+j=1 (Mj + Nj )dj <
+k=l dk dl and, hence, rank(B) <
+dk dl .
+k=l
+Additionally, for the K-user symmetric channel, denoted as
+(M × N, d)K , proper systems are feasible if M = N [5] or
+both M and N are divisible by d [6]. Recent results in [9],
+[10] and [11] give necessary and sufﬁcient conditions for the
+feasibility of the 3-user symmetric scenario, (M × N, d)3 . For
+all these particular settings, the proposed test is in agreement
+with known results.
+In those scenarios where none of the previous feasibility
+results apply, we have to rely on DoF outer bounds for
+establishing the infeasibility of a proper system. For instance,
+it is well known that for a point-to-point MIMO channel,
+(Mk × Nk , dk ), (5) has to be veriﬁed. In addition, for any
+2-user pair in the network, (Mk × Nk , dk )(Ml × Nl , dl ), the
+following outer bound must be satisﬁed [7],
+
+(V )
+
+where the blocks Bkl and Bkl are given by (13).
+Remark 1: The above test has been presented in ﬂoating
+point arithmetic and is thus sensitive to ﬂoating point errors.
+Although it is robust enough for every example that we have
+tried, it is straightforward to design a version which works
+in exact arithmetic, as shown in [13]. Furthermore, regarding
+the complexity of the proposed test, it can be shown that the
+problem of deciding if a given system is generically infeasible
+is in the BPP (Bounded-error Probabilistic Polynomial time)
+complexity class.
+Remark 2: Some complexity analysis have recently appeared in the literature suggesting that to check the feasibility
+of IA problems is NP-hard [14]. However, there is a crucial
+difference between the problem considered in [14] and the one
+considered in this paper. Informally stated, the key difference
+is that [14] studies the alignment problem for a particular realization of the interference channels, Hkl , whereas we consider
+the feasibility of IA for generic channels (e.g., channels with
+i.i.d. entries drawn from any continuous distribution). Notice
+also that even if the generic feasibility problem can be solved
+in polynomial time, ﬁnding the actual precoders and decoders
+that align the interference subspaces for a particular channel
+realization can still be NP-hard, as proved in [14], [15].
+Remark 3: If the problem is feasible for a given stream
+distribution, (d1 , . . . , dK ), this DoF tuple is achievable by
+linear IA. Therefore, by solving the feasibility problem it
+would be possible to obtain the maximum total DoF for
+any interference channel simply by exhaustive search over all
+possible DoF tuples that satisfy the existing outer bounds.
+
+dk + dl ≤ min {Ml + Mk , Nl + Nk , max{Nk , Ml }, max{Nl , Mk }} .
+
+(14)
+For the symmetric K-user interference channel (with uneven
+K
+stream distribution among the users), k=1 (M × N, dk ), the
+following outer bound, proved in [8], can be applied
+dk ≤ K min (M, N ) I (K ≤ R) + K max(M,N ) I (K > R) ,
+R+1
+(15)
+)
+where R = max(M,N) and I (·) represents the indicator
+min(M,N
+function.
+The proposed test is also consistent with all these outer
+bounds. In fact, the test is proven to answer infeasible when
+(5) is not satisﬁed, cf. [13]. Proving that the violation of other,
+more complicated, bounds like (14) and (15) also results in
+matrix B being rank-deﬁcient will be considered in a future
+work.
+k
+
+B. Some representative examples
+Now, let us discuss the results provided by our feasibility
+test in some representative examples3 .
+Example 1: First, consider the symmetric (5 × 11, 4)3 interference network, which is classiﬁed as proper according to
+[3]. According to [9] and [11] this scenario is infeasible which
+is also in agreement with our test. Thus, the maximum total
+number of DoF for this network cannot be larger than 11 as
+implied also by the outer bound in (15). By shutting off one
+beam of the ﬁrst user, the system (5×11, 3)(5×11, 4)2 could,
+in principle, be feasible because it satisﬁes the mentioned outer
+
+V. D ISCUSSION AND EXAMPLES
+A. Congruence with existing feasibility results and DoF
+bounds
+The feasibility problem is ﬁrst considered in [3], where a
+system is classiﬁed as proper if and only if the number of
+
+3 The reader is invited to test the feasibility of an arbitrary alignment
+problem at http://www.gtas.dicom.unican.es/IAtest.
+
+4
+
+bound. Our test shows that this system is actually feasible and,
+thus, the outer bound (15) is tight for this particular scenario.
+3
+Example 2: Now, consider the 3-user system j=1 (7 ×
+13, dj ) where the stream distribution among users is not
+speciﬁed. The results in [9], [11] show that the system is
+infeasible if 5 streams per user are transmitted. Our test
+indicates that the (7 × 13, 5)3 system is infeasible whereas
+the system (7 × 13, 4)(7 × 13, 5)2 is feasible, which allows us
+to claim that the maximum total DoF for this network is 14.
+Example 3: Consider the scenarios (15 × 5, 4)4 and (24 ×
+6, 5)5 which are the simplest non-trivial scenarios for 4 and
+5 users, respectively, that are proper but infeasible. Both
+scenarios violate the outer bound (15) which establishes that
+the total DoF cannot exceed 15 and 24, respectively. In fact,
+the proposed test shows that (15 × 5, 3)(15 × 5, 4)3 and
+(24 × 6, 4)(24 × 6, 5)4 are feasible systems and, then, (15)
+is tight for these particular scenarios.
+Example 4: The (4×4, 2)(5×3, 2)(6×2, 2) network, which
+was studied in [4], satisﬁes the 2-user outer bound (14) for all
+2-user pairs in the network. No other existing results apply to
+asymmetric systems like this one. However, the test proposed
+in this paper answers infeasible.
+Example 5: A ﬁnal interesting example is the (2×2, 1)(5×
+5, 2)2 (8 × 8, 4) system, which is feasible according to the
+proposed test. This system has been built by taking the
+symmetric (5 × 5, 2)4 system, which is known to be feasible,
+and transferring 6 antennas from the ﬁrst to the fourth user.
+It must be noticed that while the total amount of antennas for
+both systems remains constant, the redistribution of antennas
+has allowed to achieve one DoF more in the asymmetric
+network. This example gives new evidence for the conjecture
+settled in [4], which asserts that for a given total number of
+DoF, dtot = k dk , there exist feasible asymmetric MIMO
+interference systems (that is, with unequal antenna and stream
+distribution among the links) such that the total number of
+antennas,
+k (Mk + Nk ), is less than number of antennas
+of the smallest symmetric system (Mk = M , Nk = N , and
+dk = dtot /K) that can achieve dtot .
+Let us ﬁnally point out that, in all cases in which our
+feasibility test was positive, we were able to ﬁnd an IA
+using the iterative interference leakage minimization algorithm
+proposed in [16]4 .
+
+is full rank or not. The test neither requires any assumption
+(apart from the genericity of the MIMO channels), nor relies on any information-theoretic bound for the interference
+channel. However, it always provides answers which are in
+agreement with all the existing outer bounds and the most
+recent feasibility results.
+Acknowledgments
+The work of O. Gonz´ lez and I. Santamar´a was supa
+ı
+ported by MICINN (Spanish Ministry for Science and Innovation) under grants TEC2010-19545-C04-03 (COSIMA),
+CONSOLIDER-INGENIO 2010 CSD2008-00010 (COMONSENS) and FPU grant AP2009-1105. Carlos Beltr´ n was
+a
+partially supported by MICINN grant MTM2010-16051.
+R EFERENCES
+[1] V. R. Cadambe, S. A. Jafar, “Interference alignment and degrees of
+freedom region of the K-user interference channel,” IEEE Trans. on
+Inf. Theory, vol. 54, no. 8, pp. 3425–3441, 2008.
+[2] M. Maddah-Ali, A. Motahari, A. Khandani, “Communications over
+MIMO X channels: Interference Alignment, decomposition, and performance analysis,” IEEE Trans. on Inf. Theory, vol. 54, no. 8, pp.
+3457–3470, 2008.
+[3] C. M Yetis, T. Gou, S. A. Jafar, A. H. Kayran, “On feasibility of
+interference alignment in MIMO interference networks,” IEEE Trans.
+on Signal Processing, vol. 58, no. 9, pp. 4771–4782, 2010.
+[4] F. Negro, S. P. Shenoy, I. Ghauri, D. T. M. Slock, “Interference alignment
+feasibility in constant coefﬁcient MIMO interference channels,” IEEE
+Int. Workshop on Signal Processing Advances on Wireless Communications, (SPAWC), Marrakech, Morocco, 2010.
+[5] G. Bresler, D. Cartwright, D. Tse “Settling the feasibility of interference
+alignment for the MIMO interference channel: the symmetric square
+case,” ArXiv preprint: http://arxiv.org/abs/1104.0888v1, 2011.
+[6] M. Razaviyayn, G. Lyubeznik, Z.-Q. Luo “On the degrees of freedom
+achievable through interference alignment in a MIMO interference
+channel,” IEEE Trans. on Signal Processing, vol. 60, no. 2, pp. 812–821,
+2012.
+[7] S. A. Jafar, M. Fakhereddin, “Degrees of freedom for MIMO interference channel,” IEEE Trans. on Inf. Theory, vol. 53, no. 7, pp. 2637–2642,
+2007.
+[8] T. Gou, S. A. Jafar, “Degrees of freedom of the K User M × N MIMO
+interference channel,” IEEE Trans. on Inf. Theory, vol. 56, no. 2, pp.
+6040–6057, 2010.
+[9] G. Bresler, D. Cartwright, D. Tse, “Geometry of the 3−user MIMO
+interference channel,” ArXiv preprint: http://arxiv.org/abs/1110.5092,
+2011.
+[10] M. Amir, A. El-Keyi, M. Naﬁe, “A new achievable DoF region for
+the 3-user M × N symmetric interference channel,” ArXiv preprint:
+http://arxiv.org/abs/1105.4026, 2011.
+[11] C. Wang, T. Gou, S. A. Jafar, “Subspace alignment chains and the
+degrees of freedom of the three-user MIMO interference channel,” ArXiv
+preprint: http://arxiv.org/abs/1109.4350, 2011.
+[12] C. Ehresmann, “Les connexions inﬁnit´ simales dans un espace ﬁbr´
+e
+e
+diff´ rentiable,” Colloque de topologie (espaces ﬁbr´ s), pp. 29-55, Pube
+e
+lisher: Georges Thone, Li` ge, Bruxelles, 1951.
+e
+´
+[13] O. Gonz´ lez, C. Beltr´ n, I. Santamaria “On the feasibility of interference
+a
+a
+alignment for the K-user MIMO channel with constant coefﬁcients,”
+ArXiv preprint: http://arxiv.org/abs/1202.0186, 2012.
+[14] M. Razaviyayn, M. S. Boroujeni, Z.-Q. Luo, “Linear transceiver design for interference alignment: Complexity and computation,” ArXiv
+preprint: http://arxiv.org/abs/1009.3481, 2010.
+[15] Y.-F Liu, Y.-H. Dai, Z. Q. Luo, “On the complexity of leakage interference minimization for interference alignment,” IEEE Int. Workshop
+on Signal Processing Advances on Wireless Communications, (SPAWC),
+Marrakech, Morocco, 2010.
+[16] S. K. Gomadam, V. R. Cadambe, S. A. Jafar, “A distributed numerical
+approach to interference alignment and applications to wireless interference networks,” IEEE Trans. on Inf. Theory, vol. 57, no. 6, pp. 33093322, 2011.
+
+VI. C ONCLUSIONS
+This paper gives a test to check the feasibility of linear
+interference alignment in arbitrary K-user MIMO interference
+channels. The test is a direct consequence of a powerful result
+which states that the linear alignment problem is generically
+feasible iff the algebraic dimension of the solution variety
+is larger than or equal to the dimension of the input space
+and the linear mapping between the tangent spaces of both
+smooth manifolds given by the ﬁrst projection is surjective.
+In practice, our test reduces to check whether a given matrix
+4 Notice, however, that alternating minimization algorithms cannot guarantee
+convergence to a global minimum, so they cannot be used as feasibility tests.
+
+5
+
+

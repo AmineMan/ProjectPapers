@@ -1,0 +1,760 @@
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Thu May 10 21:10:40 2012
+ModDate:        Tue Jun 19 12:56:16 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      401509 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569559805
+
+Linear-Programming Decoding of Tanner Codes
+with Local-Optimality Certiﬁcates
+Nissim Halabi and Guy Even
+School of Electrical Engineering, Tel-Aviv University, Tel-Aviv 69978, Israel
+Email: {nissimh,guy}@eng.tau.ac.il
+was further extended in [5] to MBIOS channels. The analyses
+in [3], [4], [5] are limited to skinny trees, the height of which
+is bounded by a half of the girth of the Tanner graph.
+Vontobel [6] extended the decomposition of a codeword
+(and pseudocodeword) to skinny trees in graph covers. This
+enabled Vontobel to mitigate the limitation on the height by
+the girth. The decomposition is obtained by a random walk,
+and applies also to irregular Tanner graphs.
+Contribution: We present a new combinatorial characterization for local-optimality of a codeword in irregular Tanner
+codes with respect to any MBIOS channel. This characterization is a generalization of [4], [6], [5] and is based on a
+conical combination of subtrees in the computation trees. The
+main novelty is that the subtrees may have any ﬁnite height h
+(even greater than the girth of the Tanner graph). In addition,
+the degrees of local-code nodes are not restricted to two. We
+prove that local-optimality in this new characterization implies
+ML-optimality and LP-optimality. Given a codeword and the
+channel output, we also show how to efﬁciently recognize if
+the codeword is locally optimal.
+For a ﬁxed height, trees in our new characterization contain
+more vertices than a skinny-tree because the internal degrees
+are bigger. Hence, over an MBIOS channel, the probability of
+a locally-optimal certiﬁcate with dense deviations (local-code
+node degrees bigger than two) is greater than the probability of
+a locally-optimal certiﬁcate based on skinny trees (i.e., localcode nodes have degree two).
+We extend the probabilistic analysis of the min-sum process
+by Arora et al. [4] to a sum-min-sum process on regular
+trees. For regular Tanner codes, we prove bounds on the
+word error probability of LP-decoding under MBIOS channels.
+These bounds are inverse doubly-exponential in the girth of
+the Tanner graph. We also prove bounds on the threshold of
+regular Tanner codes whose Tanner graphs have logarithmic
+girth. This means that if the noise in the channel is below that
+threshold, then the decoding error diminishes exponentially as
+a function of the block length.
+The full details and proofs in this paper are contained in [7,
+Sections 3-6;8].
+
+Abstract—Given a channel observation y and a codeword x, we
+are interested in a one-sided error test that answers the questions:
+is x optimal with respect to y? is it unique? A positive answer for
+such a test is called a certiﬁcate for the optimality of a codeword.
+We present new certiﬁcates that are based on combinatorial
+characterization for local-optimality of a codeword in irregular
+Tanner codes. The certiﬁcate is based on weighted normalized
+trees in computation trees of the Tanner graph. These trees
+may have any ﬁnite height h (even greater than the girth of
+the Tanner graph). In addition, the degrees of local-code nodes
+are not restricted to two (i.e., skinny trees). We prove that localoptimality in this new characterization implies ML-optimality
+and LP-optimality, and show that a certiﬁcate can be computed
+efﬁciently.
+We apply the new local-optimality characterization to regular
+Tanner codes, and prove lower bounds on the noise thresholds
+of LP-decoding in MBIOS channels. When the noise is below
+these lower bounds, the probability that LP-decoding fails decays
+doubly exponentially in the girth of the Tanner graph.
+
+I. I NTRODUCTION
+In this paper we deal with the problem of analyzing the
+probability of successful decoding using linear-programming
+(LP) decoding for Tanner codes. Tanner [1] introduced graph
+representations of linear codes. In the standard setting, constraint nodes compute the parity function. In the generalized
+setting, constraint nodes use a local error-correcting code.
+One may view a constraint node with a linear local code
+as a coalescing of multiple parity check nodes. Therefore,
+a code may have a sparser and smaller representation when
+represented as a Tanner code.
+Wiberg [2] studied representations of codes using factor
+graphs. He used these representations to analyze message
+passing decoding algorithms. The analysis uses minimal combinatorial structures (now also known as skinny trees) to
+characterize decoding errors when using message-passing decoding algorithms.
+Koetter and Vontobel [3] analyzed LP-decoding of regular
+low-density parity-check (LDPC) codes. Their analysis is
+based on decomposing each codeword (and pseudocodeword)
+to a ﬁnite set of skinny trees with uniform vertex weights.
+Arora et al. [4] extended the work in [3] by introducing
+nonuniform weights to the vertices in the skinny trees, and
+deﬁning local-optimality. For a BSC, Arora et al. proved
+that local optimality implies both maximum-likelihood (ML)
+optimality and LP-optimality. They used analysis techniques
+similar to those used in density evolution analysis to improve
+bounds on the probability of a decoding error. This work
+
+II. P RELIMINARIES
+Graph Terminology: Let G = (V, E) denote an undirected
+graph. Let NG (v) denote the set of neighbors of node v ∈ V ,
+and let degG (v)
+|NG (v)| denote the degree of node v in
+graph G. A path p = (v, . . . , u) in G is a sequence of vertices
+
+1
+
+such that there exists an edge between every two consecutive
+nodes in the sequence p. A path p is backtrackless if every two
+consecutive edges along p do not close a cycle. Let |p| denote
+the number of edges in p. Let girth(G) denote the length of
+the shortest cycle in G.
+The subgraph of G induced by S ⊆ V consists of S and all
+edges in E, both endpoints of which are contained in S. Let
+GS denote the subgraph of G induced by S.
+Tanner-codes and Tanner graph representation: Let G =
+(V ∪J , E) denote an edge-labeled bipartite-graph, where V =
+{v1 , . . . , vN } is a set of N vertices called variable nodes, and
+J = {C1 , . . . , CJ } is a set of J vertices called local-code
+nodes. We associate with each local-code node Cj a linear
+j
+J
+j
+C : 1 j J
+code C of length degG (Cj ). Let C
+denote the set of local-codes, one for each local code node.
+j
+We say that vi participates in C if (vi , Cj ) is an edge in E.
+We view a word x = (x1 , . . . , xN ) ∈ {0, 1}N as an
+assignment to variable nodes in V where xi is assigned to
+vi . Let Vj denote the set NG (Cj ) ordered according to labels
+of edges incident to Cj . Denote by xVj ∈ {0, 1}deg(Cj )
+the projection of the word x = (x1 , . . . , xN ) onto entries
+associated with Vj .
+J
+The Tanner code C(G, C ) based on the labeled Tanner
+graph G is the set of vectors x ∈ {0, 1}N such that xVj is a
+j
+codeword in C for every j ∈ {1, . . . , J}. Let C j denote the
+j
+extension of the local code C from length deg(Cj ) to length
+j
+N deﬁned by C j
+{x ∈ {0, 1}N | xVj ∈ C }. The Tanner
+code is simply the intersection of the extensions of the local
+J
+codes, i.e., C(G, C ) = j∈{1,...,J} C j .
+
+with single parity check codes acting as local codes. This
+deﬁnition is based on a fundamental polytope that corresponds
+to the Tanner graph G. We consider an extension of this
+deﬁnition to the case in which the local codes are arbitrary
+linear-codes as follows. The generalized fundamental polytope
+J
+J
+P P(G, C ) of a Tanner code C = C(G, C ) is deﬁned by
+j
+P
+C j ∈C J conv(C ).
+Given an LLR vector λ for a received word y, LP-decoding
+is deﬁned by the following linear program:
+xLP (y)
+ˆ
+
+(2)
+
+J
+
+The difference between ML-decoding and LP-decoding is
+J
+that the fundamental polytope P(G, C ) may strictly contain
+J
+the convex hull of C. Vertices of P(G, C ) that are not
+codewords of C must have fractional components and are
+called pseudocodewords.
+III. A C OMBINATORIAL C ERTIFICATE FOR AN ML
+C ODEWORD
+In this section we present combinatorial certiﬁcates for
+codewords of Tanner codes that apply both to ML-decoding
+and LP-decoding. A certiﬁcate is a proof that a given codeword is the unique solution of maximum-likelihood decoding
+and linear-programming decoding. The certiﬁcate is based
+on combinatorial weighted structures in the Tanner graph,
+referred to as local conﬁgurations. These local conﬁgurations
+generalize the minimal conﬁgurations (skinny trees) presented
+by Vontobel [6] as extension to Arora et al. [4]. We note
+that for Tanner codes, the support of each weighted local
+conﬁguration is not necessarily a local valid conﬁguration.
+Notation: Let y ∈ RN denote the word received from the
+channel. Let λ = λ(y) denote the LLR vector for y. Let x ∈
+C(G) be a candidate for xML (y) and xLP (y).
+ˆ
+ˆ
+
+j
+
+Let dj denote the minimum distance of the local code C .
+J
+The minimum local distance d∗ of a Tanner code C(G, C ) is
+deﬁned by d∗ minj dj . We assume that d∗ ≥ 2.
+If the bipartite graph is (dL , dR )-regular, i.e., the vertices
+in V have degree dL and the vertices in J have degree dR ,
+then the graph deﬁnes a (dL , dR )-regular Tanner code. If the
+Tanner graph is sparse, i.e., |E| = O(N ), then it deﬁnes a lowdensity Tanner code. Tanner codes with single parity check
+local codes that are based on sparse Tanner graphs are called
+low-density parity-check (LDPC) codes.
+LP decoding of Tanner codes over memoryless channels:
+Let ci ∈ {0, 1} denote the ith transmitted binary symbol
+(channel input), and let yi ∈ R denote the ith received
+symbol (channel output). A memoryless binary-input outputsymmetric (MBIOS) channel is deﬁned by a conditional
+probability density function f (yi |ci = a) for a ∈ {0, 1},
+that satisﬁes f (yi |0) = f (−yi |1). In MBIOS channels, the
+log-likelihood ratio (LLR) vector λ ∈ RN is deﬁned by
+f (yi |ci =0)
+λi (yi )
+ln f (yi |ci =1) for every input bit i. For a code C,
+Maximum-Likelihood (ML) decoding is equivalent to
+xML (y) = arg min λ(y), x ,
+ˆ
+
+arg min λ(y), x .
+x∈P(G,C )
+
+Deﬁnition 1 (Path-Preﬁx Tree). Consider a graph G = (V, E)
+ˆ
+and a node r ∈ V . Let V denote the set of all backtrackless
+paths in G with length at most h that start at node r, and let
+ˆ
+ˆ
+ˆ
+E
+(p1 , p2 ) ∈ V × V p1 is a preﬁx of p2 , |p1 | + 1 =
+ˆ
+|p2 | . We identify the empty path in V with (r). Denote by
+h
+ˆ , E) the path-preﬁx tree of G rooted at node r
+ˆ
+Tr (G) (V
+with height h.
+Path preﬁx trees of G that are rooted in variable nodes are
+often called computation trees. We consider also path preﬁx
+trees of subgraphs that may be either rooted at a variable node
+or at a local-code node.
+We use the following notation. Because vertices in Trh (G)
+are paths in G, we denote vertices in path-preﬁx trees by p
+ˆ
+and q. Vertices in G are denoted by u, v, r. For a path p ∈ V ,
+let t(p) denote the last vertex (target) of path p. Denote by
+Preﬁx+ (p) the set of proper preﬁxes of the path p, i.e.,
+
+(1)
+
+Preﬁx+ (p) = q
+
+x∈conv(C)
+
+q is a preﬁx of p, 1
+
+|q|< |p| .
+
+Consider a Tanner graph G = (V ∪ J , E) and let Trh (G) =
+ˆ ˆ
+ˆ
+(V , E) denote a path-preﬁx tree of G. Let V
+{p | p ∈
+ˆ
+ˆ {p | p ∈ V , t(p) ∈ J }. Paths in V
+ˆ
+ˆ
+V , t(p) ∈ V}, and J
+
+where conv(C) denotes the convex hull of the set C.
+Feldman et al. [8], [9] introduced a linear programming
+relaxation for the problem of ML decoding of Tanner codes
+
+2
+
+ˆ
+are called variable paths, and paths in J are called local-code
+paths.
+The following deﬁnitions expand the combinatorial notion
+of minimal valid deviations [2] and weighted minimal localdeviations (skinny trees) [4], [6] to the case of Tanner codes.
+
+Based on random walks on the Tanner graph, the result of
+Vontobel [6] implies that (h, w, 2)-local optimality is sufﬁcient
+both for ML-optimality and LP-optimality. The random walks
+are deﬁned in terms derived from the generalized fundamental
+polytope. We extend the results of Vontobel [6] to “thicker”
+sub-trees by using combinatorial arguments on graphs and
+the properties of graph cover decoding [10]. Speciﬁcally, we
+prove that (h, w, d)-local optimality, for any 2
+d
+d∗ ,
+implies both ML- and LP-optimality (Theorems 5 and 10).
+Given the decomposition of Lemma 11 proved in Section V,
+the following theorem can be obtained by modiﬁcation of the
+proof of [4, Theorem 2] or [5, Theorem 6].
+
+Deﬁnition 2 (d-tree). Consider a Tanner graph G = (V ∪
+ˆ
+ˆ ˆ
+J , E). Denote by Tr2h (G) = (V ∪ J , E) the path-preﬁx tree
+of G rooted at node r ∈ V. A subtree T ⊆ Tr2h (G) is a dtree if: (i) T is rooted at (r), (ii) for every local-code path
+ˆ
+p ∈ T ∩ J , degT (p) = d, and (iii) for every variable path
+ˆ
+p ∈ T ∩ V, degT (p) = degTr2h (p).
+Let T [r, 2h, d](G) denote the set of all d-trees rooted at r
+that are subtrees of Tr2h (G).
+In the following deﬁnition we use “level” weights w =
+(w1 , . . . , wh ) that are assigned to variable paths in a subtree
+of a path-preﬁx tree of height 2h.
+
+Theorem 5 (local-optimality is sufﬁcient for ML). Let λ ∈
+RN denote the LLR vector received from the channel. If x
+is an (h, w, d)-locally optimal codeword w.r.t. λ and some
+2
+d
+d∗ , then x is also the unique maximum-likelihood
+codeword w.r.t. λ.
+
+ˆ ˆ ˆ
+Deﬁnition 3 (w-weighted subtree). Let T = (V∪J , E) denote
+2h
+a subtree of Tr (G), and let w = (w1 , . . . , wh ) ∈ Rh \ {0h }
++
+ˆ
+denote a non-negative weight vector. Let wT : V → R denote
+a weight function based on weight vector w for variable paths
+ˆ
+p ∈ V deﬁned as follows. If p is an empty variable path, then
+wT (p) = 0. Otherwise,
+1
+1
+w
+·
+·
+, (3)
+wT (p)
+w 1 degG t(p)
+degT (q) − 1
++
+
+A. Local Optimality Implies LP-Optimality
+In order to prove a sufﬁcient condition for LP optimality,
+we consider graph cover decoding introduced by Vontobel and
+Koetter [10]. We note that the characterization of graph cover
+decoding and its connection to LP decoding can be extended
+to the case of Tanner codes in the generalized setting.
+We use the terms and notation of Vontobel and Koetter [10]
+in the statements of Proposition 6 and Lemma 9. Speciﬁcally,
+˜
+˜
+let G denote an M -cover of G. Let x = x↑M ∈ C(G) and
+˜
+˜ = λ↑M ∈ RN ·M denote the M -lifts of x and λ, respectively.
+λ
+
+q∈Preﬁx (p)
+
+where
+
+=
+
+|p|
+2
+
+. We refer to wT as a w-weighted subtree.
+
+For any w-weighted subtree wT of Tr2h (G), let πG,T ,w :
+V → R denote a function whose values correspond to the
+projection of wT to the Tanner graph G. That is, for every
+variable node v in G,
+πG,T ,w (v)
+
+wT (p).
+
+Proposition 6 (local-optimality of all-zero codeword is preserved by M -lifts). 0N is an (h, w, d)-locally optimal codeword for λ ∈ RN if and only if 0N ·M is an (h, w, d)-locally
+˜
+optimal codeword w.r.t. λ.
+
+(4)
+
+For a word x ∈ {0, 1}N , let (−1)x ∈ {±1}N denote a
+vector whose ith component equals (−1)xi . For two vectors
+y, z ∈ RN , let “∗” denote coordinatewise multiplication, i.e.,
+y ∗ z (y1 · z1 , . . . , yN · zN ).
+
+{p∈T |t(p)=v}
+(w)
+
+For a Tanner code C(G), let Bd ⊆ [0, 1]N denote the set
+of all projections of w-weighted d-trees to G. That is,
+(w)
+
+Bd
+
+πG,T ,w
+
+T ∈
+
+T [r, 2h, d](G) .
+
+Proposition 7. For every λ ∈ RN and every β ∈ [0, 1]N ,
+
+r∈V
+(w)
+
+(−1)x ∗ λ, β = λ, x ⊕ β − λ, x .
+
+Vectors in Bd are referred to as deviations.
+For two vectors x ∈ {0, 1}N and f ∈ [0, 1]N , let x ⊕ f ∈
+[0, 1]N denote the relative point deﬁned by (x ⊕ f )i |xi −
+fi | [8].
+From this point forward, let G = (V∪J , E) denote a Tanner
+graph, and let C(G) ⊂ {0, 1}N denote a Tanner code based on
+G with minimum local distance d∗ . Let w = (w1 , . . . , wh ) ∈
+Rh \ {0h } denote a non-negative weight vector for some
++
+positive integer h ∈ N+ and let 2 d d∗ .
+The following deﬁnition is an extension of localoptimality [4], [6] to Tanner codes on memoryless channels.
+
+The following proposition states that the mapping (x, λ) →
+(0N , (−1)x ∗ λ) preserves local optimality.
+Proposition 8 (symmetry of local-optimality). For every x ∈
+C, x is (h, w, d)-locally optimal for λ if and only if 0N is
+(h, w, d)-locally optimal for (−1)x ∗ λ.
+The following lemma states that local-optimality is preserved by lifting to an M -cover.
+Lemma 9. x is (h, w, d)-locally optimal w.r.t. λ if and only
+˜
+if x is (h, w, d)-locally optimal w.r.t. λ.
+˜
+
+Deﬁnition 4 (local-optimality). A codeword x ∈ C(G) is
+(h, w, d)-locally optimal with respect to λ ∈ RN if for all
+(w)
+vectors β ∈ Bd ,
+λ, x ⊕ β > λ, x .
+
+(6)
+
+The following theorem is obtained as a corollary of Theorem 5 and Lemma 9. The proof is based on arguments utilizing
+properties of graph cover decoding. Those arguments are used
+
+(5)
+
+3
+
+for a reduction from ML-optimality to LP-optimality similar
+to the reduction presented in the proof of [5, Theorem 8].
+
+Throughout this section, let C(G) denote a Tanner code with
+minimum local distance d∗ , let x denote a nonzero codeword,
+h
+let h ∈ N+ , and let w ∈ R+ \ {0h }.
+
+Theorem 10 (local optimality is sufﬁcient for LP optimality).
+If x is an (h, w, d)-locally optimal codeword w.r.t. λ, then x
+is also the unique optimal LP solution given λ.
+
+Lemma 11. Consider a codeword x = 0N . Then, for every
+2 d d∗ , there exists a distribution ρ over d-trees of G of
+height 2h such that for every weight vector w ∈ Rh \ {0h },
++
+it holds that
+x = x 1 · Eρ πG,T ,w .
+
+IV. V ERIFYING L OCAL O PTIMALITY
+In this section we address the problem of how to verify
+whether a codeword x is (h, w, d)-locally optimal with respect
+to λ. By Proposition 8, this is equivalent to verifying whether
+0N is (h, w, d)-locally optimal with respect to (−1)x ∗ λ.
+The veriﬁcation algorithm is listed as Algorithm 1. It
+applies dynamic programming to ﬁnd, for every variable
+node v, a d-tree Tv , rooted at v, that minimizes the cost
+(−1)x ∗ λ, πG,Tv ,w . The algorithm returns false if and only
+if it ﬁnds a deviation with nonpositive cost.
+The algorithm is presented as a message passing algorithm.
+In every step, a node propagates to its parent the minimum cost
+of the d-subtree that hangs from it based on the minimum
+values received from its children. The time and message
+complexity of Algorithm 1 is O(|E| · h). The following
+notation is used in Line 8 of the algorithm. For a set S of real
+values, let min[i] {S} denote the ith smallest member in S.
+
+The proof of Lemma 11 is outlined in this section and
+is based on Lemmas 12–13 and Corollary 14. Lemma 12
+states that every codeword x ∈ C(G) can be decomposed into
+a set of weighted path-preﬁx trees. The number of trees in
+the decomposition equals x 1 . Lemma 13 states that every
+weighted path-preﬁx tree is a convex combination of weighted
+d-trees. This lemma implies that the projection of a weighted
+path-preﬁx tree equals to the expectation of projections of
+weighted d-trees (Corollary 14).
+For a codeword x ∈ C(G), let Vx
+{v ∈ V | xv = 1}.
+Let Gx denote the subgraph of G induced by Vx ∪ N (Vx ).
+Lemma 12. For every codeword x = 0N , for every weight
+vector w ∈ Rh , and for every variable node v ∈ V,
++
+xv =
+
+Algorithm 1 VERIFY- LO(x, λ, h, w, d) - An iterative veriﬁcation algorithm. Let G = (V ∪ J , E) denote a Tanner graph.
+Given an LLR vector λ ∈ R|V| , a codeword x ∈ C(G), level
+weights w ∈ Rh , and a degree d ∈ N+ , outputs “true” if x is
++
+(h, w, d)-locally optimal w.r.t. λ; otherwise, outputs “false”.
+1: Initialize: ∀v ∈ V : λv ← λv · (−1)xv
+(−1)
+2:
+∀C ∈ J , ∀v ∈ N (C): µC→v ← 0
+3: for l = 0 to h − 1 do
+4:
+for all v ∈ V, C ∈ N (v) do
+(l)
+(l−1)
+wh−l
+1
+5:
+µv→C ← deg(v) λv + deg(v)−1 C ∈N (v)\{C} µC →v
+6:
+end for
+7:
+for all C ∈ J , v ∈ N (C) do
+(l)
+(l)
+d−1
+1
+8:
+µC→v ← d−1 · i=1 min[i] µu→C | u ∈ N (C) \
+{v}
+9:
+end for
+10: end for
+11: for all v ∈ V do
+(h−1)
+12:
+µv ← C∈N (v) µC→v
+13:
+if µv 0 then
+14:
+return false;
+15:
+end if
+16: end for
+17: return true;
+
+πG,Tr2h (Gx ),w (v).
+r∈Vx
+
+Proof sketch: If xv = 0, then πG,Tr2h (Gx ),w (v) = 0. It
+remains to show that equality holds for variable nodes v ∈ Vx .
+Consider a uniform weight vector η = 1h . Then, for every
+1 i 2h, the accumulated contribution of all the path-preﬁx
+(η)
+trees {Tr (Gx ) : xr = 1} to path nodes p with length i such
+that t(p) = v equals 1/h. Therefore, for every weight vector
+w ∈ Rh and every 1
+h, the accumulated contribution of
++
+all the w-weighted path-preﬁx trees to path nodes p of length
+2 such that t(p) = v equals w / w 1 . The lemma follows by
+(w)
+projecting the path-preﬁx trees {Tr (Gx ) : xr = 1} to the
+base graph G.
+Lemma 13. Consider a subgraph Gx of a Tanner graph G,
+where x ∈ C(G)\{0N }. Then, for every variable node r ∈ Gx ,
+every positive integer h, every 2 d d∗ , and every weight
+vector w ∈ Rh , it holds that
++
+wTr2h (Gx ) = Eρr wT
+where ρr is the uniform distribution over T [r, 2h, d](Gx ).
+Proof sketch: The lemma follows by showing that the
+uniform distribution over w-weighted d-trees has the property
+that the expectation of trees over the distribution equals
+wTr2h (Gx ) .
+The following corollary follows Lemma 13 and linearity of
+expectation.
+
+V. C ONSTRUCTING C ODEWORDS FROM W EIGHTED T REES
+P ROJECTIONS
+In this section we prove Lemma 11, the key structural
+lemma in the proof of Theorem 5. This Lemma states that
+every codeword of a Tanner code is a ﬁnite sum of projections
+of weighted trees in the computation trees of G.
+
+Corollary 14. For every positive integer h, every 2
+and every weight vector w ∈ Rh , it holds that
++
+πG,Tr2h (Gx ),w = Eρr πG,T ,w .
+
+4
+
+d
+
+d∗ ,
+
+TABLE I
+C OMPUTED VALUES OF p0
+“ﬁnite”
+
+d0
+3
+4
+
+FOR FINITE
+
+p0
+0.0086
+0.0218
+
+d0
+
+d∗
+
+“asymptotic”
+
+IN
+
+on linear combination of subtrees in the computation trees.
+These trees may have any degree d in the local-code nodes, for
+2 d d∗ . This increased degree enables each subtree to be
+larger than a skinny tree. The bounds on the probability that
+a local-optimality certiﬁcate exists for regular Tanner codes
+show that the larger a subtree is in the decomposition, the
+higher the probability that a certiﬁcate exists.
+The error correction capability of expander codes depends
+on the expansion, thus a fairly large degree and huge blocklengths are required to achieve good error correction. Feldman
+and Stein [11] analyzed LP decoding of (2, dR )-regular expander codes. In the case of code rate of 0.375, they proved
+that LP-decoding can recover any pattern of at most 0.0008N
+bit ﬂips (with dR
+16). The best results for iterative decoding
+of expander codes, reported by Skachek and Roth [12], implies
+correction of at most 0.0016N bit ﬂips. These analyses yield
+overly pessimistic predictions for the average-case (i.e., the
+BSC). Theorem 16(2) deals with average case analysis and
+implies that LP-decoding can correct up to 0.044N bit ﬂips
+with high probability. Furthermore, previous iterative decoding
+algorithms for expander Tanner codes deal only with bitﬂipping channels. Our analysis for LP-decoding applies to
+any MBIOS channel, in particular, it can be applied to the
+BI-AWGN channel.
+The lower bounds on the noise threshold proved for Tanner
+codes do not improve the best previous bounds for regular
+LDPC codes. An open question is whether using deviations
+denser than skinny trees for Tanner codes can beat the best
+previous bounds for regular LDPC codes [4], [5]. In particular,
+1
+for a concrete family of Tanner codes with rate 2 , it would
+be interesting to prove lower bounds on the threshold of LPdecoding that are larger than p∗ = 0.05 in the case of BSC,
+and σ ∗ = 0.0735 in the case of BI-AWGN channel.
+
+T HEOREM 16.
+d0
+3
+4
+
+p0
+0.019
+0.044
+
+Before proving Lemma 11, we state a proposition from
+probability theory.
+Proposition 15. Let {ρr }K denote K probability distribui=1
+K
+K
+1
+tions. Let ρ K r=1 ρr . Then, r=1 Eρr [x] = K · Eρ [x].
+Proof of Lemma 11. By Lemma 12 and Corollary 14 we
+have for every v ∈ Vx
+xv =
+
+πG,Tr2h (Gx ),w (v) =
+r∈Vx
+
+Eρr πG,T ,w .
+
+(7)
+
+r∈Vx
+
+1
+Let ρ denote the distribution deﬁned by ρ
+r∈Vx ρr .
+x 1 ·
+By Proposition 15 and (7), xv = x 1 · Eρ πG,T ,w , and the
+lemma follows.
+
+VI. B OUNDS ON THE W ORD E RROR P ROBABILITY OF
+LP-D ECODING U SING L OCAL -O PTIMALITY
+Due to lack of space, we only state the main result of
+this section for a concrete case and the BSC (Theorem 16).
+Concrete bounds are given for a (2, 16)-regular Tanner code
+with code rate at least 0.375 when using [16, 11, 4]-extended
+Hamming codes as local codes. We refer the reader to [7,
+Section 8] for further details and the case of general regular
+Tanner codes over BSC and MBIOS channels.
+Theorem 16. Let G denote a (2, 16)-regular bipartite graph
+with girth g, and let C(G) denote a Tanner code based on
+G with minimum local distance d∗ = 4. Let x ∈ C(G) be a
+codeword. Suppose that y ∈ {0, 1}N is obtained from x by
+ﬂipping every bit independently with probability p. Then,
+1) [ﬁnite length bound] Let d = d0 and p
+p0 . For the
+values of d0 and p0 in Table I it holds that x is the unique
+optimal solution to the LP decoder with a probability of
+at least
+Pr xLP (y) = x
+ˆ
+
+1 − N · α(d−1)
+
+R EFERENCES
+[1] R. M. Tanner, “A recursive approach to low-complexity codes,” IEEE
+Trans. Inf. Theory, vol. 27, no. 5, pp. 533–547, Sept. 1981.
+[2] N. Wiberg, “Codes and decoding on general graphs”, Ph.D. dissertation,
+Link¨ ping University, Link¨ ping, Sweden, 1996.
+o
+o
+[3] R. Koetter and P. O. Vontobel, “On the block error probability of LP
+decoding of LDPC codes,” in Proc. ITA’06, USA, Feb. 2006.
+[4] S. Arora, C. Daskalakis, and D. Steurer, “Message passing algorithms
+and improved LP decoding,” in Proc. STOC’09, USA, pp. 3–12, 2009.
+[5] N. Halabi and G. Even, “LP decoding of regular LDPC codes in
+memoryless channels,” IEEE Trans. Inf. Theory, vol. 57, no. 2, pp. 887–
+897, Feb. 2011.
+[6] P. Vontobel, “A factor-graph-based random walk, and its relevance for LP
+decoding analysis and Bethe entropy characterization,” in Proc. ITA’10,
+USA, Jan. 31-Feb. 5, 2010.
+[7] G. Even and N. Halabi, “On decoding irregular Tanner codes with localoptimality guarantees,” CoRR, http://arxiv.org/abs/1107.2677, Jul. 2011.
+[8] J. Feldman, “Decoding error-correcting codes via linear programming,”
+Ph.D. dissertation, MIT, 2003.
+[9] J. Feldman, M. J. Wainwright, and D. R. Karger, “Using linear programming to decode binary linear codes,” IEEE Trans. Inf. Theory, vol. 51,
+no. 3, pp. 954-972, Mar. 2005.
+[10] P. O. Vontobel and R. Koetter, Graph-cover decoding and ﬁnite-length
+analysis of message-passing iterative decoding of LDPC codes, CoRR,
+http://www.arxiv.org/abs/cs.IT/0512078, Dec. 2005.
+[11] J. Feldman and C. Stein, “LP decoding achieves capacity,” in Proc.
+SODA’05, Canada, Jan. 2005.
+[12] V. Skachek and R. M. Roth, “Generalized minimum distance iterative
+decoding of expander codes,” In Proc. ITW’03, pp. 245 – 248, 2003.
+
+1
+4g
+
+for some constant α < 1.
+2) [asymptotic bound] Let d = d0 and g = Ω(log N )
+sufﬁciently large. For the values of d0 and p0 in Table I
+it holds that x is the unique optimal solution to the LP
+decoder with a probability of at least 1 − exp(−N δ ) for
+some constant 0 < δ < 1, provided that p p0 (d0 ).
+VII. C ONCLUSIONS AND D ISCUSSION
+A new combinatorial characterization for local optimality
+of a codeword in an irregular Tanner code is presented.
+This characterization provides an ML-certiﬁcate and an LPcertiﬁcate for a given codeword. Moreover, the certiﬁcate can
+be efﬁciently computed by a dynamic programming algorithm.
+The main novelty in this characterization is that it is based
+
+5
+
+

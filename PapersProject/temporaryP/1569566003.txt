@@ -1,0 +1,730 @@
+Creator:         TeX output 2012.05.10:1248
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Thu May 10 12:48:26 2012
+ModDate:        Tue Jun 19 12:56:03 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      292703 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569566003
+
+Expander Graph Based Overlapped Chunked Codes
+Bin Tang† , Shenghao Yang‡ , Yitong Yin† , Baoliu Ye† , and Sanglu Lu†
+† National Key Laboratory for Novel Software Technology, Nanjing University, China
+‡ ITCS, Institute for Interdisciplinary Information Sciences, Tsinghua University, China
+Email: tb@dislab.nju.edu.cn, shyang@tsinghua.edu.cn, {yinyt, yebl, sanglu}@nju.edu.cn
+
+chunk [5]. One issue in applying chunked codes is scheduling,
+i.e., when a transmission chance is available, which chunk
+should be chosen for generating a coded packet. One scheme
+is sequential scheduling, in which the sender keeps on transmitting packets generated using a chunk, and when receiving
+positive feedback(s) from receiver(s), it starts the transmission
+of the next chunk. While some efﬁcient feedback protocols
+for speciﬁc applications have been developed [11], [7], in
+general, such feedbacks incur a non-negligible delay and
+may consume network resources such as bandwidth, resulting
+in degraded system performance. An alternative approach
+without feedbacks is random scheduling, where the chunk for
+generating a coded packet is always randomly picked. Random
+scheduling is also known to be resilient to any channel erasure
+patterns.
+In the context of random scheduling, Maymounkov et al.
+[8] showed that chunked codes with disjoint chunks, referred
+to as non-overlapped chunked (NOC) codes, can achieve the
+capacity if the chunk size is on or higher than the logarithm
+order of the ﬁle length. However, in most real applications,
+the chunk size is required to be a small constant due to the
+computational constraints of network devices. In this case, it
+remains unknown which rates (to be formally deﬁned) can
+be achieved by NOC codes. On the other hand, two research
+groups have independently shown by simulations that better
+performance could be achieved for practical chunk sizes by
+allowing different chunks to share same packets [9], [10],
+referred to as overlapped chunked codes. Although several
+overlapped chunking schemes have been proposed in the
+literature [9], [10], [11], the analyzes of them are somewhat
+heuristic [10], [11], or assume variable chunk sizes [12], [12].
+In this paper we address the analysis and design of chunked
+codes with constant chunk sizes under the strategy of random
+scheduling. By noting that the random scheduling strategy
+requires a large number of coded packets for decoding the
+last chunks, we prove that for any chunked code with a
+ﬁxed constant chunk size, if applied directly, the rate vanishes
+inevitably as the ﬁle length goes to inﬁnity. Thus, precode,
+which allows only a fraction of packets to be decoded, plays
+a vital role to achieve a positive rate. We then present a tight
+analysis for the NOC codes with precoding, which can help us
+choose appropriate precodes such that the rates are maximized.
+It is observed that the maximum rates achieved by NOC codes
+are far away from 1 (e.g., in a moderate setting with a chunk
+size of 32 and a ﬁnite ﬁeld size of 16, the maximum rate of
+
+Abstract—Chunked codes are a variation of random linear
+network codes with low computational complexities. In chunked
+codes, the packets in a ﬁle are grouped into small (non-overlapped
+or overlapped) chunks, and random linear encoding operations
+are performed within each chunk. Previous studies show that
+when the chunk size is lower bounded by some increasing
+function of the ﬁle length, chunked codes asymptotically achieve
+the min-cut capacity. However, in most real applications, the
+chunk size is required to be a small constant due to the
+computational constraints of network devices. In this case, it
+remains unknown which rates can be achieved by chunked codes.
+In this paper, we address the analysis and design of chunked
+codes with ﬁxed constant chunk sizes. We ﬁrst highlight the
+importance of precoding for chunked codes to achieve constant
+rates, and then present an analysis of non-overlapped chunked
+(NOC) codes with precoding. We further introduce a new class of
+chunked codes, called EOC codes, which are based on expander
+graphs to form overlapped chunks. Numerical and simulation
+results show that EOC codes achieve signiﬁcantly higher rates
+than NOC codes, and also outperform other state-of-the-art
+overlapped chunked codes.
+
+I. I NTRODUCTION
+Random linear network coding (RLNC) [1], [2] has become
+a simple but powerful tool for data dissemination over communication networks. In RLNC, participating nodes generate
+coded packets by linear combinations of all the packets
+received so far with coefﬁcients randomly chosen from a ﬁnite
+ﬁeld and forward the coded packets. Due to its random nature,
+RLNC can be easily implemented in a distributed fashion. It
+is also capacity-achieving for networks with packet loss in a
+wide range of scenarios [3], [4].
+A major issue in applying RLNC is its high computational
+complexities. Consider the transmission of a ﬁle with K
+packets. For encoding, RLNC requires O(K) operations to
+generate a coded packet. And for decoding, it has to invert
+a K × K dense matrix and use the inverse to recover the
+whole ﬁle. Usually, the time for decoding is dominated by
+the ﬁle recovery process, which costs O(K) operations for
+each original packet. When the ﬁle is very large, the cost of
+both encoding and decoding operations becomes prohibitive,
+making RLNC hardly to be implemented in real systems.
+As a variation of RLNCs, chunked codes incur lower
+computational complexities by grouping the packets of a ﬁle
+into multiple small chunks (a.k.a. generations, classes, etc.),
+and performing random linear encoding operations within each
+‡ Part of the work was done when S. Yang was with the Institute of Network
+Coding, The Chinese University of Hong Kong.
+
+1
+
+code with chunk size M as
+
+an NOC code is only about 73%).
+Towards the improvement of rates, we propose a novel
+expander graph based overlapped chunking (EOC) scheme,
+which uses only a small number of overlaps such that the
+number of chunks is increased slightly, and simultaneously
+guarantees that whenever any subset of chunks is decoded,
+it can provide substantial help for decoding the remaining
+chunks. We also establish a lower bound for the maximum rate
+of an EOC code with appropriate parameter and precoding,
+which reveals that EOC codes can achieve signiﬁcantly higher
+rates than NOC codes (e.g., in the same setting as mentioned
+earlier, the maximum rate of an EOC code is at least 93%).
+Also, simulation results show that EOC outperforms other
+state-of-the-art overlapped chunking schemes.
+
+K
+.
+K→∞ N
+
+R(M ) = lim
+
+(1)
+
+With some abuse of notation, we also refer to K/N as its rate.
+Since the rate of any chunked code is upper bounded by 1,
+our main objective is to design efﬁcient chunked codes with
+rates close to 1.
+III. P RECODES
+As mentioned earlier, for chunked codes, the random
+scheduling strategy will incur a long tail of the “coupon
+collector’s curve”, i.e., a large number of packets have to be
+collected for decoding the last chunks, which reminds us not to
+apply chunked codes directly. Formally, we have the following
+result.
+Theorem 3.1: For any chunked code with a constant chunk
+size, if applied directly, then its rate decays at a rate of
+1
+Ω( log K ) as the ﬁle length K grows.
+The proof of the above result is similar to the one in [14]
+for a result for LT codes, and is thus omitted to save the space.
+Example 3.2: Consider an NOC code with n chunks, each
+with size M . To decode the ﬁle completely, the destination has
+to collect M packets of each chunk.1 It is shown in [15] that,
+when K → ∞, N = n log n + (M − 1)n log log n + O(n).
+K
+1
+Noting n = M , K = Θ( log K ) vanishes.
+N
+The idea to achieve a positive constant rate is to apply
+precoding before using chunked codes for transmission: the
+source ﬁrst encodes the original K packets into K ′ > K
+precoded packets using some precoding scheme, and then
+transmits these precoded packets using a chunked code. In
+this case, only a fraction of precoded packets is required to
+be decoded at the destination so that the whole ﬁle can be
+recovered, thus avoiding the long tail, and achieving a nonvanishing rate.
+We make the following assumption about precoding: for any
+0 < η < 1 and ε > 0, there exists some precode PC(η), which
+encodes K original packets into K ′ = K/η precoded packets
+such that all K original packets can be recovered reliably from
+any (1+ε)ηK ′ = (1+ε)K precoded packets. The assumption
+holds for various codes, including Tornado codes [16], rightregular codes [17], etc.
+
+II. P RELIMINARIES
+We formally describe the model of chunked codes. Consider
+the distribution of a ﬁle with K packets, P1 , P2 , . . . , PK ,
+each of which is composed by a number of symbols from
+a ﬁnite ﬁeld Fq . The packets are grouped into n chunks,
+C1 , C2 , . . . , Cn , where each chunk is a set of M packets.
+Throughout the paper we assume that M is a ﬁxed constant
+which is independent of K. We call a coding scheme nonoverlapping if all chunks are disjoint, i.e., Ci ∩ Cj = ∅ for all
+i ̸= j, and overlapping if otherwise.
+Similar to [11], we assume that the ﬁle is distributed
+over a unicast link modeled by an erasure channel using a
+chunked code under the strategy of random scheduling. In
+each transmission, the source: (1) selects a chunk uniformly
+at random, say Cj , from the n chunks; (2) randomly combines
+∑
+packets in Cj into a new packet Pnew =
+i ci Pji , where
+Pji ’s are packets in Cj , and c = (c1 , c2 , . . . , cM ) is a random
+vector whose entries are picked uniformly and independently
+from Fq ; (3) sends the newly generated packet Pnew to the
+destination over the communication link. The transmission of
+the source is rateless, i.e., the source does not stop transmitting
+until the whole ﬁle has been decoded by the destination.
+Once the destination has collected M coded packets with
+linearly independent encoding vectors for some chunk, all
+packets in the chunk can be decoded by the Gauss elimination.
+The process is completed when all chunks have been decoded.
+Furthermore, if the chunks are allowed to be overlapped,
+some packets may appear in more than one chunks, thus a
+successfully decoded chunk may help decoding other chunks.
+This leads to an iterative decoding process: whenever a chunk
+is successfully decoded, the linear system is updated accordingly so that the decoded packets are substituted back helping
+decode other chunks.
+Since each transmitted coded packet is erased randomly
+and independently, all the received packets are statistically
+the same. Thus, we can deﬁne N as the minimum number
+of coded packets to be collected such that the whole ﬁle can
+be reliably decoded, i.e., the ﬁle fails to be recovered with
+probability at most inverse polynomial in K, and evaluate the
+efﬁciency of a chunked code by the ratio between K and N .
+Formally, we deﬁne the (normalized) rate R(M ) of a chunked
+
+IV. A NALYSIS FOR N ON - OVERLAPPED C HUNKED C ODES
+j
+Let ζM be the probability that an M × j matrix with entries
+uniformly chosen from Fq at random has rank M . We have
+(see a derivation in [18])
+{∏M −1
+1
+j
+l=0 (1 − q j−l ) j ≥ M
+ζM =
+0
+j < M.
+j
+According to the random linear coding scheme, ζM is just the
+probability that a chunk is decodable when j coded packets
+of this chunk are collected.
+1 To make the illustration simple, here q is assumed to be sufﬁciently large,
+such that the encoding vectors of any collected packets of a chunk are linearly
+independent.
+
+2
+
+∑∞
+−x j j
+Let p(x) = j=M e j!x ζM .
+The following result establishes the relationship between
+the number of decodable original packets and the number of
+received coded packets when an NOC code without precoding
+is applied.
+Lemma 4.1: Consider the transmission of K packets using
+a precode-free NOC code with chunk size M . Let η be the
+fraction of decodable original packets when receiving N coded
+packets, and µ = N M be the average number of received
+K
+packets of each chunk. Then for any 0 < ε < 1, the event
+(1 − ε)p(µ) < η < (1 + ε)p(µ)
+
+nodes, where V = {1, 2, . . . , n}. A random regular graph
+is an expander graph with high probability.
+2) First associate each edge e ∈ E with a distinct original
+packet, denoted by Pe , and then assign the rest original
+packets evenly over the nodes. Denote the set of packets
+assigned to node v as PS v .
+3) Chunk Cj , 1 ≤ j ≤ n, consists of packets in PS j and
+packets associated with edges incident to j, i.e.,
+Cj = PS j ∪ {Pe : e is incident to node j}.
+Due to the one-to-one correspondence between chunks and
+nodes, we use the names interchangeably in this section.
+From the above description, it is straightforward to see that
+every chunk overlaps with d chunks, each on a distinct packet.
+Therefore, when decoding, a chunk can enjoy different help
+from different decoded neighboring chunks.
+
+(2)
+
+fails to hold with probability exponentially small in K.
+Proof: (Sketch) We employ the technique of Poisson
+approximation [19]. First, approximate the number of received
+packets of each chunk by i.i.d. Poisson distribution with
+mean value µ. Then it is easy to see that p(µ) gives the
+probability that a chunk can be decoded, thus the expected
+fraction of decodable chunks. By Chernoff bounds, the fraction
+of decodable chunks in the Poisson approximation is tightly
+concentrated around p(µ). By applying the same argument as
+in [19], this implies the tight concentration in the real case,
+where the number of received packets of each chunk follows
+a Binomial distribution with mean value µ. Therefore, η is
+sharply concentrated around p(µ).
+According to the above result, one can choose an appropriate precode for NOC codes such that the number of coded
+packets required for decoding the whole ﬁle is minimized, and
+thus the rate is maximized.
+Theorem 4.2: Let µ∗ = arg maxµ>0 p(µ) and η ∗ = p(µ∗ ).
+µ
+Then by precoding with PC(η ∗ ), an NOC code can achieve its
+maximum rate Rmax (M ), which satisﬁes
+
+B. Analysis
+To state the main theorem of this section, we need to
+introduce some notations. For any x > 0, we deﬁne a function
+fx (y) as
+d−1
+∞
+∑ e−x xj j
+∑ (d − 1)
+fx (y) =
+y w (1−y)d−1−w
+ζ
+. (4)
+w
+j! M −w
+w=0
+j=0
+With this function and its functional powers, we introduce
+l
+2
+a sequence as fx (0), fx (0), . . . , fx (0), where l is an integer,
+i+1
+i
+and fx (0) = fx (fx (0)) for all i ≥ 0. It can be veriﬁed that
+the sequence is strictly increasing and is upper bounded by
+1. Therefore, the sequence converges to a limit, denoted by
+∗
+∗
+l
+fx (0), when l goes to inﬁnity, i.e., fx (0) = liml→∞ fx (0).
+We further deﬁne a function g(d, x) as
+√
+√
+∗
+∗
+(M − d − 1)fx (0) − ( d − d − 1)(fx (0))2
+2
+g(d, x) =
+.
+x
+The following theorem provides a lower bound on the
+maximum rate of an EOC code with precoding.
+Theorem 5.1: Let (d∗ , µ∗ ) = arg max3≤d≤M,µ>0 g(d, µ)
+∗
+,µ∗ ∗
+and η ∗ = g(d −d∗ )µ . Then by precoding with PC(η ∗ ), an EOC
+M
+/2
+code with degree d∗ can achieve a rate of at least g(d∗ , µ∗ )−ε,
+where ε > 0 is an arbitrarily small constant.
+According to Theorem 5.1, it can be shown that EOC codes
+achieve higher rates than NOC codes for different chunk sizes.
+For example, when M = 32 and q = 16, an EOC code can
+achieve a rate of at least 93%, while the rate of an optimal
+NOC code is only about 73%.
+Now we proceed to prove Theorem 5.1.
+Deﬁnition 5.2: The l-neighborhood of a node v, denoted
+by Gl (v), is deﬁned as the subgraph of G induced by v and
+all its neighbors within distance l. We say that v is l-decodable
+if Gl (v) is a tree and v can be decoded when the decoding
+process is restricted within the tree.
+In the rest of the section, we set l = 1 logd−1 n.
+3
+We ﬁrst derive the probability that a node v is l-decodable
+in the case that the number of received packets of each chunk
+follows an i.i.d. Poisson distribution.
+
+p(µ∗ )
+p(µ∗ )
+M − ε ≤ Rmax (M ) ≤
+M + ε.
+(3)
+∗
+µ
+µ∗
+for any arbitrarily small constant ε > 0.
+As the theorem implies, NOC codes with precoding can
+achieve positive rates. However, such rates are a bit low. For
+example, when M = 32 and q = 16, the rate is only about
+73%. In the next section, we propose an expander graph based
+overlapped chunking scheme, which can improve the rates of
+chunked codes signiﬁcantly.
+V. E XPANDER G RAPH BASED OVERLAPPED C HUNKED
+C ODES
+A. Scheme Description
+An expander graph based overlapped chunked (EOC) code
+with K original packets, chunk size M and a parameter d
+can be constructed as followings. Here d is an integer with
+3 ≤ d ≤ M . Let n = MK d . To keep the analysis simple, we
+−2
+assume that n is an integer and dn is even.
+1) Generate a random d-regular graph2 G = (V, E) with n
+2 A random d-regular graph can be generated using different models. In
+this paper, we adopt the uniform model, i.e., the d-regular graph is uniformly
+chosen from all d-regular graphs with node set {1, 2, . . . , n}. However, one
+can obtain the same result for many other models (e.g., permutation model,
+perfect matching model [20]) by conducting a similar analysis.
+
+3
+
+Lemma 5.3: Assume that the number of received packets
+of each chunk follows an i.i.d. Poisson distribution with mean
+value µ. Then for any node v and ε > 0, the probability that v
+∗
+is l-decodable is at least (1 − ε)fµ (0) for all sufﬁciently large
+n.
+Proof: For a random d-regular graph G with n nodes, let
+τ (n) be the number of nodes whose l-neighborhood is a tree.
+Due to [21], for any ε > 0, we have that
+2
+1 ( (d − 1)4l )
+1
+Pr(τ (n) < (1 − ε)n) ≤ 2 O
+= 2 O(n− 3 ).
+2
+ε
+n
+ε
+So, for sufﬁciently large n, it can be shown that
+
+number of l-decodable chunks is tightly concentrated around
+∗
+its expectation, which is at least (1 − ε)fµ (0)n according to
+Lemma 5.3. This property holds in the actual Binomial case,
+which can be shown by applying the argument in [19] to
+remove the Poisson assumption.
+Since each packet can appear in at most two chunks, the
+above result can provide a lower bound for the number of
+decodable packets. However, such bound is a bit loose. In the
+following, we provide a much tighter analysis based on some
+expander arguments.
+Consider a d-regular graph G with n nodes. Let An×n be its
+adjacency matrix, where A(u, v) is the number of edges in G
+between nodes u and v. Clearly, A has n real eigenvalues λ1 ≥
+λ2 ≥ · · · ≥ λn . Also, λ1 = d, and for all 1 ≤ i ≤ n, |λi | ≤ d.
+Denote that λmax = max{|λ2 |, |λn |}. The following theorem
+lists some known results about expansion and spectrum of
+random regular graphs.
+Lemma 5.5: Let G be a random d-regular graph on n
+nodes.
+• ([22]) For any subset S of δn nodes, the number of edges
+(
+)
+between nodes in S is at most dn δ 2 + λmax δ(1 − δ) .
+2
+d
+√
+2
+• ([23]) λmax ≥ 2 d − 1 · (1 − O(1/ log n)).
+• ([24]) For any ε > 0, there exists some constant c > 0,
+√
+such that Pr[λmax ≤ 2 d − 1 + ε] = 1 − O(n−c ).
+Now we are ready to prove Theorem 5.1.
+Proof of Theorem 5.1: Let µ be the average number
+of received packets of each chunk, and η be the fraction of
+∗
+decodable chunks. According to Lemma 5.4, η ≥ (1−ε)fµ (0)
+for any ε > 0 with high probability. So, according to
+Lemma 5.5, the number of l-decodable packets is at least
+)
+dn ( 2 λmax
+ηnM −
+η +
+η(1 − η)
+2
+d
+√
+d √
+≥((M − d − 1)η − ( − d − 1)η 2 )n
+2
+√
+d √
+∗
+∗
+≥((M − d − 1)fµ (0) − ( − d − 1)(fµ (0))2 − ε)n
+2
+=(g(d, µ) − ε)n.
+
+E[τ (n)]
+≥ 1 − ε.
+(5)
+n
+Now assume that Gl (v) is a tree rooted at v. After deleting a
+subtree rooted at a child of v, we obtain a (d − 1)-ary tree. We
+abuse the notation and denote the resulting tree also by Gl (v).
+Number the level of root by l and level of leaves by 0. Deﬁne
+pi (µ) as the probability that a node at level i is decodable
+when the decoding process is restricted within the subtree of
+Gl (v) rooted at the node. In the following, we calculate pi (µ)
+in a bottom-up fashion.
+For any leaf, it cannot get any help from other chunk. So,
+Pr(Gl (v) is a tree) =
+
+p0 (µ) =
+
+∞
+∑ e−µ µj
+j=0
+
+j!
+
+j
+ζM = fµ (0).
+
+For an internal node at level i > 0, assume that its w children
+have been decoded. Thus, each received packet of this node
+can be seen as a random linear combination of all packets
+of this node except for the w overlapping packets. Therefore,
+when j packets are collected for this node, the node can be
+j
+decoded with probability ζM −w . By the deﬁnition of function
+fµ (·), it can be veriﬁed that
+i
+pi (µ) = fµ (pi−1 (µ)) = fµ (0).
+∗
+l
+Noting that fµ (0) = liml→∞ fµ (0), we have
+∗
+pl (µ) > (1 − ε)fµ (0)
+
+(6)
+
+This provides a lower bound for the number of decodable
+packets, which implies that the fraction of decodable packets
+g(d,µ)
+is at least (g(d,µ)−ε)n ≥ M −d/2 − ε. Now it is straightforward
+K
+to show the theorem.
+
+for any ε > 0 when n is sufﬁciently large.
+Combining (5) and (6), the lemma follows.
+The following lemma gives the number of l-decodable
+chunks when receiving a number of coded packets.
+Lemma 5.4: Let µ be the average number of received coded
+packets of each chunk in the actual case. Then for any ε > 0,
+the probability that the number of l-decodable chunks is less
+∗
+than (1 − ε)fµ (0)n is exponentially small in n.
+Proof: (Sketch) The proof is by combining the Poisson approximation with Martingale concentration, where the
+later beneﬁts from the locality of l-decoding process. In the
+Poisson case, consider a standard vertex exposure martingale
+on the random regular graph G. Note that the exposure on
+one node can affect the number of l-decodable nodes by at
+most the number of nodes in its l-neighborhood, which is
+1
+on the order of n 3 . Therefore, we can apply the AzumaHoeffding Inequality [19] to show that in the Poisson case, the
+
+VI. P ERFORMANCE E VALUATION
+We evaluate the performance of our EOC scheme, and
+compare it with the NOC scheme, the head-to-toe overlapped
+chunking (H2T) scheme [9], and the random annex coding
+(RAC) scheme [6].
+In Fig. 1, we evaluate numerically the achievable rates of
+both NOC codes and EOC codes provided in Theorem 4.2 and
+Theorem 5.1, respectively. We see that EOC codes achieve
+signiﬁcantly higher rates than NOC codes with the same
+parameters. In particular, when the chunk size is 128, and
+the size of ﬁnite ﬁeld is 16, an EOC code can achieve a rate
+of at least 0.96.
+
+4
+
+We also conduct simulations to compare EOC with NOC,
+H2T and RAC. Without precode, the relationships between
+the number of received packets and the fraction of decodable
+packets for all mentioned schemes are plotted in Fig. 2. In all
+simulations, the chunk size is 32 and the ﬁnite ﬁeld size q is set
+to be inﬁnity to see the extreme performance. (The results in
+the ﬁgure can be well approximated by using sufﬁciently large
+ﬁnite ﬁelds, e.g., q = 28 .) Since it is not easy to get the optimal
+chunk numbers in EOC, H2T and RAC analytically, for each
+scheme we perform the simulation for all the valid chunk
+numbers and choose the one such that the number of received
+coded packets for decoding the whole ﬁle is minimized. The
+results of EOC⋆ are obtained by using EOC with degree d
+optimized for using precode (see Theorem 5.1).
+
+codes of ﬁnite lengths and in more generalized network
+models.
+ACKNOWLEDGMENT
+The authors would like to thank Raymond W. Yeung for many
+useful discussions. This work is partially supported by the National
+Natural Science Foundation of China under Grant No. 61170069,
+61073028, 61021062 and 60903025; the National Basic Research
+Program of China under Grant No. 2009CB320705, 2011CBA00300
+and 2011CBA00302; the Key Technology Research and Development
+Program of Jiangsu Province under Grant No. BE2010179; the University Grants Committee of the Hong Kong Special Administrative
+Region, China under Project No. AoE/E-02/08.
+
+R EFERENCES
+e
+[1] T. Ho, R. Koetter, M. M´ dard, D. R. Karger, and M. Effros, “The beneﬁts
+of coding over routing in a randomized setting,” in Proc. ISIT, 2003.
+[2] T. Ho, M. M´ dard, R. Koetter, D. R. Karger, M. Effros, J. Shi, and
+e
+B. Leong, “A random linear network coding approach to multicast,” IEEE
+Trans. Inform. Theory, 52(10), pp. 4413–4430, 2006.
+[3] Y. Wu, “A trellis connectivity analysis of random linear network coding
+with buffering,” in Proc. ISIT, 2006.
+[4] D. S. Lun, M. M´ dard, R. Koetter, and M. Effros, “On coding for reliable
+e
+communication over packet networks,” Physical Communication, 1(1), pp.
+3–20, 2008.
+[5] P. A. Chou, Y. Wu, and K. Jain, “Practical network coding,” in Proc.
+Allerton Conf. Comm., Control, and Computing, 2003.
+[6] Y. Lin, B. Li, and B. Liang, “CodeOR: opportunistic routing in wireless
+mesh networks with segmented network coding,” in Proc. ICNP, 2008.
+[7] D. Koutsonikolas, C.-C. Wang, and Y. C. Hu, “Efﬁcient network-codingbased opportunistic routing through cumulative coded acknowledgments,
+” IEEE/ACM Trans. Netw., 19(5), pp. 1368–1381, 2011.
+[8] P. Maymounkov, N.J.A. Harvey, and D.S. Lun, “Methods for efﬁcient
+network coding,” in Proc. Allerton Conf. Comm., Control, and Computing,
+2006.
+[9] A. Heidarzadeh and A.H. Banihashemi, “Overlapped chunked network
+coding,” in Proc. ITW, 2010.
+[10] D. Silva, W. Zeng, and F.R. Kschischang, “Sparse network coding with
+overlapping classes, ”in Proc. NetCod, 2009.
+c
+[11] Y. Li, E. Soljanin, and P. Spasojevi´ , “Effects of the generation size
+and overlap on throughput and complexity in randomized linear network
+coding, ” IEEE Trans. Inform. Theory, 57(2), pp. 1111–1123, 2011.
+[12] A. Heidarzadeh and A.H. Banihashemi, “Analysis of overlapped chunked codes with small chunks over line networks,” in Proc. ISIT, 2011.
+[13] A. Heidarzadeh and A.H. Banihashemi, “Network codes with overlapping chunks over line networks: a case for linear-time codes,” 2011.
+[Online]. Available: http://arxiv.org/abs/1105.5736
+[14] A. Shokrollahi, “Raptor codes,” IEEE Trans. Inform. Theory, 52(6), pp.
+2551–2567, 2006.
+[15] L. Flatto, “Limit theorems for some random variables associated with
+urn models,” Ann. Probabil., 10(4), pp. 927–934, 1982.
+[16] M. Luby, M. Mitzenmacher, A. Shokrollahi, and D. Spielman, “Efﬁcient
+erasure correcting codes,” IEEE Trans. Inform. Theory, 47(2), pp. 569–
+584, 2001.
+[17] P. Oswald, and A.Shokrollahi, “Capacity-achieving sequences for the
+erasure channel,” IEEE Trans. Inform. Theory, 48(12), pp. 3017–3028,
+2002.
+[18] S. Yang, S.-W. Ho, J. Meng, E. Yang, and R. W. Yeung, “On
+linear operator channels over ﬁnite ﬁelds,” 2009. [Online]. Available:
+http://arxiv.org/abs/1002.2293
+[19] M. Mitzenmacher, and E. Upfal, “Probablity and computing: randomized
+algorithms and probabilistic analysis,” Cambridge University Press, 2005.
+[20] N. C. Wormald, “Models of random regular graphs,” Surverys in
+Combinatorics, pp. 239-298, 1999.
+[21] I. Dumitriu, and S. Pal, “Sparse regular random graphs: spectral density
+and eigenvalues,” Preprint, 2011.
+[22] N. Alon, and F. R. K. Chung, “Explicit construction of linear sized
+tolerant networks,” Discrete Mathemat., 72, pp. 15–19, 1988.
+[23] A. Nilli, “On the second eigenvalue of a graph,” Discrete Mathemat.,
+91(2), pp. 207–210, 1991.
+[24] J. Friedman, “A proof of Alon’s second eigenvalue conjecture,” in Proc.
+STOC, 2003.
+
+1
+
+Maximum Rate
+
+0.9
+0.8
+NOC(q= 2)
+NOC(q= 4)
+NOC(q= 8)
+NOC(q=16)
+EOC(q= 2)
+EOC(q= 4)
+EOC(q= 8)
+EOC(q=16)
+
+0.7
+0.6
+0.5
+8
+
+16
+
+32
+Chunk Size
+
+64
+
+128
+
+Fig. 1.
+Comparison of rates achieved by NOC and EOC codes with
+precoding.
+
+Fraction of Decodable Packets
+
+1
+0.9
+0.8
+0.7
+0.6
+0.5
+0.4
+0.3
+
+NOC
+H2T
+RAC
+EOC
+EOC*
+
+0.2
+0.1
+0
+6000
+
+8000
+
+10000
+12000
+14000
+Number of Received Coded Packets
+
+16000
+
+Fig. 2. Comparison between NOC, H2T, RAC, and EOC in terms of the
+number of received coded packets for decoding a ﬁle with 10000 packets. For
+each scheme, the values in the ﬁgure are the average of 100 transmissions.
+
+We observe that both RAC and EOC show an avalanche of
+decoding after certain number of packets have been received.
+EOC⋆ is the most efﬁcient scheme for recovering a large
+fraction (e.g., 95%) of the original packets, but it incurs a
+longer tail than EOC for decoding the whole ﬁle.
+VII. C ONCLUSION
+In this paper we studied the performance of chunked codes
+with constant chunk sizes. We highlighted the importance of
+precoding, and presented a tight analysis for NOC codes.
+We proposed and analyzed a novel expander graph based
+overlapped chunking scheme EOC, which outperforms NOC
+and all state-of-the-art overlapped chunking schemes. In the
+future, we would like to analyze the performance of EOC
+
+5
+
+

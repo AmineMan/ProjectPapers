@@ -1,0 +1,724 @@
+Creator:        TeX
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Fri May 18 21:52:00 2012
+ModDate:        Tue Jun 19 12:56:42 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      388395 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569566713
+1
+
+The generalized multiplexing gain region of the
+slow fading MIMO interference channel and its
+achievability with limited feedback
+Sanjay Karmakar
+
+Mahesh K. Varanasi
+
+perfect CSIT assumption and answer the above question with a
+sufﬁcient condition on the number of feedback bits per channel
+realization needed to achieve the perfect CSIT GMGR. The
+GMGR of the network is the set of simultaneously achievable
+multiplexing gains achievable by the transmit/receive pairs so
+that the corresponding diversity order of the overall outage
+probability is strictly greater than zero, with the direct link
+signal-to-noise ratios (SNRs) and the cross-link interferenceto-noise ratios (INRs) allowed to vary while maintaining
+arbitrary but ﬁxed ratios with respect to a nominal SNR on the
+dB scale. In general, the GMGR on an interference network
+plays the role of multiplexing gain on a point-to-point channel
+except for the fact that SNRs and INRs of the different links
+now can have different SNR exponents as just described.
+First, the GMGR of the MIMO IC if characterized under
+the perfect CSIT assumption. A simple HK coding scheme
+with two-level linear Gaussian superposition coding, no time
+sharing and channel dependent covariance matrices for each
+users messages is shown to be GMGR optimal. It is shown
+that at each transmitter the covariance matrices of the private
+and the public sub-message codewords are functions of the
+null space of the corresponding cross-link channel matrix.
+Subsequently, we propose a partial CSIT scheme and show that
+it is sufﬁcient to feedback this null space information to T xi
+using only Nj (Nj − Mi )+ log(ρij ) number of bits1 from Rxj
+to achieve the FCSIT GMGR (e.g., see Theorem 2). Moreover,
+we also derive the GMGR under the no CSIT assumption for
+MIMO ICs for which (a) Mi ≤ Nj for i = j ∈ {1, 2} and
+(b) M1 ≤ N2 ≤ N1 (or M2 ≤ N1 ≤ N2 ) under the strong
+interference regime where the INR is larger than the SNR at
+each of the receivers.
+
+Abstract—The generalized multiplexing gain region (GMGR)
+of the slow-fading MIMO interference channel is obtained under
+the assumption of perfect channel state information at the
+transmitters (CSIT) in the general case where there are an
+arbitrary number of antennas at each of the four nodes. It
+is shown that a simple Han-Kobayashi (HK) linear Gaussian
+superposition coding scheme with a public/private message split
+at each transmitter can achieve the GMGR of the channel if
+the covariance matrices associated with the private and public
+sub-message codewords at each transmitter are certain functions
+of the null-space of the respective cross-link channel matrix.
+Moreover, in such a coding scheme, the multiplexing gains of
+the sub-messages can be chosen without any CSIT. Building
+on this result, and with Mi and Ni denoting the numbers
+of transmit and receive antennas at the ith transmitter and
+receiver, respectively, it is shown that at transmitter i an approximate version of the associated null-space expressed in terms of
+Nj (Mi −Nj )+ log(INRij ) bits per channel realization is sufﬁcient
+to achieve the perfect CSIT GMGR of the channel, where INRij is
+the interference-to-noise ratio at receiver j. Furthermore, under
+the assumption of no CSIT, the GMGR is characterized for two
+sub-classes of MIMO ICs.
+Index Terms—Channel state information, Fading channel,
+Interference channel, Multiplexing gain, Quantized feedback.
+
+I. I NTRODUCTION
+The understanding of the single and multi-antenna (MIMO)
+interference channel (IC) has been signiﬁcantly enriched in
+recent years through approximated capacity characterizations
+including capacity within bounded gap [1], [2], [3] and the
+generalized degrees of freedom [1], [4]. These results are
+derived for ﬁxed or time-invariant channel matrices which
+are hence assumed to be known at all the nodes. However,
+in wireless fading channels, the knowledge of the channel
+matrices must be provided to the transmitters by the receivers
+via a feedback channel which may potentially require a large
+system bandwidth. On the other hand, with no CSIT whatsoever, the achievable throughput of a network can degrade to an
+extent that even the degrees of freedom or multiplexing gain
+are reduced (cf. [5]). This leads to the natural question as to
+what and how much partial CSIT must be fed back from the
+receivers to the transmitters per channel realization so as to
+attain the perfect CSIT performance.
+In this paper, we characterize the generalized multiplexing
+gain region (GMGR) of the slow-fading MIMO IC under the
+
+II. C HANNEL M ODEL AND M ATHEMATICAL
+PRELIMINARIES
+
+The general two-user MIMO IC is considered in which
+transmitter i (T xi ) has Mi antennas and receiver i (Rxi )
+has Ni antennas, respectively for i = 1, 2, and is referred
+to henceforth as the (M1 , N1 , M2 , N2 ) MIMO IC. Let Hij ∈
+CNj ×Mi model the channel matrix between T xi and Rxj ,
+for i, j = 1, 2. We consider quasi-static fading so that while
+these matrices are constant for the duration of a codeword,
+they change independently across codewords with an identical
+distribution. For economy of notation, these matrices will
+henceforth together be denoted as H.
+
+This work was supported in part by NSF Grants CCF-0728955 and CCF1144026. The authors are with the Department of Electrical, Computer and
+Energy Engineering at the University of Colorado, Boulder, CO, 30809 USA
+e-mail: (sanjay.karmakar@colorado.edu, varanasi@colorado.edu).
+
+1ρ
+
+1
+
+ij
+
+represents the INR at receiver j ∈ {1, 2}.
+
+2
+
+The channel matrices in H are assumed to be mutually
+independent and are drawn from a unitarily invariant distribution [6], i.e., if U ∈ UNj ×Nj and V ∈ UMi ×Mi then, U Hij V
+and Hij are identically distributed. In addition, the matrices
+are assumed to be full rank with probability 1 (w.p.1) and
+the probability density functions (pdfs) of the eigenvalues are
+assumed to have a polynomial behavior near zero (i.e., when
+λ ≈ ρ−δ , for some δ > 0). This is a broad class of channel
+statistics2 , including the well known Rayleigh distribution.
+Denoting the transmitted signal from T xi , at time t as Xit ∈
+CMi ×1 , the received signals at the two receivers can be written
+as
+Y1t =
+
+SNR11 H11 X1t +
+
+INR21 H21 X2t + Z1t ;
+
+(1)
+
+Y2t =
+
+SNR22 H22 X2t +
+
+INR12 H12 X1t + Z2t ,
+
+number of antennas at the four nodes and with αii = 1 and
+αij = α). See also [9]. In this work, we consider the more
+general class of fading distributions as described earlier in
+this section as well as general numbers of antennas at the four
+terminals and general SNR exponents α but specialize our
+¯
+attention to the GMGR, which is simply the set of multiplexing
+gains over which the diversity order of the overall outage
+probability is positive, rather than characterize the precise
+diversity gain over this GMGR. The GMGR is formally
+deﬁned next.
+Consider two codebook at the two transmitters with codebook of T xi having rate Ri and with codewords satisfying the
+average power constraint. A family of such permissible codes,
+one for each nominal SNR ρ, is a permissible coding scheme.
+The multiplexing gain pair of this coding scheme is denoted
+as (r1 , r2 ) where
+
+(2)
+
+where Zit ∈ CNi ×1 are i.i.d as CN (0, INi ) across i and t,
+SNRii and INRij represent the average SNR at receiver i and
+INR at receiver j for i = j ∈ {1, 2}, respectively. The input
+signals satisfy the following power constraint:
+1
+n
+
+ri = lim
+
+ρ→∞
+
+≤ 1, ∀ i = 1, 2,
+
+(3)
+
+t=1
+
+where n represents the channel coherence period length, i.e.,
+the number of channel uses for which the channel remains
+constant. In what follows, we shall denote the SNR and INR
+at receiver i by ρii and ρji , respectively, for i = j ∈ {1, 2}.
+Finally, to capture the effects of different relative strengths
+of the various links we let the SNRs and INRs to vary
+exponentially with respect to a nominal SNR, ρ, with different
+exponents as follows:
+lim
+log(ρ)→∞
+
+log(ρij )
+= αij , where αij ∈ R+ ,
+log(ρ)
+
+(5)
+
+On the other hand, if Pe (¯, r1 , r2 ) represents the maximum
+ρ
+of the average probability of error at the receivers at a
+multiplexing gain pair (r1 , r2 ) and nominal SNR of ρ, then
+the corresponding diversity order is deﬁned as
+
+n
+†
+Tr E Xit Xit
+
+Ri
+, for i = 1, 2.
+log(ρ)
+
+dIC (r1 , r2 ) = lim
+
+ρ→∞
+
+− log (Pe (¯, r1 , r2 ))
+ρ
+.
+log(ρ)
+
+(6)
+
+A multiplexing gain pair, (r1 , r2 ), is said to be achievable if there exists a permissible coding scheme for which
+dIC (r1 , r2 ) > 0.
+Deﬁnition 1: The generalized multiplexing gain region is
+the closure of the set of all achievable multiplexing gain pairs
+of the channel, and is denoted as Mo (¯ ), so that
+α
+
+(4)
+
+¯ α
+Mo (¯ ) = M(¯ ),
+α
+
+(7)
+
+¯
+where A represents the closure of a set A and
+
+and i, j ∈ {1, 2}. In what follows, ρ
+¯
+[ρ11 , ρ12 , ρ21 , ρ22 ]
+and α [α11 , α12 , α21 , α22 ] shall be used to describe the
+¯
+SNRs and INRs of the channel, whichever is more appropriate.
+Without loss of generality, we let the direct link SNR of
+transmitter/receiver pair 1 to be the nominal SNR, so that
+α11 = 1.
+
+M(¯ ) = (r1 , r2 ) ∈ R+2 : dIC (r1 , r2 ) > 0 .
+α
+
+(8)
+
+III. T HE GMGR WITH CSIT
+In this section, we derive the GMGR Mo (¯) of the
+ρ
+(M1 , N1 , M2 , N2 ) MIMO IC under the CSIT assumption. We
+also analyze the form in which the CSIT is used by a GMGR
+optimal coding scheme. For brevity, we refer to the perfect
+CSIT GMGR of the MIMO IC simply as its GMGR.
+Let us denote by HK (K1u , K1w , K2u , K2w ) = HK∗ a
+simple Han-Kobayashi (HK) linear Gaussian superposition
+coding scheme where the ith user’s message is divided into
+two sub-messages, namely the private message and the public
+message, and where these sub-messages are encoded using
+mutually independent Gaussian codewords having mean zero
+and covariance matrix Kiu and Kiw , respectively for i = 1, 2.
+Hence, the codeword transmitted by user i can be written as
+
+A. The generalized multiplexing gain region
+The notion of generalized degrees of freedom (GDoF)
+region as described in [1], [4] for the ﬁxed interference channel
+is of course not valid when there is fading. However, for a
+given channel realization H, upper and lower bounds to the
+instantaneous mutual information region of the channel can be
+found as in Lemma 1 and 4 of [2]. These bounds can be used
+to form lower and upper bounds respectively to the outage
+probability of the channel. In fact, a high SNR analysis of
+these bounds was undertaken in [8] for i.i.d. Rayleigh fading to
+obtain the well-known diversity-multiplexing tradeoff (DMT)
+of the MIMO IC for the symmetric case (i.e., with an equal
+
+Xit = Uit + Wit , i = 1, 2 and t = 1, 2 · · · ,
+where Uit ∼ CN (0, Kiu ) and Wit ∼ CN (0, Kiw ) are
+independent, identically distributed (iid) across time.
+Theorem 1: a. The
+GMGR,
+Mo (¯ ),
+α
+of
+the
+(M1 , N1 , M2 , N2 ) MIMO IC under the perfect CSIT
+
+2 In [7] the DMT of the point-to-point MIMO channel was computed for a
+similar class of channel statistics called the “regular” channel, where channel
+coefﬁcients are i.i.d. and in addition to the polynomial behavior near zero their
+pdfs have exponential decay tail and upper bounded by constants independent
+of ρ.
+
+2
+
+3
+
+assumption and under the fading distribution assumption
+of Section II is the set of multiplexing gain pairs (r1 , r2 )
+satisfying the constraints
+
+Outline of the Proof of Theorem 1: First we derive a set
+of upper bounds (representing a set of rate tuples Ru (H, ρ))
+¯
+to the instantaneous capacity or mutual information region,
+C(H, ρ), of the channel and a set of achievable rate tuples
+¯
+Ra (H, ρ), achievable by the HK∗ scheme. Both Ru (H, ρ)
+¯
+¯
+and Ra (H, ρ) are dependent on the instantaneous channel
+¯
+realization and hence are random but satisfy the following set
+inequality
+
+r1 ≤ m11 ;
+r2 ≤ α22 m22 ;
+r3 ≤ f (N2 , (α12 , M1 ), (α22 , M2 )) +
+f N1 , (β12 , m12 ), (α11 , (M1 − N2 )+ )
+D3
+r3 ≤ f (N1 , (α21 , M2 ), (1, M1 )) +
+f N2 , (β21 , m21 ), (α22 , (M2 − N1 )+ )
+D4
+r3 ≤ g N1 , (α21 , M2 ), (β12 , m12 ), (1, (M1 − N2 )+ ) +
+g N2 , (α12 , M1 ), (β21 , m21 ), (α22 , (M2 − N1 )+ )
+r4 ≤ f (N1 , (α21 , M2 ), (1, M1 )) +
+f N1 , (β12 , m12 ), (1, (M1 − N2 )+ ) +
+g N2 , (α12 , M1 ), (β21 , m21 ), (α22 , (M2 − N1 )+ )
+r5 ≤ f (M2 , (α21 , N1 ), (α22 , N2 )) +
+f N2 , (β21 , m21 ), (α22 , (M2 − N1 )+ ) +
+g N1 , (α21 , M2 ), (β12 , m12 ), (1, (M1 − N2 )+ )
+
+Ra (H, ρ) ⊆ C(H, ρ) ⊆ Ru (H, ρ).
+¯
+¯
+¯
+
+(12)
+
+Using this set upper and lower bounds to the instantaneous
+mutual information region of the channel we next derive
+an upper and a lower bound to the DMT of the channel
+following similar method as in [10], which in turn gives us a
+corresponding set of upper and lower bounds to the GMGR
+of the channel. It can be further proved that, these two bounds
+coincide, yielding the fundamental GMGR of the channel if
+Kiu of HK∗ satisfy equation (11), which proves the second
+part of the Theorem. The detailed proof can be found in [11].
+
+The achievable scheme HK∗ is different from that used in
+[2] in the choice of the covariance matrices Kiu for the private
+sub-message at transmitter i. On the one hand, even though
+it is not clear how close the instantaneous mutual information
+regions Ra (H, ρ) and Ru (H, ρ) are from each other (whereas
+¯
+¯
+f (u, (a1 , u1 ), (a2 , u2 )) =
+these are within a bounded gap of each other for the achievable
++
++
++
+min{u, u1 }a1 + min{(u − u1 ) , u2 }a2 , if a1 ≥ a2 ,
+scheme in [2]), HK∗ is nevertheless GMGR region optimal if
+min{u, u2 }a+ + min{(u − u2 )+ , u1 }a+ , if a1 < a2 ,
+2
+1
+the condition (11) is satisﬁed. On the other hand, as be show
+and for i1 , i2 , i3 ∈ {1, 2, 3} such that ai1 ≥ ai2 ≥ ai3 ,
+in the next section, the choice of the covariance matrices Kiu
+herein facilitates the formulation of the ﬁnite rate feedback
++
+g (u, (a1 , u1 ), (a2 , u2 ), (a3 , u3 )) = min{u, ui1 }ai1 +
+problem and its solution.
+min{(u − ui1 )+ , ui2 }a+ + min{(u − ui1 − ui2 )+ , ui3 }a+ . Let us now consider how much CSIT is required to implei2
+i3
+∗
+b. The
+simple
+HK
+coding
+scheme ment the coding scheme HK . It is clear from Theorem 1 that,
+HK (K1u , K1w , K2u , K2w ),
+where
+for
+some to achieve the GMGR of the channel the Vi ’s should be chosen
+Mi ×Mi
+such that (11) is satisﬁed. Such a choice of Vi cannot in general
+Vi ∈ U
+be independent of the channel state information. Moreover,
+1
+Im
+0
+1
+Kiu =
+Vi (1+ρij ) ij
+Vi† , (9) this is not the only step that requires CSIT. For every choice
+0
+I(Mi −Nj )+
+Mi
+of multiplexing gain tuple (r1 , r2 ) ∈ Mo (¯) each transmitter
+ρ
+1
+must chose the corresponding information rates for its private
+Kiw =
+IM − Kiu ,
+(10)
+Mi i
+and public messages, respectively. It is a well-known fact that
+such rate split depends on the instantaneous channel matrices
+can achieve the GMGR region of the channel if
+if the transmitters want to achieve each rate tuple in Ra (H, ρ).
+¯
+†
+log det INi + ρij Hij Kiu Hij ≤ci (H),
+(11) Interestingly, in [11] a multiplexing-gain splitting strategy is
+suggested which is independent of any CSIT. In other words,
+where ci (H) is a constant independent of ρij for all i =
+to achieve the GMGR region of the channel CSIT is required
+j ∈ {1, 2}, but can depend on the channel realizations.
+only to construct Vi ’s which satisfy equation (11).
+Remark 1: It is clear from equation (9) that, when Mi ≤
+It is proved in [11] that to construct such a Vi at transmitter
+Nj=i , Kiu becomes a scaled identity. Putting this into the left
+i, it is sufﬁcient to know the null space of the cross link
+hand side of equation (11) we have
+channel matrix Hij . That is if
+IMi
+†
+H
+log det INi + ρij Hij
+Σ+
+0mij ×(Mi −mij )+
+†
+Mi (1 + ρij ) ij
+ij
+Hij = Uij
+Vij ,
+0(Nj −mij )+ ×mij 0(Nj −mij )+ ×(Mi −mij )+
+1
+†
+≤ log det INi +
+Hij Hij = ci (H).
+Mi
+where U ∈ UNj ×Nj and V ∈ UMi ×Mi are unitary matrices,
+where r3 = r1 + α22 r2 , r4 = 2r1 + α22 r2 , r5 = r1 +
+2α22 r2 , βij = (αii − αij ), nij = (Mi − Nj )+ and mij =
+min{Mi , Nj } for i, j ∈ {1, 2} as deﬁned earlier,
+
+ij
+
+ij
+
+mij = min{Mi , Nj } and Σ+ is a diagonal matrix containing
+ij
+the non-zero singular values of the matrix, then the knowledge
+of the subspace spanned by the last (Mi − Nj )+ columns of
+the matrix Vij , denoted by Si is sufﬁcient.
+
+A consequence of this fact is that, to achieve the GMGR of
+the channel neither of the transmitters require any CSI. Thus,
+in what follows, without loss of generality, we shall consider
+the Mi > Nj=i case only.
+
+3
+
+4
+
+The detailed proof of this result is provided in [11] and is not
+included here due to space restrictions. Intuitively, the left hand
+side of (11) can be shown to be equal to I(Ui ; Yj |Xj , Wi ), i.e.,
+the contribution of the private message Ui at receiver j. As a
+result, if the transmitter knows the null space of the cross link
+it can direct the private message into the null-space so that its
+contribution is limited at receiver j.
+Consequently, knowledge of CSI at the transmitters boils
+down to the knowledge of a particular subspace, Si . However,
+to feedback Si exactly to T xi , Rxj still requires an inﬁnite
+number of feedback bits when Mi > Nj . On the other hand,
+since Si is a subspace of CMi , it can be thought of as a point
+in a Grassmann manifold which we deﬁne next.
+Deﬁnition 2 (Grassmann manifold): The
+Grassmann
+manifold Gn,p is the set of all p-dimensional subspaces
+(planes passing through the origin) in the n-dimensional
+Euclidean space Cn .
+Let Vn,p≤n be the set of p-dimensional bases, of the ndimensional complex space Cn , a point in which can be
+represented by an n × p matrix with orthonormal columns.
+Then, a point (which represents a particular subspace, say So )
+in the Grassmann manifold Gn,p is equivalent to the set of
+all n × p orthonormal matrices in Vn,p whose columns span
+the same subspace So . Clearly, the matrix representation of a
+point in Gn,p is non-unique.
+That is, for each channel realization of Hij , Rxj needs to
+feedback a point from the corresponding Grassman manifold
+to T xi , if Mi > Nj . Using this concept in the next section, we
+shall show that it is possible to feedback only an approximate
+version of Si represented through a ﬁnite number of feedback
+bits and yet satisfy the constraint in (11).
+
+of feedback bits, because it is one of the inﬁnite number of
+points lying in the circular region. Our goal in this section is
+to represent all the points in the bigger circle, approximately,
+by a ﬁnite number of points.
+That is, suppose we pack maximum number of nonintersecting smaller circles with a particular radius within the
+outer circle and then construct a quantization codebook, Ci ,
+whose codewords are the centers of these smaller circles. For
+each occurrence of a random point Si , Rxj identiﬁes the
+circle whose center or codeword is the nearest among all
+the circles and sends back its center to T xi . For example,
+consider the area ABCD in the ﬁgure; any point lying in
+this region is nearest to the codeword F and thus whenever
+Si lies in this area Rxj feeds back the codeword F. This
+area ABCD is called the Voronoi region corresponding to the
+codeword F. Note that Rxj requires only log(|Ci |) bits to send
+the index of the codeword if the codebooks are revealed to
+the transmitters before data transmission begins. The required
+number of feedback bits can be further reduced if we allow a
+smaller number of circles as shown in Fig. 1(b), where clearly
+the Voronoi regions are much larger than those in Fig. 1(a).
+Essentially, we are approximating all the points within the
+Voronoi region of a codeword by that point and the error due to
+approximation increases as the Voronoi regions gets larger. For
+example, if the approximation error is a monotonic function of
+the distance between a point and its codeword, then clearly the
+codebook in ﬁgure 1(b) will incur a larger approximation error
+than the codebook of ﬁgure 1(a). Evidently, as the number of
+codewords and consequently the number of required feedback
+bits decreases, the approximation error increases and hence
+there is a tradeoff between the two.
+Characterization of this tradeoff allows us to evaluate the
+minimum number of feedback bits required under the constraint that the approximation error does not go beyond a
+threshold value, where the threshold is set according to some
+ˆ
+requirement. In particular, if Si is approximated by Si and
+covariance matrix for the private message of T xi constructed
+ˆ
+from this approximate point is denoted by Kiu , then we say
+that the error is below threshold if
+
+IV. F INITE RATE F EEDBACK
+Due to space constraints, we shall provide in what follows
+an intuitive picture of how the Grassmann manifold is quantized and the corresponding ﬁnite rate feedback scheme.
+
+†
+ˆ
+log det INi + ρij Hij Kiu Hij
+
+(a)
+
+≤ ci ,
+ˆ
+
+where ci is independent of ρij . This choice of the threshold
+ˆ
+gives us the minimum number of feedback bits required to
+achieve the GMGR of the channel which is stated in the
+following theorem.
+Theorem 2: For
+each
+channel
+realization,
+(Nj (Mi − Nj )+ ) αij log(ρ) number of feedback bits
+from Rxj to T xi are sufﬁcient to achieve the perfect CSIT
+GMGR of the (M1 , N1 , M2 , N2 ) MIMO IC. In particular,
+if the feedback bits are used to send an approximate copy
+of the subspace Si following the feedback scheme described
+below then the corresponding coding scheme can achieve the
+entire perfect CSIT GMGR of the channel.
+
+(b)
+
+Fig. 1: Voronoi regions for a circular area.
+The problem that we deal with in this section can be
+conceptually explained by Fig. 1(a). Suppose for Mi > Nj , the
+outer circle represents the Grassmann manifold GMi ,(Mi −Nj ) .
+For a given channel realization, Si represents an arbitrary point
+in the circular region of Fig. 1(a). From the previous discussion
+we know that, in the HK∗ scheme T xi needs to know Si , to
+achieve the perfect CSIT GMGR of the channel. However,
+to send this point exactly, Rxj requires an inﬁnite number
+
+V. GMGR WITHOUT CSIT
+In this section, we shall derive the GMGR of the MIMO IC
+without CSIT for some speciﬁc antenna conﬁgurations. The
+
+4
+
+5
+
+converse is based on the F-CSIT result derived in previous
+sections, since as a set of multiplexing gain tuples the GMG
+region of the MIMO IC with F-CSIT is a superset which
+contains the GMG region of the MIMO IC without CSIT.
+The achievable schemes are different for different antenna
+conﬁgurations considered but can achieve the converse bounds
+without CSIT. We start with the case when Mi ≤ Nj for both
+i = j ∈ {1, 2}.
+Corollary 1: Consider the (M1 , N1 , M2 , N2 ) MIMO IC
+with channel parameter α and Nj ≥ Mi for all i = j ∈ {1, 2}.
+¯
+The No-CSIT GMGR, MNo-CSIT1 (¯ ), on this channel is
+α
+identical to the perfect CSIT GMGR, i.e.,
+MNo-CSIT1 (¯ ) = Mo (¯ ).
+α
+α
+
+CSI feedback is characterized. Moreover, the No-CSIT GMGR
+of two classes of MIMO ICs is given where the lack of CSIT
+does not reduce the achievable GMGR with respect to the
+perfect CSIT scenario. An interesting problem in this direction
+is to analyze the no CSIT GMGR of the channel for the general
+case and characterize the loss (in terms of multiplexing gain)
+due to lack of CSIT. Some preliminary work in this direction
+have been reported recently in [13].
+R EFERENCES
+[1] R. Etkin, D. Tse, and H. Wang, “Gaussian interference channel capacity
+to within one bit,” IEEE Trans. on Inform. Th., vol. 54, pp. 5534–5562,
+Dec, 2008.
+[2] S. Karmakar and M. K. Varanasi, “The capacity region of the MIMO
+interference channel and its reciprocity to within a constant gap,” May,
+2011, preprint, available at http://arxiv.org/abs/1102.0267.
+[3] E. Telatar and D. N. C. Tse, “Bounds on the capacity region of a class
+of interference channels,” in Proc. IEEE Int. Symp. on Inform. Th., Jun,
+2007.
+[4] S. Karmakar and M. K. Varanasi, “The Generalized Degrees of Freedom
+Region of the MIMO Interference Channel,” Mar, 2011, preprint,
+available at http://arxiv.org/abs/1103.2560.
+[5] C. S. Vaze and M. K. Varanasi, “The degrees of freedom regions of
+MIMO broadcast, interference, and cognitive radio channels with no
+CSIT,” Sept. 2009, available Online: http://arxiv.org/abs/0909.5424.
+[6] A. M. Tulino and S. Verdu, Random Matrix Theory and Wireless
+Communications. Now, 2004.
+[7] L. Zhao, W. Mo, Y. Ma, and Z. Wang, “Diversity and Multiplexing
+Tradeoff in General Fading Channels,” IEEE Trans. on Inform. Th.,
+vol. 53, pp. 1549–1557, Apr, 2007.
+[8] S. Karmakar and M. K. Varanasi, “The diversity-multiplexing tradeoff
+of the symmetric MIMO 2-user interference channel,” in Proc. IEEE
+Int. Symp. on Inform. Th., Austin, Texas, Jun, 2010.
+[9] ——, “The diversity-multiplexing tradeoff of the MIMO Z interference
+channel,” in Proc. IEEE Int. Symp. on Inform. Th., Austin, Texas, Jun,
+2010.
+[10] L. Zheng and D. Tse, “Diversity and multiplexing: A fundamental
+tradeoff in multiple antenna channels,” IEEE Trans. on Inform. Th.,
+vol. 49, pp. 1073–1096, May, 2003.
+[11] S. Karmakar and M. K. Varanasi, “The generalized multiplexing
+gain region of the slow-fading MIMO interference channel and its
+achievability with limited feedback,” June, 2012, preprint, available at
+http://www.arxiv.org.
+[12] A. Raja and P. Viswanath, “Diversity-multiplexing tradeoff of the
+two-user interference channel,” Sep, 2009, preprint, available at
+http://www.arxiv.org.
+[13] C. S. Vaze, S. Karmakar, and M. K. Varanasi, “On the generalized
+degrees of freedom region of the MIMO interference channel with
+No CSIT,” in Proc. IEEE Int. Symp. on Inform. Th., Saint Petersburg,
+Russia, July, 2011.
+
+(13)
+
+Proof: Follows from Theorem 2.
+Remark 2: In [12] the DMT of the 2-user SISO IC with
+α12 = α21 = α and α11 = α22 = 1 was derived which also
+characterizes the MGR of the channel. When specialized to the
+case with M1 = N1 = M2 = N2 = 1 and α12 = α21 = α,
+the above theorem recovers this MGR region of the 2-user
+SISO IC. From the DMT perspective however, the analysis of
+[12] is more general because it characterizes the fundamental
+diversity order at all multiplexing gain pairs too.
+If we restrict ourselves to the symmetric IC with stronger
+interference than the desired signal, then the No-CSIT GMGR
+result can be extended to more general antenna conﬁgurations
+as characterized by the next theorem.
+Theorem 3: Consider the (M1 , N1 , M2 , N2 ) MIMO IC
+with α = [1, α, α, 1] where α ≥ 1 and either M1 ≤ N2 ≤ N1
+¯
+or M2 ≤ N1 ≤ N2 .
+• The GMG region of such a MIMO IC without CSIT is
+given as
+MNo-CSIT2 (¯ ) = (r1 , r2 ) : r1 ≤ min {M1 , N1 } ;
+α
+r2 ≤ min M2 ;
+(r1 + r2 ) ≤ min{D3 , D4 }; ,
+
+•
+
+where D3 and D4 are as deﬁned in the 3rd and 4th
+inequalities in Theorem 1, respectively.
+The entire GMGR can be achieved, using the
+1
+1
+HK 0M1 , M1 IM1 , 0M2 , M2 IM2 coding scheme.
+
+Proof: The detailed proof can be found in [11].
+Intuitively, when M1 ≤ N2 ≤ N1 , T x1 sends only a public
+message since the cross-link has no null space and α ≥ 1.
+Therefore, Rx2 can decode both the message of T x1 and
+T x2 completely. Moreover, since Rx1 has a larger receive
+dimension than Rx2 , Rx1 can decode both the messages as
+well. So, T x2 can also send only a public message and thus
+does not need to use its cross-link null space. Hence, neither
+of the transmitters need any CSI to achieve the perfect CSIT
+GMGR of the channel.
+VI. C ONCLUSION
+The generalized multiplexing gain region of the two-user
+slow fading MIMO interference channel (IC) with perfect
+CSIT is established. The number of feedback bits required per
+channel realization to achieve this region with only quantized
+
+5
+
+

@@ -1,0 +1,871 @@
+Creator:         TeX output 2012.05.08:1302
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Tue May  8 13:02:49 2012
+ModDate:        Tue Jun 19 12:55:32 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      300596 bytes
+Optimized:      no
+PDF version:    1.6
+ISIT'2012 1569558459
+
+On X-Channels with Feedback and Delayed CSI
+Ravi Tandon1 , Soheil Mohajer2 , H. Vincent Poor1 , and Shlomo Shamai3
+1
+
+Dept. of EE, Princeton University, Princeton, NJ
+Dept. of EECS, University of California at Berkeley, Berkeley, CA
+3
+Dept. of EE, Technion, Israel Institute of Technology, Haifa, Israel
+
+2
+
+be helpful in increasing the degrees of freedom (DoF) for
+broadcast multiple-input multiple output (MIMO) networks,
+even if the channel changes independently over time. Several
+interesting extensions of [2] have been considered recently,
+which include the two-user MIMO broadcast channel (BC)
+[3], the three user MIMO-BC [3], [4] and the two-user MIMO
+interference channel (IC) [5].
+A very relevant question is that whether channel output
+feedback (FB) can be helpful with delayed CSI or not. For
+the case of the MIMO-BC, this question is answered in a
+negative way in [3]: i.e., having output feedback, in addition to
+delayed CSI does not increase the DoF region of the MIMOBC, even though it enlarges the capacity region. However,
+FB if available in addition to delayed CSI can increase the
+DoF for the MIMO interference channel (MIMO-IC). This
+is shown explicitly in [6], where the DoF region of the twouser MIMO-IC is completely characterized in the presence of
+FB and delayed CSI (also see the parallel work in [7], which
+reports similar results). The study of the impact of delayed CSI
+on the DoF of X-channels was initiated in [8]. It is shown that
+for the two-user X-channel, a sum DoF of 8/7 is achievable
+with delayed CSI. The impact of FB on the sum DoF for the
+two-user X-channel and the three-user IC is also explored in
+[8]. It is shown that a sum DoF of 6/5 is achievable for the
+three-user IC with FB alone. Moreover, the optimal sum DoF
+of the two-user X-channel with FB is shown to be 4/3. It is
+worth noting that for the single-antenna two-user X-channel,
+FB alone is sufﬁcient to achieve the outer bound of 4/3, which
+holds also for the stronger setting of FB and delayed CSI.
+The focus of this paper is on MIMO X-channels with output
+feedback and delayed CSI. Throughout the paper, global CSI
+is assumed to be present at all the receivers. The sum DoF
+of the MIMO X-channel is characterized for the symmetric
+antenna conﬁguration, with M antennas at each transmitter
+and N antennas at each receiver. It is shown that the sum
+DoF of the MIMO X-channel equals the sum DoF of a
+MIMO-BC with 2M transmit antennas and N antennas at
+each of the receivers. This result highlights the fact that in
+the presence of output feedback and delayed CSI, there is
+no DoF loss due to the distributed nature of the M -antenna
+transmitters. We also focus on the setting of the K-user Xchannel with a single antenna at each terminal. For this model
+under the assumption of global output feedback and delayed
+CSI, the sum DoF is also shown to be the same as that of a
+K-receiver multiple-input single output (MISO) BC [2] with
+
+Abstract—The sum degrees of freedom (DoF) of the two-user
+MIMO X-channel is characterized in the presence of output
+feedback and delayed channel state information (CSI). The
+number of antennas at each transmitters is assumed to be M
+and the number of antennas at each of the receivers is assumed
+to be N . It is shown that the sum DoF of the two-user MIMO
+X-channel is the same as the sum DoF of a two-user MIMO
+broadcast channel with 2M transmit antennas, and N antennas
+at each receiver. Hence, for this symmetric antenna conﬁguration,
+there is no performance loss in the sum degrees of freedom due to
+the distributed nature of the transmitters. This result highlights
+the usefulness of feedback and delayed CSI for the MIMO Xchannel.
+The K-user X-channel with a single antenna at each transmitter and each receiver is also studied. In this network, each
+transmitter has a message intended for each receiver. For this
+network, it is shown that the sum DoF with partial output
+feedback alone is at least 2K/(K + 1). This lower bound is
+strictly better than the best lower bound known for the case of
+delayed CSI assumption for all values of K.
+
+I. I NTRODUCTION
+In currently deployed wireless networks, multiple pairs of
+users wish to communicate with each other over a shared
+medium. Due to the inherent broadcast nature of the wireless
+medium, interference is one of the main bottlenecks in efﬁcient
+utilization of communication resources. Several approaches
+to combat interference have been proposed in the literature
+such as treating interference as noise, or decoding interference
+and subtracting it from the received signal. However, for
+multiple users, such approaches can be sub-optimal in general.
+Recently, more sophisticated schemes, such as interference
+alignment and (aligned) interference neutralization have been
+proposed for managing interference (see [1] for an excellent
+tutorial and the references therein). However, these techniques
+are usually based on availability of instantaneous (perfect) and
+global channel state information (CSI) at the transmitters. Such
+an assumption is perhaps not very realistic in practical systems,
+when dealing with fast fading links.
+The pioneering work in [2] considers a model in which the
+perfect CSI assumption is relaxed to delayed CSI, a setting in
+which CSI is available in a delayed manner at the transmitters.
+Interestingly, it is shown in [2] that even delayed CSI can
+The research of H. V. Poor and R. Tandon was supported in part by the
+Air Force Ofﬁce of Scientiﬁc Research MURI Grant FA-9550-09-1-0643 and
+in part by the National Science Foundation Grant CNS-09-05398. The work
+of S. Shamai was supported by the Israel Science Foundation (ISF), and the
+Philipson Fund for Electrical Power. E-mail: {rtandon, poor}@princeton.edu,
+mohajer@eecs.berkeley.edu, sshlomo@ee.technion.ac.il.
+
+1
+
+t−1
+(Y1 , Ht−1 )
+
+M
+W11 , W12
+
+Tx1
+
+Rx1
+
+H
+
+deﬁned for t = 1, . . . , T , and four decoding functions
+T
+T
+ˆ
+ˆ
+ˆ
+W11 = g11 (Y1T , HT ), W21 = g21 (Y1T , HT ), W22 =
+T
+T
+T
+ˆ 12 = g T (Y T , HT ). A rate quadrug22 (Y2 , H ) and W
+12 2
+ple (R11 (P ), R12 (P ), R22 (P ), R21 (P )) is achievable if there
+exists a sequence of coding schemes such that P(Wij ̸=
+ˆ
+Wij ) → 0 as T → ∞ for all (i, j). The capacity region C(P ) is deﬁned as the set of all achievable rate pairs
+(R11 (P ), R12 (P ), R22 (P ), R21 (P )). We deﬁne the DoF region as follows:
+{
+D = (d11 , d12 , d22 , d21 ) di,j ≥ 0, and
+
+Y1
+
+N
+
+ˆ
+ˆ
+W11 , W21
+
+t−1
+(Y2 , Ht−1 )
+
+M
+W22 , W21
+
+Fig. 1.
+
+Y2
+N
+Tx2
+
+Rx2
+
+ˆ
+ˆ
+W22 , W12
+
+The MIMO X-channel with output feedback and delayed CSI.
+
+1
+K transmit antennas, i.e., K/(1+ 1 +. . .+ K ). The assumption
+2
+of global feedback is then relaxed to partial (local) feedback,
+in which receiver j sends feedback only to transmitter j, for
+j = 1, . . . , K. For this model, it is shown that the sum DoF
+is lower bounded by 2K/(K + 1). The interest of this lower
+bound is that it is strictly larger than the best known lower
+bound for the delayed CSI setting [9]. Finally, for the K-user
+IC with a single antenna at each terminal and global feedback
+and delayed CSI, the sum DoF is shown to be lower bounded
+1
+1
+by K/(2+ 2 +. . .+ K ). Interestingly, this shows that for large
+values of K, the behavior of the sum DoF of the K-user BC,
+K-user X-channel and the K-user IC is similar in the presence
+of global FB and delayed CSI.
+
+II. MIMO X- CHANNEL WITH FB
+
+AND
+
+∃(R11 (P ), R12 (P ), R22 (P ), R21 (P )) ∈ C(P )
+}
+Ri,j (P )
+, (i, j) = (1, 1), (1, 2), (2, 2), (2, 1) .
+s.t. di,j = lim
+P →∞ log2 (P )
+We denote the total (sum) degrees of freedom as DoFsum ,
+deﬁned as
+DoFsum (M, N ) =
+
+max
+(d11 ,d12 ,d22 ,d21 )∈D
+
+d11 + d12 + d22 + d21 .
+
+We ﬁrst state an outer bound for the DoF region with
+feedback and delayed CSI:
+d11 + d21
+d22 + d12
++
+≤1
+min(2M, 2N ) min(2M, N )
+d11 + d21
+d22 + d12
++
+≤ 1.
+min(2M, N ) min(2M, 2N )
+
+D ELAYED CSI
+
+We consider the two-user (M, M, N, N )-MIMO X-channel
+with fast fading under the assumptions of (A-I) noiseless
+channel output feedback from receiver n to transmitter n, for
+n = 1, 2 and (A-II) the availability of delayed CSI at the
+transmitters (see Figure 1). We denote the transmitters by Tx1
+and Tx2 and the receivers by Rx1 and Rx2 . The channel
+outputs at the receivers are given as follows:
+
+(1)
+(2)
+
+This bound follows from [3] by letting the transmitters cooperate and subsequently using the bound for the MIMO broadcast
+channel with feedback and delayed CSI.
+We present our main result in the following theorem.
+Theorem 1: The sum DoF of the (M, M, N, N )-MIMO Xchannel with feedback and delayed CSI is given as follows:
+
+2M ≤ N ;
+ 2M,
+4M N
+, N ≤ 2M ≤ 2N ;
+DoFsum (M, N ) =
+(3)
+2M
+ 4N +N
+,
+2N ≤ 2M.
+3
+
+Y1 (t) = H11 (t)X1 (t) + H12 (t)X2 (t) + Z1 (t)
+Y2 (t) = H21 (t)X1 (t) + H22 (t)X2 (t) + Z2 (t),
+where Xn (t) is the signal transmitted by nth transmitter Txn ;
+Hij (t) ∈ CN ×M denotes the channel matrix between the ith
+receiver and jth transmitter; and Zn (t) ∼ CN (0, IN ), for n =
+1, 2, is the additive noise at receiver n. The power constraints
+are E||Xn (t)||2 ≤ P , for ∀ n, t.
+For the X-channel, there are four independent messages,
+one from each transmitter to each receiver. In particular, we
+denote by Wi,j the message from transmitter i to receiver
+j. We denote by H(t) = {H11 (t), H12 (t), H21 (t), H22 (t)}
+the collection of all channel matrices at time t. Furthermore,
+Ht−1 = {H(1), H(2), . . . , H(t − 1)} denotes the set of all
+channel matrices up till time (t − 1). Similarly, we denote by
+t−1
+Yn = {Yn (1), . . . , Yn (t − 1)} the set of all channel outputs
+at receiver n up till time (t − 1). A coding scheme with block
+length T for the MIMO X-channel with feedback and delayed
+CSI consists of a sequence of encoding functions
+(
+)
+T
+X1 (t) = f1,t W11 , W12 , Ht−1 , Y1t−1
+(
+)
+T
+X2 (t) = f2,t W22 , W21 , Ht−1 , Y2t−1 ,
+
+The converse follows immediately from the MIMO broadcast
+channel bounds in (1) and (2). We complete the proof for
+Theorem 1 in the next section by presenting coding schemes
+with feedback and delayed CSI. We note that for M = N = 1,
+Theorem 1 recovers a result of [8], in which the sum DoF of
+the single antenna X channel was shown to be 4/3.
+A. Coding Schemes
+1) Coding scheme for 2M ≤ N : For 2M ≤ N , we have
+DoFsum = 2M . We shall only outline the coding scheme
+since it is straightforward. To this end, we will show the
+achievability of the following quadruple:
+(d11 , d12 , d22 , d21 ) = (M, 0, 0, M ),
+
+(4)
+
+which implies that there are M symbols from transmitter 1
+and M information symbols from transmitter 2, both intended
+for receiver 1. Hence, coding for this system is equivalent to
+coding for a MIMO multiple access channel, for which the
+achievability follows from standard results.
+2
+
+2
+
+2) Coding scheme for N ≤ 2M ≤ 2N : For this case, we
+4M N
+have DoFsum = 2M +N . We present an encoding scheme that
+achieves the following quadruple (d11 , d12 , d22 , d21 ):
+(
+)
+MN
+MN
+MN
+MN
+,
+,
+,
+,
+(5)
+2M + N 2M + N 2M + N 2M + N
+
+1, at the end of phase 2, receiver 2 requires 2M N − N 2
+additional equations in v-variables for successful decoding
+of 2M N information symbols. Furthermore, upon receiving
+feedback from receiver 1, transmitter 1 has access to N 2
+additional equations in v-variables. Since 2M ≤ 2N , we have
+2M N − N 2 ≤ N 2 , i.e., in this case transmitter 1 has enough
+information, which if somehow can be supplied to receiver
+2 will guarantee successful decoding of v-symbols. Let us
+denote these (2M N − N 2 ) by v. Similar to the end of phase
+1, transmitter 2 can also reconstruct the side-information vsymbols. At the end of this phase, both transmitters 1 and 2
+have access to the side-information symbols (u, v). This is
+the key step behind the achievability proof, i.e., the common
+availability of side-information symbols before phase 3.
+
+that is, there are M N information symbols at each transmitter
+for each receiver to be sent over (2M + N ) channel uses. Let
+us denote
+u11 = [u1 , . . . , uM N ],
+11
+11
+
+u21 = [u1 , . . . , uM N ],
+21
+21
+
+(6)
+
+as the symbols intended for receiver 1, and
+1
+M
+v22 = [v22 , . . . , v22 N ],
+
+1
+M
+v12 = [v12 , . . . , v12 N ]
+
+(7)
+
+as the symbols intended for receiver 2. Note that the symbols
+(u11 , v12 ) are present at transmitter 1, and the symbols
+(u21 , v22 ) are present at transmitter 2, i.e., the origin of
+information symbols is distributed in contrast to the MIMO
+broadcast channel. The scheme operates over three phases
+described as below:
+
+Phase 3: This phase operates over (2M − N ) channel uses.
+The goal is to send u to receiver 1 and v to receiver 2. Note
+that from phase 1, receiver 2 has access to u, and from phase
+2, receiver 1 has access to v. Recall that each u and v are of
+length 2M N − N 2 . Let us denote
+u = [˜1 , . . . , u2M N −N 2 ],
+u
+˜
+
+Phase 1: This phase uses N channel uses. In every channel
+use, transmitter 1 sends fresh information symbols for receiver
+1, and transmitter 2 sends fresh information symbols intended
+for receiver 1. Note that, our choice of the duration for this
+phase guarantees that all 2M N information symbols in u11
+and u21 are transmitted exactly once and at one antenna. At
+the end of phase 1, receiver 1 has N 2 linearly independent
+equations in 2M N variables almost surely. Whereas, receiver
+2 has N 2 linearly independent equations in same 2M N uvariables.
+
+v = [˜1 , . . . , v2M N −N 2 ].
+v
+˜
+
+(8)
+
+Using these, both transmitters can compute
+uv = [˜1 + v1 , . . . , u2M N −N 2 + v2M N −N 2 ],
+u
+˜
+˜
+˜
+
+(9)
+
+which is the element-wise summation of the u and v sequences. The transmitters send each of these symbols exactly
+once on an antenna. In particular, we have a total of 2M
+transmit antennas and (2M −N ) channel uses, i.e., this scheme
+is feasible as long as
+2M N − N 2 ≤ 2M (2M − N )
+
+At the end of phase 1, receiver 1 requires 2M N − N 2
+additional equations in u-variables for successful decoding of
+2M N information symbols. Note that upon receiving feedback
+from receiver 2, transmitter 2 has access to N 2 additional
+equations in the u-variables. Since 2M ≤ 2N , we have
+2M N − N 2 ≤ N 2 , i.e., transmitter 2 has enough information,
+which if somehow can be supplied to receiver 1 will guarantee
+successful decoding of the u-symbols. Let us denote these
+(2M N −N 2 ) symbols by u. More importantly, upon receiving
+feedback from receiver 1, transmitter 1 can subtract out the
+contribution from u11 , and decode u21 (this is possible since
+u21 has M symbols, the feedback vector is of length N and we
+have M ≤ N ). Subsequently, having the CSI of the ﬁrst block,
+transmitter 1 can reconstruct the side-information u available
+at transmitter 2. To summarize, feedback and delayed CSI
+serve a dual purpose for this setting: not only does it provide
+side-information at transmitter 2 (for future use), it also lets
+transmitter 1 reconstruct the same side-information.
+
+(10)
+
+which is true since N ≤ 2M . At the end of phase 3, receiver
+1 gets (2M − N )N equations in 2(2M N − N 2 ) variables.
+However, receiver 1 already knows half of these variables,
+namely v variables from phase 2, and hence it is left with
+˜
+˜
+2M N − N 2 equations in 2M N − N 2 u-variables. Using
+these and the information from phase 1 (i.e., N 2 equations of
+phase 1), receiver 1 can decode all 2M N symbols. Similarly,
+decoder 2 can also decode a total of 2M N information
+symbols.
+To illustrate this scheme by an example, consider the case
+when N = 3, M = 2, and DoFsum = 4M N/(2M + N ) =
+24/7. Phase 1 operates over 3 channel uses and at its end,
+receiver 1 has 9 equations in 12 u-variables (6 originating
+from transmitter 1 and 6 from transmitter 2). Similarly, at the
+end of phase 2, receiver 2 has 9 equations in 12 v-variables (6
+originating from transmitter 1 and 6 from transmitter 2). For
+this example, there are (2M N − N 2 ) = 3 side-information
+symbols intended for receiver 1 (let us denote these additional
+symbols by u1 , u2 , u3 ) and three side information symbols for
+˜ ˜ ˜
+receiver 2 (denoted these symbols by v1 , v2 , v3 ). In phase 3,
+˜ ˜ ˜
+which is of duration (2M − N ) = 1, transmitters 1 and 2 send
+[
+]
+[
+]
+u1 + v1
+˜
+˜
+u3 + v3
+˜
+˜
+X1 (3) =
+, X2 (3) =
+,
+(11)
+u2 + v2
+˜
+˜
+ϕ
+
+Phase 2: This phase uses N channel uses. In every channel use, transmitter 1 sends fresh information symbols for
+receiver 2, and transmitter 2 sends fresh information symbols
+intended for receiver 2. At the end of phase 2, receiver 2
+has N 2 linearly independent equations in 2M N variables v22
+and v12 . Whereas, receiver 1 has N 2 linearly independent
+equations in the same 2M N v-variables. Similar to phase
+3
+
+3
+
+where ϕ denotes a constant symbol. Also, receiver 1 has
+v1 , v2 , v3 from phase 2 and similarly, receiver 2 has access
+˜ ˜ ˜
+to u1 , u2 , u3 from phase 1. Therefore, phase 3 (which is
+˜ ˜ ˜
+of duration 2M − N = 1) essentially provides receiver 1
+with (2M − N )N = 3 equations in u1 , u2 , u3 symbols and
+˜ ˜ ˜
+similarly, receiver 2 gets (˜1 , v2 , v3 ). Using information from
+v ˜ ˜
+phases 1 and 3, receiver 1 can decode 12 information symbols.
+Similarly, using information from phases 2 and 3, receiver 2
+is able to decode 12 information symbols.
+Remark 1: We now give the intuition as to why the total
+DoF for the MIMO X-channel turns out to be the same as
+that for the MIMO broadcast channel. This is illuminated
+in phase 3, which requires complementary broadcasting of
+side-information symbols. In particular, we need to transmit
+2M N − N 2 symbols to receiver 1 and 2M N − N 2 symbols
+to receiver 2. However, to attain this goal, we have a total of
+(2M − N ) channel uses allotted for phase 3 and distributed
+transmitters equipped with M antennas each. The feasibility
+of this scheme is crucially dependent on the omniscience
+of these side-information symbols at both transmitters. As
+we have shown, feedback and delayed CSI guarantee the
+common availability of these side-information symbols at both
+the transmitters, effectively creating a 2M -antenna MIMO
+broadcast channel for phase 3.
+3) Coding scheme for 2N ≤ 2M : For this case, we have
+DoFsum = 4N/3. The scheme for this case is a simple
+variation as in the previous section and only output feedback
+sufﬁces. In the ﬁrst channel use, transmitters 1 and 2 send fresh
+information symbols intended for receiver 1 on N antennas
+(which is possible since N ≤ M ). In the second channel
+use, transmitters 1 and 2 send fresh information symbols
+intended for receiver 2 on N antennas. Each receiver has N
+equations in 2N variables, and each receiver requires N more
+equations for successful decoding. In the third channel use,
+transmitter 1 uses feedback from second channel use (which
+is side information for receiver 1) and transmitter 2 uses
+feedback from the ﬁrst channel use (which is side information
+for receiver 1). It is clear that at the end of three channel uses,
+each receiver can decode 2N symbols.
+
+receivers. The proof of Theorem 2 is rather straightforward
+and is immediate from [2]. To note this, we can proceed by
+using a coding scheme consisting of several phases. The ﬁrst
+phase is comprised of K channel uses. During the ﬁrst phase,
+in each channel use, all transmitters send information for a
+ﬁxed receiver. At the end of phase 1, upon receiving global
+feedback, each transmitter can decode all information symbols,
+thus creating a virtual MISO broadcast channel. The coding
+for the subsequent phases follows as in [2].
+In the following theorem, we state a lower bound on the
+sum DoF for the K-user X-channel with partial feedback.
+Theorem 3: The sum DoF of the single-antenna K-user
+X-channel with partial feedback is lower bounded as follows:
+2K
+.
+(13)
+K +1
+We note that this bound is tight for K = 2, for which we
+achieve the MISO broadcast channel bound of 4/3 [8]. We
+also note here that unlike the case for global feedback, the
+lower bound with partial feedback does not scale with K,
+the number of users. Nevertheless, the lower bound stated in
+Theorem 3 is strictly better than the best known lower bound
+for the case with delayed CSI alone [9] for all values of K.
+However, without a matching converse, we cannot claim the
+optimality of this lower bound.
+DoFK,partial ≥
+sum
+
+A. Coding for the 3-user X-channel
+Before presenting the proof for Theorem 3, we illustrate the
+coding scheme for the K = 3 user X-channel. For this case,
+we will show the achievability of 9/6, i.e., we show that a
+total of 9 information symbols can be transmitted in 6 channel
+uses. We denote an information symbol as sij if it originates
+at transmitter i and is intended for receiver j, i, j = 1, 2, 3. In
+particular, for this example, we have the following notation:
+• s11 , s21 , s31 : symbols intended for receiver 1.
+• s12 , s22 , s32 : symbols intended for receiver 2.
+• s13 , s23 , s33 : symbols intended for receiver 3.
+Transmission occurs over two phases. Phase 1 is of duration
+3, and phase 2 is duration 3 (see Figure 2).
+Phase 1: During this phase, at time t, transmitters 1, 2
+and 3, send s1t , s2t and s3t respectively, for t = 1, 2, 3.
+Note that for recovery of the three symbols s11 , s21 , s31
+at receiver 1, two more linearly independent equations are
+required. These correspond to symbols (A2 (1), A3 (1)) which
+need to be delivered to receiver 1. Similarly, the symbol pair
+(A1 (2), A3 (2)) needs to be delivered to receiver 2, and the
+symbol pair (A1 (3), A2 (3)) to receiver 3.
+Phase 2: In this phase we will show that it is possible to
+deliver the two complementary symbols to each of the respective receiver in three channel uses. Due to partial feedback
+from phase 1, transmitter j has access to Aj (1), Aj (2) and
+Aj (3), for j = 1, 2, 3. The coding in this phase works as
+follows: at t = 4, transmitter 1 sends A1 (2) and transmitter
+2 sends A2 (1), whereas transmitter 3 remains silent. This
+enables receiver 1 to obtain A1 (2) and receiver 2 to obtain
+A1 (2). At t = 5, transmitter 1 sends A1 (3), transmitter 3 sends
+
+III. K- USER X- CHANNEL WITH O UTPUT F EEDBACK
+In this section, we focus on the K-user X-channel. In
+this model, we assume that each transmitter and receiver is
+equipped with a single antenna. We study two models with
+different assumptions on the availability of feedback signals:
+a) Global feedback: channel output feedback is present from
+all K receivers to all K transmitters, and b) Partial feedback:
+transmitter k receives feedback only from receiver k.
+Theorem 2: The sum DoF of the K-user X-channel with
+global feedback is given as follows:
+DoFK,global =
+sum
+
+1+
+
+1
+2
+
+K
++ ... +
+
+1
+K
+
+.
+
+(12)
+
+Note that the sum DoF with global feedback is the same as the
+sum DoF for a multiple-input single output (MISO) broadcast
+channel with K transmit antennas and K single antenna
+4
+
+4
+
+Phase 2
+6
+
+−
+
+5
+
+Phase 1
+4
+
+3
+
+2
+
+t=3
+
+t=4
+
+t=5
+
+t=6
+
+s11
+
+Tx1
+
+Rx1
+
+A1 (1)
+
+A1 (2)
+
+A1 (3)
+
+A2 (1)
+
+A3 (1)
+
+A2 (1) s23
+
+s22
+
+s21
+
+Tx2
+
+Rx2
+
+A2 (1)
+
+A2 (2)
+
+A2 (3)
+
+A1 (2)
+
+L(A1 (3), A3 (1))
+
+A3 (2)
+
+s33
+
+s32
+
+s31
+
+Tx3
+
+Rx3
+
+A3 (1)
+
+A3 (2)
+
+A3 (3)
+
+L (A1 (2), A2 (1))
+
+A1 (3)
+
+A2 (3)
+
+A3 (2) A3 (1) −
+Duration =
+
+t=2
+
+s12
+
+A1 (3) A1 (2) s13
+
+A2 (3) −
+
+t=1
+
+t
+
+1
+
+K(K−1)
+2
+
+Duration = K
+
+Fig. 2.
+
+Coding for the 3-user X-channel with partial feedback.
+
+A3 (1) and transmitter 2 remains silent. This enables receiver
+1 to obtain A3 (1) and receiver 3 to obtain A1 (3). Finally, at
+t = 6, transmitter 2 sends A2 (3), transmitter 3 sends A3 (2)
+and transmitter 1 remains silent. Consequently, receiver 2 gets
+A3 (2) and receiver 3 gets A2 (3). Hence, at the end of this
+phase, each receiver has 3 linearly independent equations in 3
+information symbols and the decoding is successful.
+
+feedback and delayed CSI, all the K interference components
+{I1 , . . . , IK } can be recovered at each of the transmitters, thus
+creating a virtual MISO-BC. In the next phase, we use the
+scheme of [2] to send the component Ij to receiver j. Hence,
+the rate of this scheme is given as K/(1 + K/DoFBC (K)).
+As a consequence of Theorems 2 and 4, the behavior of the
+MISO-BC, the K-user X-channel and the K-user IC are the
+same for large values of K.
+V. C ONCLUSIONS
+The usefulness of feedback (FB) when available in addition
+to delayed CSI has been illustrated by showing that the sum
+DoF of the symmetric MIMO X-channel is the same as the
+sum DoF of the MIMO-BC. A similar result has also been
+shown for the K-user single-antenna X-channel. The result of
+Theorem 3 also shows that partial output FB yields a larger
+sum DoF when compared to the setting of delayed CSI.
+Moreover, it has been shown that the scaling behavior of the
+sum DoF for the K-user IC in the presence of global FB and
+delayed CSI is the same as that of the K-user MISO-BC.
+R EFERENCES
+
+B. Coding for the K-user X-channel
+To show the achievability of 2K/(K +1), we will show that
+it is possible to transmit K 2 symbols in K + K(K−1) channel
+2
+uses. As in case for K = 3, there are two phases. Phase 1 is
+of duration K, in which, at time t, each transmitter sends an
+information symbol intended for receiver t, for t = 1, . . . , K.
+Hence, a total of K 2 symbols are transmitted over this phase,
+with a total of K symbols intended for each receiver. At the
+end of this phase, each receiver requires (K − 1) additional
+equations for decoding the K information symbols, i.e., there
+are a total of K(K − 1) additional symbols to be delivered.
+Mimicking the scheme for K = 3, we create pairs of these
+K(K − 1) symbols and reliably transmit these in K(K − 1)/2
+channel uses. Hence, phase 2 is of duration K(K − 1)/2.
+Therefore, this scheme can achieve the following sum DoF:
+DoFK,partial ≥ [
+sum
+K+
+
+K2
+
+K(K−1) ]
+2
+
+=
+
+2K
+.
+K +1
+
+[1] S. A. Jafar. Interference alignment: A new look at signal dimensions in
+a communication network. Foundations and Trends in Communications
+and Information Theory, 7(1):1–134, 2010.
+[2] M. A. Maddah-Ali and D. Tse. Completely stale transmitter channel state
+information is still very useful. In Proc. 48th Annual Allerton Conference
+on Communication, Control, and Computing, Monticello, IL, 2010.
+[3] C. S. Vaze and M. K. Varanasi. The degrees of freedom regions of twouser and certain three-user MIMO broadcast channels with delayed CSIT
+[arXiv: 1101.0306v2]. Submitted to IEEE Trans. on Information Theory,
+Dec. 2011.
+[4] M. J. Abdoli, A. Ghasemi, and A. K. Khandani. On the degrees of
+freedom of three-user MIMO broadcast channel with delayed CSIT.
+In Proc. IEEE International Symp. on Information Theory (ISIT), St.
+Petersburg, Russia, 2011.
+[5] C. S. Vaze and M. K. Varanasi. The degrees of freedom region and
+interference alignment for the MIMO interference channel with delayed
+CSI, [arXiv: 1101.5809v2]. Submitted to IEEE Trans. on Information
+Theory, March 2011.
+[6] R. Tandon, S. Mohajer, H. V. Poor, and S. Shamai (Shitz). On interference
+networks with feedback and delayed CSI [arXiv: 1109.5373]. Submitted
+to IEEE Trans. on Information Theory, Sep. 2011.
+[7] C. S. Vaze and M. K. Varanasi. The degrees of freedom region
+of the MIMO interference channel with shannon feedback, [arXiv:
+1109.5779v2]. Submitted to IEEE Trans. on Information Theory, Oct.
+2011.
+[8] H. Maleki, S. A. Jafar, and S. Shamai. Retrospective interference
+alignment over interference networks. IEEE Journal of Selected Topics in
+Signal Processing, Special issue on Signal Processing In Heterogeneous
+Networks For Future Broadband Wireless Systems, March 2012.
+[9] M. J. Abdoli, A. Ghasemi, and A. K. Khandani. On the degrees of
+freedom of K-user SISO interference and X channels with delayed CSIT.
+In Proc. 49th Annual Allerton Conference on Communication, Control,
+and Computing, Monticello, IL, 2011.
+
+(14)
+
+We note here that the proposed scheme only requires channel
+output feedback from receiver j to transmitter j, and no CSI
+(not even delayed) is required at any of the transmitters.
+IV. K- USER IC: F EEDBACK AND D ELAYED CSI
+In this section, we focus on the K-user IC. Given the scaling
+behavior for the X-channel in Theorem 2, a natural question
+arises: does the sum DoF for the K-user IC scale with K in
+the presence of global feedback and delayed CSI? We answer
+this question in the afﬁrmative in the following theorem.
+Theorem 4: The sum DoF of the K-user IC with global
+feedback and delayed CSI is lower bounded as follows:
+DoFIC (K) ≥ [
+2+
+
+L(A2 (3), A3 (2))
+
+1
+2
+
++
+
+K
++ ... +
+
+1
+3
+
+1
+K
+
+]
+
+(15)
+
+To show the achievability, we operate over two phases. In
+the ﬁrst phase, all transmitters send information symbols
+simultaneously. The output at receiver j is a combination of the
+symbol from transmitter j and an interference component, Ij ,
+which is combination of the other (K −1) symbols. Via global
+5
+
+5
+
+

@@ -1,0 +1,981 @@
+Title:          ISIT.2012.vfinal.dvi
+Creator:        dvips(k) 5.95b Copyright 2005 Radical Eye Software
+Producer:       Appligent StampPDF Batch, version 5.1
+CreationDate:   Thu May 17 20:32:55 2012
+ModDate:        Tue Jun 19 12:56:02 2012
+Tagged:         no
+Pages:          5
+Encrypted:      no
+Page size:      612 x 792 pts (letter)
+File size:      499265 bytes
+Optimized:      no
+PDF version:    1.7
+ISIT'2012 1569562821
+
+Achieving the Shannon Limit
+with Probabilistically Shaped BICM
+Erik Agrell
+
+Alex Alvarado
+
+Department of Signals and Systems
+Chalmers University of Technology
+SE-41296 G¨ teborg
+o
+Sweden
+Email: agrell@chalmers.se
+
+Department of Engineering
+University of Cambridge
+Cambridge CB2 1PZ
+United Kingdom
+Email: alex.alvarado@ieee.org
+
+behavior was shown to be determined by three transmission
+parameters: the input alphabet X, its input distribution P, and
+its binary labeling L. First-order optimal (FOO) constellations
+were deﬁned as the triplet [X, P, L] that make a BICM system
+achieve the SL. The optimality analysis in [15], however, only
+considers uniform input distributions. Probabilistic shaping
+for BICM was considered in [9], [16]–[18]. Recently, the
+ﬁrst-order equivalence between some uniform and nonuniform
+constellations for BICM was numerically studied in [19].
+The main contribution of this paper is to generalize the
+results of [15] to nonuniform input distributions using the
+equivalence in [19]. A complete characterization of FOO
+constellations for BICM in terms of [X, P, L] is obtained. In
+particular, we ﬁnd the geometrical and/or probabilistic shaping
+rules that should be applied to a constellation to make it FOO.
+We conclude that for BICM systems in the wideband regime,
+probabilistic shaping offers no extra degrees of freedom in
+addition to what is provided by geometrical shaping.
+
+Abstract—Probabilistic shaping for bit-interleaved coded modulation (BICM) systems at low signal-to-noise ratio (SNR) is
+investigated. Using known results for BICM systems with a
+uniform input distribution, the combinations of input alphabet,
+input distribution, and binary labeling that achieve the Shannon
+limit –1.59 dB are fully characterized. It is found that a BICM
+system achieves the Shannon limit at low SNR if and only if it can
+be represented as a zero-mean linear projection of a hypercube,
+which is the same condition as for uniform input distributions.
+Hence, probabilistic shaping offers no extra degrees of freedom
+to optimize the low-SNR regime of BICM systems, in addition
+to what is provided by geometrical shaping.
+
+I. I NTRODUCTION
+The most important breakthrough for coded modulation
+(CM) in fading channels came in 1992, when Zehavi introduced the so-called bit-interleaved coded modulation (BICM)
+in [1], usually referred to as a pragmatic approach for CM
+[2], [3]. Despite not being fully understood theoretically,
+BICM has been rapidly adopted in commercial systems such
+as wireless and wired broadband access networks, 3G/4G
+telephony, and digital video broadcasting, making it as the
+de facto standard for current telecommunications systems.
+Signal shaping [4], [5] refers to the use of non-equally
+spaced and/or non-equally likely symbols, i.e., geometrical
+shaping and probabilistic shaping. In the context of BICM,
+geometrical shaping for BICM was proposed in [6]–[8] and
+probabilistic shaping in [9].
+For the additive white Gaussian noise (AWGN) channel,
+the Shannon Limit (SL) −1.59 dB represents the average bit
+energy to noise-ratio needed to transmit information reliably
+when the signal-to-noise ratio (SNR) tends to zero [10], [11].
+The SL is fully determined by the ﬁrst derivative of the mutual
+information (MI) function at zero SNR [10, Sec I] [11, eq. (1)].
+When discrete alphabets are used with a BICM receiver,
+the SL is not always achieved [12]. This was shown in [13]
+to be caused by the selection of the binary labeling. The
+performance of BICM at low SNR, i.e., in the wideband
+regime, was studied in [12]–[14]. In [15], the wideband
+
+II. P RELIMINARIES
+A. Notation Convention
+Throughout this paper all MIs are given in bits. Vectors
+are row vectors x and matrices are denoted by X. The inner
+product between two vectors a and b is denoted by a, b . The
+Euclidean norm of the vector a is denoted by a . Random
+variables are denoted by capital letters X and random vectors
+by boldface capital letters X. The probability density function
+(pdf) of the random vector Y is denoted by pY (y) and the
+conditional pdf by pY |X (y|x). A similar notation applies
+to probability mass functions (pmf) of a random variable,
+which we denote by PY (y) and PY |X (y|x). Expectations
+are denoted by E. The binary set is deﬁned as B
+{0, 1}.
+The negation of a bit b is denoted by ¯ = 1 − b.
+b
+B. System Model
+We consider transmissions over a discrete-time memoryless
+AWGN channel. The received vector at any discrete time
+instant is Y = X + Z, where X is the real-valued channel
+input and Z is a real Gaussian noise with zero mean and
+variance N0 /2 in each dimension. The conditional transition
+
+Research supported by The British Academy and The Royal Society (via
+the Newton International Fellowship scheme), UK, and by the European
+Community’s Seventh’s Framework Programme (FP7/2007-2013) under grant
+agreement No. 271986.
+
+1
+
+BICM encoder
+
+BICM decoder
+Z
+
+Fig. 1.
+
+Φ
+
+X
+
+Y
+
+Lm−1
+
+decoder(s)
++
+deinterleaver(s)
+
+information bits
+
+A generic BICM system, consisting of a transmitter, an AWGN channel, and a receiver.
+
+y−x
+1
+exp −
+N/2
+N0
+(N0 π)
+
+for i = 0, . . . , M − 1 and for some [PC0 (0), . . . , PCm−1 (0)].
+Since PCk (1) = 1−PCk (0), the distribution P is fully speciﬁed
+by the set of bit probabilities [PC0 (0), . . . , PCm−1 (0)]. An
+important special case is the uniform distribution, for which
+PCk (0) = 1/2 for k = 0, . . . , m − 1 and P = Um
+[1/M, . . . , 1/M ]T .
+Throughout this paper, we assume that 0 < PCk (0) < 1 for
+all k = 0, . . . , m − 1, i.e., we assume that all constellation
+points are used with a nonzero probability. If that was not the
+case, the cardinality of the constellation should be reduced.
+Hence Pi > 0 for i = 0, . . . , M − 1.
+
+2
+
+.
+
+(1)
+
+The SNR is deﬁned as snr
+Es /N0 = Rc Eb /N0 , where
+Es
+EX [ X 2 ] is the average symbol energy, Rc is the
+transmission rate in information bits per symbol, and Eb is
+the average energy per information bit.
+We consider the generic BICM scheme in Fig. 1. In the simplest case, a binary encoder is concatenated with a memoryless
+modulator Φ via a bit-level interleaver. Multiple encoders
+and/or interleavers may be used to obtain probabilistic shaping.
+At the receiver, using the channel output Y , the demapper Φ−1
+computes metrics Lk for the individual coded bits Ck with
+k = 0, . . . , m−1, usually in the form of logarithmic likelihood
+ratios. These metrics are then passed to the deinterleaver(s) and
+decoder(s) to obtain an estimate of the information bits.
+The mapper Φ is deﬁned via the input alphabet X =
+[xT , . . . , xT ]T ∈ RM×N , where m bits are used to index
+0
+M−1
+the symbols vectors xi ∈ RN for i = 0, . . . , M − 1,
+M = 2m . We associate with each symbol xi a binary m-tuple
+(codeword) ci
+[ci,0 , . . . , ci,m−1 ] ∈ B m and the probability
+0 ≤ Pi ≤ 1, where Pi
+PX (xi ). The binary labeling is
+denoted by L = [cT , . . . , cT ]T ∈ B M×m and the input
+0
+M−1
+distribution by P = [P0 , . . . , PM−1 ]T ∈ [0, 1]M .
+For any constellation [X, P, L], a set of equivalent constellations can be constructed by simultaneously permuting the
+rows of X, L, and P. Speciﬁcally, it is possible to permute
+the rows of any labeling matrix L such that any other labeling
+is obtained. Without loss of generality, we therefore ﬁx the
+labeling to be the natural binary code (NBC) from now on,
+deﬁned as follows.
+Deﬁnition 1 (Natural binary code): The NBC is the binary
+labeling Nm
+[n(0)T , . . . , n(M − 1)T ]T , where n(i) =
+[ni,0 , . . . , ni,m−1 ] ∈ B m denotes the base-2 representation of
+the integer 0 ≤ i ≤ M − 1, with ni,m−1 being the most
+signiﬁcant bit.
+Based on the previous discussion, from now on we use
+the name constellation to denote the pair [X, P], where the
+NBC labeling is implicit. Assuming independent, but possibly
+nonuniformly distributed, bits C0 , . . . , Cm−1 at the input of
+the modulator, the symbol probabilities are given by [15, eq.
+(30)] [9, eq. (8)]
+
+C. The Hadamard Transform
+The Hadamard transform (HT), or Walsh–Hadamard transform, is a discrete, linear, orthogonal transform, whose coefﬁcients take values in ±1. It is deﬁned as follows.
+˜
+˜ M−1
+Deﬁnition 2: The HT X = [˜ T , . . . , xT ]T of a matrix
+x0
+(or vector) X = [xT , . . . , xT ]T with M = 2m rows is
+0
+M−1
+˜
+xi
+
+PCk (ni,k )
+
+1
+M
+
+M−1
+
+xj hi,j ,
+
+i = 0, . . . , M − 1
+
+(3)
+
+j=0
+
+where for all i = 0, . . . , M − 1 and j = 0, . . . , M − 1
+m−1
+
+(−1)ni,k nj,k .
+
+hi,j =
+
+(4)
+
+k=0
+
+Because n0,k = 0 for k = 0, . . . , m − 1, setting i = 0 in
+(3)–(4) shows that the ﬁrst HT vector
+˜
+x0 =
+
+1
+M
+
+M−1
+
+xj
+
+(5)
+
+j=0
+
+can be interpreted as the uniformly weighted mean of the
+alphabet. This is a property that the HT shares with, e.g., the
+discrete Fourier transform.
+The inverse transform is identical to the forward transform,
+apart from a scale factor:
+M−1
+
+˜
+xi hi,j ,
+
+xj =
+
+j = 0, . . . , M − 1.
+
+(6)
+
+i=0
+
+III. BICM
+
+AT LOW
+
+SNR
+
+A. Mutual Information
+The mutual information (MI) in bits per channel use between the random vectors X and Y is deﬁned as
+pY |X (Y |X)
+IX (X; Y ) E log2
+,
+(7)
+pY (Y )
+
+m−1
+
+Pi =
+
+Φ−1
+
+Cm−1
+
+pdf is given by
+pY |X (y|x) =
+
+L0
+···
+
+information bits
+
+···
+
+C0
+encoder(s)
++
+interleaver(s)
+
+(2)
+
+k=0
+
+2
+
+where the expectation is taken over the joint pdf pX,Y (x, y),
+and pY |X (y|x) is given by (1).
+The conditional MI is deﬁned as the MI between X and
+Y conditioned on the value of the kth bit at the input of the
+modulator, i.e.,
+pY |X,Ck (Y |X, u)
+, (8)
+IX|Ck =u (X; Y ) E log2
+pY |Ck (Y |u)
+
+C. Low-SNR parameters for Nonuniform Distributions
+Theorem 1 can be generalized to arbitrary constellations
+[X, P] as follows.
+Theorem 2: For a constellation [X, P], the low-SNR parameters are
+M−1
+
+where the expectation is taken over the conditional joint pdf
+pX,Y |Ck (x, y|u).
+Deﬁnition 3 (BICM Generalized MI): The BICM Generalized Mutual Information (BICM-GMI) is deﬁned as [2], [12],
+[13], [20], [21]
+mIX (X; Y ) −
+
+Pi xi
+
+Es =
+α=
+
+log2 e
+Es
+
+PCk (u)IX|Ck =u (X; Y ).
+
+α=
+
+1
+M
+
+(11)
+
+m−1
+
+i=0
+
+i=0
+
+log2 e
+M 2 Es
+
+˜
+xi 2 ,
+
+m−1
+
+(−1)ni,k xi
+k=0
+
+i=0
+
+˜
+x0 =
+
+2
+
+M−1
+
+=
+
+log2 e
+Es
+
+m−1
+
+˜
+x2k
+
+2
+
+(15)
+
+In what follows, we derive necessary and sufﬁcient conditions for a BICM system, with an arbitrary input alphabet and
+probability distribution, to achieve the SL. The proofs for the
+next two theorems, which are omitted due to space limitations,
+rely on a linear transform introduced in [19]. We refer the
+reader to [22] for them.
+Theorem 3 ([22, Theorem 9]): The constellation [X, P] is
+˜
+FOO if and only if the HT X of X satisﬁes both the following
+conditions:
+
+(10)
+
+=
+
+PCk (¯ i,k )
+n
+.
+PCk (nj,k )
+
+A. FOO Constellations for Nonuniform Distributions
+
+M−1
+2
+
+(−1)ni,k +nj,k
+
+Having characterized the low-SNR behavior of the BICMGMI of an arbitrary constellation, the next step is to search for
+optimal constellations in terms of the BICM-GMI at low SNR.
+The following deﬁnition formally deﬁnes BICM systems that
+achieve the SL.
+Deﬁnition 5 (FOO constellation): The constellation [X, P]
+is said to be ﬁrst-order optimal (FOO) if a BICM system using
+[X, P] achieves the SL −1.59 dB, i.e., α = log2 e.
+
+M−1
+
+xi
+
+j=0
+
+i=0
+
+IV. FOO C ONSTELLATIONS FOR BICM
+
+B. Low-SNR parameters for Uniform Distributions
+The low-SNR parameters [µ, Es , α] have been analyzed in
+detail for arbitrary input alphabets X under the assumption of
+uniform probabilities [15]. Under this assumption, they can be
+˜
+expressed as functions of the HT of the alphabet X as shown
+in the following theorem.
+Theorem 1: For a constellation [X, Um ], the low-SNR parameters are
+
+Es =
+
+Pj xi , xj
+
+Pi
+
+Proof: Expressions (13) and (14) follow from Deﬁnition
+4, while (15) can be obtained using [15, Theorem 10] plus
+some algebra. For a detailed proof, we refer the reader to [22,
+Theorem 6].
+Theorem 2 shows that the low-SNR parameters depend on
+the input alphabet X, the binary labeling (via ni,k in the
+expression for α), and the input distribution (via PCk (u) and
+Pi ).
+
+EX [X]
+
+˜
+xi = x0 ,
+
+M−1
+
+M−1
+
+k=0
+
+EX [ X 2 ]
+I (snr)
+α
+lim
+.
++
+snr
+snr→0
+It can be shown that for asymptotically low SNR, i.e., in the
+wideband regime, the average received bit energy needed for
+reliable transmission is lower-bounded by Eb /N0 ≥ 1/α ≥
+loge 2, where the bound loge 2 corresponds to the SL −1.59
+dB.
+
+i=0
+M−1
+
+(14)
+
+m−1
+
+Es
+
+1
+M
+
+,
+
+·
+
+(9)
+Martinez et al. [21] recognized the BICM decoder in Fig. 1
+as a mismatched decoder and showed that the BICM-GMI in
+(9) corresponds to an achievable rate of such a decoder. This
+means that reliable transmission using a BICM system at rate
+Rc is possible if Rc < I (snr).
+Deﬁnition 4 (Low-SNR parameters): The low-SNR parameters of a constellation [X, P] are deﬁned as [µ, Es , α], where
+
+µ=
+
+2
+
+i=0
+
+k=0 u∈B
+
+µ
+
+(13)
+
+i=0
+M−1
+
+m−1
+
+I (snr)
+
+Pi xi ,
+
+µ=
+
+˜
+x2k (PCk (1) − PCk (0))
+
+(16)
+
+k=0
+
+.
+
+˜
+xj = 0,
+
+∀j ∈ {0} ∪ {1, 2, 4, . . . , M/2}.
+/
+
+(17)
+
+k=0
+
+(12)
+Proof: The expressions in (10) are obtained from Deﬁnition 4 and (5), the ones in (11) from from Deﬁnition 4 and
+[15, eq. (16)], and the ones in (12) from [15, eq. (50)] and
+[15, Theorem 11].
+
+Note that only (16) depends on the input distribution, not
+(17). In view of [15, Theorem 12], the only difference between
+FOO constellations with uniform and nonuniform distributions
+˜
+lie in x0 . The ﬁnal theorem gives this statement a more
+intuitive interpretation.
+
+3
+
+1
+
+1
+0.9
+
+3
+
+0.8
+
+0.9
+
+4
+
+6
+
+2.5
+
+0.8
+
+4
+
+6
+
+3
+
+0.7
+
+0.6 1
+
+2
+
+0.5
+
+2
+
+5 0.6
+
+7
+
+0
+7
+
+0
+
+5
+
+0
+
+0.4
+
+0.4
+0.3 −1
+
+0.3
+
+1
+
+3
+
+0.2
+0.1
+
+1
+
+3
+
+0.1
+−3
+
+−2
+
+−1
+
+0
+
+1
+
+2
+
+3
+
+(18)
+∀j ∈ {0} ∪ {1, 2, 4, . . . , M/2}.
+/
+
+(19)
+
+1 The
+
+µ
+
+0.5
+
+−1 1
+2 0
+
+0
+−2
+
+µ=
+
+0
+
+2
+4
+Eb /N0 [dB]
+
+6
+
+8
+
+1 + 2 (PC1 (0) − PC0 (0) − PC2 (0))
+2 (PC0 (0) − PC2 (0))
+
+T
+
+.
+
+(21)
+
+For certain distributions, the mean (21) is zero. Speciﬁcally,
+µ = 0 if and only if
+PC0 (0) = PC2 (0) = PC1 (0)/2 + 1/4.
+
+(22)
+
+Clearly, the uniform case (PC0 (0) = PC1 (0) = PC2 (0) =
+1/2) analyzed in [15] fulﬁlls (22). When any other set of
+bit probabilities fulﬁlling (22) is used, the resulting constellation will be FOO. This is the case for instance if
+[PC0 (0), PC1 (0), PC2 (0)] = [0.3, 0.1, 0.3] which induces via
+(2) an input distribution denoted by P1 . The obtained constellation [XOTTO , P1 ] is illustrated in Fig. 2 with ﬁlled
+circles, where the area of the circles is proportional to the
+corresponding symbol probabilities.
+Input distributions do not generally fulﬁll (22). For example, the set of probabilities [PC0 (0), PC1 (0), PC2 (0)] =
+[0.2, 0.3, 0.8] gives an input distribution P2 for which the mean
+(21) is µ = [−0.4, −1.2]. We deﬁne a new alphabet XOTTO
+by subtracting µ from each element in XOTTO . The translated
+constellation [XOTTO , P2 ], shown in Fig. 2, is a zero-mean
+projected hypercube and thus FOO according to Theorem 4.
+In Fig. 3, we show the BICM-GMI for the zero-mean
+constellations [XOTTO , P1 ] and [XOTTO , P2 ] in Fig. 2 as well
+as for the constellation [XOTTO , U3 ] in [15, Fig. 4 (a)]. As
+expected, all the MI curves converge at the SL for low SNR.
+
+B. Numerical Examples
+In this section we give numerical examples to illustrate the
+analytical results presented in this paper.
+Example 1: Consider the alphabet shown in [15, Fig. 4 (a)],
+here called OTTO (one-three-three-one), which corresponds to
+a projected hypercube. This alphabet is
+1 −3 −1 1 3
+−2 0 −2 2 0
+
+CAW
+[XOTTO , U3 ]
+[XOTTO , P1 ]
+[XOTTO , P2 ]
+
+The constellation [XOTTO , U3 ] was shown to be FOO in [15,
+Example 4].
+In this example, we are interested in the ﬁrst-order behavior
+of the constellation [XOTTO , P] for different P. In view of
+Theorem 4, this constellation will be FOO if it has zero mean.
+Using (20) and (2) in (13), we ﬁnd (after some algebra) that
+
+Based on [15, Theorem 12], the result in Theorem 4 can
+be understood as follows. If a constellation with a uniform
+input distribution is FOO, it will still be FOO for any other
+input distribution PC0 (0), . . . , PCm−1 (0) provided that the
+input alphabet is translated to be zero mean. The result in
+Theorem 4 also states that a constellation is FOO if and only
+if its input alphabet is a linear projection of a hypercube and
+it has zero mean. This behavior is illustrated in Example 1
+and also in [15, Fig. 4].
+We also note that the zero-mean condition in Theorem 4
+is the same that guarantees FOO for the coded modulation
+MI (CM-MI) [15, Footnote 12]1 . This implies that the only
+difference between FOO constellations for the CM-MI and the
+BICM-GMI lies on the extra constraint on the input alphabet
+to be a linear projection of a hypercube.
+
+−1
+0
+
+1
+
+Fig. 3. BICM-GMI for the two FOO constellations in Fig. 2. The BICMGMI for the constellation [XOTTO , U3 ] in [15, Fig. 4 (a)] and the AWGN
+capacity CAW = log2 (1 + Es /N0 ) are shown for comparison. The SL is
+shown with a white circle.
+
+Theorem 4 ([22, Theorem 10]): The constellation [X, P] is
+FOO if and only if both the following conditions hold:
+
+XOTTO =
+
+1.5
+
+0
+
+Fig. 2. Constellations [XOTTO , P1 ] (ﬁlled circles) and [XOTTO , P2 ] (empty
+circles). Since both constellation are zero mean, they are FOO. The area of
+the circles is proportional to the corresponding symbol probabilities. Lines
+join symbols whose labels differ in one bit only.
+
+µ=0
+˜
+xj = 0,
+
+2
+
+0.2
+
+−2
+
+0
+
+0.5
+
+Rc [bit/symbol]
+
+2
+
+0.7
+
+T
+
+. (20)
+
+parameter α for the CM-MI is [15, Theorem 7] α = log2 e(1 −
+s ).
+
+2 /E
+
+4
+
+1
+
+CAW
+[XPAM , U3 ]
+[XPAM , U3 ]
+p = 0.3
+p = 0.2
+p = 0.1
+p = 0.05
+p = 0.01
+
+0.9
+2.5
+
+0.6
+0.5
+0.4
+0.3
+
+Rc [bit/symbol]
+
+0.8
+0.7
+
+the whole input alphabet. Both sets can be fully characterized
+as the set of linear projections of a hypercube, translated to
+have zero mean for the considered input distribution. It is
+impossible to make non-FOO constellations for BICM FOO
+by probabilistic shaping, except in degenerate cases (by setting
+some probabilities equal to zero).
+
+3
+
+2
+1.5
+
+R EFERENCES
+[1] E. Zehavi, “8-PSK trellis codes for a Rayleigh channel,” IEEE Trans.
+Commun., vol. 40, no. 3, pp. 873–884, May 1992.
+[2] G. Caire, G. Taricco, and E. Biglieri, “Bit-interleaved coded modulation,” IEEE Trans. Inf. Theory, vol. 44, no. 3, pp. 927–946, May 1998.
+[3] A. Guill´ n i F` bregas, A. Martinez, and G. Caire, “Bit-interleaved
+e
+a
+coded modulation,” Foundations and Trends in Communications and
+Information Theory, vol. 5, no. 1–2, pp. 1–153, 2008.
+[4] A. R. Calderbank and L. H. Ozarow, “Nonequiprobable signaling on the
+Gaussian channel,” IEEE Trans. Inf. Theory, vol. 36, no. 4, pp. 726–740,
+July 1990.
+[5] R. F. H. Fischer, Precoding and Signal Shaping for Digital Transmission.
+John Wiley & Sons, 2002.
+[6] D. Sommer and G. P. Fettweis, “Signal shaping by non-uniform QAM
+for AWGN channels and applications using turbo coding,” in International ITG Conference on Source and Channel Coding (SCC), Munich,
+Germany, Jan. 2000.
+[7] S. Y. Le Goff, “Signal constellations for bit-interleaved coded modulation,” IEEE Trans. Inf. Theory, vol. 49, no. 1, pp. 307–313, Jan. 2003.
+[8] M. Barsoum, C. Jones, and M. Fitz, “Constellation design via capacity
+maximization,” in IEEE International Symposium on Information Theory
+(ISIT), Nice, France, June 2007.
+[9] A. Guill´ n i F` bregas and A. Martinez, “Bit-interleaved coded mode
+a
+ulation with shaping,” in IEEE Information Theory Workshop (ITW),
+Dublin, Ireland, Aug.–Sep. 2010.
+[10] S. Verd´ , “Spectral efﬁciency in the wideband regime,” IEEE Trans. Inf.
+u
+Theory, vol. 48, no. 6, pp. 1319–1343, June 2002.
+[11] V. V. Prelov and S. Verd´ , “Second-order asymptotics of mutual inforu
+mation,” IEEE Trans. Inf. Theory, vol. 50, no. 8, pp. 1567–1580, Aug.
+2004.
+[12] A. Martinez, A. Guill´ n i F` bregas, and G. Caire, “Bit-interleaved coded
+e
+a
+modulation in the wideband regime,” IEEE Trans. Inf. Theory, vol. 54,
+no. 12, pp. 5447–5455, Dec. 2008.
+[13] C. Stierstorfer and R. F. H. Fischer, “Asymptotically optimal mappings
+for BICM with M -PAM and M 2 -QAM,” IET Electronics Letters,
+vol. 45, no. 3, pp. 173–174, Jan. 2009.
+[14] ——, “Mappings for BICM in UWB scenarios,” in International ITG
+Conference on Source and Channel Coding (SCC), Ulm, Germany, Jan.
+2008.
+[15] E. Agrell and A. Alvarado, “Optimal alphabets and binary labelings
+for BICM at low SNR,” IEEE Trans. Inf. Theory, vol. 57, no. 10, pp.
+6650–6672, Oct. 2011.
+[16] D. Raphaeli and A. Gurevitz, “Constellation shaping for pragmatic
+turbo-coded modulation with high spectral efﬁciency,” IEEE Trans.
+Commun., vol. 52, no. 3, pp. 341–345, Mar. 2004.
+[17] S. Y. Le Goff, B. S. Sharif, and S. A. Jimaa, “Bit-interleaved turbocoded modulation using shaping coding,” IEEE Commun. Lett., vol. 9,
+no. 3, pp. 246–248, Mar. 2005.
+[18] S. Y. Le Goff, B. K. Khoo, C. C. Tsimenidis, and B. S. Sharif,
+“Constellation shaping for bandwidth-efﬁcient turbo-coded modulation
+with iterative receiver,” IEEE Trans. Wireless Commun., vol. 6, no. 6,
+pp. 2223–2233, June 2007.
+[19] E. Agrell and A. Alvarado, “First-order asymptotics of the BICM mutual
+information: Uniform vs. nonuniform distributions,” in Information
+Theory and Applications Workshop (ITA), San Diego, CA, Feb. 2012.
+[20] T. T. Nguyen and L. Lampe, “Bit-interleaved coded modulation with
+mismatched decoding metrics,” IEEE Trans. Commun., vol. 59, no. 2,
+pp. 437–447, Feb. 2011.
+[21] A. Martinez, A. Guill´ n i F` bregas, and G. Caire, “Bit-interleaved coded
+e
+a
+modulation revisited: A mismatched decoding perspective,” IEEE Trans.
+Inf. Theory, vol. 55, no. 6, pp. 2756–2765, June 2009.
+[22] E. Agrell and A. Alvarado, “Signal shaping for BICM at low SNR,”
+[Online]. Available: http://arxiv.org, Feb. 2012.
+
+1
+0.5
+
+0.2
+0.1
+0
+
+0
+−2
+
+0
+
+2
+
+4
+6
+Eb /N0 [dB]
+
+8
+
+10
+
+12
+
+Fig. 4. The BICM-GMI for a Gray-labeled 8-PAM alphabet XPAM with
+uniform input distribution and bit probabilities [PC0 (0), PC1 (0), PC2 (0)] =
+[0.5, p, p] for different values of p. The constellations approach a binary FOO
+constellation as p → 0. The NBC-labeled 8-PAM constellation [XPAM , U3 ],
+although FOO, is considerably weaker than XPAM for a wide range of SNRs.
+
+The exempliﬁed method holds in full generality: Any alphabet that is FOO with a uniform input distribution is FOO also
+with an arbitrary nonuniform distribution, if it is translated to
+zero mean. Furthermore, all nonuniform FOO constellations
+can be constructed in this manner.
+Example 2: M -ary pulse amplitude modulation (PAM) alphabets have been shown to be FOO if the NBC is used with
+a uniform input distribution, i.e, the constellation [XPAM , Um ]
+with XPAM = [−(M − 1), −(M − 3), . . . , M − 1] is FOO
+[13] [15, Theorem 14]. In this example, we study the ﬁrstorder behavior of the Gray-labeled 8-PAM alphabet XPAM =
+[−7, 7, −1, 1, −5, 5, −3, 3]. The constellation [XPAM , P] is
+known not to be FOO for U3 [12, Theorem 3].
+The BICM-GMI of XPAM is shown in Fig. 4 for the set
+of bit probabilities [PC0 (0), PC1 (0), PC2 (0)] = [0.5, p, p] for
+different values of p. For p = 0.5, the uniform distribution
+is obtained. As p decreases, the Gray-coded constellation
+approaches a zero-mean binary alphabet, which is FOO [9,
+Fig. 2] [15, Fig. 3(b)]. The results in Fig. 4 show the tradeoff
+between the low- and high-SNR regimes: The SL can be
+approached by decreasing p, but this causes a decrease in MI
+in the high-SNR regime. Alternatively, the SL can be attained
+by switching from the Gray code to the NBC, but this also
+comes with a heavy penalty at higher SNRs.
+V. C ONCLUSIONS
+We have characterized BICM systems that attain the SL
+−1.59 dB at asymptotically low SNR, i.e., FOO constellations.
+Somewhat disappointingly, the set of probabilistically shaped
+FOO constellation is no larger than the set of FOO constellations with uniform distributions, disregarding translations of
+
+5
+
+
