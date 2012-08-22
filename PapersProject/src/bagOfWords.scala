@@ -154,18 +154,25 @@ trait bagOfWords {
 			//Computation might take some time
 			//temporary while getting "scalala" to work:
 			val scalarProduct = new Array[Array[Double]](datasetSize,datasetSize)
+			val cosineSimilarity = new Array[Array[Double]](datasetSize,datasetSize)
 			//transpose array to perform row Array operations instead of column based operations
 			val tfidfTranspose = tfidfArray.transpose
+			
+			val normalisationTerm = 1
 			println("Computing scalar product array")
 			for (i <- 0 to datasetSize -1){
 				//println(i)
 				for (j <- 0 to datasetSize -1){
+				  val firstNorm = math.sqrt()math.pow(tfidfTranspose(i), 2)
 					if(i!=j){
-						//Here operations take cost of length O(dictionary length)       
+						//Here operations take cost of length O(dictionary length)
+						//compute cosine similarity
 						scalarProduct(i)(j) = dotProduct(tfidfTranspose(i), tfidfTranspose(j))
+						cosineSimilarity(i)(j) = scalarProduct(i)(j)/normalisationTerm
 					}else{
 						//does not mean anything
 						scalarProduct(i)(j) = 0
+						cosineSimilarity(i)(j) = 0
 					}
 				}
 			}

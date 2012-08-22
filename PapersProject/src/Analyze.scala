@@ -43,11 +43,11 @@ class Analyzer extends Object with LoadPaper
     // Mix in the schedule XML data
     val xmlPapers : List[Paper] = getXMLSchedule(paperPos, papers)
 
+    //Compare papers with bagOfWords
     // Compare the papers individually using bagOfWords
     val comparedPapers : List[Paper] = compareBoW(xmlPapers, limit)
     
-    //Compare papers with bagOfWords
-    
+   
    // val comparedPapers2 : List[Paper] = bagOfWords(...)
     // Extend papers with tertiary data
     val extendedPapers : List[Paper] = extend(comparedPapers, sources) 
