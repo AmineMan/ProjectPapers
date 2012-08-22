@@ -14,6 +14,7 @@ import scalala.tensor.dense.DenseMatrix
 
 
 
+
 trait bagOfWords {
 
 
@@ -163,12 +164,14 @@ trait bagOfWords {
 			for (i <- 0 to datasetSize -1){
 				//println(i)
 				for (j <- 0 to datasetSize -1){
-				  val firstNorm = math.sqrt()math.pow(tfidfTranspose(i), 2)
+				  //May induce some computational time
+				  val normVectorI = math.sqrt(math.pow(tfidfTranspose(i).toList.reduceLeft(_+_), 2))
+				  val normVectorJ = math.sqrt(math.pow(tfidfTranspose(j).toList.reduceLeft(_+_), 2))
 					if(i!=j){
 						//Here operations take cost of length O(dictionary length)
 						//compute cosine similarity
 						scalarProduct(i)(j) = dotProduct(tfidfTranspose(i), tfidfTranspose(j))
-						cosineSimilarity(i)(j) = scalarProduct(i)(j)/normalisationTerm
+						cosineSimilarity(i)(j) = scalarProduct(i)(j)/normVectorI*normVectorJ
 					}else{
 						//does not mean anything
 						scalarProduct(i)(j) = 0
