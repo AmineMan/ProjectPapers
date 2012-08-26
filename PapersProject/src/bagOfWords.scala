@@ -153,6 +153,13 @@ trait bagOfWords {
 			//once we have the scores we can compute the absolute distance between papers and classify them
 			//This is performed computing a scalar product on the score vectors for every document
 			//Computation might take some time
+		
+			
+			//COMPUTATION OF SVD - need to get data as a vector... // compute new method instead of bagOfWords call it
+			//bagOfWordsLSI
+			//val tfidfMatrix = new scalala.tensor.dense.DenseMatrix[Double](dictionary.length,datasetSize,vectz)
+			//scalala.library.LinearAlgebra.svd(tfidfMatrix) 
+			
 			//temporary while getting "scalala" to work:
 			val scalarProduct = new Array[Array[Double]](datasetSize,datasetSize)
 			val cosineSimilarity = new Array[Array[Double]](datasetSize,datasetSize)
@@ -350,8 +357,8 @@ println("the number of distinct words in text 6 is: " + countsList(5).length)
 		(for ((a, b) <- as zip bs) yield a * b) sum
 	}
 
-	//replace all characters of a string except for a-z or A-Z and 0-9 and finally _: 
-	def clean(in : String) =  if (in == null) "" else in.replaceAll("[^a-zA-Z0-9_]", " ")
+	//replace all characters of a string except for a-z or A-Z (replacing numbers) and finally _: 
+	def clean(in : String) =  if (in == null) "" else in.replaceAll("[^a-zA-Z_]", " ")
 
 }
 
