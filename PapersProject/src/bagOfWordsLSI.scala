@@ -6,20 +6,25 @@
  * 
  * 
  */
-import scalala.tensor.dense.DenseMatrix._
-import scalala.operators.OpMulRowVectorBy$
+
+
+import breeze.linalg.DenseMatrix
+import scala.collection.Iterable$
+import breeze.linalg.DenseVector
 import scalala._
-import org.netlib._
+
+
+
 
 object bagOfWordsLSI {
 
-  
-  def main(args : Array[String]): Unit = {
-    val directory : java.io.File = new java.io.File("PapersDataset/")
-    val mat = createTDMatrix(directory)
 
-  }
-  
+	def main(args : Array[String]): Unit = {
+			val directory : java.io.File = new java.io.File("PapersDataset/")
+	val mat = createTDMatrix(directory)
+
+	}
+
 	//Methods to compute the term-document matrix 
 	def tf(term: String, document: Int, counts: Array[Map[java.lang.String,Int]]): Double = {
 			val keyValue = counts(document).values
@@ -57,7 +62,7 @@ object bagOfWordsLSI {
 	}
 
 	//Creating the matrix:
-	def createTDMatrix(directory: java.io.File): scalala.tensor.dense.DenseMatrix[Double] = {
+	def createTDMatrix(directory: java.io.File): DenseMatrix[Double] = {
 
 			val filesList = new java.io.File(directory.toString).listFiles.filter(_.getName.endsWith(".txt"))
 
@@ -115,7 +120,7 @@ object bagOfWordsLSI {
 					//construct it as a vector to convert it as a Matrix
 					val tfidfVector = new Array[Double](dictionary.length*datasetSize)
 					var j = 0 
-					
+
 					println("Computing tfidf vector... with a dictionary of length " + dictionary.length + " and wait up to " + dictionary.length*datasetSize)
 			for (i <- 0 to dictionary.length*datasetSize-1){
 				println(i)
@@ -127,45 +132,49 @@ object bagOfWordsLSI {
 
 				tfidfVector(i) = tfidf(dictionary(i%dictionary.length),j,datasetSize,counts)							
 			}
-	
-	println("Computing tfidf vector: Complete...")
 
-	val termDocMatrix = new scalala.tensor.dense.DenseMatrix[Double](dictionary.length,datasetSize,tfidfVector)
-	
-	//once having the termDocMatrix, compute the SVD and then compute cosine similarity on the new matrix:
-	
-	val (r,s,d) = scalala.library.LinearAlgebra.svd(termDocMatrix)
-	
-	val k = 200
-	//temporary keep all singular values greater than mean:	
-	val keptValues = s.findAll(_>s.mean)
-	val so = s(keptValues)
-	
-	println("the decomposition of so gives: ... " + so)
-	//compute cosine similarity:
-	//val similarityMatrix = DenseMatrix.zeros[Double](datasetSize,datasetSize)
+			println("Computing tfidf vector: Complete...")
 
-	//not optimal version:
-	for (i <- 0 to datasetSize-1){
-	  for (j <- 0 to datasetSize-1){
-	    //Compute scalar product between two matrices
-	    val firstColumn = termDocMatrix(0 to datasetSize-1,i)
-	    val secondColumn =  termDocMatrix(0 to datasetSize-1,j)
-	   // similarityMatrix(i,j) = firstColumn.dot(secondColumn)	 
-	    //Compute 2nd norm and output cosine similarity
-	    val firstColumnNorm = firstColumn.norm(2)
-	    val secondColumnNorm = secondColumn.norm(2)
-	    
-	    //similarityMatrix(i,j) = similarityMatrix(i,j)/(firstColumnNorm*secondColumnNorm)
-	    
-	  }
+			val termDocMatrix = new DenseMatrix[Double](dictionary.length,datasetSize,tfidfVector)
+
+			//once having the termDocMatrix, compute the SVD and then compute cosine similarity on the new matrix:
+
+			//val (r,s,d) = scalala.library.LinearAlgebra.svd(termDocMatrix)
+			val (w,s,d) = breeze.linalg.svd(termDocMatrix)
+
+			//test with half the length of the vector
+			val indices = findKMax(s, scala.math.round((s.length/2)))
+			//temporary keep all singular values greater than mean:	
+			//val a = s.
+
+			val keptValues = s(indices)
+			//val so = s(keptValues)
+	// Recompose the matrix...
+			//println("the decomposition of so gives: ... " + so)
+			//compute cosine similarity:
+			val similarityMatrix = DenseMatrix.zeros[Double](datasetSize,datasetSize)
+
+			//not optimal version:
+			for (i <- 0 to datasetSize-1){
+				for (j <- 0 to datasetSize-1){
+					//Compute scalar product between two matrices
+					val firstColumn = termDocMatrix(0 to datasetSize-1,i)
+							val secondColumn =  termDocMatrix(0 to datasetSize-1,j)
+							similarityMatrix(i,j) = firstColumn.dot(secondColumn)	 
+							//Compute 2nd norm and output cosine similarity
+							val firstColumnNorm = firstColumn.norm(2)
+							val secondColumnNorm = secondColumn.norm(2)
+
+							similarityMatrix(i,j) = similarityMatrix(i,j)/(firstColumnNorm*secondColumnNorm)
+
+				}
+			}
+
+
+			//test return
+			//return similarityMatrix
+			return termDocMatrix
 	}
-	 
-	
-	//test return
-	//return similarityMatrix
-return termDocMatrix
-}
 
 	/*
 def getScores(matrixOfScores: DenseMatrix[Double], column: Int): List[Double] ={
@@ -175,8 +184,22 @@ def getScores(matrixOfScores: DenseMatrix[Double], column: Int): List[Double] ={
 		//	  return matrixOfScoresTranspose(column).toList
 
 }
-*/
+	 */
 
-def clean(in : String) =  if (in == null) "" else in.replaceAll("[^a-zA-Z_]", " ")
+	def clean(in : String) =  if (in == null) "" else in.replaceAll("[^a-zA-Z_]", " ")
+
+			//computing find method to return the k largest elements of a vector
+			def findKMax(inputVector: DenseVector[Double], k: Int): List[Int]= {
+
+			var listOfIndex = List[Int]()
+					//temporary solution
+					for (i <- 1 to k){
+						val maxofVec = inputVector.argmax
+								listOfIndex:::List(maxofVec)
+					}
+
+			return listOfIndex
+	}
 
 }
+
