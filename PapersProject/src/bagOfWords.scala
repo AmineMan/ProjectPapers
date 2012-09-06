@@ -358,7 +358,11 @@ println("the number of distinct words in text 6 is: " + countsList(5).length)
 	}
 
 	//replace all characters of a string except for a-z or A-Z (replacing numbers) and finally _: 
-	def clean(in : String) =  if (in == null) "" else in.replaceAll("[^a-zA-Z_]", " ")
+	def clean(in : String) = { if (in == null) "" else in.replaceAll("[^a-zA-Z_]", " ")
+	  //for (word <- in){}
+      // words += word.toLowerCase
+	}
+	
 
 }
 
