@@ -89,7 +89,8 @@ trait bagOfWords {
 					//Initialisation of arrays
 					//Array storing the different sources and the different texts
 					val source = new Array[scala.io.BufferedSource](filesList.length)
-					val text = new Array[java.lang.String](filesList.length)
+					//we will be changing the content of text -> create it as variable
+					var text = new Array[java.lang.String](filesList.length)
 
 					val occurences = new Array[Map[java.lang.String,Array[java.lang.String]]](filesList.length)
 					//now we want to have a map between words and the number of occurences
@@ -105,16 +106,26 @@ trait bagOfWords {
 					for (k <- 0 to filesList.length-1){
 
 						source(k) = scala.io.Source.fromFile(filesList(k))
+						
 								text(k) = source(k).mkString
 								//leave out unecessary characters from the analysis
 								text(k) = clean(text(k))
+								
 								source(k).close ()
-
-								occurences(k) = text(k).split("\\s+").groupBy(x=>x)
-
+								val words = text(k).split("\\s+")
+								var stemmedWords = new Array[java.lang.String](words.length)
+								var counter = 0
+								
+								//Using stemmer for every text:
+								words foreach{e => 
+								  stemmedWords(counter) = breeze.text.analyze.PorterStemmer.apply(e) 
+								  counter += 1
+								  }
+								
+								occurences(k) = stemmedWords.groupBy(x=>x)
 								// create a map of the keys of the text with their occurences
 								counts(k) = occurences(k).mapValues(x=>x.length)
-//println(counts(k))
+
 								//only working with keys for now, creating a list of keys for every text:
 								countsList(k) = counts(k).keys.toList
 
@@ -132,7 +143,10 @@ trait bagOfWords {
 			//find unique words in texts:
 
 			//val texts = textsList.flatten
-			val textsLength = textsList.length
+			var newtextsList = List[java.lang.String]()
+					textsList foreach {e => val a = breeze.text.analyze.PorterStemmer.apply(e) 
+					newtextsList = newtextsList ::: List(a)}
+			val textsLength = newtextsList.length
 
 					val dictionary = textsList.removeDuplicates.sort(_<_)
 					//println(dictionary)
@@ -313,11 +327,11 @@ println("the number of distinct words in text 6 is: " + countsList(5).length)
 	def tf(term: String, document: Int, counts: Array[Map[java.lang.String,Int]]): Double = {
 			val keyValue = counts(document).values
 			val normalisationTerm = keyValue.max
-//test without normalisation	
+					//Using normalization term (can disable)
 					if (counts(document).contains(term)){
 						val freq = counts(document)(term)
 						val normalizedFreq = freq/normalisationTerm					
-					return freq				
+					return normalizedFreq				
 					}else{					 
 					return 0.0
 					}
@@ -338,7 +352,7 @@ println("the number of distinct words in text 6 is: " + countsList(5).length)
 									appearances += 1
 								}
 					}	
-			return math.log(datasetSize/appearances)
+			return math.log(datasetSize/(1+appearances))
 	}
 
 	def tfidf(term:String, document: Int, datasetSize : Int, counts: Array[Map[java.lang.String,Int]]) : Double = {
@@ -358,9 +372,7 @@ println("the number of distinct words in text 6 is: " + countsList(5).length)
 	}
 
 	//replace all characters of a string except for a-z or A-Z (replacing numbers) and finally _: 
-	def clean(in : String) = { if (in == null) "" else in.replaceAll("[^a-zA-Z_]", " ")
-	  //for (word <- in){}
-      // words += word.toLowerCase
+	def clean(in : String) = { if (in == null) "" else in.replaceAll("[^a-zA-Z_]", " ").toLowerCase
 	}
 	
 
