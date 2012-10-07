@@ -84,7 +84,7 @@ trait bagOfWords {
 
 			val filesList = new java.io.File(directory.toString).listFiles.filter(_.getName.endsWith(".txt"))
 
-					val datasetSize = filesList.length
+			val datasetSize = filesList.length
 
 					//Initialisation of arrays
 					//Array storing the different sources and the different texts
@@ -106,48 +106,40 @@ trait bagOfWords {
 					for (k <- 0 to filesList.length-1){
 
 						source(k) = scala.io.Source.fromFile(filesList(k))
-						
-								text(k) = source(k).mkString
-								//leave out unecessary characters from the analysis
-								text(k) = clean(text(k))
-								
-								source(k).close ()
-								val words = text(k).split("\\s+")
-								var stemmedWords = new Array[java.lang.String](words.length)
-								var counter = 0
-								
-								//Using stemmer for every text:
-								words foreach{e => 
-								  stemmedWords(counter) = breeze.text.analyze.PorterStemmer.apply(e) 
-								  counter += 1
-								  }
-								
-								occurences(k) = stemmedWords.groupBy(x=>x)
-								// create a map of the keys of the text with their occurences
-								counts(k) = occurences(k).mapValues(x=>x.length)
-
-								//only working with keys for now, creating a list of keys for every text:
-								countsList(k) = counts(k).keys.toList
-
-								if(k == 0){
-									textsList = countsList(k)
-								}else{
-									textsList = textsList ::: countsList(k)
-								}
-						
-						
+						text(k) = source(k).mkString
+						//leave out unecessary characters from the analysis
+						text(k) = clean(text(k))
+						//Splitting the string into words to add stemming to every single word
+						val splitString = text(k).split("\\s")
+						var stemmedString = new Array[java.lang.String](splitString.length)
+						var i = 0
+						splitString foreach {e=>
+			  								val a = breeze.text.analyze.PorterStemmer.apply(e)
+			  								//There is still a blank space at the beginning of string (does not affect output)
+			  								stemmedString(i) = stemmedString(i)+a
+			  								i+=1
+		  									}		
+						source(k).close()
+						occurences(k) = stemmedString.groupBy(x=>x)
+						// create a map of the keys of the text with their occurences
+						counts(k) = occurences(k).mapValues(x=>x.length)
+						//only working with keys for now, creating a list of keys for every text:
+						countsList(k) = counts(k).keys.toList
+						if(k == 0){
+							textsList = countsList(k)
+						}else{
+							textsList = textsList ::: countsList(k)
+						}						
 					}
 
-//println(counts.deep.mkString("\n"))
-			//building dictionary:
-			//find unique words in texts:
-
-			//val texts = textsList.flatten
-			var newtextsList = List[java.lang.String]()
+					//println(counts.deep.mkString("\n"))
+					//building dictionary:
+					//find unique words in texts:
+					//val texts = textsList.flatten
+					var newtextsList = List[java.lang.String]()
 					textsList foreach {e => val a = breeze.text.analyze.PorterStemmer.apply(e) 
 					newtextsList = newtextsList ::: List(a)}
-			val textsLength = newtextsList.length
-
+					val textsLength = newtextsList.length
 					val dictionary = textsList.removeDuplicates.sort(_<_)
 					//println(dictionary)
 
@@ -186,8 +178,8 @@ trait bagOfWords {
 				//println(i)
 				for (j <- 0 to datasetSize -1){
 				  //May induce some computational time
-				  val normVectorI = math.sqrt(math.pow(tfidfTranspose(i).toList.reduceLeft(_+_), 2))
-				  val normVectorJ = math.sqrt(math.pow(tfidfTranspose(j).toList.reduceLeft(_+_), 2))
+				  val normVectorI = math.sqrt(dotProduct(tfidfTranspose(i),tfidfTranspose(i)))
+				  val normVectorJ = math.sqrt(dotProduct(tfidfTranspose(j),tfidfTranspose(j)))
 					if(i!=j){
 						//Here operations take cost of length O(dictionary length)
 						//compute cosine similarity
@@ -398,73 +390,3 @@ println("the number of distinct words in text 6 is: " + countsList(5).length)
 //val sentence : java.lang.String = "This is a sentance about java"
 //println( "The string " + sentence +	" contains the word java:" + classifier.isMatch(sentence) );
 
-
-
-
-object WordReader {
-
-	//val rootDir = new File("/PapersDataset")
-	//if (!rootDir.exists) throw new IllegalArgumentException(rootDir + " does not exist")
-
-
-	///////////////////////////OTHER CODE//////////////////////////////////
-/*
-val rootDir = new File("/PapersDataset")
-if (!rootDir.exists) throw new IllegalArgumentException(rootDir + " does not exist")
-
-/** Iterates over all files under rootDir, opens each one and passes it to the function */
-def files(rootDir: File)(process: File => Unit) {
-  for (dir <- rootDir.listFiles; if dir.isDirectory) {
-    println("Processing" + dir)
-    for (file <- dir.listFiles; if file.isFile) {
-      process(file)
-    }
-  }
-}
-
-val t1 = System.currentTimeMillis
-var counts = Map.empty[String, Int].withDefaultValue(0)
-files(rootDir) { file => 
-  file.split("""\W+""").foreach{ word => counts = counts(word.toLowerCase) += 1 }
-}
-
-
-println("Writing counts in decreasing order")
-write(counts, "counts-descreasing-scala") {_._2 > _._2}
-
-println("Writing counts in alphabetical order")
-write(counts, "counts-alphabetical-scala") {_._1 < _._1}
-
-val t2 = System.currentTimeMillis
-println("Finished in " + ((t2 - t1)/1000.0) + " seconds");
-
-/** Writes the specified map to the specified file in tab-delimited format, sorted accordingly. */
-def write[K, V](map: Map[K, V], file: String)(sort: (Tuple2[K, V], Tuple2[K, V]) => Boolean) {
-  using (new PrintWriter(new FileWriter(file))) { out => 
-    map.toList.sort(sort).foreach { pair => out.println(pair._1 + "\t" + pair._2) }
-  }
-}
-
-/** Converts a File to a String. */
-implicit def file2String(file: File): String = {
-  val builder = new StringBuilder
-  using (new BufferedReader(new FileReader(file))) { reader => 
-    var line = reader.readLine
-    while (line != null) {
-      builder.append(line).append('\n')
-      line = reader.readLine
-    }
-  }
-  builder.toString
-}
- */
-
-	/** Performs some operation on the specified closeable object and then ensures it gets closed. */
-	//def using[Closeable <: {def close(): Unit}, B](closeable: Closeable)(getB: Closeable => B): B = 
-	//try {
-	// getB(closeable)
-	//} finally {
-	//closeable.close()
-	//}
-
-}
