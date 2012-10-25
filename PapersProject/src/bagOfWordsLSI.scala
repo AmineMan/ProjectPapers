@@ -20,6 +20,7 @@ import org.netlib.lapack.LAPACK
 import org.netlib.util.intW
 import breeze.linalg.support.{CanCopy}
 import Matrix._
+import java.io._
 
 object bagOfWordsLSI {
 
@@ -36,29 +37,33 @@ object bagOfWordsLSI {
 			//test without normalisation	
 			if (counts(document).contains(term)){
 				val freq = counts(document)(term)
-				val normalizedFreq = freq/normalisationTerm					
-				return freq				
+				val normalizedFreq = freq
+				///normalisationTerm					
+				return normalizedFreq				
 			}else{					 
 				return 0.0
 			}
 	}
 
 	//Computing IDF value
-	def idf(term: String, datasetSize : Int, counts: Array[Map[java.lang.String,Int]]): Double = {
-		//math.log(size / index.getDocCount(term))
-		// take the logarithm of the quotient of the number of documents by the documents where term t appears
-		var appearances = 0
-			for(i <- 0 to datasetSize-1){
-				if (counts(i).contains(term)){
-					appearances += 1
-				}
-			}				
-			//println(datasetSize,appearances)
-			//println(math.log(datasetSize/1+appearances))
-		return math.log(datasetSize/(appearances))
+	def idf(term: String, datasetSize : Double, counts: Array[Map[java.lang.String,Int]]): Double = {
+					//math.log(size / index.getDocCount(term))
+			// take the logarithm of the quotient of the number of documents by the documents where term t appears
+			var appearances = 0
+			//convert appearances to a float (to avoid errors)
+			appearances.toFloat
+			//println(counts.deep.mkString("\n"))
+			counts foreach {x => if (x.contains(term)){
+									appearances += 1
+									
+						   }
+			//println(term + " => appearances: " + appearances)
+			}
+			val a = math.log(datasetSize/appearances)  
+			return a
 	}
 
-	def tfidf(term:String, document: Int, datasetSize : Int, counts: Array[Map[java.lang.String,Int]]) : Double = {
+	def tfidf(term:String, document: Int, datasetSize : Double, counts: Array[Map[java.lang.String,Int]]) : Double = {
 		//Create tfidf matrix
 			//tfidf = tf*idf
 		val tfidf = tf(term,document,counts)*idf(term,datasetSize,counts)
@@ -70,6 +75,7 @@ object bagOfWordsLSI {
 	  
 		val filesList = new java.io.File(directory.toString).listFiles.filter(_.getName.endsWith(".txt"))
 		val datasetSize = filesList.length
+		datasetSize.toFloat
 		//Initialisation of arrays
 		//Array storing the different sources and the different texts
 		val source = new Array[scala.io.BufferedSource](filesList.length)
@@ -97,7 +103,7 @@ object bagOfWordsLSI {
 				splitString foreach {e=>
 		  							val a = breeze.text.analyze.PorterStemmer.apply(e)
 		  							//There is still a blank space at the beginning of string (does not affect output)
-		  							stemmedString(i) = stemmedString(i)+a
+		  							stemmedString(i) = a
 		  							i+=1
 		  							}
 					
@@ -119,12 +125,7 @@ object bagOfWordsLSI {
 			    // newCounts(k).+((a,e._2))}
 				//only working with keys for now, creating a list of keys for every text:
 				countsList(k) = counts(k).keys.toList		
-				//cleaning and stemming:
-				var newListKeys = List[java.lang.String]()
-				countsList(k) foreach{e=>
-				newListKeys = newListKeys:::List(clean(e))	
-				//println(newListKeys)
-									 }
+
 				
 				if(k == 0){
 				textsList = countsList(k)
@@ -160,19 +161,27 @@ object bagOfWordsLSI {
 //println(counts.flatten.contains(dictionary(i%dictionary.length)))
 //val asdas = counts.toList.flatten
 //println(asdas)
+
 			        tfidfVector(i) = tfidf(dictionary(i%dictionary.length),j,datasetSize,counts)			
 				}
 
 			println("Computing tfidf vector: Complete...")
 
 			val termDocMatrix = new breeze.linalg.DenseMatrix[Double](dictionary.length,datasetSize,tfidfVector)
+			println(termDocMatrix.toString)
 			println("done")
 			//once having the termDocMatrix, compute the SVD and then compute cosine similarity on the new matrix:
 
 
 			//SVD method returns simple arrays - need to convert them:
 			val (u,s,v) = svd(termDocMatrix)
-
+			/* println(u.deep.mkString("\n"))
+			println("end of u")
+			println(s.deep.mkString("\n"))
+			println("end of s")
+			println(v.deep.mkString("\n"))
+			println("end of v")
+*/
 			//converting w and d to 2 dimensional arrays:
 			var uo = reconstructArray(u,termDocMatrix.rows)
 			println(uo.length + " " + uo.transpose.length)
@@ -198,14 +207,31 @@ object bagOfWordsLSI {
 			//need to make a local copy of s:
 			//val so = copy(s)
 			val indices = findKMax(s, scala.math.round((s.length/2)),emptyList)
-
+			
 			println("computed k maximal values")
 			println(indices)
 			//select values of the indices in the given array s:
 			val emptyArray = new Array[Array[Double]](0)
 			val keptValues = selectElementsOf2dimArray(so,indices,emptyArray)
-			println("separation")
+			var newKeptValues = new Array[Array[Double]](keptValues.length,keptValues.length)
+			var arrayCounter = 0 
 			println(keptValues.deep.mkString("\n"))
+			//keptValues.transpose foreach { x=> arrayCounter match{
+			  //case y if arrayCounter < indices.length  => newKeptValues(arrayCounter) = x
+			  //case y if arrayCounter >= indices.length => x	
+			  //arrayCounter += 1
+			//}
+			val keptVTr = keptValues.transpose
+			keptVTr foreach{e =>
+			if (arrayCounter <= indices.length-1){
+				newKeptValues(arrayCounter) = e
+				arrayCounter += 1
+			}else{
+			  Nil
+			}
+			  }
+			println("separation")
+			println(newKeptValues.deep.mkString("\n"))
 
 			//matrix multiplication: 
 			//keep the same values for the matrix multiplication: XO = UO*SO*VtO 
@@ -214,20 +240,37 @@ object bagOfWordsLSI {
 			var newUo = selectElementsOf2dimArray(uo.transpose,indices,emptyArray2)
 			newUo = newUo.transpose
 			var newVo = selectElementsOf2dimArray(vo.transpose,indices,emptyArray3)
-			
 			//Multiplication:
+			println(newUo.length,newUo.transpose.length,keptValues.length,keptValues.transpose.length,newVo.length,newVo.transpose.length)
 			println(keptValues.length + " " + keptValues.transpose.length + " " + newVo.length + " " + newVo.transpose.length)
-			val xo = multiplyArrays(newUo,multiplyArrays(keptValues,newVo.transpose))
+			val xo = multiplyArrays(newUo,multiplyArrays(newKeptValues,newVo))
 
-			// Recompose the matrix...
+
+			//currently performing test without newUo or newVo
+			// Obtain a single dimension array out of the resulting array xo
 			var recomposedMatrix = new Array[Double](newUo.length*newVo.transpose.length)
-			var k = 0
-			xo foreach { e => e foreach{ b=>recomposedMatrix(k) = b	
+			var k = 0		
+			//useless - use flatten method instead:
+			xo.transpose foreach { e => e foreach{ b=>recomposedMatrix(k) = b	
 						k= k+1}		  
 			}
+			//val recomposedMatrix = xo.flatten
+			//println(recomposedMatrix.deep.mkString("\n"))
 			
-			val newtermDocMatrix = new breeze.linalg.DenseMatrix[Double](newUo.length,newVo.length,recomposedMatrix)
+			// Compute distance between the two matrices and then compute the norm of the average distance
+			
+			//create an iterator that goes through the array:
+			//Edit: does not work because termDocMatrix is a Matrix and not an array as per
+			//Iterator.fromArray(xo) foreach (x => Iterator.fromArray(termDocMatrix) foreach (y => x.zip(y)))
+			
+			//Compare both arrays - > v2
+			val distanceMat = Math.sqrt((recomposedMatrix.toList.zip(tfidfVector.toList) foldLeft 0.0)((sum,t) => 
+			sum + (t._2-t._1)*(t._2-t._1)))
+			//println(newmat.deep.mkString("\n"))
+			
+			val newtermDocMatrix = new breeze.linalg.DenseMatrix[Double](termDocMatrix.rows,termDocMatrix.cols,recomposedMatrix)
 			//compute cosine similarity:
+			//println(newtermDocMatrix.toString)
 			val similarityMatrix = breeze.linalg.DenseMatrix.zeros[Double](datasetSize,datasetSize)
 
 			//not optimal version:
@@ -236,21 +279,22 @@ object bagOfWordsLSI {
 					//Compute scalar product between two matrices
 						val firstColumn = newtermDocMatrix(0 to newtermDocMatrix.rows-1,i)
 						val secondColumn =  newtermDocMatrix(0 to newtermDocMatrix.rows-1,j)
-						if(i!=j){
+						//println(firstColumn.toString,i)
 						similarityMatrix(i,j) = firstColumn.dot(secondColumn)	 
-						}else{
-						  similarityMatrix(i,j) = 0
-						}
+
 					//Compute 2nd norm and output cosine similarity
 						val firstColumnNorm = firstColumn.norm(2)
+						//println(firstColumnNorm)
 						val secondColumnNorm = secondColumn.norm(2)
-//test without normalisation:
-						similarityMatrix(i,j) = similarityMatrix(i,j)
-						///(firstColumnNorm*secondColumnNorm)
-						//println(similarityMatrix(i,j))
+						//test without normalisation:
+						similarityMatrix(i,j) = similarityMatrix(i,j)/(firstColumnNorm*secondColumnNorm)
+						println(i + " and j is " + j )
+						println(similarityMatrix(i,j))
 					}
 				}
-			println(similarityMatrix.toString)
+			val smat = similarityMatrix.toString
+			exportMatrixToText(smat)
+			println(distanceMat)
 			return similarityMatrix
 			//Code works but there are several problems: NaN for some similarity values... not normal
 			// NaN values are due to the division of 0 by a really high number... Need to perform tests.
@@ -265,6 +309,12 @@ def getScores(matrixOfScores: DenseMatrix[Double], column: Int): List[Double] ={
 
 }
 	 */
+	def exportMatrixToText(matrix: String) : Unit = {
+    val file = new java.io.File("exportToGephi.csv")
+    val p = new java.io.PrintWriter(file)
+    p.println(matrix)
+    p.close
+  }
 	//remove an element on a given index from a given list:
 	def dropIndex[T](xs: List[T], n: Int) = {
 		val (l1, l2) = xs splitAt n
@@ -285,6 +335,11 @@ def getScores(matrixOfScores: DenseMatrix[Double], column: Int): List[Double] ={
 		}		
 	}
 	
+		def dotProduct[T <% Double](as: Iterable[T], bs: Iterable[T]) = {
+		require(as.size == bs.size)
+		(for ((a, b) <- as zip bs) yield a * b) sum
+	}
+		
 	def selectElementsOf2dimArray(inputArray: Array[Array[Double]], inputIndices: List[Int], returnArray: Array[Array[Double]]): Array[Array[Double]] = {
 		//var returnArray = new Array[Double](inputIndices.length)
 		if(inputIndices == Nil){
@@ -308,7 +363,7 @@ def getScores(matrixOfScores: DenseMatrix[Double], column: Int): List[Double] ={
 		if(listOfIndex.length < k){
 			val maxofArray = inputVector.max
 				if (maxofArray != 0){
-					var newlistOfIndex = List(inputVector.findIndexOf(x => x == maxofArray)):::listOfIndex						
+					var newlistOfIndex = listOfIndex:::List(inputVector.findIndexOf(x => x == maxofArray))				
 					//set maximal value to 0 so it does not get taken into account again
 					inputVector(inputVector.findIndexOf(x => x == maxofArray)) = 0
 					findKMax(inputVector,k, newlistOfIndex)
@@ -377,7 +432,7 @@ def getScores(matrixOfScores: DenseMatrix[Double], column: Int): List[Double] ={
 		var i = 0
 		inputArray foreach { e =>  			 
 								if(k < desiredLength){
-									doubleDimArray(i)(k) = e
+									doubleDimArray(k)(i) = e
 									k = k+1
 								}
 								if(k == desiredLength){
@@ -392,7 +447,7 @@ def getScores(matrixOfScores: DenseMatrix[Double], column: Int): List[Double] ={
 	//@inline private def requireNonEmptyMatrix[V](mat: Matrix[V]) =
 	//if (mat.cols == 0 || mat.rows == 0)
 	//throw new MatrixEmptyException
-//modification of the www.netlib.org/lapack/ package class dgesdd (method svd)
+//modification of the www.netlib.org/lapack/ package, dgesdd method - derived from breeze svd
 	def svd(mat: breeze.linalg.DenseMatrix[Double]):(Array[Double],Array[Double],Array[Double]) = {
 		// we do not use the matrix requirements
 		//	requireNonEmptyMatrix(mat)

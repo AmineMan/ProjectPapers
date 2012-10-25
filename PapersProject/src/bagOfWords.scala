@@ -15,7 +15,7 @@ import scalala.tensor.dense.DenseMatrix
 
 
 
-trait bagOfWords {
+object bagOfWords {
 
 
 	//return list of papers linked?
@@ -25,25 +25,22 @@ trait bagOfWords {
 
 	//}
 	//}
-  /*
+  
 	def main(args: Array[String]): Unit = {
 
-			val directory : java.io.File = new java.io.File("PapersDataset/")
-	val papersSorted = getScores(directory)
-	for(i<- 0 to 11){
-		for(j<- 0 to 11){
-				println(papersSorted(i)(j))			
-		}
-	}
+	val directory : java.io.File = new java.io.File("NewDataset/")
+	val papersSorted = getMatrixOfScores(directory)
+	println(papersSorted.deep.mkString("\n"))			
 
 	}
 
-*/
+
 	//}
 
 
 
 	//compare based on scores and return List[Paper]
+	/*
 	def compareBoW(papers : List[Paper], limit : Int) : List[Paper] = {
 	  val matrixOfWeights: Array[Array[Double]] = getMatrixOfScores(new java.io.File("PapersDataset/"))
 			papers.map(p => {
@@ -72,7 +69,7 @@ trait bagOfWords {
 				else p
 			})
 	}
-
+*/
 	def getScores(matrixOfScores: Array[Array[Double]], column: Int): List[Double] ={
 	  
 	  val matrixOfScoresTranspose = matrixOfScores.transpose
@@ -85,6 +82,8 @@ trait bagOfWords {
 			val filesList = new java.io.File(directory.toString).listFiles.filter(_.getName.endsWith(".txt"))
 
 			val datasetSize = filesList.length
+			//convert dataset size to float to avoid errors
+			datasetSize.toFloat
 
 					//Initialisation of arrays
 					//Array storing the different sources and the different texts
@@ -114,21 +113,26 @@ trait bagOfWords {
 						var stemmedString = new Array[java.lang.String](splitString.length)
 						var i = 0
 						splitString foreach {e=>
-			  								val a = breeze.text.analyze.PorterStemmer.apply(e)
+			  								val a = breeze.text.analyze.PorterStemmer.apply(e)	
 			  								//There is still a blank space at the beginning of string (does not affect output)
-			  								stemmedString(i) = stemmedString(i)+a
+			  								stemmedString(i) = a
 			  								i+=1
 		  									}		
 						source(k).close()
-						occurences(k) = stemmedString.groupBy(x=>x)
-						// create a map of the keys of the text with their occurences
-						counts(k) = occurences(k).mapValues(x=>x.length)
+						counts(k) = stemmedString.groupBy(x=>x).mapValues(x=>x.length)
+						
+						//counts(k) foreach{e=>
+						// val a = clean(e._1)
+						// newCounts(k).+((a,e._2))}
 						//only working with keys for now, creating a list of keys for every text:
-						countsList(k) = counts(k).keys.toList
+						countsList(k) = counts(k).keys.toList		
+						
 						if(k == 0){
 							textsList = countsList(k)
+							
 						}else{
 							textsList = textsList ::: countsList(k)
+							
 						}						
 					}
 
@@ -136,81 +140,76 @@ trait bagOfWords {
 					//building dictionary:
 					//find unique words in texts:
 					//val texts = textsList.flatten
-					var newtextsList = List[java.lang.String]()
-					textsList foreach {e => val a = breeze.text.analyze.PorterStemmer.apply(e) 
-					newtextsList = newtextsList ::: List(a)}
-					val textsLength = newtextsList.length
+					//var newtextsList = List[java.lang.String]()
+					//textsList foreach {e => val a = breeze.text.analyze.PorterStemmer.apply(e) 
+					//newtextsList = newtextsList ::: List(a)}
+					//val textsLength = newtextsList.length
 					val dictionary = textsList.removeDuplicates.sort(_<_)
-					//println(dictionary)
+					println(dictionary)
 
 					// we compute the array of scores for the vectors of words for every document
 					val tfidfArray = new Array[Array[Double]](dictionary.length,datasetSize)
 
-					println("Computing tfidf array... " + dictionary.length)
+					println("Computing tfidf array... ")
 					for (i <- 0 to dictionary.length -1){
 						println(i)
 						for (j <- 0 to datasetSize -1){
 							//compute tfidf value for word i and document j
 							tfidfArray(i)(j) = tfidf(dictionary(i),j,datasetSize,counts)
-									//println(tfidfArray(i)(j))
+							//println(tfidfArray(i)(j))
 						}
 					}
-			println("Computing tfidf array: Complete...")
-			//once we have the scores we can compute the absolute distance between papers and classify them
-			//This is performed computing a scalar product on the score vectors for every document
-			//Computation might take some time
-		
+					println("Computing tfidf array: Complete...")
+					//once we have the scores we can compute the absolute distance between papers and classify them
+					//This is performed computing a scalar product on the score vectors for every document
+					//Computation might take some time
 			
-			//COMPUTATION OF SVD - need to get data as a vector... // compute new method instead of bagOfWords call it
-			//bagOfWordsLSI
-			//val tfidfMatrix = new scalala.tensor.dense.DenseMatrix[Double](dictionary.length,datasetSize,vectz)
-			//scalala.library.LinearAlgebra.svd(tfidfMatrix) 
+					//temporary while getting "scalala" to work:
+					val scalarProduct = new Array[Array[Double]](datasetSize,datasetSize)
+					val cosineSimilarity = new Array[Array[Double]](datasetSize,datasetSize)
+					//transpose array to perform row Array operations instead of column based operations
+					println(tfidfArray.deep.mkString("\n"))
+					val tfidfTranspose = tfidfArray.transpose
 			
-			//temporary while getting "scalala" to work:
-			val scalarProduct = new Array[Array[Double]](datasetSize,datasetSize)
-			val cosineSimilarity = new Array[Array[Double]](datasetSize,datasetSize)
-			//transpose array to perform row Array operations instead of column based operations
-			val tfidfTranspose = tfidfArray.transpose
-			
-			val normalisationTerm = 1
-			println("Computing scalar product array")
-			for (i <- 0 to datasetSize -1){
-				//println(i)
-				for (j <- 0 to datasetSize -1){
-				  //May induce some computational time
-				  val normVectorI = math.sqrt(dotProduct(tfidfTranspose(i),tfidfTranspose(i)))
-				  val normVectorJ = math.sqrt(dotProduct(tfidfTranspose(j),tfidfTranspose(j)))
-					if(i!=j){
-						//Here operations take cost of length O(dictionary length)
-						//compute cosine similarity
-						scalarProduct(i)(j) = dotProduct(tfidfTranspose(i), tfidfTranspose(j))
-						cosineSimilarity(i)(j) = scalarProduct(i)(j)/normVectorI*normVectorJ
-					}else{
-						//does not mean anything
-						scalarProduct(i)(j) = 0
-						cosineSimilarity(i)(j) = 0
+					val normalisationTerm = 1
+					println("Computing scalar product array")
+					for (i <- 0 to datasetSize -1){
+						//println(i)
+						for (j <- 0 to datasetSize -1){
+							//May induce some computational time
+							val normVectorI = math.sqrt(dotProduct(tfidfTranspose(i),tfidfTranspose(i)))
+							val normVectorJ = math.sqrt(dotProduct(tfidfTranspose(j),tfidfTranspose(j)))
+							//println("dot product of " + tfidfTranspose(i).deep.mkString("\n") +  " and " + tfidfTranspose(j).deep.mkString("\n") + " is " + dotProduct(tfidfTranspose(i),tfidfTranspose(j)))
+				
+						    //Here operations take cost of length O(dictionary length)
+					     	//compute cosine similarity
+							scalarProduct(i)(j) = dotProduct(tfidfTranspose(i), tfidfTranspose(j))
+							//println(" " + normVectorI + " " + tfidfTranspose(i).deep.mkString("\n"))
+							//println(scalarProduct(i)(j))
+							cosineSimilarity(i)(j) = scalarProduct(i)(j)/(normVectorI*normVectorJ)
+							//println(cosineSimilarity(i)(j) + " " + scalarProduct(i)(j) + " " + normVectorI + " " + normVectorJ)
+				
+					    }	
+			         }
+					//return array of scores
+					println("Computing scalar product array: Done...")			
+					// map every score with the paper ID
+					//for every paper sort according to scores
+					println("Sorting accordingly...")
+					val a = 0 until datasetSize
+					var positions = new Array[List[(Double,Int)]](datasetSize)
+					for(k <- 0 to datasetSize-1){
+						positions(k) = (scalarProduct(k).zip(a)).toList.sort(_._1 < _._1 )
 					}
-				}
-			}
-			//return array of scores
-			println("Computing scalar product array: Done...")			
-			// map every score with the paper ID
-			//for every paper sort according to scores
-			println("Sorting accordingly...")
-			val a = 0 until datasetSize
-			var positions = new Array[List[(Double,Int)]](datasetSize)
-			for(k <- 0 to datasetSize-1){
-				positions(k) = (scalarProduct(k).zip(a)).toList.sort(_._1 < _._1 )
-			}
+			
+					//return sorted scores with according paper
 
-
-			//return sorted scores with according paper
-
-			return scalarProduct
+					return cosineSimilarity
 					//(i,j) of scalarProduct represents the scalar product of document i and document j. Now we have
 					// to sort it in order in a list to return the closest documents to a given document
 					//we have weights (higher weight/score) means being closer document-to-document wise
 	}
+
 
 
 	// Code has to be made generic for any text file parsed and for the whole dataset to be accurate
@@ -319,15 +318,15 @@ println("the number of distinct words in text 6 is: " + countsList(5).length)
 	def tf(term: String, document: Int, counts: Array[Map[java.lang.String,Int]]): Double = {
 			val keyValue = counts(document).values
 			val normalisationTerm = keyValue.max
-					//Using normalization term (can disable)
+			println(normalisationTerm)
+					//Without normalisation
 					if (counts(document).contains(term)){
 						val freq = counts(document)(term)
-						val normalizedFreq = freq/normalisationTerm					
+						val normalizedFreq = freq				
 					return normalizedFreq				
 					}else{					 
 					return 0.0
 					}
-
 			//normalization with respect to the documents length to prevent any bias:
 			//new normalisation with respect to the highest occurence in the document
 			
@@ -335,24 +334,30 @@ println("the number of distinct words in text 6 is: " + countsList(5).length)
 
 	//Computing IDF value
 
-	def idf(term: String, datasetSize : Int, counts: Array[Map[java.lang.String,Int]]): Double = {
+	def idf(term: String, datasetSize : Double, counts: Array[Map[java.lang.String,Int]]): Double = {
 			//math.log(size / index.getDocCount(term))
 			// take the logarithm of the quotient of the number of documents by the documents where term t appears
 			var appearances = 0
-				for(i <- 0 to datasetSize-1){
-					  if (counts(i).contains(term)){
+			//convert appearances to a float (to avoid errors)
+			appearances.toFloat
+			//println(counts.deep.mkString("\n"))
+			counts foreach {x => if (x.contains(term)){
 									appearances += 1
-								}
-					}	
-			return math.log(datasetSize/(1+appearances))
+									
+						   }
+			//println(term + " => appearances: " + appearances)
+			}
+			val a = math.log(datasetSize/appearances)  
+			return a
+
 	}
 
-	def tfidf(term:String, document: Int, datasetSize : Int, counts: Array[Map[java.lang.String,Int]]) : Double = {
+	def tfidf(term:String, document: Int, datasetSize : Double, counts: Array[Map[java.lang.String,Int]]) : Double = {
 			//create tfidf matrix
 			//tfidf = tf*idf
-
+			
 			val tfidf = tf(term,document,counts)*idf(term,datasetSize,counts)
-			//println(tf(term,document,counts)+ "life is what it is" + idf(term,datasetSize,counts))
+			//println("For document " + document + " and word " + term + " the value of tf is " + tf(term,document,counts) + " and the value of idf is " + idf(term,datasetSize,counts))
 					return tfidf
 
 	}
@@ -369,24 +374,3 @@ println("the number of distinct words in text 6 is: " + countsList(5).length)
 	
 
 }
-
-
-//println("the new total length of the list is: " + textCounts.length)
-
-//this shows all the words from all the texts and their occurences, not the list of unique words (to fix)
-//println(texts)
-
-
-
-//val tokenizer = new DefaultTokenizer()
-
-//val tokenized = tokenizer.tokenize(lines)
-//println(tokenized)
-//showing content of the file
-//println(lines)
-
-//val classifier = new SimpleClassifier();
-//classifier.setSearchWord( "java" );
-//val sentence : java.lang.String = "This is a sentance about java"
-//println( "The string " + sentence +	" contains the word java:" + classifier.isMatch(sentence) );
-
